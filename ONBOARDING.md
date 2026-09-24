@@ -109,7 +109,12 @@ gate real. Reports land in `reports/` (gitignored) as JUnit XML and HTML.
 **The export gate is skipped** when export templates aren't installed, so
 working on `core/` doesn't force a 1 GB download. CI sets
 `MALPACO_REQUIRE_EXPORT=1` to make it mandatory there. To install them
-locally: Godot → Editor → Manage Export Templates.
+locally: Godot → Editor → Manage Export Templates. The gate looks where
+that installs them — `%APPDATA%\Godot`, `~/Library/Application
+Support/Godot` or `~/.local/share/godot`, under `export_templates/` —
+and names the folder in its `SKIP` line. **The .NET editor needs the
+.NET templates** (`4.7.2.stable.mono`), not the standard set, even
+though nothing here is C#: install them from the editor you export with.
 
 ## Verified environment facts
 

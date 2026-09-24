@@ -82,18 +82,33 @@ rm -f "$SMOKE_LOG"
 
 # --- 5. export --------------------------------------------------------------
 say "export (Linux release build)"
-TEMPLATE_DIR="${HOME}/.local/share/godot/export_templates/4.7.2.stable"
+# Templates live under Godot's per-OS data directory, in a folder named after
+# the running editor's version minus its build and hash: "4.7.2.stable" for the
+# standard build, "4.7.2.stable.mono" for the .NET one, which needs its own set.
+BUILT_TEST="-x"
+case "$(uname -s)" in
+MINGW* | MSYS* | CYGWIN*)
+	TEMPLATE_ROOT="${APPDATA:-$HOME/AppData/Roaming}/Godot"
+	# Git Bash never sees a Linux ELF binary as executable, so -x cannot
+	# prove the build landed there; a non-empty file is the best it can do.
+	BUILT_TEST="-s"
+	;;
+Darwin) TEMPLATE_ROOT="$HOME/Library/Application Support/Godot" ;;
+*) TEMPLATE_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/godot" ;;
+esac
+GODOT_VERSION="$("$GODOT" --version 2>/dev/null | tr -d '\r' | tail -1)"
+TEMPLATE_DIR="$TEMPLATE_ROOT/export_templates/$(sed -E 's/\.[^.]+\.[^.]+$//' <<<"$GODOT_VERSION")"
 if [[ ! -d "$TEMPLATE_DIR" ]]; then
 	if [[ "${MALPACO_REQUIRE_EXPORT:-0}" == "1" ]]; then
 		bad "export — templates missing at $TEMPLATE_DIR"
 	else
-		skip "export" "no export templates; Godot > Project > Install Export Templates"
+		skip "export" "no export templates at $TEMPLATE_DIR; Godot > Editor > Manage Export Templates"
 	fi
 else
 	mkdir -p build/linux
 	if "$GODOT" --path . --headless --export-release "Linux" build/linux/malpaco.x86_64 2>&1 |
 		grep -viE "alsa|audio driver"; then
-		if [[ -x build/linux/malpaco.x86_64 ]]; then
+		if test "$BUILT_TEST" build/linux/malpaco.x86_64; then
 			ok "export — build/linux/malpaco.x86_64"
 		else
 			bad "export — Godot reported success but produced no binary"
