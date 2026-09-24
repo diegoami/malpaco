@@ -100,9 +100,8 @@ bootstrap applies as written there — one review, not two stages.
     name lowercased.
   - **Roles.** The user is the product manager and the owner; Claude is the
     developer. Test locally. When a deliverable is complete, don't just declare
-    it done — give
-    concrete steps to verify it (what to run, click or look at, and what to
-    expect). For anything visual, attach a screenshot: the gates cannot tell
+    it done — give concrete steps to verify it (what to run, click or look at,
+    and what to expect). For anything visual, attach a screenshot: the gates cannot tell
     anyone whether the game looks good.
   - **Branches.** New features and fixes go on a branch, not directly on
     `main`; commit and push the branch without asking first. The owner merges
