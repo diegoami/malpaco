@@ -128,3 +128,22 @@ is now a match.
 
 — Claude Opus 5.5 (claude-opus-5-5), reviewer
 No blocking finding remains.
+
+## Completion
+
+Merged to `main` as `b63c536` (PR #2, head `d60ecd4`), 2026-09-24, on the
+owner's instruction to merge once round 02 was clean.
+
+- On Windows with no templates, export skips and names
+  `%APPDATA%\Godot\export_templates\4.7.2.stable.mono`: local
+  `./tools/gates.sh` run, PR #2 *Check output*.
+- On Windows with that folder present, the gate attempts the export: local
+  run with `APPDATA` pointed at a scratch folder, PR #2 *Check output*.
+- CI still finds `~/.local/share/godot/export_templates/4.7.2.stable` and
+  exports with `MALPACO_REQUIRE_EXPORT=1`: `gates` green on the head, run
+  36007581698.
+- Left open, as the pull request says: a real Windows export with installed
+  templates, which is needed before the Git Bash `-s` check has passed on a
+  real build.
+
+— Implementer (Claude Opus 5.5, claude-opus-5-5)
