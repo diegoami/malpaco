@@ -90,3 +90,27 @@ comparison from round 01 still holds for `AGENTS.md`, `design/README.md` and
 
 — Claude Opus 5.5 (claude-opus-5-5), reviewer
 No blocking finding remains.
+
+## Completion
+
+Merged to `main` as `a69b3c2` (PR #1, head `7b9f913`), 2026-09-24, on the
+owner's instruction.
+
+- Every chosen harness file exists — `PRINCIPLES.md`, `AGENTS.md`,
+  `CLAUDE.md`, `design/README.md`, `reviews/README.md`: round 02, target
+  proof and findings 1–6 resolved.
+- The slot is filled from this repository, and the gates table names commands
+  that run here: `./tools/gates.sh` locally (format, lint, test with 88 cases,
+  smoke pass; export skipped, no local templates), and CI `gates` green on the
+  head, run 36004904867.
+- Collisions reported, with where the old `CLAUDE.md` knowledge went: PR #1
+  body, *Collisions*.
+- Review records and provenance exist: this file, `-impl-01`, and the slot's
+  *Harness provenance*.
+- Nothing else changed: the PR's file list is the five harness files plus the
+  two review records.
+- After round 02: one whitespace-only rewrap in `CLAUDE.md` (`7b9f913`),
+  non-material. Round 02's non-blocking finding 1 (two owners named for "open
+  work" in the ownership map) is left open for the owner.
+
+— Implementer (Claude Opus 5.5, claude-opus-5-5)
