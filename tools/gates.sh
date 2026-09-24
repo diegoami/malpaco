@@ -96,16 +96,22 @@ MINGW* | MSYS* | CYGWIN*)
 Darwin) TEMPLATE_ROOT="$HOME/Library/Application Support/Godot" ;;
 *) TEMPLATE_ROOT="${XDG_DATA_HOME:-$HOME/.local/share}/godot" ;;
 esac
-GODOT_VERSION="$("$GODOT" --version 2>/dev/null | tr -d '\r' | tail -1)"
-TEMPLATE_DIR="$TEMPLATE_ROOT/export_templates/$(sed -E 's/\.[^.]+\.[^.]+$//' <<<"$GODOT_VERSION")"
-if [[ ! -d "$TEMPLATE_DIR" ]]; then
+# Matched, not stripped: "4.7.2.stable.mono.official.ed1daf0bf" -> "4.7.2.stable.mono",
+# "4.3.stable.official.77dcf97d8" -> "4.3.stable", whatever the build suffix.
+TEMPLATE_VERSION="$("$GODOT" --version 2>/dev/null | tr -d '\r' |
+	grep -oE '^[0-9]+\.[0-9]+(\.[0-9]+)?\.[a-z]+[0-9]*(\.mono)?' | head -1)"
+TEMPLATE_DIR="$TEMPLATE_ROOT/export_templates/$TEMPLATE_VERSION"
+if [[ -z "$TEMPLATE_VERSION" ]]; then
+	bad "export — could not read a version from '$GODOT --version'"
+elif [[ ! -d "$TEMPLATE_DIR" ]]; then
 	if [[ "${MALPACO_REQUIRE_EXPORT:-0}" == "1" ]]; then
 		bad "export — templates missing at $TEMPLATE_DIR"
 	else
 		skip "export" "no export templates at $TEMPLATE_DIR; Godot > Editor > Manage Export Templates"
 	fi
 else
-	mkdir -p build/linux
+	# A binary left by an earlier run would otherwise pass the check below.
+	mkdir -p build/linux && rm -f build/linux/malpaco.x86_64
 	if "$GODOT" --path . --headless --export-release "Linux" build/linux/malpaco.x86_64 2>&1 |
 		grep -viE "alsa|audio driver"; then
 		if test "$BUILT_TEST" build/linux/malpaco.x86_64; then
