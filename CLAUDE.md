@@ -81,6 +81,9 @@ bootstrap applies as written there — one review, not two stages.
   hook runs (`git config core.hooksPath .githooks`, once per clone) and GitHub
   Actions runs (`.github/workflows/gates.yml`) on every pull request and on
   pushes to `main`. Godot is found through `GODOT_BIN`, else `godot` on `PATH`.
+  Locally, format and lint are **skipped**, not failed, when gdtoolkit is not
+  installed, and the run can still end "all gates green": read the `SKIP` lines.
+  CI installs gdtoolkit, so there they always run.
 
   | gate | command | covers | when | repeats | failure model |
   |---|---|---|---|---|---|
@@ -96,7 +99,8 @@ bootstrap applies as written there — one review, not two stages.
     islands, provinces, nations — is Esperanto, diacritic-free so an id is its
     name lowercased.
   - **Roles.** The user is the product manager and the owner; Claude is the
-    developer. When a deliverable is complete, don't just declare it done — give
+    developer. Test locally. When a deliverable is complete, don't just declare
+    it done — give
     concrete steps to verify it (what to run, click or look at, and what to
     expect). For anything visual, attach a screenshot: the gates cannot tell
     anyone whether the game looks good.
@@ -107,9 +111,11 @@ bootstrap applies as written there — one review, not two stages.
     taken: the harness rule replaces the earlier "small doc-only changes can go
     straight to `main`". A change to a document that states design (`RULES.md`,
     `SCENARIOS.md`, `ARCHITECTURE.md`, `DECISIONS.md`) or to a harness file is
-    non-trivial and takes a branch and the review (`PRINCIPLES.md`). Status
-    ticks in `ROADMAP.md`, notes in `ONBOARDING.md` and `ASSETS.md`, and typos
-    stay trivial and may go straight to `main`. Reason: the spec is what the
+    non-trivial and takes a branch and the review (`PRINCIPLES.md`). A doc edit
+    that meets none of `PRINCIPLES.md`'s (a)–(d) — a status tick in
+    `ROADMAP.md`, a ledger line in `ASSETS.md`, a typo — stays trivial and may go
+    straight to `main`; an `ONBOARDING.md` edit that changes how the project is
+    set up, run or worked on does not. Reason: the spec is what the
     engine is judged against, so a change to it is a change to the product.
   - **Keep the documents current**, as part of the change that makes them stale:
     - `ROADMAP.md`: check off tasks as they land, update Status, adjust
@@ -172,12 +178,25 @@ bootstrap applies as written there — one review, not two stages.
   - **Open work** lives in `ROADMAP.md` (Malpaco's own iteration plan; the
     harness `PLAN.md`/`ROADMAP.md` overlay is not taken). Owner decisions still
     owed are listed at the end of `ONBOARDING.md`.
-  - **Harness provenance** **[owner decision, 2026-09-24]**: adopted from
-    harness_template release `r4` (commit `39c29e3`), on 2026-09-24. Taken:
-    `PRINCIPLES.md` (its conservative floor adapted to this repository's
-    paths), `AGENTS.md`, this file, `design/README.md`, `reviews/README.md`.
-    Not taken: `PLAN.md` and `ROADMAP.md` (Malpaco's `ROADMAP.md` stays the
-    plan) and `verification/README.md`. Both modes are kept; this project is
-    currently worked in Claude mode.
+  - **Milestones.** Harness `r4` has no milestone rules and no `milestones:`
+    slot field, so none is recorded here. For reference, the release tags are
+    `vX.Y.Z` (`v0.1.0` at Iteration 11) and the plan is `ROADMAP.md`.
+  - **Harness provenance:** adopted from harness_template release `r4` (commit
+    `39c29e3`), on 2026-09-24. Taken: `PRINCIPLES.md` (its conservative floor
+    and ownership map adapted to this repository), `AGENTS.md`, this file,
+    `design/README.md`, `reviews/README.md`. Not taken: `PLAN.md`,
+    `ROADMAP.md`, `verification/README.md`. The adoption's own owner
+    decisions:
+    - **Which release** **[owner decision, 2026-09-24]** — recommended default
+      taken: `r4`, the tagged release, not the harness's unreleased `main`.
+      Reason: a tag is frozen and citable; `main` is in flight.
+    - **The overlay** **[owner decision, 2026-09-24]** — recommended default
+      taken: keep Malpaco's `ROADMAP.md` and skip the harness `PLAN.md` and
+      `ROADMAP.md`. Reason: the project already has a living iteration plan
+      with status and history; reshaping it would be churn for no gain.
+    - **The modes** **[owner decision, 2026-09-24]** — the recommended default
+      was Claude mode only; the owner chose to keep both `AGENTS.md` and
+      `CLAUDE.md`, working in Claude mode for now. Reason: OpenCode stays
+      available for cross-family work without a later harness change.
 
 <!-- SLOT:END -->

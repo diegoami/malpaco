@@ -16,11 +16,9 @@
 | the OpenCode process: roles, assignment table, reviewer acquisition, the two stages, BLOCK scope, withdraw/re-scope | `AGENTS.md` |
 | the Claude Code process: fresh-context review, same-family default, no design stage, the external-process option | `CLAUDE.md` |
 | the project rules: product, paths, never-echo, the gates table, conventions, one source of truth, decided-not-to-reopen, open work | `CLAUDE.md`, the project slot |
-| the iteration overlay and the fork-provenance table | `PLAN.md` |
-| feature requests and artistic license | `ROADMAP.md` |
+| the iteration plan, its status and open work | `ROADMAP.md` — Malpaco's own; the harness `PLAN.md`/`ROADMAP.md` overlay and `verification/README.md` are not taken (the project slot) |
 | the design-record format | `design/README.md` |
 | the verdict-record format and the signature convention | `reviews/README.md` |
-| the optional verification patterns | `verification/README.md` |
 
 **The table is authoritative.** A contradiction found between files is recorded
 as a defect and fixed in the change that found it. If the table does not settle
