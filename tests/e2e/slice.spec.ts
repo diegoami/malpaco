@@ -1,9 +1,45 @@
 import { expect, test as base } from "@playwright/test";
 import type { Locator, Page, TestInfo } from "@playwright/test";
+import { classicRules, pairResults } from "../../src/core";
+import { SEATS } from "../../src/ui/palette";
 
 // The slice, driven the way a player drives it: by clicks. A fixed seed fixes the
 // deal, so every run starts from the same board.
 const URL = "/?seed=1994";
+
+// The app's fixed seat order (PLAYERS in src/ui/app.ts). The owner colours come
+// from the palette (src/ui/palette.ts), so the gates below hold the painted
+// board against what the palette says each owner looks like — never against the
+// page's own fill, which would agree with any wrong colour it was given.
+const OWNER_SEAT: Record<string, number> = { blue: 0, amber: 1 };
+
+interface OwnerExpectation {
+  /** The palette colour, as RGB 0-255. */
+  rgb: number[];
+  /** The second seat is painted with the hatch stripes over its base colour. */
+  hatched: boolean;
+}
+
+const OWNER_EXPECTATION: Record<string, OwnerExpectation> = Object.fromEntries(
+  Object.entries(OWNER_SEAT).map(([owner, seat]) => {
+    const hex = SEATS[seat]?.color ?? "";
+    const rgb = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+    return [owner, { rgb, hatched: seat === 1 }];
+  }),
+);
+
+/**
+ * The gate thresholds. Basis: [measured] on the clean board over this map, both
+ * viewports, pinned Chromium — the numbers and their margins are recorded in
+ * docs/spike.md, "The painted-board gate, measured". The per-pixel colour
+ * tolerance, 28, is a literal inside `paintedShares` (it runs in the page).
+ */
+/** Fraction of a province's sampled pixels that must match its owner's colour. Clean minimum [measured]: 0.795 at 1280x800 (Hoko), 0.814 at 1920x1080 (Ventflanko) — a margin of at least 9.5 points. */
+const PAINT_THRESHOLD = 0.7;
+/** An owner's colour must sit this far from the sea, or the comparison proves nothing. Clean minimum [measured]: 88. */
+const SEA_DISTANCE = 60;
+/** A badge or a name is painted only if its pixels, inside the province, show this much contrast. Clean boards measure 317-413; hidden labels at most the hatch stripes' 74-208. */
+const LABEL_SPREAD: Record<string, number> = { badge: 240, name: 300, "badge-count": 240 };
 
 interface Holding {
   owner: string;
@@ -39,16 +75,25 @@ async function shot(page: Page, info: TestInfo, name: string): Promise<void> {
 /**
  * What is actually painted. Takes a real screenshot and, for each province, reads
  * the pixels at a grid of points inside its polygon (clear of its badge and name),
- * comparing them with the owner's fill. Opacity, an overlay, a missing paint or a
- * wrong colour all fail here, though the DOM still reports a perfectly good board.
+ * comparing them with what its owner's palette colour is — not with the page's own
+ * fill, so a province painted in another owner's colour fails here. Opacity, an
+ * overlay, a missing paint or a wrong colour all fail, though the DOM still reports
+ * a perfectly good board.
+ *
+ * The hatched seat is compared against the whole segment from its base colour down
+ * to the 28%-darker hatched shade (anti-aliased stripe edges count); the unhatched
+ * seat against its base colour only, so no seat accepts a darker shade it never
+ * wears.
  */
-async function paintedShares(page: Page): Promise<{ id: string; share: number; samples: number; fill: string; sea: number }[]> {
+async function paintedShares(page: Page): Promise<
+  { id: string; owner: string; share: number; samples: number; fill: string; expected: string; sea: number }[]
+> {
   await page.mouse.move(2, 400); // no hover outline over the board
   await settle(page);
   const b64 = (await page.screenshot()).toString("base64");
-  return page.evaluate(async (data) => {
+  return page.evaluate(async ({ png, palette }: { png: string; palette: Record<string, OwnerExpectation> }) => {
     const img = new Image();
-    img.src = `data:image/png;base64,${data}`;
+    img.src = `data:image/png;base64,${png}`;
     await img.decode();
     const canvas = document.createElement("canvas");
     canvas.width = img.width;
@@ -56,17 +101,26 @@ async function paintedShares(page: Page): Promise<{ id: string; share: number; s
     const ctx = canvas.getContext("2d", { willReadFrequently: true }) as CanvasRenderingContext2D;
     ctx.drawImage(img, 0, 0);
     const pixel = (x: number, y: number) => Array.from(ctx.getImageData(Math.round(x), Math.round(y), 1, 1).data.slice(0, 3));
-    const dist = (a: number[], b: number[]) => Math.hypot(a[0]! - b[0]!, a[1]! - b[1]!, a[2]! - b[2]!);
+    /** Distance from a point to the segment a-b (a point when a equals b). */
+    const segDist = (p: number[], a: number[], b: number[]) => {
+      const ab = [b[0]! - a[0]!, b[1]! - a[1]!, b[2]! - a[2]!];
+      const ap = [p[0]! - a[0]!, p[1]! - a[1]!, p[2]! - a[2]!];
+      const len2 = ab[0]! * ab[0]! + ab[1]! * ab[1]! + ab[2]! * ab[2]!;
+      const t = len2 === 0 ? 0 : Math.max(0, Math.min(1, (ap[0]! * ab[0]! + ap[1]! * ab[1]! + ap[2]! * ab[2]!) / len2));
+      return Math.hypot(p[0]! - (a[0]! + t * ab[0]!), p[1]! - (a[1]! + t * ab[1]!), p[2]! - (a[2]! + t * ab[2]!));
+    };
     const svg = document.querySelector("#map") as unknown as SVGSVGElement;
     const ctm = svg.getScreenCTM() as DOMMatrix;
     const corner = svg.getBoundingClientRect();
     const sea = pixel(corner.left + 6, corner.top + 6);
     const out = [];
     for (const g of Array.from(document.querySelectorAll(".province"))) {
+      const owner = (g as SVGElement).dataset["owner"] as string;
+      const expected = palette[owner] as { rgb: number[]; hatched: boolean };
       const path = g.querySelector(".shape") as unknown as SVGGeometryElement;
       const fill = getComputedStyle(path).fill;
-      const base = (fill.match(/\d+/g) ?? []).slice(0, 3).map(Number);
-      const hatched = base.map((c) => c * (1 - 0.28)); // the second seat's stripes darken the fill by 28%
+      // The hatch stripes are black at 28% opacity over the base colour.
+      const shaded = expected.rgb.map((c) => c * (1 - 0.28));
       const badge = g.querySelector(".badge") as SVGGElement;
       const [lx, ly] = (badge.getAttribute("transform")?.match(/-?[\d.]+/g) ?? ["0", "0"]).map(Number) as [number, number];
       const half = (g.querySelector(".name") as unknown as SVGTextElement).getBBox().width / 2 + 10;
@@ -78,15 +132,22 @@ async function paintedShares(page: Page): Promise<{ id: string; share: number; s
           if (!path.isPointInFill(new DOMPoint(x, y))) continue;
           if (Math.abs(x - lx) < half && y > ly - 30 && y < ly + 48) continue; // under the badge or the name
           const at = new DOMPoint(x, y).matrixTransform(ctm);
-          const got = pixel(at.x, at.y);
           samples++;
-          if (dist(got, base) <= 28 || dist(got, hatched) <= 28) match++;
+          if (segDist(pixel(at.x, at.y), expected.rgb, expected.hatched ? shaded : expected.rgb) <= 28) match++;
         }
       }
-      out.push({ id: (g as SVGElement).dataset["province"] as string, share: samples ? match / samples : 0, samples, fill, sea: dist(base, sea) });
+      out.push({
+        id: (g as SVGElement).dataset["province"] as string,
+        owner,
+        share: samples ? match / samples : 0,
+        samples,
+        fill,
+        expected: `rgb(${expected.rgb.join(", ")})`,
+        sea: segDist(expected.rgb, sea, sea),
+      });
     }
     return out;
-  }, b64);
+  }, { png: b64, palette: OWNER_EXPECTATION });
 }
 
 /**
@@ -187,7 +248,8 @@ test("all 14 provinces render, visible, on top, and told apart by more than colo
     expect(hit, `${id} is covered or invisible at its badge`).toBe(id);
   }
 
-  // Ownership: two colours, and the cues that do not depend on colour.
+  // Ownership: every province filled exactly with its owner's palette colour,
+  // and the cues that do not depend on colour.
   const state = await holdings(page);
   const owners = new Set(Object.values(state).map((p) => p.owner));
   expect(owners).toEqual(new Set(["blue", "amber"]));
@@ -203,19 +265,89 @@ test("all 14 provinces render, visible, on top, and told apart by more than colo
   );
   expect(new Set(looks.map((l) => l.fill)).size).toBe(2);
   for (const l of looks) {
+    const seat = l.owner === undefined ? undefined : OWNER_SEAT[l.owner];
+    const hex = seat === undefined ? "" : (SEATS[seat]?.color ?? "");
+    const want = hex === "" ? "" : `rgb(${[1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(", ")})`;
+    expect(l.fill, `${l.owner}'s province is filled ${l.fill}, not the palette colour ${want}`).toBe(want);
     expect(l.count).toBe(l.armies);
     expect(l.initial).toBe(l.owner === "blue" ? "B" : "A");
     expect(l.hatch).toBe(l.owner === "blue" ? "none" : "block");
   }
 });
 
-test("the board is painted: the pixels inside every province are its owner's colour", async ({ page }) => {
+test("the board is painted: the pixels inside every province are its owner's palette colour", async ({ page }) => {
   const shares = await paintedShares(page);
   expect(shares).toHaveLength(14);
   for (const p of shares) {
+    const want = OWNER_EXPECTATION[p.owner];
+    expect(want, `no palette colour known for the owner '${p.owner}'`).toBeDefined();
+    // The DOM layer: the fill the page claims must be the owner's palette colour.
+    expect(p.fill, `${p.id} (${p.owner}) is filled ${p.fill}, not its owner's palette colour ${p.expected}`).toBe(p.expected);
     expect(p.samples, `${p.id}: no interior point to sample`).toBeGreaterThanOrEqual(6);
-    expect(p.sea, `${p.id}: the owner's colour must differ from the sea, or this proves nothing`).toBeGreaterThan(60);
-    expect(p.share, `${p.id} is not painted in ${p.fill} (${Math.round(p.share * 100)}% of ${p.samples} sampled pixels)`).toBeGreaterThanOrEqual(0.7);
+    expect(p.sea, `${p.id}: the owner's colour must differ from the sea, or this proves nothing`).toBeGreaterThan(SEA_DISTANCE);
+    expect(p.share, `${p.id} is not painted in ${p.expected} (${Math.round(p.share * 100)}% of ${p.samples} sampled pixels)`).toBeGreaterThanOrEqual(
+      PAINT_THRESHOLD,
+    );
+  }
+});
+
+test("every badge and name is actually painted, not merely present in the DOM", async ({ page }) => {
+  await page.mouse.move(2, 400); // no hover outline or tooltip over the board
+  await settle(page);
+  const b64 = (await page.screenshot()).toString("base64");
+  const labels = await page.evaluate(async (png) => {
+    const img = new Image();
+    img.src = `data:image/png;base64,${png}`;
+    await img.decode();
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true }) as CanvasRenderingContext2D;
+    ctx.drawImage(img, 0, 0);
+    const pixel = (x: number, y: number) => Array.from(ctx.getImageData(Math.round(x), Math.round(y), 1, 1).data.slice(0, 3));
+    const svg = document.querySelector("#map") as unknown as SVGSVGElement;
+    const inverse = (svg.getScreenCTM() as DOMMatrix).inverse();
+    const out: { id: string; kind: string; spread: number; sampled: number }[] = [];
+    for (const g of Array.from(document.querySelectorAll(".province"))) {
+      const id = (g as SVGElement).dataset["province"] as string;
+      const shape = g.querySelector(".shape") as unknown as SVGGeometryElement;
+      for (const sel of [".badge", ".name", ".badge-count"]) {
+        const el = g.querySelector(sel);
+        if (!el) {
+          out.push({ id, kind: sel.slice(1), spread: 0, sampled: 0 });
+          continue;
+        }
+        const r = (el as Element).getBoundingClientRect();
+        const lo = [255, 255, 255];
+        const hi = [0, 0, 0];
+        let sampled = 0;
+        for (let x = r.left + 1; x < r.right; x += 3) {
+          for (let y = r.top + 1; y < r.bottom; y += 3) {
+            // Only pixels inside the province: a label straddling the coast has
+            // sea and sand behind it, which would fake contrast when hidden.
+            if (!shape.isPointInFill(new DOMPoint(x, y).matrixTransform(inverse))) continue;
+            const px = pixel(x, y);
+            for (const c of [0, 1, 2]) {
+              lo[c] = Math.min(lo[c]!, px[c]!);
+              hi[c] = Math.max(hi[c]!, px[c]!);
+            }
+            sampled++;
+          }
+        }
+        out.push({ id, kind: sel.slice(1), spread: Math.hypot(hi[0]! - lo[0]!, hi[1]! - lo[1]!, hi[2]! - lo[2]!), sampled });
+      }
+    }
+    return out;
+  }, b64);
+  expect(labels).toHaveLength(42); // 14 provinces, badge + name + count each
+  for (const l of labels) {
+    const floor = LABEL_SPREAD[l.kind];
+    expect(floor, `no threshold known for a ${l.kind}`).toBeGreaterThan(0);
+    expect(l.sampled, `${l.id} ${l.kind}: nothing to sample inside the province`).toBeGreaterThan(5);
+    // Hidden with `opacity: 0`, the area is whatever the province paint alone
+    // gives (flat fill, at most the hatch stripes and the border stroke);
+    // painted, the white count and name stand against their dark backdrop.
+    expect(l.spread, `${l.id} ${l.kind} shows no contrast — it is not painted`).toBeGreaterThanOrEqual(floor as number);
   }
 });
 
@@ -239,6 +371,29 @@ test("the layout fits the viewport: no page scroll, map and panel both fully vis
   });
   expect(nameSize).toBeGreaterThanOrEqual(11);
 });
+
+for (const [width, height] of [
+  [1366, 768],
+  [1600, 900],
+  [1920, 1080],
+] as const) {
+  test(`the panel never overflows at ${width}x${height}: New game and the seed in view, nothing to scroll`, async ({ page }) => {
+    await page.setViewportSize({ width, height });
+    await settle(page);
+    const scroll = await page.evaluate(() => ({ w: document.documentElement.scrollWidth, h: document.documentElement.scrollHeight }));
+    expect(scroll.w, `the page scrolls sideways at ${width}x${height}`).toBeLessThanOrEqual(width);
+    expect(scroll.h, `the page scrolls at ${width}x${height}`).toBeLessThanOrEqual(height);
+    const panel = await page.locator(".panel").evaluate((el) => ({ client: el.clientHeight, scroll: el.scrollHeight }));
+    expect(panel.scroll, `the panel itself scrolls at ${width}x${height}`).toBeLessThanOrEqual(panel.client);
+    for (const id of ["new-game-button", "seed"]) {
+      const box = (await page.locator(`#${id}`).boundingBox())!;
+      expect(box.y, `${id} is above the viewport at ${width}x${height}`).toBeGreaterThanOrEqual(0);
+      expect(box.y + box.height, `${id} is below the viewport at ${width}x${height}`).toBeLessThanOrEqual(height);
+      expect(box.x, `${id} is left of the viewport at ${width}x${height}`).toBeGreaterThanOrEqual(0);
+      expect(box.x + box.width, `${id} is right of the viewport at ${width}x${height}`).toBeLessThanOrEqual(width);
+    }
+  });
+}
 
 test("hovering a province outlines it and names it", async ({ page }) => {
   await province(page, "sulo").locator(".shape").hover();
@@ -317,6 +472,22 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
   expect(await dialog.locator(".verdict.down").count()).toBe(attackerLosses);
   expect(await dialog.locator(".verdict.up").count()).toBe(defenderLosses);
   expect(attackerLosses + defenderLosses).toBe(Math.min(attackerDice, defenderDice));
+  // Column by column: each label must match its two dice faces under the
+  // engine's tie rule (classicRules' ties, which pairResults applies). Counting
+  // labels alone cannot see a pair labelled the wrong way round.
+  const ties = classicRules().combat.ties;
+  const attackerFaces = await dialog.locator(".die.attacker").evaluateAll((els) => els.map((e) => Number((e as HTMLElement).dataset["face"])));
+  const defenderFaces = await dialog.locator(".die.defender").evaluateAll((els) => els.map((e) => Number((e as HTMLElement).dataset["face"])));
+  const paired = pairResults(ties, attackerFaces, defenderFaces);
+  const verdicts = await dialog.locator(".verdict").all();
+  expect(verdicts.length, "one label per dice column").toBe(Math.max(attackerFaces.length, defenderFaces.length));
+  for (let i = 0; i < verdicts.length; i++) {
+    const won = paired[i];
+    const wantClass = won === undefined ? "none" : won === "attacker" ? "up" : "down";
+    const wantText = won === undefined ? "\u2014" : won === "attacker" ? "\u25b2 wins" : "\u25bc holds";
+    expect(await verdicts[i]!.getAttribute("class"), `column ${i + 1}: the label class must say ${wantClass}`).toContain(wantClass);
+    expect(await verdicts[i]!.textContent(), `column ${i + 1}: the label text must read "${wantText}"`).toBe(wantText);
+  }
   const kind = await dialog.getAttribute("data-outcome");
   await page.waitForTimeout(700); // let the dice finish tumbling before the picture
   await shot(page, info, "03-result");

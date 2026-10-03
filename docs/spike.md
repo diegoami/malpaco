@@ -22,7 +22,7 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   select your province, then an adjacent enemy, then Attack; a result dialog with dice; End turn passes
   play. Hover, selection, legal targets and dimming of the rest are drawn as feedback.
 - **Tests.** Vitest on the core (32 tests), Playwright headless in two projects, 1280x800 and 1920x1080
-  (11 tests each, 22 runs).
+  (15 tests each, 30 runs).
 - **CI.** `.github/workflows/spike-ts.yml`: `npm ci`, build, Vitest, Playwright; uploads the screenshots
   as the artifact `spike-ts-screenshots`.
 
@@ -61,7 +61,7 @@ second figure excludes blank and comment-only lines). The Godot figures are the 
 | Rules core | 1,897 | **767** (614 code) | the slice only; see below |
 | UI | 1,022 | **1,519** (1,377 code) | `src/ui/*.ts` + `main.ts` 852, `styles.css` 654, `index.html` 13 |
 | Tests | 1,762 | **878** (750 code) | Vitest 484, Playwright 394 |
-| Config and CI | n/a | 151 | `vite.config.ts`, `playwright.config.ts`, `tsconfig.json`, `package.json` 79; `src/core/tsconfig.json` 10; workflow 62 |
+| Config and CI | n/a | 152 | `vite.config.ts`, `playwright.config.ts`, `tsconfig.json`, `package.json` 79; `src/core/tsconfig.json` 11; workflow 62 |
 
 How to read this, honestly:
 
@@ -90,7 +90,7 @@ How to read this, honestly:
   the e2e tests. The e2e tests passed on their first run, which is a reason to distrust them; the
   mutation runs below are what makes them believable.
 - **Machine time:** `npm ci` ~1 s from a warm npm cache, `npm run build` 0.1 s for `vite build` (plus type-check), Vitest 0.3 s
-  for 32 tests, Playwright ~8 s for 22 runs including a fresh `vite build` and `vite preview`.
+  for 32 tests, Playwright ~8 s for 30 runs including a fresh `vite build` and `vite preview`.
 
 ## What was easy
 
@@ -142,28 +142,57 @@ The Playwright tests check, on a real browser at two real sizes:
     topmost element at its own badge (`elementFromPoint`). This catches a missing group, `display: none`,
     `visibility: hidden` and a transparent fill. It does **not** catch a board that exists but is not
     painted: `opacity: 0` on the provinces layer passed all 18 tests in the first version, which the
-    review found.
+    review found. It also asserts each province's computed fill equals its owner's palette colour
+    (`SEATS`, read through the app's seat order), so a province painted in the other owner's colour
+    fails here and not only in the pixels.
   - *The pixel layer (`the board is painted`):* a real screenshot, then for every province a grid of
-    points inside its polygon, clear of its badge and name, compared with the owner's fill (RGB distance at
-    most 28, or from the hatched shade for the second seat), at least 70% matching, at both
-    viewports. It also asserts the owner's colour is far from the sea's, or the comparison proves
-    nothing. Shown to fail for: `opacity: 0` on the whole layer, `opacity: 0` on one province, `display:
-    none`, `visibility: hidden`, a transparent fill, an opaque panel laid over the board, and a missing
-    group. Not shown: every way to wreck a picture (a wrong but plausible colour that matches the
-    owner's fill, for instance, would pass).
-- **What a player sees:** two distinct computed fills, the owner's initial, the hatch on the second seat,
-  the army count on the badge equal to the state, province names above 11 px as rendered, no page scroll
-  at 1280x800 and 1920x1080, both buttons inside the viewport.
+    points inside its polygon, clear of its badge and name, compared with the owner's **palette
+    colour** — not with the page's own fill, which would agree with any wrong colour it was given (RGB
+    distance at most 28), at least 70% matching, at both viewports. The hatched seat is matched
+    against the whole segment from its base colour down to the 28%-darker hatched shade, so
+    anti-aliased stripe edges count; the unhatched seat against its base colour only, so no seat
+    accepts a darker shade it never wears. It also asserts the owner's colour is far from the sea's,
+    or the comparison proves nothing. Shown to fail for: `opacity: 0` on the whole layer (0% of
+    samples), `opacity: 0` on one province, a province painted in the other owner's colour (the DOM
+    layer names the fill and the palette colour), `display: none`, `visibility: hidden`, a
+    transparent fill, an opaque panel laid over the board, and a missing group.
+
+  **The painted-board gate, measured.** The thresholds above are [measured], not guessed. On the clean
+  board over this map, pinned Chromium, the lowest-matching province is **Hoko: 79.5% at 1280x800**
+  (next lowest Ventflanko 86.0%) and **Ventflanko: 81.4% at 1920x1080** (next lowest Hoko 84.1%), so
+  the 70% threshold holds a margin of at least 9.5 points. The owner colours sit 88–89 from the sea
+  against the asserted 60. A 7% darkening (`brightness(0.93)`), which the earlier fill-vs-fill
+  comparison turned red at 67–70%, measures 79.5–94.7% here: catching uniform colour drift is the DOM
+  layer's job (the fill must equal the palette colour), not this gate's; the gate targets boards that
+  are not painted at all, which measure near 0%.
+- **Every badge and name is painted.** For every province, a pixel check on the badge, the army count
+  and the name: the pixels inside the province under each label (a label straddling the coast has sea
+  and sand behind it, which would fake contrast) must span at least 240–300 RGB — clean boards
+  measure 317–413, a hidden label at most the hatch stripes' and border stroke's 74–208. Shown to
+  fail for `.province .badge, .province .name { opacity: 0 }`, which used to pass everything.
+- **What a player sees:** each province's computed fill equal to its owner's palette colour, the
+  owner's initial, the hatch on the second seat, the army count on the badge equal to the state and
+  painted, province names above 11 px as rendered and painted, no page scroll at 1280x800 and
+  1920x1080, both buttons inside the viewport.
+- **The panel never overflows.** At 1366x768, 1600x900 and 1920x1080: New game and the seed fully in
+  the viewport, no page scroll, and the panel itself without an internal scrollbar. The zoom
+  breakpoint is gated on height as well as width (`min-width: 1600px and min-height: 1000px`); at a
+  short-but-wide screen the battle log shrinks first (floor 96 px, [measured]: the panel's spare
+  height is 119 px at 1366x768 against 75 px at a zoomed 1600x900). Removing the height condition
+  fails the 1600x900 test, so the guard has teeth.
 - **Overlay hygiene:** the FROM-to-TARGET arrow runs over no badge or name, and each legal-target marker
   lies wholly inside its own province and clear of every label, for every (source, target) pair the seed
-  offers.
+  offers. The legend names the case the code has: a dashed outline on every target, with a marker only
+  where one fits inside the province.
 - **Real input:** hover outlines and names a province; clicks select, highlight targets and dim the rest;
   Attack stays disabled until a target is chosen; an illegal target is refused with the reason; Escape
   clears; keyboard Enter/Space selects.
 - **UI and engine agree.** The dialog carries the engine's own losses for the attack; after one attack by
-  clicks the dice labels' counts equal them, and the map's armies and owner afterwards equal them
-  (captured, lost, or neither). The labels come from the same `pairResults` the engine takes its losses
-  from, so the tie rule is applied in one place (a unit test pins it under `ties: "attacker"`).
+  clicks each dice column's label is checked against its two dice faces under the engine's tie rule
+  (`pairResults` over `classicRules`' ties), so an inverted pair fails even when the counts still
+  match, and the labels' counts equal the engine's losses; the map's armies and owner afterwards equal
+  them (captured, lost, or neither). The labels come from the same `pairResults` the engine takes its
+  losses from, so the tie rule is applied in one place (a unit test pins it under `ties: "attacker"`).
 - **No errors in the console or page** during any of it (a fixture fails every test otherwise).
 - **Pictures of it,** in CI, per size, for the owner to look at. They are one sequence from one game,
   from one test: `01-start`, `02-selected`, `03-result`, `04-after-attack`, and `05-amber-turn` (the same
