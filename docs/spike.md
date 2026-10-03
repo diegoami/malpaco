@@ -22,9 +22,11 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   select your province, then an adjacent enemy, then Attack; a result dialog with dice; End turn passes
   play. Hover, selection, legal targets and dimming of the rest are drawn as feedback.
 - **Tests.** Vitest on the core (32 tests), Playwright headless in two projects, 1280x800 and 1920x1080
-  (15 tests each, 30 runs).
-- **CI.** `.github/workflows/spike-ts.yml`: `npm ci`, build, Vitest, Playwright; uploads the screenshots
-  as the artifact `spike-ts-screenshots`.
+  (18 tests each, 36 runs).
+- **CI.** `.github/workflows/ci.yml`: `npm ci`, build, Vitest, Playwright — all inside the official
+  image `mcr.microsoft.com/playwright:v1.63.0-noble`, pinned to `@playwright/test`'s version in
+  `package-lock.json`, which also ships the browsers and their dependencies; uploads the screenshots
+  as the artifact `screenshots`.
 
 ### Deliberate gaps (the slice does not need them)
 
@@ -59,9 +61,9 @@ second figure excludes blank and comment-only lines). The Godot figures are the 
 | Area | Godot (`.gd`) | TypeScript | What the TypeScript covers |
 |---|---:|---:|---|
 | Rules core | 1,897 | **767** (614 code) | the slice only; see below |
-| UI | 1,022 | **1,519** (1,377 code) | `src/ui/*.ts` + `main.ts` 852, `styles.css` 654, `index.html` 13 |
-| Tests | 1,762 | **1,129** (975 code) | Vitest 484, Playwright 645 |
-| Config and CI | n/a | 152 | `vite.config.ts`, `playwright.config.ts`, `tsconfig.json`, `package.json` 79; `src/core/tsconfig.json` 11; workflow 62 |
+| UI | 1,022 | **1,531** (1,386 code) | `src/ui/*.ts` + `main.ts` 854, `styles.css` 664, `index.html` 13 |
+| Tests | 1,762 | **1,300** (1,032 code) | Vitest 484, Playwright 816 |
+| Config and CI | n/a | 143 | `vite.config.ts`, `playwright.config.ts`, `tsconfig.json`, `package.json` 79; `src/core/tsconfig.json` 11; workflow 53 |
 
 How to read this, honestly:
 
@@ -151,32 +153,45 @@ The Playwright tests check, on a real browser at two real sizes:
     distance at most 28), at least 70% matching, at both viewports. The hatched seat is matched
     against the whole segment from its base colour down to the 28%-darker hatched shade, so
     anti-aliased stripe edges count; the unhatched seat against its base colour only, so no seat
-    accepts a darker shade it never wears. It also asserts the owner's colour is far from the sea's,
-    or the comparison proves nothing. Shown to fail for: `opacity: 0` on the whole layer (0% of
-    samples), `opacity: 0` on one province, a province painted in the other owner's colour (the DOM
-    layer names the fill and the palette colour), `display: none`, `visibility: hidden`, a
-    transparent fill, an opaque panel laid over the board, and a missing group.
+    accepts a darker shade it never wears. Because that segment also contains the plain base colour,
+    the hatched seat must additionally earn a **dark share**: at least 15% of its samples within 28 of
+    the shaded stripes themselves, which a province with `.province.seat-1 .hatch { opacity: 0 }`
+    cannot reach (it measures 2% — border anti-aliasing only). It also asserts the owner's colour is
+    far from the sea's, or the comparison proves nothing. Shown to fail for: `opacity: 0` on the whole
+    layer (0% of samples), `opacity: 0` on one province, a province painted in the other owner's
+    colour (the DOM layer names the fill and the palette colour), `display: none`, `visibility:
+    hidden`, a transparent fill, an opaque panel laid over the board, and a missing group.
 
-  **The painted-board gate, measured.** The thresholds above are [measured], not guessed. On the clean
-  board over this map, pinned Chromium, the lowest-matching province is **Hoko: 79.5% at 1280x800**
-  (next lowest Ventflanko 86.0%) and **Ventflanko: 81.4% at 1920x1080** (next lowest Hoko 84.1%), so
-  the 70% threshold holds a margin of at least 9.5 points. The seat colours sit far enough from the
-  sea for the comparison to mean something [measured]: blue 87.6–88.8 (the sea is a gradient, so the
-  distance varies with where the corner pixel falls) and amber 206.6, against the asserted 60. A 7%
+  **The painted-board gate, measured.** The thresholds above are [measured], not guessed, and the
+  measurement now lives where the tests run: the pinned image (see "Goldens"), whose font rendering
+  and anti-aliasing differ measurably from a host browser. On the clean board over this map in the
+  image, the lowest-matching province is **Hoko: 76.5% at 1280x800** (next lowest Konko 84.1%)
+  and **Hoko: 80.4% at 1920x1080** (next lowest Ventflanko 83.1%), so the 70% floor holds a margin of
+  at least 6.5 points. The hatch's dark share measures **23.1–36.9%** on the clean amber provinces at
+  both viewports, against the 15% floor and the hidden hatch's 2%. The seat colours sit far enough
+  from the sea for the comparison to mean something [measured]: blue 87.6–88.8 (the sea is a gradient,
+  so the distance varies with where the corner pixel falls) and amber 206.6, against the asserted 60.
+  A 7%
   darkening (`brightness(0.93)`), which the earlier fill-vs-fill
   comparison turned red at 67–70%, measures 79.5–94.7% here: catching uniform colour drift is the DOM
   layer's job (the fill must equal the palette colour), not this gate's; the gate targets boards that
   are not painted at all, which measure near 0%.
 - **Every badge and name is painted.** For every province, a pixel check on the badge, the army count,
   the owner's initial and the name: the pixels inside the province under each label (a label straddling
-  the coast has sea and sand behind it, which would fake contrast) must span at least 240–300 RGB —
-  clean boards measure 317–413 for badge, count and name (sampled every 3 px) and 255–256 for the
-  initial at both sizes (sampled every 1 px: the glyph is small and anti-aliased, and on the 1280x800
-  board a 3 px grid can step over its solid core, measuring a painted initial as low as 56); a hidden
-  label measures at most the hatch stripes' and border stroke's 74–208, a hidden initial exactly 0.
-  Shown to fail for `.province .badge, .province .name { opacity: 0 }`, which used to pass everything,
-  and for `.province .badge-initial { opacity: 0 }`, which used to pass the badge gate because the
-  backdrop and the count still filled the badge with contrast (round-1 review).
+  the coast has sea and sand behind it, which would fake contrast) must clear a floor per kind —
+  on the clean board in the pinned image, badge and name measure 290.5–408.8 and the count 327.3–328.1
+  (badge and name sampled every 3 px, the count every 1 px), the initial 211.3–262.0 (every 1 px: the
+  glyph is small and anti-aliased, and a 3 px grid can step over a glyph's solid core — it measured a
+  painted initial as low as 56 on the host, and a one-digit count as low as 236.8 in the image, so the
+  count is sampled at every pixel too); a hidden label measures 73.8–208 (the hatch stripes and the
+  border stroke; re-confirmed in the image at 73.8 for a hidden badge), a hidden initial exactly 0.
+  The floors (badge and count 240, name 300, initial 180) keep at least 31 points under the clean
+  minimum and 32 above the hidden maximum. Shown to fail for `.province .badge, .province .name {
+  opacity: 0 }`, which used to pass everything, and for `.province .badge-initial { opacity: 0 }`,
+  which used to pass the badge gate because the backdrop and the count still filled the badge with
+  contrast (round-1 review). The floors are image numbers: the first rounds measured the clean board
+  on a host browser at 317–413, and the image's font rendering sits lower still on some glyphs —
+  which is why the basis moved into the image with the tests.
 - **What a player sees:** each province's computed fill equal to its owner's palette colour, the
   owner's initial (painted, not merely in the DOM), the hatch on the second seat, the army count on the
   badge equal to the state and painted, province names above 11 px as rendered and painted, no page
@@ -200,10 +215,31 @@ The Playwright tests check, on a real browser at two real sizes:
   match, and the labels' counts equal the engine's losses. The faces are read as drawn — the pixel at
   each of a die's nine cells, matched against the face layouts — before any verdict is compared, so a
   die whose pips are hidden or removed fails with "no readable face" instead of agreeing with a
-  `data-face` the player cannot see (round-1 review); the map's armies and owner afterwards equal
-  the engine's outcome (captured, lost, or neither). The labels come from the same `pairResults` the
-  engine takes its losses from, so the tie rule is applied in one place (a unit test pins it under
-  `ties: "attacker"`).
+  `data-face` the player cannot see (round-1 review); a die whose pips are drawn but unreadable fails
+  too, because each lit cell must sit at least 150 RGB from the die's face on the screenshot itself
+  (clean faces measure 314.8–349.5, pips one RGB level from the face measure 1.7 — round-2 review),
+  and each unlit cell must show the face itself. The verdict labels are also gated as painted: each
+  must span at least 120 RGB over the dialog's surface (clean verdicts measure 161.2–258.6, the tie's
+  em-dash the low end; a hidden verdict measures 0), which `.verdict { opacity: 0 }` — invisible in
+  the picture with class and text intact — failed (round-2 review); afterwards the map's armies and
+  owner equal the engine's outcome (captured, lost, or neither). The labels come from the same
+  `pairResults` the engine takes its losses from, so the tie rule is applied in one place (a unit
+  test pins it under `ties: "attacker"`).
+- **Goldens pin the look.** Pixel gates assert what a board must satisfy; they do not pin what it
+  looks like, and each review round found a new way to lie to them (five evasions across two rounds
+  passed every meaningful check before being caught). So three pictures are pinned with Playwright's
+  `toHaveScreenshot`, at both projects, on the fixed seed: the whole board (hatched seat included),
+  the result dialog with its dice and verdicts, and the panel. Playwright's default comparison options
+  apply — no `maxDiffPixels`, `maxDiffPixelRatio` or `threshold` is set anywhere, and there is no
+  `expect.toHaveScreenshot` override in `playwright.config.ts` — so any pixel difference at all
+  fails; a golden changes only when the look changes, with its reason in the PR, and the owner judges
+  it. Nothing is masked: nothing varies run to run, because the seed fixes the game, `toHaveScreenshot`
+  freezes animations, and the rendering environment is pinned — goldens are made and compared in the
+  official image `mcr.microsoft.com/playwright:v1.63.0-noble` (`<version>` = `@playwright/test`'s
+  version in `package-lock.json`, which CI's Playwright job runs in too), never on the host, whose
+  fonts and Chromium differ measurably. Regenerating them in the image leaves a clean tree; that was
+  checked twice. Locally:
+  `docker run --rm --ipc=host --user "$(id -u):$(id -g)" -e HOME=/tmp -v "$PWD":/work -w /work mcr.microsoft.com/playwright:v1.63.0-noble sh -c 'npm ci && npx playwright test --update-snapshots'`.
 - **No errors in the console or page** during any of it (a fixture fails every test otherwise).
 - **Pictures of it,** in CI, per size, for the owner to look at. They are one sequence from one game,
   from one test: `01-start`, `02-selected`, `03-result`, `04-after-attack`, and `05-amber-turn` (the same
@@ -262,6 +298,6 @@ cd spike-ts
 npm ci
 npm run build          # tsc --noEmit, then vite build
 npx vitest run         # the core
-npx playwright test    # needs: npx playwright install chromium; writes screenshots/<size>/*.png
+npx playwright test    # in the image (see "Goldens"): the browser ships with it; writes screenshots/<size>/*.png
 npm run dev            # http://localhost:5173/?seed=1994 fixes the game
 ```
