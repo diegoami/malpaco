@@ -42,6 +42,14 @@ indexed in `docs/tasks/README.md`.
    - **UI work** is also checked against the Playwright goldens, and the owner judges the look.
    - **Other probed models** (`harness.json`, for an explicit `--model` or a switch): DeepSeek V4
      Pro, GLM-5.3 and GPT-6 Sol; Opus and Fable implement only when a task file says why.
+   - **Escalation after a heavy review** (the owner, 2026-10-03). The implementer moves up one step
+     for the next round when either holds:
+     - a review asks for rework with three or more blocking findings;
+     - a rework round brings new blocking findings of the class the last round raised.
+
+     The steps are GLM-5.3 Flash → DeepSeek V4.1 Flash → Opus, and Sonnet → Opus. The round count
+     does not reset (rule 7). The new implementer gets the task file, every review so far, and the
+     previous implementer's unpushed work as a patch to weigh, never to apply blindly.
    - **Excluded:** never Haiku. Gemini (cost), Kimi and Grok are not used.
    - **Switching:** the owner decides which models are in use, and switches them often. The main
      session keeps every switch cheap:
