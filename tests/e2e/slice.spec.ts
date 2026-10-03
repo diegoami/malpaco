@@ -34,17 +34,54 @@ const OWNER_EXPECTATION: Record<string, OwnerExpectation> = Object.fromEntries(
  * docs/spike.md, "The painted-board gate, measured". The per-pixel colour
  * tolerance, 28, is a literal inside `paintedShares` (it runs in the page).
  */
-/** Fraction of a province's sampled pixels that must match its owner's colour. Clean minimum [measured]: 0.795 at 1280x800 (Hoko), 0.814 at 1920x1080 (Ventflanko) — a margin of at least 9.5 points. */
+/** Fraction of a province's sampled pixels that must match its owner's colour. Clean minimum [measured] in the pinned image: 76.5% at 1280x800 (Hoko), 80.4% at 1920x1080 (Hoko) — a margin of at least 6.5 points. */
 const PAINT_THRESHOLD = 0.7;
 /** An owner's colour must sit this far from the sea, or the comparison proves nothing. Clean minimum [measured]: 87.6-88.8 for blue, 206.6 for amber. */
 const SEA_DISTANCE = 60;
 /**
  * A badge or a name is painted only if its pixels, inside the province, show this
- * much contrast. Clean boards measure 317-413 for badge, name and count (sampled
- * every 3 px) and 255-256 for the initial (sampled every 1 px, see below); hidden
- * labels measure at most the hatch stripes' 74-208, and a hidden initial exactly 0.
+ * much contrast. On the clean board in the pinned image, badge/name/count measure
+ * 290.5-408.8 (badge and name sampled every 3 px, the count every 1 px — see
+ * below) and the initial 211.3-262.0 (every 1 px); hidden labels measure at most
+ * the hatch stripes' and border stroke's 74-208, and a hidden initial exactly 0.
+ * The floors keep at least 31 points below the clean minimum and 32 above the
+ * hidden maximum.
  */
-const LABEL_SPREAD: Record<string, number> = { badge: 240, name: 300, "badge-count": 240, "badge-initial": 240 };
+const LABEL_SPREAD: Record<string, number> = { badge: 240, name: 300, "badge-count": 240, "badge-initial": 180 };
+/**
+ * A hatched province is really hatched only if a share of its samples sits in the
+ * hatch's dark stripes, not merely in the base-to-shaded segment the paint gate
+ * accepts (that segment contains the plain base colour, so a hidden hatch passed
+ * it — review round 2, R3). Clean amber provinces measure [measured] 23.1-36.9%
+ * dark samples at both viewports in the pinned image; with
+ * `.province.seat-1 .hatch { opacity: 0 }` nothing inside measures within 28 RGB
+ * of the shaded colour, so 0% — the dark stroke, 52 away, does not count. The
+ * floor sits 8.1 points under the clean minimum and 15 points over a hidden hatch.
+ */
+const HATCH_DARK_SHARE = 0.15;
+/**
+ * A die's pips must stand off its face by this much, measured on the screenshot:
+ * the pip reader classifies a cell by whichever colour its centre is nearer,
+ * which alone accepts pips one RGB level from the face — present to the machine,
+ * unreadable to a player (review round 2, R1). Clean faces measure [measured]
+ * 314.8-349.5 per lit cell, both sides, both viewports, and every unlit cell sits
+ * exactly on the face; pips one level up measure 1. The floor keeps 149 points
+ * between it and the evasion, 164 under the clean minimum.
+ */
+const PIP_CONTRAST = 150;
+/** An unlit pip cell must show the die's face itself, within this distance. Clean faces measure 0 [measured]. */
+const NEAR_FACE = 60;
+/**
+ * A verdict label must be painted, not merely present with the right class and
+ * text: `.verdict { opacity: 0 }` erased every win/hold label from the picture
+ * while the class and text checks passed (review round 2, R2). Painted verdicts
+ * measure [measured] 161.2-258.6 spread on the dialog's flat surface at both
+ * viewports (the tie's em-dash is the low end); a hidden one measures 0. The
+ * floor keeps 41 points under the clean minimum and 120 over a hidden label.
+ */
+const VERDICT_SPREAD = 120;
+/** A verdict's box must offer pixels to read, so a zero-sized label cannot pass on a technicality. */
+const VERDICT_SAMPLES = 20;
 
 interface Holding {
   owner: string;
@@ -89,10 +126,13 @@ async function shot(page: Page, info: TestInfo, name: string): Promise<string> {
  * The hatched seat is compared against the whole segment from its base colour down
  * to the 28%-darker hatched shade (anti-aliased stripe edges count); the unhatched
  * seat against its base colour only, so no seat accepts a darker shade it never
- * wears.
+ * wears. For the hatched seat it also reports the share of samples sitting in the
+ * stripes themselves (`darkShare`), which the test gates separately: the segment
+ * alone also contains the plain base colour, which is what a province with its
+ * hatch hidden would show everywhere.
  */
 async function paintedShares(page: Page): Promise<
-  { id: string; owner: string; share: number; samples: number; fill: string; expected: string; sea: number }[]
+  { id: string; owner: string; share: number; darkShare: number; samples: number; fill: string; expected: string; sea: number }[]
 > {
   await page.mouse.move(2, 400); // no hover outline over the board
   await settle(page);
@@ -133,19 +173,25 @@ async function paintedShares(page: Page): Promise<
       const box = path.getBBox();
       let samples = 0;
       let match = 0;
+      let dark = 0;
       for (let x = box.x; x < box.x + box.width; x += 12) {
         for (let y = box.y; y < box.y + box.height; y += 12) {
           if (!path.isPointInFill(new DOMPoint(x, y))) continue;
           if (Math.abs(x - lx) < half && y > ly - 30 && y < ly + 48) continue; // under the badge or the name
           const at = new DOMPoint(x, y).matrixTransform(ctm);
           samples++;
-          if (segDist(pixel(at.x, at.y), expected.rgb, expected.hatched ? shaded : expected.rgb) <= 28) match++;
+          const px = pixel(at.x, at.y);
+          if (segDist(px, expected.rgb, expected.hatched ? shaded : expected.rgb) <= 28) match++;
+          // The dark share separates a drawn hatch from a merely declared one: the
+          // stripes, not the base colour, sit within 28 of the shaded end.
+          if (expected.hatched && segDist(px, shaded, shaded) <= 28) dark++;
         }
       }
       out.push({
         id: (g as SVGElement).dataset["province"] as string,
         owner,
         share: samples ? match / samples : 0,
+        darkShare: samples ? dark / samples : 0,
         samples,
         fill,
         expected: `rgb(${expected.rgb.join(", ")})`,
@@ -173,14 +219,28 @@ const faceOf = (lit: number[]): number | null =>
   Number(Object.keys(DIE_PIPS).find((face) => DIE_PIPS[Number(face)]!.join(",") === lit.join(","))) || null;
 
 /**
+ * One die as drawn: which of its nine cells the screenshot shows lit, how far the
+ * lit cells' pixels sit from the die's face (the pips' rendered contrast), and how
+ * far the unlit cells' pixels sit from it (they must show the face itself).
+ */
+interface DieRead {
+  lit: number[];
+  minLitContrast: number;
+  maxUnlitDelta: number;
+}
+
+/**
  * The faces as actually drawn: over a real screenshot, for every die the pixel at
  * each of its nine pip cells, classified against the colours that cell would paint
  * (its own background, or the die's face where the cell paints nothing). Reading
  * `data-face` instead passed a die whose pips were all hidden — a blank square the
- * player cannot read (review round 1, R2). Returns lit-cell sets in DOM order; the
- * caller maps them to faces with `faceOf`.
+ * player cannot read (review round 1, R2). Classification alone is not enough
+ * either: it accepted pips painted one RGB level from the face, which a player
+ * cannot read (review round 2, R1), so each die also reports the measured
+ * contrast. Returns one `DieRead` per die, in DOM order; the caller maps them to
+ * faces with `faceOf` and gates the distances.
  */
-async function drawnDice(page: Page, png: string): Promise<{ attacker: number[][]; defender: number[][] }> {
+async function drawnDice(page: Page, png: string): Promise<{ attacker: DieRead[]; defender: DieRead[] }> {
   return page.evaluate(async (b64) => {
     const img = new Image();
     img.src = `data:image/png;base64,${b64}`;
@@ -193,10 +253,12 @@ async function drawnDice(page: Page, png: string): Promise<{ attacker: number[][
     const pixel = (x: number, y: number) => Array.from(ctx.getImageData(Math.round(x), Math.round(y), 1, 1).data.slice(0, 3));
     const rgb = (c: string): number[] => (c.match(/[\d.]+/g) ?? []).slice(0, 3).map(Number);
     const paints = (c: string) => c !== "transparent" && !/rgba\(\s*0,\s*0,\s*0,\s*0\s*\)/.test(c);
-    const read = (side: string) =>
+    const read = (side: string): DieRead[] =>
       Array.from(document.querySelectorAll(`.die.${side}`)).map((die) => {
         const bg = rgb(getComputedStyle(die as HTMLElement).backgroundColor);
         const lit: number[] = [];
+        let minLitContrast = Number.POSITIVE_INFINITY;
+        let maxUnlitDelta = 0;
         Array.from(die.children).forEach((cell, i) => {
           const el = cell as HTMLElement;
           const r = el.getBoundingClientRect();
@@ -205,12 +267,60 @@ async function drawnDice(page: Page, png: string): Promise<{ attacker: number[][
           const paint = paints(own) ? rgb(own) : bg;
           const px = pixel(r.left + r.width / 2, r.top + r.height / 2);
           const near = (c: number[]) => Math.hypot(px[0]! - c[0]!, px[1]! - c[1]!, px[2]! - c[2]!);
-          if (near(paint) < near(bg)) lit.push(i); // the cell shows its own paint, not the die's face
+          if (near(paint) < near(bg)) {
+            lit.push(i); // the cell shows its own paint, not the die's face
+            minLitContrast = Math.min(minLitContrast, near(bg)); // rendered: pip against the face
+          } else {
+            maxUnlitDelta = Math.max(maxUnlitDelta, near(bg)); // rendered: the face must show through
+          }
         });
-        return lit;
+        return { lit, minLitContrast, maxUnlitDelta };
       });
     return { attacker: read("attacker"), defender: read("defender") };
   }, png);
+}
+
+/**
+ * Rendered contrast inside each matched element's box, from a real screenshot: the
+ * Euclidean spread of its sampled pixels and how many pixels were sampled. A
+ * label hidden with `opacity: 0` or `color: transparent` reads as whatever sits
+ * behind it (flat surface, so near 0); a painted one stands out against it. The
+ * sampled count exposes a label shrunk to nothing, whose empty box would
+ * otherwise spread from its 255/0 defaults.
+ */
+async function paintedSpreads(page: Page, png: string, selector: string): Promise<{ text: string; spread: number; sampled: number }[]> {
+  return page.evaluate(async ({ b64, selector }) => {
+    const img = new Image();
+    img.src = `data:image/png;base64,${b64}`;
+    await img.decode();
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true }) as CanvasRenderingContext2D;
+    ctx.drawImage(img, 0, 0);
+    const pixel = (x: number, y: number) => Array.from(ctx.getImageData(Math.round(x), Math.round(y), 1, 1).data.slice(0, 3));
+    return Array.from(document.querySelectorAll(selector)).map((el) => {
+      const r = el.getBoundingClientRect();
+      const lo = [255, 255, 255];
+      const hi = [0, 0, 0];
+      let sampled = 0;
+      for (let x = r.left + 0.5; x < r.right; x += 1) {
+        for (let y = r.top + 0.5; y < r.bottom; y += 1) {
+          const px = pixel(x, y);
+          for (const c of [0, 1, 2]) {
+            lo[c] = Math.min(lo[c]!, px[c]!);
+            hi[c] = Math.max(hi[c]!, px[c]!);
+          }
+          sampled++;
+        }
+      }
+      return {
+        text: (el.textContent ?? "").trim(),
+        spread: Math.hypot(hi[0]! - lo[0]!, hi[1]! - lo[1]!, hi[2]! - lo[2]!),
+        sampled,
+      };
+    });
+  }, { b64: png, selector });
 }
 
 /**
@@ -351,6 +461,12 @@ test("the board is painted: the pixels inside every province are its owner's pal
     expect(p.share, `${p.id} is not painted in ${p.expected} (${Math.round(p.share * 100)}% of ${p.samples} sampled pixels)`).toBeGreaterThanOrEqual(
       PAINT_THRESHOLD,
     );
+    if (want?.hatched) {
+      expect(
+        p.darkShare,
+        `${p.id} wears the hatch only in its DOM: ${Math.round(p.darkShare * 100)}% of its samples sit in the hatch's dark stripes`,
+      ).toBeGreaterThanOrEqual(HATCH_DARK_SHARE);
+    }
   }
 });
 
@@ -381,10 +497,11 @@ test("every badge and name is actually painted, not merely present in the DOM", 
           continue;
         }
         const r = (el as Element).getBoundingClientRect();
-        // The initial's glyph is small and anti-aliased: on the 1280x800 board a
-        // 3 px grid can step over its solid core and read a painted initial as
-        // low as 56 [measured], so it alone is sampled at every pixel.
-        const step = sel === ".badge-initial" ? 1 : 3;
+        // The initial's and the count's glyphs are small and anti-aliased: a
+        // 3 px grid can step over a glyph's solid core and read a painted label
+        // as low as 56 for an initial [measured], 236.8 for a one-digit count in
+        // the pinned image, so both are sampled at every pixel.
+        const step = sel === ".badge-initial" || sel === ".badge-count" ? 1 : 3;
         const lo = [255, 255, 255];
         const hi = [0, 0, 0];
         let sampled = 0;
@@ -550,16 +667,29 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
   expect(drawn.attacker, "a lit-cell set per attacker die").toHaveLength(attackerDice);
   expect(drawn.defender, "a lit-cell set per defender die").toHaveLength(defenderDice);
   const ties = classicRules().combat.ties;
-  const attackerFaces = drawn.attacker.map((lit, i) => {
-    const face = faceOf(lit);
-    expect(face, `attacker die ${i + 1} shows no readable face (lit cells: ${lit.join(", ") || "none"})`).not.toBeNull();
+  const attackerFaces = drawn.attacker.map((d, i) => {
+    const face = faceOf(d.lit);
+    expect(face, `attacker die ${i + 1} shows no readable face (lit cells: ${d.lit.join(", ") || "none"})`).not.toBeNull();
     return face as number;
   });
-  const defenderFaces = drawn.defender.map((lit, i) => {
-    const face = faceOf(lit);
-    expect(face, `defender die ${i + 1} shows no readable face (lit cells: ${lit.join(", ") || "none"})`).not.toBeNull();
+  const defenderFaces = drawn.defender.map((d, i) => {
+    const face = faceOf(d.lit);
+    expect(face, `defender die ${i + 1} shows no readable face (lit cells: ${d.lit.join(", ") || "none"})`).not.toBeNull();
     return face as number;
   });
+  // A face must not merely classify: its pips must stand off the die's face by
+  // their own rendered contrast, and its empty cells must show the face.
+  for (const [side, reads] of [["attacker", drawn.attacker], ["defender", drawn.defender]] as const) {
+    reads.forEach((d, i) => {
+      expect(
+        d.minLitContrast,
+        `${side} die ${i + 1}: its pips sit only ${d.minLitContrast.toFixed(1)} RGB from the die's face — a player cannot read them`,
+      ).toBeGreaterThanOrEqual(PIP_CONTRAST);
+      expect(d.maxUnlitDelta, `${side} die ${i + 1}: an empty cell does not show the face (${d.maxUnlitDelta.toFixed(1)} off)`).toBeLessThanOrEqual(
+        NEAR_FACE,
+      );
+    });
+  }
   const paired = pairResults(ties, attackerFaces, defenderFaces);
   const verdicts = await dialog.locator(".verdict").all();
   expect(verdicts.length, "one label per dice column").toBe(Math.max(attackerFaces.length, defenderFaces.length));
@@ -569,6 +699,14 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
     const wantText = won === undefined ? "\u2014" : won === "attacker" ? "\u25b2 wins" : "\u25bc holds";
     expect(await verdicts[i]!.getAttribute("class"), `column ${i + 1}: the label class must say ${wantClass}`).toContain(wantClass);
     expect(await verdicts[i]!.textContent(), `column ${i + 1}: the label text must read "${wantText}"`).toBe(wantText);
+  }
+  // The verdicts must also be painted: class and text alone passed with
+  // `.verdict { opacity: 0 }`, which blanked every label in the picture.
+  const verdictPixels = await paintedSpreads(page, resultShot, ".verdict");
+  expect(verdictPixels, "one painted label per dice column").toHaveLength(verdicts.length);
+  for (const v of verdictPixels) {
+    expect(v.sampled, `the verdict "${v.text}" has no box to read`).toBeGreaterThan(VERDICT_SAMPLES);
+    expect(v.spread, `the verdict "${v.text}" is not painted (contrast ${v.spread.toFixed(1)})`).toBeGreaterThanOrEqual(VERDICT_SPREAD);
   }
   const kind = await dialog.getAttribute("data-outcome");
 
@@ -642,4 +780,37 @@ test("a province can be selected and a target chosen with the keyboard alone", a
   await province(page, target).focus();
   await page.keyboard.press("Space");
   await expect(page.getByRole("button", { name: "Attack" })).toBeEnabled();
+});
+
+// --- Goldens ----------------------------------------------------------------
+// Three pictures pin the look (issue #2, scope item 8): pixel-by-pixel evasion
+// chasing did not converge — each round found new ways to lie to the gates — so
+// the whole board, the result dialog and the panel are pinned with Playwright's
+// own image comparison, at both projects, on the fixed seed. Playwright's default
+// comparison options apply: any pixel difference at all fails, so a golden only
+// changes when the look changes, with its reason in the PR. Goldens are made and
+// compared in the official image mcr.microsoft.com/playwright:v1.63.0-noble and
+// nowhere else (fonts and Chromium builds differ between hosts); see
+// docs/spike.md, "Goldens", for the exact command.
+
+test("golden: the whole board as painted, hatched seat included", async ({ page }) => {
+  await page.mouse.move(2, 400); // no hover outline over the board
+  await settle(page);
+  await expect(page.locator("#map")).toHaveScreenshot("board.png");
+});
+
+test("golden: the panel as laid out", async ({ page }) => {
+  await page.mouse.move(2, 400);
+  await settle(page);
+  await expect(page.locator(".panel")).toHaveScreenshot("panel.png");
+});
+
+test("golden: the result dialog with its dice and verdicts", async ({ page }) => {
+  const [, to] = await pickAttack(page);
+  await province(page, to).click();
+  await page.mouse.move(2, 400); // off the map, so no tooltip leans on the dialog
+  await page.getByRole("button", { name: "Attack" }).click();
+  await expect(page.locator("#result-dialog")).toBeVisible();
+  await page.waitForTimeout(700); // let the dice finish tumbling; toHaveScreenshot freezes whatever is left
+  await expect(page.locator("#result-dialog")).toHaveScreenshot("result-dialog.png");
 });

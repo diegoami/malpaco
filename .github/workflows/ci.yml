@@ -8,7 +8,12 @@ on:
 
 jobs:
   ci:
+    # One rendering environment for the browser and its screenshots (issue #2,
+    # item 8): the official Playwright image, pinned to @playwright/test's
+    # version in package-lock.json, the same image goldens are made in locally.
+    # Browsers and their dependencies ship in it, so there is no install step.
     runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.63.0-noble
     steps:
       - uses: actions/checkout@v4
 
@@ -26,10 +31,7 @@ jobs:
       - name: Vitest (rules core)
         run: npx vitest run
 
-      - name: Install Chromium for Playwright
-        run: npx playwright install --with-deps chromium
-
-      - name: Playwright (headless UI tests and screenshots)
+      - name: Playwright (headless UI tests, screenshots and goldens)
         run: npx playwright test
 
       - name: Upload screenshots
