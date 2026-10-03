@@ -5,5 +5,5 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 
 | Task | Title | Issue | Merge after |
 | --- | --- | --- | --- |
-| T01 | The walking skeleton, imported from the spike | #<n> | — |
-| T02 | UI gate hardening: review 006-02's seven findings | #<n> | T01 |
+| T01 | The walking skeleton, imported from the spike | #1 | — |
+| T02 | UI gate hardening: review 006-02's seven findings | #2 | T01 |
