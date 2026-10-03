@@ -60,7 +60,7 @@ second figure excludes blank and comment-only lines). The Godot figures are the 
 |---|---:|---:|---|
 | Rules core | 1,897 | **767** (614 code) | the slice only; see below |
 | UI | 1,022 | **1,519** (1,377 code) | `src/ui/*.ts` + `main.ts` 852, `styles.css` 654, `index.html` 13 |
-| Tests | 1,762 | **878** (750 code) | Vitest 484, Playwright 394 |
+| Tests | 1,762 | **1,129** (975 code) | Vitest 484, Playwright 645 |
 | Config and CI | n/a | 152 | `vite.config.ts`, `playwright.config.ts`, `tsconfig.json`, `package.json` 79; `src/core/tsconfig.json` 11; workflow 62 |
 
 How to read this, honestly:
@@ -75,7 +75,7 @@ How to read this, honestly:
   with dice, a score card, a battle log, a tooltip, keyboard use, a toast. Godot's `BoardView` draws flat
   colour in one `_draw()` and reports attacks in a text label. The line counts say nothing about which
   UI is nicer.
-- **Tests.** 878 against 1,762. Godot's `test/` plays 100 full games per run, has cross-configuration, hazard and save-archive
+- **Tests.** 1,129 against 1,762. Godot's `test/` plays 100 full games per run, has cross-configuration, hazard and save-archive
   suites; none of that exists here. The TypeScript tests are
   shorter because the slice is smaller, not because a stack writes tests shorter; no claim there.
 
@@ -160,20 +160,27 @@ The Playwright tests check, on a real browser at two real sizes:
   **The painted-board gate, measured.** The thresholds above are [measured], not guessed. On the clean
   board over this map, pinned Chromium, the lowest-matching province is **Hoko: 79.5% at 1280x800**
   (next lowest Ventflanko 86.0%) and **Ventflanko: 81.4% at 1920x1080** (next lowest Hoko 84.1%), so
-  the 70% threshold holds a margin of at least 9.5 points. The owner colours sit 88–89 from the sea
-  against the asserted 60. A 7% darkening (`brightness(0.93)`), which the earlier fill-vs-fill
+  the 70% threshold holds a margin of at least 9.5 points. The seat colours sit far enough from the
+  sea for the comparison to mean something [measured]: blue 87.6–88.8 (the sea is a gradient, so the
+  distance varies with where the corner pixel falls) and amber 206.6, against the asserted 60. A 7%
+  darkening (`brightness(0.93)`), which the earlier fill-vs-fill
   comparison turned red at 67–70%, measures 79.5–94.7% here: catching uniform colour drift is the DOM
   layer's job (the fill must equal the palette colour), not this gate's; the gate targets boards that
   are not painted at all, which measure near 0%.
-- **Every badge and name is painted.** For every province, a pixel check on the badge, the army count
-  and the name: the pixels inside the province under each label (a label straddling the coast has sea
-  and sand behind it, which would fake contrast) must span at least 240–300 RGB — clean boards
-  measure 317–413, a hidden label at most the hatch stripes' and border stroke's 74–208. Shown to
-  fail for `.province .badge, .province .name { opacity: 0 }`, which used to pass everything.
+- **Every badge and name is painted.** For every province, a pixel check on the badge, the army count,
+  the owner's initial and the name: the pixels inside the province under each label (a label straddling
+  the coast has sea and sand behind it, which would fake contrast) must span at least 240–300 RGB —
+  clean boards measure 317–413 for badge, count and name (sampled every 3 px) and 255–256 for the
+  initial at both sizes (sampled every 1 px: the glyph is small and anti-aliased, and on the 1280x800
+  board a 3 px grid can step over its solid core, measuring a painted initial as low as 56); a hidden
+  label measures at most the hatch stripes' and border stroke's 74–208, a hidden initial exactly 0.
+  Shown to fail for `.province .badge, .province .name { opacity: 0 }`, which used to pass everything,
+  and for `.province .badge-initial { opacity: 0 }`, which used to pass the badge gate because the
+  backdrop and the count still filled the badge with contrast (round-1 review).
 - **What a player sees:** each province's computed fill equal to its owner's palette colour, the
-  owner's initial, the hatch on the second seat, the army count on the badge equal to the state and
-  painted, province names above 11 px as rendered and painted, no page scroll at 1280x800 and
-  1920x1080, both buttons inside the viewport.
+  owner's initial (painted, not merely in the DOM), the hatch on the second seat, the army count on the
+  badge equal to the state and painted, province names above 11 px as rendered and painted, no page
+  scroll at 1280x800 and 1920x1080, both buttons inside the viewport.
 - **The panel never overflows.** At 1366x768, 1600x900 and 1920x1080: New game and the seed fully in
   the viewport, no page scroll, and the panel itself without an internal scrollbar. The zoom
   breakpoint is gated on height as well as width (`min-width: 1600px and min-height: 1000px`); at a
@@ -190,9 +197,13 @@ The Playwright tests check, on a real browser at two real sizes:
 - **UI and engine agree.** The dialog carries the engine's own losses for the attack; after one attack by
   clicks each dice column's label is checked against its two dice faces under the engine's tie rule
   (`pairResults` over `classicRules`' ties), so an inverted pair fails even when the counts still
-  match, and the labels' counts equal the engine's losses; the map's armies and owner afterwards equal
-  them (captured, lost, or neither). The labels come from the same `pairResults` the engine takes its
-  losses from, so the tie rule is applied in one place (a unit test pins it under `ties: "attacker"`).
+  match, and the labels' counts equal the engine's losses. The faces are read as drawn — the pixel at
+  each of a die's nine cells, matched against the face layouts — before any verdict is compared, so a
+  die whose pips are hidden or removed fails with "no readable face" instead of agreeing with a
+  `data-face` the player cannot see (round-1 review); the map's armies and owner afterwards equal
+  the engine's outcome (captured, lost, or neither). The labels come from the same `pairResults` the
+  engine takes its losses from, so the tie rule is applied in one place (a unit test pins it under
+  `ties: "attacker"`).
 - **No errors in the console or page** during any of it (a fixture fails every test otherwise).
 - **Pictures of it,** in CI, per size, for the owner to look at. They are one sequence from one game,
   from one test: `01-start`, `02-selected`, `03-result`, `04-after-attack`, and `05-amber-turn` (the same

@@ -36,10 +36,15 @@ const OWNER_EXPECTATION: Record<string, OwnerExpectation> = Object.fromEntries(
  */
 /** Fraction of a province's sampled pixels that must match its owner's colour. Clean minimum [measured]: 0.795 at 1280x800 (Hoko), 0.814 at 1920x1080 (Ventflanko) — a margin of at least 9.5 points. */
 const PAINT_THRESHOLD = 0.7;
-/** An owner's colour must sit this far from the sea, or the comparison proves nothing. Clean minimum [measured]: 88. */
+/** An owner's colour must sit this far from the sea, or the comparison proves nothing. Clean minimum [measured]: 87.6-88.8 for blue, 206.6 for amber. */
 const SEA_DISTANCE = 60;
-/** A badge or a name is painted only if its pixels, inside the province, show this much contrast. Clean boards measure 317-413; hidden labels at most the hatch stripes' 74-208. */
-const LABEL_SPREAD: Record<string, number> = { badge: 240, name: 300, "badge-count": 240 };
+/**
+ * A badge or a name is painted only if its pixels, inside the province, show this
+ * much contrast. Clean boards measure 317-413 for badge, name and count (sampled
+ * every 3 px) and 255-256 for the initial (sampled every 1 px, see below); hidden
+ * labels measure at most the hatch stripes' 74-208, and a hidden initial exactly 0.
+ */
+const LABEL_SPREAD: Record<string, number> = { badge: 240, name: 300, "badge-count": 240, "badge-initial": 240 };
 
 interface Holding {
   owner: string;
@@ -67,9 +72,10 @@ async function settle(page: Page): Promise<void> {
   );
 }
 
-async function shot(page: Page, info: TestInfo, name: string): Promise<void> {
+/** Takes a settled screenshot for the artifact and returns it, base64, for pixel work. */
+async function shot(page: Page, info: TestInfo, name: string): Promise<string> {
   await settle(page);
-  await page.screenshot({ path: `screenshots/${info.project.name}/${name}.png` });
+  return (await page.screenshot({ path: `screenshots/${info.project.name}/${name}.png` })).toString("base64");
 }
 
 /**
@@ -148,6 +154,63 @@ async function paintedShares(page: Page): Promise<
     }
     return out;
   }, { png: b64, palette: OWNER_EXPECTATION });
+}
+
+/**
+ * The dice-face layout the dialog draws (resultDialog.ts' PIPS): for each face,
+ * which of a die's nine cells, in DOM order, hold a pip.
+ */
+const DIE_PIPS: Record<number, readonly number[]> = {
+  1: [4],
+  2: [0, 8],
+  3: [0, 4, 8],
+  4: [0, 2, 6, 8],
+  5: [0, 2, 4, 6, 8],
+  6: [0, 2, 3, 5, 6, 8],
+};
+
+const faceOf = (lit: number[]): number | null =>
+  Number(Object.keys(DIE_PIPS).find((face) => DIE_PIPS[Number(face)]!.join(",") === lit.join(","))) || null;
+
+/**
+ * The faces as actually drawn: over a real screenshot, for every die the pixel at
+ * each of its nine pip cells, classified against the colours that cell would paint
+ * (its own background, or the die's face where the cell paints nothing). Reading
+ * `data-face` instead passed a die whose pips were all hidden — a blank square the
+ * player cannot read (review round 1, R2). Returns lit-cell sets in DOM order; the
+ * caller maps them to faces with `faceOf`.
+ */
+async function drawnDice(page: Page, png: string): Promise<{ attacker: number[][]; defender: number[][] }> {
+  return page.evaluate(async (b64) => {
+    const img = new Image();
+    img.src = `data:image/png;base64,${b64}`;
+    await img.decode();
+    const canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true }) as CanvasRenderingContext2D;
+    ctx.drawImage(img, 0, 0);
+    const pixel = (x: number, y: number) => Array.from(ctx.getImageData(Math.round(x), Math.round(y), 1, 1).data.slice(0, 3));
+    const rgb = (c: string): number[] => (c.match(/[\d.]+/g) ?? []).slice(0, 3).map(Number);
+    const paints = (c: string) => c !== "transparent" && !/rgba\(\s*0,\s*0,\s*0,\s*0\s*\)/.test(c);
+    const read = (side: string) =>
+      Array.from(document.querySelectorAll(`.die.${side}`)).map((die) => {
+        const bg = rgb(getComputedStyle(die as HTMLElement).backgroundColor);
+        const lit: number[] = [];
+        Array.from(die.children).forEach((cell, i) => {
+          const el = cell as HTMLElement;
+          const r = el.getBoundingClientRect();
+          if (r.width < 4 || r.height < 4) return; // no box: nothing can be drawn there
+          const own = getComputedStyle(el).backgroundColor;
+          const paint = paints(own) ? rgb(own) : bg;
+          const px = pixel(r.left + r.width / 2, r.top + r.height / 2);
+          const near = (c: number[]) => Math.hypot(px[0]! - c[0]!, px[1]! - c[1]!, px[2]! - c[2]!);
+          if (near(paint) < near(bg)) lit.push(i); // the cell shows its own paint, not the die's face
+        });
+        return lit;
+      });
+    return { attacker: read("attacker"), defender: read("defender") };
+  }, png);
 }
 
 /**
@@ -311,18 +374,22 @@ test("every badge and name is actually painted, not merely present in the DOM", 
     for (const g of Array.from(document.querySelectorAll(".province"))) {
       const id = (g as SVGElement).dataset["province"] as string;
       const shape = g.querySelector(".shape") as unknown as SVGGeometryElement;
-      for (const sel of [".badge", ".name", ".badge-count"]) {
+      for (const sel of [".badge", ".name", ".badge-count", ".badge-initial"]) {
         const el = g.querySelector(sel);
         if (!el) {
           out.push({ id, kind: sel.slice(1), spread: 0, sampled: 0 });
           continue;
         }
         const r = (el as Element).getBoundingClientRect();
+        // The initial's glyph is small and anti-aliased: on the 1280x800 board a
+        // 3 px grid can step over its solid core and read a painted initial as
+        // low as 56 [measured], so it alone is sampled at every pixel.
+        const step = sel === ".badge-initial" ? 1 : 3;
         const lo = [255, 255, 255];
         const hi = [0, 0, 0];
         let sampled = 0;
-        for (let x = r.left + 1; x < r.right; x += 3) {
-          for (let y = r.top + 1; y < r.bottom; y += 3) {
+        for (let x = r.left + 0.5; x < r.right; x += step) {
+          for (let y = r.top + 0.5; y < r.bottom; y += step) {
             // Only pixels inside the province: a label straddling the coast has
             // sea and sand behind it, which would fake contrast when hidden.
             if (!shape.isPointInFill(new DOMPoint(x, y).matrixTransform(inverse))) continue;
@@ -339,14 +406,14 @@ test("every badge and name is actually painted, not merely present in the DOM", 
     }
     return out;
   }, b64);
-  expect(labels).toHaveLength(42); // 14 provinces, badge + name + count each
+  expect(labels).toHaveLength(56); // 14 provinces, badge + name + count + initial each
   for (const l of labels) {
     const floor = LABEL_SPREAD[l.kind];
     expect(floor, `no threshold known for a ${l.kind}`).toBeGreaterThan(0);
     expect(l.sampled, `${l.id} ${l.kind}: nothing to sample inside the province`).toBeGreaterThan(5);
     // Hidden with `opacity: 0`, the area is whatever the province paint alone
     // gives (flat fill, at most the hatch stripes and the border stroke);
-    // painted, the white count and name stand against their dark backdrop.
+    // painted, the white initial, count and name stand against their dark backdrop.
     expect(l.spread, `${l.id} ${l.kind} shows no contrast — it is not painted`).toBeGreaterThanOrEqual(floor as number);
   }
 });
@@ -472,12 +539,27 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
   expect(await dialog.locator(".verdict.down").count()).toBe(attackerLosses);
   expect(await dialog.locator(".verdict.up").count()).toBe(defenderLosses);
   expect(attackerLosses + defenderLosses).toBe(Math.min(attackerDice, defenderDice));
-  // Column by column: each label must match its two dice faces under the
+  // Column by column: each label must match its two drawn dice faces under the
   // engine's tie rule (classicRules' ties, which pairResults applies). Counting
-  // labels alone cannot see a pair labelled the wrong way round.
+  // labels alone cannot see a pair labelled the wrong way round, and reading
+  // `data-face` cannot see a die whose pips were never drawn. The faces come
+  // from the pip pixels of the very picture that becomes the artifact.
+  await page.waitForTimeout(700); // let the dice finish tumbling before the picture
+  const resultShot = await shot(page, info, "03-result");
+  const drawn = await drawnDice(page, resultShot);
+  expect(drawn.attacker, "a lit-cell set per attacker die").toHaveLength(attackerDice);
+  expect(drawn.defender, "a lit-cell set per defender die").toHaveLength(defenderDice);
   const ties = classicRules().combat.ties;
-  const attackerFaces = await dialog.locator(".die.attacker").evaluateAll((els) => els.map((e) => Number((e as HTMLElement).dataset["face"])));
-  const defenderFaces = await dialog.locator(".die.defender").evaluateAll((els) => els.map((e) => Number((e as HTMLElement).dataset["face"])));
+  const attackerFaces = drawn.attacker.map((lit, i) => {
+    const face = faceOf(lit);
+    expect(face, `attacker die ${i + 1} shows no readable face (lit cells: ${lit.join(", ") || "none"})`).not.toBeNull();
+    return face as number;
+  });
+  const defenderFaces = drawn.defender.map((lit, i) => {
+    const face = faceOf(lit);
+    expect(face, `defender die ${i + 1} shows no readable face (lit cells: ${lit.join(", ") || "none"})`).not.toBeNull();
+    return face as number;
+  });
   const paired = pairResults(ties, attackerFaces, defenderFaces);
   const verdicts = await dialog.locator(".verdict").all();
   expect(verdicts.length, "one label per dice column").toBe(Math.max(attackerFaces.length, defenderFaces.length));
@@ -489,8 +571,6 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
     expect(await verdicts[i]!.textContent(), `column ${i + 1}: the label text must read "${wantText}"`).toBe(wantText);
   }
   const kind = await dialog.getAttribute("data-outcome");
-  await page.waitForTimeout(700); // let the dice finish tumbling before the picture
-  await shot(page, info, "03-result");
 
   await page.getByRole("button", { name: "Continue" }).click();
   await expect(dialog).toBeHidden();
