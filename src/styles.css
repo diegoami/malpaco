@@ -420,8 +420,10 @@ body {
   flex: none;
 }
 .hint {
-  /* Room for three lines, so a long hint never pushes the buttons down. */
-  height: 4.1em;
+  /* Up to three lines when a hint is long, so it never pushes the buttons down;
+     no reserved space when it is short (a fixed height left an empty band above
+     the buttons). */
+  max-height: 4.1em;
   overflow: hidden;
   margin: 0 0 6px;
   color: var(--muted);
@@ -482,7 +484,13 @@ button.primary:disabled {
 }
 .log-card {
   flex: 1;
-  min-height: 120px;
+  /* The log shrinks first (and scrolls inside) when the panel runs out of
+     height, so the buttons and the seed stay reachable without scrolling. The
+     floor is [measured]: the panel's spare height is 119px at 1366x768 and 75px
+     (local) at a zoomed 1600x900, so 96 keeps 1366x768 fitting by 23px while a
+     width-only zoom breakpoint overflows a zoomed 1600x900 by about 27px —
+     which is what the panel test at those sizes holds the media query to. */
+  min-height: 96px;
   overflow: auto;
 }
 .log {
@@ -642,8 +650,11 @@ dialog h2 {
   }
 }
 
-/* A bigger screen gets a bigger panel and bigger secondary text, as the map's names grow. */
-@media (min-width: 1600px) {
+/* A bigger screen gets a bigger panel and bigger secondary text, as the map's
+   names grow. Height is part of the condition: at 1600x900 the zoomed panel no
+   longer fits, and Playwright holds the panel open at 1366x768, 1600x900 and
+   1920x1080. */
+@media (min-width: 1600px) and (min-height: 1000px) {
   .stage {
     grid-template-columns: minmax(0, 1fr) 440px;
   }
