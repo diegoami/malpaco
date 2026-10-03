@@ -76,7 +76,9 @@ export class Panel {
       this.turn,
       this.score,
       h("section", { class: "card action" }, this.pick, this.hint, h("div", { class: "buttons" }, this.attack, this.endTurn),
-        h("p", { class: "legend", id: "legend" }, crosshairIcon(), "Marker and dashed outline: a province you can attack from the selected one.")),
+        // markerSpot (mapView.ts) draws the crosshair only where one fits inside
+        // the province; the dashed outline is always there. The legend says so.
+        h("p", { class: "legend", id: "legend" }, crosshairIcon(), "Dashed outline on every target, and a marker where one fits: provinces you can attack from the selected one.")),
       h("section", { class: "card log-card" }, h("h3", {}, "Battle log"), this.log),
       h("footer", { class: "panel-foot" }, this.newGame, this.seed),
     );
