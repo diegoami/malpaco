@@ -23,20 +23,25 @@ indexed in `docs/tasks/README.md`.
 5. The Done-when is not negotiable by the implementer. It stops and reports; it never weakens an
    assertion, skips a test or edits its task file. The main session amends a Done-when on `main`
    with the reason in the commit message.
-6. Each task file names its implementer and its reviewer, at effort `high` at most. Four families,
-   in two tiers:
+6. Each task file names its implementer and its reviewer, at effort `high` at most, and says
+   whether the task is `easy` or `hard`, and why. The pairs (the owner's decision, 2026-10-03):
 
-   | Tier | Claude | OpenAI (direct) | DeepSeek (Go) | GLM (Z.AI Coding Plan only) |
+   | Difficulty | Implementer | Its fallback | Reviewer | Its fallback |
    | --- | --- | --- | --- | --- |
-   | Light, the default | Sonnet | GPT-6 Luna | V4.1 Flash | GLM-5.3 Flash |
-   | Heavy, only when the task file says why | Opus, Fable | GPT-6 Sol | V4 Pro | GLM-5.3 |
+   | Easy, the default | GLM-5.3 Flash (Z.AI Coding Plan only) | Sonnet | GPT-6 Luna (direct OpenAI) | Sonnet |
+   | Hard | DeepSeek V4.1 Flash (Go) | Sonnet | GPT-6.1 Sol (direct OpenAI) | Opus |
 
+   - **Hard** is any of:
+     - a gate or a test that guards the UI or the rules core;
+     - a new mechanism across several files, or a new external dependency;
+     - a task whose earlier round found blocking bypasses (T02: Sol found new evasions in each round).
+
+     Everything else is easy.
    - **Family:** the reviewer comes from another family than the implementer. When a constraint
      forces the same family, the task file names it.
-   - **Defaults:**
-     - code: a light DeepSeek or GLM model implements, and Luna reviews;
-     - gates and tests that guard the UI or the rules core: Sol reviews;
-     - UI work is also checked against the Playwright screenshots, and the owner judges the look.
+   - **UI work** is also checked against the Playwright goldens, and the owner judges the look.
+   - **Other probed models** (`harness.json`, for an explicit `--model` or a switch): DeepSeek V4
+     Pro, GLM-5.3 and GPT-6 Sol; Opus and Fable implement only when a task file says why.
    - **Excluded:** never Haiku. Gemini (cost), Kimi and Grok are not used.
    - **Switching:** the owner decides which models are in use, and switches them often. The main
      session keeps every switch cheap:
@@ -46,7 +51,8 @@ indexed in `docs/tasks/README.md`.
 
      It never chooses models by budget.
 
-   This overrides the family rule in the harness copies, which `harness.lock` pins. The Claude
+   The difficulty pairs were the owner's decision on 2026-10-03. This overrides the family rule in
+   the harness copies, which `harness.lock` pins. The Claude
    agent files (`.claude/agents/`) carry `effort: high`.
 
    The working strategy, how runs are made, the adjustments and what each model has shown are in
