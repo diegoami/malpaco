@@ -48,6 +48,9 @@ indexed in `docs/tasks/README.md`.
 
    This overrides the family rule in the harness copies, which `harness.lock` pins. The Claude
    agent files (`.claude/agents/`) carry `effort: high`.
+
+   The working strategy, how runs are made, the adjustments and what each model has shown are in
+   `docs/models.md`, kept identical to isle-wars-archaeology's copy; the main session keeps it current.
 7. Merge only with an approving review and green CI. Two rework rounds, then escalate.
 8. Relay review findings in full, never a subset.
 9. A test proves behaviour only if it fails when the behaviour is removed; a claim that nothing
