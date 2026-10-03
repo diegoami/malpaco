@@ -1,0 +1,125 @@
+// Plain data types for the rules core. Everything here is JSON-serialisable
+// except the map, which is shared and never mutated once loaded.
+
+export type Point = readonly [number, number];
+
+export interface Province {
+  readonly id: string;
+  readonly name: string;
+  readonly island: string;
+  /** Land neighbours: same island, authored and symmetric. */
+  readonly borders: readonly string[];
+  /** Water neighbours: always on another island. */
+  readonly seaLanes: readonly string[];
+  readonly polygon: readonly Point[];
+  readonly labelAt: Point;
+}
+
+export interface Island {
+  readonly id: string;
+  readonly name: string;
+  readonly bonus: number;
+  readonly provinces: readonly string[];
+}
+
+export interface GameMap {
+  readonly id: string;
+  readonly name: string;
+  readonly bounds: { readonly x: number; readonly y: number; readonly width: number; readonly height: number };
+  readonly provinces: readonly Province[];
+  readonly islands: readonly Island[];
+}
+
+export interface Player {
+  readonly id: string;
+  readonly name: string;
+  eliminated: boolean;
+}
+
+/** How many dice a stack rolls: clamp(armies - minus, 0, max). */
+export interface DiceRule {
+  readonly max: number;
+  readonly minus: number;
+}
+
+/** The Classic preset's combat block, as data (core/rules/rule_set.gd, Combat). */
+export interface CombatRules {
+  readonly attackRule: "match" | "classic" | "threshold";
+  readonly attackRatio: number;
+  readonly minArmiesToAttack: number;
+  readonly attackerDice: DiceRule;
+  readonly defenderDice: DiceRule;
+  readonly ties: "defender" | "attacker";
+  readonly failurePenalty: "loseProvince" | "endPhase" | "none";
+  readonly capture: "diceCount" | "all" | "one";
+}
+
+export interface SetupRules {
+  readonly startingArmies: number;
+  readonly distributionPool: number;
+  readonly shortStackBonus: number;
+}
+
+export interface RuleSet {
+  readonly id: string;
+  readonly setup: SetupRules;
+  readonly combat: CombatRules;
+  /** Conquest only, as in Classic. */
+  readonly victory: readonly "conquest"[];
+}
+
+export type Phase = "attack" | "redeploy" | "finished";
+
+export interface RngSnapshot {
+  readonly seed: number;
+  readonly state: number;
+}
+
+export type Action =
+  | { readonly kind: "attack"; readonly from: string; readonly to: string }
+  | { readonly kind: "endTurn" };
+
+export interface AttackOutcome {
+  readonly event: "attack";
+  readonly turn: number;
+  readonly from: string;
+  readonly to: string;
+  readonly attacker: string;
+  readonly defender: string;
+  readonly attackerRolls: readonly number[];
+  readonly defenderRolls: readonly number[];
+  readonly attackerLosses: number;
+  readonly defenderLosses: number;
+  readonly captured: boolean;
+  readonly penalty: boolean;
+  readonly endsPhase: boolean;
+  /** Armies moved into a captured province. */
+  readonly moved: number;
+}
+
+export type LogEntry =
+  | { readonly event: "game_started"; readonly seed: number; readonly players: number }
+  | AttackOutcome
+  | { readonly event: "eliminated"; readonly player: string; readonly turn: number }
+  | { readonly event: "victory"; readonly player: string; readonly turn: number }
+  | { readonly event: "turn_ended"; readonly player: string; readonly turn: number };
+
+export interface GameState {
+  readonly map: GameMap;
+  readonly rules: RuleSet;
+  readonly players: Player[];
+  ownerOf: Record<string, string>;
+  armies: Record<string, number>;
+  currentPlayer: number;
+  phase: Phase;
+  turnNumber: number;
+  capturedThisTurn: boolean;
+  rng: RngSnapshot;
+  log: LogEntry[];
+  history: Action[];
+  winner: string;
+}
+
+export type ApplyResult =
+  | { readonly ok: true; readonly state: GameState; readonly outcome: AttackOutcome | null }
+  | { readonly ok: false; readonly error: string };
