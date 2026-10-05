@@ -23,12 +23,12 @@ indexed in `docs/tasks/README.md`.
 5. The Done-when is not negotiable by the implementer. It stops and reports; it never weakens an
    assertion, skips a test or edits its task file. The main session amends a Done-when on `main`
    with the reason in the commit message.
-6. Each task file names its implementer and its reviewer, at effort `high` at most, and says
+6. Each task file names its implementer and its reviewer, at the effort below, and says
    whether the task is `easy` or `hard`, and why. The pairs (the owner's decision, 2026-10-03):
 
    | Difficulty | Implementer | Its fallback | Reviewer | Its fallback |
    | --- | --- | --- | --- | --- |
-   | Easy, the default | GLM-5.3 Flash (Z.AI Coding Plan only) | Sonnet | GPT-6 Luna (direct OpenAI) | Sonnet |
+   | Easy, the default | GLM-5.3 Flash (Z.AI Coding Plan only) | Sonnet | GPT-5.6 Luna (direct OpenAI) | Sonnet |
    | Hard | DeepSeek V4.1 Flash (Go) | Sonnet | GPT-6.1 Sol (direct OpenAI) | Opus |
 
    - **Hard** is any of:
@@ -43,7 +43,24 @@ indexed in `docs/tasks/README.md`.
    - **Other probed models** (`harness.json`, for an explicit `--model` or a switch): DeepSeek V4
      Pro, GLM-5.3 and GPT-6 Sol; Opus and Fable implement only when a task file says why.
    - **GPT-6.1 Sol, sparingly** (the owner, 2026-10-03): only for hard reviews, at effort `low`;
-     `medium` only when the task file says why; never `high`. Every other model stays at `high`.
+     `medium` only when the task file says why; never `high`.
+   - **Effort** (the owner, 2026-10-05): a heavy model (Opus, GPT-6.1 Sol, GLM-5.3, DeepSeek V4 Pro)
+     runs at `medium` at most, and at `low` when medium is not needed. A model that offers no
+     medium takes its lowest variant at or below `high`: GLM-5.3 `low`, DeepSeek V4 Pro `high`
+     (its lowest). A light model (Sonnet, GPT-5.6 Luna, GLM-5.3 Flash, DeepSeek V4.1 Flash) stays
+     at `high`. A heavy model switched with `switch-model.mjs` takes `--variant medium` or `low`.
+   - **Luna** (harness_imperial L51): the light OpenAI model, and the reviewer `luna`, is GPT-5.6
+     Luna on the direct OpenAI route (`openai/gpt-5.6-luna`, effort `high`), on its own weekly
+     pool. GPT-6 Luna draws on OpenAI's main pool with Sol: it stays registered as `luna-6`, outside
+     every chain, never the reviewer. Never a Luna on OpenCode Go (`opencode-go/…`).
+   - **Quota first** (harness_imperial L50 and L52; the owner, 2026-10-05, superseding every
+     earlier limit on which models may be used): before choosing, recommending or delegating to a
+     model, check its provider with quota-tracker (`docs/environment.md`). A provider that is
+     `exhausted` is not used until it is usable again: take the next model of the pair or chain
+     whose provider has quota, pass it explicitly (`--model`, `--reviewer`, the Agent's model,
+     `opencode -m`), and say so in the run's report or the PR body. The scripts also skip an
+     exhausted provider themselves (L52). Without the service, count a usage-limit error as
+     `exhausted`. Ids still come from the live list (`opencode models <provider>`), never memory.
    - **Sonnet's tripwire** (the owner, 2026-10-04). Every Sonnet brief carries the paragraph in
      `docs/models.md`. Sonnet stops and hands back an `ESCALATE` block when:
      - two hypotheses for the same question have failed;
@@ -68,11 +85,13 @@ indexed in `docs/tasks/README.md`.
      - task files name each role in one line;
      - a switch the owner calls applies to tasks not yet started.
 
-     It never chooses models by budget.
+     It never chooses models by budget; it checks only whether a provider has quota (Quota first,
+     above).
 
    The difficulty pairs were the owner's decision on 2026-10-03. This overrides the family rule in
    the harness copies, which `harness.lock` pins. The Claude
-   agent files (`.claude/agents/`) carry `effort: high`.
+   agent files (`.claude/agents/`) carry the effort above: `implementer` (Sonnet) `high`,
+   `reviewer` (Opus) `medium`.
 
    The working strategy, how runs are made, the adjustments and what each model has shown are in
    `docs/models.md`, kept identical to isle-wars-archaeology's copy; the main session keeps it current.
