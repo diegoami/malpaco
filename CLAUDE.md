@@ -134,3 +134,15 @@ indexed in `docs/tasks/README.md`.
     - what the review caught or missed.
 
     A model that fails is diagnosed and fixed before any fallback.
+22. **Be practical** (the owner, 2026-10-05, a lesson from goal2-archaeology). Be flexible: when
+    something is true with a probability of 80–90%, accept it rather than spend much more time
+    proving it, and say how sure you are.
+    - **Work:** stop investigating once the answer is clearly likely.
+    - **Reviews:** blocking is for a likely problem that gets past what the task protects (a rule
+      value with no evidence (rule 17), unseeded randomness in rule code (rule 18), copied original
+      content (rule 19), a broken UI bar (rule 20)). An unlikely edge case, or one a later run would
+      expose loudly, is a follow-up.
+    - **Game rules:** a rule value from isle-wars-archaeology's findings is used as the finding states
+      it, with its confidence; a value it leaves unknown stays `[designed]`, with what was searched
+      (rule 17).
+
