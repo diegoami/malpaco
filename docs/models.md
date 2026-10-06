@@ -32,9 +32,25 @@ change. The main session never routes by budget. Its job is to keep a switch che
 | `gpt-6-sol` | GPT-6 Sol, `openai/gpt-6-sol` | OpenAI | probed; the hard reviewer before 6.1 (T06, malpaco T02) |
 | `deepseek-pro` | DeepSeek V4 Pro, `opencode-go/deepseek-v4-pro` | DeepSeek | probed, not in a pair |
 | `zai-glm-5.3` | GLM-5.3, `zai-coding-plan/glm-5.3`, effort `low` (it offers no medium; the owner, 2026-10-05) | GLM | probed; implemented T06, and was tried as a calibration reviewer |
+| `mm-m3` | MiniMax-M3, `minimax/MiniMax-M3`, variant `thinking` (offers only none and thinking, live 2026-10-06) | MiniMax | probed 2026-10-06 (~19:30 CEST, 6 s); **heavy**; **placed 2026-10-06**: the L38 heavy escalation rung before Opus, and the alternate for the Sol seat when openai is exhausted (both by explicit `--model`, never a chain member) |
+| `mm-m2.7` | MiniMax-M2.7, `minimax/MiniMax-M2.7`, no variant (it offers none, live 2026-10-06; registered without the field, so no `--variant` flag is passed) | MiniMax | probed 2026-10-06 (~19:30 CEST, 6 s); **light**; **placed 2026-10-06: implementer chain, second** after the light default |
+| `ali-deepseek-pro` | DeepSeek V4 Pro, `alibaba-token-plan/deepseek-v4-pro-0813`, effort `high` (offers high and max, live 2026-10-06) | DeepSeek | probed 2026-10-06 (~19:30 CEST, 6 s); **heavy**; **placed 2026-10-06**: the Go-overflow relief for DeepSeek V4 Pro work, by explicit `--model` when opencode_go has no quota. Only the dated `-0813` id gets the night discount |
+| `ali-deepseek-flash` | DeepSeek V4.1 Flash, `alibaba-token-plan/deepseek-v4.1-flash`, effort `high` (offers low/high/max) | DeepSeek | probed 2026-10-06 (~19:30 CEST, 6 s); **light**; **placed 2026-10-06**: the hard implementer's alternate when opencode_go is out, by explicit `--model` |
+| `ali-qwen-max` | Qwen 3.8 Max, `alibaba-token-plan/qwen3.8-max`, effort `low` (offers low/medium/xhigh, live 2026-10-06; low per the heavy-model effort rule) | Qwen | probed 2026-10-06 (~19:30 CEST, 8 s); **heavy**; **placed 2026-10-06: reviewer.hard, third seat** - a family with no implementer anywhere |
+| `ali-qwen-flash` | Qwen 3.8 Flash, `alibaba-token-plan/qwen3.8-flash`, effort `medium` (offers low/medium/xhigh) | Qwen | probed 2026-10-06 (~19:30 CEST, 7 s); **light**; **placed 2026-10-06: implementer chain, third** |
+| `ali-glm` | GLM-5.3, `alibaba-token-plan/glm-5.3`, effort `low` (offers low/high/max; low is its medium-equivalent) | GLM | probed 2026-10-06 (~19:30 CEST, 6 s); **heavy**; **placed 2026-10-06: reviewer.hard, second seat** - zai 3x-peak relief from 8 Oct 2026 |
 | (Claude) Sonnet | `task-agent`, `model: sonnet` | Claude | the implementer for research, the user's install and cloud sessions; the fallback implementer; the easy fallback reviewer |
 | (Claude) Opus | `task-agent-heavy`, `model: opus`, effort `medium` | Claude | the hard fallback reviewer; the cloud reviewer |
 | (Claude) Fable | `task-agent-heavy`, `model: fable`, effort `medium` | Claude | allowed, not used yet |
+
+The `mm-*` and `ali-*` entries were registered and placed with isle-wars-archaeology's session on
+2026-10-06 (the owner's work order and approval; probes run from that repo's harness on the same
+login and keys). MiniMax is a new family nothing else shares, so an `mm-*` reviewer is a genuine
+third family; the Alibaba Token Plan is one monthly pool with a night discount 22:00-08:00 UTC+8
+(qwen 60%, the dated DeepSeek `-0813` and v4.1-flash 50%, glm none; read `pricing.discount_now`).
+Keys: `MINIMAX_API_KEY` and `ALIBABA_TOKEN_PLAN_API_KEY` from `~/.config/ai-keys.env`. Alibaba's
+Kimi and its MiniMax models stay out (Team-edition only). zai's GLM-5.3 costs 3x in weekday peak
+from 8 Oct 2026 - prefer other providers then.
 
 A light model (Sonnet, GPT-5.6 Luna, GLM-5.3 Flash, DeepSeek V4.1 Flash) runs at effort `high`; a
 heavy model (Opus, GPT-6.1 Sol, GLM-5.3, DeepSeek V4 Pro) at `medium` at most, and at `low` when

@@ -45,12 +45,55 @@
       "id": "openai/gpt-6.1-sol",
       "variant": "low",
       "family": "openai"
+    },
+    "mm-m3": {
+      "id": "minimax/MiniMax-M3",
+      "variant": "thinking",
+      "family": "minimax",
+      "watch": "MiniMax (new family, 2026-10-06): an independent reviewer family for work by GLM, DeepSeek, Qwen, OpenAI or Claude models. Quota: 5h + weekly windows (/quota/minimax). Key: the env var MINIMAX_API_KEY (WSL: ~/.config/ai-keys.env via ~/.bashrc and ~/.profile; 'Provider not found' means the shell lacks it). Never opencode auth login it. Probed from isle-wars-archaeology's harness 2026-10-06 ~19:30 CEST (same login and keys). Variants offered (live): none (thinking disabled), thinking (adaptive). Heavy. Placed (the owner, 2026-10-06): the L38 heavy escalation rung before Opus, and the alternate for the Sol seat when openai is exhausted - both by explicit --model, never a chain member."
+    },
+    "mm-m2.7": {
+      "id": "minimax/MiniMax-M2.7",
+      "family": "minimax",
+      "watch": "MiniMax (new family, 2026-10-06): an independent reviewer family for work by GLM, DeepSeek, Qwen, OpenAI or Claude models. Quota: 5h + weekly windows (/quota/minimax). Key: the env var MINIMAX_API_KEY (WSL: ~/.config/ai-keys.env via ~/.bashrc and ~/.profile; 'Provider not found' means the shell lacks it). Never opencode auth login it. Probed from isle-wars-archaeology's harness 2026-10-06 ~19:30 CEST (same login and keys). Variants offered (live): none - registered without a variant, so no --variant flag is passed. Light. Placed (the owner, 2026-10-06): implementer chain, second after the light default."
+    },
+    "ali-deepseek-pro": {
+      "id": "alibaba-token-plan/deepseek-v4-pro-0813",
+      "variant": "high",
+      "family": "deepseek",
+      "watch": "Alibaba Token Plan, one monthly pool shared by all its models (/quota/alibaba; resets monthly). Night discount 22:00-08:00 UTC+8 (pricing.discount_now): qwen3.8 60% off, deepseek-v4-pro-0813 and v4.1-flash 50% off, glm-5.3 none - prefer long ali runs while discount_now is true. Key: the env var ALIBABA_TOKEN_PLAN_API_KEY (WSL: ~/.config/ai-keys.env via ~/.bashrc and ~/.profile; 'Provider not found' means the shell lacks it: restart or source, then tell the owner). Never opencode auth login it. Probed from isle-wars-archaeology's harness 2026-10-06 ~19:30 CEST (same login and keys; one-word probe, 6-8 s). Variants offered (live): high, max (high registered; max never used, L27). The dated -0813 id is the one that gets the night discount. Heavy. Placed (the owner, 2026-10-06): the Go-overflow relief for DeepSeek V4 Pro work, by explicit --model when opencode_go has no quota - never a chain member."
+    },
+    "ali-deepseek-flash": {
+      "id": "alibaba-token-plan/deepseek-v4.1-flash",
+      "variant": "high",
+      "family": "deepseek",
+      "watch": "Alibaba Token Plan, one monthly pool shared by all its models (/quota/alibaba; resets monthly). Night discount 22:00-08:00 UTC+8 (pricing.discount_now): qwen3.8 60% off, deepseek-v4-pro-0813 and v4.1-flash 50% off, glm-5.3 none - prefer long ali runs while discount_now is true. Key: the env var ALIBABA_TOKEN_PLAN_API_KEY (WSL: ~/.config/ai-keys.env via ~/.bashrc and ~/.profile; 'Provider not found' means the shell lacks it: restart or source, then tell the owner). Never opencode auth login it. Probed from isle-wars-archaeology's harness 2026-10-06 ~19:30 CEST (same login and keys; one-word probe, 6-8 s). Variants offered (live): low, high, max. Light. Placed (the owner, 2026-10-06): the hard implementer's alternate when opencode_go is out, by explicit --model - never a chain member."
+    },
+    "ali-qwen-max": {
+      "id": "alibaba-token-plan/qwen3.8-max",
+      "variant": "low",
+      "family": "qwen",
+      "watch": "Alibaba Token Plan, one monthly pool shared by all its models (/quota/alibaba; resets monthly). Night discount 22:00-08:00 UTC+8 (pricing.discount_now): qwen3.8 60% off, deepseek-v4-pro-0813 and v4.1-flash 50% off, glm-5.3 none - prefer long ali runs while discount_now is true. Key: the env var ALIBABA_TOKEN_PLAN_API_KEY (WSL: ~/.config/ai-keys.env via ~/.bashrc and ~/.profile; 'Provider not found' means the shell lacks it: restart or source, then tell the owner). Never opencode auth login it. Probed from isle-wars-archaeology's harness 2026-10-06 ~19:30 CEST (same login and keys; one-word probe, 6-8 s). Variants offered (live): low, medium, xhigh (low registered, per the heavy-model effort rule). Heavy. Placed (the owner, 2026-10-06): reviewer.hard, third seat - a family with no implementer anywhere."
+    },
+    "ali-qwen-flash": {
+      "id": "alibaba-token-plan/qwen3.8-flash",
+      "variant": "medium",
+      "family": "qwen",
+      "watch": "Alibaba Token Plan, one monthly pool shared by all its models (/quota/alibaba; resets monthly). Night discount 22:00-08:00 UTC+8 (pricing.discount_now): qwen3.8 60% off, deepseek-v4-pro-0813 and v4.1-flash 50% off, glm-5.3 none - prefer long ali runs while discount_now is true. Key: the env var ALIBABA_TOKEN_PLAN_API_KEY (WSL: ~/.config/ai-keys.env via ~/.bashrc and ~/.profile; 'Provider not found' means the shell lacks it: restart or source, then tell the owner). Never opencode auth login it. Probed from isle-wars-archaeology's harness 2026-10-06 ~19:30 CEST (same login and keys; one-word probe, 6-8 s). Variants offered (live): low, medium, xhigh (medium registered). Light. Placed (the owner, 2026-10-06): implementer chain, third."
+    },
+    "ali-glm": {
+      "id": "alibaba-token-plan/glm-5.3",
+      "variant": "low",
+      "family": "glm",
+      "watch": "Alibaba Token Plan, one monthly pool shared by all its models (/quota/alibaba; resets monthly). Night discount 22:00-08:00 UTC+8 (pricing.discount_now): qwen3.8 60% off, deepseek-v4-pro-0813 and v4.1-flash 50% off, glm-5.3 none - prefer long ali runs while discount_now is true. Key: the env var ALIBABA_TOKEN_PLAN_API_KEY (WSL: ~/.config/ai-keys.env via ~/.bashrc and ~/.profile; 'Provider not found' means the shell lacks it: restart or source, then tell the owner). Never opencode auth login it. Probed from isle-wars-archaeology's harness 2026-10-06 ~19:30 CEST (same login and keys; one-word probe, 6-8 s). Variants offered (live): low, high, max (low registered, its medium-equivalent per the effort rule). Heavy. Placed (the owner, 2026-10-06): reviewer.hard, second seat - zai 3x-peak relief from 8 Oct 2026."
     }
   },
   "implementer": {
     "agent": "implementer",
     "chain": [
-      "zai-glm-5.3-flash"
+      "zai-glm-5.3-flash",
+      "mm-m2.7",
+      "ali-qwen-flash"
     ],
     "claudeFallback": "sonnet",
     "startupTimeoutSec": 180,
@@ -68,6 +111,8 @@
     "totalTimeoutSec": 3600,
     "hard": [
       "zai-glm-5.3",
+      "ali-glm",
+      "ali-qwen-max",
       "deepseek-pro",
       "luna"
     ],
