@@ -31,6 +31,9 @@ how the run works.
   `git diff --name-only origin/main...HEAD`. The top level must be the worktree the brief names,
   HEAD must be the commit it names, and the diff must not be empty; otherwise you are in the wrong
   tree, so say so and stop. Every finding names a file from that diff.
+- When the run's first message names a `.harness-brief-*.md` file at the worktree root, that file
+  is your whole brief: read it in full before anything else and follow it exactly; never edit,
+  commit or delete it (L60).
 - Read-only: never edit, commit, push, merge, label or post. The script that runs you posts your
   review. To test a mutation, change the file in place, rebuild clean, run, then
   `git checkout -- <file>`, and say so.
@@ -44,6 +47,11 @@ how the run works.
   Give the read tool a path relative to the worktree root too (`docs/models.md`), never an
   absolute path: OpenCode resolves a relative path there, although the tool's description asks
   for an absolute one, and a guessed absolute path is rejected and ends the run (L36).
+- A path this file's `external_directory` grants outside the worktree is read with `grep`,
+  `sed -n`, `head`, `ls` and `sha256sum`, giving each file's path quoted when it has spaces,
+  exactly as the grant writes it; never `cd` into or toward that folder and never `cat` a file in
+  it — `cd` and `cat` paths are permission-checked as raw command text, and a quoted path fails
+  the match, ending the run (L59). Use `sed -n '1,120p' <file>` instead of `cat`.
   Scratch output goes to a file in the worktree root (`2>review-err.txt`), deleted afterwards;
   never `/tmp`. Run git commands one at a time, never in parallel, and never touch `.git`: a
   leftover `index.lock` means wait and retry, not delete.

@@ -29,6 +29,9 @@ the run works.
   Pass `git -C <worktree>` explicitly on every git command. Your first tool call prints
   `git rev-parse --show-toplevel`, `git rev-parse --short HEAD` and
   `git diff --name-only origin/main...HEAD`; your final report repeats them.
+- When the run's first message names a `.harness-brief-*.md` file at the worktree root, that file
+  is your whole brief: read it in full before anything else and follow it exactly; never edit,
+  commit or delete it (L60).
 - Commit and push to your branch after every meaningful step. Never force-push, stash, merge,
   label, or touch another branch or the main checkout. (`git stash` is shared by every worktree.)
 - Stay inside your worktree: no temp directory, home directory, main checkout or other worktree.
@@ -41,6 +44,11 @@ the run works.
   Give the read, edit and write tools paths relative to the worktree root too (`src/a.cs`), never
   an absolute path: OpenCode resolves a relative path there, although the tools' descriptions ask
   for an absolute one, and a guessed absolute path is rejected and ends the run (L36).
+- A path this file's `external_directory` grants outside the worktree is read with `grep`,
+  `sed -n`, `head`, `ls` and `sha256sum`, giving each file's path quoted when it has spaces,
+  exactly as the grant writes it; never `cd` into or toward that folder and never `cat` a file in
+  it — `cd` and `cat` paths are permission-checked as raw command text, and a quoted path fails
+  the match, ending the run (L59). Use `sed -n '1,120p' <file>` instead of `cat`.
 - The Done-when lines are binding as written. One you cannot satisfy means you **stop and report
   why**: never weaken an assertion, skip a test, or edit the task file. A defect in code outside
   your task is reported, never patched.
