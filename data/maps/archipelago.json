@@ -273,7 +273,7 @@
       "name": "Fera Kabo",
       "island": "feria_bordo",
       "borders": [
-        "dunokampo",
+        "sableta_flanko",
         "kristala_lageto"
       ],
       "sea_lanes": [],
@@ -321,8 +321,8 @@
       "name": "Dunokampo",
       "island": "feria_bordo",
       "borders": [
-        "fera_kabo",
         "sableta_flanko",
+        "kristala_lageto",
         "bronza_rifo"
       ],
       "sea_lanes": [
@@ -373,7 +373,7 @@
       "island": "feria_bordo",
       "borders": [
         "dunokampo",
-        "kristala_lageto",
+        "fera_kabo",
         "bronza_rifo"
       ],
       "sea_lanes": [
@@ -423,9 +423,9 @@
       "name": "Kristala Lageto",
       "island": "feria_bordo",
       "borders": [
-        "sableta_flanko",
-        "bronza_rifo",
-        "fera_kabo"
+        "dunokampo",
+        "fera_kabo",
+        "bronza_rifo"
       ],
       "sea_lanes": [
         "kaverna_enirejo"
@@ -474,9 +474,9 @@
       "name": "Bronza Rifo",
       "island": "feria_bordo",
       "borders": [
-        "kristala_lageto",
         "dunokampo",
-        "sableta_flanko"
+        "sableta_flanko",
+        "kristala_lageto"
       ],
       "sea_lanes": [
         "stelejo"
@@ -623,8 +623,8 @@
       "name": "Kola Strando",
       "island": "la_du_golfoj",
       "borders": [
-        "norda_golfo",
-        "marflusa_pinto"
+        "marflusa_pinto",
+        "norda_golfo"
       ],
       "sea_lanes": [
         "kronurbo"
@@ -725,8 +725,8 @@
       "island": "la_du_golfoj",
       "borders": [
         "rifokresto",
-        "suda_golfo",
-        "kola_strando"
+        "kola_strando",
+        "suda_golfo"
       ],
       "sea_lanes": [
         "konkujo"
@@ -777,8 +777,8 @@
       "borders": [
         "regejo",
         "standarda_turo",
-        "pinaro",
-        "ostobanko"
+        "ostobanko",
+        "pinaro"
       ],
       "sea_lanes": [
         "kola_strando"
@@ -828,9 +828,9 @@
       "island": "kroninsulo",
       "borders": [
         "kronurbo",
-        "ostobanko",
-        "standarda_turo",
-        "kaverna_enirejo"
+        "salofanto",
+        "kolonado",
+        "krona_haveno"
       ],
       "sea_lanes": [
         "nebula_kresto"
@@ -880,9 +880,9 @@
       "island": "kroninsulo",
       "borders": [
         "kronurbo",
-        "kaverna_enirejo",
-        "regejo",
-        "ostobanko"
+        "salofanto",
+        "kolonado",
+        "krona_haveno"
       ],
       "sea_lanes": [
         "suda_fajro"
@@ -931,10 +931,10 @@
       "name": "Ostobanko",
       "island": "kroninsulo",
       "borders": [
-        "regejo",
-        "olivvalo",
         "kronurbo",
-        "standarda_turo"
+        "kaverna_enirejo",
+        "olivvalo",
+        "pinaro"
       ],
       "sea_lanes": [
         "orienta_kabo"
@@ -983,9 +983,9 @@
       "name": "Kaverna Enirejo",
       "island": "kroninsulo",
       "borders": [
-        "standarda_turo",
-        "regejo",
-        "salofanto"
+        "ostobanko",
+        "olivvalo",
+        "pinaro"
       ],
       "sea_lanes": [
         "kristala_lageto"
@@ -1035,8 +1035,8 @@
       "island": "kroninsulo",
       "borders": [
         "ostobanko",
-        "kolonado",
-        "krona_haveno"
+        "kaverna_enirejo",
+        "pinaro"
       ],
       "sea_lanes": [
         "rifokresto"
@@ -1086,9 +1086,9 @@
       "island": "kroninsulo",
       "borders": [
         "kronurbo",
-        "salofanto",
-        "kolonado",
-        "krona_haveno"
+        "ostobanko",
+        "kaverna_enirejo",
+        "olivvalo"
       ],
       "sea_lanes": [],
       "polygon": [
@@ -1135,10 +1135,10 @@
       "name": "Salofanto",
       "island": "kroninsulo",
       "borders": [
-        "pinaro",
         "kolonado",
-        "kaverna_enirejo",
-        "krona_haveno"
+        "krona_haveno",
+        "regejo",
+        "standarda_turo"
       ],
       "sea_lanes": [],
       "polygon": [
@@ -1187,8 +1187,8 @@
       "borders": [
         "salofanto",
         "krona_haveno",
-        "olivvalo",
-        "pinaro"
+        "regejo",
+        "standarda_turo"
       ],
       "sea_lanes": [],
       "polygon": [
@@ -1235,10 +1235,10 @@
       "name": "Krona Haveno",
       "island": "kroninsulo",
       "borders": [
+        "salofanto",
         "kolonado",
-        "olivvalo",
-        "pinaro",
-        "salofanto"
+        "regejo",
+        "standarda_turo"
       ],
       "sea_lanes": [],
       "polygon": [
@@ -1433,7 +1433,7 @@
       "island": "ventokruco",
       "borders": [
         "krestofluo",
-        "nebula_kresto"
+        "brulmontaro"
       ],
       "sea_lanes": [],
       "polygon": [
@@ -1481,7 +1481,7 @@
       "island": "ventokruco",
       "borders": [
         "krestofluo",
-        "flagoturo"
+        "brulmontaro"
       ],
       "sea_lanes": [],
       "polygon": [
@@ -1528,7 +1528,7 @@
       "name": "Nebula Kresto",
       "island": "ventokruco",
       "borders": [
-        "ventmuelejo",
+        "flagoturo",
         "stelejo"
       ],
       "sea_lanes": [
@@ -1578,8 +1578,8 @@
       "name": "Flagoturo",
       "island": "ventokruco",
       "borders": [
-        "eklipsa_valo",
-        "brulmontaro"
+        "nebula_kresto",
+        "stelejo"
       ],
       "sea_lanes": [
         "obsidiana_kolo"
@@ -1630,7 +1630,7 @@
       "borders": [
         "krestofluo",
         "nebula_kresto",
-        "brulmontaro"
+        "flagoturo"
       ],
       "sea_lanes": [
         "bronza_rifo"
@@ -1680,8 +1680,8 @@
       "island": "ventokruco",
       "borders": [
         "krestofluo",
-        "flagoturo",
-        "stelejo"
+        "ventmuelejo",
+        "eklipsa_valo"
       ],
       "sea_lanes": [
         "stelmano"
@@ -1930,8 +1930,8 @@
       "name": "Obsidiana Kolo",
       "island": "nigra_arko",
       "borders": [
-        "karbujo",
-        "fajroturo"
+        "fajroturo",
+        "karbujo"
       ],
       "sea_lanes": [
         "flagoturo"
@@ -1980,8 +1980,8 @@
       "name": "Karbujo",
       "island": "nigra_arko",
       "borders": [
-        "obsidiana_kolo",
-        "silenca_ravino"
+        "fajroturo",
+        "obsidiana_kolo"
       ],
       "sea_lanes": [
         "marmora_strando"
@@ -2031,7 +2031,7 @@
       "island": "nigra_arko",
       "borders": [
         "ombra_rando",
-        "karbujo",
+        "vesperejo",
         "nokta_flanko"
       ],
       "sea_lanes": [
@@ -2082,7 +2082,7 @@
       "island": "nigra_arko",
       "borders": [
         "ombra_rando",
-        "fajroturo",
+        "silenca_ravino",
         "nokta_flanko"
       ],
       "sea_lanes": [
@@ -2183,9 +2183,9 @@
       "island": "nigra_arko",
       "borders": [
         "ombra_rando",
+        "nokta_flanko",
         "obsidiana_kolo",
-        "vesperejo",
-        "nokta_flanko"
+        "karbujo"
       ],
       "sea_lanes": [],
       "polygon": [
@@ -2233,9 +2233,9 @@
       "island": "nigra_arko",
       "borders": [
         "ombra_rando",
+        "fajroturo",
         "silenca_ravino",
-        "vesperejo",
-        "fajroturo"
+        "vesperejo"
       ],
       "sea_lanes": [],
       "polygon": [

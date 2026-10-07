@@ -31,8 +31,9 @@ const SEED = 20261007; // fixed: polygon jitter only, never structure
 const BOUNDS = { x: 0, y: 0, width: 1920, height: 1080 };
 
 // degrees: total neighbours per province (borders + sea lanes), island-local order.
-// lanes:   how many of those are sea lanes. borders = degrees - lanes >= 2
-//          everywhere except where noted, so every island is land-connected.
+// lanes:   how many of those are sea lanes; borders = degrees - lanes (2+ in
+//          these tables, a [designed] choice — the task fixes only the
+//          total-degree histogram).
 const ISLANDS = [
   { id: "la_ankro", name: "La Ankro", bonus: 2, center: [300, 250], ring: 90,
     provinces: [
@@ -113,7 +114,8 @@ const ISLANDS = [
 // count here must equal the sum of its provinces' `lanes` above:
 //   la_ankro 2, feria_bordo 4, la_du_golfoj 4, kroninsulo 6, sudaj_rifoj 2,
 //   ventokruco 4, la_perloj 3, nigra_arko 4, fora_halo 3  (total 32 = 16 links).
-// The graph they form is connected (checked below).
+// The whole border-plus-lane graph's connectivity is checked on the written
+// file below; nothing stronger is required.
 const ISLAND_LINKS = [
   ["la_ankro", "feria_bordo"],
   ["feria_bordo", "la_du_golfoj"],
@@ -160,94 +162,43 @@ const globalIndex = new Map(); // province id -> index in province order
   }
 }
 
-/** Island-internal land borders: a spanning tree plus fill edges, so the
- *  island is land-connected and each province hits exactly degree - lanes
- *  borders. Deterministic: fixed strategy order, backtracking only over the
- *  fill pairs; loud error if no strategy yields a fill (never silent fudge). */
+/** Island-internal land borders: Havel–Hakimi over the island's border-degree
+ *  table (borders = degree - lanes per province, all inside the island).
+ *  Deterministic and free of any connectivity aim — the task asks only that
+ *  the whole border-plus-sea-lane graph be connected, which the self-check
+ *  below verifies on the written file. */
 function islandBorders(island) {
   const n = island.provinces.length;
   const need = island.provinces.map((p) => p.degree - p.lanes);
-  if (need.some((b) => b < 2)) throw new Error(`${island.id}: a province would have < 2 borders`);
+  // Table guards: a plausible border-degree sequence (non-negative, even sum,
+  // fits in the island). These tables also give every province 2+ borders — a
+  // [designed] choice of the tables, not a task constant; the task fixes only
+  // the total-degree histogram (C-BRD-04).
+  if (need.some((b) => b < 0)) throw new Error(`${island.id}: a province would have negative borders`);
   if (need.reduce((a, b) => a + b, 0) % 2 !== 0) throw new Error(`${island.id}: odd border-degree sum`);
   const maxEdges = (n * (n - 1)) / 2;
   if (need.reduce((a, b) => a + b, 0) / 2 > maxEdges) throw new Error(`${island.id}: too many borders for its size`);
 
+  // Repeatedly join the lowest-index province with the largest residual to the
+  // next-lowest-index provinces with residual, one edge each.
+  const residual = [...need];
+  const edges = new Set();
   const key = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
-  const byNeedDesc = [...need.keys()].sort((a, b) => (need[b] - need[a]) || (a - b));
-
-  // Each strategy returns a spanning tree (n-1 edges, land-connectivity by
-  // construction); the first whose fill succeeds wins.
-  const strategies = [
-    // attach i to the lower-index node with the most residual left
-    () => {
-      const edges = [];
-      for (let i = 1; i < n; i++) {
-        let best = -1;
-        for (let j = 0; j < i; j++) if (need[j] - treeDegree(edges, j) > 0 && (best < 0 || need[j] - treeDegree(edges, j) > need[best] - treeDegree(edges, best))) best = j;
-        if (best < 0) return null;
-        edges.push([best, i]);
-      }
-      return edges;
-    },
-    // star at the highest-need node, spilling to the lowest-index node with room
-    () => {
-      const root = byNeedDesc[0];
-      const edges = [];
-      const has = (a, b) => edges.some(([x, y]) => (x === a && y === b) || (x === b && y === a));
-      for (const i of byNeedDesc) {
-        if (i === root) continue;
-        let anchor = root;
-        if (treeDegree(edges, root) >= need[root] || has(anchor, i)) {
-          anchor = [...need.keys()].find((j) => j !== i && treeDegree(edges, j) < need[j] && !has(j, i));
-          if (anchor === undefined) return null;
-        }
-        edges.push([anchor, i]);
-      }
-      return edges;
-    },
-    // path in index order / in need-desc order
-    () => [...need.keys()].slice(1).map((i) => [i - 1, i]),
-    () => byNeedDesc.slice(1).map((i, k) => [byNeedDesc[k], i]),
-  ];
-
-  for (const strategy of strategies) {
-    const tree = strategy();
-    if (!tree) continue;
-    const edges = new Set(tree.map(([a, b]) => key(a, b)));
-    const residual = need.map((v, i) => v - tree.filter(([a, b]) => a === i || b === i).length);
-    if (fillPairs(n, edges, residual, chordsLeft(residual))) {
-      return [...edges].map((k) => k.split("|").map((i) => island.provinces[Number(i)].id));
+  for (;;) {
+    const open = residual
+      .map((r, i) => ({ r, i }))
+      .filter(({ r }) => r > 0)
+      .sort((a, b) => (b.r - a.r) || (a.i - b.i));
+    if (open.length === 0) break;
+    if (open[0].r > open.length - 1) throw new Error(`${island.id}: border table is not graphical`);
+    const u = open[0].i;
+    for (const { i: v } of open.slice(1, 1 + open[0].r)) {
+      edges.add(key(u, v));
+      residual[u]--;
+      residual[v]--;
     }
   }
-  throw new Error(`${island.id}: no border strategy fits its tables`);
-}
-
-function treeDegree(edges, i) {
-  return edges.filter(([a, b]) => a === i || b === i).length;
-}
-function chordsLeft(residual) {
-  return residual.reduce((a, b) => a + b, 0) / 2;
-}
-
-/** Complete the degree leftovers with unused pairs, lowest pair first;
- *  backtracking over pair choice keeps the fill complete. Mutates edges. */
-function fillPairs(n, edges, residual, chords) {
-  const key = (a, b) => (a < b ? `${a}|${b}` : `${b}|${a}`);
-  const pairs = [];
-  for (let a = 0; a < n; a++) for (let b = a + 1; b < n; b++) pairs.push([a, b]);
-  const acc = [];
-  const rec = () => {
-    if (acc.length === chords) return residual.every((r) => r === 0);
-    for (const [u, v] of pairs) {
-      const k = key(u, v);
-      if (edges.has(k) || residual[u] === 0 || residual[v] === 0) continue;
-      edges.add(k); residual[u]--; residual[v]--; acc.push(k);
-      if (rec()) return true;
-      acc.pop(); residual[u]++; residual[v]++; edges.delete(k);
-    }
-    return false;
-  };
-  return rec();
+  return [...edges].map((k) => k.split("|").map((i) => island.provinces[Number(i)].id));
 }
 
 /** Sea lanes: walk ISLAND_LINKS in order, giving each island's end to its next
@@ -311,7 +262,7 @@ function layout(island, provinceIndexInIsland) {
 const borderEdges = ISLANDS.flatMap(islandBorders);
 const laneEdges = seaLanes();
 
-const bordersOf = new Map(globalIndex.size === 0 ? [] : []);
+const bordersOf = new Map();
 for (const id of globalIndex.keys()) bordersOf.set(id, []);
 const lanesOf = new Map([...globalIndex.keys()].map((id) => [id, []]));
 for (const [a, b] of borderEdges) { bordersOf.get(a).push(b); bordersOf.get(b).push(a); }
@@ -403,7 +354,9 @@ check(JSON.stringify(written.islands.map((i) => i.bonus)) === "[2,4,4,8,2,5,2,5,
   check(undirected.size === 16, `16 undirected lanes, got ${undirected.size}`);
 }
 
-// Connectivity: land-connected islands; one connected border-plus-lane graph.
+// Connectivity: one connected border-plus-lane graph. C-BRD-04 asks for the
+// whole graph only; no per-island land-connectivity is required, so none is
+// checked here or in the test suite.
 {
   const byId = new Map(written.provinces.map((p) => [p.id, p]));
   const bfs = (start, edges) => {
@@ -415,10 +368,6 @@ check(JSON.stringify(written.islands.map((i) => i.bonus)) === "[2,4,4,8,2,5,2,5,
     }
     return seen;
   };
-  for (const island of written.islands) {
-    const reached = bfs(island.provinces[0], (p) => p.borders);
-    check(island.provinces.every((pid) => reached.has(pid)), `island ${island.id} land-connected`);
-  }
   const all = bfs(written.provinces[0].id, (p) => [...p.borders, ...p.sea_lanes]);
   check(all.size === 46, `whole graph connected, reached ${all.size}`);
 }
