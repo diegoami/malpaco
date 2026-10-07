@@ -1,0 +1,2430 @@
+{
+  "schema": 1,
+  "id": "arkipelago",
+  "name": "La Arkipelago",
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "width": 1920,
+    "height": 1080
+  },
+  "islands": [
+    {
+      "id": "la_ankro",
+      "name": "La Ankro",
+      "bonus": 2,
+      "provinces": [
+        "ankra_promontoro",
+        "katena_golfo",
+        "drifta_kabo"
+      ]
+    },
+    {
+      "id": "feria_bordo",
+      "name": "Feria Bordo",
+      "bonus": 4,
+      "provinces": [
+        "fera_kabo",
+        "dunokampo",
+        "sableta_flanko",
+        "kristala_lageto",
+        "bronza_rifo"
+      ]
+    },
+    {
+      "id": "la_du_golfoj",
+      "name": "La Du Golfoj",
+      "bonus": 4,
+      "provinces": [
+        "norda_golfo",
+        "suda_golfo",
+        "kola_strando",
+        "rifokresto",
+        "marflusa_pinto"
+      ]
+    },
+    {
+      "id": "kroninsulo",
+      "name": "Kroninsulo",
+      "bonus": 8,
+      "provinces": [
+        "kronurbo",
+        "regejo",
+        "standarda_turo",
+        "ostobanko",
+        "kaverna_enirejo",
+        "olivvalo",
+        "pinaro",
+        "salofanto",
+        "kolonado",
+        "krona_haveno"
+      ]
+    },
+    {
+      "id": "sudaj_rifoj",
+      "name": "Sudaj Rifoj",
+      "bonus": 2,
+      "provinces": [
+        "rifohaveno",
+        "koralvico",
+        "suda_fajro"
+      ]
+    },
+    {
+      "id": "ventokruco",
+      "name": "Ventokruco",
+      "bonus": 5,
+      "provinces": [
+        "ventmuelejo",
+        "eklipsa_valo",
+        "nebula_kresto",
+        "flagoturo",
+        "stelejo",
+        "brulmontaro",
+        "krestofluo"
+      ]
+    },
+    {
+      "id": "la_perloj",
+      "name": "La Perloj",
+      "bonus": 2,
+      "provinces": [
+        "perlejado",
+        "konkujo",
+        "stelmano"
+      ]
+    },
+    {
+      "id": "nigra_arko",
+      "name": "Nigra Arko",
+      "bonus": 5,
+      "provinces": [
+        "obsidiana_kolo",
+        "karbujo",
+        "silenca_ravino",
+        "vesperejo",
+        "ombra_rando",
+        "fajroturo",
+        "nokta_flanko"
+      ]
+    },
+    {
+      "id": "fora_halo",
+      "name": "Fora Halo",
+      "bonus": 3,
+      "provinces": [
+        "haloa_pinto",
+        "marmora_strando",
+        "orienta_kabo"
+      ]
+    }
+  ],
+  "provinces": [
+    {
+      "id": "ankra_promontoro",
+      "name": "Ankra Promontoro",
+      "island": "la_ankro",
+      "borders": [
+        "katena_golfo",
+        "drifta_kabo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          434.7,
+          250
+        ],
+        [
+          418.2,
+          278.2
+        ],
+        [
+          390,
+          286.5
+        ],
+        [
+          360.7,
+          279.3
+        ],
+        [
+          351.6,
+          250
+        ],
+        [
+          362.6,
+          222.6
+        ],
+        [
+          390,
+          212.4
+        ],
+        [
+          420.6,
+          219.4
+        ]
+      ],
+      "label_at": [
+        390,
+        250
+      ]
+    },
+    {
+      "id": "katena_golfo",
+      "name": "Katena Golfo",
+      "island": "la_ankro",
+      "borders": [
+        "ankra_promontoro",
+        "drifta_kabo"
+      ],
+      "sea_lanes": [
+        "dunokampo"
+      ],
+      "polygon": [
+        [
+          236.8,
+          359.5
+        ],
+        [
+          214.9,
+          338.7
+        ],
+        [
+          222.8,
+          309.4
+        ],
+        [
+          245.2,
+          291.2
+        ],
+        [
+          274.1,
+          294.9
+        ],
+        [
+          298.3,
+          316.3
+        ],
+        [
+          290,
+          348.2
+        ],
+        [
+          265.3,
+          366.5
+        ]
+      ],
+      "label_at": [
+        255,
+        327.9
+      ]
+    },
+    {
+      "id": "drifta_kabo",
+      "name": "Drifta Kabo",
+      "island": "la_ankro",
+      "borders": [
+        "ankra_promontoro",
+        "katena_golfo"
+      ],
+      "sea_lanes": [
+        "suda_fajro"
+      ],
+      "polygon": [
+        [
+          235.9,
+          139
+        ],
+        [
+          266.5,
+          129.2
+        ],
+        [
+          288.4,
+          152.8
+        ],
+        [
+          297.9,
+          183.5
+        ],
+        [
+          275,
+          206.7
+        ],
+        [
+          244,
+          213.1
+        ],
+        [
+          221.1,
+          191.6
+        ],
+        [
+          216.1,
+          161.6
+        ]
+      ],
+      "label_at": [
+        255,
+        172.1
+      ]
+    },
+    {
+      "id": "fera_kabo",
+      "name": "Fera Kabo",
+      "island": "feria_bordo",
+      "borders": [
+        "sableta_flanko",
+        "kristala_lageto"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          919.9,
+          268.4
+        ],
+        [
+          897.3,
+          287.3
+        ],
+        [
+          867.8,
+          293.7
+        ],
+        [
+          845.7,
+          271.5
+        ],
+        [
+          841.3,
+          239.7
+        ],
+        [
+          866.1,
+          220.1
+        ],
+        [
+          894.8,
+          219.8
+        ],
+        [
+          918.6,
+          237.6
+        ]
+      ],
+      "label_at": [
+        882.1,
+        254.6
+      ]
+    },
+    {
+      "id": "dunokampo",
+      "name": "Dunokampo",
+      "island": "feria_bordo",
+      "borders": [
+        "sableta_flanko",
+        "kristala_lageto",
+        "bronza_rifo"
+      ],
+      "sea_lanes": [
+        "katena_golfo"
+      ],
+      "polygon": [
+        [
+          754,
+          377.6
+        ],
+        [
+          723.8,
+          369.3
+        ],
+        [
+          715.7,
+          338.5
+        ],
+        [
+          729.2,
+          311.9
+        ],
+        [
+          756.9,
+          295.9
+        ],
+        [
+          786.4,
+          311
+        ],
+        [
+          798.1,
+          341.4
+        ],
+        [
+          783.6,
+          370.3
+        ]
+      ],
+      "label_at": [
+        755.3,
+        339.9
+      ]
+    },
+    {
+      "id": "sableta_flanko",
+      "name": "Sableta Flanko",
+      "island": "feria_bordo",
+      "borders": [
+        "dunokampo",
+        "fera_kabo",
+        "bronza_rifo"
+      ],
+      "sea_lanes": [
+        "suda_golfo"
+      ],
+      "polygon": [
+        [
+          600,
+          255.7
+        ],
+        [
+          603,
+          227.9
+        ],
+        [
+          624.1,
+          207.4
+        ],
+        [
+          656.3,
+          207.4
+        ],
+        [
+          675.7,
+          234.1
+        ],
+        [
+          669.3,
+          264.8
+        ],
+        [
+          647.1,
+          288
+        ],
+        [
+          613.7,
+          284
+        ]
+      ],
+      "label_at": [
+        635,
+        245.7
+      ]
+    },
+    {
+      "id": "kristala_lageto",
+      "name": "Kristala Lageto",
+      "island": "feria_bordo",
+      "borders": [
+        "dunokampo",
+        "fera_kabo",
+        "bronza_rifo"
+      ],
+      "sea_lanes": [
+        "kaverna_enirejo"
+      ],
+      "polygon": [
+        [
+          664.6,
+          68.3
+        ],
+        [
+          695,
+          63
+        ],
+        [
+          721,
+          79.6
+        ],
+        [
+          725.5,
+          109.6
+        ],
+        [
+          710.6,
+          136.6
+        ],
+        [
+          679.1,
+          144.6
+        ],
+        [
+          651.5,
+          126.3
+        ],
+        [
+          651.7,
+          95.2
+        ]
+      ],
+      "label_at": [
+        687.4,
+        102.2
+      ]
+    },
+    {
+      "id": "bronza_rifo",
+      "name": "Bronza Rifo",
+      "island": "feria_bordo",
+      "borders": [
+        "dunokampo",
+        "sableta_flanko",
+        "kristala_lageto"
+      ],
+      "sea_lanes": [
+        "stelejo"
+      ],
+      "polygon": [
+        [
+          863.5,
+          77.8
+        ],
+        [
+          880.5,
+          102.7
+        ],
+        [
+          871.3,
+          132
+        ],
+        [
+          844.5,
+          143.8
+        ],
+        [
+          813.3,
+          142
+        ],
+        [
+          798.2,
+          112.7
+        ],
+        [
+          808.9,
+          83.2
+        ],
+        [
+          834.8,
+          64.2
+        ]
+      ],
+      "label_at": [
+        840.1,
+        107.6
+      ]
+    },
+    {
+      "id": "norda_golfo",
+      "name": "Norda Golfo",
+      "island": "la_du_golfoj",
+      "borders": [
+        "rifokresto",
+        "kola_strando"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1382.7,
+          361.8
+        ],
+        [
+          1352.6,
+          370.2
+        ],
+        [
+          1322.9,
+          365.2
+        ],
+        [
+          1307.3,
+          337.4
+        ],
+        [
+          1320.7,
+          309.6
+        ],
+        [
+          1346,
+          293.9
+        ],
+        [
+          1373.8,
+          304.8
+        ],
+        [
+          1390,
+          330.3
+        ]
+      ],
+      "label_at": [
+        1349.4,
+        333.7
+      ]
+    },
+    {
+      "id": "suda_golfo",
+      "name": "Suda Golfo",
+      "island": "la_du_golfoj",
+      "borders": [
+        "rifokresto",
+        "marflusa_pinto"
+      ],
+      "sea_lanes": [
+        "sableta_flanko"
+      ],
+      "polygon": [
+        [
+          1184.3,
+          411.8
+        ],
+        [
+          1164.2,
+          386
+        ],
+        [
+          1160.4,
+          353.9
+        ],
+        [
+          1186.5,
+          336
+        ],
+        [
+          1217.6,
+          329.8
+        ],
+        [
+          1237.5,
+          355.1
+        ],
+        [
+          1235.7,
+          384.5
+        ],
+        [
+          1216.1,
+          406
+        ]
+      ],
+      "label_at": [
+        1201.1,
+        370.4
+      ]
+    },
+    {
+      "id": "kola_strando",
+      "name": "Kola Strando",
+      "island": "la_du_golfoj",
+      "borders": [
+        "marflusa_pinto",
+        "norda_golfo"
+      ],
+      "sea_lanes": [
+        "kronurbo"
+      ],
+      "polygon": [
+        [
+          1081.9,
+          237.9
+        ],
+        [
+          1091.1,
+          207
+        ],
+        [
+          1123.1,
+          202
+        ],
+        [
+          1149.2,
+          215.7
+        ],
+        [
+          1156.6,
+          243.3
+        ],
+        [
+          1148.5,
+          273.2
+        ],
+        [
+          1117.1,
+          285.1
+        ],
+        [
+          1091,
+          266.1
+        ]
+      ],
+      "label_at": [
+        1120.3,
+        240.7
+      ]
+    },
+    {
+      "id": "rifokresto",
+      "name": "Rifokresto",
+      "island": "la_du_golfoj",
+      "borders": [
+        "marflusa_pinto",
+        "norda_golfo",
+        "suda_golfo"
+      ],
+      "sea_lanes": [
+        "olivvalo"
+      ],
+      "polygon": [
+        [
+          1208.9,
+          84
+        ],
+        [
+          1240.7,
+          87.5
+        ],
+        [
+          1260.1,
+          113.6
+        ],
+        [
+          1255.2,
+          145.8
+        ],
+        [
+          1229,
+          165.1
+        ],
+        [
+          1197.1,
+          159.7
+        ],
+        [
+          1182.6,
+          132.8
+        ],
+        [
+          1182.9,
+          102.1
+        ]
+      ],
+      "label_at": [
+        1218.8,
+        123.8
+      ]
+    },
+    {
+      "id": "marflusa_pinto",
+      "name": "Marflusa Pinto",
+      "island": "la_du_golfoj",
+      "borders": [
+        "rifokresto",
+        "kola_strando",
+        "suda_golfo"
+      ],
+      "sea_lanes": [
+        "konkujo"
+      ],
+      "polygon": [
+        [
+          1392.6,
+          161.3
+        ],
+        [
+          1398.9,
+          190.3
+        ],
+        [
+          1380.7,
+          214
+        ],
+        [
+          1350.9,
+          222
+        ],
+        [
+          1326.6,
+          202.4
+        ],
+        [
+          1320.7,
+          172.1
+        ],
+        [
+          1337,
+          143.8
+        ],
+        [
+          1370.3,
+          138.9
+        ]
+      ],
+      "label_at": [
+        1360.4,
+        181.3
+      ]
+    },
+    {
+      "id": "kronurbo",
+      "name": "Kronurbo",
+      "island": "kroninsulo",
+      "borders": [
+        "regejo",
+        "standarda_turo",
+        "ostobanko",
+        "pinaro"
+      ],
+      "sea_lanes": [
+        "kola_strando"
+      ],
+      "polygon": [
+        [
+          1128.3,
+          843.6
+        ],
+        [
+          1099.3,
+          848.2
+        ],
+        [
+          1071.8,
+          832.4
+        ],
+        [
+          1074.7,
+          801.4
+        ],
+        [
+          1088.6,
+          774.5
+        ],
+        [
+          1120.5,
+          770
+        ],
+        [
+          1147.8,
+          788.8
+        ],
+        [
+          1148.4,
+          821.4
+        ]
+      ],
+      "label_at": [
+        1109.5,
+        810.8
+      ]
+    },
+    {
+      "id": "regejo",
+      "name": "Regejo",
+      "island": "kroninsulo",
+      "borders": [
+        "kronurbo",
+        "salofanto",
+        "kolonado",
+        "krona_haveno"
+      ],
+      "sea_lanes": [
+        "nebula_kresto"
+      ],
+      "polygon": [
+        [
+          971.8,
+          880.8
+        ],
+        [
+          945,
+          864
+        ],
+        [
+          937.3,
+          834.5
+        ],
+        [
+          950.8,
+          807
+        ],
+        [
+          980.3,
+          802.1
+        ],
+        [
+          1006.3,
+          814.7
+        ],
+        [
+          1016.9,
+          843.1
+        ],
+        [
+          999.8,
+          867.8
+        ]
+      ],
+      "label_at": [
+        976.4,
+        838.7
+      ]
+    },
+    {
+      "id": "standarda_turo",
+      "name": "Standarda Turo",
+      "island": "kroninsulo",
+      "borders": [
+        "kronurbo",
+        "salofanto",
+        "kolonado",
+        "krona_haveno"
+      ],
+      "sea_lanes": [
+        "suda_fajro"
+      ],
+      "polygon": [
+        [
+          823.1,
+          815.3
+        ],
+        [
+          808,
+          785.3
+        ],
+        [
+          822.4,
+          756
+        ],
+        [
+          850.4,
+          743.8
+        ],
+        [
+          879.4,
+          753.1
+        ],
+        [
+          896,
+          780.9
+        ],
+        [
+          880.1,
+          808.2
+        ],
+        [
+          854.3,
+          823.1
+        ]
+      ],
+      "label_at": [
+        852.3,
+        783.1
+      ]
+    },
+    {
+      "id": "ostobanko",
+      "name": "Ostobanko",
+      "island": "kroninsulo",
+      "borders": [
+        "kronurbo",
+        "kaverna_enirejo",
+        "olivvalo",
+        "pinaro"
+      ],
+      "sea_lanes": [
+        "orienta_kabo"
+      ],
+      "polygon": [
+        [
+          742.7,
+          673.9
+        ],
+        [
+          747.1,
+          640.6
+        ],
+        [
+          775.6,
+          621.9
+        ],
+        [
+          808.5,
+          628.7
+        ],
+        [
+          825.5,
+          656.6
+        ],
+        [
+          815.6,
+          685.3
+        ],
+        [
+          792.3,
+          701.7
+        ],
+        [
+          761.4,
+          700.8
+        ]
+      ],
+      "label_at": [
+        784.7,
+        665.1
+      ]
+    },
+    {
+      "id": "kaverna_enirejo",
+      "name": "Kaverna Enirejo",
+      "island": "kroninsulo",
+      "borders": [
+        "ostobanko",
+        "olivvalo",
+        "pinaro"
+      ],
+      "sea_lanes": [
+        "kristala_lageto"
+      ],
+      "polygon": [
+        [
+          759.2,
+          512
+        ],
+        [
+          784.9,
+          492.2
+        ],
+        [
+          814.9,
+          495.2
+        ],
+        [
+          836,
+          516
+        ],
+        [
+          835.3,
+          546.1
+        ],
+        [
+          814.3,
+          569.4
+        ],
+        [
+          781.7,
+          569.1
+        ],
+        [
+          759.3,
+          545.2
+        ]
+      ],
+      "label_at": [
+        799.3,
+        530
+      ]
+    },
+    {
+      "id": "olivvalo",
+      "name": "Olivvalo",
+      "island": "kroninsulo",
+      "borders": [
+        "ostobanko",
+        "kaverna_enirejo",
+        "pinaro"
+      ],
+      "sea_lanes": [
+        "rifokresto"
+      ],
+      "polygon": [
+        [
+          868.6,
+          391
+        ],
+        [
+          900.9,
+          391
+        ],
+        [
+          925.9,
+          408.9
+        ],
+        [
+          927.4,
+          439.2
+        ],
+        [
+          909,
+          461.4
+        ],
+        [
+          879.4,
+          470.3
+        ],
+        [
+          852,
+          451.3
+        ],
+        [
+          850,
+          418.2
+        ]
+      ],
+      "label_at": [
+        890.5,
+        429.2
+      ]
+    },
+    {
+      "id": "pinaro",
+      "name": "Pinaro",
+      "island": "kroninsulo",
+      "borders": [
+        "kronurbo",
+        "ostobanko",
+        "kaverna_enirejo",
+        "olivvalo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1028,
+          360.9
+        ],
+        [
+          1057,
+          374.4
+        ],
+        [
+          1063.7,
+          405.6
+        ],
+        [
+          1049,
+          432.8
+        ],
+        [
+          1019.3,
+          441.5
+        ],
+        [
+          989.3,
+          428.9
+        ],
+        [
+          984,
+          397
+        ],
+        [
+          996,
+          367
+        ]
+      ],
+      "label_at": [
+        1023.6,
+        401.3
+      ]
+    },
+    {
+      "id": "salofanto",
+      "name": "Salofanto",
+      "island": "kroninsulo",
+      "borders": [
+        "kolonado",
+        "krona_haveno",
+        "regejo",
+        "standarda_turo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1173.3,
+          428.6
+        ],
+        [
+          1186.4,
+          455
+        ],
+        [
+          1179.4,
+          485.7
+        ],
+        [
+          1149.7,
+          498.9
+        ],
+        [
+          1122.3,
+          485
+        ],
+        [
+          1107.9,
+          458.9
+        ],
+        [
+          1119.5,
+          431.4
+        ],
+        [
+          1145.9,
+          420.5
+        ]
+      ],
+      "label_at": [
+        1147.7,
+        456.9
+      ]
+    },
+    {
+      "id": "kolonado",
+      "name": "Kolonado",
+      "island": "kroninsulo",
+      "borders": [
+        "salofanto",
+        "krona_haveno",
+        "regejo",
+        "standarda_turo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1252.8,
+          567
+        ],
+        [
+          1252.8,
+          599.3
+        ],
+        [
+          1223.8,
+          615.4
+        ],
+        [
+          1191.8,
+          610.9
+        ],
+        [
+          1175.3,
+          583.2
+        ],
+        [
+          1183,
+          553.7
+        ],
+        [
+          1207.2,
+          536.2
+        ],
+        [
+          1238.1,
+          540
+        ]
+      ],
+      "label_at": [
+        1215.3,
+        574.9
+      ]
+    },
+    {
+      "id": "krona_haveno",
+      "name": "Krona Haveno",
+      "island": "kroninsulo",
+      "borders": [
+        "salofanto",
+        "kolonado",
+        "regejo",
+        "standarda_turo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1240.1,
+          727.7
+        ],
+        [
+          1216.7,
+          751.9
+        ],
+        [
+          1185.6,
+          743.8
+        ],
+        [
+          1161,
+          725.2
+        ],
+        [
+          1161.5,
+          692.4
+        ],
+        [
+          1187.1,
+          674.3
+        ],
+        [
+          1217.9,
+          671.7
+        ],
+        [
+          1240.7,
+          694.8
+        ]
+      ],
+      "label_at": [
+        1200.7,
+        710
+      ]
+    },
+    {
+      "id": "rifohaveno",
+      "name": "Rifohaveno",
+      "island": "sudaj_rifoj",
+      "borders": [
+        "koralvico",
+        "suda_fajro"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1672.5,
+          480.3
+        ],
+        [
+          1644.1,
+          468.7
+        ],
+        [
+          1624.8,
+          445.7
+        ],
+        [
+          1634.2,
+          416.7
+        ],
+        [
+          1659,
+          402
+        ],
+        [
+          1688.3,
+          406.1
+        ],
+        [
+          1708.4,
+          431.3
+        ],
+        [
+          1698.5,
+          462.1
+        ]
+      ],
+      "label_at": [
+        1665.3,
+        438.7
+      ]
+    },
+    {
+      "id": "koralvico",
+      "name": "Koralvico",
+      "island": "sudaj_rifoj",
+      "borders": [
+        "rifohaveno",
+        "suda_fajro"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1530.6,
+          306
+        ],
+        [
+          1549,
+          283.1
+        ],
+        [
+          1579,
+          282.5
+        ],
+        [
+          1599.2,
+          303.3
+        ],
+        [
+          1600,
+          331.6
+        ],
+        [
+          1583.6,
+          358.1
+        ],
+        [
+          1552.1,
+          355.5
+        ],
+        [
+          1524.8,
+          337.7
+        ]
+      ],
+      "label_at": [
+        1565.5,
+        318.9
+      ]
+    },
+    {
+      "id": "suda_fajro",
+      "name": "Suda Fajro",
+      "island": "sudaj_rifoj",
+      "borders": [
+        "rifohaveno",
+        "koralvico"
+      ],
+      "sea_lanes": [
+        "standarda_turo",
+        "drifta_kabo"
+      ],
+      "polygon": [
+        [
+          1750.2,
+          266.6
+        ],
+        [
+          1762.6,
+          296.4
+        ],
+        [
+          1746.8,
+          325.6
+        ],
+        [
+          1715.1,
+          337.2
+        ],
+        [
+          1691,
+          315.8
+        ],
+        [
+          1678.2,
+          288.7
+        ],
+        [
+          1692.9,
+          260.8
+        ],
+        [
+          1723,
+          250.2
+        ]
+      ],
+      "label_at": [
+        1719.2,
+        292.4
+      ]
+    },
+    {
+      "id": "ventmuelejo",
+      "name": "Ventmuelejo",
+      "island": "ventokruco",
+      "borders": [
+        "krestofluo",
+        "brulmontaro"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          413,
+          904
+        ],
+        [
+          389.4,
+          888.3
+        ],
+        [
+          376.4,
+          859.4
+        ],
+        [
+          399.1,
+          837.5
+        ],
+        [
+          427.1,
+          826.2
+        ],
+        [
+          455,
+          842.8
+        ],
+        [
+          461.2,
+          874.8
+        ],
+        [
+          441.8,
+          899.2
+        ]
+      ],
+      "label_at": [
+        419.7,
+        867.3
+      ]
+    },
+    {
+      "id": "eklipsa_valo",
+      "name": "Eklipsa Valo",
+      "island": "ventokruco",
+      "borders": [
+        "krestofluo",
+        "brulmontaro"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          263.9,
+          800.2
+        ],
+        [
+          257.9,
+          767.9
+        ],
+        [
+          280.8,
+          744.4
+        ],
+        [
+          312.3,
+          740.5
+        ],
+        [
+          337.7,
+          760.5
+        ],
+        [
+          337.4,
+          791.7
+        ],
+        [
+          321.3,
+          819.6
+        ],
+        [
+          289.1,
+          818.1
+        ]
+      ],
+      "label_at": [
+        300.3,
+        780.6
+      ]
+    },
+    {
+      "id": "nebula_kresto",
+      "name": "Nebula Kresto",
+      "island": "ventokruco",
+      "borders": [
+        "flagoturo",
+        "stelejo"
+      ],
+      "sea_lanes": [
+        "regejo"
+      ],
+      "polygon": [
+        [
+          253,
+          615.9
+        ],
+        [
+          278.7,
+          595.9
+        ],
+        [
+          308.8,
+          597.7
+        ],
+        [
+          332.1,
+          617.8
+        ],
+        [
+          330.8,
+          649.1
+        ],
+        [
+          309.5,
+          672.6
+        ],
+        [
+          277.2,
+          671.7
+        ],
+        [
+          253.8,
+          649.2
+        ]
+      ],
+      "label_at": [
+        293.7,
+        633.2
+      ]
+    },
+    {
+      "id": "flagoturo",
+      "name": "Flagoturo",
+      "island": "ventokruco",
+      "borders": [
+        "nebula_kresto",
+        "stelejo"
+      ],
+      "sea_lanes": [
+        "obsidiana_kolo"
+      ],
+      "polygon": [
+        [
+          394.9,
+          500.4
+        ],
+        [
+          424.4,
+          501.4
+        ],
+        [
+          440.1,
+          526.4
+        ],
+        [
+          441.1,
+          556.8
+        ],
+        [
+          415.6,
+          575.5
+        ],
+        [
+          384,
+          572.6
+        ],
+        [
+          366,
+          546.8
+        ],
+        [
+          367.1,
+          514.8
+        ]
+      ],
+      "label_at": [
+        404.7,
+        536.1
+      ]
+    },
+    {
+      "id": "stelejo",
+      "name": "Stelejo",
+      "island": "ventokruco",
+      "borders": [
+        "krestofluo",
+        "nebula_kresto",
+        "flagoturo"
+      ],
+      "sea_lanes": [
+        "bronza_rifo"
+      ],
+      "polygon": [
+        [
+          573.3,
+          530.2
+        ],
+        [
+          591.6,
+          555.8
+        ],
+        [
+          583.3,
+          586.7
+        ],
+        [
+          556.3,
+          603.2
+        ],
+        [
+          527.5,
+          593.3
+        ],
+        [
+          512.7,
+          568.3
+        ],
+        [
+          514.3,
+          536.6
+        ],
+        [
+          543.8,
+          524.1
+        ]
+      ],
+      "label_at": [
+        549.9,
+        562.4
+      ]
+    },
+    {
+      "id": "brulmontaro",
+      "name": "Brulmontaro",
+      "island": "ventokruco",
+      "borders": [
+        "krestofluo",
+        "ventmuelejo",
+        "eklipsa_valo"
+      ],
+      "sea_lanes": [
+        "stelmano"
+      ],
+      "polygon": [
+        [
+          657.1,
+          690.6
+        ],
+        [
+          646.5,
+          716.7
+        ],
+        [
+          621.6,
+          731.7
+        ],
+        [
+          593.6,
+          721.1
+        ],
+        [
+          579.9,
+          694.1
+        ],
+        [
+          587.5,
+          662.8
+        ],
+        [
+          618.2,
+          656
+        ],
+        [
+          647.7,
+          661.8
+        ]
+      ],
+      "label_at": [
+        619.8,
+        692.3
+      ]
+    },
+    {
+      "id": "krestofluo",
+      "name": "Krestofluo",
+      "island": "ventokruco",
+      "borders": [
+        "stelejo",
+        "brulmontaro",
+        "ventmuelejo",
+        "eklipsa_valo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          587.7,
+          857.5
+        ],
+        [
+          558.9,
+          872.1
+        ],
+        [
+          529.4,
+          856.4
+        ],
+        [
+          517.6,
+          825
+        ],
+        [
+          537.9,
+          800.5
+        ],
+        [
+          564.6,
+          787.8
+        ],
+        [
+          590.5,
+          803
+        ],
+        [
+          601.5,
+          830.6
+        ]
+      ],
+      "label_at": [
+        561.9,
+        828
+      ]
+    },
+    {
+      "id": "perlejado",
+      "name": "Perlejado",
+      "island": "la_perloj",
+      "borders": [
+        "konkujo",
+        "stelmano"
+      ],
+      "sea_lanes": [
+        "silenca_ravino"
+      ],
+      "polygon": [
+        [
+          153,
+          1014.6
+        ],
+        [
+          131.2,
+          989.1
+        ],
+        [
+          142.8,
+          959.1
+        ],
+        [
+          164.6,
+          939.7
+        ],
+        [
+          194.3,
+          943.9
+        ],
+        [
+          214.7,
+          967.2
+        ],
+        [
+          208.4,
+          997.5
+        ],
+        [
+          185.2,
+          1018.4
+        ]
+      ],
+      "label_at": [
+        174.6,
+        977.7
+      ]
+    },
+    {
+      "id": "konkujo",
+      "name": "Konkujo",
+      "island": "la_perloj",
+      "borders": [
+        "perlejado",
+        "stelmano"
+      ],
+      "sea_lanes": [
+        "marflusa_pinto"
+      ],
+      "polygon": [
+        [
+          156.4,
+          788.3
+        ],
+        [
+          185.3,
+          785.9
+        ],
+        [
+          208.5,
+          803
+        ],
+        [
+          218.8,
+          833.7
+        ],
+        [
+          194.3,
+          854.9
+        ],
+        [
+          164.7,
+          861.1
+        ],
+        [
+          139.4,
+          842.3
+        ],
+        [
+          134.2,
+          810.5
+        ]
+      ],
+      "label_at": [
+        175.4,
+        821.8
+      ]
+    },
+    {
+      "id": "stelmano",
+      "name": "Stelmano",
+      "island": "la_perloj",
+      "borders": [
+        "perlejado",
+        "konkujo"
+      ],
+      "sea_lanes": [
+        "brulmontaro"
+      ],
+      "polygon": [
+        [
+          347.7,
+          900.7
+        ],
+        [
+          337.2,
+          928
+        ],
+        [
+          309.7,
+          945
+        ],
+        [
+          282.4,
+          927.8
+        ],
+        [
+          273,
+          900.3
+        ],
+        [
+          282.3,
+          872.5
+        ],
+        [
+          310.2,
+          864
+        ],
+        [
+          336.6,
+          874.2
+        ]
+      ],
+      "label_at": [
+        310,
+        900.5
+      ]
+    },
+    {
+      "id": "obsidiana_kolo",
+      "name": "Obsidiana Kolo",
+      "island": "nigra_arko",
+      "borders": [
+        "fajroturo",
+        "karbujo"
+      ],
+      "sea_lanes": [
+        "flagoturo"
+      ],
+      "polygon": [
+        [
+          1238.3,
+          963.9
+        ],
+        [
+          1228.4,
+          934.6
+        ],
+        [
+          1244.9,
+          909.2
+        ],
+        [
+          1272.6,
+          901.1
+        ],
+        [
+          1300.7,
+          912.2
+        ],
+        [
+          1306,
+          941.9
+        ],
+        [
+          1296.2,
+          971.2
+        ],
+        [
+          1265.3,
+          978.7
+        ]
+      ],
+      "label_at": [
+        1269.1,
+        938.4
+      ]
+    },
+    {
+      "id": "karbujo",
+      "name": "Karbujo",
+      "island": "nigra_arko",
+      "borders": [
+        "fajroturo",
+        "obsidiana_kolo"
+      ],
+      "sea_lanes": [
+        "marmora_strando"
+      ],
+      "polygon": [
+        [
+          1194.3,
+          787
+        ],
+        [
+          1211.6,
+          761.6
+        ],
+        [
+          1242.3,
+          753.7
+        ],
+        [
+          1268.3,
+          772.5
+        ],
+        [
+          1274.2,
+          803.7
+        ],
+        [
+          1255,
+          827.9
+        ],
+        [
+          1224.8,
+          837.4
+        ],
+        [
+          1199.1,
+          817.8
+        ]
+      ],
+      "label_at": [
+        1233.6,
+        795.2
+      ]
+    },
+    {
+      "id": "silenca_ravino",
+      "name": "Silenca Ravino",
+      "island": "nigra_arko",
+      "borders": [
+        "ombra_rando",
+        "vesperejo",
+        "nokta_flanko"
+      ],
+      "sea_lanes": [
+        "perlejado"
+      ],
+      "polygon": [
+        [
+          1305.6,
+          642.8
+        ],
+        [
+          1334.8,
+          643.8
+        ],
+        [
+          1362.1,
+          658.7
+        ],
+        [
+          1361.6,
+          690.8
+        ],
+        [
+          1343.2,
+          717.4
+        ],
+        [
+          1309.8,
+          719.5
+        ],
+        [
+          1288.4,
+          695.9
+        ],
+        [
+          1284.3,
+          665.3
+        ]
+      ],
+      "label_at": [
+        1323.4,
+        678.2
+      ]
+    },
+    {
+      "id": "vesperejo",
+      "name": "Vesperejo",
+      "island": "nigra_arko",
+      "borders": [
+        "ombra_rando",
+        "silenca_ravino",
+        "nokta_flanko"
+      ],
+      "sea_lanes": [
+        "orienta_kabo"
+      ],
+      "polygon": [
+        [
+          1489.3,
+          635.5
+        ],
+        [
+          1509,
+          661.4
+        ],
+        [
+          1509.9,
+          693.4
+        ],
+        [
+          1485,
+          713.5
+        ],
+        [
+          1452.7,
+          715.2
+        ],
+        [
+          1432,
+          690
+        ],
+        [
+          1433,
+          658.1
+        ],
+        [
+          1457.3,
+          638.8
+        ]
+      ],
+      "label_at": [
+        1470.9,
+        675.5
+      ]
+    },
+    {
+      "id": "ombra_rando",
+      "name": "Ombra Rando",
+      "island": "nigra_arko",
+      "borders": [
+        "fajroturo",
+        "nokta_flanko",
+        "silenca_ravino",
+        "vesperejo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1602,
+          780
+        ],
+        [
+          1601.6,
+          811.2
+        ],
+        [
+          1575.3,
+          830.5
+        ],
+        [
+          1542.9,
+          825.8
+        ],
+        [
+          1526,
+          798.8
+        ],
+        [
+          1527.9,
+          766.7
+        ],
+        [
+          1554.7,
+          747.4
+        ],
+        [
+          1585.2,
+          755.7
+        ]
+      ],
+      "label_at": [
+        1565,
+        789.1
+      ]
+    },
+    {
+      "id": "fajroturo",
+      "name": "Fajroturo",
+      "island": "nigra_arko",
+      "borders": [
+        "ombra_rando",
+        "nokta_flanko",
+        "obsidiana_kolo",
+        "karbujo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1563.8,
+          955.8
+        ],
+        [
+          1540.2,
+          974.6
+        ],
+        [
+          1507.6,
+          969
+        ],
+        [
+          1493.7,
+          938.9
+        ],
+        [
+          1504.6,
+          910.3
+        ],
+        [
+          1529.9,
+          895.9
+        ],
+        [
+          1560.2,
+          900.5
+        ],
+        [
+          1571.4,
+          928.7
+        ]
+      ],
+      "label_at": [
+        1534.8,
+        933.5
+      ]
+    },
+    {
+      "id": "nokta_flanko",
+      "name": "Nokta Flanko",
+      "island": "nigra_arko",
+      "borders": [
+        "ombra_rando",
+        "fajroturo",
+        "silenca_ravino",
+        "vesperejo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1403.8,
+          1037
+        ],
+        [
+          1373.4,
+          1030.8
+        ],
+        [
+          1360.9,
+          1000.7
+        ],
+        [
+          1374.1,
+          972
+        ],
+        [
+          1402.3,
+          957.2
+        ],
+        [
+          1433,
+          968.9
+        ],
+        [
+          1442.2,
+          999.3
+        ],
+        [
+          1432.1,
+          1027.9
+        ]
+      ],
+      "label_at": [
+        1403.1,
+        1000
+      ]
+    },
+    {
+      "id": "haloa_pinto",
+      "name": "Haloa Pinto",
+      "island": "fora_halo",
+      "borders": [
+        "marmora_strando",
+        "orienta_kabo"
+      ],
+      "sea_lanes": [],
+      "polygon": [
+        [
+          1624.8,
+          694.5
+        ],
+        [
+          1626.1,
+          661.6
+        ],
+        [
+          1651.2,
+          640.7
+        ],
+        [
+          1683.4,
+          641.8
+        ],
+        [
+          1707.1,
+          665.2
+        ],
+        [
+          1700.8,
+          697.1
+        ],
+        [
+          1679.5,
+          720.4
+        ],
+        [
+          1649.1,
+          714.1
+        ]
+      ],
+      "label_at": [
+        1665.2,
+        680.1
+      ]
+    },
+    {
+      "id": "marmora_strando",
+      "name": "Marmora Strando",
+      "island": "fora_halo",
+      "borders": [
+        "haloa_pinto",
+        "orienta_kabo"
+      ],
+      "sea_lanes": [
+        "karbujo"
+      ],
+      "polygon": [
+        [
+          1774,
+          519.4
+        ],
+        [
+          1798.4,
+          539.4
+        ],
+        [
+          1805.3,
+          568.7
+        ],
+        [
+          1787.8,
+          592.6
+        ],
+        [
+          1759.5,
+          598.4
+        ],
+        [
+          1735.6,
+          582.6
+        ],
+        [
+          1729.7,
+          554.7
+        ],
+        [
+          1743.5,
+          528.4
+        ]
+      ],
+      "label_at": [
+        1766.3,
+        561.5
+      ]
+    },
+    {
+      "id": "orienta_kabo",
+      "name": "Orienta Kabo",
+      "island": "fora_halo",
+      "borders": [
+        "haloa_pinto",
+        "marmora_strando"
+      ],
+      "sea_lanes": [
+        "ostobanko",
+        "vesperejo"
+      ],
+      "polygon": [
+        [
+          1847.5,
+          733.1
+        ],
+        [
+          1821.7,
+          748.8
+        ],
+        [
+          1794.3,
+          736.8
+        ],
+        [
+          1777.2,
+          711.7
+        ],
+        [
+          1791.1,
+          685
+        ],
+        [
+          1815.3,
+          667.8
+        ],
+        [
+          1847.3,
+          674.6
+        ],
+        [
+          1857.7,
+          705.2
+        ]
+      ],
+      "label_at": [
+        1818.5,
+        708.4
+      ]
+    }
+  ]
+}
