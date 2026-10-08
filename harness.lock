@@ -14,9 +14,9 @@ adapt docs/process.md  (§3: the effort comes from harness.json, CLAUDE.md rule 
 adapt docs/tasks/TEMPLATE.md  (the Implementer line names this project's harness.json keys and the quota check)
 6661ffc3140de393a054db11750b1c12245ac229bbc742d92d71624bbaea4ce3  .claude/hooks/session-start.sh
 9d2227215dcf47b9dc7c41d5c9b7f8c5b79dd962c3fb8c3f8f625032fa5eefae  .claude/settings.json
-adapt .claude/skills/delegate/SKILL.md  (quota step: /recommend, not /best (harness_imperial f91210b; the owner, 2026-10-08))
+adapt .claude/skills/delegate/SKILL.md  (quota step: /recommend, not /best (harness_imperial f91210b; the owner, 2026-10-08); the rule-carve-out section from 75f81cf, 2026-10-08)
 218462f453d5432db791c7697d7d34970491af106f8e1d1b95b0e0ef6f86747a  .claude/skills/jev/SKILL.md
-0c9f0d80af3d6605e73ecda14901b6cb3b829f25641dcf5fc90ca7f7ef42474b  .claude/skills/run-task/SKILL.md
+adapt .claude/skills/run-task/SKILL.md  (the rule-carve-out Never-bullet from 75f81cf, 2026-10-08)
 e99fedef64f7850a76794396088568a4046692abfc6ff14aabadf81bc83fe65c  .claude/skills/switch-model/SKILL.md
 8a63c4093207e8f96230e8e6c92019c06897434ca8b70f287e76821ff09502d6  .github/pull_request_template.md
 a58a4c3ec2c56170921e5934e880135d98899d41868b591bafb586887b853ebe  .opencode/agents/implementer.md
