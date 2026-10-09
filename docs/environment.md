@@ -33,7 +33,7 @@ Then run `npm test` in the harness repository. The tests against the real OpenCo
 
 ## OpenCode Go
 
-The second implementer, DeepSeek V4.1 Flash, is OpenCode Go's (`opencode-go/…`), a subscription. They are not OpenCode Zen's pay-per-token `opencode/…` models. Go comes from a console
+The second implementer, MiMo V2.6 Flash, is OpenCode Go's (`opencode-go/…`), a subscription. They are not OpenCode Zen's pay-per-token `opencode/…` models. Go comes from a console
 (organisation) login, not from a key; `opencode auth login` and `OPENCODE_API_KEY` reach only Zen
 (IC2 #551):
 1. `opencode console login`, then approve the URL and code it prints in the browser;
@@ -67,11 +67,20 @@ the plan.
 
 Where the machine runs quota-tracker, a local service, it reports how much subscription quota is
 left on each provider: `claude` (the main session and Claude agents), `openai` (Sol and Luna, via
-OpenCode), `zai` (GLM-5.3 and GLM-5.3 Flash), `opencode_go` (DeepSeek), `openrouter` (prepaid credit) and
-`alibaba` (Alibaba's Token Plan: DeepSeek, Qwen, GLM, Kimi and MiniMax, one monthly pool).
+OpenCode), `zai` (GLM-5.3 and GLM-5.3 Flash), `opencode_go` (MiMo), `openrouter` (prepaid credit)
+and `minimax` (the MiniMax Token Plan's own pool). Alibaba's Token Plan (Qwen and GLM;
+its Kimi and MiniMax models are Team-edition only and unused) is one of those, and it is missing
+from this list: quota-tracker stopped checking it (Alibaba flagged the console checks as unusual
+activity), so `/quota/alibaba` returns `not_monitored` with `pricing` only — see the Alibaba
+Token Plan section below for what this means and how to use those models.
 Check it before choosing, recommending or delegating to a model (L50). It is read-only, on
 localhost, with no auth; results are cached 60 s, and `?refresh` bypasses the cache:
-- `curl -s localhost:8765/quota`, or `/quota/<provider>` for one;
+- `curl -s localhost:8765/quota`, or `/quota/<provider>` for one (alibaba's still carries a
+  `pricing` object, even though the rest of its entry is empty; zai's carries `pricing` too);
+- OpenCode's `external_directory` is a coarse guard, not a sandbox (L61, the owner accepted
+  2026-10-06): it path-checks the agent's file tools and, as raw command text, `cd` and `cat`
+  (L59) — not `git -C` or grep/sed/head/ls, so an agent with bash allowed can read any directory.
+  Secrets are the credential jail's business; a grant is for deliberate reads (L59's recipe).
 - `curl -s 'localhost:8765/recommend?tier=heavy'` (or `tier=light`): which model to use.
   `ranking` is best first, each row with `provider`, `model`, `command`, `score` (spare calls per
   day until the pool's reset; negative means the pool would run out before its reset at the current
@@ -87,10 +96,11 @@ Each provider has a `status`: `ok` (under 80% used), `low` (80% or more), `exhau
 more: do not use it until `available_at` / `available_in`), `error` (it could not be checked;
 `error` says why) or `not_configured`. `headroom_pct` is the percent left on its most-used window;
 `windows[]` lists every limit with `used_pct` and when it resets. OpenRouter is prepaid: its
-windows never reset, and `remaining_usd` is the balance. A model with a pool of its own has its
-own window, named after it: today GPT-5.6 Luna (`gpt-5.6-luna:7d`), which can be usable while
-OpenAI's main `7d` window, the one GPT-6 Luna and Sol draw on, is exhausted. Read which pools exist
-from the windows the endpoint returns, not from this page.
+windows never reset, and `remaining_usd` is the balance. Every model is judged on its
+provider's main window, GPT-5.6 Luna included: it draws on OpenAI's main quota like Sol. Only when a
+provider is `exhausted` can a model still run on a limit of its own, and then the provider's
+`when_exhausted.usable_models` names it (today `gpt-5.6-luna` on OpenAI; L65). Read which pools
+exist from the windows the endpoint returns, not from this page.
 
 Free models on OpenRouter are a supplement, for smaller tasks and additional reviews (a second
 opinion next to a regular model), never the main model for important work (the owner, 2026-10-06):
@@ -116,29 +126,38 @@ The models per provider, heavy and light:
 | claude | `claude --model opus` | `claude --model sonnet` |
 | openai | `opencode -m openai/gpt-6.1-sol` | `opencode -m openai/gpt-5.6-luna` |
 | zai | `opencode -m zai-coding-plan/glm-5.3` | `opencode -m zai-coding-plan/glm-5.3-flash` |
-| opencode_go | `opencode -m opencode-go/deepseek-v4-pro` | `opencode -m opencode-go/deepseek-v4.1-flash` |
-| openrouter | `opencode -m openrouter/deepseek/deepseek-v4-pro` | `opencode -m openrouter/deepseek/deepseek-v4.1-flash` |
-| alibaba (DeepSeek) | `opencode -m alibaba-token-plan/deepseek-v4-pro` | `opencode -m alibaba-token-plan/deepseek-v4.1-flash` |
+| opencode_go | `opencode -m opencode-go/mimo-v2.6-pro` | `opencode -m opencode-go/mimo-v2.6-flash` |
+| openrouter | `opencode -m openrouter/xiaomi/mimo-v2.6-pro` | `opencode -m openrouter/xiaomi/mimo-v2.6-flash` |
 | alibaba (Qwen) | `opencode -m alibaba-token-plan/qwen3.8-max` | `opencode -m alibaba-token-plan/qwen3.8-flash` |
 | alibaba (GLM) | `opencode -m alibaba-token-plan/glm-5.3` | none on alibaba (zai has `glm-5.3-flash`) |
+| minimax | `opencode -m minimax/MiniMax-M3` | `opencode -m minimax/MiniMax-M2.7` |
 
-Alibaba's Token Plan has one credit pool for every model on it, in a single `month` window (no
-5-hour or weekly windows); its entry also has `plan` and `subscription_ends_at`. Its quota comes
-from an Alibaba console login: a `not_configured` or login error goes to the owner, who runs
-`bl auth login --console --console-site international`. OpenCode's key for it comes only from the
-environment variable `ALIBABA_TOKEN_PLAN_API_KEY` (in WSL from `~/.config/ai-keys.env`, which
-`~/.bashrc` and `~/.profile` load, and through WSLENV for commands started from Windows; on Windows
-a user variable), so it works in every OpenCode data directory, the scripts' own included. Never add it
+Alibaba's Token Plan is no longer in quota-tracker: `/quota/alibaba` returns `not_monitored` with
+`pricing` only — there is no `month` window, and Alibaba is absent from `/quota` and
+`/avoid`, and `/recommend` does not rank it. Use Alibaba only as a supplement or an extra reviewer, not as a main or default model,
+and not in long loops. OpenCode's key for it comes only from the environment variable
+`ALIBABA_TOKEN_PLAN_API_KEY` (in WSL from `~/.config/ai-keys.env`, which `~/.bashrc` and
+`~/.profile` load, and through WSLENV for commands started from Windows; on Windows a user
+variable), so it works in every OpenCode data directory, the scripts' own included. Never add it
 with `opencode auth login`: an `auth.json` entry overrides the variable, and a bad one breaks the
 provider for that directory. Never print, copy or edit the key or an `auth.json`. If a call fails:
+- a quota or rate error: stop using Alibaba until the next day and tell the owner; do not retry.
 - "Provider not found: alibaba-token-plan": the variable is not in this environment. Restart the
   session or shell so it picks it up; if it is still missing, tell the owner. Do not retry.
 - "Invalid API-key": the data directory's `auth.json` may hold a stale Alibaba entry (the scripts
   copy yours into theirs). Tell the owner which `XDG_DATA_HOME` the run used.
 The owner's plan is the Personal edition: the Kimi and MiniMax models OpenCode lists for this
-provider are Team-only and fail. From 22:00 to 08:00 UTC+8, DeepSeek models use 50% fewer credits
-and Qwen models 60% fewer. A quick check that the key works:
+provider are Team-only and fail. From 22:00 to 08:00 UTC+8, Qwen models use 60% fewer
+credits. A quick check that the key works:
 `opencode run -m alibaba-token-plan/qwen3.8-flash "Reply with just: ok"`.
+
+The MiniMax Token Plan (the `minimax` provider's models above) is separate from Alibaba's pool: its key comes only
+from the environment variable `MINIMAX_API_KEY` (same sources as Alibaba's), never
+`opencode auth login`; "Provider not found: minimax" means the variable is missing from the
+environment — restart the shell, and tell the owner if it is still missing. Its quota is a 5-hour
+and a weekly window (`/quota/minimax`); MiniMax-M3 offers only `none` and `thinking` (the heavy
+one, run at `thinking`), MiniMax-M2.7 no variants. A quick check that the key works:
+`opencode run -m minimax/MiniMax-M2.7 "Reply with just: ok"`.
 
 The tracker also keeps the usage history: `curl -s 'localhost:8765/usage?since=7d'` gives, per
 provider, the models called with their `calls`, `sessions`, `tokens` and `effort` (OpenCode's
@@ -147,9 +166,9 @@ provider, the models called with their `calls`, `sessions`, `tokens` and `effort
 them (`title`, `project`, `tool`, `data_dir`, `launched_by`). `since` takes `90m`, `24h`, `7d`, `4w`
 or `all`. Use it to check that heavy models ran at the effort L54 asks for.
 
-GPT-5.6 Luna, the reviewer (L51), has its own weekly limit: for light work OpenAI is usable while
-the `gpt-5.6-luna:7d` window in `/quota/openai` is under 95%, even when OpenAI's main window is
-exhausted.
+GPT-5.6 Luna, the reviewer (L51), uses OpenAI's main quota like Sol. When OpenAI is `exhausted`,
+Luna alone can still run while `/quota/openai`'s `when_exhausted.usable_models` lists
+`gpt-5.6-luna` (L65).
 
 If `curl -sf localhost:8765/health` fails where the service is installed:
 1. `systemctl --user restart quota-tracker`, wait a few seconds, and check `/health` again.
@@ -160,9 +179,8 @@ If `curl -sf localhost:8765/health` fails where the service is installed:
    in the background (it stops when the session ends).
 
 `implement.mjs` and `review.mjs` ask the service themselves before their chain runs (`lib/quota.mjs`,
-L52): a model with a window of its own (GPT-5.6 Luna's `gpt-5.6-luna:7d`) is judged by that window
-alone, skipped at 95% or more even when its provider is not exhausted, and run under 95% even when
-it is; any other model is skipped when its provider is `exhausted`. A provider in `error` or
+L52): a model is skipped when its provider is `exhausted`, unless the provider's
+`when_exhausted.usable_models` names it (L65). A provider in `error` or
 `not_configured` skips nothing. Each skip is logged with its reason, and with none left the script
 exits 3. `HARNESS_QUOTA_URL` names another
 address. Where the service does not answer, they skip nothing and log `quota: not checked`.

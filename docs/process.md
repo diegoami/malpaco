@@ -4,14 +4,10 @@
 
 ## 0. Order of work
 
-1. **Evidence first** (for a rebuild): decode, decompile, and write the design with every claim
-   tagged `[confirmed]`, `[derived]` or `[designed]`.
-2. **A walking skeleton before the fan-out**: scaffolding, the seams the rules plug into, one rule
-   end to end, a CLI, and a thin screen a person can use. (L1)
+1. **Evidence first** (for a rebuild): decode, decompile, and write the design with every claim tagged `[confirmed]`, `[derived]` or `[designed]`.
+2. **A walking skeleton before the fan-out**: scaffolding, the seams the rules plug into, one rule end to end, a CLI, and a thin screen a person can use. (L1)
 3. **The fan-out**: rules behind the seams, best-evidenced first.
-4. **The first playable build**: once the skeleton exists, the UI chain goes before more rules.
-   Until it ships, only a bug that breaks play is scheduled (crash, stall, unwinnable game, save
-   that will not load, order that can never succeed). (L1)
+4. **The first playable build**: once the skeleton exists, the UI chain goes before more rules. Until it ships, only a bug that breaks play is scheduled (crash, stall, unwinnable game, save that will not load, order that can never succeed). (L1)
 
 Tag capability jumps, not phases. Release notes come from GitHub when the tag is cut.
 
@@ -20,7 +16,7 @@ Tag capability jumps, not phases. Release notes come from GitHub when the tag is
 | Role | Who | Does |
 | --- | --- | --- |
 | Main session | Claude, the session the user talks to | Plans, writes task files, runs `/run-task`, triages, merges, reports |
-| Implementer | OpenCode GLM-5.3 Flash, then DeepSeek V4.1 Flash, via `tools/harness/implement.mjs`, then a Claude Sonnet agent (L42); a heavier model only with the reason in the task file (L46) | One task, one branch, one PR, in its own worktree |
+| Implementer | OpenCode GLM-5.3 Flash, then MiMo V2.6 Flash, via `tools/harness/implement.mjs`, then a Claude Sonnet agent (L42); a heavier model only with the reason in the task file (L46) | One task, one branch, one PR, in its own worktree |
 | Reviewer | OpenCode GPT-5.6 Luna (direct OpenAI, L51) via `tools/harness/review.mjs`, then a Claude Opus agent; never the implementer's family (L27). Exit 3: Opus reviews; exit 4: the main session reads the flagged review and decides (L28) | Re-runs the Done-when, audits scope and evidence, posts one PR comment, applies the label |
 | Decider | Jev via `tools/harness/jev.mjs` (the `/jev` skill) | Repeated yes/no decisions over many items, at the confident ends only (§12) |
 | Generator | Models on OpenRouter (images, other families) and ElevenLabs (speech, sound, music) | Assets, each committed with a sidecar naming provider, model, prompt, date and cost |
@@ -35,7 +31,13 @@ It watches each background job (start, end, no output for 10 min), never with `p
 `docs/tasks/T<nn>.md`, 150–400 words, from `docs/tasks/TEMPLATE.md`: Kind, Evidence, Owns,
 Scope, Done when, Hazards, Implementer, Reviewer, Merge after. Rules:
 - **Owns** names directories or files. Go finer only when two tasks run at once in one file: function-level Owns made one project open 27 PRs that only widened a list. (L5)
-- **Done when**: each line is one check a command can run. The main session runs each line before dispatch: it fails on `main` and passes on a mock fix. (L45)
+- **Done when**: each line is one check a command can run. The main session runs each line before dispatch: it fails on `main` and passes on a mock fix. (L45) For a guard (a gate, check or tool whose failure lets a protected rule be bypassed), each constraint it enforces is its own numbered line, and the main session pushes the guard's tests to the task branch before dispatch, one mutation test per bypass class the design predicts, failing until the guard lands. (L64)
+- **Milestones**: a task likely to outlast one implementer run (about an hour), or whose Done-when is
+  all or nothing (an exact match, a whole model), is split into tasks that each merge on their own:
+  the static reading, any tool that produces ground truth, then the deliverable piece by piece. A
+  milestone's Done-when measures progress as a number (records matched, first divergent minute),
+  committed with each push, so a resumed run starts from it; the boundary sits where the evidence
+  already has a number, not at an arbitrary half of the scope. (L58)
 - The main session edits task files directly on `main`, the reason in the commit; the reviewer sees it. (L6)
 
 ## 3. The loop
@@ -132,37 +134,15 @@ the rework rate with the baseline in `docs/lessons.md` before changing models. (
 ## 10. Adding a rule
 
 A rule enters `CLAUDE.md` or this file only with a lesson in `docs/lessons.md`: a failure in a real
-run, or the owner's decision with its basis. Plausible rules without either stay out. (L14)
-
-A rule can have a **carve-out**: a named, conditional loosening of the rule for a specific
-workflow, gated by an external check (a per-project tool, a hash table, a known-good list).
-A carve-out's contract is: named preconditions; a gate that enforces them; a list of what
-the carve-out permits; a list of what stays forbidden. The carve-out is in the same numbered
-list as the rule it loosens, with its own lettered sub-conditions (A, B, C, ...) so a
-reviewer can check the carve-out line by line. The original rule's wording is unchanged;
-the carve-out is an *addendum*, not a *replacement*. A project adopts a carve-out in its
-own `CLAUDE.md`; this file carries the *shape*, not the *instance*.
+run, or the owner's decision with its basis. Plausible rules without either stay out. (L14) A rule may carry a **carve-out**: an addendum that loosens it under named conditions, its wording unchanged, with lettered preconditions (A, B, …) a reviewer checks one by one, a gate in `tools/` that enforces them, and what stays forbidden; a project's `CLAUDE.md` holds the instance. (L63)
 
 ## 11. For a reverse-engineering project
 
-- Transcribe every number from the research into one fixtures corpus with provenance, and assert
-  against it: each re-read of a report is another chance to misread it. (L15)
+- Transcribe every number from the research into one fixtures corpus with provenance, and assert against it: each re-read of a report is another chance to misread it. (L15)
 - New evidence runs in two stages: findings to the research repository, then a check of every
   document claim it touches. Each finding is a doc fix, a bug, a task-file edit, or a question for the user; research never decides design. (L16)
 - The original files never enter the repository. CI fetches them from a private fixtures
-  repository holding the whole corpus; tests find fixtures by name; local tests skip without them. (L17)
-- **Reverse-engineering carve-out (template).** A project may forbid the original game files
-  entirely (rule 18 above) but permit a *model-driven run* of the original under named
-  conditions. The pattern: a `model-driven` task kind; a known-good hash table in a
-  finding; a `tools/check_no_originals.py`-style gate that allows a run record whose
-  `runtime.platform` matches a recognised token and whose `start_state.sha256` matches a
-  table row for the named set+variant; per-claim wording amendment in `spec/` and
-  `findings/`, not in bulk; corroboration, never replacement, of the owner-driven run model.
-  The carve-out's letters (A locality, B static-first, C per-run tagging, D text handling,
-  E corroboration, F tool check, G per-claim wording) are the *checklist* a reviewer reads
-  line by line. The companion changes that operationalise a carve-out are themselves
-  three tasks: a known-good-hash table (an F-finding's row), the gate in `tools/`, and
-  a task file for the first model-driven run.
+  repository holding the whole corpus; tests find fixtures by name; local tests skip without them. (L17) A *model-driven run* of the original is a carve-out of this (§10): a known-good hash table in a finding, a gate that refuses any run record off that table, then a `model-driven` task (`docs/tasks/TEMPLATE.md`); it corroborates the owner's runs, never replaces them, and what it shows amends `spec/` and `findings/` one claim at a time, never in bulk. (L63)
 
 ## 12. Delegating decisions to Jev
 
