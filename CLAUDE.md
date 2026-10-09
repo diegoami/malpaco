@@ -29,7 +29,7 @@ indexed in `docs/tasks/README.md`.
    | Difficulty | Implementer | Its fallback | Reviewer | Its fallback |
    | --- | --- | --- | --- | --- |
    | Easy, the default | GLM-5.3 Flash (Z.AI Coding Plan only) | Sonnet | GPT-5.6 Luna (direct OpenAI) | Sonnet |
-   | Hard | DeepSeek V4.1 Flash (Go) | Sonnet | GPT-6.1 Sol (direct OpenAI) | Opus |
+   | Hard | MiMo V2.6 Flash (Go) | Sonnet | GPT-6.1 Sol (direct OpenAI) | Opus |
 
    - **Hard** is any of:
      - a gate or a test that guards the UI or the rules core;
@@ -40,14 +40,14 @@ indexed in `docs/tasks/README.md`.
    - **Family:** the reviewer comes from another family than the implementer. When a constraint
      forces the same family, the task file names it.
    - **UI work** is also checked against the Playwright goldens, and the owner judges the look.
-   - **Other probed models** (`harness.json`, for an explicit `--model` or a switch): DeepSeek V4
+   - **Other probed models** (`harness.json`, for an explicit `--model` or a switch): MiMo V2.6
      Pro, GLM-5.3 and GPT-6 Sol; Opus and Fable implement only when a task file says why.
    - **GPT-6.1 Sol, sparingly** (the owner, 2026-10-03): only for hard reviews, at effort `low`;
      `medium` only when the task file says why; never `high`.
-   - **Effort** (the owner, 2026-10-05): a heavy model (Opus, GPT-6.1 Sol, GLM-5.3, DeepSeek V4 Pro)
+   - **Effort** (the owner, 2026-10-05): a heavy model (Opus, GPT-6.1 Sol, GLM-5.3, MiMo V2.6 Pro)
      runs at `medium` at most, and at `low` when medium is not needed. A model that offers no
-     medium takes its lowest variant at or below `high`: GLM-5.3 `low`, DeepSeek V4 Pro `high`
-     (its lowest). A light model (Sonnet, GPT-5.6 Luna, GLM-5.3 Flash, DeepSeek V4.1 Flash) stays
+     medium takes its lowest variant at or below `high`: GLM-5.3 `low`; MiMo V2.6 Pro offers
+     none, so it has no variant. A light model (Sonnet, GPT-5.6 Luna, GLM-5.3 Flash, MiMo V2.6 Flash) stays
      at `high`. A heavy model switched with `switch-model.mjs` takes `--variant medium` or `low`.
    - **Luna** (harness_imperial L51): the light OpenAI model, and the reviewer `luna`, is GPT-5.6
      Luna on the direct OpenAI route (`openai/gpt-5.6-luna`, effort `high`), on its own weekly
@@ -75,7 +75,7 @@ indexed in `docs/tasks/README.md`.
      - a review asks for rework with three or more blocking findings;
      - a rework round brings new blocking findings of the class the last round raised.
 
-     The steps are GLM-5.3 Flash → DeepSeek V4.1 Flash → Opus, and Sonnet → Opus. The round count
+     The steps are GLM-5.3 Flash → MiMo V2.6 Flash → Opus, and Sonnet → Opus. The round count
      does not reset (rule 7). The new implementer gets the task file, every review so far, and the
      previous implementer's unpushed work as a patch to weigh, never to apply blindly.
    - **Excluded:** never Haiku. Gemini (cost), Kimi and Grok are not used.
@@ -95,13 +95,12 @@ indexed in `docs/tasks/README.md`.
 
    The working strategy, how runs are made, the adjustments and what each model has shown are in
    `docs/models.md`, kept identical to isle-wars-archaeology's copy; the main session keeps it current.
-7. Merge only with an approving review and green CI. Two rework rounds, then escalate.
-8. Relay review findings in full, never a subset.
-9. A test proves behaviour only if it fails when the behaviour is removed; a claim that nothing
-   failed is re-taken before it is believed.
+7. Merge only with an approving review and green CI. Two rework rounds, then escalate. After a heavy
+   review, the next round's implementer moves one step up, never down (`/run-task`). (L38)
+8. Relay review findings in full. Read a run's final message before you retry or re-route it (L55).
+9. A test proves behaviour only if it fails without that behaviour; re-take a claim that nothing failed.
 10. A comment asserting behaviour at an edge arrives with the test that visits that edge.
-11. Until the first playable build, schedule only bugs that break play; label the rest
-    `post-playable`.
+11. Until the first playable build, schedule only bugs that break play; the rest are `post-playable`.
 12. A bug whose fix stays in the files it names and changes no outcome is a `fix`; a blocking
     one-file mechanical fix may ride the PR that found it, declared under Scope.
 13. Design decisions go to the user; nothing else waits for the user.

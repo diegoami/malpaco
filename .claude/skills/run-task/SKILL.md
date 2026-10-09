@@ -123,7 +123,7 @@ For `#<issue>` of a bug labelled `fix`, the bug body replaces the task file, the
         the same kind of defect again, in new or unchanged code (a sibling the last round missed
         counts). Then the next round goes one step up the ladder: a light OpenCode model → a
         heavy one → a Claude Opus agent (where the owner pairs by difficulty: GLM-5.3 Flash →
-        DeepSeek V4.1 Flash → Opus), and Sonnet → Opus; never down within a task. At the top
+        MiMo V2.6 Flash → Opus), and Sonnet → Opus; never down within a task. At the top
         there is no stronger model: the round fixes the class as below, and changes the approach
         when the class needs it (as golden screenshots did in malpaco T02), saying so on the task file.
         - The round count does not reset, and the reviewer stays of another family: with Opus
@@ -154,8 +154,5 @@ Never:
 - weaken a Done-when;
 - let the implementer's model family review its PR;
 - relay part of a review;
-- dispatch a `model-driven` task before the carve-out's preconditions are merged
-  (the known-good hash table and the gate, per process.md §11) and before the carve-out's
-  gate in `tools/` accepts the implementer's `runtime.platform` and `start_state.sha256`.
-  The carve-out is corroboration, never replacement, of the owner-driven run model.
+- dispatch a `model-driven` task before its carve-out's table and gate are merged (process.md §10, L63);
 - force-push or rewrite `main`.

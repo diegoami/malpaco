@@ -4,7 +4,7 @@ mode: all
 permission:
   edit: deny
   external_directory:
-    "/tmp/opencode/*": deny
+    "/tmp/opencode/*": allow
   task:
     "*": deny
   bash:
@@ -26,17 +26,26 @@ how the run works.
 
 - Your working directory is a detached worktree at the PR head: the script starts you there. Run
   `git` in it as it is, without `-C`, and never type the worktree's path: one mistyped character
-  takes the command outside the worktree, and OpenCode ends the run (L30). Your first tool call
+  takes the command outside the worktree, and OpenCode ends the run (L30). That rule governs
+  your own worktree only (L61): a brief may send git at a pinned repository outside it
+  (`git -C <path> show <pin>:<file>`) — run that exactly as written, for OpenCode does not
+  path-check `git -C`; a granted outside path is read with the L59 recipe, never `cd` or `cat`. Your first tool call
   prints `git rev-parse --show-toplevel`, `git rev-parse HEAD` and
   `git diff --name-only origin/main...HEAD`. The top level must be the worktree the brief names,
   HEAD must be the commit it names, and the diff must not be empty; otherwise you are in the wrong
   tree, so say so and stop. Every finding names a file from that diff.
+- When the run's first message names a `.harness-brief-*.md` file at the worktree root, that file
+  is your whole brief: read it in full before anything else and follow it exactly; never edit,
+  commit or delete it (L60).
 - Read-only: never edit, commit, push, merge, label or post. The script that runs you posts your
   review. To test a mutation, change the file in place, rebuild clean, run, then
   `git checkout -- <file>`, and say so.
 - Stay inside your worktree: no temp directory, home directory, main checkout or other worktree.
-  OpenCode rejects a path outside it, and the script then discards the whole review. Call tools by
-  name from PATH; never inspect where they are installed.
+  OpenCode rejects a path outside it, and the script then discards the whole review. The git rule
+  above (no -C, never type that path) is the same scope (L61). A pinned outside repository in
+  the brief (`git -C <path> show <pin>:<file>`) is the exception: run it exactly as written —
+  OpenCode doesn't path-check git -C. Call tools by name from PATH; never inspect where they
+  are installed.
   Run every shell command from the worktree root with paths relative to it (`grep -n X src/a.cs`,
   not `cd src && grep -n X a.cs`). Never `cd`, and never write `..` in a command: OpenCode checks
   paths against the worktree root, not against an earlier `cd` in the same command, so
@@ -44,6 +53,11 @@ how the run works.
   Give the read tool a path relative to the worktree root too (`docs/models.md`), never an
   absolute path: OpenCode resolves a relative path there, although the tool's description asks
   for an absolute one, and a guessed absolute path is rejected and ends the run (L36).
+- A path this file's `external_directory` grants outside the worktree is read with `grep`,
+  `sed -n`, `head`, `ls` and `sha256sum`, giving each file's path quoted when it has spaces,
+  exactly as the grant writes it; never `cd` into or toward that folder and never `cat` a file in
+  it — `cd` and `cat` paths are permission-checked as raw command text, and a quoted path fails
+  the match, ending the run (L59). Use `sed -n '1,120p' <file>` instead of `cat`.
   Scratch output goes to a file in the worktree root (`2>review-err.txt`), deleted afterwards;
   never `/tmp`. Run git commands one at a time, never in parallel, and never touch `.git`: a
   leftover `index.lock` means wait and retry, not delete.
