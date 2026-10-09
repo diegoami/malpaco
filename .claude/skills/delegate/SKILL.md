@@ -12,7 +12,7 @@ yourself, check whether a delegate below does it better or cheaper.
 
 | Work | Delegate | How | Key |
 | --- | --- | --- | --- |
-| Code: implement a task or a fix | OpenCode GLM-5.3 Flash, then DeepSeek V4.1 Flash, then a Claude Sonnet agent | `/run-task` → `tools/harness/implement.mjs` | Z.AI's login (`opencode auth login`) and OpenCode Go's (`opencode console login`) to implement; OpenAI's (`opencode auth login`) to review |
+| Code: implement a task or a fix | OpenCode GLM-5.3 Flash, then MiMo V2.6 Flash, then a Claude Sonnet agent | `/run-task` → `tools/harness/implement.mjs` | Z.AI's login (`opencode auth login`) and OpenCode Go's (`opencode console login`) to implement; OpenAI's (`opencode auth login`) to review |
 | Review a PR | GPT-5.6 Luna on OpenAI, through OpenCode (default), then a Claude Opus agent; never the implementer's family | `/run-task` → `tools/harness/review.mjs`, or Agent | as above |
 | Repeated decisions with known answers (triage, routing, gating, labelling) | Jev | `/jev` → `tools/harness/jev.mjs` | `OPENROUTER_API_KEY` |
 | Images: sprites, icons, maps, mockups, illustrations | An image model on OpenRouter | pick one with `models.mjs openrouter --output image` | `OPENROUTER_API_KEY` |
@@ -43,6 +43,18 @@ another way, or tell the user what is missing (`docs/environment.md`).
    (`--model` for `implement.mjs`, `--reviewer` for `review.mjs`) and say so in the run's report.
    Both scripts also skip such a model themselves and log why (L52); never pause a provider by
    editing `harness.json` for quota.
+   When a task needs both an implementer and a reviewer, use `/recommend`'s `pair` field
+   (`curl -s 'localhost:8765/recommend?tier=heavy' | jq .pair`): `pair.implementer` and
+   `pair.reviewer`, the reviewer from another family (claude, openai, glm, mimo, minimax;
+   each free model its own). Add `review_tier=light` for a lighter reviewer; `private=0` is for
+   code that is not private (the free OpenRouter models may then be in the pair). With
+   `tier=heavy`, the same response also offers `free_reviewer` — a free second opinion on the
+   shared 1,000-requests-a-day allowance, lost at 00:00 UTC. Never use a free model for private
+   or client code, secrets or NDA material. A null reviewer means no other family has quota:
+   tell the owner. Project exclusions apply on top: if the suggested reviewer is one the
+   project rules out (rule 3, the family rule), take the next row of `ranking` whose reviewer
+   is from a different family than the implementer. Alibaba is never recommended and never
+   appears in `pair`.
 3. **Choose on the evidence you have.** In order of preference:
    - this project's own measurements (review rounds and tokens per task, from the merge comments);
    - a small trial;
@@ -77,19 +89,11 @@ project reviews its UI (a person looks at the screen).
 - Send private repository content or personal data to a provider the user has not cleared for it.
 - Spend on a batch without saying the cost first.
 
-## The rule-carve-out pattern (process.md §10)
+## A rule's carve-out (process.md §10)
 
-A project may have a rule that applies in general and a *carve-out* that loosens it under
-named conditions, gated by a per-project tool. When a project's `CLAUDE.md` carries a
-carve-out, three companion changes land before any model-driven run:
-
-- a known-good hash table in a finding (the source of truth the gate reads);
-- the gate in `tools/` (the runtime check on every record);
-- a task file for the first model-driven run (the entry gate that names implementer,
-  reviewer, Done-when, and the carve-out's lettered sub-conditions).
-
-When delegating a `model-driven` task (TEMPLATE.md's `Kind` enum), the carve-out's
-gating tool is the load-bearing piece: a record whose `runtime.platform` and
-`start_state.sha256` do not match the table is refused. A model-driven task is
-*corroboration* of an owner-driven run, never a replacement. Per-claim wording
-amendment is per-claim, not in bulk.
+When a project's `CLAUDE.md` loosens a rule by carve-out, three changes merge before the first
+task that uses it: the known-good table in a finding, the gate in `tools/` that checks every
+record against it, and the task file for the first run, which names the carve-out's lettered
+preconditions as Done-when lines. Delegate a `model-driven` task only once the gate accepts the
+implementer's run records; such a run corroborates the owner's runs, never replaces them, and its
+results amend the wording one claim at a time, never in bulk. (L63)

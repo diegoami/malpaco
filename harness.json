@@ -5,15 +5,13 @@
     "watch": "Off, the owner 2026-10-05 (#98); bwrap's path is missing on this machine."
   },
   "models": {
-    "deepseek-flash": {
-      "id": "opencode-go/deepseek-v4.1-flash",
-      "variant": "high",
-      "family": "deepseek"
+    "mimo-flash": {
+      "id": "opencode-go/mimo-v2.6-flash",
+      "family": "mimo"
     },
-    "deepseek-pro": {
-      "id": "opencode-go/deepseek-v4-pro",
-      "variant": "high",
-      "family": "deepseek"
+    "mimo-pro": {
+      "id": "opencode-go/mimo-v2.6-pro",
+      "family": "mimo"
     },
     "zai-glm-5.3": {
       "id": "zai-coding-plan/glm-5.3",
@@ -68,7 +66,7 @@
     "totalTimeoutSec": 3600,
     "hard": [
       "zai-glm-5.3",
-      "deepseek-pro",
+      "mimo-pro",
       "luna"
     ],
     "sol": "gpt-6.1-sol"
