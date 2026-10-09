@@ -136,15 +136,6 @@ the rework rate with the baseline in `docs/lessons.md` before changing models. (
 A rule enters `CLAUDE.md` or this file only with a lesson in `docs/lessons.md`: a failure in a real
 run, or the owner's decision with its basis. Plausible rules without either stay out. (L14) A rule may carry a **carve-out**: an addendum that loosens it under named conditions, its wording unchanged, with lettered preconditions (A, B, …) a reviewer checks one by one, a gate in `tools/` that enforces them, and what stays forbidden; a project's `CLAUDE.md` holds the instance. (L63)
 
-A rule can have a **carve-out**: a named, conditional loosening of the rule for a specific
-workflow, gated by an external check (a per-project tool, a hash table, a known-good list).
-A carve-out's contract is: named preconditions; a gate that enforces them; a list of what
-the carve-out permits; a list of what stays forbidden. The carve-out is in the same numbered
-list as the rule it loosens, with its own lettered sub-conditions (A, B, C, ...) so a
-reviewer can check the carve-out line by line. The original rule's wording is unchanged;
-the carve-out is an *addendum*, not a *replacement*. A project adopts a carve-out in its
-own `CLAUDE.md`; this file carries the *shape*, not the *instance*.
-
 ## 11. For a reverse-engineering project
 
 - Transcribe every number from the research into one fixtures corpus with provenance, and assert against it: each re-read of a report is another chance to misread it. (L15)

@@ -95,13 +95,12 @@ indexed in `docs/tasks/README.md`.
 
    The working strategy, how runs are made, the adjustments and what each model has shown are in
    `docs/models.md`, kept identical to isle-wars-archaeology's copy; the main session keeps it current.
-7. Merge only with an approving review and green CI. Two rework rounds, then escalate.
-8. Relay review findings in full, never a subset.
-9. A test proves behaviour only if it fails when the behaviour is removed; a claim that nothing
-   failed is re-taken before it is believed.
+7. Merge only with an approving review and green CI. Two rework rounds, then escalate. After a heavy
+   review, the next round's implementer moves one step up, never down (`/run-task`). (L38)
+8. Relay review findings in full. Read a run's final message before you retry or re-route it (L55).
+9. A test proves behaviour only if it fails without that behaviour; re-take a claim that nothing failed.
 10. A comment asserting behaviour at an edge arrives with the test that visits that edge.
-11. Until the first playable build, schedule only bugs that break play; label the rest
-    `post-playable`.
+11. Until the first playable build, schedule only bugs that break play; the rest are `post-playable`.
 12. A bug whose fix stays in the files it names and changes no outcome is a `fix`; a blocking
     one-file mechanical fix may ride the PR that found it, declared under Scope.
 13. Design decisions go to the user; nothing else waits for the user.

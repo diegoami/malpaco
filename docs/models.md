@@ -25,12 +25,12 @@ change. The main session never routes by budget. Its job is to keep a switch che
 | Name in `harness.json` | Model and route | Family | Used for |
 | --- | --- | --- | --- |
 | `zai-glm-5.3-flash` | GLM-5.3 Flash, `zai-coding-plan/glm-5.3-flash` | GLM | **easy implementer**, the `harness.json` default |
-| `mimo-flash` | MiMo V2.6 Flash, `opencode-go/mimo-v2.6-flash`, no variants offered | MiMo | **hard implementer** (`--model mimo-flash`), in DeepSeek V4.1 Flash's place since 2026-10-09 (harness_imperial L67) |
+| `mimo-flash` | MiMo V2.6 Flash, `opencode-go/mimo-v2.6-flash`, no variants offered | MiMo | **hard implementer** (`--model mimo-flash`), since 2026-10-09 (harness_imperial L67) |
 | `luna` | GPT-5.6 Luna, `openai/gpt-5.6-luna`, the direct OpenAI route, on its own weekly pool (`gpt-5.6-luna:7d`) | OpenAI | **easy reviewer**, the `harness.json` default (L51, 2026-10-05) |
 | `luna-6` | GPT-6 Luna, `openai/gpt-6-luna`, which draws on OpenAI's main pool with Sol | OpenAI | registered only, outside every chain, never the reviewer (L51); the easy reviewer until 2026-10-05 |
 | `gpt-6.1-sol` | GPT-6.1 Sol, `openai/gpt-6.1-sol`, effort `low` | OpenAI | **hard reviewer** (`--reviewer gpt-6.1-sol`), used sparingly; probed 2026-10-03 at `high`, PONG in 5 s |
 | `gpt-6-sol` | GPT-6 Sol, `openai/gpt-6-sol` | OpenAI | probed; the hard reviewer before 6.1 (T06, malpaco T02) |
-| `mimo-pro` | MiMo V2.6 Pro, `opencode-go/mimo-v2.6-pro`, heavy, no variants offered | MiMo | a hard-review substitute, in DeepSeek V4 Pro's place since 2026-10-09 (L67) |
+| `mimo-pro` | MiMo V2.6 Pro, `opencode-go/mimo-v2.6-pro`, heavy, no variants offered | MiMo | a hard-review substitute, since 2026-10-09 (L67) |
 | `zai-glm-5.3` | GLM-5.3, `zai-coding-plan/glm-5.3`, effort `low` (it offers no medium; the owner, 2026-10-05) | GLM | probed; implemented T06, and was tried as a calibration reviewer |
 | (Claude) Sonnet | `task-agent`, `model: sonnet` | Claude | the implementer for research, the user's install and cloud sessions; the fallback implementer; the easy fallback reviewer |
 | (Claude) Opus | `task-agent-heavy`, `model: opus`, effort `medium` | Claude | the hard fallback reviewer; the cloud reviewer |
@@ -178,7 +178,7 @@ the owner says to wait.
   4. Record the change on the task file's Reviewer line, with the date and reason.
   5. Log it on the trials issue.
 - **First use: T08, round 2.** On the owner's decision of 2026-10-03, after the OpenAI quota
-  stopped Sol mid-review: GLM-5.3 reviews, and DeepSeek V4 Pro is its fallback. Both answered their
+  stopped Sol mid-review: GLM-5.3 reviews, and DeepSeek V4 Pro was its fallback (blacklisted since 2026-10-09, L67: MiMo V2.6 Pro takes that seat). Both answered their
   probe (PONG in 4 s and 5 s).
 
 **The `[C4]` re-hash can run through WSL interop** (T10, at the owner's request).
