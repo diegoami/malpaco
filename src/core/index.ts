@@ -37,3 +37,5 @@ export { OptionsError } from "./options";
 export { SeatsError, MAX_SEATS, MIN_SEATS, computerCount, hasHuman, validateSeats } from "./seats";
 export type { Difficulty, SeatKind, SeatSpec } from "./seats";
 export { SaveFormatError, deserializeOptions, serializeOptions } from "./save";
+export { generateBoard } from "./board-gen";
+export type { BoardGenResult } from "./board-gen";
