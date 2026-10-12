@@ -75,8 +75,36 @@ export function cloneState(state: GameState): GameState {
  * own provinces by the seeded RNG. The deal and the pool sizes are as in
  * core/; only who chooses the provinces differs. Centres, reinforcements and
  * hazards are not ported.
+ *
+ * Two overloads: `newGame(map, rules, players, seed)` (the spike's
+ * four-argument form) and `newGame(map, rules, options)` (C-SET-01: the
+ * new-game entry point takes a full GameOptions record and uses its
+ * `seed`).
  */
-export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Player[], seed: number): GameState {
+export function newGame(map: GameMap, rules: RuleSet, options: GameOptions): GameState;
+export function newGame(map: GameMap, rules: RuleSet, players: readonly Player[], seed: number): GameState;
+export function newGame(
+  map: GameMap,
+  rules: RuleSet,
+  playersOrOptions: readonly Player[] | GameOptions,
+  seed?: number,
+): GameState {
+  if (isPlayerList(playersOrOptions)) {
+    return newGameWithPlayers(map, rules, playersOrOptions, seed ?? 0);
+  }
+  return newGameFromOptions(map, rules, playersOrOptions, playersOrOptions.seed);
+}
+
+/** Type guard for the array branch of the newGame overload. */
+function isPlayerList(value: readonly Player[] | GameOptions): value is readonly Player[] {
+  return Array.isArray(value);
+}
+
+/**
+ * Internal implementation: take a pre-built Player list and a seed, do the
+ * spike's deal. Not exported.
+ */
+function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly Player[], seed: number): GameState {
   const rng = new DeterministicRng(seed);
   const players = playerList.map((p) => ({ ...p, kind: p.kind ?? "human" }));
   const ownerOfMap: Record<string, string> = {};
@@ -131,10 +159,10 @@ export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Playe
 
 /**
  * Build a Player list from the seat specs and computerStrengths in
- * GameOptions, then call newGame. The default name is "Seat N" with the seat
- * number; the id is the player colour (T52 sets the colour palette). Each
- * computer seat is given its difficulty from options.computerStrengths, in
- * seat order; humans have no difficulty.
+ * GameOptions, then call newGameWithPlayers. The default name is "Seat N"
+ * with the seat number; the id is the player colour (T52 sets the colour
+ * palette). Each computer seat is given its difficulty from
+ * options.computerStrengths, in seat order; humans have no difficulty.
  */
 export function newGameFromOptions(map: GameMap, rules: RuleSet, options: GameOptions, seed: number): GameState {
   let computerIdx = 0;
@@ -159,14 +187,5 @@ export function newGameFromOptions(map: GameMap, rules: RuleSet, options: GameOp
       eliminated: false,
     };
   });
-  return newGame(map, rules, playerList, seed);
-}
-
-/**
- * Convenience overload: build the GameOptions-backed new game in one call.
- * The seed comes from options.seed (C-RND-01). Equivalent to
- * newGameFromOptions(map, rules, options, options.seed).
- */
-export function newGameWithOptions(map: GameMap, rules: RuleSet, options: GameOptions): GameState {
-  return newGameFromOptions(map, rules, options, options.seed);
+  return newGameWithPlayers(map, rules, playerList, seed);
 }

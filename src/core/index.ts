@@ -14,7 +14,6 @@ export {
   livingPlayers,
   newGame,
   newGameFromOptions,
-  newGameWithOptions,
   ownerOf,
   provincesOf,
 } from "./state";

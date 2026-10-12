@@ -184,6 +184,37 @@ describe("GameOptions validation", () => {
   });
 });
 
+describe("newGame(map, rules, options) overload (R2)", () => {
+  it("uses options.seed when the options overload is called", async () => {
+    const { newGame, defaultOptions, classicRules } = await import("../../src/core");
+    const { smallSea } = await import("./helpers");
+    const options = { ...defaultOptions(), seed: 4242 };
+    const viaOptions = newGame(smallSea(), classicRules(), options);
+    const viaFourArg = (await import("../../src/core")).newGame(
+      smallSea(),
+      classicRules(),
+      viaOptions.players,
+      4242,
+    );
+    expect(viaOptions.rng.seed).toBe(4242);
+    expect(JSON.stringify(viaOptions.ownerOf)).toBe(JSON.stringify(viaFourArg.ownerOf));
+    expect(JSON.stringify(viaOptions.armies)).toBe(JSON.stringify(viaFourArg.armies));
+  });
+
+  it("the options overload constructs players from options.computerStrengths", async () => {
+    const { newGame, defaultOptions, classicRules } = await import("../../src/core");
+    const { smallSea } = await import("./helpers");
+    const options = {
+      ...defaultOptions(),
+      computerStrengths: ["Hard", "Easy", "Normal"] as const,
+    };
+    const state = newGame(smallSea(), classicRules(), options);
+    expect(state.players.find((p) => p.id === "seat2")?.difficulty).toBe("Hard");
+    expect(state.players.find((p) => p.id === "seat3")?.difficulty).toBe("Easy");
+    expect(state.players.find((p) => p.id === "seat4")?.difficulty).toBe("Normal");
+  });
+});
+
 describe("humanShare and computer-only games", () => {
   it("accepts a 2-human, 2-computer game", () => {
     const options = {
