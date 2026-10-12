@@ -4,8 +4,8 @@
   (runs the original under a gated carve-out, process.md §10; its lettered preconditions are
   Done-when lines, its table and gate named in Scope)
 - **Issue**: #<n> · **Branch**: `task/T<nn>-<slug>` · **Merge after**: T<nn>, …
-- **Implementer**: opencode (the default, `zai-glm-5.3-flash`; for a hard task `mimo-flash`; or `<model>` from harness.json, after the quota check, CLAUDE.md rule 6) · **Claude fallback**: sonnet | opus. A model heavier than the default: the reason here (L46)
-- **Reviewer**: opencode (the default, `luna`: GPT-5.6 Luna on OpenAI), then claude opus | claude (opus | sonnet); never the implementer's family
+- **Implementer**: the `implementer` subagent on the model chosen at the question, or the main session directly (CLAUDE.md rule 6); say which, and why, only when it matters (the user's machine needs the main session, L26).
+- **Reviewer**: `reviewer.default` (GPT-5.6 Luna), or a `harness.json` key with the reason: `gpt-6.1-sol` for a guard, a gate or a hard task; never the implementer's family (CLAUDE.md rule 6).
 - **Evidence**: the reports, fixtures or investigations this task rests on, with links.
 - **Owns**: directories or files, e.g. `src/Calendar/**`, `tests/Calendar/**`. A task that measures
   owns a tracked path for its outputs, e.g. `runs/E<nnn>/**` or `spike/measurements/**`: they are

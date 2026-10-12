@@ -1,6 +1,6 @@
 ---
 name: delegate
-description: Choose who does a piece of work, and on which model. Claude agents review and judge; OpenCode implements and reviews code; Jev takes repeated decisions; models on OpenRouter make images and give other model families; ElevenLabs makes speech, sound effects and music. Use before doing work yourself that a cheaper or better-suited model could do, whenever a task needs an image, a sound or a voice, and whenever you are about to name a model id.
+description: Choose who does a piece of work, and on which model. A subagent spawned inside Claude Code on a model of its own implements (or the main session directly); OpenCode reviews code; Jev takes repeated decisions; models on OpenRouter make images and give other model families; ElevenLabs makes speech, sound effects and music. Use before doing work yourself that a cheaper or better-suited model could do, whenever a task needs an image, a sound or a voice, and whenever you are about to name a model id.
 ---
 
 # /delegate: who does the work, and on which model
@@ -12,8 +12,8 @@ yourself, check whether a delegate below does it better or cheaper.
 
 | Work | Delegate | How | Key |
 | --- | --- | --- | --- |
-| Code: implement a task or a fix | OpenCode GLM-5.3 Flash, then MiMo V2.6 Flash, then a Claude Sonnet agent | `/run-task` → `tools/harness/implement.mjs` | Z.AI's login (`opencode auth login`) and OpenCode Go's (`opencode console login`) to implement; OpenAI's (`opencode auth login`) to review |
-| Review a PR | GPT-5.6 Luna on OpenAI, through OpenCode (default), then a Claude Opus agent; never the implementer's family | `/run-task` → `tools/harness/review.mjs`, or Agent | as above |
+| Code: implement a task or a fix | The `implementer` subagent spawned inside Claude Code on a model of its own (Opus spawns Sonnet), or the main session directly where the provider cannot spawn one; asked before each (CLAUDE.md rule 6); never OpenCode | `/run-task` → yourself, or `Agent(subagent_type: "implementer", model: <alias>, isolation: "worktree")` | the session's Anthropic environment |
+| Review a PR | One OpenCode run on the model the user names at the question, `harness.json`'s `reviewer.default` proposed first; never the session's family, never a blocked model | `/run-task` → `tools/harness/review.mjs [--reviewer <name>]` | OpenAI's login (`opencode auth login`) for Luna and Sol; Z.AI's for GLM; OpenCode Go's (`opencode console login`) for MiMo |
 | Repeated decisions with known answers (triage, routing, gating, labelling) | Jev | `/jev` → `tools/harness/jev.mjs` | `OPENROUTER_API_KEY` |
 | Images: sprites, icons, maps, mockups, illustrations | An image model on OpenRouter | pick one with `models.mjs openrouter --output image` | `OPENROUTER_API_KEY` |
 | A second opinion from another model family, or reading audio or images | A model on OpenRouter | `models.mjs openrouter --input image` (or `audio`) | `OPENROUTER_API_KEY` |
@@ -28,42 +28,29 @@ another way, or tell the user what is missing (`docs/environment.md`).
 1. **Never from memory.** Model ids and prices change faster than any document. List them live:
    - `node tools/harness/models.mjs openrouter --output image`;
    - `node tools/harness/models.mjs elevenlabs`;
-   - `opencode models opencode-go` for implementers (OpenCode Go), `opencode models openai` for the
-     reviewer.
+   - `opencode models openai` (and `zai-coding-plan`, `opencode-go`) for reviewers.
 
    Do the same when you are unsure a model still exists. (L25)
-   To change the implementer's or reviewer's model itself, use `/switch-model`.
-2. **Check the quota first** (L50). Where quota-tracker runs (`curl -sf localhost:8765/health`),
-   `curl -s localhost:8765/avoid` lists the providers out of quota and when each is usable again,
-   and `curl -s 'localhost:8765/recommend?tier=heavy'` (or `tier=light`) ranks the models to use:
-   `pick` is the best, `ranking` lists them with `score`, spare calls per day until the pool's reset
-   (negative: it runs out before then at the current demand) (`docs/environment.md`). Never rank by
-   headroom: pools differ in size and period, and Claude sessions draw on some.
-   Skip a model whose provider is `exhausted`: name the next model of its chain that has quota
-   (`--model` for `implement.mjs`, `--reviewer` for `review.mjs`) and say so in the run's report.
-   Both scripts also skip such a model themselves and log why (L52); never pause a provider by
-   editing `harness.json` for quota.
-   When a task needs both an implementer and a reviewer, use `/recommend`'s `pair` field
-   (`curl -s 'localhost:8765/recommend?tier=heavy' | jq .pair`): `pair.implementer` and
-   `pair.reviewer`, the reviewer from another family (claude, openai, glm, mimo, minimax;
-   each free model its own). Add `review_tier=light` for a lighter reviewer; `private=0` is for
-   code that is not private (the free OpenRouter models may then be in the pair). With
-   `tier=heavy`, the same response also offers `free_reviewer` — a free second opinion on the
-   shared 1,000-requests-a-day allowance, lost at 00:00 UTC. Never use a free model for private
-   or client code, secrets or NDA material. A null reviewer means no other family has quota:
-   tell the owner. Project exclusions apply on top: if the suggested reviewer is one the
-   project rules out (rule 3, the family rule), take the next row of `ranking` whose reviewer
-   is from a different family than the implementer. Alibaba is never recommended and never
-   appears in `pair`.
+   To change the default reviewer, use `/switch-model`.
+2. **Two questions, nothing else picks** (CLAUDE.md rule 6, the owner, 2026-10-12). Before an
+   implementation, ask the user ONE question: which subagent implements (the `implementer` agent
+   on `sonnet`, `opus`, `haiku`, `fable` or a model id the session's provider serves), or the main
+   session directly where the provider cannot spawn one; before each review, ONE question: which
+   OpenCode model. Propose `harness.json`'s defaults first. The roster and the blocked list change
+   through `/switch-model`, never by a rule or a quota. Fixed: the reviewer is never the session's
+   family (read from the Anthropic environment); a blocked model never runs; Alibaba only when the
+   user asks. Record the answers on the issue or PR. A failed run is diagnosed and fixed; another
+   model only when its provider does not answer, and the user names it.
+   *Superseded and kept as history:* quota-tracker's `/recommend` as a suggestion; checking the
+   quota and taking the next model of a chain (L50, L52); `choose.mjs`; OpenCode implementing.
 3. **Choose on the evidence you have.** In order of preference:
    - this project's own measurements (review rounds and tokens per task, from the merge comments);
    - a small trial;
    - the listed price and capabilities.
 
    Vendor benchmarks come last.
-4. **Record the choice where it is used.** Implementer and reviewer models go in `harness.json`,
-   and a task's own choice goes in its task file, with the date and the reason in the commit
-   message. A generated asset gets a sidecar next to it, `<asset>.json`, with the provider, the
+4. **Record the choice where it is used.** A reviewer other than the default goes on the PR,
+   and in the task file, with the reason. A generated asset gets a sidecar next to it, `<asset>.json`, with the provider, the
    model id, the prompt, the date and the cost. That records where it came from, and lets it be
    made again.
 5. **Say the cost first.** Before a batch (many images, a long narration), tell the user the
