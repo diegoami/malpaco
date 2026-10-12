@@ -130,18 +130,43 @@ export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Playe
 }
 
 /**
- * Build a Player list from the seat specs in GameOptions, then call newGame.
- * The default name is "Seat N" with the seat number; the id is the player
- * colour (T52 sets the colour palette). Each seat becomes a Player with the
- * right kind and difficulty.
+ * Build a Player list from the seat specs and computerStrengths in
+ * GameOptions, then call newGame. The default name is "Seat N" with the seat
+ * number; the id is the player colour (T52 sets the colour palette). Each
+ * computer seat is given its difficulty from options.computerStrengths, in
+ * seat order; humans have no difficulty.
  */
 export function newGameFromOptions(map: GameMap, rules: RuleSet, options: GameOptions, seed: number): GameState {
-  const playerList: Player[] = options.seats.map((seat, idx) => ({
-    id: `seat${idx + 1}`,
-    name: `Seat ${idx + 1}`,
-    kind: seat.kind,
-    ...(seat.kind === "computer" ? { difficulty: seat.difficulty } : {}),
-    eliminated: false,
-  }));
+  let computerIdx = 0;
+  const playerList: Player[] = options.seats.map((seat, idx) => {
+    if (seat.kind === "computer") {
+      const difficulty = options.computerStrengths[computerIdx++];
+      if (difficulty === undefined) {
+        throw new Error(`computerStrengths missing entry for seat ${idx + 1}`);
+      }
+      return {
+        id: `seat${idx + 1}`,
+        name: `Seat ${idx + 1}`,
+        kind: "computer",
+        difficulty,
+        eliminated: false,
+      };
+    }
+    return {
+      id: `seat${idx + 1}`,
+      name: `Seat ${idx + 1}`,
+      kind: "human",
+      eliminated: false,
+    };
+  });
   return newGame(map, rules, playerList, seed);
+}
+
+/**
+ * Convenience overload: build the GameOptions-backed new game in one call.
+ * The seed comes from options.seed (C-RND-01). Equivalent to
+ * newGameFromOptions(map, rules, options, options.seed).
+ */
+export function newGameWithOptions(map: GameMap, rules: RuleSet, options: GameOptions): GameState {
+  return newGameFromOptions(map, rules, options, options.seed);
 }

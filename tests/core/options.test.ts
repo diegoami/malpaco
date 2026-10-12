@@ -3,24 +3,29 @@ import { defaultOptions, OptionsError, validateGameOptions } from "../../src/cor
 
 // C-SET-01: every option open to every player, no locked option (the dropped
 // claims C-SET-02 and C-SET-04). The defaults below are the canonical values
-// from design/core-rules.md § Setup → Options (the owner 2026-10-12).
+// from design/core-rules.md § Setup → Options (the owner 2026-10-12). The
+// 11 fields: seats, board, startingArmiesRange, humanShare, computerStrengths,
+// eventFrequency, dominationWin, roundLimit, seed, animationSpeed, sound.
 
 describe("GameOptions defaults", () => {
   it("defaultOptions() returns the canonical 11-field record", () => {
     const options = defaultOptions();
     expect(options.seats).toEqual([
       { kind: "human" },
-      { kind: "computer", difficulty: "Normal" },
-      { kind: "computer", difficulty: "Normal" },
-      { kind: "computer", difficulty: "Normal" },
+      { kind: "computer" },
+      { kind: "computer" },
+      { kind: "computer" },
     ]);
+    expect(options.board).toBe("generated");
     expect(options.startingArmiesRange).toBe("1-3");
     expect(options.humanShare).toBe(0);
+    expect(options.computerStrengths).toEqual(["Normal", "Normal", "Normal"]);
     expect(options.eventFrequency).toBe("Normal");
     expect(options.dominationWin).toBe(true);
     expect(options.roundLimit).toBeNull();
     expect(options.seed).toBe(0);
-    expect(options.board).toBe("generated");
+    expect(options.animationSpeed).toBe("normal");
+    expect(options.sound).toBe(true);
   });
 
   it("defaultOptions returns a fresh object each call (no shared state)", () => {
@@ -28,6 +33,7 @@ describe("GameOptions defaults", () => {
     const b = defaultOptions();
     expect(a).not.toBe(b);
     expect(a.seats).not.toBe(b.seats);
+    expect(a.computerStrengths).not.toBe(b.computerStrengths);
   });
 });
 
@@ -47,11 +53,12 @@ describe("GameOptions validation", () => {
       ...defaultOptions(),
       seats: [
         { kind: "human" },
-        { kind: "computer", difficulty: "Normal" },
-        { kind: "computer", difficulty: "Normal" },
-        { kind: "computer", difficulty: "Normal" },
-        { kind: "computer", difficulty: "Normal" },
+        { kind: "computer" },
+        { kind: "computer" },
+        { kind: "computer" },
+        { kind: "computer" },
       ],
+      computerStrengths: ["Normal", "Normal", "Normal", "Normal"],
     };
     try {
       validateGameOptions(bad);
@@ -64,7 +71,11 @@ describe("GameOptions validation", () => {
   });
 
   it("rejects a 1-seat list", () => {
-    const bad = { ...defaultOptions(), seats: [{ kind: "human" }] };
+    const bad = {
+      ...defaultOptions(),
+      seats: [{ kind: "human" }],
+      computerStrengths: [],
+    };
     expect(() => validateGameOptions(bad)).toThrow(/seat count must be 2 to 4/);
   });
 
@@ -84,10 +95,26 @@ describe("GameOptions validation", () => {
     expect(() => validateGameOptions(bad)).toThrow(/startingArmiesRange must be/);
   });
 
-  it("rejects a humanShare outside -4..+4", () => {
+  it("rejects a humanShare outside -4..+4 when at least one human seat is present", () => {
     expect(() => validateGameOptions({ ...defaultOptions(), humanShare: 5 })).toThrow(OptionsError);
     expect(() => validateGameOptions({ ...defaultOptions(), humanShare: -5 })).toThrow(OptionsError);
     expect(() => validateGameOptions({ ...defaultOptions(), humanShare: 1.5 })).toThrow(/humanShare must be an integer/);
+  });
+
+  it("IGNORES humanShare out-of-range in an all-computer game (no human seat)", () => {
+    const allComputers = {
+      ...defaultOptions(),
+      seats: [{ kind: "computer" }, { kind: "computer" }],
+      computerStrengths: ["Normal", "Normal"],
+      humanShare: 99, // out of range; ignored because no human seat
+    };
+    expect(() => validateGameOptions(allComputers)).not.toThrow();
+    const restored = validateGameOptions(allComputers);
+    expect(restored.humanShare).toBe(99);
+  });
+
+  it("still rejects a non-integer humanShare", () => {
+    expect(() => validateGameOptions({ ...defaultOptions(), humanShare: 1.5 })).toThrow(/integer/);
   });
 
   it("rejects a non-boolean dominationWin", () => {
@@ -108,6 +135,42 @@ describe("GameOptions validation", () => {
     expect(() => validateGameOptions({ ...defaultOptions(), seed: 0x1_0000_0000 })).toThrow(/seed must be a 32-bit unsigned integer/);
   });
 
+  it("rejects an animationSpeed outside slow/normal/fast", () => {
+    expect(() => validateGameOptions({ ...defaultOptions(), animationSpeed: "instant" as unknown as "normal" })).toThrow(/animationSpeed must be/);
+  });
+
+  it("rejects a non-boolean sound", () => {
+    expect(() => validateGameOptions({ ...defaultOptions(), sound: "yes" as unknown as boolean })).toThrow(/sound must be a boolean/);
+  });
+
+  it("rejects computerStrengths whose length does not match the computer-seat count", () => {
+    const bad = {
+      ...defaultOptions(),
+      computerStrengths: ["Normal", "Normal"], // 3 computer seats but only 2 strengths
+    };
+    try {
+      validateGameOptions(bad);
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(OptionsError);
+      expect((e as OptionsError).field).toBe("computerStrengths");
+    }
+  });
+
+  it("rejects a computerStrengths entry that is not Easy/Normal/Hard", () => {
+    const bad = {
+      ...defaultOptions(),
+      computerStrengths: ["Normal", "Casual" as unknown as "Normal", "Normal"],
+    };
+    try {
+      validateGameOptions(bad);
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(OptionsError);
+      expect((e as OptionsError).field).toBe("computerStrengths[1]");
+    }
+  });
+
   it("rejects a missing field with the field name", () => {
     const bad = { ...defaultOptions() } as Record<string, unknown>;
     delete bad.humanShare;
@@ -125,12 +188,8 @@ describe("humanShare and computer-only games", () => {
   it("accepts a 2-human, 2-computer game", () => {
     const options = {
       ...defaultOptions(),
-      seats: [
-        { kind: "human" },
-        { kind: "human" },
-        { kind: "computer", difficulty: "Easy" },
-        { kind: "computer", difficulty: "Hard" },
-      ],
+      seats: [{ kind: "human" }, { kind: "human" }, { kind: "computer" }, { kind: "computer" }],
+      computerStrengths: ["Easy", "Hard"],
     };
     expect(() => validateGameOptions(options)).not.toThrow();
   });
@@ -138,39 +197,18 @@ describe("humanShare and computer-only games", () => {
   it("accepts an all-computer game (no humans; watching)", () => {
     const options = {
       ...defaultOptions(),
-      seats: [
-        { kind: "computer", difficulty: "Normal" },
-        { kind: "computer", difficulty: "Normal" },
-      ],
+      seats: [{ kind: "computer" }, { kind: "computer" }],
+      computerStrengths: ["Normal", "Normal"],
     };
     expect(() => validateGameOptions(options)).not.toThrow();
   });
 
-  it("rejects a computer seat without a difficulty", () => {
+  it("rejects computerStrengths that does not match a single-seat config", () => {
     const options = {
       ...defaultOptions(),
-      seats: [{ kind: "computer" }, { kind: "computer", difficulty: "Normal" }],
+      seats: [{ kind: "computer" }],
+      computerStrengths: ["Normal", "Normal"],
     };
-    try {
-      validateGameOptions(options);
-      throw new Error("should have thrown");
-    } catch (e) {
-      expect(e).toBeInstanceOf(OptionsError);
-      expect((e as OptionsError).field).toBe("seats[0].difficulty");
-    }
-  });
-
-  it("rejects a human seat with a difficulty", () => {
-    const options = {
-      ...defaultOptions(),
-      seats: [{ kind: "human", difficulty: "Easy" as const }, { kind: "computer", difficulty: "Normal" }],
-    };
-    try {
-      validateGameOptions(options);
-      throw new Error("should have thrown");
-    } catch (e) {
-      expect(e).toBeInstanceOf(OptionsError);
-      expect((e as OptionsError).field).toBe("seats[0].difficulty");
-    }
+    expect(() => validateGameOptions(options)).toThrow(OptionsError);
   });
 });

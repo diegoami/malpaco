@@ -1,4 +1,4 @@
-// Seat kinds and seat-list validation. lives in src/core so the deal and
+// Seat kinds and seat-list validation. Lives in src/core so the deal and
 // the options screen can both read it without crossing the purity boundary.
 //
 // C-PLY-01 (change, decisions 1 and 3): a game has 2 to 4 seats.
@@ -9,14 +9,12 @@
 /** Who plays a seat. */
 export type SeatKind = "human" | "computer";
 
-/** A computer seat's strength. Humans ignore it. */
+/** A computer seat's strength. Listed in options.computerStrengths, not on the seat itself. */
 export type Difficulty = "Easy" | "Normal" | "Hard";
 
 /** A seat as the user typed it on the options screen, before it becomes a Player. */
 export interface SeatSpec {
   readonly kind: SeatKind;
-  /** Required when kind is "computer"; ignored when it is "human". */
-  readonly difficulty?: Difficulty;
 }
 
 /** Typed error from seat-list validation. */
@@ -35,7 +33,14 @@ export const MAX_SEATS = 4;
  * Validate a seat list, throwing a typed SeatsError with the offending field.
  * Pure: no I/O, no randomness, no clock. Safe to call from `core/`.
  */
-export function validateSeats(seats: readonly SeatSpec[]): void {
+export function validateSeats(value: unknown): readonly SeatSpec[] {
+  if (value === null || value === undefined) {
+    throw new SeatsError("seats is missing", "seats");
+  }
+  if (!Array.isArray(value)) {
+    throw new SeatsError("seats must be an array", "seats");
+  }
+  const seats = value;
   if (!Number.isInteger(seats.length) || seats.length < MIN_SEATS || seats.length > MAX_SEATS) {
     throw new SeatsError(
       `seat count must be ${MIN_SEATS} to ${MAX_SEATS}, got ${seats.length}`,
@@ -43,20 +48,15 @@ export function validateSeats(seats: readonly SeatSpec[]): void {
     );
   }
   seats.forEach((seat, i) => {
-    if (seat.kind !== "human" && seat.kind !== "computer") {
+    if (seat === null || typeof seat !== "object") {
+      throw new SeatsError(`seat ${i}: must be an object`, `seats[${i}]`);
+    }
+    const kind = (seat as { kind?: unknown }).kind;
+    if (kind !== "human" && kind !== "computer") {
       throw new SeatsError(`seat ${i}: kind must be "human" or "computer"`, `seats[${i}].kind`);
     }
-    if (seat.kind === "computer") {
-      if (seat.difficulty !== "Easy" && seat.difficulty !== "Normal" && seat.difficulty !== "Hard") {
-        throw new SeatsError(
-          `seat ${i}: computer seat needs a difficulty ("Easy", "Normal" or "Hard")`,
-          `seats[${i}].difficulty`,
-        );
-      }
-    } else if (seat.difficulty !== undefined) {
-      throw new SeatsError(`seat ${i}: a human seat has no difficulty`, `seats[${i}].difficulty`);
-    }
   });
+  return seats as readonly SeatSpec[];
 }
 
 /** True when at least one human seat is in the list. */

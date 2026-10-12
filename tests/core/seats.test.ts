@@ -14,13 +14,84 @@ import {
 //   all-computer games are allowed.
 // C-PLY-03 (keep): the default is one human and three computers.
 
+describe("validateSeats: malformed input (R4 — null safety)", () => {
+  it("rejects null with a typed SeatsError on the 'seats' field", () => {
+    try {
+      validateSeats(null);
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(SeatsError);
+      expect((e as SeatsError).field).toBe("seats");
+      expect((e as Error).message).toMatch(/seats is missing/);
+    }
+  });
+
+  it("rejects undefined with a typed SeatsError on the 'seats' field", () => {
+    try {
+      validateSeats(undefined);
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(SeatsError);
+      expect((e as SeatsError).field).toBe("seats");
+    }
+  });
+
+  it("rejects a non-array with a typed SeatsError on the 'seats' field", () => {
+    try {
+      validateSeats("not an array");
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(SeatsError);
+      expect((e as SeatsError).field).toBe("seats");
+      expect((e as Error).message).toMatch(/seats must be an array/);
+    }
+    try {
+      validateSeats(42);
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(SeatsError);
+      expect((e as SeatsError).field).toBe("seats");
+    }
+  });
+
+  it("rejects a null seat entry", () => {
+    try {
+      validateSeats([null, { kind: "computer" }]);
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(SeatsError);
+      expect((e as SeatsError).field).toBe("seats[0]");
+    }
+  });
+
+  it("rejects a seat with no kind field", () => {
+    try {
+      validateSeats([{}, { kind: "computer" }]);
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(SeatsError);
+      expect((e as SeatsError).field).toBe("seats[0].kind");
+    }
+  });
+
+  it("rejects a seat with a bad kind value", () => {
+    try {
+      validateSeats([{ kind: "ai" }, { kind: "computer" }]);
+      throw new Error("should have thrown");
+    } catch (e) {
+      expect(e).toBeInstanceOf(SeatsError);
+      expect((e as SeatsError).field).toBe("seats[0].kind");
+    }
+  });
+});
+
 describe("validateSeats: the 2..4 band (C-PLY-01, decision 3)", () => {
-  const two: SeatSpec[] = [{ kind: "human" }, { kind: "computer", difficulty: "Normal" }];
+  const two: SeatSpec[] = [{ kind: "human" }, { kind: "computer" }];
   const four: SeatSpec[] = [
     { kind: "human" },
-    { kind: "computer", difficulty: "Normal" },
-    { kind: "computer", difficulty: "Normal" },
-    { kind: "computer", difficulty: "Normal" },
+    { kind: "computer" },
+    { kind: "computer" },
+    { kind: "computer" },
   ];
 
   it("accepts the minimum (2 seats)", () => {
@@ -45,10 +116,10 @@ describe("validateSeats: the 2..4 band (C-PLY-01, decision 3)", () => {
   it("rejects 5 seats with seats.length field", () => {
     const five: SeatSpec[] = [
       { kind: "human" },
-      { kind: "computer", difficulty: "Normal" },
-      { kind: "computer", difficulty: "Normal" },
-      { kind: "computer", difficulty: "Normal" },
-      { kind: "computer", difficulty: "Normal" },
+      { kind: "computer" },
+      { kind: "computer" },
+      { kind: "computer" },
+      { kind: "computer" },
     ];
     try {
       validateSeats(five);
@@ -71,13 +142,13 @@ describe("validateSeats: the 2..4 band (C-PLY-01, decision 3)", () => {
 
 describe("hasHuman and computerCount (C-PLY-02, C-PLY-03)", () => {
   it("hasHuman is true when at least one human seat is present", () => {
-    expect(hasHuman([{ kind: "human" }, { kind: "computer", difficulty: "Normal" }])).toBe(true);
+    expect(hasHuman([{ kind: "human" }, { kind: "computer" }])).toBe(true);
   });
 
   it("hasHuman is false in an all-computer game", () => {
     expect(hasHuman([
-      { kind: "computer", difficulty: "Normal" },
-      { kind: "computer", difficulty: "Hard" },
+      { kind: "computer" },
+      { kind: "computer" },
     ])).toBe(false);
   });
 
@@ -85,12 +156,12 @@ describe("hasHuman and computerCount (C-PLY-02, C-PLY-03)", () => {
     expect(computerCount([
       { kind: "human" },
       { kind: "human" },
-      { kind: "computer", difficulty: "Normal" },
+      { kind: "computer" },
     ])).toBe(1);
     expect(computerCount([
-      { kind: "computer", difficulty: "Easy" },
-      { kind: "computer", difficulty: "Normal" },
-      { kind: "computer", difficulty: "Hard" },
+      { kind: "computer" },
+      { kind: "computer" },
+      { kind: "computer" },
     ])).toBe(3);
   });
 });

@@ -14,6 +14,7 @@ export {
   livingPlayers,
   newGame,
   newGameFromOptions,
+  newGameWithOptions,
   ownerOf,
   provincesOf,
 } from "./state";
@@ -27,6 +28,7 @@ export {
   validateGameOptions,
 } from "./options";
 export type {
+  AnimationSpeed,
   EventFrequency,
   GameOptions,
   RoundLimit,

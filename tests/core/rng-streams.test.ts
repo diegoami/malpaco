@@ -5,14 +5,32 @@ import { smallSea, PLAYERS } from "./helpers";
 // C-RND-03 (keep): one game stream for the rules' draws, uniform integer
 //   draws; each computer seat's choices use a stream of its own from the
 //   same seed. The parent's draws must not be perturbed by sub-streams.
+//
+// Hand-computed reference (R6): the first 100 six-sided dice from
+// `DeterministicRng.subStream(1234, 0)`, computed from the same SplitMix
+// formula in a fresh Node session (tools/substream-ref at PR creation). A
+// 1-bit mutation of the child-seed derivation fails the comparison.
 
-describe("DeterministicRng.subStream (C-RND-03)", () => {
-  it("is deterministic: the same (parentSeed, childSalt) yields the same first 1000 draws", () => {
+const REFERENCE_SUBSTREAM_1234_0: readonly number[] = [
+  5, 6, 5, 4, 2, 5, 1, 1, 3, 5, 1, 4, 5, 2, 3, 4, 4, 3, 5, 2, 6, 2, 4, 6, 6, 4, 4, 3, 2, 6, 1, 6, 4, 3, 2, 2, 5, 6, 6, 1,
+  4, 4, 5, 1, 6, 3, 5, 6, 5, 4, 3, 2, 1, 6, 4, 5, 4, 1, 5, 5, 5, 2, 3, 5, 3, 6, 2, 5, 6, 6, 4, 4, 4, 4, 2, 5, 2, 2, 2, 4, 3,
+  4, 2, 2, 4, 2, 5, 5, 1, 6, 1, 1, 3, 5, 1, 5, 2, 5, 6, 1,
+];
+
+describe("DeterministicRng.subStream (C-RND-03) — hand-computed reference (R6)", () => {
+  it("matches a hand-computed 100-draw reference for (parentSeed=1234, childSalt=0)", () => {
+    const child = DeterministicRng.subStream(1234, 0);
+    const drawn = Array.from({ length: REFERENCE_SUBSTREAM_1234_0.length }, () => child.rollDie(6));
+    expect(drawn).toEqual(REFERENCE_SUBSTREAM_1234_0);
+  });
+
+  it("is deterministic: the same (parentSeed, childSalt) yields the same reference", () => {
     const a = DeterministicRng.subStream(1234, 0);
     const b = DeterministicRng.subStream(1234, 0);
-    for (let i = 0; i < 1000; i++) {
-      expect(a.rollDie(6)).toBe(b.rollDie(6));
-    }
+    const drawnA = Array.from({ length: 100 }, () => a.rollDie(6));
+    const drawnB = Array.from({ length: 100 }, () => b.rollDie(6));
+    expect(drawnA).toEqual(REFERENCE_SUBSTREAM_1234_0);
+    expect(drawnB).toEqual(REFERENCE_SUBSTREAM_1234_0);
   });
 
   it("different salts give different streams", () => {
