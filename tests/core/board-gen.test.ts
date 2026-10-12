@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { generateBoard, ISLAND_SIZES, SEA_LANE_COUNT, DEGREE_MIN, DEGREE_MAX, BONUS_DIVISOR } from "../../src/core/board-gen";
+import { generateBoard, ISLAND_SIZES, SEA_LANE_COUNT, DEGREE_MIN, DEGREE_MAX, BORDER_MAX, BONUS_DIVISOR } from "../../src/core/board-gen";
 import { parseMap } from "../../src/core";
 
 // ---------------------------------------------------------------------------
@@ -80,6 +80,13 @@ function islandEntrances(map: import("../../src/core").GameMap, islandId: string
 // Tests
 // ---------------------------------------------------------------------------
 
+// Seeds that exercise the previous rework round's saturation bug. They
+// were failing on the M2.7 commit (`9de9ee9`); the headroom reservation in
+// `buildBorders` (BORDER_MAX = DEGREE_MAX - 1) makes them pass on this
+// commit. Pinned explicitly so a future regression of the saturation fix
+// breaks the suite.
+const SATURATION_SEEDS = [21, 33] as const;
+
 const TEST_SEEDS = [1, 2, 3, 7, 42] as const;
 
 describe("generateBoard", () => {
@@ -151,6 +158,54 @@ describe("generateBoard", () => {
     });
   }
 
+  // Rework round 2 (the owner 2026-10-12): seeds that exhausted the previous
+  // M2.7 rework. Each must return `{ ok: true, map }` AND have no province
+  // with degree > DEGREE_MAX. If the headroom reservation is reverted (for
+  // example, by editing `BORDER_MAX` back to `DEGREE_MAX`), these tests fail.
+  for (const seed of SATURATION_SEEDS) {
+    it(`seed ${seed} returns { ok: true, map } (saturation fix)`, () => {
+      const result = generateBoard(seed);
+      expect(result.ok, result.ok ? "" : (result as { ok: false; errors: readonly string[] }).errors.join("; ")).toBe(true);
+      if (!result.ok) return;
+      expect(result.map).toBeDefined();
+    });
+
+    it(`seed ${seed} round-trips through parseMap (saturation fix)`, () => {
+      const result = generateBoard(seed);
+      if (!result.ok) throw new Error(result.errors.join("; "));
+      const parsed = parseMap(toJson(result.map));
+      expect(parsed.ok, parsed.ok ? "" : parsed.errors.join("; ")).toBe(true);
+    });
+
+    it(`seed ${seed} every province has degree 2–${DEGREE_MAX} (saturation fix)`, () => {
+      const result = generateBoard(seed);
+      if (!result.ok) throw new Error(result.errors.join("; "));
+      const h = degreeHistogram(result.map);
+      for (const [deg, count] of Object.entries(h)) {
+        const d = Number(deg);
+        if (d < DEGREE_MIN || d > DEGREE_MAX) {
+          throw new Error(`seed ${seed}: degree ${d} outside [${DEGREE_MIN}, ${DEGREE_MAX}] (count=${count})`);
+        }
+        expect(d).toBeGreaterThanOrEqual(DEGREE_MIN);
+        expect(d).toBeLessThanOrEqual(DEGREE_MAX);
+      }
+      const total = Object.values(h).reduce((s, c) => s + c, 0);
+      expect(total).toBe(46);
+    });
+
+    it(`seed ${seed} has exactly ${SEA_LANE_COUNT} sea lanes (saturation fix)`, () => {
+      const result = generateBoard(seed);
+      if (!result.ok) throw new Error(result.errors.join("; "));
+      expect(undirectedSeaLanes(result.map)).toBe(SEA_LANE_COUNT);
+    });
+
+    it(`seed ${seed} border+seaLane graph is connected (saturation fix)`, () => {
+      const result = generateBoard(seed);
+      if (!result.ok) throw new Error(result.errors.join("; "));
+      expect(connected(result.map)).toBe(true);
+    });
+  }
+
   // Done-when 3: determinism
   it("two calls of generateBoard(7) produce deep-equal maps", () => {
     const a = generateBoard(7);
@@ -210,6 +265,17 @@ describe("generateBoard", () => {
 
     it("BONUS_DIVISOR is exported and equals 2", () => {
       expect(BONUS_DIVISOR).toBe(2);
+    });
+
+    // Saturation-fix mutation: BORDER_MAX must equal DEGREE_MAX - 1, so every
+    // province has at least one sea-lane slot. The previous M2.7 rework
+    // shipped with `BORDER_MAX = DEGREE_MAX`, which saturated some islands
+    // (seed 21 produced a degree-6 province; seed 33 produced 15 lanes and a
+    // disconnected graph; seeds 7 / 12 / 42 / 45 also failed). If a future
+    // commit flips BORDER_MAX back to DEGREE_MAX, this assertion fires and
+    // the per-seed tests above fail.
+    it("BORDER_MAX = DEGREE_MAX - 1 (saturation fix)", () => {
+      expect(BORDER_MAX).toBe(DEGREE_MAX - 1);
     });
 
     // Spot-check: if any structural constant is wrong, some seed fails to generate a valid board

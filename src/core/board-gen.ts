@@ -19,6 +19,16 @@ export const SEA_LANE_COUNT = 16;
 export const DEGREE_MIN = 2;
 /** C-BRD-04: maximum total degree (borders + sea lanes) per province. */
 export const DEGREE_MAX = 5;
+/**
+ * C-BRD-04: borders stop one short of DEGREE_MAX so every province has at
+ * least one slot for a sea lane. Without this reservation, buildBorders packs
+ * some provinces to DEGREE_MAX and leaves Phase 1 (the connectivity
+ * spanning tree) without any endpoint to use — the previous M2.7 rework
+ * shipped with that saturation bug (seeds 21 and 33). Capping borders at
+ * DEGREE_MAX - 1 makes every seed fixable on the first try with the existing
+ * Phase 1 / Phase 2 layout (2026-10-12).
+ */
+export const BORDER_MAX = DEGREE_MAX - 1;
 
 /**
  * C-BON-02: island bonus = max(2, floor(size/2) + cross-island-entrances).
@@ -124,8 +134,17 @@ function spreadPoints(
 
 /**
  * Build a connected graph on `provinceIds` where every vertex ends up with
- * degree between 2 and `maxDegree`, preferring 3–4 when possible.
- * Returns a symmetric adjacency map.
+ * degree in `[2, maxDegree]`. Returns a symmetric adjacency map.
+ *
+ * Order matters (fix for the seed 7 / 21 / 33 / 42 saturation bug, 2026-10-12):
+ * 1. Spanning tree. Every node has degree 1+.
+ * 2. Raise every degree-1 node to degree 2 using only partners with
+ *    headroom (`degree < maxDegree`). Doing this *before* the cap-packing
+ *    means the cap is never violated by the straggler fix (the previous
+ *    rework pushed some partners past the cap, leaving later sea-lane
+ *    phases no headroom).
+ * 3. Pack extra random edges up to the cap. Every node is at degree ≥ 2,
+ *    so headroom always exists for random pairs.
  */
 function buildBorders(
   rng: DeterministicRng,
@@ -136,45 +155,78 @@ function buildBorders(
   const adj = new Map<string, Set<string>>(provinceIds.map((id) => [id, new Set<string>()]));
 
   if (n === 1) return adj; // single-province island: no borders
+  if (n === 2) {
+    adj.get(provinceIds[0]!)!.add(provinceIds[1]!);
+    adj.get(provinceIds[1]!)!.add(provinceIds[0]!);
+    return adj; // one edge: both at degree 1; island-2 is not in ISLAND_SIZES but guard the case.
+  }
 
-  // Ensure connectivity: build a random spanning tree.
-  const shuffledIds = shuffled(rng, [...provinceIds]);
-  for (let i = 1; i < shuffledIds.length; i++) {
-    const child = shuffledIds[i]!;
-    // attach to a random earlier node (tree edge)
-    const parent = shuffledIds[rng.nextInt(0, i - 1)]!;
+  // Step 1: random spanning tree (guarantees connectivity, every node ≥ 1).
+  // Pick each child's parent only from earlier nodes whose degree is still
+  // below `maxDegree`, so the tree itself can never produce a hub past the
+  // cap. (Without this filter, a random tree on a size-10 island can give
+  // one node degree 5+, which is what the seed-12 / seed-45 bug exploited:
+  // the tree step overshot, Step 2 (straggler fix) only raises nodes
+  // already at degree < 2, and Step 3 (pack) respects the cap so the hub
+  // stuck above maxDegree forever.)
+  const order = shuffled(rng, [...provinceIds]);
+  for (let i = 1; i < order.length; i++) {
+    const child = order[i]!;
+    // attach to an earlier node with headroom (parent degree < maxDegree)
+    const headroomParents = order.slice(0, i).filter((p) => adj.get(p)!.size < maxDegree);
+    let parent: string;
+    if (headroomParents.length > 0) {
+      parent = headroomParents[rng.nextInt(0, headroomParents.length - 1)]!;
+    } else {
+      // Defensive fallback: only reachable when maxDegree < 3, which never
+      // happens in this generator (BORDER_MAX ≥ 3 here).
+      parent = order[rng.nextInt(0, i - 1)]!;
+    }
     adj.get(parent)!.add(child);
     adj.get(child)!.add(parent);
   }
 
-  // Add extra random edges to raise degree toward the 2–5 target.
-  // R2 fix applies only in the straggler loop below; the extra-edges loop
-  // uses the original logic to efficiently pack degree up to maxDegree.
   const ids = [...provinceIds];
-  for (let attempt = 0; attempt < 200; attempt++) {
+
+  // Step 2: raise degree-1 nodes to degree ≥ 2 using partners with headroom.
+  // The tree leaves at most n-1 leaves; each has degree 1, all other nodes
+  // have degree in [1, maxDegree] (some potentially at the cap), so the
+  // partner pool is almost always non-empty. We loop and break only when
+  // every node is at degree ≥ 2 or the partner pool is exhausted.
+  let stragglerPasses = 0;
+  const MAX_STRAGGLER_PASSES = 50;
+  let remainingStragglers = ids.filter((id) => adj.get(id)!.size < 2);
+  while (remainingStragglers.length > 0 && stragglerPasses < MAX_STRAGGLER_PASSES) {
+    stragglerPasses++;
+    let progress = false;
+    for (const id of remainingStragglers) {
+      if (adj.get(id)!.size >= 2) continue;
+      const partners = ids.filter(
+        (p) => p !== id && !adj.get(id)!.has(p) && adj.get(p)!.size < maxDegree,
+      );
+      if (partners.length === 0) continue;
+      const partner = partners[rng.nextInt(0, partners.length - 1)]!;
+      adj.get(id)!.add(partner);
+      adj.get(partner)!.add(id);
+      progress = true;
+    }
+    if (!progress) break;
+    remainingStragglers = ids.filter((id) => adj.get(id)!.size < 2);
+  }
+
+  // Step 3: pack extra random edges up to the cap. Every node is at degree
+  // ≥ 2 with at least one unsaturated partner (or fully saturated, in which
+  // case the random pick naturally skips).
+  const MAX_PACK_ATTEMPTS = n * 200;
+  for (let attempt = 0; attempt < MAX_PACK_ATTEMPTS; attempt++) {
     const a = ids[rng.nextInt(0, n - 1)]!;
     const b = ids[rng.nextInt(0, n - 1)]!;
     if (a === b) continue;
-    const degA = adj.get(a)!.size;
-    const degB = adj.get(b)!.size;
-    if (degA >= maxDegree || degB >= maxDegree) continue;
+    if (adj.get(a)!.size >= maxDegree) continue;
+    if (adj.get(b)!.size >= maxDegree) continue;
     if (adj.get(a)!.has(b)) continue;
     adj.get(a)!.add(b);
     adj.get(b)!.add(a);
-    if (adj.get(a)!.size >= maxDegree && adj.get(b)!.size >= maxDegree) break;
-  }
-
-  // Guarantee minimum degree 2 by adding edges for any stragglers.
-  for (const id of ids) {
-    while (adj.get(id)!.size < 2) {
-      let partner = ids[rng.nextInt(0, n - 1)]!;
-      if (partner === id || adj.get(id)!.has(partner)) {
-        partner = ids.find((p) => p !== id && !adj.get(id)!.has(p)) ?? id;
-      }
-      if (partner === id) break;
-      adj.get(id)!.add(partner);
-      adj.get(partner)!.add(id);
-    }
   }
 
   return adj;
@@ -217,9 +269,13 @@ export function generateBoard(seed: number): BoardGenResult {
   if (cursor !== 46) errors.push(`island sizes sum to ${cursor}, expected 46`);
 
   // ---- Build within-island borders --------------------------------------
+  // Capping at BORDER_MAX (= DEGREE_MAX - 1) reserves one degree slot per
+  // province for a sea lane; otherwise buildBorders packs some provinces to
+  // DEGREE_MAX and leaves Phase 1 unable to find a spanning-tree endpoint
+  // (saturation; see BORDER_MAX above).
   const allBorders = new Map<string, Set<string>>();
   for (const island of islandStructs) {
-    const adj = buildBorders(rng, island.provinceIds, DEGREE_MAX);
+    const adj = buildBorders(rng, island.provinceIds, BORDER_MAX);
     for (const [id, neighbours] of adj) {
       if (!allBorders.has(id)) allBorders.set(id, new Set<string>());
       for (const n of neighbours) allBorders.get(id)!.add(n);
