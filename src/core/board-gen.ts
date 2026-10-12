@@ -148,6 +148,8 @@ function buildBorders(
   }
 
   // Add extra random edges to raise degree toward the 2–5 target.
+  // R2 fix applies only in the straggler loop below; the extra-edges loop
+  // uses the original logic to efficiently pack degree up to maxDegree.
   const ids = [...provinceIds];
   for (let attempt = 0; attempt < 200; attempt++) {
     const a = ids[rng.nextInt(0, n - 1)]!;
@@ -247,22 +249,45 @@ export function generateBoard(seed: number): BoardGenResult {
   // Phase 1: Prim's spanning tree across islands (guarantees connectivity).
   // Start from island 0, grow a frontier until all islands are connected.
   const connectedIslands = new Set<string>([islandStructs[0]!.id]);
-  const frontier: { fromIsland: string; toIsland: string }[] = [];
+  const frontier: { fromIsland: string; toIsland: string; attempts: number }[] = [];
+  // R1 fix: track permanently exhausted island pairs so they are never re-added.
+  const exhaustedPairs = new Set<string>();
 
   // Seed frontier with edges from island 0 to every other island.
   for (let i = 1; i < islandStructs.length; i++) {
-    frontier.push({ fromIsland: islandStructs[0]!.id, toIsland: islandStructs[i]!.id });
+    frontier.push({ fromIsland: islandStructs[0]!.id, toIsland: islandStructs[i]!.id, attempts: 0 });
   }
 
+  // R1 fix: cap attempts per frontier entry pair. When a pair is exhausted,
+  // mark it permanently exhausted; if the frontier empties before all islands
+  // are connected, give up on Phase 1 (the spanning tree cannot be completed).
+  const MAX_ENTRY_ATTEMPTS = 200;
+
   while (connectedIslands.size < islandStructs.length) {
-    // Pick a random frontier entry (island already connected → not yet connected).
-    const entry = frontier[rng.nextInt(0, frontier.length - 1)]!;
+    if (frontier.length === 0) {
+      // All remaining pairs are exhausted — give up on Phase 1.
+      break;
+    }
+
+    // Pick a random frontier entry.
+    const entryIdx = rng.nextInt(0, frontier.length - 1);
+    const entry = frontier[entryIdx]!;
     const { fromIsland, toIsland } = entry;
+
     if (connectedIslands.has(toIsland)) {
-      // Already connected; remove and skip
-      frontier.splice(frontier.indexOf(entry), 1);
+      // Already connected; remove and skip.
+      frontier.splice(entryIdx, 1);
       continue;
     }
+
+    entry.attempts++;
+    if (entry.attempts > MAX_ENTRY_ATTEMPTS) {
+      // Give up on this pair permanently.
+      exhaustedPairs.add(`${fromIsland}|${toIsland}`);
+      frontier.splice(entryIdx, 1);
+      continue;
+    }
+
     const from = islandStructs.find((isl) => isl.id === fromIsland)!;
     const to = islandStructs.find((isl) => isl.id === toIsland)!;
     const provA = from.provinceIds[rng.nextInt(0, from.provinceIds.length - 1)]!;
@@ -271,27 +296,52 @@ export function generateBoard(seed: number): BoardGenResult {
       connectedIslands.add(toIsland);
       // Add new frontier entries from the newly connected island.
       for (const other of islandStructs) {
-        if (!connectedIslands.has(other.id)) {
-          frontier.push({ fromIsland: toIsland, toIsland: other.id });
+        if (!connectedIslands.has(other.id) && !exhaustedPairs.has(`${toIsland}|${other.id}`)) {
+          frontier.push({ fromIsland: toIsland, toIsland: other.id, attempts: 0 });
         }
       }
     }
   }
 
   // Phase 2: fill remaining slots up to SEA_LANE_COUNT.
-  let seaLaneAttempts = 0;
+  // R1 fix: greedily pick provinces with available degree headroom, so lanes are
+  // placed even when many provinces are near DEGREE_MAX. Shuffle the candidate list
+  // each pass to avoid systematic bias.
   let seaLaneCount = islandStructs.length - 1; // spanning tree used this many lanes
-  while (seaLaneCount < SEA_LANE_COUNT && seaLaneAttempts < 2000) {
-    seaLaneAttempts++;
-    const islandA = islandStructs[rng.nextInt(0, islandStructs.length - 1)]!;
-    const islandB = islandStructs[rng.nextInt(0, islandStructs.length - 1)]!;
-    if (islandA === islandB) continue;
-    const provA = islandA.provinceIds[rng.nextInt(0, islandA.provinceIds.length - 1)]!;
-    const provB = islandB.provinceIds[rng.nextInt(0, islandB.provinceIds.length - 1)]!;
-    if (tryAddLane(provA, provB)) seaLaneCount++;
+  let phase2Passes = 0;
+  const MAX_PHASE2_PASSES = 100;
+  while (seaLaneCount < SEA_LANE_COUNT && phase2Passes < MAX_PHASE2_PASSES) {
+    phase2Passes++;
+    // Build shuffled list of province-island pairs to try
+    const candidates: { prov: string; islandId: string }[] = [];
+    for (const island of islandStructs) {
+      for (const prov of island.provinceIds) {
+        candidates.push({ prov, islandId: island.id });
+      }
+    }
+    // Fisher-Yates shuffle
+    for (let i = candidates.length - 1; i > 0; i--) {
+      const j = rng.nextInt(0, i);
+      const tmp = candidates[i]!;
+      candidates[i] = candidates[j]!;
+      candidates[j] = tmp;
+    }
+    // Try each candidate pair once this pass
+    for (const { prov: provA, islandId: idA } of candidates) {
+      if (seaLaneCount >= SEA_LANE_COUNT) break;
+      for (const { prov: provB, islandId: idB } of candidates) {
+        if (idA === idB) continue;
+        if (tryAddLane(provA, provB)) {
+          seaLaneCount++;
+          break;
+        }
+      }
+    }
   }
   if (seaLaneCount < SEA_LANE_COUNT)
-    errors.push(`could not place ${SEA_LANE_COUNT} sea lanes in 2000 attempts`);
+    errors.push(
+      `could not place ${SEA_LANE_COUNT} sea lanes in ${MAX_PHASE2_PASSES} passes (placed ${seaLaneCount})`,
+    );
 
   // ---- Compute cross-island entrances per island (for bonus) -------------
   const islandEntrances = new Map<string, number>();
