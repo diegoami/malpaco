@@ -37,7 +37,14 @@ export { OptionsError } from "./options";
 export { SeatsError, MAX_SEATS, MIN_SEATS, computerCount, hasHuman, validateSeats } from "./seats";
 export type { Difficulty, SeatKind, SeatSpec } from "./seats";
 export { SaveFormatError, deserializeOptions, serializeOptions } from "./save";
-export { generateBoard, MAX_BOARD_ATTEMPTS } from "./board-gen";
+export {
+  generateBoard,
+  MAX_BOARD_ATTEMPTS,
+  MAX_LANES_PER_COUNTRY,
+  MAX_ENTRANCES_BY_SIZE,
+  MIN_ENTRANCES_PER_ISLAND,
+  MAX_ISLAND_GRAPH_DEGREE,
+} from "./board-gen";
 export type { BoardGenResult } from "./board-gen";
 export {
   checkBonusOutOfProportion,

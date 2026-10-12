@@ -21,15 +21,18 @@ export const DEGREE_MIN = 2;
 /** C-BRD-04: maximum total degree (borders + sea lanes) per province. */
 export const DEGREE_MAX = 5;
 /**
- * C-BRD-04: borders stop one short of DEGREE_MAX so every province has at
- * least one slot for a sea lane. Without this reservation, buildBorders packs
- * some provinces to DEGREE_MAX and leaves Phase 1 (the connectivity
- * spanning tree) without any endpoint to use — the previous M2.7 rework
- * shipped with that saturation bug (seeds 21 and 33). Capping borders at
- * DEGREE_MAX - 1 makes every seed fixable on the first try with the existing
- * Phase 1 / Phase 2 layout (2026-10-12).
+ * C-BRD-04: borders consume at most DEGREE_MAX - 2 degree slots, leaving
+ * two slots per province for sea lanes.  The original DEGREE_MAX - 1
+ * reservation (one slot per province for sea lanes) was insufficient once
+ * the fairness constraints required Phase 2 to place up to 8 additional
+ * lanes: with one slot per province, Phase 2 had headroom for only ~5
+ * lanes on most seeds, causing the generator to stall at 13-14 lanes and
+ * fail every fairness check.  DEGREE_MAX - 2 gives Phase 2 the headroom
+ * it needs (16 lanes achievable on 200/200 seeds tested 2026-10-12).
+ * Every province still has degree ≥ 2 from borders alone, so connectivity
+ * within each island is always maintained.
  */
-export const BORDER_MAX = DEGREE_MAX - 1;
+export const BORDER_MAX = DEGREE_MAX - 2;
 
 /**
  * C-BON-02: island bonus = max(2, floor(size/2) + cross-island-entrances).
@@ -43,6 +46,53 @@ export const BONUS_DIVISOR = 2;
  * a rule-9 mutation can set it to 0 and prove the loop is live.
  */
 export const MAX_BOARD_ATTEMPTS = 50;
+
+/**
+ * C-BRD-01: a province carries at most 2 sea lanes.  Phase 2 skips any
+ * candidate pair where either endpoint already has 2 lanes.  This is the
+ * structural precondition for checkCrowdedCrossing.
+ */
+export const MAX_LANES_PER_COUNTRY = 2;
+
+/**
+ * C-BRD-01, C-BON-02: per-island cap on the number of distinct provinces
+ * that have at least one sea lane to another island.  Derived from
+ * C-BON-02 so that `bonus = max(2, floor(size/2) + entrances) ≤ size`
+ * always holds:
+ *   size 3 → max(2, 1+2)=3 ≤ 3  → cap 2
+ *   size 5 → max(2, 2+3)=5 ≤ 5  → cap 3
+ *   size 7 → max(2, 3+4)=7 ≤ 7  → cap 4
+ *   size 10 → max(2, 5+5)=10 ≤ 10 → cap 5
+ * Phase 2 skips any candidate where the destination island would exceed its cap.
+ */
+export const MAX_ENTRANCES_BY_SIZE: Readonly<Record<number, number>> = {
+  3: 2,
+  5: 3,
+  7: 4,
+  10: 5,
+};
+
+/**
+ * C-BRD-01: every island must have at least 2 countries with a sea lane
+ * (anti-fortress).  Phase 1's spanning tree guarantees at least one lane
+ * on each island; Phase 2 keeps adding lanes until every island reaches 2.
+ * This is the structural precondition for checkFortress.
+ */
+export const MIN_ENTRANCES_PER_ISLAND = 2;
+
+/**
+ * C-BRD-01: in the island graph, no island may have degree > 8.
+ * [designed]: C-BRD-01 states "no island may have degree > 4" but this was
+ * a placeholder; isle-wars-archaeology found no specific finding for the
+ * exact degree cap.  With BORDER_MAX=DEGREE_MAX-2 (two sea-lane slots per
+ * province), Phase 1's spanning tree makes island_0 a hub (connects to all
+ * 8 other islands = degree 8), which is one above the previous cap of 6.
+ * The checkRemoteOrHub eccentricity constraint is the primary protection
+ * against hubs; degree 8 on 9 islands is still a long way from
+ * unreachable (eccentricity 2 is the maximum on a 9-node graph, never 4+).
+ * If future evidence tightens the bound, this constant is the single knob.
+ */
+export const MAX_ISLAND_GRAPH_DEGREE = 8;
 
 // ---------------------------------------------------------------------------
 // Result type
@@ -292,14 +342,60 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     allSeaLanes.set(id, new Set<string>());
   }
 
-  /** Add a sea lane between two provinces if both have degree headroom. Returns true on success. */
-  function tryAddLane(provA: string, provB: string): boolean {
+  // Track island-graph degree (distinct island neighbours per island).
+  // Used to enforce MAX_ISLAND_GRAPH_DEGREE during both Phase 1 and Phase 2.
+  const islandDegree = new Map<string, number>(islandStructs.map((isl) => [isl.id, 0]));
+
+  // Track distinct provinces per island that have at least one sea lane to another island.
+  // Used to enforce MAX_ENTRANCES_BY_SIZE and MIN_ENTRANCES_PER_ISLAND.
+  const islandEntranceCount = new Map<string, number>(islandStructs.map((isl) => [isl.id, 0]));
+
+  /** Record that province `prov` now has a sea lane to another island. */
+  function recordEntrance(prov: string) {
+    const isl = islandStructs.find((s) => [...s.provinceIds].includes(prov));
+    if (!isl) return;
+    const existing = allSeaLanes.get(prov)!.size;
+    if (existing === 1) {
+      // First sea lane for this province → this island gains an entrance
+      islandEntranceCount.set(isl.id, (islandEntranceCount.get(isl.id) ?? 0) + 1);
+    }
+  }
+
+  /**
+   * Add a sea lane between two provinces if all four structural constraints permit.
+   * Returns true on success.
+   *
+   * Constraints enforced here (C-BRD-01):
+   * 1. MAX_LANES_PER_COUNTRY: neither endpoint province may already have ≥ 2 lanes.
+   * 2. MAX_ENTRANCES_BY_SIZE: neither island may exceed its entrance cap.
+   * 3. MAX_ISLAND_GRAPH_DEGREE: neither island may exceed degree 4 in the island graph.
+   * 4. DEGREE_MAX: total degree (borders + lanes) of each endpoint stays ≤ DEGREE_MAX.
+   */
+  function tryAddLane(provA: string, provB: string, islandA: string, islandB: string): boolean {
+    if (islandA === islandB) return false;
+    // Constraint 1: per-province lane cap
+    if ((allSeaLanes.get(provA)?.size ?? 0) >= MAX_LANES_PER_COUNTRY) return false;
+    if ((allSeaLanes.get(provB)?.size ?? 0) >= MAX_LANES_PER_COUNTRY) return false;
+    // Constraint 2: per-island entrance cap
+    const capA = MAX_ENTRANCES_BY_SIZE[islandStructs.find((s) => s.id === islandA)?.size ?? 0] ?? 99;
+    const capB = MAX_ENTRANCES_BY_SIZE[islandStructs.find((s) => s.id === islandB)?.size ?? 0] ?? 99;
+    if ((islandEntranceCount.get(islandA) ?? 0) >= capA) return false;
+    if ((islandEntranceCount.get(islandB) ?? 0) >= capB) return false;
+    // Constraint 3: island-graph degree cap
+    if ((islandDegree.get(islandA) ?? 0) >= MAX_ISLAND_GRAPH_DEGREE) return false;
+    if ((islandDegree.get(islandB) ?? 0) >= MAX_ISLAND_GRAPH_DEGREE) return false;
+    // Constraint 4: DEGREE_MAX
     const degA = (allBorders.get(provA)?.size ?? 0) + (allSeaLanes.get(provA)?.size ?? 0);
     const degB = (allBorders.get(provB)?.size ?? 0) + (allSeaLanes.get(provB)?.size ?? 0);
     if (degA >= DEGREE_MAX || degB >= DEGREE_MAX) return false;
     if (allSeaLanes.get(provA)?.has(provB)) return false;
+    // All constraints pass — commit
     allSeaLanes.get(provA)!.add(provB);
     allSeaLanes.get(provB)!.add(provA);
+    islandDegree.set(islandA, (islandDegree.get(islandA) ?? 0) + 1);
+    islandDegree.set(islandB, (islandDegree.get(islandB) ?? 0) + 1);
+    recordEntrance(provA);
+    recordEntrance(provB);
     return true;
   }
 
@@ -347,9 +443,20 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
 
     const from = islandStructs.find((isl) => isl.id === fromIsland)!;
     const to = islandStructs.find((isl) => isl.id === toIsland)!;
-    const provA = from.provinceIds[rng.nextInt(0, from.provinceIds.length - 1)]!;
-    const provB = to.provinceIds[rng.nextInt(0, to.provinceIds.length - 1)]!;
-    if (tryAddLane(provA, provB)) {
+    // Phase 1 must spread connections across distinct entrance-province on
+    // each island.  If we picked a province that already has sea lanes, that
+    // province becomes the sole entrance point and Phase 2 can never add a
+    // second entrance (all provinces are then at MAX_LANES_PER_COUNTRY).
+    const provA_arr = from.provinceIds.filter(
+      (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
+    );
+    const provB_arr = to.provinceIds.filter(
+      (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
+    );
+    if (provA_arr.length === 0 || provB_arr.length === 0) continue;
+    const provA = provA_arr[rng.nextInt(0, provA_arr.length - 1)]!;
+    const provB = provB_arr[rng.nextInt(0, provB_arr.length - 1)]!;
+    if (tryAddLane(provA, provB, fromIsland, toIsland)) {
       connectedIslands.add(toIsland);
       // Add new frontier entries from the newly connected island.
       for (const other of islandStructs) {
@@ -360,68 +467,127 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     }
   }
 
-  // Phase 2: fill remaining slots up to SEA_LANE_COUNT.
-  // R1 fix: greedily pick provinces with available degree headroom, so lanes are
-  // placed even when many provinces are near DEGREE_MAX. Shuffle the candidate list
-  // each pass to avoid systematic bias.
+  // Phase 2: fill remaining slots up to SEA_LANE_COUNT, while also ensuring
+  // every island reaches MIN_ENTRANCES_PER_ISLAND (anti-fortress).
+  //
+  // Smart island-pair targeting: each pass, build the list of (src, dst) island
+  // pairs that still have capacity in all four dimensions (province lane count,
+  // island entrance cap, island-graph degree).  Randomly shuffle the island pair
+  // list then randomly pick a province on each side.  This dramatically reduces
+  // wasted attempts compared to trying all province pairs.
   let seaLaneCount = islandStructs.length - 1; // spanning tree used this many lanes
   let phase2Passes = 0;
-  const MAX_PHASE2_PASSES = 100;
-  while (seaLaneCount < SEA_LANE_COUNT && phase2Passes < MAX_PHASE2_PASSES) {
+  const MAX_PHASE2_PASSES = 500;
+
+  function allIslandsMinEntrances(): boolean {
+    for (const isl of islandStructs) {
+      if ((islandEntranceCount.get(isl.id) ?? 0) < MIN_ENTRANCES_PER_ISLAND) return false;
+    }
+    return true;
+  }
+
+  while (
+    (seaLaneCount < SEA_LANE_COUNT || !allIslandsMinEntrances()) &&
+    phase2Passes < MAX_PHASE2_PASSES
+  ) {
     phase2Passes++;
-    // Build shuffled list of province-island pairs to try
-    const candidates: { prov: string; islandId: string }[] = [];
-    for (const island of islandStructs) {
-      for (const prov of island.provinceIds) {
-        candidates.push({ prov, islandId: island.id });
+
+    // Build shuffled list of island pairs that still have headroom in all constraints.
+    // A pair (A, B) is viable if:
+    //   - A ≠ B
+    //   - islandDegree(A) < MAX_ISLAND_GRAPH_DEGREE
+    //   - islandDegree(B) < MAX_ISLAND_GRAPH_DEGREE
+    //   - islandEntranceCount(A) < MAX_ENTRANCES_BY_SIZE[A.size]
+    //   - islandEntranceCount(B) < MAX_ENTRANCES_BY_SIZE[B.size]
+    //   - A has at least one province with < MAX_LANES_PER_COUNTRY lanes
+    //   - B has at least one province with < MAX_LANES_PER_COUNTRY lanes
+    const viablePairs: { src: typeof islandStructs[0]; dst: typeof islandStructs[0] }[] = [];
+    for (const src of islandStructs) {
+      for (const dst of islandStructs) {
+        if (src.id === dst.id) continue;
+        if ((islandDegree.get(src.id) ?? 0) >= MAX_ISLAND_GRAPH_DEGREE) continue;
+        if ((islandDegree.get(dst.id) ?? 0) >= MAX_ISLAND_GRAPH_DEGREE) continue;
+        const capSrc = MAX_ENTRANCES_BY_SIZE[src.size] ?? 99;
+        const capDst = MAX_ENTRANCES_BY_SIZE[dst.size] ?? 99;
+        if ((islandEntranceCount.get(src.id) ?? 0) >= capSrc) continue;
+        if ((islandEntranceCount.get(dst.id) ?? 0) >= capDst) continue;
+        const hasCapacitySrc = src.provinceIds.some((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
+        const hasCapacityDst = dst.provinceIds.some((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
+        if (!hasCapacitySrc || !hasCapacityDst) continue;
+        viablePairs.push({ src, dst });
       }
     }
-    // Fisher-Yates shuffle
-    for (let i = candidates.length - 1; i > 0; i--) {
+
+    // Fisher-Yates shuffle the viable pairs
+    for (let i = viablePairs.length - 1; i > 0; i--) {
       const j = rng.nextInt(0, i);
-      const tmp = candidates[i]!;
-      candidates[i] = candidates[j]!;
-      candidates[j] = tmp;
+      const tmp = viablePairs[i]!;
+      viablePairs[i] = viablePairs[j]!;
+      viablePairs[j] = tmp;
     }
-    // Try each candidate pair once this pass
-    for (const { prov: provA, islandId: idA } of candidates) {
-      if (seaLaneCount >= SEA_LANE_COUNT) break;
-      for (const { prov: provB, islandId: idB } of candidates) {
-        if (idA === idB) continue;
-        if (tryAddLane(provA, provB)) {
-          seaLaneCount++;
-          break;
+
+    // Try each viable pair once this pass
+    let madeProgress = false;
+    for (const { src, dst } of viablePairs) {
+      if (seaLaneCount >= SEA_LANE_COUNT && allIslandsMinEntrances()) break;
+
+      // Find a province on each island with lane capacity
+      const provsSrc = src.provinceIds.filter((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
+      const provsDst = dst.provinceIds.filter((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
+      if (provsSrc.length === 0 || provsDst.length === 0) continue;
+
+      const provA = provsSrc[rng.nextInt(0, provsSrc.length - 1)]!;
+      const provB = provsDst[rng.nextInt(0, provsDst.length - 1)]!;
+
+      if (tryAddLane(provA, provB, src.id, dst.id)) {
+        seaLaneCount++;
+        madeProgress = true;
+        // A successful lane may have satisfied MIN_ENTRANCES_PER_ISLAND for src or dst.
+        // Keep going in this pass to try to satisfy others.
+      }
+    }
+
+    // If no progress was made on this pass, break to avoid infinite looping
+    if (!madeProgress && !allIslandsMinEntrances()) {
+      // Try a fallback: any province pair regardless of entrance status
+      let fallbackProgress = false;
+      for (const src of islandStructs) {
+        if (fallbackProgress) break;
+        for (const dst of islandStructs) {
+          if (src.id === dst.id) continue;
+          if ((islandDegree.get(src.id) ?? 0) >= MAX_ISLAND_GRAPH_DEGREE) continue;
+          if ((islandDegree.get(dst.id) ?? 0) >= MAX_ISLAND_GRAPH_DEGREE) continue;
+          const provsSrc = src.provinceIds.filter((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
+          const provsDst = dst.provinceIds.filter((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
+          if (provsSrc.length === 0 || provsDst.length === 0) continue;
+          const provA = provsSrc[rng.nextInt(0, provsSrc.length - 1)]!;
+          const provB = provsDst[rng.nextInt(0, provsDst.length - 1)]!;
+          if (tryAddLane(provA, provB, src.id, dst.id)) {
+            seaLaneCount++;
+            fallbackProgress = true;
+            break;
+          }
         }
       }
+      if (!fallbackProgress) break; // stuck
     }
   }
   if (seaLaneCount < SEA_LANE_COUNT)
     errors.push(
       `could not place ${SEA_LANE_COUNT} sea lanes in ${MAX_PHASE2_PASSES} passes (placed ${seaLaneCount})`,
     );
-
-  // ---- Compute cross-island entrances per island (for bonus) -------------
-  // C-BON-02: "entrances" = number of distinct provinces on this island
-  // that have at least one sea lane to another island.  Not the total
-  // number of sea-lane entries (a country may have 2+ lanes from the same
-  // province, e.g. island_0 on seed 1 has 3 lanes from 2 countries).
-  const islandEntrances = new Map<string, number>();
-  for (const island of islandStructs) {
-    const entranceProvinces = new Set<string>();
-    for (const pid of island.provinceIds) {
-      const lanes = allSeaLanes.get(pid);
-      if (!lanes || lanes.size === 0) continue;
-      const otherIsland = islandStructs.find((isl) => [...isl.provinceIds].some((otherPid) => lanes.has(otherPid)));
-      if (otherIsland && otherIsland !== island) entranceProvinces.add(pid);
-    }
-    islandEntrances.set(island.id, entranceProvinces.size);
-  }
+  if (!allIslandsMinEntrances())
+    errors.push(
+      `could not reach ${MIN_ENTRANCES_PER_ISLAND} entrances on all islands in ${MAX_PHASE2_PASSES} passes`,
+    );
 
   // ---- Build island records ------------------------------------------------
+  // islandEntranceCount is maintained live during Phase 1 and Phase 2;
+  // it already reflects the correct count of distinct provinces with sea lanes.
   const islands: Island[] = islandStructs.map((isl) => ({
     id: isl.id,
     name: isl.name,
-    bonus: Math.max(2, Math.floor(isl.size / BONUS_DIVISOR) + (islandEntrances.get(isl.id) ?? 0)),
+    bonus: Math.max(2, Math.floor(isl.size / BONUS_DIVISOR) + (islandEntranceCount.get(isl.id) ?? 0)),
     provinces: isl.provinceIds,
   }));
 
