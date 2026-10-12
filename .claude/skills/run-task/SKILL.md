@@ -1,6 +1,6 @@
 ---
 name: run-task
-description: Run tasks or fixes end to end. OpenCode (or Claude) implements, a reviewer of another model family reviews, the main session merges and reports. Main session only.
+description: Run tasks or fixes end to end. A subagent spawned on a model of its own (or the main session directly) implements and one OpenCode model of another family reviews, each after one question to the user; the main session merges and reports. Main session only.
 ---
 
 # /run-task [T<nn> | #<issue> ...]
@@ -8,7 +8,15 @@ description: Run tasks or fixes end to end. OpenCode (or Claude) implements, a r
 Read `docs/process.md` §3–§6 first. Given ids, run them in order; given none, take the first
 `status:ready` task in `docs/tasks/README.md`. Report after each task; stop at any escalation.
 For `#<issue>` of a bug labelled `fix`, the bug body replaces the task file, the branch is
-`fix/<issue>-<slug>` (`--fix <issue>` in the scripts), and there is one review round.
+`fix/<issue>-<slug>`, and there is one review round.
+
+Two questions per task, and no other choice of model (CLAUDE.md rule 6, the owner, 2026-10-12):
+before the implementation, which subagent implements (the `implementer` agent on a model of its
+own: an alias or a model id the session's provider serves) or whether the main session does it
+directly; before each review, which OpenCode model reviews. Each question
+proposes `harness.json`'s default first; the roster changes through `/switch-model`, never here.
+No quota is checked. The implementer's family is the session's, read from the Anthropic
+environment (`switch-model.mjs --show` prints it); the reviewer is never of that family.
 
 0. **Check.** The issue is `status:ready` and every Merge-after task is merged. Run
    `gh issue list --label triage:needed --state open`; triage anything that names this task first.
@@ -18,38 +26,60 @@ For `#<issue>` of a bug labelled `fix`, the bug body replaces the task file, the
    Run every Done-when line yourself: it must fail on `main` and pass on a mock fix (a scratch
    change, then discarded). A line that cannot is amended on `main` before dispatch (L45).
 
-1. **Brief.** Write it to a temp file: the task file **pasted in full**, then `docs/process.md` §4's
-   block, then (on rework) the review comment's URL. Never a pointer to the task file.
+1. **Brief.** The task file **pasted in full**, then `docs/process.md` §4's block, then (on
+   rework) the review comment's URL. Never a pointer to the task file. The main session
+   implementing itself reads the same block as its contract.
 
-   **Watching background work (L48).** While any job runs in the background (an implement or
-   review run, an agent, a long command), arm a watch: Claude Code's Monitor (30 minutes,
-   re-armed until the work ends), or a background `until` loop where there is none. It reports
-   each job's start and end, and flags a job whose log or output file has not grown for 10
-   minutes as possibly stuck; check it is alive on its exact PID. The runner kills its own run at
-   the idle limit (L10), so for an implement or review run the flag is a warning to read the
-   output, not a reason to kill it; for an agent or a plain command it is the only watchdog.
-   Never wait with `while pgrep -f '<pattern>'`: the waiting shell's command line contains the
-   pattern, so it matches itself and waits forever. Chain jobs in one background command, or
-   wait on the PID with `while kill -0 <pid>`. Tell the user at each start, end and flag.
+2. **Implement.** First ask the user ONE question with the question tool (CLAUDE.md rule 6
+   rule 1): which subagent implements (the `implementer` agent on `sonnet`, `opus`, `haiku`, `fable`
+   or a model id the session's provider serves), or does the main session implement directly (only
+   where the provider cannot spawn one)? Put `harness.json`'s `implementer.default` first. Record the answer on the
+   issue. Label `status:in-progress`. Then:
+   - **The `implementer` subagent**: `Agent(subagent_type: "implementer", model: <the answer>,
+     isolation: "worktree")` with the brief, on a model of its own, not the orchestrator's
+     (`sonnet` under Opus; under Z.AI the same alias is GLM-5.3 Flash; a model id names the
+     provider's model outright). A Sonnet brief carries the tripwire paragraph from
+     `docs/models.md`. Its agent file carries §4's block and the run mechanics; its hook refuses
+     `git stash`, `git worktree`, a force-push and `gh pr merge`. Watch it by its transcript
+     file's size and its worktree (CLAUDE.md rule 6.6); tell the user in plain language what it is
+     doing. Read its final report in full before acting (rule 8, L55), and post its `RUN-NOTES.md` on
+     the issue. A report that stops on a Done-when it cannot meet gets an answer (amend the task
+     on `main`, decide, or escalate), never a blind retry.
+   - **The main session, directly**, only where the provider cannot spawn a subagent (one model,
+     or the Agent tool's model not honoured) or the user says so: in its own worktree
+     (`git worktree add ../malpaco-work/T<nn> -b task/T<nn>-<slug> origin/main`,
+     never the main checkout), keeping `RUN-NOTES.md` there (the plan, a line per commit, an END
+     block), pushing
+     after every commit, and opening the PR with the template body.
 
-2. **Implement.** Label `status:in-progress`. Use the task file's Implementer:
-   - `opencode` (the default): run
-     `node tools/harness/implement.mjs --task T<nn> --slug <slug> --issue <n> --brief <file>`
-     with `run_in_background`, and watch it (below); never poll with sleep.
-     - Exit 0: a PR is open. Note the `implemented by:` line.
-     - Exit 1: read the log it names. An implementer that stopped and reported goes to step 5,
-       or to a task-file amendment on `main` and a re-run.
-     - Exit 3: OpenCode unavailable, its model not listed, or Go not logged in (the message gives
-       the login command). Use the task file's Claude fallback (Sonnet by default), and say so in
-       a comment on the issue.
-   - **Read before you retry (L55).** Before a retry, a re-route to another model, or calling a
-     run a failure, read what it returned; never retry blind. An OpenCode exit 1 with an empty
-     diff looks the same for an early end and for a run that stopped and reported a blocker, and
-     the log's tail shows only the last tool output. Read the model's final message from the
-     session record, read-only (never `auth.json` in that directory), with the `session ses_…` id
-     from the run's log:
+3. **Review.** First ask the user ONE question (CLAUDE.md rule 6 rule 2): which OpenCode model
+   reviews? Put `harness.json`'s `reviewer.default` first (`gpt-6.1-sol` for a guard, a gate or
+   a hard task), then the registered models that are neither of the session's family nor
+   blocked (`switch-model.mjs --show`). Record the answer on the PR. Label `status:in-review`.
+   Name the PR's head in the brief only after the push has landed (`git rev-parse <branch>`); a
+   brief naming another commit exits 2 before anything runs (L33). Then, as a systemd unit,
+   watched (CLAUDE.md rule 6.6; `run-unit.sh` forwards the environment, so the script reads the
+   session's family from it):
+   ```bash
+   tools/harness/run-unit.sh review-<pr> <log> -- node tools/harness/review.mjs --pr <pr> --brief <file> --issue <n> --apply-label [--reviewer <the answer>]
+   ```
+   One review per PR unless the user asks for more. Relay its findings in full (rule 8).
+   - Exit 0: posted and labelled.
+   - Exit 3: no review came back (OpenCode, the login, the model, a rejected path, or a review
+     the script could not find). Nothing was posted. Read the run's final message first (rule 8,
+     the snippet below), fix the cause (a wider grant in `.opencode/agents/reviewer.md`, a login,
+     a brief line), and run again. Another model only when the provider does not answer, and the
+     user names it at the question.
+   - Exit 4: a review was posted whole under a note (cut off, verdict unreadable, verdicts differ,
+     a finding after the closing verdict, or an approve with a Done-when line unaccounted for or
+     not run, L32). No label was applied. Read it on the PR and decide: apply the label it
+     supports, ask for a supplementary review of the missing DW lines, or send it to rework.
+     Never pay for a second review just because the first was flagged: OpenCode's models do not
+     always follow the brief, and the script's reading is the safety net.
+   - **Read before you act (L55).** The final message, read-only (never `auth.json` there), with
+     the `session ses_…` id from the run's log:
      ```bash
-     python3 - <<'EOF'
+     python3 - <<'PY'
      import sqlite3, json, os
      home = os.environ.get('HARNESS_OPENCODE_HOME') or os.path.expanduser('~/.local/share/harness-opencode')
      db = 'file:' + os.path.join(home, 'data', 'opencode', 'opencode.db') + '?mode=ro'   # the scripts' data directory
@@ -58,44 +88,10 @@ For `#<issue>` of a bug labelled `fix`, the bug body replaces the task file, the
      parts = [json.loads(d) for (d,) in c.execute("select data from part where session_id=? order by time_created", (sid,))]
      texts = [p for p in parts if p.get('type') == 'text']
      print(texts[-1]['text'] if texts else 'no text part')
-     EOF
+     PY
      ```
-     For a Claude agent, read its final report in full. A run that stopped and reported gets an
-     answer to its report (amend the task, decide, or escalate), and the report is posted on the
-     task's issue so it is kept.
-   - `claude`: `Agent(subagent_type: "implementer", isolation: "worktree")`, Sonnet unless the
-     task file names opus, with the brief. The agent file (`.claude/agents/implementer.md`) carries
-     §4's block and the run mechanics, and its hook refuses `git stash`, `git worktree`, a
-     force-push and `gh pr merge`.
-
-3. **Review.** Label `status:in-review`. Use the task file's Reviewer, never the implementer's
-   family:
-   - `opencode` (the default, GPT-5.6 Luna on the direct OpenAI route): `node tools/harness/review.mjs
-     --pr <pr> --brief <file> --exclude <implemented by> --issue <n> --apply-label`, in the
-     background; a hard task adds `--hard` (GLM-5.3, then another provider when it cannot run,
-     L39), and a guard task or the last round (`review-round:2`, `:1` for a fix) also `--sol`
-     (GPT-6.1 Sol at low effort first, L41). Name the PR's head in the brief only after the push
-     has landed: take it from the local branch (`git rev-parse <branch>`). A brief whose block
-     before the task file names another commit exits 2 before anything runs (L33).
-     - Exit 0: posted and labelled.
-     - Exit 3: no review came back, or OpenCode or its login is unavailable (read the run's final
-       message first, as under step 2's *Read before you retry*). Nothing was posted:
-       run the Claude reviewer (Opus). If a Claude agent implemented the PR, Claude may not
-       review it either (the family rule): escalate (step 5).
-     - Exit 4: a review was posted whole under a note (it may be cut off, its verdict is
-       unreadable, its verdicts differ, or a finding follows its closing verdict), or an approve
-       left a Done-when line unaccounted for or not run (L32). No label was applied. For a
-       missing `DW` line, run a supplementary review of those lines alone, or send it to rework. Read it on the PR
-       and decide: apply the label it supports, or escalate. Never pay for a second review just
-       because the first was flagged.
-   - `claude` (the fallback): first `git fetch origin pull/<pr>/head`, since the reviewer has no
-     GitHub credentials (#68); then `Agent(subagent_type: "reviewer", isolation: "worktree")` (Opus),
-     with §5's brief filled in. The agent file carries the rest; its hook refuses every write. It
-     **returns** its review: save its final message to a file, then post it with
-     `node tools/harness/post-review.mjs --pr <pr> --brief <brief> --review <file>
-     --by "claude (opus)" --issue <n> --apply-label`. Its exits are review.mjs's, but 1 means no
-     review was in the message: re-run the reviewer once, then escalate.
-   - Architecture task: also `/code-review <pr>`, always with the number.
+   - A Claude review (`/code-review <pr>`, always with the number, or the `reviewer` agent posted
+     with `post-review.mjs`) only when the user asks: it is the implementer's family.
 
 4. **Decide** on the label the reviewer applied.
    - `status:approved`:
@@ -106,7 +102,8 @@ For `#<issue>` of a bug labelled `fix`, the bug body replaces the task file, the
      4. File one `T<nn> follow-up` issue (`triage:needed`) for the non-blocking findings.
      5. Unblock the tasks whose Merge-after are now all merged.
      6. Remove the task's worktrees.
-     7. Post §9's measurement comment on the PR.
+     7. Post §9's measurement comment on the PR, and a model-trials comment when the review taught
+        something (rule 21).
      8. Report the merge, the findings, the follow-ups and what is ready next.
    - `status:rework`:
      1. Check that every finding names a file in `gh pr diff <pr> --name-only`. A review that
@@ -115,33 +112,14 @@ For `#<issue>` of a bug labelled `fix`, the bug body replaces the task file, the
         A reviewer that reports one blocking finding per round despite the brief's one-pass
         section (L49): after the second such round, stop. Request no further review until you
         have gone through the whole diff yourself for that class and fixed what you found, and
-        recorded the pattern in the model-trials record. The review after that is the task's last
+        recorded the pattern in the model-trials issue. The review after that is the task's last
         before escalation (step 5).
-     3. **A heavy review moves the implementer up (L38)**, decided before the next round starts.
-        The review just posted is heavy when it asks for rework with three or more blocking
-        findings, or when it brings new blocking findings of a class the previous round raised:
-        the same kind of defect again, in new or unchanged code (a sibling the last round missed
-        counts). Then the next round goes one step up the ladder: a light OpenCode model → a
-        heavy one → a Claude Opus agent (where the owner pairs by difficulty: GLM-5.3 Flash →
-        MiMo V2.6 Flash → Opus), and Sonnet → Opus; never down within a task. At the top
-        there is no stronger model: the round fixes the class as below, and changes the approach
-        when the class needs it (as golden screenshots did in malpaco T02), saying so on the task file.
-        - The round count does not reset, and the reviewer stays of another family: with Opus
-          implementing, no Claude reviewer may review; if the OpenCode reviewers fail, go to step 5.
-          The Done-when is never weakened for the stronger model.
-        - Hand-over: stop the current implementer if it is mid-round; save its unpushed work as a
-          patch (`git add -N` new files, then `git diff > <patch>`); start the new implementer on
-          the pushed branch with the task file pasted in full, every review so far (the current
-          one pasted in full), the patch path "to weigh, never to apply blindly", and the
-          instruction to fix the class of the findings, not each instance, then sweep its own
-          code for the same class and list the sweep in the PR body.
-        - Record the change on the task file's Implementer line, committed on `main`, with the
-          reason: the blocking counts, and for a repeated class, the class and the finding ids of
-          both rounds (e.g. "R1–R2 of round 0 and R3 of round 1: an alias at write time"). After
-          the round, the measurement comment (§9) gives the models, the trigger, the classes, the
-          blocking counts before and after, and whether it converged.
-     4. Set the next round and return to step 1, with the full review's URL in the brief (and,
-        after step 3, the hand-over's). The implementer script resumes the branch.
+     3. A heavy review (three or more blocking findings, or a repeated class) is fixed by class,
+        not by instance: the next round sweeps the implementer's own code for the same class and
+        lists the sweep in the PR body, and changes the approach when the class needs it, saying
+        so on the task file. The round count does not reset, and the Done-when is never weakened.
+     4. Set the next round and return to step 1, with the full review's URL in the brief. The
+        implementer resumes the pushed branch; it never starts over.
 
 5. **Escalate** (`docs/process.md` §7): label `status:escalated`, comment the evidence on the issue,
    and bring the user the decision with options and a recommendation. Stop.

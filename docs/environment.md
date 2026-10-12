@@ -1,7 +1,9 @@
 # Environment
 
 What a session needs so the main session can delegate. Everything here is optional: each missing
-piece turns one delegate off, and the main session falls back to Claude (the scripts exit 3).
+piece turns one delegate off. The scripts then exit 3, and the main session reads the run's final
+message and fixes the cause; another model is the user's call (CLAUDE.md rule 6). *Superseded: "the
+main session falls back to Claude".*
 
 ## On your desktop
 
@@ -33,7 +35,7 @@ Then run `npm test` in the harness repository. The tests against the real OpenCo
 
 ## OpenCode Go
 
-The second implementer, MiMo V2.6 Flash, is OpenCode Go's (`opencode-go/…`), a subscription. They are not OpenCode Zen's pay-per-token `opencode/…` models. Go comes from a console
+The MiMo V2.6 reviewers are OpenCode Go's (`opencode-go/…`), a subscription. They are not OpenCode Zen's pay-per-token `opencode/…` models. Go comes from a console
 (organisation) login, not from a key; `opencode auth login` and `OPENCODE_API_KEY` reach only Zen
 (IC2 #551):
 1. `opencode console login`, then approve the URL and code it prints in the browser;
@@ -47,23 +49,29 @@ directory, another machine, WSL beside Windows, or a new cloud session each need
 
 ## OpenAI, for the reviewer
 
-The reviewer is GPT-5.6 Luna on the direct OpenAI route (`openai/gpt-5.6-luna`, L51), never a Luna
-on Go (`opencode-go/…`): a third-party proxy behind Go's returned `Bad Request` in long agent loops
+The default reviewer is GPT-5.6 Luna on the direct OpenAI route (`openai/gpt-5.6-luna`, L51,
+`harness.json`'s `reviewer.default`), never a Luna on Go (`opencode-go/…`): a third-party proxy behind Go's returned `Bad Request` in long agent loops
 (L27). OpenAI is an ordinary OpenCode provider: log in once with `opencode auth login`, choose
 OpenAI (a ChatGPT login or an API key), and check with `opencode models openai`. The login is kept in
 `auth.json`, which the scripts copy into their own data directory (next section) whenever theirs is
 missing or older. If OpenAI later asks for a new login, log in again in your usual OpenCode; the
 next run copies it.
 
-## Z.AI, for the implementer and the GLM models
+## Z.AI, for the GLM reviewers
 
-GLM-5.3 Flash, the default implementer (L42), and GLM-5.3, the first hard reviewer (L41), run on
-Z.AI's coding plan (`zai-coding-plan/…`); both stay on watch (L35). Log in once with `opencode auth login` and choose Z.AI Coding Plan (an API
+GLM-5.3 and GLM-5.3 Flash, reviewers for an explicit `--reviewer`, run on Z.AI's coding plan
+(`zai-coding-plan/…`). Log in once with `opencode auth login` and choose Z.AI Coding Plan (an API
 key; OpenCode also reads `ZHIPU_API_KEY`), then check with `opencode models zai-coding-plan`. The
 key is kept in `auth.json`, which the scripts copy like OpenAI's. GLM-5.3-highspeed is refused by
 the plan.
 
 ## Quota: quota-tracker
+
+**The harness no longer reads it** (the owner, 2026-10-11 and 2026-10-12, CLAUDE.md rule 6):
+`review.mjs` runs the model named whatever the quota, `lib/quota.mjs` and `choose.mjs` were removed,
+and no model question shows `/recommend`. The service stays useful to the user, and to the main
+session when a provider answers with a usage-limit error: then read `/quota/<provider>` and say when
+it is usable again.
 
 Where the machine runs quota-tracker, a local service, it reports how much subscription quota is
 left on each provider: `claude` (the main session and Claude agents), `openai` (Sol and Luna, via
@@ -73,7 +81,7 @@ its Kimi and MiniMax models are Team-edition only and unused) is one of those, a
 from this list: quota-tracker stopped checking it (Alibaba flagged the console checks as unusual
 activity), so `/quota/alibaba` returns `not_monitored` with `pricing` only — see the Alibaba
 Token Plan section below for what this means and how to use those models.
-Check it before choosing, recommending or delegating to a model (L50). It is read-only, on
+*Superseded: "check it before choosing, recommending or delegating to a model" (L50).* It is read-only, on
 localhost, with no auth; results are cached 60 s, and `?refresh` bypasses the cache:
 - `curl -s localhost:8765/quota`, or `/quota/<provider>` for one (alibaba's still carries a
   `pricing` object, even though the rest of its entry is empty; zai's carries `pricing` too);
@@ -81,7 +89,8 @@ localhost, with no auth; results are cached 60 s, and `?refresh` bypasses the ca
   2026-10-06): it path-checks the agent's file tools and, as raw command text, `cd` and `cat`
   (L59) — not `git -C` or grep/sed/head/ls, so an agent with bash allowed can read any directory.
   Secrets are the credential jail's business; a grant is for deliberate reads (L59's recipe).
-- `curl -s 'localhost:8765/recommend?tier=heavy'` (or `tier=light`): which model to use.
+- `curl -s 'localhost:8765/recommend?tier=heavy'` (or `tier=light`): the service's own ranking (the harness
+  no longer reads it, above).
   `ranking` is best first, each row with `provider`, `model`, `command`, `score` (spare calls per
   day until the pool's reset; negative means the pool would run out before its reset at the current
   demand), `confidence` and `reasons`; `pick` is the first row; `skipped` lists the exhausted or
@@ -93,7 +102,7 @@ localhost, with no auth; results are cached 60 s, and `?refresh` bypasses the ca
 - `curl -s localhost:8765/avoid`: the providers out of quota, with when each is usable again.
 
 Each provider has a `status`: `ok` (under 80% used), `low` (80% or more), `exhausted` (95% or
-more: do not use it until `available_at` / `available_in`), `error` (it could not be checked;
+more: usable again at `available_at` / `available_in`), `error` (it could not be checked;
 `error` says why) or `not_configured`. `headroom_pct` is the percent left on its most-used window;
 `windows[]` lists every limit with `used_pct` and when it resets. OpenRouter is prepaid: its
 windows never reset, and `remaining_usd` is the balance. Every model is judged on its
@@ -102,8 +111,9 @@ provider is `exhausted` can a model still run on a limit of its own, and then th
 `when_exhausted.usable_models` names it (today `gpt-5.6-luna` on OpenAI; L65). Read which pools
 exist from the windows the endpoint returns, not from this page.
 
-Free models on OpenRouter are a supplement, for smaller tasks and additional reviews (a second
-opinion next to a regular model), never the main model for important work (the owner, 2026-10-06):
+Free models on OpenRouter are usable when the user names one (CLAUDE.md rule 6). *Superseded,
+kept as history: "a supplement, for smaller tasks and additional reviews, never the main model for
+important work" (the owner, 2026-10-06).* Their privacy limit still holds (below):
 
 | Model | Use |
 | --- | --- |
@@ -113,10 +123,9 @@ opinion next to a regular model), never the main model for important work (the o
 | `openrouter/poolside/laguna-s-2.1:free` | usable, often rate-limited |
 
 They share one allowance of 1,000 requests a day and about 20 a minute, and each agent step is one
-request: `free_model_daily_requests` in `/quota/openrouter` gives what remains, and the scripts skip
-a free model when none remain (`lib/quota.mjs`). Free providers may log and train on prompts: never
+request: `free_model_daily_requests` in `/quota/openrouter` gives what remains. Free providers may log and train on prompts: never
 send private or client code, secrets, or anything under NDA. They come and go and get rate-limited:
-on a 429, fall back to the next model instead of retrying. Check their output like any unreviewed
+on a 429, do not retry; tell the user, who names another model or waits. Check their output like any unreviewed
 contribution; they have been tried only on small tasks.
 
 The models per provider, heavy and light:
@@ -134,8 +143,8 @@ The models per provider, heavy and light:
 
 Alibaba's Token Plan is no longer in quota-tracker: `/quota/alibaba` returns `not_monitored` with
 `pricing` only — there is no `month` window, and Alibaba is absent from `/quota` and
-`/avoid`, and `/recommend` does not rank it. Use Alibaba only as a supplement or an extra reviewer, not as a main or default model,
-and not in long loops. OpenCode's key for it comes only from the environment variable
+`/avoid`, and `/recommend` does not rank it. Use Alibaba only when the user asks for it (CLAUDE.md rule 6.3);
+`harness.json` here registers no Alibaba model. OpenCode's key for it comes only from the environment variable
 `ALIBABA_TOKEN_PLAN_API_KEY` (in WSL from `~/.config/ai-keys.env`, which `~/.bashrc` and
 `~/.profile` load, and through WSLENV for commands started from Windows; on Windows a user
 variable), so it works in every OpenCode data directory, the scripts' own included. Never add it
@@ -178,12 +187,8 @@ If `curl -sf localhost:8765/health` fails where the service is installed:
 4. To run it without the service: `cd ~/projects/models_quota_tracker && uv run quota-tracker serve`
    in the background (it stops when the session ends).
 
-`implement.mjs` and `review.mjs` ask the service themselves before their chain runs (`lib/quota.mjs`,
-L52): a model is skipped when its provider is `exhausted`, unless the provider's
-`when_exhausted.usable_models` names it (L65). A provider in `error` or
-`not_configured` skips nothing. Each skip is logged with its reason, and with none left the script
-exits 3. `HARNESS_QUOTA_URL` names another
-address. Where the service does not answer, they skip nothing and log `quota: not checked`.
+`review.mjs` does not ask the service (above). *Superseded: the quota check before a chain ran
+(L52, L65), and `HARNESS_QUOTA_URL`.*
 
 Never read or edit `~/.config/quota-tracker/config.toml`: it holds account tokens. A provider in
 `error` over an expired cookie or token goes to the user, since renewing it needs their browser or
@@ -192,7 +197,7 @@ login. Where the service is not installed, go on without it, and count a usage-l
 
 ## The scripts' own data directory
 
-`implement.mjs` and `review.mjs` run OpenCode with a data directory of their own, so OpenCode's
+`review.mjs` and `switch-model.mjs` run OpenCode with a data directory of their own, so OpenCode's
 desktop app (2.x) can never migrate their database to a schema the 1.x CLI cannot read (IC2 #540,
 "no such column: project_id"). It is `~/.local/share/harness-opencode`, with `data/`, `cache/` and
 `state/` set as `XDG_DATA_HOME`, `XDG_CACHE_HOME` and `XDG_STATE_HOME` for OpenCode's processes only.
@@ -231,13 +236,17 @@ Never paste a key into a chat, and never commit one.
 | `OPENROUTER_API_KEY` | Jev, through OpenRouter (`jev.mjs`); also OpenCode's `openrouter/*` models, if `harness.json` names any | `jev.mjs` exits 3; the main session decides every item itself |
 | `ELEVENLABS_API_KEY` | ElevenLabs: speech, voices, sound effects, music (`/delegate`, `models.mjs elevenlabs`) | no generated audio; the main session says so |
 | `GH_TOKEN` | `gh`, inside the tools and inside OpenCode's runs: finding the PR, `gh pr create`, posting a review, labels | the scripts cannot find or post to PRs |
+| `ANTHROPIC_BASE_URL` (with `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_MODEL`) | the orchestrator itself: unset or Anthropic's for Claude; Z.AI's for GLM, MiniMax's, or Moonshot's for Kimi when Claude's tokens are out. `review.mjs` and `switch-model.mjs` read the session's family from it (CLAUDE.md rule 6.0) | the session is Claude |
+| `HARNESS_SESSION_FAMILY` | overrides that family when the endpoint is one the harness does not know | an unknown endpoint refuses to review until it is set |
 
 For `GH_TOKEN`, use a fine-grained token limited to the project's repository, with read and write on
 Contents, Pull requests and Issues.
 
 OpenCode reads both `OPENCODE_API_KEY` and `OPENROUTER_API_KEY` from the environment (checked with
 `opencode auth list` on 1.18.33), so those need no `opencode auth login`. Go is the exception: without
-its console login, `implement.mjs` and `review.mjs` fail over and exit 3, and Claude agents take the work.
+its console login, `review.mjs` exits 3. Log in (`opencode console login`, in both data directories)
+and run again; another model only when the user names it (CLAUDE.md rule 6). *Superseded: "fail
+over, and Claude agents take the work".*
 
 ## Network
 
@@ -247,7 +256,7 @@ A cloud environment's network policy must allow:
 | --- | --- |
 | `opencode.ai` | OpenCode's own providers (Zen, Go) |
 | `openrouter.ai` | Jev, OpenRouter models, image generation |
-| `api.z.ai` | the implementer, GLM-5.3 Flash, and the hard reviewer, GLM-5.3 |
+| `api.z.ai` | the GLM reviewers, GLM-5.3 and GLM-5.3 Flash |
 | `api.elevenlabs.io` | ElevenLabs |
 | `registry.npmjs.org` | installing OpenCode |
 | `api.github.com`, `github.com` | `gh` and git |
@@ -275,11 +284,10 @@ Node 20 or later.
 ## First session: check it works
 
 1. The hook's report shows every key `set`, and no setup notes.
-2. The hook's report says OpenCode Go is logged in for the scripts' data directory (above), and
-   `opencode models opencode-go` there lists the ids in `harness.json`. If an id differs, edit
-   `harness.json`.
+2. The hook's report says OpenAI is logged in (the default reviewer), and `opencode models openai`
+   lists `harness.json`'s `luna` id. If an id differs, edit `harness.json`.
 3. Jev: put two lines such as `{"id": 1, "state": {"title": "Game crashes on load"}}` in
    `items.jsonl`, then run `node tools/harness/jev.mjs ask --decision breaks-play --in items.jsonl`.
    It should print `asked 2 of 2`.
-4. OpenCode: run `/run-task` on a small `fix`, and watch the first run: the tail of its log and the
-   `implemented by:` line.
+4. OpenCode: run `/run-task` on a small `fix`, and watch the first review: the tail of its log and
+   the posted review.
