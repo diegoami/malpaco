@@ -61,19 +61,22 @@ function degreeHistogram(map: import("../../src/core").GameMap): Record<number, 
   return h;
 }
 
-/** Cross-island entrance count for an island. */
+/** Cross-island entrance count for an island (C-BON-02).
+ * Counts distinct provinces on this island that have at least one sea lane
+ * to another island — NOT the total number of sea-lane entries. */
 function islandEntrances(map: import("../../src/core").GameMap, islandId: string): number {
   const island = map.islands.find((i) => i.id === islandId);
   if (!island) return 0;
-  let count = 0;
+  const entranceProvinces = new Set<string>();
   for (const pid of island.provinces) {
-    const p = map.provinces.find((x) => x.id === pid)!;
-    for (const sl of p.seaLanes) {
-      const other = map.provinces.find((x) => x.id === sl)!;
-      if (other.island !== islandId) count++;
-    }
+    const p = map.provinces.find((x) => x.id === pid);
+    if (!p || p.seaLanes.length === 0) continue;
+    const other = p.seaLanes
+      .map((sl) => map.provinces.find((x) => x.id === sl))
+      .find((other) => other && other.island !== islandId);
+    if (other) entranceProvinces.add(pid);
   }
-  return count;
+  return entranceProvinces.size;
 }
 
 // ---------------------------------------------------------------------------
@@ -87,7 +90,7 @@ function islandEntrances(map: import("../../src/core").GameMap, islandId: string
 // breaks the suite.
 const SATURATION_SEEDS = [21, 33] as const;
 
-const TEST_SEEDS = [1, 2, 3, 7, 42] as const;
+const TEST_SEEDS = [1, 2, 3, 7, 12, 21, 33, 42, 45, 99999] as const;
 
 describe("generateBoard", () => {
   // Done-when 2: 5 fixed seeds
@@ -276,6 +279,37 @@ describe("generateBoard", () => {
     // the per-seed tests above fail.
     it("BORDER_MAX = DEGREE_MAX - 1 (saturation fix)", () => {
       expect(BORDER_MAX).toBe(DEGREE_MAX - 1);
+    });
+
+    // Bonus-count regression: "entrances" must count distinct provinces with
+    // sea lanes, not total sea-lane entries (C-BON-02). Seed 1 island_0 has
+    // 3 lane entries from 2 distinct provinces. If the count reverts to
+    // lane-entry counting, island_0's bonus becomes max(2,1+3)=4 instead of
+    // the correct max(2,1+2)=3, and this assertion fails.
+    it("bonus uses distinct provinces with sea lanes, not lane-entry count (C-BON-02)", () => {
+      const r = generateBoard(1);
+      if (!r.ok) throw new Error(r.errors.join("; "));
+      const island0 = r.map.islands.find((i) => i.id === "island_0");
+      expect(island0).toBeDefined();
+      if (!island0) return;
+      const laneProvinces = new Set<string>();
+      let laneEntries = 0;
+      for (const pid of island0.provinces) {
+        const p = r.map.provinces.find((x) => x.id === pid);
+        if (!p || p.seaLanes.length === 0) continue;
+        laneEntries += p.seaLanes.length;
+        const other = p.seaLanes
+          .map((sl) => r.map.provinces.find((x) => x.id === sl))
+          .find((other) => other && other.island !== "island_0");
+        if (other) laneProvinces.add(pid);
+      }
+      // island_0 (size 3): 3 lane entries from 2 distinct provinces.
+      // Correct bonus = max(2, floor(3/2) + 2) = max(2, 1+2) = 3.
+      // Buggy bonus = max(2, floor(3/2) + 3) = max(2, 1+3) = 4.
+      expect(laneEntries, "island_0 should have 3 lane entries on seed 1").toBe(3);
+      expect(laneProvinces.size, "island_0 should have 2 distinct provinces with lanes on seed 1").toBe(2);
+      const expectedBonus = Math.max(2, Math.floor(island0.provinces.length / BONUS_DIVISOR) + laneProvinces.size);
+      expect(island0.bonus, `island_0 bonus must be ${expectedBonus}, not inflated by lane-entry count`).toBe(expectedBonus);
     });
 
     // Spot-check: if any structural constant is wrong, some seed fails to generate a valid board

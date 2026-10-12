@@ -400,16 +400,20 @@ export function generateBoard(seed: number): BoardGenResult {
     );
 
   // ---- Compute cross-island entrances per island (for bonus) -------------
+  // C-BON-02: "entrances" = number of distinct provinces on this island
+  // that have at least one sea lane to another island.  Not the total
+  // number of sea-lane entries (a country may have 2+ lanes from the same
+  // province, e.g. island_0 on seed 1 has 3 lanes from 2 countries).
   const islandEntrances = new Map<string, number>();
   for (const island of islandStructs) {
-    let entrances = 0;
+    const entranceProvinces = new Set<string>();
     for (const pid of island.provinceIds) {
-      for (const sl of (allSeaLanes.get(pid) ?? [])) {
-        const otherIsland = islandStructs.find((isl) => isl.provinceIds.includes(sl));
-        if (otherIsland && otherIsland !== island) entrances++;
-      }
+      const lanes = allSeaLanes.get(pid);
+      if (!lanes || lanes.size === 0) continue;
+      const otherIsland = islandStructs.find((isl) => [...isl.provinceIds].some((otherPid) => lanes.has(otherPid)));
+      if (otherIsland && otherIsland !== island) entranceProvinces.add(pid);
     }
-    islandEntrances.set(island.id, entrances);
+    islandEntrances.set(island.id, entranceProvinces.size);
   }
 
   // ---- Build island records ------------------------------------------------
