@@ -33,6 +33,10 @@ export interface GameMap {
 export interface Player {
   readonly id: string;
   readonly name: string;
+  /** "human" or "computer" (C-PLY-02, decision 3). Defaults to "human" when absent. */
+  readonly kind?: "human" | "computer";
+  /** A computer seat's difficulty (computer.md A1, A2, A3). Humans ignore it. */
+  readonly difficulty?: "Easy" | "Normal" | "Hard";
   eliminated: boolean;
 }
 
@@ -114,7 +118,18 @@ export interface GameState {
   phase: Phase;
   turnNumber: number;
   capturedThisTurn: boolean;
+  /**
+   * The game's own RNG stream. Every rules draw (the board, the deal,
+   * starting armies, the first seat, dice, card draws, events) reads from
+   * here (C-RND-03).
+   */
   rng: RngSnapshot;
+  /**
+   * Per-computer-seat RNG streams, seeded from the game seed and the seat
+   * number. Used by the computer opponent only; never by the rules (so the
+   * game's draws are not perturbed by computer play, C-RND-03).
+   */
+  computerRngs: Record<string, RngSnapshot>;
   log: LogEntry[];
   history: Action[];
   winner: string;
