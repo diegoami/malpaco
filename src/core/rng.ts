@@ -61,4 +61,21 @@ export class DeterministicRng implements DiceSource {
     }
     return out;
   }
+
+  /**
+   * Derive a child stream from a parent seed and a per-child salt. The
+   * parent's own state is never read or modified, so the parent's draws
+   * are not perturbed by sub-streams (C-RND-03, design/core-rules.md §
+   * Setup → Randomness): each computer seat's choices come from a separate
+   * stream, seeded from the game seed and the seat number. Pure.
+   */
+  static subStream(parentSeed: number, childSalt: number): DeterministicRng {
+    // SplitMix-style mixing: parent seed XOR a salted mixer. Math.imul is
+    // used here intentionally (Math.random is forbidden; Math.imul is just
+    // integer multiplication).
+    const mixed = (parentSeed ^ Math.imul(childSalt | 0, 0x9e3779b1)) >>> 0;
+    // Spread bits once more so the child seed never equals the parent.
+    const child = Math.imul(mixed ^ (mixed >>> 16), 0x85ebca6b) >>> 0;
+    return new DeterministicRng(child);
+  }
 }

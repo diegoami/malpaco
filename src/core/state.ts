@@ -1,5 +1,6 @@
 import { DeterministicRng } from "./rng";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
+import type { GameOptions } from "./options";
 
 /** The Classic preset, restricted to the blocks the slice reads (core/rules/rule_set.gd). */
 export function classicRules(): RuleSet {
@@ -57,6 +58,7 @@ export function cloneState(state: GameState): GameState {
     turnNumber: state.turnNumber,
     capturedThisTurn: state.capturedThisTurn,
     rng: { ...state.rng },
+    computerRngs: Object.fromEntries(Object.entries(state.computerRngs).map(([k, v]) => [k, { ...v }])),
     log: [...state.log],
     history: [...state.history],
     winner: state.winner,
@@ -76,7 +78,7 @@ export function cloneState(state: GameState): GameState {
  */
 export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Player[], seed: number): GameState {
   const rng = new DeterministicRng(seed);
-  const players = playerList.map((p) => ({ ...p }));
+  const players = playerList.map((p) => ({ ...p, kind: p.kind ?? "human" }));
   const ownerOfMap: Record<string, string> = {};
   const armies: Record<string, number> = {};
 
@@ -99,6 +101,16 @@ export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Playe
     }
   }
 
+  // Per-seat computer streams, seeded from the game seed and the seat number
+  // (C-RND-03). The computer opponent draws from these; the rules never do.
+  const computerRngs: Record<string, { seed: number; state: number }> = {};
+  players.forEach((player, idx) => {
+    if (player.kind === "computer") {
+      const child = DeterministicRng.subStream(seed, idx);
+      computerRngs[player.id] = child.snapshot();
+    }
+  });
+
   return {
     map,
     rules,
@@ -110,8 +122,26 @@ export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Playe
     turnNumber: 1,
     capturedThisTurn: false,
     rng: rng.snapshot(),
+    computerRngs,
     log: [{ event: "game_started", seed, players: players.length }],
     history: [],
     winner: "",
   };
+}
+
+/**
+ * Build a Player list from the seat specs in GameOptions, then call newGame.
+ * The default name is "Seat N" with the seat number; the id is the player
+ * colour (T52 sets the colour palette). Each seat becomes a Player with the
+ * right kind and difficulty.
+ */
+export function newGameFromOptions(map: GameMap, rules: RuleSet, options: GameOptions, seed: number): GameState {
+  const playerList: Player[] = options.seats.map((seat, idx) => ({
+    id: `seat${idx + 1}`,
+    name: `Seat ${idx + 1}`,
+    kind: seat.kind,
+    ...(seat.kind === "computer" ? { difficulty: seat.difficulty } : {}),
+    eliminated: false,
+  }));
+  return newGame(map, rules, playerList, seed);
 }
