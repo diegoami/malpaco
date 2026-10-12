@@ -1,5 +1,6 @@
 import { DeterministicRng } from "./rng";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
+import type { GameOptions } from "./options";
 
 /** The Classic preset, restricted to the blocks the slice reads (core/rules/rule_set.gd). */
 export function classicRules(): RuleSet {
@@ -57,6 +58,7 @@ export function cloneState(state: GameState): GameState {
     turnNumber: state.turnNumber,
     capturedThisTurn: state.capturedThisTurn,
     rng: { ...state.rng },
+    computerRngs: Object.fromEntries(Object.entries(state.computerRngs).map(([k, v]) => [k, { ...v }])),
     log: [...state.log],
     history: [...state.history],
     winner: state.winner,
@@ -73,10 +75,38 @@ export function cloneState(state: GameState): GameState {
  * own provinces by the seeded RNG. The deal and the pool sizes are as in
  * core/; only who chooses the provinces differs. Centres, reinforcements and
  * hazards are not ported.
+ *
+ * Two overloads: `newGame(map, rules, players, seed)` (the spike's
+ * four-argument form) and `newGame(map, rules, options)` (C-SET-01: the
+ * new-game entry point takes a full GameOptions record and uses its
+ * `seed`).
  */
-export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Player[], seed: number): GameState {
+export function newGame(map: GameMap, rules: RuleSet, options: GameOptions): GameState;
+export function newGame(map: GameMap, rules: RuleSet, players: readonly Player[], seed: number): GameState;
+export function newGame(
+  map: GameMap,
+  rules: RuleSet,
+  playersOrOptions: readonly Player[] | GameOptions,
+  seed?: number,
+): GameState {
+  if (isPlayerList(playersOrOptions)) {
+    return newGameWithPlayers(map, rules, playersOrOptions, seed ?? 0);
+  }
+  return newGameFromOptions(map, rules, playersOrOptions, playersOrOptions.seed);
+}
+
+/** Type guard for the array branch of the newGame overload. */
+function isPlayerList(value: readonly Player[] | GameOptions): value is readonly Player[] {
+  return Array.isArray(value);
+}
+
+/**
+ * Internal implementation: take a pre-built Player list and a seed, do the
+ * spike's deal. Not exported.
+ */
+function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly Player[], seed: number): GameState {
   const rng = new DeterministicRng(seed);
-  const players = playerList.map((p) => ({ ...p }));
+  const players = playerList.map((p) => ({ ...p, kind: p.kind ?? "human" }));
   const ownerOfMap: Record<string, string> = {};
   const armies: Record<string, number> = {};
 
@@ -99,6 +129,16 @@ export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Playe
     }
   }
 
+  // Per-seat computer streams, seeded from the game seed and the seat number
+  // (C-RND-03). The computer opponent draws from these; the rules never do.
+  const computerRngs: Record<string, { seed: number; state: number }> = {};
+  players.forEach((player, idx) => {
+    if (player.kind === "computer") {
+      const child = DeterministicRng.subStream(seed, idx);
+      computerRngs[player.id] = child.snapshot();
+    }
+  });
+
   return {
     map,
     rules,
@@ -110,8 +150,42 @@ export function newGame(map: GameMap, rules: RuleSet, playerList: readonly Playe
     turnNumber: 1,
     capturedThisTurn: false,
     rng: rng.snapshot(),
+    computerRngs,
     log: [{ event: "game_started", seed, players: players.length }],
     history: [],
     winner: "",
   };
+}
+
+/**
+ * Build a Player list from the seat specs and computerStrengths in
+ * GameOptions, then call newGameWithPlayers. The default name is "Seat N"
+ * with the seat number; the id is the player colour (T52 sets the colour
+ * palette). Each computer seat is given its difficulty from
+ * options.computerStrengths, in seat order; humans have no difficulty.
+ */
+export function newGameFromOptions(map: GameMap, rules: RuleSet, options: GameOptions, seed: number): GameState {
+  let computerIdx = 0;
+  const playerList: Player[] = options.seats.map((seat, idx) => {
+    if (seat.kind === "computer") {
+      const difficulty = options.computerStrengths[computerIdx++];
+      if (difficulty === undefined) {
+        throw new Error(`computerStrengths missing entry for seat ${idx + 1}`);
+      }
+      return {
+        id: `seat${idx + 1}`,
+        name: `Seat ${idx + 1}`,
+        kind: "computer",
+        difficulty,
+        eliminated: false,
+      };
+    }
+    return {
+      id: `seat${idx + 1}`,
+      name: `Seat ${idx + 1}`,
+      kind: "human",
+      eliminated: false,
+    };
+  });
+  return newGameWithPlayers(map, rules, playerList, seed);
 }
