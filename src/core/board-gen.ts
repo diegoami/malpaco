@@ -1,5 +1,6 @@
 import { DeterministicRng } from "./rng";
 import type { GameMap, Island, Point, Province } from "./types";
+import { runAllFairnessChecks } from "./board-fairness";
 
 // ---------------------------------------------------------------------------
 // Structural constants — each cites the claim it traces to (rule 17).
@@ -35,6 +36,13 @@ export const BORDER_MAX = DEGREE_MAX - 1;
  * The divisor 2 is the design constant from decision 12.
  */
 export const BONUS_DIVISOR = 2;
+
+/**
+ * C-BRD-01: the generator must find a valid board within this many attempts
+ * on a 200-seed sweep (≥ 99 % success rate).  The cap is a named export so
+ * a rule-9 mutation can set it to 0 and prove the loop is live.
+ */
+export const MAX_BOARD_ATTEMPTS = 50;
 
 // ---------------------------------------------------------------------------
 // Result type
@@ -237,19 +245,12 @@ function buildBorders(
 // ---------------------------------------------------------------------------
 
 /**
- * Generate a `GameMap` from a seed. The map always meets the structural
- * invariants from `design/core-rules.md § The board` on every seed:
- * - 46 provinces in 9 islands of sizes [3,3,3,3,5,5,7,7,10] (C-BRD-03)
- * - every province has 2–5 neighbours in total (C-BRD-04)
- * - exactly 16 undirected inter-island sea lanes, symmetric (C-BRD-04)
- * - the border-plus-sea-lane graph is connected (C-BRD-04)
- * - island bonuses follow C-BON-02
- * - all polygons have ≥3 points; all labels inside bounds (C-BRD-06)
- *
- * The 5 fairness checks are T05b's scope.
+ * Inner generator body.  Takes a live `DeterministicRng` (already seeded by
+ * the caller) and produces either a structurally-valid `GameMap` or a list
+ * of structural errors.  No fairness checks here — those run in the retry
+ * loop below.
  */
-export function generateBoard(seed: number): BoardGenResult {
-  const rng = new DeterministicRng(seed);
+function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   const errors: string[] = [];
 
   // ---- Assign province IDs to islands ------------------------------------
@@ -503,4 +504,44 @@ export function generateBoard(seed: number): BoardGenResult {
   if (errors.length > 0) return { ok: false, errors };
 
   return { ok: true, map };
+}
+
+/**
+ * Generate a `GameMap` from a seed. The map always meets the structural
+ * invariants from `design/core-rules.md § The board` on every seed:
+ * - 46 provinces in 9 islands of sizes [3,3,3,3,5,5,7,7,10] (C-BRD-03)
+ * - every province has 2–5 neighbours in total (C-BRD-04)
+ * - exactly 16 undirected inter-island sea lanes, symmetric (C-BRD-04)
+ * - the border-plus-sea-lane graph is connected (C-BRD-04)
+ * - island bonuses follow C-BON-02
+ * - all polygons have ≥3 points; all labels inside bounds (C-BRD-06)
+ *
+ * Plus the 5 fairness checks from `board-fairness.ts` (C-BRD-01).
+ * The retry loop draws a new plan each attempt by advancing the RNG.
+ */
+export function generateBoard(seed: number): BoardGenResult {
+  const rng = new DeterministicRng(seed);
+  for (let attempt = 1; attempt <= MAX_BOARD_ATTEMPTS; attempt++) {
+    const result = generateBoardBody(rng);
+    if (!result.ok) return result; // structural failure — not retryable
+    const fairnessErrors = runAllFairnessChecks(result.map);
+    if (fairnessErrors.length === 0) return result; // all clear
+    // Advance the RNG to draw a different plan next attempt.  One draw is
+    // enough: the body always consumes a deterministic sequence, so skipping
+    // one state guarantees a different plan.
+    rng.nextInt(0, 0xffffffff);
+  }
+  // Cap reached: run a final body call just to collect a summary for the error.
+  const lastResult = generateBoardBody(rng);
+  if (lastResult.ok) {
+    const fairnessErrors = runAllFairnessChecks(lastResult.map);
+    return {
+      ok: false,
+      errors: [`fairness checks failed after ${MAX_BOARD_ATTEMPTS} attempts: ${fairnessErrors.join("; ")}`],
+    };
+  }
+  return {
+    ok: false,
+    errors: [`structural errors after ${MAX_BOARD_ATTEMPTS} attempts: ${lastResult.errors.join("; ")}`],
+  };
 }
