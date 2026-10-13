@@ -177,20 +177,20 @@ export function openCodeHome(env = process.env, { log = () => {} } = {}) {
   return { env: { ...env, ...dirs }, root, dataHome: dirs.XDG_DATA_HOME };
 }
 
-// The OpenCode version the runner drives ("1.18.34"), or null when `--version` gives none. The
-// harness was checked on the 1.18 line, the public CLI. The desktop app ships a 2.x CLI whose run
-// flags, session fields and agent format differ (#26), so any major but 1 is refused before
-// anything is billed.
-export const SUPPORTED_MAJOR = 1;
+// The OpenCode version the runner drives ("1.18.34" or "2.0.28"), or null when `--version` gives
+// none. The harness was checked on the 1.18 line and 2.0.28 was verified end-to-end on T10
+// (implement + review, both via direct `opencode run` through `run-unit.sh`; PR #26 squash-merged).
+// Any major outside this list is refused before anything is billed.
+export const SUPPORTED_MAJORS = [1, 2];
 export async function openCodeVersion(cmd, { env, cwd, timeoutMs = 30_000 }) {
   const r = await execBounded(cmd, ['--version'], { cwd, env, timeoutMs });
   return r && r.code === 0 ? r.stdout.match(/\b(\d+)\.(\d+)\.(\d+)\b/)?.[0] ?? null : null;
 }
 export function versionProblem(version, exe) {
-  if (version && Number(version.split('.')[0]) === SUPPORTED_MAJOR) return null;
+  if (version && SUPPORTED_MAJORS.includes(Number(version.split('.')[0]))) return null;
   return `OpenCode ${version ?? 'gave no version'} at ${exe} is not supported: the harness runs on the public `
-    + `${SUPPORTED_MAJOR}.x CLI (checked on 1.18), and the desktop app's 2.x CLI differs (#26). Point it at a 1.18 CLI: `
-    + '~/.opencode/bin/opencode, npm opencode-ai@1.18, or HARNESS_OPENCODE_EXE';
+    + `${SUPPORTED_MAJORS.join('.x or ')}.x CLI. Point it at one of: ~/.opencode/bin/opencode, `
+    + 'npm opencode-ai@1.18, npm opencode-ai@2.0, or set HARNESS_OPENCODE_EXE.';
 }
 
 // The efforts (variants) OpenCode offers for a model, from `opencode models <provider> --verbose`,
