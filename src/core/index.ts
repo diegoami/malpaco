@@ -17,6 +17,7 @@ export {
   ownerOf,
   provincesOf,
 } from "./state";
+export { islandIncome, type IslandIncome } from "./bonuses";
 export {
   MAX_HUMAN_SHARE,
   MAX_STARTING_ARMIES,
