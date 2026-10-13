@@ -22,15 +22,14 @@ export const DEGREE_MIN = 2;
 export const DEGREE_MAX = 5;
 /**
  * C-BRD-04: borders consume at most DEGREE_MAX - 2 degree slots, leaving
- * two slots per province for sea lanes.  The original DEGREE_MAX - 1
- * reservation (one slot per province for sea lanes) was insufficient once
- * the fairness constraints required Phase 2 to place up to 8 additional
- * lanes: with one slot per province, Phase 2 had headroom for only ~5
- * lanes on most seeds, causing the generator to stall at 13-14 lanes and
- * fail every fairness check.  DEGREE_MAX - 2 gives Phase 2 the headroom
- * it needs (16 lanes achievable on 200/200 seeds tested 2026-10-12).
- * Every province still has degree ≥ 2 from borders alone, so connectivity
- * within each island is always maintained.
+ * two slots per province for sea lanes.  The original T05a value was
+ * DEGREE_MAX - 1; that left each province only one sea-lane slot, which
+ * Phase 2 cannot use to reach SEA_LANE_COUNT=16 once the four structural
+ * constraints (MAX_LANES_PER_COUNTRY=2, MAX_ENTRANCES_BY_SIZE, MIN_ENTRANCES=2,
+ * MAX_ISLAND_GRAPH_DEGREE=4) are in place.  With two slots per province
+ * Phase 2 has headroom to fill to 16 lanes on the tested seeds.  Every
+ * province still has degree ≥ 2 from borders alone (within-island
+ * connectivity), so connectivity within each island is always maintained.
  */
 export const BORDER_MAX = DEGREE_MAX - 2;
 
@@ -43,9 +42,12 @@ export const BONUS_DIVISOR = 2;
 /**
  * C-BRD-01: the generator must find a valid board within this many attempts
  * on a 200-seed sweep (≥ 99 % success rate).  The cap is a named export so
- * a rule-9 mutation can set it to 0 and prove the loop is live.
+ * a rule-9 mutation can set it to 0 and prove the loop is live.  The test
+ * suite pins the value to [1, 200]; we use 200 to give Phase 2's
+ * constrained search enough retries given the four structural constraints
+ * (C-BRD-01).
  */
-export const MAX_BOARD_ATTEMPTS = 50;
+export const MAX_BOARD_ATTEMPTS = 200;
 
 /**
  * C-BRD-01: a province carries at most 2 sea lanes.  Phase 2 skips any
@@ -395,54 +397,40 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     return true;
   }
 
-  // Phase 1: Prim's spanning tree across islands (guarantees connectivity).
-  // Start from island 0, grow a frontier until all islands are connected.
-  const connectedIslands = new Set<string>([islandStructs[0]!.id]);
-  const frontier: { fromIsland: string; toIsland: string; attempts: number }[] = [];
-  // R1 fix: track permanently exhausted island pairs so they are never re-added.
-  const exhaustedPairs = new Set<string>();
+  // Phase 1: build a balanced spanning tree using Kruskal's-style random
+  // pair selection.  Generate all possible island pairs, shuffle, pick the
+  // first 8 that connect distinct components while respecting
+  // MAX_ISLAND_GRAPH_DEGREE (the cap is enforced by tryAddLane).  Unlike
+  // Prim's from a fixed root, this produces trees where no island is
+  // pre-disposed to be a hub — every island has the same chance of high
+  // degree, which leaves Phase 2 more headroom.
+  const allPairs: { i: number; j: number }[] = [];
+  for (let i = 0; i < islandStructs.length; i++) {
+    for (let j = i + 1; j < islandStructs.length; j++) {
+      allPairs.push({ i, j });
+    }
+  }
+  shuffled(rng, allPairs);
 
-  // Seed frontier with edges from island 0 to every other island.
-  for (let i = 1; i < islandStructs.length; i++) {
-    frontier.push({ fromIsland: islandStructs[0]!.id, toIsland: islandStructs[i]!.id, attempts: 0 });
+  // Union-find for components
+  const compParent = Array.from({ length: islandStructs.length }, (_, i) => i);
+  function compFind(x: number): number {
+    return compParent[x] === x ? x : (compParent[x] = compFind(compParent[x]));
+  }
+  function compUnion(a: number, b: number) {
+    const ra = compFind(a);
+    const rb = compFind(b);
+    if (ra !== rb) compParent[ra] = rb;
   }
 
-  // R1 fix: cap attempts per frontier entry pair. When a pair is exhausted,
-  // mark it permanently exhausted; if the frontier empties before all islands
-  // are connected, give up on Phase 1 (the spanning tree cannot be completed).
-  const MAX_ENTRY_ATTEMPTS = 200;
-
-  while (connectedIslands.size < islandStructs.length) {
-    if (frontier.length === 0) {
-      // All remaining pairs are exhausted — give up on Phase 1.
-      break;
-    }
-
-    // Pick a random frontier entry.
-    const entryIdx = rng.nextInt(0, frontier.length - 1);
-    const entry = frontier[entryIdx]!;
-    const { fromIsland, toIsland } = entry;
-
-    if (connectedIslands.has(toIsland)) {
-      // Already connected; remove and skip.
-      frontier.splice(entryIdx, 1);
-      continue;
-    }
-
-    entry.attempts++;
-    if (entry.attempts > MAX_ENTRY_ATTEMPTS) {
-      // Give up on this pair permanently.
-      exhaustedPairs.add(`${fromIsland}|${toIsland}`);
-      frontier.splice(entryIdx, 1);
-      continue;
-    }
-
-    const from = islandStructs.find((isl) => isl.id === fromIsland)!;
-    const to = islandStructs.find((isl) => isl.id === toIsland)!;
-    // Phase 1 must spread connections across distinct entrance-province on
-    // each island.  If we picked a province that already has sea lanes, that
-    // province becomes the sole entrance point and Phase 2 can never add a
-    // second entrance (all provinces are then at MAX_LANES_PER_COUNTRY).
+  let treeEdges = 0;
+  for (const pair of allPairs) {
+    if (treeEdges >= islandStructs.length - 1) break;
+    if (compFind(pair.i) === compFind(pair.j)) continue; // already connected
+    const fromIsland = islandStructs[pair.i]!.id;
+    const toIsland = islandStructs[pair.j]!.id;
+    const from = islandStructs[pair.i]!;
+    const to = islandStructs[pair.j]!;
     const provA_arr = from.provinceIds.filter(
       (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
     );
@@ -453,27 +441,26 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     const provA = provA_arr[rng.nextInt(0, provA_arr.length - 1)]!;
     const provB = provB_arr[rng.nextInt(0, provB_arr.length - 1)]!;
     if (tryAddLane(provA, provB, fromIsland, toIsland)) {
-      connectedIslands.add(toIsland);
-      // Add new frontier entries from the newly connected island.
-      for (const other of islandStructs) {
-        if (!connectedIslands.has(other.id) && !exhaustedPairs.has(`${toIsland}|${other.id}`)) {
-          frontier.push({ fromIsland: toIsland, toIsland: other.id, attempts: 0 });
-        }
-      }
+      compUnion(pair.i, pair.j);
+      treeEdges++;
     }
   }
 
   // Phase 2: fill remaining slots up to SEA_LANE_COUNT, while also ensuring
   // every island reaches MIN_ENTRANCES_PER_ISLAND (anti-fortress).
   //
-  // Smart island-pair targeting: each pass, build the list of (src, dst) island
-  // pairs that still have capacity in all four dimensions (province lane count,
-  // island entrance cap, island-graph degree).  Randomly shuffle the island pair
-  // list then randomly pick a province on each side.  This dramatically reduces
-  // wasted attempts compared to trying all province pairs.
+  // Two-phase approach (C-BRD-01):
+  //   2A. Anti-fortress: for each island with < MIN_ENTRANCES_PER_ISLAND
+  //       entrances, add a sea lane from a province that currently has
+  //       0 lanes (a NEW entrance) to a province on a different island
+  //       that has lane headroom.
+  //   2B. Fill: while below SEA_LANE_COUNT, add random lanes between viable
+  //       pairs until the count is reached or no viable pair exists.
+  //
+  // Both phases enforce the four constraints via tryAddLane.
   let seaLaneCount = islandStructs.length - 1; // spanning tree used this many lanes
   let phase2Passes = 0;
-  const MAX_PHASE2_PASSES = 500;
+  const MAX_PHASE2_PASSES = 5000;
 
   function allIslandsMinEntrances(): boolean {
     for (const isl of islandStructs) {
@@ -482,22 +469,30 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     return true;
   }
 
-  while (
-    (seaLaneCount < SEA_LANE_COUNT || !allIslandsMinEntrances()) &&
-    phase2Passes < MAX_PHASE2_PASSES
-  ) {
-    phase2Passes++;
+  // Phase 2: fill to SEA_LANE_COUNT while satisfying the four structural
+  // constraints.  The body does NOT enforce MIN_ENTRANCES_PER_ISLAND here;
+  // checkFortress (a fairness check) catches it and the retry loop handles
+  // it.  See T05b's option (b): the body succeeds structurally when it
+  // places exactly SEA_LANE_COUNT lanes; MIN_ENTRANCES is a fairness concern.
+  //
+  // Approach: greedy + backtracking.  Each pass picks a viable island pair.
+  // When no viable pair remains, undo the most recent lane and try a
+  // different lane from the same state.  This explores multiple plans within
+  // the same body call.
+  type LaneRecord = {
+    provA: string;
+    provB: string;
+    islandA: string;
+    islandB: string;
+    provANewEntrance: boolean;
+    provBNewEntrance: boolean;
+  };
+  const phase2History: LaneRecord[] = [];
+  const MAX_PHASE2_UNDO = 200;
 
-    // Build shuffled list of island pairs that still have headroom in all constraints.
-    // A pair (A, B) is viable if:
-    //   - A ≠ B
-    //   - islandDegree(A) < MAX_ISLAND_GRAPH_DEGREE
-    //   - islandDegree(B) < MAX_ISLAND_GRAPH_DEGREE
-    //   - islandEntranceCount(A) < MAX_ENTRANCES_BY_SIZE[A.size]
-    //   - islandEntranceCount(B) < MAX_ENTRANCES_BY_SIZE[B.size]
-    //   - A has at least one province with < MAX_LANES_PER_COUNTRY lanes
-    //   - B has at least one province with < MAX_LANES_PER_COUNTRY lanes
-    const viablePairs: { src: typeof islandStructs[0]; dst: typeof islandStructs[0] }[] = [];
+  while (seaLaneCount < SEA_LANE_COUNT && phase2Passes < MAX_PHASE2_PASSES) {
+    phase2Passes++;
+    const viablePairs: { src: typeof islandStructs[0]; dst: typeof islandStructs[0]; score: number }[] = [];
     for (const src of islandStructs) {
       for (const dst of islandStructs) {
         if (src.id === dst.id) continue;
@@ -507,75 +502,99 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
         const capDst = MAX_ENTRANCES_BY_SIZE[dst.size] ?? 99;
         if ((islandEntranceCount.get(src.id) ?? 0) >= capSrc) continue;
         if ((islandEntranceCount.get(dst.id) ?? 0) >= capDst) continue;
-        const hasCapacitySrc = src.provinceIds.some((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
-        const hasCapacityDst = dst.provinceIds.some((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
+        const hasCapacitySrc = src.provinceIds.some(
+          (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
+        );
+        const hasCapacityDst = dst.provinceIds.some(
+          (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
+        );
         if (!hasCapacitySrc || !hasCapacityDst) continue;
-        viablePairs.push({ src, dst });
+        const entrSrc = islandEntranceCount.get(src.id) ?? 0;
+        const entrDst = islandEntranceCount.get(dst.id) ?? 0;
+        const degSrc = islandDegree.get(src.id) ?? 0;
+        const degDst = islandDegree.get(dst.id) ?? 0;
+        let score = 0;
+        if (entrSrc < MIN_ENTRANCES_PER_ISLAND) score += 1000;
+        if (entrDst < MIN_ENTRANCES_PER_ISLAND) score += 500;
+        score -= degSrc + degDst;
+        viablePairs.push({ src, dst, score });
       }
     }
-
-    // Fisher-Yates shuffle the viable pairs
-    for (let i = viablePairs.length - 1; i > 0; i--) {
-      const j = rng.nextInt(0, i);
-      const tmp = viablePairs[i]!;
-      viablePairs[i] = viablePairs[j]!;
-      viablePairs[j] = tmp;
-    }
-
-    // Try each viable pair once this pass
-    let madeProgress = false;
-    for (const { src, dst } of viablePairs) {
-      if (seaLaneCount >= SEA_LANE_COUNT && allIslandsMinEntrances()) break;
-
-      // Find a province on each island with lane capacity
-      const provsSrc = src.provinceIds.filter((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
-      const provsDst = dst.provinceIds.filter((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
-      if (provsSrc.length === 0 || provsDst.length === 0) continue;
-
-      const provA = provsSrc[rng.nextInt(0, provsSrc.length - 1)]!;
-      const provB = provsDst[rng.nextInt(0, provsDst.length - 1)]!;
-
-      if (tryAddLane(provA, provB, src.id, dst.id)) {
-        seaLaneCount++;
-        madeProgress = true;
-        // A successful lane may have satisfied MIN_ENTRANCES_PER_ISLAND for src or dst.
-        // Keep going in this pass to try to satisfy others.
-      }
-    }
-
-    // If no progress was made on this pass, break to avoid infinite looping
-    if (!madeProgress && !allIslandsMinEntrances()) {
-      // Try a fallback: any province pair regardless of entrance status
-      let fallbackProgress = false;
-      for (const src of islandStructs) {
-        if (fallbackProgress) break;
-        for (const dst of islandStructs) {
-          if (src.id === dst.id) continue;
-          if ((islandDegree.get(src.id) ?? 0) >= MAX_ISLAND_GRAPH_DEGREE) continue;
-          if ((islandDegree.get(dst.id) ?? 0) >= MAX_ISLAND_GRAPH_DEGREE) continue;
-          const provsSrc = src.provinceIds.filter((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
-          const provsDst = dst.provinceIds.filter((p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY);
-          if (provsSrc.length === 0 || provsDst.length === 0) continue;
-          const provA = provsSrc[rng.nextInt(0, provsSrc.length - 1)]!;
-          const provB = provsDst[rng.nextInt(0, provsDst.length - 1)]!;
-          if (tryAddLane(provA, provB, src.id, dst.id)) {
-            seaLaneCount++;
-            fallbackProgress = true;
-            break;
-          }
+    if (viablePairs.length === 0) {
+      // Stuck. Backtrack: undo the most recent lane and try again.
+      let undoTries = 0;
+      while (phase2History.length > 0 && undoTries < MAX_PHASE2_UNDO) {
+        undoTries++;
+        const last = phase2History.pop()!;
+        // Undo the lane
+        allSeaLanes.get(last.provA)?.delete(last.provB);
+        allSeaLanes.get(last.provB)?.delete(last.provA);
+        islandDegree.set(last.islandA, (islandDegree.get(last.islandA) ?? 0) - 1);
+        islandDegree.set(last.islandB, (islandDegree.get(last.islandB) ?? 0) - 1);
+        if (last.provANewEntrance) {
+          islandEntranceCount.set(
+            last.islandA,
+            (islandEntranceCount.get(last.islandA) ?? 0) - 1,
+          );
         }
+        if (last.provBNewEntrance) {
+          islandEntranceCount.set(
+            last.islandB,
+            (islandEntranceCount.get(last.islandB) ?? 0) - 1,
+          );
+        }
+        seaLaneCount--;
+        break; // undo one lane, then retry greedy
       }
-      if (!fallbackProgress) break; // stuck
+      if (undoTries === 0 || phase2History.length === 0) break;
+      continue;
     }
+    let bestScore = -Infinity;
+    for (const p of viablePairs) if (p.score > bestScore) bestScore = p.score;
+    const bestPairs = viablePairs.filter((p) => p.score === bestScore);
+    const pair = bestPairs[rng.nextInt(0, bestPairs.length - 1)]!;
+    const provsSrc = pair.src.provinceIds.filter(
+      (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
+    );
+    const provsDst = pair.dst.provinceIds.filter(
+      (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
+    );
+    if (provsSrc.length === 0 || provsDst.length === 0) break;
+    const srcZero = provsSrc.filter((p) => (allSeaLanes.get(p)?.size ?? 0) === 0);
+    const provA =
+      srcZero.length > 0
+        ? srcZero[rng.nextInt(0, srcZero.length - 1)]!
+        : provsSrc[rng.nextInt(0, provsSrc.length - 1)]!;
+    const dstOne = provsDst.filter((p) => (allSeaLanes.get(p)?.size ?? 0) === 1);
+    const provB =
+      dstOne.length > 0
+        ? dstOne[rng.nextInt(0, dstOne.length - 1)]!
+        : provsDst[rng.nextInt(0, provsDst.length - 1)]!;
+    const provAWas0Lane = (allSeaLanes.get(provA)?.size ?? 0) === 0;
+    const provBWas0Lane = (allSeaLanes.get(provB)?.size ?? 0) === 0;
+    if (!tryAddLane(provA, provB, pair.src.id, pair.dst.id)) continue;
+    phase2History.push({
+      provA,
+      provB,
+      islandA: pair.src.id,
+      islandB: pair.dst.id,
+      provANewEntrance: provAWas0Lane,
+      provBNewEntrance: provBWas0Lane,
+    });
+    seaLaneCount++;
   }
+
   if (seaLaneCount < SEA_LANE_COUNT)
     errors.push(
       `could not place ${SEA_LANE_COUNT} sea lanes in ${MAX_PHASE2_PASSES} passes (placed ${seaLaneCount})`,
     );
-  if (!allIslandsMinEntrances())
-    errors.push(
-      `could not reach ${MIN_ENTRANCES_PER_ISLAND} entrances on all islands in ${MAX_PHASE2_PASSES} passes`,
-    );
+  // Note: MIN_ENTRANCES_PER_ISLAND is checked by the fairness-check filter
+  // (checkFortress) and the retry loop handles it.  We do NOT enforce it in
+  // the body — the four structural constraints in Phase 2 are sufficient to
+  // reach SEA_LANE_COUNT in most seeds, but enforcing MIN_ENTRANCES here
+  // would over-saturate the larger islands (forcing Phase 2B to give up).
+  // See option (b) in T05b's Hazards: the body's structural check is "enough
+  // lanes"; MIN_ENTRANCES is a fairness concern.
 
   // ---- Build island records ------------------------------------------------
   // islandEntranceCount is maintained live during Phase 1 and Phase 2;
@@ -683,19 +702,22 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
  */
 export function generateBoard(seed: number): BoardGenResult {
   const rng = new DeterministicRng(seed);
+  let lastResult: BoardGenResult | null = null;
   for (let attempt = 1; attempt <= MAX_BOARD_ATTEMPTS; attempt++) {
     const result = generateBoardBody(rng);
-    if (!result.ok) return result; // structural failure — not retryable
-    const fairnessErrors = runAllFairnessChecks(result.map);
-    if (fairnessErrors.length === 0) return result; // all clear
-    // Advance the RNG to draw a different plan next attempt.  One draw is
-    // enough: the body always consumes a deterministic sequence, so skipping
-    // one state guarantees a different plan.
+    if (result.ok) {
+      const fairnessErrors = runAllFairnessChecks(result.map);
+      if (fairnessErrors.length === 0) return result;
+    }
+    lastResult = result;
+    // Advance the RNG to draw a different plan next attempt (C-BRD-01).
+    // One draw is enough: the body always consumes a deterministic
+    // sequence, so skipping one state guarantees a different plan on the
+    // next attempt — whether the previous attempt failed structurally
+    // (e.g. could not place 16 lanes) or failed the fairness checks.
     rng.nextInt(0, 0xffffffff);
   }
-  // Cap reached: run a final body call just to collect a summary for the error.
-  const lastResult = generateBoardBody(rng);
-  if (lastResult.ok) {
+  if (lastResult && lastResult.ok) {
     const fairnessErrors = runAllFairnessChecks(lastResult.map);
     return {
       ok: false,
@@ -704,6 +726,8 @@ export function generateBoard(seed: number): BoardGenResult {
   }
   return {
     ok: false,
-    errors: [`structural errors after ${MAX_BOARD_ATTEMPTS} attempts: ${lastResult.errors.join("; ")}`],
+    errors: [
+      `failed after ${MAX_BOARD_ATTEMPTS} attempts: ${lastResult ? lastResult.errors.join("; ") : "no body output"}`,
+    ],
   };
 }
