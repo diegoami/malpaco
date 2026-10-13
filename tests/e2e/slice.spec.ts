@@ -102,11 +102,12 @@ async function holdings(page: Page): Promise<Record<string, Holding>> {
 const province = (page: Page, id: string): Locator => page.locator(`.province[data-province="${id}"]`);
 const total = (h: Record<string, Holding>) => Object.values(h).reduce((sum, p) => sum + p.armies, 0);
 
-/** Waits for every finite animation and transition, so a picture is never taken mid-fade. */
+/** Waits for the fonts and for every finite animation and transition, so a picture is never taken mid-fade or in a fallback font. */
 async function settle(page: Page): Promise<void> {
-  await page.evaluate(() =>
-    Promise.all(document.getAnimations().filter((a) => a.effect?.getComputedTiming().iterations !== Infinity).map((a) => a.finished)),
-  );
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await Promise.all(document.getAnimations().filter((a) => a.effect?.getComputedTiming().iterations !== Infinity).map((a) => a.finished));
+  });
 }
 
 /** Takes a settled screenshot for the artifact and returns it, base64, for pixel work. */
