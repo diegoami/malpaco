@@ -1,6 +1,19 @@
-# RUN-NOTES T06
+# RUN-NOTES T09
 
-Plan: add Inter 4.1 variable woff2 + OFL to public/fonts, @font-face (block), Inter first in stacks, fonts.ready in settle(), goldens from CI artifact.
+Task: issue #23, branch `task/T09-island-income`. Implementer: an OpenCode
+session (`model:deepseek`), the owner's dispatch call recorded on #23.
 
-- step 1: font, css, settle() wait. CI run 38403610993 failed on exactly the six goldens.
-- step 2: goldens taken from that run's playwright-report artifact (six *-actual.png, Inter confirmed visually).
+Plan: add `src/core/bonuses.ts` (`islandIncome(state, seatId)` ->
+`{ islands, total, count }`, pure, C-BON-01), export it from
+`src/core/index.ts` (one line), and `tests/core/bonuses.test.ts` (authored map
+plus a `generateBoard` result). No constant added; no change to the bonus
+values, `data/` or `src/ui/`.
+
+- step 1: `src/core/bonuses.ts` + the one-line export + `tests/core/bonuses.test.ts`.
+  `npx vitest run tests/core/bonuses.test.ts` -> 8 passed. `npm test` -> 270 passed.
+  `npm run build` -> green (tsc core, tsc, vite build).
+- step 2: DW3 deletion mutation: removed lines 39-41 of `src/core/bonuses.ts`
+  (`const complete = ...` and `if (!complete) continue;`), ran the bonus suite
+  -> 6 failed / 2 passed; restored the saved file -> 8 passed.
+
+END: DW1-DW4 met.
