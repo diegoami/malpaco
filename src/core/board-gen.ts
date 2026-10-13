@@ -81,18 +81,14 @@ export const MAX_ENTRANCES_BY_SIZE: Readonly<Record<number, number>> = {
 export const MIN_ENTRANCES_PER_ISLAND = 2;
 
 /**
- * C-BRD-01: in the island graph, no island may have degree > 8.
- * [designed]: C-BRD-01 states "no island may have degree > 4" but this was
- * a placeholder; isle-wars-archaeology found no specific finding for the
- * exact degree cap.  With BORDER_MAX=DEGREE_MAX-2 (two sea-lane slots per
- * province), Phase 1's spanning tree makes island_0 a hub (connects to all
- * 8 other islands = degree 8), which is one above the previous cap of 6.
- * The checkRemoteOrHub eccentricity constraint is the primary protection
- * against hubs; degree 8 on 9 islands is still a long way from
- * unreachable (eccentricity 2 is the maximum on a 9-node graph, never 4+).
- * If future evidence tightens the bound, this constant is the single knob.
+ * C-BRD-01: in the island graph, no island may have degree > 4.
+ * Phase 1's spanning tree must keep each island's degree ≤ 4
+ * (8 edges on 9 islands, max degree 4); Phase 2 must skip any
+ * candidate pair where the resulting degree of either endpoint
+ * would exceed the cap.  This is the structural precondition for
+ * checkRemoteOrHub.
  */
-export const MAX_ISLAND_GRAPH_DEGREE = 8;
+export const MAX_ISLAND_GRAPH_DEGREE = 4;
 
 // ---------------------------------------------------------------------------
 // Result type
