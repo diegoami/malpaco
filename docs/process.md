@@ -59,6 +59,14 @@ What the review script guarantees, and why:
 - Exit 0: posted and labelled. 3: no review, nothing posted: read the final message (rule 8), fix
   the cause, run again. 4: posted under a note, no label: the main session reads it and decides.
 
+**Decisions visible on the PR** (L18, owner 2026-10-13): the implementer choice (rule 6.1) and the
+reviewer choice (rule 6.2) go on the PR as comments **at decision time** — *before* the dispatch
+lands — not as a post-hoc summary after the run finishes. The PR's timeline then reads in causal
+order: "implementer M3 dispatched at <ts> (family <x>, reason: <one line>)" → "shipped at <sha>"
+→ "reviewer Luna dispatched at <ts> (family openai, reason: <one line>)" → "review posted". The
+main session posts these comments; the implementer/reviewer runs do not. A PR whose timeline
+shows only the implementer's commits and a final review is missing the decision record.
+
 ## 4. The implementer brief
 
 The brief is the task file pasted in full, then this block, then on a rework round the review's URL.
@@ -70,6 +78,13 @@ worktree, or a cloud session, is the main session's (L26).
 You implement <T<nn>>. The task file above is the contract.
 - Build only what the task asks for, even inside a file it requires; say why for each changed file. (L44)
 - A Done-when you cannot meet: stop and report. Never weaken an assertion, skip a test or edit the task file.
+- **Constraint-feasibility probe** (when the task names structural constraints and a target success
+  rate): before any algorithmic change, run a small smoke test that confirms the constraint
+  set alone is feasible at the target rate (often a wide-seed sweep of the existing generator
+  body, plus the new constraints, with no algorithmic rewrite). If the probe shows the target
+  is unreachable, STOP and report. Do not weaken a constraint to make the algorithm pass
+  (rule 5); the user prefers a design amendment (preferred) over a quieter relaxation, and
+  the probe surfaces the conflict one round earlier than a full implementation.
 - Every new test fails before your change and passes after it; say how you checked.
 - Undo a mutation or scratch edit by writing back the file's saved contents (read it first,
   restore it in a `finally`), or commit first; never `git checkout`, `git restore` or `git reset`

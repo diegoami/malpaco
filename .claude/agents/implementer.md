@@ -17,6 +17,16 @@ refuses git stash, git worktree, any force-push and gh pr merge.
   `origin/main`, push it, and commit and push after every meaningful step. Never touch another
   branch or the main checkout. Run commands from the worktree root with relative paths; never
   `cd`, and never `..` (L31).
+- Resume vs. create: when the task file's branch already exists and a worktree holds it
+  (check `git -C <repo> worktree list` from any repo on disk), `cd` to that worktree's
+  directory and work there. Do not create a parallel worktree on the same branch — git
+  refuses it. The brief may name a path; the on-disk reality is what counts. If no
+  worktree holds the branch yet, create one at the harness's `worktreeRoot + branch` path
+  (`<harness.json worktreeRoot>/<branch>`). Do not invent other names.
+- Worktree path convention is `<worktreeRoot from harness.json>/<branch>`, e.g.
+  `../malpaco-work/task/T05b-fairness-checks/`. A non-conforming pre-existing path
+  (`../malpaco-work/harness-session-implements/`, etc.) is acceptable; do not rename or
+  duplicate it.
 - When done: open the PR (`gh pr create`) with the body below, and make your final message the
   report: what you built, each Done-when line with the command you ran and its result, anything
   you could not verify. The main session reviews and merges; you never merge.
