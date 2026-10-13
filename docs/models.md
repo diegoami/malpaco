@@ -63,7 +63,7 @@ longer ends the run.
 | `zai-glm-5.3-flash` | GLM-5.3 Flash, `zai-coding-plan/glm-5.3-flash`, effort `high` | GLM | a light reviewer for small PRs |
 | `mimo-flash`, `mimo-pro` | MiMo v2.6 Flash and Pro on OpenCode Go, no variant (they offer none) | MiMo | a family of its own; Go needs `opencode console login` in the scripts' data directory |
 | `mm-m3`, `mm-m2.7` | MiniMax-M3 (variant `thinking`) and M2.7 (no variant) | MiniMax | isle-wars-archaeology's `harness.json` only; a family of its own; key `MINIMAX_API_KEY` from `~/.config/ai-keys.env`, never `opencode auth login` |
-| `ali-qwen-max`, `ali-qwen-flash`, `ali-glm` | Qwen 3.8 Max (`low`), Qwen 3.8 Flash (`medium`) and GLM-5.3 (`low`) on the Alibaba Token Plan | Qwen, GLM | isle-wars-archaeology's `harness.json` only; only when the user asks (`--alibaba`); key `ALIBABA_TOKEN_PLAN_API_KEY` the same way |
+| `ali-qwen-max`, `ali-qwen-flash`, `ali-glm` | Qwen 3.8 Max (`low`), Qwen 3.8 Flash (`medium`) and GLM-5.3 (`low`) on the Alibaba Token Plan | Qwen, GLM | isle-wars-archaeology's `harness.json` only; register here through `/switch-model` when needed; key `ALIBABA_TOKEN_PLAN_API_KEY` the same way |
 | (the session's provider) | the orchestrator's model from the Anthropic environment; `sonnet`, `opus`, `haiku`, `fable` or a model id for the `implementer` subagent, which the orchestrator spawns on a model of its own | Claude; GLM, MiniMax or Kimi when the environment says so | implements; reviews only when the user asks |
 
 **DeepSeek was blocked** (the owner, 2026-10-09); **unblocked** (the owner, 2026-10-13, after its

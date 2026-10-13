@@ -143,14 +143,17 @@ The models per provider, heavy and light:
 
 Alibaba's Token Plan is no longer in quota-tracker: `/quota/alibaba` returns `not_monitored` with
 `pricing` only — there is no `month` window, and Alibaba is absent from `/quota` and
-`/avoid`, and `/recommend` does not rank it. Use Alibaba only when the user asks for it (CLAUDE.md rule 6.3);
-`harness.json` here registers no Alibaba model. OpenCode's key for it comes only from the environment variable
+`/avoid`, and `/recommend` does not rank it. It is usable like any other provider (the owner,
+2026-10-13: no ask-first rule); quota-tracker just cannot report its pool, so treat its figures
+as unknown. `harness.json` here registers no Alibaba model; register one through `/switch-model`
+when needed. OpenCode's key for it comes only from the environment variable
 `ALIBABA_TOKEN_PLAN_API_KEY` (in WSL from `~/.config/ai-keys.env`, which `~/.bashrc` and
 `~/.profile` load, and through WSLENV for commands started from Windows; on Windows a user
 variable), so it works in every OpenCode data directory, the scripts' own included. Never add it
 with `opencode auth login`: an `auth.json` entry overrides the variable, and a bad one breaks the
 provider for that directory. Never print, copy or edit the key or an `auth.json`. If a call fails:
-- a quota or rate error: stop using Alibaba until the next day and tell the owner; do not retry.
+- a quota or rate error: the small monthly pool is likely out — report it and move to another
+  provider for the rest of the run.
 - "Provider not found: alibaba-token-plan": the variable is not in this environment. Restart the
   session or shell so it picks it up; if it is still missing, tell the owner. Do not retry.
 - "Invalid API-key": the data directory's `auth.json` may hold a stale Alibaba entry (the scripts
