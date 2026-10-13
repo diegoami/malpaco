@@ -40,8 +40,8 @@ export function familyOf(id) {
 }
 
 // Heavy models run at `low`, or `medium` at most; light ones at `high` (L54, #83). Heavy: Sol, GLM-5.3
-// (not Flash), DeepSeek V4 Pro, MiMo V2.6 Pro, Opus, wherever they are served from (DeepSeek is
-// blacklisted since 2026-10-09, but still recognised).
+// (not Flash), DeepSeek V4 Pro, MiMo V2.6 Pro, Opus, wherever they are served from (DeepSeek was
+// blacklisted 2026-10-09..2026-10-13, see L67; unblocked after T09's clean DeepSeek implement run).
 // Exactly the models the rule names (Sol's R2 on PR 94): another GLM or DeepSeek release is not heavy.
 // A dated suffix is the same model, not a release: deepseek-v4-pro-0813 (the only Alibaba id with
 // the night discount) is the named DeepSeek V4 Pro.
