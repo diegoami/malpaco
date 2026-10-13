@@ -616,14 +616,21 @@ function mapEccentricity4Passes(): GameMap {
  * bonus 5 (≤ size, OK).
  */
 function mapThreeSingleEntrances(): GameMap {
+  // 4 islands.  A, C, D each have exactly 1 entrance (single-entrance
+  // islands).  B has 2 entrances (to A and D, plus the connection back
+  // from C).  Single-entrance count = 3 (A, C, D).  Predicate `> 3`
+  // does NOT fire (3 is not > 3); predicate `> 2` DOES fire (the
+  // mutation weakens the rule).
   return buildMap({
     islands: [
       { id: "A", size: 3, bonus: 1, lanes: [{ from: "A_p0", to: "B_p0" }] },
       { id: "B", size: 5, bonus: 5, lanes: [
         { from: "B_p0", to: "A_p0" },
         { from: "B_p1", to: "C_p0" },
+        { from: "B_p2", to: "D_p0" },
       ]},
       { id: "C", size: 3, bonus: 1, lanes: [{ from: "C_p0", to: "B_p1" }] },
+      { id: "D", size: 3, bonus: 1, lanes: [{ from: "D_p0", to: "B_p2" }] },
     ],
   });
 }
@@ -721,13 +728,18 @@ function mapFourSingleEntrances(): GameMap {
  * fire on /3.  Use islands of size 5 so check 1 doesn't fire.
  */
 function mapQuarterShareViolation(): GameMap {
+  // 4 single-entrance leaves (A, B, C, D) at bonus 1 each → single sum
+  // = 4.  Hub H at bonus 8 (size 10, ≤ size).  Total = 4 + 8 = 12.
+  // 4 > 12/4 = 3 → TRUE (predicate fires).
+  // 4 > 12/3 = 4 → FALSE (predicate does NOT fire on the /3 mutation).
+  // This fixture distinguishes `/ 4` from `/ 3` correctly.
   return buildMap({
     islands: [
-      { id: "A", size: 5, bonus: 3, lanes: [{ from: "A_p0", to: "H_p0" }] },
-      { id: "B", size: 5, bonus: 3, lanes: [{ from: "B_p0", to: "H_p1" }] },
-      { id: "C", size: 5, bonus: 3, lanes: [{ from: "C_p0", to: "H_p2" }] },
-      { id: "D", size: 5, bonus: 3, lanes: [{ from: "D_p0", to: "H_p3" }] },
-      { id: "H", size: 5, bonus: 2, lanes: [
+      { id: "A", size: 5, bonus: 1, lanes: [{ from: "A_p0", to: "H_p0" }] },
+      { id: "B", size: 5, bonus: 1, lanes: [{ from: "B_p0", to: "H_p1" }] },
+      { id: "C", size: 5, bonus: 1, lanes: [{ from: "C_p0", to: "H_p2" }] },
+      { id: "D", size: 5, bonus: 1, lanes: [{ from: "D_p0", to: "H_p3" }] },
+      { id: "H", size: 10, bonus: 8, lanes: [
         { from: "H_p0", to: "A_p0" },
         { from: "H_p1", to: "B_p0" },
         { from: "H_p2", to: "C_p0" },
