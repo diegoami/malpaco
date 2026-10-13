@@ -26,7 +26,7 @@ export const DEGREE_MAX = 5;
  * DEGREE_MAX - 1; that left each province only one sea-lane slot, which
  * Phase 2 cannot use to reach SEA_LANE_COUNT=16 once the four structural
  * constraints (MAX_LANES_PER_COUNTRY=2, MAX_ENTRANCES_BY_SIZE, MIN_ENTRANCES=2,
- * MAX_ISLAND_GRAPH_DEGREE=4) are in place.  With two slots per province
+ * MAX_ISLAND_GRAPH_DEGREE=5) are in place.  With two slots per province
  * Phase 2 has headroom to fill to 16 lanes on the tested seeds.  Every
  * province still has degree ≥ 2 from borders alone (within-island
  * connectivity), so connectivity within each island is always maintained.
@@ -83,14 +83,17 @@ export const MAX_ENTRANCES_BY_SIZE: Readonly<Record<number, number>> = {
 export const MIN_ENTRANCES_PER_ISLAND = 2;
 
 /**
- * C-BRD-01: in the island graph, no island may have degree > 4.
- * Phase 1's spanning tree must keep each island's degree ≤ 4
- * (8 edges on 9 islands, max degree 4); Phase 2 must skip any
+ * C-BRD-01: in the island graph, no island may have degree > 5.
+ * Phase 1's spanning tree must keep each island's degree ≤ 5
+ * (8 edges on 9 islands, max degree 5); Phase 2 must skip any
  * candidate pair where the resulting degree of either endpoint
  * would exceed the cap.  This is the structural precondition for
- * checkRemoteOrHub.
+ * checkRemoteOrHub.  Amendment 2026-10-13: raised from 4 to 5 after
+ * the M3 round reached 76 % at cap = 4 (random greedy + 1-level
+ * backtracking cannot reliably saturate the island graph at cap = 4);
+ * eccentricity threshold (4) did not move in lockstep.
  */
-export const MAX_ISLAND_GRAPH_DEGREE = 4;
+export const MAX_ISLAND_GRAPH_DEGREE = 5;
 
 // ---------------------------------------------------------------------------
 // Result type
@@ -366,7 +369,7 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
    * Constraints enforced here (C-BRD-01):
    * 1. MAX_LANES_PER_COUNTRY: neither endpoint province may already have ≥ 2 lanes.
    * 2. MAX_ENTRANCES_BY_SIZE: neither island may exceed its entrance cap.
-   * 3. MAX_ISLAND_GRAPH_DEGREE: neither island may exceed degree 4 in the island graph.
+   * 3. MAX_ISLAND_GRAPH_DEGREE: neither island may exceed degree 5 in the island graph.
    * 4. DEGREE_MAX: total degree (borders + lanes) of each endpoint stays ≤ DEGREE_MAX.
    */
   function tryAddLane(provA: string, provB: string, islandA: string, islandB: string): boolean {

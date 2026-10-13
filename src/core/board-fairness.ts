@@ -175,11 +175,15 @@ export function checkEasyBonusesConcentrated(map: GameMap): string[] {
 
 /**
  * In the island graph, any island with eccentricity > 4 (requires more
- * than 4 crossings to reach some other island) OR degree > 4 (touches
- * more than 4 other islands).
+ * than 4 crossings to reach some other island) OR degree > 5 (touches
+ * more than 5 other islands).
  *
  * A remote island (isolated, requires many hops) or a hub (over-connected)
  * both distort strategy.
+ *
+ * Amendment 2026-10-13: degree threshold moved from `> 4` to `> 5`
+ * in lockstep with `MAX_ISLAND_GRAPH_DEGREE = 5` in board-gen.ts
+ * (C-BRD-01).  Eccentricity threshold (4) did not move.
  */
 export function checkRemoteOrHub(map: GameMap): string[] {
   const violations: string[] = [];
@@ -189,10 +193,10 @@ export function checkRemoteOrHub(map: GameMap): string[] {
   for (const island of map.islands) {
     const neighbours = islandAdj.get(island.id) ?? new Set<string>();
 
-    // Degree check: more than 4 other islands directly adjacent
-    if (neighbours.size > 4) {
+    // Degree check: more than 5 other islands directly adjacent
+    if (neighbours.size > 5) {
       violations.push(
-        `remote-or-hub: island '${island.id}' has degree ${neighbours.size} > 4`,
+        `remote-or-hub: island '${island.id}' has degree ${neighbours.size} > 5`,
       );
     }
 
