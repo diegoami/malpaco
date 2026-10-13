@@ -415,10 +415,13 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   }
   shuffled(rng, allPairs);
 
-  // Union-find for components
-  const compParent = Array.from({ length: islandStructs.length }, (_, i) => i);
+  // Union-find for components. `compParent` always has `islandStructs.length`
+  // entries and indices in `[0, length)` are always set, but
+  // `noUncheckedIndexedAccess` widens the read to `number | undefined`
+  // even with that invariant; the `!` asserts the well-defined read.
+  const compParent: number[] = Array.from({ length: islandStructs.length }, (_, i) => i);
   function compFind(x: number): number {
-    return compParent[x] === x ? x : (compParent[x] = compFind(compParent[x]));
+    return compParent[x] === x ? x : (compParent[x]! = compFind(compParent[x]!));
   }
   function compUnion(a: number, b: number) {
     const ra = compFind(a);
