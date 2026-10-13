@@ -1,5 +1,13 @@
 import { describe, expect, it } from "vitest";
-import { generateBoard, ISLAND_SIZES, SEA_LANE_COUNT, DEGREE_MIN, DEGREE_MAX, BORDER_MAX, BONUS_DIVISOR } from "../../src/core/board-gen";
+import { generateBoard, ISLAND_SIZES, SEA_LANE_COUNT, DEGREE_MIN, DEGREE_MAX, BORDER_MAX, BONUS_DIVISOR, MAX_BOARD_ATTEMPTS, MAX_LANES_PER_COUNTRY, MAX_ENTRANCES_BY_SIZE, MIN_ENTRANCES_PER_ISLAND, MAX_ISLAND_GRAPH_DEGREE } from "../../src/core/board-gen";
+import {
+  checkBonusOutOfProportion,
+  checkCrowdedCrossing,
+  checkEasyBonusesConcentrated,
+  checkFortress,
+  checkRemoteOrHub,
+  runAllFairnessChecks,
+} from "../../src/core/board-fairness";
 import { parseMap } from "../../src/core";
 
 // ---------------------------------------------------------------------------
@@ -270,55 +278,143 @@ describe("generateBoard", () => {
       expect(BONUS_DIVISOR).toBe(2);
     });
 
-    // Saturation-fix mutation: BORDER_MAX must equal DEGREE_MAX - 2, leaving
-    // two sea-lane slots per province.  The M2.7 worked the sea-lane cap to
-    // BORDER_MAX = DEGREE_MAX - 1 (= 4) and the body's 16-lane target became
-    // infeasible (Phase 2 oversaturated and Phase 2B had no viable pairs).
-    // If a future commit flips BORDER_MAX back to DEGREE_MAX - 1, the
-    // per-seed tests above regress.
+    // --- T05b structural-constraint constants (C-BRD-01 amendment) ---
+    it("MAX_BOARD_ATTEMPTS is exported and within [1, 200]", () => {
+      expect(MAX_BOARD_ATTEMPTS).toBeGreaterThanOrEqual(1);
+      expect(MAX_BOARD_ATTEMPTS).toBeLessThanOrEqual(200);
+    });
+
+    it("MAX_LANES_PER_COUNTRY is exported and equals 2 (C-BRD-01)", () => {
+      expect(MAX_LANES_PER_COUNTRY).toBe(2);
+    });
+
+    it("MAX_ENTRANCES_BY_SIZE is exported with the C-BRD-01 / C-BON-02 derived caps", () => {
+      // Derived from C-BON-02 so bonus = max(2, floor(size/2) + entrances) ≤ size.
+      expect(MAX_ENTRANCES_BY_SIZE[3]).toBe(2); // size 3 → max(2, 1+entrances) ≤ 3 → entrances ≤ 2
+      expect(MAX_ENTRANCES_BY_SIZE[5]).toBe(3);
+      expect(MAX_ENTRANCES_BY_SIZE[7]).toBe(4);
+      expect(MAX_ENTRANCES_BY_SIZE[10]).toBe(5);
+    });
+
+    it("MIN_ENTRANCES_PER_ISLAND is exported and equals 2 (C-BRD-01)", () => {
+      expect(MIN_ENTRANCES_PER_ISLAND).toBe(2);
+    });
+
+    it("MAX_ISLAND_GRAPH_DEGREE is exported and equals 5 (C-BRD-01, amendment 2026-10-13)", () => {
+      expect(MAX_ISLAND_GRAPH_DEGREE).toBe(5);
+    });
+
+    // --- checkRemoteOrHub's degree threshold mirrors MAX_ISLAND_GRAPH_DEGREE ---
+    // If you raise/lower the cap but keep the predicate at "degree > 5", or
+    // raise/lower the predicate without the cap, the sweep below regresses.
+    it("every generated board's max island-graph degree is at most MAX_ISLAND_GRAPH_DEGREE", () => {
+      const SEEDS = [1, 7, 12, 21, 33, 42, 45];
+      for (const seed of SEEDS) {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        const { provinces } = r.map;
+        const provinceIsland = new Map<string, string>(provinces.map((p) => [p.id, p.island]));
+        const islandAdj = new Map<string, Set<string>>();
+        for (const i of r.map.islands) islandAdj.set(i.id, new Set());
+        for (const p of provinces) {
+          for (const sl of p.seaLanes) {
+            const other = provinces.find((x) => x.id === sl);
+            if (!other) continue;
+            if (other.island === p.island) continue;
+            islandAdj.get(p.island)!.add(other.island);
+            islandAdj.get(other.island)!.add(p.island);
+          }
+        }
+        let maxDeg = 0;
+        for (const [, set] of islandAdj) {
+          if (set.size > maxDeg) maxDeg = set.size;
+        }
+        expect(maxDeg, `seed ${seed} max degree ${maxDeg} > cap`).toBeLessThanOrEqual(MAX_ISLAND_GRAPH_DEGREE);
+        // And the predicate must not match: every degree ≤ 5 means check 4 returns []
+        expect(checkRemoteOrHub(r.map)).toEqual([]);
+      }
+    });
+
+    // --- Saturation-fix mutation: BORDER_MAX must equal DEGREE_MAX - 2 ---
     it("BORDER_MAX = DEGREE_MAX - 2 (sea-lane slot reservation)", () => {
       expect(BORDER_MAX).toBe(DEGREE_MAX - 2);
     });
 
-    // Bonus-count regression: "entrances" must count distinct provinces with
-    // sea lanes, not total sea-lane entries (C-BON-02). Seed 1 island_0 has
-    // 3 lane entries from 2 distinct provinces. If the count reverts to
-    // lane-entry counting, island_0's bonus becomes max(2,1+3)=4 instead of
-    // the correct max(2,1+2)=3, and this assertion fails.
+    // --- Bonus-count regression (C-BON-02) ---
+    // Across all TEST_SEEDS, the island bonus must equal the
+    // distinct-province count (laneProvinces.size), NOT the total
+    // lane-entry count (laneEntries).  When the bug was present ("entrances"
+    // counted lane entries), every island with ≥ 2 lanes from the same
+    // province inflated its bonus and broke the C-BRD-01 fairness check
+    // checkEasyBonusesConcentrated.  This assertion is seed-agnostic so
+    // it does not track the algorithm's exact lane assignments.
     it("bonus uses distinct provinces with sea lanes, not lane-entry count (C-BON-02)", () => {
-      const r = generateBoard(1);
-      if (!r.ok) throw new Error(r.errors.join("; "));
-      const island0 = r.map.islands.find((i) => i.id === "island_0");
-      expect(island0).toBeDefined();
-      if (!island0) return;
-      const laneProvinces = new Set<string>();
-      let laneEntries = 0;
-      for (const pid of island0.provinces) {
-        const p = r.map.provinces.find((x) => x.id === pid);
-        if (!p || p.seaLanes.length === 0) continue;
-        laneEntries += p.seaLanes.length;
-        const other = p.seaLanes
-          .map((sl) => r.map.provinces.find((x) => x.id === sl))
-          .find((other) => other && other.island !== "island_0");
-        if (other) laneProvinces.add(pid);
+      for (const seed of TEST_SEEDS) {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        for (const island of r.map.islands) {
+          let laneEntries = 0;
+          const laneProvinces = new Set<string>();
+          for (const pid of island.provinces) {
+            const p = r.map.provinces.find((x) => x.id === pid);
+            if (!p || p.seaLanes.length === 0) continue;
+            laneEntries += p.seaLanes.length;
+            const other = p.seaLanes
+              .map((sl) => r.map.provinces.find((x) => x.id === sl))
+              .find((other) => other && other.island !== island.id);
+            if (other) laneProvinces.add(pid);
+          }
+          const expected = Math.max(2, Math.floor(island.provinces.length / BONUS_DIVISOR) + laneProvinces.size);
+          expect(island.bonus, `seed ${seed} island ${island.id}: bonus=${island.bonus} laneEntries=${laneEntries} laneProvinces=${laneProvinces.size} expected=${expected}`)
+            .toBe(expected);
+          // And laneEntries ≥ laneProvinces.size — otherwise the
+          // "distinct provinces" invariant is the wrong formula.
+          expect(laneEntries).toBeGreaterThanOrEqual(laneProvinces.size);
+        }
       }
-      // island_0 (size 3): 3 lane entries from 2 distinct provinces.
-      // Correct bonus = max(2, floor(3/2) + 2) = max(2, 1+2) = 3.
-      // Buggy bonus = max(2, floor(3/2) + 3) = max(2, 1+3) = 4.
-      expect(laneEntries, "island_0 should have 3 lane entries on seed 1").toBe(3);
-      expect(laneProvinces.size, "island_0 should have 2 distinct provinces with lanes on seed 1").toBe(2);
-      const expectedBonus = Math.max(2, Math.floor(island0.provinces.length / BONUS_DIVISOR) + laneProvinces.size);
-      expect(island0.bonus, `island_0 bonus must be ${expectedBonus}, not inflated by lane-entry count`).toBe(expectedBonus);
     });
 
-    // Spot-check: if any structural constant is wrong, some seed fails to generate a valid board
+    // --- Spot-check: SEA_LANE_COUNT ---
     it("generateBoard(seed) fails if SEA_LANE_COUNT constant is lowered to 15", () => {
-      // We test this indirectly by verifying the current SEA_LANE_COUNT produces correct count,
-      // and if it were wrong (e.g. 15) the undirectedSeaLanes assertion would fail for all seeds.
       const r = generateBoard(7);
       if (!r.ok) throw new Error(r.errors.join("; "));
-      expect(undirectedSeaLanes(r.map)).toBe(SEA_LANE_COUNT); // if SEA_LANE_COUNT were 15, this would be 16
+      expect(undirectedSeaLanes(r.map)).toBe(SEA_LANE_COUNT);
     });
+
+    // --- C-BON-02 derivation: max(2, floor(size/2) + entrances) ≤ size ---
+    // For each ISLAND_SIZES entry, MAX_ENTRANCES_BY_SIZE[size] must hold.
+    it("MAX_ENTRANCES_BY_SIZE caps hold for every ISLAND_SIZES entry (C-BON-02)", () => {
+      for (const size of ISLAND_SIZES) {
+        const cap = MAX_ENTRANCES_BY_SIZE[size];
+        expect(cap, `no cap for island size ${size}`).toBeDefined();
+        // bonus = max(2, floor(size/2) + entrances) ≤ size ⇒ entrances ≤ size - floor(size/2)
+        // = ceil(size/2). Test the C-BON-02 inequality.
+        const maxEntrances = size - Math.floor(size / 2);
+        expect(cap).toBeLessThanOrEqual(maxEntrances);
+      }
+    });
+
+    // --- Crowding check: each province has at most MAX_LANES_PER_COUNTRY lanes ---
+    it("every province has at most MAX_LANES_PER_COUNTRY sea lanes", () => {
+      for (const seed of TEST_SEEDS) {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        for (const p of r.map.provinces) {
+          expect(p.seaLanes.length, `seed ${seed}: province ${p.id} has ${p.seaLanes.length} lanes`)
+            .toBeLessThanOrEqual(MAX_LANES_PER_COUNTRY);
+        }
+      }
+    });
+
+    // --- MAX_LANES_PER_COUNTRY structural enforcement (C-BRD-01) ---
+    // The check 5 predicate is `seaLanes.length > 2`. If we tighten the
+    // cap to 1 (or relax to 3), the check predicate should also tighten
+    // (or relax) to match. The tests for `check 5: crowded crossing` in
+    // `tests/core/board-fairness.test.ts` are the corresponding ones:
+    //   - A province with 3 lanes violates "seaLanes.length > 2".
+    //   - A province with 2 lanes does not.
+    // Mutating MAX_LANES_PER_COUNTRY without changing the predicate (or
+    // vice versa) is the model rule-9 mutation to surface here.
   });
 
   // Done-when 6: UI unchanged
@@ -347,34 +443,52 @@ describe("generateBoard", () => {
     }
   });
 
-  // T05b fairness-check placeholders (documented skips)
-  describe("T05b fairness checks (not enforced in T05a)", () => {
-    // These assertions are skipped until T05b implements the actual checks.
-    // A mechanical `test.skip` means the migration to T05b is a one-word change.
-    it.skip("bonus-out-of-proportion check (T05b)", () => {
-      // T05b will assert: no island has a bonus more than 2× the mean bonus
-      expect(true).toBe(true);
-    });
+  // T05b fairness checks (the 5 checks wired into the retry loop, C-BRD-01)
+  describe("T05b fairness checks wired into the generator", () => {
+    // For every seed we expect the 5 fairness checks to pass on the
+    // generator's output.  The pre-flight fail-safe `runAllFairnessChecks`
+    // returns a list of violation messages; an empty list means the
+    // generator's body produced a board the fairness layer accepts.
+    const FAIRNESS_SEEDS = [1, 2, 3, 7, 12, 21, 33, 42, 45, 99999] as const;
 
-    it.skip("fortress check (T05b)", () => {
-      // T05b will assert: no island has degree-5 neighbours concentrated on few provinces
-      expect(true).toBe(true);
-    });
+    for (const seed of FAIRNESS_SEEDS) {
+      it(`seed ${seed}: no bonus-out-of-proportion violation`, () => {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        expect(checkBonusOutOfProportion(r.map)).toEqual([]);
+      });
 
-    it.skip("easy-bonuses-concentrated check (T05b)", () => {
-      // T05b will assert: low bonuses are not all on highly-connected islands
-      expect(true).toBe(true);
-    });
+      it(`seed ${seed}: no fortress violation`, () => {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        expect(checkFortress(r.map)).toEqual([]);
+      });
 
-    it.skip("remote-or-hub-island check (T05b)", () => {
-      // T05b will assert: each island has at least one crossing
-      expect(true).toBe(true);
-    });
+      it(`seed ${seed}: no easy-bonuses-concentrated violation`, () => {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        expect(checkEasyBonusesConcentrated(r.map)).toEqual([]);
+      });
 
-    it.skip("crowded-crossing-country check (T05b)", () => {
-      // T05b will assert: no province serves as a crossing for more than 3 islands
-      expect(true).toBe(true);
-    });
+      it(`seed ${seed}: no remote-or-hub violation`, () => {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        expect(checkRemoteOrHub(r.map)).toEqual([]);
+      });
+
+      it(`seed ${seed}: no crowded-crossing violation`, () => {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        expect(checkCrowdedCrossing(r.map)).toEqual([]);
+      });
+
+      it(`seed ${seed}: runAllFairnessChecks returns empty`, () => {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(r.errors.join("; "));
+        const all = runAllFairnessChecks(r.map);
+        expect(all, all.join("; ")).toEqual([]);
+      });
+    }
   });
 });
 
