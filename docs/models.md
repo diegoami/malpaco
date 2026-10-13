@@ -26,7 +26,7 @@ The roster is the owner's and changes often: `harness.json`'s two defaults and i
 change through `/switch-model`, never by a rule that names a model, and no quota, tier or
 difficulty table picks one. The fixed rules: the reviewer is never of the session's family (so no
 Claude reviewer under Claude, no GLM reviewer under Z.AI, unless the user asks for a same-family
-review); a blocked model never runs (DeepSeek today); Alibaba only when the user asks.
+review); a blocked model never runs (`--block`/`--unblock` change the list; it is empty today); Alibaba only when the user asks.
 
 **Why OpenCode does not implement any more.** Its implementer runs were the harness's main source
 of lost work: runs ended by a rejected path outside the worktree (T13 three times, T21 and T22,
@@ -61,10 +61,11 @@ longer ends the run.
 | `ali-qwen-max`, `ali-qwen-flash`, `ali-glm` | Qwen 3.8 Max (`low`), Qwen 3.8 Flash (`medium`) and GLM-5.3 (`low`) on the Alibaba Token Plan | Qwen, GLM | isle-wars-archaeology's `harness.json` only; only when the user asks (`--alibaba`); key `ALIBABA_TOKEN_PLAN_API_KEY` the same way |
 | (the session's provider) | the orchestrator's model from the Anthropic environment; `sonnet`, `opus`, `haiku`, `fable` or a model id for the `implementer` subagent, which the orchestrator spawns on a model of its own | Claude; GLM, MiniMax or Kimi when the environment says so | implements; reviews only when the user asks |
 
-**DeepSeek is blocked** (the owner, 2026-10-09), on any route: `harness.json`'s `blocked` list, which
-`review.mjs` and `switch-model.mjs` refuse and `/switch-model --block` and `--unblock` change.
-Every id comes from a live list (`opencode models <provider>`), never memory; `/switch-model`
-changes a default with a probe.
+**DeepSeek was blocked** (the owner, 2026-10-09); **unblocked** (the owner, 2026-10-13, after its
+clean T09 implement run): the `blocked` list is empty, and any model may implement or review,
+subject only to the live checks — the reviewer is never of the session's family, and every id
+comes from a live list (`opencode models <provider>`), never memory; `/switch-model` changes a
+default with a probe, and `--block`/`--unblock` change the list.
 
 **Effort.** A light model (Sonnet, GPT-5.6 Luna, GLM-5.3 Flash) runs at `high`; a heavy model
 (Opus, GPT-6.1 Sol, GLM-5.3, MiMo v2.6 Pro, MiniMax-M3) at `medium` at most, and at `low` when

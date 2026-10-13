@@ -71,8 +71,8 @@ indexed in `docs/tasks/README.md`.
       Playwright goldens, and the owner judges the look (rule 20).
    3. **The fixed rules:** the reviewer is never of the session's family (`review.mjs` refuses it
       from the environment; a `/code-review` or the `reviewer` agent, which are that family, run
-      only when the user asks); a model on `harness.json`'s `blocked` list never runs (DeepSeek
-      today; `/switch-model --block` and `--unblock` change it); Alibaba only when the user asks.
+      only when the user asks); a model on `harness.json`'s `blocked` list never runs (the list is
+      empty today; `/switch-model --block` and `--unblock` change it); Alibaba only when the user asks.
    4. **Permissions, not briefs** (the owner, 2026-10-11): an agent gets the permissions its work
       needs, in its agent file (`.opencode/agents/reviewer.md`: `/tmp/opencode/*` outside its
       worktree; `.claude/agents/*.md`). A run that dies on a rejected path is fixed by widening
