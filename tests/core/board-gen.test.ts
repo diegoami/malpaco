@@ -12,6 +12,9 @@ import {
   MIN_ENTRANCES_PER_ISLAND,
   MAX_ISLAND_GRAPH_DEGREE,
   generateBoard,
+  generateBoardBody,
+  generateBoardInternal,
+  structuralErrors,
 } from "../../src/core/board-gen";
 import {
   checkBonusOutOfProportion,
@@ -23,7 +26,9 @@ import {
 } from "../../src/core/board-fairness";
 import { parseMap } from "../../src/core";
 import { DeterministicRng } from "../../src/core/rng";
-import type { BoardGenResult } from "../../src/core/board-gen";
+import type { BoardGenResult, BodyTrace } from "../../src/core/board-gen";
+import * as core from "../../src/core";
+import type { GameMap } from "../../src/core";
 
 // ---------------------------------------------------------------------------
 // Structural constants must be named exports so a one-character edit breaks
@@ -108,7 +113,7 @@ function islandEntrances(map: import("../../src/core").GameMap, islandId: string
 
 // Seeds that exercise the previous rework round's saturation bug. They
 // were failing on the M2.7 commit (`9de9ee9`); the headroom reservation in
-// `buildBorders` (BORDER_MAX = DEGREE_MAX - 1) makes them pass on this
+// `buildBorders` (BORDER_MAX = DEGREE_MAX - 2) makes them pass on this
 // commit. Pinned explicitly so a future regression of the saturation fix
 // breaks the suite.
 const SATURATION_SEEDS = [21, 33] as const;
@@ -458,144 +463,6 @@ describe("generateBoard", () => {
     }
   });
 
-  // T05b retry loop, controlled failure tests (R2, Sol 2026-10-13).
-  //
-  // The previous round's "all structurally-valid bodies pass" tests
-  // tolerated the `fairnessErrors.length >= 0` mutation: changing the
-  // equality to >= 0 silently accepted every structurally-valid body
-  // result, and the suite still passed.  This block replaces that with
-  // controlled failing attempts and forced exhaustion that detect the
-  // mutation.  The previous "every seed passes fairness" loop tests
-  // are removed because they are tautological (a board that the loop
-  // returns MUST have passed the fairness check by construction).
-  describe("T05b retry loop — controlled failure / exhaustion (R2)", () => {
-    // A deterministic, always-`ok:true` body used by the exhaustion
-    // tests.  The loop's only decision is the fairness check.
-    const alwaysOkBody = (rng: DeterministicRng): BoardGenResult => {
-      // Build a tiny valid map on demand so the body still satisfies
-      // the structural pre-flight (the test focuses on the fairness
-      // path; we want every body call to reach the fairness check).
-      // Use parseMap on a hand-built minimal JSON to skip the full
-      // border+phase1/2 plumbing.
-      const minimal = {
-        schema: 1,
-        id: "stub",
-        name: "Stub",
-        bounds: { x: 0, y: 0, width: 100, height: 100 },
-        provinces: [
-          {
-            id: "P0",
-            name: "P0",
-            island: "I0",
-            borders: ["P1"],
-            sea_lanes: [],
-            polygon: [[10, 10], [20, 10], [15, 20]],
-            label_at: [15, 15],
-          },
-          {
-            id: "P1",
-            name: "P1",
-            island: "I0",
-            borders: ["P0"],
-            sea_lanes: [],
-            polygon: [[10, 30], [20, 30], [15, 40]],
-            label_at: [15, 35],
-          },
-        ],
-        islands: [{ id: "I0", name: "I0", bonus: 2, provinces: ["P0", "P1"] }],
-      };
-      const parsed = parseMap(minimal);
-      if (!parsed.ok) return { ok: false, errors: parsed.errors };
-      // Advance the rng so consecutive calls draw different plans.
-      rng.nextInt(0, 0xffffffff);
-      return { ok: true, map: parsed.map };
-    };
-
-    // The forced-fairness-violation mock.  Returns one violation so
-    // every structurally-valid body the loop accepts is then rejected.
-    const alwaysFailsCheck = (_map: import("../../src/core").GameMap): string[] => [
-      "forced violation: fortress",
-    ];
-
-    // Forced exhaustion: returns { ok: false } with the expected
-    // summary after MAX_BOARD_ATTEMPTS.
-    it("forced exhaustion: returns { ok: false } with the expected summary after MAX_BOARD_ATTEMPTS", () => {
-      const r = generateBoard(1, {
-        body: alwaysOkBody,
-        fairnessCheck: alwaysFailsCheck,
-      });
-      expect(r.ok).toBe(false);
-      if (r.ok) return;
-      expect(r.errors.length).toBe(1);
-      const msg = r.errors[0]!;
-      // Required summary text (Sol R2): "fairness checks failed
-      // after N attempts: <summary>".
-      expect(msg.startsWith("fairness checks failed after ")).toBe(true);
-      expect(msg).toContain(`${MAX_BOARD_ATTEMPTS} attempts`);
-      expect(msg).toContain("forced violation: fortress");
-    });
-
-    // The retry cap is honoured: the body is called exactly
-    // MAX_BOARD_ATTEMPTS times.
-    it("the retry cap is honoured: body is invoked exactly MAX_BOARD_ATTEMPTS times", () => {
-      let calls = 0;
-      const countingBody = (rng: DeterministicRng): BoardGenResult => {
-        calls++;
-        return alwaysOkBody(rng);
-      };
-      generateBoard(7, {
-        body: countingBody,
-        fairnessCheck: alwaysFailsCheck,
-      });
-      expect(calls).toBe(MAX_BOARD_ATTEMPTS);
-    });
-
-    // RNG advancement between attempts: every attempt draws a
-    // different plan.  We assert this by snapshotting the rng at each
-    // body call and checking consecutive snapshots differ.
-    it("RNG state advances between attempts (different plan per attempt)", () => {
-      const snapshots: string[] = [];
-      const snapshotBody = (rng: DeterministicRng): BoardGenResult => {
-        snapshots.push(JSON.stringify(rng.snapshot()));
-        return alwaysOkBody(rng);
-      };
-      generateBoard(123, {
-        body: snapshotBody,
-        fairnessCheck: alwaysFailsCheck,
-      });
-      expect(snapshots.length).toBe(MAX_BOARD_ATTEMPTS);
-      // At least the first two snapshots must differ (rng advanced).
-      expect(snapshots[0]).not.toEqual(snapshots[1]);
-    });
-
-    // The fairness check is invoked at least MAX_BOARD_ATTEMPTS
-    // times (once per structurally-valid body produced).
-    it("the fairness check is invoked at least MAX_BOARD_ATTEMPTS times before exhaustion", () => {
-      let checkCalls = 0;
-      const countingCheck = (_map: import("../../src/core").GameMap): string[] => {
-        checkCalls++;
-        return ["forced violation"];
-      };
-      generateBoard(7, {
-        body: alwaysOkBody,
-        fairnessCheck: countingCheck,
-      });
-      expect(checkCalls).toBeGreaterThanOrEqual(MAX_BOARD_ATTEMPTS);
-    });
-
-    // Mutation catch: when the loop's accept predicate is mutated from
-    // `=== 0` to `>= 0` (always-accept), the exhaustion test above
-    // returns ok:true with the first body's map.  We do not need a
-    // separate test — the existing `forced exhaustion` test would
-    // fail under that mutation.  This assertion documents the intent.
-    it("mutation catch: the `>= 0` mutation is detected by the forced-exhaustion test", () => {
-      // If a future change weakens the accept predicate, the
-      // forced-exhaustion test fails because ok:true would be returned.
-      // No runtime check here; the static test above is the catch.
-      expect(true).toBe(true);
-    });
-  });
-
   // R6: structural pre-flight must enforce MIN_ENTRANCES_PER_ISLAND;
   // the body must REFUSE to return ok:true if any island is below the
   // cap.  The previous round's body satisfied this only via the
@@ -624,68 +491,247 @@ describe("generateBoard", () => {
     });
   });
 
-  // R7: spanning tree pairs must come from the shuffled copy, not the
-  // original lexicographic array.  The previous round called
-  // `shuffled(rng, allPairs)` and discarded the result, so Phase 1
-  // always iterated `allPairs` in fixed order regardless of seed.  We
-  // detect this by sampling multiple seeds and asserting the
-  // spanning-tree structure varies.
-  describe("R7: spanning tree shuffle is honored (pairs randomized per seed)", () => {
+  // -------------------------------------------------------------------------
+  // Round 3 (Sol's round-2 review R1-R4, R6, R9).
+  // -------------------------------------------------------------------------
+
+  /** A real generated board: structurally valid and fair (asserted below). */
+  function fairBoard(seed: number): GameMap {
+    const r = generateBoard(seed);
+    if (!r.ok) throw new Error(`seed ${seed}: ${r.errors.join("; ")}`);
+    return r.map;
+  }
+
+  /** The same board with the first island's bonus at 99: check 1 rejects it. */
+  function unfairCopy(map: GameMap): GameMap {
+    return { ...map, islands: map.islands.map((i, k) => (k === 0 ? { ...i, bonus: 99 } : i)) };
+  }
+
+  function newTrace(): BodyTrace {
+    return { phase1Pairs: [], trackedNeighbours: new Map(), phase2Lanes: [] };
+  }
+
+  /** Island graph (island id → neighbouring island ids) read from a map. */
+  function islandGraph(map: GameMap): Map<string, Set<string>> {
+    const islandOf = new Map(map.provinces.map((p) => [p.id, p.island]));
+    const g = new Map(map.islands.map((i) => [i.id, new Set<string>()]));
+    for (const p of map.provinces) {
+      for (const t of p.seaLanes) g.get(p.island)!.add(islandOf.get(t)!);
+    }
+    return g;
+  }
+
+  describe("R1: the public generateBoard(seed) cannot be told to skip the checks", () => {
+    it("declares the seed as its only parameter", () => {
+      expect(generateBoard.length).toBe(1);
+    });
+
+    it("ignores a replacement body, fairness check and cap passed after the seed", () => {
+      const unfair = unfairCopy(fairBoard(1));
+      expect(runAllFairnessChecks(unfair).length).toBeGreaterThan(0);
+      const loose = generateBoard as unknown as (seed: number, parts: unknown) => BoardGenResult;
+      const r = loose(1, {
+        body: (): BoardGenResult => ({ ok: true, map: unfair }),
+        fairnessCheck: () => [],
+        attempts: 1000,
+      });
+      expect(r).toEqual(generateBoard(1));
+      if (!r.ok) throw new Error(r.errors.join("; "));
+      expect(runAllFairnessChecks(r.map)).toEqual([]);
+    });
+
+    it("the testing boundary is not re-exported from src/core", () => {
+      for (const name of ["generateBoardInternal", "generateBoardBody", "structuralErrors"]) {
+        expect(name in core, `${name} is exported from src/core`).toBe(false);
+      }
+      expect(core.generateBoard).toBe(generateBoard);
+    });
+  });
+
+  // Only the body is replaced in these tests: the fairness check is the
+  // production default, so they fail if the retry loop stops calling the
+  // real runAllFairnessChecks.
+  describe("R2: the real fairness checks reject, retry and exhaust", () => {
+    it("exhaustion: an unfair body fails with the real check's message after MAX_BOARD_ATTEMPTS", () => {
+      const unfair = unfairCopy(fairBoard(1));
+      let calls = 0;
+      const r = generateBoardInternal(1, {
+        body: () => {
+          calls++;
+          return { ok: true, map: unfair };
+        },
+      });
+      expect(r.ok).toBe(false);
+      if (r.ok) return;
+      expect(calls).toBe(MAX_BOARD_ATTEMPTS);
+      expect(r.errors).toEqual([
+        `fairness checks failed after ${MAX_BOARD_ATTEMPTS} attempts: ${runAllFairnessChecks(unfair).join("; ")}`,
+      ]);
+      expect(r.errors[0]).toContain("bonus-out-of-proportion: island 'island_0' has bonus 99");
+    });
+
+    it("retry: an unfair first attempt is rejected and the fair second one returned", () => {
+      const fair = fairBoard(2);
+      const plans = [unfairCopy(fair), fair];
+      let calls = 0;
+      const r = generateBoardInternal(2, {
+        attempts: 3,
+        body: () => ({ ok: true, map: plans[calls++]! }),
+      });
+      expect(calls).toBe(2);
+      expect(r).toEqual({ ok: true, map: fair });
+    });
+
+    it("the cap is honoured: an always-unfair body runs exactly `attempts` times", () => {
+      const unfair = unfairCopy(fairBoard(3));
+      let calls = 0;
+      const r = generateBoardInternal(3, {
+        attempts: 4,
+        body: () => {
+          calls++;
+          return { ok: true, map: unfair };
+        },
+      });
+      expect(calls).toBe(4);
+      expect(r.ok).toBe(false);
+      if (!r.ok) expect(r.errors[0]!.startsWith("fairness checks failed after 4 attempts: ")).toBe(true);
+    });
+
+    it("the rng advances between attempts (a different plan per attempt)", () => {
+      const unfair = unfairCopy(fairBoard(4));
+      const snapshots: string[] = [];
+      generateBoardInternal(123, {
+        attempts: 3,
+        body: (rng: DeterministicRng) => {
+          snapshots.push(JSON.stringify(rng.snapshot()));
+          return { ok: true, map: unfair };
+        },
+      });
+      expect(snapshots.length).toBe(3);
+      expect(new Set(snapshots).size).toBe(3);
+    });
+
+    it("all five checks pass on every generated board, seeds 1..50", () => {
+      for (let seed = 1; seed <= 50; seed++) {
+        const map = fairBoard(seed);
+        expect(checkBonusOutOfProportion(map), `seed ${seed}`).toEqual([]);
+        expect(checkFortress(map), `seed ${seed}`).toEqual([]);
+        expect(checkEasyBonusesConcentrated(map), `seed ${seed}`).toEqual([]);
+        expect(checkRemoteOrHub(map), `seed ${seed}`).toEqual([]);
+        expect(checkCrowdedCrossing(map), `seed ${seed}`).toEqual([]);
+      }
+    });
+  });
+
+  describe("R3: the entrance-minimum guard refuses an under-minimum map", () => {
     /**
-     * Extract the spanning-tree edge set from a board's island graph.
-     * The spanning tree is the unique connected subgraph on the 9
-     * islands with exactly 8 edges (n-1 for n=9).  A board with the
-     * shuffled Phase 1 produces a tree whose edges depend on the rng
-     * draws; without the shuffle, the tree is fixed regardless of seed.
+     * Move one lane on seed 1's board so an island keeps only one entrance
+     * and nothing else changes: the lane from entrance `drop` goes to the
+     * island's other entrance `keep` instead.  Searched deterministically;
+     * the first move that leaves only the entrance-minimum error is used.
      */
-    function spanningTreeEdges(map: import("../../src/core").GameMap): Set<string> {
-      // Reconstruct the island graph from provinces' sea lanes.
-      const islandAdj = new Map<string, Set<string>>();
-      for (const i of map.islands) islandAdj.set(i.id, new Set<string>());
-      for (const p of map.provinces) {
-        for (const sl of p.seaLanes) {
-          const other = map.provinces.find((x) => x.id === sl);
-          if (!other || other.island === p.island) continue;
-          islandAdj.get(p.island)!.add(other.island);
+    function underMinimumBoard(): { map: GameMap; island: string } {
+      const base = fairBoard(1);
+      const byId = new Map(base.provinces.map((p) => [p.id, p]));
+      for (const island of base.islands) {
+        const entrances = island.provinces.filter((pid) => byId.get(pid)!.seaLanes.length > 0);
+        if (entrances.length !== 2) continue;
+        const [e0, e1] = [entrances[0]!, entrances[1]!];
+        const orders: [string, string][] = [[e0, e1], [e1, e0]];
+        for (const [keep, drop] of orders) {
+          const d = byId.get(drop)!;
+          const k = byId.get(keep)!;
+          if (d.seaLanes.length !== 1) continue;
+          const target = d.seaLanes[0]!;
+          if (k.seaLanes.includes(target)) continue;
+          const provinces = base.provinces.map((p) => {
+            if (p.id === drop) return { ...p, seaLanes: [] };
+            if (p.id === keep) return { ...p, seaLanes: [...p.seaLanes, target] };
+            if (p.id === target) return { ...p, seaLanes: p.seaLanes.map((t) => (t === drop ? keep : t)) };
+            return p;
+          });
+          const map = { ...base, provinces };
+          const errs = structuralErrors(map);
+          if (errs.length === 1 && errs[0]!.startsWith("island entrance minimum not met")) {
+            return { map, island: island.id };
+          }
         }
       }
-      // BFS from each island to find the spanning-tree edges (a DFS
-      // tree, equivalently).  Take the first island's tree.
-      const seen = new Set<string>();
-      const tree = new Set<string>();
-      const firstId = map.islands[0]!.id;
-      const stack = [firstId];
-      seen.add(firstId);
-      while (stack.length > 0) {
-        const cur = stack.pop()!;
-        for (const nb of islandAdj.get(cur) ?? []) {
-          if (seen.has(nb)) continue;
-          seen.add(nb);
-          const key = cur < nb ? `${cur}|${nb}` : `${nb}|${cur}`;
-          tree.add(key);
-          stack.push(nb);
-        }
-      }
-      // The tree should have exactly 8 edges for a 9-island graph.
-      // (Plus extra Phase 2 edges, which DFS does not include.)
-      // We return the DFS tree to detect variation in Phase 1's order.
-      return tree;
+      throw new Error("no single-move under-minimum variant of seed 1's board");
     }
 
-    it("spanning tree differs across seeds (proves Phase 1 randomizes)", () => {
-      const trees = new Set<string>();
-      for (const seed of [1, 2, 3, 7, 12, 21, 33, 42, 45]) {
-        const r = generateBoard(seed);
-        if (!r.ok) throw new Error(`seed ${seed}: ${r.errors.join("; ")}`);
-        const tree = [...spanningTreeEdges(r.map)].sort().join(",");
-        trees.add(tree);
-      }
-      // Across 9 seeds we expect at least 2 distinct spanning trees
-      // (in practice many more; the failure mode is exactly 1 — the
-      // lexicographic-order regression produces the same tree for
-      // every seed).
-      expect(trees.size, `spanning trees identical across all seeds: ${trees.size}`).toBeGreaterThan(1);
+    it("accepts seed 1's board as built", () => {
+      expect(structuralErrors(fairBoard(1))).toEqual([]);
     });
+
+    it("rejects the same board with one island cut to a single entrance", () => {
+      const { map, island } = underMinimumBoard();
+      expect(structuralErrors(map)).toEqual([
+        `island entrance minimum not met: ${island}=1 (need >= ${MIN_ENTRANCES_PER_ISLAND})`,
+      ]);
+    });
+  });
+
+  describe("R4: Phase 1 visits island pairs in an rng-shuffled order", () => {
+    const lexicographic: [string, string][] = [];
+    for (let i = 0; i < ISLAND_SIZES.length; i++) {
+      for (let j = i + 1; j < ISLAND_SIZES.length; j++) lexicographic.push([`island_${i}`, `island_${j}`]);
+    }
+
+    it("the visited order is not the fixed lexicographic one, and differs across seeds", () => {
+      const orders = new Set<string>();
+      for (let seed = 1; seed <= 5; seed++) {
+        const trace = newTrace();
+        generateBoardBody(new DeterministicRng(seed), trace);
+        const visited = trace.phase1Pairs;
+        expect(visited.length).toBeGreaterThanOrEqual(ISLAND_SIZES.length - 1);
+        expect(visited, `seed ${seed}`).not.toEqual(lexicographic.slice(0, visited.length));
+        orders.add(JSON.stringify(visited));
+      }
+      expect(orders.size).toBeGreaterThan(1);
+    });
+  });
+
+  describe("R9: island-graph bookkeeping and entrance reuse", () => {
+    it("the body's tracked island neighbours equal the finished map's island graph, seeds 1..200", () => {
+      for (let seed = 1; seed <= 200; seed++) {
+        const trace = newTrace();
+        const r = generateBoardBody(new DeterministicRng(seed), trace);
+        if (!r.ok) continue;
+        const actual = islandGraph(r.map);
+        for (const [id, set] of actual) {
+          expect(sorted([...(trace.trackedNeighbours.get(id) ?? [])]), `seed ${seed} ${id}`).toEqual(sorted([...set]));
+        }
+      }
+    });
+
+    it("an island at its entrance cap still takes lanes on existing entrances, never a new one", () => {
+      let reuses = 0;
+      for (let seed = 1; seed <= 200; seed++) {
+        const trace = newTrace();
+        const r = generateBoardBody(new DeterministicRng(seed), trace);
+        reuses += trace.phase2Lanes.filter((l) => l.atCapA || l.atCapB).length;
+        if (!r.ok) continue;
+        for (const island of r.map.islands) {
+          const n = islandEntrances(r.map, island.id);
+          expect(n, `seed ${seed} ${island.id}`).toBeLessThanOrEqual(MAX_ENTRANCES_BY_SIZE[island.provinces.length]!);
+        }
+      }
+      expect(reuses).toBeGreaterThan(0);
+    });
+  });
+
+  describe("R6: MAX_BOARD_ATTEMPTS is the smallest cap with >= 99 % on the 200-seed sweep", () => {
+    function rate(cap: number): number {
+      let ok = 0;
+      for (let seed = 1; seed <= 200; seed++) if (generateBoardInternal(seed, { attempts: cap }).ok) ok++;
+      return ok / 200;
+    }
+
+    it("the pinned cap reaches 99 % and one fewer attempt does not", () => {
+      expect(rate(MAX_BOARD_ATTEMPTS)).toBeGreaterThanOrEqual(0.99);
+      expect(rate(MAX_BOARD_ATTEMPTS - 1)).toBeLessThan(0.99);
+    }, 120_000);
   });
 });
 

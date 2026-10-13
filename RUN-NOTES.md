@@ -16,4 +16,8 @@ Plan:
 9. R7 and every rule-9 mutation: transcripts in the PR body. DW8 from CI.
 
 Progress:
-- merge origin/main (8f-merge commit): task file resolved to main's version.
+- merge origin/main: task file resolved to main's version.
+- R5: validator listed 20 violations on the old fixture; repaired fixture passes.
+- R1/R2/R3/R4/R9/R6: generateBoard(seed) only; generateBoardInternal; structuralErrors;
+  BodyTrace; pair ref counts; entrance reuse at cap; cap sweep 1..200 gives 200/200 at cap 1,
+  so MAX_BOARD_ATTEMPTS = 1. 256/256 vitest.

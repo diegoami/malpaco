@@ -1,13 +1,6 @@
 import { DeterministicRng } from "./rng";
 import type { GameMap, Island, Point, Province } from "./types";
-import * as boardFairnessModule from "./board-fairness";
-
-// Indirection so `vi.spyOn(boardFairnessModule, "runAllFairnessChecks")`
-// in tests replaces the function called here.  Direct named imports are
-// immutable in ES modules; the namespace property access is read at call
-// time, which a spy patches (R2 test support).
-const runAllFairnessChecks = (map: GameMap): string[] =>
-  boardFairnessModule.runAllFairnessChecks(map);
+import { runAllFairnessChecks } from "./board-fairness";
 
 // ---------------------------------------------------------------------------
 // Structural constants — each cites the claim it traces to (rule 17).
@@ -52,24 +45,19 @@ export const BONUS_DIVISOR = 2;
  * a rule-9 mutation can set it to 0 and prove the loop is live.  The test
  * suite pins the value to [1, 200].
  *
- * R9 (rework round, Sol 2026-10-13): pin to the smallest value with
- * sufficient margin.  Sweep evidence (recorded in the rework-round PR
- * description):
+ * The task's selection rule: the smallest number that, on a 200-seed
+ * sweep, gives a success rate ≥ 99 %.  Sweep of seeds 1..200 through
+ * `generateBoardInternal(seed, { attempts: cap })` after round 3's
+ * generator changes (R9: pair reference counts, entrance reuse at cap):
  *
- *   cap=1  →  143/200  rate=0.715  (below 99 %)
- *   cap=2  →  192/200  rate=0.960  (below 99 %)
- *   cap=3  →  199/200  rate=0.995  (200-seed: meets ≥ 99 %)
- *   cap=3  →  977/1000 rate=0.977  (1000-seed: BELOW 99 %)
- *   cap=4  →  200/200  rate=1.000  (200-seed)
- *   cap=5  →  996/1000 rate=0.996  (1000-seed: meets ≥ 99 %, tight margin)
- *   cap=10 → 1000/1000 rate=1.000  (1000-seed)
+ *   cap=0  →    0/200  rate=0.000
+ *   cap=1  →  200/200  rate=1.000  (smallest cap ≥ 99 %)
+ *   cap=2..5, 10 → 200/200
  *
- * The smallest cap that attains ≥ 99 % on a 200-seed sweep is 3, but on
- * a 1000-seed sweep only 5 and above meet the threshold.  Pinned at
- * 10 — the smallest value with comfortable margin (100 % on both
- * sweep sizes, leaving 1-9 attempt slack for fairness retries).
+ * `tests/core/board-gen.test.ts` re-runs this sweep at the pinned cap and
+ * at one below it, so a different value fails the suite.
  */
-export const MAX_BOARD_ATTEMPTS = 10;
+export const MAX_BOARD_ATTEMPTS = 1;
 
 /**
  * C-BRD-01: a province carries at most 2 sea lanes.  Phase 2 skips any
@@ -318,16 +306,114 @@ function buildBorders(
 // ---------------------------------------------------------------------------
 
 /**
+ * Internal, test-only observation of one `generateBoardBody` run.  Not
+ * re-exported from `src/core/index.ts`.  The body only writes to it.
+ */
+export interface BodyTrace {
+  /** Island-id pairs in the order Phase 1 visited them (before any skip). */
+  phase1Pairs: [string, string][];
+  /** The body's own island-graph bookkeeping when the body ends. */
+  trackedNeighbours: Map<string, Set<string>>;
+  /**
+   * Each Phase 2 lane kept or undone, in order: the islands, and for each
+   * endpoint whether its island was already at its entrance cap when the
+   * lane was added (so the lane had to reuse an existing entrance).
+   */
+  phase2Lanes: {
+    islandA: string;
+    islandB: string;
+    atCapA: boolean;
+    atCapB: boolean;
+  }[];
+}
+
+/**
+ * The structural invariants every board the body accepts must meet, read
+ * from the finished map: province degree in [DEGREE_MIN, DEGREE_MAX] and
+ * exactly SEA_LANE_COUNT lanes (C-BRD-04), a connected graph (C-BRD-04),
+ * and at least MIN_ENTRANCES_PER_ISLAND entrances per island (C-BRD-01).
+ * Returns the violations; an empty list means the map is accepted.
+ *
+ * Internal: exported from this module for tests (R3, round 3), never
+ * re-exported from `src/core/index.ts`.  `generateBoardBody` calls it on
+ * every map it builds.
+ */
+export function structuralErrors(map: GameMap): string[] {
+  const errors: string[] = [];
+  const { provinces } = map;
+
+  // Degree check (C-BRD-04)
+  for (const p of provinces) {
+    const deg = p.borders.length + p.seaLanes.length;
+    if (deg < DEGREE_MIN || deg > DEGREE_MAX) {
+      errors.push(`province '${p.id}' has degree ${deg}, outside [${DEGREE_MIN}, ${DEGREE_MAX}]`);
+    }
+  }
+
+  // Sea lane count check (C-BRD-04)
+  const undirectedSeaLanes = new Set<string>();
+  for (const p of provinces) {
+    for (const t of p.seaLanes) {
+      const key = p.id < t ? `${p.id}|${t}` : `${t}|${p.id}`;
+      undirectedSeaLanes.add(key);
+    }
+  }
+  if (undirectedSeaLanes.size !== SEA_LANE_COUNT)
+    errors.push(`has ${undirectedSeaLanes.size} undirected sea lanes, expected ${SEA_LANE_COUNT}`);
+
+  // Connectivity check (C-BRD-04)
+  const byId = new Map(provinces.map((p) => [p.id, p]));
+  if (provinces.length > 0) {
+    const seen = new Set<string>([provinces[0]!.id]);
+    const queue = [provinces[0]!.id];
+    while (queue.length > 0) {
+      const current = queue.shift()!;
+      const prov = byId.get(current);
+      if (!prov) continue;
+      for (const n of [...prov.borders, ...prov.seaLanes]) {
+        if (!seen.has(n)) {
+          seen.add(n);
+          queue.push(n);
+        }
+      }
+    }
+    if (seen.size !== provinces.length)
+      errors.push(`graph has ${seen.size} reachable provinces, expected ${provinces.length}`);
+  }
+
+  // Entrance minimum (C-BRD-01, anti-fortress).  An entrance is a province
+  // with a sea lane to another island.  Phase 2's scoring aims for this
+  // minimum; this guard refuses any map that still misses it, so the retry
+  // loop never relies on checkFortress alone.
+  const below: string[] = [];
+  for (const island of map.islands) {
+    let entrances = 0;
+    for (const pid of island.provinces) {
+      const p = byId.get(pid);
+      if (p && p.seaLanes.some((t) => byId.get(t)?.island !== island.id)) entrances++;
+    }
+    if (entrances < MIN_ENTRANCES_PER_ISLAND) below.push(`${island.id}=${entrances}`);
+  }
+  if (below.length > 0) {
+    errors.push(
+      `island entrance minimum not met: ${below.join(", ")} (need >= ${MIN_ENTRANCES_PER_ISLAND})`,
+    );
+  }
+
+  return errors;
+}
+
+/**
  * Inner generator body.  Takes a live `DeterministicRng` (already seeded by
  * the caller) and produces either a structurally-valid `GameMap` or a list
  * of structural errors.  No fairness checks here — those run in the retry
  * loop below.
  *
- * Exported for test introspection (R2 fix, Sol 2026-10-13): tests need to
- * spy on this function to verify RNG advancement between attempts and
- * retry-cap honour.
+ * Internal: exported from this module for tests, never re-exported from
+ * `src/core/index.ts`.  The optional `trace` is filled with observations
+ * of this run (see `BodyTrace`); it never changes what the body does.
  */
-export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
+export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): BoardGenResult {
   const errors: string[] = [];
 
   // ---- Assign province IDs to islands ------------------------------------
@@ -347,8 +433,8 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   if (cursor !== 46) errors.push(`island sizes sum to ${cursor}, expected 46`);
 
   // ---- Build within-island borders --------------------------------------
-  // Capping at BORDER_MAX (= DEGREE_MAX - 1) reserves one degree slot per
-  // province for a sea lane; otherwise buildBorders packs some provinces to
+  // Capping at BORDER_MAX (= DEGREE_MAX - 2) reserves two degree slots per
+  // province for sea lanes; otherwise buildBorders packs some provinces to
   // DEGREE_MAX and leaves Phase 1 unable to find a spanning-tree endpoint
   // (saturation; see BORDER_MAX above).
   const allBorders = new Map<string, Set<string>>();
@@ -376,8 +462,11 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   // `islandDegree = 5` even though the island-graph degree was only 3.
   // Fix: track distinct neighbours as a Set, derive the count via
   // `islandDegreeOf(id)` when comparing to MAX_ISLAND_GRAPH_DEGREE.
-  const islandNeighbours = new Map<string, Set<string>>(
-    islandStructs.map((isl) => [isl.id, new Set<string>()]),
+  // R9 (round 3, Sol 2026-10-13): each neighbour carries the number of
+  // lanes between the two islands, so undoing one of several parallel
+  // lanes keeps the neighbour; it goes only with the last lane.
+  const islandNeighbours = new Map<string, Map<string, number>>(
+    islandStructs.map((isl) => [isl.id, new Map<string, number>()]),
   );
 
   function islandDegreeOf(islandId: string): number {
@@ -385,13 +474,19 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   }
 
   function addNeighbour(islandA: string, islandB: string) {
-    islandNeighbours.get(islandA)?.add(islandB);
-    islandNeighbours.get(islandB)?.add(islandA);
+    for (const [x, y] of [[islandA, islandB], [islandB, islandA]] as const) {
+      const m = islandNeighbours.get(x)!;
+      m.set(y, (m.get(y) ?? 0) + 1);
+    }
   }
 
   function removeNeighbour(islandA: string, islandB: string) {
-    islandNeighbours.get(islandA)?.delete(islandB);
-    islandNeighbours.get(islandB)?.delete(islandA);
+    for (const [x, y] of [[islandA, islandB], [islandB, islandA]] as const) {
+      const m = islandNeighbours.get(x)!;
+      const n = (m.get(y) ?? 0) - 1;
+      if (n > 0) m.set(y, n);
+      else m.delete(y);
+    }
   }
 
   // Track distinct provinces per island that have at least one sea lane to another island.
@@ -409,6 +504,30 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     }
   }
 
+  function entranceCapOf(islandId: string): number {
+    return MAX_ENTRANCES_BY_SIZE[islandStructs.find((s) => s.id === islandId)?.size ?? 0] ?? 99;
+  }
+
+  function atEntranceCap(islandId: string): boolean {
+    return (islandEntranceCount.get(islandId) ?? 0) >= entranceCapOf(islandId);
+  }
+
+  /** True when a lane on `prov` would give `islandId` an entrance past its cap. */
+  function wouldExceedEntranceCap(prov: string, islandId: string): boolean {
+    return (allSeaLanes.get(prov)?.size ?? 0) === 0 && atEntranceCap(islandId);
+  }
+
+  /**
+   * The provinces of `isl` that can take one more lane: below the lane cap,
+   * and not a new entrance on an island already at its entrance cap.
+   */
+  function laneCandidates(isl: { id: string; provinceIds: readonly string[] }): string[] {
+    return isl.provinceIds.filter(
+      (p) =>
+        (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY && !wouldExceedEntranceCap(p, isl.id),
+    );
+  }
+
   /**
    * Add a sea lane between two provinces if all four structural constraints permit.
    * Returns true on success.
@@ -424,11 +543,12 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     // Constraint 1: per-province lane cap
     if ((allSeaLanes.get(provA)?.size ?? 0) >= MAX_LANES_PER_COUNTRY) return false;
     if ((allSeaLanes.get(provB)?.size ?? 0) >= MAX_LANES_PER_COUNTRY) return false;
-    // Constraint 2: per-island entrance cap
-    const capA = MAX_ENTRANCES_BY_SIZE[islandStructs.find((s) => s.id === islandA)?.size ?? 0] ?? 99;
-    const capB = MAX_ENTRANCES_BY_SIZE[islandStructs.find((s) => s.id === islandB)?.size ?? 0] ?? 99;
-    if ((islandEntranceCount.get(islandA) ?? 0) >= capA) return false;
-    if ((islandEntranceCount.get(islandB) ?? 0) >= capB) return false;
+    // Constraint 2: per-island entrance cap.  Only a province with no lane
+    // yet would add an entrance; one that already has a lane is an existing
+    // entrance and may take a second lane even when its island is at its
+    // cap (R9 follow-up of R11, round 3).
+    if (wouldExceedEntranceCap(provA, islandA)) return false;
+    if (wouldExceedEntranceCap(provB, islandB)) return false;
     // Constraint 3: island-graph degree cap (R11: distinct neighbours).
     if (islandDegreeOf(islandA) >= MAX_ISLAND_GRAPH_DEGREE) return false;
     if (islandDegreeOf(islandB) >= MAX_ISLAND_GRAPH_DEGREE) return false;
@@ -487,17 +607,14 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   const shuffledPairs = shuffled(rng, allPairs);
   for (const pair of shuffledPairs) {
     if (treeEdges >= islandStructs.length - 1) break;
-    if (compFind(pair.i) === compFind(pair.j)) continue; // already connected
     const fromIsland = islandStructs[pair.i]!.id;
     const toIsland = islandStructs[pair.j]!.id;
+    trace?.phase1Pairs.push([fromIsland, toIsland]);
+    if (compFind(pair.i) === compFind(pair.j)) continue; // already connected
     const from = islandStructs[pair.i]!;
     const to = islandStructs[pair.j]!;
-    const provA_arr = from.provinceIds.filter(
-      (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
-    );
-    const provB_arr = to.provinceIds.filter(
-      (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
-    );
+    const provA_arr = laneCandidates(from);
+    const provB_arr = laneCandidates(to);
     if (provA_arr.length === 0 || provB_arr.length === 0) continue;
     const provA = provA_arr[rng.nextInt(0, provA_arr.length - 1)]!;
     const provB = provB_arr[rng.nextInt(0, provB_arr.length - 1)]!;
@@ -532,18 +649,10 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
    */
   const MAX_PHASE2_PASSES = 5000;
 
-  function allIslandsMinEntrances(): boolean {
-    for (const isl of islandStructs) {
-      if ((islandEntranceCount.get(isl.id) ?? 0) < MIN_ENTRANCES_PER_ISLAND) return false;
-    }
-    return true;
-  }
-
   // Phase 2: fill to SEA_LANE_COUNT while satisfying the four structural
-  // constraints.  The body does NOT enforce MIN_ENTRANCES_PER_ISLAND here;
-  // checkFortress (a fairness check) catches it and the retry loop handles
-  // it.  See T05b's option (b): the body succeeds structurally when it
-  // places exactly SEA_LANE_COUNT lanes; MIN_ENTRANCES is a fairness concern.
+  // constraints.  The scoring below steers lanes to islands still under
+  // MIN_ENTRANCES_PER_ISLAND; `structuralErrors` refuses any finished map
+  // that misses the minimum.
   //
   // Approach: greedy + backtracking.  Each pass picks a viable island pair.
   // When no viable pair remains, undo the most recent lane and try a
@@ -580,17 +689,9 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
         if (src.id === dst.id) continue;
         if (islandDegreeOf(src.id) >= MAX_ISLAND_GRAPH_DEGREE) continue;
         if (islandDegreeOf(dst.id) >= MAX_ISLAND_GRAPH_DEGREE) continue;
-        const capSrc = MAX_ENTRANCES_BY_SIZE[src.size] ?? 99;
-        const capDst = MAX_ENTRANCES_BY_SIZE[dst.size] ?? 99;
-        if ((islandEntranceCount.get(src.id) ?? 0) >= capSrc) continue;
-        if ((islandEntranceCount.get(dst.id) ?? 0) >= capDst) continue;
-        const hasCapacitySrc = src.provinceIds.some(
-          (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
-        );
-        const hasCapacityDst = dst.provinceIds.some(
-          (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
-        );
-        if (!hasCapacitySrc || !hasCapacityDst) continue;
+        // An island at its entrance cap stays viable through an existing
+        // entrance with lane headroom (R9 follow-up of R11, round 3).
+        if (laneCandidates(src).length === 0 || laneCandidates(dst).length === 0) continue;
         const entrSrc = islandEntranceCount.get(src.id) ?? 0;
         const entrDst = islandEntranceCount.get(dst.id) ?? 0;
         const degSrc = islandDegreeOf(src.id);
@@ -644,12 +745,8 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     for (const p of viablePairs) if (p.score > bestScore) bestScore = p.score;
     const bestPairs = viablePairs.filter((p) => p.score === bestScore);
     const pair = bestPairs[rng.nextInt(0, bestPairs.length - 1)]!;
-    const provsSrc = pair.src.provinceIds.filter(
-      (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
-    );
-    const provsDst = pair.dst.provinceIds.filter(
-      (p) => (allSeaLanes.get(p)?.size ?? 0) < MAX_LANES_PER_COUNTRY,
-    );
+    const provsSrc = laneCandidates(pair.src);
+    const provsDst = laneCandidates(pair.dst);
     if (provsSrc.length === 0 || provsDst.length === 0) break;
     const srcZero = provsSrc.filter((p) => (allSeaLanes.get(p)?.size ?? 0) === 0);
     const provA =
@@ -663,7 +760,10 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
         : provsDst[rng.nextInt(0, provsDst.length - 1)]!;
     const provAWas0Lane = (allSeaLanes.get(provA)?.size ?? 0) === 0;
     const provBWas0Lane = (allSeaLanes.get(provB)?.size ?? 0) === 0;
+    const atCapA = atEntranceCap(pair.src.id);
+    const atCapB = atEntranceCap(pair.dst.id);
     if (!tryAddLane(provA, provB, pair.src.id, pair.dst.id)) continue;
+    trace?.phase2Lanes.push({ islandA: pair.src.id, islandB: pair.dst.id, atCapA, atCapB });
     phase2History.push({
       provA,
       provB,
@@ -679,23 +779,8 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     errors.push(
       `could not place ${SEA_LANE_COUNT} sea lanes in ${MAX_PHASE2_PASSES} passes (placed ${seaLaneCount})`,
     );
-  // R6 (rework round, Sol 2026-10-13): MIN_ENTRANCES_PER_ISLAND is now
-  // a structural precondition, not a fairness concern.  Phase 2's
-  // scoring already favours pairs whose endpoints are below the cap,
-  // but the body must REFUSE to return ok:true if any island is still
-  // under the cap.  Without this guard, a body that placed 16 lanes
-  // but left an island with a single entrance silently passes
-  // structural checks and the retry loop relies on checkFortress to
-  // catch it; deleting the scoring `if (entrSrc < ...)` lines made
-  // the body succeed structurally with single-entrance islands.
-  if (allIslandsMinEntrances() === false) {
-    const below = islandStructs
-      .filter((isl) => (islandEntranceCount.get(isl.id) ?? 0) < MIN_ENTRANCES_PER_ISLAND)
-      .map((isl) => `${isl.id}=${islandEntranceCount.get(isl.id) ?? 0}`)
-      .join(", ");
-    errors.push(
-      `island entrance minimum not met: ${below} (need >= ${MIN_ENTRANCES_PER_ISLAND})`,
-    );
+  if (trace) {
+    for (const [id, m] of islandNeighbours) trace.trackedNeighbours.set(id, new Set(m.keys()));
   }
 
   // ---- Build island records ------------------------------------------------
@@ -747,42 +832,7 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   };
 
   // ---- Structural assertions (fail-fast) ----------------------------------
-  // Degree check (C-BRD-04)
-  for (const p of provinces) {
-    const deg = p.borders.length + p.seaLanes.length;
-    if (deg < DEGREE_MIN || deg > DEGREE_MAX) {
-      errors.push(`province '${p.id}' has degree ${deg}, outside [${DEGREE_MIN}, ${DEGREE_MAX}]`);
-    }
-  }
-
-  // Sea lane count check (C-BRD-04)
-  const undirectedSeaLanes = new Set<string>();
-  for (const p of provinces) {
-    for (const t of p.seaLanes) {
-      const key = p.id < t ? `${p.id}|${t}` : `${t}|${p.id}`;
-      undirectedSeaLanes.add(key);
-    }
-  }
-  if (undirectedSeaLanes.size !== SEA_LANE_COUNT)
-    errors.push(`has ${undirectedSeaLanes.size} undirected sea lanes, expected ${SEA_LANE_COUNT}`);
-
-  // Connectivity check (C-BRD-04)
-  if (provinces.length > 0) {
-    const seen = new Set<string>([provinces[0]!.id]);
-    const queue = [provinces[0]!.id];
-    while (queue.length > 0) {
-      const current = queue.shift()!;
-      const prov = provinces.find((p) => p.id === current)!;
-      for (const n of [...prov.borders, ...prov.seaLanes]) {
-        if (!seen.has(n)) {
-          seen.add(n);
-          queue.push(n);
-        }
-      }
-    }
-    if (seen.size !== provinces.length)
-      errors.push(`graph has ${seen.size} reachable provinces, expected ${provinces.length}`);
-  }
+  errors.push(...structuralErrors(map));
 
   if (errors.length > 0) return { ok: false, errors };
 
@@ -802,26 +852,32 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
  * Plus the 5 fairness checks from `board-fairness.ts` (C-BRD-01).
  * The retry loop draws a new plan each attempt by advancing the RNG.
  *
- * The optional `body` and `fairnessCheck` overrides exist for R2
- * tests (Sol 2026-10-13): the previous round tolerated the
- * `fairnessErrors.length === 0` -> `>= 0` mutation because the suite
- * could not force a scenario where the fairness check rejected every
- * structurally-valid body.  With these overrides, tests can inject a
- * body that always returns `ok:true` and a fairnessCheck that always
- * returns a violation, exercising the exhaustion path.
+ * Takes the seed only: it always runs the real body, the real five checks
+ * and the real `MAX_BOARD_ATTEMPTS` cap (R1, round 3).  Arguments past the
+ * seed are ignored.
  */
-export function generateBoard(
+export function generateBoard(seed: number): BoardGenResult {
+  return generateBoardInternal(seed);
+}
+
+/**
+ * Internal testing boundary: the retry loop with replaceable parts.  It is
+ * exported from this module for tests only and is NOT re-exported from
+ * `src/core/index.ts`; the public entry is `generateBoard(seed)`.  Every
+ * part left out defaults to the production one, so a test that replaces
+ * only the body still runs the real `runAllFairnessChecks` (R2, round 3).
+ */
+export function generateBoardInternal(
   seed: number,
-  overrides?: {
+  parts: {
     readonly body?: (rng: DeterministicRng) => BoardGenResult;
     readonly fairnessCheck?: (map: GameMap) => string[];
-    /** R9 investigation: vary the retry cap. Defaults to MAX_BOARD_ATTEMPTS. */
     readonly attempts?: number;
-  },
+  } = {},
 ): BoardGenResult {
-  const body = overrides?.body ?? generateBoardBody;
-  const fairnessCheck = overrides?.fairnessCheck ?? runAllFairnessChecks;
-  const cap = overrides?.attempts ?? MAX_BOARD_ATTEMPTS;
+  const body = parts.body ?? generateBoardBody;
+  const fairnessCheck = parts.fairnessCheck ?? runAllFairnessChecks;
+  const cap = parts.attempts ?? MAX_BOARD_ATTEMPTS;
   const rng = new DeterministicRng(seed);
   let lastResult: BoardGenResult | null = null;
   for (let attempt = 1; attempt <= cap; attempt++) {
