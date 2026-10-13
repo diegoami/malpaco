@@ -806,107 +806,130 @@ function mapExactQuarterPasses(): GameMap {
 }
 
 /**
- * Map N — R8 46-province structurally-valid map with no fairness
- * violations.  Sums to 46 (3+3+3+3+5+5+7+7+10 = 46 = ISLAND_SIZES).
- * 16 undirected sea lanes (the SEA_LANE_COUNT).  Every island has
- * ≥ 2 entrances (anti-fortress).  No island's degree > 5.
- *  No island bonus > size.  No province has > 2 sea lanes.
- *  Bonus distribution: total = 3+3+3+3+5+5+7+7+10 = 46.
- *  Single-entrance bonus sum = 0 → check 3 passes trivially.
- *  Eccentricity max = 2 (BFS hops between any two islands ≤ 2) →
- *  check 4 passes.
+ * Map N — a 46-province map that meets the generator's full structural
+ * invariant set (`structuralViolations` below) and has no fairness
+ * violations.  Repaired in round 3 (R5): the previous fixture had
+ * degree-one chain ends and bonuses and entrance counts off C-BON-02.
  *
- *  Island graph (9 islands, 16 lanes, degree max 5):
- *    0(3) — 1(3), 2(3), 3(3)
- *    1(3) — 0, 2, 4(5)
- *    2(3) — 0, 1, 5(5)
- *    3(3) — 0, 6(7)
- *    4(5) — 1, 5, 6
- *    5(5) — 2, 4, 7(7)
- *    6(7) — 3, 4, 7
- *    7(7) — 5, 6, 8(10)
- *    8(10) — 7
- *  Count edges: 0-1, 0-2, 0-3, 1-2, 1-4, 2-5, 3-6, 4-5, 4-6, 5-7,
- *  6-7, 7-8.  That's 12.  Need 16.  Add: 0-4, 0-5, 0-7, 3-8.  Now
- *  16 edges.  Degrees:
- *    0: 1,2,3,4,5,7 → 6 → exceeds cap 5!
- *  Reduce: drop 0-7.  Now 15 edges.  Add 1-8 instead → 16.  Degrees:
- *    0: 1,2,3,4,5 → 5 OK
- *    1: 0,2,4,8 → 4
- *    2: 0,1,5 → 3
- *    3: 0,6,8 → 4
- *    4: 0,1,5,6 → 4
- *    5: 0,2,4,7 → 4
- *    6: 3,4,7 → 3
- *    7: 5,6,8 → 3
- *    8: 1,3,7 → 3
- *  Sum of degrees = 5+4+3+4+4+4+3+3+3 = 33, /2 = 16.5.  Off by
- *  0.5 — rounding; edges should be 16.  Let me recount:
- *    0-1, 0-2, 0-3, 0-4, 0-5 (5 edges with 0)
- *    1-2, 1-4, 1-8 (3 with 1, total 8)
- *    2-5 (1, total 9)
- *    3-6, 3-8 (2, total 11)
- *    4-5, 4-6 (2, total 13)
- *    5-7 (1, total 14)
- *    6-7 (1, total 15)
- *    7-8 (1, total 16)
- *  Good — 16 edges, max degree 5, all ≤ 5.
+ * Islands I0-I3 size 3, I4-I5 size 5, I6-I7 size 7, I8 size 10.  Borders
+ * are buildMap's chains, so each island's two chain ends (p0 and the last)
+ * carry the lanes: exactly 2 entrances per island, which every cap allows.
+ * 16 island-graph edges, no parallel lanes:
+ *   I0: I4 I6 I8      I1: I5 I7 I8      I2: I4 I7 I3     I3: I2 I5 I6
+ *   I4: I0 I2 I5 I8   I5: I1 I3 I4 I6   I6: I0 I3 I7 I5
+ *   I7: I1 I2 I6 I8   I8: I0 I1 I4 I7
+ * Island-graph degrees 3 or 4 (cap 5).  Lanes per province: 2 on most
+ * chain ends, 1 on p2 of the size-3 islands.  Bonus (C-BON-02,
+ * max(2, floor(size/2) + 2)): size 3 → 3, 5 → 4, 7 → 5, 10 → 7.
+ * No single-entrance island, so checks 2 and 3 pass; the island graph's
+ * eccentricity is at most 4 (asserted by checkRemoteOrHub).
  */
 function mapValid46(): GameMap {
   return buildMap({
     islands: [
       { id: "I0", size: 3, bonus: 3, lanes: [
-        { from: "I0_p0", to: "I1_p0" },
-        { from: "I0_p1", to: "I2_p0" },
-        { from: "I0_p2", to: "I3_p0" },
         { from: "I0_p0", to: "I4_p0" },
-        { from: "I0_p1", to: "I5_p0" },
+        { from: "I0_p0", to: "I6_p0" },
+        { from: "I0_p2", to: "I8_p0" },
       ]},
       { id: "I1", size: 3, bonus: 3, lanes: [
-        { from: "I1_p0", to: "I0_p0" },
-        { from: "I1_p1", to: "I2_p1" },
-        { from: "I1_p2", to: "I4_p1" },
-        { from: "I1_p0", to: "I8_p0" },
+        { from: "I1_p0", to: "I5_p0" },
+        { from: "I1_p0", to: "I7_p0" },
+        { from: "I1_p2", to: "I8_p0" },
       ]},
       { id: "I2", size: 3, bonus: 3, lanes: [
-        { from: "I2_p0", to: "I0_p1" },
-        { from: "I2_p1", to: "I1_p1" },
-        { from: "I2_p2", to: "I5_p1" },
+        { from: "I2_p0", to: "I4_p0" },
+        { from: "I2_p0", to: "I7_p0" },
+        { from: "I2_p2", to: "I3_p0" },
       ]},
       { id: "I3", size: 3, bonus: 3, lanes: [
-        { from: "I3_p0", to: "I0_p2" },
-        { from: "I3_p1", to: "I6_p0" },
-        { from: "I3_p2", to: "I8_p1" },
+        { from: "I3_p0", to: "I5_p0" },
+        { from: "I3_p2", to: "I6_p0" },
       ]},
-      { id: "I4", size: 5, bonus: 5, lanes: [
-        { from: "I4_p0", to: "I0_p0" },
-        { from: "I4_p1", to: "I1_p2" },
-        { from: "I4_p2", to: "I5_p2" },
-        { from: "I4_p3", to: "I6_p1" },
+      { id: "I4", size: 5, bonus: 4, lanes: [
+        { from: "I4_p4", to: "I5_p4" },
+        { from: "I4_p4", to: "I8_p9" },
       ]},
-      { id: "I5", size: 5, bonus: 5, lanes: [
-        { from: "I5_p0", to: "I0_p1" },
-        { from: "I5_p1", to: "I2_p2" },
-        { from: "I5_p2", to: "I4_p2" },
-        { from: "I5_p3", to: "I7_p0" },
+      { id: "I5", size: 5, bonus: 4, lanes: [
+        { from: "I5_p4", to: "I6_p6" },
       ]},
-      { id: "I6", size: 7, bonus: 7, lanes: [
-        { from: "I6_p0", to: "I3_p1" },
-        { from: "I6_p1", to: "I4_p3" },
-        { from: "I6_p2", to: "I7_p1" },
+      { id: "I6", size: 7, bonus: 5, lanes: [
+        { from: "I6_p6", to: "I7_p6" },
       ]},
-      { id: "I7", size: 7, bonus: 7, lanes: [
-        { from: "I7_p0", to: "I5_p3" },
-        { from: "I7_p1", to: "I6_p2" },
-        { from: "I7_p2", to: "I8_p2" },
+      { id: "I7", size: 7, bonus: 5, lanes: [
+        { from: "I7_p6", to: "I8_p9" },
       ]},
-      { id: "I8", size: 10, bonus: 10, lanes: [
-        { from: "I8_p0", to: "I1_p0" },
-        { from: "I8_p1", to: "I3_p2" },
-        { from: "I8_p2", to: "I7_p2" },
-      ]},
+      { id: "I8", size: 10, bonus: 7 },
     ],
   });
+}
+
+/**
+ * R5 (round 3): the generator's full structural invariant set, written out
+ * independently of `board-gen.ts` with the task's literal values, so a
+ * fixture that claims to be "structurally valid" is checked, not assumed.
+ * Returns every violation; an empty list means the map meets all of them:
+ * - 9 islands of sizes [3,3,3,3,5,5,7,7,10], 46 provinces (C-BRD-03);
+ * - borders symmetric and within one island; sea lanes symmetric and
+ *   between different islands; exactly 16 undirected lanes (C-BRD-04);
+ * - every province's degree (borders + lanes) in [2, 5] (C-BRD-04);
+ * - the border-plus-lane graph is connected (C-BRD-04);
+ * - at most 2 lanes per province (MAX_LANES_PER_COUNTRY, C-BRD-01);
+ * - entrances per island in [2, cap(size)], caps {3:2, 5:3, 7:4, 10:5}
+ *   (MIN_ENTRANCES_PER_ISLAND, MAX_ENTRANCES_BY_SIZE; C-BRD-01, C-BON-02);
+ * - island-graph degree at most 5 (MAX_ISLAND_GRAPH_DEGREE, C-BRD-01);
+ * - bonus = max(2, floor(size/2) + entrances) (C-BON-02).
+ */
+function structuralViolations(map: GameMap): string[] {
+  const out: string[] = [];
+  const byId = new Map(map.provinces.map((p) => [p.id, p]));
+  const sizes = sorted(map.islands.map((i) => i.provinces.length));
+  if (JSON.stringify(sizes) !== JSON.stringify([3, 3, 3, 3, 5, 5, 7, 7, 10]))
+    out.push(`island sizes ${sizes.join(",")}`);
+  if (map.provinces.length !== 46) out.push(`${map.provinces.length} provinces`);
+  const lanes = new Set<string>();
+  for (const p of map.provinces) {
+    for (const b of p.borders) {
+      const q = byId.get(b);
+      if (!q || q.island !== p.island || !q.borders.includes(p.id)) out.push(`border ${p.id}-${b}`);
+    }
+    for (const t of p.seaLanes) {
+      const q = byId.get(t);
+      if (!q || q.island === p.island || !q.seaLanes.includes(p.id)) out.push(`lane ${p.id}-${t}`);
+      lanes.add(p.id < t ? `${p.id}|${t}` : `${t}|${p.id}`);
+    }
+    const deg = p.borders.length + p.seaLanes.length;
+    if (deg < 2 || deg > 5) out.push(`province ${p.id} degree ${deg}`);
+    if (p.seaLanes.length > 2) out.push(`province ${p.id} has ${p.seaLanes.length} lanes`);
+  }
+  if (lanes.size !== 16) out.push(`${lanes.size} undirected lanes`);
+  const seen = new Set<string>();
+  const queue = map.provinces.length > 0 ? [map.provinces[0]!.id] : [];
+  for (const id of queue) seen.add(id);
+  while (queue.length > 0) {
+    const p = byId.get(queue.shift()!)!;
+    for (const n of [...p.borders, ...p.seaLanes]) {
+      if (!seen.has(n) && byId.has(n)) {
+        seen.add(n);
+        queue.push(n);
+      }
+    }
+  }
+  if (seen.size !== map.provinces.length) out.push(`only ${seen.size} provinces reachable`);
+  const caps: Record<number, number> = { 3: 2, 5: 3, 7: 4, 10: 5 };
+  for (const island of map.islands) {
+    const size = island.provinces.length;
+    const entrances = island.provinces.filter((pid) => (byId.get(pid)?.seaLanes.length ?? 0) > 0).length;
+    const cap = caps[size] ?? 0;
+    if (entrances < 2 || entrances > cap) out.push(`island ${island.id} has ${entrances} entrances, allowed [2, ${cap}]`);
+    const bonus = Math.max(2, Math.floor(size / 2) + entrances);
+    if (island.bonus !== bonus) out.push(`island ${island.id} bonus ${island.bonus}, C-BON-02 gives ${bonus}`);
+    const neighbours = new Set<string>();
+    for (const pid of island.provinces)
+      for (const t of byId.get(pid)?.seaLanes ?? []) neighbours.add(byId.get(t)?.island ?? "?");
+    if (neighbours.size > 5) out.push(`island ${island.id} island-graph degree ${neighbours.size}`);
+  }
+  return out;
 }
 
 // ---------------------------------------------------------------------------
@@ -1161,6 +1184,9 @@ describe("board-fairness checks", () => {
     // violations.  All 5 checks must return [].
     it("R8: a 46-province hand-built map has no fairness violations", () => {
       const map = mapValid46();
+      // R5 (round 3): the fixture meets the generator's full structural
+      // invariant set before its fairness is asserted.
+      expect(structuralViolations(map)).toEqual([]);
       // 46 provinces summing to ISLAND_SIZES
       expect(map.provinces.length).toBe(46);
       expect(map.islands.length).toBe(9);
