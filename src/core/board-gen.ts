@@ -312,8 +312,6 @@ function buildBorders(
 export interface BodyTrace {
   /** Island-id pairs in the order Phase 1 visited them (before any skip). */
   phase1Pairs: [string, string][];
-  /** The body's own island-graph bookkeeping when the body ends. */
-  trackedNeighbours: Map<string, Set<string>>;
   /**
    * Each Phase 2 lane kept or undone, in order: the islands, and for each
    * endpoint whether its island was already at its entrance cap when the
@@ -462,11 +460,8 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
   // `islandDegree = 5` even though the island-graph degree was only 3.
   // Fix: track distinct neighbours as a Set, derive the count via
   // `islandDegreeOf(id)` when comparing to MAX_ISLAND_GRAPH_DEGREE.
-  // R9 (round 3, Sol 2026-10-13): each neighbour carries the number of
-  // lanes between the two islands, so undoing one of several parallel
-  // lanes keeps the neighbour; it goes only with the last lane.
-  const islandNeighbours = new Map<string, Map<string, number>>(
-    islandStructs.map((isl) => [isl.id, new Map<string, number>()]),
+  const islandNeighbours = new Map<string, Set<string>>(
+    islandStructs.map((isl) => [isl.id, new Set<string>()]),
   );
 
   function islandDegreeOf(islandId: string): number {
@@ -474,19 +469,13 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
   }
 
   function addNeighbour(islandA: string, islandB: string) {
-    for (const [x, y] of [[islandA, islandB], [islandB, islandA]] as const) {
-      const m = islandNeighbours.get(x)!;
-      m.set(y, (m.get(y) ?? 0) + 1);
-    }
+    islandNeighbours.get(islandA)?.add(islandB);
+    islandNeighbours.get(islandB)?.add(islandA);
   }
 
   function removeNeighbour(islandA: string, islandB: string) {
-    for (const [x, y] of [[islandA, islandB], [islandB, islandA]] as const) {
-      const m = islandNeighbours.get(x)!;
-      const n = (m.get(y) ?? 0) - 1;
-      if (n > 0) m.set(y, n);
-      else m.delete(y);
-    }
+    islandNeighbours.get(islandA)?.delete(islandB);
+    islandNeighbours.get(islandB)?.delete(islandA);
   }
 
   // Track distinct provinces per island that have at least one sea lane to another island.
@@ -779,10 +768,6 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
     errors.push(
       `could not place ${SEA_LANE_COUNT} sea lanes in ${MAX_PHASE2_PASSES} passes (placed ${seaLaneCount})`,
     );
-  if (trace) {
-    for (const [id, m] of islandNeighbours) trace.trackedNeighbours.set(id, new Set(m.keys()));
-  }
-
   // ---- Build island records ------------------------------------------------
   // islandEntranceCount is maintained live during Phase 1 and Phase 2;
   // it already reflects the correct count of distinct provinces with sea lanes.

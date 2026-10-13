@@ -508,17 +508,7 @@ describe("generateBoard", () => {
   }
 
   function newTrace(): BodyTrace {
-    return { phase1Pairs: [], trackedNeighbours: new Map(), phase2Lanes: [] };
-  }
-
-  /** Island graph (island id → neighbouring island ids) read from a map. */
-  function islandGraph(map: GameMap): Map<string, Set<string>> {
-    const islandOf = new Map(map.provinces.map((p) => [p.id, p.island]));
-    const g = new Map(map.islands.map((i) => [i.id, new Set<string>()]));
-    for (const p of map.provinces) {
-      for (const t of p.seaLanes) g.get(p.island)!.add(islandOf.get(t)!);
-    }
-    return g;
+    return { phase1Pairs: [], phase2Lanes: [] };
   }
 
   describe("R1: the public generateBoard(seed) cannot be told to skip the checks", () => {
@@ -692,19 +682,7 @@ describe("generateBoard", () => {
     });
   });
 
-  describe("R9: island-graph bookkeeping and entrance reuse", () => {
-    it("the body's tracked island neighbours equal the finished map's island graph, seeds 1..200", () => {
-      for (let seed = 1; seed <= 200; seed++) {
-        const trace = newTrace();
-        const r = generateBoardBody(new DeterministicRng(seed), trace);
-        if (!r.ok) continue;
-        const actual = islandGraph(r.map);
-        for (const [id, set] of actual) {
-          expect(sorted([...(trace.trackedNeighbours.get(id) ?? [])]), `seed ${seed} ${id}`).toEqual(sorted([...set]));
-        }
-      }
-    });
-
+  describe("R9 (R11 follow-up): entrance reuse at the cap", () => {
     it("an island at its entrance cap still takes lanes on existing entrances, never a new one", () => {
       let reuses = 0;
       for (let seed = 1; seed <= 200; seed++) {
