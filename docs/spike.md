@@ -72,12 +72,12 @@ How to read this, honestly:
   `deterministic_rng`, `game_map`, `province`, `island`, `player`, `action`, `game_setup`, `game_state`,
   `rules`, `map_reader`, `map_validator`, `rule_set`) total 1,708 lines, of which the slice uses a part.
   So no ratio is claimed. `types.ts` (about 125) is plain interfaces where Godot has one class file each.
-- **UI.** The TypeScript UI is larger, and the figure hides why: 654 of the lines are CSS (theme,
+- **UI.** The TypeScript UI is larger, and the figure hides why: 664 of the lines are CSS (theme,
   animation, dialog, dice faces), and the UI does more than Godot's `game/` does today: a result dialog
   with dice, a score card, a battle log, a tooltip, keyboard use, a toast. Godot's `BoardView` draws flat
   colour in one `_draw()` and reports attacks in a text label. The line counts say nothing about which
   UI is nicer.
-- **Tests.** 1,129 against 1,762. Godot's `test/` plays 100 full games per run, has cross-configuration, hazard and save-archive
+- **Tests.** 1,300 against 1,762. Godot's `test/` plays 100 full games per run, has cross-configuration, hazard and save-archive
   suites; none of that exists here. The TypeScript tests are
   shorter because the slice is smaller, not because a stack writes tests shorter; no claim there.
 
@@ -92,7 +92,7 @@ How to read this, honestly:
   the e2e tests. The e2e tests passed on their first run, which is a reason to distrust them; the
   mutation runs below are what makes them believable.
 - **Machine time:** `npm ci` ~1 s from a warm npm cache, `npm run build` 0.1 s for `vite build` (plus type-check), Vitest 0.3 s
-  for 32 tests, Playwright ~8 s for 30 runs including a fresh `vite build` and `vite preview`.
+  for 32 tests, Playwright ~8 s for 36 runs (18 tests × 2 viewports) including a fresh `vite build` and `vite preview`.
 
 ## What was easy
 
@@ -231,9 +231,12 @@ The Playwright tests check, on a real browser at two real sizes:
   `toHaveScreenshot`, at both projects, on the fixed seed: the whole board (hatched seat included),
   the result dialog with its dice and verdicts, and the panel. Playwright's default comparison options
   apply — no `maxDiffPixels`, `maxDiffPixelRatio` or `threshold` is set anywhere, and there is no
-  `expect.toHaveScreenshot` override in `playwright.config.ts` — so any pixel difference at all
-  fails; a golden changes only when the look changes, with its reason in the PR, and the owner judges
-  it. Nothing is masked: nothing varies run to run, because the seed fixes the game, `toHaveScreenshot`
+  `expect.toHaveScreenshot` override in `playwright.config.ts` — so a deliberate UI edit fails
+  the golden, with its reason in the PR, and the owner judges it. The defaults do not catch every
+  conceivable pixel change: hiding the hatch entirely still passed the board golden at both projects
+  (each review round found a new way to lie to the goldens — five evasions across two rounds passed
+  every meaningful check before being caught); the independent dark-share check catches that evasion.
+  The goldens and the dark-share check together cover what the design requires. Nothing is masked: nothing varies run to run, because the seed fixes the game, `toHaveScreenshot`
   freezes animations, and the rendering environment is pinned — goldens are made and compared in the
   official image `mcr.microsoft.com/playwright:v1.63.0-noble` (`<version>` = `@playwright/test`'s
   version in `package-lock.json`, which CI's Playwright job runs in too), never on the host, whose
