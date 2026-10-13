@@ -54,6 +54,9 @@ export const BONUS_DIVISOR = 2;
  *   cap=1  →  200/200  rate=1.000  (smallest cap ≥ 99 %)
  *   cap=2..5, 10 → 200/200
  *
+ * Wider look, not the selection rule: seeds 1..5000 give 4991/5000
+ * (99.82 %) at cap=1 and 5000/5000 at cap=2 and 3.
+ *
  * `tests/core/board-gen.test.ts` re-runs this sweep at the pinned cap and
  * at one below it, so a different value fails the suite.
  */

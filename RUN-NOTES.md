@@ -21,3 +21,11 @@ Progress:
 - R1/R2/R3/R4/R9/R6: generateBoard(seed) only; generateBoardInternal; structuralErrors;
   BodyTrace; pair ref counts; entrance reuse at cap; cap sweep 1..200 gives 200/200 at cap 1,
   so MAX_BOARD_ATTEMPTS = 1. 256/256 vitest.
+- R9 ref counts reverted: no Phase 2 undo on seeds 1..5000 after entrance reuse, so the edge
+  cannot be visited by a test; reported. Entrance reuse kept (its test fails without it).
+- 23 mutations applied, run, restored: each red then green. Local DW8 green (36 Playwright).
+
+END
+- Built: R1, R2, R3, R4, R5, R6 (cap 1), R7 transcripts, R9 entrance reuse.
+- Not done: R9 pair ref counts (unreachable edge; reported).
+- DW8 authority: CI on the final commit.
