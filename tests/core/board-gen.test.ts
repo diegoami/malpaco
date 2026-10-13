@@ -613,45 +613,57 @@ describe("generateBoard", () => {
     });
   });
 
-  describe("R3: the entrance-minimum guard refuses an under-minimum map", () => {
     /**
-     * Move one lane on seed 1's board so an island keeps only one entrance
-     * and nothing else changes: the lane from entrance `drop` goes to the
-     * island's other entrance `keep` instead.  Searched deterministically;
-     * the first move that leaves only the entrance-minimum error is used.
+     * Move one lane on a generated board so one island keeps a single
+     * entrance: on an island with exactly two entrances, the entrance `drop`
+     * with one lane loses it, and the lane's far end `target` is joined
+     * instead to `other`, an existing entrance elsewhere with room for a
+     * lane.  Lane count, lanes per province and every other island's
+     * entrances are unchanged.  Searched deterministically over seeds 1..50
+     * in order; the first move whose only structural error is the entrance
+     * minimum, and which no fairness check rejects, is used.
      */
-    function underMinimumBoard(): { map: GameMap; island: string } {
-      const base = fairBoard(1);
-      const byId = new Map(base.provinces.map((p) => [p.id, p]));
-      for (const island of base.islands) {
-        const entrances = island.provinces.filter((pid) => byId.get(pid)!.seaLanes.length > 0);
-        if (entrances.length !== 2) continue;
-        const [e0, e1] = [entrances[0]!, entrances[1]!];
-        const orders: [string, string][] = [[e0, e1], [e1, e0]];
-        for (const [keep, drop] of orders) {
-          const d = byId.get(drop)!;
-          const k = byId.get(keep)!;
-          if (d.seaLanes.length !== 1) continue;
-          const target = d.seaLanes[0]!;
-          if (k.seaLanes.includes(target)) continue;
-          const provinces = base.provinces.map((p) => {
-            if (p.id === drop) return { ...p, seaLanes: [] };
-            if (p.id === keep) return { ...p, seaLanes: [...p.seaLanes, target] };
-            if (p.id === target) return { ...p, seaLanes: p.seaLanes.map((t) => (t === drop ? keep : t)) };
-            return p;
-          });
-          const map = { ...base, provinces };
-          const errs = structuralErrors(map);
-          if (errs.length === 1 && errs[0]!.startsWith("island entrance minimum not met")) {
-            return { map, island: island.id };
+    function underMinimumBoard(): { map: GameMap; island: string; seed: number } {
+      for (let seed = 1; seed <= 50; seed++) {
+        const base = fairBoard(seed);
+        const byId = new Map(base.provinces.map((p) => [p.id, p]));
+        for (const island of base.islands) {
+          const entrances = island.provinces.filter((pid) => byId.get(pid)!.seaLanes.length > 0);
+          if (entrances.length !== 2) continue;
+          for (const drop of entrances) {
+            const d = byId.get(drop)!;
+            if (d.seaLanes.length !== 1) continue;
+            const target = d.seaLanes[0]!;
+            const t = byId.get(target)!;
+            for (const o of base.provinces) {
+              if (o.id === drop || o.island === t.island) continue;
+              if (o.seaLanes.length === 0 || o.seaLanes.length >= MAX_LANES_PER_COUNTRY) continue;
+              if (o.seaLanes.includes(target)) continue;
+              const provinces = base.provinces.map((p) => {
+                if (p.id === drop) return { ...p, seaLanes: [] };
+                if (p.id === o.id) return { ...p, seaLanes: [...p.seaLanes, target] };
+                if (p.id === target) return { ...p, seaLanes: p.seaLanes.map((x) => (x === drop ? o.id : x)) };
+                return p;
+              });
+              const map = { ...base, provinces };
+              const errs = structuralErrors(map);
+              if (
+                errs.length === 1 &&
+                errs[0]!.startsWith("island entrance minimum not met") &&
+                runAllFairnessChecks(map).length === 0
+              ) {
+                return { map, island: island.id, seed };
+              }
+            }
           }
         }
       }
-      throw new Error("no single-move under-minimum variant of seed 1's board");
+      throw new Error("no single-move under-minimum variant of the boards of seeds 1..50");
     }
 
-    it("accepts seed 1's board as built", () => {
-      expect(structuralErrors(fairBoard(1))).toEqual([]);
+  describe("R3: the entrance-minimum guard refuses an under-minimum map", () => {
+    it("accepts the board as built", () => {
+      expect(structuralErrors(fairBoard(underMinimumBoard().seed))).toEqual([]);
     });
 
     it("rejects the same board with one island cut to a single entrance", () => {
@@ -696,6 +708,53 @@ describe("generateBoard", () => {
         }
       }
       expect(reuses).toBeGreaterThan(0);
+    });
+  });
+
+  // Round 4, R2: seeds whose first body used to stall in Phase 2 (a pass
+  // spent on provinces tryAddLane refused, never backtracking) and so
+  // returned a structural `ok: false` from the public generator.
+  describe("round 4 R2: Phase 2 never stalls on refused provinces", () => {
+    for (const seed of [430, 604, 1534, 2275, 4677]) {
+      it(`seed ${seed}: the body places all ${SEA_LANE_COUNT} lanes and generateBoard returns ok`, () => {
+        const body = generateBoardBody(new DeterministicRng(seed));
+        expect(body.ok ? [] : body.errors).toEqual([]);
+        const r = generateBoard(seed);
+        expect(r.ok ? [] : r.errors).toEqual([]);
+        if (r.ok) {
+          expect(structuralErrors(r.map)).toEqual([]);
+          expect(runAllFairnessChecks(r.map)).toEqual([]);
+        }
+      });
+    }
+  });
+
+  // Round 4, R1: the structural acceptance step runs in the retry loop on
+  // every map a body returns.  The under-minimum board passes all five
+  // fairness checks, so only that step stands between it and `ok: true`.
+  describe("round 4 R1: the retry loop refuses a structurally invalid board", () => {
+    it("the under-minimum board is fair, so only the structural step can refuse it", () => {
+      expect(runAllFairnessChecks(underMinimumBoard().map)).toEqual([]);
+    });
+
+    it("exhaustion: a body that always returns it fails with the structural error", () => {
+      const { map, island } = underMinimumBoard();
+      const r = generateBoardInternal(1, { attempts: 2, body: () => ({ ok: true, map }) });
+      expect(r).toEqual({
+        ok: false,
+        errors: [
+          `failed after 2 attempts: island entrance minimum not met: ${island}=1 (need >= ${MIN_ENTRANCES_PER_ISLAND})`,
+        ],
+      });
+    });
+
+    it("retry: a structurally invalid first attempt is rejected and the valid second one returned", () => {
+      const valid = fairBoard(5);
+      const plans = [underMinimumBoard().map, valid];
+      let calls = 0;
+      const r = generateBoardInternal(5, { attempts: 2, body: () => ({ ok: true, map: plans[calls++]! }) });
+      expect(calls).toBe(2);
+      expect(r).toEqual({ ok: true, map: valid });
     });
   });
 

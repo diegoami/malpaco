@@ -329,15 +329,16 @@ export interface BodyTrace {
 }
 
 /**
- * The structural invariants every board the body accepts must meet, read
+ * The structural invariants every board the generator accepts must meet, read
  * from the finished map: province degree in [DEGREE_MIN, DEGREE_MAX] and
  * exactly SEA_LANE_COUNT lanes (C-BRD-04), a connected graph (C-BRD-04),
  * and at least MIN_ENTRANCES_PER_ISLAND entrances per island (C-BRD-01).
  * Returns the violations; an empty list means the map is accepted.
  *
  * Internal: exported from this module for tests (R3, round 3), never
- * re-exported from `src/core/index.ts`.  `generateBoardBody` calls it on
- * every map it builds.
+ * re-exported from `src/core/index.ts`.  The retry loop
+ * (`generateBoardInternal`) runs it on every map a body returns, before the
+ * fairness checks (round 4, R1).
  */
 export function structuralErrors(map: GameMap): string[] {
   const errors: string[] = [];
@@ -406,9 +407,10 @@ export function structuralErrors(map: GameMap): string[] {
 
 /**
  * Inner generator body.  Takes a live `DeterministicRng` (already seeded by
- * the caller) and produces either a structurally-valid `GameMap` or a list
- * of structural errors.  No fairness checks here — those run in the retry
- * loop below.
+ * the caller) and produces either a built `GameMap` or the list of errors
+ * that stopped it (island sizes, lanes it could not place).  Neither the
+ * structural acceptance step nor the fairness checks run here; both run on
+ * its map in the retry loop below.
  *
  * Internal: exported from this module for tests, never re-exported from
  * `src/core/index.ts`.  The optional `trace` is filled with observations
@@ -531,6 +533,17 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
    * 4. DEGREE_MAX: total degree (borders + lanes) of each endpoint stays ≤ DEGREE_MAX.
    */
   function tryAddLane(provA: string, provB: string, islandA: string, islandB: string): boolean {
+    if (!canAddLane(provA, provB, islandA, islandB)) return false;
+    allSeaLanes.get(provA)!.add(provB);
+    allSeaLanes.get(provB)!.add(provA);
+    addNeighbour(islandA, islandB);
+    recordEntrance(provA);
+    recordEntrance(provB);
+    return true;
+  }
+
+  /** The four constraints of `tryAddLane`, without committing the lane. */
+  function canAddLane(provA: string, provB: string, islandA: string, islandB: string): boolean {
     if (islandA === islandB) return false;
     // Constraint 1: per-province lane cap
     if ((allSeaLanes.get(provA)?.size ?? 0) >= MAX_LANES_PER_COUNTRY) return false;
@@ -549,13 +562,27 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
     const degB = (allBorders.get(provB)?.size ?? 0) + (allSeaLanes.get(provB)?.size ?? 0);
     if (degA >= DEGREE_MAX || degB >= DEGREE_MAX) return false;
     if (allSeaLanes.get(provA)?.has(provB)) return false;
-    // All constraints pass — commit
-    allSeaLanes.get(provA)!.add(provB);
-    allSeaLanes.get(provB)!.add(provA);
-    addNeighbour(islandA, islandB);
-    recordEntrance(provA);
-    recordEntrance(provB);
     return true;
+  }
+
+  /**
+   * Every province pair (one on `src`, one on `dst`) that `tryAddLane`
+   * would accept now.  Round 4 (Sol R2): Phase 2 counts an island pair as
+   * viable only when this list is non-empty and picks its provinces from
+   * it, so a pass never ends on a refused lane; when no island pair has
+   * such a province pair, Phase 2 backtracks.
+   */
+  function addableProvincePairs(
+    src: { id: string; provinceIds: readonly string[] },
+    dst: { id: string; provinceIds: readonly string[] },
+  ): [string, string][] {
+    const out: [string, string][] = [];
+    for (const a of laneCandidates(src)) {
+      for (const b of laneCandidates(dst)) {
+        if (canAddLane(a, b, src.id, dst.id)) out.push([a, b]);
+      }
+    }
+    return out;
   }
 
   // Phase 1: build a balanced spanning tree using Kruskal's-style random
@@ -684,6 +711,7 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
         // An island at its entrance cap stays viable through an existing
         // entrance with lane headroom (R9 follow-up of R11, round 3).
         if (laneCandidates(src).length === 0 || laneCandidates(dst).length === 0) continue;
+        if (addableProvincePairs(src, dst).length === 0) continue;
         const entrSrc = islandEntranceCount.get(src.id) ?? 0;
         const entrDst = islandEntranceCount.get(dst.id) ?? 0;
         const degSrc = islandDegreeOf(src.id);
@@ -737,14 +765,17 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
     for (const p of viablePairs) if (p.score > bestScore) bestScore = p.score;
     const bestPairs = viablePairs.filter((p) => p.score === bestScore);
     const pair = bestPairs[rng.nextInt(0, bestPairs.length - 1)]!;
-    const provsSrc = laneCandidates(pair.src);
-    const provsDst = laneCandidates(pair.dst);
-    if (provsSrc.length === 0 || provsDst.length === 0) break;
+    // Provinces come only from pairs tryAddLane accepts (round 4, R2), with
+    // the same preferences as before: a source with no lane yet (a new
+    // entrance), then a destination that already has one lane.
+    const addable = addableProvincePairs(pair.src, pair.dst);
+    const provsSrc = [...new Set(addable.map(([a]) => a))];
     const srcZero = provsSrc.filter((p) => (allSeaLanes.get(p)?.size ?? 0) === 0);
     const provA =
       srcZero.length > 0
         ? srcZero[rng.nextInt(0, srcZero.length - 1)]!
         : provsSrc[rng.nextInt(0, provsSrc.length - 1)]!;
+    const provsDst = addable.filter(([a]) => a === provA).map(([, b]) => b);
     const dstOne = provsDst.filter((p) => (allSeaLanes.get(p)?.size ?? 0) === 1);
     const provB =
       dstOne.length > 0
@@ -819,9 +850,8 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
     islands,
   };
 
-  // ---- Structural assertions (fail-fast) ----------------------------------
-  errors.push(...structuralErrors(map));
-
+  // The structural acceptance step (`structuralErrors`) runs in the retry
+  // loop on every map a body returns (round 4, R1).
   if (errors.length > 0) return { ok: false, errors };
 
   return { ok: true, map };
@@ -854,6 +884,7 @@ export function generateBoard(seed: number): BoardGenResult {
  * `src/core/index.ts`; the public entry is `generateBoard(seed)`.  Every
  * part left out defaults to the production one, so a test that replaces
  * only the body still runs the real `runAllFairnessChecks` (R2, round 3).
+ * `structuralErrors` is not replaceable: it runs on every body's map.
  */
 export function generateBoardInternal(
   seed: number,
@@ -869,7 +900,11 @@ export function generateBoardInternal(
   const rng = new DeterministicRng(seed);
   let lastResult: BoardGenResult | null = null;
   for (let attempt = 1; attempt <= cap; attempt++) {
-    const result = body(rng);
+    let result = body(rng);
+    // Structural acceptance (C-BRD-04, C-BRD-01): a body's map that misses
+    // an invariant is a failed attempt, whatever the fairness checks say.
+    const structural = result.ok ? structuralErrors(result.map) : [];
+    if (structural.length > 0) result = { ok: false, errors: structural };
     if (result.ok) {
       const fairnessErrors = fairnessCheck(result.map);
       if (fairnessErrors.length === 0) return result;
