@@ -295,8 +295,11 @@ isle-wars-archaeology #189 on 2026-10-12):
 - the implementer and reviewer chains, `choose.mjs`, the Claude fallbacks, `--hard`, `--sol` and
   `--second-opinion`; the afternoon of 2026-10-11's "nobody is asked" (the two questions came back
   on 2026-10-12, with the switchable roster);
-- the exclusions by name (never Haiku, Gemini, Kimi, Grok; GLM only via Z.AI; Luna only direct),
-  which `review.mjs --reviewer` no longer enforces: DeepSeek is the one blacklist.
+- the exclusions by name (never Haiku, Gemini, Kimi, Grok; GLM only via Z.AI; Luna only direct)
+  and the DeepSeek blacklist (L67, set 2026-10-09, lifted 2026-10-13 after T09's clean DeepSeek
+  implement run); `review.mjs --reviewer` enforces neither — only the family rule (the reviewer
+  is never of the implementer's or the session's family) and the live `opencode models <provider>`
+  listing, with `harness.json`'s `blocked` list empty.
 
 ## Keeping this page current
 
