@@ -16,4 +16,7 @@ values, `data/` or `src/ui/`.
   (`const complete = ...` and `if (!complete) continue;`), ran the bonus suite
   -> 6 failed / 2 passed; restored the saved file -> 8 passed.
 
-END: DW1-DW4 met.
+END: ran DW1-DW4 at 73b3281; all four passed (review round 1, Luna).
+Round 2 (rework, main session): R1 — this END line reworded from a status
+claim to a run record (rule 3); R2 — arbitrary-bonus comment added at
+tests/core/bonuses.test.ts:85 (review R1/R2, PR #24).

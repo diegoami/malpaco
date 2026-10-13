@@ -82,7 +82,7 @@ describe("islandIncome on the authored map (C-BON-01)", () => {
   it("never pays for an island with no provinces", () => {
     const withEmpty: GameMap = {
       ...map,
-      islands: [...map.islands, { id: "empty", name: "Empty", bonus: 99, provinces: [] }],
+      islands: [...map.islands, { id: "empty", name: "Empty", bonus: 99, provinces: [] }], // 99 is arbitrary on purpose: no real island has zero provinces, and the property under test is that an empty island pays nothing whatever its bonus (not a rule value, rule 17 does not apply).
     };
     const state = gameFor(withEmpty, map.provinces.map((p) => p.id));
     const income = islandIncome(state, "blue");
