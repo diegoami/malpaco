@@ -47,15 +47,16 @@ export const BONUS_DIVISOR = 2;
  *
  * The task's selection rule: the smallest number that, on a 200-seed
  * sweep, gives a success rate ≥ 99 %.  Sweep of seeds 1..200 through
- * `generateBoardInternal(seed, { attempts: cap })` after round 3's
- * generator changes (R9: pair reference counts, entrance reuse at cap):
+ * `generateBoardInternal(seed, { attempts: cap })` after round 4's
+ * generator change (Phase 2 picks only addable province pairs):
  *
  *   cap=0  →    0/200  rate=0.000
  *   cap=1  →  200/200  rate=1.000  (smallest cap ≥ 99 %)
  *   cap=2..5, 10 → 200/200
  *
- * Wider look, not the selection rule: seeds 1..5000 give 4991/5000
- * (99.82 %) at cap=1 and 5000/5000 at cap=2 and 3.
+ * Wider look, not the selection rule: seeds 1..5000 give 4996/5000
+ * (99.92 %) at cap=1, the four failures all fairness (eccentricity 5 on
+ * seeds 1506, 1597, 2779, 4557), none structural; 5000/5000 at cap=2, 3.
  *
  * `tests/core/board-gen.test.ts` re-runs this sweep at the pinned cap and
  * at one below it, so a different value fails the suite.
