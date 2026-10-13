@@ -424,7 +424,9 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
       allPairs.push({ i, j });
     }
   }
-  shuffled(rng, allPairs);
+  // R7 (rework round, Sol 2026-10-13): the previous round called
+  // `shuffled(rng, allPairs)` and discarded the result. The shuffled
+  // copy is now used below in the Phase 1 loop.
 
   // Union-find for components. `compParent` always has `islandStructs.length`
   // entries and indices in `[0, length)` are always set, but
@@ -441,7 +443,14 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   }
 
   let treeEdges = 0;
-  for (const pair of allPairs) {
+  // R7 (rework round, Sol 2026-10-13): the previous round called
+  // `shuffled(rng, allPairs)` but discarded the result and iterated
+  // `allPairs` directly.  The spanning tree therefore always
+  // traversed pairs in fixed lexicographic order, and Phase 1's
+  // "random spanning tree" was deterministic regardless of the seed.
+  // Fix: iterate the shuffled copy, never the original.
+  const shuffledPairs = shuffled(rng, allPairs);
+  for (const pair of shuffledPairs) {
     if (treeEdges >= islandStructs.length - 1) break;
     if (compFind(pair.i) === compFind(pair.j)) continue; // already connected
     const fromIsland = islandStructs[pair.i]!.id;
@@ -605,13 +614,24 @@ export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
     errors.push(
       `could not place ${SEA_LANE_COUNT} sea lanes in ${MAX_PHASE2_PASSES} passes (placed ${seaLaneCount})`,
     );
-  // Note: MIN_ENTRANCES_PER_ISLAND is checked by the fairness-check filter
-  // (checkFortress) and the retry loop handles it.  We do NOT enforce it in
-  // the body — the four structural constraints in Phase 2 are sufficient to
-  // reach SEA_LANE_COUNT in most seeds, but enforcing MIN_ENTRANCES here
-  // would over-saturate the larger islands (forcing Phase 2B to give up).
-  // See option (b) in T05b's Hazards: the body's structural check is "enough
-  // lanes"; MIN_ENTRANCES is a fairness concern.
+  // R6 (rework round, Sol 2026-10-13): MIN_ENTRANCES_PER_ISLAND is now
+  // a structural precondition, not a fairness concern.  Phase 2's
+  // scoring already favours pairs whose endpoints are below the cap,
+  // but the body must REFUSE to return ok:true if any island is still
+  // under the cap.  Without this guard, a body that placed 16 lanes
+  // but left an island with a single entrance silently passes
+  // structural checks and the retry loop relies on checkFortress to
+  // catch it; deleting the scoring `if (entrSrc < ...)` lines made
+  // the body succeed structurally with single-entrance islands.
+  if (allIslandsMinEntrances() === false) {
+    const below = islandStructs
+      .filter((isl) => (islandEntranceCount.get(isl.id) ?? 0) < MIN_ENTRANCES_PER_ISLAND)
+      .map((isl) => `${isl.id}=${islandEntranceCount.get(isl.id) ?? 0}`)
+      .join(", ");
+    errors.push(
+      `island entrance minimum not met: ${below} (need >= ${MIN_ENTRANCES_PER_ISLAND})`,
+    );
+  }
 
   // ---- Build island records ------------------------------------------------
   // islandEntranceCount is maintained live during Phase 1 and Phase 2;

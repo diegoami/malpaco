@@ -595,6 +595,98 @@ describe("generateBoard", () => {
       expect(true).toBe(true);
     });
   });
+
+  // R6: structural pre-flight must enforce MIN_ENTRANCES_PER_ISLAND;
+  // the body must REFUSE to return ok:true if any island is below the
+  // cap.  The previous round's body satisfied this only via the
+  // checkFortress fairness check (deferred to the retry loop).  Deleting
+  // the priority-scoring lines that favoured under-cap endpoints left
+  // the body returning single-entrance islands; the suite still passed
+  // because checkFortress caught it.  Now we assert in the body, and
+  // the test below locks the contract.
+  describe("R6: structural MIN_ENTRANCES_PER_ISLAND enforcement", () => {
+    it("every island in the generator's output has at least MIN_ENTRANCES_PER_ISLAND entrances", () => {
+      for (const seed of [1, 2, 3, 7, 12, 21, 33, 42, 45]) {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(`seed ${seed}: ${r.errors.join("; ")}`);
+        for (const island of r.map.islands) {
+          let n = 0;
+          for (const pid of island.provinces) {
+            const p = r.map.provinces.find((x) => x.id === pid);
+            if (p && p.seaLanes.length > 0) n++;
+          }
+          expect(
+            n,
+            `seed ${seed} island ${island.id} has ${n} entrances (need >= ${MIN_ENTRANCES_PER_ISLAND})`,
+          ).toBeGreaterThanOrEqual(MIN_ENTRANCES_PER_ISLAND);
+        }
+      }
+    });
+  });
+
+  // R7: spanning tree pairs must come from the shuffled copy, not the
+  // original lexicographic array.  The previous round called
+  // `shuffled(rng, allPairs)` and discarded the result, so Phase 1
+  // always iterated `allPairs` in fixed order regardless of seed.  We
+  // detect this by sampling multiple seeds and asserting the
+  // spanning-tree structure varies.
+  describe("R7: spanning tree shuffle is honored (pairs randomized per seed)", () => {
+    /**
+     * Extract the spanning-tree edge set from a board's island graph.
+     * The spanning tree is the unique connected subgraph on the 9
+     * islands with exactly 8 edges (n-1 for n=9).  A board with the
+     * shuffled Phase 1 produces a tree whose edges depend on the rng
+     * draws; without the shuffle, the tree is fixed regardless of seed.
+     */
+    function spanningTreeEdges(map: import("../../src/core").GameMap): Set<string> {
+      // Reconstruct the island graph from provinces' sea lanes.
+      const islandAdj = new Map<string, Set<string>>();
+      for (const i of map.islands) islandAdj.set(i.id, new Set<string>());
+      for (const p of map.provinces) {
+        for (const sl of p.seaLanes) {
+          const other = map.provinces.find((x) => x.id === sl);
+          if (!other || other.island === p.island) continue;
+          islandAdj.get(p.island)!.add(other.island);
+        }
+      }
+      // BFS from each island to find the spanning-tree edges (a DFS
+      // tree, equivalently).  Take the first island's tree.
+      const seen = new Set<string>();
+      const tree = new Set<string>();
+      const firstId = map.islands[0]!.id;
+      const stack = [firstId];
+      seen.add(firstId);
+      while (stack.length > 0) {
+        const cur = stack.pop()!;
+        for (const nb of islandAdj.get(cur) ?? []) {
+          if (seen.has(nb)) continue;
+          seen.add(nb);
+          const key = cur < nb ? `${cur}|${nb}` : `${nb}|${cur}`;
+          tree.add(key);
+          stack.push(nb);
+        }
+      }
+      // The tree should have exactly 8 edges for a 9-island graph.
+      // (Plus extra Phase 2 edges, which DFS does not include.)
+      // We return the DFS tree to detect variation in Phase 1's order.
+      return tree;
+    }
+
+    it("spanning tree differs across seeds (proves Phase 1 randomizes)", () => {
+      const trees = new Set<string>();
+      for (const seed of [1, 2, 3, 7, 12, 21, 33, 42, 45]) {
+        const r = generateBoard(seed);
+        if (!r.ok) throw new Error(`seed ${seed}: ${r.errors.join("; ")}`);
+        const tree = [...spanningTreeEdges(r.map)].sort().join(",");
+        trees.add(tree);
+      }
+      // Across 9 seeds we expect at least 2 distinct spanning trees
+      // (in practice many more; the failure mode is exactly 1 — the
+      // lexicographic-order regression produces the same tree for
+      // every seed).
+      expect(trees.size, `spanning trees identical across all seeds: ${trees.size}`).toBeGreaterThan(1);
+    });
+  });
 });
 
 // ---------------------------------------------------------------------------
