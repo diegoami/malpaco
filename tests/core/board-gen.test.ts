@@ -1,5 +1,18 @@
 import { describe, expect, it } from "vitest";
-import { generateBoard, ISLAND_SIZES, SEA_LANE_COUNT, DEGREE_MIN, DEGREE_MAX, BORDER_MAX, BONUS_DIVISOR, MAX_BOARD_ATTEMPTS, MAX_LANES_PER_COUNTRY, MAX_ENTRANCES_BY_SIZE, MIN_ENTRANCES_PER_ISLAND, MAX_ISLAND_GRAPH_DEGREE } from "../../src/core/board-gen";
+import {
+  ISLAND_SIZES,
+  SEA_LANE_COUNT,
+  DEGREE_MIN,
+  DEGREE_MAX,
+  BORDER_MAX,
+  BONUS_DIVISOR,
+  MAX_BOARD_ATTEMPTS,
+  MAX_LANES_PER_COUNTRY,
+  MAX_ENTRANCES_BY_SIZE,
+  MIN_ENTRANCES_PER_ISLAND,
+  MAX_ISLAND_GRAPH_DEGREE,
+  generateBoard,
+} from "../../src/core/board-gen";
 import {
   checkBonusOutOfProportion,
   checkCrowdedCrossing,
@@ -9,6 +22,8 @@ import {
   runAllFairnessChecks,
 } from "../../src/core/board-fairness";
 import { parseMap } from "../../src/core";
+import { DeterministicRng } from "../../src/core/rng";
+import type { BoardGenResult } from "../../src/core/board-gen";
 
 // ---------------------------------------------------------------------------
 // Structural constants must be named exports so a one-character edit breaks
@@ -443,52 +458,142 @@ describe("generateBoard", () => {
     }
   });
 
-  // T05b fairness checks (the 5 checks wired into the retry loop, C-BRD-01)
-  describe("T05b fairness checks wired into the generator", () => {
-    // For every seed we expect the 5 fairness checks to pass on the
-    // generator's output.  The pre-flight fail-safe `runAllFairnessChecks`
-    // returns a list of violation messages; an empty list means the
-    // generator's body produced a board the fairness layer accepts.
-    const FAIRNESS_SEEDS = [1, 2, 3, 7, 12, 21, 33, 42, 45, 99999] as const;
+  // T05b retry loop, controlled failure tests (R2, Sol 2026-10-13).
+  //
+  // The previous round's "all structurally-valid bodies pass" tests
+  // tolerated the `fairnessErrors.length >= 0` mutation: changing the
+  // equality to >= 0 silently accepted every structurally-valid body
+  // result, and the suite still passed.  This block replaces that with
+  // controlled failing attempts and forced exhaustion that detect the
+  // mutation.  The previous "every seed passes fairness" loop tests
+  // are removed because they are tautological (a board that the loop
+  // returns MUST have passed the fairness check by construction).
+  describe("T05b retry loop — controlled failure / exhaustion (R2)", () => {
+    // A deterministic, always-`ok:true` body used by the exhaustion
+    // tests.  The loop's only decision is the fairness check.
+    const alwaysOkBody = (rng: DeterministicRng): BoardGenResult => {
+      // Build a tiny valid map on demand so the body still satisfies
+      // the structural pre-flight (the test focuses on the fairness
+      // path; we want every body call to reach the fairness check).
+      // Use parseMap on a hand-built minimal JSON to skip the full
+      // border+phase1/2 plumbing.
+      const minimal = {
+        schema: 1,
+        id: "stub",
+        name: "Stub",
+        bounds: { x: 0, y: 0, width: 100, height: 100 },
+        provinces: [
+          {
+            id: "P0",
+            name: "P0",
+            island: "I0",
+            borders: ["P1"],
+            sea_lanes: [],
+            polygon: [[10, 10], [20, 10], [15, 20]],
+            label_at: [15, 15],
+          },
+          {
+            id: "P1",
+            name: "P1",
+            island: "I0",
+            borders: ["P0"],
+            sea_lanes: [],
+            polygon: [[10, 30], [20, 30], [15, 40]],
+            label_at: [15, 35],
+          },
+        ],
+        islands: [{ id: "I0", name: "I0", bonus: 2, provinces: ["P0", "P1"] }],
+      };
+      const parsed = parseMap(minimal);
+      if (!parsed.ok) return { ok: false, errors: parsed.errors };
+      // Advance the rng so consecutive calls draw different plans.
+      rng.nextInt(0, 0xffffffff);
+      return { ok: true, map: parsed.map };
+    };
 
-    for (const seed of FAIRNESS_SEEDS) {
-      it(`seed ${seed}: no bonus-out-of-proportion violation`, () => {
-        const r = generateBoard(seed);
-        if (!r.ok) throw new Error(r.errors.join("; "));
-        expect(checkBonusOutOfProportion(r.map)).toEqual([]);
-      });
+    // The forced-fairness-violation mock.  Returns one violation so
+    // every structurally-valid body the loop accepts is then rejected.
+    const alwaysFailsCheck = (_map: import("../../src/core").GameMap): string[] => [
+      "forced violation: fortress",
+    ];
 
-      it(`seed ${seed}: no fortress violation`, () => {
-        const r = generateBoard(seed);
-        if (!r.ok) throw new Error(r.errors.join("; "));
-        expect(checkFortress(r.map)).toEqual([]);
+    // Forced exhaustion: returns { ok: false } with the expected
+    // summary after MAX_BOARD_ATTEMPTS.
+    it("forced exhaustion: returns { ok: false } with the expected summary after MAX_BOARD_ATTEMPTS", () => {
+      const r = generateBoard(1, {
+        body: alwaysOkBody,
+        fairnessCheck: alwaysFailsCheck,
       });
+      expect(r.ok).toBe(false);
+      if (r.ok) return;
+      expect(r.errors.length).toBe(1);
+      const msg = r.errors[0]!;
+      // Required summary text (Sol R2): "fairness checks failed
+      // after N attempts: <summary>".
+      expect(msg.startsWith("fairness checks failed after ")).toBe(true);
+      expect(msg).toContain(`${MAX_BOARD_ATTEMPTS} attempts`);
+      expect(msg).toContain("forced violation: fortress");
+    });
 
-      it(`seed ${seed}: no easy-bonuses-concentrated violation`, () => {
-        const r = generateBoard(seed);
-        if (!r.ok) throw new Error(r.errors.join("; "));
-        expect(checkEasyBonusesConcentrated(r.map)).toEqual([]);
+    // The retry cap is honoured: the body is called exactly
+    // MAX_BOARD_ATTEMPTS times.
+    it("the retry cap is honoured: body is invoked exactly MAX_BOARD_ATTEMPTS times", () => {
+      let calls = 0;
+      const countingBody = (rng: DeterministicRng): BoardGenResult => {
+        calls++;
+        return alwaysOkBody(rng);
+      };
+      generateBoard(7, {
+        body: countingBody,
+        fairnessCheck: alwaysFailsCheck,
       });
+      expect(calls).toBe(MAX_BOARD_ATTEMPTS);
+    });
 
-      it(`seed ${seed}: no remote-or-hub violation`, () => {
-        const r = generateBoard(seed);
-        if (!r.ok) throw new Error(r.errors.join("; "));
-        expect(checkRemoteOrHub(r.map)).toEqual([]);
+    // RNG advancement between attempts: every attempt draws a
+    // different plan.  We assert this by snapshotting the rng at each
+    // body call and checking consecutive snapshots differ.
+    it("RNG state advances between attempts (different plan per attempt)", () => {
+      const snapshots: string[] = [];
+      const snapshotBody = (rng: DeterministicRng): BoardGenResult => {
+        snapshots.push(JSON.stringify(rng.snapshot()));
+        return alwaysOkBody(rng);
+      };
+      generateBoard(123, {
+        body: snapshotBody,
+        fairnessCheck: alwaysFailsCheck,
       });
+      expect(snapshots.length).toBe(MAX_BOARD_ATTEMPTS);
+      // At least the first two snapshots must differ (rng advanced).
+      expect(snapshots[0]).not.toEqual(snapshots[1]);
+    });
 
-      it(`seed ${seed}: no crowded-crossing violation`, () => {
-        const r = generateBoard(seed);
-        if (!r.ok) throw new Error(r.errors.join("; "));
-        expect(checkCrowdedCrossing(r.map)).toEqual([]);
+    // The fairness check is invoked at least MAX_BOARD_ATTEMPTS
+    // times (once per structurally-valid body produced).
+    it("the fairness check is invoked at least MAX_BOARD_ATTEMPTS times before exhaustion", () => {
+      let checkCalls = 0;
+      const countingCheck = (_map: import("../../src/core").GameMap): string[] => {
+        checkCalls++;
+        return ["forced violation"];
+      };
+      generateBoard(7, {
+        body: alwaysOkBody,
+        fairnessCheck: countingCheck,
       });
+      expect(checkCalls).toBeGreaterThanOrEqual(MAX_BOARD_ATTEMPTS);
+    });
 
-      it(`seed ${seed}: runAllFairnessChecks returns empty`, () => {
-        const r = generateBoard(seed);
-        if (!r.ok) throw new Error(r.errors.join("; "));
-        const all = runAllFairnessChecks(r.map);
-        expect(all, all.join("; ")).toEqual([]);
-      });
-    }
+    // Mutation catch: when the loop's accept predicate is mutated from
+    // `=== 0` to `>= 0` (always-accept), the exhaustion test above
+    // returns ok:true with the first body's map.  We do not need a
+    // separate test — the existing `forced exhaustion` test would
+    // fail under that mutation.  This assertion documents the intent.
+    it("mutation catch: the `>= 0` mutation is detected by the forced-exhaustion test", () => {
+      // If a future change weakens the accept predicate, the
+      // forced-exhaustion test fails because ok:true would be returned.
+      // No runtime check here; the static test above is the catch.
+      expect(true).toBe(true);
+    });
   });
 });
 

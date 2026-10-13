@@ -1,6 +1,13 @@
 import { DeterministicRng } from "./rng";
 import type { GameMap, Island, Point, Province } from "./types";
-import { runAllFairnessChecks } from "./board-fairness";
+import * as boardFairnessModule from "./board-fairness";
+
+// Indirection so `vi.spyOn(boardFairnessModule, "runAllFairnessChecks")`
+// in tests replaces the function called here.  Direct named imports are
+// immutable in ES modules; the namespace property access is read at call
+// time, which a spy patches (R2 test support).
+const runAllFairnessChecks = (map: GameMap): string[] =>
+  boardFairnessModule.runAllFairnessChecks(map);
 
 // ---------------------------------------------------------------------------
 // Structural constants — each cites the claim it traces to (rule 17).
@@ -300,8 +307,12 @@ function buildBorders(
  * the caller) and produces either a structurally-valid `GameMap` or a list
  * of structural errors.  No fairness checks here — those run in the retry
  * loop below.
+ *
+ * Exported for test introspection (R2 fix, Sol 2026-10-13): tests need to
+ * spy on this function to verify RNG advancement between attempts and
+ * retry-cap honour.
  */
-function generateBoardBody(rng: DeterministicRng): BoardGenResult {
+export function generateBoardBody(rng: DeterministicRng): BoardGenResult {
   const errors: string[] = [];
 
   // ---- Assign province IDs to islands ------------------------------------
@@ -705,14 +716,30 @@ function generateBoardBody(rng: DeterministicRng): BoardGenResult {
  *
  * Plus the 5 fairness checks from `board-fairness.ts` (C-BRD-01).
  * The retry loop draws a new plan each attempt by advancing the RNG.
+ *
+ * The optional `body` and `fairnessCheck` overrides exist for R2
+ * tests (Sol 2026-10-13): the previous round tolerated the
+ * `fairnessErrors.length === 0` -> `>= 0` mutation because the suite
+ * could not force a scenario where the fairness check rejected every
+ * structurally-valid body.  With these overrides, tests can inject a
+ * body that always returns `ok:true` and a fairnessCheck that always
+ * returns a violation, exercising the exhaustion path.
  */
-export function generateBoard(seed: number): BoardGenResult {
+export function generateBoard(
+  seed: number,
+  overrides?: {
+    readonly body?: (rng: DeterministicRng) => BoardGenResult;
+    readonly fairnessCheck?: (map: GameMap) => string[];
+  },
+): BoardGenResult {
+  const body = overrides?.body ?? generateBoardBody;
+  const fairnessCheck = overrides?.fairnessCheck ?? runAllFairnessChecks;
   const rng = new DeterministicRng(seed);
   let lastResult: BoardGenResult | null = null;
   for (let attempt = 1; attempt <= MAX_BOARD_ATTEMPTS; attempt++) {
-    const result = generateBoardBody(rng);
+    const result = body(rng);
     if (result.ok) {
-      const fairnessErrors = runAllFairnessChecks(result.map);
+      const fairnessErrors = fairnessCheck(result.map);
       if (fairnessErrors.length === 0) return result;
     }
     lastResult = result;
@@ -724,7 +751,7 @@ export function generateBoard(seed: number): BoardGenResult {
     rng.nextInt(0, 0xffffffff);
   }
   if (lastResult && lastResult.ok) {
-    const fairnessErrors = runAllFairnessChecks(lastResult.map);
+    const fairnessErrors = fairnessCheck(lastResult.map);
     return {
       ok: false,
       errors: [`fairness checks failed after ${MAX_BOARD_ATTEMPTS} attempts: ${fairnessErrors.join("; ")}`],
