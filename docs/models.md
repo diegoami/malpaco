@@ -26,9 +26,14 @@ The roster is the owner's and changes often: `harness.json`'s two defaults and i
 change through `/switch-model`, never by a rule that names a model, and no quota, tier or
 difficulty table picks one. The fixed rules: the reviewer is never of the session's family (so no
 Claude reviewer under Claude, no GLM reviewer under Z.AI, unless the user asks for a same-family
-review); a blocked model never runs (`--block`/`--unblock` change the list; it is empty today); Alibaba only when the user asks.
+review); a blocked model never runs (`--block`/`--unblock` change the list; it is empty today).
 
-**Why OpenCode does not implement any more.** Its implementer runs were the harness's main source
+**OpenCode implements when the user dispatches it** (the owner lifted the ban on 2026-10-13):
+T09 (PR #24) was implemented by DeepSeek via OpenCode on the owner's other computer, clean, from
+the repository's own brief. The failure classes below remain what to guard against when briefing
+an OpenCode implementer.
+
+**Why OpenCode did not implement (2026-10-11 to 2026-10-13).** Its implementer runs were the harness's main source
 of lost work: runs ended by a rejected path outside the worktree (T13 three times, T21 and T22,
 mm-m3 on goal2's T29), by the reset between chain attempts, by a 900 s idle kill during a long
 command, by a model ending early, and by models that did not follow the brief (`cd /abs &&`,

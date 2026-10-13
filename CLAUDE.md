@@ -52,10 +52,10 @@ indexed in `docs/tasks/README.md`.
       only, or the Agent tool's model is not honoured), the main session implements directly, in
       its own git worktree (never the main checkout). Propose `harness.json`'s
       `implementer.default` first. Whatever the model, a subagent runs through the session's
-      endpoint, so its family for the reviewer rule is the session's (6.0). OpenCode never
-      implements: `implement.mjs` was removed (isle-wars-archaeology on 2026-10-11, here on
-      2026-10-12) because its runs died on rejected paths, resets and early ends and did not follow
-      the brief (`docs/models.md`). Whoever implements keeps `RUN-NOTES.md` in its worktree (the
+      endpoint, so its family for the reviewer rule is the session's (6.0). OpenCode models may
+      implement when the user dispatches them (the owner lifted the old ban on 2026-10-13, after
+      T09's clean OpenCode implement run; the removed `implement.mjs` and its failure classes are
+      history in `docs/models.md`). Whoever implements keeps `RUN-NOTES.md` in its worktree (the
       plan, a progress line per commit, an END block), pushes after every commit, and opens the PR.
       When a subagent ends, the main session reads its final report before acting (rule 8), and
       posts its notes on the issue.
@@ -72,7 +72,7 @@ indexed in `docs/tasks/README.md`.
    3. **The fixed rules:** the reviewer is never of the session's family (`review.mjs` refuses it
       from the environment; a `/code-review` or the `reviewer` agent, which are that family, run
       only when the user asks); a model on `harness.json`'s `blocked` list never runs (the list is
-      empty today; `/switch-model --block` and `--unblock` change it); Alibaba only when the user asks.
+      empty today; `/switch-model --block` and `--unblock` change it).
    4. **Permissions, not briefs** (the owner, 2026-10-11): an agent gets the permissions its work
       needs, in its agent file (`.opencode/agents/reviewer.md`: `/tmp/opencode/*` outside its
       worktree; `.claude/agents/*.md`). A run that dies on a rejected path is fixed by widening
@@ -95,8 +95,8 @@ indexed in `docs/tasks/README.md`.
       signal is its transcript file's size plus its worktree.
    7. **Still in force:** the effort rule (a heavy model, Opus, GPT-6.1 Sol, GLM-5.3, MiMo v2.6
       Pro or MiniMax-M3, runs at `medium` at most and at `low` when medium is not needed; a model
-      with no medium takes its lowest variant at or below `high`; a light model stays at `high`;
-      GPT-6.1 Sol at `low`, `medium` only when the task file says why, never `high`); Sonnet's
+      with no medium takes its lowest variant at or below `high`; a light model stays at `high`);
+      Sonnet's
       tripwire (`docs/models.md`) in every Sonnet brief; reach (L26: an OpenCode reviewer cannot
       reach the user's machine outside its worktree, so the main session runs those lines and posts
       their output on the PR); every model id comes from a live list (`opencode models
