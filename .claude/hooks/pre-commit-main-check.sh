@@ -19,11 +19,11 @@ set -e
 
 input="${CLAUDE_TOOL_INPUT:-}"
 
-# A `git commit` invocation: a leading `git`, separated by whitespace or
-# control punctuation (not part of a longer token like `git-commit-thing`),
-# then `commit`, then whitespace or end-of-token. We do NOT match `git
-# commit-tree`, `git commit-graph`, etc.
-if ! printf '%s' "$input" | grep -qE '(^|;|&&|\|[|&]|[[:space:]])git[[:space:]]+commit([[:space:]]|;|$|&&|\|)'; then
+# A `git commit` invocation: a leading `git`, optionally followed by
+# flag-argument pairs (`-C <path>`, `-m <msg>`, `--amend`, etc.), then
+# `commit`. We do NOT match `git commit-tree`, `git commit-graph`, etc.,
+# because the closing delimiter excludes word characters (notably `-`).
+if ! printf '%s' "$input" | grep -qE '(^|[;&|]|[[:space:]])git\b(\s+(-[A-Za-z]+|--[A-Za-z][A-Za-z0-9_-]*)(\s+("[^"]*"|'\''[^'\'']*'\''|\S+))?)*\s+commit(\s|[;&|]|$)'; then
   exit 0
 fi
 
