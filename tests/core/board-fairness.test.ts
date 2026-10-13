@@ -60,14 +60,16 @@ function placeholderPolygon(cx: number, cy: number): readonly [number, number][]
 }
 
 function buildMap(spec: MapSpec): GameMap {
-  // Preserve `lanes` so we can iterate them after the rebuild.
-  type IslandInternal = IslandSpec & { readonly provinces: readonly string[]; readonly idx: number };
+  // Preserve `lanes` so we can iterate them after the rebuild.  Each
+  // internal island carries an `idx` (for layout) and is later slimmed
+  // back to `Island` (which requires `name`) when building the final map.
+  type IslandInternal = IslandSpec & { readonly provinces: readonly string[]; readonly idx: number; readonly name: string };
   const islands: IslandInternal[] = spec.islands.map((isl, idx) => {
     const provs: string[] = [];
     for (let i = 0; i < isl.size; i++) {
       provs.push(`${isl.id}_p${i}`);
     }
-    return { ...isl, provinces: provs, idx };
+    return { ...isl, name: isl.id, provinces: provs, idx };
   });
 
   const allProvinces = new Map<string, {
@@ -323,7 +325,7 @@ function buildAsymmetricMap(spec: {
   }>;
 }): GameMap {
   const provinces: Province[] = [];
-  const islandsOut = [];
+  const islandsOut: import("../../src/core").Island[] = [];
   const islandIndex = new Map<string, number>();
 
   spec.islands.forEach((isl, idx) => {
