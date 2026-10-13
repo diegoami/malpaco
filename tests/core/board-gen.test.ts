@@ -270,15 +270,14 @@ describe("generateBoard", () => {
       expect(BONUS_DIVISOR).toBe(2);
     });
 
-    // Saturation-fix mutation: BORDER_MAX must equal DEGREE_MAX - 1, so every
-    // province has at least one sea-lane slot. The previous M2.7 rework
-    // shipped with `BORDER_MAX = DEGREE_MAX`, which saturated some islands
-    // (seed 21 produced a degree-6 province; seed 33 produced 15 lanes and a
-    // disconnected graph; seeds 7 / 12 / 42 / 45 also failed). If a future
-    // commit flips BORDER_MAX back to DEGREE_MAX, this assertion fires and
-    // the per-seed tests above fail.
-    it("BORDER_MAX = DEGREE_MAX - 1 (saturation fix)", () => {
-      expect(BORDER_MAX).toBe(DEGREE_MAX - 1);
+    // Saturation-fix mutation: BORDER_MAX must equal DEGREE_MAX - 2, leaving
+    // two sea-lane slots per province.  The M2.7 worked the sea-lane cap to
+    // BORDER_MAX = DEGREE_MAX - 1 (= 4) and the body's 16-lane target became
+    // infeasible (Phase 2 oversaturated and Phase 2B had no viable pairs).
+    // If a future commit flips BORDER_MAX back to DEGREE_MAX - 1, the
+    // per-seed tests above regress.
+    it("BORDER_MAX = DEGREE_MAX - 2 (sea-lane slot reservation)", () => {
+      expect(BORDER_MAX).toBe(DEGREE_MAX - 2);
     });
 
     // Bonus-count regression: "entrances" must count distinct provinces with
