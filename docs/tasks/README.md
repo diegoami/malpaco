@@ -11,3 +11,4 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T04 | Core rules foundation: GameOptions, seats, multi-stream RNG, save format | #15 | — |
 | T05a | Board generator skeleton (46 countries, 9 islands, degree 2–5, 16 sea lanes, connected) | #17 | — |
 | T05b | Board fairness: the 5 checks, the retry loop, and the "attempts run out" behaviour | #19 | T05a |
+| T06 | Bundled UI font (Inter), so goldens do not depend on the host | #21 | — |
