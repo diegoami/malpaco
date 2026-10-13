@@ -1,3 +1,11 @@
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
 :root {
   --bg: #0c1722;
   --surface: #14232f;
@@ -30,7 +38,7 @@ body {
 body {
   background: var(--bg);
   color: var(--text);
-  font: 15px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font: 15px/1.4 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   overflow: hidden;
 }
 
@@ -147,16 +155,16 @@ body {
   user-select: none;
 }
 .badge-initial {
-  font: 700 15px system-ui, sans-serif;
+  font: 700 15px Inter, system-ui, sans-serif;
   fill: #fff;
   fill-opacity: 0.8;
 }
 .badge-count {
-  font: 800 25px system-ui, sans-serif;
+  font: 800 25px Inter, system-ui, sans-serif;
   fill: #fff;
 }
 .name {
-  font: 600 21px system-ui, sans-serif;
+  font: 600 21px Inter, system-ui, sans-serif;
   fill: #fff;
   paint-order: stroke;
   stroke: rgb(0 20 35 / 0.85);
@@ -236,7 +244,7 @@ body {
 }
 .tag text {
   text-anchor: middle;
-  font: 800 16px system-ui, sans-serif;
+  font: 800 16px Inter, system-ui, sans-serif;
   letter-spacing: 0.06em;
   fill: #0c1722;
 }
