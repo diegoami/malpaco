@@ -200,14 +200,36 @@ export function checkRemoteOrHub(map: GameMap): string[] {
       );
     }
 
-    // Eccentricity check: max distance to any other island > 4
+    // Eccentricity check: max distance to any other island > 4.
+    // R1 (rework round, Sol 2026-10-13): bfsDistances records only
+    // reachable vertices; an island that has no path to `island.id` in
+    // the island graph is not in the map.  Detect those unreachable
+    // islands as remote violations: an island that cannot be reached
+    // within any number of crossings is unreachable (effectively
+    // eccentricity = Infinity).  Without this fix, two disconnected
+    // islands silently pass the remote check.
     const dists = bfsDistances(islandAdj, island.id);
+    let reportedForThisIsland = false;
     for (const [, dist] of dists) {
       if (dist > 4) {
         violations.push(
           `remote-or-hub: island '${island.id}' has eccentricity ${dist} > 4`,
         );
+        reportedForThisIsland = true;
         break; // only report once per island
+      }
+    }
+    if (!reportedForThisIsland) {
+      // Any island not present in `dists` is unreachable from `island.id`.
+      for (const other of map.islands) {
+        if (other.id === island.id) continue;
+        if (!dists.has(other.id)) {
+          violations.push(
+            `remote-or-hub: island '${island.id}' cannot reach island '${other.id}' (disconnected)`,
+          );
+          reportedForThisIsland = true;
+          break;
+        }
       }
     }
   }
