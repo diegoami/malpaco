@@ -133,6 +133,17 @@ describe("generated initial deal", () => {
     expect(state.productionCentres).not.toContain("mutation");
   });
 
+  it("keeps legacy map-based games on their existing setup with no centres", () => {
+    const legacy = core.newGame(smallSea(), core.classicRules(), [
+      { id: "blue", name: "Blue", kind: "human", eliminated: false },
+      { id: "amber", name: "Amber", kind: "human", eliminated: false },
+    ], 44);
+    expect(legacy.productionCentres).toEqual([]);
+    const clone = core.cloneState(legacy);
+    clone.productionCentres.push("new");
+    expect(legacy.productionCentres).toEqual([]);
+  });
+
   it("uses scripted draws for centres after armies, without owner or island filtering", () => {
     const rng = new ScriptedRng(1);
     const result = createGameWithRng(computeOptions(1, 2, ["computer", "computer"]), rng, () => ({ ok: true, map: simple46() }));

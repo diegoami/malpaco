@@ -8,6 +8,8 @@ import type { GameMap, GameState, Player, RuleSet } from "./types";
 
 /** C-STA-01..07: the generated deal always covers the design's 46 countries. */
 export const DEAL_COUNTRY_COUNT = 46;
+/** C-STA-03, decision 6: a computer share cannot be reduced below three. */
+export const MIN_COMPUTER_COUNTRIES = 3;
 /** C-CEN-01, C-CEN-04: exactly three uniformly drawn production centres. */
 export const PRODUCTION_CENTRE_COUNT = 3;
 
@@ -109,7 +111,7 @@ export function countryShares(players: readonly Player[], order: readonly number
     if (humanShare > 0) {
       // C-STA-03, decision 6: largest computer share, later in turn order on ties.
       const source = [...computers].sort((a, b) => shares[b]! - shares[a]! || order.indexOf(b) - order.indexOf(a))[0]!;
-      const moved = Math.min(humanShare, Math.max(0, shares[source]! - 3));
+      const moved = Math.min(humanShare, Math.max(0, shares[source]! - MIN_COMPUTER_COUNTRIES));
       shares[source]! -= moved;
       shares[human]! += moved;
     } else {
@@ -137,6 +139,7 @@ export function repairCompleteIslands(map: GameMap, ownerOf: Record<string, stri
       return owner && island.provinces.every((id) => ownerOf[id] === owner) ? [[island.id, owner] as const] : [];
     }));
     const eligible: [string, string][] = [];
+    const seenPairs = new Set<string>();
     const ids = map.provinces.map((province) => province.id);
     const sources = complete.flatMap((island) => island.provinces);
     for (const from of sources) {
@@ -152,7 +155,11 @@ export function repairCompleteIslands(map: GameMap, ownerOf: Record<string, stri
         });
         ownerOf[from] = fromOwner;
         ownerOf[to] = toOwner;
-        if (!createsComplete) eligible.push([from, to]);
+        const key = [from, to].sort().join("\u0000");
+        if (!createsComplete && !seenPairs.has(key)) {
+          seenPairs.add(key);
+          eligible.push([from, to]);
+        }
       }
     }
     if (eligible.length === 0) return { ok: false, error: "unable to repair complete islands without completing another island" };
