@@ -18,10 +18,12 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   (dice counts, pairing, ties, capture, failure penalty). Generated games use the reviewed malpaco
   preset, with one die per side, fair tie rerolls and no attacker forfeit; legacy `newGame` retains
   the spike combat. Malpaco games enter a reinforcement phase using T10 ownership-based income;
-  Classic keeps the original attack-only turn flow for the current screen.
+  Classic keeps the original attack-only turn flow for explicit Classic games.
 - **`src/ui/`, the slice.** A hot-seat game for 2 on `small_sea`: SVG map from the province polygons;
-  select your province, then an adjacent enemy, then Attack; a result dialog with dice; End turn passes
-  play. Hover, selection, legal targets and dimming of the rest are drawn as feedback.
+  reinforcement income and pool are visible, owned-province clicks place one army through the core
+  action, and Start combat opens attacks after the pool is empty. Attack resolves with one die per
+  side and a readable result dialog; End turn passes the seat and grants its pool. Hover, selection,
+  legal targets and dimming of the rest are drawn as feedback.
 - **Tests.** Vitest on the core (32 tests), Playwright headless in two projects, 1280x800 and 1920x1080
   (18 tests each, 36 runs).
 - **CI.** `.github/workflows/ci.yml`: `npm ci`, build, Vitest, Playwright — all inside the official
@@ -36,8 +38,8 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   player's pool (10, +1 short-stack bonus) over their own provinces with the seeded RNG
   (`newGame`, marked "SPIKE STAND-IN"). The opening distribution still uses seeded random placement.
   On Malpaco turns, T11 grants income into a pool and requires it to be placed before attacks; the
-  UI still starts a Classic game, whose `endTurn` keeps the spike's attack-only shortcut. Redeploy,
-  hazards, centres, cards and surrender remain absent.
+  T12 exposes the Malpaco turn flow on the authored map. Generated-board integration, setup options,
+  redeployment, hazards, centres, cards and surrender remain absent.
 - **Generated-game setup.** T07 adds `createGame(options)` for a generated 46-country board: it uses
   one seeded stream for board generation and the initial deal, then stores three production centres.
   The map-based `newGame` overloads remain the spike's legacy deal; they store an empty centre list
@@ -48,7 +50,7 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   two armies, so a hot-seat game reaches a position where neither player can attack and nothing ends it.
   A throw-away probe played a first-legal-attack policy on seeds 1, 2, 3, 7 and 1994: every game ended
   up with no legal attack for either side, at round 3 to 5, with no winner. T11 adds the core income
-  and placement sequence, but the current screen still uses Classic until T12.
+  and placement sequence; T12 now uses the Malpaco turn flow on screen.
 - **A known inherited defect, not fixed here.** A failure penalty that costs the attacker its last
   province leaves that player with no provinces but not eliminated, and the game does not end:
   elimination is checked only on capture. This is a faithful port of `core/rules/rules.gd`

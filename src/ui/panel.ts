@@ -1,10 +1,11 @@
-import { armyTotal, provincesOf, province } from "../core";
+import { armyTotal, provincesOf, province, reinforcementIncome } from "../core";
 import type { GameState, LogEntry } from "../core";
 import { h, s } from "./dom";
 import { seatLook } from "./palette";
 
 export interface PanelHandlers {
   onAttack(): void;
+  onStartCombat(): void;
   onEndTurn(): void;
   onNewGame(): void;
 }
@@ -61,6 +62,7 @@ export class Panel {
   private readonly pick = h("section", { class: "card pick" });
   private readonly hint = h("p", { class: "hint", id: "hint", "aria-live": "polite" });
   private readonly log = h("ol", { class: "log", "aria-label": "Battle log" });
+  private readonly startCombat = h("button", { type: "button", id: "start-combat-button", class: "primary" }, "Start combat");
   private readonly attack = h("button", { type: "button", id: "attack-button", class: "primary" }, "Attack");
   private readonly endTurn = h("button", { type: "button", id: "end-turn-button" }, "End turn");
   private readonly newGame = h("button", { type: "button", id: "new-game-button", class: "quiet" }, "New game");
@@ -68,6 +70,7 @@ export class Panel {
 
   constructor(handlers: PanelHandlers) {
     this.attack.addEventListener("click", () => handlers.onAttack());
+    this.startCombat.addEventListener("click", () => handlers.onStartCombat());
     this.endTurn.addEventListener("click", () => handlers.onEndTurn());
     this.newGame.addEventListener("click", () => handlers.onNewGame());
     this.el = h(
@@ -75,7 +78,7 @@ export class Panel {
       { class: "panel" },
       this.turn,
       this.score,
-      h("section", { class: "card action" }, this.pick, this.hint, h("div", { class: "buttons" }, this.attack, this.endTurn),
+      h("section", { class: "card action" }, this.pick, this.hint, h("div", { class: "buttons" }, this.startCombat, this.attack, this.endTurn),
         // markerSpot (mapView.ts) draws the crosshair only where one fits inside
         // the province; the dashed outline is always there. The legend says so.
         h("p", { class: "legend", id: "legend" }, crosshairIcon(), "Dashed outline on every target, and a marker where one fits: provinces you can attack from the selected one.")),
@@ -90,6 +93,9 @@ export class Panel {
     const seat = state.currentPlayer;
     const finished = state.phase === "finished";
     const winner = state.players.find((p) => p.id === state.winner);
+    const income = mover ? reinforcementIncome(state, mover.id) : { base: 0, islandBonus: 0, total: 0, provinceCount: 0 };
+    const phase = state.phase === "reinforce" ? "Reinforcement" : state.phase === "attack" ? "Attack" : state.phase === "redeploy" ? "Handoff" : "Finished";
+    this.el.dataset["phase"] = state.phase;
 
     this.turn.replaceChildren(
       badgeIcon(seat),
@@ -97,7 +103,7 @@ export class Panel {
         "div",
         {},
         h("div", { class: "turn-title", id: "turn-title" }, finished ? `${winner?.name ?? "Nobody"} conquers the sea` : `${mover?.name ?? ""}'s turn`),
-        h("div", { class: "turn-sub" }, finished ? "The game is over." : state.phase === "redeploy" ? `Round ${state.turnNumber} · attacks are over, end your turn` : `Round ${state.turnNumber} · attack phase`),
+        h("div", { class: "turn-sub" }, finished ? "The game is over." : `Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)),
       ),
     );
     this.turn.style.setProperty("--owner", seatLook(seat).color);
@@ -122,19 +128,29 @@ export class Panel {
     const to = m.to ? province(state.map, m.to) : undefined;
     const step = (n: number, label: string, value: string, done: boolean) =>
       h("li", { class: done ? "done" : "" }, h("span", { class: "step-n" }, String(n)), h("span", { class: "step-label" }, label), h("span", { class: "step-value" }, value));
-    this.pick.replaceChildren(
-      h(
-        "ol",
-        { class: "steps" },
-        step(1, "From", from ? `${from.name} (${state.armies[from.id] ?? 0})` : "your province", from !== undefined),
-        step(2, "Target", to ? `${to.name} (${state.armies[to.id] ?? 0})` : "adjacent enemy", to !== undefined),
-        step(3, "Then", to ? "Attack" : "—", false),
-      ),
-    );
+    if (state.phase === "reinforce") {
+      this.pick.replaceChildren(
+        h("div", { class: "income-row" }, h("span", {}, "Province income"), h("strong", {}, h("span", { id: "income-base" }, String(income.base)))),
+        h("div", { class: "income-row" }, h("span", {}, "Island income"), h("strong", {}, h("span", { id: "income-island" }, String(income.islandBonus)))),
+        h("div", { class: "pool-row" }, h("span", {}, "Armies to place"), h("strong", {}, h("span", { id: "reinforcement-pool" }, String(state.reinforcementPool)))),
+      );
+    } else {
+      this.pick.replaceChildren(
+        h(
+          "ol",
+          { class: "steps" },
+          step(1, "From", from ? `${from.name} (${state.armies[from.id] ?? 0})` : "your province", from !== undefined),
+          step(2, "Target", to ? `${to.name} (${state.armies[to.id] ?? 0})` : "adjacent enemy", to !== undefined),
+          step(3, "Then", to ? "Attack" : "—", false),
+        ),
+      );
+    }
     this.hint.textContent = m.hint;
-    this.attack.toggleAttribute("disabled", m.blocked !== "" || finished);
+    this.startCombat.hidden = state.phase !== "reinforce";
+    this.startCombat.toggleAttribute("disabled", state.phase !== "reinforce" || state.reinforcementPool !== 0 || finished);
+    this.attack.toggleAttribute("disabled", state.phase !== "attack" || m.blocked !== "" || finished);
     this.attack.title = m.blocked;
-    this.endTurn.toggleAttribute("disabled", finished);
+    this.endTurn.toggleAttribute("disabled", finished || state.phase === "reinforce");
 
     const entries = state.log.map((e) => describeLog(state, e)).filter((e): e is string => e !== null);
     this.log.replaceChildren(...entries.slice(-7).reverse().map((e) => h("li", {}, e)));
