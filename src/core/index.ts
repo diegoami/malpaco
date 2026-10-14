@@ -19,6 +19,7 @@ export {
 } from "./state";
 export { islandIncome, type IslandIncome } from "./bonuses";
 export { reinforcementIncome, type ReinforcementIncome } from "./reinforcement";
+export { createGame } from "./setup";
 export {
   MAX_HUMAN_SHARE,
   MAX_STARTING_ARMIES,
