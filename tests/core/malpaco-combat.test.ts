@@ -83,6 +83,10 @@ describe("T08 shared combat acceptance", () => {
     for (const result of results) expect(result).toEqual(results[0]);
   });
 
+  it("reports unresolved reroll ties without assigning either side a win", () => {
+    expect(core.pairResults("reroll", [3], [3])).toEqual(["tie"]);
+  });
+
   it("rerolls repeated ties before a single decisive exchange", () => {
     const state = battle();
     const dice = new ScriptedDice([3, 3, 6, 6, 5, 1]);

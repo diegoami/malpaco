@@ -2,7 +2,26 @@ import { DeterministicRng } from "./rng";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
 import type { GameOptions } from "./options";
 
-/** The Classic preset, restricted to the blocks the slice reads (core/rules/rule_set.gd). */
+/** The generated-game combat preset, per C-CMB-01..11 and C-OWN-01. */
+export function malpacoRules(): RuleSet {
+  const classic = classicRules();
+  return {
+    ...classic,
+    id: "malpaco",
+    combat: {
+      ...classic.combat,
+      attackRule: "classic", // C-CMB-02: no defender-strength gate.
+      minArmiesToAttack: 2, // C-CMB-01, C-CMB-03: one minimum for every seat.
+      attackerDice: { max: 1, minus: 1 }, // C-CMB-04: one six-sided die per exchange.
+      defenderDice: { max: 1, minus: 0 }, // C-CMB-04: one six-sided die per exchange.
+      ties: "reroll", // C-CMB-05: reroll ties until unequal.
+      failurePenalty: "none", // C-CMB-09: a one-army attacker keeps its country.
+      capture: "all", // C-OWN-01: move in all but one, without clipping.
+    },
+  };
+}
+
+/** Classic combat remains available to the legacy spike entry points. */
 export function classicRules(): RuleSet {
   return {
     id: "classic",
