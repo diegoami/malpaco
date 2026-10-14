@@ -12,6 +12,7 @@ export {
   classicRules,
   cloneState,
   livingPlayers,
+  malpacoRules,
   newGame,
   newGameFromOptions,
   ownerOf,

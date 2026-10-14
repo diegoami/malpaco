@@ -14,10 +14,10 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   `document`, `window`), and `src/core/tsconfig.json`, which compiles core alone with no DOM lib and no
   Node types, so those globals do not even type-check (`npm run build` runs it first). Integer arithmetic,
   seeded RNG (mulberry32 over uint32). It ports: map reading and validation (subset), ownership,
-  armies, adjacency (borders then sea lanes), the deal, the attack check (`why_not`) and one attack
-  resolved as `combat_resolver.gd` resolves it (dice counts, pairing, ties, capture, failure penalty,
-  all three `attack_rule`s, all `capture` modes), elimination and conquest. The rules are not
-  redesigned.
+  armies, adjacency (borders then sea lanes), the deal, the attack check (`why_not`) and one attack resolved as `combat_resolver.gd` resolves it for the legacy `classicRules()` preset
+  (dice counts, pairing, ties, capture, failure penalty). Generated games use the reviewed malpaco
+  preset, with one die per side, fair tie rerolls and no attacker forfeit; legacy `newGame` retains
+  the spike combat.
 - **`src/ui/`, the slice.** A hot-seat game for 2 on `small_sea`: SVG map from the province polygons;
   select your province, then an adjacent enemy, then Attack; a result dialog with dice; End turn passes
   play. Hover, selection, legal targets and dimming of the rest are drawn as feedback.
@@ -39,7 +39,9 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
 - **Generated-game setup.** T07 adds `createGame(options)` for a generated 46-country board: it uses
   one seeded stream for board generation and the initial deal, then stores three production centres.
   The map-based `newGame` overloads remain the spike's legacy deal for existing tests and UI callers;
-  they store an empty centre list and keep the opening-pool stand-in.
+  they store an empty centre list and keep the opening-pool stand-in. `createGame` defaults to
+  `malpacoRules()`; callers may still pass an explicit custom ruleset, and `classicRules()` remains
+  available for the spike's original combat behaviour.
 - **The consequence: a game dead-ends.** With no reinforcement, armies only ever fall, and an attack needs
   two armies, so a hot-seat game reaches a position where neither player can attack and nothing ends it.
   A throw-away probe played a first-legal-attack policy on seeds 1, 2, 3, 7 and 1994: every game ended
