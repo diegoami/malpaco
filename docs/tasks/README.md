@@ -13,5 +13,6 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T05b | Board fairness: the 5 checks, the retry loop, and the "attempts run out" behaviour | #19 | T05a |
 | T06 | Bundled UI font (Inter), so goldens do not depend on the host | #21 | — |
 | T07 | Initial deal: generated board to starting state | #27 | T04, T05b |
+| T08 | Shared combat rules: single exchanges, fair ties, no forfeit | #30 | T07 |
 | T09 | Island income: the complete-island bonus as pure functions | #23 | — |
 | T10 | Reinforcement income: province base + island bonus per turn | #25 | — |
