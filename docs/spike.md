@@ -17,7 +17,8 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   armies, adjacency (borders then sea lanes), the deal, the attack check (`why_not`) and one attack resolved as `combat_resolver.gd` resolves it for the legacy `classicRules()` preset
   (dice counts, pairing, ties, capture, failure penalty). Generated games use the reviewed malpaco
   preset, with one die per side, fair tie rerolls and no attacker forfeit; legacy `newGame` retains
-  the spike combat.
+  the spike combat. Malpaco games enter a reinforcement phase using T10 ownership-based income;
+  Classic keeps the original attack-only turn flow for the current screen.
 - **`src/ui/`, the slice.** A hot-seat game for 2 on `small_sea`: SVG map from the province polygons;
   select your province, then an adjacent enemy, then Attack; a result dialog with dice; End turn passes
   play. Hover, selection, legal targets and dimming of the rest are drawn as feedback.
@@ -33,21 +34,21 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
 - **Opening placement.** Godot has each player place the opening pool by hand, one army at a time. The
   slice deals as `game_setup.gd` does (shuffled round-robin, one army each) and then spreads each
   player's pool (10, +1 short-stack bonus) over their own provinces with the seeded RNG
-  (`newGame`, marked "SPIKE STAND-IN"). There is no reinforcement phase, redeploy, hazards, centres,
-  cards or surrender. `endTurn` collapses core's END_PHASE x2 (attack, redeploy, hazards, reinforce) into
-  one action, also marked "SPIKE STAND-IN" (a search for that phrase in `src/core` finds both).
+  (`newGame`, marked "SPIKE STAND-IN"). The opening distribution still uses seeded random placement.
+  On Malpaco turns, T11 grants income into a pool and requires it to be placed before attacks; the
+  UI still starts a Classic game, whose `endTurn` keeps the spike's attack-only shortcut. Redeploy,
+  hazards, centres, cards and surrender remain absent.
 - **Generated-game setup.** T07 adds `createGame(options)` for a generated 46-country board: it uses
   one seeded stream for board generation and the initial deal, then stores three production centres.
-  The map-based `newGame` overloads remain the spike's legacy deal for existing tests and UI callers;
-  they store an empty centre list and keep the opening-pool stand-in. `createGame` defaults to
-  `malpacoRules()`; callers may still pass an explicit custom ruleset, and `classicRules()` remains
-  available for the spike's original combat behaviour.
-- **The consequence: a game dead-ends.** With no reinforcement, armies only ever fall, and an attack needs
+  The map-based `newGame` overloads remain the spike's legacy deal; they store an empty centre list
+  and keep the opening-pool stand-in. `createGame` defaults to `malpacoRules()` and begins with that
+  seat's reinforcement pool; callers may still pass an explicit custom ruleset, and
+  `classicRules()` remains available for the spike's original combat and turn behaviour.
+- **The earlier combat-only slice dead-ended.** With no reinforcement, armies only ever fell, and an attack needed
   two armies, so a hot-seat game reaches a position where neither player can attack and nothing ends it.
   A throw-away probe played a first-legal-attack policy on seeds 1, 2, 3, 7 and 1994: every game ended
-  up with no legal attack for either side, at round 3 to 5, with no winner. This is a limitation of the
-  slice (the contract asks for one attack and End turn), not a finding about the rules: the full
-  game's reinforcement phase is what feeds the board.
+  up with no legal attack for either side, at round 3 to 5, with no winner. T11 adds the core income
+  and placement sequence, but the current screen still uses Classic until T12.
 - **A known inherited defect, not fixed here.** A failure penalty that costs the attacker its last
   province leaves that player with no provinces but not eliminated, and the game does not end:
   elimination is checked only on capture. This is a faithful port of `core/rules/rules.gd`

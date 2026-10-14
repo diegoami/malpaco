@@ -84,6 +84,9 @@ describe("T11 reinforcement turns", () => {
     expect(attack.history.at(-1)).toEqual(advance);
     refuse(attack, advance);
     refuse(attack, place(id, 1));
+    const wrongPhaseWithPool = core.cloneState(attack);
+    wrongPhaseWithPool.reinforcementPool = 1;
+    refuse(wrongPhaseWithPool, place(id, 1));
   });
   it("hands off once per seat and advances the round on wrap", () => {
     const s = fresh();
