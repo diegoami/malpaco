@@ -1,0 +1,12 @@
+import type { GameMap, Point } from "../../core";
+// Disposable feasibility reference. [designed] map/grid/cell sizes inspected
+// board-gen placeholderPolygon/spreadPoints and mapView labelBox; no rule RNG.
+export function layoutGeneratedBoard(map: GameMap): GameMap {
+  return {...map,bounds:{x:0,y:0,width:1080,height:590},provinces:map.provinces.map(p=>{
+    const island=map.islands.findIndex(i=>i.id===p.island);
+    const index=map.islands[island]!.provinces.indexOf(p.id);
+    const x=(island%3)*360+20+(index%2)*155,y=Math.floor(island/3)*190+35+Math.floor(index/2)*30;
+    const polygon:Point[]=[[x,y+3],[x+12,y],[x+143,y],[x+155,y+3],[x+155,y+27],[x+143,y+30],[x+12,y+30],[x,y+27]];
+    return {...p,polygon,labelAt:[x+77.5,y+15] as Point};
+  })};
+}

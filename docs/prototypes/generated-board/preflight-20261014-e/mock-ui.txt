@@ -1,0 +1,69 @@
+
+Running 6 tests using 2 workers
+
+  ✓  2 [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (745ms)
+  ✓  3 [1280x800] › tests/e2e/generated-board.spec.ts:101:1 › editable seeds, reload stability, actual generation failure and retry (785ms)
+  ✓  4 [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (805ms)
+  ✘  1 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (5.2s)
+  ✓  6 [1920x1080] › tests/e2e/generated-board.spec.ts:101:1 › editable seeds, reload stability, actual generation failure and retry (772ms)
+  ✘  5 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (5.1s)
+
+
+  1) [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-connection="border"]').nth(1)
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-connection="border"]').nth(1) with timeout 5000ms
+      - waiting for locator('[data-connection="border"]').nth(1)
+        14 × locator resolved to <path data-to="province_8" data-from="province_4" data-connection="border" d="M97.5 50Q97.5 53 97.5 80"></path>
+           - unexpected value "hidden"
+
+
+      81 |     }));
+      82 |     for(const anchored of anchors)expect(anchored,`${kind}: edge endpoints belong to declared countries`).toEqual([true,true]);
+    > 83 |     for(const edge of await edges.all()) {await expect(edge).toBeVisible();}
+         |                                                              ^
+      84 |   }
+      85 |   await expect(page.locator('[data-connection="sea"]')).toHaveCount(16);
+      86 |   // Distinct styles must convey sea versus border even before selection.
+        at /work/tests/e2e/generated-board.spec.ts:83:62
+
+    Error Context: test-results/generated-board-all-island-12980-lick-and-keyboard-selection-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  locator('[data-connection="border"]').nth(1)
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" locator('[data-connection="border"]').nth(1) with timeout 5000ms
+      - waiting for locator('[data-connection="border"]').nth(1)
+        14 × locator resolved to <path data-to="province_8" data-from="province_4" data-connection="border" d="M97.5 50Q97.5 53 97.5 80"></path>
+           - unexpected value "hidden"
+
+
+      81 |     }));
+      82 |     for(const anchored of anchors)expect(anchored,`${kind}: edge endpoints belong to declared countries`).toEqual([true,true]);
+    > 83 |     for(const edge of await edges.all()) {await expect(edge).toBeVisible();}
+         |                                                              ^
+      84 |   }
+      85 |   await expect(page.locator('[data-connection="sea"]')).toHaveCount(16);
+      86 |   // Distinct styles must convey sea versus border even before selection.
+        at /work/tests/e2e/generated-board.spec.ts:83:62
+
+    Error Context: test-results/generated-board-all-island-12980-lick-and-keyboard-selection-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+    [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+  4 passed (9.1s)

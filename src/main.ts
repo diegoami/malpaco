@@ -3,6 +3,7 @@ import "./styles.css";
 import smallSeaJson from "../data/maps/small_sea.json";
 import { parseMap } from "./core";
 import { App } from "./ui/app";
+import { mountGeneratedPreview } from "./ui/prototype/preview";
 
 const root = document.getElementById("app");
 if (!root) throw new Error("#app is missing");
@@ -30,4 +31,8 @@ function start(): void {
   }).mount(root as HTMLElement);
 }
 
-start();
+if (new URLSearchParams(location.search).get("view") === "generated-prototype") {
+  mountGeneratedPreview(root);
+} else {
+  start();
+}

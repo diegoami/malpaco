@@ -1,0 +1,20 @@
+
+Running 8 tests using 2 workers
+
+  ✓  1 [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (826ms)
+  ✓  2 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.5s)
+  ✓  3 [1280x800] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (903ms)
+A snapshot doesn't exist at /work/tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1280x800-linux.png, writing actual.
+  ✓  4 [1280x800] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview (408ms)
+  ✓  5 [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (960ms)
+  ✓  6 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.5s)
+  ✓  7 [1920x1080] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (822ms)
+A snapshot doesn't exist at /work/tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1920x1080-linux.png, writing actual.
+  ✓  8 [1920x1080] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview (498ms)
+
+  8 passed (5.8s)
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

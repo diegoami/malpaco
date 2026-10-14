@@ -1,0 +1,46 @@
+{
+  "records": [
+    {
+      "name": "baseline-layout-missing",
+      "command": "npx vitest run tests/ui/generated-board-layout.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "baseline-route",
+      "command": "npx playwright test tests/e2e/generated-board.spec.ts --workers=2 --grep-invert golden",
+      "exit": 1
+    },
+    {
+      "name": "baseline-layout-identity",
+      "command": "npx vitest run tests/ui/generated-board-layout.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "mock-layout",
+      "command": "npx vitest run tests/ui/generated-board-layout.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "mock-ui",
+      "command": "npx playwright test tests/e2e/generated-board.spec.ts --workers=2 --grep-invert golden",
+      "exit": 1
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/main.ts",
+      "before": "df14d443d2acffaeede25b18fb71c4f12a59d90bd098722342947a55e644c14c",
+      "after": "df14d443d2acffaeede25b18fb71c4f12a59d90bd098722342947a55e644c14c"
+    },
+    {
+      "file": "src/ui/prototype/layout.ts",
+      "before": null,
+      "after": null
+    },
+    {
+      "file": "src/ui/prototype/preview.ts",
+      "before": null,
+      "after": null
+    }
+  ]
+}

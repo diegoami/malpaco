@@ -6,7 +6,7 @@ export default defineConfig({
   server: { fs: { allow: ["."] } },
   build: { target: "es2022", sourcemap: false },
   test: {
-    include: ["tests/core/**/*.test.ts"],
+    include: ["tests/core/**/*.test.ts", "tests/ui/**/*.test.ts"],
     environment: "node",
   },
 });

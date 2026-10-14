@@ -1,0 +1,30 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/work[39m
+
+ [31m❯[39m tests/ui/generated-board-layout.test.ts [2m([22m[2m0 test[22m[2m)[22m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [2mno tests[22m
+[2m   Start at [22m 15:23:45
+[2m   Duration [22m 162ms[2m (worker 97%, environment 3%)[22m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/ui/generated-board-layout.test.ts[2m [ tests/ui/generated-board-layout.test.ts ][22m
+[31m[1mError[22m: Cannot find module '../../src/ui/prototype/layout' imported from /work/tests/ui/generated-board-layout.test.ts[39m
+[36m [2m❯[22m tests/ui/generated-board-layout.test.ts:[2m4:1[22m[39m
+    [90m  2|[39m import { generateBoard } from "../../src/core";
+    [90m  3|[39m import type { GameMap, Point } from "../../src/core";
+    [90m  4|[39m import { layoutGeneratedBoard } from "../../src/ui/prototype/layout";
+    [90m   |[39m [31m^[39m
+    [90m  5|[39m
+    [90m  6|[39m const seeds = [1, 2, 3, 7, 42, 1994];
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,66 @@
+
+Running 2 tests using 2 workers
+
+  ✘  1 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (197ms)
+  ✘  2 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (199ms)
+
+
+  1) [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -11,8 +11,7 @@
+        "province_2|province_31",
+        "province_40|province_7",
+        "province_41|province_9",
+        "province_43|province_45",
+        "province_43|province_7",
+    -   "province_4|province_45",
+        "province_5|province_8",
+      ]
+
+      62 |   for(const [kind,field] of [["border","borders"],["sea","seaLanes"]] as const){
+      63 |     const edges=page.locator(`[data-connection="${kind}"]`);
+    > 64 |     expect(await edges.evaluateAll(nodes=>nodes.map(n=>[n.getAttribute("data-from"),n.getAttribute("data-to")].sort().join("|")).sort())).toEqual(pairs(field));
+         |                                                                                                                                           ^
+      65 |
+      66 |     // [designed] endpoint within its declared country or within 6 screen pixels
+      67 |     // of its coast permits boundary-clipped lines; inspected SVGGeometryElement
+        at /work/tests/e2e/generated-board.spec.ts:64:139
+
+    Error Context: test-results/generated-board-all-island-12980-lick-and-keyboard-selection-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -11,8 +11,7 @@
+        "province_2|province_31",
+        "province_40|province_7",
+        "province_41|province_9",
+        "province_43|province_45",
+        "province_43|province_7",
+    -   "province_4|province_45",
+        "province_5|province_8",
+      ]
+
+      62 |   for(const [kind,field] of [["border","borders"],["sea","seaLanes"]] as const){
+      63 |     const edges=page.locator(`[data-connection="${kind}"]`);
+    > 64 |     expect(await edges.evaluateAll(nodes=>nodes.map(n=>[n.getAttribute("data-from"),n.getAttribute("data-to")].sort().join("|")).sort())).toEqual(pairs(field));
+         |                                                                                                                                           ^
+      65 |
+      66 |     // [designed] endpoint within its declared country or within 6 screen pixels
+      67 |     // of its coast permits boundary-clipped lines; inspected SVGGeometryElement
+        at /work/tests/e2e/generated-board.spec.ts:64:139
+
+    Error Context: test-results/generated-board-all-island-12980-lick-and-keyboard-selection-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+    [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 

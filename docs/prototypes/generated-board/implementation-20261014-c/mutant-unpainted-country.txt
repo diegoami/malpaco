@@ -1,0 +1,162 @@
+
+Running 8 tests using 2 workers
+
+  ✘  1 [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (814ms)
+  ✓  2 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.4s)
+  ✓  3 [1280x800] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (829ms)
+  ✘  4 [1280x800] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview (643ms)
+  ✘  5 [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (957ms)
+  ✓  6 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.4s)
+  ✓  7 [1920x1080] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (912ms)
+  ✘  8 [1920x1080] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview (934ms)
+
+
+  1) [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+
+    Error: province_4
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0.6
+    Received:   0
+
+      54 |     });
+      55 |   },png);
+    > 56 |   expect(pixels).toHaveLength(46); for(const p of pixels){expect(p.n,p.id!).toBeGreaterThan(20);expect(p.share,p.id!).toBeGreaterThan(.6);expect(p.contrast,p.id!).toBeGreaterThan(100);}
+         |                                                                                                                       ^
+      57 | });
+      58 |
+      59 | test("all island bonuses and exact border/sea connections, click and keyboard selection",async({page})=>{
+        at /work/tests/e2e/generated-board.spec.ts:56:119
+
+    Error Context: test-results/generated-board-46-countri-5e2d1-istinct-and-in-the-viewport-1280x800/error-context.md
+
+  2) [1280x800] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview 
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('#generated-prototype')
+      2512 pixels (ratio 0.01 of all image pixels) are different.
+
+      Snapshot: generated-preview.png
+
+    Call log:
+      - Expect "toHaveScreenshot(generated-preview.png)" locator('#generated-prototype') with timeout 5000ms
+        - verifying given screenshot expectation
+      - waiting for locator('#generated-prototype')
+        - locator resolved to <main id="generated-prototype">…</main>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - 2512 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('#generated-prototype')
+        - locator resolved to <main id="generated-prototype">…</main>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - captured a stable screenshot
+      - 2512 pixels (ratio 0.01 of all image pixels) are different.
+
+
+      118 | });
+      119 |
+    > 120 | test("golden: settled opt-in generated preview",async({page})=>{await page.mouse.move(1,1);await settle(page);await expect(page.locator("#generated-prototype")).toHaveScreenshot("generated-preview.png");});
+          |                                                                                                                                                                  ^
+      121 |
+        at /work/tests/e2e/generated-board.spec.ts:120:162
+
+    attachment #1: generated-preview (image/png) ───────────────────────────────────────────────────
+    Expected: tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1280x800-linux.png
+    Received: test-results/generated-board-golden-settled-opt-in-generated-preview-1280x800/generated-preview-actual.png
+    Diff:     test-results/generated-board-golden-settled-opt-in-generated-preview-1280x800/generated-preview-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/generated-board-golden-settled-opt-in-generated-preview-1280x800/error-context.md
+
+  3) [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+
+    Error: province_4
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0.6
+    Received:   0
+
+      54 |     });
+      55 |   },png);
+    > 56 |   expect(pixels).toHaveLength(46); for(const p of pixels){expect(p.n,p.id!).toBeGreaterThan(20);expect(p.share,p.id!).toBeGreaterThan(.6);expect(p.contrast,p.id!).toBeGreaterThan(100);}
+         |                                                                                                                       ^
+      57 | });
+      58 |
+      59 | test("all island bonuses and exact border/sea connections, click and keyboard selection",async({page})=>{
+        at /work/tests/e2e/generated-board.spec.ts:56:119
+
+    Error Context: test-results/generated-board-46-countri-5e2d1-istinct-and-in-the-viewport-1920x1080/error-context.md
+
+  4) [1920x1080] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview 
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('#generated-prototype')
+      5807 pixels (ratio 0.01 of all image pixels) are different.
+
+      Snapshot: generated-preview.png
+
+    Call log:
+      - Expect "toHaveScreenshot(generated-preview.png)" locator('#generated-prototype') with timeout 5000ms
+        - verifying given screenshot expectation
+      - waiting for locator('#generated-prototype')
+        - locator resolved to <main id="generated-prototype">…</main>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - 5807 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('#generated-prototype')
+        - locator resolved to <main id="generated-prototype">…</main>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - captured a stable screenshot
+      - 5807 pixels (ratio 0.01 of all image pixels) are different.
+
+
+      118 | });
+      119 |
+    > 120 | test("golden: settled opt-in generated preview",async({page})=>{await page.mouse.move(1,1);await settle(page);await expect(page.locator("#generated-prototype")).toHaveScreenshot("generated-preview.png");});
+          |                                                                                                                                                                  ^
+      121 |
+        at /work/tests/e2e/generated-board.spec.ts:120:162
+
+    attachment #1: generated-preview (image/png) ───────────────────────────────────────────────────
+    Expected: tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1920x1080-linux.png
+    Received: test-results/generated-board-golden-settled-opt-in-generated-preview-1920x1080/generated-preview-actual.png
+    Diff:     test-results/generated-board-golden-settled-opt-in-generated-preview-1920x1080/generated-preview-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/generated-board-golden-settled-opt-in-generated-preview-1920x1080/error-context.md
+
+  4 failed
+    [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+    [1280x800] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview 
+    [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+    [1920x1080] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview 
+  4 passed (6.3s)
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
