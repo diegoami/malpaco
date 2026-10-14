@@ -876,7 +876,19 @@ export function generateBoardBody(rng: DeterministicRng, trace?: BodyTrace): Boa
  * seed are ignored.
  */
 export function generateBoard(seed: number): BoardGenResult {
-  return generateBoardInternal(seed);
+  return generateBoardWithRng(new DeterministicRng(seed));
+}
+
+/** Shared-stream seam for generated games; retries keep consuming the caller's RNG. */
+export function generateBoardWithRng(
+  rng: DeterministicRng,
+  parts: {
+    readonly body?: (rng: DeterministicRng) => BoardGenResult;
+    readonly fairnessCheck?: (map: GameMap) => string[];
+    readonly attempts?: number;
+  } = {},
+): BoardGenResult {
+  return generateBoardUsingRng(rng, parts);
 }
 
 /**
@@ -899,6 +911,20 @@ export function generateBoardInternal(
   const fairnessCheck = parts.fairnessCheck ?? runAllFairnessChecks;
   const cap = parts.attempts ?? MAX_BOARD_ATTEMPTS;
   const rng = new DeterministicRng(seed);
+  return generateBoardUsingRng(rng, { body, fairnessCheck, attempts: cap });
+}
+
+function generateBoardUsingRng(
+  rng: DeterministicRng,
+  parts: {
+    readonly body?: (rng: DeterministicRng) => BoardGenResult;
+    readonly fairnessCheck?: (map: GameMap) => string[];
+    readonly attempts?: number;
+  } = {},
+): BoardGenResult {
+  const body = parts.body ?? generateBoardBody;
+  const fairnessCheck = parts.fairnessCheck ?? runAllFairnessChecks;
+  const cap = parts.attempts ?? MAX_BOARD_ATTEMPTS;
   let lastResult: BoardGenResult | null = null;
   for (let attempt = 1; attempt <= cap; attempt++) {
     let result = body(rng);
