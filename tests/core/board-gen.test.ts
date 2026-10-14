@@ -12,6 +12,7 @@ import {
   MIN_ENTRANCES_PER_ISLAND,
   MAX_ISLAND_GRAPH_DEGREE,
   generateBoard,
+  generateBoardWithRng,
   generateBoardBody,
   generateBoardInternal,
   structuralErrors,
@@ -769,6 +770,42 @@ describe("generateBoard", () => {
       expect(rate(MAX_BOARD_ATTEMPTS)).toBeGreaterThanOrEqual(0.99);
       expect(rate(MAX_BOARD_ATTEMPTS - 1)).toBeLessThan(0.99);
     }, 120_000);
+  });
+});
+
+describe("shared RNG stream seam", () => {
+  it("keeps generateBoard(seed) output identical when the caller owns the stream", () => {
+    for (const seed of [1, 7, 42, 1994]) {
+      expect(generateBoardWithRng(new DeterministicRng(seed))).toEqual(generateBoard(seed));
+    }
+  });
+
+  it("uses the same caller RNG through retries and advances its state", () => {
+    const seed = 73;
+    const knownGood = generateBoard(seed);
+    expect(knownGood.ok).toBe(true);
+    if (!knownGood.ok) return;
+    const rng = new DeterministicRng(seed);
+    const seen: DeterministicRng[] = [];
+    let calls = 0;
+    const result = generateBoardWithRng(rng, {
+      attempts: 2,
+      body: (shared) => {
+        seen.push(shared);
+        if (calls++ === 0) {
+          shared.nextInt(0, 0xffffffff);
+          return { ok: false, errors: ["scripted first-attempt failure"] };
+        }
+        return { ok: true, map: knownGood.map };
+      },
+      fairnessCheck: () => [],
+    });
+    expect(result).toEqual(knownGood);
+    expect(seen).toEqual([rng, rng]);
+    const expected = new DeterministicRng(seed);
+    expected.nextInt(0, 0xffffffff); // scripted failed body draw
+    expected.nextInt(0, 0xffffffff); // retry separator draw
+    expect(rng.snapshot()).toEqual(expected.snapshot());
   });
 });
 

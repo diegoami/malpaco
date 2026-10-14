@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
 import * as core from "../../src/core";
-import { countryShares, repairCompleteIslands } from "../../src/core/setup";
+import { countryShares, createGameWithRng, repairCompleteIslands } from "../../src/core/setup";
 import { smallSea } from "./helpers";
 import type { GameMap, Player } from "../../src/core";
+import { generateBoard, generateBoardWithRng } from "../../src/core/board-gen";
 
 const computeOptions = (seed: number, n: number, kinds: ("human" | "computer")[], humanShare = 0, range: core.StartingArmiesRange = "1-3"): core.GameOptions => ({
   ...core.defaultOptions(), seed, startingArmiesRange: range, humanShare,
@@ -24,6 +25,23 @@ function complete(map: GameMap, owners: Record<string, string>): Map<string, str
     const owner = owners[island.provinces[0]!];
     return owner && island.provinces.every((id) => owners[id] === owner) ? [[island.id, owner] as const] : [];
   }));
+}
+
+function simple46(): GameMap {
+  const provinces = Array.from({ length: 46 }, (_, i) => ({ id: `p${i}`, name: `p${i}`, island: "i", borders: [], seaLanes: [], polygon: [], labelAt: [0, 0] as const }));
+  return {
+    id: "scripted", name: "scripted", bounds: { x: 0, y: 0, width: 1, height: 1 }, provinces,
+    islands: [{ id: "i", name: "i", bonus: 0, provinces: provinces.map((p) => p.id) }],
+  };
+}
+
+class ScriptedRng extends core.DeterministicRng {
+  calls = 0;
+  override nextInt(from: number, to: number): number {
+    this.calls++;
+    if (this.calls >= 47 && this.calls <= 92) return to; // army spread draws
+    return from; // seat, country shuffle, and centre shuffle
+  }
 }
 
 describe("generated initial deal", () => {
@@ -94,12 +112,12 @@ describe("generated initial deal", () => {
   it("makes deterministic complete states while varying first seats across seeds", () => {
     const options = computeOptions(711, 4, ["human", "computer", "computer", "computer"]);
     expect(core.createGame(options)).toEqual(core.createGame(options));
-    const starts = new Set<number>();
+    const starts = new Set<string>();
     for (let seed = 1; seed <= 30; seed++) {
       const result = core.createGame({ ...options, seed });
-      if (result.ok) starts.add(result.state.currentPlayer);
+      if (result.ok) starts.add(result.state.players.map((p) => core.provincesOf(result.state, p.id).sort().join(",")).join("|"));
     }
-    expect(starts.size).toBeGreaterThanOrEqual(3);
+    expect(starts.size).toBeGreaterThanOrEqual(5);
   });
 
   it("selects three distinct valid centres and clones their array independently", () => {
@@ -113,6 +131,63 @@ describe("generated initial deal", () => {
     const clone = core.cloneState(state);
     clone.productionCentres.push("mutation");
     expect(state.productionCentres).not.toContain("mutation");
+  });
+
+  it("uses scripted draws for centres after armies, without owner or island filtering", () => {
+    const rng = new ScriptedRng(1);
+    const result = createGameWithRng(computeOptions(1, 2, ["computer", "computer"]), rng, () => ({ ok: true, map: simple46() }));
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(rng.calls).toBe(137); // 1 first-seat + 45 deal shuffle + 46 army + 45 centre draws
+    expect(result.state.productionCentres).toEqual(["p2", "p3", "p4"]);
+    expect(new Set(result.state.productionCentres.map((id) => result.state.ownerOf[id])).size).toBe(1);
+    expect(new Set(result.state.productionCentres.map((id) => result.state.map.provinces.find((p) => p.id === id)!.island)).size).toBe(1);
+  });
+
+  it("continues one game stream through board retry and resumes the stored next draw", () => {
+    const options = computeOptions(97, 4, ["human", "computer", "computer", "computer"]);
+    const knownGood = generateBoard(options.seed);
+    expect(knownGood.ok).toBe(true);
+    if (!knownGood.ok) return;
+    const gameRng = new core.DeterministicRng(options.seed);
+    const seen: core.DeterministicRng[] = [];
+    let calls = 0;
+    const builder = (rng: core.DeterministicRng) => generateBoardWithRng(rng, {
+      attempts: 2,
+      body: (shared) => {
+        seen.push(shared);
+        if (calls++ === 0) {
+          shared.nextInt(0, 0xffffffff);
+          return { ok: false, errors: ["forced retry"] };
+        }
+        return { ok: true, map: knownGood.map };
+      },
+      fairnessCheck: () => [],
+    });
+    const result = createGameWithRng(options, gameRng, builder);
+    expect(result.ok).toBe(true);
+    expect(seen).toEqual([gameRng, gameRng]);
+    if (!result.ok) return;
+    const continuation = core.DeterministicRng.fromSnapshot(result.state.rng);
+    expect(result.state.rng).toEqual(gameRng.snapshot());
+    expect(continuation.nextInt(0, 0xffffffff)).toBe(gameRng.nextInt(0, 0xffffffff));
+  });
+
+  it("keeps computer streams derived from the seed without changing game draws", () => {
+    const computers = core.createGame(computeOptions(321, 4, ["computer", "computer", "computer", "computer"]));
+    const humans = core.createGame(computeOptions(321, 4, ["human", "human", "human", "human"]));
+    expect(computers.ok && humans.ok).toBe(true);
+    if (!computers.ok || !humans.ok) return;
+    expect(computers.state.rng).toEqual(humans.state.rng);
+    for (let seat = 0; seat < 4; seat++) {
+      expect(computers.state.computerRngs[`seat${seat + 1}`]).toEqual(core.DeterministicRng.subStream(321, seat).snapshot());
+    }
+  });
+
+  it("returns board exhaustion as failure without a partial state", () => {
+    const result = createGameWithRng(computeOptions(3, 2, ["human", "computer"]), new core.DeterministicRng(3), () => ({ ok: false, errors: ["exhausted"] }));
+    expect(result).toEqual({ ok: false, errors: ["exhausted"] });
+    expect("state" in result).toBe(false);
   });
 
   it("leaves invalid option validation as OptionsError", () => {
