@@ -74,7 +74,8 @@ describe("T08 shared combat acceptance", () => {
     const configurations = [["human", undefined], ["computer", "Easy"], ["computer", "Normal"], ["computer", "Hard"]] as const;
     const results = configurations.map(([kind, difficulty]) => {
       const state = battle(2, 2000, 19);
-      state.players[0] = { ...state.players[0]!, kind, difficulty };
+      state.players[0] = { ...state.players[0]!, kind, ...(difficulty === undefined ? {} : { difficulty }) };
+      if (kind === "computer") state.computerRngs.blue = core.DeterministicRng.subStream(19, 0).snapshot();
       const result = core.apply(state, attack);
       expect(result.ok).toBe(true);
       if (!result.ok) throw new Error(result.error);
@@ -130,6 +131,18 @@ describe("T08 shared combat acceptance", () => {
     expect(state.armies.sulo! + state.armies.frostkabo!).toBe(total - 1);
     expect(state.ownerOf.frostkabo).toBe("blue");
     expect(state.productionCentres).toEqual(centres);
+  });
+
+  it("applies a large capture without mutating its input state", () => {
+    const state = battle(5001, 1, 31);
+    const original = core.cloneState(state);
+    const result = core.apply(state, attack);
+    expect(result.ok).toBe(true);
+    if (!result.ok) throw new Error(result.error);
+    expect(result.outcome).toMatchObject({ captured: true, moved: 5000 });
+    expect(result.state.armies).toMatchObject({ sulo: 1, frostkabo: 5000 });
+    expect(result.state.productionCentres).toEqual(original.productionCentres);
+    expect(state).toEqual(original);
   });
 
   it("reproduces seeded exchanges, resumes after ties, preserves input and computer streams", () => {

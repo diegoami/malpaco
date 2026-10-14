@@ -98,6 +98,7 @@ export function resolve(state: GameState, fromId: string, toId: string, dice: Di
     defenderRolls = roll(dice, diceCount(rules.defenderDice, armyCount(state, toId)));
     results = pairResults(rules.ties, attackerRolls, defenderRolls);
   } while (results.includes("tie"));
+  // C-CMB-06: each decisive single-die result removes one army from its loser.
   const defenderLosses = results.filter((r) => r === "attacker").length;
   const attackerLosses = results.length - defenderLosses;
 
