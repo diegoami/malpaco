@@ -1,0 +1,30 @@
+import { generateBoard } from "../../core";
+import { layoutGeneratedBoard } from "./layout";
+import type { Province } from "../../core";
+export function mockPreview(root: HTMLElement):void {
+  const seed=Number(new URLSearchParams(location.search).get("seed")??1994);
+  const result=generateBoard(seed);
+  const style=document.createElement("style");style.textContent=`body {margin:0;display:block;background:#072d46;color:#fff;font-family:Arial,sans-serif} #app {display:block;max-width:none;height:auto;padding:0} #generated-prototype {box-sizing:border-box;width:100%;padding:12px;background:#072d46} #generated-prototype header {height:48px;display:flex;align-items:center;gap:12px} #generated-map {display:block;width:100%;height:calc(100vh - 160px);background:#072d46} .country-shape {fill:#80b986;stroke:#203e2e;stroke-width:1} .country-name {font:12px Arial;fill:#102519;text-anchor:middle;dominant-baseline:middle;pointer-events:none} [data-island] {font:14px Arial;fill:white} [data-connection] {stroke:#fff;stroke-width:2;fill:none;pointer-events:none} [data-connection=sea] {stroke:#81d3ff;stroke-dasharray:5 4} [data-highlighted=true] {stroke:#ffe263;stroke-width:4} [aria-pressed=true] .country-shape {fill:#ffd266} [data-neighbour=true] .country-shape {stroke:#fff;stroke-width:3} #selected-neighbours {display:flex;gap:10px;flex-wrap:wrap;font-size:12px} #selected-country {margin:4px;font-size:14px} #generated-prototype button,#generated-prototype input {font:14px Arial} `;document.head.append(style);
+  root.innerHTML=`<main id="generated-prototype"><header><strong>Generated geography feasibility reference</strong><label>Seed <input aria-label="Seed" value="${seed}" type="number"></label><button>Generate</button></header><div id="preview-body"></div></main>`;
+  const generate=()=>{const url=new URL(location.href);url.searchParams.set("seed",(root.querySelector("input") as HTMLInputElement).value);location.assign(url);};root.querySelector("button")!.addEventListener("click",generate);
+  const body=root.querySelector("#preview-body")!;
+  if(!result.ok){body.innerHTML=`<p role="alert">Generation failed: ${result.errors.join("; ")}</p><button>Retry</button>`;body.querySelector("button")!.addEventListener("click",generate);return;}
+  const map=layoutGeneratedBoard(result.map);
+  const ns="http://www.w3.org/2000/svg";
+  const svg=document.createElementNS(ns,"svg");svg.id="generated-map";svg.setAttribute("viewBox","0 0 1080 590");body.append(svg);
+  const el=(tag:string,attrs:Record<string,string>,text?:string)=>{const e=document.createElementNS(ns,tag);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;return e;};
+  for(const kind of ["border","sea"] as const){const seen=new Set<string>();for(const p of map.provinces)for(const id of kind==="border"?p.borders:p.seaLanes){const key=[p.id,id].sort().join("|");if(seen.has(key))continue;seen.add(key);const q=map.provinces.find(c=>c.id===id)!;svg.append(el("path",{"data-connection":kind,"data-from":p.id,"data-to":id,d:`M${p.labelAt.join(" ")}L${q.labelAt.join(" ")}`}));}}
+  for(const[i,island]of map.islands.entries())svg.append(el("text",{"data-island":island.id,x:String(i%3*360+20),y:String(Math.floor(i/3)*190+23)},`${island.name} · bonus ${island.bonus}`));
+  const panel=document.createElement("section");panel.innerHTML='<h2 id="selected-country">Choose a country</h2><div id="selected-neighbours"></div>';body.append(panel);
+  const select=(p:Province)=>{
+    for(const g of svg.querySelectorAll("[data-country]")){const id=g.getAttribute("data-country")!;g.setAttribute("aria-pressed",String(id===p.id));g.setAttribute("data-neighbour",String([...p.borders,...p.seaLanes].includes(id)));}
+    for(const edge of svg.querySelectorAll("[data-connection]"))edge.setAttribute("data-highlighted",String(edge.getAttribute("data-from")===p.id||edge.getAttribute("data-to")===p.id));
+    panel.querySelector("h2")!.textContent=`${p.name} (${p.id})`;const list=panel.querySelector("div")!;list.replaceChildren();for(const[kind,ids]of [["border",p.borders],["sea",p.seaLanes]] as const)for(const id of ids){const e=document.createElement("span");e.dataset["neighbourKind"]=kind;e.textContent=`${map.provinces.find(q=>q.id===id)!.name} (${id})`;list.append(e);}
+  };
+  for(const p of map.provinces){const g=el("g",{"data-country":p.id,role:"button",tabindex:"0","aria-label":`${p.name} (${p.id})`,"aria-pressed":"false"});g.append(el("path",{class:"country-shape",d:`M${p.polygon.map(pt=>pt.join(" ")).join("L")}Z`}),el("text",{class:"country-name",x:String(p.labelAt[0]),y:String(p.labelAt[1])},p.name));g.addEventListener("click",()=>select(p));g.addEventListener("keydown",event=>{const e=event as KeyboardEvent;if(e.key==="Enter"||e.key===" "){e.preventDefault();select(p);}});svg.append(g);}
+
+  // Paint explicit connections over regions while masking full name boxes.
+  const defs=el("defs",{}),mask=el("mask",{id:"mock-link-mask",maskUnits:"userSpaceOnUse",x:"0",y:"0",width:"1080",height:"590"});mask.append(el("rect",{x:"0",y:"0",width:"1080",height:"590",fill:"white"}));
+  for(const p of map.provinces){const width=p.name.length*7.4+6;mask.append(el("rect",{x:String(p.labelAt[0]-width/2),y:String(p.labelAt[1]-9),width:String(width),height:"18",fill:"black"}));}
+  defs.append(mask);svg.append(defs);for(const link of [...svg.querySelectorAll("[data-connection]")]){link.setAttribute("mask","url(#mock-link-mask)");svg.append(link);}
+}

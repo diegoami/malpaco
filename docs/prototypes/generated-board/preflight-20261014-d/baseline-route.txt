@@ -1,0 +1,168 @@
+
+Running 6 tests using 2 workers
+
+  ✘  2 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (5.1s)
+  ✘  1 [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (5.1s)
+  ✘  3 [1280x800] › tests/e2e/generated-board.spec.ts:101:1 › editable seeds, reload stability, actual generation failure and retry (5.1s)
+  ✘  4 [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (5.1s)
+  ✘  5 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (5.1s)
+  ✘  6 [1920x1080] › tests/e2e/generated-board.spec.ts:101:1 › editable seeds, reload stability, actual generation failure and retry (5.1s)
+
+
+  1) [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#generated-prototype')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#generated-prototype') with timeout 5000ms
+      - waiting for locator('#generated-prototype')
+
+
+      19 | const country = (page: Page, id: string) => page.locator(`#generated-prototype [data-country="${id}"]`);
+      20 | async function settle(page: Page) { await page.evaluate(async()=>{ await document.fonts.ready; await Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished)); }); }
+    > 21 | test.beforeEach(async ({page})=>{ await page.goto("/?view=generated-prototype&seed=1994"); await expect(page.locator("#generated-prototype")).toBeVisible(); });
+         |                                                                                                                                               ^
+      22 |
+      23 | test("46 countries and full names are painted, readable, distinct and in the viewport", async ({page}, info)=>{
+      24 |   await expect(page.locator("[data-country]")).toHaveCount(46);
+        at /work/tests/e2e/generated-board.spec.ts:21:143
+
+    Error Context: test-results/generated-board-46-countri-5e2d1-istinct-and-in-the-viewport-1280x800/error-context.md
+
+  2) [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#generated-prototype')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#generated-prototype') with timeout 5000ms
+      - waiting for locator('#generated-prototype')
+
+
+      19 | const country = (page: Page, id: string) => page.locator(`#generated-prototype [data-country="${id}"]`);
+      20 | async function settle(page: Page) { await page.evaluate(async()=>{ await document.fonts.ready; await Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished)); }); }
+    > 21 | test.beforeEach(async ({page})=>{ await page.goto("/?view=generated-prototype&seed=1994"); await expect(page.locator("#generated-prototype")).toBeVisible(); });
+         |                                                                                                                                               ^
+      22 |
+      23 | test("46 countries and full names are painted, readable, distinct and in the viewport", async ({page}, info)=>{
+      24 |   await expect(page.locator("[data-country]")).toHaveCount(46);
+        at /work/tests/e2e/generated-board.spec.ts:21:143
+
+    Error Context: test-results/generated-board-all-island-12980-lick-and-keyboard-selection-1280x800/error-context.md
+
+  3) [1280x800] › tests/e2e/generated-board.spec.ts:101:1 › editable seeds, reload stability, actual generation failure and retry 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#generated-prototype')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#generated-prototype') with timeout 5000ms
+      - waiting for locator('#generated-prototype')
+
+
+      19 | const country = (page: Page, id: string) => page.locator(`#generated-prototype [data-country="${id}"]`);
+      20 | async function settle(page: Page) { await page.evaluate(async()=>{ await document.fonts.ready; await Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished)); }); }
+    > 21 | test.beforeEach(async ({page})=>{ await page.goto("/?view=generated-prototype&seed=1994"); await expect(page.locator("#generated-prototype")).toBeVisible(); });
+         |                                                                                                                                               ^
+      22 |
+      23 | test("46 countries and full names are painted, readable, distinct and in the viewport", async ({page}, info)=>{
+      24 |   await expect(page.locator("[data-country]")).toHaveCount(46);
+        at /work/tests/e2e/generated-board.spec.ts:21:143
+
+    Error Context: test-results/generated-board-editable-s-dbdd0-eneration-failure-and-retry-1280x800/error-context.md
+
+  4) [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#generated-prototype')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#generated-prototype') with timeout 5000ms
+      - waiting for locator('#generated-prototype')
+
+
+      19 | const country = (page: Page, id: string) => page.locator(`#generated-prototype [data-country="${id}"]`);
+      20 | async function settle(page: Page) { await page.evaluate(async()=>{ await document.fonts.ready; await Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished)); }); }
+    > 21 | test.beforeEach(async ({page})=>{ await page.goto("/?view=generated-prototype&seed=1994"); await expect(page.locator("#generated-prototype")).toBeVisible(); });
+         |                                                                                                                                               ^
+      22 |
+      23 | test("46 countries and full names are painted, readable, distinct and in the viewport", async ({page}, info)=>{
+      24 |   await expect(page.locator("[data-country]")).toHaveCount(46);
+        at /work/tests/e2e/generated-board.spec.ts:21:143
+
+    Error Context: test-results/generated-board-46-countri-5e2d1-istinct-and-in-the-viewport-1920x1080/error-context.md
+
+  5) [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#generated-prototype')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#generated-prototype') with timeout 5000ms
+      - waiting for locator('#generated-prototype')
+
+
+      19 | const country = (page: Page, id: string) => page.locator(`#generated-prototype [data-country="${id}"]`);
+      20 | async function settle(page: Page) { await page.evaluate(async()=>{ await document.fonts.ready; await Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished)); }); }
+    > 21 | test.beforeEach(async ({page})=>{ await page.goto("/?view=generated-prototype&seed=1994"); await expect(page.locator("#generated-prototype")).toBeVisible(); });
+         |                                                                                                                                               ^
+      22 |
+      23 | test("46 countries and full names are painted, readable, distinct and in the viewport", async ({page}, info)=>{
+      24 |   await expect(page.locator("[data-country]")).toHaveCount(46);
+        at /work/tests/e2e/generated-board.spec.ts:21:143
+
+    Error Context: test-results/generated-board-all-island-12980-lick-and-keyboard-selection-1920x1080/error-context.md
+
+  6) [1920x1080] › tests/e2e/generated-board.spec.ts:101:1 › editable seeds, reload stability, actual generation failure and retry 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('#generated-prototype')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('#generated-prototype') with timeout 5000ms
+      - waiting for locator('#generated-prototype')
+
+
+      19 | const country = (page: Page, id: string) => page.locator(`#generated-prototype [data-country="${id}"]`);
+      20 | async function settle(page: Page) { await page.evaluate(async()=>{ await document.fonts.ready; await Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished)); }); }
+    > 21 | test.beforeEach(async ({page})=>{ await page.goto("/?view=generated-prototype&seed=1994"); await expect(page.locator("#generated-prototype")).toBeVisible(); });
+         |                                                                                                                                               ^
+      22 |
+      23 | test("46 countries and full names are painted, readable, distinct and in the viewport", async ({page}, info)=>{
+      24 |   await expect(page.locator("[data-country]")).toHaveCount(46);
+        at /work/tests/e2e/generated-board.spec.ts:21:143
+
+    Error Context: test-results/generated-board-editable-s-dbdd0-eneration-failure-and-retry-1920x1080/error-context.md
+
+  6 failed
+    [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+    [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+    [1280x800] › tests/e2e/generated-board.spec.ts:101:1 › editable seeds, reload stability, actual generation failure and retry 
+    [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+    [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection 
+    [1920x1080] › tests/e2e/generated-board.spec.ts:101:1 › editable seeds, reload stability, actual generation failure and retry 
