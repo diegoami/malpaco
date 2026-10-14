@@ -1,6 +1,6 @@
 import { expect, test as base } from "@playwright/test";
 import type { Locator, Page, TestInfo } from "@playwright/test";
-import { classicRules, pairResults } from "../../src/core";
+import { malpacoRules, pairResults } from "../../src/core";
 import { SEATS } from "../../src/ui/palette";
 
 // The slice, driven the way a player drives it: by clicks. A fixed seed fixes the
@@ -363,8 +363,19 @@ async function overlayProblems(page: Page): Promise<string[]> {
   });
 }
 
+/** Places the full income pool through province clicks, then opens combat. */
+async function enterCombat(page: Page): Promise<void> {
+  if (await page.locator("#turn-phase").innerText() !== "Reinforcement") return;
+  const pool = Number(await page.locator("#reinforcement-pool").innerText());
+  const owned = page.locator(".province.is-mine").first();
+  for (let i = 0; i < pool; i++) await owned.click();
+  await page.getByRole("button", { name: "Start combat" }).click();
+  await expect(page.locator("#turn-phase")).toHaveText("Attack");
+}
+
 /** Clicks the active player's provinces until one offers a target; returns [from, firstTarget]. */
 async function pickAttack(page: Page): Promise<[string, string]> {
+  await enterCombat(page);
   const mine = await page.$$eval(".province.is-mine", (gs) => gs.map((g) => (g as SVGElement).dataset["province"] as string));
   for (const from of mine) {
     await province(page, from).click();
@@ -394,8 +405,11 @@ test("the page loads with the title, the turn and both buttons", async ({ page }
   await expect(page).toHaveTitle(/Malpaco/);
   await expect(page.getByRole("heading", { name: "Malpaco" })).toBeVisible();
   await expect(page.locator("#turn-title")).toHaveText("Blue's turn");
-  await expect(page.getByRole("button", { name: "Attack" })).toBeDisabled();
-  await expect(page.getByRole("button", { name: "End turn" })).toBeEnabled();
+  await expect(page.locator("#turn-phase")).toHaveText("Reinforcement");
+  await expect(page.locator("#income-base")).toBeVisible();
+  await expect(page.locator("#income-island")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Start combat" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "End turn" })).toBeDisabled();
 });
 
 test("all 14 provinces render, visible, on top, and told apart by more than colour", async ({ page }) => {
@@ -545,7 +559,7 @@ test("the layout fits the viewport: no page scroll, map and panel both fully vis
   const panel = (await page.locator(".panel").boundingBox())!;
   expect(map.width).toBeGreaterThan(viewport.width * 0.6);
   expect(map.x + map.width).toBeLessThanOrEqual(panel.x + 1);
-  for (const name of ["Attack", "End turn"]) {
+  for (const name of ["Start combat", "Attack", "End turn"]) {
     const b = (await page.getByRole("button", { name }).boundingBox())!;
     expect(b.y + b.height).toBeLessThanOrEqual(viewport.height);
   }
@@ -609,6 +623,7 @@ test("selecting a province highlights it and its targets, dims the rest and enab
 });
 
 test("legal-target markers and the arrow stay clear of every label, whichever province is selected", async ({ page }) => {
+  await enterCombat(page);
   const mine = await page.$$eval(".province.is-mine", (gs) => gs.map((g) => (g as SVGElement).dataset["province"] as string));
   let markers = 0;
   let arrows = 0;
@@ -635,8 +650,8 @@ test("an illegal target is refused with the reason, and nothing is selected as a
 
 test("one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots)", async ({ page }, info) => {
   await shot(page, info, "01-start");
-  const before = await holdings(page);
   const [from, to] = await pickAttack(page);
+  const before = await holdings(page);
   await province(page, to).click();
   await page.mouse.move(2, 400); // off the map, so the tooltip does not cover the tags
   await shot(page, info, "02-selected");
@@ -647,10 +662,8 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
   await expect(dialog).toBeVisible();
   const attackerDice = await dialog.locator(".die.attacker").count();
   const defenderDice = await dialog.locator(".die.defender").count();
-  expect(attackerDice).toBeGreaterThanOrEqual(1);
-  expect(attackerDice).toBeLessThanOrEqual(3);
-  expect(defenderDice).toBeGreaterThanOrEqual(1);
-  expect(defenderDice).toBeLessThanOrEqual(2);
+  expect(attackerDice).toBe(1);
+  expect(defenderDice).toBe(1);
   // The engine's own losses (carried on the dialog) against the labels the player reads.
   const attackerLosses = Number(await dialog.getAttribute("data-attacker-losses"));
   const defenderLosses = Number(await dialog.getAttribute("data-defender-losses"));
@@ -658,7 +671,7 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
   expect(await dialog.locator(".verdict.up").count()).toBe(defenderLosses);
   expect(attackerLosses + defenderLosses).toBe(Math.min(attackerDice, defenderDice));
   // Column by column: each label must match its two drawn dice faces under the
-  // engine's tie rule (classicRules' ties, which pairResults applies). Counting
+  // engine's tie rule (Malpaco's ties, which pairResults applies). Counting
   // labels alone cannot see a pair labelled the wrong way round, and reading
   // `data-face` cannot see a die whose pips were never drawn. The faces come
   // from the pip pixels of the very picture that becomes the artifact.
@@ -667,7 +680,7 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
   const drawn = await drawnDice(page, resultShot);
   expect(drawn.attacker, "a lit-cell set per attacker die").toHaveLength(attackerDice);
   expect(drawn.defender, "a lit-cell set per defender die").toHaveLength(defenderDice);
-  const ties = classicRules().combat.ties;
+  const ties = malpacoRules().combat.ties;
   const attackerFaces = drawn.attacker.map((d, i) => {
     const face = faceOf(d.lit);
     expect(face, `attacker die ${i + 1} shows no readable face (lit cells: ${d.lit.join(", ") || "none"})`).not.toBeNull();
@@ -746,6 +759,7 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
 
 test("End turn passes play to the other player, whose provinces become the playable ones", async ({ page }) => {
   const blue = await page.$$eval(".province.is-mine", (gs) => gs.map((g) => (g as SVGElement).dataset["province"]));
+  await enterCombat(page);
   await page.getByRole("button", { name: "End turn" }).click();
   await expect(page.locator("#turn-title")).toHaveText("Amber's turn");
   const amber = await page.$$eval(".province.is-mine", (gs) => gs.map((g) => (g as SVGElement).dataset["province"]));
@@ -765,6 +779,7 @@ test("End turn passes play to the other player, whose provinces become the playa
 });
 
 test("a province can be selected and a target chosen with the keyboard alone", async ({ page }) => {
+  await enterCombat(page);
   const mine = await page.$$eval(".province.is-mine", (gs) => gs.map((g) => (g as SVGElement).dataset["province"] as string));
   let selected = "";
   for (const id of mine) {
