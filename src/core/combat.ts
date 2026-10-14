@@ -71,13 +71,14 @@ export function pairResults(
   ties: CombatRules["ties"],
   attackerRolls: readonly number[],
   defenderRolls: readonly number[],
-): ("attacker" | "defender")[] {
+): ("attacker" | "defender" | "tie")[] {
   const pairs = Math.min(attackerRolls.length, defenderRolls.length);
-  const results: ("attacker" | "defender")[] = [];
+  const results: ("attacker" | "defender" | "tie")[] = [];
   for (let i = 0; i < pairs; i++) {
     const a = attackerRolls[i] as number;
     const d = defenderRolls[i] as number;
-    results.push((a === d ? ties === "attacker" : a > d) ? "attacker" : "defender");
+    if (a === d && ties === "reroll") results.push("tie");
+    else results.push((a === d ? ties === "attacker" : a > d) ? "attacker" : "defender");
   }
   return results;
 }
@@ -88,10 +89,16 @@ export function resolve(state: GameState, fromId: string, toId: string, dice: Di
   const attackerId = ownerOf(state, fromId);
   const defenderId = ownerOf(state, toId);
 
-  const attackerRolls = roll(dice, diceCount(rules.attackerDice, armyCount(state, fromId)));
-  const defenderRolls = roll(dice, diceCount(rules.defenderDice, armyCount(state, toId)));
-
-  const results = pairResults(rules.ties, attackerRolls, defenderRolls);
+  let attackerRolls: number[];
+  let defenderRolls: number[];
+  let results: ("attacker" | "defender" | "tie")[];
+  // C-CMB-05: reroll a tied single-die exchange before either side loses an army.
+  do {
+    attackerRolls = roll(dice, diceCount(rules.attackerDice, armyCount(state, fromId)));
+    defenderRolls = roll(dice, diceCount(rules.defenderDice, armyCount(state, toId)));
+    results = pairResults(rules.ties, attackerRolls, defenderRolls);
+  } while (results.includes("tie"));
+  // C-CMB-06: each decisive single-die result removes one army from its loser.
   const defenderLosses = results.filter((r) => r === "attacker").length;
   const attackerLosses = results.length - defenderLosses;
 

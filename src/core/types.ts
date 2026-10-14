@@ -53,7 +53,7 @@ export interface CombatRules {
   readonly minArmiesToAttack: number;
   readonly attackerDice: DiceRule;
   readonly defenderDice: DiceRule;
-  readonly ties: "defender" | "attacker";
+  readonly ties: "defender" | "attacker" | "reroll";
   readonly failurePenalty: "loseProvince" | "endPhase" | "none";
   readonly capture: "diceCount" | "all" | "one";
 }

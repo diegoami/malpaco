@@ -2,7 +2,7 @@ import { generateBoardWithRng } from "./board-gen";
 import type { BoardGenResult } from "./board-gen";
 import { DeterministicRng } from "./rng";
 import { validateGameOptions } from "./options";
-import { classicRules } from "./state";
+import { malpacoRules } from "./state";
 import type { GameOptions } from "./options";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
 
@@ -18,7 +18,7 @@ export type CreateGameResult =
   | { readonly ok: false; readonly errors: string[] };
 
 /** Validate options, then generate and deal one complete game on a shared RNG stream. */
-export function createGame(options: GameOptions, rules: RuleSet = classicRules()): CreateGameResult {
+export function createGame(options: GameOptions, rules: RuleSet = malpacoRules()): CreateGameResult {
   const validated = validateGameOptions(options);
   return createGameValidated(validated, rules, new DeterministicRng(validated.seed), generateBoardWithRng);
 }
@@ -28,7 +28,7 @@ export function createGameWithRng(
   options: GameOptions,
   rng: DeterministicRng,
   boardBuilder: (rng: DeterministicRng) => BoardGenResult = generateBoardWithRng,
-  rules: RuleSet = classicRules(),
+  rules: RuleSet = malpacoRules(),
 ): CreateGameResult {
   return createGameValidated(validateGameOptions(options), rules, rng, boardBuilder);
 }
