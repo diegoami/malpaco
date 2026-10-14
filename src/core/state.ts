@@ -62,6 +62,7 @@ export function cloneState(state: GameState): GameState {
     log: [...state.log],
     history: [...state.history],
     winner: state.winner,
+    productionCentres: [...(state.productionCentres ?? [])],
   };
 }
 
@@ -154,6 +155,7 @@ function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly P
     log: [{ event: "game_started", seed, players: players.length }],
     history: [],
     winner: "",
+    productionCentres: [],
   };
 }
 

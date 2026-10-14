@@ -133,6 +133,8 @@ export interface GameState {
   log: LogEntry[];
   history: Action[];
   winner: string;
+  /** Three uniformly selected opening production centres (C-CEN-01, C-CEN-04). */
+  productionCentres: string[];
 }
 
 export type ApplyResult =
