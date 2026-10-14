@@ -1,4 +1,5 @@
 import { DeterministicRng } from "./rng";
+import { reinforcementIncome } from "./reinforcement";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
 import type { GameOptions } from "./options";
 
@@ -8,6 +9,7 @@ export function malpacoRules(): RuleSet {
   return {
     ...classic,
     id: "malpaco",
+    turnSequence: "reinforcement",
     combat: {
       ...classic.combat,
       attackRule: "classic", // C-CMB-02: no defender-strength gate.
@@ -25,6 +27,7 @@ export function malpacoRules(): RuleSet {
 export function classicRules(): RuleSet {
   return {
     id: "classic",
+    turnSequence: "classic",
     setup: { startingArmies: 1, distributionPool: 10, shortStackBonus: 1 },
     combat: {
       attackRule: "match",
@@ -74,6 +77,7 @@ export function cloneState(state: GameState): GameState {
     armies: { ...state.armies },
     currentPlayer: state.currentPlayer,
     phase: state.phase,
+    reinforcementPool: state.reinforcementPool,
     turnNumber: state.turnNumber,
     capturedThisTurn: state.capturedThisTurn,
     rng: { ...state.rng },
@@ -159,14 +163,15 @@ function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly P
     }
   });
 
-  return {
+  const state: GameState = {
     map,
     rules,
     players,
     ownerOf: ownerOfMap,
     armies,
     currentPlayer: 0,
-    phase: "attack",
+    phase: rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
+    reinforcementPool: 0,
     turnNumber: 1,
     capturedThisTurn: false,
     rng: rng.snapshot(),
@@ -176,6 +181,11 @@ function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly P
     winner: "",
     productionCentres: [],
   };
+  if (rules.turnSequence === "reinforcement") {
+    const active = state.players[state.currentPlayer]!;
+    state.reinforcementPool = reinforcementIncome(state, active.id).total;
+  }
+  return state;
 }
 
 /**

@@ -1,12 +1,12 @@
 import { attackTargets, resolve, whyNot } from "./combat";
 import { DeterministicRng } from "./rng";
+import { reinforcementIncome } from "./reinforcement";
 import { activePlayer, cloneState, livingPlayers, provincesOf } from "./state";
 import type { Action, ApplyResult, GameState, Player } from "./types";
 
 // The engine's one way in: apply(state, action). Total, deterministic, no I/O,
 // no ambient randomness. Ported from core/rules/rules.gd, restricted to the
-// slice: the attack phase and ending a turn. Reinforcement, redeploy, hazards,
-// cards and surrender are not ported.
+// slice: reinforcement placement, the attack phase and ending a turn.
 
 /** Every attack the active player could declare. */
 export function legalAttacks(state: GameState): Action[] {
@@ -31,11 +31,50 @@ export function apply(state: GameState, action: Action): ApplyResult {
 
 function dispatch(next: GameState, action: Action): ApplyResult {
   switch (action.kind) {
+    case "reinforce":
+      return reinforce(next, action.province, action.amount);
+    case "endReinforcement":
+      return endReinforcement(next);
     case "attack":
       return attack(next, action.from, action.to);
     case "endTurn":
       return endTurn(next);
+    default:
+      return { ok: false, error: "unknown action" };
   }
+}
+
+function reinforce(state: GameState, provinceId: string, amount: number): ApplyResult {
+  if (state.rules.turnSequence !== "reinforcement" || state.phase !== "reinforce") {
+    return { ok: false, error: "reinforcements happen in the reinforcement phase" };
+  }
+  if (!Number.isSafeInteger(amount) || amount <= 0) {
+    return { ok: false, error: "reinforcement amount must be a positive integer" };
+  }
+  const mover = activePlayer(state)!;
+  if (!state.map.provinces.some((province) => province.id === provinceId)) {
+    return { ok: false, error: "unknown province" };
+  }
+  if (state.ownerOf[provinceId] !== mover.id) {
+    return { ok: false, error: "you may reinforce only your own provinces" };
+  }
+  if (amount > state.reinforcementPool) {
+    return { ok: false, error: "reinforcement amount exceeds the remaining pool" };
+  }
+  state.armies[provinceId] = (state.armies[provinceId] ?? 0) + amount;
+  state.reinforcementPool -= amount;
+  return { ok: true, state, outcome: null };
+}
+
+function endReinforcement(state: GameState): ApplyResult {
+  if (state.rules.turnSequence !== "reinforcement" || state.phase !== "reinforce") {
+    return { ok: false, error: "not in the reinforcement phase" };
+  }
+  if (state.reinforcementPool !== 0) {
+    return { ok: false, error: "place all reinforcements before attacking" };
+  }
+  state.phase = "attack";
+  return { ok: true, state, outcome: null };
 }
 
 function attack(state: GameState, from: string, to: string): ApplyResult {
@@ -56,13 +95,11 @@ function attack(state: GameState, from: string, to: string): ApplyResult {
   return { ok: true, state, outcome };
 }
 
-/**
- * SPIKE STAND-IN: ends the turn and passes play to the next living player. In
- * core/ this is END_PHASE twice (attack -> redeploy -> hazards -> reinforce);
- * with no redeploy, hazards or reinforcement in the slice, the two collapse into
- * one action, accepted from the attack phase as well as from redeploy.
- */
+/** Passes play to the next living player after the selected ruleset's turn phases. */
 function endTurn(state: GameState): ApplyResult {
+  if (state.rules.turnSequence === "reinforcement" && state.phase !== "attack" && state.phase !== "redeploy") {
+    return { ok: false, error: "end the turn after the attack phase" };
+  }
   const mover = activePlayer(state) as Player;
   state.log.push({ event: "turn_ended", player: mover.id, turn: state.turnNumber });
   const seats = state.players.length;
@@ -71,8 +108,12 @@ function endTurn(state: GameState): ApplyResult {
     if (state.currentPlayer === 0) state.turnNumber += 1;
     if (!activePlayer(state)?.eliminated) break;
   }
-  state.phase = "attack";
+  const next = activePlayer(state);
+  state.phase = state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
   state.capturedThisTurn = false;
+  state.reinforcementPool = state.rules.turnSequence === "reinforcement" && next && !next.eliminated
+    ? reinforcementIncome(state, next.id).total
+    : 0;
   return { ok: true, state, outcome: null };
 }
 
