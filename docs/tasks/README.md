@@ -12,5 +12,6 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T05a | Board generator skeleton (46 countries, 9 islands, degree 2–5, 16 sea lanes, connected) | #17 | — |
 | T05b | Board fairness: the 5 checks, the retry loop, and the "attempts run out" behaviour | #19 | T05a |
 | T06 | Bundled UI font (Inter), so goldens do not depend on the host | #21 | — |
+| T07 | Initial deal: generated board to starting state | #27 | T04, T05b |
 | T09 | Island income: the complete-island bonus as pure functions | #23 | — |
 | T10 | Reinforcement income: province base + island bonus per turn | #25 | — |
