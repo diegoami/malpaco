@@ -18,3 +18,4 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T10 | Reinforcement income: province base + island bonus per turn | #25 | — |
 | T11 | Reinforcement phase: a pool players can spend before attacking | #32 | T08, T10 |
 | T12 | Playable reinforcement controls and Malpaco combat | #33 | T11 |
+| T13 | Generated-board presentation prototype | #38 | T12 |
