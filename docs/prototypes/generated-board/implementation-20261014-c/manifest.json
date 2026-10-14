@@ -1,0 +1,55 @@
+{
+  "records": [
+    {
+      "name": "mutant-unpainted-country",
+      "command": "npx playwright test tests/e2e/generated-board.spec.ts --workers=2",
+      "exit": 1
+    },
+    {
+      "name": "mutant-missing-sea-link",
+      "command": "npx playwright test tests/e2e/generated-board.spec.ts --workers=2",
+      "exit": 1
+    },
+    {
+      "name": "layout",
+      "command": "npx vitest run tests/ui/generated-board-layout.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "unit",
+      "command": "npm test",
+      "exit": 0
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "full-ui",
+      "command": "npx playwright test --workers=2",
+      "exit": 0
+    }
+  ],
+  "mutations": [
+    {
+      "name": "unpainted-country",
+      "before": "s(\"path\", { class: \"country-shape\", d:",
+      "after": "s(\"path\", { class: \"country-shape\", opacity: p.id === map.provinces[0]!.id ? \"0\" : \"1\", d:",
+      "file": "src/ui/prototype/preview.ts",
+      "line": 95
+    },
+    {
+      "name": "missing-sea-link",
+      "before": "seen.add(key);",
+      "after": "seen.add(key);\n      if (kind === \"sea\" && seen.size === 1) continue;",
+      "file": "src/ui/prototype/preview.ts",
+      "line": 111
+    }
+  ],
+  "restored": {
+    "file": "src/ui/prototype/preview.ts",
+    "before": "d3b924e8788f675cf54c13d2f3720f22ed32fbeb891ab1f0f3fb0120c607deac",
+    "after": "d3b924e8788f675cf54c13d2f3720f22ed32fbeb891ab1f0f3fb0120c607deac"
+  }
+}

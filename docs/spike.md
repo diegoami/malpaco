@@ -38,7 +38,8 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   player's pool (10, +1 short-stack bonus) over their own provinces with the seeded RNG
   (`newGame`, marked "SPIKE STAND-IN"). The opening distribution still uses seeded random placement.
   On Malpaco turns, T11 grants income into a pool and requires it to be placed before attacks; the
-  T12 exposes the Malpaco turn flow on the authored map. Generated-board integration, setup options,
+  T12 exposes the Malpaco turn flow on the authored map. The opt-in `?view=generated-prototype&seed=1994` previews generated geography and exact
+  country connections; it does not integrate generated boards into the playable game. Setup options,
   redeployment, hazards, centres, cards and surrender remain absent.
 - **Generated-game setup.** T07 adds `createGame(options)` for a generated 46-country board: it uses
   one seeded stream for board generation and the initial deal, then stores three production centres.
@@ -313,3 +314,37 @@ npx vitest run         # the core
 npx playwright test    # in the image (see "Goldens"): the browser ships with it; writes screenshots/<size>/*.png
 npm run dev            # http://localhost:5173/?seed=1994 fixes the game
 ```
+
+
+## Generated-board presentation preview
+
+`?view=generated-prototype&seed=1994` opens a separate atlas of the existing
+46-country, nine-island generator. `layoutGeneratedBoard(map)` changes only
+polygons, label locations and bounds; IDs, names, membership, bonuses and both
+edge sets retain their generated values, input maps remain unchanged, and the
+projection uses no rule RNG. Larger islands receive more atlas space. Irregular
+coasts enclose separated country regions: a geographic neighbour is read from
+the explicit solid land connection or dashed blue sea lane, rather than inferred
+from region placement. Country selection highlights its exact incident links
+and names all land/sea neighbours with IDs. Click, Enter and Space select without
+replacing the focused country. A seed control rebuilds through `generateBoard`;
+actual generation refusal (including seed 1506) remains visible with retry.
+
+The atlas is presentation only. Game setup, placement/combat integration and a
+permanent visual choice belong to later work. The ordinary authored-board route
+keeps its existing behaviour and goldens. Atlas dimensions, coast margins, region
+spacing, text and route styles are [designed], after inspecting `board-gen.ts`
+placeholder geometry and `mapView.ts` label, marker and coast placement.
+
+`tests/ui/generated-board-layout.test.ts` checks immutable, stable, semantically
+exact layouts and distinct/in-bounds label/hit regions for seeds 1/2/3/7/42/1994.
+`tests/e2e/generated-board.spec.ts` independently regenerates the topology, reads
+country/name screenshot pixels, checks full rendered names at least 11px with
+no overlaps/overflow, tests label-center hit targets, every connection's exact
+IDs and endpoint anchors, bonuses, click/keyboard selection and focus, seed edits,
+reload and failure/retry. Its own two goldens pin the atlas in the same official
+Playwright image as the playable screen. New tests fail on absent/identity
+projection and absent preview route; the generator-failure fixture and existing
+playable-screen tests are unchanged-behaviour regressions. Preflight logs,
+reproducible disposable fixtures and final verification/mutation evidence live
+under `docs/prototypes/generated-board/`. The owner judges the settled screenshots.

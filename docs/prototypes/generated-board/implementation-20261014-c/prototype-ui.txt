@@ -1,0 +1,18 @@
+
+Running 8 tests using 2 workers
+
+  ✓  2 [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (851ms)
+  ✓  1 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.6s)
+  ✓  3 [1280x800] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (891ms)
+  ✓  4 [1280x800] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview (258ms)
+  ✓  5 [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (967ms)
+  ✓  6 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.5s)
+  ✓  7 [1920x1080] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (946ms)
+  ✓  8 [1920x1080] › tests/e2e/generated-board.spec.ts:120:1 › golden: settled opt-in generated preview (351ms)
+
+  8 passed (5.6s)
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
