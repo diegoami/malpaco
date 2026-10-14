@@ -16,3 +16,5 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T08 | Shared combat rules: single exchanges, fair ties, no forfeit | #30 | T07 |
 | T09 | Island income: the complete-island bonus as pure functions | #23 | — |
 | T10 | Reinforcement income: province base + island bonus per turn | #25 | — |
+| T11 | Reinforcement phase: a pool players can spend before attacking | #32 | T08, T10 |
+| T12 | Playable reinforcement controls and Malpaco combat | #33 | T11 |
