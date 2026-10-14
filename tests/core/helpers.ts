@@ -49,6 +49,9 @@ export function position(holdings: Record<string, [string, number]>, rules: Rule
     state.ownerOf[p.id] = held[0];
     state.armies[p.id] = held[1];
   }
+  // Combat fixtures start at attack even when they use Malpaco combat values.
+  state.phase = "attack";
+  state.reinforcementPool = 0;
   return state;
 }
 

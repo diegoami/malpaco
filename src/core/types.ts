@@ -66,13 +66,15 @@ export interface SetupRules {
 
 export interface RuleSet {
   readonly id: string;
+  /** [designed] T11 turn flow; Classic remains the legacy attack-only shortcut. */
+  readonly turnSequence: "classic" | "reinforcement";
   readonly setup: SetupRules;
   readonly combat: CombatRules;
   /** Conquest only, as in Classic. */
   readonly victory: readonly "conquest"[];
 }
 
-export type Phase = "attack" | "redeploy" | "finished";
+export type Phase = "reinforce" | "attack" | "redeploy" | "finished";
 
 export interface RngSnapshot {
   readonly seed: number;
@@ -80,6 +82,8 @@ export interface RngSnapshot {
 }
 
 export type Action =
+  | { readonly kind: "reinforce"; readonly province: string; readonly amount: number }
+  | { readonly kind: "endReinforcement" }
   | { readonly kind: "attack"; readonly from: string; readonly to: string }
   | { readonly kind: "endTurn" };
 
@@ -116,6 +120,8 @@ export interface GameState {
   armies: Record<string, number>;
   currentPlayer: number;
   phase: Phase;
+  /** Unplaced income available during a reinforcement phase. */
+  reinforcementPool: number;
   turnNumber: number;
   capturedThisTurn: boolean;
   /**

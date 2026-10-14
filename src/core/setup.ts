@@ -3,6 +3,7 @@ import type { BoardGenResult } from "./board-gen";
 import { DeterministicRng } from "./rng";
 import { validateGameOptions } from "./options";
 import { malpacoRules } from "./state";
+import { reinforcementIncome } from "./reinforcement";
 import type { GameOptions } from "./options";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
 
@@ -77,15 +78,17 @@ function createGameValidated(
     if (player.kind === "computer") computerRngs[player.id] = DeterministicRng.subStream(validated.seed, seat).snapshot();
   });
 
-  return {
-    ok: true,
-    state: {
+  const state: GameState = {
       map: board.map, rules, players, ownerOf, armies, currentPlayer: firstSeat,
-      phase: "attack", turnNumber: 1, capturedThisTurn: false, rng: rng.snapshot(), computerRngs,
+      phase: rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
+      reinforcementPool: 0, turnNumber: 1, capturedThisTurn: false, rng: rng.snapshot(), computerRngs,
       log: [{ event: "game_started", seed: validated.seed, players: players.length }],
       history: [], winner: "", productionCentres,
-    },
   };
+  if (rules.turnSequence === "reinforcement") {
+    state.reinforcementPool = reinforcementIncome(state, players[firstSeat]!.id).total;
+  }
+  return { ok: true, state };
 }
 
 function makePlayers(options: GameOptions): Player[] {
