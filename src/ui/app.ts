@@ -1,4 +1,4 @@
-import { activePlayer, apply, armyCount, attackTargets, classicRules, newGame, ownerOf, province, whyNot } from "../core";
+import { activePlayer, apply, armyCount, attackTargets, malpacoRules, newGame, ownerOf, province, whyNot } from "../core";
 import type { Action, AttackOutcome, GameMap, GameState } from "../core";
 import { h } from "./dom";
 import { MapView } from "./mapView";
@@ -16,7 +16,7 @@ export class App {
   private selected: string | null = null;
   private target: string | null = null;
   private hover: string | null = null;
-  private hint = "Select one of your provinces to begin.";
+  private hint = "Place your reinforcements on your provinces, one army at a time.";
   private flash: string[] = [];
   private readonly mapView: MapView;
   private readonly panel: Panel;
@@ -29,7 +29,7 @@ export class App {
     private seed: number,
     private readonly onNewGame: () => void,
   ) {
-    this.state = newGame(map, classicRules(), PLAYERS, seed);
+    this.state = newGame(map, malpacoRules(), PLAYERS, seed);
     this.mapView = new MapView(map, {
       onProvince: (id) => this.clickProvince(id),
       onBackground: () => this.clearSelection("Selection cleared."),
@@ -37,6 +37,7 @@ export class App {
     });
     this.panel = new Panel({
       onAttack: () => this.attack(),
+      onStartCombat: () => this.startCombat(),
       onEndTurn: () => this.endTurn(),
       onNewGame: () => this.onNewGame(),
     });
@@ -69,6 +70,16 @@ export class App {
     const mover = activePlayer(this.state);
     const p = province(this.map, id);
     if (!mover || !p) return;
+
+    if (this.state.phase === "reinforce") {
+      if (ownerOf(this.state, id) !== mover.id) {
+        this.hint = "Choose one of your provinces to place an army.";
+        this.render();
+        return;
+      }
+      this.run({ kind: "reinforce", province: id, amount: 1 });
+      return;
+    }
 
     if (ownerOf(this.state, id) === mover.id) {
       if (this.selected === id) return this.clearSelection("Selection cleared.");
@@ -107,6 +118,10 @@ export class App {
     this.run({ kind: "attack", from: this.selected, to: this.target });
   }
 
+  private startCombat(): void {
+    this.run({ kind: "endReinforcement" });
+  }
+
   private endTurn(): void {
     this.run({ kind: "endTurn" });
   }
@@ -121,12 +136,21 @@ export class App {
     }
     this.state = result.state;
     this.target = null;
-    if (action.kind === "endTurn") {
+    if (action.kind === "endTurn" || action.kind === "endReinforcement") {
       this.selected = null;
-      this.hint = "Select one of your provinces to begin.";
+      this.hint = action.kind === "endTurn"
+        ? "Place your reinforcements on your provinces, one army at a time."
+        : "Combat is open. Select one of your provinces with an adjacent enemy.";
       this.flash = [];
       this.render();
-      this.announce(`${activePlayer(this.state)?.name}'s turn`);
+      if (action.kind === "endTurn") this.announce(`${activePlayer(this.state)?.name}'s turn`);
+      return;
+    }
+    if (action.kind === "reinforce") {
+      this.hint = this.state.reinforcementPool > 0
+        ? `${province(this.map, action.province)?.name} receives 1 army. Place ${this.state.reinforcementPool} more.`
+        : "All reinforcements are placed. Start combat when ready.";
+      this.render();
       return;
     }
     const outcome = result.outcome as AttackOutcome;

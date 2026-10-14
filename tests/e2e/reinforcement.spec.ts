@@ -27,7 +27,10 @@ async function army(province: Locator): Promise<number> {
 }
 async function screenshot(page: Page, info: TestInfo, name: string): Promise<void> {
   await page.mouse.move(2, 400);
-  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    await Promise.all(document.getAnimations().filter((animation) => animation.effect?.getComputedTiming().iterations !== Infinity).map((animation) => animation.finished));
+  });
   await page.screenshot({ path: `screenshots/${info.project.name}/reinforcement-${name}.png` });
 }
 async function enterCombat(page: Page): Promise<void> {
