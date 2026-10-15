@@ -28,3 +28,16 @@ To regenerate only the two generated-game goldens in that image, append
 source for each of the four required removal classes independently, restores
 exact saved bytes in `finally`, and reruns the generated suite green. Unlike the
 historical preflight replay, it does not install a mock or expect baseline failure.
+
+
+Permanent implementation verification is recorded in `implementation-20261015-a/`.
+Generated semantic tests: 7 passed; generated browser tests: 10 passed; all unit
+tests: 346 passed; build: exit 0; full browser suite: 58 passed. Each actual-source
+mutation fails for its intended cause: absent owner fill gives painted share 0;
+invisible army text gives glyph ink 0; deleted placement leaves pool 7 instead
+of 6; a removed land connection changes the exact edge set. After restoring all
+saved source bytes, the generated browser suite passes 10/10. The manifest hashes
+match and `implementation-sha256.txt` records final artifacts and source hashes.
+Existing authored/prototype goldens and core files remain unchanged. The visible
+legend explains numeric ownership and solid/dashed connections; the two new
+settled generated-game goldens are ready for owner judgement.

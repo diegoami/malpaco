@@ -1,0 +1,64 @@
+
+Running 2 tests using 2 workers
+
+  ✘  2 [1280x800] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (5.2s)
+  ✘  1 [1920x1080] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (5.2s)
+
+
+  1) [1280x800] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('#reinforcement-pool')
+    Expected: "6"
+    Received: "7"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" locator('#reinforcement-pool') with timeout 5000ms
+      - waiting for locator('#reinforcement-pool')
+        14 × locator resolved to <span id="reinforcement-pool">7</span>
+           - unexpected value "7"
+
+
+      76 |  const pool=state.reinforcementPool;
+      77 |  await expect(page.locator("#start-combat-button")).toBeDisabled();
+    > 78 |  for(let i=0;i<pool;i++){await country(page,source.id).click();const a=apply(state,{kind:"reinforce",province:source.id,amount:1});if(!a.ok)throw Error(a.error);state=a.state;await expect(page.locator("#reinforcement-pool")).toHaveText(String(pool-i-1));}
+         |                                                                                                                                                                                                                                  ^
+      79 |  await expect(country(page,source.id).locator(".army-count")).toContainText(String(state.armies[source.id]));
+      80 |  await page.locator("#start-combat-button").click();const combat=apply(state,{kind:"endReinforcement"});if(!combat.ok)throw Error(combat.error);state=combat.state;
+      81 |  await country(page,source.id).focus();await page.keyboard.press("Enter");await expect(country(page,source.id)).toBeFocused();await expect(country(page,source.id)).toHaveAttribute("aria-pressed","true");
+        at /work/tests/e2e/generated-game.spec.ts:78:226
+
+    Error Context: test-results/generated-game-placement-c-3d324-ply-attack-and-seat-handoff-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  locator('#reinforcement-pool')
+    Expected: "6"
+    Received: "7"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" locator('#reinforcement-pool') with timeout 5000ms
+      - waiting for locator('#reinforcement-pool')
+        14 × locator resolved to <span id="reinforcement-pool">7</span>
+           - unexpected value "7"
+
+
+      76 |  const pool=state.reinforcementPool;
+      77 |  await expect(page.locator("#start-combat-button")).toBeDisabled();
+    > 78 |  for(let i=0;i<pool;i++){await country(page,source.id).click();const a=apply(state,{kind:"reinforce",province:source.id,amount:1});if(!a.ok)throw Error(a.error);state=a.state;await expect(page.locator("#reinforcement-pool")).toHaveText(String(pool-i-1));}
+         |                                                                                                                                                                                                                                  ^
+      79 |  await expect(country(page,source.id).locator(".army-count")).toContainText(String(state.armies[source.id]));
+      80 |  await page.locator("#start-combat-button").click();const combat=apply(state,{kind:"endReinforcement"});if(!combat.ok)throw Error(combat.error);state=combat.state;
+      81 |  await country(page,source.id).focus();await page.keyboard.press("Enter");await expect(country(page,source.id)).toBeFocused();await expect(country(page,source.id)).toHaveAttribute("aria-pressed","true");
+        at /work/tests/e2e/generated-game.spec.ts:78:226
+
+    Error Context: test-results/generated-game-placement-c-3d324-ply-attack-and-seat-handoff-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff 
+    [1920x1080] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff 

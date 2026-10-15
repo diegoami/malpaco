@@ -1,0 +1,76 @@
+{
+  "records": [
+    {
+      "name": "new-goldens",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2 --grep \"golden:\" --update-snapshots",
+      "exit": 0
+    },
+    {
+      "name": "generated-unit",
+      "command": "npx vitest run tests/ui/generated-game.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "generated-browser",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "all-unit",
+      "command": "npm test",
+      "exit": 0
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "all-browser",
+      "command": "npx playwright test --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "mutant-fill",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2 --grep \"46 countries\"",
+      "exit": 1
+    },
+    {
+      "name": "mutant-count",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2 --grep \"46 countries\"",
+      "exit": 1
+    },
+    {
+      "name": "mutant-placement",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2 --grep \"placement clicks\"",
+      "exit": 1
+    },
+    {
+      "name": "mutant-connection",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2 --grep \"exact topology\"",
+      "exit": 1
+    },
+    {
+      "name": "restored-generated-browser",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2",
+      "exit": 0
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/ui/generatedMapView.ts",
+      "before": "56dc90f8f5686ba106956b3fe818bbdfa17d675aa90c512415cc0c7083f463cb",
+      "after": "56dc90f8f5686ba106956b3fe818bbdfa17d675aa90c512415cc0c7083f463cb"
+    },
+    {
+      "file": "src/ui/prototype/preview.ts",
+      "before": "a814552e8e7a0235516a3d014b0c95faf24eb66efd8337196a146b4aefa9461e",
+      "after": "a814552e8e7a0235516a3d014b0c95faf24eb66efd8337196a146b4aefa9461e"
+    },
+    {
+      "file": "src/ui/app.ts",
+      "before": "8d22543a2ba30b01c6faa5c97b880a3bfb3941d3c5f69ce3471e3a96dbccc835",
+      "after": "8d22543a2ba30b01c6faa5c97b880a3bfb3941d3c5f69ce3471e3a96dbccc835"
+    }
+  ]
+}
