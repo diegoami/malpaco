@@ -38,20 +38,23 @@ for(const seats of [2,3,4])test(`setup clicks, autonomous ordinary actions, gate
  await load(page,computerSave);await expect(page.locator("#seat-controller")).toContainText("Computer");let resumed=deserializeMatch(computerSave).state;resumed=await tick(page,resumed);expect(deserializeMatch(await save(page)).state).toEqual(resumed);
  expect(errors).toEqual([]);
 });
-test("load replacement and New game cancel scheduled work; victory stays stopped",async({page},info)=>{
- const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));
- await page.addInitScript(()=>{
+async function instrumentTimers(page:Page){
+ await page.evaluate(()=>{
   const pending=new Set<number>();const set=window.setTimeout.bind(window),clear=window.clearTimeout.bind(window);
   window.setTimeout=((fn:TimerHandler,delay?:number,...args:unknown[])=>{let id=0;id=set(()=>{pending.delete(id);if(typeof fn==="function")fn(...args);},delay);if(delay===350)pending.add(id);return id;}) as typeof window.setTimeout;
   window.clearTimeout=((id?:number)=>{pending.delete(id!);clear(id);}) as typeof window.clearTimeout;Object.defineProperty(window,"computerTimers",{get:()=>pending.size});
  });
- await page.clock.install();await page.clock.pauseAt(new Date());await page.goto("/?view=game-setup");
+}
+test("load replacement and New game cancel scheduled work; victory stays stopped",async({page},info)=>{
+ const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));
+
+ await page.clock.install();await page.clock.pauseAt(new Date());await page.goto("/?view=game-setup");await instrumentTimers(page);
  let s=mixedOpening(1994,4);while(s.currentPlayer===0)s=step(s,passive(s));const text=serializeMatch(mixedOptions(1994,4),s.history);
  await load(page,text);await expect.poll(()=>page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(1);
  // Load a human turn before the old timer fires: exact save must remain unchanged.
  let human=mixedOpening(42,2);while(human.currentPlayer!==0)human=step(human,computerAction(human)!);
  const humanText=serializeMatch(mixedOptions(42,2),human.history);await load(page,humanText);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(await page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(0);await page.clock.runFor(700);expect(deserializeMatch(await save(page)).state).toEqual(human);
- await load(page,text);await page.getByRole("button",{name:"New game",exact:true}).click();await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();await page.clock.runFor(700);await expect(page.locator("[data-country]")).toHaveCount(0);
+ await load(page,text);await page.getByRole("button",{name:"New game",exact:true}).click();await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();await page.clock.runFor(700);await expect(page.locator("[data-country]")).toHaveCount(0);await instrumentTimers(page);
  // Produce a legal history immediately before a winning computer attack.
  s=mixedOpening(1994,3);let pre=s,n=0;while(s.phase!=="finished"&&n++<12000){pre=s;s=step(s,computerAction(s)??passive(s));}expect(s.phase).toBe("finished");
  await load(page,serializeMatch(mixedOptions(1994,3),pre.history));await page.clock.runFor(350);await expect(page.locator("#turn-title")).toContainText("conquers the sea");expect(deserializeMatch(await save(page)).state).toEqual(s);expect(await page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(0);await page.clock.runFor(3500);expect(deserializeMatch(await save(page)).state).toEqual(s);await capture(page,"winner",info.project.name);expect(errors).toEqual([]);

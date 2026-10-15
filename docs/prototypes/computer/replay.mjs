@@ -11,8 +11,8 @@ const records=[],hash=b=>b===null?null:createHash("sha256").update(b).digest("he
 function run(name,command,green){const fd=openSync(`${out}/${name}.txt`,"wx");let r;try{r=spawnSync("sh",["-c",command],{env:{...process.env,COMPUTER_EVIDENCE_DIR:out},stdio:["ignore",fd,fd]});}finally{closeSync(fd);}records.push({name,command,exit:r.status});console.log(name,r.status);if((r.status===0)!==green)throw Error(`${name}: unexpected exit ${r.status}`);}
 const unit="npx vitest run tests/core/computer.test.ts",browser="npx playwright test tests/e2e/computer.spec.ts --workers=2";
 try{
- run("baseline-unit",unit,false);
- if(mode!=="unit"){
+ if(mode!=="candidate")run("baseline-unit",unit,false);
+ if(mode!=="unit"&&mode!=="candidate"){
   // Provide the absent import only while probing the absent setup control, so
   // the browser fails on real missing UI rather than a bundler import failure.
   writeFileSync("src/core/computer.ts",readFileSync(fixtures["src/core/computer.ts"]));
