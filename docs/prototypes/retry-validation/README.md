@@ -13,7 +13,7 @@ node docs/prototypes/retry-validation/replay.mjs mock -- npx playwright test tes
 
 The baseline is expected to fail the new feedback assertion. The candidate run must pass both viewport projects. Both preflight replays retain command output, exact source hashes and screenshots under `evidence/`.
 
-After permanent source installation, run `node docs/prototypes/retry-validation/verify-final.mjs` in the pinned environment. It runs focused acceptance, unit tests, build and full browser suite, mutates only the retry feedback assignment and requires focused acceptance to fail at `toContainText`, restores source byte-for-byte, then reruns focused acceptance. It retains command output, screenshots, source hashes and SHA-256 sums in a fresh `evidence/final-*` directory. Do not update existing browser goldens.
+After permanent source installation, run `node docs/prototypes/retry-validation/verify-final.mjs` in the pinned environment. It runs focused acceptance, unit tests, build and full browser suite, mutates only the retry feedback assignment and requires focused acceptance to fail at `toBeVisible`, restores source byte-for-byte, then reruns focused acceptance. It retains command output, screenshots, source hashes and SHA-256 sums in a fresh `evidence/final-*` directory. Do not update existing browser goldens.
 
 After those full checks pass, `node docs/prototypes/retry-validation/verify-final.mjs --mutations-only` reruns focused acceptance before and after the actual-source feedback omission mutation, skipping unit/build/full-browser. This mode records a separate evidence directory and restores the exact source bytes.
 

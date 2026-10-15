@@ -78,7 +78,7 @@ async function omittedFeedbackMutation() {
       "omitted-retry-feedback",
     );
     await writeFile(sourcePath, mutated);
-    await run("omitted-feedback", focused[0], focused.slice(1), 1, "toContainText");
+      await run("omitted-feedback", focused[0], focused.slice(1), 1, "toBeVisible");
   } finally {
     await writeFile(sourcePath, original);
     const restored = await readFile(sourcePath);

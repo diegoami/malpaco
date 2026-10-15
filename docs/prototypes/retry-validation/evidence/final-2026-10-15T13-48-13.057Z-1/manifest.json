@@ -1,0 +1,56 @@
+{
+  "startedAt": "2026-10-15T13-48-13.057Z",
+  "evidence": "/work/docs/prototypes/retry-validation/evidence/final-2026-10-15T13-48-13.057Z-1",
+  "sourceBeforeSha256": "5cbfa91d4d12489d9de1e09d3e03310e361cd57aebb74ce47b2da2abf33e61e8",
+  "sourceAfterSha256": "5cbfa91d4d12489d9de1e09d3e03310e361cd57aebb74ce47b2da2abf33e61e8",
+  "sourceRestoredByteForByte": true,
+  "records": [
+    {
+      "name": "focused",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/retry-validation.spec.ts",
+        "--workers=2"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "signal": null,
+      "sourceSha256": "5cbfa91d4d12489d9de1e09d3e03310e361cd57aebb74ce47b2da2abf33e61e8"
+    },
+    {
+      "name": "omitted-feedback",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/retry-validation.spec.ts",
+        "--workers=2"
+      ],
+      "expectedExit": 1,
+      "exitCode": 1,
+      "signal": null,
+      "sourceSha256": "0bcd7599311696a64ce1e8262a9abc827f697611d53cdb387b2a6c82e5bc6d09"
+    },
+    {
+      "name": "omitted-feedback-restoration",
+      "sourceSha256": "5cbfa91d4d12489d9de1e09d3e03310e361cd57aebb74ce47b2da2abf33e61e8",
+      "sourceRestoredByteForByte": true
+    },
+    {
+      "name": "focused-restored",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/retry-validation.spec.ts",
+        "--workers=2"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "signal": null,
+      "sourceSha256": "5cbfa91d4d12489d9de1e09d3e03310e361cd57aebb74ce47b2da2abf33e61e8"
+    }
+  ]
+}
