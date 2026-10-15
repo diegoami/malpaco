@@ -54,3 +54,33 @@ Cliff Isle and Great Isle's land graphs are non-planar while the other seven
 are planar. This limits which original land edges can be represented as
 shared borders in one plane; any graph changes remain explicit display
 proposals.
+
+## First drafts archive
+
+These drafts are retained for comparison even if discarded. They are not approved
+production maps. Download an HTML file and open it locally for interaction.
+
+- [Draft A](fixtures/candidate-a/preview.html)
+- [Draft B](fixtures/candidate-b/preview.html)
+- [Draft C](fixtures/candidate-c/preview.html)
+- [Draft D](fixtures/candidate-d/preview.html)
+- [Draft E](fixtures/candidate-e/preview-e.html)
+- [Draft F](fixtures/candidate-f/preview-f.html)
+
+### Draft F screenshots
+
+Regenerated from committed F after the temporary worktree disappeared. The
+original F captures were not committed and could not be recovered; these are
+a new replay, with its own acceptance and mutation reports alongside them.
+
+![Draft F at 1280 by 800](preflight-recovered-f/candidate-green/after-1280x800.png)
+
+![Draft F at 1920 by 1080](preflight-recovered-f/candidate-green/after-1920x1080.png)
+
+### Earlier screenshots
+
+![Draft C](render-20261015-c/map-1280.png)
+
+![Draft D](render-20261015-d/map-1280.png)
+
+![Draft E](preflight-20261015-e/candidate-green/after-1280x800.png)
