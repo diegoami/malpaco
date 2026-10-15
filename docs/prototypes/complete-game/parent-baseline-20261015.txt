@@ -1,0 +1,9 @@
+Parent main baseline at746233e, before T16 finalization. Existing gameplay behaviour is not claimed missing.
+
+$ npx vitest run tests/core/complete-game.test.ts
+exit1: No test files found.
+
+$ npx playwright test tests/e2e/complete-game.spec.ts --list
+exit1: No tests found. Total0tests in0files.
+
+New coverage is the deliverable. Actual-source bypass mutations separately prove the existing behaviour is protected.

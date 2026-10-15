@@ -1,0 +1,45 @@
+
+ RUN  v5.0.3 /tmp/malpaco-T16
+
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 2 seats: elimination, living handoff, conquest and frozen finish
+{"seed":1,"seats":2,"actions":482,"handoffs":18,"rounds":10,"skippedDead":0}
+
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 3 seats: elimination, living handoff, conquest and frozen finish
+{"seed":1,"seats":3,"actions":664,"handoffs":32,"rounds":12,"skippedDead":1}
+
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 4 seats: elimination, living handoff, conquest and frozen finish
+{"seed":1,"seats":4,"actions":1024,"handoffs":69,"rounds":19,"skippedDead":3}
+
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 2 seats: elimination, living handoff, conquest and frozen finish
+{"seed":42,"seats":2,"actions":495,"handoffs":16,"rounds":9,"skippedDead":0}
+
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 2 seats: elimination, living handoff, conquest and frozen finish 40ms
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 3 seats: elimination, living handoff, conquest and frozen finish 23ms
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 4 seats: elimination, living handoff, conquest and frozen finish 34ms
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 2 seats: elimination, living handoff, conquest and frozen finish 18ms
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 3 seats: elimination, living handoff, conquest and frozen finish
+{"seed":42,"seats":3,"actions":681,"handoffs":28,"rounds":11,"skippedDead":2}
+
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 4 seats: elimination, living handoff, conquest and frozen finish
+{"seed":42,"seats":4,"actions":1333,"handoffs":101,"rounds":27,"skippedDead":3}
+
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 2 seats: elimination, living handoff, conquest and frozen finish
+{"seed":1994,"seats":2,"actions":349,"handoffs":12,"rounds":7,"skippedDead":0}
+
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 3 seats: elimination, living handoff, conquest and frozen finish
+{"seed":1994,"seats":3,"actions":588,"handoffs":29,"rounds":11,"skippedDead":1}
+
+stdout | tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 4 seats: elimination, living handoff, conquest and frozen finish
+{"seed":1994,"seats":4,"actions":737,"handoffs":43,"rounds":12,"skippedDead":1}
+
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 3 seats: elimination, living handoff, conquest and frozen finish 22ms
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 4 seats: elimination, living handoff, conquest and frozen finish 42ms
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 2 seats: elimination, living handoff, conquest and frozen finish 11ms
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 3 seats: elimination, living handoff, conquest and frozen finish 18ms
+ ✓ tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 4 seats: elimination, living handoff, conquest and frozen finish 22ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  10:40:02
+   Duration  380ms (tests 72%, transform 24%, import 4%, worker 1%)
+

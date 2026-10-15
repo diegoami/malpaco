@@ -1,0 +1,22 @@
+{
+  "before": "a3fc3f9c5bcf8916a20974c5b63389180506b0af321341870a647fbcceab37a3",
+  "after": "a3fc3f9c5bcf8916a20974c5b63389180506b0af321341870a647fbcceab37a3",
+  "records": [
+    {
+      "name": "victory",
+      "before": "    if (checkVictory(state)) return { ok: true, state, outcome };",
+      "after": "    // omitted",
+      "exit": 1
+    },
+    {
+      "name": "finished-rejection",
+      "before": "  if (state.phase === \"finished\") return { ok: false, error: \"the game is over\" };",
+      "after": "  if (state.phase === \"finished\") return { ok: true, state: { ...cloneState(state), phase: \"attack\" }, outcome: null };",
+      "exit": 1
+    },
+    {
+      "name": "restored",
+      "exit": 0
+    }
+  ]
+}

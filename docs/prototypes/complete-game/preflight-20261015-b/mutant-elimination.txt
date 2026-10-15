@@ -1,0 +1,86 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/work[39m
+
+ [31m❯[39m tests/core/complete-game.test.ts [2m([22m[2m9 tests[22m[2m | [22m[31m9 failed[39m[2m)[22m[32m 218[2mms[22m[39m
+   [31m❯[39m complete generated human games through legal actions [2m(9)[22m
+[31m     [31m×[31m seed 1, 2 seats: elimination, living handoff, conquest and frozen finish[39m[32m 40[2mms[22m[39m
+[31m     [31m×[31m seed 1, 3 seats: elimination, living handoff, conquest and frozen finish[39m[32m 22[2mms[22m[39m
+[31m     [31m×[31m seed 1, 4 seats: elimination, living handoff, conquest and frozen finish[39m[32m 33[2mms[22m[39m
+[31m     [31m×[31m seed 42, 2 seats: elimination, living handoff, conquest and frozen finish[39m[32m 15[2mms[22m[39m
+[31m     [31m×[31m seed 42, 3 seats: elimination, living handoff, conquest and frozen finish[39m[32m 18[2mms[22m[39m
+[31m     [31m×[31m seed 42, 4 seats: elimination, living handoff, conquest and frozen finish[39m[32m 40[2mms[22m[39m
+[31m     [31m×[31m seed 1994, 2 seats: elimination, living handoff, conquest and frozen finish[39m[32m 12[2mms[22m[39m
+[31m     [31m×[31m seed 1994, 3 seats: elimination, living handoff, conquest and frozen finish[39m[32m 17[2mms[22m[39m
+[31m     [31m×[31m seed 1994, 4 seats: elimination, living handoff, conquest and frozen finish[39m[32m 20[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m9 failed[39m[22m[90m (9)[39m
+[2m   Start at [22m 08:50:54
+[2m   Duration [22m 383ms[2m (tests 70%, transform 25%, import 4%, worker 1%)[22m
+
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 9 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 1, 2 seats: elimination, living handoff, conquest and frozen finish
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 42, 3 seats: elimination, living handoff, conquest and frozen finish
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 1994, 2 seats: elimination, living handoff, conquest and frozen finish
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 1994, 3 seats: elimination, living handoff, conquest and frozen finish
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 1994, 4 seats: elimination, living handoff, conquest and frozen finish
+[31m[1mAssertionError[22m: seat2 owns 0 countries: expected false to be true // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+[36m [2m❯[22m tests/core/complete-game.test.ts:[2m19:67[22m[39m
+    [90m 17|[39m         for (const p of state.players) {
+    [90m 18|[39m           const count = Object.values(state.ownerOf).filter(owner => o…
+    [90m 19|[39m           expect(p.eliminated, `${p.id} owns ${count} countries`).toBe…
+    [90m   |[39m                                                                   [31m^[39m
+    [90m 20|[39m         }
+    [90m 21|[39m         if (new Set(Object.values(state.ownerOf)).size === 1) {
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 1, 3 seats: elimination, living handoff, conquest and frozen finish
+[31m[1mAssertionError[22m: seat3 owns 0 countries: expected false to be true // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+[36m [2m❯[22m tests/core/complete-game.test.ts:[2m19:67[22m[39m
+    [90m 17|[39m         for (const p of state.players) {
+    [90m 18|[39m           const count = Object.values(state.ownerOf).filter(owner => o…
+    [90m 19|[39m           expect(p.eliminated, `${p.id} owns ${count} countries`).toBe…
+    [90m   |[39m                                                                   [31m^[39m
+    [90m 20|[39m         }
+    [90m 21|[39m         if (new Set(Object.values(state.ownerOf)).size === 1) {
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 1, 4 seats: elimination, living handoff, conquest and frozen finish
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 42, 2 seats: elimination, living handoff, conquest and frozen finish
+[41m[1m FAIL [22m[49m tests/core/complete-game.test.ts[2m > [22mcomplete generated human games through legal actions[2m > [22mseed 42, 4 seats: elimination, living handoff, conquest and frozen finish
+[31m[1mAssertionError[22m: seat1 owns 0 countries: expected false to be true // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+[36m [2m❯[22m tests/core/complete-game.test.ts:[2m19:67[22m[39m
+    [90m 17|[39m         for (const p of state.players) {
+    [90m 18|[39m           const count = Object.values(state.ownerOf).filter(owner => o…
+    [90m 19|[39m           expect(p.eliminated, `${p.id} owns ${count} countries`).toBe…
+    [90m   |[39m                                                                   [31m^[39m
+    [90m 20|[39m         }
+    [90m 21|[39m         if (new Set(Object.values(state.ownerOf)).size === 1) {
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯[22m[39m
+
