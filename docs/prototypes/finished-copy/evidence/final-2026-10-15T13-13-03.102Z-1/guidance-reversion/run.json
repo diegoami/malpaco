@@ -1,0 +1,14 @@
+{
+  "name": "guidance-reversion",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/finished-copy.spec.ts",
+    "--workers=2"
+  ],
+  "expectedExit": 1,
+  "exitCode": 1,
+  "signal": null,
+  "sourceSha256": "ab8ed1af71e2cbd18607ae7905f4dd7abb23f3d219cf0d0de8fd29fd18b81a41"
+}

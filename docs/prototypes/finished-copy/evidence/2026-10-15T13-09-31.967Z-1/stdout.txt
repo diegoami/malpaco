@@ -1,0 +1,9 @@
+
+Running 4 tests using 2 workers
+
+  ✓  2 [1280x800] › tests/e2e/finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape (354ms)
+  ✓  1 [1280x800] › tests/e2e/finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game (742ms)
+  ✓  3 [1920x1080] › tests/e2e/finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game (784ms)
+  ✓  4 [1920x1080] › tests/e2e/finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape (385ms)
+
+  4 passed (2.9s)

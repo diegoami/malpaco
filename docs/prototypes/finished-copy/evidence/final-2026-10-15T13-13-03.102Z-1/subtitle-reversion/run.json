@@ -1,0 +1,14 @@
+{
+  "name": "subtitle-reversion",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/finished-copy.spec.ts",
+    "--workers=2"
+  ],
+  "expectedExit": 1,
+  "exitCode": 1,
+  "signal": null,
+  "sourceSha256": "64da1c907070287edc9d9694bfff7b76bca76b22d2f9b328abf4ff76cbcea3e2"
+}
