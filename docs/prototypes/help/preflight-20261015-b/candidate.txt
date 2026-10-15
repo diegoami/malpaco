@@ -1,0 +1,11 @@
+
+Running 6 tests using 2 workers
+
+  ✓  1 [1280x800] › tests/e2e/help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus (293ms)
+  ✓  2 [1280x800] › tests/e2e/help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match (811ms)
+  ✓  3 [1280x800] › tests/e2e/help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game (863ms)
+  ✓  4 [1920x1080] › tests/e2e/help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus (311ms)
+  ✓  6 [1920x1080] › tests/e2e/help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game (849ms)
+  ✓  5 [1920x1080] › tests/e2e/help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match (1.2s)
+
+  6 passed (3.9s)

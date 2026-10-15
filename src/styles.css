@@ -1022,7 +1022,7 @@ dialog h2 {
 
 /* [designed] Minimal setup after inspecting generated-game's route and panel. */
 #game-setup.setup-root {
-  display: grid; place-items: center; padding: 32px;
+  position: relative; display: grid; place-items: center; padding: 32px;
 }
 .setup-card {
   width: min(540px, 100%); display: grid; gap: 14px;
@@ -1038,6 +1038,9 @@ dialog h2 {
 }
 .setup-card [role="alert"] {
   color: #f0bd92;
+}
+#game-setup .help-open {
+  position: absolute; top: 16px; right: 16px;
 }
 /* Keep every score and action visible for the additional human seats. */
 #generated-game:is([data-seats="3"], [data-seats="4"]) .panel {
@@ -1095,4 +1098,40 @@ dialog h2 {
   border-radius:6px;
   background:var(--surface);
   box-shadow:0 4px 12px #0008;
+}
+
+.help-dialog {
+  box-sizing: border-box;
+  zoom: 1;
+  max-height: 80vh;
+  max-width: min(42rem, calc(100vw - 2rem));
+  overflow: auto;
+  padding: 1.25rem;
+  color: #f2f5f7;
+  background: #101f2b;
+  border: 1px solid #8a9ba8;
+  border-radius: 12px;
+}
+.help-dialog[open] {
+  animation: none;
+}
+.help-dialog::backdrop {
+  background: #0009;
+}
+.help-dialog h2 {
+  margin-top: 0;
+}
+.help-dialog h3 {
+  margin: 1rem 0 0.25rem;
+}
+.help-dialog p {
+  margin: 0.25rem 0;
+  line-height: 1.45;
+}
+.help-actions {
+  position: sticky;
+  bottom: 0;
+  padding: 0.75rem 0 0;
+  text-align: right;
+  background: #101f2b;
 }

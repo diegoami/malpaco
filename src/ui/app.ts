@@ -16,6 +16,7 @@ export class App {
   private state: GameState;
   private computerTimer: ReturnType<typeof setTimeout> | null = null;
   private disposed = false;
+  private helpPaused = false;
   private selected: string | null = null;
   private target: string | null = null;
   private hover: string | null = null;
@@ -54,6 +55,19 @@ export class App {
   };
 
   get actions(): readonly Action[] { return this.state.history; }
+
+  pauseForHelp(): void {
+    if (this.disposed) return;
+    this.helpPaused = true;
+    if (this.computerTimer !== null) clearTimeout(this.computerTimer);
+    this.computerTimer = null;
+  }
+
+  resumeAfterHelp(): void {
+    if (this.disposed) return;
+    this.helpPaused = false;
+    this.scheduleComputer();
+  }
 
   dispose(): void {
     this.disposed = true;
@@ -258,7 +272,7 @@ export class App {
   }
 
   private scheduleComputer(): void {
-    if (this.disposed || this.computerTimer !== null || !this.isComputerTurn()) return;
+    if (this.disposed || this.helpPaused || this.computerTimer !== null || !this.isComputerTurn()) return;
     // [designed] One ordinary action per 350 ms lets the player follow/save a turn.
     this.computerTimer = setTimeout(() => {
       this.computerTimer = null;

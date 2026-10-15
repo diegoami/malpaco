@@ -1,0 +1,62 @@
+{
+  "records": [
+    {
+      "name": "baseline",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2 --grep \"setup help is reachable\"",
+      "exit": 1,
+      "spawnError": null
+    },
+    {
+      "name": "candidate-build",
+      "command": "npm run build",
+      "exit": 0,
+      "spawnError": null
+    },
+    {
+      "name": "candidate",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2",
+      "exit": 0,
+      "spawnError": null
+    },
+    {
+      "name": "mutant-content",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2 --grep \"setup help is reachable\"",
+      "exit": 1,
+      "spawnError": null
+    },
+    {
+      "name": "mutant-computer-pause",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2 --grep \"computer help pauses\"",
+      "exit": 1,
+      "spawnError": null
+    },
+    {
+      "name": "restored-candidate",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2",
+      "exit": 0,
+      "spawnError": null
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/ui/help.ts",
+      "before": null,
+      "after": null
+    },
+    {
+      "file": "src/ui/generatedGame.ts",
+      "before": "5cbfa91d4d12489d9de1e09d3e03310e361cd57aebb74ce47b2da2abf33e61e8",
+      "after": "5cbfa91d4d12489d9de1e09d3e03310e361cd57aebb74ce47b2da2abf33e61e8"
+    },
+    {
+      "file": "src/ui/app.ts",
+      "before": "88fe5aa8ed609ecd625a849d52d2fd53210ed649cfe1c02d1abe9dfdccb0b36b",
+      "after": "88fe5aa8ed609ecd625a849d52d2fd53210ed649cfe1c02d1abe9dfdccb0b36b"
+    },
+    {
+      "file": "src/styles.css",
+      "before": "833544b648bc9baa658a3d34126dd7e9444cde866eae6730a1a8310bbb49d048",
+      "after": "833544b648bc9baa658a3d34126dd7e9444cde866eae6730a1a8310bbb49d048"
+    }
+  ]
+}

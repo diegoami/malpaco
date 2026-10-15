@@ -1,0 +1,46 @@
+
+Running 2 tests using 2 workers
+
+  ✘  1 [1280x800] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus (145ms)
+  ✘  2 [1920x1080] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus (142ms)
+
+
+  1) [1280x800] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "seed"
+    Received string:    "      "
+
+      45 |   for (const topic of topics) await expect(dialog.getByRole("heading", { name: topic, exact: true })).toBeVisible();
+      46 |   const copy = (await dialog.locator("p").allTextContents()).join(" ").toLowerCase();
+    > 47 |   for (const word of ["seed", "seat", "numeric", "army", "land", "sea", "reinforcement pool", "you own", "start combat", "adjacent", "two armies", "defender", "exchange", "continue", "end your turn", "eliminated", "every province", "computer", "pauses", "save game", "options", "history", "load game", "new game"]) expect(copy).toContain(word);
+         |                                                                                                                                                                                                                                                                                                                                         ^
+      48 |   const box = await dialog.evaluate(el => ({ scroll: el.scrollHeight, client: el.clientHeight, width: el.scrollWidth, clientWidth: el.clientWidth }));
+      49 |   expect(box.width).toBeLessThanOrEqual(box.clientWidth);
+      50 |   if (box.scroll > box.client) await dialog.evaluate(el => { el.scrollTop = el.scrollHeight; });
+        at /work/tests/e2e/help.spec.ts:47:329
+
+    Error Context: test-results/help-setup-help-is-reachab-77438-crollable-and-returns-focus-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus 
+
+    Error: expect(received).toContain(expected) // indexOf
+
+    Expected substring: "seed"
+    Received string:    "      "
+
+      45 |   for (const topic of topics) await expect(dialog.getByRole("heading", { name: topic, exact: true })).toBeVisible();
+      46 |   const copy = (await dialog.locator("p").allTextContents()).join(" ").toLowerCase();
+    > 47 |   for (const word of ["seed", "seat", "numeric", "army", "land", "sea", "reinforcement pool", "you own", "start combat", "adjacent", "two armies", "defender", "exchange", "continue", "end your turn", "eliminated", "every province", "computer", "pauses", "save game", "options", "history", "load game", "new game"]) expect(copy).toContain(word);
+         |                                                                                                                                                                                                                                                                                                                                         ^
+      48 |   const box = await dialog.evaluate(el => ({ scroll: el.scrollHeight, client: el.clientHeight, width: el.scrollWidth, clientWidth: el.clientWidth }));
+      49 |   expect(box.width).toBeLessThanOrEqual(box.clientWidth);
+      50 |   if (box.scroll > box.client) await dialog.evaluate(el => { el.scrollTop = el.scrollHeight; });
+        at /work/tests/e2e/help.spec.ts:47:329
+
+    Error Context: test-results/help-setup-help-is-reachab-77438-crollable-and-returns-focus-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus 
+    [1920x1080] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus 

@@ -1,0 +1,59 @@
+
+Running 20 tests using 2 workers
+
+  ✓   2 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.3s)
+  ✓   1 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (1.3s)
+  ✘   4 [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (398ms)
+/work/tests/e2e/game-setup.spec.ts-snapshots/setup-1280x800-1280x800-linux.png is re-generated, writing actual.
+/work/tests/e2e/game-setup.spec.ts-snapshots/four-seat-1280x800-1280x800-linux.png is re-generated, writing actual.
+  ✓   5 [1280x800] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.4s)
+  ✓   3 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (2.2s)
+  ✓   6 [1280x800] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (326ms)
+  ✓   8 [1280x800] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (266ms)
+  ✓   7 [1280x800] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (895ms)
+  ✓  10 [1280x800] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (100ms)
+/work/tests/e2e/generated-game.spec.ts-snapshots/generated-game-1280x800-linux.png is re-generated, writing actual.
+  ✓   9 [1280x800] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (608ms)
+  ✓  12 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.3s)
+  ✓  11 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (1.6s)
+/work/tests/e2e/game-setup.spec.ts-snapshots/setup-1920x1080-1920x1080-linux.png is re-generated, writing actual.
+  ✓  14 [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (462ms)
+/work/tests/e2e/game-setup.spec.ts-snapshots/four-seat-1920x1080-1920x1080-linux.png is re-generated, writing actual.
+  ✓  15 [1920x1080] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.6s)
+  ✓  13 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (2.3s)
+  ✓  16 [1920x1080] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (325ms)
+  ✓  18 [1920x1080] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (271ms)
+  ✓  17 [1920x1080] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (895ms)
+  ✓  20 [1920x1080] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (102ms)
+/work/tests/e2e/generated-game.spec.ts-snapshots/generated-game-1920x1080-linux.png is re-generated, writing actual.
+  ✓  19 [1920x1080] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (891ms)
+
+
+  1) [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 1
+
+      Object {
+    -   "h": 800,
+    +   "h": 824,
+        "w": 1280,
+      }
+
+      13 |  expect(boxes.length).toBeGreaterThan(3);const v=page.viewportSize()!;
+      14 |  for(const {text,b,t,c,panel,font} of boxes){expect(b.w,text!).toBeGreaterThan(0);expect(b.h,text!).toBeGreaterThan(0);expect(font,text!).toBeGreaterThanOrEqual(12);expect(b.x,text!).toBeGreaterThanOrEqual(0);expect(b.y,text!).toBeGreaterThanOrEqual(0);expect(b.r,text!).toBeLessThanOrEqual(v.width+1);expect(b.b,text!).toBeLessThanOrEqual(v.height+1);expect(b.x,text!).toBeGreaterThanOrEqual(c.x-1);expect(b.r,text!).toBeLessThanOrEqual(c.r+1);expect(b.y,text!).toBeGreaterThanOrEqual(c.y-1);expect(b.b,text!).toBeLessThanOrEqual(c.b+1);if(t.r>t.x){expect(t.x,text!).toBeGreaterThanOrEqual(b.x-1);expect(t.r,text!).toBeLessThanOrEqual(b.r+1);expect(t.y,text!).toBeGreaterThanOrEqual(b.y-1);expect(t.b,text!).toBeLessThanOrEqual(b.b+1);}if(panel){expect(b.y,text!).toBeGreaterThanOrEqual(panel.y);expect(b.b,text!).toBeLessThanOrEqual(panel.b+1);}}
+    > 15 |  expect(await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight}))).toEqual({w:v.width,h:v.height});
+         |                                                                                                                      ^
+      16 | }
+      17 | async function screenshot(page:Page,name:string,project:string){const dir=process.env["SETUP_EVIDENCE_DIR"];if(dir)await page.screenshot({path:join(mkdtempSync(join(dir,"paint-")),`${name}-${project}.png`)});}
+      18 |
+        at fit (/work/tests/e2e/game-setup.spec.ts:15:118)
+        at /work/tests/e2e/game-setup.spec.ts:46:275
+
+    Error Context: test-results/game-setup-invalid-seeds-c-30ee6-al-have-actionable-recovery-1280x800/error-context.md
+
+  1 failed
+    [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery 
+  19 passed (11.4s)
