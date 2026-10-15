@@ -1,0 +1,65 @@
+
+Running 2 tests using 2 workers
+
+  ✘  2 [1920x1080] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus (5.1s)
+  ✘  1 [1280x800] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus (5.1s)
+
+
+  1) [1280x800] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'How to play', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'How to play', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'How to play', exact: true })
+
+
+      38 |   await seats.selectOption("3");
+      39 |   const opener = page.getByRole("button", { name: "How to play", exact: true });
+    > 40 |   await expect(opener).toBeVisible();
+         |                        ^
+      41 |   await opener.focus();
+      42 |   await page.keyboard.press("Enter");
+      43 |   const dialog = page.getByRole("dialog", { name: "How to play", exact: true });
+        at /work/tests/e2e/help.spec.ts:40:24
+
+    Error Context: test-results/help-setup-help-is-reachab-77438-crollable-and-returns-focus-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('button', { name: 'How to play', exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('button', { name: 'How to play', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: 'How to play', exact: true })
+
+
+      38 |   await seats.selectOption("3");
+      39 |   const opener = page.getByRole("button", { name: "How to play", exact: true });
+    > 40 |   await expect(opener).toBeVisible();
+         |                        ^
+      41 |   await opener.focus();
+      42 |   await page.keyboard.press("Enter");
+      43 |   const dialog = page.getByRole("dialog", { name: "How to play", exact: true });
+        at /work/tests/e2e/help.spec.ts:40:24
+
+    Error Context: test-results/help-setup-help-is-reachab-77438-crollable-and-returns-focus-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus 
+    [1920x1080] › tests/e2e/help.spec.ts:32:1 › setup help is reachable, readable, scrollable and returns focus 
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

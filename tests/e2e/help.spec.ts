@@ -1,7 +1,7 @@
 import { expect, test as base } from "@playwright/test";
 import { readFileSync, mkdirSync, mkdtempSync } from "node:fs";
 import { join } from "node:path";
-import type { Page } from "@playwright/test";
+import type { Locator, Page } from "@playwright/test";
 import { createGame, defaultOptions, attackTargets, apply, malpacoRules, serializeMatch } from "../../src/core";
 
 const topics = ["Seed and players", "Map and armies", "Reinforcements", "Attacking", "Turns and victory", "Computer turns", "Save and load"];
@@ -18,9 +18,37 @@ const test = base.extend<{ noBrowserErrors: void }>({
 async function capture(page: Page, name: string, project: string) {
   const root = process.env["HELP_EVIDENCE_DIR"];
   if (!root) return;
+  await page.evaluate(async () => { await document.fonts.ready; });
   mkdirSync(root, { recursive: true });
   const dir = mkdtempSync(join(root, "help-"));
   await page.screenshot({ path: join(dir, `${name}-${project}.png`) });
+}
+
+async function expectDialogFits(page: Page, dialog: Locator) {
+  const viewport = page.viewportSize()!;
+  const geometry = await dialog.evaluate(element => {
+    const box = element.getBoundingClientRect();
+    const close = element.querySelector("button")!.getBoundingClientRect();
+    return {
+      dialog: { x: box.x, y: box.y, right: box.right, bottom: box.bottom, width: box.width, height: box.height, opacity: Number(getComputedStyle(element).opacity) },
+      close: { x: close.x, y: close.y, right: close.right, bottom: close.bottom },
+    };
+  });
+  expect(geometry.dialog.opacity).toBeGreaterThanOrEqual(0.99);
+  expect(geometry.dialog.width).toBeGreaterThan(0);
+  expect(geometry.dialog.height).toBeGreaterThan(0);
+  expect(geometry.dialog.x).toBeGreaterThanOrEqual(0);
+  expect(geometry.dialog.y).toBeGreaterThanOrEqual(0);
+  expect(geometry.dialog.right).toBeLessThanOrEqual(viewport.width);
+  expect(geometry.dialog.bottom).toBeLessThanOrEqual(viewport.height);
+  expect(geometry.close.x).toBeGreaterThanOrEqual(geometry.dialog.x);
+  expect(geometry.close.y).toBeGreaterThanOrEqual(geometry.dialog.y);
+  expect(geometry.close.right).toBeLessThanOrEqual(geometry.dialog.right);
+  expect(geometry.close.bottom).toBeLessThanOrEqual(geometry.dialog.bottom);
+  expect(geometry.close.x).toBeGreaterThanOrEqual(0);
+  expect(geometry.close.y).toBeGreaterThanOrEqual(0);
+  expect(geometry.close.right).toBeLessThanOrEqual(viewport.width);
+  expect(geometry.close.bottom).toBeLessThanOrEqual(viewport.height);
 }
 
 async function downloadedMatch(page: Page) {
@@ -42,18 +70,24 @@ test("setup help is reachable, readable, scrollable and returns focus", async ({
   await page.keyboard.press("Enter");
   const dialog = page.getByRole("dialog", { name: "How to play", exact: true });
   await expect(dialog).toBeVisible();
+  await expectDialogFits(page, dialog);
+  await expect(dialog.locator("h2")).toBeInViewport();
+  await expect(dialog.locator("p").first()).toBeInViewport();
   for (const topic of topics) await expect(dialog.getByRole("heading", { name: topic, exact: true })).toBeVisible();
   const copy = (await dialog.locator("p").allTextContents()).join(" ").toLowerCase();
   for (const word of ["seed", "seat", "numeric", "army", "land", "sea", "reinforcement pool", "you own", "start combat", "adjacent", "two armies", "defender", "exchange", "continue", "end your turn", "eliminated", "every province", "computer", "pauses", "save game", "options", "history", "load game", "new game"]) expect(copy).toContain(word);
   const box = await dialog.evaluate(el => ({ scroll: el.scrollHeight, client: el.clientHeight, width: el.scrollWidth, clientWidth: el.clientWidth }));
   expect(box.width).toBeLessThanOrEqual(box.clientWidth);
   if (box.scroll > box.client) await dialog.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  await expectDialogFits(page, dialog);
   const viewport = page.viewportSize()!;
   const pageWidth = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(pageWidth).toBeLessThanOrEqual(viewport.width);
   await expect(dialog.locator("p").last()).toBeInViewport();
   await expect(dialog.getByRole("button", { name: "Close", exact: true })).toBeVisible();
-  await capture(page, "setup-help", info.project.name);
+  await capture(page, "setup-help-end", info.project.name);
+  await dialog.evaluate(el => { el.scrollTop = 0; });
+  await capture(page, "setup-help-top", info.project.name);
   await dialog.getByRole("button", { name: "Close", exact: true }).press("Enter");
   await expect(dialog).toBeHidden();
   await expect(opener).toBeFocused();
@@ -97,6 +131,7 @@ test("gameplay help preserves an active selection and downloaded match", async (
   await opener.click();
   const dialog = page.getByRole("dialog", { name: "How to play", exact: true });
   await expect(dialog).toBeVisible();
+  await expectDialogFits(page, dialog);
   for (const topic of topics) await expect(dialog.getByRole("heading", { name: topic, exact: true })).toBeVisible();
   await capture(page, "gameplay-help", info.project.name);
   await page.keyboard.press("Escape");

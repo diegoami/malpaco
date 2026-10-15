@@ -282,3 +282,9 @@ Plan: add focused setup/generated-game help acceptance at both pinned viewports,
 d6487fe: stage-one acceptance and disposable candidate scaffold committed. Parent replay: `node docs/prototypes/help/replay.mjs docs/prototypes/help/preflight-<unique-id>` in the pinned image.
 
 END T20 stage 1 preparation: acceptance and disposable source candidate are ready for parent pinned baseline/mock proof. No permanent product source changes are authorized yet.
+
+Preflight A pinned result: baseline setup acceptance 2 red; candidate build green; full candidate and restored suites 6 green each; content and computer-pause mutations 2 red each; all four production-source hashes restored exactly. Visual inspection found inherited dialog rise animation made the captured modal nearly transparent, and desktop `dialog { zoom: 1.3 }` clipped Close below the 1920x1080 viewport. All A logs, screenshots and restoration manifest are retained unchanged under `docs/prototypes/help/preflight-20261015-a/`.
+
+T20 stage 1 B plan: keep the fix in the disposable candidate with scoped help-dialog `zoom: 1` and `animation: none`; extend focused geometry assertions for dialog and Close bounds and opacity at both scroll ends; retain top and bottom screenshots. Parent will run B in the pinned image. No permanent implementation yet.
+
+Preflight A's retained logs, screenshots and manifest are now indexed by `docs/prototypes/help/preflight-20261015-a/SHA256SUMS`. B changes only the candidate, focused acceptance and prototype notes; the A evidence files themselves remain unedited.
