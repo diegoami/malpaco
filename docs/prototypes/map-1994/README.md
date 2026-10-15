@@ -15,6 +15,14 @@ prototype keeps the 46 source province ids and names, 9 island ids/names and
 bonuses, opening owners and armies, and production-centre markers. It replaces
 the original map geometry and adjacency only in this display candidate.
 
+This is an explicit topology proposal, not a preservation claim: the current
+seed graph has 61 land and 16 sea edges; this proposed geometry has 69 land and
+16 sea edges, with some province degrees reaching 6. The net increase of eight
+does not identify the changed edges; the inspector lists every addition and
+removal by country name. Those exact changes require owner review. Edge counts
+do not establish strategic balance, correctness, or preservation of the
+playable graph.
+
 Open the preview and use **Current generated map** and **Proposed geography**
 to compare the source geometry with the proposed map. The candidate banner and
 topology list disclose all land and sea changes. Select any country to inspect
@@ -26,7 +34,7 @@ baseline/candidate/selected-neighbour mutation/restoration sequence with a new
 evidence directory:
 
 ```sh
-node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-e
+node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-f
 ```
 
 The replay installs the candidate's exact bytes only while the pinned-browser

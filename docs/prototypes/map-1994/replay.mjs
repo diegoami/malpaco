@@ -8,7 +8,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const evidenceRoot = resolve(process.argv[2] ?? "");
 if (!process.argv[2]) throw new Error("usage: node docs/prototypes/map-1994/replay.mjs <fresh-evidence-directory>");
 const previewPath = resolve(root, "preview.html");
-const candidatePath = resolve(root, "fixtures/candidate-e/preview-e.html");
+const candidatePath = resolve(root, "fixtures/candidate-f/preview-f.html");
 const verifyPath = resolve(root, "verify.mjs");
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const statuses = {};

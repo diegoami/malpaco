@@ -1,0 +1,193 @@
+{
+  "accepted": false,
+  "viewportRuns": [
+    "1280x800",
+    "1920x1080"
+  ],
+  "provinceCount": 46,
+  "islandCount": 9,
+  "graphSummary": {
+    "current": {
+      "landEdges": 61,
+      "seaEdges": 16
+    },
+    "proposed": {
+      "landEdges": 69,
+      "seaEdges": 16,
+      "provinceDegree": {
+        "province_4": 2,
+        "province_30": 4,
+        "province_8": 4,
+        "province_38": 2,
+        "province_28": 4,
+        "province_45": 2,
+        "province_41": 2,
+        "province_2": 2,
+        "province_16": 4,
+        "province_11": 2,
+        "province_31": 4,
+        "province_22": 2,
+        "province_9": 3,
+        "province_19": 2,
+        "province_1": 5,
+        "province_3": 4,
+        "province_40": 5,
+        "province_24": 3,
+        "province_17": 2,
+        "province_29": 5,
+        "province_33": 5,
+        "province_13": 4,
+        "province_0": 3,
+        "province_10": 5,
+        "province_12": 3,
+        "province_20": 6,
+        "province_36": 5,
+        "province_25": 3,
+        "province_5": 3,
+        "province_27": 3,
+        "province_37": 3,
+        "province_43": 3,
+        "province_6": 6,
+        "province_42": 5,
+        "province_32": 4,
+        "province_18": 4,
+        "province_34": 4,
+        "province_26": 4,
+        "province_7": 4,
+        "province_35": 4,
+        "province_44": 6,
+        "province_39": 6,
+        "province_14": 4,
+        "province_21": 3,
+        "province_15": 4,
+        "province_23": 3
+      },
+      "islandSeaDegree": {
+        "island_0": 4,
+        "island_1": 2,
+        "island_2": 2,
+        "island_3": 2,
+        "island_4": 5,
+        "island_5": 5,
+        "island_6": 4,
+        "island_7": 4,
+        "island_8": 4
+      }
+    }
+  },
+  "overlapControls": {
+    "positive": true,
+    "touching": false,
+    "separated": false
+  },
+  "feasibility": {
+    "method": "exhaustive cyclic rotations at degree-three vertices; spherical embedding iff a face permutation satisfies V-E+F=2",
+    "controls": {
+      "K4": {
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      "K3_3": {
+        "planar": false,
+        "rotationsTried": 64,
+        "eulerCases": 0
+      }
+    },
+    "islands": [
+      {
+        "island": "North Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "East Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "West Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "South Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "Central Isle",
+        "vertices": 5,
+        "edges": 7,
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      {
+        "island": "Harbor Isle",
+        "vertices": 5,
+        "edges": 7,
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      {
+        "island": "Palm Isle",
+        "vertices": 7,
+        "edges": 10,
+        "planar": true,
+        "rotationsTried": 64,
+        "eulerCases": 4
+      },
+      {
+        "island": "Cliff Isle",
+        "vertices": 7,
+        "edges": 10,
+        "planar": false,
+        "rotationsTried": 64,
+        "eulerCases": 0
+      },
+      {
+        "island": "Great Isle",
+        "vertices": 10,
+        "edges": 15,
+        "planar": false,
+        "rotationsTried": 1024,
+        "eulerCases": 0
+      }
+    ]
+  },
+  "ambiguity": {
+    "ironPoint": {
+      "land": [
+        "South rest",
+        "High shore"
+      ],
+      "sea": [
+        "Lower field",
+        "Blue peak"
+      ]
+    },
+    "silverShore": {
+      "sea": [],
+      "finding": "no current sea lane; visual ambiguity only"
+    }
+  },
+  "failures": [
+    "province_20: complete name/army label rectangle escapes its province cell",
+    "province_6: complete name/army label rectangle escapes its province cell",
+    "province_18: complete name/army label rectangle escapes its province cell"
+  ]
+}
