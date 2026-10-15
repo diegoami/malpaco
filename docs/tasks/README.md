@@ -26,3 +26,4 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T18 | Basic computer opponent | #52 | T17 |
 | T19 | Generated setup as the default entry | #54 | T18 |
 | T20 | In-game instructions | #59 | fix45 |
+| T21 | First shareable playable build | #62 | T20 |
