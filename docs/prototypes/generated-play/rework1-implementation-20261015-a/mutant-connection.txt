@@ -1,0 +1,72 @@
+
+Running 2 tests using 2 workers
+
+  ✘  2 [1280x800] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (412ms)
+  ✘  1 [1920x1080] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (410ms)
+
+
+  1) [1280x800] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -44,11 +44,10 @@
+        "province_27|province_42",
+        "province_27|province_43",
+        "province_28|province_38",
+        "province_28|province_45",
+        "province_2|province_41",
+    -   "province_30|province_4",
+        "province_30|province_8",
+        "province_32|province_37",
+        "province_32|province_43",
+        "province_34|province_44",
+        "province_35|province_39",
+
+      65 |  await expect(page.locator("[data-island]")).toHaveCount(9);for(const i of map.islands)await expect(page.locator(`[data-island="${i.id}"]`)).toContainText(`${i.name}  /  +${i.bonus}`);
+      66 |  for(const [kind,field] of [["border","borders"],["sea","seaLanes"]] as const){
+    > 67 |  const edges=page.locator(`[data-connection="${kind}"]`);expect(await edges.evaluateAll(ns=>ns.map(n=>[n.getAttribute("data-from"),n.getAttribute("data-to")].sort().join("|")).sort())).toEqual(pairs(field));
+         |                                                                                                                                                                                          ^
+      68 |  expect(await edges.evaluateAll(ns=>ns.every(n=>{const line=n as SVGGeometryElement;return ["from","to"].every((side,i)=>{const shape=document.querySelector(`[data-country="${line.getAttribute(`data-${side}`)}"] .country-shape`) as SVGGeometryElement;const p=line.getPointAtLength(i?line.getTotalLength():0).matrixTransform(line.getScreenCTM()!).matrixTransform(shape.getScreenCTM()!.inverse());return shape.isPointInFill(p);});}))).toBe(true);
+      69 |  expect(await edges.evaluateAll(ns=>ns.every(n=>{const p=n as SVGGeometryElement,s=getComputedStyle(p);return p.getTotalLength()>0&&s.stroke!=="none"&&Number(s.strokeOpacity)>0;}))).toBe(true);
+      70 |  }
+        at /work/tests/e2e/generated-game.spec.ts:67:186
+
+    Error Context: test-results/generated-game-exact-topol-a63c9-teGame-ownership-and-counts-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 0
+
+    @@ -44,11 +44,10 @@
+        "province_27|province_42",
+        "province_27|province_43",
+        "province_28|province_38",
+        "province_28|province_45",
+        "province_2|province_41",
+    -   "province_30|province_4",
+        "province_30|province_8",
+        "province_32|province_37",
+        "province_32|province_43",
+        "province_34|province_44",
+        "province_35|province_39",
+
+      65 |  await expect(page.locator("[data-island]")).toHaveCount(9);for(const i of map.islands)await expect(page.locator(`[data-island="${i.id}"]`)).toContainText(`${i.name}  /  +${i.bonus}`);
+      66 |  for(const [kind,field] of [["border","borders"],["sea","seaLanes"]] as const){
+    > 67 |  const edges=page.locator(`[data-connection="${kind}"]`);expect(await edges.evaluateAll(ns=>ns.map(n=>[n.getAttribute("data-from"),n.getAttribute("data-to")].sort().join("|")).sort())).toEqual(pairs(field));
+         |                                                                                                                                                                                          ^
+      68 |  expect(await edges.evaluateAll(ns=>ns.every(n=>{const line=n as SVGGeometryElement;return ["from","to"].every((side,i)=>{const shape=document.querySelector(`[data-country="${line.getAttribute(`data-${side}`)}"] .country-shape`) as SVGGeometryElement;const p=line.getPointAtLength(i?line.getTotalLength():0).matrixTransform(line.getScreenCTM()!).matrixTransform(shape.getScreenCTM()!.inverse());return shape.isPointInFill(p);});}))).toBe(true);
+      69 |  expect(await edges.evaluateAll(ns=>ns.every(n=>{const p=n as SVGGeometryElement,s=getComputedStyle(p);return p.getTotalLength()>0&&s.stroke!=="none"&&Number(s.strokeOpacity)>0;}))).toBe(true);
+      70 |  }
+        at /work/tests/e2e/generated-game.spec.ts:67:186
+
+    Error Context: test-results/generated-game-exact-topol-a63c9-teGame-ownership-and-counts-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts 
+    [1920x1080] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts 

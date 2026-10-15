@@ -41,3 +41,22 @@ match and `implementation-sha256.txt` records final artifacts and source hashes.
 Existing authored/prototype goldens and core files remain unchanged. The visible
 legend explains numeric ownership and solid/dashed connections; the two new
 settled generated-game goldens are ready for owner judgement.
+
+
+Review rework R1/R2: the narrow generated panel overrode the ordinary desktop
+column width while retaining its 1.3 zoom. `rework1-baseline-20261015-b.txt`
+records the new seat-card Range geometry test failing on both clipped
+`23 provinces · 46 armies` strings at 1920x1080, with 1280x800 passing. The
+correction restores the existing 440px column at the existing large breakpoint;
+small-screen geometry is unchanged. The test also requires a single-line turn
+title and keeps text inside its own card and panel, independent of document
+scroll dimensions.
+
+`rework1-implementation-20261015-a/` records the corrected suite: generated unit
+7 passed, generated browser 12 passed, all unit 346 passed, build exit 0 and
+full browser 60 passed. All four actual-source removal mutations fail for the
+same intended causes, source hashes restore exactly, and the restored generated
+suite passes 12/12. Both new-route goldens were regenerated in the pinned image;
+the 1280x800 image is unchanged and the 1920x1080 image now shows complete seat
+cards. Existing goldens and core remain unchanged. Artifact hashes are in
+`rework1-sha256.txt`.

@@ -1,0 +1,17 @@
+
+Running 12 tests using 2 workers
+
+  ✓   2 [1280x800] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (393ms)
+  ✓   3 [1280x800] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (891ms)
+  ✓   1 [1280x800] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.4s)
+  ✓   4 [1280x800] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (303ms)
+  ✓   5 [1280x800] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (225ms)
+  ✓   6 [1280x800] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (103ms)
+  ✓   8 [1920x1080] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (408ms)
+  ✓   9 [1920x1080] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (897ms)
+  ✓   7 [1920x1080] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.7s)
+  ✓  10 [1920x1080] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (305ms)
+  ✓  12 [1920x1080] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (123ms)
+  ✓  11 [1920x1080] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (319ms)
+
+  12 passed (5.2s)
