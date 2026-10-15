@@ -21,3 +21,9 @@ Choose **How to play** during setup or **Help** during a generated match for an
 in-game guide to setup choices, map labels, reinforcement and combat, turns,
 computer turns, and saved matches. Opening help pauses computer automation until
 the dialog closes; Close and Escape return focus to the control that opened it.
+
+## Shareable build
+
+Run `npm run package:playable` to rebuild and package the game as
+`release/malpaco-playable.tar.gz`. The [play instructions](docs/play.md) explain
+how to run the extracted build without the source checkout or npm dependencies.

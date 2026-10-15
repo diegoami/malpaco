@@ -29,10 +29,19 @@ jobs:
         run: npm run build
 
       - name: Vitest (rules core)
-        run: npx vitest run
+        run: npm test
 
       - name: Playwright (headless UI tests, screenshots and goldens)
-        run: npx playwright test
+        run: npx playwright test --workers=2
+
+      - name: Package and verify playable artifact
+        run: |
+          fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"
+          echo "PLAYABLE_EXTRACTED_DIR=$fresh_dir" >> "$GITHUB_ENV"
+          node docs/prototypes/playable/acceptance.mjs "$fresh_dir"
+
+      - name: Playwright (extracted playable artifact)
+        run: npx playwright test --config playwright.release.config.ts --workers=2
 
       - name: Upload screenshots
         if: always()
@@ -40,6 +49,13 @@ jobs:
         with:
           name: screenshots
           path: screenshots/
+          if-no-files-found: error
+
+      - name: Upload playable archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: malpaco-playable
+          path: release/malpaco-playable.tar.gz
           if-no-files-found: error
 
       - name: Upload Playwright report
