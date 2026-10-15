@@ -8,7 +8,7 @@ one HTML file with embedded SVG data, styles and interactions. It has no
 runtime or build dependencies.
 
 The proposed map uses deterministic, hand-designed island placement and
-Voronoi province tiling clipped to a gently irregular island silhouette. Those
+Voronoi province tiling clipped to broad, varied island silhouettes. Those
 positions and the new travel graph are `[designed]` for this seed after
 searching the supplied current map and the archived Malpaco Godot demo. The
 prototype keeps the 46 source province ids and names, 9 island ids/names and
@@ -26,7 +26,7 @@ baseline/candidate/selected-neighbour mutation/restoration sequence with a new
 evidence directory:
 
 ```sh
-node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-b
+node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-d
 ```
 
 The replay installs the candidate's exact bytes only while the pinned-browser

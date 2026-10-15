@@ -8,7 +8,7 @@ const root = dirname(fileURLToPath(import.meta.url));
 const evidenceRoot = resolve(process.argv[2] ?? "");
 if (!process.argv[2]) throw new Error("usage: node docs/prototypes/map-1994/replay.mjs <fresh-evidence-directory>");
 const previewPath = resolve(root, "preview.html");
-const candidatePath = resolve(root, "fixtures/candidate-b/preview.html");
+const candidatePath = resolve(root, "fixtures/candidate-d/preview.html");
 const verifyPath = resolve(root, "verify.mjs");
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const statuses = {};
@@ -43,10 +43,10 @@ try {
   statuses.candidateExpectedGreen = candidate.status === 0;
 
   const candidateText = candidateBytes.toString("utf8");
-  const marker = "classList.add('is-neighbor')";
+  const marker = "if(selected&&[...links.land,...links.sea].includes(selected))g.classList.add('is-neighbor')";
   const occurrences = candidateText.split(marker).length - 1;
-  if (occurrences !== 2) throw new Error(`expected exactly two selected-neighbour feedback sites, found ${occurrences}`);
-  const mutated = Buffer.from(candidateText.replaceAll(marker, "classList.remove('is-neighbor')"), "utf8");
+  if (occurrences !== 1) throw new Error(`expected exactly one selected-neighbour feedback site, found ${occurrences}`);
+  const mutated = Buffer.from(candidateText.replace(marker, "if(false)g.classList.add('is-neighbor')"), "utf8");
   await writeFile(previewPath, mutated);
   changed = true;
   statuses.mutationSha256 = sha256(mutated);

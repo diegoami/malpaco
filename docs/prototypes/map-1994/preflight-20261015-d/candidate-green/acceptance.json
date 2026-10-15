@@ -1,0 +1,237 @@
+{
+  "accepted": false,
+  "viewportRuns": [
+    "1280x800",
+    "1920x1080"
+  ],
+  "provinceCount": 46,
+  "islandCount": 9,
+  "graphSummary": {
+    "current": {
+      "landEdges": 61,
+      "seaEdges": 16
+    },
+    "proposed": {
+      "landEdges": 67,
+      "seaEdges": 16,
+      "provinceDegree": {
+        "province_4": 2,
+        "province_30": 4,
+        "province_8": 4,
+        "province_38": 2,
+        "province_28": 4,
+        "province_45": 2,
+        "province_41": 2,
+        "province_2": 2,
+        "province_16": 4,
+        "province_11": 2,
+        "province_31": 4,
+        "province_22": 2,
+        "province_9": 3,
+        "province_19": 2,
+        "province_1": 5,
+        "province_3": 4,
+        "province_40": 5,
+        "province_24": 3,
+        "province_17": 2,
+        "province_29": 5,
+        "province_33": 5,
+        "province_13": 4,
+        "province_0": 2,
+        "province_10": 5,
+        "province_12": 6,
+        "province_20": 3,
+        "province_36": 4,
+        "province_25": 3,
+        "province_5": 3,
+        "province_27": 2,
+        "province_37": 3,
+        "province_43": 6,
+        "province_6": 3,
+        "province_42": 4,
+        "province_32": 4,
+        "province_18": 4,
+        "province_34": 4,
+        "province_26": 5,
+        "province_7": 4,
+        "province_35": 4,
+        "province_44": 5,
+        "province_39": 5,
+        "province_14": 4,
+        "province_21": 3,
+        "province_15": 5,
+        "province_23": 3
+      },
+      "islandSeaDegree": {
+        "island_0": 4,
+        "island_1": 2,
+        "island_2": 2,
+        "island_3": 2,
+        "island_4": 5,
+        "island_5": 5,
+        "island_6": 4,
+        "island_7": 4,
+        "island_8": 4
+      }
+    }
+  },
+  "feasibility": {
+    "method": "exhaustive cyclic rotations at degree-three vertices; spherical embedding iff a face permutation satisfies V-E+F=2",
+    "controls": {
+      "K4": {
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      "K3_3": {
+        "planar": false,
+        "rotationsTried": 64,
+        "eulerCases": 0
+      }
+    },
+    "islands": [
+      {
+        "island": "North Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "East Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "West Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "South Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "Central Isle",
+        "vertices": 5,
+        "edges": 7,
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      {
+        "island": "Harbor Isle",
+        "vertices": 5,
+        "edges": 7,
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      {
+        "island": "Palm Isle",
+        "vertices": 7,
+        "edges": 10,
+        "planar": true,
+        "rotationsTried": 64,
+        "eulerCases": 4
+      },
+      {
+        "island": "Cliff Isle",
+        "vertices": 7,
+        "edges": 10,
+        "planar": false,
+        "rotationsTried": 64,
+        "eulerCases": 0
+      },
+      {
+        "island": "Great Isle",
+        "vertices": 10,
+        "edges": 15,
+        "planar": false,
+        "rotationsTried": 1024,
+        "eulerCases": 0
+      }
+    ]
+  },
+  "ambiguity": {
+    "ironPoint": {
+      "land": [
+        "South rest",
+        "High shore"
+      ],
+      "sea": [
+        "Lower field",
+        "Blue peak"
+      ]
+    },
+    "silverShore": {
+      "sea": [],
+      "finding": "no current sea lane; visual ambiguity only"
+    }
+  },
+  "failures": [
+    "1280: province label/badge bounds overlap: province_9 and province_1",
+    "1280: province label/badge bounds overlap: province_12 and province_5",
+    "1280: province label/badge bounds overlap: province_25 and province_5",
+    "1280: province label/badge bounds overlap: province_37 and province_43",
+    "1920: province label/badge bounds overlap: province_9 and province_1",
+    "1920: province label/badge bounds overlap: province_12 and province_5",
+    "1920: province label/badge bounds overlap: province_25 and province_5",
+    "1920: province label/badge bounds overlap: province_37 and province_43",
+    "island_0: positive-area polygon overlap province_4/province_30",
+    "island_3: positive-area polygon overlap province_11/province_31",
+    "island_3: positive-area polygon overlap province_11/province_22",
+    "island_3: positive-area polygon overlap province_31/province_22",
+    "island_4: positive-area polygon overlap province_9/province_3",
+    "island_4: positive-area polygon overlap province_19/province_40",
+    "island_5: positive-area polygon overlap province_17/province_13",
+    "island_5: positive-area polygon overlap province_29/province_33",
+    "island_5: positive-area polygon overlap province_29/province_13",
+    "island_6: positive-area polygon overlap province_10/province_12",
+    "island_8: positive-area polygon overlap province_34/province_26",
+    "island_8: positive-area polygon overlap province_34/province_35",
+    "island_8: positive-area polygon overlap province_34/province_44",
+    "island_8: positive-area polygon overlap province_26/province_7",
+    "island_8: positive-area polygon overlap province_26/province_44",
+    "island_8: positive-area polygon overlap province_26/province_39",
+    "island_8: positive-area polygon overlap province_35/province_44",
+    "island_8: positive-area polygon overlap province_35/province_21",
+    "island_8: positive-area polygon overlap province_44/province_21",
+    "province_9: complete name/army label rectangle escapes its province cell",
+    "province_1: complete name/army label rectangle escapes its province cell",
+    "province_3: complete name/army label rectangle escapes its province cell",
+    "province_17: complete name/army label rectangle escapes its province cell",
+    "province_29: complete name/army label rectangle escapes its province cell",
+    "province_33: complete name/army label rectangle escapes its province cell",
+    "province_13: complete name/army label rectangle escapes its province cell",
+    "province_0: complete name/army label rectangle escapes its province cell",
+    "province_10: complete name/army label rectangle escapes its province cell",
+    "province_12: complete name/army label rectangle escapes its province cell",
+    "province_20: complete name/army label rectangle escapes its province cell",
+    "province_36: complete name/army label rectangle escapes its province cell",
+    "province_25: complete name/army label rectangle escapes its province cell",
+    "province_5: complete name/army label rectangle escapes its province cell",
+    "province_27: complete name/army label rectangle escapes its province cell",
+    "province_37: complete name/army label rectangle escapes its province cell",
+    "province_43: complete name/army label rectangle escapes its province cell",
+    "province_6: complete name/army label rectangle escapes its province cell",
+    "province_42: complete name/army label rectangle escapes its province cell",
+    "province_32: complete name/army label rectangle escapes its province cell",
+    "province_18: complete name/army label rectangle escapes its province cell",
+    "province_26: complete name/army label rectangle escapes its province cell",
+    "province_44: complete name/army label rectangle escapes its province cell",
+    "province_39: complete name/army label rectangle escapes its province cell",
+    "province_14: complete name/army label rectangle escapes its province cell"
+  ]
+}
