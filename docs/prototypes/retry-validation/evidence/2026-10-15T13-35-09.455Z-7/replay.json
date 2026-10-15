@@ -1,0 +1,21 @@
+{
+  "mode": "baseline",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/retry-validation.spec.ts",
+    "--workers=2"
+  ],
+  "sourceBeforeSha256": "60b746e54082d8e668ab511752627f7171ac94a7a8e07a2181087973f5adeba8",
+  "candidateSha256": "5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3",
+  "evidence": "/work/docs/prototypes/retry-validation/evidence/2026-10-15T13-35-09.455Z-7",
+  "startedAt": "2026-10-15T13:35:09.457Z",
+  "exitCode": 1,
+  "signal": null,
+  "stdout": "\nRunning 2 tests using 2 workers\n\n  ✘  1 [1280x800] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings (5.3s)\n  ✘  2 [1920x1080] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings (5.3s)\n\n\n  1) [1280x800] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings \n\n    Error: expect(locator).toBeVisible() failed\n\n    Locator: locator('.retry-validation')\n    Expected: visible\n    Timeout: 5000ms\n    Error: element(s) not found\n\n    Call log:\n      - Expect \"toBeVisible\" locator('.retry-validation') with timeout 5000ms\n      - waiting for locator('.retry-validation')\n\n\n      79 |       await page.getByRole(\"button\", { name: \"Retry\", exact: true }).click();\n      80 |       await expect(page).toHaveURL(refusalUrl);\n    > 81 |       await expect(page.locator(\".retry-validation\")).toBeVisible();\n         |                                                       ^\n      82 |       await expect(page.locator(\".retry-validation\")).toContainText(/seed/i);\n      83 |       await expect(page.locator(\"[data-country]\")).toHaveCount(0);\n      84 |       if (invalid === \"\") await expect(seed).toHaveValue(\"\");\n        at /work/tests/e2e/retry-validation.spec.ts:81:55\n\n    Error Context: test-results/retry-validation-refusal-r-e6fea-ers-with-preserved-settings-1280x800/error-context.md\n\n  2) [1920x1080] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings \n\n    Error: expect(locator).toBeVisible() failed\n\n    Locator: locator('.retry-validation')\n    Expected: visible\n    Timeout: 5000ms\n    Error: element(s) not found\n\n    Call log:\n      - Expect \"toBeVisible\" locator('.retry-validation') with timeout 5000ms\n      - waiting for locator('.retry-validation')\n\n\n      79 |       await page.getByRole(\"button\", { name: \"Retry\", exact: true }).click();\n      80 |       await expect(page).toHaveURL(refusalUrl);\n    > 81 |       await expect(page.locator(\".retry-validation\")).toBeVisible();\n         |                                                       ^\n      82 |       await expect(page.locator(\".retry-validation\")).toContainText(/seed/i);\n      83 |       await expect(page.locator(\"[data-country]\")).toHaveCount(0);\n      84 |       if (invalid === \"\") await expect(seed).toHaveValue(\"\");\n        at /work/tests/e2e/retry-validation.spec.ts:81:55\n\n    Error Context: test-results/retry-validation-refusal-r-e6fea-ers-with-preserved-settings-1920x1080/error-context.md\n\n  2 failed\n    [1280x800] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings \n    [1920x1080] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings \n",
+  "stderr": "npm notice\nnpm notice New major version of npm available! 11.19.0 -> 12.2.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\nnpm notice To update run: npm install -g npm@12.2.0\nnpm notice\n",
+  "sourceAfterSha256": "60b746e54082d8e668ab511752627f7171ac94a7a8e07a2181087973f5adeba8",
+  "sourceRestoredByteForByte": true,
+  "finishedAt": "2026-10-15T13:35:16.654Z"
+}

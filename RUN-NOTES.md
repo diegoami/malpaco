@@ -240,3 +240,11 @@ Plan: add the focused retry-validation acceptance and a disposable `generatedGam
 2026-10-15: added `tests/e2e/retry-validation.spec.ts`, `generatedGame.candidate.ts`, `replay.mjs` and prototype instructions. Syntax preflight: `node --check docs/prototypes/retry-validation/replay.mjs` exited0; `node_modules/.bin/playwright test tests/e2e/retry-validation.spec.ts --list` exited0 with the two configured viewport projects. No browser was launched. Original production source SHA-256 is `60b746e54082d8e668ab511752627f7171ac94a7a8e07a2181087973f5adeba8`; candidate SHA-256 is `5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3`. The temporary dependency symlink was removed.
 
 END Fix45 stage 1 preparation: acceptance and replay are pushed for parent pinned baseline/mock. `src/ui/generatedGame.ts` is unchanged. Do not install the candidate permanently or run browsers locally; wait for the parent's pinned evidence and explicit stage2 authorization.
+
+## Fix45 stage 2
+
+Plan: install the preflighted candidate in `src/ui/generatedGame.ts`, document invalid Retry feedback and recovery in `docs/spike.md`, retain and hash the pinned stage1 evidence including screenshots, and add `verify-final.mjs`. The verifier runs focused acceptance, unit tests, build and the full pinned browser suite, then removes only Retry's invalid-feedback assignment as an actual-source mutation, requires focused acceptance to fail at its feedback assertion, restores the exact source bytes and reruns focused acceptance. Parent owns the pinned verifier run; no local browser or golden update.
+
+2026-10-15: parent pinned preflight A passed the contract: baseline exit1 at the missing retry-feedback acceptance, candidate exit0 with both viewports passing, source SHA-256 `60b746e54082d8e668ab511752627f7171ac94a7a8e07a2181087973f5adeba8` restored exactly. Parent inspected retained empty-input human and computer captures. Added SHA256SUMS for both original replay directories; source and candidate hashes were preserved. Stage2 authorized by parent.
+
+END Fix45 stage 2 preparation: candidate behavior is installed and the final verifier is prepared. Await parent pinned focused/unit/build/full-browser/mutation run before reporting completion; no existing goldens changed.
