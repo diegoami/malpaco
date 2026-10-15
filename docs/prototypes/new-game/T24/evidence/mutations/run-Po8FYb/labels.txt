@@ -1,0 +1,258 @@
+✔ labels: positive geometric control (8.285054ms)
+✖ labels: rejects missing label (4.314779ms)
+✖ labels: rejects non-finite label (2.454289ms)
+✖ labels: rejects overlapping hit squares (1.677299ms)
+✖ labels: rejects insufficient 44px gap (1.442452ms)
+✖ labels: rejects undersized hit box (1.372706ms)
+✖ labels: rejects undersized count text (2.303697ms)
+✖ labels: rejects non-finite text specification (1.599773ms)
+✖ labels: rejects insufficient contrast (1.733399ms)
+✖ labels: rejects label outside country (2.453505ms)
+✖ labels: rejects hit area clipped by coast (1.995183ms)
+✖ labels: rejects unscaled positions cannot prove minimum-window fit (5.914512ms)
+✖ labels: rejects invalid frame (3.471741ms)
+✖ labels: scales separation when 40px hit squares still fit (3.096165ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 1
+ℹ fail 13
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.781532
+
+✖ failing tests:
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects missing label (4.314779ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: missing label
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects non-finite label (2.454289ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: non-finite label
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects overlapping hit squares (1.677299ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: overlapping hit squares
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects insufficient 44px gap (1.442452ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: insufficient 44px gap
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects undersized hit box (1.372706ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: undersized hit box
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects undersized count text (2.303697ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: undersized count text
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects non-finite text specification (1.599773ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: non-finite text specification
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects insufficient contrast (1.733399ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: insufficient contrast
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects label outside country (2.453505ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: label outside country
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects hit area clipped by coast (1.995183ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: hit area clipped by coast
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects unscaled positions cannot prove minimum-window fit (5.914512ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: unscaled positions cannot prove minimum-window fit
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ labels: rejects invalid frame (3.471741ms)
+  AssertionError [ERR_ASSERTION]: labels bypass: invalid frame
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:62:1
+✖ labels: scales separation when 40px hit squares still fit (3.096165ms)
+  AssertionError [ERR_ASSERTION]: scaled separation must reject this arrangement
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:68:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

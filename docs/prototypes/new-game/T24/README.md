@@ -110,3 +110,22 @@ shared subdivisions and choose sea endpoints from exposed coastline midpoints. B
 with an owner-approved reference board (T25) after owner review of this feasibility
 evidence. Keep the 99% / 50-attempt generation objective unproven until T34–T36 measure
 the replacement; this task does not authorise silent relaxation or production changes.
+
+## Review R1: protect scaled separation independently
+
+Kimi's round-1 review proved that deleting `*scale` from the spacing check left
+all 85 tests passing: the old resize control failed through hit-square containment
+instead of spacing. [The reproduced pre-fix result](evidence/rework-r1/before-tests.txt)
+is retained. The added control uses an enlarged frame giving scale 0.8: 50-unit
+cells still contain 40px hit squares exactly, but labels are only 40px apart, so
+only the 44px spacing check rejects them. It additionally asserts that every
+reported error is a spacing error, preventing the former confounding refusal.
+
+The [updated mutation audit](evidence/mutations/run-Po8FYb/report.json) kills all
+16 mutants: the 15 complete-group deletions and the targeted scale-only deletion.
+Source bytes restore exactly; all 86 tests then pass. The
+[updated task-pattern outputs](evidence/rework-r1/acceptance-v2/summary.json) also
+pass. The original 82/85-test and 15-mutant evidence remains historical evidence,
+not a claim about the extended suite. No production, checker or probe behaviour
+changed for R1, and every authoritative sweep source fingerprint still matches.
+Unknown contrast remains explicit; only a rendered UI check in T52 can establish it.

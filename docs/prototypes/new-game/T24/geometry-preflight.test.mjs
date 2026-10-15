@@ -59,3 +59,13 @@ for(const [constraint,mutations] of Object.entries(cases)) {
     assert.ok(checkConstraint(constraint,board).length>0,`${constraint} bypass: ${name}`);
   });
 }
+test('labels: scales separation when 40px hit squares still fit',()=>{
+  const board=witness();
+  // Scale 0.8: each 50-unit cell fits its 40px hit square exactly, while
+  // neighbouring label points are only 40px apart, below the 44px rule.
+  board.bounds.width=1000;
+  const errors=checkConstraint('labels',board);
+  assert.ok(errors.length>0,'scaled separation must reject this arrangement');
+  assert.ok(errors.every(e=>e.startsWith('Labels too close ')),
+    'hit containment, text and other refusals must not mask the spacing test');
+});

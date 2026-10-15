@@ -1,0 +1,42 @@
+✔ labels: positive geometric control (14.348072ms)
+✔ labels: rejects missing label (3.357022ms)
+✔ labels: rejects non-finite label (2.571848ms)
+✔ labels: rejects overlapping hit squares (2.182502ms)
+✔ labels: rejects insufficient 44px gap (2.010606ms)
+✔ labels: rejects undersized hit box (1.883995ms)
+✔ labels: rejects undersized count text (2.131782ms)
+✔ labels: rejects non-finite text specification (2.593081ms)
+✔ labels: rejects insufficient contrast (2.587412ms)
+✔ labels: rejects label outside country (2.374136ms)
+✔ labels: rejects hit area clipped by coast (6.104397ms)
+✔ labels: rejects unscaled positions cannot prove minimum-window fit (3.823907ms)
+✔ labels: rejects invalid frame (1.361826ms)
+✖ labels: scales separation when 40px hit squares still fit (2.690389ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 13
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.042092
+
+✖ failing tests:
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:62:1
+✖ labels: scales separation when 40px hit squares still fit (2.690389ms)
+  AssertionError [ERR_ASSERTION]: scaled separation must reject this arrangement
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:68:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

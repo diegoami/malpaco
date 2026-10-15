@@ -1,0 +1,106 @@
+✔ intersections: positive geometric control (8.336321ms)
+✖ intersections: rejects route endpoint inside country (4.221674ms)
+✖ intersections: rejects route through unrelated island (1.857952ms)
+✖ intersections: rejects route re-enters source (1.709663ms)
+✖ intersections: rejects route touches unrelated coastline (1.523067ms)
+✖ intersections: rejects missing route geometry (1.627942ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 1
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 57.333873
+
+✖ failing tests:
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ intersections: rejects route endpoint inside country (4.221674ms)
+  AssertionError [ERR_ASSERTION]: intersections bypass: route endpoint inside country
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ intersections: rejects route through unrelated island (1.857952ms)
+  AssertionError [ERR_ASSERTION]: intersections bypass: route through unrelated island
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ intersections: rejects route re-enters source (1.709663ms)
+  AssertionError [ERR_ASSERTION]: intersections bypass: route re-enters source
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ intersections: rejects route touches unrelated coastline (1.523067ms)
+  AssertionError [ERR_ASSERTION]: intersections bypass: route touches unrelated coastline
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ intersections: rejects missing route geometry (1.627942ms)
+  AssertionError [ERR_ASSERTION]: intersections bypass: missing route geometry
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
