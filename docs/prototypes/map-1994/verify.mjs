@@ -33,6 +33,10 @@ const [state, currentMap, feasibility] = await Promise.all([
   readFile(resolve(evidence, "seed1994.json"), "utf8").then(JSON.parse),
   readFile(resolve(root, "preflight-20261015-a/rotation-results.json"), "utf8").then(JSON.parse),
 ]);
+const fHtml = await readFile(resolve(root, "fixtures/candidate-f/preview-f.html"), "utf8");
+const fDataMatch = fHtml.match(/window\.T22_DATA=(.*?);\nwindow\.CURRENT_GEOMETRY=/s);
+if (!fDataMatch) throw new Error("retained F preview has no embedded T22 geometry");
+const fData = JSON.parse(fDataMatch[1]);
 const browser = await chromium.launch({ headless: true });
 const errors = [];
 const captures = [];
@@ -172,6 +176,54 @@ function pointOnBoundary(point, poly) {
   }
   return false;
 }
+function exposedCoastChains(province, island) {
+  const pieces = [];
+  for (let i = 0; i < province.length; i++) {
+    const p = province[i], q = province[(i + 1) % province.length], dx = q[0] - p[0], dy = q[1] - p[1], length = Math.hypot(dx, dy);
+    if (length < 1e-8) continue;
+    const ux = dx / length, uy = dy / length, project = point => (point[0] - p[0]) * ux + (point[1] - p[1]) * uy;
+    for (let j = 0; j < island.length; j++) {
+      const a = island[j], b = island[(j + 1) % island.length];
+      if (Math.abs(cross(p, q, a)) / length > 1e-5 || Math.abs(cross(p, q, b)) / length > 1e-5) continue;
+      const lo = Math.max(0, Math.min(project(a), project(b))), hi = Math.min(length, Math.max(project(a), project(b)));
+      if (hi - lo > 1e-5) pieces.push({ a: [p[0] + ux * lo, p[1] + uy * lo], b: [p[0] + ux * hi, p[1] + uy * hi] });
+    }
+  }
+  const key = point => point.map(value => Math.round(value * 1e5)).join(","), vertices = new Map();
+  pieces.forEach((piece, index) => { for (const point of [piece.a, piece.b]) { const id = key(point); vertices.set(id, [...(vertices.get(id) ?? []), index]); } });
+  const unseen = new Set(pieces.map((_, index) => index)), chains = [];
+  while (unseen.size) {
+    const first = unseen.values().next().value, members = new Set([first]), queue = [first];
+    while (queue.length) { const piece = pieces[queue.pop()]; for (const point of [piece.a, piece.b]) for (const next of vertices.get(key(point)) ?? []) if (!members.has(next)) { members.add(next); queue.push(next); } }
+    const ends = [...members].flatMap(index => [key(pieces[index].a), key(pieces[index].b)]).filter(id => (vertices.get(id) ?? []).filter(index => members.has(index)).length === 1);
+    if (ends.length !== 2) throw new Error(`independent coast-chain check found ${ends.length} arc endpoints`);
+    let at = ends[0], points = [], length = 0, guard = 0;
+    while (guard++ <= members.size) {
+      const index = (vertices.get(at) ?? []).find(candidate => unseen.has(candidate));
+      if (index === undefined) break;
+      unseen.delete(index);
+      const segment = pieces[index], forward = key(segment.a) === at, a = forward ? segment.a : segment.b, b = forward ? segment.b : segment.a;
+      if (!points.length) points.push(a);
+      points.push(b); length += Math.hypot(b[0] - a[0], b[1] - a[1]); at = key(b);
+    }
+    let left = length / 2, midpoint = null;
+    for (let i = 0; i + 1 < points.length; i++) {
+      const a = points[i], b = points[i + 1], step = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      if (left <= step) { const t = left / step; midpoint = [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t]; break; }
+      left -= step;
+    }
+    chains.push({ midpoint, length });
+  }
+  return chains;
+}
+function expectedFacingCoastMidpoint(province, island, targetIsland) {
+  const center = poly => poly.reduce((sum, point) => [sum[0] + point[0] / poly.length, sum[1] + point[1] / poly.length], [0, 0]);
+  const origin = center(province), target = center(targetIsland), direction = [target[0] - origin[0], target[1] - origin[1]], magnitude = Math.hypot(...direction);
+  const chains = exposedCoastChains(province, island);
+  if (!chains.length || magnitude < 1e-8) return null;
+  chains.sort((a, b) => ((b.midpoint[0] - origin[0]) * direction[0] + (b.midpoint[1] - origin[1]) * direction[1]) / magnitude - ((a.midpoint[0] - origin[0]) * direction[0] + (a.midpoint[1] - origin[1]) * direction[1]) / magnitude || b.length - a.length);
+  return chains[0].midpoint;
+}
 function properCross(a, b, c, d) {
   const abLength=Math.hypot(b[0]-a[0],b[1]-a[1]),cdLength=Math.hypot(d[0]-c[0],d[1]-c[1]);
   if(abLength<1e-12||cdLength<1e-12)return false;
@@ -199,8 +251,11 @@ const overlapControls={
   separated:positiveAreaOverlap([[0,0],[4,0],[4,4],[0,4]],[[5,0],[8,0],[8,4],[5,4]]),
 };
 requireThat(overlapControls.positive&&!overlapControls.touching&&!overlapControls.separated,"positive-area overlap predicate controls failed");
+let coastEndpointChecks = 0;
 if (embedded) {
   const ps = new Map(embedded.provinces.map((p) => [p.id, p]));
+  const routePairs = routes => routes.map(route => [route.from, route.to].sort().join("--")).sort();
+  requireThat(JSON.stringify(routePairs(embedded.proposed.routes)) === JSON.stringify(routePairs(fData.proposed.routes)), "G proposed sea-lane topology differs from retained F");
   requireThat(ps.size === 46 && currentMap.provinces.length === 46, "geometry/current map identity count mismatch");
   for (const p of embedded.provinces) {
     requireThat(p.polygon.length >= 3 && p.polygon.every(([x, y]) => Number.isFinite(x) && Number.isFinite(y)), `${p.id}: polygon has non-finite or missing coordinates`);
@@ -258,6 +313,11 @@ if (embedded) {
       const islandById=new Map(embedded.islands.map(island=>[island.id,island]));
       requireThat(pointOnBoundary(start,islandById.get(a.island)?.polygon??[]),`${route.from}/${route.to}: sea route start is not on its island coast`);
       requireThat(pointOnBoundary(end,islandById.get(b.island)?.polygon??[]),`${route.from}/${route.to}: sea route end is not on its island coast`);
+      const expectedStart=expectedFacingCoastMidpoint(a.polygon,islandById.get(a.island)?.polygon??[],islandById.get(b.island)?.polygon??[]);
+      const expectedEnd=expectedFacingCoastMidpoint(b.polygon,islandById.get(b.island)?.polygon??[],islandById.get(a.island)?.polygon??[]);
+      requireThat(expectedStart&&Math.hypot(start[0]-expectedStart[0],start[1]-expectedStart[1])<1e-4,`${route.from}/${route.to}: start is not the arc-length midpoint of its exposed facing coast chain`);
+      requireThat(expectedEnd&&Math.hypot(end[0]-expectedEnd[0],end[1]-expectedEnd[1])<1e-4,`${route.from}/${route.to}: end is not the arc-length midpoint of its exposed facing coast chain`);
+      coastEndpointChecks += 2;
       for (const unrelated of embedded.provinces.filter((p) => p.id !== a.id && p.id !== b.id)) {
         let hit = route.path.some((pt) => pointInPolygon(pt, unrelated.polygon));
         for (let i = 0; i < route.path.length - 1; i++) for (let j = 0; j < unrelated.polygon.length; j++) hit ||= properCross(route.path[i], route.path[i + 1], unrelated.polygon[j], unrelated.polygon[(j + 1) % unrelated.polygon.length]);
@@ -286,6 +346,7 @@ const graphSummary = embedded ? (() => {
   return { current: { landEdges: currentLand.length, seaEdges: currentSea.length }, proposed: { landEdges: proposedLand.length, seaEdges: proposedSea.length, provinceDegree: Object.fromEntries(embedded.provinces.map(p => [p.id, degree(embedded.proposed.adjacency,p.id)])), islandSeaDegree: islandDegree } };
 })() : null;
 const report = { accepted: failures.length === 0, viewportRuns: ["1280x800", "1920x1080"], provinceCount: embedded?.provinces?.length ?? null, islandCount: embedded?.islands?.length ?? null, graphSummary,
+  coastEndpointRule: { method: "arc-length midpoint of the exposed province/island boundary chain whose midpoint faces the linked island; topology compared with retained F", endpointsChecked: coastEndpointChecks },
   overlapControls, feasibility, ambiguity: { ironPoint: { land: ["South rest", "High shore"], sea: ["Lower field", "Blue peak"] }, silverShore: { sea: [], finding: "no current sea lane; visual ambiguity only" } }, failures };
 await writeFile(resolve(output, "acceptance.json"), `${JSON.stringify(report, null, 2)}\n`, { flag: "wx" });
 process.stdout.write(`${report.accepted ? "PASS" : "FAIL"}: ${failures.length} acceptance findings; output ${output}\n`);

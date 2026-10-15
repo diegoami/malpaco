@@ -23,6 +23,12 @@ removal by country name. Those exact changes require owner review. Edge counts
 do not establish strategic balance, correctness, or preservation of the
 playable graph.
 
+The proposed sea lanes retain F's exact 16 country pairs. Each endpoint is the
+arc-length midpoint of the exposed coast chain of its province that faces the
+linked island; the verifier recomputes this point from the province and island
+polygons. The builder refuses the retained route set if these centered coastal
+attachments cross unrelated land.
+
 Open the preview and use **Current generated map** and **Proposed geography**
 to compare the source geometry with the proposed map. The candidate banner and
 topology list disclose all land and sea changes. Select any country to inspect
@@ -34,7 +40,7 @@ baseline/candidate/selected-neighbour mutation/restoration sequence with a new
 evidence directory:
 
 ```sh
-node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-f
+node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-g
 ```
 
 The replay installs the candidate's exact bytes only while the pinned-browser
@@ -66,6 +72,7 @@ production maps. Download an HTML file and open it locally for interaction.
 - [Draft D](fixtures/candidate-d/preview.html)
 - [Draft E](fixtures/candidate-e/preview-e.html)
 - [Draft F](fixtures/candidate-f/preview-f.html)
+- [Draft G](fixtures/candidate-g/preview-g.html)
 
 ### Draft F screenshots
 
