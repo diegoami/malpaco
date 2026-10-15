@@ -1,0 +1,41 @@
+{
+  "records": [
+    {
+      "name": "unit",
+      "command": "npx vitest run tests/core/match-save.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "browser",
+      "command": "npx playwright test tests/e2e/match-save.spec.ts --workers=2",
+      "exit": 1
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/core/match-save.ts",
+      "before": "5f6d01eae164de59c1cf87a99694e613ee2391597f786cc65f83cd829b33e2f1",
+      "after": "5f6d01eae164de59c1cf87a99694e613ee2391597f786cc65f83cd829b33e2f1"
+    },
+    {
+      "file": "src/core/index.ts",
+      "before": "06d6f15dfeb6983cf0348edba897abe414a4c2f8ca5537f0b4f4eeea038660e1",
+      "after": "06d6f15dfeb6983cf0348edba897abe414a4c2f8ca5537f0b4f4eeea038660e1"
+    },
+    {
+      "file": "src/ui/app.ts",
+      "before": "2ce51cde8fff21a00215343a847568f42b2f1d9b2592f53cbf6083bf6571b976",
+      "after": "2ce51cde8fff21a00215343a847568f42b2f1d9b2592f53cbf6083bf6571b976"
+    },
+    {
+      "file": "src/ui/generatedGame.ts",
+      "before": "6f412c82bc5d7db2920bd6a9104913bb13d1799733b98e596edcf7150c7e5adb",
+      "after": "6f412c82bc5d7db2920bd6a9104913bb13d1799733b98e596edcf7150c7e5adb"
+    },
+    {
+      "file": "src/styles.css",
+      "before": "833544b648bc9baa658a3d34126dd7e9444cde866eae6730a1a8310bbb49d048",
+      "after": "833544b648bc9baa658a3d34126dd7e9444cde866eae6730a1a8310bbb49d048"
+    }
+  ]
+}

@@ -54,7 +54,8 @@ async function fitAndCapture(page: Page,name: string,project: string) {
     expect(b.right,why).toBeLessThanOrEqual(size.width+1);expect(b.bottom,why).toBeLessThanOrEqual(size.height+1);
     for(const l of b.lines){expect(l.x,why).toBeGreaterThanOrEqual(b.x-1);expect(l.right,why).toBeLessThanOrEqual(b.right+1);expect(l.y,why).toBeGreaterThanOrEqual(b.y-1);expect(l.bottom,why).toBeLessThanOrEqual(b.bottom+1);}
   }
-  const error=await page.locator(".match-error:not(:empty)").boundingBox();
+  const banner=page.locator(".match-error:not(:empty)");
+  const error=await banner.count() ? await banner.boundingBox() : null;
   if(error){
     const title=(await page.locator("#turn-title").boundingBox())!;
     expect(error.x+error.width<=title.x || error.x>=title.x+title.width || error.y+error.height<=title.y || error.y>=title.y+title.height,
