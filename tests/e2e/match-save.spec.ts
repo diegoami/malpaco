@@ -66,6 +66,17 @@ async function fitAndCapture(page: Page,name: string,project: string) {
 }
 for(const seats of [2,3,4]) test(`${seats} humans download, real upload on setup/gameplay, exact restore and continued attack/handoff`,async({page},info)=>{
   const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));page.on("console",e=>{if(e.type()==="error")errors.push(e.text());});
+  await page.addInitScript(() => {
+    const listeners=new Set<EventListenerOrEventListenerObject>();
+    const add=window.addEventListener.bind(window), remove=window.removeEventListener.bind(window);
+    Object.defineProperty(window,"addEventListener",{value:(type:string,listener:EventListenerOrEventListenerObject,options?:boolean|AddEventListenerOptions)=>{
+      if(type==="keydown")listeners.add(listener);add(type,listener,options);
+    }});
+    Object.defineProperty(window,"removeEventListener",{value:(type:string,listener:EventListenerOrEventListenerObject,options?:boolean|EventListenerOptions)=>{
+      if(type==="keydown")listeners.delete(listener);remove(type,listener,options);
+    }});
+    Object.defineProperty(window,"testKeydownCount",{get:()=>listeners.size});
+  });
   await page.goto(`/?view=generated-game&seed=1994&seats=${seats}`);
   let state=opening(1994,seats);const policy=policyFor(state);
   await check(page,state);
@@ -95,6 +106,8 @@ for(const seats of [2,3,4]) test(`${seats} humans download, real upload on setup
   action=nextAction(state,policy);await click(page,action);state=advance(state,action);await check(page,state);
   action={kind:"endTurn"};await click(page,action);state=advance(state,action);await check(page,state);
   await upload(page,partial);await check(page,deserializeMatch(partial).state);
+  expect(await page.evaluate(()=>Reflect.get(window,"testKeydownCount"))).toBe(1);
+  await page.keyboard.press("Escape");await check(page,deserializeMatch(partial).state);
   expect(errors).toEqual([]);
 });
 test("finished legal history loads with readable winner and can be saved again",async({page},info)=>{
@@ -102,9 +115,12 @@ test("finished legal history loads with readable winner and can be saved again",
   let state=opening(1994,3),n=0;const policy=policyFor(state);
   while(state.phase!=="finished"&&n++<ACTION_BUDGET)state=advance(state,nextAction(state,policy));
   expect(state.phase).toBe("finished");
-  const text=JSON.stringify({version:1,options:{...defaultOptions(),seed:1994,seats:[{kind:"human"},{kind:"human"},{kind:"human"}],computerStrengths:[]},actions:state.history});
+  const savedOptions={...defaultOptions(),seed:1994,seats:[{kind:"human" as const},{kind:"human" as const},{kind:"human" as const}],computerStrengths:[],animationSpeed:"fast" as const,sound:false};
+  const text=JSON.stringify({version:1,options:savedOptions,actions:state.history});
   await page.goto("/?view=game-setup");await upload(page,text);await check(page,state);
   await fitAndCapture(page,"restored-winner",info.project.name);
   for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
-  const saved=await download(page);await page.reload();await upload(page,saved);await check(page,state);expect(errors).toEqual([]);
+  const saved=await download(page);expect(deserializeMatch(saved).options).toEqual(savedOptions);
+  await page.reload();await upload(page,saved);await check(page,state);
+  expect(deserializeMatch(await download(page)).options).toEqual(savedOptions);expect(errors).toEqual([]);
 });
