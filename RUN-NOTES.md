@@ -357,3 +357,10 @@ END T23 implementation
 - Checks: 540/540 coverage, zero unexplained omissions; 24/24 node tests; four rejected actual-matrix mutations with exact restoration; git diff --check clean.
 - Remaining gate: independent owner-selected Kimi 1M review and green CI before merge.
 - Handoff: production unchanged; T24 needs owner decisions after constraint feasibility evidence; T44 owns the observed transfer discrepancy.
+
+
+## T24 parent preflight — main session, Kimi 1M review selected
+
+Owner continued the sequential main-session implementation / direct Kimi 1M review workflow. Isolated branch task/T24-geography-contract-and-constraint-feasibility-probe. Plan: preflight one bypass per named constraint before implementation; establish a numerical contract with the owner; probe without production algorithm changes; retain genuine failures and witness/source hashes.
+
+Parent smoke: existing generator body returned 100/100 seeds 0..99 at one observed attempt each. Current UI layout minimum separation at assumed 800x460 board: 29.588 CSS px Euclidean / 28.884 maximum-coordinate distance. Pinned island-neighbour maximum is four, while implementation guards permit five; none of this sample violates four. Full-contract feasibility is not established by this smoke. Numerical proposals and measured evidence retained under T24. Acceptance preflight remains incomplete until the unspecified label/geometry budget is agreed.
