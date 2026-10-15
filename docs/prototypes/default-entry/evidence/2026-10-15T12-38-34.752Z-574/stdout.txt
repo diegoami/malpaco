@@ -1,0 +1,9 @@
+
+Running 4 tests using 2 workers
+
+  ✓  1 [1280x800] › tests/e2e/entry.spec.ts:67:1 › recognized entry routes remain explicit and authored data is available only by route (355ms)
+  ✓  2 [1280x800] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match (414ms)
+  ✓  3 [1920x1080] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match (431ms)
+  ✓  4 [1920x1080] › tests/e2e/entry.spec.ts:67:1 › recognized entry routes remain explicit and authored data is available only by route (371ms)
+
+  4 passed (2.3s)

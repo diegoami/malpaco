@@ -1,0 +1,26 @@
+{
+  "label": "remove-authored-route-acceptance",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/entry.spec.ts",
+    "--workers=2"
+  ],
+  "expected": "fail",
+  "exitCode": 1,
+  "signal": null,
+  "stdoutSha256": "3ae51ac8137cfa5c38066cac93be071c78065c2baf26293f846152a938fa7226",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "artifacts": [
+    {
+      "path": "default-1280x800.png",
+      "sha256": "e19dd6603f9434a6bc8b8ce8a09d8e926b53b0bf23db001eb630b9da02cadcc4"
+    },
+    {
+      "path": "default-1920x1080.png",
+      "sha256": "e41f534556eb41e051605fba41a277a3780afc9b4dcf371df980be54dbb59bdf"
+    }
+  ],
+  "passed": true
+}

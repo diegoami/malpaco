@@ -1,0 +1,18 @@
+{
+  "label": "dw2-authored",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/slice.spec.ts",
+    "tests/e2e/reinforcement.spec.ts",
+    "--workers=2"
+  ],
+  "expected": "pass",
+  "exitCode": 0,
+  "signal": null,
+  "stdoutSha256": "326f87c9e7dd1e9aa2c01ea36a93ec9780c8a257a69cef84a9321a00eb2f4c61",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "artifacts": [],
+  "passed": true
+}

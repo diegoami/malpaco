@@ -1,0 +1,21 @@
+{
+  "mode": "mock",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/entry.spec.ts",
+    "--workers=2"
+  ],
+  "sourceBeforeSha256": "7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9",
+  "fixtureSha256": "6f82a4d0035e1ad6d563dce81819161c1ff411820ab79223d052a3a73e6ec074",
+  "evidence": "/work/docs/prototypes/default-entry/evidence/2026-10-15T12-38-34.752Z-574",
+  "startedAt": "2026-10-15T12:38:34.753Z",
+  "exitCode": 0,
+  "signal": null,
+  "stdout": "\nRunning 4 tests using 2 workers\n\n  ✓  1 [1280x800] › tests/e2e/entry.spec.ts:67:1 › recognized entry routes remain explicit and authored data is available only by route (355ms)\n  ✓  2 [1280x800] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match (414ms)\n  ✓  3 [1920x1080] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match (431ms)\n  ✓  4 [1920x1080] › tests/e2e/entry.spec.ts:67:1 › recognized entry routes remain explicit and authored data is available only by route (371ms)\n\n  4 passed (2.3s)\n",
+  "stderr": "",
+  "sourceAfterSha256": "7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9",
+  "sourceRestoredByteForByte": true,
+  "finishedAt": "2026-10-15T12:38:37.450Z"
+}

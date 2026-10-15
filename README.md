@@ -8,3 +8,11 @@ the archived Godot proof of concept.
 
 How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process.md). Tasks:
 [docs/tasks/](docs/tasks/README.md).
+
+## Play
+
+Run `npm ci` and `npm run dev`; the root page opens generated-game setup. Choose a seed, seat
+count and human or computer opponents, then start a match. `?seed=N`, `?seats=C` and
+`?opponents=computer` preserve setup choices on the root route. Direct routes remain available at
+`?view=game-setup`, `?view=generated-game`, `?view=generated-prototype` and
+`?view=authored-game` (the authored `small_sea` spike). Unrecognized `view` values open setup.

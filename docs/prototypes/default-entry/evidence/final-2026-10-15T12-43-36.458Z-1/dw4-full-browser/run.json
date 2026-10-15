@@ -1,0 +1,25 @@
+{
+  "label": "dw4-full-browser",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "--workers=2"
+  ],
+  "expected": "pass",
+  "exitCode": 1,
+  "signal": null,
+  "stdoutSha256": "c175c79da1d3aa9592122272e42480df8a15e302eabe75a9a715acfb197c7075",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "artifacts": [
+    {
+      "path": "default-1280x800.png",
+      "sha256": "249983cd9e97917f49bac8280b04f989ad49b77b170eebe03790285c85ae9fad"
+    },
+    {
+      "path": "default-1920x1080.png",
+      "sha256": "e41f534556eb41e051605fba41a277a3780afc9b4dcf371df980be54dbb59bdf"
+    }
+  ],
+  "passed": false
+}

@@ -1,0 +1,21 @@
+{
+  "mode": "baseline",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/entry.spec.ts",
+    "--workers=2"
+  ],
+  "sourceBeforeSha256": "7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9",
+  "fixtureSha256": "6f82a4d0035e1ad6d563dce81819161c1ff411820ab79223d052a3a73e6ec074",
+  "evidence": "/work/docs/prototypes/default-entry/evidence/2026-10-15T12-38-26.883Z-7",
+  "startedAt": "2026-10-15T12:38:26.890Z",
+  "exitCode": 1,
+  "signal": null,
+  "stdout": "\nRunning 4 tests using 2 workers\n\n  ✓  1 [1280x800] › tests/e2e/entry.spec.ts:67:1 › recognized entry routes remain explicit and authored data is available only by route (339ms)\n  ✘  2 [1280x800] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match (5.1s)\n  ✘  3 [1920x1080] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match (5.1s)\n  ✓  4 [1920x1080] › tests/e2e/entry.spec.ts:67:1 › recognized entry routes remain explicit and authored data is available only by route (330ms)\n\n\n  1) [1280x800] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match \n\n    Error: expect(locator).toBeVisible() failed\n\n    Locator: getByRole('heading', { name: 'New generated game' })\n    Expected: visible\n    Timeout: 5000ms\n    Error: element(s) not found\n\n    Call log:\n      - Expect \"toBeVisible\" getByRole('heading', { name: 'New generated game' }) with timeout 5000ms\n      - waiting for getByRole('heading', { name: 'New generated game' })\n\n\n      29 |   const seen = errors(page);\n      30 |   await page.goto(\"/\");\n    > 31 |   await expect(page.getByRole(\"heading\", { name: \"New generated game\" })).toBeVisible();\n         |                                                                           ^\n      32 |   await expect(page.getByLabel(\"Seed\", { exact: true })).toHaveValue(\"1994\");\n      33 |   await expect(page.getByLabel(\"Human seats\")).toHaveValue(\"2\");\n      34 |   await expectFits(page);\n        at /work/tests/e2e/entry.spec.ts:31:75\n\n    Error Context: test-results/entry-root-and-unrecognize-7ea80-tup-and-start-a-mixed-match-1280x800/error-context.md\n\n  2) [1920x1080] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match \n\n    Error: expect(locator).toBeVisible() failed\n\n    Locator: getByRole('heading', { name: 'New generated game' })\n    Expected: visible\n    Timeout: 5000ms\n    Error: element(s) not found\n\n    Call log:\n      - Expect \"toBeVisible\" getByRole('heading', { name: 'New generated game' }) with timeout 5000ms\n      - waiting for getByRole('heading', { name: 'New generated game' })\n\n\n      29 |   const seen = errors(page);\n      30 |   await page.goto(\"/\");\n    > 31 |   await expect(page.getByRole(\"heading\", { name: \"New generated game\" })).toBeVisible();\n         |                                                                           ^\n      32 |   await expect(page.getByLabel(\"Seed\", { exact: true })).toHaveValue(\"1994\");\n      33 |   await expect(page.getByLabel(\"Human seats\")).toHaveValue(\"2\");\n      34 |   await expectFits(page);\n        at /work/tests/e2e/entry.spec.ts:31:75\n\n    Error Context: test-results/entry-root-and-unrecognize-7ea80-tup-and-start-a-mixed-match-1920x1080/error-context.md\n\n  2 failed\n    [1280x800] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match \n    [1920x1080] › tests/e2e/entry.spec.ts:28:1 › root and unrecognized views open usable setup and start a mixed match \n  2 passed (7.1s)\n",
+  "stderr": "npm notice\nnpm notice New major version of npm available! 11.19.0 -> 12.2.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\nnpm notice To update run: npm install -g npm@12.2.0\nnpm notice\n",
+  "sourceAfterSha256": "7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9",
+  "sourceRestoredByteForByte": true,
+  "finishedAt": "2026-10-15T12:38:34.731Z"
+}

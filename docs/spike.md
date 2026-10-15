@@ -312,7 +312,7 @@ npm ci
 npm run build          # tsc --noEmit, then vite build
 npx vitest run         # the core
 npx playwright test    # in the image (see "Goldens"): the browser ships with it; writes screenshots/<size>/*.png
-npm run dev            # http://localhost:5173/?seed=1994 fixes the game
+npm run dev            # http://localhost:5173/ opens generated-game setup; authored spike: ?view=authored-game&seed=1994
 ```
 
 
@@ -330,8 +330,8 @@ and names all land/sea neighbours with IDs. Click, Enter and Space select withou
 replacing the focused country. A seed control rebuilds through `generateBoard`;
 actual generation refusal (including seed 1506) remains visible with retry.
 
-The atlas is presentation only. Generated-game setup is available separately; a permanent visual choice belongs to later work.
-The separate generated-game route below integrates placement and combat. The ordinary authored-board route
+The atlas is presentation only. Generated-game setup opens at the root; a permanent visual choice belongs to later work.
+The separate generated-game route below integrates placement and combat. The explicit authored-board route
 keeps its existing behaviour and goldens. Atlas dimensions, coast margins, region
 spacing, text and route styles are [designed], after inspecting `board-gen.ts`
 placeholder geometry and `mapView.ts` label, marker and coast placement.
@@ -356,7 +356,7 @@ under `docs/prototypes/generated-board/`. The owner judges the settled screensho
 canonical default options with two human seats and no computer strengths, and
 Malpaco rules. The initial deal, armies, production centres and RNG remain the
 core's exact output. Only map polygons, labels and bounds receive T13's display
-projection. The ordinary authored route and the generated prototype remain
+projection. The explicit authored route and the generated prototype remain
 available independently.
 
 The generated view shares the normal App controller, reinforcement panel,
@@ -384,21 +384,26 @@ Replay and actual-source mutation commands and tracked evidence live under
 
 ## Generated-game setup
 
-`?view=game-setup` offers a seed and two, three or four human seats. Start game
+The root route and URLs without a recognized `view` open this setup. Seed, seat
+and opponent query settings remain available there. `?view=game-setup` is its
+explicit route. Start game
 opens `?view=generated-game&seed=N&seats=C`; New game returns to setup with the
 same choices. Direct generated-game URLs still default to seed 1994 and two
 humans. Seed input accepts whole uint32 values without wrapping, unsupported
 seat counts are rejected, and generation refusals leave an editable recovery
 form. Unimplemented rule options are not offered. Players also offers one human
 versus one to three computers; in this mode the count label becomes Total seats.
-The opponents=computer query preserves this choice on generated routes and setup.
+The `opponents=computer` query preserves this choice on generated routes and setup.
+The generated-board atlas remains at `?view=generated-prototype`; the authored
+spike remains at `?view=authored-game`. The latter parses `small_sea` only when
+that route is selected.
 
 The UI passes these settings to `createGame` without dealing again. Green and
 lavender extend the original two ownership colours; numeric map seats and four
 distinct score badges support ownership recognition. Generated panels compact
 additional seat rows, wrap selection values and let the two-seat attack log
 shrink so names, army counts and controls remain visible at both tested sizes.
-The authored route retains its existing goldens. T17 updates only the generated
+The explicit authored route retains its existing goldens. T17 updates only the generated
 opening and setup/four-seat goldens to include local file controls.
 These form, palette and spacing choices are [designed] after inspecting
 `generatedGame.ts`, `app.ts`, `panel.ts` and the T14 clipping regression.

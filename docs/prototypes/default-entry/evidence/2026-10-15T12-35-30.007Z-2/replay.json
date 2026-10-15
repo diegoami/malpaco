@@ -1,0 +1,21 @@
+{
+  "mode": "baseline",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/entry.spec.ts"
+  ],
+  "sourceBeforeSha256": "7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9",
+  "fixtureSha256": "6f82a4d0035e1ad6d563dce81819161c1ff411820ab79223d052a3a73e6ec074",
+  "evidence": "/tmp/malpaco-T19/docs/prototypes/default-entry/evidence/2026-10-15T12-35-30.007Z-2",
+  "startedAt": "2026-10-15T12:35:30.012Z",
+  "exitCode": 1,
+  "signal": null,
+  "stdout": "",
+  "stderr": "",
+  "spawnError": "Error: spawnSync npx EPERM",
+  "sourceAfterSha256": "7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9",
+  "sourceRestoredByteForByte": true,
+  "finishedAt": "2026-10-15T12:35:31.421Z"
+}

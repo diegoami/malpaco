@@ -1,0 +1,161 @@
+{
+  "startedAt": "2026-10-15T12:43:36.459Z",
+  "sourceBeforeSha256": "6f82a4d0035e1ad6d563dce81819161c1ff411820ab79223d052a3a73e6ec074",
+  "steps": [
+    {
+      "label": "dw1-entry",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/entry.spec.ts",
+        "--workers=2"
+      ],
+      "expected": "pass",
+      "exitCode": 0,
+      "signal": null,
+      "stdoutSha256": "518c2c03de0a33fa3587b3141280e18e34deed0d9bdf781770695202ee30cea9",
+      "stderrSha256": "e49b794cae6663ada86efea1579a0381251a5d4d1ff9b0cefed3e5622b21317d",
+      "artifacts": [
+        {
+          "path": "default-1280x800.png",
+          "sha256": "249983cd9e97917f49bac8280b04f989ad49b77b170eebe03790285c85ae9fad"
+        },
+        {
+          "path": "default-1920x1080.png",
+          "sha256": "e41f534556eb41e051605fba41a277a3780afc9b4dcf371df980be54dbb59bdf"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "dw2-slice",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/slice.spec.ts",
+        "--workers=2"
+      ],
+      "expected": "pass",
+      "exitCode": 0,
+      "signal": null,
+      "stdoutSha256": "bcb00db764353ec55e25076f685a576f0662b68719d7e307ae2e6b58e9046634",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": [],
+      "passed": true
+    },
+    {
+      "label": "authored-default",
+      "sourceSha256": "813aee098f5d7d111233f520e73078ebb7467507a123f82ae009f184619e49a0",
+      "sourceRestoredSha256": "6f82a4d0035e1ad6d563dce81819161c1ff411820ab79223d052a3a73e6ec074",
+      "sourceRestoredByteForByte": true
+    },
+    {
+      "label": "authored-default-acceptance",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/entry.spec.ts",
+        "--workers=2"
+      ],
+      "expected": "fail",
+      "exitCode": 1,
+      "signal": null,
+      "stdoutSha256": "41444a3aa3429f689f23d7e2b34b7e202fd1c9f8ab308a2ab546824dcf6486ef",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": [],
+      "passed": true
+    },
+    {
+      "label": "remove-authored-route",
+      "sourceSha256": "5914b0102af956c4a1ee47525c17dc5fda3cfe91346f0a0f32ca00fff30e73a6",
+      "sourceRestoredSha256": "6f82a4d0035e1ad6d563dce81819161c1ff411820ab79223d052a3a73e6ec074",
+      "sourceRestoredByteForByte": true
+    },
+    {
+      "label": "remove-authored-route-acceptance",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/entry.spec.ts",
+        "--workers=2"
+      ],
+      "expected": "fail",
+      "exitCode": 1,
+      "signal": null,
+      "stdoutSha256": "29bb41072907bc484d0076e6f42cecc6ead633b669384edb0d18d5727d4f964f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": [
+        {
+          "path": "default-1280x800.png",
+          "sha256": "e19dd6603f9434a6bc8b8ce8a09d8e926b53b0bf23db001eb630b9da02cadcc4"
+        },
+        {
+          "path": "default-1920x1080.png",
+          "sha256": "c485dfbf43b8d4fe592a5db0aed0d4e068d74000c91f941d7ab3a91fce22d026"
+        }
+      ],
+      "passed": true
+    },
+    {
+      "label": "dw3-unit",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "expected": "pass",
+      "exitCode": 0,
+      "signal": null,
+      "stdoutSha256": "ba57989b2f7c4378c6954f6af29193278360181a2a46e6bbef753ed97bd55256",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": [],
+      "passed": true
+    },
+    {
+      "label": "dw3-build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "expected": "pass",
+      "exitCode": 0,
+      "signal": null,
+      "stdoutSha256": "ee27de397c671b40d504ad7d4e0e4b026d3c49546e870ec79ba9d90b1010fba2",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": [],
+      "passed": true
+    },
+    {
+      "label": "dw4-full-browser",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--workers=2"
+      ],
+      "expected": "pass",
+      "exitCode": 1,
+      "signal": null,
+      "stdoutSha256": "c175c79da1d3aa9592122272e42480df8a15e302eabe75a9a715acfb197c7075",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifacts": [
+        {
+          "path": "default-1280x800.png",
+          "sha256": "249983cd9e97917f49bac8280b04f989ad49b77b170eebe03790285c85ae9fad"
+        },
+        {
+          "path": "default-1920x1080.png",
+          "sha256": "e41f534556eb41e051605fba41a277a3780afc9b4dcf371df980be54dbb59bdf"
+        }
+      ],
+      "passed": false
+    }
+  ],
+  "sourceAfterSha256": "6f82a4d0035e1ad6d563dce81819161c1ff411820ab79223d052a3a73e6ec074",
+  "sourceRestoredByteForByte": true,
+  "finishedAt": "2026-10-15T12:45:44.557Z"
+}

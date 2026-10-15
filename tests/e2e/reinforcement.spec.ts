@@ -79,7 +79,7 @@ async function attackByClicks(page: Page): Promise<void> {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("/?seed=1994");
+  await page.goto("/?view=authored-game&seed=1994");
   await expect(page.locator("body")).toHaveAttribute("data-ready", "true");
 });
 
