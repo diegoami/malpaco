@@ -29,5 +29,6 @@ export function mountHelp(host: HTMLElement, pause?: () => void, resume?: () => 
     if ((event as KeyboardEvent).key === "Escape") event.stopPropagation();
   });
   dialog.addEventListener("close", () => { resume?.(); opener.focus(); });
-  host.append(opener, dialog);
+  host.append(opener);
+  (host.closest("#game-setup, #generated-game") ?? host).append(dialog);
 }

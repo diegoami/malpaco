@@ -9,6 +9,9 @@ mkdirSync(out, { recursive: true });
 
 const focused = ["playwright", "test", "tests/e2e/help.spec.ts", "--workers=2"];
 const suite = ["playwright", "test", "--workers=2"];
+const generatedGoldenSuites = [
+  "playwright", "test", "tests/e2e/game-setup.spec.ts", "tests/e2e/generated-game.spec.ts", "--workers=2",
+];
 const sources = ["src/ui/help.ts", "src/ui/app.ts"];
 const original = new Map(sources.map(path => [path, readFileSync(path)]));
 const hash = bytes => createHash("sha256").update(bytes).digest("hex");
@@ -38,7 +41,7 @@ try {
   run("unit", "npm", ["test"]);
   run("build", "npm", ["run", "build"]);
   if (updateGoldens) {
-    run("browser-update-goldens", "npx", [...suite, "--update-snapshots"]);
+    run("browser-update-goldens", "npx", [...generatedGoldenSuites, "--update-snapshots"]);
   }
   run("browser", "npx", suite);
 

@@ -71,5 +71,6 @@ export function mountHelp(
     resume?.();
     opener.focus();
   });
-  host.append(opener, dialog);
+  host.append(opener);
+  (host.closest("#game-setup, #generated-game") ?? host).append(dialog);
 }

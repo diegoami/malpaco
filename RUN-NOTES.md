@@ -300,3 +300,5 @@ Plan: install the preflighted implementation only on generated setup and gamepla
 2026-10-15: installed accessible setup/gameplay Help, scoped modal fit/animation styles, and computer-turn pause/resume; updated README and generated-game documentation. `docs/prototypes/help/verify-final.mjs` runs the authorized checks, requires content and pause actual-source mutations to fail at their intended assertions, and records restoration hashes. B preflight evidence is hashed and retained unchanged.
 
 END T20 stage 2 preparation: actual implementation and documentation are ready for the parent-pinned final verifier. The first pinned run may use `--update-goldens` for affected generated controls only; subsequent review uses the default no-update command.
+
+71afef8: installed the generated-game Help implementation and retained/hash B preflight evidence. Parent final command: `node docs/prototypes/help/verify-final.mjs docs/prototypes/help/final-20261015 --update-goldens`; use a fresh output directory for reruns.
