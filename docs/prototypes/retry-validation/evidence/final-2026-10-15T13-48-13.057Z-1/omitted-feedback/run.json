@@ -1,0 +1,14 @@
+{
+  "name": "omitted-feedback",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/retry-validation.spec.ts",
+    "--workers=2"
+  ],
+  "expectedExit": 1,
+  "exitCode": 1,
+  "signal": null,
+  "sourceSha256": "0bcd7599311696a64ce1e8262a9abc827f697611d53cdb387b2a6c82e5bc6d09"
+}

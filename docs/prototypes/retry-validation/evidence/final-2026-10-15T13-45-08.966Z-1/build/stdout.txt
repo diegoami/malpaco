@@ -1,0 +1,14 @@
+
+> malpaco-spike-ts@0.0.0 build
+> tsc --noEmit -p src/core && tsc --noEmit && vite build
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 33 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.64 kB │ gzip:  0.42 kB
+dist/assets/index-BGCp9A4T.css  16.77 kB │ gzip:  4.52 kB
+dist/assets/index-DDMK4smD.js   71.10 kB │ gzip: 24.17 kB
+
+✓ built in 71ms

@@ -1,0 +1,60 @@
+
+Running 2 tests using 2 workers
+
+  ✘  1 [1280x800] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings (5.3s)
+  ✘  2 [1920x1080] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings (5.3s)
+
+
+  1) [1280x800] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.retry-validation')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.retry-validation') with timeout 5000ms
+      - waiting for locator('.retry-validation')
+
+
+      79 |       await page.getByRole("button", { name: "Retry", exact: true }).click();
+      80 |       await expect(page).toHaveURL(refusalUrl);
+    > 81 |       await expect(page.locator(".retry-validation")).toBeVisible();
+         |                                                       ^
+      82 |       await expect(page.locator(".retry-validation")).toContainText(/seed/i);
+      83 |       await expect(page.locator("[data-country]")).toHaveCount(0);
+      84 |       if (invalid === "") await expect(seed).toHaveValue("");
+        at /work/tests/e2e/retry-validation.spec.ts:81:55
+
+    Error Context: test-results/retry-validation-refusal-r-e6fea-ers-with-preserved-settings-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('.retry-validation')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" locator('.retry-validation') with timeout 5000ms
+      - waiting for locator('.retry-validation')
+
+
+      79 |       await page.getByRole("button", { name: "Retry", exact: true }).click();
+      80 |       await expect(page).toHaveURL(refusalUrl);
+    > 81 |       await expect(page.locator(".retry-validation")).toBeVisible();
+         |                                                       ^
+      82 |       await expect(page.locator(".retry-validation")).toContainText(/seed/i);
+      83 |       await expect(page.locator("[data-country]")).toHaveCount(0);
+      84 |       if (invalid === "") await expect(seed).toHaveValue("");
+        at /work/tests/e2e/retry-validation.spec.ts:81:55
+
+    Error Context: test-results/retry-validation-refusal-r-e6fea-ers-with-preserved-settings-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings 
+    [1920x1080] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings 
