@@ -1,0 +1,52 @@
+{
+  "mode": "unit",
+  "records": [
+    {
+      "name": "baseline-unit",
+      "command": "npx vitest run tests/core/computer.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "candidate-unit",
+      "command": "npx vitest run tests/core/computer.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "candidate-build",
+      "command": "npm run build",
+      "exit": 0
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/core/computer.ts",
+      "before": null,
+      "after": null
+    },
+    {
+      "file": "src/core/index.ts",
+      "before": "06d6f15dfeb6983cf0348edba897abe414a4c2f8ca5537f0b4f4eeea038660e1",
+      "after": "06d6f15dfeb6983cf0348edba897abe414a4c2f8ca5537f0b4f4eeea038660e1"
+    },
+    {
+      "file": "src/ui/app.ts",
+      "before": "2ce51cde8fff21a00215343a847568f42b2f1d9b2592f53cbf6083bf6571b976",
+      "after": "2ce51cde8fff21a00215343a847568f42b2f1d9b2592f53cbf6083bf6571b976"
+    },
+    {
+      "file": "src/ui/generatedGame.ts",
+      "before": "6f412c82bc5d7db2920bd6a9104913bb13d1799733b98e596edcf7150c7e5adb",
+      "after": "6f412c82bc5d7db2920bd6a9104913bb13d1799733b98e596edcf7150c7e5adb"
+    },
+    {
+      "file": "src/ui/panel.ts",
+      "before": "a2013750b96b376e81d88180f457bb1e6f1534cf06de481470ed86cdf59d4e49",
+      "after": "a2013750b96b376e81d88180f457bb1e6f1534cf06de481470ed86cdf59d4e49"
+    },
+    {
+      "file": "tests/e2e/match-save.spec.ts",
+      "before": "63a1064be91f2341e4becb8f1f2fc26ee29a7ec52f63087902d702a3c0cf393b",
+      "after": "63a1064be91f2341e4becb8f1f2fc26ee29a7ec52f63087902d702a3c0cf393b"
+    }
+  ]
+}
