@@ -192,3 +192,13 @@ Plan: add focused entry-route acceptance at both configured viewports, a disposa
 2026-10-15: added `tests/e2e/entry.spec.ts`, the candidate source fixture, and `replay.mjs`. Direct baseline command `npx playwright test tests/e2e/entry.spec.ts` had the expected root-setup failure at both viewports while explicit routes passed. Local replay-wrapper execution could not spawn `npx` (`EPERM` in this shell sandbox); parent will run its pinned Docker replay. Browser evidence is intentionally left to that pinned run.
 
 END T19 stage 1 preparation: tests cover plain `/`, query-only `/`, unknown views, setup/generated/prototype/authored routes, mixed computer play, New game return, authored New game routing, browser errors and viewport fit. Original `src/main.ts` remains byte-identical. Awaiting parent's pinned baseline/mock result and stage-two authorization.
+
+## T19 stage 2
+
+Plan: install the proven candidate as the permanent entry router, migrate only the authored slice URL, update launch documentation, and add a verifier for all Done-when commands plus two actual-source mutations with exact restoration. No styling, gameplay, rules or golden changes.
+
+Parent's pinned preflight: baseline had the expected two root failures and two explicit-route passes; the mock passed all four at both viewports. Source before/after SHA-256 is `7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9`. All replay JSON/logs and both default screenshots remain under `docs/prototypes/default-entry/evidence/`. The 1920x1080 setup screenshot is centered, readable and fits the viewport; its existing native file chooser truncates the filename label in the control.
+
+2026-10-15: installed the candidate router; `small_sea` is parsed only for `view=authored-game`, which its New game callback preserves. Changed only the slice spec's URL string to the explicit route. README and spike launch/setup descriptions now state that `/` opens generated setup. Added `verify-final.mjs` for entry, slice, unit, build, full browser, both actual-source routing mutants and byte-for-byte `finally` restoration. Node syntax checks and `git diff --check` pass; browser/unit/build checks are reserved for the parent pinned run.
+
+END T19 implementation prepared for parent pinned verification. No prior golden or gameplay assertion was changed, no golden was updated, and the only change in the slice spec is its route string.

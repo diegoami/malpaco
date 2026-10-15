@@ -5,7 +5,7 @@ import { SEATS } from "../../src/ui/palette";
 
 // The slice, driven the way a player drives it: by clicks. A fixed seed fixes the
 // deal, so every run starts from the same board.
-const URL = "/?seed=1994";
+const URL = "/?view=authored-game&seed=1994";
 
 // The app's fixed seat order (PLAYERS in src/ui/app.ts). The owner colours come
 // from the palette (src/ui/palette.ts), so the gates below hold the painted
