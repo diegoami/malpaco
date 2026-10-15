@@ -41,7 +41,7 @@ async function click(page: Page, action: Action) {
   }
 }
 async function fitAndCapture(page: Page,name: string,project: string) {
-  const selectors = ".match-files button, .match-load label, .match-load input, #turn-title, #game-seed";
+  const selectors = ".match-files button, .match-load label, .match-load input, .match-error:not(:empty), #turn-title, #game-seed, #new-game-button, #end-turn-button";
   const boxes = await page.locator(selectors).evaluateAll(ns=>ns.map(n=>{
     const b=n.getBoundingClientRect(),r=document.createRange();r.selectNodeContents(n);
     return {text:n.textContent,font:parseFloat(getComputedStyle(n).fontSize),x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,lines:Array.from(r.getClientRects()).map(l=>({x:l.x,y:l.y,right:l.right,bottom:l.bottom}))};
@@ -61,19 +61,24 @@ for(const seats of [2,3,4]) test(`${seats} humans download, real upload on setup
   const partial=await download(page);await fitAndCapture(page,`partial-${seats}`,info.project.name);
   await page.getByRole("button",{name:"New game",exact:true}).click();
   await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
+  await page.getByLabel("Seed",{exact:true}).fill("42");
+  await page.getByLabel("Human seats").selectOption(seats===2?"4":"2");
   await upload(page,partial);await check(page,state);
   await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1994");
   expect(new URL(page.url()).searchParams.get("seats")).toBe(String(seats));
   while(state.phase==="reinforce") { action=nextAction(state,policy);await click(page,action);state=advance(state,action); }
   action=nextAction(state,policy);expect(action.kind).toBe("attack");await click(page,action);state=advance(state,action);
   const combat=await download(page);
-  await page.reload();await upload(page,combat);await check(page,state);
+  await page.goto(`/?view=generated-game&seed=42&seats=${seats===2?4:2}`);await upload(page,combat);await check(page,state);
+  await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1994");
+  expect(new URL(page.url()).searchParams.get("seats")).toBe(String(seats));
   await expect(page.locator("#result-dialog")).not.toBeVisible();
   await expect(page.locator('[data-country][aria-pressed="true"]')).toHaveCount(0);
   await fitAndCapture(page,`restored-combat-${seats}`,info.project.name);
   // Load failures leave the exact current history/options and a playable controller.
   for(const invalid of ["{",JSON.stringify({version:99}),JSON.stringify({version:1,options:{seed:-1},actions:[]}),JSON.stringify({version:1,options:{...defaultOptions(),seed:1994,seats:Array.from({length:seats},()=>({kind:"human"})),computerStrengths:[]},actions:[{kind:"attack",from:"missing",to:"missing"}]}),JSON.stringify({version:1,options:defaultOptions(),actions:[]})]) {
     await upload(page,invalid);await expect(page.getByRole("alert")).toContainText("Load failed:");expect(await download(page)).toBe(combat);
+    await fitAndCapture(page,`load-error-${seats}`,info.project.name);
   }
   action=nextAction(state,policy);await click(page,action);state=advance(state,action);await check(page,state);
   action={kind:"endTurn"};await click(page,action);state=advance(state,action);await check(page,state);
