@@ -936,3 +936,86 @@ dialog h2 {
 #generated-prototype .prototype-error h2 {
   color: #f0bd92;
 }
+
+
+/* [designed] Keep the T13 atlas beside the normal controls. The 288px panel
+   leaves country names and counts above 11 rendered pixels at 1280x800. */
+#generated-game {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+#generated-game .stage {
+  grid-template-columns: minmax(0, 1fr) 288px;
+}
+#generated-game .subtitle {
+  display: none;
+}
+#generated-game .generated-seed,
+#generated-game .generated-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#generated-game .generated-seed {
+  margin-left: auto;
+}
+#generated-game input {
+  width: 100px;
+}
+#generated-game .generated-legend {
+  gap: 18px;
+  font-size: 12px;
+  color: var(--muted);
+}
+#generated-game .generated-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#generated-game .generated-legend i {
+  width: 22px;
+  border-top: 2px solid #e9dba6;
+}
+#generated-game .generated-legend .generated-sea-key {
+  border-color: #83c9e5;
+  border-top-style: dashed;
+}
+#generated-game #generated-map .country-name {
+  font-size: 18px;
+  fill: #071923;
+}
+#generated-game #generated-map .army-count {
+  font: 700 18px Inter, system-ui, sans-serif;
+  fill: #071923;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+#generated-game #generated-map [data-selected="true"] .country-shape {
+  stroke: white;
+  stroke-width: 4px;
+}
+#generated-game #generated-map [data-target="true"] .country-shape {
+  stroke: #ffe08a;
+  stroke-width: 4px;
+  stroke-dasharray: 5 3;
+}
+#generated-game #generated-map .prototype-island-title {
+  font-size: 18px;
+}
+#generated-game .generated-error {
+  padding: 24px;
+}
+#generated-game .generated-error form {
+  justify-content: start;
+  margin: 20px 0;
+}
+
+
+/* Match the existing desktop panel zoom with its intended column width. */
+@media (min-width: 1600px) and (min-height: 1000px) {
+  #generated-game .stage {
+    grid-template-columns: minmax(0, 1fr) 440px;
+  }
+}

@@ -71,7 +71,7 @@ export function mountGeneratedPreview(root: HTMLElement): void {
   }
 }
 
-function renderAtlas(map: GameMap, select: (p: Province) => void): SVGSVGElement {
+export function renderAtlas(map: GameMap, select: (p: Province) => void): SVGSVGElement {
   const { x, y, width, height } = map.bounds;
   const svg = s("svg", { id: "generated-map", viewBox: `${x} ${y} ${width} ${height}`, role: "group", "aria-label": "Generated archipelago: 46 countries on 9 islands" });
   const mask = s("mask", { id: "prototype-route-mask", maskUnits: "userSpaceOnUse", x, y, width, height }, s("rect", { x, y, width, height, fill: "white" }));
@@ -122,7 +122,7 @@ function renderAtlas(map: GameMap, select: (p: Province) => void): SVGSVGElement
   // Wait until attached and fonts are loaded. Mask only the label area, leaving
   // both the country paint and each connection's remaining stroke visible.
   void document.fonts.load("600 18px Inter").then(() => document.fonts.ready).then(() => {
-    for (const text of svg.querySelectorAll<SVGTextElement>(".country-name, .prototype-island-title")) {
+    for (const text of svg.querySelectorAll<SVGTextElement>(".country-name, .army-count, .prototype-island-title")) {
       const b = text.getBBox();
       mask.append(s("rect", { x: b.x - 5, y: b.y - 3, width: b.width + 10, height: b.height + 6, fill: "black" }));
     }

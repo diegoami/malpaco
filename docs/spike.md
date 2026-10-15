@@ -330,8 +330,8 @@ and names all land/sea neighbours with IDs. Click, Enter and Space select withou
 replacing the focused country. A seed control rebuilds through `generateBoard`;
 actual generation refusal (including seed 1506) remains visible with retry.
 
-The atlas is presentation only. Game setup, placement/combat integration and a
-permanent visual choice belong to later work. The ordinary authored-board route
+The atlas is presentation only. Setup forms and a permanent visual choice belong to later work.
+The separate generated-game route below integrates placement and combat. The ordinary authored-board route
 keeps its existing behaviour and goldens. Atlas dimensions, coast margins, region
 spacing, text and route styles are [designed], after inspecting `board-gen.ts`
 placeholder geometry and `mapView.ts` label, marker and coast placement.
@@ -348,3 +348,35 @@ projection and absent preview route; the generator-failure fixture and existing
 playable-screen tests are unchanged-behaviour regressions. Preflight logs,
 reproducible disposable fixtures and final verification/mutation evidence live
 under `docs/prototypes/generated-board/`. The owner judges the settled screenshots.
+
+
+## Generated-board gameplay
+
+`?view=generated-game&seed=1994` starts two human seats using `createGame`,
+canonical default options with two human seats and no computer strengths, and
+Malpaco rules. The initial deal, armies, production centres and RNG remain the
+core's exact output. Only map polygons, labels and bounds receive T13's display
+projection. The ordinary authored route and the generated prototype remain
+available independently.
+
+The generated view shares the normal App controller, reinforcement panel,
+selection, attack result dialog and seat handoff. Every action goes through
+`apply`; map coordinates never decide adjacency. Country labels show
+`seat number · armies`, with matching seat colour; island bonuses and explicit
+solid land / dashed sea links remain visible. The seed form and refusal alert
+support retry and recovery, including the real refused seed 1506. The compact
+panel and two text rows are [designed]. At the existing large-screen breakpoint,
+the generated route uses the same 440px panel column as the authored route to
+fit its enlarged seat cards. Both layouts are measured in the pinned Playwright image
+at 1280x800 and 1920x1080; setup forms, saving and AI remain later work.
+
+`tests/ui/generated-game.test.ts` compares all nongeometry state fields with
+independent `createGame` output for seeds 1/2/3/7/42/1994 and freezes projection
+input. `tests/e2e/generated-game.spec.ts` checks screenshot owner paint and count
+glyphs, label/count bounds and hit targets, seat-card text fitting within the
+card and panel, exact connections and endpoint
+geometry, initial ownership/counts, bonuses, keyboard selection, a click-driven
+reinforcement/attack/handoff against core-predicted results and refusal recovery.
+Only its new generated-game screenshots are pinned; the owner judges the look.
+Replay and actual-source mutation commands and tracked evidence live under
+`docs/prototypes/generated-play/`.
