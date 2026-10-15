@@ -97,7 +97,7 @@ async function actualSourceMutation(label, sourceText) {
 
 try {
   await run("dw1-entry", "npx", ["playwright", "test", "tests/e2e/entry.spec.ts", "--workers=2"]);
-  await run("dw2-slice", "npx", ["playwright", "test", "tests/e2e/slice.spec.ts", "--workers=2"]);
+  await run("dw2-authored", "npx", ["playwright", "test", "tests/e2e/slice.spec.ts", "tests/e2e/reinforcement.spec.ts", "--workers=2"]);
 
   const current = (await readFile(sourcePath)).toString("utf8");
   const authoredDefault = mutate(

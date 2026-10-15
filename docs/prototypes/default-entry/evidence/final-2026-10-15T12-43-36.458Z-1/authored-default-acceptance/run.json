@@ -1,0 +1,17 @@
+{
+  "label": "authored-default-acceptance",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/entry.spec.ts",
+    "--workers=2"
+  ],
+  "expected": "fail",
+  "exitCode": 1,
+  "signal": null,
+  "stdoutSha256": "41444a3aa3429f689f23d7e2b34b7e202fd1c9f8ab308a2ab546824dcf6486ef",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "artifacts": [],
+  "passed": true
+}
