@@ -1,0 +1,1114 @@
+[
+  {
+    "id": "ui-041",
+    "document": "ui",
+    "requirement": "- **The resulting shares.** Setup shows each seat's starting country count as the deal's step 2 computes it from the current settings and seed (the first seat comes from the seed), so a share setting shows its effect, including a transfer the rule skips because a computer seat would fall below 3. Changing a setting updates the counts at once.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#setup",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T26",
+      "T30",
+      "T44",
+      "T46",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/resultDialog.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/game-setup.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Setup/board/result components exist; current demo is not the complete canonical start/settings/record flow.",
+    "missing": "One-action launch, all setup consumers/preview/shares, complete result, record/help/settings and original text.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-042",
+    "document": "ui",
+    "requirement": "- **The board preview.** Setup shows the board the current seed and settings generate, small, with island outlines and bonuses. A new seed gives a new preview. It shows the board only, not the deal.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#setup",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T26",
+      "T30",
+      "T44",
+      "T46",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/resultDialog.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/game-setup.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Setup/board/result components exist; current demo is not the complete canonical start/settings/record flow.",
+    "missing": "One-action launch, all setup consumers/preview/shares, complete result, record/help/settings and original text.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-043",
+    "document": "ui",
+    "requirement": "- **The last settings** are restored at start (core-rules.md, Stored files); a control resets every option to its default. A settings file that fails validation is ignored and the player is told once.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#setup",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T26",
+      "T30",
+      "T44",
+      "T46",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/resultDialog.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/game-setup.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Setup/board/result components exist; current demo is not the complete canonical start/settings/record flow.",
+    "missing": "One-action launch, all setup consumers/preview/shares, complete result, record/help/settings and original text.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-044",
+    "document": "ui",
+    "requirement": "- **Starting** a game while another is unfinished asks for confirmation and states the consequence under the saving rule *(UI14)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#setup",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T26",
+      "T30",
+      "T44",
+      "T46",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/resultDialog.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/game-setup.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Setup/board/result components exist; current demo is not the complete canonical start/settings/record flow.",
+    "missing": "One-action launch, all setup consumers/preview/shares, complete result, record/help/settings and original text.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-045",
+    "document": "ui",
+    "requirement": "*(UI14; core-rules.md, decision 2.)* One save slot.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#saving-and-loading",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T31",
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual match export/load exists; browser persistence, autosave and overwrite ledger do not.",
+    "missing": "One persistent slot, immutable game identity, validated replay, end-turn autosave and once-only overwrite/results.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-046",
+    "document": "ui",
+    "requirement": "- **Save** is in the board's menu, available whenever a human seat is to act; it stores settings, seed and action list and says so. **Continue** on the start screen restores the slot by replay and opens the board at the saved point, with the log intact.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#saving-and-loading",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T31",
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual match export/load exists; browser persistence, autosave and overwrite ledger do not.",
+    "missing": "One persistent slot, immutable game identity, validated replay, end-turn autosave and once-only overwrite/results.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-047",
+    "document": "ui",
+    "requirement": "- **Autosave (UI14 c):** the game is also saved automatically at the end of every turn, so a crash or a closed window never loses a game.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#saving-and-loading",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T31",
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual match export/load exists; browser persistence, autosave and overwrite ledger do not.",
+    "missing": "One persistent slot, immutable game identity, validated replay, end-turn autosave and once-only overwrite/results.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-048",
+    "document": "ui",
+    "requirement": "- **The game's identity.** Every game gets an identity when it starts (a random value from outside the game stream, so it changes no draw), kept in its save and unchanged by saving and loading. Play again and replay the same seed start new games with new identities.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#saving-and-loading",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T31",
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual match export/load exists; browser persistence, autosave and overwrite ledger do not.",
+    "missing": "One persistent slot, immutable game identity, validated replay, end-turn autosave and once-only overwrite/results.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-049",
+    "document": "ui",
+    "requirement": "- **Replacing a different game** (UI14 c, applied to core-rules.md, Leaving a game): a save whose game identity differs from the slot's, while the slot's game is unfinished, records a loss for each of that game's human seats that has no result yet, as resigning does, and then replaces it. A save of the same game (every autosave, every manual save of the game in play) only replaces it and records nothing. A finished game in the slot is replaced without a charge. The confirmation before a charging save names the game it replaces and the loss; with UI14 c that save is the new game's first autosave, so the new-game confirmation says so.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#saving-and-loading",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T31",
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual match export/load exists; browser persistence, autosave and overwrite ledger do not.",
+    "missing": "One persistent slot, immutable game identity, validated replay, end-turn autosave and once-only overwrite/results.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-050",
+    "document": "ui",
+    "requirement": "- **Never counted twice.** The record keeps, for each game identity, the human seats whose result it holds (a win, a loss, a resignation, a charge for a replaced game). Every result is written under its game identity and seat, and a seat that already has one gets no second: a seat that resigned gets nothing more when the game ends, and a game already charged when replaced can no longer be loaded, since its save is gone.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#saving-and-loading",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T31",
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual match export/load exists; browser persistence, autosave and overwrite ledger do not.",
+    "missing": "One persistent slot, immutable game identity, validated replay, end-turn autosave and once-only overwrite/results.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-051",
+    "document": "ui",
+    "requirement": "- Loading never re-rolls anything: the restored game continues exactly as it would have.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#saving-and-loading",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T31",
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual match export/load exists; browser persistence, autosave and overwrite ledger do not.",
+    "missing": "One persistent slot, immutable game identity, validated replay, end-turn autosave and once-only overwrite/results.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-052",
+    "document": "ui",
+    "requirement": "- **The moment of the end.** When the victory check ends the game, the board stays visible with the final move shown, and a notice names the winner and how: total conquest, last seat standing, domination (with the count, for example 35 of 46), the round limit (with the tie-break used, if any), or every human eliminated. One action opens the result screen.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-end-and-result-screen",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T26",
+      "T30",
+      "T44",
+      "T46",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/resultDialog.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/game-setup.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Setup/board/result components exist; current demo is not the complete canonical start/settings/record flow.",
+    "missing": "One-action launch, all setup consumers/preview/shares, complete result, record/help/settings and original text.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-053",
+    "document": "ui",
+    "requirement": "- **Every human eliminated** (core-rules.md, Victory, 5): the notice says the game is lost for the humans and offers two choices: watch the computers finish (at the current speed, with a control to jump to the end) or see the result now. Either way the record already holds the loss.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-end-and-result-screen",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T26",
+      "T30",
+      "T44",
+      "T46",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/resultDialog.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/game-setup.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Setup/board/result components exist; current demo is not the complete canonical start/settings/record flow.",
+    "missing": "One-action launch, all setup consumers/preview/shares, complete result, record/help/settings and original text.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-054",
+    "document": "ui",
+    "requirement": "- **The result screen** shows: the winner with its colour and owner cue; every seat's final countries, armies, cards held and the round it was eliminated, ordered by finish; the number of rounds; the seed and the settings, with a control to copy them; the record's change for this setup, already updated when the screen appears. Actions: play again with the same settings and a new seed; replay the same seed; new setup; start screen.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-end-and-result-screen",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T26",
+      "T30",
+      "T44",
+      "T46",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/resultDialog.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/game-setup.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Setup/board/result components exist; current demo is not the complete canonical start/settings/record flow.",
+    "missing": "One-action launch, all setup consumers/preview/shares, complete result, record/help/settings and original text.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-055",
+    "document": "ui",
+    "requirement": "- **Resigning** (core-rules.md, Leaving a game) is in the board's menu at all times for a human seat. Its confirmation states that it records a loss, and that the seat is then played by the computer if another human remains, at Normal (UI18; core-rules.md, Leaving a game), or that the game ends.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-end-and-result-screen",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T26",
+      "T30",
+      "T44",
+      "T46",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/resultDialog.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/game-setup.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Setup/board/result components exist; current demo is not the complete canonical start/settings/record flow.",
+    "missing": "One-action launch, all setup consumers/preview/shares, complete result, record/help/settings and original text.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-056",
+    "document": "ui",
+    "requirement": "The board is drawn from the generated board's data: countries, islands, borders and positions (core-rules.md, The board). Positions are display data; the layout never changes a rule.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-board",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-057",
+    "document": "ui",
+    "requirement": "- **Two cues, always** (UW-1, UW-3). A country shows its owner by colour **and** by the owner cue *(UI3: the shape of the badge that holds the army count, one shape per seat)*. With colour removed entirely (greyscale), every country's owner can be read from the cue alone.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#ownership",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-058",
+    "document": "ui",
+    "requirement": "- **The palette** *(UI2)*: one colour per seat for up to four seats. Under simulated deuteranopia, protanopia and tritanopia (Machado, Oliveira and Fernandes 2009, full severity), and with normal vision, no two seat colours are closer than `MIN_SEAT_DELTA_E` in CIEDE2000 (15 proposed: four colours of the published Okabe–Ito colour-blind-safe set reach about 20 under this check, as [the palette check](#the-palette-check) computes, so 15 leaves the art direction room). Greyscale is carried by the cue, not by the palette. A high-contrast palette is a setting (UI2 b).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#ownership",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-059",
+    "document": "ui",
+    "requirement": "- **The same seat looks the same everywhere**: on the board, in the standings, the log, the phase bar, the hand-over and the result, by the same colour and cue.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#ownership",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-060",
+    "document": "ui",
+    "requirement": "- **Change of owner** is shown as it happens: the country changes colour and cue in one visible step with a capture effect ([Combat feedback](#combat-feedback)), and the log records it.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#ownership",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-061",
+    "document": "ui",
+    "requirement": "- **Every country shows its stack** as a number in its badge, readable at a glance: at least `COUNT_TEXT_MIN` (14 px proposed) high at the smallest supported window, with a contrast of at least 4.5 to 1 against the badge (the WCAG 2.x minimum for text), for every seat colour.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#army-counts",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-062",
+    "document": "ui",
+    "requirement": "- **No stack cap** (core-rules.md, Reinforcement): counts up to 999 show in full; larger ones show compactly (for example 1.2k) within the same badge, and the exact count is shown on selecting the country and in every battle panel.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#army-counts",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-063",
+    "document": "ui",
+    "requirement": "- **Changes are visible**: a count that changes steps or tweens to its new value, and the change (for example −3 or +5) shows beside the badge for a moment and is in the log.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#army-counts",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-064",
+    "document": "ui",
+    "requirement": "- Each island is drawn as one landmass, distinct from the sea; borders between countries of an island are lines; borders crossing between islands are drawn as sea links, so the entrances that hold an island can be read off the map.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#islands-and-bonuses",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-065",
+    "document": "ui",
+    "requirement": "- **Each island shows its bonus** (core-rules.md, Island bonuses) as a number placed on or beside it. An island held completely by one seat shows that seat's colour and cue on its outline or label, so a held bonus reads at a glance, and the standings list it.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#islands-and-bonuses",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-066",
+    "document": "ui",
+    "requirement": "- Selecting an island (its label) shows its countries, bonus, entrances and who holds how many.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#islands-and-bonuses",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-067",
+    "document": "ui",
+    "requirement": "- **A centre is marked** by a symbol that is the same for every owner and is neither a colour nor an owner cue *(UI4)*, visible at the smallest size, with a contrast of at least 3 to 1 against every seat colour (the WCAG 2.x minimum for graphics). Selecting a centre shows what a harvest would add to it now (its stack, at most 10; variety.md, Production centres).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#centres",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-068",
+    "document": "ui",
+    "requirement": "- With events Off, centres do nothing, and their marks are hidden *(UI17; variety.md, Production centres)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#centres",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-069",
+    "document": "ui",
+    "requirement": "- **Smallest supported window** *(UI13: 800 by 540 CSS pixels, desktop and tablet in landscape)*: the whole board fits with every panel collapsed to its compact form, and every property in this section holds there.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legibility-and-size",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-070",
+    "document": "ui",
+    "requirement": "- **Hit areas.** Every country has a hit area at least `HIT_MIN` (40 CSS px proposed, near common platform touch guidance) in each direction at the smallest window, and hit areas do not overlap. 46 such areas need 73,600 square px, a fifth of an 800 by 460 board area (the window less 80 px of compact panels, an assumed split), so the property is geometrically possible; meeting it for every generated board needs spaced positions *(UI15)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legibility-and-size",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-071",
+    "document": "ui",
+    "requirement": "- **Nothing overlaps**: no badge, bonus label, centre mark or highlight covers another country's badge, at any supported size.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legibility-and-size",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-072",
+    "document": "ui",
+    "requirement": "- A country is identified in the log and on selection by a short label of malpaco's own, derived from its island; its form is part of the art direction *(UI1)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legibility-and-size",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-073",
+    "document": "ui",
+    "requirement": "- The board and every panel are drawn so that they stay sharp at any size and pixel density (vector shapes, text at device resolution).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#resolution-independence",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-074",
+    "document": "ui",
+    "requirement": "- A window resize **reframes**: the board scales to fit the space left by the panels, keeping its aspect, never cropped and never needing scrolling; panels change between full and compact forms at named widths. A resize during a battle or a computer turn changes nothing in play.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#resolution-independence",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-075",
+    "document": "ui",
+    "requirement": "- Below the smallest supported window the game shows a message asking for a larger window instead of a broken layout.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#resolution-independence",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-076",
+    "document": "ui",
+    "requirement": "*(UI1.)* The direction is a clean sea chart: islands with drawn coastlines, flat seat fills, a light texture, thin borders and sea links, so the board reads as a place and not as a form over a map (UW-18), while every property above holds. Art assets are out of scope here.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-look",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T25",
+      "T26",
+      "T36",
+      "T43",
+      "T51",
+      "T52"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/palette.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-board-layout.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Reuse SVG rendering, palette and board/panel seams; existing screenshots do not prove the 800x540 canonical geometry, accessible cues or owner-approved final look.",
+    "missing": "Geographic coastlines with coast-centred crossings, badge shapes, contrast/count/hit-area constraints, compact panels and vector resizing; owner judges look.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-077",
+    "document": "ui",
+    "requirement": "- Always visible on the board screen: the active seat (colour, cue, name or seat number, human or computer and its level) and the six phases of the turn, income, cards, placement, attacks, move and end (core-rules.md, The turn), with the current phase marked and the remaining action stated in words (for example \"place 7 armies\", \"attack or end attacks\", \"move once or end the turn\").",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-phase-bar",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-078",
+    "document": "ui",
+    "requirement": "- **Advancing**: one primary control per phase, always in the same place, named by what it does (confirm placement, end attacks, end turn without moving). Ending the turn with an attack still possible needs no confirmation; ending placement is impossible until the pool is placed.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-phase-bar",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-079",
+    "document": "ui",
+    "requirement": "- **The cards phase** is shown as passed, with a note, when the seat holds no set; it needs no action.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-phase-bar",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-080",
+    "document": "ui",
+    "requirement": "- The phase bar shows the computer's phases too, during its turns.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-phase-bar",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  }
+]

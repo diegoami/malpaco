@@ -1,0 +1,106 @@
+[
+  {
+    "id": "variety-081",
+    "document": "variety",
+    "requirement": "6. **The Squall and an empty hand** (V4, C-CRD-02). The predecessor's draw skipped the hand-emptying card when the hand was empty; with a finite deck the card is drawn like any other and empties an empty hand harmlessly.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#reconciled-with-t50",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T38",
+      "T39",
+      "T42",
+      "T47"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "A common action interface is reusable; cards/events are absent, so fairness is not yet demonstrated for them.",
+    "missing": "Same rules for every seat; apply the reconciled canonical mechanics rather than predecessor asymmetries.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "variety-082",
+    "document": "variety",
+    "requirement": "7. **The raid's trigger** (V5). V5's predecessor option is read in full: the raid is a set of three Raid cards (Wilds count, as in V2), traded as the turn's one set, not a single card.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#reconciled-with-t50",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T38",
+      "T39",
+      "T42",
+      "T47"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "A common action interface is reusable; cards/events are absent, so fairness is not yet demonstrated for them.",
+    "missing": "Same rules for every seat; apply the reconciled canonical mechanics rather than predecessor asymmetries.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "variety-083",
+    "document": "variety",
+    "requirement": "8. **Centre placement** (V7, C-CEN-01). The predecessor picked fixed positions of a fresh permutation; malpaco draws three distinct countries uniformly, which is the same distribution, on the generated board.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#reconciled-with-t50",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T38",
+      "T39",
+      "T42",
+      "T47"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "A common action interface is reusable; cards/events are absent, so fairness is not yet demonstrated for them.",
+    "missing": "Same rules for every seat; apply the reconciled canonical mechanics rather than predecessor asymmetries.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "variety-084",
+    "document": "variety",
+    "requirement": "T50's protections hold throughout: no event wipes a stack or eliminates a seat, events pause in round 1, near a win and before a round limit's scoring, and every rule is the same for every seat.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#reconciled-with-t50",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T38",
+      "T39",
+      "T42",
+      "T47"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "A common action interface is reusable; cards/events are absent, so fairness is not yet demonstrated for them.",
+    "missing": "Same rules for every seat; apply the reconciled canonical mechanics rather than predecessor asymmetries.",
+    "disposition": "extend",
+    "questions": []
+  }
+]

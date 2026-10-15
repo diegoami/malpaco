@@ -1,0 +1,1018 @@
+[
+  {
+    "id": "computer-041",
+    "document": "computer",
+    "requirement": "The computer follows T50's phases in order: income, cards, placement, attacks, the move, the end.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-computers-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-042",
+    "document": "computer",
+    "requirement": "In the cards phase it may trade one set, or skip ([variety.md, Trade-ins](variety.md#trade-ins)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-043",
+    "document": "computer",
+    "requirement": "- **Army sets are traded at once, at every level.** A set of Anchors (5), Compasses (8) or Lanterns (15) never grows, so holding it gains nothing and risks the Squall and the hand limit. A seat whose hand makes an army set therefore trades a set that turn. Which one, when the hand makes several (they may share Wilds, and only one is traded a turn): the army set adding most armies, unless a Surge or Raid set is worth more now and its own rule below says to trade it; a Surge set is worth this turn's income, a Raid set its expected saving in attacking armies.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-044",
+    "document": "computer",
+    "requirement": "- **The Surge set waits for a big turn** *(A7)*. Three Surges add the turn's income once more (country part and island bonuses): worth exactly the income `I`, so more as the seat grows. From Normal up the computer trades a Surge set when any of these holds, and otherwise keeps it: - its income is at least `SURGE_INCOME` (8); - its hand holds 4 or more cards, so the next capture would risk a discard or more; - the Squall is in the draw pile and the pile holds `SQUALL_PILE` (15) cards or fewer, so each own draw has a 1 in 15 or greater chance of emptying the hand ([the model](#a-model-of-the-choices)); - the doubled pool lets it complete an island or reach domination this turn (foresight).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-045",
+    "document": "computer",
+    "requirement": "At Easy it trades a set in every turn it holds one, the one adding most armies, a Raid set last; an Easy raid hits the largest enemy stack adjacent to one of its countries.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-046",
+    "document": "computer",
+    "requirement": "- **The Raid set hits what it means to attack, or the leader** *(A10)*. A raid is traded in the cards phase, before placement, so its result shapes the rest of the turn. From Normal up the computer trades a Raid set when a target gives enough value: - an enemy stack it plans to attack this turn, where the expected loss (the stack becomes 1 to half of itself) turns a poor battle into a good one: the raid-then-attack combination a player can read; - the largest stack of a leader ([The leader check](#the-leader-check)), when it holds at least `RAID_MIN_STACK` (8) armies.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-047",
+    "document": "computer",
+    "requirement": "The chance that the target's owner holds a Shield lowers the value. At Hard the computer estimates it from public counts ([the model](#a-model-of-the-choices)); below Hard it ignores it. A Raid set that finds no target worth it is kept, unless the hand needs the room.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-048",
+    "document": "computer",
+    "requirement": "- **Wilds**: at most two per set (the rule); the computer spends Wilds only when the set is traded.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-049",
+    "document": "computer",
+    "requirement": "The whole pool is placed on the seat's own countries (the rule). Since the board is connected, every seat that does not hold every country has at least one front country.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-050",
+    "document": "computer",
+    "requirement": "- **On front countries only** *(A13)*. An interior stack cannot attack and guards nothing directly, so the computer never places there; the end-of-turn move brings interior armies forward instead.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-051",
+    "document": "computer",
+    "requirement": "- **Concentrated** *(A14)*. Armies go to at most `MAX_PLACEMENT_STACKS` (3) countries a turn. One battle won by a large stack is worth more than three lost by small ones, and few placements are quick to watch.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-052",
+    "document": "computer",
+    "requirement": "- **Candidates are judged after the placement.** A candidate battle for placement is an own front country `S` and an enemy neighbour `T`, judged with `S`'s stack plus the armies `S` would receive, up to the whole pool. A front stack of 1 is therefore a candidate source once armies are placed on it.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-053",
+    "document": "computer",
+    "requirement": "- **The attack stack first.** Among those candidates it picks the turn's first battle (valued as in [Attacks](#attacks)) whose capture chance can reach the level's attack threshold with the pool, and places on `S` the fewest armies that bring `cap(a, d)` to that threshold.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-054",
+    "document": "computer",
+    "requirement": "- **Then defence.** An entrance of an island it holds, or a country whose loss would break an island bonus or a near-complete island, gets armies until its exposure falls below `DEFEND_RISK` (0.5), from what the pool has left. When defence and attack compete, the level's weights decide.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-055",
+    "document": "computer",
+    "requirement": "- **Every army is placed.** What is left after the attack stack and defence goes to the attack stack. With no attack stack (no candidate reaches the threshold even with the whole pool), it goes to the **fallback country**: the front country where the remaining pool gives the highest capture chance against its weakest enemy neighbour (on a tie, the higher value, then the first in board order). If three countries already received armies, the fallback country is chosen among those three. The fallback needs only one front country, which every seat has, so the whole pool is always placed.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-056",
+    "document": "computer",
+    "requirement": "- **A candidate battle** is an own country with at least 2 armies and an enemy neighbour. The computer values capturing the neighbour by what it adds: a country (income), an island completed (its bonus), an enemy bonus broken, a card if this is the turn's first capture, a seat eliminated, a centre held (worth something only through the harvest event, and less right after a shift), the leader check's weight. It subtracts the exposure it leaves behind.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-057",
+    "document": "computer",
+    "requirement": "- **Starting a battle.** It starts the battle of highest value whose capture chance is at least the level's `ATTACK_THRESHOLD`; with none, its attacks are over for the turn.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-058",
+    "document": "computer",
+    "requirement": "- **During a battle**, after each exchange, it continues while `cap(current attacker, current defender)` is at least `STOP_THRESHOLD`, and stops otherwise. Armies already lost do not count: it judges only from the stacks as they stand. At 1 army the battle stops by rule.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-059",
+    "document": "computer",
+    "requirement": "- **The turn's card.** A seat draws one card for a turn with a capture. If it has not captured this turn and a battle with chance at least `CARD_THRESHOLD` exists, the card is part of that battle's value, so a turn rarely ends with no capture when an easy one is on the board.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-060",
+    "document": "computer",
+    "requirement": "- **The stop threshold stays below the attack threshold.** `STOP_THRESHOLD` never exceeds the current attack threshold minus `STOP_GAP` (0.10), so a battle the computer starts is not abandoned after one exchange by a stricter stop rule.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-061",
+    "document": "computer",
+    "requirement": "- **No stalling** *(A15)*. When the seat has made no capture in its last `STALL_TURNS` (2) own turns, its attack threshold drops by `STALL_STEP` (0.10) each further turn, down to `ATTACK_FLOOR` (0.40), and returns to the level's value after a capture. Every level reaches the floor within 5 own turns without a capture (Easy: 2 turns, then 0.70 to 0.40 in 3 steps). The floor is below the chance of equal stacks of 10 or more, so a border where both sides pile up equally is attacked ([No stalling](#no-stalling)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-062",
+    "document": "computer",
+    "requirement": "- **Pace bound** *(A6)*. At most `MAX_BATTLES` (10) battles a turn. The bound is for the player watching ([Quick turns](#quick-turns)); it is a limit the computer puts on itself, not a rule.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-063",
+    "document": "computer",
+    "requirement": "After a capture the attacking stack holds `P` armies, at least 2 (a battle stops when the attacker is down to 1, so a capture always comes with 2 or more), and the rule lets it move in any `m` from 1 to `P − 1`. A legal split therefore always exists: at least 1 stays and at least 1 moves. The computer chooses `m` this way:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#move-in-after-a-capture",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-064",
+    "document": "computer",
+    "requirement": "- **Needs.** A country's need is the fewest armies that bring its exposure to `DEFEND_RISK` or below, and at least 1. A country with no enemy neighbour needs 1.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#move-in-after-a-capture",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-065",
+    "document": "computer",
+    "requirement": "- **Priority.** The country from which its plan attacks next this turn has first claim, with what that battle needs (its stack must reach the attack threshold). With no further battle planned from either, the country whose loss would cost more (an island bonus completed or at stake, an entrance, a centre) has first claim; on a tie, the captured country.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#move-in-after-a-capture",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-066",
+    "document": "computer",
+    "requirement": "- **Split.** Each country first gets its need, the first-claim country before the other, capped at what the rule allows (`P − 1` moved in, or `P − 1` kept). So when both needs cannot be met, the first-claim country is served first and the other is left with 1. **The surplus** (armies beyond both needs) goes to the country that borders an enemy: forward into the captured country when the source has no enemy neighbour, so no surplus is stranded behind the front; when both border an enemy, or neither does, to the first-claim country. In Sol's case of `P = 10`, an interior source and a captured country needing 1, each gets 1 and the 8 extra move in: 9 move, 1 stays.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#move-in-after-a-capture",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-067",
+    "document": "computer",
+    "requirement": "- **Examples.** A source left with no enemy neighbour needs 1, so all but one move in. A source of 3 that captures a 1-army country after losing one exchange has `P = 2`: the only legal split is 1 and 1, and the computer makes it, even if a 10-army enemy borders the source. That source is then likely lost; the battle's value already counted the exposure it would leave behind ([Attacks](#attacks)), so a level that weighs exposure heavily does not start such a battle.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#move-in-after-a-capture",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-068",
+    "document": "computer",
+    "requirement": "At most one move, after the attacks, between neighbouring own countries; it ends the turn (the rule).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-move",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-069",
+    "document": "computer",
+    "requirement": "- The computer moves armies from an interior country to a neighbouring country nearer the front (fewer borders from an enemy country), preferring the largest such stack, so armies left behind by captures rejoin the fighting.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-move",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-070",
+    "document": "computer",
+    "requirement": "- If no interior stack can move forward, it may move from a front country with low exposure to a neighbouring country whose exposure is above `DEFEND_RISK`, keeping its own exposure below it.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-move",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-071",
+    "document": "computer",
+    "requirement": "- It moves all but one from an interior source, and only the surplus from a front source.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-move",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-072",
+    "document": "computer",
+    "requirement": "- No move is made when none improves its position. Any country may be the source, a centre included; nothing depends on a fixed list, so the rule works on every generated board.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-move",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-073",
+    "document": "computer",
+    "requirement": "A seat drawing into a full hand discards one of its five first, without seeing the new card ([variety.md, The hand](variety.md#the-hand), V11). The computer discards the card that costs its prospects least:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#discards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-074",
+    "document": "computer",
+    "requirement": "- it keeps cards of a kind it holds two of, and Wilds, over single cards;",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#discards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-075",
+    "document": "computer",
+    "requirement": "- it keeps a Shield while some opponent could still assemble a Raid set (an opponent holds 3 or more cards and not all four Raids have been seen on the discard pile since the last reshuffle, as far as its card memory reaches, A12);",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#discards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-076",
+    "document": "computer",
+    "requirement": "- among the rest, it discards a card of the kind with the fewest **unseen copies**: the kind's copies in the deck ([variety.md, The kinds](variety.md#the-kinds): 11 Anchors, 7 Compasses, 4 each of Lanterns, Surges and Raids) minus those in its own hand and those on the discard pile since the last reshuffle, as far as its card memory reaches (at Easy, the deck's copies minus its own). This is a heuristic, not the exact chance of completing a set: the unseen copies may sit in other hands, and the draw order is unknown.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#discards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T41",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic policy covers reinforcement and attack/endTurn; canonical card and discard choices are absent.",
+    "missing": "Complete ordinary phases first; then army/Surge/Raid timing, Wilds, Shield estimation and discard/card-memory decisions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-077",
+    "document": "computer",
+    "requirement": "*(A5, A16.)* A seat is a **leader** when either holds:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-leader-check",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-078",
+    "document": "computer",
+    "requirement": "- it holds at least `LEADER_COUNT` (28) countries, seven short of the domination win;",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-leader-check",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-079",
+    "document": "computer",
+    "requirement": "- its **adjusted count** is at least `LEADER_MIN` (22) and at least `LEADER_RATIO` (1.5) times the next largest adjusted count. A seat's adjusted count is its countries minus its **handicap transfer**, the countries the human share settings moved to it at the deal (negative if they moved countries away from it). The transfers follow from the options and the deal, which every seat sees.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-leader-check",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-080",
+    "document": "computer",
+    "requirement": "Each computer seat adds `W_LEADER` (by level) to the value of battles and raids against a leader. The test is one formula for every seat: a human leader and a computer leader are treated alike, and a computer seat that is itself the leader plays for the win. The view does not say which seats are human, so the check cannot single one out. The adjusted count keeps a handicap the players chose from counting as a runaway; the near-win test reads real countries, because a seat at 28 is seven captures from winning however it got there.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-leader-check",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Current policy places the entire pool on a largest frontier and attacks weaker targets under a map-size budget; it has no strategic evaluation, movement or leader/anti-stall memory.",
+    "missing": "Canonical thresholds/planning, <=3 placements, <=10 battles, legal capture split, one move, handicap-adjusted leader and anti-stall handling.",
+    "disposition": "extend",
+    "questions": []
+  }
+]

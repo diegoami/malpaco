@@ -1,0 +1,1018 @@
+[
+  {
+    "id": "ui-081",
+    "document": "ui",
+    "requirement": "- At the start of a human turn, the pool and its parts are shown: the country part with its count, each completely held island with its bonus, and a traded set's armies once traded (core-rules.md, Reinforcement).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#income-and-placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-082",
+    "document": "ui",
+    "requirement": "- **Placing**: a click or tap on an own country adds armies from the pool, in an amount chosen beside the pool (1, 5 or all that remain); a key does the same for the selected country. Armies placed this phase can be taken back until the placement is confirmed; the confirmed placement is recorded as the turn's actions. The pool left is always shown.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#income-and-placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-083",
+    "document": "ui",
+    "requirement": "- Confirm is enabled only when the pool is 0 (the whole pool is placed).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#income-and-placement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-084",
+    "document": "ui",
+    "requirement": "- **Choosing a battle**: own countries that can attack (at least 2 armies and an enemy neighbour) are marked; selecting one marks its enemy neighbours as targets. Other countries are dimmed, not hidden.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-085",
+    "document": "ui",
+    "requirement": "- **The odds** *(UI10)*: on choosing a target, the chance to capture if the battle is fought to the end, from core-rules.md's exact model with ties re-rolled, is shown beside it: the same public arithmetic the computer uses (computer.md, Terms).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-086",
+    "document": "ui",
+    "requirement": "- **The battle panel** opens: both stacks in full numbers, the controls of [Combat feedback](#combat-feedback), and stop. There is no limit on battles (core-rules.md, Combat).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-087",
+    "document": "ui",
+    "requirement": "- After a capture the move-in comes first ([below](#move-in-after-a-capture)); then the seat may start another battle, from any country, including the one just captured.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#attacks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-088",
+    "document": "ui",
+    "requirement": "- A counter opens at the default, **all but one** of the attacker's remaining armies (core-rules.md, Ownership change), with controls for 1, one fewer, one more, all but one, and confirm; a number can be typed. The range (1 to all but one) is shown. When the attacker has exactly 2 armies the only move-in is 1 and the counter confirms it in one action.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#move-in-after-a-capture",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-089",
+    "document": "ui",
+    "requirement": "- A move control starts the move: own countries that can be a source (at least 2 armies and an own neighbour) are marked; then the own neighbours of the chosen source; then the counter, default all but one (core-rules.md, Movement). The confirm control says that the move ends the turn. Cancel returns to the attack phase with nothing changed.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-move-and-the-end-of-the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-090",
+    "document": "ui",
+    "requirement": "- **End of turn**: a capturing turn draws its card first ([Cards](#cards)), then the victory check runs; the next seat's turn begins after any event at the turn change ([Events and centres](#events-and-centres)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-move-and-the-end-of-the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-091",
+    "document": "ui",
+    "requirement": "*(UW-6.)* Illegal actions are not offered: their controls are disabled and their countries are not marked. When one is tried anyway (a click on an unmarked country, a disabled control, a key), the state does not change, a short reason appears next to where it was tried, the refusal sound plays once, and the legal choices are marked again. The reasons cover at least:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-092",
+    "document": "ui",
+    "requirement": "| Attempt | Reason shown (in malpaco's words) |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-093",
+    "document": "ui",
+    "requirement": "| attack from a country with 1 army | an attack needs at least 2 armies |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-094",
+    "document": "ui",
+    "requirement": "| attack an own country, or one that is not a neighbour | the target must be an enemy neighbour |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-095",
+    "document": "ui",
+    "requirement": "| place on an enemy country | armies are placed on own countries |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-096",
+    "document": "ui",
+    "requirement": "| end placement with armies left | the whole pool must be placed, with the number left |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-097",
+    "document": "ui",
+    "requirement": "| move from a 1-army country, or to a non-neighbour or enemy country | the move rule that fails |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-098",
+    "document": "ui",
+    "requirement": "| trade three cards that are no set, or three Wilds | what a set is, and what is missing |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-099",
+    "document": "ui",
+    "requirement": "| trade a second set | one set per turn |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-100",
+    "document": "ui",
+    "requirement": "| any action outside its phase | which phase allows it |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-101",
+    "document": "ui",
+    "requirement": "| any action during another seat's turn | whose turn it is |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legal-and-illegal-actions",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-102",
+    "document": "ui",
+    "requirement": "*(UI8; core-rules.md, decision 3.)* In a game with two or more human seats:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#hot-seat-hand-over",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/seats.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/seats.test.ts"
+    ],
+    "assessment": "Seat mixtures exist as data; no card-bearing viewer/handover implementation exists.",
+    "missing": "Cover every private panel before changing viewer; outgoing discard/draw precedes handover, public event remains visible.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-103",
+    "document": "ui",
+    "requirement": "- Whenever the next human seat to act differs from the viewer whose hand was last shown, a hand-over screen appears before that seat's turn: it names the seat (colour, cue, name) and covers every private panel (the hand, a drawn card, a discard prompt). The board, the standings and the log stay visible, because they are public. One action by the incoming player reveals its hand and starts its income.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#hot-seat-hand-over",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/seats.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/seats.test.ts"
+    ],
+    "assessment": "Seat mixtures exist as data; no card-bearing viewer/handover implementation exists.",
+    "missing": "Cover every private panel before changing viewer; outgoing discard/draw precedes handover, public event remains visible.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-104",
+    "document": "ui",
+    "requirement": "- During a computer turn no hand is shown.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#hot-seat-hand-over",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/seats.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/seats.test.ts"
+    ],
+    "assessment": "Seat mixtures exist as data; no card-bearing viewer/handover implementation exists.",
+    "missing": "Cover every private panel before changing viewer; outgoing discard/draw precedes handover, public event remains visible.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-105",
+    "document": "ui",
+    "requirement": "- Everything private to the outgoing seat (its end-of-turn draw, a discard before the draw) happens before the hand-over, while that seat is still the viewer. An event at the turn change is shown on the board before the hand-over screen, so both players see it.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#hot-seat-hand-over",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/seats.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/seats.test.ts"
+    ],
+    "assessment": "Seat mixtures exist as data; no card-bearing viewer/handover implementation exists.",
+    "missing": "Cover every private panel before changing viewer; outgoing discard/draw precedes handover, public event remains visible.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-106",
+    "document": "ui",
+    "requirement": "- **Four humans, no computer**: the hand-over appears at every turn change (four per round); the setup hides the share and level controls, which the rules ignore then.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#hot-seat-hand-over",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/seats.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/seats.test.ts"
+    ],
+    "assessment": "Seat mixtures exist as data; no card-bearing viewer/handover implementation exists.",
+    "missing": "Cover every private panel before changing viewer; outgoing discard/draw precedes handover, public event remains visible.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-107",
+    "document": "ui",
+    "requirement": "- With one human seat, no hand-over appears: that seat is the viewer throughout.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#hot-seat-hand-over",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/seats.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/seats.test.ts"
+    ],
+    "assessment": "Seat mixtures exist as data; no card-bearing viewer/handover implementation exists.",
+    "missing": "Cover every private panel before changing viewer; outgoing discard/draw precedes handover, public event remains visible.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-108",
+    "document": "ui",
+    "requirement": "*(UW-13; core-rules.md, Combat.)*",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-109",
+    "document": "ui",
+    "requirement": "- **Dice**: each exchange shows both dice faces, attacker's and defender's, side by side in the seats' colours and cues, and which side lost an army.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-110",
+    "document": "ui",
+    "requirement": "- **Ties re-rolled, visibly**: a tie shows both equal faces, marked as a tie, and the re-roll follows as part of the same exchange, so a player sees that a tie favours no one. The battle panel keeps a tally: exchanges won by each side and ties re-rolled.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-111",
+    "document": "ui",
+    "requirement": "- **The exchange's result**: the losing stack's count steps down by one in the panel and on the board, with its sound.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-112",
+    "document": "ui",
+    "requirement": "- **Controls** *(UI5 b)*: the main control fights on until the target is captured, the attacker is down to `N` armies, or the player stops, with `N` set beside it (default 2, remembered); a second control rolls a single exchange; stop ends the battle at once, at no cost. `N` runs from 1 (fight to the end) to the attacking stack less one; a remembered value above that is lowered to it for the battle, so an attack from 2 armies fights to the end. At 1 army the battle stops by rule and the panel says so. The engine resolves exchanges one at a time either way.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-113",
+    "document": "ui",
+    "requirement": "- **Every stop is offered** (core-rules.md, Combat: the attacker may stop after every exchange). In the main control, each exchange is shown for `EXCHANGE_TIME` (0.4 s proposed at Normal; the predecessor's human exchanges came about 0.5 s apart, `runs/E018`), and the next exchange is resolved only after the previous one has been shown. Stop stays live throughout: pressed at any moment, it takes effect before the next exchange. The UI never resolves an exchange the player has not chosen to fight.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-114",
+    "document": "ui",
+    "requirement": "- **Long battles pause for a choice**: when a battle in the main control has run for `HUMAN_BATTLE_WATCH` (5 s proposed at Normal), it pauses, with the stacks and the tally, and waits for one of three choices: keep watching (another `HUMAN_BATTLE_WATCH`, with stop live as before), finish now (the rest of the battle, to a capture or `N` armies, in one step, with the tally), or stop. Finish now is the only way exchanges are resolved unseen, and only when the player picks it at the pause. A battle of 1000 against 100 with `N` = 1 shows 12 exchanges in 5 s at Normal, then pauses (at 1000 against 88 if the attacker won all 12); stop is offered there and after every further exchange the player chooses to watch, the 13th included.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-115",
+    "document": "ui",
+    "requirement": "- **At Instant** *(UI6)*, which the player chooses in settings, the main control runs the battle to its end (a capture or `N` armies) at once, with the last exchange's dice and the tally; the settings screen says so beside the Instant setting. The single-exchange control and stop are unchanged, so a player at Instant who wants to judge each exchange still can.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-116",
+    "document": "ui",
+    "requirement": "- **The capture**: the country changes colour and cue with a short effect *(UI16)* and its sound; the move-in counter follows.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-117",
+    "document": "ui",
+    "requirement": "- **Quitting** leaves both countries as they are; the panel and the log say \"stopped\" with the stacks as they stand.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-118",
+    "document": "ui",
+    "requirement": "- **Reduced motion** (a setting, every UI16 option): effects become instant changes with a highlight; nothing is lost.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T29",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse engine-driven board and action panel; explicit battle/move-in/movement phases and reversible placement UI are not complete.",
+    "missing": "Full legal controls, reasons, income breakdown, counters, stop/continue and pause semantics, exact odds and pace-invariant actions.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-119",
+    "document": "ui",
+    "requirement": "*(UW-12; variety.md, Cards.)* T51's cards are swingy by the owner's choice; each swing must be visible as it happens and readable at a glance.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-120",
+    "document": "ui",
+    "requirement": "- The viewer's hand is always on screen during its turn: up to five cards, each showing its kind by a picture and its name in malpaco's words, with a short effect line, and a counter of how many of the hand limit are used (for example 4 of 5).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-hand",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  }
+]
