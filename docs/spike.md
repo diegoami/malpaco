@@ -389,7 +389,9 @@ opens `?view=generated-game&seed=N&seats=C`; New game returns to setup with the
 same choices. Direct generated-game URLs still default to seed 1994 and two
 humans. Seed input accepts whole uint32 values without wrapping, unsupported
 seat counts are rejected, and generation refusals leave an editable recovery
-form. Unimplemented rule options and computer seats are not offered.
+form. Unimplemented rule options are not offered. Players also offers one human
+versus one to three computers; in this mode the count label becomes Total seats.
+The opponents=computer query preserves this choice on generated routes and setup.
 
 The UI passes these settings to `createGame` without dealing again. Green and
 lavender extend the original two ownership colours; numeric map seats and four
@@ -449,10 +451,10 @@ come from replay. Stored snapshots are rejected. The older options-only API is
 unchanged (C-SET-05/07).
 
 Load game accepts a local JSON file from setup or a generated match, and supports
-two to four human seats through opening, reinforcement, combat and victory.
+two to four human or mixed seats through opening, reinforcement, combat and victory.
 Validation, generation and replay finish before replacing the current controller;
-file errors retain the current match and display an actionable alert. The UI
-rejects computer-seat files until computer play is supported. Successful loading
+file errors retain the current match and display an actionable alert. Mixed-seat
+loads resume computer automation, including consecutive computer turns. Successful loading
 clears selection/dialogs, updates seed/seat URL settings and removes the replaced
 controller's window listener. Download object URLs are revoked after the click.
 
@@ -465,3 +467,39 @@ downloads/uploads from setup and gameplay, checks exact saved bytes after load
 failures, continues attacks/handoffs, restores victory and measures control/error
 text containment. Screenshots and source mutation/restoration evidence live in
 `docs/prototypes/match-save/`; the owner judges the settled screenshots.
+
+
+## Basic computer opponent
+
+`computerAction(state)` is a pure deterministic policy for active computer seats;
+humans, eliminated/missing players and finished games return no action. It places
+all income on the strongest frontier, or strongest holding when no frontier
+exists. Combat prefers the weakest legal target with a smaller army than the
+attacking stack, then the stronger attacker, then lexical province IDs. It ends
+the turn when no useful attack remains, combat has ended, or the turn has made
+as many attacks as the map has provinces. The attack count is derived from the
+ordinary history since the last endTurn, so a turn needs at most N+3 actions:
+one reinforcement placement, one phase transition, at most N attacks and one
+handoff. No hidden mutable policy state or policy RNG is used; `apply` alone
+consumes rule RNG. Action-only replay therefore reproduces every later decision.
+
+These priorities, the budget and 350ms UI action spacing are [designed] after
+searching core options/types/rules/setup, UI controllers and this design file.
+C-PLY-01..03 and computer A2 provide seat kinds and Normal metadata. There is one
+basic policy, with no selectable strength variants. All-human setup and direct
+route defaults remain compatible. Mixed setup uses one human followed by one to
+three computers, labeled in the score and active-turn panel. Automated attacks
+advance without a battle dialog. Map/action inputs are gated during computer
+play, while Save/Load/New game remain usable. Disposal clears scheduled work and
+guards old callbacks; replacements dispose before mounting the resumed match.
+Finished games schedule no more work.
+
+Core acceptance covers seeds 1/42/1994 with 2/3/4 seats, immutable input/RNG,
+bounded legal turns and replay through computer victory. Browser acceptance uses
+actual setup clicks and real downloads/uploads, verifies automatic reinforcement,
+attacks, consecutive computer handoffs, human-input gating, replacement,
+cancellation and stopped victory at both pinned viewports. Actual-source mutants
+disable scheduling, map gating or timer cancellation and fail those checks.
+Commands, original failed preflights, passing candidate evidence, screenshots and
+restoration hashes live under `docs/prototypes/computer/`. Only setup goldens
+change for the new Players choice; authored/prototype goldens are preserved.

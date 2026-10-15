@@ -91,6 +91,7 @@ export class Panel {
     const { state } = m;
     const mover = state.players[state.currentPlayer];
     const seat = state.currentPlayer;
+    const computer = mover?.kind === "computer";
     const finished = state.phase === "finished";
     const winner = state.players.find((p) => p.id === state.winner);
     const income = mover ? reinforcementIncome(state, mover.id) : { base: 0, islandBonus: 0, total: 0, provinceCount: 0 };
@@ -103,7 +104,7 @@ export class Panel {
         "div",
         {},
         h("div", { class: "turn-title", id: "turn-title" }, finished ? `${winner?.name ?? "Nobody"} conquers the sea` : `${mover?.name ?? ""}'s turn`),
-        h("div", { class: "turn-sub" }, finished ? "The game is over." : `Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)),
+        h("div", { id: "seat-controller", class: "turn-sub" }, computer && !finished ? "Computer · Normal · " : "", finished ? "The game is over." : `Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)),
       ),
     );
     this.turn.style.setProperty("--owner", seatLook(seat).color);
@@ -117,7 +118,7 @@ export class Panel {
           h(
             "div",
             {},
-            h("div", { class: "score-name" }, p.name),
+            h("div", { class: "score-name" }, p.name + (p.kind === "computer" ? " · Computer" : "")),
             h("div", { class: "score-num" }, `${provincesOf(state, p.id).length} provinces \u00b7 ${armyTotal(state, p.id)} armies`),
           ),
         ),
@@ -147,10 +148,10 @@ export class Panel {
     }
     this.hint.textContent = m.hint;
     this.startCombat.hidden = state.phase !== "reinforce";
-    this.startCombat.toggleAttribute("disabled", state.phase !== "reinforce" || state.reinforcementPool !== 0 || finished);
-    this.attack.toggleAttribute("disabled", state.phase !== "attack" || m.blocked !== "" || finished);
+    this.startCombat.toggleAttribute("disabled", state.phase !== "reinforce" || state.reinforcementPool !== 0 || finished || computer);
+    this.attack.toggleAttribute("disabled", state.phase !== "attack" || m.blocked !== "" || finished || computer);
     this.attack.title = m.blocked;
-    this.endTurn.toggleAttribute("disabled", finished || state.phase === "reinforce");
+    this.endTurn.toggleAttribute("disabled", finished || computer || state.phase === "reinforce");
 
     const entries = state.log.map((e) => describeLog(state, e)).filter((e): e is string => e !== null);
     this.log.replaceChildren(...entries.slice(-7).reverse().map((e) => h("li", {}, e)));
