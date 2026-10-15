@@ -1,0 +1,26 @@
+{
+  "label": "dw1-entry",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/entry.spec.ts",
+    "--workers=2"
+  ],
+  "expected": "pass",
+  "exitCode": 0,
+  "signal": null,
+  "stdoutSha256": "eb7ba521590dc4fc190fe38dce8c141eddb1c71841788d2f27a601eba7dc209e",
+  "stderrSha256": "e49b794cae6663ada86efea1579a0381251a5d4d1ff9b0cefed3e5622b21317d",
+  "artifacts": [
+    {
+      "path": "default-1280x800.png",
+      "sha256": "249983cd9e97917f49bac8280b04f989ad49b77b170eebe03790285c85ae9fad"
+    },
+    {
+      "path": "default-1920x1080.png",
+      "sha256": "e41f534556eb41e051605fba41a277a3780afc9b4dcf371df980be54dbb59bdf"
+    }
+  ],
+  "passed": true
+}
