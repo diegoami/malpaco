@@ -1,0 +1,307 @@
+[
+  {
+    "id": "ui-201",
+    "document": "ui",
+    "requirement": "- **Step bounds**: in many games of computers, no computer turn shows more than 36 steps or a battle more than 3, and the budget's fast-forward appears only past `TURN_WATCH`.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-202",
+    "document": "ui",
+    "requirement": "- **No trace**: the checks of [Disabled features](#disabled-features-leave-no-trace).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-203",
+    "document": "ui",
+    "requirement": "- **Privacy**: in a hot-seat game, no rendered element shows another seat's card kinds at any moment, including during the hand-over and computer turns.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-204",
+    "document": "ui",
+    "requirement": "- **Sound**: each sound event is emitted to a test hook with its kind; mute emits nothing audible; every sound kind has a visual counterpart in the same step.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-205",
+    "document": "ui",
+    "requirement": "Where presenting a decided rule needed a reading, the nearest consistent one was taken:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#reconciled-with-t50-t51-and-t53",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T45",
+      "T46",
+      "T53",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/match-save.test.ts"
+    ],
+    "assessment": "Use the reconciled canonical readings; schema fields and export/load are only seams.",
+    "missing": "No-set automatic pass, public discard memory, Normal resign takeover, hidden inactive centres, identity-safe overwrite and private draws.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-206",
+    "document": "ui",
+    "requirement": "1. **The cards phase without a set** (core-rules.md, The turn). The phase exists for every seat; the UI passes it with a note when the seat holds no set, with no action needed.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#reconciled-with-t50-t51-and-t53",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T45",
+      "T46",
+      "T53",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/match-save.test.ts"
+    ],
+    "assessment": "Use the reconciled canonical readings; schema fields and export/load are only seams.",
+    "missing": "No-set automatic pass, public discard memory, Normal resign takeover, hidden inactive centres, identity-safe overwrite and private draws.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-207",
+    "document": "ui",
+    "requirement": "2. **Card memory and the screen** (computer.md, A12). A computer's view is what a human in its seat could see and remember. If the screen showed the whole discard pile, Easy's \"only what is on screen now\" would equal Hard's memory; so the screen shows the discard pile's top and counts, and the log holds the history *(UI9)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#reconciled-with-t50-t51-and-t53",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T45",
+      "T46",
+      "T53",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/match-save.test.ts"
+    ],
+    "assessment": "Use the reconciled canonical readings; schema fields and export/load are only seams.",
+    "missing": "No-set automatic pass, public discard memory, Normal resign takeover, hidden inactive centres, identity-safe overwrite and private draws.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-208",
+    "document": "ui",
+    "requirement": "3. **A resigned seat's level** (core-rules.md, Leaving a game). The rules turned a resigning seat over to the computer without naming a level, and the UI needs one to show. UI18 set the default level, Normal (A2), and core-rules.md now says so.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#reconciled-with-t50-t51-and-t53",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T45",
+      "T46",
+      "T53",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/match-save.test.ts"
+    ],
+    "assessment": "Use the reconciled canonical readings; schema fields and export/load are only seams.",
+    "missing": "No-set automatic pass, public discard memory, Normal resign takeover, hidden inactive centres, identity-safe overwrite and private draws.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-209",
+    "document": "ui",
+    "requirement": "4. **Centres with events Off** (variety.md, V7 and V9). Centres act only through the harvest and the shift, both events; with events Off they do nothing, and marking them would leave a trace (UW-19). UI17 hides them, and variety.md's \"marked for every seat\" now reads \"while events are on\".",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#reconciled-with-t50-t51-and-t53",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T45",
+      "T46",
+      "T53",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/match-save.test.ts"
+    ],
+    "assessment": "Use the reconciled canonical readings; schema fields and export/load are only seams.",
+    "missing": "No-set automatic pass, public discard memory, Normal resign takeover, hidden inactive centres, identity-safe overwrite and private draws.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-210",
+    "document": "ui",
+    "requirement": "5. **The overwrite of a saved unfinished game** (core-rules.md, decision 2 and Leaving a game). Starting a new game counts as resigning unless the game is saved first; but saving it and then saving the new game overwrites the one slot, so the first game is gone with no result recorded. UI14 closes that gap, in core-rules.md's Leaving a game: only a save of a different game (by its identity, fixed at game start) charges the replaced game's human seats, so saving the same game, by hand or every turn, never does, and no seat's result is recorded twice.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#reconciled-with-t50-t51-and-t53",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T45",
+      "T46",
+      "T53",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/match-save.test.ts"
+    ],
+    "assessment": "Use the reconciled canonical readings; schema fields and export/load are only seams.",
+    "missing": "No-set automatic pass, public discard memory, Normal resign takeover, hidden inactive centres, identity-safe overwrite and private draws.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-211",
+    "document": "ui",
+    "requirement": "6. **The computer's draw** (variety.md, The deck). Only the count is public; the UI shows the count's rise and nothing else, unless the card is the Squall, which every seat sees.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#reconciled-with-t50-t51-and-t53",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T45",
+      "T46",
+      "T53",
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/match-save.test.ts"
+    ],
+    "assessment": "Use the reconciled canonical readings; schema fields and export/load are only seams.",
+    "missing": "No-set automatic pass, public discard memory, Normal resign takeover, hidden inactive centres, identity-safe overwrite and private draws.",
+    "disposition": "extend",
+    "questions": []
+  }
+]

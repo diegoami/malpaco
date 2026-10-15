@@ -1,0 +1,1039 @@
+[
+  {
+    "id": "core-rules-041",
+    "document": "core-rules",
+    "requirement": "- 46 countries give four seats an even share of 11–12 countries and a starting income of 3–4. The win threshold follows the count: `ceil(0.75 × C)`, 35 when C = 46.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#what-is-fixed-and-what-is-generated",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-042",
+    "document": "core-rules",
+    "requirement": "- Mixed island sizes give a ladder of goals: small islands are early, cheap bonus targets; the large ones are valuable and hard to hold. No island has one country.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#what-is-fixed-and-what-is-generated",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-043",
+    "document": "core-rules",
+    "requirement": "- Few crossings make island entrances: chokepoints that can be held or forced.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#what-is-fixed-and-what-is-generated",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-044",
+    "document": "core-rules",
+    "requirement": "A board is **data**: countries, islands (a partition of the countries), borders, bonuses and positions. It is made at game start and never changes during a game. Positions are display data only; no rule reads them.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#what-is-fixed-and-what-is-generated",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-045",
+    "document": "core-rules",
+    "requirement": "What a board must satisfy is the requirement; how to build one is malpaco's implementation work.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#generation",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-046",
+    "document": "core-rules",
+    "requirement": "- **Requirements.** All draws come from the game's seeded stream, before the deal, so a seed reproduces the board, including any redraws. Every board meets the invariants above (country count, island sizes, degree 2–5, symmetry, connectedness, 14–18 crossings) and passes the [fairness checks](#fairness-checks). The fairness checks are not weakened to make generation easier. Positions keep every two countries at least `MIN_LABEL_GAP` apart in the reference frame; this is display data and no rule reads it *(T52 UI15, the owner, 2026-10-12)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#generation",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-047",
+    "document": "core-rules",
+    "requirement": "- **What the engine's tests show.** Over many seeds, the generator finds a valid board within a stated, small number of attempts, and the test fixes that number. When attempts run out, the behaviour is defined (for example, falling back to a known-valid board for that seed), never a hang.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#generation",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-048",
+    "document": "core-rules",
+    "requirement": "- **Implementation hazard** (GPT-6.1 Sol's re-review of PR #195; a prototype, not a measurement). A naive build fails often: island centres by spaced rejection sampling, a minimum spanning tree of the centres, then the next-shortest island pairs until 14–18 crossings. Adding the shortest pairs without limiting each island's crossings creates hub islands, which the fairness checks reject. At a middle spacing, only 14 of 200 seeds gave a valid board within 50 attempts, though valid boards do occur, so the checks do not contradict each other. Build with the limits enforced as the board grows (island degree at most 4, at most 2 crossings per country), or repair and backtrack, rather than generate and reject.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#generation",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-049",
+    "document": "core-rules",
+    "requirement": "An island's bonus, paid while one seat holds every country of it, is",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#island-bonuses",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T35"
+    ],
+    "code": [
+      "src/core/bonuses.ts",
+      "src/core/reinforcement.ts",
+      "src/core/board-gen.ts"
+    ],
+    "tests": [
+      "tests/core/bonuses.test.ts",
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse complete-island summation and income calculation; generator owns the size/entrance formula.",
+    "missing": "Recheck the generated geographic board against the same bonus/fairness contract.",
+    "disposition": "reuse",
+    "questions": []
+  },
+  {
+    "id": "core-rules-050",
+    "document": "core-rules",
+    "requirement": "`bonus = floor(size / 2) + entrances`, with a minimum of 2,",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#island-bonuses",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T35"
+    ],
+    "code": [
+      "src/core/bonuses.ts",
+      "src/core/reinforcement.ts",
+      "src/core/board-gen.ts"
+    ],
+    "tests": [
+      "tests/core/bonuses.test.ts",
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse complete-island summation and income calculation; generator owns the size/entrance formula.",
+    "missing": "Recheck the generated geographic board against the same bonus/fairness contract.",
+    "disposition": "reuse",
+    "questions": []
+  },
+  {
+    "id": "core-rules-051",
+    "document": "core-rules",
+    "requirement": "where **entrances** is the number of the island's countries that border another island. A larger island pays more, and an island with more entrances, harder to hold, pays more than one of the same size that is easy to close. Examples: 3 countries with 1 entrance pay 2; 7 with 3 pay 6; 10 with 4 pay 9. The owner chose this rule (decision 12, 2026-10-12). T51 may tune its constants when it designs the bonuses' place among cards and events.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#island-bonuses",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T35"
+    ],
+    "code": [
+      "src/core/bonuses.ts",
+      "src/core/reinforcement.ts",
+      "src/core/board-gen.ts"
+    ],
+    "tests": [
+      "tests/core/bonuses.test.ts",
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse complete-island summation and income calculation; generator owns the size/entrance formula.",
+    "missing": "Recheck the generated geographic board against the same bonus/fairness contract.",
+    "disposition": "reuse",
+    "questions": []
+  },
+  {
+    "id": "core-rules-052",
+    "document": "core-rules",
+    "requirement": "A generated board is rejected if any of these holds, because each would let the even deal hand one seat an advantage it did nothing for:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#fairness-checks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-053",
+    "document": "core-rules",
+    "requirement": "- **An island bonus out of proportion**: an island whose bonus is greater than its size (a small island with many entrances). A cheap, rich island makes whichever seat is dealt next to it the favourite.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#fairness-checks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-054",
+    "document": "core-rules",
+    "requirement": "- **A fortress**: an island of 7 or more countries with a single entrance, or more than 3 islands with a single entrance. One country can hold such an island against the whole board.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#fairness-checks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-055",
+    "document": "core-rules",
+    "requirement": "- **Easy bonuses concentrated**: single-entrance islands that together pay more than a quarter of all bonuses.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#fairness-checks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-056",
+    "document": "core-rules",
+    "requirement": "- **A remote island**: an island more than 4 crossings from some other island in the island graph, or an island touching more than 4 others. Remote islands are safe havens; hub islands are traps.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#fairness-checks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-057",
+    "document": "core-rules",
+    "requirement": "- **A crowded crossing country**: a country that carries more than 2 crossings.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#fairness-checks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-058",
+    "document": "core-rules",
+    "requirement": "The deal then adds its own check: no seat starts holding a complete island ([The deal](#the-deal), step 4).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#fairness-checks",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-059",
+    "document": "core-rules",
+    "requirement": "- A border between islands is an ordinary border: there is no land or water rule, and every seat, human or computer, uses the same borders for every attack and move.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#borders-and-special-countries",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-060",
+    "document": "core-rules",
+    "requirement": "- There are no special countries in the core rules. Any \"key country\" the computer prefers is the computer's own policy (T53), computed on the generated board, not stored data.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#borders-and-special-countries",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T25",
+      "T34",
+      "T35",
+      "T36"
+    ],
+    "code": [
+      "src/core/board-gen.ts",
+      "src/core/board-fairness.ts"
+    ],
+    "tests": [
+      "tests/core/board-gen.test.ts",
+      "tests/core/board-fairness.test.ts"
+    ],
+    "assessment": "Reuse graph data and structural/fairness checks. Existing graph-first layout does not establish geographic shared boundaries. Exact 16 crossings is an implementation choice within the approved 14–18 range.",
+    "missing": "Probe joint geometry/topology feasibility, stated attempt budget, coastline anchors, labels and wide-seed success. Candidate G is a separate unmerged prototype and has degree-six vertices, conflicting with maximum five.",
+    "disposition": "extend",
+    "questions": [
+      "T24 owner decisions: geometry tolerances, label spacing target, success rate and bounded attempt budget; T25 exact topology/look approval."
+    ]
+  },
+  {
+    "id": "core-rules-061",
+    "document": "core-rules",
+    "requirement": "A new game makes its starting state in this order, all from the game seed:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-deal",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T44"
+    ],
+    "code": [
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Reuse first-seat draw, shuffled deal, army accounting and three centres. countryShares currently chooses one computer for the whole transfer, whereas canonical transfer reselects the largest/smallest computer after each country.",
+    "missing": "Correct per-country handicap redistribution and verify all seat mixtures. Deck shuffle follows centres when T37 lands.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-062",
+    "document": "core-rules",
+    "requirement": "1. **First seat.** The seat that plays first is drawn uniformly; turn order then follows the seat numbers from it, wrapping.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-deal",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T44"
+    ],
+    "code": [
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Reuse first-seat draw, shuffled deal, army accounting and three centres. countryShares currently chooses one computer for the whole transfer, whereas canonical transfer reselects the largest/smallest computer after each country.",
+    "missing": "Correct per-country handicap redistribution and verify all seat mixtures. Deck shuffle follows centres when T37 lands.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-063",
+    "document": "core-rules",
+    "requirement": "2. **Shares.** Each seat gets an even share of the countries: `floor(C / N)` each, and the remaining `C mod N` countries go one each to the **last** seats in turn order (the seats that play later), as compensation for moving later *(decision 5)*. On 46 countries: 4 seats get 11, 11, 12, 12 (in turn order); 3 seats 15, 15, 16; 2 seats 23, 23. Then each human seat's share setting (−4 to +4, *decision 6*) is applied, one human after another in turn order: a positive setting takes that many countries from the computer seats, one at a time from the computer seat with the largest share (the later seat on a tie); a negative setting gives them, one at a time, to the computer seat with the smallest share (the earlier seat on a tie). Human shares never move between humans. A transfer that would leave a computer seat with fewer than 3 countries is skipped, and in a game with no computer seat the settings are ignored.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-deal",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T44"
+    ],
+    "code": [
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Reuse first-seat draw, shuffled deal, army accounting and three centres. countryShares currently chooses one computer for the whole transfer, whereas canonical transfer reselects the largest/smallest computer after each country.",
+    "missing": "Correct per-country handicap redistribution and verify all seat mixtures. Deck shuffle follows centres when T37 lands.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-064",
+    "document": "core-rules",
+    "requirement": "3. **Countries.** The countries are shuffled uniformly (Fisher–Yates) and dealt in that order to fill each seat's share.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-deal",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T44"
+    ],
+    "code": [
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Reuse first-seat draw, shuffled deal, army accounting and three centres. countryShares currently chooses one computer for the whole transfer, whereas canonical transfer reselects the largest/smallest computer after each country.",
+    "missing": "Correct per-country handicap redistribution and verify all seat mixtures. Deck shuffle follows centres when T37 lands.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-065",
+    "document": "core-rules",
+    "requirement": "4. **No complete island at start.** While some seat holds every country of an island, swap one of those countries with a random country of another seat, choosing a pair whose swap completes no island for either seat *(decision 4)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-deal",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T44"
+    ],
+    "code": [
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Reuse first-seat draw, shuffled deal, army accounting and three centres. countryShares currently chooses one computer for the whole transfer, whereas canonical transfer reselects the largest/smallest computer after each country.",
+    "missing": "Correct per-country handicap redistribution and verify all seat mixtures. Deck shuffle follows centres when T37 lands.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-066",
+    "document": "core-rules",
+    "requirement": "5. **Armies.** Each seat gets `2 × its countries` armies when the option is 1–3 (generally the range's midpoint times its countries, rounded down), placed as 1 per country and the rest spread at random with no country above the range's top. Every seat thus starts with the same armies per country *(decision 4)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-deal",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T44"
+    ],
+    "code": [
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Reuse first-seat draw, shuffled deal, army accounting and three centres. countryShares currently chooses one computer for the whole transfer, whereas canonical transfer reselects the largest/smallest computer after each country.",
+    "missing": "Correct per-country handicap redistribution and verify all seat mixtures. Deck shuffle follows centres when T37 lands.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-067",
+    "document": "core-rules",
+    "requirement": "6. **Production centres.** Three distinct countries are drawn uniformly as the production centres, after step 5 and with no spacing, island or owner condition; what a centre does is in [variety.md](variety.md#production-centres) *(variety.md, decision V7)*. The pool formula of step 5 is unchanged.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-deal",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T44"
+    ],
+    "code": [
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Reuse first-seat draw, shuffled deal, army accounting and three centres. countryShares currently chooses one computer for the whole transfer, whereas canonical transfer reselects the largest/smallest computer after each country.",
+    "missing": "Correct per-country handicap redistribution and verify all seat mixtures. Deck shuffle follows centres when T37 lands.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-068",
+    "document": "core-rules",
+    "requirement": "Starting cards, if any, are T51's.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-deal",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T24",
+      "T44"
+    ],
+    "code": [
+      "src/core/setup.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Reuse first-seat draw, shuffled deal, army accounting and three centres. countryShares currently chooses one computer for the whole transfer, whereas canonical transfer reselects the largest/smallest computer after each country.",
+    "missing": "Correct per-country handicap redistribution and verify all seat mixtures. Deck shuffle follows centres when T37 lands.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-069",
+    "document": "core-rules",
+    "requirement": "A turn has these phases, in order. Every seat follows the same phases; the computer only chooses differently (T53).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T29",
+      "T30",
+      "T37"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Current phases are reinforce/attack/redeploy/finished; only four action kinds exist. Round increments at seat index zero rather than returning to the randomly selected origin.",
+    "missing": "Explicit battle/move-in/move/card phases and origin-based rounds; order draw, victory, event and next income.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-070",
+    "document": "core-rules",
+    "requirement": "1. **Income**: the reinforcement pool is computed ([Reinforcement](#reinforcement)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T29",
+      "T30",
+      "T37"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Current phases are reinforce/attack/redeploy/finished; only four action kinds exist. Round increments at seat index zero rather than returning to the randomly selected origin.",
+    "missing": "Explicit battle/move-in/move/card phases and origin-based rounds; order draw, victory, event and next income.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-071",
+    "document": "core-rules",
+    "requirement": "2. **Cards**: a trade-in, if the seat holds a valid set (T51).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T29",
+      "T30",
+      "T37"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Current phases are reinforce/attack/redeploy/finished; only four action kinds exist. Round increments at seat index zero rather than returning to the randomly selected origin.",
+    "missing": "Explicit battle/move-in/move/card phases and origin-based rounds; order draw, victory, event and next income.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-072",
+    "document": "core-rules",
+    "requirement": "3. **Placement**: the whole pool is placed.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T29",
+      "T30",
+      "T37"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Current phases are reinforce/attack/redeploy/finished; only four action kinds exist. Round increments at seat index zero rather than returning to the randomly selected origin.",
+    "missing": "Explicit battle/move-in/move/card phases and origin-based rounds; order draw, victory, event and next income.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-073",
+    "document": "core-rules",
+    "requirement": "4. **Attacks**: any number, from any of the seat's countries ([Combat](#combat)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T29",
+      "T30",
+      "T37"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Current phases are reinforce/attack/redeploy/finished; only four action kinds exist. Round increments at seat index zero rather than returning to the randomly selected origin.",
+    "missing": "Explicit battle/move-in/move/card phases and origin-based rounds; order draw, victory, event and next income.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-074",
+    "document": "core-rules",
+    "requirement": "5. **Move**: at most one ([Movement](#movement)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T29",
+      "T30",
+      "T37"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Current phases are reinforce/attack/redeploy/finished; only four action kinds exist. Round increments at seat index zero rather than returning to the randomly selected origin.",
+    "missing": "Explicit battle/move-in/move/card phases and origin-based rounds; order draw, victory, event and next income.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-075",
+    "document": "core-rules",
+    "requirement": "6. **End**: the turn ends after the move, or when the seat ends it. A failed attack never ends the turn by itself. End-of-turn effects (a card for a capturing turn, T51) and the [victory](#victory) check run here.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T29",
+      "T30",
+      "T37"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Current phases are reinforce/attack/redeploy/finished; only four action kinds exist. Round increments at seat index zero rather than returning to the randomly selected origin.",
+    "missing": "Explicit battle/move-in/move/card phases and origin-based rounds; order draw, victory, event and next income.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-076",
+    "document": "core-rules",
+    "requirement": "A **round counter** starts at 1, increases when the first seat's turn comes round again, and is always shown. Events (T51) are not drawn in round 1.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-turn",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T29",
+      "T30",
+      "T37"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Current phases are reinforce/attack/redeploy/finished; only four action kinds exist. Round increments at seat index zero rather than returning to the randomly selected origin.",
+    "missing": "Explicit battle/move-in/move/card phases and origin-based rounds; order draw, victory, event and next income.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-077",
+    "document": "core-rules",
+    "requirement": "- The pool is computed once, at the start of the turn, and never recomputed during it: captures made this turn raise only the next turn's income.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#reinforcement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse once-per-turn pool and own-country placement with whole-pool gate. No production change is needed to preserve this seam.",
+    "missing": "Add card income and reversible UI staging before confirmation.",
+    "disposition": "reuse",
+    "questions": []
+  },
+  {
+    "id": "core-rules-078",
+    "document": "core-rules",
+    "requirement": "- `pool = max(floor(countries / 3), 2) + sum of the bonuses of the islands held completely + trade-in`. The floor of 2 applies to the country part only. Island bonuses are set by the board ([Island bonuses](#island-bonuses)); trade-in values are T51's.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#reinforcement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse once-per-turn pool and own-country placement with whole-pool gate. No production change is needed to preserve this seam.",
+    "missing": "Add card income and reversible UI staging before confirmation.",
+    "disposition": "reuse",
+    "questions": []
+  },
+  {
+    "id": "core-rules-079",
+    "document": "core-rules",
+    "requirement": "- The whole pool must be placed this turn, on the seat's own countries, in any split. Nothing carries over, and there is no way to keep armies back.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#reinforcement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse once-per-turn pool and own-country placement with whole-pool gate. No production change is needed to preserve this seam.",
+    "missing": "Add card income and reversible UI staging before confirmation.",
+    "disposition": "reuse",
+    "questions": []
+  },
+  {
+    "id": "core-rules-080",
+    "document": "core-rules",
+    "requirement": "- There is no stack cap. A stack can hold any number of armies; the UI (T52) shows large numbers compactly.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#reinforcement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse once-per-turn pool and own-country placement with whole-pool gate. No production change is needed to preserve this seam.",
+    "missing": "Add card income and reversible UI staging before confirmation.",
+    "disposition": "reuse",
+    "questions": []
+  }
+]
