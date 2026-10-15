@@ -1,0 +1,20 @@
+# Game setup acceptance candidate
+
+[designed] Minimal seed and human-seat form after inspecting generatedGame.ts,
+app.ts, panel.ts and the T14 panel clipping regression. The first two palette
+entries and two-seat panel geometry stay byte-for-byte as before. Extra seats
+use distinct colours and badge shapes; the map already prints numeric seats.
+Three/four-seat panels reduce card spacing to preserve actions and all scores.
+
+`replay.mjs <fresh-output-directory>` first runs the acceptance red on the base,
+installs this single disposable candidate, runs the setup acceptance, build,
+full units and full browser suite, mutates selected seed and count independently,
+then restores exact original source bytes in a finally block. The evidence
+manifest hashes every saved/restored source file. Run inside the pinned
+Playwright image (see CI); generated screenshots and logs stay under this path.
+The new goldens cover setup and four-seat reinforcement at both configured sizes.
+Existing goldens and acceptance files are untouched.
+
+Scope: new acceptance files prove T15 settings/core semantics, validation,
+readability, play and round-trip; candidate/replay files make the preflight
+reviewable without installing permanent production code.
