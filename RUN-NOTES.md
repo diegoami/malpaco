@@ -279,4 +279,6 @@ Plan: add focused setup/generated-game help acceptance at both pinned viewports,
 
 - 2026-10-15: added setup choice/focus/scroll acceptance, actual match download and legal selection preservation, ordinary battle continuation, and computer pause/resume/load replacement/New game coverage. The candidate patches only temporary source files through `docs/prototypes/help/replay.mjs`; production sources are restored byte-for-byte after preparation. Parent will run the replay in the pinned image.
 
+d6487fe: stage-one acceptance and disposable candidate scaffold committed. Parent replay: `node docs/prototypes/help/replay.mjs docs/prototypes/help/preflight-<unique-id>` in the pinned image.
+
 END T20 stage 1 preparation: acceptance and disposable source candidate are ready for parent pinned baseline/mock proof. No permanent product source changes are authorized yet.
