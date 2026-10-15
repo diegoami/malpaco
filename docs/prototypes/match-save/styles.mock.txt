@@ -1,0 +1,10 @@
+
+/* [designed] Local save/load controls beside the generated-game seed. */
+.match-files { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.match-load { display:flex; align-items:center; gap:6px; }
+.match-load label { font-size:12px; white-space:nowrap; }
+.match-load input { font-size:12px; width:180px; max-width:100%; }
+.match-error { margin:0; max-width:440px; font-size:12px; }
+.match-error:empty { display:none; }
+#game-setup .match-load { margin-top:12px; }
+#generated-game .topbar { flex-wrap:wrap; }
