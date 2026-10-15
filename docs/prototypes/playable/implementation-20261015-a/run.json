@@ -1,0 +1,83 @@
+{
+  "createdAt": "2026-10-15T15:30:40.130Z",
+  "checkout": "/work",
+  "extractedArtifact": "/artifact/malpaco-t21-final-DqLzi5/fresh-extraction",
+  "commands": [
+    {
+      "label": "package-acceptance",
+      "program": "/usr/bin/node",
+      "args": [
+        "docs/prototypes/playable/acceptance.mjs",
+        "/artifact/malpaco-t21-final-DqLzi5/fresh-extraction"
+      ],
+      "exitCode": 0,
+      "log": "package-acceptance.txt"
+    },
+    {
+      "label": "artifact-browser",
+      "program": "npx",
+      "args": [
+        "playwright",
+        "test",
+        "--config",
+        "playwright.release.config.ts",
+        "--workers=2"
+      ],
+      "exitCode": 0,
+      "log": "artifact-browser.txt"
+    },
+    {
+      "label": "removed-entry-asset",
+      "program": "/usr/bin/node",
+      "args": [
+        "docs/prototypes/playable/acceptance.mjs",
+        "--verify-extracted",
+        "/artifact/malpaco-t21-final-DqLzi5/fresh-extraction"
+      ],
+      "exitCode": 1,
+      "log": "removed-entry-asset.txt"
+    },
+    {
+      "label": "restored-artifact-acceptance",
+      "program": "/usr/bin/node",
+      "args": [
+        "docs/prototypes/playable/acceptance.mjs",
+        "--verify-extracted",
+        "/artifact/malpaco-t21-final-DqLzi5/fresh-extraction"
+      ],
+      "exitCode": 0,
+      "log": "restored-artifact-acceptance.txt"
+    },
+    {
+      "label": "unit",
+      "program": "npm",
+      "args": [
+        "test"
+      ],
+      "exitCode": 0,
+      "log": "unit.txt"
+    },
+    {
+      "label": "build",
+      "program": "npm",
+      "args": [
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "log": "build.txt"
+    },
+    {
+      "label": "source-browser",
+      "program": "npx",
+      "args": [
+        "playwright",
+        "test",
+        "--workers=2"
+      ],
+      "exitCode": 0,
+      "log": "source-browser.txt"
+    }
+  ],
+  "failure": null
+}
