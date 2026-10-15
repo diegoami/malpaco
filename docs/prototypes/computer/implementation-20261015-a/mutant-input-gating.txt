@@ -1,0 +1,220 @@
+
+Running 6 tests using 2 workers
+
+  ✘  1 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (470ms)
+  ✘  2 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (773ms)
+  ✘  3 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (490ms)
+  ✘  4 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (796ms)
+  ✘  5 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (507ms)
+  ✘  6 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (459ms)
+
+
+  1) [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 0
+    + Received  + 5
+
+    @@ -61,8 +61,13 @@
+          {
+            "kind": "endReinforcement"
+          },
+          {
+            "kind": "endTurn"
+    +     },
+    +     {
+    +       "kind": "reinforce",
+    +       "province": "province_30",
+    +       "amount": 1
+          }
+        ]
+      }
+
+      31 |  const computerSave=await save(page);expect(deserializeMatch(computerSave).state).toEqual(s);
+      32 |  for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
+    > 33 |  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id)!;await page.locator(`[data-country="${own.id}"]`).click({force:true});await page.keyboard.press("Escape");expect(await save(page)).toBe(computerSave);
+         |                                                                                                                                                                                                                         ^
+      34 |  let actions=0,attacks=0;const computers=new Set<string>();
+      35 |  while(s.currentPlayer!==0&&s.phase!=="finished"&&actions++<160){computers.add(s.players[s.currentPlayer]!.id);if(computerAction(s)?.kind==="attack")attacks++;s=await tick(page,s);}
+      36 |  expect(actions).toBeLessThan(160);expect(attacks).toBeGreaterThan(0);expect(computers.size).toBe(seats-deserializeMatch(computerSave).state.currentPlayer);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(deserializeMatch(await save(page)).state).toEqual(s);await expect(page.locator("#result-dialog")).not.toBeVisible();await capture(page,"human-return",info.project.name);
+        at /work/tests/e2e/computer.spec.ts:33:217
+
+    Error Context: test-results/computer-setup-clicks-auto-f81a9-ed-input-and-human-return-2-1280x800/error-context.md
+
+  2) [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 7
+
+    @@ -24,7 +24,13 @@
+          "roundLimit": null,
+          "seed": 1994,
+          "animationSpeed": "normal",
+          "sound": true
+        },
+    -   "actions": []
+    +   "actions": [
+    +     {
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +       "amount": 1
+    +     }
+    +   ]
+      }
+
+      31 |  const computerSave=await save(page);expect(deserializeMatch(computerSave).state).toEqual(s);
+      32 |  for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
+    > 33 |  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id)!;await page.locator(`[data-country="${own.id}"]`).click({force:true});await page.keyboard.press("Escape");expect(await save(page)).toBe(computerSave);
+         |                                                                                                                                                                                                                         ^
+      34 |  let actions=0,attacks=0;const computers=new Set<string>();
+      35 |  while(s.currentPlayer!==0&&s.phase!=="finished"&&actions++<160){computers.add(s.players[s.currentPlayer]!.id);if(computerAction(s)?.kind==="attack")attacks++;s=await tick(page,s);}
+      36 |  expect(actions).toBeLessThan(160);expect(attacks).toBeGreaterThan(0);expect(computers.size).toBe(seats-deserializeMatch(computerSave).state.currentPlayer);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(deserializeMatch(await save(page)).state).toEqual(s);await expect(page.locator("#result-dialog")).not.toBeVisible();await capture(page,"human-return",info.project.name);
+        at /work/tests/e2e/computer.spec.ts:33:217
+
+    Error Context: test-results/computer-setup-clicks-auto-a10c4-ed-input-and-human-return-3-1280x800/error-context.md
+
+  3) [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 7
+
+    @@ -28,7 +28,13 @@
+          "roundLimit": null,
+          "seed": 1994,
+          "animationSpeed": "normal",
+          "sound": true
+        },
+    -   "actions": []
+    +   "actions": [
+    +     {
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +       "amount": 1
+    +     }
+    +   ]
+      }
+
+      31 |  const computerSave=await save(page);expect(deserializeMatch(computerSave).state).toEqual(s);
+      32 |  for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
+    > 33 |  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id)!;await page.locator(`[data-country="${own.id}"]`).click({force:true});await page.keyboard.press("Escape");expect(await save(page)).toBe(computerSave);
+         |                                                                                                                                                                                                                         ^
+      34 |  let actions=0,attacks=0;const computers=new Set<string>();
+      35 |  while(s.currentPlayer!==0&&s.phase!=="finished"&&actions++<160){computers.add(s.players[s.currentPlayer]!.id);if(computerAction(s)?.kind==="attack")attacks++;s=await tick(page,s);}
+      36 |  expect(actions).toBeLessThan(160);expect(attacks).toBeGreaterThan(0);expect(computers.size).toBe(seats-deserializeMatch(computerSave).state.currentPlayer);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(deserializeMatch(await save(page)).state).toEqual(s);await expect(page.locator("#result-dialog")).not.toBeVisible();await capture(page,"human-return",info.project.name);
+        at /work/tests/e2e/computer.spec.ts:33:217
+
+    Error Context: test-results/computer-setup-clicks-auto-353da-ed-input-and-human-return-4-1280x800/error-context.md
+
+  4) [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 0
+    + Received  + 5
+
+    @@ -61,8 +61,13 @@
+          {
+            "kind": "endReinforcement"
+          },
+          {
+            "kind": "endTurn"
+    +     },
+    +     {
+    +       "kind": "reinforce",
+    +       "province": "province_30",
+    +       "amount": 1
+          }
+        ]
+      }
+
+      31 |  const computerSave=await save(page);expect(deserializeMatch(computerSave).state).toEqual(s);
+      32 |  for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
+    > 33 |  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id)!;await page.locator(`[data-country="${own.id}"]`).click({force:true});await page.keyboard.press("Escape");expect(await save(page)).toBe(computerSave);
+         |                                                                                                                                                                                                                         ^
+      34 |  let actions=0,attacks=0;const computers=new Set<string>();
+      35 |  while(s.currentPlayer!==0&&s.phase!=="finished"&&actions++<160){computers.add(s.players[s.currentPlayer]!.id);if(computerAction(s)?.kind==="attack")attacks++;s=await tick(page,s);}
+      36 |  expect(actions).toBeLessThan(160);expect(attacks).toBeGreaterThan(0);expect(computers.size).toBe(seats-deserializeMatch(computerSave).state.currentPlayer);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(deserializeMatch(await save(page)).state).toEqual(s);await expect(page.locator("#result-dialog")).not.toBeVisible();await capture(page,"human-return",info.project.name);
+        at /work/tests/e2e/computer.spec.ts:33:217
+
+    Error Context: test-results/computer-setup-clicks-auto-f81a9-ed-input-and-human-return-2-1920x1080/error-context.md
+
+  5) [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 7
+
+    @@ -24,7 +24,13 @@
+          "roundLimit": null,
+          "seed": 1994,
+          "animationSpeed": "normal",
+          "sound": true
+        },
+    -   "actions": []
+    +   "actions": [
+    +     {
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +       "amount": 1
+    +     }
+    +   ]
+      }
+
+      31 |  const computerSave=await save(page);expect(deserializeMatch(computerSave).state).toEqual(s);
+      32 |  for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
+    > 33 |  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id)!;await page.locator(`[data-country="${own.id}"]`).click({force:true});await page.keyboard.press("Escape");expect(await save(page)).toBe(computerSave);
+         |                                                                                                                                                                                                                         ^
+      34 |  let actions=0,attacks=0;const computers=new Set<string>();
+      35 |  while(s.currentPlayer!==0&&s.phase!=="finished"&&actions++<160){computers.add(s.players[s.currentPlayer]!.id);if(computerAction(s)?.kind==="attack")attacks++;s=await tick(page,s);}
+      36 |  expect(actions).toBeLessThan(160);expect(attacks).toBeGreaterThan(0);expect(computers.size).toBe(seats-deserializeMatch(computerSave).state.currentPlayer);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(deserializeMatch(await save(page)).state).toEqual(s);await expect(page.locator("#result-dialog")).not.toBeVisible();await capture(page,"human-return",info.project.name);
+        at /work/tests/e2e/computer.spec.ts:33:217
+
+    Error Context: test-results/computer-setup-clicks-auto-a10c4-ed-input-and-human-return-3-1920x1080/error-context.md
+
+  6) [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    - Expected  - 1
+    + Received  + 7
+
+    @@ -28,7 +28,13 @@
+          "roundLimit": null,
+          "seed": 1994,
+          "animationSpeed": "normal",
+          "sound": true
+        },
+    -   "actions": []
+    +   "actions": [
+    +     {
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +       "amount": 1
+    +     }
+    +   ]
+      }
+
+      31 |  const computerSave=await save(page);expect(deserializeMatch(computerSave).state).toEqual(s);
+      32 |  for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
+    > 33 |  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id)!;await page.locator(`[data-country="${own.id}"]`).click({force:true});await page.keyboard.press("Escape");expect(await save(page)).toBe(computerSave);
+         |                                                                                                                                                                                                                         ^
+      34 |  let actions=0,attacks=0;const computers=new Set<string>();
+      35 |  while(s.currentPlayer!==0&&s.phase!=="finished"&&actions++<160){computers.add(s.players[s.currentPlayer]!.id);if(computerAction(s)?.kind==="attack")attacks++;s=await tick(page,s);}
+      36 |  expect(actions).toBeLessThan(160);expect(attacks).toBeGreaterThan(0);expect(computers.size).toBe(seats-deserializeMatch(computerSave).state.currentPlayer);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(deserializeMatch(await save(page)).state).toEqual(s);await expect(page.locator("#result-dialog")).not.toBeVisible();await capture(page,"human-return",info.project.name);
+        at /work/tests/e2e/computer.spec.ts:33:217
+
+    Error Context: test-results/computer-setup-clicks-auto-353da-ed-input-and-human-return-4-1920x1080/error-context.md
+
+  6 failed
+    [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 
+    [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 
+    [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 
+    [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 
+    [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 
+    [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 

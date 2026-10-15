@@ -64,3 +64,10 @@ It checks all Done-when commands against actual source and repeats the three
 mutations, writing the exact saved app bytes back in every mutation's finally
 and the outer finally, then records matching hashes. Pinned final evidence is
 required before the implementation is reported complete.
+
+Permanent implementation verification a passes all 11 focused core tests, 10
+focused browser checks, 429 unit tests, build and 88 browser checks. All three
+actual-source mutants fail for their intended behavior (6 scheduling, 6 map
+gating, 2 timer cancellation failures); the restored browser suite passes all
+10 checks. The manifest records equal App before/after hashes, and
+`implementation-a-sha256.txt` indexes all immutable final logs and screenshots.

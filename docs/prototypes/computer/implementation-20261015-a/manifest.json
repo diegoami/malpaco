@@ -1,0 +1,54 @@
+{
+  "records": [
+    {
+      "name": "computer-unit",
+      "command": "npx vitest run tests/core/computer.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "computer-browser",
+      "command": "npx playwright test tests/e2e/computer.spec.ts --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "all-unit",
+      "command": "npm test",
+      "exit": 0
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "all-browser",
+      "command": "npx playwright test --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "mutant-automation",
+      "command": "npx playwright test tests/e2e/computer.spec.ts --workers=2 --grep 'setup clicks'",
+      "exit": 1
+    },
+    {
+      "name": "mutant-input-gating",
+      "command": "npx playwright test tests/e2e/computer.spec.ts --workers=2 --grep 'setup clicks'",
+      "exit": 1
+    },
+    {
+      "name": "mutant-cancellation",
+      "command": "npx playwright test tests/e2e/computer.spec.ts --workers=2 --grep 'load replacement'",
+      "exit": 1
+    },
+    {
+      "name": "restored-browser",
+      "command": "npx playwright test tests/e2e/computer.spec.ts --workers=2",
+      "exit": 0
+    }
+  ],
+  "restored": {
+    "file": "src/ui/app.ts",
+    "before": "88fe5aa8ed609ecd625a849d52d2fd53210ed649cfe1c02d1abe9dfdccb0b36b",
+    "after": "88fe5aa8ed609ecd625a849d52d2fd53210ed649cfe1c02d1abe9dfdccb0b36b"
+  }
+}
