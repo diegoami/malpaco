@@ -105,3 +105,11 @@ fb04dc3: added targeted panel text-range regression and pushed. Baseline A red t
 
 e2ed278: restored generateddesktop440px column at existinglarge breakpoint, retainedbaselineA/B evidence and scoreclippingregression, updatedspikedocs, pushed.
 END rework1: pinned rework1-implementation-20261015-a green7unit/12generatedbrowser/346allunit/build/60fullbrowser; allfourmutants expectedred; restored12green/hashesequal. 1280golden unchanged,1920repinned; parentandimplementer visually inspectedBOTH and1920fullscore/titlefit. R1fixed/R2regressioncovered. Core/existinggoldensunchanged; noassertionweakened. Readyfornamedfixreview.
+
+
+T15 plan: stage 1 acceptance and one disposable candidate; parent replay before implementation.
+998dec1: acceptance tests plus one disposable candidate pushed; draft PR #44 opened for decision record before implementation.
+Local smoke: baseline unit exit 1, candidate unit/build exit 0; source hashes restored exactly. Unit output is empty, so no test-count claim; pinned replay is authoritative.
+END stage 1: parent replay command node docs/prototypes/game-setup/replay.mjs docs/prototypes/game-setup/preflight-20261015-a . Permanent source untouched; no stage 2 authorization yet.
+
+d91670e: retained local preflight evidence and restoration hashes; pushed.
