@@ -1,0 +1,39 @@
+
+Running 8 tests using 2 workers
+
+  ✘  1 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (904ms)
+  ✓  2 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.2s)
+  ✓  4 [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (461ms)
+/work/tests/e2e/game-setup.spec.ts-snapshots/setup-1280x800-1280x800-linux.png is re-generated, writing actual.
+  ✓  3 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (1.7s)
+  ✓  5 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (1.3s)
+/work/tests/e2e/game-setup.spec.ts-snapshots/setup-1920x1080-1920x1080-linux.png is re-generated, writing actual.
+  ✓  6 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.2s)
+  ✓  8 [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (442ms)
+  ✓  7 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (1.9s)
+
+
+  1) [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+
+    Error: New game
+
+    expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 801
+    Received:    802.53125
+
+      12 |  }));
+      13 |  expect(boxes.length).toBeGreaterThan(3);const v=page.viewportSize()!;
+    > 14 |  for(const {text,b,t,c,panel,font} of boxes){expect(b.w,text!).toBeGreaterThan(0);expect(b.h,text!).toBeGreaterThan(0);expect(font,text!).toBeGreaterThanOrEqual(12);expect(b.x,text!).toBeGreaterThanOrEqual(0);expect(b.y,text!).toBeGreaterThanOrEqual(0);expect(b.r,text!).toBeLessThanOrEqual(v.width+1);expect(b.b,text!).toBeLessThanOrEqual(v.height+1);expect(b.x,text!).toBeGreaterThanOrEqual(c.x-1);expect(b.r,text!).toBeLessThanOrEqual(c.r+1);expect(b.y,text!).toBeGreaterThanOrEqual(c.y-1);expect(b.b,text!).toBeLessThanOrEqual(c.b+1);if(t.r>t.x){expect(t.x,text!).toBeGreaterThanOrEqual(b.x-1);expect(t.r,text!).toBeLessThanOrEqual(b.r+1);expect(t.y,text!).toBeGreaterThanOrEqual(b.y-1);expect(t.b,text!).toBeLessThanOrEqual(b.b+1);}if(panel){expect(b.y,text!).toBeGreaterThanOrEqual(panel.y);expect(b.b,text!).toBeLessThanOrEqual(panel.b+1);}}
+         |                                                                                                                                                                                                                                                                                                                                 ^
+      15 |  expect(await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight}))).toEqual({w:v.width,h:v.height});
+      16 | }
+      17 | async function screenshot(page:Page,name:string,project:string){const dir=process.env["SETUP_EVIDENCE_DIR"];if(dir)await page.screenshot({path:join(mkdtempSync(join(dir,"paint-")),`${name}-${project}.png`)});}
+        at fit (/work/tests/e2e/game-setup.spec.ts:14:321)
+        at /work/tests/e2e/game-setup.spec.ts:35:164
+
+    Error Context: test-results/game-setup-settings-start--8d275-reserve-play-and-round-trip-1280x800/error-context.md
+
+  1 failed
+    [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+  7 passed (6.4s)
