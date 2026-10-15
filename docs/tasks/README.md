@@ -28,3 +28,46 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T20 | In-game instructions | #59 | fix45 |
 | T21 | First shareable playable build | #62 | T20 |
 | T22 | Seed 1994 geographic map prototype | #66 | T21 |
+
+## New-game implementation
+
+See the [sequence and dispatch checkpoints](../plans/new-game/README.md). Difficulty is an estimate; GitHub labels carry status.
+
+| Task | Title | Difficulty | Issue | Merge after |
+| --- | --- | --- | --- | --- |
+| [T23](T23.md) | Approved-rules inventory and reuse decisions | Medium | #68 | — |
+| [T24](T24.md) | Geography contract and constraint-feasibility probe | Hard | #69 | T23 |
+| [T25](T25.md) | Compliant seed-1994 reference board | Hard | #70 | T22, T24 |
+| [T26](T26.md) | Reference-board walking skeleton | Medium | #71 | T25 |
+| [T27](T27.md) | Explicit post-capture movement actions | Hard | #72 | T26 |
+| [T28](T28.md) | Battle controls and capture-choice UI | Hard | #73 | T27 |
+| [T29](T29.md) | One adjacent friendly move per turn | Medium | #74 | T28 |
+| [T30](T30.md) | Round origin and complete victory rules | Hard | #75 | T29 |
+| [T31](T31.md) | Versioned deterministic match replay | Hard | #76 | T30 |
+| [T32](T32.md) | Basic computer through the complete ordinary turn | Medium | #77 | T31 |
+| [T33](T33.md) | Reference-game playable milestone | Medium | #78 | T32 |
+| [T34](T34.md) | Seeded island silhouettes and province subdivisions | Very hard | #79 | T33, T24 |
+| [T35](T35.md) | Sea crossings, bonuses and fair complete boards | Very hard | #80 | T34 |
+| [T36](T36.md) | Generated-map integration and wide-seed acceptance | Hard | #81 | T35 |
+| [T37](T37.md) | Card deck, hands and earning a card | Medium | #82 | T36 |
+| [T38](T38.md) | Card sets, Wilds and Surge income | Medium | #83 | T37 |
+| [T39](T39.md) | Raid targeting and automatic Shield defence | Medium | #84 | T38 |
+| [T40](T40.md) | Playable human card interactions | Hard | #85 | T39 |
+| [T41](T41.md) | Baseline computer card decisions | Medium | #86 | T40 |
+| [T42](T42.md) | Deterministic events and production-centre effects | Hard | #87 | T41 |
+| [T43](T43.md) | Readable events and centre changes | Medium | #88 | T42 |
+| [T44](T44.md) | Complete setup options and seat mixtures | Medium | #89 | T43 |
+| [T45](T45.md) | Persistent settings and end-turn autosave | Hard | #90 | T44, T31 |
+| [T46](T46.md) | Resignation and exactly-once game records | Hard | #91 | T45 |
+| [T47](T47.md) | Computer public view and position evaluation | Hard | #92 | T46 |
+| [T48](T48.md) | Strategic Normal opponent | Very hard | #93 | T47 |
+| [T49](T49.md) | Easy and Hard decision policies | Hard | #94 | T48 |
+| [T50](T50.md) | Opponent strength and game-length measurements | Hard | #95 | T49 |
+| [T51](T51.md) | Responsive map and compact panels | Hard | #96 | T50 |
+| [T52](T52.md) | Accessible ownership and complete keyboard/touch play | Hard | #97 | T51 |
+| [T53](T53.md) | Private hot-seat handover | Medium | #98 | T52, T40 |
+| [T54](T54.md) | Battle odds, phase feedback and pacing | Hard | #99 | T53 |
+| [T55](T55.md) | Original sound feedback and audio controls | Medium | #100 | T54 |
+| [T56](T56.md) | Complete help, options persistence and disabled-feature absence | Medium | #101 | T55 |
+| [T57](T57.md) | Complete-rules end-to-end acceptance | Hard | #102 | T56, T36 |
+| [T58](T58.md) | Complete-game release artifact and owner acceptance | Medium | #103 | T57 |
