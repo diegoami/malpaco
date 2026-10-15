@@ -413,6 +413,17 @@ opening and setup/four-seat goldens to include local file controls.
 These form, palette and spacing choices are [designed] after inspecting
 `generatedGame.ts`, `app.ts`, `panel.ts` and the T14 clipping regression.
 
+Generated setup and gameplay provide an accessible **How to play**/**Help**
+dialog. It describes the implemented seed and player choices, numeric seat and
+army labels, explicit land and sea routes, reinforcement placement, combat
+requirements and one-exchange attacks, turn handoff and victory, computer
+turns, and Save/Load/New game. It makes no promises about unimplemented rule
+options. Escape or Close returns focus to the opener; when a computer turn is
+active, the dialog clears its pending timer and resumes automation after close.
+This control is limited to generated setup and matches; the authored and
+generated-prototype routes are unchanged. T20 updates only the generated
+setup/four-seat and generated opening screenshots for their new Help controls.
+
 `tests/ui/game-setup.test.ts` checks all supported counts against exact core
 state semantics, defaults and invalid inputs. `tests/e2e/game-setup.spec.ts`
 drives keyboard/click setup, all 46 ownership/army values, distinct seat cues,

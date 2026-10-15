@@ -290,3 +290,13 @@ T20 stage 1 B plan: keep the fix in the disposable candidate with scoped help-di
 Preflight A's retained logs, screenshots and manifest are now indexed by `docs/prototypes/help/preflight-20261015-a/SHA256SUMS`. B changes only the candidate, focused acceptance and prototype notes; the A evidence files themselves remain unedited.
 
 d9ad5f9: retained and hashed A; added scoped help zoom/animation resets and top/end modal geometry assertions for B. Parent command: `node docs/prototypes/help/replay.mjs docs/prototypes/help/preflight-20261015-b`.
+
+Preflight B passed pinned baseline, candidate build, candidate/restored focused suites, and both actual-source mutation proofs; source hashes restored exactly. Parent inspected top/end captures at 1280x800 and gameplay at 1920x1080 and confirmed the dialog is legible, fits the viewport, and keeps Close visible. B logs, manifest, screenshots, and SHA256SUMS are retained unchanged under `docs/prototypes/help/preflight-20261015-b/`.
+
+## T20 stage 2
+
+Plan: install the preflighted implementation only on generated setup and gameplay, document its shipped behavior, retain/hash the B evidence, and prepare a final-source verifier for focused, unit, build, full-browser, source-mutation, and exact-restoration proof. Parent owns the pinned run and any first-time generated Help golden refresh; no local browser or golden updates.
+
+2026-10-15: installed accessible setup/gameplay Help, scoped modal fit/animation styles, and computer-turn pause/resume; updated README and generated-game documentation. `docs/prototypes/help/verify-final.mjs` runs the authorized checks, requires content and pause actual-source mutations to fail at their intended assertions, and records restoration hashes. B preflight evidence is hashed and retained unchanged.
+
+END T20 stage 2 preparation: actual implementation and documentation are ready for the parent-pinned final verifier. The first pinned run may use `--update-goldens` for affected generated controls only; subsequent review uses the default no-update command.

@@ -2,6 +2,7 @@ import { createGame, defaultOptions, deserializeMatch, malpacoRules, serializeMa
 import type { GameOptions, GameState } from "../core";
 import { App } from "./app";
 import { h } from "./dom";
+import { mountHelp } from "./help";
 import { GeneratedMapView } from "./generatedMapView";
 import { layoutGeneratedBoard } from "./prototype/layout";
 
@@ -86,6 +87,7 @@ export function mountGameSetup(root: HTMLElement, failure = ""): void {
   root.classList.add("setup-root");
   form.append(loadControl(root, alert));
   root.replaceChildren(form);
+  mountHelp(form);
 }
 
 export function mountGeneratedGame(root: HTMLElement): void {
@@ -198,4 +200,5 @@ function mountMatch(root: HTMLElement, options: GameOptions, state: GameState): 
   const alert = h("p", {role:"alert",class:"match-error"});
   const controls = h("div", {class:"match-files"}, save, loadControl(root, alert, app), alert);
   root.querySelector("header")!.append(legend, form, controls);
+  mountHelp(root.querySelector(".panel-foot")!, () => app.pauseForHelp(), () => app.resumeAfterHelp(), "Help");
 }
