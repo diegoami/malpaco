@@ -1,0 +1,13 @@
+Parent reproduction in the root-owned pinned container; run 2026-10-15.
+
+Command:
+  git rev-parse HEAD
+Result:
+  exit 128
+  stderr: fatal: detected dubious ownership in repository at '/work'
+
+Command:
+  git -c safe.directory=/work rev-parse HEAD
+Result:
+  exit 0
+  stdout: 52814f251d94efd36defa055b40ce0935d8a0cf5

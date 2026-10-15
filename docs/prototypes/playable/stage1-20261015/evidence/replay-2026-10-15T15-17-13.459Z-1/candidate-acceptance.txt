@@ -1,0 +1,7 @@
+$ /usr/bin/node docs/prototypes/playable/acceptance.mjs /artifact/t21-playable-stage1-8ZdDKY/fresh-extraction
+exit: 1
+--- stdout ---
+
+--- stderr ---
+FAIL asset check: GET /assets/:i.id, returned HTTP 404
+

@@ -1,0 +1,7 @@
+$ /usr/bin/node docs/prototypes/playable/acceptance.mjs --verify-extracted /artifact/malpaco-t21-final-DqLzi5/fresh-extraction
+exit: 1
+--- stdout ---
+
+--- stderr ---
+FAIL asset check: GET /assets/index-Zf6fQR5q.js returned HTTP 404
+

@@ -1,0 +1,13 @@
+$ /usr/bin/node docs/prototypes/playable/acceptance.mjs /artifact/t21-playable-stage1-QCxKQv/fresh-extraction
+exit: 1
+--- stdout ---
+
+--- stderr ---
+FAIL npm run package:playable exited 1
+npm error Missing script: "package:playable"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: /home/ubuntu/.npm/_logs/2026-10-15T15_19_27_247Z-debug-0.log
+
+

@@ -1,0 +1,13 @@
+GitHub Actions run 38761364410, job "Package and verify playable artifact".
+Failure log excerpt retrieved 2026-10-15 with `gh run view 38761364410 --log-failed`.
+
+2026-10-15T15:38:42.5758967Z ##[group]Run fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"
+2026-10-15T15:38:42.5761034Z node docs/prototypes/playable/acceptance.mjs "$fresh_dir"
+2026-10-15T15:38:44.4892373Z FAIL npm run package:playable exited 1
+2026-10-15T15:38:44.4906999Z file:///__w/malpaco/malpaco/tools/release/package-playable.mjs:39
+2026-10-15T15:38:44.4908293Z if (commit.status !== 0) throw new Error(`git rev-parse exited ${commit.status}`);
+2026-10-15T15:38:44.4910264Z Error: git rev-parse exited 128
+2026-10-15T15:38:44.4912974Z Node.js v22.23.3
+2026-10-15T15:38:44.5012491Z ##[error]Process completed with exit code 1.
+
+Cause: GitHub Actions' checkout safe-directory config was in the temporary HOME used by checkout, while the package step ran with another HOME. Git rejected the root-owned checkout at `/work` as dubious. The scoped command-line override uses only the packager's computed checkout path.
