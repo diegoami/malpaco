@@ -1,0 +1,50 @@
+
+Running 2 tests using 2 workers
+
+  ✘  2 [1280x800] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.4s)
+  ✘  1 [1920x1080] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.6s)
+
+
+  1) [1280x800] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+
+    Error: province_4
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0.6
+    Received:   0
+
+      55 |     });
+      56 |   },{png,palette});
+    > 57 |   expect(pixels).toHaveLength(46); for(const p of pixels){expect(p.n,p.id!).toBeGreaterThan(20);expect(p.share,p.id!).toBeGreaterThan(.6);expect(p.contrast,p.id!).toBeGreaterThan(100);expect(p.countContrast,p.id!).toBeGreaterThan(100);}
+         |                                                                                                                       ^
+      58 | });
+      59 |
+      60 |
+        at /work/tests/e2e/generated-game.spec.ts:57:119
+
+    Error Context: test-results/generated-game-46-countrie-3d4c7-istinct-and-in-the-viewport-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+
+    Error: province_4
+
+    expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0.6
+    Received:   0
+
+      55 |     });
+      56 |   },{png,palette});
+    > 57 |   expect(pixels).toHaveLength(46); for(const p of pixels){expect(p.n,p.id!).toBeGreaterThan(20);expect(p.share,p.id!).toBeGreaterThan(.6);expect(p.contrast,p.id!).toBeGreaterThan(100);expect(p.countContrast,p.id!).toBeGreaterThan(100);}
+         |                                                                                                                       ^
+      58 | });
+      59 |
+      60 |
+        at /work/tests/e2e/generated-game.spec.ts:57:119
+
+    Error Context: test-results/generated-game-46-countrie-3d4c7-istinct-and-in-the-viewport-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport 
+    [1920x1080] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport 

@@ -51,10 +51,11 @@ test("46 countries and full names are painted, readable, distinct and in the vie
       const p=g.querySelector(".country-shape") as SVGGeometryElement; const t=g.querySelector(".country-name") as SVGTextElement; const name=t.getBoundingClientRect(); const count=g.querySelector(".army-count")!.getBoundingClientRect(); const expected=palette[g.getAttribute("data-owner")!]!; const b=p.getBBox(); const m=p.getScreenCTM()!; let n=0,paint=0;
       for(let x=b.x+3;x<b.x+b.width-3;x+=4) for(let y=b.y+3;y<b.y+b.height-3;y+=4) {if(!p.isPointInFill(new DOMPoint(x,y)))continue; const q=new DOMPoint(x,y).matrixTransform(m); if(q.x>=name.left-2&&q.x<=name.right+2&&q.y>=name.top-2&&q.y<=name.bottom+2)continue; if(q.x>=count.left-2&&q.x<=count.right+2&&q.y>=count.top-2&&q.y<=count.bottom+2)continue; n++; if(dist(pixel(q.x,q.y),expected)<28 && dist(expected,sea)>60)paint++;}
       const contrast=(box:DOMRect)=>{const colours:number[][]=[];for(let x=Math.ceil(box.left);x<box.right;x++)for(let y=Math.ceil(box.top);y<box.bottom;y++)colours.push(pixel(x,y));return Math.hypot(...[0,1,2].map(i=>Math.max(...colours.map(p=>p[i]!))-Math.min(...colours.map(p=>p[i]!))));};
-      return {id:g.getAttribute("data-country"),n,share:paint/n,contrast:contrast(name),countContrast:contrast(count)};
+      let countPixels=0,countInk=0;for(let x=Math.ceil(count.left);x<count.right;x++)for(let y=Math.ceil(count.top);y<count.bottom;y++){countPixels++;if(dist(pixel(x,y),[7,25,35])<35)countInk++;}
+      return {id:g.getAttribute("data-country"),n,share:paint/n,contrast:contrast(name),countContrast:contrast(count),countInk:countInk/countPixels};
     });
   },{png,palette});
-  expect(pixels).toHaveLength(46); for(const p of pixels){expect(p.n,p.id!).toBeGreaterThan(20);expect(p.share,p.id!).toBeGreaterThan(.6);expect(p.contrast,p.id!).toBeGreaterThan(100);expect(p.countContrast,p.id!).toBeGreaterThan(100);}
+  expect(pixels).toHaveLength(46); for(const p of pixels){expect(p.n,p.id!).toBeGreaterThan(20);expect(p.share,p.id!).toBeGreaterThan(.6);expect(p.contrast,p.id!).toBeGreaterThan(100);expect(p.countContrast,p.id!).toBeGreaterThan(100);expect(p.countInk,p.id!).toBeGreaterThan(.04);}
 });
 
 
@@ -64,6 +65,7 @@ test("exact topology, bonuses and initial createGame ownership and counts",async
  await expect(page.locator("[data-island]")).toHaveCount(9);for(const i of map.islands)await expect(page.locator(`[data-island="${i.id}"]`)).toContainText(`${i.name}  /  +${i.bonus}`);
  for(const [kind,field] of [["border","borders"],["sea","seaLanes"]] as const){
  const edges=page.locator(`[data-connection="${kind}"]`);expect(await edges.evaluateAll(ns=>ns.map(n=>[n.getAttribute("data-from"),n.getAttribute("data-to")].sort().join("|")).sort())).toEqual(pairs(field));
+ expect(await edges.evaluateAll(ns=>ns.every(n=>{const line=n as SVGGeometryElement;return ["from","to"].every((side,i)=>{const shape=document.querySelector(`[data-country="${line.getAttribute(`data-${side}`)}"] .country-shape`) as SVGGeometryElement;const p=line.getPointAtLength(i?line.getTotalLength():0).matrixTransform(line.getScreenCTM()!).matrixTransform(shape.getScreenCTM()!.inverse());return shape.isPointInFill(p);});}))).toBe(true);
  expect(await edges.evaluateAll(ns=>ns.every(n=>{const p=n as SVGGeometryElement,s=getComputedStyle(p);return p.getTotalLength()>0&&s.stroke!=="none"&&Number(s.strokeOpacity)>0;}))).toBe(true);
  }
 });
