@@ -26,3 +26,12 @@ assets were used. `verify-final.mjs <fresh-output-directory>` tests the actual
 installed source and independently removes selected seed/count handling, then
 restores exact saved bytes in finally blocks and records hashes. Optional
 `--update-goldens` regenerates only this task's setup/four-seat pictures.
+
+Actual-source verification evidence is retained in `implementation-20261015-a/`
+and indexed by `implementation-sha256.txt`: setup unit 40, setup browser 8,
+full unit 386, full browser 68, and build all pass in the pinned image. Forcing
+the route seed to 1994 rejects the selected seed 42 (two ownership mismatches);
+forcing two seats rejects selected counts 3/4 (four score-count mismatches).
+Restored setup browser passes all eight tests; manifest before/after source
+hashes match. All four setup/four-seat pictures were visually inspected at both
+sizes by implementer and parent; existing routes' goldens are unchanged.
