@@ -349,3 +349,11 @@ Parent root-container package acceptance passed at `d92e2231440a777c56e64049480b
 Plan: enumerate the four pinned canonical designs independently; map every requirement to existing code/tests and destination tasks; retain gaps and owner questions; implement a strict coverage verifier. No production changes. Owner selected the main session to implement and Kimi 1M to review (2026-10-15).
 
 Preflight: 24 parent-authored tests exercise coverage, citations, mappings and provenance. A fixture mock passes 24/24; a completeness-only fake passes the positive control but fails all 23 negative controls. Both temporary verifiers were removed. Tracked transcripts: docs/plans/new-game/inventory-evidence/preflight-*.txt. Missing future files on main are not counted as behavioural red evidence.
+
+T23 implementation: independently enumerated 540 canonical source units (109 core, 84 variety, 136 computer, 211 UI); compared against clean commit 12fed5a. Added sealed coverage verifier, 16 small matrix files, reuse overview and source/mutation audits. All 24 tests pass; four real matrix mutations fail, then byte-identical restoration passes. No production files changed. Found per-country handicap transfer mismatch for T44; preserved G degree-six conflict for T24/T25.
+
+END T23 implementation
+- Deliverable: approved-rule matrix, independent manifest, verifier/tests and retained audits.
+- Checks: 540/540 coverage, zero unexplained omissions; 24/24 node tests; four rejected actual-matrix mutations with exact restoration; git diff --check clean.
+- Remaining gate: independent owner-selected Kimi 1M review and green CI before merge.
+- Handoff: production unchanged; T24 needs owner decisions after constraint feasibility evidence; T44 owns the observed transfer discrepancy.

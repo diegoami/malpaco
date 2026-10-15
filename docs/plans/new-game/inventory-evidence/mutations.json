@@ -1,0 +1,30 @@
+{
+  "command": "node docs/plans/new-game/inventory-evidence/check-mutations.mjs",
+  "target": "docs/plans/new-game/rules-inventory-core-rules-01.json",
+  "before": "e048c3441f04c327580e3dabc40f010431eac8e8d72d90e4bb0649c32571d7c1",
+  "after": "e048c3441f04c327580e3dabc40f010431eac8e8d72d90e4bb0649c32571d7c1",
+  "results": [
+    {
+      "mutation": "remove requirement",
+      "exit": 1,
+      "diagnostic": "Unexplained omissions (1): core-rules-040"
+    },
+    {
+      "mutation": "remove citation",
+      "exit": 1,
+      "diagnostic": "Missing/wrong pinned source anchor: core-rules-001"
+    },
+    {
+      "mutation": "remove task mapping",
+      "exit": 1,
+      "diagnostic": "Missing/duplicate tasks: core-rules-001"
+    },
+    {
+      "mutation": "duplicate requirement",
+      "exit": 1,
+      "diagnostic": "Unknown/duplicate inventory requirement: core-rules-001"
+    }
+  ],
+  "restoredExit": 0,
+  "restoredOutput": "core-rules: 109/109\nvariety: 84/84\ncomputer: 136/136\nui: 211/211\nCovered 540/540 source requirement units; unexplained omissions: 0"
+}

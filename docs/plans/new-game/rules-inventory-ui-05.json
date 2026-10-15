@@ -1,0 +1,1003 @@
+[
+  {
+    "id": "ui-161",
+    "document": "ui",
+    "requirement": "- a rank by countries, so who leads is read at once; an eliminated seat is greyed with the round it went out.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#standings",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-162",
+    "document": "ui",
+    "requirement": "**The leader check** *(UI11 a)*: a seat the computers' leader check names (computer.md, The leader check: 28 or more countries, or an adjusted count of at least 22 and 1.5 times the next) is marked in the standings, and selecting the mark gives the reason in words. A seat that the human share settings gave or took countries at the deal shows that number, the handicap transfer the check subtracts. The mark is seat-blind, as the check is: a human leader is marked too.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#standings",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-163",
+    "document": "ui",
+    "requirement": "- Always visible: the round number; with the round limit on, \"of 20\" (or 30 or 40) beside it, and the last rounds counted down. The seat that plays first each round is marked in the standings.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-round-counter",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-164",
+    "document": "ui",
+    "requirement": "- With events on, it carries the paused-events note of [Events and centres](#events-and-centres).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-round-counter",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-165",
+    "document": "ui",
+    "requirement": "*(UW-11.)* A log of the whole game, kept for the game's length and restored with a saved game.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-log",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-166",
+    "document": "ui",
+    "requirement": "- One entry per public happening, of every seat: each round's start; a trade-in with its three cards; each placement; each battle's start and end with its tally, a capture and its move-in, a stop; a raid and its result or a Shield; the move; a card drawn (as a count, except to the drawer); a discard and a Squall with their cards; every event with every country and count; an elimination; the end. A fast-forwarded action has its line like any other.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-log",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-167",
+    "document": "ui",
+    "requirement": "- **Each entry names its countries** by their labels in the seat colours and cues; selecting an entry marks those countries on the board.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-log",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-168",
+    "document": "ui",
+    "requirement": "- The latest entries are visible on the board screen; the full log opens over the board and can be filtered by seat and by kind (battles, cards, events).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-log",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-169",
+    "document": "ui",
+    "requirement": "- The log never shows a hidden card's kind to anyone but its holder, and in hot-seat play never shows a drawn card's kind at all.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-log",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-170",
+    "document": "ui",
+    "requirement": "*(UW-14; UI7.)* Requirements; the sounds themselves are art direction.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#sound",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T55"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/options.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/options.test.ts"
+    ],
+    "assessment": "Sound option exists; no canonical audio event/control layer is implemented.",
+    "missing": "Original effects and visual counterparts, mute/volumes/music off, persistence, autoplay and bulk-step handling.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-171",
+    "document": "ui",
+    "requirement": "- **Every action and happening that matters has a sound**, distinct by kind: a control press, a refusal, a die roll, an exchange won and an exchange lost (from the attacker's side), a capture, an elimination, a card drawn, a set traded, a Surge, a raid landing, a Shield blocking, the Squall, each event kind, the turn coming to a human seat, a win and a loss.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#sound",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T55"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/options.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/options.test.ts"
+    ],
+    "assessment": "Sound option exists; no canonical audio event/control layer is implemented.",
+    "missing": "Original effects and visual counterparts, mute/volumes/music off, persistence, autoplay and bulk-step handling.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-172",
+    "document": "ui",
+    "requirement": "- **Never the only carrier**: every sound has a visual counterpart on the screen.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#sound",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T55"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/options.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/options.test.ts"
+    ],
+    "assessment": "Sound option exists; no canonical audio event/control layer is implemented.",
+    "missing": "Original effects and visual counterparts, mute/volumes/music off, persistence, autoplay and bulk-step handling.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-173",
+    "document": "ui",
+    "requirement": "- **No noise in bulk**: a grouped computer step plays one sound, a fast-forward step plays one summary sound, and the many exchanges of a long battle do not stack into a din (one roll sound per shown step).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#sound",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T55"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/options.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/options.test.ts"
+    ],
+    "assessment": "Sound option exists; no canonical audio event/control layer is implemented.",
+    "missing": "Original effects and visual counterparts, mute/volumes/music off, persistence, autoplay and bulk-step handling.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-174",
+    "document": "ui",
+    "requirement": "- **Music** *(UI7)*: off by default, with a setting to turn it on.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#sound",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T55"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/options.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/options.test.ts"
+    ],
+    "assessment": "Sound option exists; no canonical audio event/control layer is implemented.",
+    "missing": "Original effects and visual counterparts, mute/volumes/music off, persistence, autoplay and bulk-step handling.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-175",
+    "document": "ui",
+    "requirement": "- **Controls**: a mute toggle reachable from every screen in one action (and a key), and separate volumes for effects and music; sound settings persist. With mute on, nothing plays.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#sound",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T55"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/options.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/options.test.ts"
+    ],
+    "assessment": "Sound option exists; no canonical audio event/control layer is implemented.",
+    "missing": "Original effects and visual counterparts, mute/volumes/music off, persistence, autoplay and bulk-step handling.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-176",
+    "document": "ui",
+    "requirement": "- No sound plays before the player's first action in the session (browser autoplay rules).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#sound",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T55"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/options.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/options.test.ts"
+    ],
+    "assessment": "Sound option exists; no canonical audio event/control layer is implemented.",
+    "missing": "Original effects and visual counterparts, mute/volumes/music off, persistence, autoplay and bulk-step handling.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-177",
+    "document": "ui",
+    "requirement": "*(UW-15.)*",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#input",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T52",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Existing click/SVG interactions provide a seam; full keyboard/touch/cancel parity has not been established.",
+    "missing": "All actions by tap and keys, counters, focus/hit areas and precommit rollback without reroll.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-178",
+    "document": "ui",
+    "requirement": "- **Every action works by click or tap and by keyboard**, with no reliance on hover, double-click, right-click or drag. Hover may highlight what a click would do, never show anything a click or key cannot also show.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#input",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T52",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Existing click/SVG interactions provide a seam; full keyboard/touch/cancel parity has not been established.",
+    "missing": "All actions by tap and keys, counters, focus/hit areas and precommit rollback without reroll.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-179",
+    "document": "ui",
+    "requirement": "- **Hit areas** of `HIT_MIN` for countries ([Legibility and size](#legibility-and-size)) and for every control.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#input",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T52",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Existing click/SVG interactions provide a seam; full keyboard/touch/cancel parity has not been established.",
+    "missing": "All actions by tap and keys, counters, focus/hit areas and precommit rollback without reroll.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-180",
+    "document": "ui",
+    "requirement": "- **Keys** (named constants, listed in help): the phase's primary action (Enter or Space), cancel or back (Escape), cycle the marked countries forwards and back (Tab, Shift+Tab) and select one, the counters (arrow keys and typed numbers), roll one exchange, stop a battle, fast-forward a computer turn, open the log, mute, open help.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#input",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T52",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Existing click/SVG interactions provide a seam; full keyboard/touch/cancel parity has not been established.",
+    "missing": "All actions by tap and keys, counters, focus/hit areas and precommit rollback without reroll.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-181",
+    "document": "ui",
+    "requirement": "- **Touch** where the device has it: tap is a click; nothing needs a gesture beyond a tap; at the smallest window, panels open and close by tapping their headers.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#input",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T52",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Existing click/SVG interactions provide a seam; full keyboard/touch/cancel parity has not been established.",
+    "missing": "All actions by tap and keys, counters, focus/hit areas and precommit rollback without reroll.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-182",
+    "document": "ui",
+    "requirement": "- **Mistakes cost nothing before commit**: placement can be taken back until confirmed; a move or battle can be cancelled until its first roll or its confirm. A die is never re-rolled.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#input",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T52",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedMapView.ts",
+      "src/ui/generatedGame.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Existing click/SVG interactions provide a seam; full keyboard/touch/cancel parity has not been established.",
+    "missing": "All actions by tap and keys, counters, focus/hit areas and precommit rollback without reroll.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-183",
+    "document": "ui",
+    "requirement": "*(UW-19.)* A feature the setup switches off is absent from every screen, the log, the sounds and the help shown in the game. An automated check runs a game with each off and finds none of its elements.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-184",
+    "document": "ui",
+    "requirement": "| Off | What is absent |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-185",
+    "document": "ui",
+    "requirement": "| Events (Off) | event banners, marks and sounds; the paused-events note; event entries and the event filter in the log; with UI17 (a), centre marks and centre columns, since centres then do nothing |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-186",
+    "document": "ui",
+    "requirement": "| Round limit (off) | \"of N\", the countdown and the quiet-rounds note; the tie-break text on the result screen |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-187",
+    "document": "ui",
+    "requirement": "| Domination (off) | the threshold bar and the 35 mark; the result screen's domination wording |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-188",
+    "document": "ui",
+    "requirement": "| Hot-seat (one human or none) | the hand-over screen and names other than the one human's |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-189",
+    "document": "ui",
+    "requirement": "| No computer seat | levels, the leader mark (no computer acts on it), the share controls |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-190",
+    "document": "ui",
+    "requirement": "| No human seat (watching) | the hand, hand-over, discard prompts and hints; resign; the record's change on the result screen |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-191",
+    "document": "ui",
+    "requirement": "Variant features (for example no centres, V7a) follow the same rule when a later version offers them.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#disabled-features-leave-no-trace",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T56"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/help.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/game-setup.test.ts"
+    ],
+    "assessment": "Current options do not establish absence across all screens, sounds, log and help.",
+    "missing": "Audit events/centres, limits, domination, seat mixtures and all related traces.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-192",
+    "document": "ui",
+    "requirement": "*(UW-2.)* What an automated check can verify, so the gates can tell a blank screen from a working one. malpaco's tests run in a pinned rendering environment.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-193",
+    "document": "ui",
+    "requirement": "- **Screen identity**: every screen and panel exposes a stable name and its state (screen, phase, active seat, viewer, speed) to the test harness, read from the rendered page, not from the engine.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-194",
+    "document": "ui",
+    "requirement": "- **The drawn board matches the engine**: for each country the harness reads back, from the rendered scene, its drawn owner (colour and cue), its count and its position, and compares them with the engine's state for the same seed and actions. A blank or half-drawn board fails at once.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-195",
+    "document": "ui",
+    "requirement": "- **Reference images**: for fixed seeds and actions, each screen at the smallest supported window and at one large size is compared with a reviewed reference image; a difference beyond a tolerance fails.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-196",
+    "document": "ui",
+    "requirement": "- **Properties computed from the scene**: every country's hit area at least `HIT_MIN` and no overlap; every count's text height and contrast; the palette's pairwise distance under the three simulations; ownership readable in greyscale (the cue's shapes differ); nothing drawn outside the window after resizes through the supported range.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-197",
+    "document": "ui",
+    "requirement": "- **Legal and illegal**: for scripted positions, the marked countries are exactly the legal ones, and each illegal attempt of the table above changes nothing and shows its reason.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-198",
+    "document": "ui",
+    "requirement": "- **Presentation never changes play**: one scripted game at every speed, with and without fast-forward and reduced motion, ends in the same state with the same action list.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-199",
+    "document": "ui",
+    "requirement": "- **Saves and the record** (UI14 c): many saves of one game leave the record unchanged; a save of a different game over an unfinished one adds one loss per human seat without a result, and no more on repeating it; a seat that resigned and a game that later ends add no second result.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-200",
+    "document": "ui",
+    "requirement": "- **Every stop offered**: in scripted human battles at every speed but Instant, no exchange is resolved before the previous one has been shown, unless the player picked finish now; a stop sent at any moment takes effect before the next exchange; a battle past `HUMAN_BATTLE_WATCH` waits at the pause until the player chooses.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#testability",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T33",
+      "T36",
+      "T50",
+      "T52",
+      "T54",
+      "T55",
+      "T57"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/ui/generatedMapView.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/ui/generated-board-layout.test.ts"
+    ],
+    "assessment": "Reuse Playwright rendered-scene checks and existing core tests; canonical feature checks must arrive with each feature.",
+    "missing": "Reference images, rendered owner/count/position, legal controls, privacy, geometry, audio, replay/pace and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  }
+]

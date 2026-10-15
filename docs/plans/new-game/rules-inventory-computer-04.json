@@ -1,0 +1,370 @@
+[
+  {
+    "id": "computer-121",
+    "document": "computer",
+    "requirement": "| Normal against 3 scripted seats | at least 55% |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#targets",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-122",
+    "document": "computer",
+    "requirement": "| Hard against 3 scripted seats | at least 70% |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#targets",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-123",
+    "document": "computer",
+    "requirement": "| Normal against 3 Easy | at least 40% |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#targets",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-124",
+    "document": "computer",
+    "requirement": "| Hard against 3 Normal | at least 35% |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#targets",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-125",
+    "document": "computer",
+    "requirement": "| two-seat duel, each level against the level below | at least 60% |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#targets",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-126",
+    "document": "computer",
+    "requirement": "- The order Easy, Normal, Hard holds in every matchup, with 95% intervals that do not overlap in the release suite. Two levels that do not separate are one level, and the level table is retuned.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#targets",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-127",
+    "document": "computer",
+    "requirement": "- Against a human the strength cannot be tested automatically. The owner's play-tests answer whether Easy is beatable on a first game and whether Hard stays a contest for a practised player.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#targets",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-128",
+    "document": "computer",
+    "requirement": "- In 4-seat games of Normal computers, the median game length is reported in rounds, with a target band of 15 to 30 rounds, to be revisited after the first play-tests (core-rules.md's toy model suggests a few dozen rounds; the owner's four recorded games of the predecessor ran 29 to 55 player-turns, counts from `runs/E018`).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#game-length",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-129",
+    "document": "computer",
+    "requirement": "- At most 2% of those games last beyond 60 rounds with domination on and no round limit.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#game-length",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-130",
+    "document": "computer",
+    "requirement": "- Any game of computers that reaches 150 rounds fails the test: it is a stall the policy must not allow.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#game-length",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-131",
+    "document": "computer",
+    "requirement": "- Turn length: the largest number of decisions and of shown steps in a computer turn stays within the bounds of [Quick turns](#quick-turns), and the means are reported.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#game-length",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-132",
+    "document": "computer",
+    "requirement": "- **Legality**: over many seeds, every computer action is accepted by the engine.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#behaviour-tests",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-133",
+    "document": "computer",
+    "requirement": "- **Hidden information**: changing another seat's hand kinds, the draw pile's order, or the game stream's state leaves the computer's next action unchanged, given the same view and its own stream.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#behaviour-tests",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-134",
+    "document": "computer",
+    "requirement": "- **Seat kinds**: swapping the human and computer flags of two seats leaves every computer action unchanged.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#behaviour-tests",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-135",
+    "document": "computer",
+    "requirement": "- **Streams**: changing a computer seat's level, or its stream's seed, leaves the game stream's sequence of values unchanged; re-running a turn from the same state gives the same actions; a saved game replays identically.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#behaviour-tests",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "computer-136",
+    "document": "computer",
+    "requirement": "- **Readable rules**: a seat holding an army set trades a set that turn, at every level; no placement on an interior country; the whole pool placed, on at most 3 countries; at most 10 battles and 1 move a turn; every move-in legal, including `P = 2`.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#behaviour-tests",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T50"
+    ],
+    "code": [
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/complete-game.test.ts"
+    ],
+    "assessment": "Legality/basic complete-game coverage exists; no canonical baseline benchmark or clustered strength measurement is present.",
+    "missing": "Fixed scripted baseline, seat rotations, independent seed clusters, CI/release sample sizes, win intervals and length/stall bounds.",
+    "disposition": "new",
+    "questions": []
+  }
+]
