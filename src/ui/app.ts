@@ -1,4 +1,4 @@
-import { activePlayer, apply, armyCount, attackTargets, malpacoRules, newGame, ownerOf, province, whyNot } from "../core";
+import { activePlayer, computerAction, apply, armyCount, attackTargets, malpacoRules, newGame, ownerOf, province, whyNot } from "../core";
 import type { Action, AttackOutcome, GameMap, GameState } from "../core";
 import { h } from "./dom";
 import type { MapHandlers } from "./mapView";
@@ -14,6 +14,8 @@ const PLAYERS = [
 /** The controller: holds the game and the selection, and redraws the three views on every change. */
 export class App {
   private state: GameState;
+  private computerTimer: ReturnType<typeof setTimeout> | null = null;
+  private disposed = false;
   private selected: string | null = null;
   private target: string | null = null;
   private hover: string | null = null;
@@ -54,6 +56,9 @@ export class App {
   get actions(): readonly Action[] { return this.state.history; }
 
   dispose(): void {
+    this.disposed = true;
+    if (this.computerTimer !== null) clearTimeout(this.computerTimer);
+    this.computerTimer = null;
     window.removeEventListener("keydown", this.onKeyDown);
     this.dialog.el.remove();
   }
@@ -78,7 +83,7 @@ export class App {
   // --- input ----------------------------------------------------------------
 
   private clickProvince(id: string): void {
-    if (this.state.phase === "finished") return;
+    if (this.state.phase === "finished" || this.isComputerTurn()) return;
     const mover = activePlayer(this.state);
     const p = province(this.map, id);
     if (!mover || !p) return;
@@ -126,19 +131,23 @@ export class App {
   }
 
   private attack(): void {
+    if (this.isComputerTurn()) return;
     if (this.selected === null || this.target === null) return;
     this.run({ kind: "attack", from: this.selected, to: this.target });
   }
 
   private startCombat(): void {
+    if (this.isComputerTurn()) return;
     this.run({ kind: "endReinforcement" });
   }
 
   private endTurn(): void {
+    if (this.isComputerTurn()) return;
     this.run({ kind: "endTurn" });
   }
 
   private run(action: Action): void {
+    const automated = this.isComputerTurn();
     const before = this.state;
     const result = apply(before, action);
     if (!result.ok) {
@@ -177,6 +186,7 @@ export class App {
 
     const loser = this.state.log.find((e) => e.event === "eliminated" && e.turn === outcome.turn);
     const extra = this.state.phase === "finished" ? `${loser && loser.event === "eliminated" ? this.nameOf(loser.player) : "The enemy"} is eliminated. ${this.nameOf(this.state.winner)} conquers the sea!` : "";
+    if (automated) return;
     this.dialog.show(this.state, outcome, extra, () => {
       this.hint = this.selected ? this.hintAfterAttack() : "Select one of your provinces to continue.";
       this.render();
@@ -243,10 +253,26 @@ export class App {
     });
   }
 
+  private isComputerTurn(): boolean {
+    return activePlayer(this.state)?.kind === "computer" && this.state.phase !== "finished";
+  }
+
+  private scheduleComputer(): void {
+    if (this.disposed || this.computerTimer !== null || !this.isComputerTurn()) return;
+    // [designed] One ordinary action per 350 ms lets the player follow/save a turn.
+    this.computerTimer = setTimeout(() => {
+      this.computerTimer = null;
+      if (this.disposed) return;
+      const action = computerAction(this.state);
+      if (action) this.run(action);
+    }, 350);
+  }
+
   private render(): void {
     this.renderMap();
     const blocked =
       this.selected === null ? "Pick one of your provinces." : this.target === null ? "Pick an adjacent enemy." : whyNot(this.state, this.selected, this.target);
-    this.panel.render({ state: this.state, from: this.selected, to: this.target, blocked, hint: this.hint, seed: this.seed });
+    this.panel.render({ state: this.state, from: this.selected, to: this.target, blocked, hint: this.isComputerTurn() ? "Computer is playing. Save, load or start a new game at any time." : this.hint, seed: this.seed });
+    this.scheduleComputer();
   }
 }

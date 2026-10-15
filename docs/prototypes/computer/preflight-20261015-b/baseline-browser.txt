@@ -1,0 +1,60 @@
+
+Running 2 tests using 2 workers
+
+  ✘  1 [1280x800] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (5.1s)
+  ✘  2 [1920x1080] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (5.1s)
+
+
+  1) [1280x800] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents ────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByLabel('Players', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByLabel('Players', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('Players', { exact: true })
+
+
+      17 | async function tick(page:Page,s:GameState){const a=computerAction(s);expect(a).not.toBeNull();await page.clock.runFor(350);return step(s,a!);}
+      18 | // A focused baseline target avoids repeating the missing-control timeout for every flow.
+    > 19 | test("setup offers computer opponents",async({page})=>{await page.goto("/?view=game-setup");await expect(page.getByLabel("Players",{exact:true})).toBeVisible();});
+         |                                                                                                                                                   ^
+      20 | for(const seats of [2,3,4])test(`setup clicks, autonomous ordinary actions, gated input and human return ${seats}`,async({page},info)=>{
+      21 |  const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));page.on("console",e=>{if(e.type()==="error")errors.push(e.text());});
+      22 |  await page.clock.install();await page.clock.pauseAt(new Date());
+        at /work/tests/e2e/computer.spec.ts:19:147
+
+    Error Context: test-results/computer-setup-offers-computer-opponents-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents ───────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByLabel('Players', { exact: true })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByLabel('Players', { exact: true }) with timeout 5000ms
+      - waiting for getByLabel('Players', { exact: true })
+
+
+      17 | async function tick(page:Page,s:GameState){const a=computerAction(s);expect(a).not.toBeNull();await page.clock.runFor(350);return step(s,a!);}
+      18 | // A focused baseline target avoids repeating the missing-control timeout for every flow.
+    > 19 | test("setup offers computer opponents",async({page})=>{await page.goto("/?view=game-setup");await expect(page.getByLabel("Players",{exact:true})).toBeVisible();});
+         |                                                                                                                                                   ^
+      20 | for(const seats of [2,3,4])test(`setup clicks, autonomous ordinary actions, gated input and human return ${seats}`,async({page},info)=>{
+      21 |  const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));page.on("console",e=>{if(e.type()==="error")errors.push(e.text());});
+      22 |  await page.clock.install();await page.clock.pauseAt(new Date());
+        at /work/tests/e2e/computer.spec.ts:19:147
+
+    Error Context: test-results/computer-setup-offers-computer-opponents-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents ─────────────────
+    [1920x1080] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents ────────────────

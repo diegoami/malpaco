@@ -1,0 +1,24 @@
+
+ RUN  v5.0.3 /tmp/malpaco-T18
+
+ ❯ tests/core/computer.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/computer.test.ts [ tests/core/computer.test.ts ]
+Error: Cannot find module '../../src/core/computer' imported from /tmp/malpaco-T18/tests/core/computer.test.ts
+ ❯ tests/core/computer.test.ts:2:1
+      1| import { expect, test } from "vitest";
+      2| import { computerAction } from "../../src/core/computer";
+       | ^
+      3| import { deserializeMatch, serializeMatch } from "../../src/core";
+      4| import { mixedOpening, mixedOptions, passive, step } from "../helpers/…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  11:53:47
+   Duration  82ms (worker 96%, environment 4%)
+

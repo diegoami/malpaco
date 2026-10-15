@@ -1,0 +1,5 @@
+tests/e2e/computer.spec.ts(46,3): error TS2322: Type '(id?: number) => void' is not assignable to type '((id: number | undefined) => void) & { (id: number | undefined): void; (timeout: string | number | Timeout | undefined): void; }'.
+  Type '(id?: number) => void' is not assignable to type '{ (id: number | undefined): void; (timeout: string | number | Timeout | undefined): void; }'.
+    Types of parameters 'id' and 'timeout' are incompatible.
+      Type 'string | number | Timeout | undefined' is not assignable to type 'number | undefined'.
+        Type 'string' is not assignable to type 'number'.

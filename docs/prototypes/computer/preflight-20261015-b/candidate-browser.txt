@@ -1,0 +1,61 @@
+
+Running 10 tests using 2 workers
+
+  ✓   2 [1280x800] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (83ms)
+  ✓   3 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (745ms)
+  ✓   1 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (1.0s)
+  ✓   4 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (652ms)
+  ✓   6 [1920x1080] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (74ms)
+  ✓   7 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (1.0s)
+  ✓   8 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (672ms)
+  ✓   9 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (690ms)
+  ✘   5 [1280x800] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped (5.0s)
+  ✘  10 [1920x1080] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped (5.0s)
+
+
+  1) [1280x800] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      48 |  await page.clock.install();await page.clock.pauseAt(new Date());await page.goto("/?view=game-setup");
+      49 |  let s=mixedOpening(1994,4);while(s.currentPlayer===0)s=step(s,passive(s));const text=serializeMatch(mixedOptions(1994,4),s.history);
+    > 50 |  await load(page,text);await expect.poll(()=>page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(1);
+         |                                                                                                       ^
+      51 |  // Load a human turn before the old timer fires: exact save must remain unchanged.
+      52 |  let human=mixedOpening(42,2);while(human.currentPlayer!==0)human=step(human,computerAction(human)!);
+      53 |  const humanText=serializeMatch(mixedOptions(42,2),human.history);await load(page,humanText);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(await page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(0);await page.clock.runFor(700);expect(deserializeMatch(await save(page)).state).toEqual(human);
+        at /work/tests/e2e/computer.spec.ts:50:103
+
+    Error Context: test-results/computer-load-replacement--69217--work-victory-stays-stopped-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 1
+    Received: 0
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      48 |  await page.clock.install();await page.clock.pauseAt(new Date());await page.goto("/?view=game-setup");
+      49 |  let s=mixedOpening(1994,4);while(s.currentPlayer===0)s=step(s,passive(s));const text=serializeMatch(mixedOptions(1994,4),s.history);
+    > 50 |  await load(page,text);await expect.poll(()=>page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(1);
+         |                                                                                                       ^
+      51 |  // Load a human turn before the old timer fires: exact save must remain unchanged.
+      52 |  let human=mixedOpening(42,2);while(human.currentPlayer!==0)human=step(human,computerAction(human)!);
+      53 |  const humanText=serializeMatch(mixedOptions(42,2),human.history);await load(page,humanText);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(await page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(0);await page.clock.runFor(700);expect(deserializeMatch(await save(page)).state).toEqual(human);
+        at /work/tests/e2e/computer.spec.ts:50:103
+
+    Error Context: test-results/computer-load-replacement--69217--work-victory-stays-stopped-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+    [1920x1080] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+  8 passed (10.5s)

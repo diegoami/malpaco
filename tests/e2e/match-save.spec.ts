@@ -100,7 +100,7 @@ for(const seats of [2,3,4]) test(`${seats} humans download, real upload on setup
   await expect(page.locator('[data-country][aria-pressed="true"]')).toHaveCount(0);
   await fitAndCapture(page,`restored-combat-${seats}`,info.project.name);
   // Load failures leave the exact current history/options and a playable controller.
-  for(const invalid of ["{",JSON.stringify({version:99}),JSON.stringify({version:1,options:{seed:-1},actions:[]}),JSON.stringify({version:1,options:{...defaultOptions(),seed:1994,seats:Array.from({length:seats},()=>({kind:"human"})),computerStrengths:[]},actions:[{kind:"attack",from:"missing",to:"missing"}]}),JSON.stringify({version:1,options:defaultOptions(),actions:[]})]) {
+  for(const invalid of ["{",JSON.stringify({version:99}),JSON.stringify({version:1,options:{seed:-1},actions:[]}),JSON.stringify({version:1,options:{...defaultOptions(),seed:1994,seats:Array.from({length:seats},()=>({kind:"human"})),computerStrengths:[]},actions:[{kind:"attack",from:"missing",to:"missing"}]}),JSON.stringify({version:1,options:defaultOptions(),actions:[{kind:'teleport'}]})]) {
     await upload(page,invalid);await expect(page.getByRole("alert")).toContainText("Load failed:");expect(await download(page)).toBe(combat);
     await fitAndCapture(page,`load-error-${seats}`,info.project.name);
   }

@@ -1,0 +1,46 @@
+
+Running 2 tests using 2 workers
+
+  ✘  1 [1920x1080] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped (209ms)
+  ✘  2 [1280x800] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped (213ms)
+
+
+  1) [1280x800] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      54 |  // Load a human turn before the old timer fires: exact save must remain unchanged.
+      55 |  let human=mixedOpening(42,2);while(human.currentPlayer!==0)human=step(human,computerAction(human)!);
+    > 56 |  const humanText=serializeMatch(mixedOptions(42,2),human.history);await load(page,humanText);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(await page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(0);await page.clock.runFor(700);expect(deserializeMatch(await save(page)).state).toEqual(human);
+         |                                                                                                                                                                                                                                          ^
+      57 |  await load(page,text);await page.getByRole("button",{name:"New game",exact:true}).click();await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();await page.clock.runFor(700);await expect(page.locator("[data-country]")).toHaveCount(0);await instrumentTimers(page);
+      58 |  // Produce a legal history immediately before a winning computer attack.
+      59 |  s=mixedOpening(1994,3);let pre=s,n=0;while(s.phase!=="finished"&&n++<12000){pre=s;s=step(s,computerAction(s)??passive(s));}expect(s.phase).toBe("finished");
+        at /work/tests/e2e/computer.spec.ts:56:234
+
+    Error Context: test-results/computer-load-replacement--69217--work-victory-stays-stopped-1280x800/error-context.md
+
+  2) [1920x1080] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 0
+    Received: 1
+
+      54 |  // Load a human turn before the old timer fires: exact save must remain unchanged.
+      55 |  let human=mixedOpening(42,2);while(human.currentPlayer!==0)human=step(human,computerAction(human)!);
+    > 56 |  const humanText=serializeMatch(mixedOptions(42,2),human.history);await load(page,humanText);await expect(page.locator("#turn-title")).toHaveText("Seat 1's turn");expect(await page.evaluate(()=>Reflect.get(window,"computerTimers"))).toBe(0);await page.clock.runFor(700);expect(deserializeMatch(await save(page)).state).toEqual(human);
+         |                                                                                                                                                                                                                                          ^
+      57 |  await load(page,text);await page.getByRole("button",{name:"New game",exact:true}).click();await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();await page.clock.runFor(700);await expect(page.locator("[data-country]")).toHaveCount(0);await instrumentTimers(page);
+      58 |  // Produce a legal history immediately before a winning computer attack.
+      59 |  s=mixedOpening(1994,3);let pre=s,n=0;while(s.phase!=="finished"&&n++<12000){pre=s;s=step(s,computerAction(s)??passive(s));}expect(s.phase).toBe("finished");
+        at /work/tests/e2e/computer.spec.ts:56:234
+
+    Error Context: test-results/computer-load-replacement--69217--work-victory-stays-stopped-1920x1080/error-context.md
+
+  2 failed
+    [1280x800] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+    [1920x1080] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped 
