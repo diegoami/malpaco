@@ -1,0 +1,292 @@
+
+Running 8 tests using 2 workers
+
+  ✘  2 [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (30.0s)
+  ✘  1 [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (30.0s)
+  ✘  3 [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (30.0s)
+  ✘  4 [1280x800] › tests/e2e/match-save.spec.ts:88:1 › finished legal history loads with readable winner and can be saved again (30.0s)
+  ✘  5 [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (30.0s)
+  ✘  6 [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (30.0s)
+  ✘  7 [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (30.0s)
+  ✘  8 [1920x1080] › tests/e2e/match-save.spec.ts:88:1 › finished legal history loads with readable winner and can be saved again (30.0s)
+
+
+  1) [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+       9 | const country = (p: Page,id: string) => p.locator(`[data-country="${id}"]`);
+      10 | async function download(page: Page) {
+    > 11 |   const event = page.waitForEvent("download");
+         |                      ^
+      12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+        at download (/work/tests/e2e/match-save.spec.ts:11:22)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Save game', exact: true })
+
+
+      10 | async function download(page: Page) {
+      11 |   const event = page.waitForEvent("download");
+    > 12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+         |                                                                ^
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+      15 | }
+        at download (/work/tests/e2e/match-save.spec.ts:12:64)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error Context: test-results/match-save-2-humans-downlo-edd63-nd-continued-attack-handoff-1280x800/error-context.md
+
+  2) [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+       9 | const country = (p: Page,id: string) => p.locator(`[data-country="${id}"]`);
+      10 | async function download(page: Page) {
+    > 11 |   const event = page.waitForEvent("download");
+         |                      ^
+      12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+        at download (/work/tests/e2e/match-save.spec.ts:11:22)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Save game', exact: true })
+
+
+      10 | async function download(page: Page) {
+      11 |   const event = page.waitForEvent("download");
+    > 12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+         |                                                                ^
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+      15 | }
+        at download (/work/tests/e2e/match-save.spec.ts:12:64)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error Context: test-results/match-save-3-humans-downlo-1962e-nd-continued-attack-handoff-1280x800/error-context.md
+
+  3) [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+       9 | const country = (p: Page,id: string) => p.locator(`[data-country="${id}"]`);
+      10 | async function download(page: Page) {
+    > 11 |   const event = page.waitForEvent("download");
+         |                      ^
+      12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+        at download (/work/tests/e2e/match-save.spec.ts:11:22)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Save game', exact: true })
+
+
+      10 | async function download(page: Page) {
+      11 |   const event = page.waitForEvent("download");
+    > 12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+         |                                                                ^
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+      15 | }
+        at download (/work/tests/e2e/match-save.spec.ts:12:64)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error Context: test-results/match-save-4-humans-downlo-79bf4-nd-continued-attack-handoff-1280x800/error-context.md
+
+  4) [1280x800] › tests/e2e/match-save.spec.ts:88:1 › finished legal history loads with readable winner and can be saved again 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.setInputFiles: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Load game', { exact: true })
+
+
+      15 | }
+      16 | async function upload(page: Page, text: string) {
+    > 17 |   await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"resume.json",mimeType:"application/json",buffer:Buffer.from(text)});
+         |   ^
+      18 | }
+      19 | async function check(page: Page,state: GameState) {
+      20 |   for(const p of state.map.provinces) {
+        at upload (/work/tests/e2e/match-save.spec.ts:17:3)
+        at /work/tests/e2e/match-save.spec.ts:94:40
+
+    Error Context: test-results/match-save-finished-legal--85e4d-nner-and-can-be-saved-again-1280x800/error-context.md
+
+  5) [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+       9 | const country = (p: Page,id: string) => p.locator(`[data-country="${id}"]`);
+      10 | async function download(page: Page) {
+    > 11 |   const event = page.waitForEvent("download");
+         |                      ^
+      12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+        at download (/work/tests/e2e/match-save.spec.ts:11:22)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Save game', exact: true })
+
+
+      10 | async function download(page: Page) {
+      11 |   const event = page.waitForEvent("download");
+    > 12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+         |                                                                ^
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+      15 | }
+        at download (/work/tests/e2e/match-save.spec.ts:12:64)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error Context: test-results/match-save-2-humans-downlo-edd63-nd-continued-attack-handoff-1920x1080/error-context.md
+
+  6) [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+       9 | const country = (p: Page,id: string) => p.locator(`[data-country="${id}"]`);
+      10 | async function download(page: Page) {
+    > 11 |   const event = page.waitForEvent("download");
+         |                      ^
+      12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+        at download (/work/tests/e2e/match-save.spec.ts:11:22)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Save game', exact: true })
+
+
+      10 | async function download(page: Page) {
+      11 |   const event = page.waitForEvent("download");
+    > 12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+         |                                                                ^
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+      15 | }
+        at download (/work/tests/e2e/match-save.spec.ts:12:64)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error Context: test-results/match-save-3-humans-downlo-1962e-nd-continued-attack-handoff-1920x1080/error-context.md
+
+  7) [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForEvent: Test timeout of 30000ms exceeded.
+    =========================== logs ===========================
+    waiting for event "download"
+    ============================================================
+
+       9 | const country = (p: Page,id: string) => p.locator(`[data-country="${id}"]`);
+      10 | async function download(page: Page) {
+    > 11 |   const event = page.waitForEvent("download");
+         |                      ^
+      12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+        at download (/work/tests/e2e/match-save.spec.ts:11:22)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Save game', exact: true })
+
+
+      10 | async function download(page: Page) {
+      11 |   const event = page.waitForEvent("download");
+    > 12 |   await page.getByRole("button",{name:"Save game",exact:true}).click();
+         |                                                                ^
+      13 |   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
+      14 |   return readFileSync((await file.path())!,"utf8");
+      15 | }
+        at download (/work/tests/e2e/match-save.spec.ts:12:64)
+        at check (/work/tests/e2e/match-save.spec.ts:29:33)
+        at /work/tests/e2e/match-save.spec.ts:59:3
+
+    Error Context: test-results/match-save-4-humans-downlo-79bf4-nd-continued-attack-handoff-1920x1080/error-context.md
+
+  8) [1920x1080] › tests/e2e/match-save.spec.ts:88:1 › finished legal history loads with readable winner and can be saved again 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.setInputFiles: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Load game', { exact: true })
+
+
+      15 | }
+      16 | async function upload(page: Page, text: string) {
+    > 17 |   await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"resume.json",mimeType:"application/json",buffer:Buffer.from(text)});
+         |   ^
+      18 | }
+      19 | async function check(page: Page,state: GameState) {
+      20 |   for(const p of state.map.provinces) {
+        at upload (/work/tests/e2e/match-save.spec.ts:17:3)
+        at /work/tests/e2e/match-save.spec.ts:94:40
+
+    Error Context: test-results/match-save-finished-legal--85e4d-nner-and-can-be-saved-again-1920x1080/error-context.md
+
+  8 failed
+    [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+    [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+    [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+    [1280x800] › tests/e2e/match-save.spec.ts:88:1 › finished legal history loads with readable winner and can be saved again 
+    [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+    [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+    [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+    [1920x1080] › tests/e2e/match-save.spec.ts:88:1 › finished legal history loads with readable winner and can be saved again 

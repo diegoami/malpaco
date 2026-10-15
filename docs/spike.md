@@ -396,7 +396,8 @@ lavender extend the original two ownership colours; numeric map seats and four
 distinct score badges support ownership recognition. Generated panels compact
 additional seat rows, wrap selection values and let the two-seat attack log
 shrink so names, army counts and controls remain visible at both tested sizes.
-The authored route and two-seat generated opening retain their existing goldens.
+The authored route retains its existing goldens. T17 updates only the generated
+opening and setup/four-seat goldens to include local file controls.
 These form, palette and spacing choices are [designed] after inspecting
 `generatedGame.ts`, `app.ts`, `panel.ts` and the T14 clipping regression.
 
@@ -435,3 +436,32 @@ source bytes are restored and the focused suite passes again. An earlier local
 finished-guard deletion changed refusal wording only; its retained log is not
 claimed as an actual acceptance bypass. Commands, results, hashes and screenshots
 live under `docs/prototypes/complete-game/`.
+
+
+## Generated-match save files
+
+Save game downloads readable JSON containing a match-format version, the actual
+GameOptions (including seed and presentation choices) and ordinary action
+history. `serializeMatch` / `deserializeMatch` are pure core APIs; restoration
+validates every option/action and calls `createGame` then `apply` for each action.
+Map ownership, armies, centres, history/logs, phase, winner and all RNG streams
+come from replay. Stored snapshots are rejected. The older options-only API is
+unchanged (C-SET-05/07).
+
+Load game accepts a local JSON file from setup or a generated match, and supports
+two to four human seats through opening, reinforcement, combat and victory.
+Validation, generation and replay finish before replacing the current controller;
+file errors retain the current match and display an actionable alert. The UI
+rejects computer-seat files until computer play is supported. Successful loading
+clears selection/dialogs, updates seed/seat URL settings and removes the replaced
+controller's window listener. Download object URLs are revoked after the click.
+
+The file controls, readable failure alert and its position away from the turn
+heading are [designed] after inspecting the generated header, controller and
+setup form. `tests/core/match-save.test.ts` compares complete replayed states and
+subsequent deterministic actions across all human counts/phases, with malformed
+files and illegal histories rejected. `tests/e2e/match-save.spec.ts` uses real
+downloads/uploads from setup and gameplay, checks exact saved bytes after load
+failures, continues attacks/handoffs, restores victory and measures control/error
+text containment. Screenshots and source mutation/restoration evidence live in
+`docs/prototypes/match-save/`; the owner judges the settled screenshots.

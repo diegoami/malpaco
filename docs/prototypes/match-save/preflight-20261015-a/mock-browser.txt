@@ -1,0 +1,35 @@
+
+Running 8 tests using 2 workers
+
+  ✘  2 [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (1.7s)
+  ✓  1 [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (3.0s)
+  ✓  4 [1280x800] › tests/e2e/match-save.spec.ts:88:1 › finished legal history loads with readable winner and can be saved again (613ms)
+  ✓  3 [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (2.8s)
+  ✓  5 [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (3.2s)
+  ✓  6 [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (3.5s)
+  ✓  8 [1920x1080] › tests/e2e/match-save.spec.ts:88:1 › finished legal history loads with readable winner and can be saved again (626ms)
+  ✓  7 [1920x1080] › tests/e2e/match-save.spec.ts:55:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (2.9s)
+
+
+  1) [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+
+    Error: expect(received).toBeLessThanOrEqual(expected)
+
+    Expected: <= 801
+    Received:    817.53125
+
+      48 |   }));
+      49 |   const size=page.viewportSize()!;expect(boxes.length).toBeGreaterThanOrEqual(5);
+    > 50 |   for(const b of boxes){expect(b.font,b.text!).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);for(const l of b.lines){expect(l.x).toBeGreaterThanOrEqual(b.x-1);expect(l.right).toBeLessThanOrEqual(b.right+1);expect(l.y).toBeGreaterThanOrEqual(b.y-1);expect(l.bottom).toBeLessThanOrEqual(b.bottom+1);}}
+         |                                                                                                                                                                                                                                                                                        ^
+      51 |   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+      52 |   const root=process.env["MATCH_SAVE_EVIDENCE_DIR"]??"screenshots";mkdirSync(root,{recursive:true});
+      53 |   const dir=mkdtempSync(join(root,"save-"));await page.screenshot({path:join(dir,`${name}-${project}.png`)});
+        at fitAndCapture (/work/tests/e2e/match-save.spec.ts:50:280)
+        at /work/tests/e2e/match-save.spec.ts:81:5
+
+    Error Context: test-results/match-save-2-humans-downlo-edd63-nd-continued-attack-handoff-1280x800/error-context.md
+
+  1 failed
+    [1280x800] › tests/e2e/match-save.spec.ts:55:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff 
+  7 passed (11.2s)

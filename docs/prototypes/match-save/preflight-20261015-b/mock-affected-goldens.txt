@@ -1,0 +1,31 @@
+
+Running 20 tests using 2 workers
+
+  ✓   2 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (1.2s)
+  ✓   1 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.6s)
+/work/tests/e2e/game-setup.spec.ts-snapshots/setup-1280x800-1280x800-linux.png is re-generated, writing actual.
+  ✓   4 [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (460ms)
+/work/tests/e2e/game-setup.spec.ts-snapshots/four-seat-1280x800-1280x800-linux.png is re-generated, writing actual.
+  ✓   3 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (1.8s)
+  ✓   6 [1280x800] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (319ms)
+  ✓   5 [1280x800] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.4s)
+  ✓   8 [1280x800] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (283ms)
+  ✓   7 [1280x800] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (892ms)
+/work/tests/e2e/generated-game.spec.ts-snapshots/generated-game-1280x800-linux.png is re-generated, writing actual.
+  ✓   9 [1280x800] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (622ms)
+  ✓  10 [1280x800] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (108ms)
+  ✓  11 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (1.3s)
+  ✓  12 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.6s)
+/work/tests/e2e/game-setup.spec.ts-snapshots/setup-1920x1080-1920x1080-linux.png is re-generated, writing actual.
+  ✓  14 [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (443ms)
+/work/tests/e2e/game-setup.spec.ts-snapshots/four-seat-1920x1080-1920x1080-linux.png is re-generated, writing actual.
+  ✓  15 [1920x1080] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.6s)
+  ✓  13 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (2.7s)
+  ✓  16 [1920x1080] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (331ms)
+  ✓  18 [1920x1080] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (284ms)
+  ✓  17 [1920x1080] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (880ms)
+  ✓  20 [1920x1080] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (104ms)
+/work/tests/e2e/generated-game.spec.ts-snapshots/generated-game-1920x1080-linux.png is re-generated, writing actual.
+  ✓  19 [1920x1080] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (872ms)
+
+  20 passed (11.3s)

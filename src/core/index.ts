@@ -58,3 +58,5 @@ export {
   checkRemoteOrHub,
   runAllFairnessChecks,
 } from "./board-fairness";
+
+export { MATCH_SAVE_VERSION, deserializeMatch, serializeMatch } from "./match-save";

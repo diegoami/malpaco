@@ -1,0 +1,51 @@
+{
+  "records": [
+    {
+      "name": "baseline-unit",
+      "command": "npx vitest run tests/core/match-save.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "baseline-browser",
+      "command": "npx playwright test tests/e2e/match-save.spec.ts --workers=2",
+      "exit": 1
+    },
+    {
+      "name": "mock-unit",
+      "command": "npx vitest run tests/core/match-save.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "mock-build",
+      "command": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "mock-browser",
+      "command": "npx playwright test tests/e2e/match-save.spec.ts --workers=2",
+      "exit": 1
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/core/match-save.ts",
+      "before": null,
+      "after": null
+    },
+    {
+      "file": "src/ui/app.ts",
+      "before": "8d22543a2ba30b01c6faa5c97b880a3bfb3941d3c5f69ce3471e3a96dbccc835",
+      "after": "8d22543a2ba30b01c6faa5c97b880a3bfb3941d3c5f69ce3471e3a96dbccc835"
+    },
+    {
+      "file": "src/ui/generatedGame.ts",
+      "before": "be97f55b5706cb4912bf3e3b7a2c3af14acbdcce2f8e509cd4388b148dff5242",
+      "after": "be97f55b5706cb4912bf3e3b7a2c3af14acbdcce2f8e509cd4388b148dff5242"
+    },
+    {
+      "file": "src/styles.css",
+      "before": "d07be0c011d4b43463ba35b977a76c8a477565641183e8be086c12abf1fdb2ed",
+      "after": "d07be0c011d4b43463ba35b977a76c8a477565641183e8be086c12abf1fdb2ed"
+    }
+  ]
+}

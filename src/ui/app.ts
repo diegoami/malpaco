@@ -44,9 +44,18 @@ export class App {
       onEndTurn: () => this.endTurn(),
       onNewGame: () => this.onNewGame(),
     });
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !this.dialog.el.open) this.clearSelection("Selection cleared.");
-    });
+    window.addEventListener("keydown", this.onKeyDown);
+  }
+
+  private readonly onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Escape" && !this.dialog.el.open) this.clearSelection("Selection cleared.");
+  };
+
+  get actions(): readonly Action[] { return this.state.history; }
+
+  dispose(): void {
+    window.removeEventListener("keydown", this.onKeyDown);
+    this.dialog.el.remove();
   }
 
   mount(root: HTMLElement): void {
