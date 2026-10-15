@@ -44,10 +44,16 @@ async function fitAndCapture(page: Page,name: string,project: string) {
   const selectors = ".match-files button, .match-load label, .match-load input, .match-error:not(:empty), #turn-title, #game-seed, #new-game-button, #end-turn-button";
   const boxes = await page.locator(selectors).evaluateAll(ns=>ns.map(n=>{
     const b=n.getBoundingClientRect(),r=document.createRange();r.selectNodeContents(n);
-    return {text:n.textContent,font:parseFloat(getComputedStyle(n).fontSize),x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,lines:Array.from(r.getClientRects()).map(l=>({x:l.x,y:l.y,right:l.right,bottom:l.bottom}))};
+    return {identity:`${n.tagName.toLowerCase()}#${n.id}.${n.className}: ${n.textContent}`,text:n.textContent,font:parseFloat(getComputedStyle(n).fontSize),x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,lines:Array.from(r.getClientRects()).map(l=>({x:l.x,y:l.y,right:l.right,bottom:l.bottom}))};
   }));
   const size=page.viewportSize()!;expect(boxes.length).toBeGreaterThanOrEqual(5);
-  for(const b of boxes){expect(b.font,b.text!).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);for(const l of b.lines){expect(l.x).toBeGreaterThanOrEqual(b.x-1);expect(l.right).toBeLessThanOrEqual(b.right+1);expect(l.y).toBeGreaterThanOrEqual(b.y-1);expect(l.bottom).toBeLessThanOrEqual(b.bottom+1);}}
+  for(const b of boxes){
+    const why=JSON.stringify(b);
+    expect(b.font,why).toBeGreaterThanOrEqual(12);expect(b.w,why).toBeGreaterThan(0);expect(b.h,why).toBeGreaterThan(0);
+    expect(b.x,why).toBeGreaterThanOrEqual(0);expect(b.y,why).toBeGreaterThanOrEqual(0);
+    expect(b.right,why).toBeLessThanOrEqual(size.width+1);expect(b.bottom,why).toBeLessThanOrEqual(size.height+1);
+    for(const l of b.lines){expect(l.x,why).toBeGreaterThanOrEqual(b.x-1);expect(l.right,why).toBeLessThanOrEqual(b.right+1);expect(l.y,why).toBeGreaterThanOrEqual(b.y-1);expect(l.bottom,why).toBeLessThanOrEqual(b.bottom+1);}
+  }
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   const root=process.env["MATCH_SAVE_EVIDENCE_DIR"]??"screenshots";mkdirSync(root,{recursive:true});
   const dir=mkdtempSync(join(root,"save-"));await page.screenshot({path:join(dir,`${name}-${project}.png`)});

@@ -8,3 +8,17 @@
 .match-error:empty { display:none; }
 #game-setup .match-load { margin-top:12px; }
 #generated-game .topbar { flex-wrap:wrap; }
+/* Keep failure feedback readable without shifting an active match's controls. */
+#generated-game .topbar { position:relative; }
+#generated-game .match-error:not(:empty) {
+  position:absolute;
+  top:100%;
+  right:20px;
+  z-index:5;
+  max-width:min(640px, calc(100vw - 40px));
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:var(--surface);
+  box-shadow:0 4px 12px #0008;
+}
