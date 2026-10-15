@@ -1,0 +1,73 @@
+{
+  "updateGoldens": true,
+  "records": [
+    {
+      "name": "focused",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    },
+    {
+      "name": "unit",
+      "command": "npm test",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    },
+    {
+      "name": "browser-update-goldens",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts tests/e2e/generated-game.spec.ts --workers=2 --update-snapshots",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    },
+    {
+      "name": "browser",
+      "command": "npx playwright test --workers=2",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    },
+    {
+      "name": "mutant-content",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2 --grep setup help is reachable",
+      "exit": 1,
+      "expected": 1,
+      "spawnError": null
+    },
+    {
+      "name": "mutant-computer-pause",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2 --grep computer help pauses",
+      "exit": 1,
+      "expected": 1,
+      "spawnError": null
+    },
+    {
+      "name": "restored-focused",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/ui/help.ts",
+      "before": "d90bc88385eb345e0ff5fdcf7ad2cfa6d86f08f5dfdad1b3737d5bb1fdc3dfca",
+      "after": "d90bc88385eb345e0ff5fdcf7ad2cfa6d86f08f5dfdad1b3737d5bb1fdc3dfca"
+    },
+    {
+      "file": "src/ui/app.ts",
+      "before": "e6c1835e5340d1d444f992e87fe46446eb2cd24f08136e4da8c1fd93e343c95b",
+      "after": "e6c1835e5340d1d444f992e87fe46446eb2cd24f08136e4da8c1fd93e343c95b"
+    }
+  ]
+}
