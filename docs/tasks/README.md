@@ -21,3 +21,4 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T13 | Generated-board presentation prototype | #38 | T12 |
 | T14 | Play on the generated board | #41 | T13 |
 | T15 | Minimal generated-game setup | #43 | T14 |
+| T16 | Complete-game acceptance | #46 | T15 |
