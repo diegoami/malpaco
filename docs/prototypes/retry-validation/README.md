@@ -15,4 +15,6 @@ The baseline is expected to fail the new feedback assertion. The candidate run m
 
 After permanent source installation, run `node docs/prototypes/retry-validation/verify-final.mjs` in the pinned environment. It runs focused acceptance, unit tests, build and full browser suite, mutates only the retry feedback assignment and requires focused acceptance to fail at `toContainText`, restores source byte-for-byte, then reruns focused acceptance. It retains command output, screenshots, source hashes and SHA-256 sums in a fresh `evidence/final-*` directory. Do not update existing browser goldens.
 
+After those full checks pass, `node docs/prototypes/retry-validation/verify-final.mjs --mutations-only` reruns focused acceptance before and after the actual-source feedback omission mutation, skipping unit/build/full-browser. This mode records a separate evidence directory and restores the exact source bytes.
+
 Stage 1 syntax preflight on 2026-10-15: `node --check docs/prototypes/retry-validation/replay.mjs` exited0; `node_modules/.bin/playwright test tests/e2e/retry-validation.spec.ts --list` exited0 and listed exactly two tests, one for each configured viewport. No browser was launched locally.

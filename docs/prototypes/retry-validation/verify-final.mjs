@@ -12,6 +12,7 @@ const stamp = new Date().toISOString().replaceAll(":", "-");
 const evidence = resolve(here, "evidence", `final-${stamp}-${process.pid}`);
 const hash = bytes => createHash("sha256").update(bytes).digest("hex");
 const focused = ["npx", "playwright", "test", "tests/e2e/retry-validation.spec.ts", "--workers=2"];
+const mutationsOnly = process.argv.slice(2).includes("--mutations-only");
 const records = [];
 
 async function filesUnder(root, prefix = "") {
@@ -72,8 +73,8 @@ async function omittedFeedbackMutation() {
   try {
     const mutated = replaceOnce(
       original,
-      'if (retryValidation) retryValidation.textContent = value.errors.join(" ");',
-      'if (retryValidation) retryValidation.textContent = "";',
+      'retryValidation.textContent = value.errors.join(" ");',
+      'retryValidation.textContent = "";',
       "omitted-retry-feedback",
     );
     await writeFile(sourcePath, mutated);
@@ -89,9 +90,11 @@ async function omittedFeedbackMutation() {
 
 try {
   await run("focused", focused[0], focused.slice(1), 0);
-  await run("unit", "npm", ["test"], 0);
-  await run("build", "npm", ["run", "build"], 0);
-  await run("full-browser", "npx", ["playwright", "test", "--workers=2"], 0);
+  if (!mutationsOnly) {
+    await run("unit", "npm", ["test"], 0);
+    await run("build", "npm", ["run", "build"], 0);
+    await run("full-browser", "npx", ["playwright", "test", "--workers=2"], 0);
+  }
   await omittedFeedbackMutation();
   await run("focused-restored", focused[0], focused.slice(1), 0);
 } finally {

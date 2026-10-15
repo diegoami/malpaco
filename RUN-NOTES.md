@@ -258,3 +258,13 @@ Plan: keep the new feedback node hidden while empty so the existing single-alert
 2026-10-15: implemented hidden-until-invalid feedback in source and candidate, added an initial-hidden assertion to the new focused suite, and updated spike wording. The final verifier's mutation anchor remains the invalid feedback assignment. No previous evidence or goldens were changed.
 
 END Fix45 stage 2 rework B preparation: ready for parent pinned `node docs/prototypes/retry-validation/verify-final.mjs`; final-A evidence retained unchanged and will be committed with SHA256SUMS.
+
+Stage-B pinned results: focused acceptance 2/2, unit 429/429, build, and full browser 98/98 all passed; no goldens changed. The final-B verifier stopped before the mutation command because its anchor expected a single-line invalid branch after source changed to reveal feedback with a multiline block. Source SHA-256 was restored exactly to `5cbfa91d4d12489d9de1e09d3e03310e361cd57aebb74ce47b2da2abf33e61e8`. Full command output, screenshots, manifest and SHA256SUMS are retained at `docs/prototypes/retry-validation/evidence/final-2026-10-15T13-45-08.966Z-1/`.
+
+## Fix45 stage 2 rework C
+
+Plan: repair only `verify-final.mjs`'s mutation anchor to target the unique feedback assignment, and add `--mutations-only` so the parent can rerun focused acceptance before/after the mutation without repeating the already-green unit/build/full-browser checks. The default command retains all Done-when checks. Expected mutation failure is `toContainText`; the mutation empties the text while retaining the `hidden=false` reveal, then `finally` restores the source exactly.
+
+2026-10-15: added the focused-mutation mode and documented its command. Final-B full green evidence and captures are retained for commit, with manifest showing 2/2 focused, 429/429 unit, build and 98/98 browser; verifier stopped before mutation due to the stale anchor. No production/test/golden edits.
+
+END Fix45 stage 2 rework C preparation: parent can run `node docs/prototypes/retry-validation/verify-final.mjs --mutations-only`; default full verifier remains available for independent review.
