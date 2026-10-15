@@ -1,0 +1,201 @@
+✔ cells: positive geometric control (9.540928ms)
+✖ cells: rejects non-finite vertex (4.073323ms)
+✖ cells: rejects zero-area cell (1.804646ms)
+✖ cells: rejects self-intersecting cell (1.611158ms)
+✖ cells: rejects disconnected multi-polygon (1.935109ms)
+✖ cells: rejects overlapping countries (1.629372ms)
+✖ cells: rejects gap in subdivision (1.927693ms)
+✖ cells: rejects explicit slit below accumulated area tolerance (1.915107ms)
+✖ cells: rejects cell outside silhouette (2.076849ms)
+✖ cells: rejects overlapping islands (2.789402ms)
+✖ cells: rejects missing silhouette (3.08176ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 1
+ℹ fail 10
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.088593
+
+✖ failing tests:
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects non-finite vertex (4.073323ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: non-finite vertex
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects zero-area cell (1.804646ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: zero-area cell
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects self-intersecting cell (1.611158ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: self-intersecting cell
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects disconnected multi-polygon (1.935109ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: disconnected multi-polygon
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects overlapping countries (1.629372ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: overlapping countries
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects gap in subdivision (1.927693ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: gap in subdivision
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects explicit slit below accumulated area tolerance (1.915107ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: explicit slit below accumulated area tolerance
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects cell outside silhouette (2.076849ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: cell outside silhouette
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects overlapping islands (2.789402ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: overlapping islands
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ cells: rejects missing silhouette (3.08176ms)
+  AssertionError [ERR_ASSERTION]: cells bypass: missing silhouette
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

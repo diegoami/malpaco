@@ -1,0 +1,16 @@
+✔ coasts: positive geometric control (13.303444ms)
+✔ coasts: rejects endpoint missing (3.753046ms)
+✔ coasts: rejects wrong country coast (3.448498ms)
+✔ coasts: rejects endpoint inside source (4.302118ms)
+✔ coasts: rejects off coast (4.869762ms)
+✔ coasts: rejects coast endpoint away from midpoint (2.876892ms)
+✔ coasts: rejects endpoint on internal boundary (3.56526ms)
+✔ coasts: rejects destination endpoint wrong (3.631213ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 81.840907

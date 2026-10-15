@@ -10,6 +10,7 @@ const cases={
     ['disconnected multi-polygon',b=>b.provinces[0].polygon=[b.provinces[0].polygon,b.provinces[1].polygon]],
     ['overlapping countries',b=>b.provinces[1].polygon=structuredClone(b.provinces[0].polygon)],
     ['gap in subdivision',b=>{b.provinces[0].polygon[1][0]-=2;b.provinces[0].polygon[2][0]-=2;}],
+    ['explicit slit below accumulated area tolerance',b=>{b.provinces[0].polygon=[[40,25],[90,25],[90,49],[89.99999,49],[89.99999,50],[90,50],[90,75],[40,75]];}],
     ['cell outside silhouette',b=>{b.provinces[0].polygon=b.provinces[0].polygon.map(([x,y])=>[x-2,y]);}],
     ['overlapping islands',b=>b.islands[1].polygon=structuredClone(b.islands[0].polygon)],
     ['missing silhouette',b=>delete b.islands[0].polygon],
@@ -30,6 +31,7 @@ const cases={
     ['destination endpoint wrong',b=>b.routes[0].points[b.routes[0].points.length-1]=[355,75]],
   ],
   intersections:[
+    ['route endpoint inside country',b=>b.routes[0].points[0]=structuredClone(b.provinces[4].labelAt)],
     ['route through unrelated island',b=>b.routes[0].points.splice(1,0,[405,230])],
     ['route re-enters source',b=>b.routes[0].points.splice(1,0,[265,50])],
     ['route touches unrelated coastline',b=>b.routes[0].points.splice(1,0,[330,180])],
@@ -42,6 +44,7 @@ const cases={
     ['insufficient 44px gap',b=>b.provinces[1].labelAt=[b.provinces[0].labelAt[0]+43,b.provinces[0].labelAt[1]]],
     ['undersized hit box',b=>b.provinces[0].hitSizeCss=39],
     ['undersized count text',b=>b.provinces[0].countTextCss=13],
+    ['non-finite text specification',b=>b.provinces[0].countTextCss=Infinity],
     ['insufficient contrast',b=>b.provinces[0].countContrast=4.4],
     ['label outside country',b=>b.provinces[0].labelAt=[10,10]],
     ['hit area clipped by coast',b=>b.provinces[0].labelAt=[41,50]],

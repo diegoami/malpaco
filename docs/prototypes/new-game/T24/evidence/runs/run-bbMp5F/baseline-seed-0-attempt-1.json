@@ -1,0 +1,5253 @@
+{
+  "map": {
+    "id": "generated",
+    "name": "Generated Archipelago",
+    "bounds": {
+      "x": 0,
+      "y": 0,
+      "width": 1480,
+      "height": 860
+    },
+    "provinces": [
+      {
+        "id": "province_33",
+        "name": "Wind haven",
+        "island": "island_0",
+        "borders": [
+          "province_41",
+          "province_43"
+        ],
+        "seaLanes": [
+          "province_18",
+          "province_25"
+        ],
+        "polygon": [
+          [
+            485,
+            67
+          ],
+          [
+            508,
+            55
+          ],
+          [
+            557,
+            56
+          ],
+          [
+            618,
+            55
+          ],
+          [
+            655,
+            70
+          ],
+          [
+            657,
+            90
+          ],
+          [
+            630,
+            103
+          ],
+          [
+            585,
+            105
+          ],
+          [
+            523,
+            102
+          ],
+          [
+            484,
+            92
+          ]
+        ],
+        "labelAt": [
+          570,
+          80
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_43",
+        "name": "Stone ridge",
+        "island": "island_0",
+        "borders": [
+          "province_41",
+          "province_33"
+        ],
+        "seaLanes": [
+          "province_23",
+          "province_38"
+        ],
+        "polygon": [
+          [
+            669,
+            67
+          ],
+          [
+            692,
+            55
+          ],
+          [
+            741,
+            58
+          ],
+          [
+            802,
+            55
+          ],
+          [
+            839,
+            68
+          ],
+          [
+            841,
+            90
+          ],
+          [
+            814,
+            103
+          ],
+          [
+            769,
+            105
+          ],
+          [
+            707,
+            102
+          ],
+          [
+            668,
+            92
+          ]
+        ],
+        "labelAt": [
+          754,
+          80
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_41",
+        "name": "Fort port",
+        "island": "island_0",
+        "borders": [
+          "province_33",
+          "province_43"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            497,
+            121
+          ],
+          [
+            520,
+            109
+          ],
+          [
+            569,
+            111
+          ],
+          [
+            630,
+            109
+          ],
+          [
+            667,
+            123
+          ],
+          [
+            669,
+            144
+          ],
+          [
+            642,
+            157
+          ],
+          [
+            597,
+            159
+          ],
+          [
+            535,
+            156
+          ],
+          [
+            496,
+            146
+          ]
+        ],
+        "labelAt": [
+          582,
+          134
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_6",
+        "name": "Stone watch",
+        "island": "island_1",
+        "borders": [
+          "province_23",
+          "province_10"
+        ],
+        "seaLanes": [
+          "province_0",
+          "province_13"
+        ],
+        "polygon": [
+          [
+            505,
+            247
+          ],
+          [
+            528,
+            235
+          ],
+          [
+            577,
+            238
+          ],
+          [
+            638,
+            235
+          ],
+          [
+            675,
+            248
+          ],
+          [
+            677,
+            270
+          ],
+          [
+            650,
+            283
+          ],
+          [
+            605,
+            285
+          ],
+          [
+            543,
+            282
+          ],
+          [
+            504,
+            272
+          ]
+        ],
+        "labelAt": [
+          590,
+          260
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_23",
+        "name": "Gold hill",
+        "island": "island_1",
+        "borders": [
+          "province_10",
+          "province_6"
+        ],
+        "seaLanes": [
+          "province_43"
+        ],
+        "polygon": [
+          [
+            689,
+            247
+          ],
+          [
+            712,
+            235
+          ],
+          [
+            761,
+            237
+          ],
+          [
+            822,
+            235
+          ],
+          [
+            859,
+            249
+          ],
+          [
+            861,
+            270
+          ],
+          [
+            834,
+            283
+          ],
+          [
+            789,
+            285
+          ],
+          [
+            727,
+            282
+          ],
+          [
+            688,
+            272
+          ]
+        ],
+        "labelAt": [
+          774,
+          260
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_10",
+        "name": "Marsh peak",
+        "island": "island_1",
+        "borders": [
+          "province_23",
+          "province_6"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            517,
+            301
+          ],
+          [
+            540,
+            289
+          ],
+          [
+            589,
+            290
+          ],
+          [
+            650,
+            289
+          ],
+          [
+            687,
+            304
+          ],
+          [
+            689,
+            324
+          ],
+          [
+            662,
+            337
+          ],
+          [
+            617,
+            339
+          ],
+          [
+            555,
+            336
+          ],
+          [
+            516,
+            326
+          ]
+        ],
+        "labelAt": [
+          602,
+          314
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_21",
+        "name": "Upper glen",
+        "island": "island_2",
+        "borders": [
+          "province_22",
+          "province_3"
+        ],
+        "seaLanes": [
+          "province_42",
+          "province_27"
+        ],
+        "polygon": [
+          [
+            35,
+            687
+          ],
+          [
+            58,
+            675
+          ],
+          [
+            107,
+            677
+          ],
+          [
+            168,
+            675
+          ],
+          [
+            205,
+            689
+          ],
+          [
+            207,
+            710
+          ],
+          [
+            180,
+            723
+          ],
+          [
+            135,
+            725
+          ],
+          [
+            73,
+            722
+          ],
+          [
+            34,
+            712
+          ]
+        ],
+        "labelAt": [
+          120,
+          700
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_22",
+        "name": "Low shore",
+        "island": "island_2",
+        "borders": [
+          "province_21",
+          "province_3"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            219,
+            687
+          ],
+          [
+            242,
+            675
+          ],
+          [
+            291,
+            676
+          ],
+          [
+            352,
+            675
+          ],
+          [
+            389,
+            690
+          ],
+          [
+            391,
+            710
+          ],
+          [
+            364,
+            723
+          ],
+          [
+            319,
+            725
+          ],
+          [
+            257,
+            722
+          ],
+          [
+            218,
+            712
+          ]
+        ],
+        "labelAt": [
+          304,
+          700
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_3",
+        "name": "Fort ford",
+        "island": "island_2",
+        "borders": [
+          "province_21",
+          "province_22"
+        ],
+        "seaLanes": [
+          "province_11",
+          "province_12"
+        ],
+        "polygon": [
+          [
+            47,
+            741
+          ],
+          [
+            70,
+            729
+          ],
+          [
+            119,
+            732
+          ],
+          [
+            180,
+            729
+          ],
+          [
+            217,
+            742
+          ],
+          [
+            219,
+            764
+          ],
+          [
+            192,
+            777
+          ],
+          [
+            147,
+            779
+          ],
+          [
+            85,
+            776
+          ],
+          [
+            46,
+            766
+          ]
+        ],
+        "labelAt": [
+          132,
+          754
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_4",
+        "name": "Cape keep",
+        "island": "island_3",
+        "borders": [
+          "province_19",
+          "province_27"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            985,
+            712
+          ],
+          [
+            1008,
+            700
+          ],
+          [
+            1057,
+            701
+          ],
+          [
+            1118,
+            700
+          ],
+          [
+            1155,
+            715
+          ],
+          [
+            1157,
+            735
+          ],
+          [
+            1130,
+            748
+          ],
+          [
+            1085,
+            750
+          ],
+          [
+            1023,
+            747
+          ],
+          [
+            984,
+            737
+          ]
+        ],
+        "labelAt": [
+          1070,
+          725
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_27",
+        "name": "Upper peak",
+        "island": "island_3",
+        "borders": [
+          "province_4",
+          "province_19"
+        ],
+        "seaLanes": [
+          "province_2",
+          "province_21"
+        ],
+        "polygon": [
+          [
+            1169,
+            712
+          ],
+          [
+            1192,
+            700
+          ],
+          [
+            1241,
+            703
+          ],
+          [
+            1302,
+            700
+          ],
+          [
+            1339,
+            713
+          ],
+          [
+            1341,
+            735
+          ],
+          [
+            1314,
+            748
+          ],
+          [
+            1269,
+            750
+          ],
+          [
+            1207,
+            747
+          ],
+          [
+            1168,
+            737
+          ]
+        ],
+        "labelAt": [
+          1254,
+          725
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_19",
+        "name": "Low rock",
+        "island": "island_3",
+        "borders": [
+          "province_4",
+          "province_27"
+        ],
+        "seaLanes": [
+          "province_42",
+          "province_34"
+        ],
+        "polygon": [
+          [
+            997,
+            766
+          ],
+          [
+            1020,
+            754
+          ],
+          [
+            1069,
+            756
+          ],
+          [
+            1130,
+            754
+          ],
+          [
+            1167,
+            768
+          ],
+          [
+            1169,
+            789
+          ],
+          [
+            1142,
+            802
+          ],
+          [
+            1097,
+            804
+          ],
+          [
+            1035,
+            801
+          ],
+          [
+            996,
+            791
+          ]
+        ],
+        "labelAt": [
+          1082,
+          779
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_31",
+        "name": "Sun march",
+        "island": "island_4",
+        "borders": [
+          "province_38",
+          "province_30",
+          "province_17"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            20,
+            422
+          ],
+          [
+            43,
+            410
+          ],
+          [
+            92,
+            413
+          ],
+          [
+            153,
+            410
+          ],
+          [
+            190,
+            423
+          ],
+          [
+            192,
+            445
+          ],
+          [
+            165,
+            458
+          ],
+          [
+            120,
+            460
+          ],
+          [
+            58,
+            457
+          ],
+          [
+            19,
+            447
+          ]
+        ],
+        "labelAt": [
+          105,
+          435
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_35",
+        "name": "Red town",
+        "island": "island_4",
+        "borders": [
+          "province_38",
+          "province_17",
+          "province_30"
+        ],
+        "seaLanes": [
+          "province_9"
+        ],
+        "polygon": [
+          [
+            204,
+            422
+          ],
+          [
+            227,
+            410
+          ],
+          [
+            276,
+            412
+          ],
+          [
+            337,
+            410
+          ],
+          [
+            374,
+            424
+          ],
+          [
+            376,
+            445
+          ],
+          [
+            349,
+            458
+          ],
+          [
+            304,
+            460
+          ],
+          [
+            242,
+            457
+          ],
+          [
+            203,
+            447
+          ]
+        ],
+        "labelAt": [
+          289,
+          435
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_38",
+        "name": "High port",
+        "island": "island_4",
+        "borders": [
+          "province_35",
+          "province_31"
+        ],
+        "seaLanes": [
+          "province_43",
+          "province_20"
+        ],
+        "polygon": [
+          [
+            32,
+            476
+          ],
+          [
+            55,
+            464
+          ],
+          [
+            104,
+            465
+          ],
+          [
+            165,
+            464
+          ],
+          [
+            202,
+            479
+          ],
+          [
+            204,
+            499
+          ],
+          [
+            177,
+            512
+          ],
+          [
+            132,
+            514
+          ],
+          [
+            70,
+            511
+          ],
+          [
+            31,
+            501
+          ]
+        ],
+        "labelAt": [
+          117,
+          489
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_17",
+        "name": "Upper rock",
+        "island": "island_4",
+        "borders": [
+          "province_35",
+          "province_30",
+          "province_31"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            216,
+            476
+          ],
+          [
+            239,
+            464
+          ],
+          [
+            288,
+            467
+          ],
+          [
+            349,
+            464
+          ],
+          [
+            386,
+            477
+          ],
+          [
+            388,
+            499
+          ],
+          [
+            361,
+            512
+          ],
+          [
+            316,
+            514
+          ],
+          [
+            254,
+            511
+          ],
+          [
+            215,
+            501
+          ]
+        ],
+        "labelAt": [
+          301,
+          489
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_30",
+        "name": "West watch",
+        "island": "island_4",
+        "borders": [
+          "province_17",
+          "province_31",
+          "province_35"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            20,
+            530
+          ],
+          [
+            43,
+            518
+          ],
+          [
+            92,
+            520
+          ],
+          [
+            153,
+            518
+          ],
+          [
+            190,
+            532
+          ],
+          [
+            192,
+            553
+          ],
+          [
+            165,
+            566
+          ],
+          [
+            120,
+            568
+          ],
+          [
+            58,
+            565
+          ],
+          [
+            19,
+            555
+          ]
+        ],
+        "labelAt": [
+          105,
+          543
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_9",
+        "name": "Fort dale",
+        "island": "island_5",
+        "borders": [
+          "province_16",
+          "province_45"
+        ],
+        "seaLanes": [
+          "province_35"
+        ],
+        "polygon": [
+          [
+            950,
+            447
+          ],
+          [
+            973,
+            435
+          ],
+          [
+            1022,
+            437
+          ],
+          [
+            1083,
+            435
+          ],
+          [
+            1120,
+            449
+          ],
+          [
+            1122,
+            470
+          ],
+          [
+            1095,
+            483
+          ],
+          [
+            1050,
+            485
+          ],
+          [
+            988,
+            482
+          ],
+          [
+            949,
+            472
+          ]
+        ],
+        "labelAt": [
+          1035,
+          460
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_16",
+        "name": "Light bay",
+        "island": "island_5",
+        "borders": [
+          "province_1",
+          "province_9",
+          "province_0"
+        ],
+        "seaLanes": [
+          "province_36"
+        ],
+        "polygon": [
+          [
+            1134,
+            447
+          ],
+          [
+            1157,
+            435
+          ],
+          [
+            1206,
+            436
+          ],
+          [
+            1267,
+            435
+          ],
+          [
+            1304,
+            450
+          ],
+          [
+            1306,
+            470
+          ],
+          [
+            1279,
+            483
+          ],
+          [
+            1234,
+            485
+          ],
+          [
+            1172,
+            482
+          ],
+          [
+            1133,
+            472
+          ]
+        ],
+        "labelAt": [
+          1219,
+          460
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_45",
+        "name": "New rock",
+        "island": "island_5",
+        "borders": [
+          "province_1",
+          "province_9",
+          "province_0"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            962,
+            501
+          ],
+          [
+            985,
+            489
+          ],
+          [
+            1034,
+            492
+          ],
+          [
+            1095,
+            489
+          ],
+          [
+            1132,
+            502
+          ],
+          [
+            1134,
+            524
+          ],
+          [
+            1107,
+            537
+          ],
+          [
+            1062,
+            539
+          ],
+          [
+            1000,
+            536
+          ],
+          [
+            961,
+            526
+          ]
+        ],
+        "labelAt": [
+          1047,
+          514
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_1",
+        "name": "Fort watch",
+        "island": "island_5",
+        "borders": [
+          "province_16",
+          "province_45",
+          "province_0"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            1146,
+            501
+          ],
+          [
+            1169,
+            489
+          ],
+          [
+            1218,
+            491
+          ],
+          [
+            1279,
+            489
+          ],
+          [
+            1316,
+            503
+          ],
+          [
+            1318,
+            524
+          ],
+          [
+            1291,
+            537
+          ],
+          [
+            1246,
+            539
+          ],
+          [
+            1184,
+            536
+          ],
+          [
+            1145,
+            526
+          ]
+        ],
+        "labelAt": [
+          1231,
+          514
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_0",
+        "name": "Old gate",
+        "island": "island_5",
+        "borders": [
+          "province_16",
+          "province_1",
+          "province_45"
+        ],
+        "seaLanes": [
+          "province_6"
+        ],
+        "polygon": [
+          [
+            950,
+            555
+          ],
+          [
+            973,
+            543
+          ],
+          [
+            1022,
+            544
+          ],
+          [
+            1083,
+            543
+          ],
+          [
+            1120,
+            558
+          ],
+          [
+            1122,
+            578
+          ],
+          [
+            1095,
+            591
+          ],
+          [
+            1050,
+            593
+          ],
+          [
+            988,
+            590
+          ],
+          [
+            949,
+            580
+          ]
+        ],
+        "labelAt": [
+          1035,
+          568
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_8",
+        "name": "Port gate",
+        "island": "island_6",
+        "borders": [
+          "province_20",
+          "province_13",
+          "province_11"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            25,
+            102
+          ],
+          [
+            48,
+            90
+          ],
+          [
+            97,
+            92
+          ],
+          [
+            158,
+            90
+          ],
+          [
+            195,
+            104
+          ],
+          [
+            197,
+            125
+          ],
+          [
+            170,
+            138
+          ],
+          [
+            125,
+            140
+          ],
+          [
+            63,
+            137
+          ],
+          [
+            24,
+            127
+          ]
+        ],
+        "labelAt": [
+          110,
+          115
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_20",
+        "name": "Lower rock",
+        "island": "island_6",
+        "borders": [
+          "province_8",
+          "province_28",
+          "province_13"
+        ],
+        "seaLanes": [
+          "province_38"
+        ],
+        "polygon": [
+          [
+            209,
+            102
+          ],
+          [
+            232,
+            90
+          ],
+          [
+            281,
+            91
+          ],
+          [
+            342,
+            90
+          ],
+          [
+            379,
+            105
+          ],
+          [
+            381,
+            125
+          ],
+          [
+            354,
+            138
+          ],
+          [
+            309,
+            140
+          ],
+          [
+            247,
+            137
+          ],
+          [
+            208,
+            127
+          ]
+        ],
+        "labelAt": [
+          294,
+          115
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_37",
+        "name": "Wind ford",
+        "island": "island_6",
+        "borders": [
+          "province_28",
+          "province_12"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            37,
+            156
+          ],
+          [
+            60,
+            144
+          ],
+          [
+            109,
+            147
+          ],
+          [
+            170,
+            144
+          ],
+          [
+            207,
+            157
+          ],
+          [
+            209,
+            179
+          ],
+          [
+            182,
+            192
+          ],
+          [
+            137,
+            194
+          ],
+          [
+            75,
+            191
+          ],
+          [
+            36,
+            181
+          ]
+        ],
+        "labelAt": [
+          122,
+          169
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_28",
+        "name": "West point",
+        "island": "island_6",
+        "borders": [
+          "province_20",
+          "province_37",
+          "province_12"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            221,
+            156
+          ],
+          [
+            244,
+            144
+          ],
+          [
+            293,
+            146
+          ],
+          [
+            354,
+            144
+          ],
+          [
+            391,
+            158
+          ],
+          [
+            393,
+            179
+          ],
+          [
+            366,
+            192
+          ],
+          [
+            321,
+            194
+          ],
+          [
+            259,
+            191
+          ],
+          [
+            220,
+            181
+          ]
+        ],
+        "labelAt": [
+          306,
+          169
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_13",
+        "name": "Light moor",
+        "island": "island_6",
+        "borders": [
+          "province_8",
+          "province_20",
+          "province_11"
+        ],
+        "seaLanes": [
+          "province_6"
+        ],
+        "polygon": [
+          [
+            25,
+            210
+          ],
+          [
+            48,
+            198
+          ],
+          [
+            97,
+            199
+          ],
+          [
+            158,
+            198
+          ],
+          [
+            195,
+            213
+          ],
+          [
+            197,
+            233
+          ],
+          [
+            170,
+            246
+          ],
+          [
+            125,
+            248
+          ],
+          [
+            63,
+            245
+          ],
+          [
+            24,
+            235
+          ]
+        ],
+        "labelAt": [
+          110,
+          223
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_12",
+        "name": "Silver rock",
+        "island": "island_6",
+        "borders": [
+          "province_37",
+          "province_11",
+          "province_28"
+        ],
+        "seaLanes": [
+          "province_3"
+        ],
+        "polygon": [
+          [
+            209,
+            210
+          ],
+          [
+            232,
+            198
+          ],
+          [
+            281,
+            201
+          ],
+          [
+            342,
+            198
+          ],
+          [
+            379,
+            211
+          ],
+          [
+            381,
+            233
+          ],
+          [
+            354,
+            246
+          ],
+          [
+            309,
+            248
+          ],
+          [
+            247,
+            245
+          ],
+          [
+            208,
+            235
+          ]
+        ],
+        "labelAt": [
+          294,
+          223
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_11",
+        "name": "Blue watch",
+        "island": "island_6",
+        "borders": [
+          "province_8",
+          "province_12",
+          "province_13"
+        ],
+        "seaLanes": [
+          "province_3"
+        ],
+        "polygon": [
+          [
+            37,
+            264
+          ],
+          [
+            60,
+            252
+          ],
+          [
+            109,
+            254
+          ],
+          [
+            170,
+            252
+          ],
+          [
+            207,
+            266
+          ],
+          [
+            209,
+            287
+          ],
+          [
+            182,
+            300
+          ],
+          [
+            137,
+            302
+          ],
+          [
+            75,
+            299
+          ],
+          [
+            36,
+            289
+          ]
+        ],
+        "labelAt": [
+          122,
+          277
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_40",
+        "name": "Moon hill",
+        "island": "island_7",
+        "borders": [
+          "province_39",
+          "province_34",
+          "province_26"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            945,
+            92
+          ],
+          [
+            968,
+            80
+          ],
+          [
+            1017,
+            81
+          ],
+          [
+            1078,
+            80
+          ],
+          [
+            1115,
+            95
+          ],
+          [
+            1117,
+            115
+          ],
+          [
+            1090,
+            128
+          ],
+          [
+            1045,
+            130
+          ],
+          [
+            983,
+            127
+          ],
+          [
+            944,
+            117
+          ]
+        ],
+        "labelAt": [
+          1030,
+          105
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_2",
+        "name": "Silver port",
+        "island": "island_7",
+        "borders": [
+          "province_39",
+          "province_34",
+          "province_25"
+        ],
+        "seaLanes": [
+          "province_27"
+        ],
+        "polygon": [
+          [
+            1129,
+            92
+          ],
+          [
+            1152,
+            80
+          ],
+          [
+            1201,
+            83
+          ],
+          [
+            1262,
+            80
+          ],
+          [
+            1299,
+            93
+          ],
+          [
+            1301,
+            115
+          ],
+          [
+            1274,
+            128
+          ],
+          [
+            1229,
+            130
+          ],
+          [
+            1167,
+            127
+          ],
+          [
+            1128,
+            117
+          ]
+        ],
+        "labelAt": [
+          1214,
+          105
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_34",
+        "name": "Lake fell",
+        "island": "island_7",
+        "borders": [
+          "province_2",
+          "province_26",
+          "province_40"
+        ],
+        "seaLanes": [
+          "province_19"
+        ],
+        "polygon": [
+          [
+            957,
+            146
+          ],
+          [
+            980,
+            134
+          ],
+          [
+            1029,
+            136
+          ],
+          [
+            1090,
+            134
+          ],
+          [
+            1127,
+            148
+          ],
+          [
+            1129,
+            169
+          ],
+          [
+            1102,
+            182
+          ],
+          [
+            1057,
+            184
+          ],
+          [
+            995,
+            181
+          ],
+          [
+            956,
+            171
+          ]
+        ],
+        "labelAt": [
+          1042,
+          159
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_39",
+        "name": "Dark vale",
+        "island": "island_7",
+        "borders": [
+          "province_2",
+          "province_40",
+          "province_25"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            1141,
+            146
+          ],
+          [
+            1164,
+            134
+          ],
+          [
+            1213,
+            135
+          ],
+          [
+            1274,
+            134
+          ],
+          [
+            1311,
+            149
+          ],
+          [
+            1313,
+            169
+          ],
+          [
+            1286,
+            182
+          ],
+          [
+            1241,
+            184
+          ],
+          [
+            1179,
+            181
+          ],
+          [
+            1140,
+            171
+          ]
+        ],
+        "labelAt": [
+          1226,
+          159
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_25",
+        "name": "Red hill",
+        "island": "island_7",
+        "borders": [
+          "province_2",
+          "province_36",
+          "province_39"
+        ],
+        "seaLanes": [
+          "province_33"
+        ],
+        "polygon": [
+          [
+            945,
+            200
+          ],
+          [
+            968,
+            188
+          ],
+          [
+            1017,
+            191
+          ],
+          [
+            1078,
+            188
+          ],
+          [
+            1115,
+            201
+          ],
+          [
+            1117,
+            223
+          ],
+          [
+            1090,
+            236
+          ],
+          [
+            1045,
+            238
+          ],
+          [
+            983,
+            235
+          ],
+          [
+            944,
+            225
+          ]
+        ],
+        "labelAt": [
+          1030,
+          213
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_36",
+        "name": "High town",
+        "island": "island_7",
+        "borders": [
+          "province_26",
+          "province_25"
+        ],
+        "seaLanes": [
+          "province_16"
+        ],
+        "polygon": [
+          [
+            1129,
+            200
+          ],
+          [
+            1152,
+            188
+          ],
+          [
+            1201,
+            190
+          ],
+          [
+            1262,
+            188
+          ],
+          [
+            1299,
+            202
+          ],
+          [
+            1301,
+            223
+          ],
+          [
+            1274,
+            236
+          ],
+          [
+            1229,
+            238
+          ],
+          [
+            1167,
+            235
+          ],
+          [
+            1128,
+            225
+          ]
+        ],
+        "labelAt": [
+          1214,
+          213
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_26",
+        "name": "Wind point",
+        "island": "island_7",
+        "borders": [
+          "province_34",
+          "province_36",
+          "province_40"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            957,
+            254
+          ],
+          [
+            980,
+            242
+          ],
+          [
+            1029,
+            243
+          ],
+          [
+            1090,
+            242
+          ],
+          [
+            1127,
+            257
+          ],
+          [
+            1129,
+            277
+          ],
+          [
+            1102,
+            290
+          ],
+          [
+            1057,
+            292
+          ],
+          [
+            995,
+            289
+          ],
+          [
+            956,
+            279
+          ]
+        ],
+        "labelAt": [
+          1042,
+          267
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_14",
+        "name": "Low vale",
+        "island": "island_8",
+        "borders": [
+          "province_44",
+          "province_18",
+          "province_29"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            475,
+            437
+          ],
+          [
+            498,
+            425
+          ],
+          [
+            547,
+            428
+          ],
+          [
+            608,
+            425
+          ],
+          [
+            645,
+            438
+          ],
+          [
+            647,
+            460
+          ],
+          [
+            620,
+            473
+          ],
+          [
+            575,
+            475
+          ],
+          [
+            513,
+            472
+          ],
+          [
+            474,
+            462
+          ]
+        ],
+        "labelAt": [
+          560,
+          450
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_29",
+        "name": "Star gate",
+        "island": "island_8",
+        "borders": [
+          "province_42",
+          "province_14",
+          "province_32"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            659,
+            437
+          ],
+          [
+            682,
+            425
+          ],
+          [
+            731,
+            427
+          ],
+          [
+            792,
+            425
+          ],
+          [
+            829,
+            439
+          ],
+          [
+            831,
+            460
+          ],
+          [
+            804,
+            473
+          ],
+          [
+            759,
+            475
+          ],
+          [
+            697,
+            472
+          ],
+          [
+            658,
+            462
+          ]
+        ],
+        "labelAt": [
+          744,
+          450
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_32",
+        "name": "Low port",
+        "island": "island_8",
+        "borders": [
+          "province_7",
+          "province_29",
+          "province_5"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            487,
+            491
+          ],
+          [
+            510,
+            479
+          ],
+          [
+            559,
+            480
+          ],
+          [
+            620,
+            479
+          ],
+          [
+            657,
+            494
+          ],
+          [
+            659,
+            514
+          ],
+          [
+            632,
+            527
+          ],
+          [
+            587,
+            529
+          ],
+          [
+            525,
+            526
+          ],
+          [
+            486,
+            516
+          ]
+        ],
+        "labelAt": [
+          572,
+          504
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_42",
+        "name": "High reach",
+        "island": "island_8",
+        "borders": [
+          "province_15",
+          "province_18",
+          "province_29"
+        ],
+        "seaLanes": [
+          "province_19",
+          "province_21"
+        ],
+        "polygon": [
+          [
+            671,
+            491
+          ],
+          [
+            694,
+            479
+          ],
+          [
+            743,
+            482
+          ],
+          [
+            804,
+            479
+          ],
+          [
+            841,
+            492
+          ],
+          [
+            843,
+            514
+          ],
+          [
+            816,
+            527
+          ],
+          [
+            771,
+            529
+          ],
+          [
+            709,
+            526
+          ],
+          [
+            670,
+            516
+          ]
+        ],
+        "labelAt": [
+          756,
+          504
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_5",
+        "name": "Blue moor",
+        "island": "island_8",
+        "borders": [
+          "province_44",
+          "province_32",
+          "province_24"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            475,
+            545
+          ],
+          [
+            498,
+            533
+          ],
+          [
+            547,
+            535
+          ],
+          [
+            608,
+            533
+          ],
+          [
+            645,
+            547
+          ],
+          [
+            647,
+            568
+          ],
+          [
+            620,
+            581
+          ],
+          [
+            575,
+            583
+          ],
+          [
+            513,
+            580
+          ],
+          [
+            474,
+            570
+          ]
+        ],
+        "labelAt": [
+          560,
+          558
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_18",
+        "name": "Dark glen",
+        "island": "island_8",
+        "borders": [
+          "province_42",
+          "province_24",
+          "province_14"
+        ],
+        "seaLanes": [
+          "province_33"
+        ],
+        "polygon": [
+          [
+            659,
+            545
+          ],
+          [
+            682,
+            533
+          ],
+          [
+            731,
+            534
+          ],
+          [
+            792,
+            533
+          ],
+          [
+            829,
+            548
+          ],
+          [
+            831,
+            568
+          ],
+          [
+            804,
+            581
+          ],
+          [
+            759,
+            583
+          ],
+          [
+            697,
+            580
+          ],
+          [
+            658,
+            570
+          ]
+        ],
+        "labelAt": [
+          744,
+          558
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_15",
+        "name": "Cape hill",
+        "island": "island_8",
+        "borders": [
+          "province_42",
+          "province_7",
+          "province_44"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            487,
+            599
+          ],
+          [
+            510,
+            587
+          ],
+          [
+            559,
+            590
+          ],
+          [
+            620,
+            587
+          ],
+          [
+            657,
+            600
+          ],
+          [
+            659,
+            622
+          ],
+          [
+            632,
+            635
+          ],
+          [
+            587,
+            637
+          ],
+          [
+            525,
+            634
+          ],
+          [
+            486,
+            624
+          ]
+        ],
+        "labelAt": [
+          572,
+          612
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_24",
+        "name": "Bay glen",
+        "island": "island_8",
+        "borders": [
+          "province_18",
+          "province_7",
+          "province_5"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            671,
+            599
+          ],
+          [
+            694,
+            587
+          ],
+          [
+            743,
+            589
+          ],
+          [
+            804,
+            587
+          ],
+          [
+            841,
+            601
+          ],
+          [
+            843,
+            622
+          ],
+          [
+            816,
+            635
+          ],
+          [
+            771,
+            637
+          ],
+          [
+            709,
+            634
+          ],
+          [
+            670,
+            624
+          ]
+        ],
+        "labelAt": [
+          756,
+          612
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_7",
+        "name": "Dark town",
+        "island": "island_8",
+        "borders": [
+          "province_15",
+          "province_32",
+          "province_24"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            475,
+            653
+          ],
+          [
+            498,
+            641
+          ],
+          [
+            547,
+            642
+          ],
+          [
+            608,
+            641
+          ],
+          [
+            645,
+            656
+          ],
+          [
+            647,
+            676
+          ],
+          [
+            620,
+            689
+          ],
+          [
+            575,
+            691
+          ],
+          [
+            513,
+            688
+          ],
+          [
+            474,
+            678
+          ]
+        ],
+        "labelAt": [
+          560,
+          666
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      },
+      {
+        "id": "province_44",
+        "name": "Rock ford",
+        "island": "island_8",
+        "borders": [
+          "province_15",
+          "province_14",
+          "province_5"
+        ],
+        "seaLanes": [],
+        "polygon": [
+          [
+            659,
+            653
+          ],
+          [
+            682,
+            641
+          ],
+          [
+            731,
+            644
+          ],
+          [
+            792,
+            641
+          ],
+          [
+            829,
+            654
+          ],
+          [
+            831,
+            676
+          ],
+          [
+            804,
+            689
+          ],
+          [
+            759,
+            691
+          ],
+          [
+            697,
+            688
+          ],
+          [
+            658,
+            678
+          ]
+        ],
+        "labelAt": [
+          744,
+          666
+        ],
+        "hitSizeCss": 26.744186046511626,
+        "countTextCss": 9.627906976744185,
+        "countContrast": null
+      }
+    ],
+    "islands": [
+      {
+        "id": "island_0",
+        "name": "North Isle",
+        "bonus": 3,
+        "provinces": [
+          "province_33",
+          "province_43",
+          "province_41"
+        ],
+        "polygon": [
+          [
+            456.087221015511,
+            89.79165913793454
+          ],
+          [
+            464.9189100324115,
+            75.5804335985583
+          ],
+          [
+            457.77706666457783,
+            60.449282435094545
+          ],
+          [
+            466.555004180108,
+            47.76509238912517
+          ],
+          [
+            481.767256262178,
+            45.210048213307665
+          ],
+          [
+            655.3017152117524,
+            40.0180455412369
+          ],
+          [
+            828.7802968246273,
+            46.82591277359607
+          ],
+          [
+            844.5183123702103,
+            62.249695732515804
+          ],
+          [
+            866.5426953750264,
+            62.960165530644765
+          ],
+          [
+            873.7085911970026,
+            74.9117345337823
+          ],
+          [
+            868.9285865350502,
+            88.00148701424912
+          ],
+          [
+            858.3505059189126,
+            100.65082702265488
+          ],
+          [
+            841.9991374801233,
+            102.7802265503915
+          ],
+          [
+            739.405424768563,
+            136.48817141103927
+          ],
+          [
+            642.9183312476982,
+            184.98493644301342
+          ],
+          [
+            610.8852787333086,
+            188.95510408084502
+          ],
+          [
+            579.6156406719701,
+            180.94957973980237
+          ],
+          [
+            543.6703447887459,
+            180.5442443288273
+          ],
+          [
+            509.8612487137698,
+            168.33057921466215
+          ],
+          [
+            492.17164445708505,
+            153.51375220709542
+          ],
+          [
+            469.09789458584123,
+            153.76380861983915
+          ],
+          [
+            456.7129268580681,
+            122.9735348567784
+          ]
+        ]
+      },
+      {
+        "id": "island_1",
+        "name": "East Isle",
+        "bonus": 3,
+        "provinces": [
+          "province_6",
+          "province_23",
+          "province_10"
+        ],
+        "polygon": [
+          [
+            476.0885022958494,
+            269.7755234523161
+          ],
+          [
+            484.9213275353493,
+            255.56548792805037
+          ],
+          [
+            477.7806957396562,
+            240.4342193470365
+          ],
+          [
+            486.559877433016,
+            227.74958478681265
+          ],
+          [
+            501.77316564168154,
+            225.19422825365965
+          ],
+          [
+            675.3026031756416,
+            220.00325203175552
+          ],
+          [
+            848.7760907650023,
+            226.81214537596333
+          ],
+          [
+            864.3450970008819,
+            242.7233264347954
+          ],
+          [
+            886.5647511059205,
+            244.08222647241126
+          ],
+          [
+            893.7171222247483,
+            255.4454015575377
+          ],
+          [
+            888.9276832166325,
+            267.98890324662835
+          ],
+          [
+            878.3497492007598,
+            280.6373446553322
+          ],
+          [
+            861.9990186502988,
+            282.76557598199645
+          ],
+          [
+            759.4056733222599,
+            316.4810205884195
+          ],
+          [
+            662.9199183426045,
+            364.9848843171263
+          ],
+          [
+            630.8759716459106,
+            368.9479509692921
+          ],
+          [
+            599.5978527473311,
+            360.935479730255
+          ],
+          [
+            563.6567449715558,
+            360.52836523116855
+          ],
+          [
+            529.8526687375527,
+            348.31307152487705
+          ],
+          [
+            512.1650324958704,
+            333.49714872941695
+          ],
+          [
+            489.09338237643817,
+            333.74815642972135
+          ],
+          [
+            476.7112056569246,
+            302.9571209050786
+          ]
+        ]
+      },
+      {
+        "id": "island_2",
+        "name": "West Isle",
+        "bonus": 3,
+        "provinces": [
+          "province_21",
+          "province_22",
+          "province_3"
+        ],
+        "polygon": [
+          [
+            6.089792784485926,
+            709.7593899966603
+          ],
+          [
+            14.92375329343388,
+            695.5505459848604
+          ],
+          [
+            7.784332177595946,
+            680.419162288845
+          ],
+          [
+            16.564758441394833,
+            667.7340851446273
+          ],
+          [
+            31.779081891216038,
+            665.1784189901806
+          ],
+          [
+            205.3034916288604,
+            659.9884671156361
+          ],
+          [
+            378.7718789531709,
+            666.798384469096
+          ],
+          [
+            394.1778271902661,
+            683.1946140466546
+          ],
+          [
+            416.586299534406,
+            685.2045773910913
+          ],
+          [
+            423.7250947524394,
+            695.9770019894572
+          ],
+          [
+            418.92677428752097,
+            707.9763207038028
+          ],
+          [
+            408.348985487467,
+            720.6238631778539
+          ],
+          [
+            391.9988921556966,
+            722.7509256061503
+          ],
+          [
+            289.40592066316015,
+            756.4738698161934
+          ],
+          [
+            192.9215109297839,
+            804.9848319202794
+          ],
+          [
+            160.86665174124212,
+            808.9407756128896
+          ],
+          [
+            129.58003986674584,
+            800.9213363861749
+          ],
+          [
+            93.64313737645,
+            800.5124557506181
+          ],
+          [
+            59.844095112306036,
+            788.2955459122926
+          ],
+          [
+            42.15842592111745,
+            773.4805317884094
+          ],
+          [
+            19.08887776601058,
+            773.7324963696907
+          ],
+          [
+            6.70949291115125,
+            742.9407041523112
+          ]
+        ]
+      },
+      {
+        "id": "island_3",
+        "name": "South Isle",
+        "bonus": 3,
+        "provinces": [
+          "province_4",
+          "province_27",
+          "province_19"
+        ],
+        "polygon": [
+          [
+            956.087221015511,
+            734.7916591379345
+          ],
+          [
+            964.9189100324114,
+            720.5804335985582
+          ],
+          [
+            957.7770666645779,
+            705.4492824350946
+          ],
+          [
+            966.555004180108,
+            692.7650923891252
+          ],
+          [
+            981.767256262178,
+            690.2100482133077
+          ],
+          [
+            1155.3017152117525,
+            685.0180455412369
+          ],
+          [
+            1328.7802968246272,
+            691.8259127735961
+          ],
+          [
+            1344.5183123702104,
+            707.2496957325158
+          ],
+          [
+            1366.5426953750264,
+            707.9601655306448
+          ],
+          [
+            1373.708591197003,
+            719.9117345337822
+          ],
+          [
+            1368.9285865350503,
+            733.0014870142492
+          ],
+          [
+            1358.3505059189126,
+            745.6508270226549
+          ],
+          [
+            1341.9991374801234,
+            747.7802265503915
+          ],
+          [
+            1239.4054247685633,
+            781.4881714110392
+          ],
+          [
+            1142.9183312476982,
+            829.9849364430135
+          ],
+          [
+            1110.8852787333085,
+            833.9551040808451
+          ],
+          [
+            1079.6156406719701,
+            825.9495797398024
+          ],
+          [
+            1043.6703447887458,
+            825.5442443288274
+          ],
+          [
+            1009.8612487137698,
+            813.3305792146622
+          ],
+          [
+            992.171644457085,
+            798.5137522070954
+          ],
+          [
+            969.0978945858412,
+            798.7638086198391
+          ],
+          [
+            956.712926858068,
+            767.9735348567783
+          ]
+        ]
+      },
+      {
+        "id": "island_4",
+        "name": "Central Isle",
+        "bonus": 4,
+        "provinces": [
+          "province_31",
+          "province_35",
+          "province_38",
+          "province_17",
+          "province_30"
+        ],
+        "polygon": [
+          [
+            -8.238432269546223,
+            440.51402994939514
+          ],
+          [
+            0.7975640712838103,
+            426.8075185622238
+          ],
+          [
+            -6.122823798524561,
+            411.92041286603273
+          ],
+          [
+            2.9105461689893506,
+            399.32162393358396
+          ],
+          [
+            18.22986600621843,
+            396.94471517238685
+          ],
+          [
+            189.96721124288317,
+            390.8866818345003
+          ],
+          [
+            361.7086114851912,
+            396.82864781148584
+          ],
+          [
+            377.7090882607707,
+            413.060295006647
+          ],
+          [
+            400.436648066076,
+            414.77483663936295
+          ],
+          [
+            413.0527912139113,
+            443.8003478372772
+          ],
+          [
+            413.95630022411694,
+            475.43626160146914
+          ],
+          [
+            420.93718699000146,
+            487.52806178891467
+          ],
+          [
+            415.95586591996585,
+            500.571483587217
+          ],
+          [
+            398.41107355777524,
+            501.27871137551637
+          ],
+          [
+            388.7237214608148,
+            515.9236804613984
+          ],
+          [
+            274.34314843027573,
+            559.9515983399702
+          ],
+          [
+            156.20522234831108,
+            592.582924708492
+          ],
+          [
+            128.43259103491937,
+            596.7650431511661
+          ],
+          [
+            101.44934403375711,
+            588.9731533924228
+          ],
+          [
+            68.77616935741815,
+            576.0979564777003
+          ],
+          [
+            33.782292342829514,
+            579.0535631009302
+          ],
+          [
+            11.421219384263905,
+            577.7997372708094
+          ],
+          [
+            -7.082814801433731,
+            565.182670181937
+          ],
+          [
+            -13.660365780537068,
+            502.90396474895465
+          ]
+        ]
+      },
+      {
+        "id": "island_5",
+        "name": "Harbor Isle",
+        "bonus": 5,
+        "provinces": [
+          "province_9",
+          "province_16",
+          "province_45",
+          "province_1",
+          "province_0"
+        ],
+        "polygon": [
+          [
+            921.7675312877052,
+            465.4890363360032
+          ],
+          [
+            930.8047710872228,
+            451.78471588458007
+          ],
+          [
+            923.8857422020442,
+            436.89824076401027
+          ],
+          [
+            932.9209181978861,
+            424.29941673266836
+          ],
+          [
+            948.2413889777248,
+            421.922875688911
+          ],
+          [
+            1119.9671213670188,
+            415.8648000645236
+          ],
+          [
+            1291.6969119910675,
+            421.80672375391663
+          ],
+          [
+            1307.5541154122425,
+            438.5229433644253
+          ],
+          [
+            1330.4738975134617,
+            440.88228370441743
+          ],
+          [
+            1343.0753024290855,
+            469.91666506805325
+          ],
+          [
+            1343.9627044847975,
+            501.5553000671817
+          ],
+          [
+            1350.9393180592426,
+            513.054554806271
+          ],
+          [
+            1345.957180260364,
+            525.5479250270954
+          ],
+          [
+            1328.413936780537,
+            526.2534340987086
+          ],
+          [
+            1318.7274767013319,
+            540.8970547567494
+          ],
+          [
+            1204.3368640638912,
+            584.9353750581564
+          ],
+          [
+            1086.1882713546654,
+            617.5773105915739
+          ],
+          [
+            1058.4118331988827,
+            621.7525444118207
+          ],
+          [
+            1031.4276677006817,
+            613.9539607941721
+          ],
+          [
+            998.759287360611,
+            601.0770658649504
+          ],
+          [
+            963.7691048271004,
+            604.0308132023754
+          ],
+          [
+            941.4102460584356,
+            602.7773474041414
+          ],
+          [
+            922.9086213321901,
+            590.1607066296078
+          ],
+          [
+            916.338327613279,
+            527.8797857507467
+          ]
+        ]
+      },
+      {
+        "id": "island_6",
+        "name": "Palm Isle",
+        "bonus": 7,
+        "provinces": [
+          "province_8",
+          "province_20",
+          "province_37",
+          "province_28",
+          "province_13",
+          "province_12",
+          "province_11"
+        ],
+        "polygon": [
+          [
+            -2.0155778680023495,
+            116.64675373644062
+          ],
+          [
+            7.162684130298718,
+            103.32389825279186
+          ],
+          [
+            0.4000764929693936,
+            88.62675194845161
+          ],
+          [
+            9.68340893262687,
+            76.09171807779595
+          ],
+          [
+            25.121010555232754,
+            73.85838168007218
+          ],
+          [
+            194.75661571052197,
+            67.53908206587204
+          ],
+          [
+            364.4148072859387,
+            73.21976119555416
+          ],
+          [
+            380.7019495444854,
+            89.94716730461236
+          ],
+          [
+            403.9339564812622,
+            92.26038406424576
+          ],
+          [
+            417.0216652422471,
+            120.94689447339348
+          ],
+          [
+            418.44359759771334,
+            152.44581681119703
+          ],
+          [
+            425.63235417419395,
+            163.8356207941142
+          ],
+          [
+            420.88263720012424,
+            176.43903479792294
+          ],
+          [
+            406.8268492408308,
+            205.88596945475342
+          ],
+          [
+            408.45957638692784,
+            238.47463831229746
+          ],
+          [
+            397.5675409103996,
+            251.68079674480896
+          ],
+          [
+            380.6814362361878,
+            254.49122843729023
+          ],
+          [
+            281.0494438495249,
+            296.69775336648064
+          ],
+          [
+            177.35654973254975,
+            327.61228656981734
+          ],
+          [
+            150.2635813442522,
+            318.85294088763567
+          ],
+          [
+            122.72418836298979,
+            326.08736602670797
+          ],
+          [
+            87.248552356007,
+            327.38002987799416
+          ],
+          [
+            53.369106888127554,
+            316.7793268484144
+          ],
+          [
+            30.583572724082572,
+            315.45988698589247
+          ],
+          [
+            11.616698500501894,
+            302.7642510869489
+          ],
+          [
+            11.904415157637544,
+            269.97920295179745
+          ],
+          [
+            -3.357917407468655,
+            240.96190868146465
+          ],
+          [
+            -8.686397885987265,
+            178.73954773380225
+          ]
+        ]
+      },
+      {
+        "id": "island_7",
+        "name": "Cliff Isle",
+        "bonus": 7,
+        "provinces": [
+          "province_40",
+          "province_2",
+          "province_34",
+          "province_39",
+          "province_25",
+          "province_36",
+          "province_26"
+        ],
+        "polygon": [
+          [
+            917.9807826066274,
+            106.65590379799116
+          ],
+          [
+            927.1587674056648,
+            93.33216415702836
+          ],
+          [
+            920.3958481630721,
+            78.63453284073478
+          ],
+          [
+            929.678585631392,
+            66.09931339516798
+          ],
+          [
+            945.1159245915721,
+            63.86559289278379
+          ],
+          [
+            1114.756765298314,
+            57.54628547529673
+          ],
+          [
+            1284.4201922801044,
+            63.22695680196498
+          ],
+          [
+            1300.9815797386027,
+            78.99579419714757
+          ],
+          [
+            1323.8250796659706,
+            80.04950118419342
+          ],
+          [
+            1336.9957410831003,
+            110.47371599702669
+          ],
+          [
+            1338.4730632090316,
+            143.59344861186406
+          ],
+          [
+            1345.645224237379,
+            154.39203551171107
+          ],
+          [
+            1340.883572120622,
+            166.44923427299364
+          ],
+          [
+            1326.8263528553125,
+            195.89590015785373
+          ],
+          [
+            1328.4575040536663,
+            228.48502243777526
+          ],
+          [
+            1317.5647153538825,
+            241.69158747543827
+          ],
+          [
+            1300.6778730131118,
+            244.50241680325507
+          ],
+          [
+            1201.0490206628192,
+            286.7036830801574
+          ],
+          [
+            1097.3596727439835,
+            317.61281157283827
+          ],
+          [
+            1070.2681995341059,
+            308.85531247519356
+          ],
+          [
+            1042.7313577292014,
+            316.09161363935544
+          ],
+          [
+            1007.2554628037306,
+            317.38589698699883
+          ],
+          [
+            973.3752010998215,
+            306.7867386703364
+          ],
+          [
+            950.5890471660842,
+            305.4676830884397
+          ],
+          [
+            931.6212630884655,
+            292.7723341013129
+          ],
+          [
+            931.9077751278588,
+            259.98822280708663
+          ],
+          [
+            916.6444028397985,
+            230.97254585656538
+          ],
+          [
+            911.3129393681478,
+            168.74972971850661
+          ]
+        ]
+      },
+      {
+        "id": "island_8",
+        "name": "Great Isle",
+        "bonus": 7,
+        "provinces": [
+          "province_14",
+          "province_29",
+          "province_32",
+          "province_42",
+          "province_5",
+          "province_18",
+          "province_15",
+          "province_24",
+          "province_7",
+          "province_44"
+        ],
+        "polygon": [
+          [
+            448.9680723894411,
+            449.45398070702345
+          ],
+          [
+            458.08035551065353,
+            436.479571669077
+          ],
+          [
+            451.24823131714567,
+            422.17254288705647
+          ],
+          [
+            460.5091957098252,
+            409.8719746039801
+          ],
+          [
+            475.78637145127254,
+            407.95433466540067
+          ],
+          [
+            642.3894137500461,
+            399.42091527665593
+          ],
+          [
+            809.1748608930922,
+            402.8861094941904
+          ],
+          [
+            826.4798292149189,
+            419.1080357287531
+          ],
+          [
+            850.1491040010692,
+            420.6501934628193
+          ],
+          [
+            864.042122580046,
+            448.8102523702405
+          ],
+          [
+            866.3573690912873,
+            480.1254965254026
+          ],
+          [
+            873.9409173262352,
+            491.956753091611
+          ],
+          [
+            869.6239951948379,
+            505.3303471888866
+          ],
+          [
+            861.5421587427508,
+            568.2333050442356
+          ],
+          [
+            869.4603087522107,
+            631.1570770848388
+          ],
+          [
+            867.3088045224118,
+            663.3885132706454
+          ],
+          [
+            853.5407474506725,
+            692.6106804305243
+          ],
+          [
+            841.50778427901,
+            706.0070922984906
+          ],
+          [
+            823.7294390283791,
+            708.8682972502797
+          ],
+          [
+            797.7599733403625,
+            703.9101925161231
+          ],
+          [
+            773.6861597128157,
+            714.8393941384775
+          ],
+          [
+            665.141246706283,
+            719.5329528591146
+          ],
+          [
+            556.7408027196257,
+            712.2273812486696
+          ],
+          [
+            522.7962008879834,
+            714.2437299509878
+          ],
+          [
+            490.26484885210147,
+            704.3435890269612
+          ],
+          [
+            472.23422023724214,
+            690.1686752658743
+          ],
+          [
+            449.3234706036301,
+            691.2313603590142
+          ],
+          [
+            443.1457779786949,
+            570.351490162814
+          ]
+        ]
+      }
+    ],
+    "routes": [
+      {
+        "from": "province_23",
+        "to": "province_43",
+        "points": [
+          [
+            774,
+            260
+          ],
+          [
+            771.0625,
+            248.9375
+          ],
+          [
+            768.35,
+            237.85
+          ],
+          [
+            765.8625,
+            226.7375
+          ],
+          [
+            763.6,
+            215.6
+          ],
+          [
+            761.5625,
+            204.4375
+          ],
+          [
+            759.75,
+            193.25
+          ],
+          [
+            758.1625,
+            182.0375
+          ],
+          [
+            756.8,
+            170.8
+          ],
+          [
+            755.6625,
+            159.5375
+          ],
+          [
+            754.75,
+            148.25
+          ],
+          [
+            754.0625,
+            136.9375
+          ],
+          [
+            753.6,
+            125.6
+          ],
+          [
+            753.3625,
+            114.2375
+          ],
+          [
+            753.35,
+            102.85
+          ],
+          [
+            753.5625,
+            91.4375
+          ],
+          [
+            754,
+            80
+          ]
+        ]
+      },
+      {
+        "from": "province_21",
+        "to": "province_42",
+        "points": [
+          [
+            120,
+            700
+          ],
+          [
+            157.9125,
+            681.7875
+          ],
+          [
+            196.07,
+            664.37
+          ],
+          [
+            234.4725,
+            647.7475
+          ],
+          [
+            273.12,
+            631.9200000000001
+          ],
+          [
+            312.0125,
+            616.8875
+          ],
+          [
+            351.15,
+            602.65
+          ],
+          [
+            390.5325,
+            589.2075
+          ],
+          [
+            430.15999999999997,
+            576.56
+          ],
+          [
+            470.0325,
+            564.7075
+          ],
+          [
+            510.15,
+            553.65
+          ],
+          [
+            550.5125,
+            543.3875
+          ],
+          [
+            591.12,
+            533.9200000000001
+          ],
+          [
+            631.9725,
+            525.2475
+          ],
+          [
+            673.0699999999999,
+            517.37
+          ],
+          [
+            714.4125,
+            510.2875
+          ],
+          [
+            756,
+            504
+          ]
+        ]
+      },
+      {
+        "from": "province_21",
+        "to": "province_27",
+        "points": [
+          [
+            120,
+            700
+          ],
+          [
+            191.109375,
+            690.93125
+          ],
+          [
+            262.1875,
+            683.28
+          ],
+          [
+            333.234375,
+            677.04625
+          ],
+          [
+            404.25,
+            672.23
+          ],
+          [
+            475.234375,
+            668.83125
+          ],
+          [
+            546.1875,
+            666.8499999999999
+          ],
+          [
+            617.109375,
+            666.28625
+          ],
+          [
+            688,
+            667.14
+          ],
+          [
+            758.859375,
+            669.41125
+          ],
+          [
+            829.6875,
+            673.0999999999999
+          ],
+          [
+            900.484375,
+            678.20625
+          ],
+          [
+            971.25,
+            684.73
+          ],
+          [
+            1041.984375,
+            692.67125
+          ],
+          [
+            1112.6875,
+            702.03
+          ],
+          [
+            1183.359375,
+            712.80625
+          ],
+          [
+            1254,
+            725
+          ]
+        ]
+      },
+      {
+        "from": "province_19",
+        "to": "province_42",
+        "points": [
+          [
+            1082,
+            779
+          ],
+          [
+            1059.046875,
+            764.86875
+          ],
+          [
+            1036.4375,
+            750.33
+          ],
+          [
+            1014.171875,
+            735.38375
+          ],
+          [
+            992.25,
+            720.03
+          ],
+          [
+            970.671875,
+            704.26875
+          ],
+          [
+            949.4375,
+            688.1
+          ],
+          [
+            928.546875,
+            671.5237500000001
+          ],
+          [
+            908,
+            654.54
+          ],
+          [
+            887.796875,
+            637.1487500000001
+          ],
+          [
+            867.9375,
+            619.35
+          ],
+          [
+            848.421875,
+            601.14375
+          ],
+          [
+            829.25,
+            582.53
+          ],
+          [
+            810.421875,
+            563.50875
+          ],
+          [
+            791.9375,
+            544.08
+          ],
+          [
+            773.796875,
+            524.24375
+          ],
+          [
+            756,
+            504
+          ]
+        ]
+      },
+      {
+        "from": "province_19",
+        "to": "province_34",
+        "points": [
+          [
+            1082,
+            779
+          ],
+          [
+            1073.6875,
+            740.625
+          ],
+          [
+            1066.15,
+            702.2
+          ],
+          [
+            1059.3875,
+            663.725
+          ],
+          [
+            1053.4,
+            625.2
+          ],
+          [
+            1048.1875,
+            586.625
+          ],
+          [
+            1043.75,
+            548
+          ],
+          [
+            1040.0875,
+            509.325
+          ],
+          [
+            1037.2,
+            470.6
+          ],
+          [
+            1035.0875,
+            431.825
+          ],
+          [
+            1033.75,
+            393
+          ],
+          [
+            1033.1875,
+            354.125
+          ],
+          [
+            1033.4,
+            315.2
+          ],
+          [
+            1034.3875,
+            276.225
+          ],
+          [
+            1036.15,
+            237.2
+          ],
+          [
+            1038.6875,
+            198.125
+          ],
+          [
+            1042,
+            159
+          ]
+        ]
+      },
+      {
+        "from": "province_35",
+        "to": "province_9",
+        "points": [
+          [
+            289,
+            435
+          ],
+          [
+            335.859375,
+            429.56875
+          ],
+          [
+            382.6875,
+            425.07
+          ],
+          [
+            429.484375,
+            421.50374999999997
+          ],
+          [
+            476.25,
+            418.87
+          ],
+          [
+            522.984375,
+            417.16875
+          ],
+          [
+            569.6875,
+            416.4
+          ],
+          [
+            616.359375,
+            416.56375
+          ],
+          [
+            663,
+            417.65999999999997
+          ],
+          [
+            709.609375,
+            419.68875
+          ],
+          [
+            756.1875,
+            422.65
+          ],
+          [
+            802.734375,
+            426.54375
+          ],
+          [
+            849.25,
+            431.37
+          ],
+          [
+            895.734375,
+            437.12874999999997
+          ],
+          [
+            942.1875,
+            443.82
+          ],
+          [
+            988.609375,
+            451.44375
+          ],
+          [
+            1035,
+            460
+          ]
+        ]
+      },
+      {
+        "from": "province_38",
+        "to": "province_43",
+        "points": [
+          [
+            117,
+            489
+          ],
+          [
+            152.978125,
+            457.465625
+          ],
+          [
+            189.4675,
+            426.7275
+          ],
+          [
+            226.468125,
+            396.785625
+          ],
+          [
+            263.98,
+            367.64
+          ],
+          [
+            302.00312499999995,
+            339.290625
+          ],
+          [
+            340.5375,
+            311.7375
+          ],
+          [
+            379.583125,
+            284.980625
+          ],
+          [
+            419.14,
+            259.02
+          ],
+          [
+            459.208125,
+            233.85562499999997
+          ],
+          [
+            499.7875,
+            209.4875
+          ],
+          [
+            540.878125,
+            185.91562499999998
+          ],
+          [
+            582.48,
+            163.14
+          ],
+          [
+            624.593125,
+            141.16062499999998
+          ],
+          [
+            667.2175,
+            119.97749999999999
+          ],
+          [
+            710.353125,
+            99.590625
+          ],
+          [
+            754,
+            80
+          ]
+        ]
+      },
+      {
+        "from": "province_16",
+        "to": "province_36",
+        "points": [
+          [
+            1219,
+            460
+          ],
+          [
+            1216.371875,
+            444.609375
+          ],
+          [
+            1214.0525,
+            429.2125
+          ],
+          [
+            1212.041875,
+            413.809375
+          ],
+          [
+            1210.3400000000001,
+            398.4
+          ],
+          [
+            1208.946875,
+            382.984375
+          ],
+          [
+            1207.8625,
+            367.5625
+          ],
+          [
+            1207.086875,
+            352.134375
+          ],
+          [
+            1206.62,
+            336.7
+          ],
+          [
+            1206.461875,
+            321.259375
+          ],
+          [
+            1206.6125,
+            305.8125
+          ],
+          [
+            1207.071875,
+            290.359375
+          ],
+          [
+            1207.8400000000001,
+            274.9
+          ],
+          [
+            1208.916875,
+            259.434375
+          ],
+          [
+            1210.3025,
+            243.96249999999998
+          ],
+          [
+            1211.996875,
+            228.484375
+          ],
+          [
+            1214,
+            213
+          ]
+        ]
+      },
+      {
+        "from": "province_0",
+        "to": "province_6",
+        "points": [
+          [
+            1035,
+            568
+          ],
+          [
+            1004.3,
+            552.921875
+          ],
+          [
+            973.985,
+            537.2875
+          ],
+          [
+            944.0550000000001,
+            521.096875
+          ],
+          [
+            914.51,
+            504.35
+          ],
+          [
+            885.35,
+            487.046875
+          ],
+          [
+            856.575,
+            469.1875
+          ],
+          [
+            828.185,
+            450.771875
+          ],
+          [
+            800.1800000000001,
+            431.8
+          ],
+          [
+            772.56,
+            412.271875
+          ],
+          [
+            745.325,
+            392.1875
+          ],
+          [
+            718.475,
+            371.546875
+          ],
+          [
+            692.01,
+            350.35
+          ],
+          [
+            665.9300000000001,
+            328.596875
+          ],
+          [
+            640.235,
+            306.2875
+          ],
+          [
+            614.925,
+            283.421875
+          ],
+          [
+            590,
+            260
+          ]
+        ]
+      },
+      {
+        "from": "province_20",
+        "to": "province_38",
+        "points": [
+          [
+            294,
+            115
+          ],
+          [
+            286.44375,
+            140.034375
+          ],
+          [
+            278.42,
+            164.84750000000003
+          ],
+          [
+            269.92875000000004,
+            189.439375
+          ],
+          [
+            260.97,
+            213.81
+          ],
+          [
+            251.54375,
+            237.95937500000002
+          ],
+          [
+            241.65,
+            261.88750000000005
+          ],
+          [
+            231.28875,
+            285.594375
+          ],
+          [
+            220.46,
+            309.08000000000004
+          ],
+          [
+            209.16375,
+            332.344375
+          ],
+          [
+            197.4,
+            355.38750000000005
+          ],
+          [
+            185.16875,
+            378.209375
+          ],
+          [
+            172.47,
+            400.81
+          ],
+          [
+            159.30375,
+            423.18937500000004
+          ],
+          [
+            145.67000000000002,
+            445.3475
+          ],
+          [
+            131.56875,
+            467.284375
+          ],
+          [
+            117,
+            489
+          ]
+        ]
+      },
+      {
+        "from": "province_13",
+        "to": "province_6",
+        "points": [
+          [
+            110,
+            223
+          ],
+          [
+            140.346875,
+            220.8125
+          ],
+          [
+            170.64749999999998,
+            219.225
+          ],
+          [
+            200.901875,
+            218.2375
+          ],
+          [
+            231.10999999999999,
+            217.85
+          ],
+          [
+            261.271875,
+            218.0625
+          ],
+          [
+            291.3875,
+            218.875
+          ],
+          [
+            321.45687499999997,
+            220.2875
+          ],
+          [
+            351.48,
+            222.3
+          ],
+          [
+            381.45687499999997,
+            224.9125
+          ],
+          [
+            411.3875,
+            228.125
+          ],
+          [
+            441.271875,
+            231.9375
+          ],
+          [
+            471.11,
+            236.35
+          ],
+          [
+            500.901875,
+            241.3625
+          ],
+          [
+            530.6475,
+            246.975
+          ],
+          [
+            560.346875,
+            253.1875
+          ],
+          [
+            590,
+            260
+          ]
+        ]
+      },
+      {
+        "from": "province_12",
+        "to": "province_3",
+        "points": [
+          [
+            294,
+            223
+          ],
+          [
+            288.853125,
+            257.70625
+          ],
+          [
+            283.0425,
+            292.21
+          ],
+          [
+            276.568125,
+            326.51125
+          ],
+          [
+            269.43,
+            360.61
+          ],
+          [
+            261.628125,
+            394.50625
+          ],
+          [
+            253.16250000000002,
+            428.2
+          ],
+          [
+            244.033125,
+            461.69124999999997
+          ],
+          [
+            234.24,
+            494.98
+          ],
+          [
+            223.783125,
+            528.06625
+          ],
+          [
+            212.66250000000002,
+            560.95
+          ],
+          [
+            200.878125,
+            593.63125
+          ],
+          [
+            188.43,
+            626.11
+          ],
+          [
+            175.318125,
+            658.38625
+          ],
+          [
+            161.54250000000002,
+            690.46
+          ],
+          [
+            147.103125,
+            722.33125
+          ],
+          [
+            132,
+            754
+          ]
+        ]
+      },
+      {
+        "from": "province_11",
+        "to": "province_3",
+        "points": [
+          [
+            122,
+            277
+          ],
+          [
+            127.096875,
+            306.71875
+          ],
+          [
+            131.5975,
+            336.45000000000005
+          ],
+          [
+            135.50187499999998,
+            366.19375
+          ],
+          [
+            138.81,
+            395.95000000000005
+          ],
+          [
+            141.521875,
+            425.71875
+          ],
+          [
+            143.6375,
+            455.5
+          ],
+          [
+            145.156875,
+            485.29375000000005
+          ],
+          [
+            146.07999999999998,
+            515.1
+          ],
+          [
+            146.406875,
+            544.91875
+          ],
+          [
+            146.1375,
+            574.75
+          ],
+          [
+            145.271875,
+            604.59375
+          ],
+          [
+            143.81,
+            634.45
+          ],
+          [
+            141.75187499999998,
+            664.31875
+          ],
+          [
+            139.0975,
+            694.2
+          ],
+          [
+            135.846875,
+            724.09375
+          ],
+          [
+            132,
+            754
+          ]
+        ]
+      },
+      {
+        "from": "province_2",
+        "to": "province_27",
+        "points": [
+          [
+            1214,
+            105
+          ],
+          [
+            1222.3125,
+            143.375
+          ],
+          [
+            1229.85,
+            181.8
+          ],
+          [
+            1236.6125,
+            220.275
+          ],
+          [
+            1242.6,
+            258.8
+          ],
+          [
+            1247.8125,
+            297.375
+          ],
+          [
+            1252.25,
+            336
+          ],
+          [
+            1255.9125,
+            374.675
+          ],
+          [
+            1258.8,
+            413.4
+          ],
+          [
+            1260.9125,
+            452.175
+          ],
+          [
+            1262.25,
+            491
+          ],
+          [
+            1262.8125,
+            529.875
+          ],
+          [
+            1262.6,
+            568.8
+          ],
+          [
+            1261.6125,
+            607.775
+          ],
+          [
+            1259.85,
+            646.8
+          ],
+          [
+            1257.3125,
+            685.875
+          ],
+          [
+            1254,
+            725
+          ]
+        ]
+      },
+      {
+        "from": "province_25",
+        "to": "province_33",
+        "points": [
+          [
+            1030,
+            213
+          ],
+          [
+            1000.003125,
+            209
+          ],
+          [
+            970.1725,
+            204.425
+          ],
+          [
+            940.5081250000001,
+            199.275
+          ],
+          [
+            911.01,
+            193.55
+          ],
+          [
+            881.678125,
+            187.25
+          ],
+          [
+            852.5125,
+            180.375
+          ],
+          [
+            823.513125,
+            172.925
+          ],
+          [
+            794.6800000000001,
+            164.9
+          ],
+          [
+            766.013125,
+            156.3
+          ],
+          [
+            737.5125,
+            147.125
+          ],
+          [
+            709.178125,
+            137.375
+          ],
+          [
+            681.01,
+            127.05000000000001
+          ],
+          [
+            653.0081250000001,
+            116.15
+          ],
+          [
+            625.1725,
+            104.67500000000001
+          ],
+          [
+            597.503125,
+            92.625
+          ],
+          [
+            570,
+            80
+          ]
+        ]
+      },
+      {
+        "from": "province_18",
+        "to": "province_33",
+        "points": [
+          [
+            744,
+            558
+          ],
+          [
+            728.64375,
+            529.75625
+          ],
+          [
+            713.885,
+            501.295
+          ],
+          [
+            699.72375,
+            472.61625000000004
+          ],
+          [
+            686.16,
+            443.72
+          ],
+          [
+            673.19375,
+            414.60625000000005
+          ],
+          [
+            660.825,
+            385.275
+          ],
+          [
+            649.05375,
+            355.72625000000005
+          ],
+          [
+            637.88,
+            325.96000000000004
+          ],
+          [
+            627.30375,
+            295.97625000000005
+          ],
+          [
+            617.325,
+            265.775
+          ],
+          [
+            607.94375,
+            235.35625000000002
+          ],
+          [
+            599.16,
+            204.72
+          ],
+          [
+            590.97375,
+            173.86625
+          ],
+          [
+            583.385,
+            142.79500000000002
+          ],
+          [
+            576.39375,
+            111.50625
+          ],
+          [
+            570,
+            80
+          ]
+        ]
+      }
+    ]
+  },
+  "checks": {
+    "counts": [],
+    "symmetry": [],
+    "connectivity": [],
+    "degree": [],
+    "cells": [
+      "Subdivision gap/area mismatch island_0",
+      "Subdivision gap/area mismatch island_1",
+      "Subdivision gap/area mismatch island_2",
+      "Subdivision gap/area mismatch island_3",
+      "Subdivision gap/area mismatch island_4",
+      "Subdivision gap/area mismatch island_5",
+      "Subdivision gap/area mismatch island_6",
+      "Subdivision gap/area mismatch island_7",
+      "Subdivision gap/area mismatch island_8"
+    ],
+    "borders": [
+      "Declared/shared boundary mismatch province_33",
+      "Declared/shared boundary mismatch province_43",
+      "Declared/shared boundary mismatch province_41",
+      "Declared/shared boundary mismatch province_6",
+      "Declared/shared boundary mismatch province_23",
+      "Declared/shared boundary mismatch province_10",
+      "Declared/shared boundary mismatch province_21",
+      "Declared/shared boundary mismatch province_22",
+      "Declared/shared boundary mismatch province_3",
+      "Declared/shared boundary mismatch province_4",
+      "Declared/shared boundary mismatch province_27",
+      "Declared/shared boundary mismatch province_19",
+      "Declared/shared boundary mismatch province_31",
+      "Declared/shared boundary mismatch province_35",
+      "Declared/shared boundary mismatch province_38",
+      "Declared/shared boundary mismatch province_17",
+      "Declared/shared boundary mismatch province_30",
+      "Declared/shared boundary mismatch province_9",
+      "Declared/shared boundary mismatch province_16",
+      "Declared/shared boundary mismatch province_45",
+      "Declared/shared boundary mismatch province_1",
+      "Declared/shared boundary mismatch province_0",
+      "Declared/shared boundary mismatch province_8",
+      "Declared/shared boundary mismatch province_20",
+      "Declared/shared boundary mismatch province_37",
+      "Declared/shared boundary mismatch province_28",
+      "Declared/shared boundary mismatch province_13",
+      "Declared/shared boundary mismatch province_12",
+      "Declared/shared boundary mismatch province_11",
+      "Declared/shared boundary mismatch province_40",
+      "Declared/shared boundary mismatch province_2",
+      "Declared/shared boundary mismatch province_34",
+      "Declared/shared boundary mismatch province_39",
+      "Declared/shared boundary mismatch province_25",
+      "Declared/shared boundary mismatch province_36",
+      "Declared/shared boundary mismatch province_26",
+      "Declared/shared boundary mismatch province_14",
+      "Declared/shared boundary mismatch province_29",
+      "Declared/shared boundary mismatch province_32",
+      "Declared/shared boundary mismatch province_42",
+      "Declared/shared boundary mismatch province_5",
+      "Declared/shared boundary mismatch province_18",
+      "Declared/shared boundary mismatch province_15",
+      "Declared/shared boundary mismatch province_24",
+      "Declared/shared boundary mismatch province_7",
+      "Declared/shared boundary mismatch province_44"
+    ],
+    "crossings": [],
+    "coasts": [
+      "Wrong/off-centre coast province_23",
+      "Wrong/off-centre coast province_43",
+      "Wrong/off-centre coast province_21",
+      "Wrong/off-centre coast province_42",
+      "Wrong/off-centre coast province_21",
+      "Wrong/off-centre coast province_27",
+      "Wrong/off-centre coast province_19",
+      "Wrong/off-centre coast province_42",
+      "Wrong/off-centre coast province_19",
+      "Wrong/off-centre coast province_34",
+      "Wrong/off-centre coast province_35",
+      "Wrong/off-centre coast province_9",
+      "Wrong/off-centre coast province_38",
+      "Wrong/off-centre coast province_43",
+      "Wrong/off-centre coast province_16",
+      "Wrong/off-centre coast province_36",
+      "Wrong/off-centre coast province_0",
+      "Wrong/off-centre coast province_6",
+      "Wrong/off-centre coast province_20",
+      "Wrong/off-centre coast province_38",
+      "Wrong/off-centre coast province_13",
+      "Wrong/off-centre coast province_6",
+      "Wrong/off-centre coast province_12",
+      "Wrong/off-centre coast province_3",
+      "Wrong/off-centre coast province_11",
+      "Wrong/off-centre coast province_3",
+      "Wrong/off-centre coast province_2",
+      "Wrong/off-centre coast province_27",
+      "Wrong/off-centre coast province_25",
+      "Wrong/off-centre coast province_33",
+      "Wrong/off-centre coast province_18",
+      "Wrong/off-centre coast province_33"
+    ],
+    "intersections": [
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country"
+    ],
+    "bonus": [],
+    "fortress": [],
+    "concentration": [],
+    "remoteness": [],
+    "crowding": [],
+    "labels": [
+      "Hit square outside country/frame province_33",
+      "Hit/text/contrast specification too small province_33",
+      "Hit square outside country/frame province_43",
+      "Hit/text/contrast specification too small province_43",
+      "Hit square outside country/frame province_41",
+      "Hit/text/contrast specification too small province_41",
+      "Hit square outside country/frame province_6",
+      "Hit/text/contrast specification too small province_6",
+      "Hit square outside country/frame province_23",
+      "Hit/text/contrast specification too small province_23",
+      "Hit square outside country/frame province_10",
+      "Hit/text/contrast specification too small province_10",
+      "Hit square outside country/frame province_21",
+      "Hit/text/contrast specification too small province_21",
+      "Hit square outside country/frame province_22",
+      "Hit/text/contrast specification too small province_22",
+      "Hit square outside country/frame province_3",
+      "Hit/text/contrast specification too small province_3",
+      "Hit square outside country/frame province_4",
+      "Hit/text/contrast specification too small province_4",
+      "Hit square outside country/frame province_27",
+      "Hit/text/contrast specification too small province_27",
+      "Hit square outside country/frame province_19",
+      "Hit/text/contrast specification too small province_19",
+      "Hit square outside country/frame province_31",
+      "Hit/text/contrast specification too small province_31",
+      "Hit square outside country/frame province_35",
+      "Hit/text/contrast specification too small province_35",
+      "Hit square outside country/frame province_38",
+      "Hit/text/contrast specification too small province_38",
+      "Hit square outside country/frame province_17",
+      "Hit/text/contrast specification too small province_17",
+      "Hit square outside country/frame province_30",
+      "Hit/text/contrast specification too small province_30",
+      "Hit square outside country/frame province_9",
+      "Hit/text/contrast specification too small province_9",
+      "Hit square outside country/frame province_16",
+      "Hit/text/contrast specification too small province_16",
+      "Hit square outside country/frame province_45",
+      "Hit/text/contrast specification too small province_45",
+      "Hit square outside country/frame province_1",
+      "Hit/text/contrast specification too small province_1",
+      "Hit square outside country/frame province_0",
+      "Hit/text/contrast specification too small province_0",
+      "Hit square outside country/frame province_8",
+      "Hit/text/contrast specification too small province_8",
+      "Hit square outside country/frame province_20",
+      "Hit/text/contrast specification too small province_20",
+      "Hit square outside country/frame province_37",
+      "Hit/text/contrast specification too small province_37",
+      "Hit square outside country/frame province_28",
+      "Hit/text/contrast specification too small province_28",
+      "Hit square outside country/frame province_13",
+      "Hit/text/contrast specification too small province_13",
+      "Hit square outside country/frame province_12",
+      "Hit/text/contrast specification too small province_12",
+      "Hit square outside country/frame province_11",
+      "Hit/text/contrast specification too small province_11",
+      "Hit square outside country/frame province_40",
+      "Hit/text/contrast specification too small province_40",
+      "Hit square outside country/frame province_2",
+      "Hit/text/contrast specification too small province_2",
+      "Hit square outside country/frame province_34",
+      "Hit/text/contrast specification too small province_34",
+      "Hit square outside country/frame province_39",
+      "Hit/text/contrast specification too small province_39",
+      "Hit square outside country/frame province_25",
+      "Hit/text/contrast specification too small province_25",
+      "Hit square outside country/frame province_36",
+      "Hit/text/contrast specification too small province_36",
+      "Hit square outside country/frame province_26",
+      "Hit/text/contrast specification too small province_26",
+      "Hit square outside country/frame province_14",
+      "Hit/text/contrast specification too small province_14",
+      "Hit square outside country/frame province_29",
+      "Hit/text/contrast specification too small province_29",
+      "Hit square outside country/frame province_32",
+      "Hit/text/contrast specification too small province_32",
+      "Hit square outside country/frame province_42",
+      "Hit/text/contrast specification too small province_42",
+      "Hit square outside country/frame province_5",
+      "Hit/text/contrast specification too small province_5",
+      "Hit square outside country/frame province_18",
+      "Hit/text/contrast specification too small province_18",
+      "Hit square outside country/frame province_15",
+      "Hit/text/contrast specification too small province_15",
+      "Hit square outside country/frame province_24",
+      "Hit/text/contrast specification too small province_24",
+      "Hit square outside country/frame province_7",
+      "Hit/text/contrast specification too small province_7",
+      "Hit square outside country/frame province_44",
+      "Hit/text/contrast specification too small province_44",
+      "Labels too close province_33/province_41",
+      "Labels too close province_6/province_10",
+      "Labels too close province_21/province_3",
+      "Labels too close province_4/province_19",
+      "Labels too close province_31/province_38",
+      "Labels too close province_35/province_17",
+      "Labels too close province_38/province_30",
+      "Labels too close province_9/province_45",
+      "Labels too close province_16/province_1",
+      "Labels too close province_45/province_0",
+      "Labels too close province_8/province_37",
+      "Labels too close province_20/province_28",
+      "Labels too close province_37/province_13",
+      "Labels too close province_28/province_12",
+      "Labels too close province_13/province_11",
+      "Labels too close province_40/province_34",
+      "Labels too close province_2/province_39",
+      "Labels too close province_34/province_25",
+      "Labels too close province_39/province_36",
+      "Labels too close province_25/province_26",
+      "Labels too close province_14/province_32",
+      "Labels too close province_29/province_42",
+      "Labels too close province_32/province_5",
+      "Labels too close province_42/province_18",
+      "Labels too close province_5/province_15",
+      "Labels too close province_18/province_24",
+      "Labels too close province_15/province_7",
+      "Labels too close province_24/province_44"
+    ]
+  }
+}

@@ -101,10 +101,7 @@ export function sharedLength(a,b) {
   }
   return total;
 }
-export function coastMidpoint(p,board,destination) {
-  const own=board.islands.find(i=>i.id===p.island),ob=box(own.polygon),db=box(destination.polygon);
-  const direction=[(db[0]+db[2]-ob[0]-ob[2])/2,(db[1]+db[3]-ob[1]-ob[3])/2];
-  const clockwise=signedArea(p.polygon)<0?-1:1;
+export function exposedSegments(p,board) {
   const pieces=[];
   for(const [a,b] of edges(p.polygon)) {
     const length=distance(a,b);let intervals=[[0,1]];
@@ -114,9 +111,16 @@ export function coastMidpoint(p,board,destination) {
       if(hi<=lo)continue;
       intervals=intervals.flatMap(([x,y])=>hi<=x||lo>=y?[[x,y]]:[[x,Math.min(y,lo)],[Math.max(x,hi),y]].filter(([u,v])=>v>u));
     }
-    const facing=clockwise*((b[1]-a[1])*direction[0]-(b[0]-a[0])*direction[1])>E*length;
-    for(const [x,y] of intervals)pieces.push({a:interpolate(a,b,x),b:interpolate(a,b,y),facing});
+    for(const [x,y] of intervals)pieces.push({a:interpolate(a,b,x),b:interpolate(a,b,y)});
   }
+  return pieces;
+}
+export function coastMidpoint(p,board,destination) {
+  const own=board.islands.find(i=>i.id===p.island),ob=box(own.polygon),db=box(destination.polygon);
+  const direction=[(db[0]+db[2]-ob[0]-ob[2])/2,(db[1]+db[3]-ob[1]-ob[3])/2];
+  const clockwise=signedArea(p.polygon)<0?-1:1;
+  const pieces=exposedSegments(p,board).map(({a,b})=>({a,b,
+    facing:clockwise*((b[1]-a[1])*direction[0]-(b[0]-a[0])*direction[1])>E*distance(a,b)}));
   const chains=[];
   for(const piece of pieces) {
     if(!piece.facing)continue;

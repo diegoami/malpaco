@@ -1,0 +1,83 @@
+{
+  "target": "docs/prototypes/new-game/T24/contract.mjs",
+  "before": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+  "after": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+  "records": [
+    {
+      "constraint": "counts",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "symmetry",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "connectivity",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "degree",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "cells",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "borders",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "crossings",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "coasts",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "intersections",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "bonus",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "fortress",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "concentration",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "remoteness",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "crowding",
+      "exit": 1,
+      "behaviouralKill": true
+    },
+    {
+      "constraint": "labels",
+      "exit": 1,
+      "behaviouralKill": true
+    }
+  ],
+  "restoredExit": 0
+}

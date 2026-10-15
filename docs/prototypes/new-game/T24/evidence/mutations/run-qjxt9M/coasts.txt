@@ -1,0 +1,144 @@
+✔ coasts: positive geometric control (12.267233ms)
+✖ coasts: rejects endpoint missing (4.28708ms)
+✖ coasts: rejects wrong country coast (1.870988ms)
+✖ coasts: rejects endpoint inside source (1.740458ms)
+✖ coasts: rejects off coast (1.369889ms)
+✖ coasts: rejects coast endpoint away from midpoint (1.660415ms)
+✖ coasts: rejects endpoint on internal boundary (1.581014ms)
+✖ coasts: rejects destination endpoint wrong (1.655047ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 1
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66.778765
+
+✖ failing tests:
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ coasts: rejects endpoint missing (4.28708ms)
+  AssertionError [ERR_ASSERTION]: coasts bypass: endpoint missing
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ coasts: rejects wrong country coast (1.870988ms)
+  AssertionError [ERR_ASSERTION]: coasts bypass: wrong country coast
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ coasts: rejects endpoint inside source (1.740458ms)
+  AssertionError [ERR_ASSERTION]: coasts bypass: endpoint inside source
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ coasts: rejects off coast (1.369889ms)
+  AssertionError [ERR_ASSERTION]: coasts bypass: off coast
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ coasts: rejects coast endpoint away from midpoint (1.660415ms)
+  AssertionError [ERR_ASSERTION]: coasts bypass: coast endpoint away from midpoint
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ coasts: rejects endpoint on internal boundary (1.581014ms)
+  AssertionError [ERR_ASSERTION]: coasts bypass: endpoint on internal boundary
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/geometry-preflight.test.mjs:57:40
+✖ coasts: rejects destination endpoint wrong (1.655047ms)
+  AssertionError [ERR_ASSERTION]: coasts bypass: destination endpoint wrong
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/geometry-preflight.test.mjs:59:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

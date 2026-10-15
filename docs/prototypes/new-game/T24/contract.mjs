@@ -1,5 +1,5 @@
 import { parameters as P } from './parameters.mjs';
-import { E,point,simple,area,overlap,contained,sharedLength,coastMidpoint,distance,location,segmentPieces } from './geometry.mjs';
+import { E,point,simple,area,overlap,contained,sharedLength,coastMidpoint,exposedSegments,distance,location,segmentPieces } from './geometry.mjs';
 export const constraints=['counts','symmetry','connectivity','degree','cells','borders','crossings','coasts','intersections','bonus','fortress','concentration','remoteness','crowding','labels'];
 const key=(a,b)=>a<b?`${a}|${b}`:`${b}|${a}`;
 function neighbours(p){return [...new Set([...p.borders,...p.seaLanes])];}
@@ -50,7 +50,9 @@ export function checkConstraint(name,board) {
       for(const i of board.islands) {
         const cells=i.provinces.map(id=>byId.get(id));
         if(cells.some(p=>!p||!contained(p.polygon,i.polygon)))fail(`Cell outside silhouette ${i.id}`);
-        if(Math.abs(cells.reduce((n,p)=>n+area(p.polygon),0)-area(i.polygon))>P.areaTolerance)fail(`Subdivision gap/area mismatch ${i.id}`);
+        const areaMismatch=Math.abs(cells.reduce((n,p)=>n+area(p.polygon),0)-area(i.polygon))>P.areaTolerance;
+        if(areaMismatch)fail(`Subdivision gap/area mismatch ${i.id}`);
+        else for(const p of cells)if(exposedSegments(p,board).some(({a,b})=>segmentPieces(a,b,i.polygon).pieces.some(piece=>piece.where!==0)))fail(`Explicit interior gap boundary ${p.id}`);
       }
       for(let a=0;a<board.provinces.length;a++)for(let b=a+1;b<board.provinces.length;b++)if(overlap(board.provinces[a].polygon,board.provinces[b].polygon))fail(`Cell overlap ${board.provinces[a].id}/${board.provinces[b].id}`);
       for(let a=0;a<board.islands.length;a++)for(let b=a+1;b<board.islands.length;b++)if(overlap(board.islands[a].polygon,board.islands[b].polygon)||sharedLength(board.islands[a].polygon,board.islands[b].polygon)>E)fail(`Islands overlap/touch ${board.islands[a].id}/${board.islands[b].id}`);
@@ -72,6 +74,7 @@ export function checkConstraint(name,board) {
     if(name==='coasts') {
       if(!validGeometry(board)){fail('Cannot establish coast from invalid geometry');return errors;}
       const scale=boardScale(board);
+      if(!Number.isFinite(scale)||scale<=0){fail('Invalid coast coordinate frame');return errors;}
       for(const r of board.routes) {
         if(!Array.isArray(r.points)||r.points.length<2||!r.points.every(point)){fail('Missing/invalid route points');continue;}
         for(const [id,otherId,end] of [[r.from,r.to,r.points[0]],[r.to,r.from,r.points.at(-1)]]) {
@@ -88,6 +91,7 @@ export function checkConstraint(name,board) {
       if(!validGeometry(board)){fail('Cannot establish route clearance from invalid geometry');return errors;}
       for(const r of board.routes) {
         if(!Array.isArray(r.points)||r.points.length<2||!r.points.every(point)){fail('Missing route geometry');continue;}
+        if(location(r.points[0],byId.get(r.from).polygon)>0||location(r.points.at(-1),byId.get(r.to).polygon)>0){fail('Route endpoint lies inside a country');continue;}
         for(let j=0;j<r.points.length-1;j++)for(const p of board.provinces) {
           const a=r.points[j],b=r.points[j+1],parts=segmentPieces(a,b,p.polygon);
           if(distance(a,b)<=E){fail('Zero-length route segment');continue;}
@@ -126,7 +130,7 @@ export function checkConstraint(name,board) {
         const [x,y]=p.labelAt;
         const hit=[[x-half,y-half],[x+half,y-half],[x+half,y+half],[x-half,y+half]];
         if(!contained(hit,p.polygon)||x-half<board.bounds.x-E||x+half>board.bounds.x+board.bounds.width+E||y-half<board.bounds.y-E||y+half>board.bounds.y+board.bounds.height+E)fail(`Hit square outside country/frame ${p.id}`);
-        if(!(p.hitSizeCss>=P.hitSize&&p.countTextCss>=P.countTextMin&&p.countContrast>=P.contrastMin))fail(`Hit/text/contrast specification too small ${p.id}`);
+        if(![p.hitSizeCss,p.countTextCss,p.countContrast].every(Number.isFinite)||!(p.hitSizeCss>=P.hitSize&&p.countTextCss>=P.countTextMin&&p.countContrast>=P.contrastMin))fail(`Hit/text/contrast specification too small ${p.id}`);
       }
       for(let a=0;a<board.provinces.length;a++)for(let b=a+1;b<board.provinces.length;b++) {
         const u=board.provinces[a].labelAt,v=board.provinces[b].labelAt;

@@ -1,0 +1,954 @@
+{
+  "seed": 5,
+  "accepted": false,
+  "attempts": 50,
+  "elapsedMs": 646.6193069999999,
+  "firstFailure": {
+    "counts": [],
+    "symmetry": [],
+    "connectivity": [],
+    "degree": [],
+    "cells": [
+      "Subdivision gap/area mismatch island_0",
+      "Subdivision gap/area mismatch island_1",
+      "Subdivision gap/area mismatch island_2",
+      "Subdivision gap/area mismatch island_3",
+      "Subdivision gap/area mismatch island_4",
+      "Subdivision gap/area mismatch island_5",
+      "Subdivision gap/area mismatch island_6",
+      "Subdivision gap/area mismatch island_7",
+      "Subdivision gap/area mismatch island_8"
+    ],
+    "borders": [
+      "Declared/shared boundary mismatch province_28",
+      "Declared/shared boundary mismatch province_0",
+      "Declared/shared boundary mismatch province_11",
+      "Declared/shared boundary mismatch province_12",
+      "Declared/shared boundary mismatch province_27",
+      "Declared/shared boundary mismatch province_40",
+      "Declared/shared boundary mismatch province_5",
+      "Declared/shared boundary mismatch province_15",
+      "Declared/shared boundary mismatch province_24",
+      "Declared/shared boundary mismatch province_31",
+      "Declared/shared boundary mismatch province_2",
+      "Declared/shared boundary mismatch province_30",
+      "Declared/shared boundary mismatch province_1",
+      "Declared/shared boundary mismatch province_23",
+      "Declared/shared boundary mismatch province_45",
+      "Declared/shared boundary mismatch province_41",
+      "Declared/shared boundary mismatch province_32",
+      "Declared/shared boundary mismatch province_36",
+      "Declared/shared boundary mismatch province_14",
+      "Declared/shared boundary mismatch province_8",
+      "Declared/shared boundary mismatch province_22",
+      "Declared/shared boundary mismatch province_29",
+      "Declared/shared boundary mismatch province_39",
+      "Declared/shared boundary mismatch province_38",
+      "Declared/shared boundary mismatch province_25",
+      "Declared/shared boundary mismatch province_7",
+      "Declared/shared boundary mismatch province_42",
+      "Declared/shared boundary mismatch province_20",
+      "Declared/shared boundary mismatch province_34",
+      "Declared/shared boundary mismatch province_17",
+      "Declared/shared boundary mismatch province_18",
+      "Declared/shared boundary mismatch province_19",
+      "Declared/shared boundary mismatch province_4",
+      "Declared/shared boundary mismatch province_33",
+      "Declared/shared boundary mismatch province_9",
+      "Declared/shared boundary mismatch province_16",
+      "Declared/shared boundary mismatch province_13",
+      "Declared/shared boundary mismatch province_43",
+      "Declared/shared boundary mismatch province_21",
+      "Declared/shared boundary mismatch province_35",
+      "Declared/shared boundary mismatch province_44",
+      "Declared/shared boundary mismatch province_3",
+      "Declared/shared boundary mismatch province_26",
+      "Declared/shared boundary mismatch province_10",
+      "Declared/shared boundary mismatch province_37",
+      "Declared/shared boundary mismatch province_6"
+    ],
+    "crossings": [],
+    "coasts": [
+      "Wrong/off-centre coast province_28",
+      "Wrong/off-centre coast province_37",
+      "Wrong/off-centre coast province_28",
+      "Wrong/off-centre coast province_5",
+      "Wrong/off-centre coast province_0",
+      "Wrong/off-centre coast province_1",
+      "Wrong/off-centre coast province_0",
+      "Wrong/off-centre coast province_9",
+      "Wrong/off-centre coast province_12",
+      "Wrong/off-centre coast province_35",
+      "Wrong/off-centre coast province_24",
+      "Wrong/off-centre coast province_40",
+      "Wrong/off-centre coast province_31",
+      "Wrong/off-centre coast province_39",
+      "Wrong/off-centre coast province_30",
+      "Wrong/off-centre coast province_8",
+      "Wrong/off-centre coast province_30",
+      "Wrong/off-centre coast province_33",
+      "Wrong/off-centre coast province_23",
+      "Wrong/off-centre coast province_8",
+      "Wrong/off-centre coast province_23",
+      "Wrong/off-centre coast province_40",
+      "Wrong/off-centre coast province_14",
+      "Wrong/off-centre coast province_25",
+      "Wrong/off-centre coast province_14",
+      "Wrong/off-centre coast province_41",
+      "Wrong/off-centre coast province_25",
+      "Wrong/off-centre coast province_33",
+      "Wrong/off-centre coast province_13",
+      "Wrong/off-centre coast province_24",
+      "Wrong/off-centre coast province_21",
+      "Wrong/off-centre coast province_9"
+    ],
+    "intersections": [
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country",
+      "Route endpoint lies inside a country"
+    ],
+    "bonus": [],
+    "fortress": [],
+    "concentration": [],
+    "remoteness": [],
+    "crowding": [],
+    "labels": [
+      "Hit square outside country/frame province_28",
+      "Hit/text/contrast specification too small province_28",
+      "Hit square outside country/frame province_0",
+      "Hit/text/contrast specification too small province_0",
+      "Hit square outside country/frame province_11",
+      "Hit/text/contrast specification too small province_11",
+      "Hit square outside country/frame province_12",
+      "Hit/text/contrast specification too small province_12",
+      "Hit square outside country/frame province_27",
+      "Hit/text/contrast specification too small province_27",
+      "Hit square outside country/frame province_40",
+      "Hit/text/contrast specification too small province_40",
+      "Hit square outside country/frame province_5",
+      "Hit/text/contrast specification too small province_5",
+      "Hit square outside country/frame province_15",
+      "Hit/text/contrast specification too small province_15",
+      "Hit square outside country/frame province_24",
+      "Hit/text/contrast specification too small province_24",
+      "Hit square outside country/frame province_31",
+      "Hit/text/contrast specification too small province_31",
+      "Hit square outside country/frame province_2",
+      "Hit/text/contrast specification too small province_2",
+      "Hit square outside country/frame province_30",
+      "Hit/text/contrast specification too small province_30",
+      "Hit square outside country/frame province_1",
+      "Hit/text/contrast specification too small province_1",
+      "Hit square outside country/frame province_23",
+      "Hit/text/contrast specification too small province_23",
+      "Hit square outside country/frame province_45",
+      "Hit/text/contrast specification too small province_45",
+      "Hit square outside country/frame province_41",
+      "Hit/text/contrast specification too small province_41",
+      "Hit square outside country/frame province_32",
+      "Hit/text/contrast specification too small province_32",
+      "Hit square outside country/frame province_36",
+      "Hit/text/contrast specification too small province_36",
+      "Hit square outside country/frame province_14",
+      "Hit/text/contrast specification too small province_14",
+      "Hit square outside country/frame province_8",
+      "Hit/text/contrast specification too small province_8",
+      "Hit square outside country/frame province_22",
+      "Hit/text/contrast specification too small province_22",
+      "Hit square outside country/frame province_29",
+      "Hit/text/contrast specification too small province_29",
+      "Hit square outside country/frame province_39",
+      "Hit/text/contrast specification too small province_39",
+      "Hit square outside country/frame province_38",
+      "Hit/text/contrast specification too small province_38",
+      "Hit square outside country/frame province_25",
+      "Hit/text/contrast specification too small province_25",
+      "Hit square outside country/frame province_7",
+      "Hit/text/contrast specification too small province_7",
+      "Hit square outside country/frame province_42",
+      "Hit/text/contrast specification too small province_42",
+      "Hit square outside country/frame province_20",
+      "Hit/text/contrast specification too small province_20",
+      "Hit square outside country/frame province_34",
+      "Hit/text/contrast specification too small province_34",
+      "Hit square outside country/frame province_17",
+      "Hit/text/contrast specification too small province_17",
+      "Hit square outside country/frame province_18",
+      "Hit/text/contrast specification too small province_18",
+      "Hit square outside country/frame province_19",
+      "Hit/text/contrast specification too small province_19",
+      "Hit square outside country/frame province_4",
+      "Hit/text/contrast specification too small province_4",
+      "Hit square outside country/frame province_33",
+      "Hit/text/contrast specification too small province_33",
+      "Hit square outside country/frame province_9",
+      "Hit/text/contrast specification too small province_9",
+      "Hit square outside country/frame province_16",
+      "Hit/text/contrast specification too small province_16",
+      "Hit square outside country/frame province_13",
+      "Hit/text/contrast specification too small province_13",
+      "Hit square outside country/frame province_43",
+      "Hit/text/contrast specification too small province_43",
+      "Hit square outside country/frame province_21",
+      "Hit/text/contrast specification too small province_21",
+      "Hit square outside country/frame province_35",
+      "Hit/text/contrast specification too small province_35",
+      "Hit square outside country/frame province_44",
+      "Hit/text/contrast specification too small province_44",
+      "Hit square outside country/frame province_3",
+      "Hit/text/contrast specification too small province_3",
+      "Hit square outside country/frame province_26",
+      "Hit/text/contrast specification too small province_26",
+      "Hit square outside country/frame province_10",
+      "Hit/text/contrast specification too small province_10",
+      "Hit square outside country/frame province_37",
+      "Hit/text/contrast specification too small province_37",
+      "Hit square outside country/frame province_6",
+      "Hit/text/contrast specification too small province_6",
+      "Labels too close province_28/province_11",
+      "Labels too close province_12/province_40",
+      "Labels too close province_5/province_24",
+      "Labels too close province_31/province_30",
+      "Labels too close province_1/province_45",
+      "Labels too close province_23/province_41",
+      "Labels too close province_45/province_32",
+      "Labels too close province_36/province_8",
+      "Labels too close province_14/province_22",
+      "Labels too close province_8/province_29",
+      "Labels too close province_39/province_25",
+      "Labels too close province_38/province_7",
+      "Labels too close province_25/province_42",
+      "Labels too close province_7/province_20",
+      "Labels too close province_42/province_34",
+      "Labels too close province_17/province_19",
+      "Labels too close province_18/province_4",
+      "Labels too close province_19/province_33",
+      "Labels too close province_4/province_9",
+      "Labels too close province_33/province_16",
+      "Labels too close province_13/province_21",
+      "Labels too close province_43/province_35",
+      "Labels too close province_21/province_44",
+      "Labels too close province_35/province_3",
+      "Labels too close province_44/province_26",
+      "Labels too close province_3/province_10",
+      "Labels too close province_26/province_37",
+      "Labels too close province_10/province_6"
+    ]
+  },
+  "records": [
+    {
+      "attempt": 1,
+      "generated": true,
+      "mapHash": "10db5a9fe5a6fd2a7be76aaebd786cf4c4fabc4d881d56bba70573201917b914",
+      "sceneHash": "f68978ebbf24874e33b632f050956e79b5e071e86d24f066e95e171172bab144",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.252084999999624
+    },
+    {
+      "attempt": 2,
+      "generated": true,
+      "mapHash": "115f872a1be2a0e1c2046328ed3dca74932ea2ddd58873c5c10cc54ea4ffb714",
+      "sceneHash": "f2275805dd895e0b1abe18f5b4debc7589820faa3f26d3e25e48e0b5c1d2264f",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.502970999999889
+    },
+    {
+      "attempt": 3,
+      "generated": true,
+      "mapHash": "8cf0a36ade50d82e7b888defe22e47fb3b8a3924efd7692ea6ddedd1c35e0bcd",
+      "sceneHash": "a86752432bad6badfb34a6c4df4f68d019ed41021ac40b4bf3805a81ae0264ce",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.565656999999646
+    },
+    {
+      "attempt": 4,
+      "generated": true,
+      "mapHash": "207af5995f7e6ff4d0efed1df9d2dfcbab984b6c78440dc32e9c1997fa0fc61e",
+      "sceneHash": "39add4168358be083b5655b182ccd5e1d57d7fcb61276a7ea48d34a66213eea5",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.583708999999999
+    },
+    {
+      "attempt": 5,
+      "generated": true,
+      "mapHash": "7c19c2de6573ab71625dc719406440a75938014971d122b01e95f4a14c8ab2dd",
+      "sceneHash": "592335eab3e29723e3ad8179b64b885073ddfe856ade1dea6917e155c429534d",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.684995000000072
+    },
+    {
+      "attempt": 6,
+      "generated": true,
+      "mapHash": "b43da0dd33df68bc7fa21bf5c76bbe20d0127bc973ba84b46e8867eb3531489d",
+      "sceneHash": "d50d968aae89be453f8a386b71e4ab971edcb88903f536f40f438f8fc22310fa",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.118074999999862
+    },
+    {
+      "attempt": 7,
+      "generated": true,
+      "mapHash": "179570b1095308256691303d9a1b769190bba430035fb6df6c7c225424e60534",
+      "sceneHash": "b2cb1ffd6169e3fa4048fa89bfc2ab6ed9cd2ad1a1037fe905a23c034d7322f3",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.767807999999604
+    },
+    {
+      "attempt": 8,
+      "generated": true,
+      "mapHash": "b1bc840213bd7bc9bb9e1ca9d4c03d4b6afe1ea8aa3cfe8915c8aa0b925842b7",
+      "sceneHash": "32a4df2c0deae97379da3be27973b911c8b4bcb8ce90b240734b8839a04444fb",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.390332999999828
+    },
+    {
+      "attempt": 9,
+      "generated": true,
+      "mapHash": "f2bb49e5f5ca23a65f04b4acbe3043a43dab0a6e43134752ab9c101c496e3816",
+      "sceneHash": "9c95e2e83614d15e0223c6c70efdc6409b4d7f5cfc1fdf78fbfd462c70f146cb",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.235983000000033
+    },
+    {
+      "attempt": 10,
+      "generated": true,
+      "mapHash": "b3fad72a781879cbb8cc8e1e066ba9cf1cf9548b9edf60ae4a5df0f8549cf3f5",
+      "sceneHash": "ae94e9a886700d6bc54701a84a850e190ba0e5488d9846628d1872e471d2512f",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.92169899999999
+    },
+    {
+      "attempt": 11,
+      "generated": true,
+      "mapHash": "7e4f6cc90eba3a7f3929d3838416cb8535cee89cffedd8bc71b7162c5a16943e",
+      "sceneHash": "c1ecd0d8f0f59d5b8c064152b1576cc968e45cc0a00c92b287057812d085d2cf",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.689624999999978
+    },
+    {
+      "attempt": 12,
+      "generated": true,
+      "mapHash": "6ffb9a9566c020a692b2ee82a6c18c9a81070843a215395095f58a9b5e9fcc8d",
+      "sceneHash": "e45d38949b5469f80b1a088737b395bf16b06789a9ccae08f0e61a3412af1b23",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.283760999999686
+    },
+    {
+      "attempt": 13,
+      "generated": true,
+      "mapHash": "389e8136b8589bf242970c5c21a48db527cbb55215f99e99817114662c3bc6ce",
+      "sceneHash": "b4c3885ba97e53863f1e55ecaeadc2fa09efd41f9c1c568c341d6276abc24e95",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.554074000000128
+    },
+    {
+      "attempt": 14,
+      "generated": true,
+      "mapHash": "185e306c28b249e8bfc1bd441c3c8517effc049c4ed93621a009a5fb3f3e6753",
+      "sceneHash": "7d1c0d7009cd5fd5aed7b25cea8d04c47086a3e5601c0e23db8297b0537b8f87",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.994282999999996
+    },
+    {
+      "attempt": 15,
+      "generated": true,
+      "mapHash": "71a4963f5c466936ed2814f93b7cccd0be9759e02fdb648ff0251ee07df869b8",
+      "sceneHash": "787c69d1effec0ea396ef19cf6226c20a38e225da78562a95a413606ca08a5ef",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.131050999999843
+    },
+    {
+      "attempt": 16,
+      "generated": true,
+      "mapHash": "fbec39b853860b355f68ffff215c915d9acbd8f9443451713e5d5c2e1af2c225",
+      "sceneHash": "8bcce76f5acce47d07ec5f2e9e442c3acb895474904482253d6c555a54458f67",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.681606000000102
+    },
+    {
+      "attempt": 17,
+      "generated": true,
+      "mapHash": "7a1d73642d590d7a2739a6e36e04266c05ce9abc542a6f68278e59e768454b78",
+      "sceneHash": "b0e29adad4534b6dd8844ef83e868391dc97a7ab2e2dc773beb4230589824a72",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.165050999999949
+    },
+    {
+      "attempt": 18,
+      "generated": true,
+      "mapHash": "36664e52263894430ac0e9248e381fd40a4043ddc79cae90d8a07410503ba974",
+      "sceneHash": "663c636146b07298c5e8d2b40c1f08c6c29e22ec1e34b5e5a91284198d3c145b",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.77145900000005
+    },
+    {
+      "attempt": 19,
+      "generated": true,
+      "mapHash": "636872be8a4f163caf2faf8c30f785cc54cbe819b273a1c6d221a6640a898eab",
+      "sceneHash": "dbd975dbf37e979674ea21c47c0ce74c32d4531b35082a47045784de86e8c56d",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.924487999999656
+    },
+    {
+      "attempt": 20,
+      "generated": true,
+      "mapHash": "17729cbe3b2664f4b67b353cb12036ba1f31d9e93aeb6d3ec52292e9bde323de",
+      "sceneHash": "686b42f37f014f868b2a5e2961688a30e390b05c8d023003bc4bc59f6566570f",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.215889000000061
+    },
+    {
+      "attempt": 21,
+      "generated": true,
+      "mapHash": "c6cb6d9748b0aee6a9e05bfbf627a89f0b714113450bef5ef89ca4d563a63961",
+      "sceneHash": "e1db05f7cd57a2c4fe7fc9b7b5ce21f43cc16f853e3f6c05352ed3bf52a13132",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.765839000000142
+    },
+    {
+      "attempt": 22,
+      "generated": true,
+      "mapHash": "4a6cacaa693648a8392e6e78ef040455a9f9f7b21a2cb82611eb84a5298b47bf",
+      "sceneHash": "238d939994c4afbd78aee11a0f4d473ce734bd3fc8e7fd462bdffead38f0d9fd",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.76536299999998
+    },
+    {
+      "attempt": 23,
+      "generated": true,
+      "mapHash": "e910ed4b5a3f2ebb8017e79351913d6fe3003c7fcc858e24d29fe7d54c8be2c4",
+      "sceneHash": "bfcc1b7b27fd86e7e6eb2ae19d327c3d51628c47c2ab738b0a0f1609e48b978a",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "remoteness",
+        "labels"
+      ],
+      "elapsedMs": 11.81003200000032
+    },
+    {
+      "attempt": 24,
+      "generated": true,
+      "mapHash": "c6330521853bf7e33e9bb7a88538be75dd8bb88df9bce2d225d54e2c8e581efa",
+      "sceneHash": "10017ae0c845dec1091b038aa13e743cff275c510ced85e81299b042b839224b",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.337256000000252
+    },
+    {
+      "attempt": 25,
+      "generated": true,
+      "mapHash": "d5ac81efdc8bb0ce8665f4d034b9e9d7eac5dd3b84f4dd1e0e82d6a1c9e8f7dd",
+      "sceneHash": "0201c91cdfa3345f5a422f7abd2cbb714ffed1fee69928377a18523b1759101b",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.243561999999656
+    },
+    {
+      "attempt": 26,
+      "generated": true,
+      "mapHash": "4268aec34816954128aec4eded662cdc02d0ba990abfc963981f0da02e85494f",
+      "sceneHash": "cc75cf0cbd5b4afca10e8a8fd2979f1fac6611be6088a7502229a44b01719736",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.364493000000039
+    },
+    {
+      "attempt": 27,
+      "generated": true,
+      "mapHash": "a46972cca5e37aa94d2d098779799b497f113d47d39cf330b9a83b4be4547e18",
+      "sceneHash": "cad0b4564f4b6bd3b9258773c1825414896d1eb4c3b3dd58615ea6318d7b08c0",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.542733999999655
+    },
+    {
+      "attempt": 28,
+      "generated": true,
+      "mapHash": "0b387a95e41477865a4615554aed0b19b8027de7d4f8f29eb4fe0295f10f63d5",
+      "sceneHash": "71467ad60aa61c301e363305b432597c502b8ccc6b0692aa54a551c71acf1155",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.87969800000019
+    },
+    {
+      "attempt": 29,
+      "generated": true,
+      "mapHash": "b5ce84bf515b0cdfaffc9004fdcd9389318548e358c7160930dfa99f3413943f",
+      "sceneHash": "aa6e2bad0f002acce76ac3fc7f762cd97d2b5d47e766a33e266f0ffbdbbfe3fd",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 14.393896999999924
+    },
+    {
+      "attempt": 30,
+      "generated": true,
+      "mapHash": "ab6e1e838cfe46b3466904b6e41d2f81d60442b6d407cce3e2a2611b4d7c2fcf",
+      "sceneHash": "e95fe9d014bd1954d85c61406ee6ce5cf20a60003fba9da9e614097e71fb6200",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 18.220580000000155
+    },
+    {
+      "attempt": 31,
+      "generated": true,
+      "mapHash": "38f6e64cb7bf6659997a482a770bdb770814fa8101ccef3b03f3fec88fccbde4",
+      "sceneHash": "e392ba3854d3c9f5d63c78502864a468ae9d1159d18609fd268c54501bb1aee8",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 19.764584000000013
+    },
+    {
+      "attempt": 32,
+      "generated": true,
+      "mapHash": "06c0878a58c7a07cd7d5bc04cdccf444b6c8cd4eb0aa4d827cf2905ab306a851",
+      "sceneHash": "58b5ecde47a30cc4e306f7f220a39a77812cb4ab0af9e47ce3dbe7d03b75c32a",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 22.973017000000254
+    },
+    {
+      "attempt": 33,
+      "generated": true,
+      "mapHash": "64f9cb57faeb561c4af661c554f990bd2b20e736166647e1a1ba0fb609c5af9b",
+      "sceneHash": "e6b029c908eaaf266c6083854120ca801372781474c002e7d0d6579cc8e0537d",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 16.082496999999876
+    },
+    {
+      "attempt": 34,
+      "generated": true,
+      "mapHash": "87cf30815a706e67e1a3b3b0071f877d172ec074691c159419ec0aaaab5c4935",
+      "sceneHash": "4e94928b30599cd286b86b34ab4662e52241347180bd3a963ac4fd420ceebeda",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.132866000000377
+    },
+    {
+      "attempt": 35,
+      "generated": true,
+      "mapHash": "a13ce7d6c13b2331c63f32de2fd14e8d3d9a451087d94942ff96fbdc1bb5b3f4",
+      "sceneHash": "c4e36fd526ce9d9c8332b08058ff4a1d1893fc4618b5db90aedd40aeb2ee1d33",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.691366000000016
+    },
+    {
+      "attempt": 36,
+      "generated": true,
+      "mapHash": "5c29c4036dd0236e3ff3d56149193e5a0c2c67a9e6d62836428f1f4e1f48ea70",
+      "sceneHash": "ffa7767fbfa42f4a55f4c133653cdd46a8a4e1f58bb8ca85fc82ef09bf3db305",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.391951999999947
+    },
+    {
+      "attempt": 37,
+      "generated": true,
+      "mapHash": "ebdf843c937c153477f394c67db9ef094ccba4b1c0e5bcd84f5b284fdd98dec2",
+      "sceneHash": "660376c6b9da17c32419b1ab5be97a3e0ef45b9eb227ecffcc6f1bd79b9b5936",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 15.21929
+    },
+    {
+      "attempt": 38,
+      "generated": true,
+      "mapHash": "235d09f726a98fdd7082044667338ef61894489cc5be43c335feba5d3a167752",
+      "sceneHash": "4f2264ca4ced5a6a3be607a7a1baa154ee745ca6d649d39a99f7d9b31c07638c",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 16.417442000000392
+    },
+    {
+      "attempt": 39,
+      "generated": true,
+      "mapHash": "dc40854ae2f8a5677535274d80aa4239ee33489557e2f123441e1344e1cf809a",
+      "sceneHash": "bf9582670a05900ef4fd309f315983cc16dbcc702241f5a4e76fa03f071b12fd",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 14.590842000000066
+    },
+    {
+      "attempt": 40,
+      "generated": true,
+      "mapHash": "3f1b519ada63d00d4f0e93d99f221833dd4b7ff40d8458eea80b59cb23eda9c8",
+      "sceneHash": "993b59f2700aa4e40e8ea90c0d790ebcc7ec3bc530d1e22db4ce894d729abea7",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 13.134757999999692
+    },
+    {
+      "attempt": 41,
+      "generated": true,
+      "mapHash": "3540f3fcd2fa11f2762aaef43d45c3891ce634a3654edd1f6c6e3fe26dc210da",
+      "sceneHash": "72a077f30716f74cc813f16e95907874af8c0416e5bc6ba4413fad45675ef41c",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.596777000000202
+    },
+    {
+      "attempt": 42,
+      "generated": true,
+      "mapHash": "e5b034f8361335b8673e2910d75e164f2e9638abb026b39de842bfcb59017fa4",
+      "sceneHash": "42e5a01354d5b92603bab0651340a50c8fb4cbe1fd4cdc040c5cf4b6398994f1",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 13.082175000000007
+    },
+    {
+      "attempt": 43,
+      "generated": true,
+      "mapHash": "e58bfbb37612b836466282dcda82557fc4a0242584520127a7b913bd781267f1",
+      "sceneHash": "c972f3f042088f773ac1d85a5668f86e9f11ba6b9b181c0a9d585724483a788d",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.033265000000029
+    },
+    {
+      "attempt": 44,
+      "generated": true,
+      "mapHash": "bc9fda0f964e5864320b3bc21db02e9bfcc3e122179ef8bb47d40d9e0dbab3f9",
+      "sceneHash": "83226c4764acd1e09461a9d97949489ef17e7a73a8202ca229809fe5cbe05e5e",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.17070700000022
+    },
+    {
+      "attempt": 45,
+      "generated": true,
+      "mapHash": "b810cb38a7b547f985b85193d121143fc68750474019d64c1c0f06b87009db67",
+      "sceneHash": "e755bc1b5b0add876c49fc98f78ea5e5906b578a54b929b6a54eb2b5b6dbfd62",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.336781000000428
+    },
+    {
+      "attempt": 46,
+      "generated": true,
+      "mapHash": "b2e05db7c3ec4b882769323d9036908c04fd85dcab9b6b3888c9d74de0556ea0",
+      "sceneHash": "e2a5d6775e7fed0444c36c06bb1f1a2d3453e143071d13e806aa21525eeb76e8",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.994912999999997
+    },
+    {
+      "attempt": 47,
+      "generated": true,
+      "mapHash": "010dd9b353cdfebf28db75a20a49cde8cf63792767d0c11b93c61a8763d1e0d6",
+      "sceneHash": "c9928b50ca8ee6d6f9d374706e22506296e8b2c1a6c331ca88d51242c0a5b46b",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.455427999999756
+    },
+    {
+      "attempt": 48,
+      "generated": true,
+      "mapHash": "431e76507e30fb464b9d8c25d6995f68be494a9ae65d94c8b17f5f8f0ab5ffc7",
+      "sceneHash": "84c3c1e61dc041f929b15909fe98135517994a92c02ffb19f6d5309718fdbcf1",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 11.703794000000016
+    },
+    {
+      "attempt": 49,
+      "generated": true,
+      "mapHash": "2563706cc4b98adc68d96bb995b1afdedcf1c232054b741a346e2db90950de67",
+      "sceneHash": "c96c4a3afc27515baae3f89df5a490ceaf7cc5e178ecb198411123f427b9e974",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.832870999999614
+    },
+    {
+      "attempt": 50,
+      "generated": true,
+      "mapHash": "69a593aedc4f6591b9dc902a93623c29052a390ba179708d73a0d041b393cf83",
+      "sceneHash": "db760f0ce73d5abfa6843f6fa6ca466ff36d5c900055f6b33cd75a8b58534854",
+      "failures": [
+        "cells",
+        "borders",
+        "coasts",
+        "intersections",
+        "labels"
+      ],
+      "elapsedMs": 12.09582599999976
+    }
+  ]
+}
