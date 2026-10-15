@@ -84,6 +84,23 @@ a new replay, with its own acceptance and mutation reports alongside them.
 
 ![Draft F at 1920 by 1080](preflight-recovered-f/candidate-green/after-1920x1080.png)
 
+### Draft G screenshots and completed replay
+
+These captures are the original completed G replay, archived after the session
+pivoted to the new-game plan. G keeps F's 16 sea pairs and centres the endpoints
+on the facing coast chains. This is still a prototype with disclosed degree-six
+countries; these earlier prototype checks do not establish compliance with the
+subsequently approved T24 contract or final owner approval.
+
+The [replay result](preflight-20261015-g/replay-result.json) records missing-preview
+red, candidate green, selected-neighbour mutation red (92 findings), exact byte
+restoration and the final preview absent. [SHA256SUMS](preflight-20261015-g/SHA256SUMS)
+covers every retained output. No browser rerun was needed to archive these files.
+
+![Draft G at 1280 by 800](preflight-20261015-g/candidate-green/after-1280x800.png)
+
+![Draft G at 1920 by 1080](preflight-20261015-g/candidate-green/after-1920x1080.png)
+
 ### Earlier screenshots
 
 ![Draft C](render-20261015-c/map-1280.png)
