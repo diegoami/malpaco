@@ -1,0 +1,57 @@
+{
+  "source": "src/core/rules.ts",
+  "before": "a3fc3f9c5bcf8916a20974c5b63389180506b0af321341870a647fbcceab37a3",
+  "after": "a3fc3f9c5bcf8916a20974c5b63389180506b0af321341870a647fbcceab37a3",
+  "records": [
+    {
+      "name": "complete-unit",
+      "command": "npx vitest run tests/core/complete-game.test.ts --silent=false --reporter=verbose",
+      "exit": 0
+    },
+    {
+      "name": "complete-browser",
+      "command": "npx playwright test tests/e2e/complete-game.spec.ts --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "all-unit",
+      "command": "npm test",
+      "exit": 0
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "all-browser",
+      "command": "npx playwright test --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "mutant-elimination",
+      "command": "npx vitest run tests/core/complete-game.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "mutant-living-skip",
+      "command": "npx vitest run tests/core/complete-game.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "mutant-victory",
+      "command": "npx vitest run tests/core/complete-game.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "mutant-finished-rejection",
+      "command": "npx vitest run tests/core/complete-game.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "restored-complete-unit",
+      "command": "npx vitest run tests/core/complete-game.test.ts",
+      "exit": 0
+    }
+  ]
+}

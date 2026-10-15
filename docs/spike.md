@@ -407,3 +407,31 @@ reinforcement/combat/handoff, round-trip settings and refusal recovery. It
 measures actual text against cards/panel/viewport and pins setup/four-seat
 screenshots at both sizes. Replay, failed preflights, exact restoration hashes
 and selected-seed/count mutations live under `docs/prototypes/game-setup/`.
+
+
+## Complete-game acceptance
+
+`tests/core/complete-game.test.ts` proves existing conquest behavior from ordinary
+`createGame`/`apply` actions across seeds 1, 42 and 1994 with two, three and four
+human seats. A bounded test-only conqueror/passive-opponent policy completes all
+nine matches without injected ownership, armies, dice or RNG. Three/four-seat
+matches hand off after the first elimination, visiting the eliminated-seat skip
+before the final capture. The checks cover elimination, complete ownership,
+winner selection and rejection of every action kind after victory without state
+mutation. No game rule or production UI change was needed.
+
+`tests/e2e/complete-game.spec.ts` starts a three-human generated match from normal
+setup inputs and drives every placement, combat and turn handoff through clicks
+at 1280×800 and 1920×1080. It checks first elimination, living-seat handoff,
+readable winner feedback, disabled finished controls, frozen map interactions,
+and New game returning to setup and restarting the same seeded deal. Screenshots
+of elimination, handoff and winner are retained for owner judgment.
+
+The new coverage passes on existing behavior by design; missing acceptance files
+before T16 do not mean conquest was broken. Four independent actual-source
+mutations remove elimination, skip, conquest completion, or explicitly accept a
+finished action and reopen play. Each fails the acceptance suite; saved exact
+source bytes are restored and the focused suite passes again. An earlier local
+finished-guard deletion changed refusal wording only; its retained log is not
+claimed as an actual acceptance bypass. Commands, results, hashes and screenshots
+live under `docs/prototypes/complete-game/`.

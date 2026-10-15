@@ -62,3 +62,15 @@ The initial local guard-deletion experiment changed only refusal wording because
 phase checks still rejected every action. Its retained `local-mutations-20261015-a`
 log is a reason-only negative check, not proof of an actual frozen-play bypass.
 The replay instead explicitly accepts a finished action and reopens attack phase.
+
+
+Pinned evidence `preflight-20261015-b` records nine focused core matches, two
+complete-game browser cases, 395 full unit tests, the build, and 70 full browser
+tests passing. All four actual-source mutations fail, restored focused tests
+pass, and source SHA256 is identical before and after. The parent independently
+read the mutation causes and inspected both winner screenshots. The initial
+coverage-absence baseline is `parent-baseline-20261015.txt`.
+
+The existing finished screen still offers a cosmetic instruction to select a
+province; its game-over text, disabled controls and frozen board remain correct.
+This is deferred under rule 11 and did not require production changes.
