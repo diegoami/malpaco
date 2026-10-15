@@ -7,7 +7,7 @@ import { deserializeMatch, serializeMatch } from "../../src/core";
 import type { GameState } from "../../src/core";
 import { mixedOpening, mixedOptions, passive, step } from "../helpers/computer";
 async function save(page:Page){const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();return readFileSync((await (await event).path())!,"utf8");}
-async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"mixed.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.getByLabel("Load game",{exact:true})).toHaveValue("");await expect.poll(()=>page.getByRole("alert").textContent()).toBe("");}
+async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"mixed.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.getByLabel("Load game",{exact:true})).toHaveValue("");await expect.poll(()=>page.getByRole("alert",{includeHidden:true}).textContent()).toBe("");}
 async function capture(page:Page,name:string,project:string){
  const boxes=await page.locator("#turn-title,#seat-controller,.score-name,.match-files button,.match-load label,#new-game-button,.setup-card label,.setup-card select").evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {text:n.textContent,x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,font:parseFloat(getComputedStyle(n).fontSize)};}));
  const size=page.viewportSize()!;for(const b of boxes){expect(b.font,JSON.stringify(b)).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);}
@@ -24,7 +24,7 @@ for(const seats of [2,3,4])test(`setup clicks, autonomous ordinary actions, gate
  let s=mixedOpening(1994,seats);
  if(s.currentPlayer===0){
   const p=passive(s);expect(p.kind).toBe("reinforce");if(p.kind!=="reinforce")throw Error("fixture");
-  for(let i=0;i<p.amount;i++)await page.locator(`[data-country="${p.province}"]`).click();s=step(s,p);
+  for(let i=0;i<p.amount;i++){await page.locator(`[data-country="${p.province}"]`).click();s=step(s,{...p,amount:1});}
   await page.locator("#start-combat-button").click();s=step(s,{kind:"endReinforcement"});await page.locator("#end-turn-button").click();s=step(s,{kind:"endTurn"});
  }
  await expect(page.locator("#seat-controller")).toContainText("Computer");await capture(page,"computer",info.project.name);

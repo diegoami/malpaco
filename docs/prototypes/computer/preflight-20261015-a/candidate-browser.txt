@@ -1,0 +1,245 @@
+
+Running 10 tests using 2 workers
+
+  ✓   2 [1280x800] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (85ms)
+  ✘   1 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (723ms)
+  ✘   3 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (5.7s)
+  ✘   4 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (5.7s)
+  ✓   6 [1920x1080] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (74ms)
+  ✘   7 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (699ms)
+  ✘   5 [1280x800] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped (5.1s)
+  ✘   8 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (5.7s)
+  ✘   9 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (5.7s)
+  ✘  10 [1920x1080] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped (5.1s)
+
+
+  1) [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 31
+
+    @@ -55,11 +55,41 @@
+          },
+        },
+        "currentPlayer": 1,
+        "history": Array [
+          Object {
+    -       "amount": 7,
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+            "kind": "reinforce",
+            "province": "province_4",
+          },
+          Object {
+            "kind": "endReinforcement",
+
+      29 |  }
+      30 |  await expect(page.locator("#seat-controller")).toContainText("Computer");await capture(page,"computer",info.project.name);
+    > 31 |  const computerSave=await save(page);expect(deserializeMatch(computerSave).state).toEqual(s);
+         |                                                                                   ^
+      32 |  for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
+      33 |  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id)!;await page.locator(`[data-country="${own.id}"]`).click({force:true});await page.keyboard.press("Escape");expect(await save(page)).toBe(computerSave);
+      34 |  let actions=0,attacks=0;const computers=new Set<string>();
+        at /work/tests/e2e/computer.spec.ts:31:83
+
+    Error Context: test-results/computer-setup-clicks-auto-f81a9-ed-input-and-human-return-2-1280x800/error-context.md
+
+  2) [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 
+
+    Error: Timeout 5000ms exceeded while waiting on the predicate
+
+       8 | import { mixedOpening, mixedOptions, passive, step } from "../helpers/computer";
+       9 | async function save(page:Page){const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();return readFileSync((await (await event).path())!,"utf8");}
+    > 10 | async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"mixed.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.getByLabel("Load game",{exact:true})).toHaveValue("");await expect.poll(()=>page.getByRole("alert").textContent()).toBe("");}
+         |                                                                                                                                                                                                                                                                                                                         ^
+      11 | async function capture(page:Page,name:string,project:string){
+      12 |  const boxes=await page.locator("#turn-title,#seat-controller,.score-name,.match-files button,.match-load label,#new-game-button,.setup-card label,.setup-card select").evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {text:n.textContent,x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,font:parseFloat(getComputedStyle(n).fontSize)};}));
+      13 |  const size=page.viewportSize()!;for(const b of boxes){expect(b.font,JSON.stringify(b)).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);}
+        at load (/work/tests/e2e/computer.spec.ts:10:313)
+        at /work/tests/e2e/computer.spec.ts:38:2
+
+    Error Context: test-results/computer-setup-clicks-auto-a10c4-ed-input-and-human-return-3-1280x800/error-context.md
+
+  3) [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 
+
+    Error: Timeout 5000ms exceeded while waiting on the predicate
+
+       8 | import { mixedOpening, mixedOptions, passive, step } from "../helpers/computer";
+       9 | async function save(page:Page){const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();return readFileSync((await (await event).path())!,"utf8");}
+    > 10 | async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"mixed.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.getByLabel("Load game",{exact:true})).toHaveValue("");await expect.poll(()=>page.getByRole("alert").textContent()).toBe("");}
+         |                                                                                                                                                                                                                                                                                                                         ^
+      11 | async function capture(page:Page,name:string,project:string){
+      12 |  const boxes=await page.locator("#turn-title,#seat-controller,.score-name,.match-files button,.match-load label,#new-game-button,.setup-card label,.setup-card select").evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {text:n.textContent,x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,font:parseFloat(getComputedStyle(n).fontSize)};}));
+      13 |  const size=page.viewportSize()!;for(const b of boxes){expect(b.font,JSON.stringify(b)).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);}
+        at load (/work/tests/e2e/computer.spec.ts:10:313)
+        at /work/tests/e2e/computer.spec.ts:38:2
+
+    Error Context: test-results/computer-setup-clicks-auto-353da-ed-input-and-human-return-4-1280x800/error-context.md
+
+  4) [1280x800] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+
+    Error: Timeout 5000ms exceeded while waiting on the predicate
+
+       8 | import { mixedOpening, mixedOptions, passive, step } from "../helpers/computer";
+       9 | async function save(page:Page){const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();return readFileSync((await (await event).path())!,"utf8");}
+    > 10 | async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"mixed.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.getByLabel("Load game",{exact:true})).toHaveValue("");await expect.poll(()=>page.getByRole("alert").textContent()).toBe("");}
+         |                                                                                                                                                                                                                                                                                                                         ^
+      11 | async function capture(page:Page,name:string,project:string){
+      12 |  const boxes=await page.locator("#turn-title,#seat-controller,.score-name,.match-files button,.match-load label,#new-game-button,.setup-card label,.setup-card select").evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {text:n.textContent,x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,font:parseFloat(getComputedStyle(n).fontSize)};}));
+      13 |  const size=page.viewportSize()!;for(const b of boxes){expect(b.font,JSON.stringify(b)).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);}
+        at load (/work/tests/e2e/computer.spec.ts:10:313)
+        at /work/tests/e2e/computer.spec.ts:50:2
+
+    Error Context: test-results/computer-load-replacement--69217--work-victory-stays-stopped-1280x800/error-context.md
+
+  5) [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 31
+
+    @@ -55,11 +55,41 @@
+          },
+        },
+        "currentPlayer": 1,
+        "history": Array [
+          Object {
+    -       "amount": 7,
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+    +       "kind": "reinforce",
+    +       "province": "province_4",
+    +     },
+    +     Object {
+    +       "amount": 1,
+            "kind": "reinforce",
+            "province": "province_4",
+          },
+          Object {
+            "kind": "endReinforcement",
+
+      29 |  }
+      30 |  await expect(page.locator("#seat-controller")).toContainText("Computer");await capture(page,"computer",info.project.name);
+    > 31 |  const computerSave=await save(page);expect(deserializeMatch(computerSave).state).toEqual(s);
+         |                                                                                   ^
+      32 |  for(const id of ["attack-button","end-turn-button","start-combat-button"])await expect(page.locator(`#${id}`)).toBeDisabled();
+      33 |  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id)!;await page.locator(`[data-country="${own.id}"]`).click({force:true});await page.keyboard.press("Escape");expect(await save(page)).toBe(computerSave);
+      34 |  let actions=0,attacks=0;const computers=new Set<string>();
+        at /work/tests/e2e/computer.spec.ts:31:83
+
+    Error Context: test-results/computer-setup-clicks-auto-f81a9-ed-input-and-human-return-2-1920x1080/error-context.md
+
+  6) [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 
+
+    Error: Timeout 5000ms exceeded while waiting on the predicate
+
+       8 | import { mixedOpening, mixedOptions, passive, step } from "../helpers/computer";
+       9 | async function save(page:Page){const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();return readFileSync((await (await event).path())!,"utf8");}
+    > 10 | async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"mixed.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.getByLabel("Load game",{exact:true})).toHaveValue("");await expect.poll(()=>page.getByRole("alert").textContent()).toBe("");}
+         |                                                                                                                                                                                                                                                                                                                         ^
+      11 | async function capture(page:Page,name:string,project:string){
+      12 |  const boxes=await page.locator("#turn-title,#seat-controller,.score-name,.match-files button,.match-load label,#new-game-button,.setup-card label,.setup-card select").evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {text:n.textContent,x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,font:parseFloat(getComputedStyle(n).fontSize)};}));
+      13 |  const size=page.viewportSize()!;for(const b of boxes){expect(b.font,JSON.stringify(b)).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);}
+        at load (/work/tests/e2e/computer.spec.ts:10:313)
+        at /work/tests/e2e/computer.spec.ts:38:2
+
+    Error Context: test-results/computer-setup-clicks-auto-a10c4-ed-input-and-human-return-3-1920x1080/error-context.md
+
+  7) [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 
+
+    Error: Timeout 5000ms exceeded while waiting on the predicate
+
+       8 | import { mixedOpening, mixedOptions, passive, step } from "../helpers/computer";
+       9 | async function save(page:Page){const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();return readFileSync((await (await event).path())!,"utf8");}
+    > 10 | async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"mixed.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.getByLabel("Load game",{exact:true})).toHaveValue("");await expect.poll(()=>page.getByRole("alert").textContent()).toBe("");}
+         |                                                                                                                                                                                                                                                                                                                         ^
+      11 | async function capture(page:Page,name:string,project:string){
+      12 |  const boxes=await page.locator("#turn-title,#seat-controller,.score-name,.match-files button,.match-load label,#new-game-button,.setup-card label,.setup-card select").evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {text:n.textContent,x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,font:parseFloat(getComputedStyle(n).fontSize)};}));
+      13 |  const size=page.viewportSize()!;for(const b of boxes){expect(b.font,JSON.stringify(b)).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);}
+        at load (/work/tests/e2e/computer.spec.ts:10:313)
+        at /work/tests/e2e/computer.spec.ts:38:2
+
+    Error Context: test-results/computer-setup-clicks-auto-353da-ed-input-and-human-return-4-1920x1080/error-context.md
+
+  8) [1920x1080] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+
+    Error: Timeout 5000ms exceeded while waiting on the predicate
+
+       8 | import { mixedOpening, mixedOptions, passive, step } from "../helpers/computer";
+       9 | async function save(page:Page){const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();return readFileSync((await (await event).path())!,"utf8");}
+    > 10 | async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"mixed.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.getByLabel("Load game",{exact:true})).toHaveValue("");await expect.poll(()=>page.getByRole("alert").textContent()).toBe("");}
+         |                                                                                                                                                                                                                                                                                                                         ^
+      11 | async function capture(page:Page,name:string,project:string){
+      12 |  const boxes=await page.locator("#turn-title,#seat-controller,.score-name,.match-files button,.match-load label,#new-game-button,.setup-card label,.setup-card select").evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect();return {text:n.textContent,x:b.x,y:b.y,right:b.right,bottom:b.bottom,w:b.width,h:b.height,font:parseFloat(getComputedStyle(n).fontSize)};}));
+      13 |  const size=page.viewportSize()!;for(const b of boxes){expect(b.font,JSON.stringify(b)).toBeGreaterThanOrEqual(12);expect(b.w).toBeGreaterThan(0);expect(b.h).toBeGreaterThan(0);expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.right).toBeLessThanOrEqual(size.width+1);expect(b.bottom).toBeLessThanOrEqual(size.height+1);}
+        at load (/work/tests/e2e/computer.spec.ts:10:313)
+        at /work/tests/e2e/computer.spec.ts:50:2
+
+    Error Context: test-results/computer-load-replacement--69217--work-victory-stays-stopped-1920x1080/error-context.md
+
+  8 failed
+    [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 
+    [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 
+    [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 
+    [1280x800] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+    [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 
+    [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 
+    [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 
+    [1920x1080] › tests/e2e/computer.spec.ts:41:1 › load replacement and New game cancel scheduled work; victory stays stopped 
+  2 passed (20.4s)
