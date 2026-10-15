@@ -1,0 +1,23 @@
+import { createGame, defaultOptions, malpacoRules } from "../core";
+import type { GameState } from "../core";
+import { layoutGeneratedBoard } from "./prototype/layout";
+import { App } from "./app";
+import { GeneratedMapView } from "./generatedMapView";
+import { h } from "./dom";
+export function createGeneratedGame(seed:number) {
+ const result=createGame({...defaultOptions(), seed, seats:[{kind:"human"},{kind:"human"}],computerStrengths:[]},malpacoRules());
+ return result.ok ? {ok:true as const,state:projectGeneratedState(result.state)} : result;
+}
+export function projectGeneratedState(state:GameState):GameState { return {...state,map:layoutGeneratedBoard(state.map)}; }
+export function mountGeneratedGame(root:HTMLElement):void {
+ const seed=Number(new URL(location.href).searchParams.get("seed")??1994)>>>0;
+ const input=h("input",{id:"game-seed",type:"number",min:"0",max:"4294967295",value:String(seed),required:""});
+ const form=h("form",{class:"generated-seed"},h("label",{for:"game-seed"},"Seed"),input,h("button",{type:"submit"},"Generate"));
+ const retry=()=>{if(!form.reportValidity())return;const url=new URL(location.href);url.searchParams.set("seed",input.value);location.assign(url);};
+ form.addEventListener("submit",e=>{e.preventDefault();retry();});
+ const result=createGeneratedGame(seed);
+ root.classList.add("generated-game-root");root.id="generated-game";
+ if(!result.ok){const button=h("button",{type:"button"},"Retry");button.addEventListener("click",retry);root.replaceChildren(form,h("div",{role:"alert"},"Generation failed: "+result.errors.join("; ")),button);return;}
+ new App(result.state.map,seed,retry,result.state,(map,handlers)=>new GeneratedMapView(map,handlers)).mount(root);
+ root.querySelector("header")!.append(form);
+}

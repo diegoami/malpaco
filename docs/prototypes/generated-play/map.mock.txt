@@ -1,0 +1,89 @@
+import type { GameMap, Point, Province } from "../core";
+import { s } from "./dom";
+import { coastOf } from "./prototype/layout";
+import type { MapHandlers, MapViewState } from "./mapView";
+import { seatLook } from "./palette";
+const pathOf = (points: readonly Point[]) => `M${points.map(p => p.join(" ")).join("L")}Z`;
+export class GeneratedMapView {
+ readonly el:SVGSVGElement;
+ constructor(map:GameMap,handlers:MapHandlers){
+  this.el=renderAtlas(map,p=>handlers.onProvince(p.id));
+  for(const g of this.el.querySelectorAll<SVGGElement>("[data-country]")){
+   const id=g.dataset["country"]!;g.classList.add("province");g.dataset["province"]=id;
+   const name=g.querySelector<SVGTextElement>(".country-name")!;
+   name.setAttribute("y",String(Number(name.getAttribute("y"))-8));
+   g.append(s("text",{class:"army-count",x:name.getAttribute("x")!,y:Number(name.getAttribute("y"))+22},""));
+  }
+ }
+ render(view:MapViewState):void {
+  const state=view.state;
+  for(const g of this.el.querySelectorAll<SVGGElement>("[data-country]")){
+   const id=g.dataset["country"]!,seat=state.players.findIndex(p=>p.id===state.ownerOf[id]);
+   g.dataset["owner"]=state.ownerOf[id]!;g.dataset["armies"]=String(state.armies[id]);
+   g.dataset["selected"]=String(id===view.selected);g.dataset["target"]=String(view.targets.includes(id));
+   g.classList.toggle("is-mine",state.ownerOf[id]===state.players[state.currentPlayer]!.id);
+   g.setAttribute("aria-pressed",String(id===view.selected));
+   g.setAttribute("aria-label",`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies`);
+   (g.querySelector(".country-shape") as SVGElement).style.fill=seatLook(seat).color;
+   g.querySelector(".army-count")!.textContent=`${seat+1} · ${state.armies[id]}`;
+  }
+ }
+}
+export function renderAtlas(map: GameMap, select: (p: Province) => void): SVGSVGElement {
+  const { x, y, width, height } = map.bounds;
+  const svg = s("svg", { id: "generated-map", viewBox: `${x} ${y} ${width} ${height}`, role: "group", "aria-label": "Generated archipelago: 46 countries on 9 islands" });
+  const mask = s("mask", { id: "prototype-route-mask", maskUnits: "userSpaceOnUse", x, y, width, height }, s("rect", { x, y, width, height, fill: "white" }));
+  // [designed] Name clearance follows 18-unit Inter text after inspecting the
+  // MapView name box. getBBox measures the actual loaded font below.
+  const defs = s("defs", {}, mask);
+  svg.append(defs, s("rect", { class: "prototype-sea", x, y, width, height }));
+  const coasts = s("g", { class: "prototype-coasts", "aria-hidden": "true" });
+  for (const island of map.islands) {
+    const provinces = map.provinces.filter(p => p.island === island.id);
+    const coast = coastOf(provinces);
+    coasts.append(s("path", { class: "prototype-coast", d: pathOf(coast) }));
+    const labelX = Math.min(...provinces.map(p => p.labelAt[0])) - 70;
+    const labelY = Math.min(...provinces.map(p => p.labelAt[1])) - 62;
+    coasts.append(s("text", { "data-island": island.id, class: "prototype-island-title", x: labelX, y: labelY }, `${island.name}  /  +${island.bonus}`));
+  }
+  svg.append(coasts);
+  const countries = s("g", { class: "prototype-countries" });
+  for (const p of map.provinces) {
+    const group = s("g", { "data-country": p.id, role: "button", tabindex: "0", "aria-pressed": "false", "aria-label": `${p.name} (${p.id}), ${map.islands.find(i => i.id === p.island)!.name}` },
+      s("path", { class: "country-shape", d: pathOf(p.polygon) }),
+      s("text", { class: "country-name", x: p.labelAt[0], y: p.labelAt[1] }, p.name),
+    );
+    group.addEventListener("click", () => select(p));
+    group.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") { event.preventDefault(); select(p); }
+    });
+    countries.append(group);
+  }
+  svg.append(countries);
+  const routes = s("g", { class: "prototype-routes", mask: "url(#prototype-route-mask)", "aria-hidden": "true" });
+  for (const [kind, field] of [["border", "borders"], ["sea", "seaLanes"]] as const) {
+    const seen = new Set<string>();
+    for (const p of map.provinces) for (const id of p[field]) {
+      const key = [p.id, id].sort().join("|");
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const q = map.provinces.find(country => country.id === id)!;
+      // [designed] Gentle water arcs distinguish crossings from straight land
+      // indicators; endpoints remain the true country centres, with full names
+      // masked out. Inspected MapView.lane/arrowBetween.
+      const [ax, ay] = p.labelAt, [bx, by] = q.labelAt;
+      const d = kind === "border" ? `M${ax} ${ay}L${bx} ${by}` : `M${ax} ${ay}Q${(ax + bx) / 2 + (by - ay) * .08} ${(ay + by) / 2 - (bx - ax) * .08} ${bx} ${by}`;
+      routes.append(s("path", { "data-connection": kind, "data-from": p.id, "data-to": id, "data-highlighted": "false", d }));
+    }
+  }
+  svg.append(routes);
+  // Wait until attached and fonts are loaded. Mask only the label area, leaving
+  // both the country paint and each connection's remaining stroke visible.
+  void document.fonts.load("600 18px Inter").then(() => document.fonts.ready).then(() => {
+    for (const text of svg.querySelectorAll<SVGTextElement>(".country-name, .prototype-island-title")) {
+      const b = text.getBBox();
+      mask.append(s("rect", { x: b.x - 5, y: b.y - 3, width: b.width + 10, height: b.height + 6, fill: "black" }));
+    }
+  });
+  return svg;
+}
