@@ -19,7 +19,7 @@ try{
  const path="src/ui/generatedMapView.ts",view=readFileSync(path,"utf8");
  const mutants=[
  ["fill",'class: "country-shape", d:', 'class: "country-shape", opacity: p.id===map.provinces[0]!.id?0:1, d:',"46 countries"],
- ["count",'g.querySelector(".army-count")!.textContent=', 'g.querySelector(".army-count")!.textContent=id===state.map.provinces[0]!.id?"":',"exact topology"],
+ ["count",'class:"army-count",x:', 'class:"army-count",opacity:id===map.provinces[0]!.id?0:1,x:',"46 countries"],
  ["placement",'p=>handlers.onProvince(p.id)', 'p=>{if(p.id!==map.provinces.find(q=>true)!.id) return;}',"placement clicks"],
  ["connection",'seen.add(key);', 'seen.add(key);if(seen.size===1)continue;',"exact topology"]
  ];

@@ -4,7 +4,9 @@
 #generated-game .generated-seed {margin-left:auto;display:flex;align-items:center;gap:8px}
 #generated-game input {width:100px}
 #generated-game #generated-map .country-name {font-size:18px;fill:#071923}
-#generated-game #generated-map .army-count {font:700 18px Inter,system-ui,sans-serif;fill:#071923;text-anchor:middle;pointer-events:none}
+#generated-game #generated-map .army-count {font:700 18px Inter,system-ui,sans-serif;fill:#071923;text-anchor:middle;dominant-baseline:central;pointer-events:none}
 #generated-game #generated-map [data-selected="true"] .country-shape {stroke:white;stroke-width:4}
 #generated-game #generated-map [data-target="true"] .country-shape {stroke:#ffe08a;stroke-width:4;stroke-dasharray:5 3}
 #generated-game #generated-map .prototype-island-title {font-size:18px}
+
+#generated-game {display:grid;grid-template-rows:auto 1fr;height:100vh}

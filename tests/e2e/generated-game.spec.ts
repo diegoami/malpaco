@@ -1,5 +1,6 @@
 import { expect, test as base } from "@playwright/test";
 import type { Page } from "@playwright/test";
+import { SEATS } from "../../src/ui/palette";
 import { mkdtempSync } from "node:fs";
 import { join } from "node:path";
 import { createGame, defaultOptions, apply, attackTargets, generateBoard } from "../../src/core";
@@ -40,20 +41,20 @@ test("46 countries and full names are painted, readable, distinct and in the vie
   const evidenceRoot=process.env["GENERATED_EVIDENCE_DIR"];
   const screenshotDir=evidenceRoot ? mkdtempSync(join(evidenceRoot,"paint-")) : "screenshots";
   const png=(await page.screenshot({path:`${screenshotDir}/painted-${info.project.name}.png`})).toString("base64");
-  const pixels=await page.evaluate(async png=>{
+  const palette=Object.fromEntries(SEATS.map((s,i)=>[`seat${i+1}`,s.color.slice(1).match(/../g)!.map(v=>parseInt(v,16))]));
+  const pixels=await page.evaluate(async ({png,palette})=>{
     const image=new Image(); image.src=`data:image/png;base64,${png}`; await image.decode(); const c=document.createElement("canvas"); c.width=image.width;c.height=image.height; const ctx=c.getContext("2d",{willReadFrequently:true})!; ctx.drawImage(image,0,0);
     const pixel=(x:number,y:number)=>Array.from(ctx.getImageData(Math.floor(x),Math.floor(y),1,1).data).slice(0,3);
     const dist=(a:number[],b:number[])=>Math.hypot(...a.map((v,i)=>v-b[i]!));
     const svg=document.querySelector("#generated-map") as unknown as SVGSVGElement; const rect=svg.getBoundingClientRect(); const sea=pixel(rect.left+2,rect.top+2);
     return [...document.querySelectorAll("[data-country]")].map(g=>{
-      const p=g.querySelector(".country-shape") as SVGGeometryElement; const t=g.querySelector(".country-name") as SVGTextElement; const name=t.getBoundingClientRect(); const count=g.querySelector(".army-count")!.getBoundingClientRect(); const expected=(getComputedStyle(p).fill.match(/[\d.]+/g)??[]).slice(0,3).map(Number); const b=p.getBBox(); const m=p.getScreenCTM()!; let n=0,paint=0;
+      const p=g.querySelector(".country-shape") as SVGGeometryElement; const t=g.querySelector(".country-name") as SVGTextElement; const name=t.getBoundingClientRect(); const count=g.querySelector(".army-count")!.getBoundingClientRect(); const expected=palette[g.getAttribute("data-owner")!]!; const b=p.getBBox(); const m=p.getScreenCTM()!; let n=0,paint=0;
       for(let x=b.x+3;x<b.x+b.width-3;x+=4) for(let y=b.y+3;y<b.y+b.height-3;y+=4) {if(!p.isPointInFill(new DOMPoint(x,y)))continue; const q=new DOMPoint(x,y).matrixTransform(m); if(q.x>=name.left-2&&q.x<=name.right+2&&q.y>=name.top-2&&q.y<=name.bottom+2)continue; if(q.x>=count.left-2&&q.x<=count.right+2&&q.y>=count.top-2&&q.y<=count.bottom+2)continue; n++; if(dist(pixel(q.x,q.y),expected)<28 && dist(expected,sea)>60)paint++;}
-      const colours:number[][]=[]; for(let x=Math.ceil(name.left);x<name.right;x++)for(let y=Math.ceil(name.top);y<name.bottom;y++)colours.push(pixel(x,y));
-      const ranges=[0,1,2].map(i=>Math.max(...colours.map(p=>p[i]!))-Math.min(...colours.map(p=>p[i]!)));
-      return {id:g.getAttribute("data-country"),n,share:paint/n,contrast:Math.hypot(...ranges)};
+      const contrast=(box:DOMRect)=>{const colours:number[][]=[];for(let x=Math.ceil(box.left);x<box.right;x++)for(let y=Math.ceil(box.top);y<box.bottom;y++)colours.push(pixel(x,y));return Math.hypot(...[0,1,2].map(i=>Math.max(...colours.map(p=>p[i]!))-Math.min(...colours.map(p=>p[i]!))));};
+      return {id:g.getAttribute("data-country"),n,share:paint/n,contrast:contrast(name),countContrast:contrast(count)};
     });
-  },png);
-  expect(pixels).toHaveLength(46); for(const p of pixels){expect(p.n,p.id!).toBeGreaterThan(20);expect(p.share,p.id!).toBeGreaterThan(.6);expect(p.contrast,p.id!).toBeGreaterThan(100);}
+  },{png,palette});
+  expect(pixels).toHaveLength(46); for(const p of pixels){expect(p.n,p.id!).toBeGreaterThan(20);expect(p.share,p.id!).toBeGreaterThan(.6);expect(p.contrast,p.id!).toBeGreaterThan(100);expect(p.countContrast,p.id!).toBeGreaterThan(100);}
 });
 
 
@@ -75,7 +76,7 @@ test("placement clicks, keyboard selection, real apply attack and seat handoff",
  for(let i=0;i<pool;i++){await country(page,source.id).click();const a=apply(state,{kind:"reinforce",province:source.id,amount:1});if(!a.ok)throw Error(a.error);state=a.state;await expect(page.locator("#reinforcement-pool")).toHaveText(String(pool-i-1));}
  await expect(country(page,source.id).locator(".army-count")).toContainText(String(state.armies[source.id]));
  await page.locator("#start-combat-button").click();const combat=apply(state,{kind:"endReinforcement"});if(!combat.ok)throw Error(combat.error);state=combat.state;
- await country(page,source.id).focus();await page.keyboard.press("Enter");await expect(country(page,source.id)).toHaveAttribute("aria-pressed","true");
+ await country(page,source.id).focus();await page.keyboard.press("Enter");await expect(country(page,source.id)).toBeFocused();await expect(country(page,source.id)).toHaveAttribute("aria-pressed","true");
  const target=attackTargets(state,source.id)[0]!;expect(target).toBeTruthy();await country(page,target).click();await page.locator("#attack-button").click();
  const result=apply(state,{kind:"attack",from:source.id,to:target});if(!result.ok)throw Error(result.error);state=result.state;
  await expect(page.locator("#result-dialog")).toBeVisible();await expect(page.locator("#result-dialog .verdict")).toBeVisible();
