@@ -1,0 +1,45 @@
+
+> malpaco-spike-ts@0.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/work[39m
+
+ [32m✓[39m tests/core/purity.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/core/board-fairness.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m tests/core/save.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/core/seats.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/core/archipelago.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/core/options.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m tests/core/map.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m tests/core/rng-streams.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m tests/core/reinforcement.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 33[2mms[22m[39m
+ [32m✓[39m tests/core/combat.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m tests/core/determinism.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+ [32m✓[39m tests/core/bonuses.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+ [32m✓[39m tests/core/malpaco-combat.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m tests/core/turns.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 52[2mms[22m[39m
+ [32m✓[39m tests/ui/generated-board-layout.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 149[2mms[22m[39m
+ [32m✓[39m tests/ui/generated-game.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 107[2mms[22m[39m
+ [32m✓[39m tests/core/setup.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 553[2mms[22m[39m
+   [32m✓[39m generated initial deal [2m(18)[22m
+     [33m[2m✓[22m[39m assigns every country once with no complete islands across seeds 1..100[33m 303[2mms[22m[39m
+ [32m✓[39m tests/core/board-gen.sweep.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 861[2mms[22m[39m
+   [32m✓[39m wide-seed sweep (C-BRD-01, ≥ 99 % within MAX_BOARD_ATTEMPTS) [2m(2)[22m
+     [33m[2m✓[22m[39m 200 seeds success rate is ≥ 99 %[33m 593[2mms[22m[39m
+ [32m✓[39m tests/core/board-gen.test.ts [2m([22m[2m135 tests[22m[2m)[22m[33m 1732[2mms[22m[39m
+   [32m✓[39m generateBoard [2m(133)[22m
+     [32m✓[39m R9 (R11 follow-up): entrance reuse at the cap [2m(1)[22m
+       [33m[2m✓[22m[39m an island at its entrance cap still takes lanes on existing entrances, never a new one[33m 517[2mms[22m[39m
+     [32m✓[39m R6: MAX_BOARD_ATTEMPTS is the smallest cap with >= 99 % on the 200-seed sweep [2m(1)[22m
+       [33m[2m✓[22m[39m the pinned cap reaches 99 % and one fewer attempt does not[33m 498[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m19 passed[39m[22m[90m (19)[39m
+[2m      Tests [22m [1m[32m346 passed[39m[22m[90m (346)[39m
+[2m   Start at [22m 06:34:47
+[2m   Duration [22m 2.07s[2m (tests 52%, transform 37%, import 9%, worker 1%)[22m
+
+[2m  Transform [22m [33mtransforming modules took 2.66s[39m[2m · 37% of tracked time, re-done on every run[22m
+[2m            [22m [2mpersist transforms across runs with [22m[33mfsModuleCache: true[39m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#caching-between-reruns[22m
+

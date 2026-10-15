@@ -1,0 +1,51 @@
+{
+  "records": [
+    {
+      "name": "baseline-unit",
+      "command": "npx vitest run tests/ui/generated-game.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "baseline-browser",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2 --grep-invert golden",
+      "exit": 1
+    },
+    {
+      "name": "mock-unit",
+      "command": "npx vitest run tests/ui/generated-game.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "mock-browser",
+      "command": "npx playwright test tests/e2e/generated-game.spec.ts --workers=2 --update-snapshots",
+      "exit": 1
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/main.ts",
+      "before": "b369a6fc087c5ddc6d6762f668502972132bc864e9c2b0f2da85c91fc02512b8",
+      "after": "b369a6fc087c5ddc6d6762f668502972132bc864e9c2b0f2da85c91fc02512b8"
+    },
+    {
+      "file": "src/ui/app.ts",
+      "before": "68c40d0d8868de28adac8c0dba4e9e3b93cab96a243568937357a1ab67a824e0",
+      "after": "68c40d0d8868de28adac8c0dba4e9e3b93cab96a243568937357a1ab67a824e0"
+    },
+    {
+      "file": "src/ui/generatedGame.ts",
+      "before": null,
+      "after": null
+    },
+    {
+      "file": "src/ui/generatedMapView.ts",
+      "before": null,
+      "after": null
+    },
+    {
+      "file": "src/styles.css",
+      "before": "3815dd05e2f5d705c4b098e14a6537ef132bc80367eaec868eca354e590c7324",
+      "after": "3815dd05e2f5d705c4b098e14a6537ef132bc80367eaec868eca354e590c7324"
+    }
+  ]
+}

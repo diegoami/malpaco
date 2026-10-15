@@ -1,6 +1,7 @@
 import { activePlayer, apply, armyCount, attackTargets, malpacoRules, newGame, ownerOf, province, whyNot } from "../core";
 import type { Action, AttackOutcome, GameMap, GameState } from "../core";
 import { h } from "./dom";
+import type { MapHandlers } from "./mapView";
 import { MapView } from "./mapView";
 import { Panel } from "./panel";
 import { ResultDialog } from "./resultDialog";
@@ -18,7 +19,7 @@ export class App {
   private hover: string | null = null;
   private hint = "Place your reinforcements on your provinces, one army at a time.";
   private flash: string[] = [];
-  private readonly mapView: MapView;
+  private readonly mapView: Pick<MapView, "el" | "render">;
   private readonly panel: Panel;
   private readonly dialog = new ResultDialog();
   private readonly tip = h("div", { class: "tip", role: "tooltip", hidden: true });
@@ -28,9 +29,11 @@ export class App {
     private readonly map: GameMap,
     private seed: number,
     private readonly onNewGame: () => void,
+    initialState?: GameState,
+    viewFactory = (map: GameMap, handlers: MapHandlers): Pick<MapView, "el" | "render"> => new MapView(map, handlers),
   ) {
-    this.state = newGame(map, malpacoRules(), PLAYERS, seed);
-    this.mapView = new MapView(map, {
+    this.state = initialState ?? newGame(map, malpacoRules(), PLAYERS, seed);
+    this.mapView = viewFactory(map, {
       onProvince: (id) => this.clickProvince(id),
       onBackground: () => this.clearSelection("Selection cleared."),
       onHover: (id) => this.setHover(id),
