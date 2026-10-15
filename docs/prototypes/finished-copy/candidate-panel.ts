@@ -98,6 +98,7 @@ export class Panel {
       this.pick.replaceChildren(h("ol", { class: "steps" }, step(1, "From", from ? `${from.name} (${state.armies[from.id] ?? 0})` : "your province", from !== undefined), step(2, "Target", to ? `${to.name} (${state.armies[to.id] ?? 0})` : "adjacent enemy", to !== undefined), step(3, "Then", to ? "Attack" : "—", false)));
     }
     this.legend.hidden = finished;
+    this.legend.style.display = finished ? "none" : "";
     this.hint.textContent = finished ? "" : m.hint;
     this.startCombat.hidden = state.phase !== "reinforce";
     this.startCombat.toggleAttribute("disabled", state.phase !== "reinforce" || state.reinforcementPool !== 0 || finished || computer);
