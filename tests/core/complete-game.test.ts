@@ -42,7 +42,9 @@ describe("complete generated human games through legal actions", () => {
       const frozen = JSON.stringify(state);
       const province = state.map.provinces[0]!.id;
       for (const action of [{kind:"reinforce",province,amount:1}, {kind:"endReinforcement"}, {kind:"attack",from:province,to:state.map.provinces[1]!.id}, {kind:"endTurn"}] satisfies Action[]) {
-        expect(apply(state, action)).toEqual({ok:false,error:"the game is over"});
+        const refused = apply(state, action);
+        expect(refused.ok, `${action.kind} must be rejected after victory`).toBe(false);
+        expect(refused).toEqual({ok:false,error:"the game is over"});
         expect(JSON.stringify(state)).toBe(frozen);
       }
     });
