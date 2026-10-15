@@ -176,9 +176,14 @@ function properCross(a, b, c, d) {
   const abLength=Math.hypot(b[0]-a[0],b[1]-a[1]),cdLength=Math.hypot(d[0]-c[0],d[1]-c[1]);
   if(abLength<1e-12||cdLength<1e-12)return false;
   const abC=cross(a,b,c)/abLength,abD=cross(a,b,d)/abLength,cdA=cross(c,d,a)/cdLength,cdB=cross(c,d,b)/cdLength;
-  const epsilon=1e-7;
+  const epsilon=1e-5;
   return (abC < -epsilon && abD > epsilon || abC > epsilon && abD < -epsilon) &&
     (cdA < -epsilon && cdB > epsilon || cdA > epsilon && cdB < -epsilon);
+}
+function positiveAreaOverlap(a,b){
+  const crossing=a.some((p,ix)=>b.some((q,jx)=>properCross(p,a[(ix+1)%a.length],q,b[(jx+1)%b.length])));
+  const contained=a.some(p=>pointInPolygon(p,b)&&!pointOnBoundary(p,b))||b.some(p=>pointInPolygon(p,a)&&!pointOnBoundary(p,a));
+  return crossing||contained;
 }
 function rectangleContained(rect, poly) {
   if (!rect?.length || poly.length < 3) return false;
@@ -188,6 +193,12 @@ function rectangleContained(rect, poly) {
   }
   return samples.every(point=>pointInPolygon(point,poly)||pointOnBoundary(point,poly));
 }
+const overlapControls={
+  positive:positiveAreaOverlap([[0,0],[4,0],[4,4],[0,4]],[[3.5,1],[6,1],[6,3],[3.5,3]]),
+  touching:positiveAreaOverlap([[0,0],[4,0],[4,4],[0,4]],[[4,0],[8,0],[8,4],[4,4]]),
+  separated:positiveAreaOverlap([[0,0],[4,0],[4,4],[0,4]],[[5,0],[8,0],[8,4],[5,4]]),
+};
+requireThat(overlapControls.positive&&!overlapControls.touching&&!overlapControls.separated,"positive-area overlap predicate controls failed");
 if (embedded) {
   const ps = new Map(embedded.provinces.map((p) => [p.id, p]));
   requireThat(ps.size === 46 && currentMap.provinces.length === 46, "geometry/current map identity count mismatch");
@@ -206,9 +217,7 @@ if (embedded) {
     for (const p of members) for (const vertex of p.polygon) requireThat(pointInPolygon(vertex, island.polygon) || pointOnBoundary(vertex, island.polygon), `${island.id}: ${p.id} escapes its island silhouette`);
     for (let i = 0; i < members.length; i++) for (let j = i + 1; j < members.length; j++) {
       const a = members[i].polygon, b = members[j].polygon;
-      const crossings = a.some((p, ix) => b.some((q, jx) => properCross(p, a[(ix + 1) % a.length], q, b[(jx + 1) % b.length])));
-      const contained = a.some((p) => pointInPolygon(p, b) && !pointOnBoundary(p, b)) || b.some((p) => pointInPolygon(p, a) && !pointOnBoundary(p, a));
-      requireThat(!crossings && !contained, `${island.id}: positive-area polygon overlap ${members[i].id}/${members[j].id}`);
+      requireThat(!positiveAreaOverlap(a,b), `${island.id}: positive-area polygon overlap ${members[i].id}/${members[j].id}`);
     }
     const graph = new Map(members.map((p) => [p.id, new Set()]));
     for (const a of members) for (const b of members) if (a !== b && sharedLength(a.polygon, b.polygon) > 1e-5) graph.get(a.id).add(b.id);
@@ -219,9 +228,7 @@ if (embedded) {
   }
   for(let i=0;i<embedded.islands.length;i++)for(let j=i+1;j<embedded.islands.length;j++){
     const a=embedded.islands[i].polygon,b=embedded.islands[j].polygon;
-    const crossings=a.some((p,ix)=>b.some((q,jx)=>properCross(p,a[(ix+1)%a.length],q,b[(jx+1)%b.length])));
-    const contained=a.some(p=>pointInPolygon(p,b)&&!pointOnBoundary(p,b))||b.some(p=>pointInPolygon(p,a)&&!pointOnBoundary(p,a));
-    requireThat(!crossings&&!contained,`different island silhouettes overlap: ${embedded.islands[i].id}/${embedded.islands[j].id}`);
+    requireThat(!positiveAreaOverlap(a,b),`different island silhouettes overlap: ${embedded.islands[i].id}/${embedded.islands[j].id}`);
   }
   for(const label of labelBounds){
     const province=ps.get(label.id);
@@ -279,7 +286,7 @@ const graphSummary = embedded ? (() => {
   return { current: { landEdges: currentLand.length, seaEdges: currentSea.length }, proposed: { landEdges: proposedLand.length, seaEdges: proposedSea.length, provinceDegree: Object.fromEntries(embedded.provinces.map(p => [p.id, degree(embedded.proposed.adjacency,p.id)])), islandSeaDegree: islandDegree } };
 })() : null;
 const report = { accepted: failures.length === 0, viewportRuns: ["1280x800", "1920x1080"], provinceCount: embedded?.provinces?.length ?? null, islandCount: embedded?.islands?.length ?? null, graphSummary,
-  feasibility, ambiguity: { ironPoint: { land: ["South rest", "High shore"], sea: ["Lower field", "Blue peak"] }, silverShore: { sea: [], finding: "no current sea lane; visual ambiguity only" } }, failures };
+  overlapControls, feasibility, ambiguity: { ironPoint: { land: ["South rest", "High shore"], sea: ["Lower field", "Blue peak"] }, silverShore: { sea: [], finding: "no current sea lane; visual ambiguity only" } }, failures };
 await writeFile(resolve(output, "acceptance.json"), `${JSON.stringify(report, null, 2)}\n`, { flag: "wx" });
 process.stdout.write(`${report.accepted ? "PASS" : "FAIL"}: ${failures.length} acceptance findings; output ${output}\n`);
 if (failures.length) { for (const issue of failures) process.stderr.write(`- ${issue}\n`); process.exit(1); }

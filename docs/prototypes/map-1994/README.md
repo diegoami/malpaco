@@ -26,7 +26,7 @@ baseline/candidate/selected-neighbour mutation/restoration sequence with a new
 evidence directory:
 
 ```sh
-node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-d
+node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-e
 ```
 
 The replay installs the candidate's exact bytes only while the pinned-browser
