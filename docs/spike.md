@@ -39,8 +39,8 @@ and `data/maps/small_sea.json` are untouched, and the map is read as data, uncha
   (`newGame`, marked "SPIKE STAND-IN"). The opening distribution still uses seeded random placement.
   On Malpaco turns, T11 grants income into a pool and requires it to be placed before attacks; the
   T12 exposes the Malpaco turn flow on the authored map. The opt-in `?view=generated-prototype&seed=1994` previews generated geography and exact
-  country connections; it does not integrate generated boards into the playable game. Setup options,
-  redeployment, hazards, centres, cards and surrender remain absent.
+  country connections; it does not integrate generated boards into the playable game. The generated route now offers seed and human-seat setup; other rule options,
+  redeployment, hazards, cards and surrender remain absent.
 - **Generated-game setup.** T07 adds `createGame(options)` for a generated 46-country board: it uses
   one seeded stream for board generation and the initial deal, then stores three production centres.
   The map-based `newGame` overloads remain the spike's legacy deal; they store an empty centre list
@@ -330,7 +330,7 @@ and names all land/sea neighbours with IDs. Click, Enter and Space select withou
 replacing the focused country. A seed control rebuilds through `generateBoard`;
 actual generation refusal (including seed 1506) remains visible with retry.
 
-The atlas is presentation only. Setup forms and a permanent visual choice belong to later work.
+The atlas is presentation only. Generated-game setup is available separately; a permanent visual choice belongs to later work.
 The separate generated-game route below integrates placement and combat. The ordinary authored-board route
 keeps its existing behaviour and goldens. Atlas dimensions, coast margins, region
 spacing, text and route styles are [designed], after inspecting `board-gen.ts`
@@ -368,7 +368,7 @@ support retry and recovery, including the real refused seed 1506. The compact
 panel and two text rows are [designed]. At the existing large-screen breakpoint,
 the generated route uses the same 440px panel column as the authored route to
 fit its enlarged seat cards. Both layouts are measured in the pinned Playwright image
-at 1280x800 and 1920x1080; setup forms, saving and AI remain later work.
+at 1280x800 and 1920x1080; saving and AI remain later work.
 
 `tests/ui/generated-game.test.ts` compares all nongeometry state fields with
 independent `createGame` output for seeds 1/2/3/7/42/1994 and freezes projection
@@ -380,3 +380,30 @@ reinforcement/attack/handoff against core-predicted results and refusal recovery
 Only its new generated-game screenshots are pinned; the owner judges the look.
 Replay and actual-source mutation commands and tracked evidence live under
 `docs/prototypes/generated-play/`.
+
+
+## Generated-game setup
+
+`?view=game-setup` offers a seed and two, three or four human seats. Start game
+opens `?view=generated-game&seed=N&seats=C`; New game returns to setup with the
+same choices. Direct generated-game URLs still default to seed 1994 and two
+humans. Seed input accepts whole uint32 values without wrapping, unsupported
+seat counts are rejected, and generation refusals leave an editable recovery
+form. Unimplemented rule options and computer seats are not offered.
+
+The UI passes these settings to `createGame` without dealing again. Green and
+lavender extend the original two ownership colours; numeric map seats and four
+distinct score badges support ownership recognition. Generated panels compact
+additional seat rows, wrap selection values and let the two-seat attack log
+shrink so names, army counts and controls remain visible at both tested sizes.
+The authored route and two-seat generated opening retain their existing goldens.
+These form, palette and spacing choices are [designed] after inspecting
+`generatedGame.ts`, `app.ts`, `panel.ts` and the T14 clipping regression.
+
+`tests/ui/game-setup.test.ts` checks all supported counts against exact core
+state semantics, defaults and invalid inputs. `tests/e2e/game-setup.spec.ts`
+drives keyboard/click setup, all 46 ownership/army values, distinct seat cues,
+reinforcement/combat/handoff, round-trip settings and refusal recovery. It
+measures actual text against cards/panel/viewport and pins setup/four-seat
+screenshots at both sizes. Replay, failed preflights, exact restoration hashes
+and selected-seed/count mutations live under `docs/prototypes/game-setup/`.

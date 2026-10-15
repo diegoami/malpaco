@@ -1019,3 +1019,55 @@ dialog h2 {
     grid-template-columns: minmax(0, 1fr) 440px;
   }
 }
+
+/* [designed] Minimal setup after inspecting generated-game's route and panel. */
+#game-setup.setup-root {
+  display: grid; place-items: center; padding: 32px;
+}
+.setup-card {
+  width: min(540px, 100%); display: grid; gap: 14px;
+}
+.setup-card h1, .setup-card p {
+  margin: 0;
+}
+.setup-card label {
+  font-weight: 700;
+}
+.setup-card input, .setup-card select {
+  width: 100%; min-width: 0; padding: 12px; font: inherit; color: var(--text); background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px;
+}
+.setup-card [role="alert"] {
+  color: #f0bd92;
+}
+/* Keep every score and action visible for the additional human seats. */
+#generated-game:is([data-seats="3"], [data-seats="4"]) .panel {
+  gap: 6px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .score {
+  gap: 2px; padding: 8px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .score-row {
+  padding: 3px 4px; gap: 6px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .card {
+  padding: 8px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .log-card {
+  min-height: 50px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .legend {
+  margin-top: 6px; font-size: 11px;
+}
+
+/* Selection values wrap instead of clipping in the compact generated panel. */
+#generated-game .steps li {
+  grid-template-columns: 24px 44px minmax(0, 1fr); gap: 6px;
+}
+#generated-game .step-value {
+  white-space: normal; overflow: visible; overflow-wrap: anywhere;
+}
+
+/* The wrapped attack selection needs more room; the scrollable log yields it. */
+#generated-game[data-seats="2"] .panel[data-phase="attack"] .log-card {
+  min-height: 50px;
+}

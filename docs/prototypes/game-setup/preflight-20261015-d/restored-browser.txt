@@ -1,0 +1,13 @@
+
+Running 8 tests using 2 workers
+
+  ✓  2 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (1.2s)
+  ✓  1 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.5s)
+  ✓  4 [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (443ms)
+  ✓  3 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (1.6s)
+  ✓  5 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (1.2s)
+  ✓  6 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.6s)
+  ✓  7 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (1.4s)
+  ✓  8 [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (459ms)
+
+  8 passed (6.4s)

@@ -5,23 +5,87 @@ import { h } from "./dom";
 import { GeneratedMapView } from "./generatedMapView";
 import { layoutGeneratedBoard } from "./prototype/layout";
 
-/** Keep the generated deal and rule RNG; only replace display coordinates. */
+/** Keep the core deal and rule RNG; only replace display coordinates. */
 export function projectGeneratedState(state: GameState): GameState {
   return { ...state, map: layoutGeneratedBoard(state.map) };
 }
 
-export function createGeneratedGame(seed: number) {
+export function parseGameSettings(seed: string | null, seats: string | null) {
+  const s = seed ?? "1994";
+  const n = seats ?? "2";
+  const errors: string[] = [];
+  if (!/^\d+$/.test(s) || !Number.isInteger(Number(s)) || Number(s) > 4294967295) {
+    errors.push("Seed must be a whole number from 0 to 4294967295.");
+  }
+  if (!["2", "3", "4"].includes(n)) {
+    errors.push("Choose 2, 3 or 4 human seats.");
+  }
+  return errors.length ? { ok: false as const, errors } : { ok: true as const, seed: Number(s), seats: Number(n) };
+}
+
+export function createGeneratedGame(seed = 1994, seats = 2) {
+  const settings = parseGameSettings(String(seed), String(seats));
+  if (!settings.ok) return settings;
   const result = createGame({
     ...defaultOptions(), seed,
-    seats: [{ kind: "human" }, { kind: "human" }],
+    seats: Array.from({ length: seats }, () => ({ kind: "human" as const })),
     computerStrengths: [],
   }, malpacoRules());
   return result.ok ? { ok: true as const, state: projectGeneratedState(result.state) } : result;
 }
 
+function navigate(view: string, seed: string, seats: string) {
+  const url = new URL(location.href);
+  url.searchParams.set("view", view);
+  url.searchParams.set("seed", seed);
+  url.searchParams.set("seats", seats);
+  location.assign(url);
+}
+
+export function mountGameSetup(root: HTMLElement, failure = ""): void {
+  const query = new URL(location.href).searchParams;
+  const input = h("input", {
+    id: "setup-seed", type: "text", inputmode: "numeric",
+    value: query.get("seed") ?? "1994", "aria-describedby": "seed-help",
+  });
+  const select = h("select", { id: "setup-seats" },
+    ...[2, 3, 4].map(n => h("option", { value: String(n) }, `${n} humans`)),
+  );
+  select.value = query.get("seats") ?? "2";
+  const alert = h("p", { role: "alert" }, failure);
+  const form = h("form", { class: "card setup-card", novalidate: "" },
+    h("h1", {}, "New generated game"), h("p", {}, "Choose a seed and gather two to four human players."),
+    h("label", { for: "setup-seed" }, "Seed"), input,
+    h("p", { id: "seed-help", class: "muted" }, "Whole number from 0 to 4294967295. The same settings recreate the same game."),
+    h("label", { for: "setup-seats" }, "Human seats"), select, alert,
+    h("button", { type: "submit", class: "primary" }, "Start game"));
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    const settings = parseGameSettings(input.value, select.value);
+    if (!settings.ok) {
+      alert.textContent = settings.errors.join(" ");
+      return;
+    }
+    const result = createGeneratedGame(settings.seed, settings.seats);
+    if (!result.ok) {
+      alert.textContent = "Generation failed: " + result.errors.join("; ") + " Choose another seed and start again.";
+      return;
+    }
+    navigate("generated-game", String(settings.seed), String(settings.seats));
+  });
+  root.id = "game-setup";
+  root.classList.add("setup-root");
+  root.replaceChildren(form);
+}
+
 export function mountGeneratedGame(root: HTMLElement): void {
-  const given = new URL(location.href).searchParams.get("seed") ?? "1994";
-  const seed = /^\d+$/.test(given) ? Number(given) >>> 0 : 1994;
+  const query = new URL(location.href).searchParams;
+  const settings = parseGameSettings(query.get("seed"), query.get("seats"));
+  if (!settings.ok) {
+    mountGameSetup(root, settings.errors.join(" "));
+    return;
+  }
+  const { seed, seats } = settings;
   const input = h("input", {
     id: "game-seed", type: "number", min: "0", max: "4294967295",
     value: String(seed), required: "",
@@ -31,34 +95,31 @@ export function mountGeneratedGame(root: HTMLElement): void {
     h("button", { type: "submit" }, "Generate"),
   );
   const retry = () => {
-    if (!form.reportValidity()) return;
-    const url = new URL(location.href);
-    url.searchParams.set("seed", String(Number(input.value) >>> 0));
-    location.assign(url);
+    const value = parseGameSettings(input.value, String(seats));
+    if (value.ok) navigate("generated-game", String(value.seed), String(seats));
   };
-  form.addEventListener("submit", event => { event.preventDefault(); retry(); });
-
-  root.classList.add("generated-game-root");
-  root.id = "generated-game";
-  const result = createGeneratedGame(seed);
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    if (form.reportValidity()) retry();
+  });
+  const result = createGeneratedGame(seed, seats);
   if (!result.ok) {
+    root.classList.add("generated-game-root");
+    root.id = "generated-game";
     const button = h("button", { type: "button" }, "Retry");
     button.addEventListener("click", retry);
-    root.replaceChildren(h("section", { class: "generated-error" },
-      h("h1", {}, "Malpaco"), form,
+    root.replaceChildren(h("section", { class: "generated-error" }, h("h1", {}, "Malpaco"), form,
       h("div", { role: "alert" }, "Generation failed: " + result.errors.join("; ")),
-      h("p", {}, "Retry this seed, or choose another seed above."), button,
-    ));
+      h("p", {}, "Retry this seed, or choose another seed above."), button));
     return;
   }
-
-  new App(result.state.map, seed, retry, result.state,
-    (map, handlers) => new GeneratedMapView(map, handlers),
-  ).mount(root);
+  root.classList.add("generated-game-root");
+  root.id = "generated-game";
+  root.dataset["seats"] = String(seats);
+  new App(result.state.map, seed, () => navigate("game-setup", String(seed), String(seats)), result.state,
+    (map, handlers) => new GeneratedMapView(map, handlers)).mount(root);
   const legend = h("div", { class: "generated-legend", "aria-label": "Map legend" },
-    h("span", {}, "Seat · armies"),
-    h("span", {}, h("i", { class: "generated-land-key", "aria-hidden": "true" }), "Land"),
-    h("span", {}, h("i", { class: "generated-sea-key", "aria-hidden": "true" }), "Sea"),
-  );
+    h("span", {}, "Seat · armies"), h("span", {}, h("i", { class: "generated-land-key", "aria-hidden": "true" }), "Land"),
+    h("span", {}, h("i", { class: "generated-sea-key", "aria-hidden": "true" }), "Sea"));
   root.querySelector("header")!.append(legend, form);
 }

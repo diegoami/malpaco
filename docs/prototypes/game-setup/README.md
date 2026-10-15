@@ -18,3 +18,11 @@ Existing goldens and acceptance files are untouched.
 Scope: new acceptance files prove T15 settings/core semantics, validation,
 readability, play and round-trip; candidate/replay files make the preflight
 reviewable without installing permanent production code.
+
+`preflight-sha256.txt` records the retained preflight evidence bytes, including
+failed batches A (empty-message measurement), B (selection text clipping) and
+C (attack footer clipping), and successful independent batch D. No original
+assets were used. `verify-final.mjs <fresh-output-directory>` tests the actual
+installed source and independently removes selected seed/count handling, then
+restores exact saved bytes in finally blocks and records hashes. Optional
+`--update-goldens` regenerates only this task's setup/four-seat pictures.
