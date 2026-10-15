@@ -21,18 +21,22 @@ topology list disclose all land and sea changes. Select any country to inspect
 the exact proposed neighbourhood. **Export SVG** downloads the current map as
 a standalone SVG.
 
-The parent session owns candidate replay and browser checks. For a fresh
-acceptance run, provide a new output directory:
+The parent session owns candidate replay and browser checks. Run the complete
+baseline/candidate/selected-neighbour mutation/restoration sequence with a new
+evidence directory:
 
 ```sh
-node docs/prototypes/map-1994/verify.mjs /tmp/t22-acceptance-<unique>
+node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-b
 ```
 
-The verifier opens `preview.html` directly in the pinned browser, checks both
-required viewport sizes, saves SVG and before/after captures, validates exact
-topology differences and geometry, and records feasibility and the
-Iron-point/Silver-shore ambiguity. A missing `preview.html` is an acceptance
-failure by design.
+The replay installs the candidate's exact bytes only while the pinned-browser
+verifier runs, removes the selected-neighbour behavior for the mutation run,
+restores and hashes the exact candidate bytes, and returns the checkout to its
+original missing-preview state. The verifier opens `preview.html` directly,
+checks both required viewport sizes, saves SVG and before/after captures,
+validates exact topology differences and geometry, and records feasibility and
+the Iron-point/Silver-shore ambiguity. A missing `preview.html` is an
+acceptance failure by design.
 
 ## Preflight evidence
 
