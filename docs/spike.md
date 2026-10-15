@@ -365,13 +365,16 @@ selection, attack result dialog and seat handoff. Every action goes through
 `seat number · armies`, with matching seat colour; island bonuses and explicit
 solid land / dashed sea links remain visible. The seed form and refusal alert
 support retry and recovery, including the real refused seed 1506. The compact
-panel and two text rows are [designed], measured in the pinned Playwright image
+panel and two text rows are [designed]. At the existing large-screen breakpoint,
+the generated route uses the same 440px panel column as the authored route to
+fit its enlarged seat cards. Both layouts are measured in the pinned Playwright image
 at 1280x800 and 1920x1080; setup forms, saving and AI remain later work.
 
 `tests/ui/generated-game.test.ts` compares all nongeometry state fields with
 independent `createGame` output for seeds 1/2/3/7/42/1994 and freezes projection
 input. `tests/e2e/generated-game.spec.ts` checks screenshot owner paint and count
-glyphs, label/count bounds and hit targets, exact connections and endpoint
+glyphs, label/count bounds and hit targets, seat-card text fitting within the
+card and panel, exact connections and endpoint
 geometry, initial ownership/counts, bonuses, keyboard selection, a click-driven
 reinforcement/attack/handoff against core-predicted results and refusal recovery.
 Only its new generated-game screenshots are pinned; the owner judges the look.

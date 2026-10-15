@@ -1,0 +1,41 @@
+
+Running 2 tests using 2 workers
+
+  ✓  1 [1280x800] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (136ms)
+  ✘  2 [1920x1080] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (156ms)
+
+
+  1) [1920x1080] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel 
+
+    Error: text clipped by its card or panel
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  - 1
+    + Received  + 4
+
+    - Array []
+    + Array [
+    +   "23 provinces · 46 armies",
+    +   "23 provinces · 46 armies",
+    + ]
+
+      116 |   );
+      117 |   expect(fit.length).toBeGreaterThan(0);
+    > 118 |   expect(fit.filter(text => !text.fits).map(text => text.text), "text clipped by its card or panel").toEqual([]);
+          |                                                                                                      ^
+      119 |   for (const text of fit.filter(text => text.title)) {
+      120 |     expect(text.lineCount, `${text.text}: turn title stays on one line`).toBe(1);
+      121 |   }
+        at /work/tests/e2e/generated-game.spec.ts:118:102
+
+    Error Context: test-results/generated-game-seat-cards--72a30-t-inside-the-gameplay-panel-1920x1080/error-context.md
+
+  1 failed
+    [1920x1080] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel 
+  1 passed (1.6s)
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -115,8 +115,8 @@ test("seat cards keep all text inside the gameplay panel", async ({ page }) => {
     }),
   );
   expect(fit.length).toBeGreaterThan(0);
-  for (const text of fit) {
-    expect(text.fits, `${text.text}: text clipped by its card or panel`).toBe(true);
-    if (text.title) expect(text.lineCount, `${text.text}: turn title stays on one line`).toBe(1);
+  expect(fit.filter(text => !text.fits).map(text => text.text), "text clipped by its card or panel").toEqual([]);
+  for (const text of fit.filter(text => text.title)) {
+    expect(text.lineCount, `${text.text}: turn title stays on one line`).toBe(1);
   }
 });
