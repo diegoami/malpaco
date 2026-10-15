@@ -1,0 +1,19 @@
+✔ cells: positive geometric control (14.417337ms)
+✔ cells: rejects non-finite vertex (1.854579ms)
+✔ cells: rejects zero-area cell (2.175635ms)
+✔ cells: rejects self-intersecting cell (1.698474ms)
+✔ cells: rejects disconnected multi-polygon (1.830355ms)
+✔ cells: rejects overlapping countries (6.491042ms)
+✔ cells: rejects gap in subdivision (4.354185ms)
+✔ cells: rejects explicit slit below accumulated area tolerance (4.068602ms)
+✔ cells: rejects cell outside silhouette (3.082463ms)
+✔ cells: rejects overlapping islands (7.997549ms)
+✔ cells: rejects missing silhouette (4.126771ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.241806

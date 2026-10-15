@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "command": "node --test --test-name-pattern=counts docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=symmetry docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=connectivity docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=degree docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=cells docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=borders docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=crossings docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=coasts docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=intersections docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=bonus docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=fortress docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=concentration docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=remoteness docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=crowding docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    },
+    {
+      "command": "node --test --test-name-pattern=labels docs/prototypes/new-game/T24/contract.test.mjs",
+      "exit": 0
+    }
+  ],
+  "diffCheckExit": 0
+}

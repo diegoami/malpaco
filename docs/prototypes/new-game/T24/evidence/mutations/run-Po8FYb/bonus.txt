@@ -1,0 +1,50 @@
+✔ bonus: positive graph control (1.970596ms)
+✖ bonus: rejects bonus above size (0.502747ms)
+✖ bonus: rejects incorrect entrance formula (0.195756ms)
+✔ concentration: rejects single entrances exceed quarter of bonuses (0.446722ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 2
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 42.46679
+
+✖ failing tests:
+
+test at docs/prototypes/new-game/T24/graph-preflight.test.mjs:68:40
+✖ bonus: rejects bonus above size (0.502747ms)
+  AssertionError [ERR_ASSERTION]: bonus bypass: bonus above size
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/graph-preflight.test.mjs:70:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at docs/prototypes/new-game/T24/graph-preflight.test.mjs:68:40
+✖ bonus: rejects incorrect entrance formula (0.195756ms)
+  AssertionError [ERR_ASSERTION]: bonus bypass: incorrect entrance formula
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t24-work/docs/prototypes/new-game/T24/graph-preflight.test.mjs:70:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

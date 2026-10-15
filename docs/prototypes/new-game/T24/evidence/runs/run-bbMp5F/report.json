@@ -1,0 +1,701 @@
+{
+  "kind": "existing-implementation feasibility diagnostic",
+  "parameters": {
+    "countryCount": 46,
+    "islandSizes": [
+      3,
+      3,
+      3,
+      3,
+      5,
+      5,
+      7,
+      7,
+      10
+    ],
+    "degreeMin": 2,
+    "degreeMax": 5,
+    "crossingMin": 14,
+    "crossingMax": 18,
+    "islandDegreeMax": 4,
+    "islandDistanceMax": 4,
+    "countryCrossingMax": 2,
+    "viewportWidth": 800,
+    "viewportHeight": 540,
+    "panelHeight": 80,
+    "hitSize": 40,
+    "labelGap": 44,
+    "countTextMin": 14,
+    "contrastMin": 4.5,
+    "coordinateTolerance": 0.000001,
+    "areaTolerance": 0.0001,
+    "coastToleranceCss": 1,
+    "attemptsMax": 50,
+    "successTarget": 0.99
+  },
+  "scope": "Seeds 0–99, existing generator body and existing layout. All candidate failures retained; no generator rewrite.",
+  "routeDiagnostic": "Existing quadratic sea paths sampled at 16 intervals. Exact centre endpoints already lie inside their own countries; positive curved-path clearance is not certified. Schematic witness routes are exact polylines.",
+  "sourceHashes": {
+    "src/core/board-gen.ts": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942",
+    "src/core/board-fairness.ts": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717",
+    "src/core/rng.ts": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498",
+    "src/ui/prototype/layout.ts": "43ef9e6098fec0c42b8c4a42bb1b45aed981771eaec578c36e122fc4c0f98aca",
+    "src/ui/prototype/preview.ts": "a814552e8e7a0235516a3d014b0c95faf24eb66efd8337196a146b4aefa9461e",
+    "src/styles.css": "770416d81de6a01364ca114f85d2c351b229da1f80127c6d5861e52234ca4011",
+    "docs/prototypes/new-game/T24/parameters.mjs": "3b5ab9aecc47ae4a1d36eedd6e0d2484c5e1819f6baae4aa15fe0c1ed483e354",
+    "docs/prototypes/new-game/T24/geometry.mjs": "8be6572c5b236e0481e0d9192a1e43ff7b0f185589eabff4ec257ff47a2e73d4",
+    "docs/prototypes/new-game/T24/contract.mjs": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+    "docs/prototypes/new-game/T24/witness.mjs": "746eda238e12bf27e30ca9fa6a94fcb37b646bd5fb14796d6c82bb2afa309f12",
+    "docs/prototypes/new-game/T24/existing.mjs": "378650b34a7639ca876bef3955bd59239a8e2c8cf49c4beb8e16e7d46dcdeae2",
+    "docs/prototypes/new-game/T24/probe.mjs": "ee0082ddab93435f751bb252e6e9c21c8406673da5088ae0699cb8c2c03970b0"
+  },
+  "witness": {
+    "hash": "302f0c760071ceb3cd8d6fffb2487158a0e9d4d975d1a06cce52edb73eaa2e05",
+    "checks": {
+      "counts": [],
+      "symmetry": [],
+      "connectivity": [],
+      "degree": [],
+      "cells": [],
+      "borders": [],
+      "crossings": [],
+      "coasts": [],
+      "intersections": [],
+      "bonus": [],
+      "fortress": [],
+      "concentration": [],
+      "remoteness": [],
+      "crowding": [],
+      "labels": []
+    },
+    "valid": true,
+    "interpretation": "One fixed schematic witness, not 100 generated boards, visual approval or a measured generator rate."
+  },
+  "seeds": 100,
+  "successes": 0,
+  "successRate": 0,
+  "targetMet": false,
+  "attemptsTotal": 5000,
+  "failureCounts": {
+    "counts": 0,
+    "symmetry": 0,
+    "connectivity": 0,
+    "degree": 0,
+    "cells": 5000,
+    "borders": 5000,
+    "crossings": 0,
+    "coasts": 5000,
+    "intersections": 5000,
+    "bonus": 0,
+    "fortress": 0,
+    "concentration": 0,
+    "remoteness": 157,
+    "crowding": 0,
+    "labels": 5000
+  },
+  "records": [
+    {
+      "seed": 0,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "dccbaf8eb3483f4ceedf2dc7eeda41078cdb2078e0f34ce9501c285970b83126"
+    },
+    {
+      "seed": 1,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "61b1fe1fd556deba55b02f505ac719b12c0802c0cab7ae9893bdcd49c3a5856c"
+    },
+    {
+      "seed": 2,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "f750e9ae991e017a24785eaf9649c7c7b5dac53704c5e7e32146bd16001d529f"
+    },
+    {
+      "seed": 3,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "244ecfef3bc8330fdfb407bf220f97fb076cf7425fb84c8973886d3a9422da85"
+    },
+    {
+      "seed": 4,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "3e22eaee6e3c95a461296ce14ab73103d918e0447a597f0e79ecce03d70c8c5f"
+    },
+    {
+      "seed": 5,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "b47c16cccadc51f31d177ec3a6c3fb0c987b0e9d413736bd52a5269a86034cc0"
+    },
+    {
+      "seed": 6,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "49b285b580dd58b8f5349e21758db9d66ce2494e235955db871b36d1d828404b"
+    },
+    {
+      "seed": 7,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "47ea425ca97d2a43f3b0b47d317f48931ab0a205da718c1c7a1b19d417ae01e8"
+    },
+    {
+      "seed": 8,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "350c3a66efd962cf7eaf216b08a32bc902741e1ea7e62ea2bbe6e8a8e6d113d3"
+    },
+    {
+      "seed": 9,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "2ac0dfc8426c2cf388d667f06214da3c510edec9bd8bebc1bb4d76d28a812226"
+    },
+    {
+      "seed": 10,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "6069dbdf39c6db7e9f76db46228ccf3aaa49a37eedb0b2460fd10a6c6fee6c00"
+    },
+    {
+      "seed": 11,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "98281345ae723fe5dc7ad8091d3627f6d16f7dadad28be58b178df7a0b74ba34"
+    },
+    {
+      "seed": 12,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "56482c528f5f00e90e8c3f40e7533165a16d311bad25f8368636bd091ce05886"
+    },
+    {
+      "seed": 13,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "71c6c205c715aa7604001b123e76597715d9b1d4097a07d4a3d69d6970f6b1b4"
+    },
+    {
+      "seed": 14,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "8de0dc34bd022007f48f5b98c8d607244a95907fe86b5e35eb18320956c19516"
+    },
+    {
+      "seed": 15,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "a27e1815efd31493ea92046b53b71dc4071ba2d709760afeadd1b687d5cd226b"
+    },
+    {
+      "seed": 16,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "b5665eebf3c67b3c571e4e90a60fcca6421c26ddc9643c98aa00777c33af4f98"
+    },
+    {
+      "seed": 17,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "7f665b82b3fb3eb405898610b3cdd2cbb940ebd331568e8a28ffbfb23cf72b8f"
+    },
+    {
+      "seed": 18,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "7dfbe080aab77a0daf2b88d07980a03171ab1d8914df37a7ef0e75004f459251"
+    },
+    {
+      "seed": 19,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "129d7b4224cdb04bb12b90bf6291b6d7c4b2fd92ce2dfaf450c3660a27132abe"
+    },
+    {
+      "seed": 20,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "c6f8ae1674bd197048a7733931794c01a4da01cabedae3964625d120eabd4065"
+    },
+    {
+      "seed": 21,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "9ee9fbaf4c41ba2d4d08d9905e42269aa3507c63c758593499da5afb59c01512"
+    },
+    {
+      "seed": 22,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "2dc1f418455e6dfd70abf0f5fafd16ce985ae47538527c13f83fb2c24ffd0a30"
+    },
+    {
+      "seed": 23,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "83dfb86949dae65a8158040243cd3ebbc72f22887efa97af996c7a8b4fd2020d"
+    },
+    {
+      "seed": 24,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "c66e6b4cc319f530ed3459fdb1c9e57beade11d1066b2a042dc7d728197e39c1"
+    },
+    {
+      "seed": 25,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "3995d4fc38ab11b9010e5b58dd15ca196f24828e97902342c2d6e8794a1fa1ee"
+    },
+    {
+      "seed": 26,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "ec0f61622160fba0f3bd2be3791ebc9c31d979ec0b6b727d05fad0850b67e0f7"
+    },
+    {
+      "seed": 27,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "25956c6ab6c1eaeaece7f7063a0eed0b4dcd43fb16f29b1ecef722effa9c4914"
+    },
+    {
+      "seed": 28,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "81013acc83fab028cef67186afa73f52b89fc837a75545fc6b1162fd081c2e20"
+    },
+    {
+      "seed": 29,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "9c568cef9782d966e025640a3529c3473dd1d8ad8799b45d3565828a78bf7b6e"
+    },
+    {
+      "seed": 30,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "893d4d7f68c2faf0f1ff79a3c9ff8ec2249fa14f0ce7c69b8c006f6aedc69f37"
+    },
+    {
+      "seed": 31,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "fd35d6eee955a675c1630e1aa8248df45e5c27b41909045acbd7d20510592fc5"
+    },
+    {
+      "seed": 32,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "22ff8123798417108bdbb25e531a5ce18a2f566e605e4d6cb4a677a34365b905"
+    },
+    {
+      "seed": 33,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "6747d504ed8d13ba71cb9247b2111bf2faf6f6ae90c2eb265f7859a99b4520e0"
+    },
+    {
+      "seed": 34,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "f520aa84705e0db21c5c4fe7c9cc71e8004776bcf0f3893bf3e74cfc6c983d2f"
+    },
+    {
+      "seed": 35,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "2f17b8baec8565ce10d7014ede6ac74063d61c14863fdb341c5d4cfff46c911c"
+    },
+    {
+      "seed": 36,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "fac81f09f9b220dd9b99c955974a53b6c2d06e4449e3bc102f78c1355eda31d9"
+    },
+    {
+      "seed": 37,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "55924cf0042b6f087a8281f2665df182cbc73d73b1e67511b894937702426373"
+    },
+    {
+      "seed": 38,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "83e5f4c13ca506fbfc127315143be620cca4d5ef408bd6bee3369be00ac20b0a"
+    },
+    {
+      "seed": 39,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "b250429a25f05587f41d0d326c4b11b16fbc70ea11b48bafdb961fa6d0c333be"
+    },
+    {
+      "seed": 40,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "395788b5356ffd005bc3e80d1893186854ea11383c692e6f63e587ac06a423e1"
+    },
+    {
+      "seed": 41,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "6b181e3d6405083d65e958bac605c42ea357a3df7effff83f24591eff590c1d7"
+    },
+    {
+      "seed": 42,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "a05c657f545e15697bab0c435c9c98ca31c0096cd1bfb3d9f40d3b1e8502ec2b"
+    },
+    {
+      "seed": 43,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "bb47b58a7d98b3c0e02a5f3dfd155a87fbcbbca324ee74f9714a4ecc273cc82e"
+    },
+    {
+      "seed": 44,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "182e95714ad1498ebadc460332fd3d727a7ed0e8ae2c179e24c1c54cb5e3b31c"
+    },
+    {
+      "seed": 45,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "5190f228feea49da6e3a76a72a575362153c8607daba0694d1f56f7d24a8a79c"
+    },
+    {
+      "seed": 46,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "f6e2a19abfaa6b3e4ce2756789296520c19c31fc13a73a8e9c7dc64074e4b0bc"
+    },
+    {
+      "seed": 47,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "5bf58087e45cfec36f4eeda1340c025e8d671c3941eb8856c6b351854643180c"
+    },
+    {
+      "seed": 48,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "dd117b9e458063b86ef950e369884e1bab6f7ca9fe3f993786727c3212519fea"
+    },
+    {
+      "seed": 49,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "809fb7d83f1e4bd8bd09e7d628c5b39566c734f906b080456b46201e822c7a39"
+    },
+    {
+      "seed": 50,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "9a5f2134ddb0a783a0f4cd9612f4de4478065f0dd9a59253ccce02d4d1435432"
+    },
+    {
+      "seed": 51,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "5cfd61751cf6bde9cbefe8e6d50198cef897d567537899b2e3558c4ebd7bdba9"
+    },
+    {
+      "seed": 52,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "52e9358fa1fe17e09e0e6fde6a2d67a2aa3107a54bad494ed6eb6341ed637a17"
+    },
+    {
+      "seed": 53,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "7419ddf9c8595a4ceb90c65d4e31b859a23ed1f0855dd3818505d87b6df647e5"
+    },
+    {
+      "seed": 54,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "7f29bf4f24142abebbcecf5dd2282cffef2f8723cb532ee6e9db61b011a06b19"
+    },
+    {
+      "seed": 55,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "84fc9f4a4cb719cda133f40138289d0ca8d51acbc4146b99c334062aed156664"
+    },
+    {
+      "seed": 56,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "eb0879fa742eb28190507dd01b5e1068b8420f2d6f0d7faaf9c69fd9acaf8a20"
+    },
+    {
+      "seed": 57,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "c5cf8e6e122d604b123930ea9132bb09252708b1306414dcf5f5440eb1866516"
+    },
+    {
+      "seed": 58,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "bb1bc64525e876a69f38eb97dabceed7d7913cbb2c83b03982735285c3a3eb5f"
+    },
+    {
+      "seed": 59,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "eb772fd431840895483f3c86c3a29a7d2efb4bd4918f21032b4bd0d728b4f4b9"
+    },
+    {
+      "seed": 60,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "ff90d5619412bb3e13966db92282a2a254d806c1348847280f40518b6ec15872"
+    },
+    {
+      "seed": 61,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "23da42d6d06ab0233353f57459fb549b01f0fddc21299285fd31ed2879f91438"
+    },
+    {
+      "seed": 62,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "cbf48ead383abe80d745f8b3cbe1df19fd0ad8dfd371410198da6e3314a43b19"
+    },
+    {
+      "seed": 63,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "3ead492deb6b7d0027388f23bddc5431d2f941adf1eb0e7afd3223859970e5b5"
+    },
+    {
+      "seed": 64,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "8b8a5220364300ec7a583ac654084dc77e35ff48b802fa260a8411323d283fdb"
+    },
+    {
+      "seed": 65,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "884aefd8c1e947d720ff9a36dbd6bec8c7d8e88df7670ca2165121e12b658288"
+    },
+    {
+      "seed": 66,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "8eb06324eaed78eb79dbfa5686a5791f1d8c304f5915cf599192c5acd37e71c2"
+    },
+    {
+      "seed": 67,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "d15bbf1796a2d1748221aae5983073b28c5a6013706fd1166614e89b78db41ad"
+    },
+    {
+      "seed": 68,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "0cc8b7117c842bad9e43ec9c001e0629ad6060aebfe29babb0ac541026a31ad6"
+    },
+    {
+      "seed": 69,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "3ad86169cb620f6e45cd03cf124b727c9e3a6f14d307e8ca7c829f88d5f76383"
+    },
+    {
+      "seed": 70,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "772602e30f8c6a349de9e894675c94f4a094a47d26fa3f3730525f1404fdd71d"
+    },
+    {
+      "seed": 71,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "bf772ad19652a6944102e313b61b26a87a369169a5e08cbc66ca841aee7a99c2"
+    },
+    {
+      "seed": 72,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "71ace78c7b71f72afc714d9fae3c37860ff619b38460e8e5519ded0a761b9d6d"
+    },
+    {
+      "seed": 73,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "8f110f2d818df2d115f00bde3250bb8124c829d306f49c83f5cb34e9b5575ffe"
+    },
+    {
+      "seed": 74,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "36b332201f3561bdd0b2029595b291fbfedcda8fd4987bffada69789ceb1faed"
+    },
+    {
+      "seed": 75,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "7526b54c4a6052fdf92446e3e219d89a655cbeee4201f2bdd1e7a605637ee7dd"
+    },
+    {
+      "seed": 76,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "f6dbcd50e7b8070d05ca0f3e3fe72042f467bf505629fc5f5e82ce2f3138f25b"
+    },
+    {
+      "seed": 77,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "339385afc0051cfad8b826aacda596649a63794be8218726d2998cd135475c24"
+    },
+    {
+      "seed": 78,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "833a4925761c5aab222da343bb439e6824514fd4c2d100e537fa1b42635d380c"
+    },
+    {
+      "seed": 79,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "81984b6ae8d3d57b954815c8d45d54cf6a90539d872d4d51c2b6c58c5f881182"
+    },
+    {
+      "seed": 80,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "45b69ef832037b3ec4f0b0c9115951ad5ef61e0d204a9d3c4ffc74f001deb903"
+    },
+    {
+      "seed": 81,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "aed54c5db3ed4ba8ef4b10f7ef9eefce2d96124db789f5bc2ebae89e5072ac0e"
+    },
+    {
+      "seed": 82,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "d623edbd99de7eeaf3de06be99788bf2bfa2f7a406592254fed7abb96cea9ef0"
+    },
+    {
+      "seed": 83,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "f9fdc8e022566502ce103be08eb234fe7a61279e6e38be74c2a783eba3ec85e5"
+    },
+    {
+      "seed": 84,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "a4a25fced8e3a1f46460356e3a69a7e8f2cf49945a114a2f336ee187c5fc10dd"
+    },
+    {
+      "seed": 85,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "74fd062496266d74e2d17b8e6478c8be33e78b227164d1f3979955b476709b58"
+    },
+    {
+      "seed": 86,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "ca575db25aee4ba8cc4e7c2449f54bf4b40f0f71ab259a03663b307399a479cf"
+    },
+    {
+      "seed": 87,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "95790787ed083c4ab07dbda111365cdc9c726f6071b7fac881062f925b278170"
+    },
+    {
+      "seed": 88,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "55ad11a478e427443e5d1138d2ede8e110d9001f1db1a89e92c5735524eef5df"
+    },
+    {
+      "seed": 89,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "0e3532ee62d4aede916ee0c7795685e9c132ce1c7f68220f5f516d21eb7a4bc0"
+    },
+    {
+      "seed": 90,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "3d22d4e8d1a2a47ad1f1de3d3ecf9470c83bf6891a2eea54daeab3ceeb804611"
+    },
+    {
+      "seed": 91,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "a57cb4f23fafffdc58e08a7fe2be8e47c9d5554e73a39d7181a7d714773d9f79"
+    },
+    {
+      "seed": 92,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "46f359934a6c2cbece994a863d3aa0ec7d0a02a26b5c71ac2688584acd17cee9"
+    },
+    {
+      "seed": 93,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "52c32f14d6abd040779ec945d887792b3575c0ed9abdc8d2e876ecd38a0de8e0"
+    },
+    {
+      "seed": 94,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "b33a5e7d212c7a7203d8409d8dd96ea3fe5293134d97cd9722b9cd0bf4ac9aa0"
+    },
+    {
+      "seed": 95,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "83914020fd5e5b9b929f463ba210a8f4a6384962055dcb99d812976a026c2764"
+    },
+    {
+      "seed": 96,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "2501890cf5238590f47907eb15bbe4f1e01eb571fc22bcec7db5ebc14a42d3cb"
+    },
+    {
+      "seed": 97,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "57391c55d372b8155cb61be8700f3d97872651f517b85fe8cc8f61ee1354fcfb"
+    },
+    {
+      "seed": 98,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "1e465598f7ac4ee2f01f9b51e6da890db11e46f809709b1f1076442c75edd55a"
+    },
+    {
+      "seed": 99,
+      "accepted": false,
+      "attempts": 50,
+      "hash": "e1eb00f561315b0b1367e2a8baea686b2c6fc94d0a2f04f855fe0cd749ee49a3"
+    }
+  ],
+  "reproducibilityHash": "a916b818b41827f4379383f8962cd1a38a95c90950cada76345f6745df1ff0f0",
+  "elapsedMs": 60920.405490000005,
+  "conclusion": "Existing implementation does not meet the approved geographic target. Stop downstream generation changes pending owner review of this report; constraints are not weakened."
+}
