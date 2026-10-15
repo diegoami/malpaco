@@ -62,7 +62,15 @@ function references(filePath, content) {
     for (const match of content.matchAll(/url\(\s*(["']?)(.*?)\1\s*\)/gi)) add(match[2]);
   }
   if (filePath.endsWith(".js") || filePath.endsWith(".mjs")) {
-    for (const match of content.matchAll(/(?:\bfrom\s*|\bimport\s*\(\s*)["']([^"']+)["']/g)) add(match[1]);
+    const moduleDeclarations = [
+      /\bimport\s*["']([^"']+)["']/g,
+      /\bimport\s*[^"'();]*?\bfrom\s*["']([^"']+)["']/g,
+      /\bexport\s*[^"'();]*?\bfrom\s*["']([^"']+)["']/g,
+      /\bimport\s*\(\s*["']([^"']+)["']\s*\)/g,
+    ];
+    for (const pattern of moduleDeclarations) {
+      for (const match of content.matchAll(pattern)) add(match[1]);
+    }
     for (const match of content.matchAll(/["']((?:\/|\.\.?\/)[^"']+\.(?:css|js|mjs|json|svg|png|woff2?)(?:[?#][^"']*)?)["']/gi)) add(match[1]);
   }
   return [...found].sort();
