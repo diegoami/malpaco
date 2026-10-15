@@ -288,3 +288,5 @@ Preflight A pinned result: baseline setup acceptance 2 red; candidate build gree
 T20 stage 1 B plan: keep the fix in the disposable candidate with scoped help-dialog `zoom: 1` and `animation: none`; extend focused geometry assertions for dialog and Close bounds and opacity at both scroll ends; retain top and bottom screenshots. Parent will run B in the pinned image. No permanent implementation yet.
 
 Preflight A's retained logs, screenshots and manifest are now indexed by `docs/prototypes/help/preflight-20261015-a/SHA256SUMS`. B changes only the candidate, focused acceptance and prototype notes; the A evidence files themselves remain unedited.
+
+d9ad5f9: retained and hashed A; added scoped help zoom/animation resets and top/end modal geometry assertions for B. Parent command: `node docs/prototypes/help/replay.mjs docs/prototypes/help/preflight-20261015-b`.
