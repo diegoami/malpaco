@@ -71,6 +71,8 @@ export function mountHelp(
     resume?.();
     opener.focus();
   });
-  host.append(opener);
-  (host.closest("#game-setup, #generated-game") ?? host).append(dialog);
+  const viewRoot = host.closest<HTMLElement>("#game-setup, #generated-game");
+  if (viewRoot?.id === "game-setup") viewRoot.append(opener);
+  else host.append(opener);
+  (viewRoot ?? host).append(dialog);
 }

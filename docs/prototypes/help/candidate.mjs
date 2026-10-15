@@ -31,6 +31,6 @@ replace(appPath,
   '    if (this.disposed || this.computerTimer !== null || !this.isComputerTurn()) return;',
   '    if (this.disposed || this.helpPaused || this.computerTimer !== null || !this.isComputerTurn()) return;');
 writeFileSync(stylePath,
-  readFileSync(stylePath, "utf8") + '\n.help-dialog{box-sizing:border-box;zoom:1;max-height:80vh;max-width:min(42rem,calc(100vw - 2rem));overflow:auto;background:#101f2b;color:#f2f5f7;border:1px solid #8a9ba8;border-radius:12px;padding:1.25rem}.help-dialog[open]{animation:none}.help-dialog::backdrop{background:#0009}.help-dialog h2{margin-top:0}.help-dialog h3{margin:1rem 0 .25rem}.help-dialog p{margin:.25rem 0;line-height:1.45}.help-actions{position:sticky;bottom:0;background:#101f2b;padding:.75rem 0 0;text-align:right}\n');
+  readFileSync(stylePath, "utf8") + '\n#game-setup{position:relative}#game-setup .help-open{position:absolute;top:16px;right:16px}.help-dialog{box-sizing:border-box;zoom:1;max-height:80vh;max-width:min(42rem,calc(100vw - 2rem));overflow:auto;background:#101f2b;color:#f2f5f7;border:1px solid #8a9ba8;border-radius:12px;padding:1.25rem}.help-dialog[open]{animation:none}.help-dialog::backdrop{background:#0009}.help-dialog h2{margin-top:0}.help-dialog h3{margin:1rem 0 .25rem}.help-dialog p{margin:.25rem 0;line-height:1.45}.help-actions{position:sticky;bottom:0;background:#101f2b;padding:.75rem 0 0;text-align:right}\n');
 
 export const candidateFiles = [helpPath, generatedPath, appPath, stylePath];

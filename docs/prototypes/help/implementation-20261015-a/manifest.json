@@ -1,0 +1,45 @@
+{
+  "updateGoldens": true,
+  "records": [
+    {
+      "name": "focused",
+      "command": "npx playwright test tests/e2e/help.spec.ts --workers=2",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    },
+    {
+      "name": "unit",
+      "command": "npm test",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exit": 0,
+      "expected": 0,
+      "spawnError": null
+    },
+    {
+      "name": "browser-update-goldens",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts tests/e2e/generated-game.spec.ts --workers=2 --update-snapshots",
+      "exit": 1,
+      "expected": 0,
+      "spawnError": null
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/ui/help.ts",
+      "before": "80a18bf466867e6f3b74f5db67f5e23d4e5ced670baad2330105f343d5814faa",
+      "after": "80a18bf466867e6f3b74f5db67f5e23d4e5ced670baad2330105f343d5814faa"
+    },
+    {
+      "file": "src/ui/app.ts",
+      "before": "e6c1835e5340d1d444f992e87fe46446eb2cd24f08136e4da8c1fd93e343c95b",
+      "after": "e6c1835e5340d1d444f992e87fe46446eb2cd24f08136e4da8c1fd93e343c95b"
+    }
+  ]
+}

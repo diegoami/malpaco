@@ -1022,7 +1022,7 @@ dialog h2 {
 
 /* [designed] Minimal setup after inspecting generated-game's route and panel. */
 #game-setup.setup-root {
-  display: grid; place-items: center; padding: 32px;
+  position: relative; display: grid; place-items: center; padding: 32px;
 }
 .setup-card {
   width: min(540px, 100%); display: grid; gap: 14px;
@@ -1038,6 +1038,9 @@ dialog h2 {
 }
 .setup-card [role="alert"] {
   color: #f0bd92;
+}
+#game-setup .help-open {
+  position: absolute; top: 16px; right: 16px;
 }
 /* Keep every score and action visible for the additional human seats. */
 #generated-game:is([data-seats="3"], [data-seats="4"]) .panel {
