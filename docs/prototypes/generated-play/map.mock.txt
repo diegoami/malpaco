@@ -11,8 +11,8 @@ export class GeneratedMapView {
   for(const g of this.el.querySelectorAll<SVGGElement>("[data-country]")){
    const id=g.dataset["country"]!;g.classList.add("province");g.dataset["province"]=id;
    const name=g.querySelector<SVGTextElement>(".country-name")!;
-   name.setAttribute("y",String(Number(name.getAttribute("y"))-8));
-   g.append(s("text",{class:"army-count",x:name.getAttribute("x")!,y:Number(name.getAttribute("y"))+22},""));
+   name.setAttribute("y",String(Number(name.getAttribute("y"))-12));
+   g.append(s("text",{class:"army-count",x:name.getAttribute("x")!,y:Number(name.getAttribute("y"))+26},""));
   }
  }
  render(view:MapViewState):void {
