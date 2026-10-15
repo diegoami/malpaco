@@ -24,3 +24,4 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 | T16 | Complete-game acceptance | #46 | T15 |
 | T17 | Save and resume actual generated matches | #49 | T16 |
 | T18 | Basic computer opponent | #52 | T17 |
+| T19 | Generated setup as the default entry | #54 | T18 |
