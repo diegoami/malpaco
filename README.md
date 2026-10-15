@@ -16,3 +16,8 @@ count and human or computer opponents, then start a match. `?seed=N`, `?seats=C`
 `?opponents=computer` preserve setup choices on the root route. Direct routes remain available at
 `?view=game-setup`, `?view=generated-game`, `?view=generated-prototype` and
 `?view=authored-game` (the authored `small_sea` spike). Unrecognized `view` values open setup.
+
+Choose **How to play** during setup or **Help** during a generated match for an
+in-game guide to setup choices, map labels, reinforcement and combat, turns,
+computer turns, and saved matches. Opening help pauses computer automation until
+the dialog closes; Close and Escape return focus to the control that opened it.
