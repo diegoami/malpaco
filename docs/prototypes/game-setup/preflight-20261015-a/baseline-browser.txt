@@ -1,0 +1,212 @@
+
+Running 8 tests using 2 workers
+
+  ✘  1 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (5.1s)
+  ✘  2 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (5.1s)
+  ✘  3 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (5.1s)
+  ✘  5 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (5.1s)
+  ✘  6 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (5.1s)
+  ✘  7 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (5.1s)
+  ✘  4 [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (30.0s)
+  ✘  8 [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (30.0s)
+
+
+  1) [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'New generated game' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'New generated game' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'New generated game' })
+
+
+      19 | for(const seats of [2,3,4]) test(`settings start exact ${seats}-human game and preserve play and round-trip`,async({page},info)=>{
+      20 |  const seed=seats===2?42:1994;
+    > 21 |  await page.goto("/?view=game-setup");await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
+         |                                                                                                           ^
+      22 |  await page.getByLabel("Seed",{exact:true}).focus();await page.keyboard.press("ControlOrMeta+A");await page.keyboard.type(String(seed));
+      23 |  await page.getByLabel("Human seats").selectOption(String(seats));await fit(page);
+      24 |  if(seats===4){await screenshot(page,"setup",info.project.name);await expect(page).toHaveScreenshot(`setup-${info.project.name}.png`);}
+        at /work/tests/e2e/game-setup.spec.ts:21:107
+
+    Error Context: test-results/game-setup-settings-start--8d275-reserve-play-and-round-trip-1280x800/error-context.md
+
+  2) [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'New generated game' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'New generated game' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'New generated game' })
+
+
+      19 | for(const seats of [2,3,4]) test(`settings start exact ${seats}-human game and preserve play and round-trip`,async({page},info)=>{
+      20 |  const seed=seats===2?42:1994;
+    > 21 |  await page.goto("/?view=game-setup");await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
+         |                                                                                                           ^
+      22 |  await page.getByLabel("Seed",{exact:true}).focus();await page.keyboard.press("ControlOrMeta+A");await page.keyboard.type(String(seed));
+      23 |  await page.getByLabel("Human seats").selectOption(String(seats));await fit(page);
+      24 |  if(seats===4){await screenshot(page,"setup",info.project.name);await expect(page).toHaveScreenshot(`setup-${info.project.name}.png`);}
+        at /work/tests/e2e/game-setup.spec.ts:21:107
+
+    Error Context: test-results/game-setup-settings-start--1975d-reserve-play-and-round-trip-1280x800/error-context.md
+
+  3) [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'New generated game' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'New generated game' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'New generated game' })
+
+
+      19 | for(const seats of [2,3,4]) test(`settings start exact ${seats}-human game and preserve play and round-trip`,async({page},info)=>{
+      20 |  const seed=seats===2?42:1994;
+    > 21 |  await page.goto("/?view=game-setup");await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
+         |                                                                                                           ^
+      22 |  await page.getByLabel("Seed",{exact:true}).focus();await page.keyboard.press("ControlOrMeta+A");await page.keyboard.type(String(seed));
+      23 |  await page.getByLabel("Human seats").selectOption(String(seats));await fit(page);
+      24 |  if(seats===4){await screenshot(page,"setup",info.project.name);await expect(page).toHaveScreenshot(`setup-${info.project.name}.png`);}
+        at /work/tests/e2e/game-setup.spec.ts:21:107
+
+    Error Context: test-results/game-setup-settings-start--ced81-reserve-play-and-round-trip-1280x800/error-context.md
+
+  4) [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Seed', { exact: true })
+
+
+      41 |
+      42 | test("invalid seeds/counts and actual refusal have actionable recovery",async({page})=>{
+    > 43 |  await page.goto("/?view=game-setup");for(const value of ["-1","1.5","4294967296","oops",""]){await page.getByLabel("Seed",{exact:true}).fill(value);await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.getByRole("alert")).toContainText("Seed must be a whole number from 0 to 4294967295");await expect(page.locator("[data-country]")).toHaveCount(0);}
+         |                                                                                                                                          ^
+      44 |  await page.goto("/?view=generated-game&seed=1994&seats=5");await expect(page.getByRole("alert")).toContainText("Choose 2, 3 or 4 human seats");await expect(page.locator("[data-country]")).toHaveCount(0);
+      45 |  await page.goto("/?view=generated-game&seed=4294967296&seats=2");await expect(page.getByRole("alert")).toContainText("Seed must");await expect(page.locator("[data-country]")).toHaveCount(0);
+      46 |  await page.goto("/?view=game-setup&seed=1506&seats=2");await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.getByRole("alert")).toContainText("Generation failed");await expect(page.getByRole("alert")).toContainText("Choose another seed");await fit(page);
+        at /work/tests/e2e/game-setup.spec.ts:43:138
+
+    Error Context: test-results/game-setup-invalid-seeds-c-30ee6-al-have-actionable-recovery-1280x800/error-context.md
+
+  5) [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'New generated game' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'New generated game' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'New generated game' })
+
+
+      19 | for(const seats of [2,3,4]) test(`settings start exact ${seats}-human game and preserve play and round-trip`,async({page},info)=>{
+      20 |  const seed=seats===2?42:1994;
+    > 21 |  await page.goto("/?view=game-setup");await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
+         |                                                                                                           ^
+      22 |  await page.getByLabel("Seed",{exact:true}).focus();await page.keyboard.press("ControlOrMeta+A");await page.keyboard.type(String(seed));
+      23 |  await page.getByLabel("Human seats").selectOption(String(seats));await fit(page);
+      24 |  if(seats===4){await screenshot(page,"setup",info.project.name);await expect(page).toHaveScreenshot(`setup-${info.project.name}.png`);}
+        at /work/tests/e2e/game-setup.spec.ts:21:107
+
+    Error Context: test-results/game-setup-settings-start--8d275-reserve-play-and-round-trip-1920x1080/error-context.md
+
+  6) [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'New generated game' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'New generated game' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'New generated game' })
+
+
+      19 | for(const seats of [2,3,4]) test(`settings start exact ${seats}-human game and preserve play and round-trip`,async({page},info)=>{
+      20 |  const seed=seats===2?42:1994;
+    > 21 |  await page.goto("/?view=game-setup");await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
+         |                                                                                                           ^
+      22 |  await page.getByLabel("Seed",{exact:true}).focus();await page.keyboard.press("ControlOrMeta+A");await page.keyboard.type(String(seed));
+      23 |  await page.getByLabel("Human seats").selectOption(String(seats));await fit(page);
+      24 |  if(seats===4){await screenshot(page,"setup",info.project.name);await expect(page).toHaveScreenshot(`setup-${info.project.name}.png`);}
+        at /work/tests/e2e/game-setup.spec.ts:21:107
+
+    Error Context: test-results/game-setup-settings-start--1975d-reserve-play-and-round-trip-1920x1080/error-context.md
+
+  7) [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: 'New generated game' })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByRole('heading', { name: 'New generated game' }) with timeout 5000ms
+      - waiting for getByRole('heading', { name: 'New generated game' })
+
+
+      19 | for(const seats of [2,3,4]) test(`settings start exact ${seats}-human game and preserve play and round-trip`,async({page},info)=>{
+      20 |  const seed=seats===2?42:1994;
+    > 21 |  await page.goto("/?view=game-setup");await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
+         |                                                                                                           ^
+      22 |  await page.getByLabel("Seed",{exact:true}).focus();await page.keyboard.press("ControlOrMeta+A");await page.keyboard.type(String(seed));
+      23 |  await page.getByLabel("Human seats").selectOption(String(seats));await fit(page);
+      24 |  if(seats===4){await screenshot(page,"setup",info.project.name);await expect(page).toHaveScreenshot(`setup-${info.project.name}.png`);}
+        at /work/tests/e2e/game-setup.spec.ts:21:107
+
+    Error Context: test-results/game-setup-settings-start--ced81-reserve-play-and-round-trip-1920x1080/error-context.md
+
+  8) [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByLabel('Seed', { exact: true })
+
+
+      41 |
+      42 | test("invalid seeds/counts and actual refusal have actionable recovery",async({page})=>{
+    > 43 |  await page.goto("/?view=game-setup");for(const value of ["-1","1.5","4294967296","oops",""]){await page.getByLabel("Seed",{exact:true}).fill(value);await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.getByRole("alert")).toContainText("Seed must be a whole number from 0 to 4294967295");await expect(page.locator("[data-country]")).toHaveCount(0);}
+         |                                                                                                                                          ^
+      44 |  await page.goto("/?view=generated-game&seed=1994&seats=5");await expect(page.getByRole("alert")).toContainText("Choose 2, 3 or 4 human seats");await expect(page.locator("[data-country]")).toHaveCount(0);
+      45 |  await page.goto("/?view=generated-game&seed=4294967296&seats=2");await expect(page.getByRole("alert")).toContainText("Seed must");await expect(page.locator("[data-country]")).toHaveCount(0);
+      46 |  await page.goto("/?view=game-setup&seed=1506&seats=2");await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.getByRole("alert")).toContainText("Generation failed");await expect(page.getByRole("alert")).toContainText("Choose another seed");await fit(page);
+        at /work/tests/e2e/game-setup.spec.ts:43:138
+
+    Error Context: test-results/game-setup-invalid-seeds-c-30ee6-al-have-actionable-recovery-1920x1080/error-context.md
+
+  8 failed
+    [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+    [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip 
+    [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip 
+    [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery 
+    [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+    [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip 
+    [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip 
+    [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery 

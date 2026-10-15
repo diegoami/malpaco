@@ -113,3 +113,5 @@ Local smoke: baseline unit exit 1, candidate unit/build exit 0; source hashes re
 END stage 1: parent replay command node docs/prototypes/game-setup/replay.mjs docs/prototypes/game-setup/preflight-20261015-a . Permanent source untouched; no stage 2 authorization yet.
 
 d91670e: retained local preflight evidence and restoration hashes; pushed.
+
+Preflight A: baseline red; candidate unit green; browser exposed invalid fit-helper assumption (empty alert paragraph has zero height). Restrict alert measurement to nonempty messages; all fields/buttons/content retain positive-size/text-containment assertions. No production candidate changes. Evidence preserved.
