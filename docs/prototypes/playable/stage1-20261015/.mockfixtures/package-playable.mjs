@@ -35,8 +35,9 @@ await mkdir(packageDir, { recursive: true });
 await cp(join(checkout, "dist"), packageDir, { recursive: true });
 await cp(join(dirname(fileURLToPath(import.meta.url)), "serve.mjs"), join(packageDir, "serve.mjs"));
 await cp(join(dirname(fileURLToPath(import.meta.url)), "PLAY.md"), join(packageDir, "PLAY.md"));
-const commit = spawnSync("git", ["rev-parse", "HEAD"], { cwd: checkout, encoding: "utf8" });
-if (commit.status !== 0) throw new Error(`git rev-parse exited ${commit.status}`);
+const commit = spawnSync("git", ["-c", `safe.directory=${checkout}`, "rev-parse", "HEAD"], { cwd: checkout, encoding: "utf8" });
+if (commit.error) throw commit.error;
+if (commit.status !== 0) throw new Error(`git rev-parse exited ${commit.status}: ${commit.stderr.trim()}`);
 await writeFile(join(packageDir, "BUILD.json"), `${JSON.stringify({ schemaVersion: 1, sourceCommit: commit.stdout.trim(), minimumNode: 22 }, null, 2)}\n`);
 
 const hashes = [];
