@@ -1,5 +1,9 @@
 # Geography contract for the feasibility probe
 
+The owner accepted these numerical values for the first iteration in the session
+following PR #105 (2026-10-15). The original proposal wording below is retained
+as design provenance. Acceptance does not establish the generation target.
+
 Sources: [canonical board rules](https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#the-board),
 [UI legibility](https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#legibility-and-size),
 and the owner's coast-centred crossing requirement. This is a proposed numerical
