@@ -1,0 +1,13 @@
+
+Running 8 tests using 2 workers
+
+  ✓  1 [1280x800] › tests/e2e/match-save.spec.ts:61:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (3.0s)
+  ✓  2 [1280x800] › tests/e2e/match-save.spec.ts:61:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (3.4s)
+  ✓  4 [1280x800] › tests/e2e/match-save.spec.ts:94:1 › finished legal history loads with readable winner and can be saved again (612ms)
+  ✓  3 [1280x800] › tests/e2e/match-save.spec.ts:61:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (3.1s)
+  ✓  5 [1920x1080] › tests/e2e/match-save.spec.ts:61:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (3.2s)
+  ✓  6 [1920x1080] › tests/e2e/match-save.spec.ts:61:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (3.2s)
+  ✓  8 [1920x1080] › tests/e2e/match-save.spec.ts:94:1 › finished legal history loads with readable winner and can be saved again (631ms)
+  ✓  7 [1920x1080] › tests/e2e/match-save.spec.ts:61:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (2.9s)
+
+  8 passed (11.7s)

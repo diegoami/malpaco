@@ -54,6 +54,12 @@ async function fitAndCapture(page: Page,name: string,project: string) {
     expect(b.right,why).toBeLessThanOrEqual(size.width+1);expect(b.bottom,why).toBeLessThanOrEqual(size.height+1);
     for(const l of b.lines){expect(l.x,why).toBeGreaterThanOrEqual(b.x-1);expect(l.right,why).toBeLessThanOrEqual(b.right+1);expect(l.y,why).toBeGreaterThanOrEqual(b.y-1);expect(l.bottom,why).toBeLessThanOrEqual(b.bottom+1);}
   }
+  const error=await page.locator(".match-error:not(:empty)").boundingBox();
+  if(error){
+    const title=(await page.locator("#turn-title").boundingBox())!;
+    expect(error.x+error.width<=title.x || error.x>=title.x+title.width || error.y+error.height<=title.y || error.y>=title.y+title.height,
+      `load alert ${JSON.stringify(error)} must not cover current-turn title ${JSON.stringify(title)}`).toBe(true);
+  }
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   const root=process.env["MATCH_SAVE_EVIDENCE_DIR"]??"screenshots";mkdirSync(root,{recursive:true});
   const dir=mkdtempSync(join(root,"save-"));await page.screenshot({path:join(dir,`${name}-${project}.png`)});

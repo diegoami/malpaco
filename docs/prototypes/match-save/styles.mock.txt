@@ -13,7 +13,8 @@
 #generated-game .match-error:not(:empty) {
   position:absolute;
   top:100%;
-  right:20px;
+  left:20px;
+  right:auto;
   z-index:5;
   max-width:min(640px, calc(100vw - 40px));
   padding:10px 12px;
