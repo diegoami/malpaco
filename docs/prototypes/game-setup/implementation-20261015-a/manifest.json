@@ -1,0 +1,71 @@
+{
+  "records": [
+    {
+      "name": "new-goldens",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2 --grep \"settings start exact 4\" --update-snapshots",
+      "exit": 0
+    },
+    {
+      "name": "setup-unit",
+      "command": "npx vitest run tests/ui/game-setup.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "setup-browser",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "all-unit",
+      "command": "npm test",
+      "exit": 0
+    },
+    {
+      "name": "build",
+      "command": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "all-browser",
+      "command": "npx playwright test --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "mutant-seed",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2 --grep \"settings start exact\"",
+      "exit": 1
+    },
+    {
+      "name": "mutant-seats",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2 --grep \"settings start exact\"",
+      "exit": 1
+    },
+    {
+      "name": "restored-setup-browser",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2",
+      "exit": 0
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/main.ts",
+      "before": "7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9",
+      "after": "7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9"
+    },
+    {
+      "file": "src/ui/generatedGame.ts",
+      "before": "be97f55b5706cb4912bf3e3b7a2c3af14acbdcce2f8e509cd4388b148dff5242",
+      "after": "be97f55b5706cb4912bf3e3b7a2c3af14acbdcce2f8e509cd4388b148dff5242"
+    },
+    {
+      "file": "src/ui/palette.ts",
+      "before": "a95c4345c8c6bda72b1ffc5dd440988e80bc9dae22d94eb632318d3b7038d499",
+      "after": "a95c4345c8c6bda72b1ffc5dd440988e80bc9dae22d94eb632318d3b7038d499"
+    },
+    {
+      "file": "src/styles.css",
+      "before": "d07be0c011d4b43463ba35b977a76c8a477565641183e8be086c12abf1fdb2ed",
+      "after": "d07be0c011d4b43463ba35b977a76c8a477565641183e8be086c12abf1fdb2ed"
+    }
+  ]
+}

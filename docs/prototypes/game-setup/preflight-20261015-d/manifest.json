@@ -1,0 +1,76 @@
+{
+  "records": [
+    {
+      "name": "baseline-unit",
+      "command": "npx vitest run tests/ui/game-setup.test.ts",
+      "exit": 1
+    },
+    {
+      "name": "baseline-browser",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2",
+      "exit": 1
+    },
+    {
+      "name": "mock-unit",
+      "command": "npx vitest run tests/ui/game-setup.test.ts",
+      "exit": 0
+    },
+    {
+      "name": "mock-browser",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2 --update-snapshots",
+      "exit": 0
+    },
+    {
+      "name": "mock-build",
+      "command": "npm run build",
+      "exit": 0
+    },
+    {
+      "name": "mock-all-unit",
+      "command": "npm test",
+      "exit": 0
+    },
+    {
+      "name": "mock-all-browser",
+      "command": "npx playwright test --workers=2",
+      "exit": 0
+    },
+    {
+      "name": "mutant-seed",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2 --grep \"settings start exact\"",
+      "exit": 1
+    },
+    {
+      "name": "mutant-seats",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2 --grep \"settings start exact\"",
+      "exit": 1
+    },
+    {
+      "name": "restored-browser",
+      "command": "npx playwright test tests/e2e/game-setup.spec.ts --workers=2",
+      "exit": 0
+    }
+  ],
+  "restored": [
+    {
+      "file": "src/main.ts",
+      "before": "f2336fbd3296cd3166cada2a3c4140f4a0e674870481dd072799d9b8251bac83",
+      "after": "f2336fbd3296cd3166cada2a3c4140f4a0e674870481dd072799d9b8251bac83"
+    },
+    {
+      "file": "src/ui/generatedGame.ts",
+      "before": "e713becf54ac3358fef79a7f5fce793cd5e351b16858981245d26f83cd615c1d",
+      "after": "e713becf54ac3358fef79a7f5fce793cd5e351b16858981245d26f83cd615c1d"
+    },
+    {
+      "file": "src/ui/palette.ts",
+      "before": "1f029f42c42323eb65d0709ac1d8d5d27c02834f7523242980d45f89375452fa",
+      "after": "1f029f42c42323eb65d0709ac1d8d5d27c02834f7523242980d45f89375452fa"
+    },
+    {
+      "file": "src/styles.css",
+      "before": "49af42dd36e6bf23ba80f807ce59a6a99c163452a74da3de12e72f3665d513dc",
+      "after": "49af42dd36e6bf23ba80f807ce59a6a99c163452a74da3de12e72f3665d513dc"
+    }
+  ]
+}

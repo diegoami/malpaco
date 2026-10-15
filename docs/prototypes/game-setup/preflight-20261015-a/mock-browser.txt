@@ -1,0 +1,135 @@
+
+Running 8 tests using 2 workers
+
+  ✘  1 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (159ms)
+  ✘  2 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (157ms)
+  ✘  3 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (165ms)
+  ✓  4 [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (522ms)
+  ✘  5 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (147ms)
+  ✘  6 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (153ms)
+  ✘  7 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (143ms)
+  ✓  8 [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (493ms)
+
+
+  1) [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      12 |  }));
+      13 |  expect(boxes.length).toBeGreaterThan(3);const v=page.viewportSize()!;
+    > 14 |  for(const {text,b,t,c,panel,font} of boxes){expect(b.w,text!).toBeGreaterThan(0);expect(b.h,text!).toBeGreaterThan(0);expect(font,text!).toBeGreaterThanOrEqual(12);expect(b.x,text!).toBeGreaterThanOrEqual(0);expect(b.y,text!).toBeGreaterThanOrEqual(0);expect(b.r,text!).toBeLessThanOrEqual(v.width+1);expect(b.b,text!).toBeLessThanOrEqual(v.height+1);expect(b.x,text!).toBeGreaterThanOrEqual(c.x-1);expect(b.r,text!).toBeLessThanOrEqual(c.r+1);expect(b.y,text!).toBeGreaterThanOrEqual(c.y-1);expect(b.b,text!).toBeLessThanOrEqual(c.b+1);if(t.r>t.x){expect(t.x,text!).toBeGreaterThanOrEqual(b.x-1);expect(t.r,text!).toBeLessThanOrEqual(b.r+1);expect(t.y,text!).toBeGreaterThanOrEqual(b.y-1);expect(t.b,text!).toBeLessThanOrEqual(b.b+1);}if(panel){expect(b.y,text!).toBeGreaterThanOrEqual(panel.y);expect(b.b,text!).toBeLessThanOrEqual(panel.b+1);}}
+         |                                                                                                     ^
+      15 |  expect(await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight}))).toEqual({w:v.width,h:v.height});
+      16 | }
+      17 | async function screenshot(page:Page,name:string,project:string){const dir=process.env["SETUP_EVIDENCE_DIR"];if(dir)await page.screenshot({path:join(mkdtempSync(join(dir,"paint-")),`${name}-${project}.png`)});}
+        at fit (/work/tests/e2e/game-setup.spec.ts:14:101)
+        at /work/tests/e2e/game-setup.spec.ts:23:67
+
+    Error Context: test-results/game-setup-settings-start--8d275-reserve-play-and-round-trip-1280x800/error-context.md
+
+  2) [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      12 |  }));
+      13 |  expect(boxes.length).toBeGreaterThan(3);const v=page.viewportSize()!;
+    > 14 |  for(const {text,b,t,c,panel,font} of boxes){expect(b.w,text!).toBeGreaterThan(0);expect(b.h,text!).toBeGreaterThan(0);expect(font,text!).toBeGreaterThanOrEqual(12);expect(b.x,text!).toBeGreaterThanOrEqual(0);expect(b.y,text!).toBeGreaterThanOrEqual(0);expect(b.r,text!).toBeLessThanOrEqual(v.width+1);expect(b.b,text!).toBeLessThanOrEqual(v.height+1);expect(b.x,text!).toBeGreaterThanOrEqual(c.x-1);expect(b.r,text!).toBeLessThanOrEqual(c.r+1);expect(b.y,text!).toBeGreaterThanOrEqual(c.y-1);expect(b.b,text!).toBeLessThanOrEqual(c.b+1);if(t.r>t.x){expect(t.x,text!).toBeGreaterThanOrEqual(b.x-1);expect(t.r,text!).toBeLessThanOrEqual(b.r+1);expect(t.y,text!).toBeGreaterThanOrEqual(b.y-1);expect(t.b,text!).toBeLessThanOrEqual(b.b+1);}if(panel){expect(b.y,text!).toBeGreaterThanOrEqual(panel.y);expect(b.b,text!).toBeLessThanOrEqual(panel.b+1);}}
+         |                                                                                                     ^
+      15 |  expect(await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight}))).toEqual({w:v.width,h:v.height});
+      16 | }
+      17 | async function screenshot(page:Page,name:string,project:string){const dir=process.env["SETUP_EVIDENCE_DIR"];if(dir)await page.screenshot({path:join(mkdtempSync(join(dir,"paint-")),`${name}-${project}.png`)});}
+        at fit (/work/tests/e2e/game-setup.spec.ts:14:101)
+        at /work/tests/e2e/game-setup.spec.ts:23:67
+
+    Error Context: test-results/game-setup-settings-start--1975d-reserve-play-and-round-trip-1280x800/error-context.md
+
+  3) [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      12 |  }));
+      13 |  expect(boxes.length).toBeGreaterThan(3);const v=page.viewportSize()!;
+    > 14 |  for(const {text,b,t,c,panel,font} of boxes){expect(b.w,text!).toBeGreaterThan(0);expect(b.h,text!).toBeGreaterThan(0);expect(font,text!).toBeGreaterThanOrEqual(12);expect(b.x,text!).toBeGreaterThanOrEqual(0);expect(b.y,text!).toBeGreaterThanOrEqual(0);expect(b.r,text!).toBeLessThanOrEqual(v.width+1);expect(b.b,text!).toBeLessThanOrEqual(v.height+1);expect(b.x,text!).toBeGreaterThanOrEqual(c.x-1);expect(b.r,text!).toBeLessThanOrEqual(c.r+1);expect(b.y,text!).toBeGreaterThanOrEqual(c.y-1);expect(b.b,text!).toBeLessThanOrEqual(c.b+1);if(t.r>t.x){expect(t.x,text!).toBeGreaterThanOrEqual(b.x-1);expect(t.r,text!).toBeLessThanOrEqual(b.r+1);expect(t.y,text!).toBeGreaterThanOrEqual(b.y-1);expect(t.b,text!).toBeLessThanOrEqual(b.b+1);}if(panel){expect(b.y,text!).toBeGreaterThanOrEqual(panel.y);expect(b.b,text!).toBeLessThanOrEqual(panel.b+1);}}
+         |                                                                                                     ^
+      15 |  expect(await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight}))).toEqual({w:v.width,h:v.height});
+      16 | }
+      17 | async function screenshot(page:Page,name:string,project:string){const dir=process.env["SETUP_EVIDENCE_DIR"];if(dir)await page.screenshot({path:join(mkdtempSync(join(dir,"paint-")),`${name}-${project}.png`)});}
+        at fit (/work/tests/e2e/game-setup.spec.ts:14:101)
+        at /work/tests/e2e/game-setup.spec.ts:23:67
+
+    Error Context: test-results/game-setup-settings-start--ced81-reserve-play-and-round-trip-1280x800/error-context.md
+
+  4) [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      12 |  }));
+      13 |  expect(boxes.length).toBeGreaterThan(3);const v=page.viewportSize()!;
+    > 14 |  for(const {text,b,t,c,panel,font} of boxes){expect(b.w,text!).toBeGreaterThan(0);expect(b.h,text!).toBeGreaterThan(0);expect(font,text!).toBeGreaterThanOrEqual(12);expect(b.x,text!).toBeGreaterThanOrEqual(0);expect(b.y,text!).toBeGreaterThanOrEqual(0);expect(b.r,text!).toBeLessThanOrEqual(v.width+1);expect(b.b,text!).toBeLessThanOrEqual(v.height+1);expect(b.x,text!).toBeGreaterThanOrEqual(c.x-1);expect(b.r,text!).toBeLessThanOrEqual(c.r+1);expect(b.y,text!).toBeGreaterThanOrEqual(c.y-1);expect(b.b,text!).toBeLessThanOrEqual(c.b+1);if(t.r>t.x){expect(t.x,text!).toBeGreaterThanOrEqual(b.x-1);expect(t.r,text!).toBeLessThanOrEqual(b.r+1);expect(t.y,text!).toBeGreaterThanOrEqual(b.y-1);expect(t.b,text!).toBeLessThanOrEqual(b.b+1);}if(panel){expect(b.y,text!).toBeGreaterThanOrEqual(panel.y);expect(b.b,text!).toBeLessThanOrEqual(panel.b+1);}}
+         |                                                                                                     ^
+      15 |  expect(await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight}))).toEqual({w:v.width,h:v.height});
+      16 | }
+      17 | async function screenshot(page:Page,name:string,project:string){const dir=process.env["SETUP_EVIDENCE_DIR"];if(dir)await page.screenshot({path:join(mkdtempSync(join(dir,"paint-")),`${name}-${project}.png`)});}
+        at fit (/work/tests/e2e/game-setup.spec.ts:14:101)
+        at /work/tests/e2e/game-setup.spec.ts:23:67
+
+    Error Context: test-results/game-setup-settings-start--8d275-reserve-play-and-round-trip-1920x1080/error-context.md
+
+  5) [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      12 |  }));
+      13 |  expect(boxes.length).toBeGreaterThan(3);const v=page.viewportSize()!;
+    > 14 |  for(const {text,b,t,c,panel,font} of boxes){expect(b.w,text!).toBeGreaterThan(0);expect(b.h,text!).toBeGreaterThan(0);expect(font,text!).toBeGreaterThanOrEqual(12);expect(b.x,text!).toBeGreaterThanOrEqual(0);expect(b.y,text!).toBeGreaterThanOrEqual(0);expect(b.r,text!).toBeLessThanOrEqual(v.width+1);expect(b.b,text!).toBeLessThanOrEqual(v.height+1);expect(b.x,text!).toBeGreaterThanOrEqual(c.x-1);expect(b.r,text!).toBeLessThanOrEqual(c.r+1);expect(b.y,text!).toBeGreaterThanOrEqual(c.y-1);expect(b.b,text!).toBeLessThanOrEqual(c.b+1);if(t.r>t.x){expect(t.x,text!).toBeGreaterThanOrEqual(b.x-1);expect(t.r,text!).toBeLessThanOrEqual(b.r+1);expect(t.y,text!).toBeGreaterThanOrEqual(b.y-1);expect(t.b,text!).toBeLessThanOrEqual(b.b+1);}if(panel){expect(b.y,text!).toBeGreaterThanOrEqual(panel.y);expect(b.b,text!).toBeLessThanOrEqual(panel.b+1);}}
+         |                                                                                                     ^
+      15 |  expect(await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight}))).toEqual({w:v.width,h:v.height});
+      16 | }
+      17 | async function screenshot(page:Page,name:string,project:string){const dir=process.env["SETUP_EVIDENCE_DIR"];if(dir)await page.screenshot({path:join(mkdtempSync(join(dir,"paint-")),`${name}-${project}.png`)});}
+        at fit (/work/tests/e2e/game-setup.spec.ts:14:101)
+        at /work/tests/e2e/game-setup.spec.ts:23:67
+
+    Error Context: test-results/game-setup-settings-start--1975d-reserve-play-and-round-trip-1920x1080/error-context.md
+
+  6) [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip 
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 0
+    Received:   0
+
+      12 |  }));
+      13 |  expect(boxes.length).toBeGreaterThan(3);const v=page.viewportSize()!;
+    > 14 |  for(const {text,b,t,c,panel,font} of boxes){expect(b.w,text!).toBeGreaterThan(0);expect(b.h,text!).toBeGreaterThan(0);expect(font,text!).toBeGreaterThanOrEqual(12);expect(b.x,text!).toBeGreaterThanOrEqual(0);expect(b.y,text!).toBeGreaterThanOrEqual(0);expect(b.r,text!).toBeLessThanOrEqual(v.width+1);expect(b.b,text!).toBeLessThanOrEqual(v.height+1);expect(b.x,text!).toBeGreaterThanOrEqual(c.x-1);expect(b.r,text!).toBeLessThanOrEqual(c.r+1);expect(b.y,text!).toBeGreaterThanOrEqual(c.y-1);expect(b.b,text!).toBeLessThanOrEqual(c.b+1);if(t.r>t.x){expect(t.x,text!).toBeGreaterThanOrEqual(b.x-1);expect(t.r,text!).toBeLessThanOrEqual(b.r+1);expect(t.y,text!).toBeGreaterThanOrEqual(b.y-1);expect(t.b,text!).toBeLessThanOrEqual(b.b+1);}if(panel){expect(b.y,text!).toBeGreaterThanOrEqual(panel.y);expect(b.b,text!).toBeLessThanOrEqual(panel.b+1);}}
+         |                                                                                                     ^
+      15 |  expect(await page.evaluate(()=>({w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight}))).toEqual({w:v.width,h:v.height});
+      16 | }
+      17 | async function screenshot(page:Page,name:string,project:string){const dir=process.env["SETUP_EVIDENCE_DIR"];if(dir)await page.screenshot({path:join(mkdtempSync(join(dir,"paint-")),`${name}-${project}.png`)});}
+        at fit (/work/tests/e2e/game-setup.spec.ts:14:101)
+        at /work/tests/e2e/game-setup.spec.ts:23:67
+
+    Error Context: test-results/game-setup-settings-start--ced81-reserve-play-and-round-trip-1920x1080/error-context.md
+
+  6 failed
+    [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+    [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip 
+    [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip 
+    [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip 
+    [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip 
+    [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip 
+  2 passed (3.4s)

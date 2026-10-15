@@ -1,0 +1,219 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/work[39m
+
+ [31m❯[39m tests/ui/game-setup.test.ts [2m([22m[2m40 tests[22m[2m | [22m[31m39 failed[39m[2m)[22m[32m 44[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 0, 2 humans[39m[32m 2[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 42, 2 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 1994, 2 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 4294967295, 2 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 0, 3 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 42, 3 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 1994, 3 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 4294967295, 3 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 0, 4 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 42, 4 humans[39m[32m 1[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 1994, 4 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m settings preserve exact core semantics: seed 4294967295, 4 humans[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed "" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed "-1" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed "1.5" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed "1e3" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed "4294967296" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed "99999999999999999999" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed "NaN" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed "Infinity" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seed " 42" without wrapping[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seat count ""[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seat count "1"[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seat count "5"[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seat count "2.5"[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seat count "02"[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seat count "computer"[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m reject seat count "NaN"[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects -1[39m[32m 1[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects 1.5[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects 4294967296[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects NaN[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects Infinity[39m[32m 0[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects seats 1[39m[32m 11[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects seats 5[39m[32m 5[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects seats 2.5[39m[32m 5[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects seats NaN[39m[32m 3[2mms[22m[39m
+[31m   [31m×[31m numeric creation rejects seats Infinity[39m[32m 3[2mms[22m[39m
+[31m   [31m×[31m deterministic defaults and original two-seat call survive[39m[32m 0[2mms[22m[39m
+   [32m✓[39m genuine generation refusal survives[32m 7[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m39 failed[39m[22m[2m | [22m[1m[32m1 passed[39m[22m[90m (40)[39m
+[2m   Start at [22m 08:16:11
+[2m   Duration [22m 308ms[2m (transform 61%, tests 25%, import 10%, worker 3%)[22m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 39 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 0, 2 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 42, 2 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 1994, 2 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 4294967295, 2 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 0, 3 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 42, 3 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 1994, 3 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 4294967295, 3 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 0, 4 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 42, 4 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 1994, 4 humans
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22msettings preserve exact core semantics: seed 4294967295, 4 humans
+[31m[1mTypeError[22m: parseGameSettings is not a function[39m
+[36m [2m❯[22m tests/ui/game-setup.test.ts:[2m7:12[22m[39m
+    [90m  5|[39m for (const seats of [2, 3, 4]) for (const seed of [0, 42, 1994, 429496…
+    [90m  6|[39m   test(`settings preserve exact core semantics: seed ${seed}, ${seats}…
+    [90m  7|[39m     expect(parseGameSettings(String(seed), String(seats))).toEqual({ok…
+    [90m   |[39m            [31m^[39m
+    [90m  8|[39m     const expected = createGame({...defaultOptions(), seed, seats:Arra…
+    [90m  9|[39m     const actual = createGeneratedGame(seed, seats);
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/39]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed "" without wrapping
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed "-1" without wrapping
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed "1.5" without wrapping
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed "1e3" without wrapping
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed "4294967296" without wrapping
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed "99999999999999999999" without wrapping
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed "NaN" without wrapping
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed "Infinity" without wrapping
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seed " 42" without wrapping
+[31m[1mTypeError[22m: parseGameSettings is not a function[39m
+[36m [2m❯[22m tests/ui/game-setup.test.ts:[2m15:18[22m[39m
+    [90m 13|[39m }
+    [90m 14|[39m for(const seed of ["", "-1", "1.5", "1e3", "4294967296", "999999999999…
+    [90m 15|[39m   const result = parseGameSettings(seed,"2"); expect(result.ok).toBe(f…
+    [90m   |[39m                  [31m^[39m
+    [90m 16|[39m });
+    [90m 17|[39m for(const seats of ["", "1", "5", "2.5", "02", "computer", "NaN"]) tes…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/39]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seat count ""
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seat count "1"
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seat count "5"
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seat count "2.5"
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seat count "02"
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seat count "computer"
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mreject seat count "NaN"
+[31m[1mTypeError[22m: parseGameSettings is not a function[39m
+[36m [2m❯[22m tests/ui/game-setup.test.ts:[2m18:15[22m[39m
+    [90m 16|[39m });
+    [90m 17|[39m for(const seats of ["", "1", "5", "2.5", "02", "computer", "NaN"]) tes…
+    [90m 18|[39m  const result=parseGameSettings("1994",seats);expect(result.ok).toBe(f…
+    [90m   |[39m               [31m^[39m
+    [90m 19|[39m });
+    [90m 20|[39m for(const seed of [-1, 1.5, 4294967296, NaN, Infinity]) test(`numeric …
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/39]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects -1
+[31m[1mOptionsError[22m: seed must be a 32-bit unsigned integer 0..4294967295 (got -1)[39m
+[36m [2m❯[22m parseSeed src/core/options.ts:[2m196:11[22m[39m
+    [90m194|[39m   }
+    [90m195|[39m   if (value < 0 || value > SEED_MAX) {
+    [90m196|[39m     throw new OptionsError(
+    [90m   |[39m           [31m^[39m
+    [90m197|[39m       `seed must be a 32-bit unsigned integer 0..${SEED_MAX} (got ${va…
+    [90m198|[39m       "seed",
+[90m [2m❯[22m validateGameOptions src/core/options.ts:[2m262:11[22m[39m
+[90m [2m❯[22m createGame src/core/setup.ts:[2m23:21[22m[39m
+[90m [2m❯[22m createGeneratedGame src/ui/generatedGame.ts:[2m14:18[22m[39m
+[90m [2m❯[22m tests/ui/game-setup.test.ts:[2m20:108[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/39]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects 1.5
+[31m[1mOptionsError[22m: seed must be an integer (got 1.5)[39m
+[36m [2m❯[22m parseSeed src/core/options.ts:[2m193:11[22m[39m
+    [90m191|[39m function parseSeed(value: unknown): number {
+    [90m192|[39m   if (typeof value !== "number" || !Number.isInteger(value)) {
+    [90m193|[39m     throw new OptionsError(`seed must be an integer (got ${JSON.string…
+    [90m   |[39m           [31m^[39m
+    [90m194|[39m   }
+    [90m195|[39m   if (value < 0 || value > SEED_MAX) {
+[90m [2m❯[22m validateGameOptions src/core/options.ts:[2m262:11[22m[39m
+[90m [2m❯[22m createGame src/core/setup.ts:[2m23:21[22m[39m
+[90m [2m❯[22m createGeneratedGame src/ui/generatedGame.ts:[2m14:18[22m[39m
+[90m [2m❯[22m tests/ui/game-setup.test.ts:[2m20:108[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/39]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects 4294967296
+[31m[1mOptionsError[22m: seed must be a 32-bit unsigned integer 0..4294967295 (got 4294967296)[39m
+[36m [2m❯[22m parseSeed src/core/options.ts:[2m196:11[22m[39m
+    [90m194|[39m   }
+    [90m195|[39m   if (value < 0 || value > SEED_MAX) {
+    [90m196|[39m     throw new OptionsError(
+    [90m   |[39m           [31m^[39m
+    [90m197|[39m       `seed must be a 32-bit unsigned integer 0..${SEED_MAX} (got ${va…
+    [90m198|[39m       "seed",
+[90m [2m❯[22m validateGameOptions src/core/options.ts:[2m262:11[22m[39m
+[90m [2m❯[22m createGame src/core/setup.ts:[2m23:21[22m[39m
+[90m [2m❯[22m createGeneratedGame src/ui/generatedGame.ts:[2m14:18[22m[39m
+[90m [2m❯[22m tests/ui/game-setup.test.ts:[2m20:108[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/39]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects NaN
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects Infinity
+[31m[1mOptionsError[22m: seed must be an integer (got null)[39m
+[36m [2m❯[22m parseSeed src/core/options.ts:[2m193:11[22m[39m
+    [90m191|[39m function parseSeed(value: unknown): number {
+    [90m192|[39m   if (typeof value !== "number" || !Number.isInteger(value)) {
+    [90m193|[39m     throw new OptionsError(`seed must be an integer (got ${JSON.string…
+    [90m   |[39m           [31m^[39m
+    [90m194|[39m   }
+    [90m195|[39m   if (value < 0 || value > SEED_MAX) {
+[90m [2m❯[22m validateGameOptions src/core/options.ts:[2m262:11[22m[39m
+[90m [2m❯[22m createGame src/core/setup.ts:[2m23:21[22m[39m
+[90m [2m❯[22m createGeneratedGame src/ui/generatedGame.ts:[2m14:18[22m[39m
+[90m [2m❯[22m tests/ui/game-setup.test.ts:[2m20:108[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/39]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects seats 1
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects seats 5
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects seats 2.5
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects seats NaN
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mnumeric creation rejects seats Infinity
+[31m[1mAssertionError[22m: expected true to be false // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- false[39m
+[31m+ true[39m
+
+[36m [2m❯[22m tests/ui/game-setup.test.ts:[2m21:138[22m[39m
+    [90m 19|[39m });
+    [90m 20|[39m for(const seed of [-1, 1.5, 4294967296, NaN, Infinity]) test(`numeric …
+    [90m 21|[39m for(const seats of [1,5,2.5,NaN,Infinity]) test(`numeric creation reje…
+    [90m   |[39m                                                                                                                                          [31m^[39m
+    [90m 22|[39m test("deterministic defaults and original two-seat call survive",()=>{
+    [90m 23|[39m  expect(parseGameSettings(null,null)).toEqual({ok:true,seed:1994,seats…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/39]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/ui/game-setup.test.ts[2m > [22mdeterministic defaults and original two-seat call survive
+[31m[1mTypeError[22m: parseGameSettings is not a function[39m
+[36m [2m❯[22m tests/ui/game-setup.test.ts:[2m23:9[22m[39m
+    [90m 21|[39m for(const seats of [1,5,2.5,NaN,Infinity]) test(`numeric creation reje…
+    [90m 22|[39m test("deterministic defaults and original two-seat call survive",()=>{
+    [90m 23|[39m  expect(parseGameSettings(null,null)).toEqual({ok:true,seed:1994,seats…
+    [90m   |[39m         [31m^[39m
+    [90m 24|[39m  expect(createGeneratedGame()).toEqual(createGeneratedGame(1994));
+    [90m 25|[39m  expect(createGeneratedGame(42)).toEqual(createGeneratedGame(42,2));
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/39]⎯[22m[39m
+
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
