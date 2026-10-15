@@ -1,0 +1,13 @@
+{
+  "name": "full-browser",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "--workers=2"
+  ],
+  "expectedExit": 0,
+  "exitCode": 1,
+  "signal": null,
+  "sourceSha256": "5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3"
+}

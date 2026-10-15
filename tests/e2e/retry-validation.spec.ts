@@ -64,6 +64,7 @@ test("refusal retry validates edited seeds and recovers with preserved settings"
     await expect(page.getByRole("heading", { name: "Malpaco" })).toBeVisible();
     const generationError = page.locator(".generated-error > div[role=alert]");
     await expect(generationError).toContainText(/generation failed/i);
+    await expect(page.locator(".retry-validation")).toBeHidden();
     await expect(page.locator("[data-country]")).toHaveCount(0);
     await fitAndCapture(page, `refusal-${computers ? "computers" : "humans"}`, info.project.name);
 

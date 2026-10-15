@@ -391,8 +391,9 @@ opens `?view=generated-game&seed=N&seats=C`; New game returns to setup with the
 same choices. Direct generated-game URLs still default to seed 1994 and two
 humans. Seed input accepts whole uint32 values without wrapping, unsupported
 seat counts are rejected, and generation refusals leave an editable recovery
-form. Retry runs the shared seed validation and shows the whole-number/range
-error beside the refusal while keeping the edited seed available for correction.
+form. Retry runs the shared seed validation and reveals the whole-number/range
+error beside the refusal only for an invalid edit, keeping the edited seed
+available for correction.
 Correcting the seed and retrying preserves seat count and opponent mode. The
 Generate form keeps keyboard submission. Unimplemented rule options are not
 offered. Players also offers one human

@@ -248,3 +248,13 @@ Plan: install the preflighted candidate in `src/ui/generatedGame.ts`, document i
 2026-10-15: parent pinned preflight A passed the contract: baseline exit1 at the missing retry-feedback acceptance, candidate exit0 with both viewports passing, source SHA-256 `60b746e54082d8e668ab511752627f7171ac94a7a8e07a2181087973f5adeba8` restored exactly. Parent inspected retained empty-input human and computer captures. Added SHA256SUMS for both original replay directories; source and candidate hashes were preserved. Stage2 authorized by parent.
 
 END Fix45 stage 2 preparation: candidate behavior is installed and the final verifier is prepared. Await parent pinned focused/unit/build/full-browser/mutation run before reporting completion; no existing goldens changed.
+
+Stage 2 pinned implementation-A result: focused 2/2, unit 429/429 and build passed; full browser ran 98 cases with 96 passing and exactly two failures in the existing `tests/e2e/generated-game.spec.ts` refusal check. Both failed because the new empty `role=alert` paragraph made `getByRole("alert")` strict lookup match the generation error and empty feedback. Final-A evidence, full manifest/output and all captures are retained at `docs/prototypes/retry-validation/evidence/final-2026-10-15T13-39-17.170Z-1/`; `src/ui/generatedGame.ts` was restored byte-for-byte to candidate SHA-256 `5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3`.
+
+## Fix45 stage 2 rework B
+
+Plan: keep the new feedback node hidden while empty so the existing single-alert refusal contract remains intact; reveal it when Retry receives an invalid seed and hide/clear it after valid settings. Leave existing tests unchanged. Update the disposable candidate identically, assert the initial feedback is hidden in the focused acceptance, preserve/hash final-A evidence, then push for the parent pinned stage-B verifier.
+
+2026-10-15: implemented hidden-until-invalid feedback in source and candidate, added an initial-hidden assertion to the new focused suite, and updated spike wording. The final verifier's mutation anchor remains the invalid feedback assignment. No previous evidence or goldens were changed.
+
+END Fix45 stage 2 rework B preparation: ready for parent pinned `node docs/prototypes/retry-validation/verify-final.mjs`; final-A evidence retained unchanged and will be committed with SHA256SUMS.

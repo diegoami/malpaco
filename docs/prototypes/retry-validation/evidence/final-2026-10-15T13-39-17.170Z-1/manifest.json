@@ -1,0 +1,59 @@
+{
+  "startedAt": "2026-10-15T13-39-17.170Z",
+  "evidence": "/work/docs/prototypes/retry-validation/evidence/final-2026-10-15T13-39-17.170Z-1",
+  "sourceBeforeSha256": "5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3",
+  "sourceAfterSha256": "5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3",
+  "sourceRestoredByteForByte": true,
+  "records": [
+    {
+      "name": "focused",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/retry-validation.spec.ts",
+        "--workers=2"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "signal": null,
+      "sourceSha256": "5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3"
+    },
+    {
+      "name": "unit",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "signal": null,
+      "sourceSha256": "5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3"
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "expectedExit": 0,
+      "exitCode": 0,
+      "signal": null,
+      "sourceSha256": "5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3"
+    },
+    {
+      "name": "full-browser",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--workers=2"
+      ],
+      "expectedExit": 0,
+      "exitCode": 1,
+      "signal": null,
+      "sourceSha256": "5475681c5a9ec98c1181f50f7d3a66131c84d8674182bb6783fd39ffef8b71f3"
+    }
+  ]
+}

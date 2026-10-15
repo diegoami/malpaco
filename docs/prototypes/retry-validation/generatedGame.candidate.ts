@@ -109,10 +109,16 @@ export function mountGeneratedGame(root: HTMLElement): void {
   const retry = () => {
     const value = parseGameSettings(input.value, String(seats));
     if (!value.ok) {
-      if (retryValidation) retryValidation.textContent = value.errors.join(" ");
+      if (retryValidation) {
+        retryValidation.textContent = value.errors.join(" ");
+        retryValidation.hidden = false;
+      }
       return;
     }
-    if (retryValidation) retryValidation.textContent = "";
+    if (retryValidation) {
+      retryValidation.textContent = "";
+      retryValidation.hidden = true;
+    }
     navigate("generated-game", String(value.seed), String(seats), computers);
   };
   form.addEventListener("submit", event => {
@@ -125,7 +131,7 @@ export function mountGeneratedGame(root: HTMLElement): void {
     root.id = "generated-game";
     const button = h("button", { type: "button" }, "Retry");
     button.addEventListener("click", retry);
-    retryValidation = h("p", { class: "retry-validation", role: "alert" });
+    retryValidation = h("p", { class: "retry-validation", role: "alert", hidden: true });
     root.replaceChildren(h("section", { class: "generated-error" }, h("h1", {}, "Malpaco"), form,
       h("div", { role: "alert" }, "Generation failed: " + result.errors.join("; ")),
       h("p", {}, "Retry this seed, or choose another seed above."), retryValidation, button));
