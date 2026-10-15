@@ -1,0 +1,425 @@
+✔ complete independently enumerated matrix passes with exact counts (1.073163ms)
+✖ rejects missing requirement (1.127101ms)
+✖ rejects duplicate requirement (0.173971ms)
+✖ rejects unknown requirement (0.144522ms)
+✖ rejects missing citation (0.104264ms)
+✖ rejects wrong source anchor (0.101044ms)
+✖ rejects unpinned citation (0.079576ms)
+✖ rejects wrong document (0.090968ms)
+✖ rejects missing task mapping (0.1305ms)
+✖ rejects unknown task (0.28832ms)
+✖ rejects missing disposition (0.127848ms)
+✖ rejects invented disposition (0.073421ms)
+✖ rejects missing confidence (0.062415ms)
+✖ rejects missing owner decision (0.052059ms)
+✖ rejects missing assessment (0.046221ms)
+✖ rejects missing gap explanation (0.044168ms)
+✖ rejects missing requirement description (0.043464ms)
+✖ rejects missing code reference (0.066781ms)
+✖ rejects nonexistent test reference (0.060622ms)
+✖ rejects reference escapes checkout (0.051236ms)
+✖ rejects simultaneous manifest and matrix omission (0.04863ms)
+✖ rejects duplicate manifest ID (0.073284ms)
+✖ rejects missing source document (0.055822ms)
+✖ rejects empty matrix (0.062218ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 1
+ℹ fail 23
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.208136
+
+✖ failing tests:
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing requirement (1.127101ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects duplicate requirement (0.173971ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects unknown requirement (0.144522ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing citation (0.104264ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects wrong source anchor (0.101044ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects unpinned citation (0.079576ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects wrong document (0.090968ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing task mapping (0.1305ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects unknown task (0.28832ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing disposition (0.127848ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects invented disposition (0.073421ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing confidence (0.062415ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing owner decision (0.052059ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing assessment (0.046221ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing gap explanation (0.044168ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing requirement description (0.043464ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing code reference (0.066781ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects nonexistent test reference (0.060622ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects reference escapes checkout (0.051236ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects simultaneous manifest and matrix omission (0.04863ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects duplicate manifest ID (0.073284ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects missing source document (0.055822ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at docs/plans/new-game/verify-inventory.test.mjs:52:4
+✖ rejects empty matrix (0.062218ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception (Error).
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t23-work/docs/plans/new-game/verify-inventory.test.mjs:54:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
