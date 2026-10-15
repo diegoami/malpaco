@@ -1,5 +1,5 @@
-import { createGame, defaultOptions, malpacoRules } from "../core";
-import type { GameState } from "../core";
+import { createGame, defaultOptions, deserializeMatch, malpacoRules, serializeMatch } from "../core";
+import type { GameOptions, GameState } from "../core";
 import { App } from "./app";
 import { h } from "./dom";
 import { GeneratedMapView } from "./generatedMapView";
@@ -23,14 +23,14 @@ export function parseGameSettings(seed: string | null, seats: string | null) {
   return errors.length ? { ok: false as const, errors } : { ok: true as const, seed: Number(s), seats: Number(n) };
 }
 
+function generatedOptions(seed: number, seats: number): GameOptions {
+  return { ...defaultOptions(), seed, seats: Array.from({ length: seats }, () => ({ kind: "human" as const })), computerStrengths: [] };
+}
+
 export function createGeneratedGame(seed = 1994, seats = 2) {
   const settings = parseGameSettings(String(seed), String(seats));
   if (!settings.ok) return settings;
-  const result = createGame({
-    ...defaultOptions(), seed,
-    seats: Array.from({ length: seats }, () => ({ kind: "human" as const })),
-    computerStrengths: [],
-  }, malpacoRules());
+  const result = createGame(generatedOptions(seed, seats), malpacoRules());
   return result.ok ? { ok: true as const, state: projectGeneratedState(result.state) } : result;
 }
 
@@ -75,6 +75,7 @@ export function mountGameSetup(root: HTMLElement, failure = ""): void {
   });
   root.id = "game-setup";
   root.classList.add("setup-root");
+  form.append(loadControl(root, alert));
   root.replaceChildren(form);
 }
 
@@ -113,13 +114,62 @@ export function mountGeneratedGame(root: HTMLElement): void {
       h("p", {}, "Retry this seed, or choose another seed above."), button));
     return;
   }
+  mountMatch(root, generatedOptions(seed, seats), result.state);
+}
+
+// [designed] C-SET-05/07 defines the payload; local file controls/errors are new UI.
+function loadControl(root: HTMLElement, alert: HTMLElement, current?: App): HTMLElement {
+  const input = h("input", { type: "file", accept: ".json,application/json", id: "load-game-file" });
+  const label = h("label", { for: "load-game-file" }, "Load game");
+  let request = 0;
+  input.addEventListener("change", async () => {
+    const file = input.files?.[0];
+    if (!file) return;
+    const own = ++request;
+    try {
+      const loaded = deserializeMatch(await file.text());
+      if (loaded.options.seats.some(seat => seat.kind !== "human")) throw Error("Computer seats are not supported yet. Choose a game with 2–4 human players.");
+      if (own !== request) return;
+      // Validate/replay completely before replacing the controller, URL or DOM.
+      const state = projectGeneratedState(loaded.state);
+      const url = new URL(location.href);
+      url.searchParams.set("view", "generated-game");
+      url.searchParams.set("seed", String(loaded.options.seed));
+      url.searchParams.set("seats", String(loaded.options.seats.length));
+      history.replaceState(null, "", url);
+      current?.dispose();
+      mountMatch(root, loaded.options, state);
+    } catch (error) {
+      if (own === request) alert.textContent = "Load failed: " + (error instanceof Error ? error.message : String(error));
+    } finally { if (own === request) input.value = ""; }
+  });
+  return h("div", { class: "match-load" }, label, input);
+}
+
+function mountMatch(root: HTMLElement, options: GameOptions, state: GameState): void {
+  const seed = options.seed, seats = options.seats.length;
+  root.classList.remove("setup-root");
   root.classList.add("generated-game-root");
   root.id = "generated-game";
   root.dataset["seats"] = String(seats);
-  new App(result.state.map, seed, () => navigate("game-setup", String(seed), String(seats)), result.state,
-    (map, handlers) => new GeneratedMapView(map, handlers)).mount(root);
+  const app = new App(state.map, seed, () => navigate("game-setup", String(seed), String(seats)), state,
+    (map, handlers) => new GeneratedMapView(map, handlers));
+  app.mount(root);
   const legend = h("div", { class: "generated-legend", "aria-label": "Map legend" },
     h("span", {}, "Seat · armies"), h("span", {}, h("i", { class: "generated-land-key", "aria-hidden": "true" }), "Land"),
     h("span", {}, h("i", { class: "generated-sea-key", "aria-hidden": "true" }), "Sea"));
-  root.querySelector("header")!.append(legend, form);
+  const input = h("input", { id: "game-seed", type: "number", min: "0", max: "4294967295", value: String(seed), required: "" });
+  const form = h("form", { class: "generated-seed" }, h("label", {for:"game-seed"}, "Seed"), input, h("button", {type:"submit"}, "Generate"));
+  form.addEventListener("submit", event => { event.preventDefault(); if (form.reportValidity()) navigate("generated-game", input.value, String(seats)); });
+  const save = h("button", { type: "button" }, "Save game");
+  save.addEventListener("click", () => {
+    const blob = new Blob([serializeMatch(options, app.actions)], {type:"application/json"});
+    const url = URL.createObjectURL(blob), anchor = h("a", { href:url, download:`malpaco-${seed}.json` });
+    anchor.click();
+    // The click has queued the download before releasing its object URL.
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+  });
+  const alert = h("p", {role:"alert",class:"match-error"});
+  const controls = h("div", {class:"match-files"}, save, loadControl(root, alert, app), alert);
+  root.querySelector("header")!.append(legend, form, controls);
 }
