@@ -46,3 +46,21 @@ missing-module failure, candidate unit success and build success with direct
 file descriptors for complete subprocess logs. Earlier a/b logs and manifests
 are retained; b's piped unit logs were unexpectedly empty, so c is authoritative.
 Pinned browser and mutation claims await the parent run.
+
+Pinned candidate preflight c passes 11 focused core tests, 10 browser checks,
+429 total unit tests, build and all 88 browser checks. Scheduling, input gating
+and cancellation source mutants fail respectively 6, 6 and 2 browser checks;
+the restored suite passes all 10. Its manifest confirms exact production and
+T17 assertion restoration. `preflight-c-sha256.txt` hashes the immutable outputs.
+
+After parent authorization, the same verified fixtures were installed as
+production. Final verification never installs fixtures or updates snapshots:
+
+```
+node docs/prototypes/computer/verify-final.mjs docs/prototypes/computer/implementation-20261015-a
+```
+
+It checks all Done-when commands against actual source and repeats the three
+mutations, writing the exact saved app bytes back in every mutation's finally
+and the outer finally, then records matching hashes. Pinned final evidence is
+required before the implementation is reported complete.

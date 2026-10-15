@@ -1,0 +1,15 @@
+
+Running 10 tests using 2 workers
+
+  ✓   1 [1280x800] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (90ms)
+  ✓   3 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (754ms)
+  ✓   2 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (1.0s)
+  ✓   4 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (671ms)
+  ✓   5 [1280x800] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped (552ms)
+  ✓   6 [1920x1080] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (84ms)
+  ✓   8 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (764ms)
+  ✓   7 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (1.1s)
+  ✓   9 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (753ms)
+  ✓  10 [1920x1080] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped (592ms)
+
+  10 passed (4.8s)

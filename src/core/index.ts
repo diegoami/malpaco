@@ -60,3 +60,5 @@ export {
 } from "./board-fairness";
 
 export { MATCH_SAVE_VERSION, deserializeMatch, serializeMatch } from "./match-save";
+
+export { computerAction } from "./computer";
