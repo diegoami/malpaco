@@ -92,3 +92,31 @@ test("refusal is visible and accessible seed/retry recovers",async({page})=>{
  await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByRole("button",{name:"Generate",exact:true}).click();await expect(page.locator("[data-country]")).toHaveCount(46);await expect(page.getByRole("alert")).toHaveCount(0);
 });
 test("golden: generated gameplay opening",async({page})=>{await settle(page);await expect(page.locator("#generated-game")).toHaveScreenshot("generated-game.png");});
+
+
+test("seat cards keep all text inside the gameplay panel", async ({ page }) => {
+  await settle(page);
+  const fit = await page.locator(".score-num, .score-name, .turn-title, .turn-sub").evaluateAll(elements =>
+    elements.map(element => {
+      const card = element.closest(".card")!.getBoundingClientRect();
+      const panel = element.closest(".panel")!.getBoundingClientRect();
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      const lines = Array.from(range.getClientRects()).filter(rect => rect.width > 0 && rect.height > 0);
+      return {
+        text: element.textContent,
+        title: element.classList.contains("turn-title"),
+        lineCount: lines.length,
+        fits: lines.every(rect => rect.left >= Math.max(card.left, panel.left, 0)
+          && rect.right <= Math.min(card.right, panel.right, window.innerWidth)
+          && rect.top >= Math.max(card.top, panel.top, 0)
+          && rect.bottom <= Math.min(card.bottom, panel.bottom, window.innerHeight)),
+      };
+    }),
+  );
+  expect(fit.length).toBeGreaterThan(0);
+  for (const text of fit) {
+    expect(text.fits, `${text.text}: text clipped by its card or panel`).toBe(true);
+    if (text.title) expect(text.lineCount, `${text.text}: turn title stays on one line`).toBe(1);
+  }
+});
