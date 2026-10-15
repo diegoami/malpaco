@@ -1,12 +1,13 @@
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
-import { mkdtempSync } from "node:fs";
+import { mkdirSync, mkdtempSync } from "node:fs";
 import { join } from "node:path";
 import { ACTION_BUDGET, advance, nextAction, opening, policyFor } from "../helpers/complete-game";
 
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);
 async function capture(page: Page, name: string, project: string) {
   const root = process.env["COMPLETE_EVIDENCE_DIR"] ?? "screenshots";
+  mkdirSync(root, { recursive: true });
   const dir = mkdtempSync(join(root, "complete-"));
   await page.screenshot({ path: join(dir, `${name}-${project}.png`) });
 }
