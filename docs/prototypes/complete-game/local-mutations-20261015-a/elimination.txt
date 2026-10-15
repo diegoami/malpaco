@@ -1,0 +1,86 @@
+
+ RUN  v5.0.3 /tmp/malpaco-T16
+
+ ❯ tests/core/complete-game.test.ts (9 tests | 9 failed) 204ms
+   ❯ complete generated human games through legal actions (9)
+     × seed 1, 2 seats: elimination, living handoff, conquest and frozen finish 40ms
+     × seed 1, 3 seats: elimination, living handoff, conquest and frozen finish 21ms
+     × seed 1, 4 seats: elimination, living handoff, conquest and frozen finish 31ms
+     × seed 42, 2 seats: elimination, living handoff, conquest and frozen finish 14ms
+     × seed 42, 3 seats: elimination, living handoff, conquest and frozen finish 17ms
+     × seed 42, 4 seats: elimination, living handoff, conquest and frozen finish 34ms
+     × seed 1994, 2 seats: elimination, living handoff, conquest and frozen finish 11ms
+     × seed 1994, 3 seats: elimination, living handoff, conquest and frozen finish 16ms
+     × seed 1994, 4 seats: elimination, living handoff, conquest and frozen finish 20ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 2 seats: elimination, living handoff, conquest and frozen finish
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 3 seats: elimination, living handoff, conquest and frozen finish
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 2 seats: elimination, living handoff, conquest and frozen finish
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 3 seats: elimination, living handoff, conquest and frozen finish
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1994, 4 seats: elimination, living handoff, conquest and frozen finish
+AssertionError: seat2 owns 0 countries: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/core/complete-game.test.ts:19:67
+     17|         for (const p of state.players) {
+     18|           const count = Object.values(state.ownerOf).filter(owner => o…
+     19|           expect(p.eliminated, `${p.id} owns ${count} countries`).toBe…
+       |                                                                   ^
+     20|         }
+     21|         if (action.kind === "endTurn") {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 3 seats: elimination, living handoff, conquest and frozen finish
+AssertionError: seat3 owns 0 countries: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/core/complete-game.test.ts:19:67
+     17|         for (const p of state.players) {
+     18|           const count = Object.values(state.ownerOf).filter(owner => o…
+     19|           expect(p.eliminated, `${p.id} owns ${count} countries`).toBe…
+       |                                                                   ^
+     20|         }
+     21|         if (action.kind === "endTurn") {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 1, 4 seats: elimination, living handoff, conquest and frozen finish
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 2 seats: elimination, living handoff, conquest and frozen finish
+ FAIL  tests/core/complete-game.test.ts > complete generated human games through legal actions > seed 42, 4 seats: elimination, living handoff, conquest and frozen finish
+AssertionError: seat1 owns 0 countries: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/core/complete-game.test.ts:19:67
+     17|         for (const p of state.players) {
+     18|           const count = Object.values(state.ownerOf).filter(owner => o…
+     19|           expect(p.eliminated, `${p.id} owns ${count} countries`).toBe…
+       |                                                                   ^
+     20|         }
+     21|         if (action.kind === "endTurn") {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed (9)
+   Start at  10:45:55
+   Duration  382ms (tests 69%, transform 26%, import 5%, worker 1%)
+

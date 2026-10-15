@@ -18,6 +18,10 @@ describe("complete generated human games through legal actions", () => {
           const count = Object.values(state.ownerOf).filter(owner => owner === p.id).length;
           expect(p.eliminated, `${p.id} owns ${count} countries`).toBe(count === 0);
         }
+        if (new Set(Object.values(state.ownerOf)).size === 1) {
+          expect(state.phase, "complete ownership immediately finishes conquest").toBe("finished");
+          expect(state.winner).toBe(policy.conqueror);
+        }
         if (action.kind === "endTurn") {
           handoffs++;
           let expected = (before.currentPlayer + 1) % seats;
