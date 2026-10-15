@@ -1,0 +1,75 @@
+
+> malpaco-spike-ts@0.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/work[39m
+
+ [32m✓[39m tests/core/purity.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/core/board-fairness.test.ts [2m([22m[2m27 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/core/save.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/core/seats.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m tests/core/options.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/core/archipelago.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m tests/core/reinforcement.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m tests/core/map.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m tests/core/bonuses.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m tests/core/rng-streams.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m tests/core/combat.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m tests/core/determinism.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+ [32m✓[39m tests/core/malpaco-combat.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m tests/core/turns.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 1, 2 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":1,"seats":2,"actions":482,"handoffs":18,"rounds":10,"skippedDead":0}
+
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 1, 3 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":1,"seats":3,"actions":664,"handoffs":32,"rounds":12,"skippedDead":1}
+
+ [32m✓[39m tests/ui/generated-board-layout.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 145[2mms[22m[39m
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 1, 4 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":1,"seats":4,"actions":1024,"handoffs":69,"rounds":19,"skippedDead":3}
+
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 42, 2 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":42,"seats":2,"actions":495,"handoffs":16,"rounds":9,"skippedDead":0}
+
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 42, 3 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":42,"seats":3,"actions":681,"handoffs":28,"rounds":11,"skippedDead":2}
+
+ [32m✓[39m tests/ui/generated-game.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 134[2mms[22m[39m
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 42, 4 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":42,"seats":4,"actions":1333,"handoffs":101,"rounds":27,"skippedDead":3}
+
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 1994, 2 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":1994,"seats":2,"actions":349,"handoffs":12,"rounds":7,"skippedDead":0}
+
+ [32m✓[39m tests/ui/game-setup.test.ts [2m([22m[2m40 tests[22m[2m)[22m[32m 188[2mms[22m[39m
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 1994, 3 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":1994,"seats":3,"actions":588,"handoffs":29,"rounds":11,"skippedDead":1}
+
+[90mstdout[2m | tests/core/complete-game.test.ts[2m > [22m[2mcomplete generated human games through legal actions[2m > [22m[2mseed 1994, 4 seats: elimination, living handoff, conquest and frozen finish
+[22m[39m{"seed":1994,"seats":4,"actions":737,"handoffs":43,"rounds":12,"skippedDead":1}
+
+ [32m✓[39m tests/core/complete-game.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 320[2mms[22m[39m
+ [32m✓[39m tests/core/match-save.test.ts [2m([22m[2m23 tests[22m[2m)[22m[33m 418[2mms[22m[39m
+ [32m✓[39m tests/core/setup.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 580[2mms[22m[39m
+   [32m✓[39m generated initial deal [2m(18)[22m
+     [33m[2m✓[22m[39m assigns every country once with no complete islands across seeds 1..100[33m 309[2mms[22m[39m
+ [32m✓[39m tests/core/board-gen.sweep.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 876[2mms[22m[39m
+   [32m✓[39m wide-seed sweep (C-BRD-01, ≥ 99 % within MAX_BOARD_ATTEMPTS) [2m(2)[22m
+     [33m[2m✓[22m[39m 200 seeds success rate is ≥ 99 %[33m 616[2mms[22m[39m
+ [32m✓[39m tests/core/board-gen.test.ts [2m([22m[2m135 tests[22m[2m)[22m[33m 1723[2mms[22m[39m
+   [32m✓[39m generateBoard [2m(133)[22m
+     [32m✓[39m R9 (R11 follow-up): entrance reuse at the cap [2m(1)[22m
+       [33m[2m✓[22m[39m an island at its entrance cap still takes lanes on existing entrances, never a new one[33m 505[2mms[22m[39m
+     [32m✓[39m R6: MAX_BOARD_ATTEMPTS is the smallest cap with >= 99 % on the 200-seed sweep [2m(1)[22m
+       [33m[2m✓[22m[39m the pinned cap reaches 99 % and one fewer attempt does not[33m 486[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m22 passed[39m[22m[90m (22)[39m
+[2m      Tests [22m [1m[32m418 passed[39m[22m[90m (418)[39m
+[2m   Start at [22m 09:33:22
+[2m   Duration [22m 2.05s[2m (tests 54%, transform 36%, import 9%, worker 1%)[22m
+
+[2m  Transform [22m [33mtransforming modules took 3.14s[39m[2m · 36% of tracked time, re-done on every run[22m
+[2m            [22m [2mpersist transforms across runs with [22m[33mfsModuleCache: true[39m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#caching-between-reruns[22m
+

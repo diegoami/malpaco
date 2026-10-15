@@ -30,3 +30,12 @@ Changed production files: `src/core/match-save.ts` supplies validated pure repla
 removes replaced-controller listeners/dialogs; `src/ui/generatedGame.ts` retains
 actual options and adds download/atomic file loading; `src/styles.css` styles
 only the new local-file controls/errors. `docs/spike.md` describes the behavior.
+
+Actual-source `implementation-20261015-b/` passes23core/eightbrowser, build,
+all418unit/all78browser. Replay omission fails three cases; illegal histories
+accepted fails four. Right-alert overlap, lost presentation options and leaked
+controllers each fail at both viewport sizes (leak expects one listener, gets
+three). Restored23core/eightbrowser pass and all five source hashes match.
+`implementation-b-sha256.txt` indexes every retained log/screenshot/manifest.
+Failed implementation A is preserved with its own index: an optional absent
+alert probe auto-waited and was corrected with count() before measurement.

@@ -1,0 +1,70 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/work[39m
+
+ [31m❯[39m tests/core/match-save.test.ts [2m([22m[2m23 tests[22m[2m | [22m[31m4 failed[39m[2m)[22m[33m 333[2mms[22m[39m
+   [31m❯[39m generated match saves [2m(23)[22m
+[31m     [31m×[31m 2 humans replay opening, partial reinforcement, combat, handoff and victory exactly[39m[32m 123[2mms[22m[39m
+[31m     [31m×[31m 3 humans replay opening, partial reinforcement, combat, handoff and victory exactly[39m[32m 92[2mms[22m[39m
+[31m     [31m×[31m 4 humans replay opening, partial reinforcement, combat, handoff and victory exactly[39m[32m 95[2mms[22m[39m
+     [32m✓[39m keeps all computer RNGs and presentation settings without storing snapshots[32m 17[2mms[22m[39m
+     [32m✓[39m rejects nonobject[32m 0[2mms[22m[39m
+     [32m✓[39m rejects array[32m 0[2mms[22m[39m
+     [32m✓[39m rejects version[32m 0[2mms[22m[39m
+     [32m✓[39m rejects missing options[32m 0[2mms[22m[39m
+     [32m✓[39m rejects bad options[32m 0[2mms[22m[39m
+     [32m✓[39m rejects missing actions[32m 0[2mms[22m[39m
+     [32m✓[39m rejects actions object[32m 0[2mms[22m[39m
+     [32m✓[39m rejects action null[32m 0[2mms[22m[39m
+     [32m✓[39m rejects action {}[32m 0[2mms[22m[39m
+     [32m✓[39m rejects action {"kind":"unknown"}[32m 0[2mms[22m[39m
+     [32m✓[39m rejects action {"kind":"endTurn","extra":1}[32m 0[2mms[22m[39m
+     [32m✓[39m rejects action {"kind":"attack","from":4,"to":"x"}[32m 0[2mms[22m[39m
+     [32m✓[39m rejects action {"kind":"reinforce","province":"x","amount":0}[32m 0[2mms[22m[39m
+     [32m✓[39m rejects action {"kind":"reinforce","province":"x","amount":1.5}[32m 0[2mms[22m[39m
+[31m     [31m×[31m rejects illegal history[39m[32m 3[2mms[22m[39m
+     [32m✓[39m rejects snapshot injection[32m 0[2mms[22m[39m
+     [32m✓[39m rejects malformed JSON[32m 0[2mms[22m[39m
+     [32m✓[39m reports generation refusal[32m 1[2mms[22m[39m
+     [32m✓[39m preserves the old options-only API[32m 0[2mms[22m[39m
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m4 failed[39m[22m[2m | [22m[1m[32m19 passed[39m[22m[90m (23)[39m
+[2m   Start at [22m 09:34:41
+[2m   Duration [22m 497ms[2m (tests 77%, transform 19%, import 3%)[22m
+
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 4 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/core/match-save.test.ts[2m > [22mgenerated match saves[2m > [22m2 humans replay opening, partial reinforcement, combat, handoff and victory exactly
+[41m[1m FAIL [22m[49m tests/core/match-save.test.ts[2m > [22mgenerated match saves[2m > [22m3 humans replay opening, partial reinforcement, combat, handoff and victory exactly
+[41m[1m FAIL [22m[49m tests/core/match-save.test.ts[2m > [22mgenerated match saves[2m > [22m4 humans replay opening, partial reinforcement, combat, handoff and victory exactly
+[31m[1mAssertionError[22m: expected [Function] to throw an error[39m
+
+[32m- Expected:[39m
+null
+
+[31m+ Received:[39m
+undefined
+
+[36m [2m❯[22m tests/core/match-save.test.ts:[2m37:112[22m[39m
+    [90m 35|[39m     expect([...visited].sort()).toEqual(["combat", "handoff", "opening…
+    [90m 36|[39m     const afterFinish = [...state.history, {kind:"endTurn" as const}];
+    [90m 37|[39m     expect(() => deserializeMatch(JSON.stringify({version:1, options:o…
+    [90m   |[39m                                                                                                                [31m^[39m
+    [90m 38|[39m   });
+    [90m 39|[39m   it("keeps all computer RNGs and presentation settings without storin…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/core/match-save.test.ts[2m > [22mgenerated match saves[2m > [22mrejects illegal history
+[31m[1mAssertionError[22m: expected [Function] to throw an error[39m
+[36m [2m❯[22m tests/core/match-save.test.ts:[2m54:126[22m[39m
+    [90m 52|[39m     ["snapshot injection",{version:1,options:optionsFor(2),actions:[],…
+    [90m 53|[39m   ];
+    [90m 54|[39m   for(const [name,payload] of invalid) it(`rejects ${name}`, () => { e…
+    [90m   |[39m                                                                                                                              [31m^[39m
+    [90m 55|[39m   it("rejects malformed JSON", () => { expect(() => deserializeMatch("…
+    [90m 56|[39m   it("reports generation refusal", () => {
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯[22m[39m
+
