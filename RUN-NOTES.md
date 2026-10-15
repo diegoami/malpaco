@@ -342,3 +342,12 @@ END T21 implementation complete: `npm run package:playable` builds a fresh stati
 2026-10-15: MiniMax approved the local Done-when evidence with no blocking findings, but CI run 38761364410 failed packaging because Git rejected the root-owned `/work` checkout as dubious ownership. The package step's temporary HOME did not contain checkout's temporary safe-directory setting. Updated `tools/release/package-playable.mjs` to invoke `git -c safe.directory=<computed checkout> rev-parse HEAD` and include captured stderr if Git still fails; applied the identical fix to the disposable package fixture. New red/green Git probe and CI failure excerpt are retained and SHA-indexed under `docs/prototypes/playable/implementation-20261015-b/`. No local tests were run; parent will run pinned root-container package acceptance and the targeted review/browser proof. All prior A evidence and its SHA256SUMS remain unchanged.
 
 Parent root-container package acceptance passed at `d92e2231440a777c56e64049480bb58d1bb86e5c`: 9 package files, 8 SHA-256 entries, 4 loopback HTTP paths, launcher ready at `127.0.0.1:4175`; archive SHA-256 `516e086ab1178efc406273e9b203595968643abc409072cc6faa5ca7a01e4ed3`. The exact parent log is retained as `docs/prototypes/playable/implementation-20261015-b/root-container-package-acceptance.txt` and added to that directory's SHA256SUMS. Existing B evidence files and their bytes were not changed. CI rerun and parent artifact-browser/review checks remain pending.
+
+
+# IWA findings handoff, 2026-10-15
+
+Owner requested a malpaco branch and a message to its active session, prioritizing map visuals/topology.
+Plan: read both repos' rules, inspect T22 context read-only, transfer behavioral descriptions with pinned finding links, preserve confidence/unknowns, push an isolated documentation branch and notify the existing session. No production changes or merges.
+Progress: source F017/F020 read; current/proposed topology and non-planarity constraints inspected from T22 report. Main malpaco checkout has unrelated edits and is untouched.
+Validation: documentation-only diff, local source claims checked, remote findings links verified, whitespace checked; no runtime tests required.
+END: handoff prepared as one documentation commit; branch push and session notification handled by parent.
