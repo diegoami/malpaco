@@ -1,5 +1,5 @@
 import "./styles.css";
-import { mountGeneratedGame } from "./ui/generatedGame";
+import { mountGameSetup, mountGeneratedGame } from "./ui/generatedGame";
 // The map is read as data, unchanged, from the repository's data/ folder.
 import smallSeaJson from "../data/maps/small_sea.json";
 import { parseMap } from "./core";
@@ -36,6 +36,8 @@ if (new URLSearchParams(location.search).get("view") === "generated-prototype") 
   mountGeneratedPreview(root);
 } else if (new URLSearchParams(location.search).get("view") === "generated-game") {
   mountGeneratedGame(root);
+} else if (new URLSearchParams(location.search).get("view") === "game-setup") {
+  mountGameSetup(root);
 } else {
   start();
 }
