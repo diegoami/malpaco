@@ -322,3 +322,13 @@ Plan: preserve the missing-package-command baseline, prepare the canonical accep
 END T21 stage 1 preparation: candidate replay command is `node docs/prototypes/playable/stage1-20261015/replay.mjs`; run from the checkout in `mcr.microsoft.com/playwright:v1.63.0-noble` with Node 22 and shared `node_modules`. Permanent release/config/packager files remain pending the parent's pinned baseline and candidate proof.
 
 Parent pinned replay A built the package candidate but could not read Git metadata because the Docker mount omitted `.git`; source files were restored exactly and A was retained unchanged. Replay B mounted `.git` read-only and reached acceptance, which exposed a JavaScript-reference scanner false positive: a minified object property named `from` was treated as an import. The fixture scanner now recognizes only static import/export declarations and dynamic imports; the A/B evidence remains unchanged. Parent will run a fresh C replay.
+
+## T21 stage 2
+
+Plan: install the pinned C candidate byte for byte, add the package command and recipient documentation, test the extracted artifact in CI before uploading that exact archive, and provide a final-source verifier that records all Done-when commands, captures, mutations, restorations, and hashes in a fresh tracked directory. No local build or browser checks.
+
+2026-10-15: parent C passed acceptance and the 104-test extracted-artifact browser suite; removing the extracted JavaScript entry produced the intended HTTP 404 and the entry and temporary source files were restored exactly. A/B/C replay evidence is retained unchanged. Installed the candidate acceptance, packager, launcher, release config, and PLAY instructions; added `npm run package:playable`, anchored generated output ignores, the shareable-build docs, CI artifact acceptance and extracted-browser steps, and `verify-final.mjs`. No local build, npm suite, or browser suite was run.
+
+The owner corrected the setup documentation to match current choices: 2–4 seats with either all-human play or one human against computer opponents. The launch guide now explains initial reinforcements, spending on owned territories, and choosing Start combat before an attack; `docs/play.md` and bundled `PLAY.md` carry the same play sequence.
+
+END T21 stage 2 preparation: parent final command is `TMPDIR=/artifact-evidence node docs/prototypes/playable/verify-final.mjs docs/prototypes/playable/final-<unique-run>` from the checkout in the pinned Playwright image with Node 22, shared `node_modules`, and the read-only Git metadata mount. The verifier writes logs/captures/hashes under the fresh checkout evidence path and leaves the extracted artifact under the persistent `TMPDIR` mount.

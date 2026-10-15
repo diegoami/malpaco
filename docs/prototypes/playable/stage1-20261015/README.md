@@ -14,7 +14,10 @@ browser suite, removes the extracted JavaScript entry to prove an HTTP 404, then
 restores the checkout files byte for byte. It records each command, result,
 captures, and hashes in a unique `evidence/replay-*` directory.
 
-Run the replay in the pinned `mcr.microsoft.com/playwright:v1.63.0-noble`
-container with Node 22 and the checkout's shared `node_modules`. The assigned
-worktree has no local `node_modules` or `dist`; no local browser or npm check is
-part of Stage 1.
+The parent ran the replay in the pinned `mcr.microsoft.com/playwright:v1.63.0-noble`
+container with Node 22 and shared `node_modules`. A stopped at the missing Git
+metadata mount; B exposed and recorded a false-positive JavaScript import
+reference; C passed package acceptance, the 104-test artifact browser suite, and
+the extracted-entry HTTP 404 mutation. All three evidence directories and their
+hashes are retained unchanged. The assigned worktree has no local
+`node_modules` or `dist`; no local browser or npm check was part of Stage 1.

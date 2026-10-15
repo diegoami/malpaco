@@ -1,0 +1,7 @@
+$ /usr/bin/node docs/prototypes/playable/acceptance.mjs --verify-extracted /artifact/t21-playable-stage1-QCxKQv/fresh-extraction
+exit: 1
+--- stdout ---
+
+--- stderr ---
+FAIL asset check: GET /assets/index-Zf6fQR5q.js returned HTTP 404
+

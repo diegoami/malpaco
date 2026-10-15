@@ -1,0 +1,12 @@
+$ /usr/bin/node docs/prototypes/playable/acceptance.mjs /artifact/t21-playable-stage1-QCxKQv/fresh-extraction
+exit: 0
+--- stdout ---
+PASS extracted artifact: 9 files; 8 SHA-256 entries; checked 4 HTTP paths on 127.0.0.1:4175
+source commit: d1b61de23859213e76028def32821ed290c7b788
+extracted package: /artifact/t21-playable-stage1-QCxKQv/fresh-extraction/malpaco-playable
+launcher stdout: Malpaco is ready at http://127.0.0.1:4175
+archive SHA-256: f243dcbe029b90812c5998327957cc50632f213d1ba78881b77a7ede399db473
+archive files: 9; extracted to /artifact/t21-playable-stage1-QCxKQv/fresh-extraction
+
+--- stderr ---
+
