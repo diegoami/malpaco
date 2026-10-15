@@ -22,7 +22,7 @@ try {
   ["elimination","    checkElimination(state);","    // mutation: elimination omitted"],
   ["living-skip","    if (!activePlayer(state)?.eliminated) break;","    break; // mutation: includes eliminated seats"],
   ["victory","    if (checkVictory(state)) return { ok: true, state, outcome };","    // mutation: conquest completion omitted"],
-  ["finished-rejection",'  if (state.phase === "finished") return { ok: false, error: "the game is over" };',"  // mutation: finished actions reach dispatch"],
+  ["finished-rejection",'  if (state.phase === "finished") return { ok: false, error: "the game is over" };','  if (state.phase === "finished") return { ok: true, state: { ...cloneState(state), phase: "attack" }, outcome: null };'],
  ];
  for(const [name,before,after] of mutations) {
   if(saved.toString().split(before).length!==2)throw Error(`Ambiguous ${name} mutation`);

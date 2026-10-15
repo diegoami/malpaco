@@ -51,9 +51,14 @@ behavior at a time in `src/core/rules.ts`:
 | elimination | Omit `checkElimination(state)` after capture | Every player's elimination flag must agree with their ownership count |
 | living-skip | Replace conditional living-player break with unconditional break | Handoff index must be the next living seat |
 | victory | Omit `checkVictory(state)` after capture | Full conquest must finish and identify the winner |
-| finished-rejection | Remove the initial finished-phase refusal | Every action kind must return `the game is over` without state mutation |
+| finished-rejection | Replace the finished guard with success returning a cloned state reopened to attack | Every action kind must return `the game is over` without state mutation |
 
 Each mutation starts from saved exact source bytes and restores them in a
 `finally` block. The manifest records before/after SHA256 and command exits;
 logs retain failing assertions. A restored focused run must pass. Existing
 assertions and goldens are untouched.
+
+The initial local guard-deletion experiment changed only refusal wording because
+phase checks still rejected every action. Its retained `local-mutations-20261015-a`
+log is a reason-only negative check, not proof of an actual frozen-play bypass.
+The replay instead explicitly accepts a finished action and reopens attack phase.
