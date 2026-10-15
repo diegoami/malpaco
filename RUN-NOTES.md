@@ -184,3 +184,27 @@ END T18 implementation
 - src/ui/app.ts exact bytes restored: before/after SHA256 88fe5aa8ed609ecd625a849d52d2fd53210ed649cfe1c02d1abe9dfdccb0b36b. Final evidence retained and SHA256-indexed under docs/prototypes/computer. Parent viewed readable setup/computer/human-return captures.
 - Scope: core/computer.ts policy; core/index.ts public API; UI app/generatedGame/panel automation, setup, file resumption and labels; new computer tests/helper; only obsolete T17 rejection input replaced; two setup goldens; docs/spike and computer prototypes/evidence. No new dependency, deferred cosmetic fix, task-file edit, or authored/prototype golden change.
 - PR #53 updated with Done-when commands/results and evidence. Native Sol medium implementation complete, pending independent Kimi K3 1M low review handled by parent. No further task requested. Temporary dependency symlink absent; worktree clean after final evidence commit/push.
+
+## T19 stage 1
+
+Plan: add focused entry-route acceptance at both configured viewports, a disposable `main.ts` fixture and a replay runner that restores exact original bytes in `finally`. Hold permanent production routing until parent baseline/mock replay.
+
+2026-10-15: added `tests/e2e/entry.spec.ts`, the candidate source fixture, and `replay.mjs`. Direct baseline command `npx playwright test tests/e2e/entry.spec.ts` had the expected root-setup failure at both viewports while explicit routes passed. Local replay-wrapper execution could not spawn `npx` (`EPERM` in this shell sandbox); parent will run its pinned Docker replay. Browser evidence is intentionally left to that pinned run.
+
+END T19 stage 1 preparation: tests cover plain `/`, query-only `/`, unknown views, setup/generated/prototype/authored routes, mixed computer play, New game return, authored New game routing, browser errors and viewport fit. Original `src/main.ts` remains byte-identical. Awaiting parent's pinned baseline/mock result and stage-two authorization.
+
+## T19 stage 2
+
+Plan: install the proven candidate as the permanent entry router, migrate only the authored slice URL, update launch documentation, and add a verifier for all Done-when commands plus two actual-source mutations with exact restoration. No styling, gameplay, rules or golden changes.
+
+Parent's pinned preflight: baseline had the expected two root failures and two explicit-route passes; the mock passed all four at both viewports. Source before/after SHA-256 is `7f40e792e819ebad24d5a0da3f84f6f8e1722ea6f10b22b96902583b9b3d42e9`. All replay JSON/logs and both default screenshots remain under `docs/prototypes/default-entry/evidence/`. The 1920x1080 setup screenshot is centered, readable and fits the viewport; its existing native file chooser truncates the filename label in the control.
+
+2026-10-15: installed the candidate router; `small_sea` is parsed only for `view=authored-game`, which its New game callback preserves. Changed only the slice spec's URL string to the explicit route. README and spike launch/setup descriptions now state that `/` opens generated setup. Added `verify-final.mjs` for entry, slice, unit, build, full browser, both actual-source routing mutants and byte-for-byte `finally` restoration. Node syntax checks and `git diff --check` pass; browser/unit/build checks are reserved for the parent pinned run.
+
+END T19 implementation prepared for parent pinned verification. No prior golden or gameplay assertion was changed, no golden was updated, and the only change in the slice spec is its route string.
+
+2026-10-15 final-A follow-up: read the complete manifest and full 92-test browser log. Entry 4/4, slice 36/36, unit 429, build, and both actual-source mutants passed with exact restoration. Full browser had 88 passes and four failures, all from the two `reinforcement.spec.ts` cases at both viewports: their shared setup still opened `/?seed=1994` and expected the authored map's `body[data-ready]`. Parent amended T19 in `main` at `71d9f14`, adding this owned route migration and combining both authored suites in DW2. Retained final-A logs/screenshots and SHA256 list. Changed only that reinforcement URL and updated verifier DW2 to run slice plus reinforcement together; assertions and goldens stay unchanged. Awaiting parent pinned final-B verification.
+
+Final-B read in full: `entry.spec.ts` 4/4; combined slice + reinforcement acceptance 40/40; unit 429; build passed; full pinned browser 92/92. The authored-default mutation failed all four entry cases at the missing setup heading; removing explicit authored routing failed both viewport cases at missing `#map`. Both actual-source mutations restored `src/main.ts` byte-for-byte; SHA-256 before/after is `6f82a4d0035e1ad6d563dce81819161c1ff411820ab79223d052a3a73e6ec074`. Final-B manifest, raw outputs and screenshots are retained and indexed in `docs/prototypes/default-entry/evidence/final-2026-10-15T12-48-18.398Z-1/`.
+
+END T19: default generated setup, authored explicit routing and both authored test-route migrations are complete. Parent pinned final-B passes every Done-when command and both actual-source mutants. No gameplay assertions or goldens changed. Evidence is committed with SHA256 records; PR #55 has the final scope, commands, results and screenshot paths. Ready for the owner-selected MiniMax M3 review.
