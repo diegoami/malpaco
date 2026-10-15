@@ -67,12 +67,14 @@ export class Panel {
   private readonly endTurn = h("button", { type: "button", id: "end-turn-button" }, "End turn");
   private readonly newGame = h("button", { type: "button", id: "new-game-button", class: "quiet" }, "New game");
   private readonly seed = h("span", { class: "seed", id: "seed" });
+  private readonly legend: HTMLElement;
 
   constructor(handlers: PanelHandlers) {
     this.attack.addEventListener("click", () => handlers.onAttack());
     this.startCombat.addEventListener("click", () => handlers.onStartCombat());
     this.endTurn.addEventListener("click", () => handlers.onEndTurn());
     this.newGame.addEventListener("click", () => handlers.onNewGame());
+    this.legend = h("p", { class: "legend", id: "legend" }, crosshairIcon(), "Dashed outline on every target, and a marker where one fits: provinces you can attack from the selected one.");
     this.el = h(
       "aside",
       { class: "panel" },
@@ -81,7 +83,7 @@ export class Panel {
       h("section", { class: "card action" }, this.pick, this.hint, h("div", { class: "buttons" }, this.startCombat, this.attack, this.endTurn),
         // markerSpot (mapView.ts) draws the crosshair only where one fits inside
         // the province; the dashed outline is always there. The legend says so.
-        h("p", { class: "legend", id: "legend" }, crosshairIcon(), "Dashed outline on every target, and a marker where one fits: provinces you can attack from the selected one.")),
+        this.legend),
       h("section", { class: "card log-card" }, h("h3", {}, "Battle log"), this.log),
       h("footer", { class: "panel-foot" }, this.newGame, this.seed),
     );
@@ -104,7 +106,9 @@ export class Panel {
         "div",
         {},
         h("div", { class: "turn-title", id: "turn-title" }, finished ? `${winner?.name ?? "Nobody"} conquers the sea` : `${mover?.name ?? ""}'s turn`),
-        h("div", { id: "seat-controller", class: "turn-sub" }, computer && !finished ? "Computer · Normal · " : "", finished ? "The game is over." : `Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)),
+        h("div", { id: "seat-controller", class: "turn-sub" },
+          finished ? "The game is over. Choose New game to play again." : computer ? "Computer · Normal · " : "",
+          ...(finished ? [] : [`Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)])),
       ),
     );
     this.turn.style.setProperty("--owner", seatLook(seat).color);
@@ -129,7 +133,9 @@ export class Panel {
     const to = m.to ? province(state.map, m.to) : undefined;
     const step = (n: number, label: string, value: string, done: boolean) =>
       h("li", { class: done ? "done" : "" }, h("span", { class: "step-n" }, String(n)), h("span", { class: "step-label" }, label), h("span", { class: "step-value" }, value));
-    if (state.phase === "reinforce") {
+    if (finished) {
+      this.pick.replaceChildren(h("p", { class: "finished-guidance" }, "Choose New game to start another match."));
+    } else if (state.phase === "reinforce") {
       this.pick.replaceChildren(
         h("div", { class: "income-row" }, h("span", {}, "Province income"), h("strong", {}, h("span", { id: "income-base" }, String(income.base)))),
         h("div", { class: "income-row" }, h("span", {}, "Island income"), h("strong", {}, h("span", { id: "income-island" }, String(income.islandBonus)))),
@@ -146,11 +152,13 @@ export class Panel {
         ),
       );
     }
-    this.hint.textContent = m.hint;
+    this.legend.hidden = finished;
+    this.legend.style.display = finished ? "none" : "";
+    this.hint.textContent = finished ? "" : m.hint;
     this.startCombat.hidden = state.phase !== "reinforce";
     this.startCombat.toggleAttribute("disabled", state.phase !== "reinforce" || state.reinforcementPool !== 0 || finished || computer);
     this.attack.toggleAttribute("disabled", state.phase !== "attack" || m.blocked !== "" || finished || computer);
-    this.attack.title = m.blocked;
+    this.attack.title = finished ? "" : m.blocked;
     this.endTurn.toggleAttribute("disabled", finished || computer || state.phase === "reinforce");
 
     const entries = state.log.map((e) => describeLog(state, e)).filter((e): e is string => e !== null);

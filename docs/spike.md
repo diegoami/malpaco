@@ -445,6 +445,15 @@ claimed as an actual acceptance bypass. Commands, results, hashes and screenshot
 live under `docs/prototypes/complete-game/`.
 
 
+`tests/e2e/finished-copy.spec.ts` exercises the finished panel from legal replay
+histories: it uploads a near-victory save, wins through real map clicks and the
+result dialog, then checks Escape and the frozen board; it also uploads an
+already-finished save and restarts the same seeded setup. Finished games show
+restart guidance, retain the winner, score, log, seed and file controls, and hide
+phase-selection steps, attack legend and stale hints. The focused screenshots
+and baseline/candidate replay evidence are retained in
+`docs/prototypes/finished-copy/evidence/`.
+
 ## Generated-match save files
 
 Save game downloads readable JSON containing a match-format version, the actual

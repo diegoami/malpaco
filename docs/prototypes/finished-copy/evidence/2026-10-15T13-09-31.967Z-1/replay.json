@@ -1,0 +1,21 @@
+{
+  "mode": "mock",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/finished-copy.spec.ts",
+    "--workers=2"
+  ],
+  "sourceBeforeSha256": "b7a9a5ebd07ab332d5a63014852f918b800dac04e0780813fc491cae1475fd35",
+  "fixtureSha256": "e8d2503f8fe61cfe2a394707d65252ae10cd858d8ce93c4718f654c87d96d2d9",
+  "evidence": "/work/docs/prototypes/finished-copy/evidence/2026-10-15T13-09-31.967Z-1",
+  "startedAt": "2026-10-15T13:09:31.968Z",
+  "exitCode": 0,
+  "signal": null,
+  "stdout": "\nRunning 4 tests using 2 workers\n\n  ✓  2 [1280x800] › tests/e2e/finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape (354ms)\n  ✓  1 [1280x800] › tests/e2e/finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game (742ms)\n  ✓  3 [1920x1080] › tests/e2e/finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game (784ms)\n  ✓  4 [1920x1080] › tests/e2e/finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape (385ms)\n\n  4 passed (2.9s)\n",
+  "stderr": "npm notice\nnpm notice New major version of npm available! 11.19.0 -> 12.2.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\nnpm notice To update run: npm install -g npm@12.2.0\nnpm notice\n",
+  "sourceAfterSha256": "b7a9a5ebd07ab332d5a63014852f918b800dac04e0780813fc491cae1475fd35",
+  "sourceRestoredByteForByte": true,
+  "finishedAt": "2026-10-15T13:09:35.408Z"
+}
