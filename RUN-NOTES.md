@@ -93,3 +93,5 @@ ed8f30b: evidence B retained and pushed. Batch C normal generated 10/10, complet
 
 2c9752c: retained batch C and strengthened glyph and route endpoint gates, pushed.
 END stage1: batch D completes all mock task commands and four mutations. Production byte hashes equal initial bytes. No core or pre-existing golden edits. Parent runs independent replay before stage2. PR42; test fixture replay: node docs/prototypes/generated-play/replay.mjs <fresh-output-directory> in pinned image.
+
+Stage2 authorized by parent after batch D independent replay; parent decision PR42 comment6186120284. Plan: permanent formatted candidate, shared T13 renderer, visible seat/count and land/sea legend, actual-source verifier, docs and pinned full checks.

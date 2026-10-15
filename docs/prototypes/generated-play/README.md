@@ -15,3 +15,16 @@ The unit suite compares all nongeometry state fields to independent `createGame`
 Evidence batches are retained, including rejected candidates. Batch A caught overlapping count/name boxes; B caught the same font metric issue at the larger size; C passed all normal checks but demonstrated that contrast alone did not reject hidden army text, prompting the independent glyph ink gate. Each batch manifest names exact commands and exit codes. Screenshots remain for owner judgement; passing geometry/pixel gates does not decide their visual quality.
 
 Batch D completes the replay: baseline commands red; mock unit 7/7, generated browser 10/10, complete unit 346/346, complete browser 58/58 and build green; all four mutations red; restored generated browser 10/10 green. All five production source before/after hashes match. `preflight-sha256.txt` records artifact hashes. Stage 1 stops here for independent parent replay before production changes.
+
+
+For the permanent implementation, run the actual-source verifier in the pinned image:
+
+```sh
+node docs/prototypes/generated-play/verify-final.mjs docs/prototypes/generated-play/implementation-NEW
+```
+
+To regenerate only the two generated-game goldens in that image, append
+`--update-goldens`. The verifier runs every task command, mutates the actual
+source for each of the four required removal classes independently, restores
+exact saved bytes in `finally`, and reruns the generated suite green. Unlike the
+historical preflight replay, it does not install a mock or expect baseline failure.
