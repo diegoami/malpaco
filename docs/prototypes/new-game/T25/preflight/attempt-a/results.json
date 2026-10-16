@@ -1,0 +1,52 @@
+[
+  {
+    "name": "g-static",
+    "args": [
+      "docs/prototypes/new-game/T25/verify.mjs",
+      "docs/prototypes/new-game/T25/preflight/g-board.json"
+    ],
+    "expected": 1,
+    "exitCode": 1,
+    "signal": null
+  },
+  {
+    "name": "mock-static",
+    "args": [
+      "docs/prototypes/new-game/T25/verify.mjs",
+      "docs/prototypes/new-game/T25/preflight/mock-board.json"
+    ],
+    "expected": 0,
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "name": "acceptance-tests",
+    "args": [
+      "--test",
+      "docs/prototypes/new-game/T25/acceptance.test.mjs"
+    ],
+    "expected": 0,
+    "exitCode": 0,
+    "signal": null
+  },
+  {
+    "name": "g-browser",
+    "args": [
+      "docs/prototypes/new-game/T25/browser.mjs",
+      "docs/prototypes/new-game/T25/preflight/g.html"
+    ],
+    "expected": 1,
+    "exitCode": 1,
+    "signal": null
+  },
+  {
+    "name": "mock-browser",
+    "args": [
+      "docs/prototypes/new-game/T25/browser.mjs",
+      "docs/prototypes/new-game/T25/preflight/mock.html"
+    ],
+    "expected": 0,
+    "exitCode": 0,
+    "signal": null
+  }
+]
