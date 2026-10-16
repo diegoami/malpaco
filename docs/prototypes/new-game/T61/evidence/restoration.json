@@ -1,0 +1,20 @@
+{
+  "geometrySha256": "de4ef1aa101184d52ac79dad77a8b28fa8e1acdcbcb70b574eb51ef461117f11",
+  "mutations": [
+    {
+      "mutation": "projection-reverted",
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "mutation": "gap-bypass",
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "mutation": "overlap-bypass",
+      "exit": 1,
+      "restoredExactly": true
+    }
+  ]
+}

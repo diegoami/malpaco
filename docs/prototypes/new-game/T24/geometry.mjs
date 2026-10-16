@@ -7,7 +7,7 @@ export const edges=p=>p.map((a,i)=>[a,p[(i+1)%p.length]]);
 export const signedArea=p=>edges(p).reduce((n,[a,b])=>n+a[0]*b[1]-b[0]*a[1],0)/2;
 export const area=p=>Math.abs(signedArea(p));
 export const box=p=>[Math.min(...p.map(p=>p[0])),Math.min(...p.map(p=>p[1])),Math.max(...p.map(p=>p[0])),Math.max(...p.map(p=>p[1]))];
-const along=(p,a,b)=>((p[0]-a[0])*(b[0]-a[0])+(p[1]-a[1])*(b[1]-a[1]))/distance(a,b)**2;
+const along=(p,a,b)=>((p[0]-a[0])*(b[0]-a[0])+(p[1]-a[1])*(b[1]-a[1]))/((b[0]-a[0])**2+(b[1]-a[1])**2);
 const interpolate=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
 export function onSegment(p,a,b) {
   const length=distance(a,b);
