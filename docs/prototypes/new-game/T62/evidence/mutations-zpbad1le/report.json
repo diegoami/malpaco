@@ -1,0 +1,567 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "docs/prototypes/new-game/T62/contract.test.mjs",
+    "docs/prototypes/new-game/T62/guards.test.mjs"
+  ],
+  "sourceSha256": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+  "restoredSha256": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+  "baselineExit": 0,
+  "restoredExit": 0,
+  "additionalRestoredExit": 0,
+  "mutants": [
+    {
+      "name": "delete-group-attachment",
+      "replace": "  if(group==='preserved')return preservedConstraints",
+      "with": "  if(group==='attachment')return [];\n  if(group==='preserved')return preservedConstraints",
+      "sourceSha256": "d4d5587c5d5e83a708e081af62b58ad88297ae85e6017acf85ac5a0f85a43537",
+      "exit": 1,
+      "failedTests": [
+        "attachment: rejects wrong country",
+        "attachment: rejects interior endpoint",
+        "attachment: rejects off coast",
+        "attachment: rejects ambiguous boundary endpoint",
+        "attachment: rejects missing points",
+        "attachment: rejects nonfinite endpoint",
+        "attachment: whole inward continuation accepts 12px and rejects a shallow country",
+        "attachment: inward segment cannot exit and re-enter before its interior final sample",
+        "attachment: competing-country margin includes its 8px edge",
+        "attachment: a country boundary inside its silhouette is not exposed coast",
+        "attachment: shared coast junction is explicitly ambiguous",
+        "attachment: zero-length first segment has no inward direction",
+        "groups: malformed route data and frame are rejected independently",
+        "attachment: competitor margin scales into compact CSS pixels",
+        "attachment: inward distance scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-group-water",
+      "replace": "  if(group==='preserved')return preservedConstraints",
+      "with": "  if(group==='water')return [];\n  if(group==='preserved')return preservedConstraints",
+      "sourceSha256": "8f8681dc495692c7ffe7f6df228ab688737fad4a0521acc7a86ca147d2a26763",
+      "exit": 1,
+      "failedTests": [
+        "water: rejects unrelated land entry",
+        "water: rejects source land reentry",
+        "water: 10px unrelated clearance accepts its boundary and rejects 0.001px below",
+        "water: an isolated tangent to a source coast is rejected by retained legacy rule",
+        "groups: malformed route data and frame are rejected independently",
+        "water: unrelated clearance scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-group-traceability",
+      "replace": "  if(group==='preserved')return preservedConstraints",
+      "with": "  if(group==='traceability')return [];\n  if(group==='preserved')return preservedConstraints",
+      "sourceSha256": "55a9cbc56d2b5bdab52698ff984d3685d7555d94f0502448bd5fd6f550d97cb2",
+      "exit": 1,
+      "failedTests": [
+        "traceability: rejects crossing routes",
+        "traceability: rejects merged route geometry",
+        "traceability: rejects shared-country ports merged",
+        "traceability: rejects subpixel sea gap",
+        "traceability: rejects zero length",
+        "traceability: minimum direct endpoint span includes 20px boundary",
+        "traceability: a long loop cannot disguise a subpixel endpoint gap",
+        "traceability: all pairs including shared-country routes need 10px separation",
+        "traceability: nonadjacent self-crossing is rejected",
+        "traceability: positive adjacent backtracking is rejected but forward collinearity passes",
+        "traceability: zero-length intermediate segment cannot hide behind valid span",
+        "groups: malformed route data and frame are rejected independently",
+        "traceability: endpoint span scales into compact CSS pixels",
+        "traceability: route separation scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-group-preserved",
+      "replace": "  if(group==='preserved')return preservedConstraints",
+      "with": "  if(group==='preserved')return [];\n  if(group==='preserved')return preservedConstraints",
+      "sourceSha256": "2f4bfbc77adf83930838cbe396c59db44808879e955b073ed65e4e3273f3df59",
+      "exit": 1,
+      "failedTests": [
+        "preserved: rejects graph asymmetry",
+        "preserved: rejects degree cap",
+        "preserved: rejects wrong island size",
+        "preserved: rejects labels overlap",
+        "preserved: rejects small hit area",
+        "preserved: rejects small count text",
+        "preserved: rejects changed bonus",
+        "preserved: rejects fairness fortress",
+        "preserved: rejects cell overlap",
+        "preserved: exact legacy counts delegation on meaningful mutant",
+        "preserved: exact legacy symmetry delegation on meaningful mutant",
+        "preserved: exact legacy connectivity delegation on meaningful mutant",
+        "preserved: exact legacy degree delegation on meaningful mutant",
+        "preserved: exact legacy cells delegation on meaningful mutant",
+        "preserved: exact legacy borders delegation on meaningful mutant",
+        "preserved: exact legacy crossings delegation on meaningful mutant",
+        "preserved: exact legacy bonus delegation on meaningful mutant",
+        "preserved: exact legacy fortress delegation on meaningful mutant",
+        "preserved: exact legacy concentration delegation on meaningful mutant",
+        "preserved: exact legacy remoteness delegation on meaningful mutant",
+        "preserved: exact legacy crowding delegation on meaningful mutant",
+        "preserved: exact legacy labels delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-counts",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','counts'].includes(n)",
+      "sourceSha256": "56539e211c8ab8774be8b4fcea01c8670a8118e5c33888091d00c7058f814e65",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy counts delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-symmetry",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','symmetry'].includes(n)",
+      "sourceSha256": "51b55027fda09c5531ba9da924b0ef1a35b0cbee6589276d94d5c742ebec8162",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy symmetry delegation on meaningful mutant",
+        "preserved: exact legacy degree delegation on meaningful mutant",
+        "preserved: exact legacy borders delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-connectivity",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','connectivity'].includes(n)",
+      "sourceSha256": "8ae5aef82e3a376486c77fc0792e7cacb021c0c3c481248cd02e2fd3a54fecf8",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy connectivity delegation on meaningful mutant",
+        "preserved: exact legacy degree delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-degree",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','degree'].includes(n)",
+      "sourceSha256": "70dfafb6aaaaf6f180b8f02ac0580bea28037f57a20ed2401b76c5e0ed61c642",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy connectivity delegation on meaningful mutant",
+        "preserved: exact legacy degree delegation on meaningful mutant",
+        "preserved: exact legacy fortress delegation on meaningful mutant",
+        "preserved: exact legacy concentration delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-cells",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','cells'].includes(n)",
+      "sourceSha256": "ef879e945b5397bcb260f1a2f0fadb08d854ab5a6b357366e5b02ab8819f2658",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy counts delegation on meaningful mutant",
+        "preserved: exact legacy cells delegation on meaningful mutant",
+        "preserved: exact legacy fortress delegation on meaningful mutant",
+        "preserved: exact legacy concentration delegation on meaningful mutant",
+        "preserved: exact legacy remoteness delegation on meaningful mutant",
+        "preserved: exact legacy crowding delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-borders",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','borders'].includes(n)",
+      "sourceSha256": "d5609d1d15d8c2bc43c1ce34d284bbd2027d6802e8657013fd0cf19666547627",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy symmetry delegation on meaningful mutant",
+        "preserved: exact legacy connectivity delegation on meaningful mutant",
+        "preserved: exact legacy degree delegation on meaningful mutant",
+        "preserved: exact legacy borders delegation on meaningful mutant",
+        "preserved: exact legacy fortress delegation on meaningful mutant",
+        "preserved: exact legacy concentration delegation on meaningful mutant",
+        "preserved: exact legacy remoteness delegation on meaningful mutant",
+        "preserved: exact legacy crowding delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-crossings",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','crossings'].includes(n)",
+      "sourceSha256": "d05afe06f30cdc176ddd519959cb5590495989dcd203ee9cf6ee6617193eb55f",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy connectivity delegation on meaningful mutant",
+        "preserved: exact legacy crossings delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-bonus",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','bonus'].includes(n)",
+      "sourceSha256": "714e217f1c03082ccf948dbcea41b8ec7b54cf848bf5ef8b3a662232313861e2",
+      "exit": 1,
+      "failedTests": [
+        "preserved: rejects changed bonus",
+        "preserved: exact legacy counts delegation on meaningful mutant",
+        "preserved: exact legacy connectivity delegation on meaningful mutant",
+        "preserved: exact legacy degree delegation on meaningful mutant",
+        "preserved: exact legacy bonus delegation on meaningful mutant",
+        "preserved: exact legacy fortress delegation on meaningful mutant",
+        "preserved: exact legacy remoteness delegation on meaningful mutant",
+        "preserved: exact legacy crowding delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-fortress",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','fortress'].includes(n)",
+      "sourceSha256": "4caae74a4d8440ecd8a2e7c07334423289b1f38e1cf92a8e1677012b28a82bbe",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy fortress delegation on meaningful mutant",
+        "preserved: exact legacy concentration delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-concentration",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','concentration'].includes(n)",
+      "sourceSha256": "e67ad88640d10181a93ce766173d869a09490a4cd072c11ccd08eec515795d09",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy concentration delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-remoteness",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','remoteness'].includes(n)",
+      "sourceSha256": "8e9b681d5f2c19601cd9507e3c885f0e468266bf2bc7f92c3a82985a151442ca",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy connectivity delegation on meaningful mutant",
+        "preserved: exact legacy remoteness delegation on meaningful mutant",
+        "preserved: exact legacy crowding delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-crowding",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','crowding'].includes(n)",
+      "sourceSha256": "d4a0aeaa4d4bfa3d858da1fe5ae06dc4fd65ea51da13df7ac04cea7174c7d124",
+      "exit": 1,
+      "failedTests": [
+        "preserved: exact legacy fortress delegation on meaningful mutant",
+        "preserved: exact legacy concentration delegation on meaningful mutant",
+        "preserved: exact legacy crowding delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-legacy-labels",
+      "replace": "!['coasts','intersections'].includes(n)",
+      "with": "!['coasts','intersections','labels'].includes(n)",
+      "sourceSha256": "213bc0152d3552652de3487f7cc865dd8cb3d18aab138b5135c63d792782ba3d",
+      "exit": 1,
+      "failedTests": [
+        "preserved: rejects labels overlap",
+        "preserved: rejects small hit area",
+        "preserved: rejects small count text",
+        "preserved: exact legacy cells delegation on meaningful mutant",
+        "preserved: exact legacy fortress delegation on meaningful mutant",
+        "preserved: exact legacy concentration delegation on meaningful mutant",
+        "preserved: exact legacy remoteness delegation on meaningful mutant",
+        "preserved: exact legacy crowding delegation on meaningful mutant",
+        "preserved: exact legacy labels delegation on meaningful mutant"
+      ]
+    },
+    {
+      "name": "delete-competitor",
+      "replace": "margin<P.competingCountryMarginCss",
+      "with": "false",
+      "sourceSha256": "d53ae089b03be9380343274e7a0832b18c3b298140833f85ec4c0c731be777c2",
+      "exit": 1,
+      "failedTests": [
+        "attachment: competing-country margin includes its 8px edge",
+        "attachment: competitor margin scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-unrelated-clearance",
+      "replace": "gap<P.unrelatedCoastClearanceCss",
+      "with": "false",
+      "sourceSha256": "9bb15a93ca84f612728c7c1152a178efbd59f4dd3769c45f6df2b67a9dda67f1",
+      "exit": 1,
+      "failedTests": [
+        "water: 10px unrelated clearance accepts its boundary and rejects 0.001px below",
+        "water: unrelated clearance scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-endpoint-span",
+      "replace": "distance(r.points[0],r.points.at(-1))*scale<P.endpointSpanCss",
+      "with": "false",
+      "sourceSha256": "2e0ebcd61be21d6b09c929026b4d3d1d67f91836e7611d76717453c8c0807427",
+      "exit": 1,
+      "failedTests": [
+        "traceability: rejects subpixel sea gap",
+        "traceability: minimum direct endpoint span includes 20px boundary",
+        "traceability: a long loop cannot disguise a subpixel endpoint gap",
+        "traceability: endpoint span scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-pair-separation",
+      "replace": "routeGap(x,y)*scale<P.routeSeparationCss",
+      "with": "false",
+      "sourceSha256": "5ae61948da56b1efb3a821846298b3486456e1a195ca7a6cd496777657627025",
+      "exit": 1,
+      "failedTests": [
+        "traceability: rejects crossing routes",
+        "traceability: rejects merged route geometry",
+        "traceability: rejects shared-country ports merged",
+        "traceability: all pairs including shared-country routes need 10px separation",
+        "traceability: route separation scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-whole-inward",
+      "replace": "location(inward,p.polygon)!==1||segmentPieces(end,inward,p.polygon).pieces.some(p=>p.where!==1)",
+      "with": "false",
+      "sourceSha256": "a2ed27bd4d2f09ea92709a0105ff9d804099f62a7849c17e5c5906f9e3b70d71",
+      "exit": 1,
+      "failedTests": [
+        "attachment: whole inward continuation accepts 12px and rejects a shallow country",
+        "attachment: inward segment cannot exit and re-enter before its interior final sample",
+        "attachment: inward distance scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-silhouette",
+      "replace": "||location(end,island.polygon)!==0",
+      "with": "",
+      "sourceSha256": "c43612d7e8211d3c9b34225f3df8df1f0512d96de97624effbb152c3d49913fa",
+      "exit": 1,
+      "failedTests": [
+        "attachment: a country boundary inside its silhouette is not exposed coast"
+      ]
+    },
+    {
+      "name": "delete-ambiguous",
+      "replace": "board.provinces.some(q=>q.id!==id&&location(end,q.polygon)>=0)",
+      "with": "false",
+      "sourceSha256": "aa86344c1463c3cdeae1b775632482f9740ceec623aa94455d4b6bf2619f249f",
+      "exit": 1,
+      "failedTests": [
+        "attachment: shared coast junction is explicitly ambiguous"
+      ]
+    },
+    {
+      "name": "delete-zero-segment",
+      "replace": "distance(p,q)<=E",
+      "with": "false",
+      "sourceSha256": "b11daa3aa74e22879d45936543193d2aabee7f826bccffabb6476fea5900e711",
+      "exit": 1,
+      "failedTests": [
+        "traceability: zero-length intermediate segment cannot hide behind valid span"
+      ]
+    },
+    {
+      "name": "delete-adjacent-reversal",
+      "replace": "onSegment(t,p,q)||onSegment(p,s,t)",
+      "with": "false",
+      "sourceSha256": "15df3e40f9016fb78c8a9a82a6f2572b4691c4f6d37a0d592345907056e2aaf7",
+      "exit": 1,
+      "failedTests": [
+        "traceability: positive adjacent backtracking is rejected but forward collinearity passes"
+      ]
+    },
+    {
+      "name": "delete-self-contact",
+      "replace": "segmentGap(p,q,s,t)<=E",
+      "with": "false",
+      "sourceSha256": "2e6caad29b58dcc405670689fe833859b625547bef0ca4a71fd6e55ca6e69973",
+      "exit": 1,
+      "failedTests": [
+        "traceability: nonadjacent self-crossing is rejected"
+      ]
+    },
+    {
+      "name": "sample-only-inward",
+      "replace": "||segmentPieces(end,inward,p.polygon).pieces.some(p=>p.where!==1)",
+      "with": "",
+      "sourceSha256": "d003fbe7f732ffcd82b7e57d12a89ff25bcf12a61ea9804dcfd21aa61bfb4be5",
+      "exit": 1,
+      "failedTests": [
+        "attachment: inward segment cannot exit and re-enter before its interior final sample"
+      ]
+    },
+    {
+      "name": "delete-legacy-water",
+      "replace": "if(group==='water')errors.push(...legacy('intersections',board));",
+      "with": "",
+      "sourceSha256": "b9c21f57c69e318ec8c1baddc5bac9ef2aa7b82bdca4bc5ad20faa5e55b59869",
+      "exit": 1,
+      "failedTests": [
+        "water: rejects source land reentry",
+        "water: an isolated tangent to a source coast is rejected by retained legacy rule"
+      ]
+    },
+    {
+      "name": "delete-segment-gap",
+      "replace": "export function segmentGap(a,b,c,d) {",
+      "with": "export function segmentGap(a,b,c,d) { return Infinity;",
+      "sourceSha256": "0b25a8001f236d0a17b55ce31bd20931cb3a29ec8b18be63827d0f70425e3b07",
+      "exit": 1,
+      "failedTests": [
+        "traceability: rejects crossing routes",
+        "traceability: rejects merged route geometry",
+        "traceability: rejects shared-country ports merged",
+        "water: 10px unrelated clearance accepts its boundary and rejects 0.001px below",
+        "traceability: all pairs including shared-country routes need 10px separation",
+        "traceability: crossing, collinear containment and endpoint contacts have zero gap",
+        "traceability: nonadjacent self-crossing is rejected",
+        "water: unrelated clearance scales into compact CSS pixels",
+        "traceability: route separation scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-scale-competitor",
+      "replace": "pointSegmentGap(end,a,b))))*scale",
+      "with": "pointSegmentGap(end,a,b))))",
+      "sourceSha256": "046fe997009ede7b970226f7a8cbcca1be28274082702fccba756c46a5d4dc2f",
+      "exit": 1,
+      "failedTests": [
+        "attachment: competitor margin scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-scale-inward",
+      "replace": "P.inwardContinuationCss/scale",
+      "with": "P.inwardContinuationCss",
+      "sourceSha256": "fe20cbd4bb50b84f0de4238d9d93fb93ef0d2495aab178f30d9c7fdf0b1b7a48",
+      "exit": 1,
+      "failedTests": [
+        "attachment: inward distance scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-scale-unrelated-clearance",
+      "replace": "segmentGap(a,b,c,d))))*scale",
+      "with": "segmentGap(a,b,c,d))))",
+      "sourceSha256": "d722f8ccb045e1f3b2a217e79f7c38bb224a2fb02fa1455a6dde9adc30469733",
+      "exit": 1,
+      "failedTests": [
+        "water: unrelated clearance scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-scale-endpoint-span",
+      "replace": "distance(r.points[0],r.points.at(-1))*scale",
+      "with": "distance(r.points[0],r.points.at(-1))",
+      "sourceSha256": "aa059336d3cabae5df1a930d2c84ae9403de5593860b801ae29d5ca89c5f214b",
+      "exit": 1,
+      "failedTests": [
+        "traceability: endpoint span scales into compact CSS pixels"
+      ]
+    },
+    {
+      "name": "delete-scale-pair-separation",
+      "replace": "routeGap(x,y)*scale",
+      "with": "routeGap(x,y)",
+      "sourceSha256": "b1b888a4cb00751ebfc0bcbf1078dac34c15e552bda5d963afecdd6cdbec34b1",
+      "exit": 1,
+      "failedTests": [
+        "traceability: route separation scales into compact CSS pixels"
+      ]
+    }
+  ],
+  "killed": 35,
+  "additionalTests": 34,
+  "additionalTestsNeverFailed": [],
+  "fingerprints": {
+    "docs/prototypes/new-game/T62/audit.py": "a3256b4e7ef551351172a9c82923e7556abf7c4f0aab08183decc3a0857d1bf6",
+    "docs/prototypes/new-game/T62/guards.test.mjs": "e20110ac5d19c7eb0b7e5f3625229ef46972057e0d17555a273fe0d256381760",
+    "docs/prototypes/new-game/T62/contract.test.mjs": "03b0102a19efe5521446ebee7f602a6f20cfb1ed2c6cb99331d0fd5ce82f83d5",
+    "docs/prototypes/new-game/T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746"
+  },
+  "archiveSha256": "d07279e862aa4833c6b78770efbcdb5eb4da806e40d280f7999b2a825d22991a",
+  "archiveMemberHashes": {
+    "before.stdout.txt": "ea23240713944d0ea755f73b3cb05136ed67d780d14892064b908f11a07aebb7",
+    "before.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-group-attachment.stdout.txt": "c446bd6879e1bff1e03c57687671ee54e2e0202ee0b115c42f4f799a67ff29ac",
+    "delete-group-attachment.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-group-water.stdout.txt": "1a5c24bbc15a4faab3e7d50bebd5cd2d689d4da26dbb03ef1acbacc39fac5f8c",
+    "delete-group-water.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-group-traceability.stdout.txt": "eec972386fb964b7751213d9cb8d62130bf8e0f9ac07d2c46759ecbf5760c0bf",
+    "delete-group-traceability.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-group-preserved.stdout.txt": "a52f7a5f1c94f87f29a854511d0ca386369fa0447c83dc35ae75eb446dd55b60",
+    "delete-group-preserved.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-counts.stdout.txt": "54dce9343df1e498cea9361f1c582c4734d640313c77d959d1af694da7b90d09",
+    "delete-legacy-counts.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-symmetry.stdout.txt": "4516b69856c15b2f34563a6d7274903f8d1b961c0bf84d79ad5e6aebc9bd166d",
+    "delete-legacy-symmetry.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-connectivity.stdout.txt": "730d7ff012f5b9192333ba9a272ea36b61f9cc3b4a805d4db33a47b624e64487",
+    "delete-legacy-connectivity.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-degree.stdout.txt": "02e827a377b7f70eb75b6dedcf82c5afd18098e8f4371b9006e889bdb9aa47d0",
+    "delete-legacy-degree.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-cells.stdout.txt": "13ade2c0aa9ca3429bb460bb439494c22a77d359b392f8844825d86d3a7328cd",
+    "delete-legacy-cells.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-borders.stdout.txt": "5cf1175867525a020b061a9ad1b6b9a6605340f2135a8f0c7a4db3c4983d53dd",
+    "delete-legacy-borders.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-crossings.stdout.txt": "55fa902bc35582ad34fff6020eddbab4ba941af40517123ffab95950bb69664a",
+    "delete-legacy-crossings.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-bonus.stdout.txt": "085c88f3fc63de020804ff220c95f6506101de0bd0827785487ccbfce6e824c7",
+    "delete-legacy-bonus.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-fortress.stdout.txt": "14c79b1606ce52fab65496e17949a83c0df2a9aa5a49fe769e87fc4e24438704",
+    "delete-legacy-fortress.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-concentration.stdout.txt": "9024aa1ebe861fa7e8f4e7b919da39d731acd674a85807c99e6fe654382a1d94",
+    "delete-legacy-concentration.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-remoteness.stdout.txt": "8a5299e3248188c41f189978571776a6412ae19685220ef95eaea8d50e7421de",
+    "delete-legacy-remoteness.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-crowding.stdout.txt": "e615d1a13b0ba4342d50db2d5b2d3882464207e168059200f3b423c986f4b745",
+    "delete-legacy-crowding.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-labels.stdout.txt": "6808df6ee3223e9dcaf1fcda4f55ef05c5ce2222f8931875d4cedcf126e971ab",
+    "delete-legacy-labels.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-competitor.stdout.txt": "8a698f53d2812a8cd410079ae108039f777c57669be6091d5cecd708fa12c1d1",
+    "delete-competitor.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-unrelated-clearance.stdout.txt": "acfeb63b708ba94e531ad859fff101c937f6a1b619522acad17123a3a5b26abb",
+    "delete-unrelated-clearance.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-endpoint-span.stdout.txt": "0d7d36b9d7841bab370e6820b36e767e47f7f56bd3e519dda882441032bb5a76",
+    "delete-endpoint-span.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-pair-separation.stdout.txt": "e50e5d8e1c1083934c24f66120d3e2c8a2e61e6bf7fe1d95c979696cf7a9ac89",
+    "delete-pair-separation.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-whole-inward.stdout.txt": "98e0ec2911f1dbb299f061342e6ae1dc5e94e4209aca6dab146b13e2efff3484",
+    "delete-whole-inward.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-silhouette.stdout.txt": "8fff4b0a34bd6246596a7375437db06c0a279e6410b191a7b420bacbb477d4a1",
+    "delete-silhouette.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-ambiguous.stdout.txt": "708ee664236c79e36a12a494ddb229dfd89fcd83f67c65695deca2e29b7002ff",
+    "delete-ambiguous.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-zero-segment.stdout.txt": "9d74ad94796c2bef63d1370e72708988eb0bf432d102c123a62ff27275ee3f74",
+    "delete-zero-segment.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-adjacent-reversal.stdout.txt": "530bfb883f6bda041c2c93ed54da6ef98a2fbf278434a4f26fe3db5c1c516a95",
+    "delete-adjacent-reversal.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-self-contact.stdout.txt": "618768b69d06e07d6c8cc76da2e1bbe0a521eaabd2d9a098fecf2e8e1305bc1b",
+    "delete-self-contact.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sample-only-inward.stdout.txt": "ac2eaf2b6576dad527c6afc3862db682c54cb412bdb6bedc39ecbadac7027d42",
+    "sample-only-inward.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-legacy-water.stdout.txt": "d78b438ad6b6e7ae4f976bf1d5a60106a689e505ae1b6d9d0921ab6001569a69",
+    "delete-legacy-water.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-segment-gap.stdout.txt": "51340ec8d757b49551b295bafb85c6b2ab7d4a0175d17d99187a60452440e8dd",
+    "delete-segment-gap.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-scale-competitor.stdout.txt": "32c5752acc5cac0c859c13d39b6a8dac3a5066c1913387c2c911e63f49354623",
+    "delete-scale-competitor.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-scale-inward.stdout.txt": "1857792013589a25e2c5adeec18ae0c30cf4acf7822f26d78875567c5fc5e5a4",
+    "delete-scale-inward.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-scale-unrelated-clearance.stdout.txt": "2c23178048f8a1baf569d66c2f72b8619d4bef3c30bba93a60a4cb6aef7b8569",
+    "delete-scale-unrelated-clearance.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-scale-endpoint-span.stdout.txt": "6556274f42bd8a4257dcdd86d40e24838ea8a56884afeaf430e90f78a070ed73",
+    "delete-scale-endpoint-span.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "delete-scale-pair-separation.stdout.txt": "95bab8f696d2068bacc67f7462b81a89b7bcbf7bd41dfde1dd5c7c0382877831",
+    "delete-scale-pair-separation.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "restored.stdout.txt": "1b8ada44920962741d5edd19196fb6d8f430ab0d77b25c49e49b518051c67d69",
+    "restored.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "contract.mjs.snapshot": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+    "additional-restored.stdout.txt": "f6360f60d77b8cb34fab649e85a73de915564c5bf7bb2a10796036b5d794a183",
+    "additional-restored.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
