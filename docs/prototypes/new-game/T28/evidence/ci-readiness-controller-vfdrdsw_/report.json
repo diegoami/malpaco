@@ -1,0 +1,16 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/ui/battle-controller.test.ts"
+  ],
+  "exit": 0,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t28-work\n\n\n Test Files  1 passed (1)\n      Tests  9 passed (9)\n   Start at  20:28:09\n   Duration  209ms (transform 73%, tests 12%, import 12%, worker 2%)\n\n",
+  "stderrTail": "",
+  "archiveSha256": "1496f3d932c08fe70239f007322b00b0cdf46999595086ca99629aad78ea2576",
+  "archiveMemberHashes": {
+    "stdout.txt": "1bd98ba442a14336e19d8a15084e81e13796a5b6cec980789196d1c3ade5a1f2",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

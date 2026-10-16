@@ -7,6 +7,8 @@ assert not out.exists(),'Use a new index name'
 owned=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard',str(root.relative_to(repo))],cwd=repo,text=True).splitlines()
 extra=['docs/tasks/T28.md','RUN-NOTES.md',*['tests/e2e/'+n+'.spec.ts' for n in ['complete-game','match-save','reference-game','generated-game','game-setup','computer','slice']],'src/main.ts','src/styles.css','tests/core/reference-game.test.ts','tests/core/reference-map-validation.test.ts','tests/e2e/reference-game.spec.ts','tests/helpers/complete-game.ts','docs/spike.md','docs/prototypes/new-game/T63/board.json','docs/prototypes/new-game/T63/map.svg','playwright.config.ts','package-lock.json']
 paths={repo/p for p in owned+extra}|set((repo/'src/core').glob('*.ts'))|set((repo/'tests/core').glob('capture-choice*.ts'))|set((repo/'tests/ui').glob('battle*.ts'))|set((repo/'tests/e2e').glob('battle*.ts'))|set((repo/'src/ui').glob('*.ts'))|set((repo/'tests/e2e/reference-game.spec.ts-snapshots').glob('*.png'))
+paths |= {repo/'tests/e2e/generated-board.spec.ts', repo/'src/ui/prototype/preview.ts', repo/'playwright.release.config.ts'}
+paths |= set((repo/'tests/e2e/generated-board.spec.ts-snapshots').glob('*.png'))
 paths=sorted(p for p in paths if p.is_file() and p!=out)
 sha=lambda b:hashlib.sha256(b).hexdigest();archives={}
 for p in paths:
