@@ -33,6 +33,12 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 
 See the [sequence and dispatch checkpoints](../plans/new-game/README.md). Difficulty is an estimate; GitHub labels carry status.
 
+The owner-selected A adoption chain is **T61 → T62 → T63 → T26**.
+T66/T67 are separate CI-efficiency milestones. T64/T65 and optional terrain
+[#119](https://github.com/diegoami/malpaco/issues/119) are later visual polish,
+not prerequisites for the reference-game playable milestone. Every future task
+requires parent preflight before `status:ready`; dependencies alone are insufficient.
+
 | Task | Title | Difficulty | Issue | Merge after |
 | --- | --- | --- | --- | --- |
 | [T23](T23.md) | Approved-rules inventory and reuse decisions | Medium | #68 | — |
@@ -40,7 +46,10 @@ See the [sequence and dispatch checkpoints](../plans/new-game/README.md). Diffic
 | [T25](T25.md) | Compliant seed-1994 reference board | Hard | #70 | T22, T24 |
 | [T59](T59.md) | Reference-map visual polish | Hard | #110 | T25 |
 | [T60](T60.md) | Topology-first map presentation investigation | Very hard | #113 | T25 |
-| [T26](T26.md) | Reference-board walking skeleton | Medium | #71 | T25, T60, adoption #115 |
+| [T61](T61.md) | Correct zero-length geometry residuals | Medium | #109 | T60 |
+| [T62](T62.md) | Coast-entry and route-clarity contract for A | Hard | #115 | T60, T61 |
+| [T63](T63.md) | Adopt the approved coast-first reference fixture | Medium | #116 | T61, T62 |
+| [T26](T26.md) | Reference-board walking skeleton | Medium | #71 | T63 |
 | [T27](T27.md) | Explicit post-capture movement actions | Hard | #72 | T26 |
 | [T28](T28.md) | Battle controls and capture-choice UI | Hard | #73 | T27 |
 | [T29](T29.md) | One adjacent friendly move per turn | Medium | #74 | T28 |
@@ -48,7 +57,7 @@ See the [sequence and dispatch checkpoints](../plans/new-game/README.md). Diffic
 | [T31](T31.md) | Versioned deterministic match replay | Hard | #76 | T30 |
 | [T32](T32.md) | Basic computer through the complete ordinary turn | Medium | #77 | T31 |
 | [T33](T33.md) | Reference-game playable milestone | Medium | #78 | T32 |
-| [T34](T34.md) | Seeded island silhouettes and province subdivisions | Very hard | #79 | T33, T24 |
+| [T34](T34.md) | Seeded island silhouettes and province subdivisions | Very hard | #79 | T33, T24, T62, T63 |
 | [T35](T35.md) | Sea crossings, bonuses and fair complete boards | Very hard | #80 | T34 |
 | [T36](T36.md) | Generated-map integration and wide-seed acceptance | Hard | #81 | T35 |
 | [T37](T37.md) | Card deck, hands and earning a card | Medium | #82 | T36 |
@@ -73,3 +82,12 @@ See the [sequence and dispatch checkpoints](../plans/new-game/README.md). Diffic
 | [T56](T56.md) | Complete help, options persistence and disabled-feature absence | Medium | #101 | T55 |
 | [T57](T57.md) | Complete-rules end-to-end acceptance | Hard | #102 | T56, T36 |
 | [T58](T58.md) | Complete-game release artifact and owner acceptance | Medium | #103 | T57 |
+
+## Later polish and CI efficiency
+
+| Task | Title | Difficulty | Issue | Merge after |
+| --- | --- | --- | --- | --- |
+| [T64](T64.md) | Natural coastline postprocessing | Hard | #111 | T36, T63 |
+| [T65](T65.md) | Natural shared region borders | Hard | #117 | T64 |
+| [T66](T66.md) | Cancel superseded pull-request CI runs | Easy | #108 | — |
+| [T67](T67.md) | Lightweight planning-only CI gate | Hard | #118 | T66 |
