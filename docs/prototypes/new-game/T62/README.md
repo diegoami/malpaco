@@ -106,3 +106,11 @@ commands, both T62 suites, T24 and T61 regressions, both whitespace checks, and 
 empty-diff assertion for immutable parent/legacy paths. All terminal output is
 archived losslessly with exact per-member hashes, avoiding trailing-whitespace
 changes to originals. `report.json` records command tails and the fresh probe.
+
+The main-session audit found that the historical v2 index includes ignored loose
+preflight logs. Their exact bytes remain in `preflight/raw-logs.tar.gz`; they are
+not expected as loose files in a fresh clone. The current portable tracked-file
+index is `artifacts.v3.sha256.json`. Run `python3 docs/prototypes/new-game/T62/verify-evidence.py`
+to verify current files, report archive members, and all historical v2 loose-log
+hashes against their preserved archive bytes. Historical indexes/reports remain
+unchanged; source hashes identify the precise source used in each earlier run.

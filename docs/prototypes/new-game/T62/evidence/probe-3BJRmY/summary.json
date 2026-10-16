@@ -1,0 +1,131 @@
+{
+  "output": "docs/prototypes/new-game/T62/evidence/probe-3BJRmY",
+  "results": [
+    {
+      "id": "baseline",
+      "criteria": {
+        "exposedUnique": {
+          "evaluated": 30,
+          "pass": 30,
+          "fail": 0
+        },
+        "competingCountryMargin": {
+          "evaluated": 30,
+          "pass": 30,
+          "fail": 0
+        },
+        "inwardContinuation": {
+          "evaluated": 30,
+          "pass": 28,
+          "fail": 2
+        },
+        "water": {
+          "evaluated": 15,
+          "pass": 15,
+          "fail": 0
+        },
+        "unrelatedCoastClearance": {
+          "evaluated": 15,
+          "pass": 14,
+          "fail": 1
+        },
+        "endpointSpan": {
+          "evaluated": 15,
+          "pass": 14,
+          "fail": 1
+        },
+        "selfTrace": {
+          "evaluated": 15,
+          "pass": 15,
+          "fail": 0
+        },
+        "routeSeparation": {
+          "evaluated": 105,
+          "pass": 99,
+          "fail": 6
+        },
+        "preserved": {
+          "evaluated": 13,
+          "pass": 13,
+          "fail": 0
+        }
+      },
+      "extrema": {
+        "minEndpointSpanCss": 5.822177685390527,
+        "minCompetingCountryMarginCss": 27,
+        "minUnrelatedCoastClearanceCss": 1.5058101185471147,
+        "minRouteSeparationCss": 0
+      },
+      "groupErrors": {
+        "attachment": 2,
+        "water": 1,
+        "traceability": 7,
+        "preserved": 0
+      },
+      "legacyMidpointErrors": 0
+    },
+    {
+      "id": "coast-first",
+      "criteria": {
+        "exposedUnique": {
+          "evaluated": 30,
+          "pass": 30,
+          "fail": 0
+        },
+        "competingCountryMargin": {
+          "evaluated": 30,
+          "pass": 30,
+          "fail": 0
+        },
+        "inwardContinuation": {
+          "evaluated": 30,
+          "pass": 30,
+          "fail": 0
+        },
+        "water": {
+          "evaluated": 15,
+          "pass": 15,
+          "fail": 0
+        },
+        "unrelatedCoastClearance": {
+          "evaluated": 15,
+          "pass": 15,
+          "fail": 0
+        },
+        "endpointSpan": {
+          "evaluated": 15,
+          "pass": 15,
+          "fail": 0
+        },
+        "selfTrace": {
+          "evaluated": 15,
+          "pass": 15,
+          "fail": 0
+        },
+        "routeSeparation": {
+          "evaluated": 105,
+          "pass": 105,
+          "fail": 0
+        },
+        "preserved": {
+          "evaluated": 13,
+          "pass": 13,
+          "fail": 0
+        }
+      },
+      "extrema": {
+        "minEndpointSpanCss": 24.000005409120906,
+        "minCompetingCountryMarginCss": 9.857459004549346,
+        "minUnrelatedCoastClearanceCss": 64.05210663635089,
+        "minRouteSeparationCss": 21.9814453125
+      },
+      "groupErrors": {
+        "attachment": 0,
+        "water": 0,
+        "traceability": 0,
+        "preserved": 0
+      },
+      "legacyMidpointErrors": 30
+    }
+  ]
+}
