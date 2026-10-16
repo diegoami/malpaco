@@ -94,3 +94,46 @@ Both reports prove exact seven-file restoration in finally and retain the origin
 mutated and restored source bytes plus raw command outputs and creation tools.
 The four UI controls also retain complete pinned browser reports in their own
 fresh evidence directories. No inherited assertion or golden was weakened.
+
+
+## Final verification and reproduction
+
+`final-source-sy_66sn_` passes the complete140-case pinned source browser suite,
+including unchanged generated/reference/slice goldens and541-action legacy
+reference conquest per desktop. That run precedes one bounded, three-line result
+badge/color correction: a round-limit winner can differ from the last mover.
+`badge-negative-kh4fzfuk` reproduces the actual amber-vs-blue mismatch with a real
+24-vs22 result, using the real Panel/h/s/palette and a small unit DOM recorder.
+The fixed production path passes41 focused tests in `badge-positive-_9lw9bm0`.
+The new test and every parent/inherited assertion remain unchanged thereafter.
+
+On final production bytes, `final-units-yby3aonm` passes553 tests and
+`final-build-phn9ahwi` passes TypeScript/build. `final-badge-focused-k5or_8f3`
+passes18 pinned cases: all6 T30 flows, reference setup/goldens, legacy board/panel/
+result-dialog goldens and finished-game copy/Continue/Escape/restart. Main approved
+this bounded recheck after the isolated result-only correction rather than
+repeating140. Every earlier result and raw output remains retained.
+
+`release-81et_oif` builds a fresh official package at source commit
+b464b0613a10cd1409b01ff85e5c686af92e5912, verifies every extracted SHA256SUMS entry,
+and passes30 extracted browser cases: T30, friendly movement/feedback, generated
+board and legacy reference. Inputs remain byte-stable throughout package/browser
+runs. The exact package, build, extracted files and raw reports are losslessly
+archived. `implementation-protected-v7yg_91i` proves77 inherited test/data/golden
+files and all4 parent acceptance files byte-exact,42 runtime files equal to that
+commit, the original stylesheet an exact prefix, mock absent, and Panel the sole
+runtime difference from the first green implementation. The earlier pre-badge
+protection report is retained alongside it.
+
+Reproduce with `npx vitest run tests/core/victory-options.test.ts`,
+`npx vitest run tests/ui/victory-panel.test.ts`, `npm test`, `npm run build`,
+`python3 docs/prototypes/new-game/T30/run-browser.py <fresh-label>`,
+`python3 docs/prototypes/new-game/T30/check-mutations.py`, and
+`python3 docs/prototypes/new-game/T30/check-release.py`. Browser/release helpers use
+the pinned Playwright1.63.0 image and fresh owned paths; run them sequentially
+because each build owns dist. `check-protected.py` checks the current committed
+runtime against protected inputs. `artifacts.implementation.v2.json` is the new
+immutable current evidence index; verify with
+`python3 docs/prototypes/new-game/T30/verify-evidence.py artifacts.implementation.v2.json`.
+The historical parent index remains untouched and belongs to checkpoint a3b0d9.
+Owner assessment of readability/pacing remains separate from automated validation.
