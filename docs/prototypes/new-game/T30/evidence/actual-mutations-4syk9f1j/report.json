@@ -1,0 +1,118 @@
+{
+  "selection": [
+    "controller-revision"
+  ],
+  "records": [
+    {
+      "name": "baseline-core",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "baseline-controller",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/battle-controller.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "controller-revision",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/battle-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "restored-core",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "restored-core-final",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    }
+  ],
+  "archives": {
+    "raw-logs.tar.gz": {
+      "sha256": "74e508948e2515b1ba9f76bb937b368e67d35be3ac177a8352b5af21c7ab2b20",
+      "members": {
+        "baseline-core/stdout.txt": "c14e9b6f1b1fb16dfaf513e5e8ecbbb4ef39b677ef7211b05b2e938421e483cc",
+        "baseline-core/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "baseline-controller/stdout.txt": "214c7fe8a3b541b815231c4f6e290e88a7be822323a3d7d87175f00a4c858975",
+        "baseline-controller/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "controller-revision/stdout.txt": "42ccf44cddc439eef621a6cba4260e3ee9086bed5a3ed788da8940b552ea78ae",
+        "controller-revision/stderr.txt": "82039405caf696806e1937fe9225190239b2e333925fe93e9c1351c787d36d66",
+        "restored-core/stdout.txt": "61cb31b093212a92ded38e846eff91da757f7233165fbf44e54e3a8d6b8d8595",
+        "restored-core/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "restored-core-final/stdout.txt": "f6d3da6787b4008e03495afa84f76e50bc285ee39cda61e5669fe889305d4ce8",
+        "restored-core-final/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "source-snapshots.tar.gz": {
+      "sha256": "d739913c8c5a18618524b0ed37b3fafba93f6cb1e778a471d69fc898cb0040ca",
+      "members": {
+        "baseline/src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+        "baseline/src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+        "baseline/src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+        "baseline/src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+        "baseline/src/ui/referenceBattleGame.ts": "9804a4fc5368ae283a98a462254b4f60afdcd280bf26325d39c74bfa1220794c",
+        "baseline/src/ui/victoryView.ts": "9ed847ab4ef608a4c186bca0cae446388f296da85ac29f2bb4cfba88bec8237a",
+        "baseline/src/ui/battleController.ts": "26156d3bb3587b305372b20b4bbb8a305b958903dd5384e381d85cd77c8ee16d",
+        "controller-revision/src/ui/battleController.ts": "2eed4df1bd7868b6572261592ca00b533cde7e53ee8119c01b2da5ae1ff69b53",
+        "restored/src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+        "restored/src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+        "restored/src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+        "restored/src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+        "restored/src/ui/referenceBattleGame.ts": "9804a4fc5368ae283a98a462254b4f60afdcd280bf26325d39c74bfa1220794c",
+        "restored/src/ui/victoryView.ts": "9ed847ab4ef608a4c186bca0cae446388f296da85ac29f2bb4cfba88bec8237a",
+        "restored/src/ui/battleController.ts": "26156d3bb3587b305372b20b4bbb8a305b958903dd5384e381d85cd77c8ee16d",
+        "tool/check-mutations.py": "8359a4d7c8d447b9b29920882ae22311ad88a009ab689fe3bfb15285c1b52048"
+      }
+    }
+  },
+  "restored": {
+    "src/core/setup.ts": true,
+    "src/core/state.ts": true,
+    "src/core/victory.ts": true,
+    "src/core/rules.ts": true,
+    "src/ui/referenceBattleGame.ts": true,
+    "src/ui/victoryView.ts": true,
+    "src/ui/battleController.ts": true
+  },
+  "baselineBrowser": "evidence/implementation-browser-2wfu66ao",
+  "caught": 1,
+  "survivors": []
+}

@@ -59,3 +59,38 @@ golden files unchanged against merged63cda03. This mock is feasibility evidence,
 never production. The parent immutable index is `artifacts.preflight.v1.json`;
 verify historical source indices at their acceptance checkpoint. Later evidence
 needs a new immutable index. All raw whitespace/HTML/logs are losslessly archived.
+
+
+## Production implementation and source controls
+
+`victoryRules(options)` extends friendly movement, retaining the seeded first seat
+as a fixed origin. Pure `completeTurn` / victory / handoff stages check ordered
+results before income, with ordinary `watchComputers` and `stopGame` actions.
+A paused human-loss result has no winner and resumes exactly once after Watch.
+The default reference setup exposes controller/victory options; existing presets,
+legacy reference UI, authored/generated routes and save v1 retain their behavior.
+Development computer seats are explicitly manual until T32.
+
+First production evidence: `implementation-core-ouekfutn` passes40 parent cases,
+`implementation-units-uxoz4qe8` passes552 units and
+`implementation-build-jciwll7c` passes TypeScript/build.
+`implementation-browser-2wfu66ao` passes all6 pinned browser cases, including
+190-action domination, full20-round legal play,239-action human elimination per
+run,3 resumed manual computer handoffs, Stop/freeze/restart and stale controls.
+All four parent acceptance files and inherited tests/goldens remain unchanged.
+
+`check-mutations.py` runs actual-source deletion controls, with optional mutation
+names to select a focused follow-up. `actual-mutations-4nmd7myh` catches20 core
+and4 UI controls: origin metadata/wrap/skips, domination threshold/toggle/own-turn,
+completed-round boundary, country/army/rotated scoring, no-human exemptions,
+Watch prompt/result/handoff, Stop, choice phase, RNG, clone metadata, premature
+capture completion, visible reason/standings order, frozen phase controls and
+Watch wiring. It retains one honest survivor: deleting controller revisions
+passed the selected timer-safety suite, which does not test stale user revisions.
+Only the audit's suite selection was corrected, without production/test changes.
+`actual-mutations-4syk9f1j` runs that deletion against the existing stale-revision
+suite and catches it between green baselines. All25 classes are therefore covered.
+Both reports prove exact seven-file restoration in finally and retain the original,
+mutated and restored source bytes plus raw command outputs and creation tools.
+The four UI controls also retain complete pinned browser reports in their own
+fresh evidence directories. No inherited assertion or golden was weakened.
