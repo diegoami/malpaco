@@ -96,6 +96,7 @@ export class Panel {
     const computer = mover?.kind === "computer";
     const finished = state.phase === "finished";
     const winner = state.players.find((p) => p.id === state.winner);
+    const result = state.result;
     const income = mover ? reinforcementIncome(state, mover.id) : { base: 0, islandBonus: 0, total: 0, provinceCount: 0 };
     const phase = state.phase === "reinforce" ? "Reinforcement" : state.phase === "attack" ? "Attack" : state.phase === "redeploy" ? "Handoff" : "Finished";
     this.el.dataset["phase"] = state.phase;
@@ -105,10 +106,10 @@ export class Panel {
       h(
         "div",
         {},
-        h("div", { class: "turn-title", id: "turn-title" }, finished ? `${winner?.name ?? "Nobody"} conquers the sea` : `${mover?.name ?? ""}'s turn`),
+        h("div", { class: "turn-title", id: "turn-title" }, result ? winner ? `${winner.name} wins` : "Human seats eliminated" : finished ? `${winner?.name ?? "Nobody"} conquers the sea` : `${mover?.name ?? ""}'s turn`),
         h("div", { id: "seat-controller", class: "turn-sub" },
-          finished ? "The game is over. Choose New game to play again." : computer ? "Computer · Normal · " : "",
-          ...(finished ? [] : [`Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)])),
+          result ? state.phase === "human-loss" ? "Choose Watch computers or Stop game." : "The game is over. Choose New game to play again." : finished ? "The game is over. Choose New game to play again." : computer ? "Computer · Normal · " : "",
+          ...(finished || result ? [] : [`Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)])),
       ),
     );
     this.turn.style.setProperty("--owner", seatLook(seat).color);

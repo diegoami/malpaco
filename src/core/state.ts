@@ -2,6 +2,7 @@ import { DeterministicRng } from "./rng";
 import { reinforcementIncome } from "./reinforcement";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
 import type { GameOptions } from "./options";
+import { defaultOptions } from "./options";
 
 /** The generated-game combat preset, per C-CMB-01..11 and C-OWN-01. */
 export function malpacoRules(): RuleSet {
@@ -35,6 +36,12 @@ export function captureChoiceRules(): RuleSet {
 /** Pinned core-rules.md Movement, ae298e37: one adjacent move ending the turn. */
 export function friendlyMoveRules(): RuleSet {
   return { ...captureChoiceRules(), id: "malpaco-friendly-move", movement: "adjacent" };
+}
+
+/** Pinned core-rules.md Victory / The turn, ae298e37; options use the setup vocabulary. */
+export function victoryRules(options: Pick<GameOptions, "dominationWin" | "roundLimit"> = defaultOptions()): RuleSet {
+  return { ...friendlyMoveRules(), id: "malpaco-victory",
+    victoryOptions: { dominationWin: options.dominationWin, roundLimit: options.roundLimit } };
 }
 
 /** Classic combat remains available to the legacy spike entry points. */
@@ -94,6 +101,9 @@ export function cloneState(state: GameState): GameState {
     ...(state.pendingCapture ? { pendingCapture: { ...state.pendingCapture } } : {}),
     reinforcementPool: state.reinforcementPool,
     turnNumber: state.turnNumber,
+    ...(state.roundOrigin !== undefined ? { roundOrigin: state.roundOrigin } : {}),
+    ...(state.watchingComputers !== undefined ? { watchingComputers: state.watchingComputers } : {}),
+    ...(state.result ? { result: { ...state.result, standings: state.result.standings.map(row => ({ ...row })) } } : {}),
     capturedThisTurn: state.capturedThisTurn,
     rng: { ...state.rng },
     computerRngs: Object.fromEntries(Object.entries(state.computerRngs).map(([k, v]) => [k, { ...v }])),
@@ -188,6 +198,7 @@ function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly P
     phase: rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
     reinforcementPool: 0,
     turnNumber: 1,
+    ...(rules.victoryOptions ? { roundOrigin: 0 } : {}),
     capturedThisTurn: false,
     rng: rng.snapshot(),
     computerRngs,

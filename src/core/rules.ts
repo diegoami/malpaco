@@ -3,6 +3,7 @@ import { DeterministicRng } from "./rng";
 import { reinforcementIncome } from "./reinforcement";
 import { whyNotFriendlyMove } from "./movement";
 import { activePlayer, cloneState, livingPlayers, provincesOf } from "./state";
+import { nextLivingTurn, resolveTurnVictory } from "./victory";
 import type { Action, ApplyResult, GameState, Player } from "./types";
 
 // The engine's one way in: apply(state, action). Total, deterministic, no I/O,
@@ -22,6 +23,9 @@ export function legalAttacks(state: GameState): Action[] {
 
 export function apply(state: GameState, action: Action): ApplyResult {
   if (state.phase === "finished") return { ok: false, error: "the game is over" };
+  if (state.phase === "human-loss" && action.kind !== "watchComputers" && action.kind !== "stopGame") {
+    return { ok: false, error: "choose whether to watch the computers or stop" };
+  }
   if (!activePlayer(state)) return { ok: false, error: "no player to act" };
   if ((state.pendingCapture || state.phase === "capture") && action.kind !== "captureMove") {
     return { ok: false, error: "choose the capture move-in before another action" };
@@ -47,6 +51,9 @@ function dispatch(next: GameState, action: Action): ApplyResult {
       return captureMove(next, action.amount);
     case "friendlyMove":
       return friendlyMove(next, action.from, action.to, action.amount);
+    case "watchComputers":
+    case "stopGame":
+      return humanLossChoice(next, action.kind);
     default:
       return { ok: false, error: "unknown action" };
   }
@@ -136,6 +143,7 @@ function endTurn(state: GameState): ApplyResult {
   if (state.rules.turnSequence === "reinforcement" && state.phase !== "attack" && state.phase !== "redeploy") {
     return { ok: false, error: "end the turn after the attack phase" };
   }
+  if (state.rules.victoryOptions) return completeTurn(state);
   // Pinned core-rules.md Victory: after this turn's move, before next income.
   if (state.rules.combat.capture === "choice" && checkVictory(state)) return { ok: true, state, outcome: null };
   const mover = activePlayer(state) as Player;
@@ -152,6 +160,36 @@ function endTurn(state: GameState): ApplyResult {
   state.reinforcementPool = state.rules.turnSequence === "reinforcement" && next && !next.eliminated
     ? reinforcementIncome(state, next.id).total
     : 0;
+  return { ok: true, state, outcome: null };
+}
+
+/** End-of-turn seam: later reward/effect work belongs before victory, never after handoff. */
+function completeTurn(state: GameState): ApplyResult {
+  state.log.push({ event: "turn_ended", player: activePlayer(state)!.id, turn: state.turnNumber });
+  const handoff = nextLivingTurn(state);
+  if (!resolveTurnVictory(state, handoff.completedRound)) beginNextTurn(state, handoff);
+  return { ok: true, state, outcome: null };
+}
+
+function beginNextTurn(state: GameState, handoff = nextLivingTurn(state)): void {
+  state.currentPlayer = handoff.seat;
+  if (handoff.completedRound) state.turnNumber += 1;
+  state.phase = state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
+  state.capturedThisTurn = false;
+  state.reinforcementPool = state.rules.turnSequence === "reinforcement"
+    ? reinforcementIncome(state, activePlayer(state)!.id).total : 0;
+}
+
+function humanLossChoice(state: GameState, choice: "watchComputers" | "stopGame"): ApplyResult {
+  if (!state.rules.victoryOptions || state.phase !== "human-loss") {
+    return { ok: false, error: "no human-loss choice is pending" };
+  }
+  if (choice === "stopGame") state.phase = "finished";
+  else {
+    state.watchingComputers = true;
+    delete state.result;
+    beginNextTurn(state);
+  }
   return { ok: true, state, outcome: null };
 }
 
