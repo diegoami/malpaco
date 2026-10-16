@@ -1,0 +1,25 @@
+{
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T32/run-command.py",
+    "mock-build",
+    "npm",
+    "run",
+    "build"
+  ],
+  "exit": 0,
+  "originalHashes": {
+    "src/core/computer.ts": "515ca092ff497506e7d4f2d2b9a3adf081fc7ab322e691413683091694b9d405",
+    "src/ui/battleController.ts": "368b05132ddeebb96774f1a0346abc2e779327fef787a75b1142e5ec79717f6b",
+    "src/ui/referenceBattleGame.ts": "f6aafc3e026168377f398a3fab0deb6ef324fa9ce648d8011ed9e7d8ba605d0b",
+    "src/ui/referenceGame.ts": "de1050d25dc5c91ada0fd37e48d810f089af3be31af6e7dd1df04cba6ba79418",
+    "src/ui/computerTurnLoop.ts": null
+  },
+  "exactRestoration": {
+    "src/core/computer.ts": true,
+    "src/ui/battleController.ts": true,
+    "src/ui/referenceBattleGame.ts": true,
+    "src/ui/referenceGame.ts": true,
+    "src/ui/computerTurnLoop.ts": true
+  }
+}
