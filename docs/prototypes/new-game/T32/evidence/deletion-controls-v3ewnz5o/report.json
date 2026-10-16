@@ -1,0 +1,142 @@
+{
+  "cases": [
+    {
+      "case": "capture",
+      "source": "src/core/computer.ts",
+      "beforeSha256": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+      "mutantSha256": "8e84fb4f859ba734f096378051384df751028cc48590f0ea189ff795b646f22b",
+      "command": [
+        "/usr/bin/python3",
+        "/home/diego/projects/malpaco/.cache/t32-work/docs/prototypes/new-game/T32/run-command.py",
+        "delete-capture",
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/computer-turn-flow.test.ts",
+        "-t",
+        "computer pending"
+      ],
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "case": "loss",
+      "source": "src/core/computer.ts",
+      "beforeSha256": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+      "mutantSha256": "d313254e70436f6559e7015e9b447e39d45229db62c1c543e5263ae3d29b07de",
+      "command": [
+        "/usr/bin/python3",
+        "/home/diego/projects/malpaco/.cache/t32-work/docs/prototypes/new-game/T32/run-command.py",
+        "delete-loss",
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/computer-turn-flow.test.ts",
+        "-t",
+        "computer pending"
+      ],
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "case": "movement",
+      "source": "src/core/computer.ts",
+      "beforeSha256": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+      "mutantSha256": "db2503b2a1b7cc762c6ef4d467463cba588a8c3ab8826fd1dd8431078d889202",
+      "command": [
+        "/usr/bin/python3",
+        "/home/diego/projects/malpaco/.cache/t32-work/docs/prototypes/new-game/T32/run-command.py",
+        "delete-movement",
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/computer-turn-flow.test.ts",
+        "-t",
+        "useful adjacent"
+      ],
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "case": "budget-reset",
+      "source": "src/core/computer.ts",
+      "beforeSha256": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+      "mutantSha256": "431a3ee279ed93236e2a9acc8861411ab2a674df1682c1e45e0230f1f454e1ba",
+      "command": [
+        "/usr/bin/python3",
+        "/home/diego/projects/malpaco/.cache/t32-work/docs/prototypes/new-game/T32/run-command.py",
+        "delete-budget-reset",
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/computer-turn-flow.test.ts",
+        "-t",
+        "policy attack budget"
+      ],
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "case": "input-guard",
+      "source": "src/ui/battleController.ts",
+      "beforeSha256": "62ecc72537f1671ec4d4bdff2513b978ae5f5ae69e04da47a040942395e814c6",
+      "mutantSha256": "89a74b746ff9442e4dfa83c5ac26ee6cfde4d5b4050127a7b4be6518550c3862",
+      "command": [
+        "/usr/bin/python3",
+        "/home/diego/projects/malpaco/.cache/t32-work/docs/prototypes/new-game/T32/run-command.py",
+        "delete-input-guard",
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/computer-input.test.ts"
+      ],
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "case": "driver",
+      "source": "src/ui/computerTurnLoop.ts",
+      "beforeSha256": "9aeba293696dcfe6bf415929fabad69e0b731e109b066df3f5e2243ed8ad10a2",
+      "mutantSha256": "fb4d7f1cf79699b6b8148331c496470f80a4e71820e832cdcdb048b5fbed8cf8",
+      "command": [
+        "/usr/bin/python3",
+        "/home/diego/projects/malpaco/.cache/t32-work/docs/prototypes/new-game/T32/run-browser.py",
+        "delete-driver",
+        "--grep",
+        "loaded computer capture"
+      ],
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "case": "timer-cancel",
+      "source": "src/ui/referenceBattleGame.ts",
+      "beforeSha256": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+      "mutantSha256": "4cbdb69fd813d48945b0970b22d2cf789dad77a82b6fac7cca420c5edce394c0",
+      "command": [
+        "/usr/bin/python3",
+        "/home/diego/projects/malpaco/.cache/t32-work/docs/prototypes/new-game/T32/run-browser.py",
+        "delete-timer-cancel",
+        "--grep",
+        "loaded computer capture"
+      ],
+      "exit": 1,
+      "restoredExactly": true
+    },
+    {
+      "case": "defaults",
+      "source": "src/ui/referenceGame.ts",
+      "beforeSha256": "479e1b2f99aa3aa276f6644b588315c647eb9621c8f9f6640dd06325e206cc84",
+      "mutantSha256": "5e6078f6f885ea7659e577417b5024418ffe6cacf400249bcddc9abd77759a03",
+      "command": [
+        "/usr/bin/python3",
+        "/home/diego/projects/malpaco/.cache/t32-work/docs/prototypes/new-game/T32/run-browser.py",
+        "delete-defaults",
+        "--grep",
+        "untouched setup"
+      ],
+      "exit": 1,
+      "restoredExactly": true
+    }
+  ]
+}

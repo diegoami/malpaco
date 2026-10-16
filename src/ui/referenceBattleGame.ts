@@ -1,5 +1,6 @@
 import { activePlayer, attackTargets, friendlySources, friendlyTargets, ownerOf, whyNot } from "../core";
 import type { GameMap, GameOptions, GameState } from "../core";
+import { ComputerTurnLoop } from "./computerTurnLoop";
 import { BattleController } from "./battleController";
 import type { BattleSpeed } from "./battleController";
 import { BattleView } from "./battleView";
@@ -15,6 +16,8 @@ export interface BattlePreferences { threshold: number; speed: BattleSpeed }
 
 /** Reference-route host: the controller owns every selection and ordinary action. */
 export class ReferenceBattleGame {
+  private readonly computer: ComputerTurnLoop | null;
+  private readonly computerStatus = h("p", { id: "reference-computer-status", role: "status" });
   private readonly controller: BattleController;
   private readonly mapView: ReferenceMapView;
   private readonly panel: Panel;
@@ -32,14 +35,15 @@ export class ReferenceBattleGame {
     if (!this.controller.stop()) this.controller.select(null, null);
   };
 
-  constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState) => void) {
+  constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState) => void, private readonly automatic = false) {
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
     }, view => {
       preferences.threshold = view.threshold;
       preferences.speed = view.speed;
       if (this.mounted && !this.disposed) this.render();
-    });
+    }, next => !this.automatic || activePlayer(next)?.kind === "human" || next.phase === "human-loss");
+    this.computer = automatic ? new ComputerTurnLoop(this.controller, { schedule: (cb, delay) => window.setTimeout(cb, delay), cancel: id => window.clearTimeout(id) }) : null;
     const threshold = preferences.threshold, speed = preferences.speed;
     this.controller.setThreshold(threshold);
     this.controller.setSpeed(speed);
@@ -58,7 +62,7 @@ export class ReferenceBattleGame {
     this.battle = new BattleView(this.controller);
     this.friendly = new FriendlyMoveView(this.controller);
     this.victory = new VictoryView(this.controller);
-    this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el);
+    this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el, this.computerStatus);
     this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state);
   }
 
@@ -69,7 +73,7 @@ export class ReferenceBattleGame {
     const humans = this.options.seats.filter(seat => seat.kind === "human").length;
     const computers = this.options.seats.length - humans;
     const subtitle = computers
-      ? `Nine Isles · ${humans} human / ${computers} computer seats · Manual play · Seed ${this.options.seed}`
+      ? `Nine Isles · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `Nine Isles · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     root.replaceChildren(
       h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, footer, this.files.el),
@@ -83,6 +87,7 @@ export class ReferenceBattleGame {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.computer?.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
@@ -105,7 +110,7 @@ export class ReferenceBattleGame {
 
   private renderMap(): void {
     const { state, from, to, running, paused, mode } = this.controller.view;
-    const blocked = running || paused || state.pendingCapture !== undefined || state.phase === "finished" || state.phase === "human-loss";
+    const blocked = this.computerActive() || running || paused || state.pendingCapture !== undefined || state.phase === "finished" || state.phase === "human-loss";
     const targets = blocked ? [] : mode === "move" ? from ? friendlyTargets(state, from) : friendlySources(state) : from ? attackTargets(state, from) : [];
     this.mapView.render({ state, selected: from, target: to, targets, hover: this.hover, flash: [] });
     if (mode === "move") {
@@ -117,6 +122,11 @@ export class ReferenceBattleGame {
     // Countries remain reachable for inspection and refusal feedback; the pure
     // controller refuses selection during automation and a pending move-in.
     this.mapView.el.dataset["inputBlocked"] = String(blocked);
+  }
+
+  private computerActive(): boolean {
+    const state = this.controller.state;
+    return this.automatic && activePlayer(state)?.kind === "computer" && state.phase !== "human-loss" && state.phase !== "finished";
   }
 
   private render(): void {
@@ -146,5 +156,13 @@ export class ReferenceBattleGame {
     if (mode === "move" || state.result) this.battle.el.hidden = true;
     this.friendly.render(this.controller.view);
     this.victory.render(state, revision);
+    const computer = this.computerActive();
+    this.computerStatus.hidden = !computer;
+    this.computerStatus.textContent = computer ? `${activePlayer(state)!.name} is playing…` : "";
+    if (computer) {
+      for (const el of this.panel.el.querySelectorAll<HTMLButtonElement | HTMLInputElement>(".action button,.action input")) el.disabled = true;
+      this.panel.el.querySelector(".hint")?.replaceChildren(document.createTextNode("Computer turn. Save, load or start a new game at any time."));
+    }
+    this.computer?.update();
   }
 }

@@ -34,7 +34,7 @@ export class VictoryView {
       const stop = h("button", { type: "button", id: "stop-game-button" }, "Stop game");
       watch.addEventListener("click", () => this.controller.dispatch({ kind: "watchComputers" }, revision));
       stop.addEventListener("click", () => this.controller.dispatch({ kind: "stopGame" }, revision));
-      this.el.append(h("p", { class: "victory-guidance" }, "Continue the remaining computer seats in this manual development game, or stop here."),
+      this.el.append(h("p", { class: "victory-guidance" }, "Watch the remaining computer seats, or stop here."),
         h("div", { class: "victory-choices" }, watch, stop));
     } else this.el.append(h("p", { class: "victory-guidance" }, "Choose New game to play again."));
   }

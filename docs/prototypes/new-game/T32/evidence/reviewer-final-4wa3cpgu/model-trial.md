@@ -1,0 +1,9 @@
+T32 independent review trial — MiniMax M3 (`minimax/MiniMax-M3`, thinking), round 1, PR #135 / b38110183a310303b1f9357272870817f166a16a. Completed session ses_eb90b94cbffeHLnJlwUEYvgw3I: 718.923 seconds (~12 minutes), model completion stop, validation exits 0. Session reports input 148778 / output 36156 / cached-read 6841268 tokens; cost field 0.49849668.
+
+Verdict **approve**, no blocking findings. Independently passed 12 core cases, 6 focused + 56 affected pinned browser cases, 583 units, build, inherited-file audit and immutable evidence verification. Proved loss/budget-reset/movement deletion failures with saved-byte/hash restoration; other five author controls inspected, not independently rerun. Optional note: make speed-control exemption clearer; current selector deliberately leaves SELECT enabled and behavior passes.
+
+Operational misses and recovery: first dependency attempt failed until node_modules was linked; main's directory-style full-suite helper invocation caused IsADirectoryError, then explicit filenames passed. Final header omitted its requested terminal period, so harness extraction emitted “no review” despite a full approval in the completed session. Systemd wrapper reports status 0 even with that diagnostic; not a clean harness exit claim. Main read the complete final, verified the exact header-only parser mismatch and all DW accounts, posted the untouched final flagged through the existing harness library, then explicitly accepted/labelled approval. No second model run. Exact session, 103 retained fresh files, successful source-hash comparisons and scratch checkpoint preserved before final CI.
+
+Review: https://github.com/diegoami/malpaco/pull/135#issuecomment-6226481596
+Main assessment: https://github.com/diegoami/malpaco/pull/135#issuecomment-6226487440
+Cross-reference: https://github.com/diegoami/isle-wars-archaeology/issues/9.

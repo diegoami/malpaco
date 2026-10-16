@@ -1,0 +1,32 @@
+{
+  "session": "ses_eb90b94cbffeHLnJlwUEYvgw3I",
+  "model": {
+    "id": "MiniMax-M3",
+    "providerID": "minimax",
+    "variant": "thinking"
+  },
+  "reviewedHead": "b38110183a310303b1f9357272870817f166a16a",
+  "expectedHeader": "T32 review (MiniMax M3), PR #135 at b38110183a310303b1f9357272870817f166a16a.",
+  "actualHeader": "T32 review (MiniMax M3), PR #135 at b38110183a310303b1f9357272870817f166a16a",
+  "originalParserKind": "none",
+  "recoveredParserKind": "ok",
+  "recoveredVerdict": "approve",
+  "doneWhen": {
+    "missing": [],
+    "repeated": [],
+    "notRun": [],
+    "malformed": []
+  },
+  "rawFinalSha256": "282505728c8fb21404d587b2ed66f96e83b5a592c50645f74d83007589a2e523",
+  "durationSeconds": 718.923,
+  "modelTokens": {
+    "input": 148778,
+    "output": 36156,
+    "reasoning": 0,
+    "cache": {
+      "read": 6841268,
+      "write": 0
+    }
+  },
+  "postedFlaggedForMainAssessment": true
+}
