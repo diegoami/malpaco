@@ -4,14 +4,14 @@ import {dirname,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {parameters as P} from './parameters.mjs';
 import {svg,html} from './render.mjs';
-import {box,edges,distance,location,signedArea,contained,exposedSegments,segmentPieces,intersectionParameters,sharedLength} from '../T24/geometry.mjs';
+import {box,edges,distance,signedArea,contained,exposedSegments,segmentPieces,intersectionParameters,sharedLength} from '../T24/geometry.mjs';
 const root=dirname(fileURLToPath(import.meta.url)),read=p=>JSON.parse(readFileSync(resolve(root,p)));
-const reference=read('input/reference-board.json'),templates=read('../T25/board.json');
+const reference=read('input/reference-board.json'),templates=read('input/contact-template-T25.json');
 mkdirSync(resolve(root,'evidence'),{recursive:true});const output=mkdtempSync(resolve(root,'evidence/build-'));
 const rel=p=>p.slice(root.length+1),clone=x=>structuredClone(x),round=x=>Math.round(x*P.round)/P.round;
 const mean=ps=>[ps.reduce((n,p)=>n+p[0],0)/ps.length,ps.reduce((n,p)=>n+p[1],0)/ps.length];
 const failures=[];
-function labels(board) {
+function labels(board,method) {
  const packed=[];
  for(const p of board.provinces) {
   const b=box(p.polygon),centre=mean(p.polygon);let best=null,score=Infinity;
@@ -21,7 +21,7 @@ function labels(board) {
    const s=(x-centre[0])**2+(y-centre[1])**2;if(s<score){score=s;best=[x,y];}
   }
   // A failed packing remains visibly present, and is disclosed by T24/summary.
-  if(!best){best=centre.map(round);failures.push({country:p.name,kind:'No 44x46 label box found',fallback:best});}
+  if(!best){best=centre.map(round);failures.push({method,country:p.name,kind:'No 44x46 label box found',fallback:best});}
   p.labelAt=best;packed.push(best);
  }
 }
@@ -31,11 +31,11 @@ function template() {
   const old=templates.islands.find(q=>q.id===i.id),ob=box(old.polygon),[x,y,w,h]=P.templateBoxes[j];
   // [designed] A gentle coherent warp retains template contacts exactly. Every
   // shared vertex receives the identical transform; there is no random jitter.
-  const transform=([px,py])=>{const u=(px-ob[0])/(ob[2]-ob[0]),v=(py-ob[1])/(ob[3]-ob[1]),s=v<.5?4*v**3:1-4*(1-v)**3;return [round(x+w*(u+.01*Math.sin(Math.PI*v)*Math.sin(2*Math.PI*u))),round(y+h*s+2*Math.sin(Math.PI*u)*Math.sin(2*Math.PI*v))];};
+  const transform=([px,py])=>{const u=(px-ob[0])/(ob[2]-ob[0]),v=(py-ob[1])/(ob[3]-ob[1]),s=v<.5?.5*(2*v)**P.templateCoastPower:1-.5*(2*(1-v))**P.templateCoastPower;return [round(x+w*(u+.01*Math.sin(Math.PI*v)*Math.sin(2*Math.PI*u))),round(y+h*s+2*Math.sin(Math.PI*u)*Math.sin(2*Math.PI*v))];};
   i.polygon=old.polygon.map(transform);
   for(const id of i.provinces)b.provinces.find(p=>p.id===id).polygon=templates.provinces.find(p=>p.id===id).polygon.map(transform);
  }
- labels(b);return b;
+ labels(b,'coast-first');return b;
 }
 function dual() {
  const b=clone(reference);b.routes=[];
@@ -66,7 +66,7 @@ function dual() {
    b.provinces.find(p=>p.id===order[v]).polygon=[join[previous],coast[v],join[v],...chain];
   }
  }
- labels(b);return b;
+ labels(b,'contact-dual');return b;
 }
 function pointSegment(p,a,b) {const dx=b[0]-a[0],dy=b[1]-a[1],t=Math.max(0,Math.min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dy)/(dx*dx+dy*dy)));return distance(p,[a[0]+t*dx,a[1]+t*dy]);}
 function clear(board,a,b) {
@@ -96,8 +96,9 @@ function ports(board) {
 const boards=[{id:'baseline',title:'Baseline · T59',board:clone(reference),role:'baseline',method:'Pinned T59 geometry, identical renderer'},
  {id:'coast-first',title:'A · Coast-first templates',board:template(),role:'candidate',method:'Co-designed envelopes, existing contact template, direct separated ports'},
  {id:'contact-dual',title:'B · Graph contact dual',board:dual(),role:'candidate',method:'Planar graph faces → region junctions → entrance coast arcs'}];
+boards.push({id:'ports-only',title:'D · Ports-only ablation',board:clone(reference),role:'ablation',method:'Unchanged baseline land and labels; replace only coast ports/routes'});
 for(const entry of boards) {
- if(entry.role==='candidate')ports(entry.board);
+ if(entry.role!=='baseline'){entry.board.routes=[];ports(entry.board);}
  entry.actualBorders=[];
  for(const p of entry.board.provinces){const actual=entry.board.provinces.filter(q=>q.id!==p.id&&q.island===p.island&&sharedLength(p.polygon,q.polygon)>1e-6).map(q=>q.id).sort();if(JSON.stringify(actual)!==JSON.stringify([...p.borders].sort()))entry.actualBorders.push({country:p.name,actual,expected:p.borders});}
  writeFileSync(resolve(output,`${entry.id}.json`),JSON.stringify(entry.board,null,2)+'\n');writeFileSync(resolve(output,`${entry.id}.svg`),svg(entry.board));writeFileSync(resolve(output,`${entry.id}.html`),html(entry.board,entry.title));
@@ -109,6 +110,6 @@ writeFileSync(resolve(output,'report.json'),JSON.stringify({failures,borders:boa
 for(const file of ['build.mjs','render.mjs','parameters.mjs'])writeFileSync(resolve(output,file+'.snapshot'),readFileSync(resolve(root,file)));
 const study={approaches:[{id:'coast-first',description:boards[1].method},{id:'contact-dual',description:boards[2].method},{id:'explicit-gates',description:'Pair-labelled coast gates clarify route identity; same geometry as B; no geographic shortening claim'}],entries:boards.map(e=>({id:e.id,role:e.role,board:rel(resolve(output,e.id+'.json')),html:rel(resolve(output,e.id+'.html')),method:e.method})),gates:rel(resolve(output,'gates.html'))};
 writeFileSync(resolve(output,'study.json'),JSON.stringify(study,null,2)+'\n');writeFileSync(resolve(root,'study.json'),JSON.stringify(study,null,2)+'\n');
-const hashes=Object.fromEntries(['baseline.json','coast-first.json','contact-dual.json','baseline.svg','coast-first.svg','contact-dual.svg','baseline.html','coast-first.html','contact-dual.html','gates.html','report.json','study.json','build.mjs.snapshot','render.mjs.snapshot','parameters.mjs.snapshot'].map(f=>[f,createHash('sha256').update(readFileSync(resolve(output,f))).digest('hex')]));
+const hashes=Object.fromEntries([...boards.flatMap(e=>[e.id+'.json',e.id+'.svg',e.id+'.html']),'gates.html','report.json','study.json','build.mjs.snapshot','render.mjs.snapshot','parameters.mjs.snapshot'].map(f=>[f,createHash('sha256').update(readFileSync(resolve(output,f))).digest('hex')]));
 writeFileSync(resolve(output,'sha256.json'),JSON.stringify(hashes,null,2)+'\n');
 console.log(JSON.stringify({output,failures,borders:boards.map(e=>({id:e.id,errors:e.actualBorders.length}))},null,2));

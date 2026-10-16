@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fifteen crossings · Map construction study</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#102b39;color:#f3eee0;font:15px/1.5 system-ui}main{max-width:1100px;margin:auto;padding:24px}h1{font:30px Georgia;margin:0 0 8px}p{max-width:850px;color:#d3dfdf}nav{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 12px}button{font:inherit;background:#264a59;color:#f3eee0;padding:9px 14px;border:1px solid #5d818c;border-radius:5px;cursor:pointer}button[aria-pressed=true]{background:#e8cc93;color:#173747;border-color:#e8cc93}button:focus-visible{outline:3px solid white;outline-offset:3px}iframe{border:1px solid #557480;width:800px;height:540px;display:block;background:#193e51}.frame{overflow:auto;max-width:100%}.caption{min-height:52px;font-size:14px}a{color:#efd49a}table{border-collapse:collapse;margin-top:24px;font-size:14px}th,td{text-align:left;border-bottom:1px solid #3c5b67;padding:8px 18px 8px 0}th{color:#efd49a}.note{font-size:13px;color:#b8cecf}
+</style>
+<main>
+<h1>Fifteen crossings. Four ways to draw them.</h1>
+<p>Every map has the exact same countries, land borders and sea links. Compare the path to the intended country, especially where one country has two exits. Click a country to trace its neighbours.</p>
+<nav aria-label="Map alternatives">
+<button data-map="baseline" aria-pressed="true">Baseline</button>
+<button data-map="coast-first" aria-pressed="false">A · Coast-first</button>
+<button data-map="contact-dual" aria-pressed="false">B · Contact dual</button>
+<button data-map="gates" aria-pressed="false">C · Paired gates</button>
+<button data-map="ports-only" aria-pressed="false">D · Ports only</button>
+</nav>
+<p class="caption" id="caption" aria-live="polite"></p>
+<div class="frame"><iframe id="map" title="Selected map at the native compact frame" src="evidence/build-Pea8gz/baseline.html"></iframe></div>
+<p class="note">Native 800×540 view, including an 800×460 board. These are research pictures, with disclosed constraint failures. Appearance and recognition remain the owner's decision.</p>
+<table><thead><tr><th>Map</th><th>Total route length</th><th>Bends / route contacts</th><th>Rendered labels outside country</th></tr></thead><tbody>
+<tr><td>Baseline</td><td>1332 px</td><td>5 / 6</td><td>0</td></tr>
+<tr><td>A · Coast-first</td><td>671 px</td><td>0 / 0</td><td>0</td></tr>
+<tr><td>B · Contact dual</td><td>898 px</td><td>0 / 0</td><td>23</td></tr>
+<tr><td>D · Ports only</td><td>584 px</td><td>0 / 0</td><td>0</td></tr>
+</tbody></table>
+<p><a href="README.md">Read the recommendation, limitations and complete diagnostics</a> · <a href="evidence/capture-B8t5Cx/coast-first-1280x800.png">Desktop A</a> · <a href="evidence/capture-B8t5Cx/ports-only-1280x800.png">Desktop D</a></p>
+</main>
+<script>
+const captions={baseline:'Fixed facing-chain midpoints and routed detours. Follow South rest–Stone watch and North rest–River keep.',
+'coast-first':'A co-designs broad coast envelopes, usable label cells and direct separated ports. Every water route is at least 24px long in this draft. Existing midpoint rules are deliberately unmet.',
+'contact-dual':'B replaces the subdivision with exact graph-contact regions. Routes are direct, but narrow cells lose 23 rendered label boxes. This draft demonstrates the method and its usability failure.',
+gates:'C adds matching lettered shore gates to B. It clarifies pair identity but inherits the narrow-cell failures and adds marker clutter.',
+'ports-only':'D changes only ports and routes on the exact baseline land and labels. It isolates the port-choice effect; its shortest water crossing is just 5px.'};
+function show(id){document.querySelector('#map').src='evidence/build-Pea8gz/'+(id==='gates'?'gates':id)+'.html';document.querySelector('#caption').textContent=captions[id];for(const b of document.querySelectorAll('button'))b.setAttribute('aria-pressed',String(b.dataset.map===id));}
+for(const b of document.querySelectorAll('button'))b.onclick=()=>show(b.dataset.map);document.querySelector('#caption').textContent=captions.baseline;
+</script>
+</html>

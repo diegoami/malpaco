@@ -17,24 +17,31 @@
     {
       "id": "baseline",
       "role": "baseline",
-      "board": "evidence/build-SNZFL5/baseline.json",
-      "html": "evidence/build-SNZFL5/baseline.html",
+      "board": "evidence/build-LrdPTV/baseline.json",
+      "html": "evidence/build-LrdPTV/baseline.html",
       "method": "Pinned T59 geometry, identical renderer"
     },
     {
       "id": "coast-first",
       "role": "candidate",
-      "board": "evidence/build-SNZFL5/coast-first.json",
-      "html": "evidence/build-SNZFL5/coast-first.html",
+      "board": "evidence/build-LrdPTV/coast-first.json",
+      "html": "evidence/build-LrdPTV/coast-first.html",
       "method": "Co-designed envelopes, existing contact template, direct separated ports"
     },
     {
       "id": "contact-dual",
       "role": "candidate",
-      "board": "evidence/build-SNZFL5/contact-dual.json",
-      "html": "evidence/build-SNZFL5/contact-dual.html",
+      "board": "evidence/build-LrdPTV/contact-dual.json",
+      "html": "evidence/build-LrdPTV/contact-dual.html",
       "method": "Planar graph faces → region junctions → entrance coast arcs"
+    },
+    {
+      "id": "ports-only",
+      "role": "ablation",
+      "board": "evidence/build-LrdPTV/ports-only.json",
+      "html": "evidence/build-LrdPTV/ports-only.html",
+      "method": "Unchanged baseline land and labels; replace only coast ports/routes"
     }
   ],
-  "gates": "evidence/build-SNZFL5/gates.html"
+  "gates": "evidence/build-LrdPTV/gates.html"
 }

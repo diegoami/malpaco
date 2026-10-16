@@ -1,0 +1,2131 @@
+{
+  "limitations": "Inward continuation, route contacts, distance and clearance are geometry proxies. They do not establish human recognition or visual approval. T24 is run unchanged; microscopic residuals are disclosed, not waived.",
+  "results": [
+    {
+      "id": "baseline",
+      "board": "evidence/build-Pea8gz/baseline.json",
+      "totalRouteLength": 1332.062698035486,
+      "minRouteLength": 5.822177685390527,
+      "maxRouteLength": 224.48802380663028,
+      "routeLengths": [
+        {
+          "from": "Wind dale",
+          "to": "River gate",
+          "length": 83.96339168763124,
+          "detour": 1
+        },
+        {
+          "from": "North rest",
+          "to": "River keep",
+          "length": 218.33519365422396,
+          "detour": 1.1152547404075088
+        },
+        {
+          "from": "South rest",
+          "to": "Stone watch",
+          "length": 224.48802380663028,
+          "detour": 1.3077839884461928
+        },
+        {
+          "from": "West haven",
+          "to": "New fell",
+          "length": 115.56957702516159,
+          "detour": 1
+        },
+        {
+          "from": "Wind gate",
+          "to": "Red field",
+          "length": 61.68203543457583,
+          "detour": 1
+        },
+        {
+          "from": "Port ridge",
+          "to": "Wind town",
+          "length": 75.12946479949527,
+          "detour": 1
+        },
+        {
+          "from": "Fort town",
+          "to": "South rest",
+          "length": 61.1000791368419,
+          "detour": 1
+        },
+        {
+          "from": "High shore",
+          "to": "Lower field",
+          "length": 5.822177685390527,
+          "detour": 1
+        },
+        {
+          "from": "North rest",
+          "to": "West haven",
+          "length": 96.92895187165612,
+          "detour": 1.3547282833262164
+        },
+        {
+          "from": "Stone watch",
+          "to": "Red field",
+          "length": 61.77708573457843,
+          "detour": 1
+        },
+        {
+          "from": "Dark ford",
+          "to": "New fell",
+          "length": 119.59922269538563,
+          "detour": 1.2353493996544687
+        },
+        {
+          "from": "South fell",
+          "to": "Wind town",
+          "length": 69.29301250105213,
+          "detour": 1
+        },
+        {
+          "from": "Gold point",
+          "to": "New rock",
+          "length": 62.65953886052438,
+          "detour": 1
+        },
+        {
+          "from": "Upper ridge",
+          "to": "Rock bay",
+          "length": 25.05607032111989,
+          "detour": 1
+        },
+        {
+          "from": "Bay ford",
+          "to": "New glen",
+          "length": 50.658872821218544,
+          "detour": 1
+        }
+      ],
+      "bends": 5,
+      "crossingPairs": 0,
+      "sharedCountryContacts": 6,
+      "nonincidentRouteClearance": 29.26960971057598,
+      "minUnrelatedCoastClearance": 1.5058101185471147,
+      "minCompetingCountryDistance": 27,
+      "inwardContinuation": [
+        {
+          "country": "Wind dale",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            252.02613172917262,
+            56.67610420617945
+          ]
+        },
+        {
+          "country": "River gate",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            358.486716171218,
+            38.725118022824454
+          ]
+        },
+        {
+          "country": "North rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            458.3616209156285,
+            125.14685751626806
+          ]
+        },
+        {
+          "country": "River keep",
+          "continuationDistance": 12,
+          "insideIntendedCountry": false,
+          "point": [
+            647.9131191541602,
+            27.79669571064649
+          ]
+        },
+        {
+          "country": "South rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            182.7115890801632,
+            192.55233882252932
+          ]
+        },
+        {
+          "country": "Stone watch",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            344.17951371874545,
+            275.43181187127766
+          ]
+        },
+        {
+          "country": "West haven",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            490.7139456482712,
+            180.80527247354095
+          ]
+        },
+        {
+          "country": "New fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            630.2740914611038,
+            179.18276463583405
+          ]
+        },
+        {
+          "country": "Wind gate",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            231.3246201688931,
+            331.36848403608076
+          ]
+        },
+        {
+          "country": "Red field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            316.7405653779819,
+            338.11589096391924
+          ]
+        },
+        {
+          "country": "Port ridge",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            565.6155864582166,
+            337.08269765253016
+          ]
+        },
+        {
+          "country": "Wind town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            664.6937397136584,
+            340.27179453496984
+          ]
+        },
+        {
+          "country": "Fort town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": false,
+          "point": [
+            260.48127745716323,
+            158.09784189698883
+          ]
+        },
+        {
+          "country": "South rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            182.25377274425276,
+            191.60128911497407
+          ]
+        },
+        {
+          "country": "High shore",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            128.8690600498776,
+            292.69457765767663
+          ]
+        },
+        {
+          "country": "Lower field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            144.1480297938724,
+            318.30542234232337
+          ]
+        },
+        {
+          "country": "North rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            412.068057714784,
+            143.889356683636
+          ]
+        },
+        {
+          "country": "West haven",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            485.54264443931345,
+            184.56948249689128
+          ]
+        },
+        {
+          "country": "Stone watch",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            341.1341328179213,
+            272.97371958518266
+          ]
+        },
+        {
+          "country": "Red field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            298.8644023383287,
+            347.61270619606734
+          ]
+        },
+        {
+          "country": "Dark ford",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            720.0097981522474,
+            142.5817328278503
+          ]
+        },
+        {
+          "country": "New fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            616.9417262697427,
+            191.2479790860762
+          ]
+        },
+        {
+          "country": "South fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            596.998359255135,
+            280.67521491880234
+          ]
+        },
+        {
+          "country": "Wind town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            660.92229504174,
+            348.62605461244766
+          ]
+        },
+        {
+          "country": "Gold point",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            230.11872112938696,
+            436.5763126990829
+          ]
+        },
+        {
+          "country": "New rock",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            316.777763245613,
+            436.8697322227921
+          ]
+        },
+        {
+          "country": "Upper ridge",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            408.4701302894021,
+            296.2528896928174
+          ]
+        },
+        {
+          "country": "Rock bay",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            451.5342642418479,
+            319.7471103071826
+          ]
+        },
+        {
+          "country": "Bay ford",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            773.5252649862814,
+            277.3617415348554
+          ]
+        },
+        {
+          "country": "New glen",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            768.4725377480936,
+            351.8494401057696
+          ]
+        }
+      ],
+      "continuationFailures": 2,
+      "areaResiduals": [
+        {
+          "island": "North Isle",
+          "residual": 0
+        },
+        {
+          "island": "East Isle",
+          "residual": 0
+        },
+        {
+          "island": "West Isle",
+          "residual": 0
+        },
+        {
+          "island": "South Isle",
+          "residual": 0
+        },
+        {
+          "island": "Central Isle",
+          "residual": 0
+        },
+        {
+          "island": "Harbor Isle",
+          "residual": 0
+        },
+        {
+          "island": "Palm Isle",
+          "residual": 0
+        },
+        {
+          "island": "Cliff Isle",
+          "residual": 0
+        },
+        {
+          "island": "Great Isle",
+          "residual": 0
+        }
+      ],
+      "explicitBoundaryResiduals": [],
+      "constraintCounts": {
+        "counts": 0,
+        "symmetry": 0,
+        "connectivity": 0,
+        "degree": 0,
+        "cells": 0,
+        "borders": 0,
+        "crossings": 0,
+        "coasts": 0,
+        "intersections": 0,
+        "bonus": 0,
+        "fortress": 0,
+        "concentration": 0,
+        "remoteness": 0,
+        "crowding": 0,
+        "labels": 0
+      },
+      "constraints": {
+        "counts": [],
+        "symmetry": [],
+        "connectivity": [],
+        "degree": [],
+        "cells": [],
+        "borders": [],
+        "crossings": [],
+        "coasts": [],
+        "intersections": [],
+        "bonus": [],
+        "fortress": [],
+        "concentration": [],
+        "remoteness": [],
+        "crowding": [],
+        "labels": []
+      }
+    },
+    {
+      "id": "coast-first",
+      "board": "evidence/build-Pea8gz/coast-first.json",
+      "totalRouteLength": 670.6329784469283,
+      "minRouteLength": 24.000005409120906,
+      "maxRouteLength": 122.2399908641149,
+      "routeLengths": [
+        {
+          "from": "Wind dale",
+          "to": "River gate",
+          "length": 57.082165878138184,
+          "detour": 1
+        },
+        {
+          "from": "North rest",
+          "to": "River keep",
+          "length": 122.2399908641149,
+          "detour": 1
+        },
+        {
+          "from": "South rest",
+          "to": "Stone watch",
+          "length": 90.84534211005314,
+          "detour": 1
+        },
+        {
+          "from": "West haven",
+          "to": "New fell",
+          "length": 62.683837890625,
+          "detour": 1
+        },
+        {
+          "from": "Wind gate",
+          "to": "Red field",
+          "length": 34.09002336857119,
+          "detour": 1
+        },
+        {
+          "from": "Port ridge",
+          "to": "Wind town",
+          "length": 31.23999281393651,
+          "detour": 1
+        },
+        {
+          "from": "Fort town",
+          "to": "South rest",
+          "length": 32.768057604404305,
+          "detour": 1
+        },
+        {
+          "from": "High shore",
+          "to": "Lower field",
+          "length": 24.000005409120906,
+          "detour": 1
+        },
+        {
+          "from": "North rest",
+          "to": "West haven",
+          "length": 40.01462055049388,
+          "detour": 1
+        },
+        {
+          "from": "Stone watch",
+          "to": "Red field",
+          "length": 25.825757440286644,
+          "detour": 1
+        },
+        {
+          "from": "Dark ford",
+          "to": "New fell",
+          "length": 40.11399816001886,
+          "detour": 1
+        },
+        {
+          "from": "South fell",
+          "to": "Wind town",
+          "length": 27.29179778288996,
+          "detour": 1
+        },
+        {
+          "from": "Gold point",
+          "to": "New rock",
+          "length": 34.09002336857119,
+          "detour": 1
+        },
+        {
+          "from": "Upper ridge",
+          "to": "Rock bay",
+          "length": 24.001893893906114,
+          "detour": 1
+        },
+        {
+          "from": "Bay ford",
+          "to": "New glen",
+          "length": 24.345471311797592,
+          "detour": 1
+        }
+      ],
+      "bends": 0,
+      "crossingPairs": 0,
+      "sharedCountryContacts": 0,
+      "nonincidentRouteClearance": 21.9814453125,
+      "minUnrelatedCoastClearance": 64.05210663635089,
+      "minCompetingCountryDistance": 9.857459004549346,
+      "inwardContinuation": [
+        {
+          "country": "Wind dale",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            259.37510022878075,
+            79.09840337581451
+          ]
+        },
+        {
+          "country": "River gate",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            339.89076891184425,
+            69.53050287418549
+          ]
+        },
+        {
+          "country": "North rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            492.2610551120532,
+            97.41998532391395
+          ]
+        },
+        {
+          "country": "River keep",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            635.6290816066968,
+            68.58001467608605
+          ]
+        },
+        {
+          "country": "South rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            216.5025169131493,
+            236.087611429812
+          ]
+        },
+        {
+          "country": "Stone watch",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            328.0409401181007,
+            263.448765523313
+          ]
+        },
+        {
+          "country": "West haven",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            513.613525390625,
+            235.41015625
+          ]
+        },
+        {
+          "country": "New fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            600.29736328125,
+            235.41015625
+          ]
+        },
+        {
+          "country": "Wind gate",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            251.37443042381105,
+            382.1081080364889
+          ]
+        },
+        {
+          "country": "Red field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            309.462483638689,
+            381.6296849322611
+          ]
+        },
+        {
+          "country": "Port ridge",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            588.5371103658689,
+            381.72363906337887
+          ]
+        },
+        {
+          "country": "Wind town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            643.7770986185061,
+            381.74608749912113
+          ]
+        },
+        {
+          "country": "Fort town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            207.5714159957852,
+            147.63608487824249
+          ]
+        },
+        {
+          "country": "South rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            198.5229443557773,
+            203.67836824675751
+          ]
+        },
+        {
+          "country": "High shore",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            132.7247314434967,
+            300.00000270455985
+          ]
+        },
+        {
+          "country": "Lower field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            132.6925048846283,
+            347.99999729544015
+          ]
+        },
+        {
+          "country": "North rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            432.02379205418305,
+            131.9872473357625
+          ]
+        },
+        {
+          "country": "West haven",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            432.56629583644195,
+            195.9995690704875
+          ]
+        },
+        {
+          "country": "Stone watch",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            364.28479373035026,
+            299.1829328101281
+          ]
+        },
+        {
+          "country": "Red field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            361.87975705089974,
+            348.9506121117469
+          ]
+        },
+        {
+          "country": "Dark ford",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            679.5696887427939,
+            131.90374346924762
+          ]
+        },
+        {
+          "country": "New fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            677.8968639915811,
+            195.99591473387738
+          ]
+        },
+        {
+          "country": "South fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            647.0587484016957,
+            299.9202599590976
+          ]
+        },
+        {
+          "country": "Wind town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            656.4806803092418,
+            350.3392615252774
+          ]
+        },
+        {
+          "country": "Gold point",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            251.37443042381105,
+            403.8918919635111
+          ]
+        },
+        {
+          "country": "New rock",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            309.462483638689,
+            404.3703150677389
+          ]
+        },
+        {
+          "country": "Upper ridge",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            436.8993038878093,
+            300.00094687223327
+          ]
+        },
+        {
+          "country": "Rock bay",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            437.5023074403157,
+            347.99905312776673
+          ]
+        },
+        {
+          "country": "Bay ford",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            729.0684097434523,
+            299.7206433767631
+          ]
+        },
+        {
+          "country": "New glen",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            727.7329818581102,
+            348.0476671701119
+          ]
+        }
+      ],
+      "continuationFailures": 0,
+      "areaResiduals": [
+        {
+          "island": "North Isle",
+          "residual": 0
+        },
+        {
+          "island": "East Isle",
+          "residual": 0
+        },
+        {
+          "island": "West Isle",
+          "residual": 0
+        },
+        {
+          "island": "South Isle",
+          "residual": 0
+        },
+        {
+          "island": "Central Isle",
+          "residual": 0
+        },
+        {
+          "island": "Harbor Isle",
+          "residual": 0
+        },
+        {
+          "island": "Palm Isle",
+          "residual": 0
+        },
+        {
+          "island": "Cliff Isle",
+          "residual": 0
+        },
+        {
+          "island": "Great Isle",
+          "residual": 0
+        }
+      ],
+      "explicitBoundaryResiduals": [
+        {
+          "country": "Low moor",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Lower field",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Low peak",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Gold point",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Red field",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "North ford",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "South reach",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Gold town",
+          "length": 0,
+          "where": 1
+        }
+      ],
+      "constraintCounts": {
+        "counts": 0,
+        "symmetry": 0,
+        "connectivity": 0,
+        "degree": 0,
+        "cells": 8,
+        "borders": 0,
+        "crossings": 0,
+        "coasts": 30,
+        "intersections": 0,
+        "bonus": 0,
+        "fortress": 0,
+        "concentration": 0,
+        "remoteness": 0,
+        "crowding": 0,
+        "labels": 0
+      },
+      "constraints": {
+        "counts": [],
+        "symmetry": [],
+        "connectivity": [],
+        "degree": [],
+        "cells": [
+          "Explicit interior gap boundary province_0",
+          "Explicit interior gap boundary province_10",
+          "Explicit interior gap boundary province_36",
+          "Explicit interior gap boundary province_5",
+          "Explicit interior gap boundary province_34",
+          "Explicit interior gap boundary province_35",
+          "Explicit interior gap boundary province_14",
+          "Explicit interior gap boundary province_23"
+        ],
+        "borders": [],
+        "crossings": [],
+        "coasts": [
+          "Wrong/off-centre coast province_43",
+          "Wrong/off-centre coast province_4",
+          "Wrong/off-centre coast province_8",
+          "Wrong/off-centre coast province_38",
+          "Wrong/off-centre coast province_2",
+          "Wrong/off-centre coast province_1",
+          "Wrong/off-centre coast province_19",
+          "Wrong/off-centre coast province_24",
+          "Wrong/off-centre coast province_12",
+          "Wrong/off-centre coast province_34",
+          "Wrong/off-centre coast province_44",
+          "Wrong/off-centre coast province_11",
+          "Wrong/off-centre coast province_18",
+          "Wrong/off-centre coast province_2",
+          "Wrong/off-centre coast province_16",
+          "Wrong/off-centre coast province_10",
+          "Wrong/off-centre coast province_8",
+          "Wrong/off-centre coast province_19",
+          "Wrong/off-centre coast province_1",
+          "Wrong/off-centre coast province_34",
+          "Wrong/off-centre coast province_45",
+          "Wrong/off-centre coast province_24",
+          "Wrong/off-centre coast province_29",
+          "Wrong/off-centre coast province_11",
+          "Wrong/off-centre coast province_5",
+          "Wrong/off-centre coast province_39",
+          "Wrong/off-centre coast province_3",
+          "Wrong/off-centre coast province_7",
+          "Wrong/off-centre coast province_13",
+          "Wrong/off-centre coast province_31"
+        ],
+        "intersections": [],
+        "bonus": [],
+        "fortress": [],
+        "concentration": [],
+        "remoteness": [],
+        "crowding": [],
+        "labels": []
+      }
+    },
+    {
+      "id": "contact-dual",
+      "board": "evidence/build-Pea8gz/contact-dual.json",
+      "totalRouteLength": 897.7140626088288,
+      "minRouteLength": 27.276403799882956,
+      "maxRouteLength": 138.10073300904668,
+      "routeLengths": [
+        {
+          "from": "Wind dale",
+          "to": "River gate",
+          "length": 71.27620137981566,
+          "detour": 1
+        },
+        {
+          "from": "North rest",
+          "to": "River keep",
+          "length": 138.10073300904668,
+          "detour": 1
+        },
+        {
+          "from": "South rest",
+          "to": "Stone watch",
+          "length": 92.17917363283597,
+          "detour": 1
+        },
+        {
+          "from": "West haven",
+          "to": "New fell",
+          "length": 79.00362770474703,
+          "detour": 1
+        },
+        {
+          "from": "Wind gate",
+          "to": "Red field",
+          "length": 50.30243021569991,
+          "detour": 1
+        },
+        {
+          "from": "Port ridge",
+          "to": "Wind town",
+          "length": 38.75804508068702,
+          "detour": 1
+        },
+        {
+          "from": "Fort town",
+          "to": "South rest",
+          "length": 73.70937258439432,
+          "detour": 1
+        },
+        {
+          "from": "High shore",
+          "to": "Lower field",
+          "length": 29.22438737983419,
+          "detour": 1
+        },
+        {
+          "from": "North rest",
+          "to": "West haven",
+          "length": 53.767272086995824,
+          "detour": 1
+        },
+        {
+          "from": "Stone watch",
+          "to": "Red field",
+          "length": 58.826610129382516,
+          "detour": 1
+        },
+        {
+          "from": "Dark ford",
+          "to": "New fell",
+          "length": 49.37197818925202,
+          "detour": 1
+        },
+        {
+          "from": "South fell",
+          "to": "Wind town",
+          "length": 65.81809481294779,
+          "detour": 1
+        },
+        {
+          "from": "Gold point",
+          "to": "New rock",
+          "length": 35.8680977829436,
+          "detour": 1
+        },
+        {
+          "from": "Upper ridge",
+          "to": "Rock bay",
+          "length": 27.276403799882956,
+          "detour": 1
+        },
+        {
+          "from": "Bay ford",
+          "to": "New glen",
+          "length": 34.23163482036343,
+          "detour": 1
+        }
+      ],
+      "bends": 0,
+      "crossingPairs": 0,
+      "sharedCountryContacts": 0,
+      "nonincidentRouteClearance": 21.844795172612667,
+      "minUnrelatedCoastClearance": 66.79803496205068,
+      "minCompetingCountryDistance": 9.698275272631083,
+      "inwardContinuation": [
+        {
+          "country": "Wind dale",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            250.72501106924418,
+            65.80198087490812
+          ]
+        },
+        {
+          "country": "River gate",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            345.06759146981835,
+            79.10732088290438
+          ]
+        },
+        {
+          "country": "North rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            480.80637120986484,
+            72.70316841389987
+          ]
+        },
+        {
+          "country": "River keep",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            642.7920174620102,
+            78.81038139078763
+          ]
+        },
+        {
+          "country": "South rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            211.60633624651695,
+            239.61769802636712
+          ]
+        },
+        {
+          "country": "Stone watch",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            327.39183269879555,
+            249.17380587988288
+          ]
+        },
+        {
+          "country": "West haven",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            503.52322016446146,
+            220.92229540967628
+          ]
+        },
+        {
+          "country": "New fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            606.1598853042885,
+            229.60919873094872
+          ]
+        },
+        {
+          "country": "Wind gate",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            250.65846336176412,
+            383.6792043664723
+          ]
+        },
+        {
+          "country": "Red field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            322.7628012866734,
+            365.7399850866527
+          ]
+        },
+        {
+          "country": "Port ridge",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            593.9263179232515,
+            387.1611661772202
+          ]
+        },
+        {
+          "country": "Wind town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            655.057446725186,
+            372.9640779634048
+          ]
+        },
+        {
+          "country": "Fort town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            238.19128183484597,
+            129.82659975526064
+          ]
+        },
+        {
+          "country": "South rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            192.00537343859153,
+            215.93109067442686
+          ]
+        },
+        {
+          "country": "High shore",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            155.61925779778818,
+            294.1773350199187
+          ]
+        },
+        {
+          "country": "Lower field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            153.18665040533682,
+            347.3461024800813
+          ]
+        },
+        {
+          "country": "North rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            433.6155973443911,
+            120.98838361282829
+          ]
+        },
+        {
+          "country": "West haven",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            445.4700960149839,
+            197.84682146529673
+          ]
+        },
+        {
+          "country": "Stone watch",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            341.54410092970005,
+            277.9602840386494
+          ]
+        },
+        {
+          "country": "Red field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            350.98470766404995,
+            360.2471134222881
+          ]
+        },
+        {
+          "country": "Dark ford",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            684.3617552605119,
+            127.18049512578757
+          ]
+        },
+        {
+          "country": "New fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            660.0899048957381,
+            196.4215556554624
+          ]
+        },
+        {
+          "country": "South fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            617.8843290539672,
+            288.2380629707743
+          ]
+        },
+        {
+          "country": "Wind town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            672.5930879382203,
+            359.4717758964132
+          ]
+        },
+        {
+          "country": "Gold point",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            249.17960839916682,
+            404.2181085940723
+          ]
+        },
+        {
+          "country": "New rock",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            308.68208593677065,
+            397.6117253903027
+          ]
+        },
+        {
+          "country": "Upper ridge",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            440.1975392756094,
+            295.80422577046556
+          ]
+        },
+        {
+          "country": "Rock bay",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            449.8002634587656,
+            346.17343536234694
+          ]
+        },
+        {
+          "country": "Bay ford",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            742.3436474351275,
+            292.89815909113685
+          ]
+        },
+        {
+          "country": "New glen",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            722.66111330706,
+            347.70254891667565
+          ]
+        }
+      ],
+      "continuationFailures": 0,
+      "areaResiduals": [
+        {
+          "island": "North Isle",
+          "residual": 0
+        },
+        {
+          "island": "East Isle",
+          "residual": 0
+        },
+        {
+          "island": "West Isle",
+          "residual": 0
+        },
+        {
+          "island": "South Isle",
+          "residual": 0
+        },
+        {
+          "island": "Central Isle",
+          "residual": 0
+        },
+        {
+          "island": "Harbor Isle",
+          "residual": 0
+        },
+        {
+          "island": "Palm Isle",
+          "residual": 0
+        },
+        {
+          "island": "Cliff Isle",
+          "residual": 0
+        },
+        {
+          "island": "Great Isle",
+          "residual": 0
+        }
+      ],
+      "explicitBoundaryResiduals": [
+        {
+          "country": "Dark ford",
+          "length": 1.4210854715202004e-14,
+          "where": 1
+        },
+        {
+          "country": "Iron point",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Wind town",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "West haven",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Stone watch",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Upper ridge",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "New fell",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "High ridge",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Lower field",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Lower field",
+          "length": 1.4210854715202004e-14,
+          "where": 1
+        },
+        {
+          "country": "Wind gate",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Silver shore",
+          "length": 7.105427357601002e-15,
+          "where": 1
+        },
+        {
+          "country": "Low peak",
+          "length": 1.4210854715202004e-14,
+          "where": 1
+        },
+        {
+          "country": "Wind port",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Rock moor",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Wind dale",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Silver ford",
+          "length": 7.105427357601002e-15,
+          "where": 1
+        },
+        {
+          "country": "Iron field",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "North wood",
+          "length": 2.842170943040401e-14,
+          "where": 1
+        },
+        {
+          "country": "Fort town",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Red field",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "South ridge",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "South reach",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Silver point",
+          "length": 0,
+          "where": 1
+        },
+        {
+          "country": "Gold town",
+          "length": 0,
+          "where": 1
+        }
+      ],
+      "constraintCounts": {
+        "counts": 0,
+        "symmetry": 0,
+        "connectivity": 0,
+        "degree": 0,
+        "cells": 24,
+        "borders": 0,
+        "crossings": 0,
+        "coasts": 30,
+        "intersections": 0,
+        "bonus": 0,
+        "fortress": 0,
+        "concentration": 0,
+        "remoteness": 0,
+        "crowding": 0,
+        "labels": 28
+      },
+      "constraints": {
+        "counts": [],
+        "symmetry": [],
+        "connectivity": [],
+        "degree": [],
+        "cells": [
+          "Explicit interior gap boundary province_45",
+          "Explicit interior gap boundary province_41",
+          "Explicit interior gap boundary province_11",
+          "Explicit interior gap boundary province_19",
+          "Explicit interior gap boundary province_1",
+          "Explicit interior gap boundary province_3",
+          "Explicit interior gap boundary province_24",
+          "Explicit interior gap boundary province_33",
+          "Explicit interior gap boundary province_10",
+          "Explicit interior gap boundary province_12",
+          "Explicit interior gap boundary province_20",
+          "Explicit interior gap boundary province_36",
+          "Explicit interior gap boundary province_25",
+          "Explicit interior gap boundary province_27",
+          "Explicit interior gap boundary province_43",
+          "Explicit interior gap boundary province_6",
+          "Explicit interior gap boundary province_42",
+          "Explicit interior gap boundary province_32",
+          "Explicit interior gap boundary province_18",
+          "Explicit interior gap boundary province_34",
+          "Explicit interior gap boundary province_26",
+          "Explicit interior gap boundary province_14",
+          "Explicit interior gap boundary province_21",
+          "Explicit interior gap boundary province_23"
+        ],
+        "borders": [],
+        "crossings": [],
+        "coasts": [
+          "Wrong/off-centre coast province_43",
+          "Wrong/off-centre coast province_4",
+          "Wrong/off-centre coast province_8",
+          "Wrong/off-centre coast province_38",
+          "Wrong/off-centre coast province_2",
+          "Wrong/off-centre coast province_1",
+          "Wrong/off-centre coast province_19",
+          "Wrong/off-centre coast province_24",
+          "Wrong/off-centre coast province_12",
+          "Wrong/off-centre coast province_34",
+          "Wrong/off-centre coast province_44",
+          "Wrong/off-centre coast province_11",
+          "Wrong/off-centre coast province_18",
+          "Wrong/off-centre coast province_2",
+          "Wrong/off-centre coast province_16",
+          "Wrong/off-centre coast province_10",
+          "Wrong/off-centre coast province_8",
+          "Wrong/off-centre coast province_19",
+          "Wrong/off-centre coast province_1",
+          "Wrong/off-centre coast province_34",
+          "Wrong/off-centre coast province_45",
+          "Wrong/off-centre coast province_24",
+          "Wrong/off-centre coast province_29",
+          "Wrong/off-centre coast province_11",
+          "Wrong/off-centre coast province_5",
+          "Wrong/off-centre coast province_39",
+          "Wrong/off-centre coast province_3",
+          "Wrong/off-centre coast province_7",
+          "Wrong/off-centre coast province_13",
+          "Wrong/off-centre coast province_31"
+        ],
+        "intersections": [],
+        "bonus": [],
+        "fortress": [],
+        "concentration": [],
+        "remoteness": [],
+        "crowding": [],
+        "labels": [
+          "Hit square outside country/frame province_4",
+          "Hit square outside country/frame province_30",
+          "Hit square outside country/frame province_11",
+          "Hit square outside country/frame province_31",
+          "Hit square outside country/frame province_1",
+          "Hit square outside country/frame province_40",
+          "Hit square outside country/frame province_29",
+          "Hit square outside country/frame province_13",
+          "Hit square outside country/frame province_0",
+          "Hit square outside country/frame province_20",
+          "Hit square outside country/frame province_36",
+          "Hit square outside country/frame province_5",
+          "Hit square outside country/frame province_27",
+          "Hit square outside country/frame province_6",
+          "Hit square outside country/frame province_18",
+          "Hit square outside country/frame province_34",
+          "Hit square outside country/frame province_35",
+          "Hit square outside country/frame province_44",
+          "Hit square outside country/frame province_39",
+          "Hit square outside country/frame province_15",
+          "Hit square outside country/frame province_23",
+          "Labels too close province_9/province_1",
+          "Labels too close province_19/province_40",
+          "Labels too close province_0/province_20",
+          "Labels too close province_12/province_5",
+          "Labels too close province_27/province_6",
+          "Labels too close province_34/province_39",
+          "Labels too close province_44/province_23"
+        ]
+      }
+    },
+    {
+      "id": "ports-only",
+      "board": "evidence/build-Pea8gz/ports-only.json",
+      "totalRouteLength": 584.0573007798296,
+      "minRouteLength": 5,
+      "maxRouteLength": 134.11759645305582,
+      "routeLengths": [
+        {
+          "from": "Wind dale",
+          "to": "River gate",
+          "length": 52.359734324807775,
+          "detour": 1
+        },
+        {
+          "from": "North rest",
+          "to": "River keep",
+          "length": 134.11759645305582,
+          "detour": 1
+        },
+        {
+          "from": "South rest",
+          "to": "Stone watch",
+          "length": 102.07794203450618,
+          "detour": 1
+        },
+        {
+          "from": "West haven",
+          "to": "New fell",
+          "length": 64.77846864506755,
+          "detour": 1
+        },
+        {
+          "from": "Wind gate",
+          "to": "Red field",
+          "length": 20.223748416156685,
+          "detour": 1
+        },
+        {
+          "from": "Port ridge",
+          "to": "Wind town",
+          "length": 30.18329422047898,
+          "detour": 1
+        },
+        {
+          "from": "Fort town",
+          "to": "South rest",
+          "length": 16.40553035065998,
+          "detour": 1
+        },
+        {
+          "from": "High shore",
+          "to": "Lower field",
+          "length": 5,
+          "detour": 1
+        },
+        {
+          "from": "North rest",
+          "to": "West haven",
+          "length": 17.632157407802246,
+          "detour": 1
+        },
+        {
+          "from": "Stone watch",
+          "to": "Red field",
+          "length": 27.724368793536126,
+          "detour": 1
+        },
+        {
+          "from": "Dark ford",
+          "to": "New fell",
+          "length": 26.067520499656272,
+          "detour": 1
+        },
+        {
+          "from": "South fell",
+          "to": "Wind town",
+          "length": 32.20757868887384,
+          "detour": 1
+        },
+        {
+          "from": "Gold point",
+          "to": "New rock",
+          "length": 20.223748416156685,
+          "detour": 1
+        },
+        {
+          "from": "Upper ridge",
+          "to": "Rock bay",
+          "length": 12.000651024006988,
+          "detour": 1
+        },
+        {
+          "from": "Bay ford",
+          "to": "New glen",
+          "length": 23.05496150506437,
+          "detour": 1
+        }
+      ],
+      "bends": 0,
+      "crossingPairs": 0,
+      "sharedCountryContacts": 0,
+      "nonincidentRouteClearance": 19.778727057365934,
+      "minUnrelatedCoastClearance": 54.24342810483145,
+      "minCompetingCountryDistance": 9.5,
+      "inwardContinuation": [
+        {
+          "country": "Wind dale",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            267.56820178865235,
+            89.13167845609703
+          ]
+        },
+        {
+          "country": "River gate",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            343.56851696134765,
+            81.73160279390297
+          ]
+        },
+        {
+          "country": "North rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            482.4526270803534,
+            82.46819541550487
+          ]
+        },
+        {
+          "country": "River keep",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            639.5473729196466,
+            64.51227333449513
+          ]
+        },
+        {
+          "country": "South rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            203.5164145321346,
+            224.0381682980382
+          ]
+        },
+        {
+          "country": "Stone watch",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            328.1085854678654,
+            243.3368317019618
+          ]
+        },
+        {
+          "country": "West haven",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            509.80158540809475,
+            221.38851957284604
+          ]
+        },
+        {
+          "country": "New fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            598.1984145919052,
+            229.61148042715396
+          ]
+        },
+        {
+          "country": "Wind gate",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            249.63276376558042,
+            372.21991456483704
+          ]
+        },
+        {
+          "country": "Red field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            293.3672362344196,
+            378.78008543516296
+          ]
+        },
+        {
+          "country": "Port ridge",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            588.5231760867663,
+            376.25455452822195
+          ]
+        },
+        {
+          "country": "Wind town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            642.6018239132337,
+            379.62044547177805
+          ]
+        },
+        {
+          "country": "Fort town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            207.07099924688714,
+            162.04599964047338
+          ]
+        },
+        {
+          "country": "South rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            187.76689137811286,
+            197.54189098452662
+          ]
+        },
+        {
+          "country": "High shore",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            139.375,
+            291
+          ]
+        },
+        {
+          "country": "Lower field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            139.375,
+            320
+          ]
+        },
+        {
+          "country": "North rest",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            423.40710721900433,
+            132.92474497470732
+          ]
+        },
+        {
+          "country": "West haven",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            431.44054903099567,
+            173.77447377529268
+          ]
+        },
+        {
+          "country": "Stone watch",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            363.2910100852117,
+            283.99636236722034
+          ]
+        },
+        {
+          "country": "Red field",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            345.3339899147883,
+            332.50363763277966
+          ]
+        },
+        {
+          "country": "Dark ford",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            681.7381430826072,
+            130.03108258784667
+          ]
+        },
+        {
+          "country": "New fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            678.1368569173928,
+            179.96891741215333
+          ]
+        },
+        {
+          "country": "South fell",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            643.2519821664055,
+            294.52351677065883
+          ]
+        },
+        {
+          "country": "Wind town",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            667.2480178335945,
+            345.35148322934117
+          ]
+        },
+        {
+          "country": "Gold point",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            249.63276376558042,
+            392.21991456483704
+          ]
+        },
+        {
+          "country": "New rock",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            293.3672362344196,
+            398.78008543516296
+          ]
+        },
+        {
+          "country": "Upper ridge",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            435.9999932188678,
+            290.00065098868953
+          ]
+        },
+        {
+          "country": "Rock bay",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            435.6250067811322,
+            325.99934901131047
+          ]
+        },
+        {
+          "country": "Bay ford",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            731.1214240991,
+            293.46866912455255
+          ]
+        },
+        {
+          "country": "New glen",
+          "continuationDistance": 12,
+          "insideIntendedCountry": true,
+          "point": [
+            725.2535759009,
+            340.15633087544745
+          ]
+        }
+      ],
+      "continuationFailures": 0,
+      "areaResiduals": [
+        {
+          "island": "North Isle",
+          "residual": 0
+        },
+        {
+          "island": "East Isle",
+          "residual": 0
+        },
+        {
+          "island": "West Isle",
+          "residual": 0
+        },
+        {
+          "island": "South Isle",
+          "residual": 0
+        },
+        {
+          "island": "Central Isle",
+          "residual": 0
+        },
+        {
+          "island": "Harbor Isle",
+          "residual": 0
+        },
+        {
+          "island": "Palm Isle",
+          "residual": 0
+        },
+        {
+          "island": "Cliff Isle",
+          "residual": 0
+        },
+        {
+          "island": "Great Isle",
+          "residual": 0
+        }
+      ],
+      "explicitBoundaryResiduals": [],
+      "constraintCounts": {
+        "counts": 0,
+        "symmetry": 0,
+        "connectivity": 0,
+        "degree": 0,
+        "cells": 0,
+        "borders": 0,
+        "crossings": 0,
+        "coasts": 29,
+        "intersections": 0,
+        "bonus": 0,
+        "fortress": 0,
+        "concentration": 0,
+        "remoteness": 0,
+        "crowding": 0,
+        "labels": 0
+      },
+      "constraints": {
+        "counts": [],
+        "symmetry": [],
+        "connectivity": [],
+        "degree": [],
+        "cells": [],
+        "borders": [],
+        "crossings": [],
+        "coasts": [
+          "Wrong/off-centre coast province_43",
+          "Wrong/off-centre coast province_4",
+          "Wrong/off-centre coast province_8",
+          "Wrong/off-centre coast province_38",
+          "Wrong/off-centre coast province_2",
+          "Wrong/off-centre coast province_1",
+          "Wrong/off-centre coast province_19",
+          "Wrong/off-centre coast province_24",
+          "Wrong/off-centre coast province_12",
+          "Wrong/off-centre coast province_34",
+          "Wrong/off-centre coast province_44",
+          "Wrong/off-centre coast province_11",
+          "Wrong/off-centre coast province_18",
+          "Wrong/off-centre coast province_16",
+          "Wrong/off-centre coast province_10",
+          "Wrong/off-centre coast province_8",
+          "Wrong/off-centre coast province_19",
+          "Wrong/off-centre coast province_1",
+          "Wrong/off-centre coast province_34",
+          "Wrong/off-centre coast province_45",
+          "Wrong/off-centre coast province_24",
+          "Wrong/off-centre coast province_29",
+          "Wrong/off-centre coast province_11",
+          "Wrong/off-centre coast province_5",
+          "Wrong/off-centre coast province_39",
+          "Wrong/off-centre coast province_3",
+          "Wrong/off-centre coast province_7",
+          "Wrong/off-centre coast province_13",
+          "Wrong/off-centre coast province_31"
+        ],
+        "intersections": [],
+        "bonus": [],
+        "fortress": [],
+        "concentration": [],
+        "remoteness": [],
+        "crowding": [],
+        "labels": []
+      }
+    }
+  ]
+}

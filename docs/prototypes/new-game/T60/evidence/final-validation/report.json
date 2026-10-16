@@ -1,0 +1,28 @@
+[
+  {
+    "name": "metrics",
+    "command": [
+      "node",
+      "--test",
+      "docs/prototypes/new-game/T60/measure.test.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "verify",
+    "command": [
+      "node",
+      "docs/prototypes/new-game/T60/verify.mjs"
+    ],
+    "exitCode": 0
+  },
+  {
+    "name": "whitespace",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exitCode": 0
+  }
+]
