@@ -52,6 +52,8 @@ test("policy attack budget does not cap engine attacks and resets after a friend
  for(let i=0;i<s.map.provinces.length;i++)s=step(s,{kind:"attack",from:f.target,to:f.enemy});
  expect(apply(s,{kind:"attack",from:f.target,to:f.enemy}).ok).toBe(true);
  const a=computerAction(s);expect(a?.kind).toBe("friendlyMove");if(!a)throw Error("missing move");s=step(s,a);
+ while(s.phase==="reinforce"){const a=computerAction(s);if(!a)throw Error("missing placement");s=step(s,a);}
+ expect(computerAction(s)?.kind).toBe("attack");
  // Continue both seats through ordinary policy actions until the original mover returns.
  let count=0;while(s.currentPlayer!==f.state.currentPlayer&&count++<100){const a=computerAction(s);if(!a)throw Error("missing action");s=step(s,a);}
  while(s.phase==="reinforce"){const a=computerAction(s);if(!a)throw Error("missing placement");s=step(s,a);}

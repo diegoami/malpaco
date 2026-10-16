@@ -66,7 +66,7 @@ export class BattleController {
   private watchExchanges = 0;
   private beforeMove: BattleView | null = null;
 
-  constructor(initial: GameState, private readonly scheduler: BattleScheduler, private readonly onChange?: (view: BattleView) => void) {
+  constructor(initial: GameState, private readonly scheduler: BattleScheduler, private readonly onChange?: (view: BattleView) => void, private readonly allowInput: (state: GameState) => boolean = () => true) {
     this.current = {
       mode: "battle", state: initial, from: initial.pendingCapture?.from ?? null, to: initial.pendingCapture?.to ?? null, running: false, paused: false,
       threshold: DEFAULT_STOP_THRESHOLD, effectiveThreshold: 1, speed: "normal", revision: 0,
@@ -77,8 +77,8 @@ export class BattleController {
   get state(): GameState { return this.current.state; }
   get view(): BattleView { return this.current; }
 
-  private accepts(revision?: number): boolean {
-    return !this.disposed && (revision === undefined || revision === this.current.revision);
+  private accepts(revision?: number, humanInput = true): boolean {
+    return !this.disposed && (!humanInput || this.allowInput(this.state)) && (revision === undefined || revision === this.current.revision);
   }
 
   private pending(): boolean { return this.state.phase === "capture" || this.state.pendingCapture !== undefined; }
@@ -123,7 +123,7 @@ export class BattleController {
   }
 
   setSpeed(speed: BattleSpeed, revision?: number): boolean {
-    if (!this.accepts(revision) || !Object.hasOwn(SPEED_SCALE, speed)) return false;
+    if (!this.accepts(revision, false) || !Object.hasOwn(SPEED_SCALE, speed)) return false;
     this.publish({ speed });
     return true;
   }
@@ -242,8 +242,25 @@ export class BattleController {
     return true;
   }
 
+  /** Automatic seats still use ordinary engine actions, without human selections. */
+  dispatchComputer(action: Action, revision?: number): boolean {
+    if (!this.accepts(revision, false) || activePlayer(this.state)?.kind !== "computer" || this.state.phase === "human-loss" || this.state.phase === "finished") return false;
+    const before = this.state, result = apply(before, action);
+    if (!result.ok) return false;
+    this.cancel(); this.beforeMove = null;
+    const rolls = action.kind === "attack" ? exchangeRolls(before, action.from, action.to) : [];
+    this.publish({ mode: "battle", state: result.state, running: false, paused: false,
+      from: result.state.pendingCapture?.from ?? (action.kind === "attack" ? action.from : null),
+      to: result.state.pendingCapture?.to ?? (action.kind === "attack" ? action.to : null),
+      lastOutcome: result.outcome ?? null, rolls, ties: rolls.reduce((n,r)=>n+r.results.filter(v=>v==="tie").length,0),
+      attackerWins: result.outcome?.defenderLosses ?? 0, defenderWins: result.outcome?.attackerLosses ?? 0,
+      effectiveThreshold: 1, message: action.kind === "attack" ? "Computer exchange complete." : "",
+    });
+    return true;
+  }
+
   replaceGame(next: GameState, _reason: "load" | "new-game"): boolean {
-    if (!this.accepts()) return false;
+    if (!this.accepts(undefined, false)) return false;
     this.cancel();
     this.watchExchanges = 0;
     this.beforeMove = null;

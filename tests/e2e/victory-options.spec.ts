@@ -32,7 +32,7 @@ async function setup(page: Page, fixture: ReturnType<typeof plan>) {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/?view=reference-game&control=manual");
   await page.getByLabel("Seed", { exact: true }).fill("1994");
-  await page.getByLabel("Human seats").selectOption(String(fixture.start.players.length));
+  await page.getByLabel("Seats",{exact:true}).selectOption(String(fixture.start.players.length));
   // Baseline can still reach the same deal/counts without missing controls;
   // kind affects neither this zero-share deal nor the manually driven actions.
   for (let i = 0; i < fixture.start.players.length; i++) {

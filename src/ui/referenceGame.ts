@@ -14,6 +14,8 @@ export function mountReferenceGame(root:HTMLElement){
  let controllers:("human"|"computer")[]=["human","human","human","human"];
  let dominationWin=true,roundLimit:20|30|40|null=null;
  const legacy=new URLSearchParams(location.search).get("battle")==="legacy";
+ const manual=legacy||new URLSearchParams(location.search).get("control")==="manual";
+ if(!manual){seats="4";controllers=["human","computer","computer","computer"];}
  const preferences:BattlePreferences={threshold:2,speed:"normal"};
  let current:App|ReferenceBattleGame|null=null;
  let setupFiles:ReferenceMatchFiles|null=null;
@@ -21,7 +23,7 @@ export function mountReferenceGame(root:HTMLElement){
  const mountMatch=(options:GameOptions,state:GameState)=>{
   const app=legacy
    ?new App(referenceMap,options.seed,()=>setup(),state,(map,handlers)=>new ReferenceMapView(map,handlers))
-   :new ReferenceBattleGame(referenceMap,options,()=>setup(),state,preferences,mountMatch);
+   :new ReferenceBattleGame(referenceMap,options,()=>setup(),state,preferences,mountMatch,!manual);
   dispose();
   seed=String(options.seed);seats=String(options.seats.length);
   controllers=Array.from({length:4},(_,i)=>options.seats[i]?.kind??"human");
@@ -46,7 +48,7 @@ export function mountReferenceGame(root:HTMLElement){
   const limit=h("select",{id:"reference-round-limit"},h("option",{value:"off"},"Off"),...[20,30,40].map(n=>h("option",{value:String(n)},`${n} rounds`)));limit.value=String(roundLimit??"off");
   const victoryOptions=h("div",{class:"reference-victory-options"},h("div",{class:"reference-domination"},domination,h("label",{for:"reference-domination"},"Domination win")),h("div",{},h("label",{for:"reference-round-limit"},"Round limit"),limit));
   const alert=h("p",{role:"alert"});
-  const form=h("form",{class:"card setup-card"},h("h1",{},"New reference game"),h("p",{},legacy?"Play on the Nine Isles map. The seed changes the deal.":"Development reference game for manual play on Nine Isles. Choose each seat’s controller; computer seats are driven manually here. The seed changes the deal."),h("label",{for:"reference-seed"},"Seed"),input,h("label",{for:"reference-seats"},"Human seats"),count,...(legacy?[]:[controllerFields,victoryOptions]),h("button",{type:"submit",class:"primary"},"Start game"),alert);
+  const form=h("form",{class:"card setup-card"},h("h1",{},"New reference game"),h("p",{},legacy?"Play on the Nine Isles map. The seed changes the deal.":manual?"Manual testing on Nine Isles. Computer seats are driven manually in this mode.":"Play on Nine Isles against three Normal computers, or choose each seat’s controller. The seed changes the deal."),h("label",{for:"reference-seed"},"Seed"),input,h("label",{for:"reference-seats"},legacy?"Human seats":"Seats"),count,...(legacy?[]:[controllerFields,victoryOptions]),h("button",{type:"submit",class:"primary"},"Start game"),alert);
   if(!legacy)form.classList.add("victory-setup");
   form.onsubmit=e=>{e.preventDefault();if(!form.reportValidity())return;seed=input.value;seats=count.value;
    try{dominationWin=domination.checked;roundLimit=limit.value==="off"?null:Number(limit.value) as 20|30|40;

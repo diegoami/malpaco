@@ -7,8 +7,8 @@ import type {GameState} from "../../src/core";
 const region=(p:Page)=>p.getByRole("region",{name:"Battle controls",exact:true});
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 async function prepare(page:Page,kind:Parameters<typeof fixture>[0]){
- const f=fixture(kind);await page.clock.install();await page.clock.pauseAt(new Date());await page.goto("/?view=reference-game");
- await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Human seats").selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();
+ const f=fixture(kind);await page.clock.install();await page.clock.pauseAt(new Date());await page.goto("/?view=reference-game&control=manual");
+ await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Seats",{exact:true}).selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator("#start-combat-button").click();await country(page,f.from).click();await country(page,f.to).click();
  await expect(region(page)).toBeVisible();await expect(page.locator("#battle-stop-threshold")).toHaveValue("2");await paint(page,f.ready);return f;
 }
