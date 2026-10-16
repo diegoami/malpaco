@@ -559,14 +559,15 @@ not visual parity or fun. Evidence/reproduction: [T26](prototypes/new-game/T26/R
 
 The ordinary action `{kind:"captureMove",amount?:number}` chooses the **total** moved into the captured country, including that first army. Bounds are one through all but one of the surviving source armies; omission selects the maximum. Only the remaining difference transfers, with no extra RNG draws or stack cap. Pending choices block all other commands, including end-turn. A completed choice returns to attacks, so its target can make a chained capture. Elimination occurs at ownership change; this preset checks conquest at end-turn before advancing the seat or computing income.
 
-`createReferenceGame(map,options,rules?)` accepts the preset explicitly. The default reference route now extends it with T29 friendly movement; `battle=legacy` preserves the T26 UI and its exact assertions/goldens. Existing `malpacoRules()`, Classic, generated/authored routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 owns their full save integration. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
+`createReferenceGame(map,options,rules?)` accepts the preset explicitly. The default reference route now extends it with T29 friendly movement and T30 victory options; `battle=legacy` preserves the T26 UI and its exact assertions/goldens. Existing `malpacoRules()`, Classic, generated/authored routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 owns their full save integration. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
 
 Acceptance and actual-source mutation evidence, exact restoration records, pinned legacy browser captures and portable hash verification are retained in `docs/prototypes/new-game/T27/`.
 
 ## Reference battle controls (T28)
 
-The default `?view=reference-game` is an explicitly developmental, all-human setup
-for the approved Nine Isles map. Its friendly-move preset extends capture choice. The intended
+The default `?view=reference-game` is an explicitly developmental setup for the approved
+Nine Isles map. Seats default to human, with manual computer-seat controls available.
+Its victory preset extends friendly movement and capture choice. The intended
 one-human/three-computer game setup belongs to T32; reference save/load belongs
 to T31. Other routes and their saves retain their prior behavior.
 
@@ -629,3 +630,38 @@ transient representation is an implementation choice. Reference save integration
 remains T31 and default one-human/three-Normal-computer turns remain T32. Acceptance,
 lossless initial negatives/disposable mock evidence and actual implementation
 captures are under [T29](prototypes/new-game/T29/README.md).
+
+
+## Round origin and complete victory (T30)
+
+`victoryRules(options)` extends `friendlyMoveRules()` with the existing setup
+options `dominationWin` and `roundLimit`, leaving all earlier presets unchanged.
+It retains the seeded first-seat index as `roundOrigin`, so rounds wrap across
+that fixed origin even when its seat is eliminated. The default reference setup
+adds per-seat Human/Computer controls, Domination win and an Off/20/30/40 round
+limit. Default controllers remain human until T32. Mixed captions show the actual
+human/computer composition; all computer turns in this development host are manual,
+including the explicit `control=manual` route used by acceptance. Automatic scheduling
+and the intended one-human/three-Normal-computer default remain T32.
+
+The shared completed-turn seam runs after a friendly transfer or End turn and
+before next-seat income. Following pinned [Victory](https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory),
+it checks total conquest, equivalent last-seat standing, the mover's optional
+35-of-46 domination, completed-round limit, then human loss. Limit standings rank
+countries, armies, then the later seat in the original rotated turn order; there
+is no draw. Domination alone does not guarantee termination, despite the pinned
+design's stronger sentence. This task follows its explicit termination hazard.
+The seam separates pure completion/victory from handoff without adding cards,
+rewards, events or callbacks.
+
+A no-human result pauses in `human-loss` before handoff/income. Ordinary
+`watchComputers` records consent, clears the temporary result, advances once and
+suppresses further loss prompts; `stopGame` freezes that result without inventing
+a winner. Neither action draws RNG. `winner` remains authoritative; `result`
+provides a reason and sorted final country/army totals. The reference panel shows
+the reason/standings, Watch/Stop or restart guidance, with revision-bound controls
+and no active battle/move/phase controls at a result. These actions belong to the
+plain action history; their full save integration remains T31, and match-save v1
+retains its earlier behavior. Evidence and reproduction are under
+[T30](prototypes/new-game/T30/README.md); screenshots support owner assessment,
+not a claim that automated checks establish visual quality.

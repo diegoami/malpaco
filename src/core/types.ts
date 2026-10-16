@@ -74,9 +74,22 @@ export interface RuleSet {
   readonly combat: CombatRules;
   /** Conquest only, as in Classic. */
   readonly victory: readonly "conquest"[];
+  /** Opt-in pinned end-of-turn victory; earlier presets keep their timing. */
+  readonly victoryOptions?: { readonly dominationWin: boolean; readonly roundLimit: 20 | 30 | 40 | null };
 }
 
-export type Phase = "reinforce" | "attack" | "capture" | "redeploy" | "finished";
+export type Phase = "reinforce" | "attack" | "capture" | "redeploy" | "human-loss" | "finished";
+
+export interface FinalStanding {
+  readonly player: string;
+  readonly countries: number;
+  readonly armies: number;
+}
+
+export interface GameResult {
+  readonly reason: "conquest" | "last-seat" | "domination" | "round-limit" | "no-human-left";
+  readonly standings: FinalStanding[];
+}
 
 /** Total move-in bounds, including the one army provisionally moved at capture. */
 export interface PendingCapture {
@@ -98,7 +111,9 @@ export type Action =
   | { readonly kind: "attack"; readonly from: string; readonly to: string }
   | { readonly kind: "endTurn" }
   | { readonly kind: "captureMove"; readonly amount?: number }
-  | { readonly kind: "friendlyMove"; readonly from: string; readonly to: string; readonly amount?: number };
+  | { readonly kind: "friendlyMove"; readonly from: string; readonly to: string; readonly amount?: number }
+  | { readonly kind: "watchComputers" }
+  | { readonly kind: "stopGame" };
 
 export interface AttackOutcome {
   readonly event: "attack";
@@ -138,6 +153,11 @@ export interface GameState {
   /** Unplaced income available during a reinforcement phase. */
   reinforcementPool: number;
   turnNumber: number;
+  /** Fixed seeded first-seat index; retained even after that seat is eliminated. */
+  roundOrigin?: number;
+  /** Suppresses repeated loss prompts after the ordinary Watch action. */
+  watchingComputers?: boolean;
+  result?: GameResult;
   capturedThisTurn: boolean;
   /**
    * The game's own RNG stream. Every rules draw (the board, the deal,

@@ -82,6 +82,7 @@ function createGameValidated(
       map: board.map, rules, players, ownerOf, armies, currentPlayer: firstSeat,
       phase: rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
       reinforcementPool: 0, turnNumber: 1, capturedThisTurn: false, rng: rng.snapshot(), computerRngs,
+      ...(rules.victoryOptions ? { roundOrigin: firstSeat } : {}),
       log: [{ event: "game_started", seed: validated.seed, players: players.length }],
       history: [], winner: "", productionCentres,
   };

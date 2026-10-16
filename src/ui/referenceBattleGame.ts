@@ -7,6 +7,7 @@ import { FriendlyMoveView } from "./friendlyMoveView";
 import { h } from "./dom";
 import { Panel } from "./panel";
 import { ReferenceMapView } from "./referenceMapView";
+import { VictoryView } from "./victoryView";
 
 /** Session-only preferences. Full presentation persistence is T56. */
 export interface BattlePreferences { threshold: number; speed: BattleSpeed }
@@ -18,6 +19,7 @@ export class ReferenceBattleGame {
   private readonly panel: Panel;
   private readonly battle: BattleView;
   private readonly friendly: FriendlyMoveView;
+  private readonly victory: VictoryView;
   private readonly phaseActions: HTMLElement;
   private hover: string | null = null;
   private mounted = false;
@@ -53,7 +55,8 @@ export class ReferenceBattleGame {
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
     this.battle = new BattleView(this.controller);
     this.friendly = new FriendlyMoveView(this.controller);
-    this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el);
+    this.victory = new VictoryView(this.controller);
+    this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el);
   }
 
   mount(root: HTMLElement): void {
@@ -93,7 +96,7 @@ export class ReferenceBattleGame {
 
   private renderMap(): void {
     const { state, from, to, running, paused, mode } = this.controller.view;
-    const blocked = running || paused || state.pendingCapture !== undefined || state.phase === "finished";
+    const blocked = running || paused || state.pendingCapture !== undefined || state.phase === "finished" || state.phase === "human-loss";
     const targets = blocked ? [] : mode === "move" ? from ? friendlyTargets(state, from) : friendlySources(state) : from ? attackTargets(state, from) : [];
     this.mapView.render({ state, selected: from, target: to, targets, hover: this.hover, flash: [] });
     if (mode === "move") {
@@ -129,9 +132,10 @@ export class ReferenceBattleGame {
     move.style.display = state.phase === "attack" ? "" : "none";
     move.addEventListener("click", () => { this.controller.startFriendlyMove(revision); });
     this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, move);
-    this.phaseActions.style.display = mode === "move" ? "none" : "";
+    this.phaseActions.style.display = mode === "move" || state.result ? "none" : "";
     this.battle.render(this.controller.view);
-    if (mode === "move") this.battle.el.hidden = true;
+    if (mode === "move" || state.result) this.battle.el.hidden = true;
     this.friendly.render(this.controller.view);
+    this.victory.render(state, revision);
   }
 }
