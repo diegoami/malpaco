@@ -57,4 +57,5 @@ writeFileSync(resolve(output,'report.json'),JSON.stringify(report,null,2)+'\n');
 const summary={output:relative(process.cwd(),output),results:results.map(({id,criteria,extrema,groupErrors,legacyErrors})=>({id,criteria:Object.fromEntries(Object.entries(criteria).map(([n,{evaluated,pass,fail}])=>[n,{evaluated,pass,fail}])),extrema,groupErrors:Object.fromEntries(Object.entries(groupErrors).map(([n,e])=>[n,e.length])),legacyMidpointErrors:legacyErrors.coasts.length}))};
 writeFileSync(resolve(output,'summary.json'),JSON.stringify(summary,null,2)+'\n');
 console.log(JSON.stringify(summary,null,2));
-if(Object.values(results.find(r=>r.id==='coast-first').groupErrors).some(e=>e.length))process.exitCode=1;
+const a=results.find(r=>r.id==='coast-first');
+if(Object.values(a.groupErrors).some(e=>e.length)||Object.values(a.criteria).some(c=>c.fail))process.exitCode=1;

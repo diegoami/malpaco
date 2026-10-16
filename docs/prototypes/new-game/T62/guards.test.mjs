@@ -29,6 +29,10 @@ test('attachment: a country boundary inside its silhouette is not exposed coast'
  const b=small();b.islands[0].polygon=rect(-10,-10,120,170);
  only('attachment',b,'Endpoint not on intended exposed coast');
 });
+test('attachment: shared coast junction is explicitly ambiguous',()=>{
+ const b=small();b.routes[0].points=[[100,100],[140,100]];
+ assert.ok(checkConstraint('attachment',b).some(e=>e.startsWith('Ambiguous endpoint')));
+});
 test('attachment: zero-length first segment has no inward direction',()=>{
  const b=small();b.routes[0].points.splice(1,0,[100,50]);only('attachment',b,'No inward direction');
 });
@@ -71,6 +75,28 @@ test('groups: malformed route data and frame are rejected independently',()=>{
  for(const group of ['attachment','water','traceability'])for(const mutate of [b=>delete b.routes[0].points,b=>b.routes[0].points[0]=[Infinity,0],b=>b.bounds.width=0,b=>b.islands[0].polygon=[]]){
   const b=small();mutate(b);assert.ok(checkConstraint(group,b).length,group);
  }
+});
+test('attachment: competitor margin scales into compact CSS pixels',()=>{
+ const b=small();b.bounds.width=1600;b.bounds.height=920;b.routes[0].points=[[100,84],[140,84]];
+ assert.deepEqual(checkConstraint('attachment',b),[]);b.routes[0].points.forEach(p=>p[1]+=.001);only('attachment',b,'Competing-country margin');
+});
+test('attachment: inward distance scales into compact CSS pixels',()=>{
+ const b=small();b.bounds.width=1600;b.bounds.height=920;b.provinces[0].polygon=rect(80,0,20,100);
+ only('attachment',b,'Inward 12px');
+});
+test('water: unrelated clearance scales into compact CSS pixels',()=>{
+ const b=small();b.bounds.width=1600;b.bounds.height=920;
+ b.islands.push({id:'third',provinces:['d'],polygon:rect(110,70,20,20)});b.provinces.push({id:'d',island:'third',borders:[],seaLanes:[],polygon:rect(110,70,20,20)});
+ assert.deepEqual(checkConstraint('water',b),[]);b.islands.at(-1).polygon=b.provinces.at(-1).polygon=rect(110,69.999,20,20);only('water',b,'Unrelated-coast clearance');
+});
+test('traceability: endpoint span scales into compact CSS pixels',()=>{
+ const b=small();b.bounds.width=1600;b.bounds.height=920;assert.deepEqual(checkConstraint('traceability',b),[]);
+ b.routes[0].points.at(-1)[0]-=.001;only('traceability',b,'Endpoint span');
+});
+test('traceability: route separation scales into compact CSS pixels',()=>{
+ const b=small();b.bounds.width=1600;b.bounds.height=920;b.routes[0].points=[[100,200],[140,200]];
+ b.routes.push({from:'a',to:'b',points:[[100,220],[140,220]]});assert.deepEqual(checkConstraint('traceability',b),[]);
+ b.routes[1].points.forEach(p=>p[1]-=.001);only('traceability',b,'Route separation');
 });
 const a=()=>JSON.parse(fs.readFileSync(new URL('../T60/evidence/build-LrdPTV/coast-first.json',import.meta.url)));
 const singleEntrance=(b,islandId)=>{

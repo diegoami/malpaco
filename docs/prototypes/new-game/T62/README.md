@@ -55,6 +55,24 @@ imported. T24's original [designed parameters](../T24/parameters.mjs) remain the
 source for inherited graph, geometry, label, bonus and fairness constraints.
 T61's projection correction permits A's cells without waiving real slits/overlaps.
 
+The first retained [comparison](evidence/probe-eSYf7Z/summary.json) measured:
+
+| Criterion | Baseline failures / checks | A failures / checks |
+| --- | ---: | ---: |
+| Unique exposed attachment | 0 / 30 | 0 / 30 |
+| 8px competing-country margin | 0 / 30 | 0 / 30 |
+| Whole 12px inward continuation | 2 / 30 | 0 / 30 |
+| Legacy route/land clearance | 0 / 15 | 0 / 15 |
+| 10px unrelated-coast margin | 1 / 15 | 0 / 15 |
+| 20px direct water span | 1 / 15 | 0 / 15 |
+| Self-tracing exclusions | 0 / 15 | 0 / 15 |
+| 10px separation of all route pairs | 6 / 105 | 0 / 105 |
+| Unaffected legacy categories | 0 / 13 | 0 / 13 |
+| Old midpoint prescription, disclosed conflict | 0 / 30 | 30 / 30 |
+
+The first report includes snapshots of its precise checker/probe sources;
+subsequent source/test/document changes have new fingerprints and fresh runs.
+
 There is one reference, not a generator or success-rate measurement. The existing
 99% within 50 attempts objective stays unproven; this proposal does not change it.
 Geometric attachment, distance and isolation are enforceable proxies. They cannot
@@ -75,3 +93,16 @@ The probe and validation scripts save fresh outputs, source hashes and original
 test logs inside this directory. Historical reports retain their source hashes;
 later source changes require a fresh report. Parent preflight files and all T24,
 T60 and T61 evidence stay untouched. Full-branch `git diff --check` must pass.
+
+`python3 docs/prototypes/new-game/T62/audit.py` deletes guards reversibly, runs
+both T62 suites, restores saved bytes in `finally`, and confirms every added test
+fails under at least one relevant deletion. It separately deletes all 13 legacy
+delegations, each new margin and each scaling factor. The retained mutant source
+edits and exact hashes permit reproduction without editing inherited files.
+Run this alone: it temporarily mutates T62's checker during its tests.
+
+`python3 docs/prototypes/new-game/T62/validate.py` runs the exact Done-when
+commands, both T62 suites, T24 and T61 regressions, both whitespace checks, and an
+empty-diff assertion for immutable parent/legacy paths. All terminal output is
+archived losslessly with exact per-member hashes, avoiding trailing-whitespace
+changes to originals. `report.json` records command tails and the fresh probe.

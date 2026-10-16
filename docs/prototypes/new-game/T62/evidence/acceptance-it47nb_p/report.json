@@ -1,0 +1,218 @@
+{
+  "probeOutput": "docs/prototypes/new-game/T62/evidence/probe-S8fFXb",
+  "commands": [
+    {
+      "command": [
+        "node",
+        "docs/prototypes/new-game/T62/probe.mjs"
+      ],
+      "exit": 0,
+      "stdoutTail": [
+        "        \"minRouteSeparationCss\": 21.9814453125",
+        "      },",
+        "      \"groupErrors\": {",
+        "        \"attachment\": 0,",
+        "        \"water\": 0,",
+        "        \"traceability\": 0,",
+        "        \"preserved\": 0",
+        "      },",
+        "      \"legacyMidpointErrors\": 30",
+        "    }",
+        "  ]",
+        "}"
+      ],
+      "stderrTail": []
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=attachment",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 0,
+      "stdoutTail": [
+        "\u2714 attachment: rejects off coast (6.432899ms)",
+        "\u2714 attachment: rejects ambiguous boundary endpoint (5.125497ms)",
+        "\u2714 attachment: rejects missing points (5.654056ms)",
+        "\u2714 attachment: rejects nonfinite endpoint (4.222858ms)",
+        "\u2139 tests 7",
+        "\u2139 suites 0",
+        "\u2139 pass 7",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 83.600153"
+      ],
+      "stderrTail": []
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=water",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 0,
+      "stdoutTail": [
+        "\u2714 water: A positive control (23.646801ms)",
+        "\u2714 water: rejects unrelated land entry (12.627734ms)",
+        "\u2714 water: rejects source land reentry (9.958185ms)",
+        "\u2139 tests 3",
+        "\u2139 suites 0",
+        "\u2139 pass 3",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 81.928995"
+      ],
+      "stderrTail": []
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=traceability",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 0,
+      "stdoutTail": [
+        "\u2714 traceability: rejects merged route geometry (3.511793ms)",
+        "\u2714 traceability: rejects shared-country ports merged (4.154928ms)",
+        "\u2714 traceability: rejects subpixel sea gap (3.586126ms)",
+        "\u2714 traceability: rejects zero length (4.216013ms)",
+        "\u2139 tests 6",
+        "\u2139 suites 0",
+        "\u2139 pass 6",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 62.395542"
+      ],
+      "stderrTail": []
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=preserved",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 0,
+      "stdoutTail": [
+        "\u2714 preserved: rejects small count text (19.735785ms)",
+        "\u2714 preserved: rejects changed bonus (18.229561ms)",
+        "\u2714 preserved: rejects fairness fortress (19.783938ms)",
+        "\u2714 preserved: rejects cell overlap (21.095093ms)",
+        "\u2139 tests 10",
+        "\u2139 suites 0",
+        "\u2139 pass 10",
+        "\u2139 fail 0",
+        "\u2139 cancelled 0",
+        "\u2139 skipped 0",
+        "\u2139 todo 0",
+        "\u2139 duration_ms 275.205929"
+      ],
+      "stderrTail": []
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "stdoutTail": [],
+      "stderrTail": []
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "origin/main...HEAD"
+      ],
+      "exit": 0,
+      "stdoutTail": [],
+      "stderrTail": []
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "docs/prototypes/new-game/T62/contract.test.mjs",
+        "docs/prototypes/new-game/T62/guards.test.mjs",
+        "docs/prototypes/new-game/T24/contract.test.mjs",
+        "docs/prototypes/new-game/T61/residual.test.mjs"
+      ],
+      "exit": 0,
+      "stdoutTail": [
+        "  duration_ms: 38.222724",
+        "  type: 'test'",
+        "  ...",
+        "1..153",
+        "# tests 153",
+        "# suites 0",
+        "# pass 153",
+        "# fail 0",
+        "# cancelled 0",
+        "# skipped 0",
+        "# todo 0",
+        "# duration_ms 487.760352"
+      ],
+      "stderrTail": []
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "862bcf4",
+        "--",
+        "docs/prototypes/new-game/T62/contract.test.mjs",
+        "docs/prototypes/new-game/T62/preflight",
+        "docs/prototypes/new-game/T24",
+        "docs/prototypes/new-game/T60",
+        "docs/prototypes/new-game/T61"
+      ],
+      "exit": 0,
+      "stdoutTail": [],
+      "stderrTail": []
+    }
+  ],
+  "sourceHashes": {
+    "docs/prototypes/new-game/T62/audit.py": "a3256b4e7ef551351172a9c82923e7556abf7c4f0aab08183decc3a0857d1bf6",
+    "docs/prototypes/new-game/T62/guards.test.mjs": "e20110ac5d19c7eb0b7e5f3625229ef46972057e0d17555a273fe0d256381760",
+    "docs/prototypes/new-game/T62/validate.py": "20bd501977ffef1d1fac788677197021dbed41fe46a636038da44b4245fa18da",
+    "docs/prototypes/new-game/T62/contract.test.mjs": "03b0102a19efe5521446ebee7f602a6f20cfb1ed2c6cb99331d0fd5ce82f83d5",
+    "docs/prototypes/new-game/T62/probe.mjs": "250fc44ac2b9be6b9b9285d539e87aa345555e49017775e23f41487d4f84362b",
+    "docs/prototypes/new-game/T62/README.md": "76a63c2d3da0366ba21fb2dbb72395d422720f8bfbd39718db828c906e878773",
+    "docs/prototypes/new-game/T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746",
+    "docs/prototypes/new-game/T62/contract.mjs": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346"
+  },
+  "archiveSha256": "9a8af0798569fdb4bc49472c069fb7429d85206d5666ea8559276acaa7143e5b",
+  "archiveMemberHashes": {
+    "01.stdout.txt": "3ba632cc0b12a80186e5464b1e5c73c955fe87432897096d9d6d431b31c47ef8",
+    "01.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "02.stdout.txt": "96a66280370be8971653a2755c9600778c074b8960f504a3621fcd98c9a4b23b",
+    "02.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "03.stdout.txt": "adbd98642faad5ad2abe001898997f5100717fc3e42dce9c7d6c1bdec2668e5e",
+    "03.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "04.stdout.txt": "13a5f63ed605ab16d8e2cfd65830db877cdb3899136f487f972d480e568e0d6e",
+    "04.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "05.stdout.txt": "c74dbf5c989fa62a3279908a56d5d8275de7c7b45250134af16ef4d227e9caf3",
+    "05.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "06.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "06.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "07.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "07.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "08.stdout.txt": "78c26b39f8b621727d8e9ca285257b942f529db7ccb884bd64bdb0d85d992128",
+    "08.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "09.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "09.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "immutableParentAndLegacyDiffEmpty": true
+}
