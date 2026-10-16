@@ -533,3 +533,21 @@ disable scheduling, map gating or timer cancellation and fail those checks.
 Commands, original failed preflights, passing candidate evidence, screenshots and
 restoration hashes live under `docs/prototypes/computer/`. Only setup goldens
 change for the new Players choice; authored/prototype goldens are preserved.
+
+## Approved reference-game development route (T26)
+
+Open `?view=reference-game` on the running app. Setup offers two to four human
+seats and a game seed; the approved T63 Nine Isles geography stays fixed while
+the regular seeded deal changes. The map uses the same legal graph as the pure
+rules. Place the whole income pool, start combat, select an attacker/target,
+resolve exchanges, and hand off; the ordinary conquest result and New game work.
+The chosen A polygons and sea ports/routes are preserved, with live seat colours,
+counts and production markers. The route reuses the existing App/controller and
+pure setup/apply mechanics. Existing generated/authored routes and saved-game
+formats retain their behaviour. Reference-route save/load is not offered.
+
+This is the T26 walking skeleton, with the inventory’s known battle/movement/
+victory gaps assigned to T27–T30. It is the temporary reference milestone before
+general geography T34–T36. Owner assessment of the integrated screenshots precedes
+broader implementation (roadmap checkpoint3); browser checks establish operation,
+not visual parity or fun. Evidence/reproduction: [T26](prototypes/new-game/T26/README.md).

@@ -1,3 +1,4 @@
+import {mountReferenceGame} from "./ui/referenceGame";
 import "./styles.css";
 import { mountGameSetup, mountGeneratedGame } from "./ui/generatedGame";
 import smallSeaJson from "../data/maps/small_sea.json";
@@ -30,7 +31,9 @@ function startAuthoredGame(): void {
 }
 
 const view = new URLSearchParams(location.search).get("view");
-if (view === "authored-game") {
+if (view === "reference-game") {
+  mountReferenceGame(root);
+} else if (view === "authored-game") {
   startAuthoredGame();
 } else if (view === "generated-prototype") {
   mountGeneratedPreview(root);

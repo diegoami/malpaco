@@ -1,0 +1,34 @@
+// Adapt the approved T63 drawing to the existing controller interface.
+import drawing from "../../docs/prototypes/new-game/T63/map.svg?raw";
+import {s} from "./dom";
+import {seatLook} from "./palette";
+import type {GameMap} from "../core";
+import type {MapHandlers,MapViewState} from "./mapView";
+export class ReferenceMapView{
+ readonly el:SVGSVGElement;
+ constructor(map:GameMap,handlers:MapHandlers){
+  this.el=new DOMParser().parseFromString(drawing,"image/svg+xml").documentElement as unknown as SVGSVGElement;
+  this.el.id="reference-map";this.el.setAttribute("aria-label","Nine Isles reference map");
+  const nodes=[...this.el.querySelectorAll<SVGGElement>(".country")];
+  for(const[j,n]of nodes.entries()){
+   const id=n.dataset["id"]!,p=map.provinces.find(p=>p.id===id)!;
+   n.dataset["country"]=id;n.dataset["province"]=id;n.classList.add("province");
+   n.querySelector(".cell")!.classList.add("country-shape");n.querySelector(".count")!.classList.add("army-count");
+   if(!n.querySelector(".centre"))n.append(s("text",{class:"centre",x:p.labelAt[0]-25,y:p.labelAt[1]-10},"★"));
+   n.onclick=()=>handlers.onProvince(id);n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
+   n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id);}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
+  }
+  this.el.onclick=e=>{if(!(e.target as Element).closest(".country"))handlers.onBackground();};
+ }
+ render(view:MapViewState){const{state}=view;
+  for(const n of this.el.querySelectorAll<SVGGElement>(".country")){
+   const id=n.dataset["country"]!,seat=state.players.findIndex(p=>p.id===state.ownerOf[id]);
+   n.dataset["owner"]=state.ownerOf[id]!;n.dataset["armies"]=String(state.armies[id]);n.dataset["target"]=String(view.targets.includes(id));n.dataset["selected"]=String(view.selected===id);
+   n.classList.toggle("selected",view.selected===id);n.classList.toggle("neighbor",view.targets.includes(id));n.setAttribute("aria-pressed",String(view.selected===id));
+   n.setAttribute("aria-label",`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies`);
+   (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;n.querySelector(".count")!.textContent=`${seat+1} · ${state.armies[id]}`;
+   (n.querySelector(".centre") as SVGElement).style.display=state.productionCentres.includes(id)?"":"none";
+  }
+  for(const r of this.el.querySelectorAll<SVGPolylineElement>(".lane"))r.classList.toggle("active",r.dataset["edge"]!.split("|").includes(view.selected??""));
+ }
+}
