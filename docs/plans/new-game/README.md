@@ -38,7 +38,7 @@ wholesale rewrite. Use original code/assets; no predecessor evidence enters here
 
 | Tasks | Deliverable | Boundary |
 | --- | --- | --- |
-| T23–T25, T59 | Rules inventory, feasible geometry contract, visually polished seed-1994 reference | T59 reduces island footprints and clarifies coast connections; exact final topology and visual approval precede integration. |
+| T23–T25, T59 | Rules inventory, feasible geometry contract, visually polished seed-1994 reference | T59 repositions/redraws islands and corrects two coast connections; exact final topology and visual approval precede integration. |
 | T26–T33 | Reference-board playable milestone | Thin playable screen first, then capture choice, movement, victory, replay and baseline computers. The reference board is a temporary development fixture. |
 | T34–T36 | General generated geography | Island subdivisions, crossings/fairness, then wide-seed and browser acceptance. No changes to agreed limits to improve success rates. |
 | T37–T41 | Cards end to end | Deck/draw first, then sets, targeted effects, human UI and computer continuation. |
@@ -66,7 +66,7 @@ and a measurable boundary (process §2).
    decision on its issue/PR and commit the resulting contract before T25/T34.
    No success-rate target is invented by this roadmap.
 3. T25 supplies the compliant reference; owner-requested T59 follows it before
-   T26, improving island size, water spacing and route clarity. The owner judges
+   T26, improving island placement, coastlines and route clarity. The owner judges
    the final reference and explicitly approves its exact topology before T26.
    T22 completion or technical T25 approval is not final visual/topology approval.
 4. T33 requires owner assessment of actual play and appearance before expanding
