@@ -15,7 +15,7 @@ async function setup(page:Page){await page.goto("/?view=reference-game");await e
 async function capture(page:Page,name:string,project:string){const root=process.env["REFERENCE_EVIDENCE_DIR"]??"screenshots";mkdirSync(root,{recursive:true});const dir=mkdtempSync(join(root,"reference-"));await page.mouse.move(0,0);await page.screenshot({path:join(dir,`${name}-${project}.png`)});}
 async function panelTextFits(page:Page){
  // [designed] One CSS pixel for rectangle rounding, as in the existing complete-game fit guard.
- const boxes=await page.locator(".panel .score-num,.panel .score-name,.panel .turn-title,.panel .turn-sub,.panel .step-value,.panel button").evaluateAll(nodes=>nodes.map(n=>{
+ const boxes=await page.evaluate(()=>[...document.querySelectorAll(".panel .score-num,.panel .score-name,.panel .turn-title,.panel .turn-sub,.panel .step-value,.panel button")].map(n=>{
   const range=document.createRange();range.selectNodeContents(n);const lines=[...range.getClientRects()];const panel=n.closest(".panel")!.getBoundingClientRect(),card=(n.closest(".card")??n.parentElement)!.getBoundingClientRect();
   return {text:n.textContent,visible:lines.length>0,fits:lines.every(b=>b.left>=Math.max(0,panel.left,card.left)-1&&b.right<=Math.min(innerWidth,panel.right,card.right)+1&&b.top>=Math.max(0,panel.top,card.top)-1&&b.bottom<=Math.min(innerHeight,panel.bottom,card.bottom)+1)};
  })).then(rows=>rows.filter(r=>r.visible));

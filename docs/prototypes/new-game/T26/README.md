@@ -81,13 +81,20 @@ extended to this route. Its prior reference snapshot is retained there unchanged
 reference-only snapshot. Existing goldens remain unchanged. The same guard checks
 opening,3/4-seat and winner panels at both desktop sizes.
 
-Authoritative final mutation audit: `evidence/mutations-15e2jis9` starts with
+Pre-race-fix mutation audit: `evidence/mutations-15e2jis9` starts with
 green core and all four browser cases on this final layout, kills all six
 mutants and restores exact source bytes. Its baseline browser captures include
 opening,first attack and winner at both viewports. Final unit/build reports and
 `existing-tests-f6k9uofn` retain the complete checks and unchanged52-file seal.
 
 The immutable revision index is sharded into small readable parts. Its root is
-`artifacts.v2.sha256.json` (the verifier default). The initial monolithic index
+`artifacts.v3.sha256.json` (the verifier default; v2 pins the pre-race-fix revision). The initial monolithic index
 is preserved byte-for-byte in `evidence/initial-index.tar.gz`; its loose original
 is ignored. Each shard and every original archived member is verified.
+
+The final recheck `premerge-25iqifl4` exposed a detached-element race in the
+added text-fit helper after winner rendering. It now queries and reads the
+current DOM atomically in page.evaluate, preserving every existing boundary
+assertion. `atomic-panel-y_h92_li` passes all four cases; final mutation audit
+`mutations-z35f93h_` requires green core/full-browser baseline, catches6/6 and
+restores source bytes. The earlier failed recheck remains retained.
