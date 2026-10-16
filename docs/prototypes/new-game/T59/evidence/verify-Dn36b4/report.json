@@ -1,0 +1,1458 @@
+{
+  "input": "/work/docs/prototypes/new-game/T59/board.json",
+  "sha256": "7cd9e1187e9b9009d15c56a6f94bf5fc49735f063caa93b9bdd575fad6512a7f",
+  "constraints": {
+    "counts": [],
+    "symmetry": [],
+    "connectivity": [],
+    "degree": [],
+    "cells": [],
+    "borders": [],
+    "crossings": [],
+    "coasts": [],
+    "intersections": [],
+    "bonus": [],
+    "fortress": [],
+    "concentration": [],
+    "remoteness": [],
+    "crowding": [],
+    "labels": []
+  },
+  "identity": [],
+  "diagnostics": {
+    "changes": {
+      "borders": {
+        "current": [
+          "province_0|province_10",
+          "province_0|province_12",
+          "province_0|province_5",
+          "province_10|province_12",
+          "province_10|province_5",
+          "province_11|province_22",
+          "province_11|province_31",
+          "province_12|province_20",
+          "province_13|province_17",
+          "province_13|province_29",
+          "province_13|province_33",
+          "province_14|province_15",
+          "province_14|province_21",
+          "province_14|province_44",
+          "province_15|province_34",
+          "province_15|province_7",
+          "province_16|province_2",
+          "province_16|province_41",
+          "province_17|province_29",
+          "province_17|province_33",
+          "province_18|province_27",
+          "province_18|province_37",
+          "province_18|province_6",
+          "province_19|province_40",
+          "province_19|province_9",
+          "province_1|province_19",
+          "province_1|province_40",
+          "province_1|province_9",
+          "province_20|province_25",
+          "province_20|province_36",
+          "province_21|province_35",
+          "province_21|province_39",
+          "province_22|province_31",
+          "province_23|province_34",
+          "province_23|province_35",
+          "province_23|province_7",
+          "province_24|province_29",
+          "province_24|province_33",
+          "province_25|province_36",
+          "province_26|province_39",
+          "province_26|province_44",
+          "province_26|province_7",
+          "province_27|province_42",
+          "province_27|province_43",
+          "province_28|province_38",
+          "province_28|province_45",
+          "province_2|province_41",
+          "province_30|province_4",
+          "province_30|province_8",
+          "province_32|province_37",
+          "province_32|province_43",
+          "province_34|province_44",
+          "province_35|province_39",
+          "province_36|province_5",
+          "province_37|province_42",
+          "province_38|province_45",
+          "province_3|province_40",
+          "province_3|province_9",
+          "province_42|province_6",
+          "province_43|province_6",
+          "province_4|province_8"
+        ],
+        "proposed": [
+          "province_0|province_10",
+          "province_0|province_20",
+          "province_0|province_36",
+          "province_10|province_12",
+          "province_10|province_25",
+          "province_10|province_36",
+          "province_11|province_22",
+          "province_11|province_31",
+          "province_12|province_25",
+          "province_12|province_5",
+          "province_13|province_17",
+          "province_13|province_33",
+          "province_14|province_21",
+          "province_14|province_26",
+          "province_14|province_39",
+          "province_15|province_21",
+          "province_15|province_23",
+          "province_15|province_35",
+          "province_16|province_2",
+          "province_16|province_41",
+          "province_17|province_24",
+          "province_17|province_33",
+          "province_18|province_32",
+          "province_18|province_43",
+          "province_19|province_3",
+          "province_19|province_40",
+          "province_19|province_9",
+          "province_1|province_3",
+          "province_1|province_9",
+          "province_20|province_36",
+          "province_21|province_7",
+          "province_22|province_31",
+          "province_23|province_44",
+          "province_24|province_29",
+          "province_24|province_33",
+          "province_25|province_36",
+          "province_25|province_5",
+          "province_26|province_34",
+          "province_26|province_7",
+          "province_27|province_37",
+          "province_27|province_42",
+          "province_27|province_6",
+          "province_28|province_38",
+          "province_28|province_45",
+          "province_29|province_33",
+          "province_2|province_41",
+          "province_30|province_4",
+          "province_30|province_8",
+          "province_32|province_37",
+          "province_32|province_42",
+          "province_32|province_43",
+          "province_34|province_39",
+          "province_35|province_44",
+          "province_35|province_7",
+          "province_37|province_42",
+          "province_37|province_43",
+          "province_38|province_45",
+          "province_3|province_40",
+          "province_3|province_9",
+          "province_42|province_6",
+          "province_4|province_8"
+        ],
+        "added": [
+          "province_0|province_20",
+          "province_0|province_36",
+          "province_10|province_25",
+          "province_10|province_36",
+          "province_12|province_25",
+          "province_12|province_5",
+          "province_14|province_26",
+          "province_14|province_39",
+          "province_15|province_21",
+          "province_15|province_23",
+          "province_15|province_35",
+          "province_17|province_24",
+          "province_18|province_32",
+          "province_18|province_43",
+          "province_19|province_3",
+          "province_1|province_3",
+          "province_21|province_7",
+          "province_23|province_44",
+          "province_25|province_5",
+          "province_26|province_34",
+          "province_27|province_37",
+          "province_27|province_6",
+          "province_29|province_33",
+          "province_32|province_42",
+          "province_34|province_39",
+          "province_35|province_44",
+          "province_35|province_7",
+          "province_37|province_43"
+        ],
+        "removed": [
+          "province_0|province_12",
+          "province_0|province_5",
+          "province_10|province_5",
+          "province_12|province_20",
+          "province_13|province_29",
+          "province_14|province_15",
+          "province_14|province_44",
+          "province_15|province_34",
+          "province_15|province_7",
+          "province_17|province_29",
+          "province_18|province_27",
+          "province_18|province_37",
+          "province_18|province_6",
+          "province_1|province_19",
+          "province_1|province_40",
+          "province_20|province_25",
+          "province_21|province_35",
+          "province_21|province_39",
+          "province_23|province_34",
+          "province_23|province_35",
+          "province_23|province_7",
+          "province_26|province_39",
+          "province_26|province_44",
+          "province_27|province_43",
+          "province_34|province_44",
+          "province_35|province_39",
+          "province_36|province_5",
+          "province_43|province_6"
+        ]
+      },
+      "seaLanes": {
+        "current": [
+          "province_10|province_41",
+          "province_11|province_13",
+          "province_11|province_28",
+          "province_13|province_5",
+          "province_14|province_2",
+          "province_17|province_32",
+          "province_19|province_31",
+          "province_19|province_8",
+          "province_28|province_4",
+          "province_2|province_31",
+          "province_40|province_7",
+          "province_41|province_9",
+          "province_43|province_45",
+          "province_43|province_7",
+          "province_4|province_45",
+          "province_5|province_8"
+        ],
+        "proposed": [
+          "province_10|province_16",
+          "province_11|province_29",
+          "province_11|province_44",
+          "province_12|province_34",
+          "province_13|province_31",
+          "province_18|province_2",
+          "province_19|province_24",
+          "province_19|province_8",
+          "province_1|province_2",
+          "province_1|province_34",
+          "province_24|province_45",
+          "province_38|province_8",
+          "province_39|province_5",
+          "province_3|province_7",
+          "province_4|province_43"
+        ],
+        "added": [
+          "province_10|province_16",
+          "province_11|province_29",
+          "province_11|province_44",
+          "province_12|province_34",
+          "province_13|province_31",
+          "province_18|province_2",
+          "province_19|province_24",
+          "province_1|province_2",
+          "province_1|province_34",
+          "province_24|province_45",
+          "province_38|province_8",
+          "province_39|province_5",
+          "province_3|province_7",
+          "province_4|province_43"
+        ],
+        "removed": [
+          "province_10|province_41",
+          "province_11|province_13",
+          "province_11|province_28",
+          "province_13|province_5",
+          "province_14|province_2",
+          "province_17|province_32",
+          "province_19|province_31",
+          "province_28|province_4",
+          "province_2|province_31",
+          "province_40|province_7",
+          "province_41|province_9",
+          "province_43|province_45",
+          "province_43|province_7",
+          "province_4|province_45",
+          "province_5|province_8"
+        ]
+      }
+    },
+    "countries": [
+      {
+        "id": "province_4",
+        "name": "River gate",
+        "currentDegree": 4,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_30",
+        "name": "New port",
+        "currentDegree": 2,
+        "degree": 2,
+        "crossings": 0
+      },
+      {
+        "id": "province_8",
+        "name": "North rest",
+        "currentDegree": 4,
+        "degree": 4,
+        "crossings": 2
+      },
+      {
+        "id": "province_38",
+        "name": "River keep",
+        "currentDegree": 2,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_28",
+        "name": "North town",
+        "currentDegree": 4,
+        "degree": 2,
+        "crossings": 0
+      },
+      {
+        "id": "province_45",
+        "name": "Dark ford",
+        "currentDegree": 4,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_41",
+        "name": "Iron point",
+        "currentDegree": 4,
+        "degree": 2,
+        "crossings": 0
+      },
+      {
+        "id": "province_2",
+        "name": "South rest",
+        "currentDegree": 4,
+        "degree": 4,
+        "crossings": 2
+      },
+      {
+        "id": "province_16",
+        "name": "High shore",
+        "currentDegree": 2,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_11",
+        "name": "Wind town",
+        "currentDegree": 4,
+        "degree": 4,
+        "crossings": 2
+      },
+      {
+        "id": "province_31",
+        "name": "New glen",
+        "currentDegree": 4,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_22",
+        "name": "Old rock",
+        "currentDegree": 2,
+        "degree": 2,
+        "crossings": 0
+      },
+      {
+        "id": "province_9",
+        "name": "Blue peak",
+        "currentDegree": 4,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_19",
+        "name": "West haven",
+        "currentDegree": 5,
+        "degree": 5,
+        "crossings": 2
+      },
+      {
+        "id": "province_1",
+        "name": "Stone watch",
+        "currentDegree": 3,
+        "degree": 4,
+        "crossings": 2
+      },
+      {
+        "id": "province_3",
+        "name": "Upper ridge",
+        "currentDegree": 2,
+        "degree": 5,
+        "crossings": 1
+      },
+      {
+        "id": "province_40",
+        "name": "Marsh keep",
+        "currentDegree": 4,
+        "degree": 2,
+        "crossings": 0
+      },
+      {
+        "id": "province_24",
+        "name": "New fell",
+        "currentDegree": 2,
+        "degree": 5,
+        "crossings": 2
+      },
+      {
+        "id": "province_17",
+        "name": "Moon point",
+        "currentDegree": 4,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_29",
+        "name": "South fell",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_33",
+        "name": "High ridge",
+        "currentDegree": 3,
+        "degree": 4,
+        "crossings": 0
+      },
+      {
+        "id": "province_13",
+        "name": "Bay ford",
+        "currentDegree": 5,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_0",
+        "name": "Low moor",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_10",
+        "name": "Lower field",
+        "currentDegree": 4,
+        "degree": 5,
+        "crossings": 1
+      },
+      {
+        "id": "province_12",
+        "name": "Wind gate",
+        "currentDegree": 3,
+        "degree": 4,
+        "crossings": 1
+      },
+      {
+        "id": "province_20",
+        "name": "Silver shore",
+        "currentDegree": 3,
+        "degree": 2,
+        "crossings": 0
+      },
+      {
+        "id": "province_36",
+        "name": "Low peak",
+        "currentDegree": 3,
+        "degree": 4,
+        "crossings": 0
+      },
+      {
+        "id": "province_25",
+        "name": "Wind port",
+        "currentDegree": 2,
+        "degree": 4,
+        "crossings": 0
+      },
+      {
+        "id": "province_5",
+        "name": "Gold point",
+        "currentDegree": 5,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_27",
+        "name": "Rock moor",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_37",
+        "name": "Marsh rest",
+        "currentDegree": 3,
+        "degree": 4,
+        "crossings": 0
+      },
+      {
+        "id": "province_43",
+        "name": "Wind dale",
+        "currentDegree": 5,
+        "degree": 4,
+        "crossings": 1
+      },
+      {
+        "id": "province_6",
+        "name": "Silver ford",
+        "currentDegree": 3,
+        "degree": 2,
+        "crossings": 0
+      },
+      {
+        "id": "province_42",
+        "name": "Iron field",
+        "currentDegree": 3,
+        "degree": 4,
+        "crossings": 0
+      },
+      {
+        "id": "province_32",
+        "name": "North wood",
+        "currentDegree": 3,
+        "degree": 4,
+        "crossings": 0
+      },
+      {
+        "id": "province_18",
+        "name": "Fort town",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_34",
+        "name": "Red field",
+        "currentDegree": 3,
+        "degree": 4,
+        "crossings": 2
+      },
+      {
+        "id": "province_26",
+        "name": "South ridge",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_7",
+        "name": "Rock bay",
+        "currentDegree": 5,
+        "degree": 4,
+        "crossings": 1
+      },
+      {
+        "id": "province_35",
+        "name": "North ford",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_44",
+        "name": "Port ridge",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_39",
+        "name": "New rock",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 1
+      },
+      {
+        "id": "province_14",
+        "name": "South reach",
+        "currentDegree": 4,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_21",
+        "name": "Silver point",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_15",
+        "name": "East ford",
+        "currentDegree": 3,
+        "degree": 3,
+        "crossings": 0
+      },
+      {
+        "id": "province_23",
+        "name": "Gold town",
+        "currentDegree": 3,
+        "degree": 2,
+        "crossings": 0
+      }
+    ],
+    "islands": [
+      {
+        "id": "island_0",
+        "name": "North Isle",
+        "currentBonus": 3,
+        "proposedBonus": 3,
+        "entrances": [
+          "province_4",
+          "province_8"
+        ],
+        "currentEntrances": [
+          "province_4",
+          "province_8"
+        ],
+        "neighbours": [
+          "island_1",
+          "island_4",
+          "island_7"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      },
+      {
+        "id": "island_1",
+        "name": "East Isle",
+        "currentBonus": 3,
+        "proposedBonus": 3,
+        "entrances": [
+          "province_38",
+          "province_45"
+        ],
+        "currentEntrances": [
+          "province_28",
+          "province_45"
+        ],
+        "neighbours": [
+          "island_0",
+          "island_5"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      },
+      {
+        "id": "island_2",
+        "name": "West Isle",
+        "currentBonus": 3,
+        "proposedBonus": 3,
+        "entrances": [
+          "province_2",
+          "province_16"
+        ],
+        "currentEntrances": [
+          "province_41",
+          "province_2"
+        ],
+        "neighbours": [
+          "island_4",
+          "island_6",
+          "island_7"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      },
+      {
+        "id": "island_3",
+        "name": "South Isle",
+        "currentBonus": 3,
+        "proposedBonus": 3,
+        "entrances": [
+          "province_11",
+          "province_31"
+        ],
+        "currentEntrances": [
+          "province_11",
+          "province_31"
+        ],
+        "neighbours": [
+          "island_5",
+          "island_8"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      },
+      {
+        "id": "island_4",
+        "name": "Central Isle",
+        "currentBonus": 5,
+        "proposedBonus": 5,
+        "entrances": [
+          "province_19",
+          "province_1",
+          "province_3"
+        ],
+        "currentEntrances": [
+          "province_9",
+          "province_19",
+          "province_40"
+        ],
+        "neighbours": [
+          "island_0",
+          "island_2",
+          "island_5",
+          "island_8"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      },
+      {
+        "id": "island_5",
+        "name": "Harbor Isle",
+        "currentBonus": 4,
+        "proposedBonus": 5,
+        "entrances": [
+          "province_24",
+          "province_29",
+          "province_13"
+        ],
+        "currentEntrances": [
+          "province_17",
+          "province_13"
+        ],
+        "neighbours": [
+          "island_1",
+          "island_3",
+          "island_4"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      },
+      {
+        "id": "island_6",
+        "name": "Palm Isle",
+        "currentBonus": 5,
+        "proposedBonus": 6,
+        "entrances": [
+          "province_10",
+          "province_12",
+          "province_5"
+        ],
+        "currentEntrances": [
+          "province_10",
+          "province_5"
+        ],
+        "neighbours": [
+          "island_2",
+          "island_8"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      },
+      {
+        "id": "island_7",
+        "name": "Cliff Isle",
+        "currentBonus": 5,
+        "proposedBonus": 5,
+        "entrances": [
+          "province_43",
+          "province_18"
+        ],
+        "currentEntrances": [
+          "province_43",
+          "province_32"
+        ],
+        "neighbours": [
+          "island_0",
+          "island_2"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      },
+      {
+        "id": "island_8",
+        "name": "Great Isle",
+        "currentBonus": 7,
+        "proposedBonus": 9,
+        "entrances": [
+          "province_34",
+          "province_7",
+          "province_44",
+          "province_39"
+        ],
+        "currentEntrances": [
+          "province_7",
+          "province_14"
+        ],
+        "neighbours": [
+          "island_3",
+          "island_4",
+          "island_6"
+        ],
+        "currentLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        },
+        "proposedLandCuts": {
+          "articulationPoints": [],
+          "bridges": []
+        }
+      }
+    ],
+    "currentCuts": {
+      "articulationPoints": [],
+      "bridges": []
+    },
+    "proposedCuts": {
+      "articulationPoints": [],
+      "bridges": []
+    }
+  },
+  "comparison": {
+    "frame": {
+      "baseline": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 460
+      },
+      "proposed": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 460
+      }
+    },
+    "land": {
+      "added": [],
+      "removed": []
+    },
+    "sea": {
+      "added": [
+        "province_18|province_2",
+        "province_3|province_7"
+      ],
+      "removed": [
+        "province_29|province_40",
+        "province_2|province_6",
+        "province_40|province_7"
+      ]
+    },
+    "rotations": {
+      "north": -9.904183212973878,
+      "cliff": 9.904183212973878
+    },
+    "islands": [
+      {
+        "id": "island_0",
+        "name": "North Isle",
+        "beforeArea": 17905,
+        "afterArea": 17878.77197265625,
+        "beforeBonus": 3,
+        "afterBonus": 3
+      },
+      {
+        "id": "island_1",
+        "name": "East Isle",
+        "beforeArea": 17905,
+        "afterArea": 17905,
+        "beforeBonus": 3,
+        "afterBonus": 3
+      },
+      {
+        "id": "island_2",
+        "name": "West Isle",
+        "beforeArea": 17905,
+        "afterArea": 17905,
+        "beforeBonus": 3,
+        "afterBonus": 3
+      },
+      {
+        "id": "island_3",
+        "name": "South Isle",
+        "beforeArea": 17905,
+        "afterArea": 17905,
+        "beforeBonus": 3,
+        "afterBonus": 3
+      },
+      {
+        "id": "island_4",
+        "name": "Central Isle",
+        "beforeArea": 24749,
+        "afterArea": 24749,
+        "beforeBonus": 5,
+        "afterBonus": 5
+      },
+      {
+        "id": "island_5",
+        "name": "Harbor Isle",
+        "beforeArea": 24749,
+        "afterArea": 24749,
+        "beforeBonus": 5,
+        "afterBonus": 5
+      },
+      {
+        "id": "island_6",
+        "name": "Palm Isle",
+        "beforeArea": 32230,
+        "afterArea": 32230,
+        "beforeBonus": 6,
+        "afterBonus": 6
+      },
+      {
+        "id": "island_7",
+        "name": "Cliff Isle",
+        "beforeArea": 32230,
+        "afterArea": 34790.9619140625,
+        "beforeBonus": 5,
+        "afterBonus": 5
+      },
+      {
+        "id": "island_8",
+        "name": "Great Isle",
+        "beforeArea": 40031,
+        "afterArea": 40031,
+        "beforeBonus": 9,
+        "afterBonus": 9
+      }
+    ],
+    "waterGaps": [
+      {
+        "islands": [
+          "island_0",
+          "island_1"
+        ],
+        "before": 129,
+        "after": 130.53403380909532
+      },
+      {
+        "islands": [
+          "island_0",
+          "island_2"
+        ],
+        "before": 172.65283084849784,
+        "after": 152.61387430016399
+      },
+      {
+        "islands": [
+          "island_0",
+          "island_3"
+        ],
+        "before": 275.0363612324741,
+        "after": 276.66074682871863
+      },
+      {
+        "islands": [
+          "island_0",
+          "island_4"
+        ],
+        "before": 19,
+        "after": 13.724568099989522
+      },
+      {
+        "islands": [
+          "island_0",
+          "island_5"
+        ],
+        "before": 130.85705648060878,
+        "after": 135.69538272821865
+      },
+      {
+        "islands": [
+          "island_0",
+          "island_6"
+        ],
+        "before": 225.3619311241364,
+        "after": 222.69549544480293
+      },
+      {
+        "islands": [
+          "island_0",
+          "island_7"
+        ],
+        "before": 66.18912297349165,
+        "after": 50.83941182645479
+      },
+      {
+        "islands": [
+          "island_0",
+          "island_8"
+        ],
+        "before": 167,
+        "after": 166.01564558823404
+      },
+      {
+        "islands": [
+          "island_1",
+          "island_2"
+        ],
+        "before": 454.989433520587,
+        "after": 430.51248530094915
+      },
+      {
+        "islands": [
+          "island_1",
+          "island_3"
+        ],
+        "before": 185,
+        "after": 185
+      },
+      {
+        "islands": [
+          "island_1",
+          "island_4"
+        ],
+        "before": 149.2514656544451,
+        "after": 141.73566946961515
+      },
+      {
+        "islands": [
+          "island_1",
+          "island_5"
+        ],
+        "before": 21,
+        "after": 25
+      },
+      {
+        "islands": [
+          "island_1",
+          "island_6"
+        ],
+        "before": 440.40890090914377,
+        "after": 442.4748580428045
+      },
+      {
+        "islands": [
+          "island_1",
+          "island_7"
+        ],
+        "before": 361.03462437832746,
+        "after": 344.9123869315944
+      },
+      {
+        "islands": [
+          "island_1",
+          "island_8"
+        ],
+        "before": 216.00416662647967,
+        "after": 216.00416662647967
+      },
+      {
+        "islands": [
+          "island_2",
+          "island_3"
+        ],
+        "before": 460.48887065813005,
+        "after": 432.0438457094195
+      },
+      {
+        "islands": [
+          "island_2",
+          "island_4"
+        ],
+        "before": 114.03946685248927,
+        "after": 96.25487000666513
+      },
+      {
+        "islands": [
+          "island_2",
+          "island_5"
+        ],
+        "before": 391.03196800261736,
+        "after": 366.00136611766897
+      },
+      {
+        "islands": [
+          "island_2",
+          "island_6"
+        ],
+        "before": 11,
+        "after": 5
+      },
+      {
+        "islands": [
+          "island_2",
+          "island_7"
+        ],
+        "before": 5,
+        "after": 5.76814386445768
+      },
+      {
+        "islands": [
+          "island_2",
+          "island_8"
+        ],
+        "before": 127.43653020531134,
+        "after": 108.75519439407161
+      },
+      {
+        "islands": [
+          "island_3",
+          "island_4"
+        ],
+        "before": 155.59562975867928,
+        "after": 148.2194319244275
+      },
+      {
+        "islands": [
+          "island_3",
+          "island_5"
+        ],
+        "before": 24,
+        "after": 20
+      },
+      {
+        "islands": [
+          "island_3",
+          "island_6"
+        ],
+        "before": 364.19774848288125,
+        "after": 364.08790147435553
+      },
+      {
+        "islands": [
+          "island_3",
+          "island_7"
+        ],
+        "before": 446.5982534672521,
+        "after": 423.4628371109589
+      },
+      {
+        "islands": [
+          "island_3",
+          "island_8"
+        ],
+        "before": 33.1436268383531,
+        "after": 24.514516892273015
+      },
+      {
+        "islands": [
+          "island_4",
+          "island_5"
+        ],
+        "before": 67.02984409947557,
+        "after": 60.29925372672534
+      },
+      {
+        "islands": [
+          "island_4",
+          "island_6"
+        ],
+        "before": 90.78546139112804,
+        "after": 100.26265012406658
+      },
+      {
+        "islands": [
+          "island_4",
+          "island_7"
+        ],
+        "before": 90.78546139112804,
+        "after": 71.93633931513682
+      },
+      {
+        "islands": [
+          "island_4",
+          "island_8"
+        ],
+        "before": 8,
+        "after": 12
+      },
+      {
+        "islands": [
+          "island_5",
+          "island_6"
+        ],
+        "before": 343.4304450514475,
+        "after": 345.3707300517382
+      },
+      {
+        "islands": [
+          "island_5",
+          "island_7"
+        ],
+        "before": 344.4005875515928,
+        "after": 322.6924328985729
+      },
+      {
+        "islands": [
+          "island_5",
+          "island_8"
+        ],
+        "before": 58.59999999999997,
+        "after": 55
+      },
+      {
+        "islands": [
+          "island_6",
+          "island_7"
+        ],
+        "before": 144,
+        "after": 137.6426264052665
+      },
+      {
+        "islands": [
+          "island_6",
+          "island_8"
+        ],
+        "before": 6.548461875981004,
+        "after": 14.317821063276352
+      },
+      {
+        "islands": [
+          "island_7",
+          "island_8"
+        ],
+        "before": 198.87369503114903,
+        "after": 181.0210434288304
+      }
+    ],
+    "routes": {
+      "before": [
+        {
+          "edge": "province_4|province_43",
+          "length": 105.03505870498623,
+          "direct": 105.03505870498623,
+          "segments": 1
+        },
+        {
+          "edge": "province_38|province_8",
+          "length": 178.97553313988905,
+          "direct": 178.97553313988905,
+          "segments": 1
+        },
+        {
+          "edge": "province_1|province_2",
+          "length": 178.2436988557489,
+          "direct": 178.2436988557489,
+          "segments": 1
+        },
+        {
+          "edge": "province_19|province_24",
+          "length": 122.67819662329369,
+          "direct": 122.67819662329369,
+          "segments": 1
+        },
+        {
+          "edge": "province_12|province_34",
+          "length": 53.710574741872456,
+          "direct": 53.710574741872456,
+          "segments": 1
+        },
+        {
+          "edge": "province_11|province_44",
+          "length": 83.33799636005536,
+          "direct": 83.33799636005536,
+          "segments": 1
+        },
+        {
+          "edge": "province_2|province_6",
+          "length": 231.46403174456694,
+          "direct": 138.4013763899525,
+          "segments": 3
+        },
+        {
+          "edge": "province_10|province_16",
+          "length": 31.937045909691765,
+          "direct": 31.937045909691765,
+          "segments": 1
+        },
+        {
+          "edge": "province_19|province_8",
+          "length": 74.18288617622468,
+          "direct": 74.18288617622468,
+          "segments": 1
+        },
+        {
+          "edge": "province_1|province_34",
+          "length": 57.81418174565781,
+          "direct": 57.81418174565781,
+          "segments": 1
+        },
+        {
+          "edge": "province_24|province_45",
+          "length": 115.94533270586824,
+          "direct": 97.26951126852758,
+          "segments": 2
+        },
+        {
+          "edge": "province_11|province_29",
+          "length": 73.58804449371152,
+          "direct": 73.58804449371152,
+          "segments": 1
+        },
+        {
+          "edge": "province_29|province_40",
+          "length": 109.52734513716264,
+          "direct": 109.52734513716264,
+          "segments": 1
+        },
+        {
+          "edge": "province_39|province_5",
+          "length": 54.659591429259386,
+          "direct": 54.659591429259386,
+          "segments": 1
+        },
+        {
+          "edge": "province_40|province_7",
+          "length": 117.69316781669892,
+          "direct": 66.31099533204014,
+          "segments": 2
+        },
+        {
+          "edge": "province_13|province_31",
+          "length": 54.56142708181207,
+          "direct": 54.56142708181207,
+          "segments": 1
+        }
+      ],
+      "after": [
+        {
+          "edge": "province_4|province_43",
+          "length": 83.96339168763124,
+          "direct": 83.96339168763124,
+          "segments": 1
+        },
+        {
+          "edge": "province_38|province_8",
+          "length": 218.33519365422396,
+          "direct": 195.77158988308383,
+          "segments": 2
+        },
+        {
+          "edge": "province_1|province_2",
+          "length": 224.48802380663028,
+          "direct": 171.6552777751542,
+          "segments": 3
+        },
+        {
+          "edge": "province_19|province_24",
+          "length": 115.56957702516159,
+          "direct": 115.56957702516159,
+          "segments": 1
+        },
+        {
+          "edge": "province_12|province_34",
+          "length": 61.68203543457583,
+          "direct": 61.68203543457583,
+          "segments": 1
+        },
+        {
+          "edge": "province_11|province_44",
+          "length": 75.12946479949527,
+          "direct": 75.12946479949527,
+          "segments": 1
+        },
+        {
+          "edge": "province_18|province_2",
+          "length": 61.1000791368419,
+          "direct": 61.1000791368419,
+          "segments": 1
+        },
+        {
+          "edge": "province_10|province_16",
+          "length": 5.822177685390527,
+          "direct": 5.822177685390527,
+          "segments": 1
+        },
+        {
+          "edge": "province_19|province_8",
+          "length": 96.92895187165612,
+          "direct": 71.54862939280333,
+          "segments": 2
+        },
+        {
+          "edge": "province_1|province_34",
+          "length": 61.77708573457843,
+          "direct": 61.77708573457843,
+          "segments": 1
+        },
+        {
+          "edge": "province_24|province_45",
+          "length": 119.59922269538563,
+          "direct": 96.81408573868895,
+          "segments": 2
+        },
+        {
+          "edge": "province_11|province_29",
+          "length": 69.29301250105213,
+          "direct": 69.29301250105213,
+          "segments": 1
+        },
+        {
+          "edge": "province_39|province_5",
+          "length": 62.65953886052438,
+          "direct": 62.65953886052438,
+          "segments": 1
+        },
+        {
+          "edge": "province_3|province_7",
+          "length": 25.05607032111989,
+          "direct": 25.05607032111989,
+          "segments": 1
+        },
+        {
+          "edge": "province_13|province_31",
+          "length": 50.658872821218544,
+          "direct": 50.658872821218544,
+          "segments": 1
+        }
+      ]
+    }
+  },
+  "referenceErrors": [],
+  "failures": [],
+  "accepted": true
+}
