@@ -1,0 +1,19 @@
+Now let me write the final review.
+
+T28 review (mm-m3)
+approve
+DW1: ran `python3 docs/prototypes/new-game/T28/run-browser.py review --suites tests/e2e/battle-controls.spec.ts` → 10/10 passed across both 1280x800 and 1920x1080; sources unchanged during run (archived at `docs/prototypes/new-game/T28/evidence/review-ydeh9vke`).
+DW2: ran `npx vitest run tests/ui/battle-controller.test.ts tests/ui/battle-controller-safety.test.ts` → 15/15 passed (9 ordinary exchange + 6 lifecycle/watch).
+DW3: ran `python3 docs/prototypes/new-game/T28/run-browser.py review --suites tests/e2e/battle-controls.spec.ts,tests/e2e/battle-accessibility.spec.ts,tests/e2e/reference-game.spec.ts,tests/e2e/generated-game.spec.ts,tests/e2e/game-setup.spec.ts,tests/e2e/match-save.spec.ts,tests/e2e/computer.spec.ts,tests/e2e/complete-game.spec.ts,tests/e2e/slice.spec.ts,tests/e2e/reinforcement.spec.ts` → 98/98 passed in 2.2m; report.json `exit: 0`, `sourcesUnchangedDuringRun: true`, `archiveSha256: e2003c0c649c02c8f299c18ac1b3caf9...`; legacy reference conquest 541 actions (163 attacks / 20 handoffs / 337 placements / seat2 wins) at both viewports (matches pre-T28).
+Worktree: `/home/diego/projects/malpaco-work/128-review-0711a802`
+HEAD: `e7133a0a1375cbbf92ab93dc9c56fd39ce989c2e`
+Diff against origin/main: 333 files, +17,020 / -7 (RUN-NOTES.md, `docs/prototypes/new-game/T28/**`, `src/ui/{battleController,battleView,referenceBattleGame}.ts`, `src/styles.css`, three test files).
+Bonus: `npm test` → 471/471 passed (30 files); `npm run build` → exit 0. My 11 controller and 4 view/host actual-source mutations each fail a green baseline at the expected assertion and restore byte-exact (file SHA256s match the recorded `90a4bc…` / `65cba85…` baselines).
+
+Final pass done.
+
+R1: Follow-up — `src/ui/battleController.ts:88` `select` refuses mid-running selection via `|| this.current.running`, but the existing suite exercises it only through pause/disposal paths; a custom mutation removing just the `this.current.running` clause makes 14/15 unit tests still green (battle-controller.test.ts stale callback aside). My independent probe with a one-off `select-during-running` test reaches the assertion and shows the guard is functional, but no production failure observed; not blocking, file under hardening alongside R2.
+R2: Follow-up — `src/ui/battleController.ts:103` `setThreshold` rejects negative / non-safe-integer input (`value < 1`, `!Number.isSafeInteger(value)`), yet the existing tests cover only the happy path and the `paused`/`running` clauses; removing the value-shape guards leaves existing tests green (and `clamp`/`effectiveThreshold` math still bounds the engine state). My independent `setThreshold` value-edge probe shows the guards are functional. Same severity as R1, no current bypass; harden alongside R1.
+R3: Follow-up — `src/ui/referenceBattleGame.ts:90` `host` rebuilds `end` and a phase-gated `start` button on every render() with the new `revision` captured; `start.addEventListener("click", () => this.controller.dispatch({ kind: "endReinforcement" }, revision))` relies on the controller's `accepts(revision)` to reject stale clicks, but the start button only exists during `reinforce` and `apply` itself returns `{ok: false}` for `endReinforcement` outside that phase, so a removal of the `revision` capture from `start` does not break any current assertion (10/10 browser and 15/15 unit green). Defensive order, not a current bypass, harden when R1/R2 are addressed.
+
+approve

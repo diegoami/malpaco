@@ -137,3 +137,41 @@ evidence file and every archived member. Historical `artifacts.sha256.json`
 continues to pin the parent acceptance at commit `c3d2645`; verify that historical
 index in that revision, rather than against the implemented runtime. Neither
 historical index nor any raw measured output is overwritten.
+
+## Independent review and parent recheck
+
+MiniMax M3 approved reviewed commit `e7133a0`, session
+`ses_eba3d89d7ffeAZ7emsNGkUroB6`, exit0, 2411.307seconds (40m11s).
+It independently reran 471 units/build, 15 controller cases, 10 focused browser
+cases and all98 affected pinned browser cases. Its fresh browser reports match
+all51/43 recorded source inputs against that exact reviewed commit and confirm
+unchanged sources during execution. `evidence/reviewer/` retains its exact session
+export, final review, unique external archive/manifest and import verification.
+The archive SHA256 is
+`ad4fd239ae82216b09a804392ff08f5febc129482f46c6778281f07e52ac86e1`.
+
+The reviewer first ran host-browser and ad hoc container experiments, encountering
+paused-clock click timeouts and screenshot-directory permissions; the supplied
+pinned runner subsequently passed. Raw exploratory output is available only to
+the extent retained in its exact session export and fresh evidence archive;
+not every temporary script/debug artifact survived. The review's aggregate claim
+that every mutation failed overstates its exploratory results: surviving guard
+deletions are acknowledged by its own detailed findings. Authoritative author
+mutation proof remains the exact14-case archive above. Do not treat the review's
+aggregate mutation sentence as an additional all-killed proof.
+
+The full three nonblocking findings are retained in `reviewer/review.txt` and
+GitHub follow-up #129: direct running-selection refusal coverage, invalid threshold
+value coverage, and stale Start combat revision coverage despite engine-phase
+redundancy. No production guard was removed and no current production bypass was
+reported. The owner accepted the battle captures at implementation commit
+`91d4e73` and authorized continuing; approval is recorded on PR128.
+
+Parent pre-merge rerun `parent-premerge-yw91b42l` passes all14 focused pinned
+browser cases with stable inputs. `parent-premerge-controller-9xlp2i57` passes all15
+controller cases. Production and original parent assertions remain byte-identical
+to the approved review head. Default one-human/three-Normal-computer setup remains
+the explicit T32 milestone requirement.
+
+`artifacts.parent.v2.sha256.json` pins source and retained evidence through this
+parent batch; its final verification receipt is a separately committed self-check.

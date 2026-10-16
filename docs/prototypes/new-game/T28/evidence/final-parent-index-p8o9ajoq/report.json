@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T28/verify-evidence.py",
+    "artifacts.parent.v2.sha256.json"
+  ],
+  "exit": 0,
+  "stdoutTail": "Verified 412 files and 1357 archived members\n",
+  "stderrTail": "",
+  "archiveSha256": "1226680d389e2137922813e81a6f11418aece8967ecb489ad976697451cb114f",
+  "archiveMemberHashes": {
+    "stdout.txt": "a0779f76f724835948e8202f8c1cf9a4b2f0f6531c4f59fce70b997722833502",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
