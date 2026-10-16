@@ -32,6 +32,11 @@ export function captureChoiceRules(): RuleSet {
   return { ...rules, id: "malpaco-capture-choice", combat: { ...rules.combat, capture: "choice" } };
 }
 
+/** Pinned core-rules.md Movement, ae298e37: one adjacent move ending the turn. */
+export function friendlyMoveRules(): RuleSet {
+  return { ...captureChoiceRules(), id: "malpaco-friendly-move", movement: "adjacent" };
+}
+
 /** Classic combat remains available to the legacy spike entry points. */
 export function classicRules(): RuleSet {
   return {

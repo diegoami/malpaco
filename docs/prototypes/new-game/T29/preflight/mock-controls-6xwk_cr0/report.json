@@ -1,0 +1,121 @@
+{
+  "records": [
+    {
+      "name": "baseline",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "quantity",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "adjacency",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "conservation",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "handoff",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "preset",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "restored",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    }
+  ],
+  "archives": {
+    "raw-logs.tar.gz": {
+      "sha256": "fd15a4f6fcac4f9eda87c8956c70f40703596f778bd8ef9c7e9882535c11bd03",
+      "members": {
+        "baseline/stdout.txt": "f9e8bd0f363ea204c80ff6c28cf7f6fd08d03f9d0d057218bf5adef508d22e98",
+        "baseline/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "quantity/stdout.txt": "fb9c5c3200a8d6c3aebff5b5a36d1a30ab0e2b2fcefb44452cb5ad85eee3e878",
+        "quantity/stderr.txt": "f1502cdd9e1b6ba8cfc1513202111a4a2c2910eb6b5bb8a5f1592a5ebd9fa782",
+        "adjacency/stdout.txt": "95d2b833b9b5fd149ddda9840e64e64e3389ef0d452fa5ebabf256976b5e724b",
+        "adjacency/stderr.txt": "a4dc7b60b8fc97b7fae805048330526ebee4361a3a841d15744eacfe8aa2a7a0",
+        "conservation/stdout.txt": "b73b0028bdcb1b173123598c9cb4918eef9241e3d22df0e3cf20099185d83592",
+        "conservation/stderr.txt": "c00634c9cc753ae6da5a572d8c87c30b87b68eef14e862828b35527ddbb0002b",
+        "handoff/stdout.txt": "00ab29b1597801c204b56d29c0fc532ef12bc022ec486dbb56bdc96e9b4b9bb1",
+        "handoff/stderr.txt": "01a0e3efa8f70618eaaa0f36953f3cabfd077ea831a22dfcecc05d606c6b29b9",
+        "preset/stdout.txt": "63d01c315f87a24306a0dedd50b49d495b130b0c2c6b02a4902bea925bbcdfb4",
+        "preset/stderr.txt": "4296a9ae9d455d50af8249b368295429030241b1a209d6e2dc266b061a97ed29",
+        "restored/stdout.txt": "3f0ca7b0a3868e1122c5bc43ffd33540b2d0f428cc7b2c70685ae8c8a5e40d41",
+        "restored/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "sources.tar.gz": {
+      "sha256": "ceb568867bcdfc1d736d1252be39e1c7859af16734ce52daa7a4f0b3ed0bec0e",
+      "members": {
+        "baseline/rules.ts": "877dd9b6177df03d715cfa01dc0ac3a8ef44e5c8089b8460ef55254561cddbf1",
+        "quantity/rules.ts": "e455424c913493d9fb9984e95636ac5ee09bbccd723a021015a52b6a04fabbc1",
+        "adjacency/rules.ts": "7d517541fb0a512612ef9d5e42b5b94d77e3f8c894448de964c05298b30ad478",
+        "conservation/rules.ts": "2ed04f4e299fa1e9254c3358cb8df0b25f494f4ad70b994fc212e0d805c805f0",
+        "handoff/rules.ts": "99a574d04f52b9be990bbfb524a3bae93baa50945a465c094223e302898d7417",
+        "preset/rules.ts": "28117de4da66b9406170b82788ac8b4029fa6df26a853d93ca15541a7d0d8bb8"
+      }
+    }
+  },
+  "restored": true
+}

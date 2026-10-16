@@ -1,0 +1,16 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/friendly-move.test.ts"
+  ],
+  "exit": 0,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t29-work\n\n\n Test Files  1 passed (1)\n      Tests  29 passed (29)\n   Start at  21:09:57\n   Duration  228ms (transform 68%, tests 19%, import 11%, worker 2%)\n\n",
+  "stderrTail": "",
+  "archiveSha256": "5d131053e4ac256b69ef1678888e9ae25c301401ea69245c7d3846c0eeed10c6",
+  "archiveMemberHashes": {
+    "stdout.txt": "edbc3351caed66a73bc3e1df964eb250eaf1149838a7192c3299f75a9a6c5325",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

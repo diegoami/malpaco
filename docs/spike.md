@@ -559,14 +559,14 @@ not visual parity or fun. Evidence/reproduction: [T26](prototypes/new-game/T26/R
 
 The ordinary action `{kind:"captureMove",amount?:number}` chooses the **total** moved into the captured country, including that first army. Bounds are one through all but one of the surviving source armies; omission selects the maximum. Only the remaining difference transfers, with no extra RNG draws or stack cap. Pending choices block all other commands, including end-turn. A completed choice returns to attacks, so its target can make a chained capture. Elimination occurs at ownership change; this preset checks conquest at end-turn before advancing the seat or computing income.
 
-`createReferenceGame(map,options,rules?)` accepts the preset explicitly. T28 selects it on the default reference route; `battle=legacy` preserves the T26 UI and its exact assertions/goldens. Existing `malpacoRules()`, Classic, generated/authored routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 owns their full save integration. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
+`createReferenceGame(map,options,rules?)` accepts the preset explicitly. The default reference route now extends it with T29 friendly movement; `battle=legacy` preserves the T26 UI and its exact assertions/goldens. Existing `malpacoRules()`, Classic, generated/authored routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 owns their full save integration. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
 
 Acceptance and actual-source mutation evidence, exact restoration records, pinned legacy browser captures and portable hash verification are retained in `docs/prototypes/new-game/T27/`.
 
 ## Reference battle controls (T28)
 
 The default `?view=reference-game` is an explicitly developmental, all-human setup
-for the approved Nine Isles map. It uses the capture-choice preset. The intended
+for the approved Nine Isles map. Its friendly-move preset extends capture choice. The intended
 one-human/three-computer game setup belongs to T32; reference save/load belongs
 to T31. Other routes and their saves retain their prior behavior.
 
@@ -600,3 +600,32 @@ visible beside the board at both desktop sizes. The outcome remains visible
 after Stop and move-in. Passing unit/browser checks establish these behaviors;
 the owner judges readability and pacing from the retained captures in
 [T28](prototypes/new-game/T28/README.md).
+
+
+## One friendly move ending the turn (T29)
+
+`friendlyMoveRules()` adds the pinned [Movement rule](https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#movement)
+to explicit capture choice on the default reference route. The ordinary action
+`{kind:"friendlyMove",from,to,amount?}` transfers between owned neighbours while
+leaving one at the source; omitted quantity means all-but-one. Land and sea links
+share the same declared graph. The transfer immediately runs the existing end-turn
+logic, including conquest before next-seat income. No RNG draw or extra log event
+is introduced; the action itself records the move, followed by ordinary turn logs.
+Classic, malpacoRules, captureChoiceRules and their legacy routes remain unchanged.
+
+**Move armies** opens a transient UI draft: eligible own sources are marked,
+then the selected source's own neighbours. Sea-route emphasis follows that same
+legal target set. The panel shows both countries and counts, range/default,
+minimum/maximum, minus/plus and typed quantity. **Move and end turn** confirms;
+**Skip move · end turn** hands off without transfer. **Cancel** or Escape restores
+the previous battle selection/outcome and spends no engine action or game RNG.
+The draft remains in the engine's attack phase; it is not a recorded intermediate
+turn phase. Battle actions are gated until the draft is cancelled or completed.
+Controls capture revisions; replacement/disposal discards old drafts. Captured
+countries can participate after their explicit capture quantity is confirmed.
+
+The UI protocol follows pinned ui.md “The move and the end of the turn”; its
+transient representation is an implementation choice. Reference save integration
+remains T31 and default one-human/three-Normal-computer turns remain T32. Acceptance,
+lossless initial negatives/disposable mock evidence and actual implementation
+captures are under [T29](prototypes/new-game/T29/README.md).

@@ -1,8 +1,9 @@
-import { activePlayer, attackTargets, ownerOf, whyNot } from "../core";
+import { activePlayer, attackTargets, friendlySources, friendlyTargets, ownerOf, whyNot } from "../core";
 import type { GameMap, GameState } from "../core";
 import { BattleController } from "./battleController";
 import type { BattleSpeed } from "./battleController";
 import { BattleView } from "./battleView";
+import { FriendlyMoveView } from "./friendlyMoveView";
 import { h } from "./dom";
 import { Panel } from "./panel";
 import { ReferenceMapView } from "./referenceMapView";
@@ -16,12 +17,14 @@ export class ReferenceBattleGame {
   private readonly mapView: ReferenceMapView;
   private readonly panel: Panel;
   private readonly battle: BattleView;
+  private readonly friendly: FriendlyMoveView;
   private readonly phaseActions: HTMLElement;
   private hover: string | null = null;
   private mounted = false;
   private disposed = false;
   private readonly onKeyDown = (event: KeyboardEvent) => {
     if (event.key !== "Escape") return;
+    if (this.controller.cancelFriendlyMove()) return;
     if (!this.controller.stop()) this.controller.select(null, null);
   };
 
@@ -49,7 +52,8 @@ export class ReferenceBattleGame {
     });
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
     this.battle = new BattleView(this.controller);
-    this.panel.el.querySelector(".action")!.append(this.battle.el);
+    this.friendly = new FriendlyMoveView(this.controller);
+    this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el);
   }
 
   mount(root: HTMLElement): void {
@@ -74,8 +78,11 @@ export class ReferenceBattleGame {
 
   private clickProvince(id: string): void {
     if (this.disposed) return;
-    const { state, from, to } = this.controller.view;
-    if (state.phase === "reinforce") {
+    const { state, from, to, mode } = this.controller.view;
+    if (mode === "move") {
+      if (from && friendlyTargets(state, from).includes(id)) this.controller.select(from, id);
+      else this.controller.select(id === from ? null : id, null);
+    } else if (state.phase === "reinforce") {
       this.controller.dispatch({ kind: "reinforce", province: id, amount: 1 });
     } else if (ownerOf(state, id) === activePlayer(state)?.id) {
       this.controller.select(from === id && to === null ? null : id, null);
@@ -85,21 +92,29 @@ export class ReferenceBattleGame {
   }
 
   private renderMap(): void {
-    const { state, from, to, running, paused } = this.controller.view;
+    const { state, from, to, running, paused, mode } = this.controller.view;
     const blocked = running || paused || state.pendingCapture !== undefined || state.phase === "finished";
-    this.mapView.render({ state, selected: from, target: to, targets: !blocked && from ? attackTargets(state, from) : [], hover: this.hover, flash: [] });
+    const targets = blocked ? [] : mode === "move" ? from ? friendlyTargets(state, from) : friendlySources(state) : from ? attackTargets(state, from) : [];
+    this.mapView.render({ state, selected: from, target: to, targets, hover: this.hover, flash: [] });
+    if (mode === "move") {
+      for (const route of this.mapView.el.querySelectorAll<SVGPolylineElement>(".lane")) {
+        const ends = route.dataset["edge"]!.split("|");
+        route.classList.toggle("active", from !== null && ends.includes(from) && ends.some(id => id !== from && targets.includes(id)));
+      }
+    }
     // Countries remain reachable for inspection and refusal feedback; the pure
     // controller refuses selection during automation and a pending move-in.
     this.mapView.el.dataset["inputBlocked"] = String(blocked);
   }
 
   private render(): void {
-    const { state, from, to, running, paused, revision } = this.controller.view;
+    const { state, from, to, running, paused, revision, mode } = this.controller.view;
     this.renderMap();
     this.panel.render({ state, from, to, blocked: from && to ? whyNot(state, from, to) : "Choose a source and target.", seed: this.seed,
       hint: state.phase === "reinforce" ? state.reinforcementPool ? "Place your armies on your countries, then start combat." : "All armies placed. Start combat when ready." : "",
     });
     if (state.phase === "capture") this.panel.el.querySelector("#turn-phase")!.textContent = "Capture move-in";
+    if (mode === "move") this.panel.el.querySelector("#turn-phase")!.textContent = "Friendly move";
     const action = this.panel.el.querySelector<HTMLElement>(".action")!;
     action.dataset["battle"] = String(state.phase !== "reinforce");
     // Phase controls also capture a revision; an old End turn cannot become a
@@ -110,7 +125,13 @@ export class ReferenceBattleGame {
     const end = h("button", { type: "button", id: "end-turn-button", disabled: running || paused || state.phase !== "attack" });
     end.textContent = "End turn";
     end.addEventListener("click", () => this.controller.dispatch({ kind: "endTurn" }, revision));
-    this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end);
+    const move = h("button", {type:"button", id:"start-friendly-move-button", disabled:running || paused || friendlySources(state).length === 0}, "Move armies");
+    move.style.display = state.phase === "attack" ? "" : "none";
+    move.addEventListener("click", () => { this.controller.startFriendlyMove(revision); });
+    this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, move);
+    this.phaseActions.style.display = mode === "move" ? "none" : "";
     this.battle.render(this.controller.view);
+    if (mode === "move") this.battle.el.hidden = true;
+    this.friendly.render(this.controller.view);
   }
 }
