@@ -1,0 +1,149 @@
+{
+  "runs": [
+    {
+      "phase": "baseline",
+      "command": [
+        "node",
+        "docs/prototypes/new-game/T62/probe.mjs"
+      ],
+      "exit": 1
+    },
+    {
+      "phase": "baseline",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=attachment",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 1
+    },
+    {
+      "phase": "baseline",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=water",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 1
+    },
+    {
+      "phase": "baseline",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=traceability",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 1
+    },
+    {
+      "phase": "baseline",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=preserved",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 1
+    },
+    {
+      "phase": "mock",
+      "command": [
+        "node",
+        "docs/prototypes/new-game/T62/probe.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "mock",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=attachment",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "mock",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=water",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "mock",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=traceability",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "mock",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=preserved",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "bypass",
+      "command": [
+        "node",
+        "docs/prototypes/new-game/T62/probe.mjs"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "bypass",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=attachment",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 1
+    },
+    {
+      "phase": "bypass",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=water",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 1
+    },
+    {
+      "phase": "bypass",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=traceability",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 1
+    },
+    {
+      "phase": "bypass",
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern=preserved",
+        "docs/prototypes/new-game/T62/contract.test.mjs"
+      ],
+      "exit": 1
+    }
+  ],
+  "mockFilesRemoved": true
+}

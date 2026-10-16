@@ -455,3 +455,6 @@ Main session implements, MiniMax M3 reviews, per owner 2026-10-16. Plan: reprodu
 T61 correction: dot-product denominator avoids sqrt/square rounding. All 93 tests pass; projection, gap-bypass and overlap-bypass mutants killed and geometry bytes restored. Existing tolerance/checker/test files unchanged.
 END T61 implementation: one-line projection correction; 93 checks green, three killed mutants. All files owned; old T25 machine-local draft unavailable, published T25 retained instead and disclosed. Await independent MiniMax review and green final CI.
 T61 MiniMax M3 approved commit 999793b, R1 informational: synthetic controls already passed; retained A is the bug trip-wire. Parent found raw-log whitespace missed by working-tree-only git diff --check; retained four exact logs in lossless archive with member hashes, loose originals ignored. No geometry/test changes after review.
+
+## T62 parent preflight
+Owner selects native Sol High implementer and MiniMax M3 reviewer. Parent acceptance covers country attachment, water, route tracing and unaffected T24 guards. All five commands fail without implementation, pass on an explicitly fake equality mock, and four bypass groups reject an empty guard. Mock files removed; exact outputs retained in preflight raw archive. Numerical proposal and visual approval remain separate owner decisions.
