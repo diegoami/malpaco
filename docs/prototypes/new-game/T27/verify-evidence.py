@@ -2,7 +2,7 @@
 from pathlib import Path
 import hashlib,json,tarfile,sys
 root=Path(__file__).resolve().parent;repo=root.parents[3]
-m=json.loads((root/(sys.argv[1] if len(sys.argv)>1 else 'artifacts.v2.sha256.json')).read_text());sha=lambda b:hashlib.sha256(b).hexdigest()
+m=json.loads((root/(sys.argv[1] if len(sys.argv)>1 else 'artifacts.v3.sha256.json')).read_text());sha=lambda b:hashlib.sha256(b).hexdigest()
 files=members=0
 for part in m['parts']:
  p=repo/part['path'];assert sha(p.read_bytes())==part['sha256'],str(p)

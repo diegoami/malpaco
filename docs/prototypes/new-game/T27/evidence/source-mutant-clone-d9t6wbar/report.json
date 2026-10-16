@@ -1,0 +1,18 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/capture-choice.test.ts",
+    "tests/core/capture-choice-replay.test.ts",
+    "tests/core/capture-choice-compatibility.test.ts"
+  ],
+  "exit": 1,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t27-work\n\n \u276f tests/core/capture-choice-compatibility.test.ts (2 tests | 1 failed) 10ms\n   \u276f capture-choice compatibility seams (2)\n     \u00d7 clones the pending record independently without changing its total-quantity bounds 6ms\n\n Test Files  1 failed | 2 passed (3)\n      Tests  1 failed | 22 passed (23)\n   Start at  18:19:43\n   Duration  207ms (transform 74%, tests 12%, import 12%, worker 2%)\n\n",
+  "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/core/capture-choice-compatibility.test.ts > capture-choice compatibility seams > clones the pending record independently without changing its total-quantity bounds\nAssertionError: expected { from: 'sulo', to: 'frostkabo', \u2026(3) } not to be { from: 'sulo', to: 'frostkabo', \u2026(3) } // Object.is equality\n\nCompared values have no visual difference.\n\n \u276f tests/core/capture-choice-compatibility.test.ts:34:37\n     32|     expect(copy).toEqual(state);\n     33|     expect(copy.pendingCapture).toEqual({ from: \"sulo\", to: \"frostkabo\u2026\n     34|     expect(copy.pendingCapture).not.toBe(state.pendingCapture);\n       |                                     ^\n     35|   });\n     36| });\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n",
+  "archiveSha256": "165e8430fd080252a098669874232f5979e3d1a6c350de77c50f6262ba7a11d7",
+  "archiveMemberHashes": {
+    "stdout.txt": "a5eff3904f4d75f8d96ff7d0b3b2b2ca450ee481d45b6cc30e9b68e74a16b1ec",
+    "stderr.txt": "57eeb00c85edd2f7466e8d8f33bda52c642719dfa8a5c8864a1ecbddf01bde50"
+  }
+}

@@ -87,7 +87,7 @@ The ordinary reference game reaches conquest after541 actions at each size
 tests and core bytes; raw output, HTML report and legacy screenshots are in
 its archive, with reference captures stored beside it.
 
-Current portable index: `artifacts.v2.sha256.json` plus its referenced shards.
+Current portable index: `artifacts.v3.sha256.json` plus its referenced shards.
 Run `python3 docs/prototypes/new-game/T27/verify-evidence.py` and
 `python3 docs/prototypes/new-game/T27/verify-preflight.py` from any checkout.
 The index excludes itself and the subsequent verification command's own
@@ -95,3 +95,8 @@ receipt to avoid a recursive checksum; the receipt is separately committed.
 
 The immutable v1 index verifies implementation revision `92cc02c`; v2 adds
 this historical reproduction clarification and the preceding verification receipt.
+
+Main independently repeated all8 actual-source mutations after reading Sol's
+final handoff (`parent-audit-1dsrjx7p`, source-mutations-u2f60y__). Baseline23
+cases passed, all8 deletions failed their intended assertions, and all4 source
+files restored exactly. The v3 index includes these fresh parent outputs.

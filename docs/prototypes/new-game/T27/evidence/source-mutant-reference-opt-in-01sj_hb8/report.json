@@ -1,0 +1,18 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/capture-choice.test.ts",
+    "tests/core/capture-choice-replay.test.ts",
+    "tests/core/capture-choice-compatibility.test.ts"
+  ],
+  "exit": 1,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t27-work\n\n \u276f tests/core/capture-choice-compatibility.test.ts (2 tests | 1 failed) 12ms\n   \u276f capture-choice compatibility seams (2)\n     \u00d7 opts the reference factory in without changing legacy defaults or consuming setup draws 8ms\n\n Test Files  1 failed | 2 passed (3)\n      Tests  1 failed | 22 passed (23)\n   Start at  18:19:43\n   Duration  203ms (transform 73%, tests 13%, import 12%, worker 2%)\n\n",
+  "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/core/capture-choice-compatibility.test.ts > capture-choice compatibility seams > opts the reference factory in without changing legacy defaults or consuming setup draws\nAssertionError: expected { id: 'malpaco', \u2026(4) } to be { id: 'malpaco-capture-choice', \u2026(4) } // Object.is equality\n\n- Expected\n+ Received\n\n@@ -4,20 +4,20 @@\n      \"attackRule\": \"classic\",\n      \"attackerDice\": {\n        \"max\": 1,\n        \"minus\": 1,\n      },\n-     \"capture\": \"choice\",\n+     \"capture\": \"all\",\n      \"defenderDice\": {\n        \"max\": 1,\n        \"minus\": 0,\n      },\n      \"failurePenalty\": \"none\",\n      \"minArmiesToAttack\": 2,\n      \"ties\": \"reroll\",\n    },\n-   \"id\": \"malpaco-capture-choice\",\n+   \"id\": \"malpaco\",\n    \"setup\": {\n      \"distributionPool\": 10,\n      \"shortStackBonus\": 1,\n      \"startingArmies\": 1,\n    },\n\n \u276f tests/core/capture-choice-compatibility.test.ts:24:34\n     22|     if (!legacy.ok || !explicit.ok) throw new Error(\"reference deal fa\u2026\n     23|     expect(legacy.state.rules).toEqual(legacyRules);\n     24|     expect(explicit.state.rules).toBe(choiceRules);\n       |                                  ^\n     25|     expect({ ...explicit.state, rules: legacy.state.rules }).toEqual(l\u2026\n     26|     expect(malpacoRules()).toEqual(legacyRules);\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n",
+  "archiveSha256": "d66e17eaa4552e9be29ed1af98836716ba203664c0480bdadb0f4d057190d419",
+  "archiveMemberHashes": {
+    "stdout.txt": "7112c5e2cf15a899f2df091ce920538d242d5917f753ea0a669a035db8af9cff",
+    "stderr.txt": "7dd650b00039f2ceb626fe7e63adc925070f9b1530edeee94660223c897103a6"
+  }
+}
