@@ -38,9 +38,10 @@ wholesale rewrite. Use original code/assets; no predecessor evidence enters here
 
 | Tasks | Deliverable | Boundary |
 | --- | --- | --- |
-| T23–T25, T60, adoption #115 | Rules inventory, geography contract, coast-first seed-1994 reference | Owner-selected A supplies the direction; explicit endpoint-contract adoption and numerical correction precede integration. |
+| T23–T25, T60–T63 | Rules inventory, geography contract, coast-first seed-1994 reference | T61 fixes numeric residuals; T62 defines coast-entry criteria; T63 packages accepted A before integration. |
 | T26–T33 | Reference-board playable milestone | Thin playable screen first, then capture choice, movement, victory, replay and baseline computers. The reference board is a temporary development fixture. |
 | T34–T36 | General generated geography | Island subdivisions, crossings/fairness, then wide-seed and browser acceptance. No changes to agreed limits to improve success rates. |
+| T64–T65 | Later natural coastlines and shared borders | After T36, preserve ports/corridors/topology and usability; optional visual terrain #119 is separate. Does not block T33. |
 | T37–T41 | Cards end to end | Deck/draw first, then sets, targeted effects, human UI and computer continuation. |
 | T42–T43 | Events end to end | Pure mechanics/replay precede event presentation. |
 | T44–T46 | Complete setup and lifecycle | Options, local autosave, resignation and exactly-once records. |
@@ -69,11 +70,12 @@ and a measurable boundary (process §2).
    A on 2026-10-16: co-design entrance coasts, ports and water corridors instead
    of routing after freezing generic island subdivisions. Preserve its exact
    46-country, 61-land-edge, 15-sea-link topology. Explicitly adopt its endpoint
-   contract and resolve numerical boundary residuals in #115 before T26; do not
+   contract in T62, correct numerical residuals in T61 and package the accepted
+   fixture in T63 before T26; do not
    claim exploratory A passes the old midpoint requirement. T59 remains valuable
-   comparative evidence, not the selected reference. Later visual postprocessing
-   (#111) improves coastlines and shared region borders, with optional original
-   rivers/mountains as decoration; preserve route clarity, topology and usability.
+   comparative evidence, not the selected reference. Later T64/T65 postprocessing
+   improves coastlines and shared region borders; optional original rivers or
+   mountains (#119) are separate decoration. Preserve route clarity, topology and usability.
    The owner also assesses the integrated result before broader implementation.
 4. T33 requires owner assessment of actual play and appearance before expanding
    the implementation. General generation remains required for T36 and release.
@@ -107,4 +109,7 @@ Run focused checks locally while iterating. Documentation-only planning pushes
 use `[skip ci]` as requested by the owner; no workflow or required check is disabled.
 Implementation PRs need the normal green CI before merging. Batch draft evidence
 pushes rather than triggering a full browser/release matrix for every experiment.
-This roadmap does not create a CI-infrastructure task or spend benchmark CI minutes.
+The separately triaged T66/T67 contracts implement the owner's CI-efficiency
+request: per-PR cancellation first, conservative planning-only classification
+second. Neither removes normal implementation checks or dispatches experiments
+as part of planning. Backlog preparation uses skip-ci and starts no implementation.
