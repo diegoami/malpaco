@@ -1,0 +1,437 @@
+{
+  "records": [
+    {
+      "name": "unit-baseline",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "browser-baseline",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t29-work/docs/prototypes/new-game/T29/run-browser.py",
+        "actual-browser-baseline",
+        "--suites",
+        "tests/e2e/friendly-move.spec.ts,tests/e2e/friendly-feedback.spec.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "quantity",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "leave-one",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "adjacency",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "ownership",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "phase",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "preset",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "handoff",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "conservation",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "default",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "rng",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "revision",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "selected-pair",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "hidden-confirm-combined",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "running-entry",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "paused-entry",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "cancel-context",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "replacement-mode",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "disposed-mode",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "route-feedback",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t29-work/docs/prototypes/new-game/T29/run-browser.py",
+        "actual-mutant-route-feedback",
+        "--suites",
+        "tests/e2e/friendly-feedback.spec.ts",
+        "--project",
+        "1280x800",
+        "--grep",
+        "movement route"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "escape-cancel",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t29-work/docs/prototypes/new-game/T29/run-browser.py",
+        "actual-mutant-escape-cancel",
+        "--suites",
+        "tests/e2e/friendly-feedback.spec.ts",
+        "--project",
+        "1280x800",
+        "--grep",
+        "Escape"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "quantity-default",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t29-work/docs/prototypes/new-game/T29/run-browser.py",
+        "actual-mutant-quantity-default",
+        "--suites",
+        "tests/e2e/friendly-move.spec.ts",
+        "--project",
+        "1280x800",
+        "--grep",
+        "friendly maximum"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "unit-restored",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/friendly-move.test.ts",
+        "tests/ui/friendly-move-controller.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "browser-restored",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t29-work/docs/prototypes/new-game/T29/run-browser.py",
+        "actual-browser-restored",
+        "--suites",
+        "tests/e2e/friendly-move.spec.ts,tests/e2e/friendly-feedback.spec.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    }
+  ],
+  "archives": {
+    "raw-logs.tar.gz": {
+      "sha256": "3af38bf8cfddc93c0f00f36f35b9e21bd55162c6ddec6af194abe78d0687deb5",
+      "members": {
+        "unit-baseline/stdout.txt": "f0942bce283ec9055e6eaeca18d5cd9043269c938bb0cbc13320902add0614cb",
+        "unit-baseline/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "browser-baseline/stdout.txt": "1be20d1812faa113d8fa9afab8fc786d18ab5a08f518ff3663f963a94dbe0e95",
+        "browser-baseline/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "quantity/stdout.txt": "5f4d709084dad2f46b057e050af4c2ad1d39eeb7dae49d6ae0a11de00ef0595e",
+        "quantity/stderr.txt": "e64f5cd24084ac60255a3365e781256dd93b0ba44a53821c788a20f5bb6c9b2e",
+        "leave-one/stdout.txt": "30afca9b4db46fb86d0157cdf37764bffe4a7a7527c27852188b7225a9a35539",
+        "leave-one/stderr.txt": "f6c3203d574cf265b956939412c099ade9ecd18f1fbd61a05d843971d5036d14",
+        "adjacency/stdout.txt": "ad4432251d39adff3f3526da7e4d6441d0f4d41b303a52f35e25d180c718dae3",
+        "adjacency/stderr.txt": "503d86dd7a1681e89f70948a1bcb280f76b37368e2964e7ef4d0e81575602d18",
+        "ownership/stdout.txt": "bc27529323309d5961938f48d2d050b50c69b7a14feda9c73e70f8211700dc92",
+        "ownership/stderr.txt": "83e066e1498c290cad4e6891192fbc758ea8c1c8bdd4d7d90a2f5a66e61c9fef",
+        "phase/stdout.txt": "8d560b8a1f3724cac2664023046a733a7f96c4a83f2fe5e9a07516793746dc5b",
+        "phase/stderr.txt": "971bc9609eb6f4dfefd8b90b9dac1ea6e6def7b5868fa9d668e3e0ea0c809d49",
+        "preset/stdout.txt": "77579a0ad74c8c82e18ee0e5a308a828b703438600a7d4318bea52cc2bb47ae2",
+        "preset/stderr.txt": "4296a9ae9d455d50af8249b368295429030241b1a209d6e2dc266b061a97ed29",
+        "handoff/stdout.txt": "dc255f5f5de71579658291acc96e988e694b4ebc1b85160abe113d3f51a5c128",
+        "handoff/stderr.txt": "26080943cd031374069f41de0fd6f783862bc108d1bfb6bfec746c46a7b0ad0c",
+        "conservation/stdout.txt": "0b4fba6c90d4afacb2aa0fb25f5f762bcb653640d7fda9b22040b8f76eb162a1",
+        "conservation/stderr.txt": "c00634c9cc753ae6da5a572d8c87c30b87b68eef14e862828b35527ddbb0002b",
+        "default/stdout.txt": "927937f1cf80fcc6322707d1857d7e36dfcc70712c1abd6f364a05a6411341c1",
+        "default/stderr.txt": "3ec9683673f647fe5acbc91f9ba5fb3edb60567ce26265b39ffbf44f6a6d6379",
+        "rng/stdout.txt": "f0b6d0b09939709a2aed28be42eb7184050c58e4c887db2ae631dc406c2291f7",
+        "rng/stderr.txt": "fea2e27e4ed43abaa9c1e8c99e216b2c3ef9495fc6119cfa507cba9e42c3daa4",
+        "revision/stdout.txt": "7cb0a333663b4c8389c7d11412854218d847c5966c95b4d2c5816302edb652e8",
+        "revision/stderr.txt": "01045ae7e69a80604842fd0963c4834bf79f6d206a603a8d12eeee35336c16c0",
+        "selected-pair/stdout.txt": "2b28d75dbdf1f16c45f4d02d66456e35ca80775a0dbff116aedac94d3cb5b5c7",
+        "selected-pair/stderr.txt": "0587bbcb013bd67f5567c1ebf61593f7b54571065009c02042582eae2dd81eef",
+        "hidden-confirm-combined/stdout.txt": "22622c62c6cb82eef421102c1412467a1a2c0330b4ce6cb293de0e6bda78702b",
+        "hidden-confirm-combined/stderr.txt": "464970d7bd4fd8d88ce17748c8dbfc9848a603f7dd60bc5e5ec24f110e40e450",
+        "running-entry/stdout.txt": "7beb737c16b65f6028c498bf083fe9e6c7a1014fc956f0b9c18d9b1a7301621f",
+        "running-entry/stderr.txt": "1e91ddffa2e5599f32f03bb585c42c300831960edf45a8a2b82c94bdf17ef0c5",
+        "paused-entry/stdout.txt": "1d1b6fb81d077a7861ca5ce65948f168dbeb92a11fa18b778206c3f2ecf98bc5",
+        "paused-entry/stderr.txt": "0f89f75c3fb6ca42f65d95c1c309e901141c99a7d4587d9a78e902a0c41e81d4",
+        "cancel-context/stdout.txt": "c4fc135486f53705f8667bb8b46911a0180424f925df579989738e1b4567840e",
+        "cancel-context/stderr.txt": "f5fdc38848474c481ad68fc5801f34301065b078558cbea4ee10471329b7fed4",
+        "replacement-mode/stdout.txt": "308bd8168ebf195826d20d7cf641f3b71f365291be824c892eb6f24179cee5d9",
+        "replacement-mode/stderr.txt": "70a2c7616b3618b55191cd0bfde8ce40579fe599cc04f86b56de6bfbf99d88c2",
+        "disposed-mode/stdout.txt": "623687f0a95711da8d1677f984634fc85436dccdd53c9805f2ab4984ff2e42cb",
+        "disposed-mode/stderr.txt": "311fc626c2387d60824c39f3ede674ebed0d472bbe84d6d169f681ae5594edd8",
+        "route-feedback/stdout.txt": "94a79c4bd283d7822c9cde0a56f30e4e6dcdd13be4cfd3fd0013e0dcb3f9cb8a",
+        "route-feedback/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "escape-cancel/stdout.txt": "4e960f95c105fc4a8526348424f3b4d5e5d46b443a8dca2cc01e29991749b12f",
+        "escape-cancel/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "quantity-default/stdout.txt": "18d8feb9d18b7611518f545260b57dd63183690552d2294c1250c06bba597a89",
+        "quantity-default/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unit-restored/stdout.txt": "8626bcaecfe3033b9d873a37e1f76ba504d7d33385afb0617282b303a4ffa377",
+        "unit-restored/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "browser-restored/stdout.txt": "3a18423b1b53f803ff6f899fa2197501e0f748ef007a8ab9146c9aef30084f2d",
+        "browser-restored/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "source-snapshots.tar.gz": {
+      "sha256": "cfea307b97afdf996837d983784ab0eab9a49fa2753b29331bbf223b89070b61",
+      "members": {
+        "runner.py": "c22c605b61fb78835380e82d2cca4cf13c554803536e5e798b030192bf536ad0",
+        "baseline/src/core/movement.ts": "ef59529db0f70d17677af8d229c07a8cdb79bef5eac2d51f6790bd675cdfa323",
+        "baseline/src/core/rules.ts": "d40c5a91639c73dc72e0263d607d47f7afda722b76f229d78a48b993189f3e2b",
+        "baseline/src/ui/battleController.ts": "26156d3bb3587b305372b20b4bbb8a305b958903dd5384e381d85cd77c8ee16d",
+        "baseline/src/ui/referenceBattleGame.ts": "22d7ed7d24d49e001eb3dd0484f2fb7c75c227e3a56bf81b5e53c57842e3d856",
+        "baseline/src/ui/friendlyMoveView.ts": "b4f085d1a0e3e209708b41ca14e8e1abe584b562e2ca9aba58671b578d53b8f2",
+        "quantity/src/core/rules.ts": "7e14401379eed098b10ea8e6afa868f482b20b135cc781230df01c4b25bdbe49",
+        "leave-one/src/core/rules.ts": "0825f7a26e70d5528b0fc09f686bae72ebee2d1f4eb1e1c71387030ad895e086",
+        "adjacency/src/core/movement.ts": "0f67913967925ed16a5d6857d5a2af5e284980988c981b3bcedb0daa4ab92822",
+        "ownership/src/core/movement.ts": "dce49705270207da0ee0c8622bf8930132642aff97121573eac2971377d23d21",
+        "phase/src/core/movement.ts": "bf0dab91f467043248b5dfc909912e3e7a4d0c2351dcc74f3a93d252ecd6dbd7",
+        "preset/src/core/movement.ts": "502609bbc939f70b069e7586e3b5f5a214718b0b1b7d150fcc2758b27272defb",
+        "handoff/src/core/rules.ts": "e3a901986bdeaca71a279ca57cec582d2112180b0a15c8b30d99d67829ed57f8",
+        "conservation/src/core/rules.ts": "122998f6957fc2ce0e5951a0226e404fb46de6233485d34c9d9911971a85bd05",
+        "default/src/core/rules.ts": "971e3c92363c0fb61acb84ef56dc638eb77bb73d34be157ca1c12aa04ac3720e",
+        "rng/src/core/rules.ts": "f69dce01e358bbc72f55cbce310127ce51511fe4e313f0b7a47436d52abad83e",
+        "revision/src/ui/battleController.ts": "2eed4df1bd7868b6572261592ca00b533cde7e53ee8119c01b2da5ae1ff69b53",
+        "selected-pair/src/ui/battleController.ts": "309517c851cdd47793359fa9afeac16497edf02dcc29d22ba2b099b8030216c6",
+        "hidden-confirm-combined/src/ui/battleController.ts": "0507f319743cc75272207e0b42cd91b0031cfc8a69033258b5c773c9b704938e",
+        "running-entry/src/ui/battleController.ts": "243d629b284f627109c269223573d63bef02d284678c8f620e4e6ccf4ad9b287",
+        "paused-entry/src/ui/battleController.ts": "4b01fa94d3d04f78e3264126ab938b43276778aa6b8b183a3148c4d070976ab2",
+        "cancel-context/src/ui/battleController.ts": "eda0ffecf95a9aa75adc16b8d5357fb3946eb67d8f4050a247b446aab7c082e2",
+        "replacement-mode/src/ui/battleController.ts": "64ba20385d517bec8f4fa277989e559735428b09fa1944f32a429c206c1f383e",
+        "disposed-mode/src/ui/battleController.ts": "2f3d00493ebf7f876508d938ca280339d1ebb5bbb1976521e24ad6915b5ca75a",
+        "route-feedback/src/ui/referenceBattleGame.ts": "635e56b3d48a8beea0198e8c6ce277daa62abca4d514035fd292a299eb9a677e",
+        "escape-cancel/src/ui/referenceBattleGame.ts": "c9b79c4aab6e014d761e62b097af1fa9f8ccbd2b8ab0d87951fb61609a2b21ca",
+        "quantity-default/src/ui/friendlyMoveView.ts": "c752d087e9131dae5b0e3b7679507fe1317deb9641dd8df6694d654ae641f840"
+      }
+    }
+  },
+  "restoration": {
+    "src/core/movement.ts": true,
+    "src/core/rules.ts": true,
+    "src/ui/battleController.ts": true,
+    "src/ui/referenceBattleGame.ts": true,
+    "src/ui/friendlyMoveView.ts": true
+  }
+}

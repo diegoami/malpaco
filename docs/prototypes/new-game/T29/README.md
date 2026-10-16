@@ -64,3 +64,53 @@ proof. A bounded mixed-ownership-sea fixture then reached the actual mismatch
 (`negative-route-feedback-targeted-zkftw774`): one extra enemy route at both sizes.
 The same assertions pass after filtering emphasis by legal friendly targets.
 Existing battle/legacy rendering and all geometry stay unchanged.
+
+
+## Final author validation
+
+| Check | Result | Evidence under `evidence/` |
+| --- | --- | --- |
+| DW1 exact friendly core command |29 passed|`final-dw1-i7vxswh3`|
+| DW2 exact friendly browser suite |8 passed, both sizes|`final-dw2-jmuyxh09`|
+| Full units after strict omission handling |512 passed,33 files|`final-unit-strict-1bf3qvs1`|
+| Build/typechecks after strict handling |pass|`final-build-strict-tzus48q3`|
+| Every source browser suite |134 passed|`final-strict-full-source-xka0yiex`|
+| Fresh official package/extracted runtime |24 passed; checksums verified|`release-5d0ot5xx`|
+| Current actual-source mutants |22/22 caught; green baselines restored|`actual-mutations-6ibxnalv`|
+| Protected inputs |74 files byte-exact; old CSS/parent fixture exact prefixes|`protected-9l1bsecl`|
+
+The full browser run includes all original cases/goldens plus the12 new friendly
+cases; its input-stability flag is true. Legacy reference conquest remains541
+actions at each size. The extracted check includes new friendly12, generated
+preview8 and legacy reference4; it builds/typechecks the real current working-tree
+source, extracts a fresh official archive and verifies SHA256SUMS. Its commit
+metadata predates the final quantity-edge commit; exact source hashes, package
+and extracted bytes are retained. This is candidate verification, not a release.
+
+Quantity omission uses strict undefined: explicit null is refused. The original
+null counterexample fails in `negative-null-quantity-eivirzyj`; the corrected
+41-case focused group passes in `final-null-edges-faov04t_`. Additional edge cases
+cover a foreign source with enough armies and final conquest after completing
+the transfer, without next-seat income or advancement.
+
+The mutation tool saves all five actual files and restores them in finally.
+It tests quantity/leave-one/direct adjacency/ownership/phases/opt-in scope,
+turn handoff/conservation/default/null/RNG, revisions/selected pair/hidden
+confirmation/running and paused entry/cancel context/replacement/disposal,
+and browser route emphasis/Escape/default counter. A hidden-confirm deletion
+alone survived the first attempt because selected-pair defense still refused;
+that exact attempt/source/runner remains in `actual-mutations-833ibv6h` and is
+not an all-killed claim. The current combined deletion proves the protected
+invariant without removing either defense from production. Earlier21-case
+successful audit `actual-mutations-hijrlgob` predates the null check and remains
+historical; only the22-case final audit is authoritative for current source.
+
+The first full run used an existing retry-test fallback outside this task's output
+root. Twenty exact captures are losslessly archived in `retained-fallback-captures-*`;
+loose originals remain untouched outside the owned tree. The current runner sets
+all evidence environments to fresh owned directories. No old task files change.
+
+The current portable index is `artifacts.implementation.v2.json`; verify it with
+`python3 docs/prototypes/new-game/T29/verify-evidence.py artifacts.implementation.v2.json`.
+Historical preflight v1 stays pinned to acceptance commit `d400f24`. Verification
+receipts are committed separately from the index they self-check.

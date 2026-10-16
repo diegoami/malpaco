@@ -122,7 +122,7 @@ function friendlyMove(state: GameState, from: string, to: string, requested: num
   const refusal = whyNotFriendlyMove(state, from, to);
   if (refusal) return { ok: false, error: refusal };
   const maximum = state.armies[from]! - 1;
-  const amount = requested ?? maximum;
+  const amount = requested === undefined ? maximum : requested;
   if (!Number.isSafeInteger(amount) || amount < 1 || amount > maximum) {
     return { ok: false, error: "Move a whole number of armies and leave at least one behind." };
   }
