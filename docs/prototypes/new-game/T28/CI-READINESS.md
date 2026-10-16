@@ -51,3 +51,5 @@ untouched. Current CI-correction index: `artifacts.ci.v3.sha256.json`.
 This corrects test readiness only. Independent review and owner acceptance of the
 production UI remain as recorded. The main session decides whether to rerun CI;
 the implementer did not invoke review, CI or merge.
+
+Parent independently verified all505 indexed files and1645 archive members and read the exact one-line assertion diff. Parent pinned rerun `parent-ci-readiness-xhra7y4u` passes the original reload/failure scenario at both viewports. No production or golden changes since review. Parent index `artifacts.final.v4.sha256.json` includes this final retained batch; its verification receipt is committed separately. A second full CI is justified by the diagnosed first-run readiness failure, rather than a blind retry.
