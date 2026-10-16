@@ -152,6 +152,7 @@ describe("rounds from the seeded origin and complete end-of-turn victory", () =>
     for (const [counts, totals, winner] of [
       [[13, 12, 11, 10], [13, 80, 30, 30], 0],
       [[12, 12, 11, 11], [30, 31, 40, 40], 1],
+      [[12, 12, 11, 11], [31, 30, 40, 40], 0],
       [[23, 23, 0, 0], [30, 31, 0, 0], 1],
     ] as const) {
       const state = layout(rotation(4, 0, { dominationWin: false, roundLimit: 20 }), counts, totals);

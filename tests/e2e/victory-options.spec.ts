@@ -30,7 +30,7 @@ async function clickAction(page: Page, action: CompleteAction) {
 }
 async function setup(page: Page, fixture: ReturnType<typeof plan>) {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/?view=reference-game");
+  await page.goto("/?view=reference-game&control=manual");
   await page.getByLabel("Seed", { exact: true }).fill("1994");
   await page.getByLabel("Human seats").selectOption(String(fixture.start.players.length));
   // Baseline can still reach the same deal/counts without missing controls;
