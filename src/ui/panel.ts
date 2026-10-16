@@ -97,12 +97,13 @@ export class Panel {
     const finished = state.phase === "finished";
     const winner = state.players.find((p) => p.id === state.winner);
     const result = state.result;
+    const titleSeat = result && winner ? state.players.indexOf(winner) : seat;
     const income = mover ? reinforcementIncome(state, mover.id) : { base: 0, islandBonus: 0, total: 0, provinceCount: 0 };
     const phase = state.phase === "reinforce" ? "Reinforcement" : state.phase === "attack" ? "Attack" : state.phase === "redeploy" ? "Handoff" : "Finished";
     this.el.dataset["phase"] = state.phase;
 
     this.turn.replaceChildren(
-      badgeIcon(seat),
+      badgeIcon(titleSeat),
       h(
         "div",
         {},
@@ -112,7 +113,7 @@ export class Panel {
           ...(finished || result ? [] : [`Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)])),
       ),
     );
-    this.turn.style.setProperty("--owner", seatLook(seat).color);
+    this.turn.style.setProperty("--owner", seatLook(titleSeat).color);
 
     this.score.replaceChildren(
       ...state.players.map((p, i) =>
