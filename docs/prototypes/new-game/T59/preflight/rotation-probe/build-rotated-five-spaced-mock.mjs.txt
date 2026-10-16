@@ -1,0 +1,128 @@
+// [designed] One hand-arranged reference, not a seed generator or a rate claim.
+// T22 supplies relative island placement; T24 supplies all rule/spacing limits.
+import { writeFileSync, mkdirSync, mkdtempSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { resolve, dirname } from 'node:path';
+import { source, opening, audit, failures } from '/home/diego/projects/malpaco/.cache/t25-work/docs/prototypes/new-game/T25/audit.mjs';
+import { inspect } from '/home/diego/projects/malpaco/.cache/t25-work/docs/prototypes/new-game/T24/contract.mjs';
+import { E, sharedLength, coastMidpoint, segmentPieces, location, distance, box, exposedSegments, onSegment, contained } from '/home/diego/projects/malpaco/.cache/t25-work/docs/prototypes/new-game/T24/geometry.mjs';
+import { parameters as P } from '/home/diego/projects/malpaco/.cache/t25-work/docs/prototypes/new-game/T24/parameters.mjs';
+import { html, svg } from '/home/diego/projects/malpaco/.cache/t25-work/docs/prototypes/new-game/T25/render.mjs';
+const root=dirname(fileURLToPath(import.meta.url));
+mkdirSync(resolve(root,'evidence'),{recursive:true});const output=mkdtempSync(resolve(root,'evidence/build-'));
+const placements={
+ island_0:[330,25],island_1:[625,15],island_2:[46,170],island_3:[628,328],
+ island_4:[314,162],island_5:[584,168],island_6:[12,308],island_7:[12,8],island_8:[278,314],
+};
+// [designed] Broad rounded silhouettes with two staggered rows. Column ends
+// are explicit coast vertices; shared-boundary arithmetic remains exact.
+const rows={3:[[83,83],[166]],5:[[105,105],[75,60,75]],7:[[84,84,84],[74,52,52,74]],10:[[82,54,54,54,82],[82,54,54,54,82]]};
+const heights={3:128,5:140,7:152,10:146};
+const board={seed:1994,bounds:{x:0,y:0,width:800,height:460},provinces:[],islands:[],routes:[]};
+function clip(poly,axis,value,less) {
+ const result=[];
+ for(let i=0;i<poly.length;i++) {
+  const a=poly[i],b=poly[(i+1)%poly.length],u=(a[axis]-value)*(less?1:-1),v=(b[axis]-value)*(less?1:-1);
+  if(u<=0)result.push(a);
+  if((u<0&&v>0)||(u>0&&v<0)){const t=u/(u-v);result.push([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]);}
+ }
+ return result;
+}
+for(const [index,original] of source.islands.entries()) {
+ const n=original.provinces.length,layout=rows[n],width=layout[0].reduce((a,b)=>a+b),height=heights[n],mid=height/2,[x,y]=placements[original.id];
+ const boundaries=[...new Set(layout.flatMap(row=>{let u=0;return [0,...row.map(w=>u+=w)];}))].sort((a,b)=>a-b);
+ const xs=[...new Set([...boundaries,...Array.from({length:25},(_,j)=>Math.round(width*j/24))])].sort((a,b)=>a-b);
+ const half=u=>mid*Math.pow(Math.max(0,1-Math.pow(Math.abs((u-width/2)/(width/2)),2.6)),1/2.6);
+ const top=xs.map(u=>[u,Math.round(mid-half(u))]);
+ const bottom=xs.slice(1,-1).reverse().map(u=>[u,Math.round(mid+half(u))]);
+ const polygon=[...top,...bottom];
+ const turn=original.id==='island_0'?-1:original.id==='island_7'?1:0;
+ const transform=([u,v])=>turn?[x+width/2+(u-width/2)*255/256-(v-mid)*turn*22/256,y+mid+(u-width/2)*turn*22/256+(v-mid)*255/256]:[x+u,y+v];
+ const island={...original,polygon:polygon.map(transform),bonus:0};board.islands.push(island);
+ let j=0;
+ for(const [r,row] of layout.entries()) {
+  let left=0;
+  for(const w of row) {
+   const id=original.provinces[j++],p=source.provinces.find(p=>p.id===id);
+   let cell=clip(clip(clip(clip(polygon,0,left,false),0,left+w,true),1,r*mid,false),1,(r+1)*mid,true);
+   // Insert the same T-junctions on both sides on the median.
+   cell=cell.flatMap((a,i)=>{const b=cell[(i+1)%cell.length];if(a[1]!==mid||b[1]!==mid)return [a];const between=boundaries.filter(u=>u>Math.min(a[0],b[0])&&u<Math.max(a[0],b[0]));if(b[0]<a[0])between.reverse();return [a,...between.map(u=>[u,mid])];}).map(transform);
+   const hint=transform([left+w/2,(r+.5)*mid]),limits=box(cell);let label=null,best=Infinity;
+   for(let py=Math.ceil(limits[1]+24);py<=limits[3]-24;py++)for(let px=Math.ceil(limits[0]+23);px<=limits[2]-23;px++) {
+    const score=(px-hint[0])**2+(py-hint[1])**2;if(score>=best)continue;
+    if(board.provinces.some(p=>Math.max(Math.abs(p.labelAt[0]-px),Math.abs(p.labelAt[1]-py))<P.labelGap))continue;
+    if(contained([[px-23,py-24],[px+23,py-24],[px+23,py+24],[px-23,py+24]],cell)){label=[px,py];best=score;}
+   }
+   if(!label){writeFileSync(resolve(output,'packing-failure.json'),JSON.stringify({id,cell,hint},null,2)+'\n');console.log(JSON.stringify({accepted:false,reason:`No 46x48 label rectangle in ${id}`,output}));process.exit(1);}
+   board.provinces.push({id,name:p.name,island:original.id,polygon:cell,labelAt:label,
+    borders:[],seaLanes:[],owner:opening.ownerOf[id],armies:opening.armies[id],production:opening.productionCentres.includes(id),hitSizeCss:P.hitSize,countTextCss:P.countTextMin,countContrast:P.contrastMin});
+   left+=w;
+  }
+ }
+}
+for(const p of board.provinces)p.borders=board.provinces.filter(q=>q.id!==p.id&&q.island===p.island&&sharedLength(p.polygon,q.polygon)>E).map(q=>q.id);
+const fixed=inspect(board),fixedErrors=['counts','degree','cells','borders','labels'].flatMap(k=>fixed[k].map(e=>`${k}: ${e}`));
+if(fixedErrors.length) {
+ writeFileSync(resolve(output,'fixed-geometry.json'),JSON.stringify({board,errors:fixedErrors},null,2)+'\n');
+ console.log(JSON.stringify({accepted:false,fixedErrors,output},null,2));process.exit(1);
+}
+
+function clear(a,b) {
+ if(distance(a,b)<=E)return false;
+ for(const island of board.islands) {
+  const parts=segmentPieces(a,b,island.polygon);
+  if(parts.pieces.some(p=>p.where>=0))return false;
+  if(parts.ts.some(t=>t>0&&t<1&&location([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t],island.polygon)>=0))return false;
+ }
+ return true;
+}
+const corners=board.islands.flatMap(i=>{const [x,y,r,b]=box(i.polygon);return [[x-3,y-3],[r+3,y-3],[r+3,b+3],[x-3,b+3]];});
+const adjacency=corners.map(()=>[]);
+for(let a=0;a<corners.length;a++)for(let b=a+1;b<corners.length;b++)if(clear(corners[a],corners[b])){adjacency[a].push(b);adjacency[b].push(a);}
+function waterPath(start,end) {
+ if(clear(start,end))return [start,end];
+ const nodes=[...corners,start,end],n=nodes.length,startIndex=n-2,endIndex=n-1,links=adjacency.map(ns=>[...ns]);links.push([],[]);
+ for(const k of [startIndex,endIndex])for(let i=0;i<k;i++)if(clear(nodes[k],nodes[i])){links[k].push(i);links[i].push(k);}
+ const costs=nodes.map(()=>Infinity),previous=[],done=new Set();costs[startIndex]=0;
+ for(let step=0;step<n;step++) {
+  let at=-1;for(let j=0;j<n;j++)if(!done.has(j)&&(at<0||costs[j]<costs[at]))at=j;
+  if(at<0||!Number.isFinite(costs[at]))break;
+  if(at===endIndex){const result=[];for(let k=at;k!==undefined;k=previous[k])result.unshift(nodes[k]);return result;}
+  done.add(at);
+  for(const j of links[at]){const next=costs[at]+distance(nodes[at],nodes[j]);if(next<costs[j]){costs[j]=next;previous[j]=at;}}
+ }
+ return null;
+}
+// [designed] A fixed, inspectable reference proposal. The extra four country
+// pairs connect existing local island neighbours instead of adding long bypasses.
+const links=[[7,2,0,0],[0,2,1,0],[2,1,4,2],[4,1,5,0],[6,2,8,0],[8,4,3,0],
+ [7,6,2,1],[2,2,6,1],[0,2,4,1],[4,2,8,0],[1,2,5,0],[5,2,3,0],
+ [6,6,8,5],[4,3,8,2],[5,4,3,1]];
+const byId=new Map(board.provinces.map(p=>[p.id,p]));
+const entrances=i=>i.provinces.filter(id=>byId.get(id).seaLanes.length);
+// [designed] Represent ports on their exact exposed segment using binary-rational
+// interpolation. This avoids roundoff slivers in intersection arithmetic while
+// remaining far inside T24's existing 1px midpoint tolerance (<=0.03px here).
+function port(p,destination) {
+ const middle=coastMidpoint(p,board,destination);if(!middle)return null;
+ const edge=exposedSegments(p,board).find(({a,b})=>onSegment(middle,a,b));if(!edge)return null;
+ const {a,b}=edge,dx=b[0]-a[0],dy=b[1]-a[1],t=((middle[0]-a[0])*dx+(middle[1]-a[1])*dy)/(dx*dx+dy*dy);
+ const u=Math.round(t*4096)/4096;
+ return [a[0]+dx*u,a[1]+dy*u];
+}
+const routeErrors=[];
+for(const [a,ap,b,bp] of links) {
+ const from=byId.get(board.islands[a].provinces[ap]),to=byId.get(board.islands[b].provinces[bp]);
+ const start=port(from,board.islands[b]),end=port(to,board.islands[a]);
+ const points=start&&end?waterPath(start,end):null;
+ if(!points){routeErrors.push(`No centred water path ${from.id}/${to.id}`);continue;}
+ from.seaLanes.push(to.id);to.seaLanes.push(from.id);board.routes.push({from:from.id,to:to.id,points});
+}
+for(const i of board.islands)i.bonus=Math.max(2,Math.floor(i.provinces.length/2)+entrances(i).length);
+const inspection=audit(board),errors=[...routeErrors,...failures(inspection)],accepted=!errors.length;
+const report={accepted,fixedCountryPairs:links.length,routeErrors,...inspection};
+writeFileSync(resolve(output,'board.json'),JSON.stringify(board,null,2)+'\n');
+writeFileSync(resolve(output,'report.json'),JSON.stringify(report,null,2)+'\n');
+writeFileSync(resolve(output,'preview.html'),html(board));writeFileSync(resolve(output,'map.svg'),svg(board));
+console.log(JSON.stringify({accepted,failures:errors,output},null,2));
+if(!accepted)process.exitCode=1;
