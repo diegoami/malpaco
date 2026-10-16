@@ -1,4 +1,4 @@
-// Explicit development route for the approved fixed geography; ordinary apply actions only.
+// Default playable interface on the approved fixed geography; ordinary apply actions only.
 import {victoryRules,defaultOptions} from "../core";
 import {createReferenceGame} from "../core/reference-game";
 import {referenceMap} from "./referenceData";

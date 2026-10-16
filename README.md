@@ -11,16 +11,21 @@ How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process
 
 ## Play
 
-Run `npm ci` and `npm run dev`; the root page opens generated-game setup. Choose a seed, seat
-count and human or computer opponents, then start a match. `?seed=N`, `?seats=C` and
-`?opponents=computer` preserve setup choices on the root route. Direct routes remain available at
-`?view=game-setup`, `?view=generated-game`, `?view=generated-prototype` and
-`?view=authored-game` (the authored `small_sea` spike). Unrecognized `view` values open setup.
+Run `npm ci` and `npm run dev`; open the root page to set up the Nine Isles game.
+It defaults to one human against three Normal computers. Choose a seed, adjust
+seat controllers if desired, and select **Start game**. `?seed=1994` fixes the deal;
+`?view=reference-game&seed=1994` opens the same interface explicitly. **New game**
+returns to this setup. Unrecognized `view` values also open this setup.
 
-Choose **How to play** during setup or **Help** during a generated match for an
-in-game guide to setup choices, map labels, reinforcement and combat, turns,
-computer turns, and saved matches. Opening help pauses computer automation until
-the dialog closes; Close and Escape return focus to the control that opened it.
+During combat, select a source and an adjacent enemy, then use **Single exchange**
+or **Fight on**. After a capture, choose how many armies to move and confirm.
+**Save game** downloads a match; **Load game** restores one.
+
+Older generated setup/game and development routes remain available explicitly at
+`?view=game-setup`, `?view=generated-game`, `?view=generated-prototype` and
+`?view=authored-game` (the authored `small_sea` spike). Their older controls and
+rules differ from the default game. The older generated setup retains its own
+seed, seat and opponent query parameters and in-game help.
 
 ## Shareable build
 
