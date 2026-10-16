@@ -1237,3 +1237,9 @@ dialog h2 {
   #reference-game.battle-reference .stage { grid-template-columns:minmax(0,1fr) 440px; }
   .battle-controls button { min-height:40px; }
 }
+
+/* T29 transient move selection uses the reference battle panel. */
+.friendly-quantity { display:flex; align-items:center; gap:8px; font-size:13px; margin:12px 0; }
+.friendly-quantity input { min-width:0; flex:1; width:100px; padding:6px; background:var(--bg); color:var(--text); border:1px solid var(--line); border-radius:5px; font:inherit; }
+#confirm-friendly-move-button { width:100%; margin-bottom:8px; }
+.friendly-draft-actions { display:grid; gap:6px; }

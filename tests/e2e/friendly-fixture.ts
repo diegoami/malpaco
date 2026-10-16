@@ -20,3 +20,15 @@ export function fixture(capture=false){
  }
  throw Error("No bounded legal friendly pair");
 }
+
+/** [designed] Bounded search for a legal source with both own and enemy sea links. */
+export function seaFixture(){
+ for(let seed=0;seed<64;seed++){
+  const start=opening(seed),mover=start.players[start.currentPlayer]!.id;
+  for(const from of map.provinces.filter(p=>start.ownerOf[p.id]===mover)){
+   const to=from.seaLanes.find(id=>start.ownerOf[id]===mover);if(!to||!from.seaLanes.some(id=>start.ownerOf[id]!==mover))continue;
+   let ready=start;const placements=ready.reinforcementPool;for(let n=0;n<placements;n++)ready=step(ready,{kind:"reinforce",province:from.id,amount:1});ready=step(ready,{kind:"endReinforcement"});return {seed,start,ready,placements,from:from.id,to};
+  }
+ }
+ throw Error("No bounded mixed-ownership sea source");
+}

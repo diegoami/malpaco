@@ -66,6 +66,8 @@ export interface SetupRules {
 
 export interface RuleSet {
   readonly id: string;
+  /** Opt-in C-MOV-01..03; omitted by the stable legacy presets. */
+  readonly movement?: "adjacent";
   /** [designed] T11 turn flow; Classic remains the legacy attack-only shortcut. */
   readonly turnSequence: "classic" | "reinforcement";
   readonly setup: SetupRules;
@@ -95,7 +97,8 @@ export type Action =
   | { readonly kind: "endReinforcement" }
   | { readonly kind: "attack"; readonly from: string; readonly to: string }
   | { readonly kind: "endTurn" }
-  | { readonly kind: "captureMove"; readonly amount?: number };
+  | { readonly kind: "captureMove"; readonly amount?: number }
+  | { readonly kind: "friendlyMove"; readonly from: string; readonly to: string; readonly amount?: number };
 
 export interface AttackOutcome {
   readonly event: "attack";

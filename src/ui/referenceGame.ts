@@ -1,5 +1,5 @@
 // Explicit development route for the approved fixed geography; ordinary apply actions only.
-import {captureChoiceRules,defaultOptions} from "../core";
+import {friendlyMoveRules,defaultOptions} from "../core";
 import {createReferenceGame} from "../core/reference-game";
 import {referenceMap} from "./referenceData";
 import {ReferenceMapView} from "./referenceMapView";
@@ -18,7 +18,7 @@ export function mountReferenceGame(root:HTMLElement){
   const alert=h("p",{role:"alert"});
   const form=h("form",{class:"card setup-card"},h("h1",{},"New reference game"),h("p",{},legacy?"Play on the Nine Isles map. The seed changes the deal.":"Development reference game for manual play on Nine Isles. All seats are human; the seed changes the deal."),h("label",{for:"reference-seed"},"Seed"),input,h("label",{for:"reference-seats"},"Human seats"),count,h("button",{type:"submit",class:"primary"},"Start game"),alert);
   form.onsubmit=e=>{e.preventDefault();if(!form.reportValidity())return;seed=input.value;seats=count.value;
-   try{const options={...defaultOptions(),seed:Number(seed),seats:Array.from({length:Number(seats)},()=>({kind:"human" as const})),computerStrengths:[]};const result=createReferenceGame(referenceMap,options,legacy?undefined:captureChoiceRules());if(!result.ok){alert.textContent=result.errors.join("; ");return;}
+   try{const options={...defaultOptions(),seed:Number(seed),seats:Array.from({length:Number(seats)},()=>({kind:"human" as const})),computerStrengths:[]};const result=createReferenceGame(referenceMap,options,legacy?undefined:friendlyMoveRules());if(!result.ok){alert.textContent=result.errors.join("; ");return;}
     root.id="reference-game";root.className="reference-game-root";root.dataset["seats"]=seats;
     const app=legacy?new App(referenceMap,options.seed,()=>{app.dispose();setup();},result.state,(map,handlers)=>new ReferenceMapView(map,handlers)):new ReferenceBattleGame(referenceMap,options.seed,()=>{app.dispose();setup();},result.state,preferences);app.mount(root);
     root.querySelector(".subtitle")!.textContent=`Nine Isles · ${seats} human seats · Seed ${seed}`;

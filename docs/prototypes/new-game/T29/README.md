@@ -41,3 +41,26 @@ runtime. Later revisions need a new immutable index; verify historical source
 indices at their pinned commits. `verify-evidence.py` checks files and archived
 members, opening each archive once. Raw logs/HTML/screenshots are losslessly
 archived; ignored loose raw copies stay untouched.
+
+
+## Production implementation
+
+The actual engine uses a pure `movement.ts` legality/target helper and one ordinary
+`friendlyMove` dispatch, followed by the existing endTurn handler. Legacy presets
+remain unchanged; only `friendlyMoveRules` opts in. The controller owns a transient
+move mode and a saved battle context, with no intermediate engine action. Cancel
+restores that context; confirm/skip/replacement/disposal discard the draft.
+
+First production checks:29 core cases,9 additional controller boundary cases,
+509 full unit tests and build pass. Eight parent browser cases pass in
+`evidence/implement-friendly-vd3j81v8`; twelve with added sea-route and Escape
+checks pass in `evidence/implement-friendly-feedback-nfvq5p2b`. Initial controller
+negative9 cases and source bytes are retained in `negative-controller-asgsrqmd`.
+
+Route emphasis needed a reference-host move-only override: the shared renderer
+emphasized all source sea links, including enemies. The first added probe's
+fixture lacked an enemy sea edge; that failure is retained and is not a behavior
+proof. A bounded mixed-ownership-sea fixture then reached the actual mismatch
+(`negative-route-feedback-targeted-zkftw774`): one extra enemy route at both sizes.
+The same assertions pass after filtering emphasis by legal friendly targets.
+Existing battle/legacy rendering and all geometry stay unchanged.

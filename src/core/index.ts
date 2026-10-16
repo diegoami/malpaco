@@ -5,12 +5,14 @@ export { DeterministicRng } from "./rng";
 export type { DiceSource } from "./rng";
 export { attackTargets, diceCount, pairResults, resolve, whyNot, DIE_SIDES } from "./combat";
 export { apply, legalAttacks } from "./rules";
+export { friendlyTargets, friendlySources, whyNotFriendlyMove } from "./movement";
 export {
   activePlayer,
   armyCount,
   armyTotal,
   classicRules,
   captureChoiceRules,
+  friendlyMoveRules,
   cloneState,
   livingPlayers,
   malpacoRules,
