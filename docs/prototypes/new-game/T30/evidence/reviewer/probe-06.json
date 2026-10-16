@@ -1,0 +1,10 @@
+{
+  "command": "cp src/core/rules.ts src/core/rules.ts.saved\npython3 -c \"\nwith open('src/core/rules.ts', 'r') as f: content = f.read()\n# Mutation: remove the human-loss check in apply\nmutated = content.replace('  if (state.phase === \\\"human-loss\\\" && action.kind !== \\\"watchComputers\\\" && action.kind !== \\\"stopGame\\\") {\\n    return { ok: false, error: \\\"choose whether to watch the computers or stop\\\" };\\n  }\\n', '')\nwith open('src/core/rules.ts', 'w') as f: f.write(mutated)\nprint('Wrote mutated file')\n\"\n./node_modules/.bin/vitest run tests/core/victory-options.test.ts 2>&1 | tail -20",
+  "observed": "passed-tests",
+  "metadata": {
+    "output": "Wrote mutated file\n\n RUN  v5.0.3 /home/diego/projects/malpaco-work/131-review-046d80f6\n\n\n Test Files  1 passed (1)\n      Tests  40 passed (40)\n   Start at  22:56:14\n   Duration  251ms (transform 53%, tests 37%, import 9%, worker 1%)\n\n",
+    "exit": 0,
+    "truncated": false
+  },
+  "output": "Wrote mutated file\n\n RUN  v5.0.3 /home/diego/projects/malpaco-work/131-review-046d80f6\n\n\n Test Files  1 passed (1)\n      Tests  40 passed (40)\n   Start at  22:56:14\n   Duration  251ms (transform 53%, tests 37%, import 9%, worker 1%)\n\n"
+}

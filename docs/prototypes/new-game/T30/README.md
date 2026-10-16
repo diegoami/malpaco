@@ -137,3 +137,36 @@ immutable current evidence index; verify with
 `python3 docs/prototypes/new-game/T30/verify-evidence.py artifacts.implementation.v2.json`.
 The historical parent index remains untouched and belongs to checkpoint a3b0d9.
 Owner assessment of readability/pacing remains separate from automated validation.
+
+
+## Parent review and final retained verification
+
+MiniMax M3 approved01cf23c in721.141seconds (12m1s), with two nonblocking
+observations. R1 is not a current defect: legacy newGameWithPlayers starts0 and
+records0; the modern setup records seededfirstSeat. R2 neutral human-loss badge
+polish is deferred with clearer deciding-tie-break text to#132. Human loss retains
+multiple computers; the review's only-alive-seat explanation is incorrect.
+
+The exact review session is losslessly retained in `evidence/reviewer/session-export.tar.gz`.
+Its audit shows14 probes,11red/3green, not the review's all-killed claim. Green
+explorations include a redundant global phase guard and panel attempts before a
+corrected badge deletion is caught. The reviewer ran553units/build,6 sourceT30
+browsers and30 extracted cases, but omitted requested full140 and mandatory archive.
+Harness#125 deleted its worktree/raw artifacts. Those originals are unavailable;
+the session export is not a recovered raw-source/capture archive. A local operational
+runner retention hook is recorded under `evidence/reviewer` for subsequent reviews;
+canonical harness remains unchanged and#125 open.
+
+Parent current-source evidence fills the verification gap without a second paid review:
+41 focused cases (`parent-critical-3whozo_f`),6 browsers (`parent-critical-browser-xody0awz`),
+553 full units (`parent-final-unit-x7ljuegy`), build (`parent-final-build-0hwomnkc`),
+all140 pinned source browsers (`parent-final-all-source-23hekg14`), and fresh official
+package/checksums/30 extracted cases (`release-qwzxb_cs`). Every source-stability flag
+is true; no runtime or assertion changed after reviewed01cf23c. Protection recheck
+`implementation-protected-7wurpfb9` confirms77 inherited test/data/golden files and
+4 parent files unchanged, oldCSSprefix and mock absence. Preflight117 included
+runtime files and is historical, not the final inherited-file count.
+
+Final parent index: `artifacts.final.v3.json`. Author v2 belongs to checkpoint01cf23c;
+earlier indices remain immutable and must be verified at their pinned source/doc commits.
+All fresh verification outputs and the final verification receipt are committed before CI.

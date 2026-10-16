@@ -1,0 +1,20 @@
+{
+  "session": "ses_eb9887df8ffenL6hkWZ5sPuJbA",
+  "reviewHead": "01cf23c9462029b2a004a5208e68165571992f49",
+  "durationSeconds": 721.141,
+  "sessionMemberSha256": "fc9ded1fd5f9a78eafc7cd8dbe50ff51da999681dfb71778d9c3b4e4487b75eb",
+  "reviewArtifactsLost": true,
+  "cause": "Reviewer omitted mandatory archive; harness finally removed worktree. Exact session survives, raw report/source/capture archives do not. Parent final current-source runs supply fresh durable evidence, not recovered reviewer originals.",
+  "fullSourceSuiteOmittedByReviewer": true,
+  "mutationClaimsCorrection": {
+    "probes": 14,
+    "failed": 11,
+    "green": 3,
+    "note": "Final all-killed claim is overstated: three exploratory tests returned green. Do not claim all probes killed. Global phase guard is redundant with handler guards; panel condition exploration includes a green/no-op attempt before a corrected badge deletion fails."
+  },
+  "findingAssessment": {
+    "R1": "No behavior defect: legacy newGameWithPlayers starts seat0 and records0; reference createGame path uses seeded firstSeat. No speculative constructor change.",
+    "R2": "Nonblocking neutral-loss-badge polish; review only-alive-seat explanation is incorrect (loss occurs while multiple computers remain).",
+    "additional": "Round-limit UI lists ranking criteria but not deciding tie-break; post-playable polish."
+  }
+}

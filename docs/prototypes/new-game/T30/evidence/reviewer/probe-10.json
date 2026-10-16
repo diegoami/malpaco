@@ -1,0 +1,10 @@
+{
+  "command": "cp src/ui/panel.ts src/ui/panel.ts.saved\n# Mutation: always use seat instead of titleSeat\npython3 -c \"\nwith open('src/ui/panel.ts', 'r') as f: content = f.read()\n# Mutation: change titleSeat to always be seat (round-limit winner doesn't get own badge)\nmutated = content.replace('const titleSeat = result && winner ? state.players.indexOf(winner) : seat;', 'const titleSeat = seat;')\nwith open('src/ui/panel.ts', 'w') as f: f.write(mutated)\nprint('Wrote mutated file')\n\"\n./node_modules/.bin/vitest run tests/ui/victory-panel.test.ts 2>&1 | tail -20",
+  "observed": "passed-tests",
+  "metadata": {
+    "output": "Wrote mutated file\n\n RUN  v5.0.3 /home/diego/projects/malpaco-work/131-review-046d80f6\n\n\n Test Files  1 passed (1)\n      Tests  1 passed (1)\n   Start at  22:57:05\n   Duration  175ms (transform 80%, import 15%, tests 3%, worker 2%)\n\n",
+    "exit": 0,
+    "truncated": false
+  },
+  "output": "Wrote mutated file\n\n RUN  v5.0.3 /home/diego/projects/malpaco-work/131-review-046d80f6\n\n\n Test Files  1 passed (1)\n      Tests  1 passed (1)\n   Start at  22:57:05\n   Duration  175ms (transform 80%, import 15%, tests 3%, worker 2%)\n\n"
+}
