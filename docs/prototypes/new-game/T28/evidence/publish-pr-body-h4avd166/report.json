@@ -1,0 +1,20 @@
+{
+  "command": [
+    "gh",
+    "pr",
+    "edit",
+    "128",
+    "--title",
+    "T28: add cancellable battle controls and capture choices",
+    "--body-file",
+    "docs/prototypes/new-game/T28/pr-body.md"
+  ],
+  "exit": 0,
+  "stdoutTail": "https://github.com/diegoami/malpaco/pull/128\n",
+  "stderrTail": "",
+  "archiveSha256": "8afa7e9fc3e269d66d58609f8f3417533d55f25623024628ba5ca023f50c7c5c",
+  "archiveMemberHashes": {
+    "stdout.txt": "9bb52766cb63712fac80dedf908c31ca9b7c6c3612f453be53c5865f9db6e207",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

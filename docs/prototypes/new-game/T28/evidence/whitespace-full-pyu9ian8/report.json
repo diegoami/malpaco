@@ -1,0 +1,16 @@
+{
+  "command": [
+    "git",
+    "diff",
+    "--check",
+    "origin/main"
+  ],
+  "exit": 0,
+  "stdoutTail": "",
+  "stderrTail": "",
+  "archiveSha256": "ddd77078b7c3f864ea4ade66fb9950b7ef383a84520f01d741c2b3971b512af8",
+  "archiveMemberHashes": {
+    "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

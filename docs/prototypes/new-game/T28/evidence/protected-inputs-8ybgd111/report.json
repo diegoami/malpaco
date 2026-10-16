@@ -1,0 +1,416 @@
+{
+  "parentAcceptanceCommit": "c3d2645c7de26fcd4f2f1c0aed3fde33b510fadc",
+  "files": {
+    "src/core/board-fairness.ts": {
+      "parentSha256": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717",
+      "currentSha256": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717",
+      "exact": true
+    },
+    "src/core/board-gen.ts": {
+      "parentSha256": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942",
+      "currentSha256": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942",
+      "exact": true
+    },
+    "src/core/bonuses.ts": {
+      "parentSha256": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+      "currentSha256": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+      "exact": true
+    },
+    "src/core/combat.ts": {
+      "parentSha256": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+      "currentSha256": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+      "exact": true
+    },
+    "src/core/computer.ts": {
+      "parentSha256": "515ca092ff497506e7d4f2d2b9a3adf081fc7ab322e691413683091694b9d405",
+      "currentSha256": "515ca092ff497506e7d4f2d2b9a3adf081fc7ab322e691413683091694b9d405",
+      "exact": true
+    },
+    "src/core/index.ts": {
+      "parentSha256": "8b7f07d04af52689ae5e9ec87b6be5e664527e9232fa93ac6fddaee71a6ee91c",
+      "currentSha256": "8b7f07d04af52689ae5e9ec87b6be5e664527e9232fa93ac6fddaee71a6ee91c",
+      "exact": true
+    },
+    "src/core/map.ts": {
+      "parentSha256": "3457bf4de33874cd78aa2a06a29819c8d7920e1c1eb36ce0500d326d5092cdaf",
+      "currentSha256": "3457bf4de33874cd78aa2a06a29819c8d7920e1c1eb36ce0500d326d5092cdaf",
+      "exact": true
+    },
+    "src/core/match-save.ts": {
+      "parentSha256": "5f6d01eae164de59c1cf87a99694e613ee2391597f786cc65f83cd829b33e2f1",
+      "currentSha256": "5f6d01eae164de59c1cf87a99694e613ee2391597f786cc65f83cd829b33e2f1",
+      "exact": true
+    },
+    "src/core/options.ts": {
+      "parentSha256": "0103f21c5afe6a99d968079633a06f169f6941c129b94c212b9e93e547748513",
+      "currentSha256": "0103f21c5afe6a99d968079633a06f169f6941c129b94c212b9e93e547748513",
+      "exact": true
+    },
+    "src/core/reference-game.ts": {
+      "parentSha256": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+      "currentSha256": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+      "exact": true
+    },
+    "src/core/reinforcement.ts": {
+      "parentSha256": "b9a7fe2203bcff3aa06beebf5ec3ac8c2103641a0522a5e4805714b216452556",
+      "currentSha256": "b9a7fe2203bcff3aa06beebf5ec3ac8c2103641a0522a5e4805714b216452556",
+      "exact": true
+    },
+    "src/core/rng.ts": {
+      "parentSha256": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498",
+      "currentSha256": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498",
+      "exact": true
+    },
+    "src/core/rules.ts": {
+      "parentSha256": "531a543df7c8978c179edeb291720f98979f743812810ad53cff3113c05d0e6a",
+      "currentSha256": "531a543df7c8978c179edeb291720f98979f743812810ad53cff3113c05d0e6a",
+      "exact": true
+    },
+    "src/core/save.ts": {
+      "parentSha256": "54eb5f98c7bc6ac90d39a3d2ddf53eef4fd37c5f53b609d847d20289433b9748",
+      "currentSha256": "54eb5f98c7bc6ac90d39a3d2ddf53eef4fd37c5f53b609d847d20289433b9748",
+      "exact": true
+    },
+    "src/core/seats.ts": {
+      "parentSha256": "4e67c932ef1b420c7b4e07d646dfe423c249bd3dd90eed60549ea01b8ba06f67",
+      "currentSha256": "4e67c932ef1b420c7b4e07d646dfe423c249bd3dd90eed60549ea01b8ba06f67",
+      "exact": true
+    },
+    "src/core/setup.ts": {
+      "parentSha256": "0ce754f90bd951d2dce42431e98a1dcacfd9884ed07ecd22728a54ebee737466",
+      "currentSha256": "0ce754f90bd951d2dce42431e98a1dcacfd9884ed07ecd22728a54ebee737466",
+      "exact": true
+    },
+    "src/core/state.ts": {
+      "parentSha256": "56d506d3cfc72233aa9a42232ebba6880a6bf877c9202c060a1aba412245db8e",
+      "currentSha256": "56d506d3cfc72233aa9a42232ebba6880a6bf877c9202c060a1aba412245db8e",
+      "exact": true
+    },
+    "src/core/tsconfig.json": {
+      "parentSha256": "0845dff0e382127412de693151d9b026e14a8b5070cb9f8a0036fc26e0997c8b",
+      "currentSha256": "0845dff0e382127412de693151d9b026e14a8b5070cb9f8a0036fc26e0997c8b",
+      "exact": true
+    },
+    "src/core/types.ts": {
+      "parentSha256": "dfba0064b32a7d7001c20d84d36f4354b32046f2cdf58ac441239ddc289c0e12",
+      "currentSha256": "dfba0064b32a7d7001c20d84d36f4354b32046f2cdf58ac441239ddc289c0e12",
+      "exact": true
+    },
+    "tests/core/archipelago.test.ts": {
+      "parentSha256": "f6e4d733e4c55b759f61b08061965a7a37741f4046bd7b7e359188a182fce947",
+      "currentSha256": "f6e4d733e4c55b759f61b08061965a7a37741f4046bd7b7e359188a182fce947",
+      "exact": true
+    },
+    "tests/core/board-fairness.test.ts": {
+      "parentSha256": "6a4b8620b7f9c1eff70ed15e007784b18613a03e353dd38ecf5122cacfb1d460",
+      "currentSha256": "6a4b8620b7f9c1eff70ed15e007784b18613a03e353dd38ecf5122cacfb1d460",
+      "exact": true
+    },
+    "tests/core/board-gen.sweep.test.ts": {
+      "parentSha256": "5b8abde7448d439dba75842eb57362f33daa27c63cfbc4f2969d92bd2b43e5d5",
+      "currentSha256": "5b8abde7448d439dba75842eb57362f33daa27c63cfbc4f2969d92bd2b43e5d5",
+      "exact": true
+    },
+    "tests/core/board-gen.test.ts": {
+      "parentSha256": "f86f26018bfb916f3a43ad01226517815537b312f30dee3508dd1ae0f5a18fea",
+      "currentSha256": "f86f26018bfb916f3a43ad01226517815537b312f30dee3508dd1ae0f5a18fea",
+      "exact": true
+    },
+    "tests/core/bonuses.test.ts": {
+      "parentSha256": "2716f3894ff73ab8a166c60ae24a7b3f3c848009174f37e90af6395261692657",
+      "currentSha256": "2716f3894ff73ab8a166c60ae24a7b3f3c848009174f37e90af6395261692657",
+      "exact": true
+    },
+    "tests/core/capture-choice-compatibility.test.ts": {
+      "parentSha256": "abc2aeaf91eaac155494fa02138dddd4ff162b88722993ee8337382e44d751ed",
+      "currentSha256": "abc2aeaf91eaac155494fa02138dddd4ff162b88722993ee8337382e44d751ed",
+      "exact": true
+    },
+    "tests/core/capture-choice-fixtures.ts": {
+      "parentSha256": "6725e2bc9b8b6bb336233b74feed0c14d5108ad6d5bf18da0d19a46d0da3b1fd",
+      "currentSha256": "6725e2bc9b8b6bb336233b74feed0c14d5108ad6d5bf18da0d19a46d0da3b1fd",
+      "exact": true
+    },
+    "tests/core/capture-choice-replay.test.ts": {
+      "parentSha256": "007cb887b846a1265b562ea19b0837cd2e5c33658b9830e48ece6557a3e605e4",
+      "currentSha256": "007cb887b846a1265b562ea19b0837cd2e5c33658b9830e48ece6557a3e605e4",
+      "exact": true
+    },
+    "tests/core/capture-choice.test.ts": {
+      "parentSha256": "c7430ad3dca1236ba87fb8bbbb6f5c50924fa62982f3821cb54d85f513aea3d1",
+      "currentSha256": "c7430ad3dca1236ba87fb8bbbb6f5c50924fa62982f3821cb54d85f513aea3d1",
+      "exact": true
+    },
+    "tests/core/combat.test.ts": {
+      "parentSha256": "f3c17bfa8e0a44e61adb3eda96764ca0a32c1cbc59d33706e8b29dba87bbb224",
+      "currentSha256": "f3c17bfa8e0a44e61adb3eda96764ca0a32c1cbc59d33706e8b29dba87bbb224",
+      "exact": true
+    },
+    "tests/core/complete-game.test.ts": {
+      "parentSha256": "de33a8caa27c9309acf54f40d4b5c59c74dfe83c0c057314a46ac9635045a25f",
+      "currentSha256": "de33a8caa27c9309acf54f40d4b5c59c74dfe83c0c057314a46ac9635045a25f",
+      "exact": true
+    },
+    "tests/core/computer.test.ts": {
+      "parentSha256": "78bc5881f01b7f8f866435dad38bd890fa0bde3569af11f2c3ae051c073841e6",
+      "currentSha256": "78bc5881f01b7f8f866435dad38bd890fa0bde3569af11f2c3ae051c073841e6",
+      "exact": true
+    },
+    "tests/core/determinism.test.ts": {
+      "parentSha256": "4f04ca8454d7e5725d0cd5e3177a7c089baafbdfa68e03378fcc7b063c1a25ca",
+      "currentSha256": "4f04ca8454d7e5725d0cd5e3177a7c089baafbdfa68e03378fcc7b063c1a25ca",
+      "exact": true
+    },
+    "tests/core/helpers.ts": {
+      "parentSha256": "e7d286328b30641f561e80c44373a4dc3d0752ead8fc299fa2f30b63ab81351a",
+      "currentSha256": "e7d286328b30641f561e80c44373a4dc3d0752ead8fc299fa2f30b63ab81351a",
+      "exact": true
+    },
+    "tests/core/malpaco-combat.test.ts": {
+      "parentSha256": "810a995d071be0310263e0d27e411d3a7593bd20f25e910aa561f81ab0ccfce0",
+      "currentSha256": "810a995d071be0310263e0d27e411d3a7593bd20f25e910aa561f81ab0ccfce0",
+      "exact": true
+    },
+    "tests/core/map.test.ts": {
+      "parentSha256": "5fc35787f61edc198f87715744297b7822b69fb94a95dc3ad334d133d039a743",
+      "currentSha256": "5fc35787f61edc198f87715744297b7822b69fb94a95dc3ad334d133d039a743",
+      "exact": true
+    },
+    "tests/core/match-save.test.ts": {
+      "parentSha256": "c4c4aea7340ca7fb4a6fbc60d5f914bb3b4d0d870b0461606894834c19743881",
+      "currentSha256": "c4c4aea7340ca7fb4a6fbc60d5f914bb3b4d0d870b0461606894834c19743881",
+      "exact": true
+    },
+    "tests/core/options.test.ts": {
+      "parentSha256": "2f2f76711d2e344a80848e8ab65533d22552b7d97c491096abf2ccf06abfd152",
+      "currentSha256": "2f2f76711d2e344a80848e8ab65533d22552b7d97c491096abf2ccf06abfd152",
+      "exact": true
+    },
+    "tests/core/purity.test.ts": {
+      "parentSha256": "14784a57ec94db186f56355b2fef022dc7ae61e96e8151c68af388b1c2fd602c",
+      "currentSha256": "14784a57ec94db186f56355b2fef022dc7ae61e96e8151c68af388b1c2fd602c",
+      "exact": true
+    },
+    "tests/core/reference-game.test.ts": {
+      "parentSha256": "9089d3c4953013cd2499525f4ff884c63438126f2da45cbe2f0e03090df9fd73",
+      "currentSha256": "9089d3c4953013cd2499525f4ff884c63438126f2da45cbe2f0e03090df9fd73",
+      "exact": true
+    },
+    "tests/core/reference-map-validation.test.ts": {
+      "parentSha256": "8545bc901dd76d3354b0f521cedfd98c78bc5dd35ac7fbe211ad2ba364e2cb81",
+      "currentSha256": "8545bc901dd76d3354b0f521cedfd98c78bc5dd35ac7fbe211ad2ba364e2cb81",
+      "exact": true
+    },
+    "tests/core/reinforcement.test.ts": {
+      "parentSha256": "1d5ac749b8ca70bbb876f04b17527e7ea2f70ed738399b08d2cfcebd98727cef",
+      "currentSha256": "1d5ac749b8ca70bbb876f04b17527e7ea2f70ed738399b08d2cfcebd98727cef",
+      "exact": true
+    },
+    "tests/core/rng-streams.test.ts": {
+      "parentSha256": "f8fe7044c643e001f12664fa44b1247b3eae806da163b96ec6bf27dd4ff35d14",
+      "currentSha256": "f8fe7044c643e001f12664fa44b1247b3eae806da163b96ec6bf27dd4ff35d14",
+      "exact": true
+    },
+    "tests/core/save.test.ts": {
+      "parentSha256": "891229f9ef0d8869d73bfb797e7cd5041ec6c92d57a278ea24f01121e2cd3b31",
+      "currentSha256": "891229f9ef0d8869d73bfb797e7cd5041ec6c92d57a278ea24f01121e2cd3b31",
+      "exact": true
+    },
+    "tests/core/seats.test.ts": {
+      "parentSha256": "c22a0d02475ffa95c5cd5a26772e92312d2859476b91930ed284b6c6c026e958",
+      "currentSha256": "c22a0d02475ffa95c5cd5a26772e92312d2859476b91930ed284b6c6c026e958",
+      "exact": true
+    },
+    "tests/core/setup.test.ts": {
+      "parentSha256": "612e3b9ed7a04ee450399895ef1232c16b15595558109ac63050cf51274051f0",
+      "currentSha256": "612e3b9ed7a04ee450399895ef1232c16b15595558109ac63050cf51274051f0",
+      "exact": true
+    },
+    "tests/core/turns.test.ts": {
+      "parentSha256": "cc9b8f80f3b8a719a793ac80d828960045bca9288131f903e3c959e390b42216",
+      "currentSha256": "cc9b8f80f3b8a719a793ac80d828960045bca9288131f903e3c959e390b42216",
+      "exact": true
+    },
+    "tests/e2e/battle-controls.spec.ts": {
+      "parentSha256": "130595349d4aa211a75a83f1f791abeb3ad709fc94153df21cb1618e5ca3a77d",
+      "currentSha256": "130595349d4aa211a75a83f1f791abeb3ad709fc94153df21cb1618e5ca3a77d",
+      "exact": true
+    },
+    "tests/e2e/battle-fixture.ts": {
+      "parentSha256": "fcbad108f53592da5924cd8c3de292991e24d33073b4c8e9583dba6c9de86aa6",
+      "currentSha256": "fcbad108f53592da5924cd8c3de292991e24d33073b4c8e9583dba6c9de86aa6",
+      "exact": true
+    },
+    "tests/e2e/complete-game.spec.ts": {
+      "parentSha256": "a6ce4b0bf05e4140daed842ac45ee9e1227bec4993788596ac98dd88bba4c6e7",
+      "currentSha256": "a6ce4b0bf05e4140daed842ac45ee9e1227bec4993788596ac98dd88bba4c6e7",
+      "exact": true
+    },
+    "tests/e2e/computer.spec.ts": {
+      "parentSha256": "1871d273b48c8b6cd5a725e9d681d4da1eca7d96abfd2ec74db6abeaf25a6d5c",
+      "currentSha256": "1871d273b48c8b6cd5a725e9d681d4da1eca7d96abfd2ec74db6abeaf25a6d5c",
+      "exact": true
+    },
+    "tests/e2e/entry.spec.ts": {
+      "parentSha256": "33d38a5b1a5a2596eb8111f345e1b4c03d16a3e5de31c21db9611f013a3f3e17",
+      "currentSha256": "33d38a5b1a5a2596eb8111f345e1b4c03d16a3e5de31c21db9611f013a3f3e17",
+      "exact": true
+    },
+    "tests/e2e/finished-copy.spec.ts": {
+      "parentSha256": "9b5b9cbec6c26cbf9df32c14fd627a0f4af7f07474735c7a8a4f7eb8f4521a8e",
+      "currentSha256": "9b5b9cbec6c26cbf9df32c14fd627a0f4af7f07474735c7a8a4f7eb8f4521a8e",
+      "exact": true
+    },
+    "tests/e2e/game-setup.spec.ts": {
+      "parentSha256": "bfdcaaf3c95fb074abab9bd75e9a676fb4aa02c7533deb4246d3a60c9dc22e23",
+      "currentSha256": "bfdcaaf3c95fb074abab9bd75e9a676fb4aa02c7533deb4246d3a60c9dc22e23",
+      "exact": true
+    },
+    "tests/e2e/game-setup.spec.ts-snapshots/four-seat-1280x800-1280x800-linux.png": {
+      "parentSha256": "871645814d843d6e6994896e340d292a5f9d4f1755334654caff988b594352dd",
+      "currentSha256": "871645814d843d6e6994896e340d292a5f9d4f1755334654caff988b594352dd",
+      "exact": true
+    },
+    "tests/e2e/game-setup.spec.ts-snapshots/four-seat-1920x1080-1920x1080-linux.png": {
+      "parentSha256": "8788d962bad178d3b294d190e827b5733fda7de7407e5408a1d50420abdae9f0",
+      "currentSha256": "8788d962bad178d3b294d190e827b5733fda7de7407e5408a1d50420abdae9f0",
+      "exact": true
+    },
+    "tests/e2e/game-setup.spec.ts-snapshots/setup-1280x800-1280x800-linux.png": {
+      "parentSha256": "194ad30b5c272bb12902b0355201f4cea066449f20e833a142e9fcaf320e9178",
+      "currentSha256": "194ad30b5c272bb12902b0355201f4cea066449f20e833a142e9fcaf320e9178",
+      "exact": true
+    },
+    "tests/e2e/game-setup.spec.ts-snapshots/setup-1920x1080-1920x1080-linux.png": {
+      "parentSha256": "3dce0b4bb725d794c299ae9a5844ac16be81f7359d716e0d2787210698aaca28",
+      "currentSha256": "3dce0b4bb725d794c299ae9a5844ac16be81f7359d716e0d2787210698aaca28",
+      "exact": true
+    },
+    "tests/e2e/generated-board.spec.ts": {
+      "parentSha256": "6768eb58d100fdbc91ebe4ef3b2e781ffb46344433ab31f42a2446cb82e5975c",
+      "currentSha256": "6768eb58d100fdbc91ebe4ef3b2e781ffb46344433ab31f42a2446cb82e5975c",
+      "exact": true
+    },
+    "tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1280x800-linux.png": {
+      "parentSha256": "2325d273b1eec0dc174e4546177252c94a03e1d00de8897c6d238751402ccb96",
+      "currentSha256": "2325d273b1eec0dc174e4546177252c94a03e1d00de8897c6d238751402ccb96",
+      "exact": true
+    },
+    "tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1920x1080-linux.png": {
+      "parentSha256": "c938da0150150e9b7b0e5a210223e73637d630ad31e94ae309bdea45775e4550",
+      "currentSha256": "c938da0150150e9b7b0e5a210223e73637d630ad31e94ae309bdea45775e4550",
+      "exact": true
+    },
+    "tests/e2e/generated-game.spec.ts": {
+      "parentSha256": "7c69effa1625baf807f94aae54a9c87eb7c3aa0ee120fe6f29bb0ac8491039f5",
+      "currentSha256": "7c69effa1625baf807f94aae54a9c87eb7c3aa0ee120fe6f29bb0ac8491039f5",
+      "exact": true
+    },
+    "tests/e2e/generated-game.spec.ts-snapshots/generated-game-1280x800-linux.png": {
+      "parentSha256": "a70d2da38158bf0034a1e084c64810be8e4b652940a9ac58997ea5cee3503510",
+      "currentSha256": "a70d2da38158bf0034a1e084c64810be8e4b652940a9ac58997ea5cee3503510",
+      "exact": true
+    },
+    "tests/e2e/generated-game.spec.ts-snapshots/generated-game-1920x1080-linux.png": {
+      "parentSha256": "3d93466c122804074c1d3dfe2f82e93aa5220d26b3cd48f51da296502ccc290e",
+      "currentSha256": "3d93466c122804074c1d3dfe2f82e93aa5220d26b3cd48f51da296502ccc290e",
+      "exact": true
+    },
+    "tests/e2e/help.spec.ts": {
+      "parentSha256": "8fb03c619a3772535dc98c34b8f3b23f0d0adac194a75a49c2bfda01d4da7750",
+      "currentSha256": "8fb03c619a3772535dc98c34b8f3b23f0d0adac194a75a49c2bfda01d4da7750",
+      "exact": true
+    },
+    "tests/e2e/match-save.spec.ts": {
+      "parentSha256": "51b310f1ab97e8b0be32995ba28c4292c00997c133e4e9d72ef9c921e13ee9db",
+      "currentSha256": "51b310f1ab97e8b0be32995ba28c4292c00997c133e4e9d72ef9c921e13ee9db",
+      "exact": true
+    },
+    "tests/e2e/reference-game.spec.ts": {
+      "parentSha256": "d04ac33468f98daacb8f408c95734d8191ab3e7e72981e4bcd5bc2bab2fb49b5",
+      "currentSha256": "d04ac33468f98daacb8f408c95734d8191ab3e7e72981e4bcd5bc2bab2fb49b5",
+      "exact": true
+    },
+    "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png": {
+      "parentSha256": "d0c01e75900573b4bc08e887562a7387c9d7ee6f2fc836a4a1cc9c8ed57ebc93",
+      "currentSha256": "d0c01e75900573b4bc08e887562a7387c9d7ee6f2fc836a4a1cc9c8ed57ebc93",
+      "exact": true
+    },
+    "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png": {
+      "parentSha256": "da08447f71bc67467f38bc79e5e262e418bbfe78b11bc42c7bed9f0787d55de4",
+      "currentSha256": "da08447f71bc67467f38bc79e5e262e418bbfe78b11bc42c7bed9f0787d55de4",
+      "exact": true
+    },
+    "tests/e2e/reinforcement.spec.ts": {
+      "parentSha256": "dca8ff9b0bf14a33020d0a1f0ae8b6329872b9e696ed9223d24400a2c3b7d0e8",
+      "currentSha256": "dca8ff9b0bf14a33020d0a1f0ae8b6329872b9e696ed9223d24400a2c3b7d0e8",
+      "exact": true
+    },
+    "tests/e2e/retry-validation.spec.ts": {
+      "parentSha256": "62a0f90589351c21d350c1cd79337ab55f8fbeaceb370b6e718c1f535d5c1e27",
+      "currentSha256": "62a0f90589351c21d350c1cd79337ab55f8fbeaceb370b6e718c1f535d5c1e27",
+      "exact": true
+    },
+    "tests/e2e/slice.spec.ts": {
+      "parentSha256": "4be59469b7badf518219601b767e989cf8bdbe53e9f86a11e3eb056a572838f3",
+      "currentSha256": "4be59469b7badf518219601b767e989cf8bdbe53e9f86a11e3eb056a572838f3",
+      "exact": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/board-1280x800-linux.png": {
+      "parentSha256": "4e1516852e83946614bd22a81122eaa319edae4f8f5f0ed502d0f6db7c370955",
+      "currentSha256": "4e1516852e83946614bd22a81122eaa319edae4f8f5f0ed502d0f6db7c370955",
+      "exact": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/board-1920x1080-linux.png": {
+      "parentSha256": "8a19d1e0358fbcdad8fb2bf40198e2d9ed37e437aff1695556c50d857a4e9ee7",
+      "currentSha256": "8a19d1e0358fbcdad8fb2bf40198e2d9ed37e437aff1695556c50d857a4e9ee7",
+      "exact": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/panel-1280x800-linux.png": {
+      "parentSha256": "309307bab8cf1366c3383ac321eb0e43f58013c1ff829886364e1376415ec7a1",
+      "currentSha256": "309307bab8cf1366c3383ac321eb0e43f58013c1ff829886364e1376415ec7a1",
+      "exact": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/panel-1920x1080-linux.png": {
+      "parentSha256": "456324f1527b1ffcced669ff74e26bf3bc65d7419f6bcfae0b013f41879ec003",
+      "currentSha256": "456324f1527b1ffcced669ff74e26bf3bc65d7419f6bcfae0b013f41879ec003",
+      "exact": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/result-dialog-1280x800-linux.png": {
+      "parentSha256": "a233f777322bf79b03f6f41d1e902d13559c0f20ba67e7474683f980a42f9347",
+      "currentSha256": "a233f777322bf79b03f6f41d1e902d13559c0f20ba67e7474683f980a42f9347",
+      "exact": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/result-dialog-1920x1080-linux.png": {
+      "parentSha256": "4e6f7b93fd9452a7dcdd7acd459dd9d8b72684c0baa06a3524ab49edaf7698cc",
+      "currentSha256": "4e6f7b93fd9452a7dcdd7acd459dd9d8b72684c0baa06a3524ab49edaf7698cc",
+      "exact": true
+    },
+    "tests/ui/battle-controller.test.ts": {
+      "parentSha256": "b6a8f9630e7ef7ff0a9a27b11e8cfffe54879edcfc636798aba9a53ea8e155ff",
+      "currentSha256": "b6a8f9630e7ef7ff0a9a27b11e8cfffe54879edcfc636798aba9a53ea8e155ff",
+      "exact": true
+    },
+    "tests/ui/battle-fixtures.ts": {
+      "parentSha256": "4538a5ed6e0fa7d4c59357782823310001df9c08f55e628e1f6af7357f1559ae",
+      "currentSha256": "4538a5ed6e0fa7d4c59357782823310001df9c08f55e628e1f6af7357f1559ae",
+      "exact": true
+    },
+    "tests/ui/game-setup.test.ts": {
+      "parentSha256": "af32d57bbbcfed919857262563cbe806e1f323ebbc7faebe1b56c9d477f8d706",
+      "currentSha256": "af32d57bbbcfed919857262563cbe806e1f323ebbc7faebe1b56c9d477f8d706",
+      "exact": true
+    },
+    "tests/ui/generated-board-layout.test.ts": {
+      "parentSha256": "cdd5c6c327a2ef434a8da01c2d1ff1aab362388cc5cffde604589255b4156878",
+      "currentSha256": "cdd5c6c327a2ef434a8da01c2d1ff1aab362388cc5cffde604589255b4156878",
+      "exact": true
+    },
+    "tests/ui/generated-game.test.ts": {
+      "parentSha256": "29278623f2e5f06c3e187f100db1292ae554ca48783587a4e07484cfaf76756c",
+      "currentSha256": "29278623f2e5f06c3e187f100db1292ae554ca48783587a4e07484cfaf76756c",
+      "exact": true
+    }
+  },
+  "existingStylesAreExactPrefix": true
+}

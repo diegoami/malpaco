@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T28/audit-protected.py"
+  ],
+  "exit": 0,
+  "stdoutTail": "{\n  \"output\": \"docs/prototypes/new-game/T28/evidence/protected-inputs-8ybgd111\",\n  \"files\": 82,\n  \"allExact\": true,\n  \"existingStylesAreExactPrefix\": true\n}\n",
+  "stderrTail": "",
+  "archiveSha256": "e4f30c241e7695205adea43392a1923d373058d54039dad04d27d29c76084531",
+  "archiveMemberHashes": {
+    "stdout.txt": "f19150eeaa8edfd53dfe41040099246aaf1f2bbddf7a263427b97656d7ecae77",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

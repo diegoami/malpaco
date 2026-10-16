@@ -1,0 +1,18 @@
+{
+  "command": [
+    "gh",
+    "pr",
+    "edit",
+    "128",
+    "--body-file",
+    "docs/prototypes/new-game/T28/pr-body-ci.md"
+  ],
+  "exit": 0,
+  "stdoutTail": "https://github.com/diegoami/malpaco/pull/128\n",
+  "stderrTail": "",
+  "archiveSha256": "bd64c6759126bac3ab665a1b487b5701cd8dbdcd267a8e37529c24189e28f7d0",
+  "archiveMemberHashes": {
+    "stdout.txt": "9bb52766cb63712fac80dedf908c31ca9b7c6c3612f453be53c5865f9db6e207",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
