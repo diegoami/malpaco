@@ -1,0 +1,47 @@
+✖ coincident: retained A subdivision (34.676926ms)
+✔ coincident: retained T25 subdivision (17.351818ms)
+✔ coincident: sloped full shared edge reversed=false (0.193056ms)
+✔ coincident: sloped full shared edge reversed=true (0.095004ms)
+✔ real-gap: tiny interior slit remains rejected below area tolerance (8.954447ms)
+✔ real-gap: shortened shared edge retains positive exposed interval (0.118599ms)
+✔ real-overlap: tiny positive-area overlap remains rejected (5.226034ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 101.513278
+
+✖ failing tests:
+
+test at docs/prototypes/new-game/T61/residual.test.mjs:9:2
+✖ coincident: retained A subdivision (34.676926ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'Explicit interior gap boundary province_0',
+  +   'Explicit interior gap boundary province_10',
+  +   'Explicit interior gap boundary province_36',
+  +   'Explicit interior gap boundary province_5',
+  +   'Explicit interior gap boundary province_34',
+  +   'Explicit interior gap boundary province_35',
+  +   'Explicit interior gap boundary province_14',
+  +   'Explicit interior gap boundary province_23'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t61-work/docs/prototypes/new-game/T61/residual.test.mjs:9:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'Explicit interior gap boundary province_0', 'Explicit interior gap boundary province_10', 'Explicit interior gap boundary province_36', 'Explicit interior gap boundary province_5', 'Explicit interior gap boundary province_34', 'Explicit interior gap boundary province_35', 'Explicit interior gap boundary province_14', 'Explicit interior gap boundary province_23' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
