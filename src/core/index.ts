@@ -10,6 +10,7 @@ export {
   armyCount,
   armyTotal,
   classicRules,
+  captureChoiceRules,
   cloneState,
   livingPlayers,
   malpacoRules,

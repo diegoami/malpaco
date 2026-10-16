@@ -44,7 +44,7 @@ test("ordinary reference clicks place, attack, hand off and replay legally to a 
   if(action.kind==="reinforce"){await country(page,action.province).click();placements++;await expect(page.locator("#reinforcement-pool")).toHaveText(String(r.state.reinforcementPool));await expect(country(page,action.province).locator(".army-count")).toHaveText(`${r.state.players.findIndex(p=>p.id===r.state.ownerOf[action.province])+1} · ${r.state.armies[action.province]}`);}
   else if(action.kind==="endReinforcement")await page.locator("#start-combat-button").click();
   else if(action.kind==="endTurn"){await page.locator("#end-turn-button").click();handoffs++;await expect(page.locator("#turn-title")).toHaveText(`${r.state.players[r.state.currentPlayer]!.name}'s turn`);}
-  else{
+  else if(action.kind==="attack"){
    const from=country(page,action.from);if(attacks===0){await from.focus();await page.keyboard.press("Enter");await expect(from).toHaveAttribute("aria-pressed","true");}else if(await from.getAttribute("aria-pressed")!=="true")await from.click();
    expect(await page.locator('[data-target="true"]').evaluateAll(ns=>ns.map(n=>(n as SVGElement).dataset["country"]).sort())).toEqual([...attackTargets(state,action.from)].sort());
    // Integration guard: legal target markers must correspond to painted outlines.
@@ -53,6 +53,7 @@ test("ordinary reference clicks place, attack, hand off and replay legally to a 
    for(const id of [action.from,action.to]){await expect(country(page,id)).toHaveAttribute("data-owner",r.state.ownerOf[id]!);await expect(country(page,id)).toHaveAttribute("data-armies",String(r.state.armies[id]));await expect(country(page,id).locator(".army-count")).toHaveText(`${r.state.players.findIndex(p=>p.id===r.state.ownerOf[id])+1} · ${r.state.armies[id]}`);}
    if(attacks===0)await capture(page,"first-attack",info.project.name);attacks++;await page.getByRole("button",{name:"Continue",exact:true}).click();
   }
+  else throw new Error(`Unexpected legacy action: ${action.kind}`);
   state=r.state;actions++;
  }
  expect(actions).toBeLessThan(ACTION_BUDGET);expect(placements).toBeGreaterThan(0);expect(attacks).toBeGreaterThan(0);expect(handoffs).toBeGreaterThan(0);expect(state.phase).toBe("finished");expect(state.winner).toBe(policy.conqueror);

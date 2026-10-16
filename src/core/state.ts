@@ -23,6 +23,15 @@ export function malpacoRules(): RuleSet {
   };
 }
 
+/**
+ * Opt-in C-OWN-01 move-in choice and end-of-turn conquest (core-rules.md,
+ * pinned ae298e37, Ownership change / Victory). Legacy presets stay stable.
+ */
+export function captureChoiceRules(): RuleSet {
+  const rules = malpacoRules();
+  return { ...rules, id: "malpaco-capture-choice", combat: { ...rules.combat, capture: "choice" } };
+}
+
 /** Classic combat remains available to the legacy spike entry points. */
 export function classicRules(): RuleSet {
   return {
@@ -77,6 +86,7 @@ export function cloneState(state: GameState): GameState {
     armies: { ...state.armies },
     currentPlayer: state.currentPlayer,
     phase: state.phase,
+    ...(state.pendingCapture ? { pendingCapture: { ...state.pendingCapture } } : {}),
     reinforcementPool: state.reinforcementPool,
     turnNumber: state.turnNumber,
     capturedThisTurn: state.capturedThisTurn,
