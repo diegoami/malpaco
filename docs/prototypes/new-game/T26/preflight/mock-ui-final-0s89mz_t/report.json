@@ -1,0 +1,53 @@
+{
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--user",
+    "1000:1000",
+    "-v",
+    "/home/diego/projects/malpaco/.cache/t26-work:/work",
+    "-v",
+    "/home/diego/projects/malpaco/node_modules:/work/node_modules:ro",
+    "--tmpfs",
+    "/work/node_modules/.vite-temp:rw,mode=1777",
+    "--tmpfs",
+    "/work/node_modules/.vite:rw,mode=1777",
+    "-e",
+    "REFERENCE_EVIDENCE_DIR=/work/docs/prototypes/new-game/T26/preflight/mock-ui-final-0s89mz_t/captures",
+    "-e",
+    "PLAYWRIGHT_HTML_OUTPUT_DIR=/work/docs/prototypes/new-game/T26/preflight/mock-ui-final-0s89mz_t/raw/html-report",
+    "-w",
+    "/work",
+    "mcr.microsoft.com/playwright:v1.63.0-noble",
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/reference-game.spec.ts",
+    "--workers=2",
+    "--output",
+    "docs/prototypes/new-game/T26/preflight/mock-ui-final-0s89mz_t/raw/test-results",
+    "--update-snapshots"
+  ],
+  "exit": 0,
+  "sourceHashes": {
+    "src/main.ts": "5941fc0077651f75938155ea008724d8819f8f8e878913ad09ee21bc9ff526d7",
+    "src/styles.css": "5d3bd3bbed846f69a5f5d615736685bcc88166962fbe63bd3ee623bb14622f65",
+    "src/core/reference-game.ts": "6d769f0713fb1bc79a36edf6a77d699d9cb2462418b59e10735f077cab54010f",
+    "src/ui/referenceGame.ts": "e763c01c854d2d47f1cdf22f14ec77a4ada9622534e0333864ea484bea6a5c7b",
+    "src/ui/referenceMapView.ts": "3405e2729d94ab31bcbe6362121ac92fabcb7cb5c143d47a518751d9a6de5271",
+    "src/ui/referenceData.ts": "5f8a23ce425f0256549e443623a6b85f8832720933a1568d3c7eb1a20840ec00",
+    "tests/core/reference-game.test.ts": "9089d3c4953013cd2499525f4ff884c63438126f2da45cbe2f0e03090df9fd73",
+    "tests/e2e/reference-game.spec.ts": "e29f5a8cfe3e238bae942b8c8c9510428e704018cdcebc784bff73772f0d5afe",
+    "playwright.config.ts": "6742cfa1339f2f15b18de81544b19a26aebf7e17d7e5cbce3e8633e9a1db421f",
+    "package-lock.json": "c0e70a2a071d195b5fceab9ff85cf0a7c3de535ac6e0acce53c9cb89267fbbfd"
+  },
+  "archiveSha256": "aeae3d49fd10dfd31753bf6fcc28b3bc794c481c786a94b54a640b167bce6fdb",
+  "archiveMemberHashes": {
+    "html-report/index.html": "f18d4e29d4cf263227d718499eab80706d43e3305decc1e6ef4d7e4a44b3ac85",
+    "output.txt": "f57ce66949a5c36fb210d37b663ef773930cd4b27f36dd2c3a9c4fa2e04fea4c",
+    "test-results/.last-run.json": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+    "test-results/reference-game-reference-s-3e102-unts-and-reachable-controls-1920x1080/reference-game-actual.png": "a86adba136d3c74c54544663e55f3973817581b25cbc7185c591decbc2caea0a"
+  },
+  "outputTail": "\nRunning 4 tests using 2 workers\n\n  \u2713  1 [1280x800] \u203a tests/e2e/reference-game.spec.ts:16:1 \u203a reference setup paints exact A geometry, routes, live counts and reachable controls (1.2s)\n/work/tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png is re-generated, writing actual.\n  \u2713  3 [1920x1080] \u203a tests/e2e/reference-game.spec.ts:16:1 \u203a reference setup paints exact A geometry, routes, live counts and reachable controls (1.9s)\n{\"project\":\"1280x800\",\"actions\":541,\"attacks\":163,\"handoffs\":20,\"placements\":337,\"winner\":\"seat2\"}\n  \u2713  2 [1280x800] \u203a tests/e2e/reference-game.spec.ts:31:1 \u203a ordinary reference clicks place, attack, hand off and replay legally to a winner (33.6s)\n{\"project\":\"1920x1080\",\"actions\":541,\"attacks\":163,\"handoffs\":20,\"placements\":337,\"winner\":\"seat2\"}\n  \u2713  4 [1920x1080] \u203a tests/e2e/reference-game.spec.ts:31:1 \u203a ordinary reference clicks place, attack, hand off and replay legally to a winner (33.7s)\n\n  4 passed (38.6s)\nnpm notice\nnpm notice New major version of npm available! 11.19.0 -> 12.2.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\nnpm notice To update run: npm install -g npm@12.2.0\nnpm notice\n"
+}

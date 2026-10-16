@@ -1,0 +1,39 @@
+{
+  "baseCommit": "c71f9d8",
+  "mockArchiveMembers": {
+    "src/main.ts": "5941fc0077651f75938155ea008724d8819f8f8e878913ad09ee21bc9ff526d7",
+    "src/styles.css": "5d3bd3bbed846f69a5f5d615736685bcc88166962fbe63bd3ee623bb14622f65",
+    "src/core/reference-game.ts": "6d769f0713fb1bc79a36edf6a77d699d9cb2462418b59e10735f077cab54010f",
+    "src/ui/referenceData.ts": "5f8a23ce425f0256549e443623a6b85f8832720933a1568d3c7eb1a20840ec00",
+    "src/ui/referenceMapView.ts": "3405e2729d94ab31bcbe6362121ac92fabcb7cb5c143d47a518751d9a6de5271",
+    "src/ui/referenceGame.ts": "e763c01c854d2d47f1cdf22f14ec77a4ada9622534e0333864ea484bea6a5c7b",
+    "tests/core/reference-game.test.ts": "9089d3c4953013cd2499525f4ff884c63438126f2da45cbe2f0e03090df9fd73",
+    "tests/e2e/reference-game.spec.ts": "e29f5a8cfe3e238bae942b8c8c9510428e704018cdcebc784bff73772f0d5afe",
+    "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png": "d0c01e75900573b4bc08e887562a7387c9d7ee6f2fc836a4a1cc9c8ed57ebc93",
+    "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png": "a86adba136d3c74c54544663e55f3973817581b25cbc7185c591decbc2caea0a",
+    "dist/index.html": "91b9725a7663dcc988ca850d41245e8a2811f2b17a2f2924f224055d618c3057",
+    "dist/assets/index-BJRph1yE.css": "ad17e131472bdc7bfd1c28db49432b618fc542363a2372b7a33cf048e7e116a8",
+    "dist/assets/index-CzhqkOhw.js": "0cb3009e176a3ae0ae808967fb53b4c3f397ad77bba9384ed86bffa877ffe335",
+    "dist/fonts/Inter-LICENSE.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+    "dist/fonts/InterVariable.woff2": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+  },
+  "rawLogMembers": {
+    "all-unit-mock.txt": "81af5fbe22928fe451ad91048f7891ed785e9eef9366c002933aff570c1d3870",
+    "browser-baseline-final.txt": "1198e9ebec9c964d614d4f5eca36394e2ce552b1b60e8a524f122f4f7b9394f2",
+    "browser-baseline.txt": "0c5daab99b81358f04d422a380559192606990d2e61820c18f70e3d279d94f95",
+    "build-baseline.txt": "433a6c0cfeb3cabe4fc956057962ad06feee9758ad874dd02d57ff7204532708",
+    "build-mock-final.txt": "35457755cee680a306442e8bd894e8d953c838b869bde7987460bb498926fb19",
+    "build-mock.txt": "ca5fa2c56fc54fd1787f8bc76f8bfee0333bd8df33ebf277d26c6b776a7c7c6e",
+    "core-baseline-final.txt": "e93ef846f77a0446e9565b03e563337ab6e6783aa5fd45dbcdb69bdb1be430ef",
+    "core-baseline.txt": "d1e6de8a6f2491bf2d8144fd8ae2cf0f49b06ea3bba4b2c2fffbdce67d542567",
+    "core-mock.txt": "5f3fdd74157b31b52c8f1c79f9bdf76e5062d0e0eaad7fd13c9a628e838d3af0"
+  },
+  "baseRestored": {
+    "src/main.ts": true,
+    "src/styles.css": true
+  },
+  "newMockSourcesRemoved": true,
+  "mockGoldensRemoved": true,
+  "featureBaseline": "current generated adapter:3 core map assertions fail; absent route:4 browser setup assertions fail",
+  "positive": "3 core +4 browser checks;432 unit tests; typecheck/build green;541 ordinary actions per viewport to conquest"
+}
