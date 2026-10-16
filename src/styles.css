@@ -1261,3 +1261,16 @@ dialog h2 {
 .victory-guidance { margin:12px 0 0; color:var(--muted); font-size:13px; }
 .victory-choices { display:grid; gap:8px; margin-top:12px; }
 .battle-reference .panel:is([data-phase="finished"],[data-phase="human-loss"]) .action > :is(.pick,.hint,.legend) { display:none; }
+
+/* [designed] T31 gives file feedback its own header space, beside the inputs.
+   It wraps within that row and never floats over the board or live controls. */
+.reference-match-files {
+  flex-basis:100%; display:grid;
+  grid-template-columns:auto auto minmax(0,1fr);
+  gap:8px 16px; align-items:center; min-width:0; min-height:34px;
+}
+.reference-match-files .match-error { max-width:none; overflow-wrap:anywhere; }
+.reference-match-files .match-load { min-width:0; }
+.reference-match-files-setup { grid-template-columns:minmax(0,1fr); }
+.reference-match-files-setup .match-load { flex-wrap:wrap; }
+.reference-match-files-setup .match-load input { flex:1; min-width:0; }

@@ -7,13 +7,31 @@ import {App} from "./app";
 import {h} from "./dom";
 import {ReferenceBattleGame} from "./referenceBattleGame";
 import type {BattlePreferences} from "./referenceBattleGame";
+import type {GameOptions,GameState} from "../core";
+import {ReferenceMatchFiles} from "./referenceMatchFiles";
 export function mountReferenceGame(root:HTMLElement){
  let seed=new URLSearchParams(location.search).get("seed")??"1994",seats="2";
  let controllers:("human"|"computer")[]=["human","human","human","human"];
  let dominationWin=true,roundLimit:20|30|40|null=null;
  const legacy=new URLSearchParams(location.search).get("battle")==="legacy";
  const preferences:BattlePreferences={threshold:2,speed:"normal"};
+ let current:App|ReferenceBattleGame|null=null;
+ let setupFiles:ReferenceMatchFiles|null=null;
+ const dispose=()=>{setupFiles?.dispose();setupFiles=null;current?.dispose();current=null;};
+ const mountMatch=(options:GameOptions,state:GameState)=>{
+  const app=legacy
+   ?new App(referenceMap,options.seed,()=>setup(),state,(map,handlers)=>new ReferenceMapView(map,handlers))
+   :new ReferenceBattleGame(referenceMap,options,()=>setup(),state,preferences,mountMatch);
+  dispose();
+  seed=String(options.seed);seats=String(options.seats.length);
+  controllers=Array.from({length:4},(_,i)=>options.seats[i]?.kind??"human");
+  dominationWin=options.dominationWin;roundLimit=options.roundLimit;
+  root.id="reference-game";root.className="reference-game-root";root.dataset["seats"]=seats;
+  current=app;app.mount(root);
+  if(legacy)root.querySelector(".subtitle")!.textContent=`Nine Isles · ${seats} human seats · Seed ${seed}`;
+ };
  const setup=()=>{
+  dispose();
   root.id="reference-setup";root.className="reference-setup";
   const input=h("input",{id:"reference-seed",type:"number",min:"0",max:"4294967295",required:"",value:seed});
   const count=h("select",{id:"reference-seats"},...[2,3,4].map(n=>h("option",{value:String(n)},String(n))));count.value=seats;
@@ -34,11 +52,8 @@ export function mountReferenceGame(root:HTMLElement){
    try{dominationWin=domination.checked;roundLimit=limit.value==="off"?null:Number(limit.value) as 20|30|40;
     const kinds=Array.from({length:Number(seats)},(_,i)=>legacy?"human" as const:controllers[i]!);
     const options={...defaultOptions(),seed:Number(seed),seats:kinds.map(kind=>({kind})),computerStrengths:kinds.filter(kind=>kind==="computer").map(()=>"Normal" as const),dominationWin,roundLimit};const result=createReferenceGame(referenceMap,options,legacy?undefined:victoryRules(options));if(!result.ok){alert.textContent=result.errors.join("; ");return;}
-    root.id="reference-game";root.className="reference-game-root";root.dataset["seats"]=seats;
-    const app=legacy?new App(referenceMap,options.seed,()=>{app.dispose();setup();},result.state,(map,handlers)=>new ReferenceMapView(map,handlers)):new ReferenceBattleGame(referenceMap,options.seed,()=>{app.dispose();setup();},result.state,preferences);app.mount(root);
-    const humans=kinds.filter(kind=>kind==="human").length,computers=kinds.length-humans;
-    root.querySelector(".subtitle")!.textContent=computers?`Nine Isles · ${humans} human / ${computers} computer seats · Manual play · Seed ${seed}`:`Nine Isles · ${seats} human seats · Seed ${seed}`;
+    mountMatch(options,result.state);
    }catch(error){alert.textContent=error instanceof Error?error.message:String(error);}
-  };root.replaceChildren(form);
+  };if(!legacy){setupFiles=new ReferenceMatchFiles(mountMatch);form.append(setupFiles.el);}root.replaceChildren(form);
  };setup();
 }

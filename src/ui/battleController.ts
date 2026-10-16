@@ -68,7 +68,7 @@ export class BattleController {
 
   constructor(initial: GameState, private readonly scheduler: BattleScheduler, private readonly onChange?: (view: BattleView) => void) {
     this.current = {
-      mode: "battle", state: initial, from: null, to: null, running: false, paused: false,
+      mode: "battle", state: initial, from: initial.pendingCapture?.from ?? null, to: initial.pendingCapture?.to ?? null, running: false, paused: false,
       threshold: DEFAULT_STOP_THRESHOLD, effectiveThreshold: 1, speed: "normal", revision: 0,
       lastOutcome: null, rolls: [], ties: 0, attackerWins: 0, defenderWins: 0, message: "",
     };
@@ -247,7 +247,7 @@ export class BattleController {
     this.cancel();
     this.watchExchanges = 0;
     this.beforeMove = null;
-    this.publish({ mode: "battle", state: next, from: null, to: null, running: false, paused: false, effectiveThreshold: 1,
+    this.publish({ mode: "battle", state: next, from: next.pendingCapture?.from ?? null, to: next.pendingCapture?.to ?? null, running: false, paused: false, effectiveThreshold: 1,
       lastOutcome: null, rolls: [], ties: 0, attackerWins: 0, defenderWins: 0, message: "",
     });
     return true;

@@ -63,7 +63,8 @@ export {
   runAllFairnessChecks,
 } from "./board-fairness";
 
-export { MATCH_SAVE_VERSION, deserializeMatch, serializeMatch } from "./match-save";
+export { MATCH_SAVE_VERSION, deserializeMatch, serializeMatch, REFERENCE_MATCH_IDENTITY, deserializeVersionedMatch, serializeVersionedMatch } from "./match-save";
+export type { MatchIdentity, LoadedVersionedMatch } from "./match-save";
 
 export { computerAction } from "./computer";
 
