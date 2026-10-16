@@ -1,0 +1,8 @@
+{
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T29/run-command.py",
+    "--help"
+  ],
+  "result": "IndexError: list index out of range before launching child; helper requires label followed by command and has no --help mode. Existing source-inputs archive retained. No behavior result claimed."
+}

@@ -114,3 +114,10 @@ The current portable index is `artifacts.implementation.v2.json`; verify it with
 `python3 docs/prototypes/new-game/T29/verify-evidence.py artifacts.implementation.v2.json`.
 Historical preflight v1 stays pinned to acceptance commit `d400f24`. Verification
 receipts are committed separately from the index they self-check.
+
+
+## Independent review and final parent checks
+
+MiniMax M3 approved reviewed commit `9c612b3` in11m25s:41 focused/512 full units, build,12 new/134 full pinned browsers and the implementation v2 index pass. R1–R5 confirm mutation sensitivity and Escape behavior; no defect follow-up is needed. Exact session and two browser archives are retained under `evidence/reviewer`; source hashes match reviewed HEAD. Reviewer did not rerun the extra extracted-package check. Parent `release-_fxq4fhi` freshly builds that committed HEAD, verifies checksums and passes24 extracted cases; the earlier package metadata caveat is historical. Parent final critical checks pass41 units and12 browsers in `parent-critical-recheck-xftmq7_a` and `parent-critical-friendly-s84uz_zz`. No production or test assertion changed after review. An unsupported `run-command.py --help` invocation failed before any child ran; its source-input archive and diagnostic remain, with no behavior claim.
+
+Final retained review/recheck index: `artifacts.final.v3.json`; earlier indices are immutable historical records.
