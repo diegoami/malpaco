@@ -1,9 +1,10 @@
 # Seed 1994 map prototype
 
 This directory holds a visual prototype for owner judgment. `preview.html` is
-the eventual self-contained file opened directly with `file://`; the source
-prototype and geometry builder are kept as a disposable fixture until the
-parent's pinned-browser baseline and mutation checks finish. The builder emits
+the self-contained G prototype, opened directly with `file://`. It is installed
+byte for byte from the retained `fixtures/candidate-g/preview-g.html` after the
+pinned-browser baseline, candidate and mutation checks passed. The source
+prototype and geometry builder remain available as retained fixtures. The builder emits
 one HTML file with embedded SVG data, styles and interactions. It has no
 runtime or build dependencies.
 
@@ -35,15 +36,16 @@ topology list disclose all land and sea changes. Select any country to inspect
 the exact proposed neighbourhood. **Export SVG** downloads the current map as
 a standalone SVG.
 
-The parent session owns candidate replay and browser checks. Run the complete
-baseline/candidate/selected-neighbour mutation/restoration sequence with a new
-evidence directory:
+The parent session owns candidate replay and browser checks. Verify the
+installed preview at both viewport sizes with a fresh evidence directory:
 
 ```sh
-node docs/prototypes/map-1994/replay.mjs docs/prototypes/map-1994/preflight-20261015-g
+node docs/prototypes/map-1994/verify.mjs docs/prototypes/map-1994/final-<fresh-run>
 ```
 
-The replay installs the candidate's exact bytes only while the pinned-browser
+For a fresh baseline/mutation replay, use a disposable checkout without the
+installed preview and run `replay.mjs <fresh-evidence-directory>`. It installs
+the candidate's exact bytes only while the pinned-browser
 verifier runs, removes the selected-neighbour behavior for the mutation run,
 restores and hashes the exact candidate bytes, and returns the checkout to its
 original missing-preview state. The verifier opens `preview.html` directly,
