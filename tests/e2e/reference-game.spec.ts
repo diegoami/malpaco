@@ -13,6 +13,14 @@ function opening(){const r=createReferenceGame(map,{...defaultOptions(),seed:199
 const country=(page:Page,id:string)=>page.locator(`[data-country="${id}"]`);
 async function setup(page:Page){await page.goto("/?view=reference-game");await expect(page.getByRole("heading",{name:"New reference game",exact:true})).toBeVisible();await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByLabel("Human seats").selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("#reference-game")).toBeVisible();}
 async function capture(page:Page,name:string,project:string){const root=process.env["REFERENCE_EVIDENCE_DIR"]??"screenshots";mkdirSync(root,{recursive:true});const dir=mkdtempSync(join(root,"reference-"));await page.mouse.move(0,0);await page.screenshot({path:join(dir,`${name}-${project}.png`)});}
+async function panelTextFits(page:Page){
+ // [designed] One CSS pixel for rectangle rounding, as in the existing complete-game fit guard.
+ const boxes=await page.locator(".panel .score-num,.panel .score-name,.panel .turn-title,.panel .turn-sub,.panel .step-value,.panel button").evaluateAll(nodes=>nodes.map(n=>{
+  const range=document.createRange();range.selectNodeContents(n);const lines=[...range.getClientRects()];const panel=n.closest(".panel")!.getBoundingClientRect(),card=(n.closest(".card")??n.parentElement)!.getBoundingClientRect();
+  return {text:n.textContent,visible:lines.length>0,fits:lines.every(b=>b.left>=Math.max(0,panel.left,card.left)-1&&b.right<=Math.min(innerWidth,panel.right,card.right)+1&&b.top>=Math.max(0,panel.top,card.top)-1&&b.bottom<=Math.min(innerHeight,panel.bottom,card.bottom)+1)};
+ })).then(rows=>rows.filter(r=>r.visible));
+ expect(boxes.length).toBeGreaterThan(4);expect(boxes.filter(b=>!b.fits)).toEqual([]);
+}
 test("reference setup paints exact A geometry, routes, live counts and reachable controls",async({page},info)=>{
  const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));await setup(page);const state=opening();
  await expect(page.locator("[data-country]")).toHaveCount(46);
@@ -24,8 +32,8 @@ test("reference setup paints exact A geometry, routes, live counts and reachable
  for(const id of ["start-combat-button","end-turn-button","attack-button","new-game-button"]){await expect(page.locator(`#${id}`)).toBeVisible();const b=await page.locator(`#${id}`).boundingBox();expect(b).not.toBeNull();expect(b!.x+b!.width).toBeLessThanOrEqual(v.width);expect(b!.y+b!.height).toBeLessThanOrEqual(v.height);}
  const first=country(page,map.provinces[0]!.id),second=country(page,map.provinces[1]!.id);await first.focus();
  for(const[key,target]of [["ArrowRight",second],["ArrowLeft",first],["ArrowDown",second],["ArrowUp",first]] as const){await page.keyboard.press(key);await expect(target).toBeFocused();}await first.evaluate(n=>(n as SVGElement).blur());
- await capture(page,"opening",info.project.name);await expect(page.locator("#reference-game")).toHaveScreenshot("reference-game.png");
- for(const seats of [3,4]){await page.locator("#new-game-button").click();await page.getByLabel("Human seats").selectOption(String(seats));await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("[data-player]")).toHaveCount(seats);for(const id of ["start-combat-button","end-turn-button","attack-button","new-game-button"]){const b=await page.locator(`#${id}`).boundingBox();expect(b).not.toBeNull();expect(b!.x+b!.width).toBeLessThanOrEqual(v.width);expect(b!.y+b!.height).toBeLessThanOrEqual(v.height);}await capture(page,`${seats}-seats`,info.project.name);}
+ await panelTextFits(page);await capture(page,"opening",info.project.name);await expect(page.locator("#reference-game")).toHaveScreenshot("reference-game.png");
+ for(const seats of [3,4]){await page.locator("#new-game-button").click();await page.getByLabel("Human seats").selectOption(String(seats));await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("[data-player]")).toHaveCount(seats);for(const id of ["start-combat-button","end-turn-button","attack-button","new-game-button"]){const b=await page.locator(`#${id}`).boundingBox();expect(b).not.toBeNull();expect(b!.x+b!.width).toBeLessThanOrEqual(v.width);expect(b!.y+b!.height).toBeLessThanOrEqual(v.height);}await panelTextFits(page);await capture(page,`${seats}-seats`,info.project.name);}
  expect(errors).toEqual([]);
 });
 test("ordinary reference clicks place, attack, hand off and replay legally to a winner",async({page},info)=>{
@@ -48,7 +56,7 @@ test("ordinary reference clicks place, attack, hand off and replay legally to a 
   state=r.state;actions++;
  }
  expect(actions).toBeLessThan(ACTION_BUDGET);expect(placements).toBeGreaterThan(0);expect(attacks).toBeGreaterThan(0);expect(handoffs).toBeGreaterThan(0);expect(state.phase).toBe("finished");expect(state.winner).toBe(policy.conqueror);
- const winner=state.players.find(p=>p.id===state.winner)!;await expect(page.locator("#turn-title")).toHaveText(`${winner.name} conquers the sea`);await expect(page.locator(`#attack-button`)).toBeDisabled();await expect(page.locator("#new-game-button")).toBeEnabled();await capture(page,"winner",info.project.name);
+ const winner=state.players.find(p=>p.id===state.winner)!;await expect(page.locator("#turn-title")).toHaveText(`${winner.name} conquers the sea`);await expect(page.locator(`#attack-button`)).toBeDisabled();await expect(page.locator("#new-game-button")).toBeEnabled();await panelTextFits(page);await capture(page,"winner",info.project.name);
  await page.locator("#new-game-button").click();await expect(page.getByRole("heading",{name:"New reference game",exact:true})).toBeVisible();await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1994");
  console.log(JSON.stringify({project:info.project.name,actions,attacks,handoffs,placements,winner:state.winner}));expect(errors).toEqual([]);
 });

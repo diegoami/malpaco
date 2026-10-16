@@ -67,3 +67,27 @@ requirements now use Playwright's bounded polling; `paint-settled-8l7cmb4w`
 passes all four cases and541 actions per viewport. The mutation runner explicitly
 requires green core/browser baselines before testing any deletion, preventing
 unrelated baseline failures from masquerading as killed mutants.
+
+Pre-layout mutation audit: `evidence/mutations-6a8cvhxn` requires green
+core and complete browser baselines, then catches all six mutations and restores
+both production source files exactly. The earlier six-mutant attempt is retained
+as non-authoritative above. All52 pre-existing test/golden files match baseline
+commit c71f9d8 byte-for-byte (`evidence/existing-tests-hfma7xsj`).
+
+Final layout audit: `evidence/panel-before-14pzl_xw` demonstrates clipped player
+totals at1920×1080 before the existing440px high-resolution panel rule was
+extended to this route. Its prior reference snapshot is retained there unchanged;
+`panel-fixed-ietu5a_h` passes the new text-boundary guard with the corrected
+reference-only snapshot. Existing goldens remain unchanged. The same guard checks
+opening,3/4-seat and winner panels at both desktop sizes.
+
+Authoritative final mutation audit: `evidence/mutations-15e2jis9` starts with
+green core and all four browser cases on this final layout, kills all six
+mutants and restores exact source bytes. Its baseline browser captures include
+opening,first attack and winner at both viewports. Final unit/build reports and
+`existing-tests-f6k9uofn` retain the complete checks and unchanged52-file seal.
+
+The immutable revision index is sharded into small readable parts. Its root is
+`artifacts.v2.sha256.json` (the verifier default). The initial monolithic index
+is preserved byte-for-byte in `evidence/initial-index.tar.gz`; its loose original
+is ignored. Each shard and every original archived member is verified.
