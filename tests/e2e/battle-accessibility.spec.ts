@@ -8,7 +8,7 @@ const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]
 async function ready(page: Page, kind: "manual" | "capture") {
   const f = fixture(kind);
   await page.clock.install(); await page.clock.pauseAt(new Date());
-  await page.goto("/?view=reference-game");
+  await page.goto("/?view=reference-game&control=manual");
   await page.getByLabel("Seed", { exact: true }).fill(String(f.seed));
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   for (let n = 0; n < f.placements; n++) await country(page, f.from).click();

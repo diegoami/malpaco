@@ -2,7 +2,7 @@ import {test,expect} from "@playwright/test";
 import type {Page} from "@playwright/test";
 import {fixture,seaFixture,map,targets} from "./friendly-fixture";
 const country=(page:Page,id:string)=>page.locator(`[data-country="${id}"]`);
-async function ready(page:Page,mixed=false){const f=mixed?seaFixture():fixture();await page.goto("/?view=reference-game");await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Human seats").selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator("#start-combat-button").click();return f;}
+async function ready(page:Page,mixed=false){const f=mixed?seaFixture():fixture();await page.goto("/?view=reference-game&control=manual");await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Seats",{exact:true}).selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator("#start-combat-button").click();return f;}
 
 test("movement route emphasis includes own sea neighbours and excludes enemy routes",async({page})=>{
  const f=await ready(page,true),source=map.provinces.find(p=>p.id===f.from)!;

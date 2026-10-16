@@ -701,3 +701,5 @@ attacks. Watch/Stop and terminal standings rebuild from their ordinary actions.
 Frozen merged-T30 histories, real browser file flows, source deletion controls,
 screenshots and exact restoration evidence live under
 [T31](prototypes/new-game/T31/README.md).
+
+The reference route defaults to one human against three Normal baseline computers. `?view=reference-game&control=manual` retains explicit manual testing (including computer seat metadata). Automatic seats resolve ordinary capture and move actions; save/load and New game remain available. The policy is deterministic and bounded; this does not complete the strategic strength levels. See `docs/prototypes/new-game/T32/README.md`.
