@@ -62,7 +62,7 @@ longer ends the run.
 | `zai-glm-5.3` | GLM-5.3, `zai-coding-plan/glm-5.3`, effort `low` (no medium) | GLM | a credible heavy reviewer when OpenAI is out (T08 round 2); 3x in weekday peak from 8 Oct 2026 |
 | `zai-glm-5.3-flash` | GLM-5.3 Flash, `zai-coding-plan/glm-5.3-flash`, effort `high` | GLM | a light reviewer for small PRs |
 | `mimo-flash`, `mimo-pro` | MiMo v2.6 Flash and Pro on OpenCode Go, no variant (they offer none) | MiMo | a family of its own; Go needs `opencode console login` in the scripts' data directory |
-| `mm-m3`, `mm-m2.7` | MiniMax-M3 (variant `thinking`) and M2.7 (no variant) | MiniMax | isle-wars-archaeology's `harness.json` only; a family of its own; key `MINIMAX_API_KEY` from `~/.config/ai-keys.env`, never `opencode auth login` |
+| `mm-m3`, `mm-m2.7` | MiniMax-M3 (variant `thinking`) and M2.7 (no variant) | MiniMax | `mm-m3` registered here as the owner’s reviewer choice (2026-10-16); M2.7 remains upstream only; a family of its own; key `MINIMAX_API_KEY` from `~/.config/ai-keys.env`, never `opencode auth login` |
 | `ali-qwen-max`, `ali-qwen-flash`, `ali-glm` | Qwen 3.8 Max (`low`), Qwen 3.8 Flash (`medium`) and GLM-5.3 (`low`) on the Alibaba Token Plan | Qwen, GLM | isle-wars-archaeology's `harness.json` only; register here through `/switch-model` when needed; key `ALIBABA_TOKEN_PLAN_API_KEY` the same way |
 | (the session's provider) | the orchestrator's model from the Anthropic environment; `sonnet`, `opus`, `haiku`, `fable` or a model id for the `implementer` subagent, which the orchestrator spawns on a model of its own | Claude; GLM, MiniMax or Kimi when the environment says so | implements; reviews only when the user asks |
 
@@ -311,3 +311,8 @@ The main session updates this page in the same commit as any of these:
 
 It stays a strategy and a set of observations. What is running now lives in the labels and in the
 trials issues.
+
+The owner’s 2026-10-16 task sequence uses the main session for Easy/Medium tasks,
+native Sol High for Hard tasks and Sol Max for Very Hard tasks, overriding the older
+effort cap for those explicitly requested implementations. MiniMax M3 reviews through
+OpenCode at its live-listed `thinking` variant. Existing task role defaults yield to this choice.
