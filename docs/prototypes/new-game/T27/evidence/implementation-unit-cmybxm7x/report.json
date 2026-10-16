@@ -1,0 +1,14 @@
+{
+  "command": [
+    "npm",
+    "test"
+  ],
+  "exit": 0,
+  "stdoutTail": "\n> malpaco-spike-ts@0.0.0 test\n> vitest run\n\n\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t27-work\n\n\n Test Files  28 passed (28)\n      Tests  456 passed (456)\n   Start at  18:11:43\n   Duration  2.24s (tests 50%, transform 40%, import 9%, worker 1%)\n\n  Transform  transforming modules took 5.24s \u00b7 40% of tracked time, re-done on every run\n             persist transforms across runs with fsModuleCache: true\n             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns\n\n",
+  "stderrTail": "",
+  "archiveSha256": "d9fa7d0827329d46d26592b8578aec63799e23db17103cee2cf22cd99c9d50f6",
+  "archiveMemberHashes": {
+    "stdout.txt": "3c8646c8b419bed6b14466855f067d19c56624f4af97f15ca8cabb95cb64af89",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

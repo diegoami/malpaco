@@ -1,0 +1,74 @@
+{
+  "mutants": [
+    {
+      "name": "quantity",
+      "path": "src/core/rules.ts",
+      "mutantSha256": "da08848b6eab27138dd44c44d7d602e6a7e27cbadf430568c7c5abfc0f74bad8",
+      "exit": 1
+    },
+    {
+      "name": "conservation",
+      "path": "src/core/rules.ts",
+      "mutantSha256": "a1045b4b8cd9fbb8cf7c60b63dac754ba3d955581ef482d4150848acc9a28c49",
+      "exit": 1
+    },
+    {
+      "name": "clone",
+      "path": "src/core/state.ts",
+      "mutantSha256": "d3eaed2c5beb19bc6348eba712209f117726b0b752a6601351b7c15a0cb5e8da",
+      "exit": 1
+    },
+    {
+      "name": "reference-opt-in",
+      "path": "src/core/reference-game.ts",
+      "mutantSha256": "d14622b616c197ff6fe8b51c48a54d71554dc980abd9734c4e9d1c1e52ba0fcc",
+      "exit": 1
+    },
+    {
+      "name": "premature-victory",
+      "path": "src/core/rules.ts",
+      "mutantSha256": "7a9e43fc8bedf3313caafcff6237516f5ceda7e91f1feb8f1e80a0e08fcba1fd",
+      "exit": 1
+    },
+    {
+      "name": "premature-all",
+      "path": "src/core/combat.ts",
+      "mutantSha256": "a50f1a77d2fb07755418a4ff22de684486527f946ba08cc048e053d8e1938bca",
+      "exit": 1
+    },
+    {
+      "name": "default-minimum",
+      "path": "src/core/rules.ts",
+      "mutantSha256": "d9a3a48e6390d06d22cc949f6ba5444983f0c9f2646e6947d7444db9aa5176fa",
+      "exit": 1
+    },
+    {
+      "name": "pending-attack-gates",
+      "path": "src/core/rules.ts",
+      "mutantSha256": "f4f15f66f77037dc312baf30c8c1ec93c0db869fb5d2f1b44117a5f3cf6c5ac1",
+      "exit": 1
+    }
+  ],
+  "restoration": {
+    "src/core/rules.ts": {
+      "savedSha256": "531a543df7c8978c179edeb291720f98979f743812810ad53cff3113c05d0e6a",
+      "restoredSha256": "531a543df7c8978c179edeb291720f98979f743812810ad53cff3113c05d0e6a",
+      "exact": true
+    },
+    "src/core/combat.ts": {
+      "savedSha256": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+      "restoredSha256": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+      "exact": true
+    },
+    "src/core/state.ts": {
+      "savedSha256": "56d506d3cfc72233aa9a42232ebba6880a6bf877c9202c060a1aba412245db8e",
+      "restoredSha256": "56d506d3cfc72233aa9a42232ebba6880a6bf877c9202c060a1aba412245db8e",
+      "exact": true
+    },
+    "src/core/reference-game.ts": {
+      "savedSha256": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+      "restoredSha256": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+      "exact": true
+    }
+  }
+}

@@ -46,7 +46,7 @@ test("normal three-human clicks eliminate, skip a dead seat, conquer, freeze and
     if(action.kind === "reinforce") await country(page,action.province).click();
     else if(action.kind === "endReinforcement") await page.locator("#start-combat-button").click();
     else if(action.kind === "endTurn") await page.locator("#end-turn-button").click();
-    else {
+    else if(action.kind === "attack") {
       const from = country(page,action.from);
       if(await from.getAttribute("aria-pressed") !== "true") await from.click();
       await country(page,action.to).click();
@@ -58,6 +58,7 @@ test("normal three-human clicks eliminate, skip a dead seat, conquer, freeze and
       }
       await page.getByRole("button", {name:"Continue",exact:true}).click();
     }
+    else throw new Error(`Unexpected legacy action: ${action.kind}`);
     state = next; actions++;
     if(action.kind === "reinforce") await expect(page.locator("#reinforcement-pool")).toHaveText(String(state.reinforcementPool));
     if(action.kind === "endTurn") {

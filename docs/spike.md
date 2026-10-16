@@ -551,3 +551,14 @@ victory gaps assigned to T27–T30. It is the temporary reference milestone befo
 general geography T34–T36. Owner assessment of the integrated screenshots precedes
 broader implementation (roadmap checkpoint3); browser checks establish operation,
 not visual parity or fun. Evidence/reproduction: [T26](prototypes/new-game/T26/README.md).
+
+
+## Explicit capture-choice core (T27)
+
+`captureChoiceRules()` opts into the pinned [Ownership change and Victory design](https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#ownership-change). When a defender loses its last army, ownership and elimination update immediately. The engine provisionally transfers one army so both countries remain occupied, enters `capture`, and exposes `pendingCapture {from,to,min,max,defaultAmount}`. This provisional transfer is a [designed] interaction protocol; the pinned design specifies the bounds and choice, but not its intermediate engine state.
+
+The ordinary action `{kind:"captureMove",amount?:number}` chooses the **total** moved into the captured country, including that first army. Bounds are one through all but one of the surviving source armies; omission selects the maximum. Only the remaining difference transfers, with no extra RNG draws or stack cap. Pending choices block all other commands, including end-turn. A completed choice returns to attacks, so its target can make a chained capture. Elimination occurs at ownership change; this preset checks conquest at end-turn before advancing the seat or computing income.
+
+The preset is staged for T28: `createReferenceGame(map,options,rules?)` accepts it explicitly. Existing `malpacoRules()`, Classic, generated/reference routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 owns their full save integration. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
+
+Acceptance and actual-source mutation evidence, exact restoration records, pinned legacy browser captures and portable hash verification are retained in `docs/prototypes/new-game/T27/`.

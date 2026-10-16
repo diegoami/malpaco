@@ -486,3 +486,10 @@ T26 independent review: MiniMax M3 approved4695904, exit0,664.341seconds, all3 D
 
 ## T27 parent preflight
 Owner selects native Sol High for Hard T27 and MiniMax M3 review. Main clarified opt-in capture protocol to preserve existing routes/presets/saves until T28 UI; provisional minimum1, quantity selects total, immediate ownership/elimination, end-turn conquest. Parent17 capture and4 replay tests fail on inherited automatic behavior; disposable wrapper mock passes21,454 full unit tests and build. Quantity-validation deletion fails8 tests including tampered serialized action; conservation deletion fails chained replay. All attempts including first mock typecheck failure retained, original index.ts restored byte-exact and temporary mock removed before implementation. No original assertions/goldens changed.
+
+
+## T27 explicit capture choices
+
+Native Sol High implements the owner-selected opt-in protocol in the isolated T27 worktree. Plan: add a typed capture phase/pending record and total-quantity action, move the provisional minimum at ownership change, gate pending inputs and defer opt-in conquest to end-turn; preserve legacy presets/routes/save v1. Use parent acceptance unchanged, add targeted compatibility/clone/protocol checks, retain positive and actual-source mutation results with exact restoration, then run unit/build and pinned affected browsers. Source and evidence commits are pushed after each batch.
+
+T27 implementation batch: all21 parent cases and456 unit cases pass, including2 added factory/clone seam cases. Real Action-union integration exposed11 TypeScript errors in3 existing browser catch-all attack branches; failed output retained. Main amended the task in commit5e14bf3 to permit explicit attack narrowing and unexpected-action throws, preserving all assertions/goldens. Eight actual-source mutants (quantity, conservation, clone, opt-in factory, premature victory, premature all-transfer, default minimum, combined pending attack gates) are killed from a green23-case baseline; saved source bytes restored exactly in finally.

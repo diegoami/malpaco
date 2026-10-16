@@ -22,6 +22,9 @@ export function legalAttacks(state: GameState): Action[] {
 export function apply(state: GameState, action: Action): ApplyResult {
   if (state.phase === "finished") return { ok: false, error: "the game is over" };
   if (!activePlayer(state)) return { ok: false, error: "no player to act" };
+  if ((state.pendingCapture || state.phase === "capture") && action.kind !== "captureMove") {
+    return { ok: false, error: "choose the capture move-in before another action" };
+  }
 
   const next = cloneState(state);
   const result = dispatch(next, action);
@@ -39,6 +42,8 @@ function dispatch(next: GameState, action: Action): ApplyResult {
       return attack(next, action.from, action.to);
     case "endTurn":
       return endTurn(next);
+    case "captureMove":
+      return captureMove(next, action.amount);
     default:
       return { ok: false, error: "unknown action" };
   }
@@ -89,10 +94,25 @@ function attack(state: GameState, from: string, to: string): ApplyResult {
   if (outcome.captured) {
     state.capturedThisTurn = true;
     checkElimination(state);
-    if (checkVictory(state)) return { ok: true, state, outcome };
+    if (state.rules.combat.capture !== "choice" && checkVictory(state)) return { ok: true, state, outcome };
   }
   if (outcome.endsPhase) state.phase = "redeploy";
   return { ok: true, state, outcome };
+}
+
+function captureMove(state: GameState, requested: number | undefined): ApplyResult {
+  const choice = state.pendingCapture;
+  if (state.phase !== "capture" || !choice) return { ok: false, error: "no capture move-in is pending" };
+  const amount = requested === undefined ? choice.defaultAmount : requested;
+  if (!Number.isSafeInteger(amount) || amount < choice.min || amount > choice.max) {
+    return { ok: false, error: "capture amount must be an integer within the pending bounds" };
+  }
+  const additional = amount - choice.min;
+  state.armies[choice.from] = state.armies[choice.from]! - additional;
+  state.armies[choice.to] = state.armies[choice.to]! + additional;
+  delete state.pendingCapture;
+  state.phase = "attack";
+  return { ok: true, state, outcome: null };
 }
 
 /** Passes play to the next living player after the selected ruleset's turn phases. */
@@ -100,6 +120,8 @@ function endTurn(state: GameState): ApplyResult {
   if (state.rules.turnSequence === "reinforcement" && state.phase !== "attack" && state.phase !== "redeploy") {
     return { ok: false, error: "end the turn after the attack phase" };
   }
+  // Pinned core-rules.md Victory: after this turn's move, before next income.
+  if (state.rules.combat.capture === "choice" && checkVictory(state)) return { ok: true, state, outcome: null };
   const mover = activePlayer(state) as Player;
   state.log.push({ event: "turn_ended", player: mover.id, turn: state.turnNumber });
   const seats = state.players.length;

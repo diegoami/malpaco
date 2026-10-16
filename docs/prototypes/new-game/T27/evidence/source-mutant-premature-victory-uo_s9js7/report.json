@@ -1,0 +1,18 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/capture-choice.test.ts",
+    "tests/core/capture-choice-replay.test.ts",
+    "tests/core/capture-choice-compatibility.test.ts"
+  ],
+  "exit": 1,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t27-work\n\n \u276f tests/core/capture-choice-replay.test.ts (4 tests | 1 failed) 13ms\n   \u276f capture-choice action replay seam (4)\n     \u00d7 retains decisive pending capture and final end-turn victory as separate replay actions 4ms\n \u276f tests/core/capture-choice.test.ts (17 tests | 1 failed) 31ms\n   \u276f explicit total move-in choice (17)\n     \u00d7 eliminates at capture but declares conquest only at end-turn after movement 4ms\n\n Test Files  2 failed | 1 passed (3)\n      Tests  2 failed | 21 passed (23)\n   Start at  18:12:56\n   Duration  204ms (transform 72%, tests 14%, import 13%, worker 2%)\n\n",
+  "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/core/capture-choice-replay.test.ts > capture-choice action replay seam > retains decisive pending capture and final end-turn victory as separate replay actions\nAssertionError: expected false to be true // Object.is equality\n\n- Expected\n+ Received\n\n- true\n+ false\n\n \u276f act tests/core/capture-choice-fixtures.ts:24:49\n     22| }\n     23| export function act(s:ChoiceState,a:ChoiceAction):ChoiceState {\n     24|  const r=core.apply(s,a as Action);expect(r.ok).toBe(true);\n       |                                                 ^\n     25|  if(!r.ok)throw new Error(r.error);return r.state;\n     26| }\n \u276f tests/core/capture-choice-replay.test.ts:6:141\n \u276f replay tests/core/capture-choice-replay.test.ts:6:102\n \u276f tests/core/capture-choice-replay.test.ts:25:19\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/core/capture-choice.test.ts > explicit total move-in choice > eliminates at capture but declares conquest only at end-turn after movement\nAssertionError: expected 'finished' to be 'capture' // Object.is equality\n\nExpected: \"capture\"\nReceived: \"finished\"\n\n \u276f pending tests/core/capture-choice-fixtures.ts:32:18\n     30| }\n     31| export function pending(s:ChoiceState,max=4){\n     32|  expect(s.phase).toBe(\"capture\");\n       |                  ^\n     33|  expect(s.pendingCapture).toMatchObject({from:\"sulo\",to:\"frostkabo\",mi\u2026\n     34| }\n \u276f tests/core/capture-choice.test.ts:54:36\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n",
+  "archiveSha256": "3ea41bf10f7d3ff9e7bc584ba1203a305a20ef859aa9387526217a5c7829ddc9",
+  "archiveMemberHashes": {
+    "stdout.txt": "ca9004f1e9e7e1ebca020442691666fdd4985d5c4fccc328ebedeff85fe40b57",
+    "stderr.txt": "2d7c487c8eb10e3ce364823336e20c76a0f6508ba1e10ad4926eb2511763550c"
+  }
+}
