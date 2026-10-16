@@ -1,0 +1,16 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/ui/battle-controller.test.ts"
+  ],
+  "exit": 1,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t28-work\n\n \u276f tests/ui/battle-controller.test.ts (9 tests | 1 failed) 21ms\n   \u276f ordinary exchange controller (9)\n     \u00d7 captures before scheduling another exchange, defaults to max and gates unrelated/stale input 4ms\n\n Test Files  1 failed (1)\n      Tests  1 failed | 8 passed (9)\n   Start at  19:02:36\n   Duration  207ms (transform 70%, tests 15%, import 13%, worker 2%)\n\n",
+  "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/battle-controller.test.ts > ordinary exchange controller > captures before scheduling another exchange, defaults to max and gates unrelated/stale input\nAssertionError: expected true to be false // Object.is equality\n\n- Expected\n+ Received\n\n- false\n+ true\n\n \u276f tests/ui/battle-controller.test.ts:28:82\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n",
+  "archiveSha256": "7752a173943dacf5ab1365ffd36b00a345e1ca8f403a60ec308a97c292097ca6",
+  "archiveMemberHashes": {
+    "stdout.txt": "3ae1ebd4ae6a75bab1cc31120df361434292ad655baf8a9be69644d46c5e6cd6",
+    "stderr.txt": "2f974891241e94dafc4c4f0ead7f9ec499ccfaaf9ec59bddc3a48dd7e593f20d"
+  }
+}

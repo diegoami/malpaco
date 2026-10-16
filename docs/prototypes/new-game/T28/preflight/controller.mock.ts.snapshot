@@ -1,0 +1,50 @@
+// Disposable parent feasibility mock, never the production implementation.
+import {apply,attackTargets,cloneState,DeterministicRng,pairResults,resolve} from '../core';
+import type {Action,GameState} from '../core';
+import type {Controller,Scheduler,View,Speed} from '../../tests/ui/battle-fixtures';
+export class BattleController implements Controller{
+ private v:View;private disposed=false;private generation=0;private handle:number|null=null;private count=0;private base=1;
+ constructor(state:GameState,private clock:Scheduler,private changed?:(v:View)=>void){this.v={state,from:null,to:null,running:false,paused:false,threshold:2,effectiveThreshold:1,speed:'normal',revision:0,lastOutcome:null,rolls:[],ties:0,attackerWins:0,defenderWins:0,message:''};}
+ get state(){return this.v.state;}get view(){return this.v;}
+ private valid(revision?:number){return !this.disposed&&(revision===undefined||revision===this.v.revision);}
+ private publish(){this.v={...this.v,revision:this.v.revision+1};this.changed?.(this.v);}
+ private cancel(){this.generation++;if(this.handle!==null)this.clock.cancel(this.handle);this.handle=null;this.v={...this.v,running:false,paused:false};}
+ private effective(){return Math.max(1,Math.min(this.v.threshold,this.base-1));}
+ select(from:string|null,to:string|null,revision?:number){
+  if(!this.valid(revision)||this.v.running||this.v.paused||this.state.phase!=='attack'||this.state.pendingCapture)return false;
+  if(from&&this.state.ownerOf[from]!==this.state.players[this.state.currentPlayer]!.id)return false;
+  if(to&&(!from||!attackTargets(this.state,from).includes(to)))return false;
+  this.base=from?this.state.armies[from]!:1;this.v={...this.v,from,to,effectiveThreshold:Math.max(1,Math.min(this.v.threshold,this.base-1)),lastOutcome:null,rolls:[],ties:0,attackerWins:0,defenderWins:0};this.publish();return true;
+ }
+ setThreshold(n:number,revision?:number){if(!this.valid(revision)||!Number.isSafeInteger(n)||n<1)return false;this.v={...this.v,threshold:n};this.v={...this.v,effectiveThreshold:this.effective()};this.publish();return true;}
+ setSpeed(speed:Speed,revision?:number){if(!this.valid(revision)||!['slow','normal','fast'].includes(speed))return false;this.v={...this.v,speed};this.publish();return true;}
+ private can(){return this.state.phase==='attack'&&!this.state.pendingCapture&&!!this.v.from&&!!this.v.to&&attackTargets(this.state,this.v.from).includes(this.v.to);}
+ private one(){
+  if(!this.can())return false;const from=this.v.from!,to=this.v.to!,faces:number[]=[],rng=DeterministicRng.fromSnapshot(this.state.rng);
+  resolve(cloneState(this.state),from,to,{rollDie(n){const f=rng.rollDie(n);faces.push(f);return f;}});
+  const r=apply(this.state,{kind:'attack',from,to});if(!r.ok)return false;
+  const rolls=Array.from({length:faces.length/2},(_,i)=>({attackerRolls:[faces[i*2]!],defenderRolls:[faces[i*2+1]!],results:pairResults(this.state.rules.combat.ties,[faces[i*2]!],[faces[i*2+1]!])}));
+  this.v={...this.v,state:r.state,lastOutcome:r.outcome,rolls,ties:this.v.ties+rolls.filter(p=>p.results[0]==='tie').length,attackerWins:this.v.attackerWins+(r.outcome?.defenderLosses??0),defenderWins:this.v.defenderWins+(r.outcome?.attackerLosses??0)};return true;
+ }
+ singleExchange(revision?:number){if(!this.valid(revision)||this.v.running||this.v.paused||!this.one())return false;this.publish();return true;}
+ fightOn(revision?:number){
+  if(!this.valid(revision)||this.v.running||!this.can())return false;
+  if(!this.v.paused){this.base=this.state.armies[this.v.from!]!;this.v={...this.v,effectiveThreshold:this.effective()};}
+  this.v={...this.v,running:true,paused:false};this.count=1;this.one();this.continue();this.publish();return true;
+ }
+ private continue(){
+  if(!this.can()||this.state.armies[this.v.from!]!<=this.v.effectiveThreshold){this.v={...this.v,running:false};return;}
+  const token=this.generation,delay=this.v.speed==='slow'?600:this.v.speed==='fast'?200:400;
+  this.handle=this.clock.schedule(()=>{this.handle=null;if(this.disposed||token!==this.generation||!this.v.running)return;
+   if((this.count+1)*400>5000){this.v={...this.v,running:false,paused:true};this.publish();return;}
+   this.one();this.count++;this.continue();this.publish();
+  },delay);
+ }
+ stop(revision?:number){if(!this.valid(revision)||(!this.v.running&&!this.v.paused))return false;this.cancel();this.publish();return true;}
+ confirmCapture(amount:number,revision?:number){
+  if(!this.valid(revision)||!this.state.pendingCapture)return false;const r=apply(this.state,{kind:'captureMove',amount});if(!r.ok)return false;this.v={...this.v,state:r.state};this.publish();return true;
+ }
+ dispatch(action:Action,revision?:number){if(!this.valid(revision)||this.state.pendingCapture||this.v.running||this.v.paused)return false;const r=apply(this.state,action);if(!r.ok)return false;this.v={...this.v,state:r.state};this.publish();return true;}
+ replaceGame(state:GameState,_reason:'load'|'new-game'){if(this.disposed)return false;this.cancel();this.v={...this.v,state,from:null,to:null,effectiveThreshold:1,lastOutcome:null,rolls:[],ties:0,attackerWins:0,defenderWins:0};this.publish();return true;}
+ dispose(){if(this.disposed)return false;this.cancel();this.disposed=true;this.publish();return true;}
+}
