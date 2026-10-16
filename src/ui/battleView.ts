@@ -1,0 +1,93 @@
+import { armyCount, province, whyNot } from "../core";
+import { h } from "./dom";
+import type { BattleController, BattleSpeed, BattleView as Snapshot } from "./battleController";
+
+function button(id: string, label: string, disabled: boolean, click: () => void, primary = false): HTMLButtonElement {
+  const el = h("button", { id, type: "button", class: primary ? "primary" : "", disabled }, label);
+  el.addEventListener("click", click);
+  return el;
+}
+
+/** Disposable controls capture a revision. Detached controls cannot act on a later state. */
+export class BattleView {
+  readonly el = h("section", { class: "battle-controls", role: "region", "aria-label": "Battle controls" });
+
+  constructor(private readonly controller: BattleController) {}
+
+  render(view: Snapshot): void {
+    const { state, from, to, revision } = view;
+    const focused = this.el.contains(document.activeElement) ? document.activeElement?.id : undefined;
+    const pending = state.pendingCapture;
+    const inBattlePhase = state.phase === "attack" || state.phase === "capture";
+    this.el.hidden = !inBattlePhase && view.lastOutcome === null;
+    this.el.dataset["historyCount"] = String(state.history.length);
+    this.el.dataset["running"] = String(view.running);
+    this.el.dataset["paused"] = String(view.paused);
+    this.el.dataset["revision"] = String(revision);
+    this.el.dataset["speed"] = view.speed;
+
+    const context = h("div", { class: "battle-context" },
+      h("div", { class: "battle-country" }, h("span", { class: "battle-label" }, "From"), h("strong", { id: "battle-source-name" }, from ? province(state.map, from)!.name : "Choose your country"), h("span", { id: "battle-source-armies", class: "battle-count", "aria-label": "Source armies" }, from ? String(armyCount(state, from)) : "—")),
+      h("div", { class: "battle-country" }, h("span", { class: "battle-label" }, "Target"), h("strong", { id: "battle-target-name" }, to ? province(state.map, to)!.name : "Choose an enemy neighbour"), h("span", { id: "battle-target-armies", class: "battle-count", "aria-label": "Target armies" }, to ? String(armyCount(state, to)) : "—")),
+    );
+    const threshold = h("input", { id: "battle-stop-threshold", type: "number", min: 1, step: 1, value: String(view.threshold), "aria-describedby": "battle-threshold-help", disabled: view.running || view.paused || !!pending || !inBattlePhase });
+    threshold.addEventListener("change", () => {
+      if (!this.controller.setThreshold(threshold.valueAsNumber, revision)) threshold.value = String(this.controller.view.threshold);
+    });
+    const speed = h("select", { id: "battle-speed" },
+      h("option", { value: "slow" }, "Slow"), h("option", { value: "normal" }, "Normal"), h("option", { value: "fast" }, "Fast"));
+    speed.value = view.speed;
+    speed.addEventListener("change", () => this.controller.setSpeed(speed.value as BattleSpeed, revision));
+    const settings = h("div", { class: "battle-settings" },
+      h("label", { for: "battle-stop-threshold" }, "Stop at armies", threshold),
+      h("label", { for: "battle-speed" }, "Battle speed", speed));
+    const canExchange = !pending && inBattlePhase && from !== null && to !== null && whyNot(state, from, to) === "";
+    const controls = h("div", { class: "battle-actions" },
+      button("fight-on-button", view.paused ? "Keep watching" : "Fight on", !canExchange || view.running, () => this.controller.fightOn(revision), true),
+      button("stop-battle-button", "Stop", !view.running && !view.paused, () => this.controller.stop(revision)),
+      button("single-exchange-button", "Single exchange", !canExchange || view.running || view.paused, () => this.controller.singleExchange(revision)),
+    );
+    const help = h("p", { id: "battle-threshold-help", class: "battle-help" },
+      from ? `This battle stops at ${view.effectiveThreshold} ${view.effectiveThreshold === 1 ? "army" : "armies"}, or on capture.` : "Choose a source and target to begin.");
+    const last = view.lastOutcome;
+    const resultText = last ? last.captured ? "Target captured" : last.attackerLosses > 0 ? "Defender wins · source loses 1 army" : "Attacker wins · target loses 1 army" : "Ready for your choice";
+    const result = h("div", { class: "battle-feedback", "aria-live": "polite", "aria-atomic": "true" },
+      h("strong", { class: `battle-result${last?.captured ? " captured" : ""}` }, resultText),
+      h("p", { id: "battle-status" }, view.message || (canExchange ? "Fight on with Stop available, or choose one exchange." : "Select countries on the map.")),
+    );
+    const tally = h("p", { class: "battle-tally", "aria-label": "Battle tally" },
+      `Won ${view.attackerWins} · Lost ${view.defenderWins} · Ties `, h("strong", { id: "battle-ties" }, String(view.ties)));
+    const rolls = h("ol", { class: "battle-rolls", "aria-label": "Latest exchange dice" }, ...view.rolls.map(roll => {
+      const result = roll.results[0]!;
+      return h("li", { "data-battle-roll": "", "data-a": roll.attackerRolls[0], "data-d": roll.defenderRolls[0], "data-result": result },
+        h("span", { class: "battle-die attacker-die", role: "img", "aria-label": `Attacker rolled ${roll.attackerRolls.join(", ")}` }, roll.attackerRolls.join(" · ")),
+        h("span", { class: "battle-dice-verdict" }, result === "tie" ? "Tie · rerolled" : result === "attacker" ? "Attacker wins" : "Defender wins"),
+        h("span", { class: "battle-die defender-die", role: "img", "aria-label": `Defender rolled ${roll.defenderRolls.join(", ")}` }, roll.defenderRolls.join(" · ")));
+    }));
+    const children: HTMLElement[] = [h("h2", { class: "battle-title" }, "Battle"), context, settings, help, controls, result, tally];
+    if (view.rolls.length) children.push(rolls);
+    if (pending) {
+      const amount = h("input", { id: "capture-amount", type: "number", min: pending.min, max: pending.max, step: 1, value: String(pending.defaultAmount), "aria-describedby": "capture-help" });
+      const choose = (value: number) => { amount.value = String(Math.max(pending.min, Math.min(pending.max, value))); };
+      const capture = h("section", { class: "capture-choice", "aria-label": "Capture move-in" },
+        h("h3", {}, "Move armies into the capture"),
+        h("p", { id: "capture-help" }, `Choose ${pending.min}–${pending.max} total armies. Leave at least one behind.`),
+        h("label", { for: "capture-amount" }, "Armies to move", amount),
+        h("div", { class: "capture-adjust" },
+          button("capture-minimum-button", "Minimum", false, () => choose(pending.min)),
+          button("capture-less-button", "−", false, () => choose((Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : pending.defaultAmount) - 1)),
+          button("capture-more-button", "+", false, () => choose((Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : pending.defaultAmount) + 1)),
+          button("capture-maximum-button", "Maximum", false, () => choose(pending.max))),
+        button("confirm-capture-button", "Confirm move-in", false, () => {
+          if (!this.controller.confirmCapture(amount.valueAsNumber, revision)) amount.reportValidity();
+        }, true));
+      capture.querySelector("#capture-less-button")!.setAttribute("aria-label", "Move one fewer army");
+      capture.querySelector("#capture-more-button")!.setAttribute("aria-label", "Move one more army");
+      children.push(capture);
+    }
+    this.el.replaceChildren(...children);
+    // Native focus survives an automatic redraw; detached controls retain their
+    // old revision. Browser acceptance exercises detached attack/confirm clicks.
+    if (focused) this.el.querySelector<HTMLElement>(`#${focused}`)?.focus({ preventScroll: true });
+  }
+}

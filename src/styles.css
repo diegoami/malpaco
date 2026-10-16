@@ -1179,3 +1179,61 @@ dialog h2 {
 @media (min-width:1600px) and (min-height:1000px) {
   #reference-game .stage { grid-template-columns:minmax(0,1fr) 440px; }
 }
+
+/* [designed] T28 reference battle layout. The legacy development variant and
+   every other route retain their existing dimensions and goldens. */
+#reference-game.battle-reference .stage { grid-template-columns:minmax(0,1fr) 350px; }
+.battle-reference .panel { gap:8px; overflow-y:auto; }
+.battle-reference .panel .card { padding:10px; }
+.battle-reference .topbar { align-items:center; flex-wrap:wrap; gap:12px; }
+.battle-reference .topbar > .score { display:flex; margin-left:auto; gap:8px; padding:4px; border:0; background:none; }
+.battle-reference .topbar .score-row { padding:4px; gap:6px; }
+.battle-reference .topbar .score-name { font-size:13px; }
+.battle-reference .topbar .score-num { font-size:12px; }
+.battle-reference .topbar .panel-foot { margin:0; gap:8px; }
+.battle-reference .topbar .seed { display:none; }
+.battle-reference .action { display:flex; flex-direction:column; gap:8px; }
+.battle-reference #attack-button { display:none; }
+.battle-reference .action[data-battle="true"] > :is(.pick,.hint,.legend) { display:none; }
+.battle-reference .action[data-battle="true"] > .buttons { order:2; margin-top:0; }
+.battle-reference .action[data-battle="true"] #end-turn-button { width:100%; grid-column:1 / -1; }
+.battle-reference .log-card { min-height:48px; }
+.battle-controls { min-width:0; }
+.battle-controls[hidden] { display:none; }
+.battle-title { margin:0 0 8px; font-size:16px; color:var(--accent); }
+.battle-context { display:grid; gap:5px; }
+.battle-country { display:grid; grid-template-columns:40px minmax(0,1fr) auto; align-items:baseline; gap:6px; }
+.battle-country strong { font-size:13px; overflow-wrap:anywhere; }
+.battle-label,.battle-help { color:var(--muted); font-size:12px; }
+.battle-count { min-width:30px; padding:1px 5px; border:1px solid var(--line); border-radius:4px; font-weight:750; text-align:center; }
+.battle-settings { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0 0; }
+.battle-settings label { display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); }
+.battle-settings :is(input,select),.capture-choice input { min-width:0; width:100%; height:34px; border:1px solid #6c8597; border-radius:5px; padding:4px 8px; background:var(--bg); color:var(--text); font:inherit; }
+.battle-help { margin:5px 0 8px; line-height:1.3; }
+.battle-actions { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) 64px; gap:6px; }
+.battle-controls button { min-height:36px; margin:0; padding:6px 10px; font-size:13px; }
+#single-exchange-button { grid-column:2; grid-row:1; padding-inline:4px; }
+#stop-battle-button { grid-column:3; grid-row:1; }
+.battle-feedback { margin-top:10px; }
+.battle-result { font-size:13px; }
+.battle-result.captured { color:var(--ok); }
+#battle-status { margin:3px 0 0; font-size:12px; line-height:1.35; }
+.battle-tally { margin:7px 0; color:var(--muted); font-size:12px; }
+.battle-rolls { display:flex; flex-direction:column; gap:5px; list-style:none; margin:0; padding:0; }
+.battle-rolls li { display:flex; align-items:center; justify-content:center; gap:10px; padding:3px 0; }
+.battle-die { width:30px; height:30px; display:grid; place-items:center; font-size:18px; font-weight:800; background:var(--bg); border:2px solid #9dbece; border-radius:5px; }
+.defender-die { border-color:#e5bb8c; }
+.battle-dice-verdict { min-width:116px; text-align:center; font-size:12px; }
+.battle-rolls [data-result="tie"] { color:var(--accent); }
+.capture-choice { border-top:1px solid #6c8597; margin-top:9px; padding-top:9px; }
+.capture-choice h3 { font-size:14px; margin:0; color:var(--ok); }
+.capture-choice p { margin:4px 0 7px; font-size:12px; color:var(--muted); }
+.capture-choice label { display:flex; align-items:center; gap:8px; font-size:12px; }
+.capture-choice input { flex:1; }
+.capture-adjust { display:grid; grid-template-columns:1fr 36px 36px 1fr; gap:5px; margin:6px 0; }
+.capture-adjust button { padding:4px; }
+#confirm-capture-button { width:100%; }
+@media (min-width:1600px) and (min-height:1000px) {
+  #reference-game.battle-reference .stage { grid-template-columns:minmax(0,1fr) 440px; }
+  .battle-controls button { min-height:40px; }
+}
