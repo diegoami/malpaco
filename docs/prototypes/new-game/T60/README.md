@@ -230,6 +230,15 @@ a fresh evidence directory; `study.json` selects the retained comparison.
 Source and parameters are snapshotted in each build, alongside board/HTML/SVG
 hashes. [artifact index](artifacts.v2.sha256.json) covers every retained artifact
 except the newest index itself; earlier outputs are never overwritten.
+`build.mjs` also updates the tracked `study.json` selector to its new output
+directory. That selector is mutable configuration, while each build directory
+stays immutable. A local reproduction therefore makes the selector differ from
+the committed hash index even when all boards reproduce byte for byte. To audit
+the committed index after a reproduction, save the selector's actual bytes before
+running the build and restore those saved bytes afterwards; do not discard other
+uncommitted work. Otherwise retain the new selector and generate a fresh versioned
+index when publishing that comparison. The independent review identified this
+documentation caveat; it does not change the measured route results.
 [A clean reproduction](evidence/final-validation/reproduction.json) using the
 preserved T25 input produced byte-identical boards for all four entries; its
 source snapshots are in [build-LrdPTV](evidence/build-LrdPTV/sha256.json).
