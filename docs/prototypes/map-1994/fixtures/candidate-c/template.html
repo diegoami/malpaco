@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seed 1994 · Nine Isles</title>
+<style>
+:root{color-scheme:dark;--sea:#1b4a63;--ink:#e6e4d8;--muted:#aabbb9;--panel:#102d3b;--line:#355562;--gold:#d2b574;--blue:#3d7ab8;--amber:#d98c3f}*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{background:#102e40;color:var(--ink);font:14px/1.3 system-ui,-apple-system,Segoe UI,sans-serif}header{height:54px;padding:5px 14px;display:flex;align-items:center;gap:14px;background:#112e3d;border-bottom:1px solid #3b5661}h1{font:600 18px/1 Georgia,serif;white-space:nowrap;margin:0}.meta{font-size:11px;color:var(--muted);white-space:nowrap}.toolbar{display:flex;gap:5px;align-items:center;flex:1}button{border:1px solid #526b73;background:#1b3c4c;color:#e8e7db;border-radius:4px;padding:6px 9px;font:600 11px system-ui;cursor:pointer;white-space:nowrap}button:hover,button:focus-visible{outline:2px solid #d2b574;outline-offset:1px}button[aria-pressed=true]{background:#5c533b;border-color:#d2b574}.warning{margin-left:auto;color:#e6c38e;font-size:10px;letter-spacing:.04em;white-space:nowrap}main{height:calc(100% - 54px);position:relative}#map-board{position:absolute;inset:0;background:var(--sea)}#map-board svg{display:block;width:100%;height:100%}.banner{position:absolute;left:13px;top:11px;padding:5px 8px;background:#0d293acc;border:1px solid #60736c;border-radius:4px;color:#d7dfd4;font-size:11px;pointer-events:none}.drawer{position:absolute;right:12px;top:12px;bottom:12px;width:min(340px,calc(100vw - 24px));background:#102d3bed;border:1px solid #60717a;border-radius:7px;box-shadow:0 14px 35px #03151fcc;padding:12px;overflow:auto}.drawer[hidden]{display:none}.drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.drawer h2{margin:0;font:600 15px Georgia,serif;color:#ead9b8}.drawer h3{font:600 13px Georgia,serif;color:#ead9b8;margin:12px 0 5px}.selected-name{font-weight:700;font-size:16px}.muted{color:var(--muted);font-size:11px}.neighbors{margin:5px 0 0;padding-left:17px;font-size:12px;line-height:1.5}.island-list,.diff-list{font-size:11px;line-height:1.5}.island-row{display:flex;justify-content:space-between;border-bottom:1px solid #2b4854;padding:3px 0}.diff-list ul{padding-left:16px;margin:2px 0 7px}.key{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:11px}.swatch{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:4px}.swatch.blue{background:var(--blue)}.swatch.amber{background:var(--amber)}
+svg text{font-family:system-ui,-apple-system,Segoe UI,sans-serif;pointer-events:none}.island-shape{fill:#2a514c;stroke:#82917f;stroke-width:2;stroke-linejoin:round}.island-name{fill:#d4d2be;font:italic 15px Georgia,serif;letter-spacing:.04em;text-anchor:middle}.province-shape{stroke:#6f6455;stroke-width:1.6;stroke-linejoin:round;cursor:pointer;transition:fill .12s,stroke .12s}.province:hover .province-shape{filter:brightness(1.12)}.province.is-selected .province-shape{stroke:#f2d38b;stroke-width:4}.province.is-neighbor .province-shape{stroke:#d5bc76;stroke-width:3}.province-name{fill:#fff2d9;font-size:16px;font-weight:600;text-anchor:middle;paint-order:stroke;stroke:#173446;stroke-width:2px;stroke-linejoin:round}.province-badge{fill:#f4e8cd;font-size:15px;font-weight:700;text-anchor:middle;paint-order:stroke;stroke:#173446;stroke-width:2px}.sea-route{fill:none;stroke:#d2b574;stroke-width:2.5;stroke-dasharray:8 6;opacity:.95}.sea-end{fill:#e7c77f;stroke:#1b4a63;stroke-width:2}.current-land{stroke:#e2c992;stroke-width:2;opacity:.75}.current-sea{stroke:#96c4cf;stroke-width:2.5;stroke-dasharray:6 5;opacity:.92}.island-label-bg{fill:#0c2a3a;stroke:#82917f;stroke-width:1}
+</style>
+</head>
+<body>
+<header>
+  <h1>Seed 1994 · Nine Isles</h1>
+  <div class="toolbar" aria-label="Map controls">
+    <button id="proposed-button" aria-pressed="true">Proposed geography</button>
+    <button id="current-button" aria-pressed="false">Current map and routes</button>
+    <button id="inspector-button" aria-expanded="false" aria-controls="inspector">Inspector</button>
+    <button id="export-svg">Export SVG</button>
+    <span class="key"><span><i class="swatch blue"></i>Seat 1</span><span><i class="swatch amber"></i>Seat 2</span><span>★ production centre</span></span>
+  </div>
+  <div class="warning">DESIGNED VISUAL PROPOSAL · NOT THE PLAYABLE GRAPH</div>
+</header>
+<main>
+  <div id="map-board" aria-label="Interactive map"></div>
+  <div class="banner" id="view-banner">Proposed shared-border geography · links changed; open Inspector for the full diff.</div>
+  <aside class="drawer" id="inspector" hidden>
+    <div class="drawer-head"><h2>Map inspector</h2><button id="close-inspector" aria-label="Close inspector">Close</button></div>
+    <div class="key"><span><i class="swatch blue"></i>Seat 1</span><span><i class="swatch amber"></i>Seat 2</span><span>★ production centre</span></div>
+    <h3>Selected province</h3><div id="selection" class="muted">Select a country to inspect its neighbours.</div>
+    <h3>Islands and bonuses</h3><div id="islands" class="island-list"></div>
+    <h3>Current versus proposed links</h3><div id="diff" class="diff-list"></div>
+  </aside>
+</main>
+<script>
+window.T22_DATA=__DATA__;
+window.CURRENT_GEOMETRY=__CURRENT__;
+(()=>{
+  const D=window.T22_DATA,C=window.CURRENT_GEOMETRY,board=document.querySelector('#map-board'),NS='http://www.w3.org/2000/svg';
+  let mode='proposed',selected='';
+  const el=(tag,attrs={})=>{const n=document.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);return n};
+  const pathD=p=>'M'+p.map(q=>q.join(',')).join('L')+'Z';
+  const line=(p,cls)=>el('path',{d:'M'+p[0].join(',')+'L'+p[1].join(','),class:cls});
+  const fill=p=>p.owner==='seat1'?'#3d7ab8':'#d98c3f';
+  const names=new Map(D.provinces.map(p=>[p.id,p.name]));
+  const islandNames=new Map(D.islands.map(i=>[i.id,i.name]));
+  function selectedLinks(){return selected?(mode==='proposed'?D.proposed.adjacency[selected]:D.current[selected]):{land:[],sea:[]}}
+  function showSelection(){if(!selected)return;const p=(mode==='proposed'?D.provinces:C.provinces).find(x=>x.id===selected);const links=selectedLinks();const targets=[...links.land,...links.sea];document.querySelector('#selection').innerHTML='<div class="selected-name">'+p.name+'</div><div class="muted">'+islandNames.get(p.island)+' · '+(p.owner==='seat1'?'Seat 1':'Seat 2')+' · '+p.armies+' armies'+(p.production?' · production centre':'')+'</div><div class="muted">'+(mode==='proposed'?'Proposed':'Current')+' neighbours</div><ul class="neighbors">'+targets.map(id=>'<li>'+names.get(id)+' <span class="muted">('+ (links.land.includes(id)?'land':'sea')+')</span></li>').join('')+'</ul>';}
+  function renderIslandList(){document.querySelector('#islands').innerHTML=D.islands.map(i=>'<div class="island-row"><span>'+i.name+' · '+i.provinces.length+' countries</span><strong>+'+i.bonus+'</strong></div>').join('')}
+  function renderDiff(){const d=D.proposed.changes;const labels={'landAdded':'Land added','landRemoved':'Land removed','seaAdded':'Sea lanes added','seaRemoved':'Sea lanes removed'};document.querySelector('#diff').innerHTML=Object.entries(labels).map(([key,title])=>'<div><strong>'+title+' ('+d[key].length+')</strong><ul>'+d[key].map(pair=>{const [a,b]=pair.split('--');return '<li>'+names.get(a)+' ↔ '+names.get(b)+'</li>'}).join('')+'</ul></div>').join('')+'<div class="muted">Current sea lanes: '+D.currentRoutes.length+' · proposed sea lanes: '+D.proposed.routes.length+'</div>'}
+  function draw(){const src=mode==='proposed'?D:C,b=src.bounds,s=el('svg',{viewBox:b.x+' '+b.y+' '+b.width+' '+b.height,role:'img','aria-label':mode==='proposed'?'Proposed contiguous island map':'Current generated map and current land and sea routes'});const defs=el('defs');defs.innerHTML='<style>.province-shape{stroke:#6f6455;stroke-width:1.6;stroke-linejoin:round}.province-name{fill:#fff2d9;font:600 16px system-ui;text-anchor:middle;paint-order:stroke;stroke:#173446;stroke-width:2px;stroke-linejoin:round}.province-badge{fill:#f4e8cd;font:700 15px system-ui;text-anchor:middle;paint-order:stroke;stroke:#173446;stroke-width:2px}.sea-route{fill:none;stroke:#d2b574;stroke-width:2.5;stroke-dasharray:8 6}.current-land{stroke:#e2c992;stroke-width:2}.current-sea{stroke:#96c4cf;stroke-width:2.5;stroke-dasharray:6 5}.island-shape{fill:#2a514c;stroke:#82917f;stroke-width:2}.island-name{fill:#d4d2be;font:italic 15px Georgia,serif;text-anchor:middle}</style>';s.append(defs);s.append(el('rect',{x:b.x,y:b.y,width:b.width,height:b.height,fill:'#1b4a63'}));
+    if(mode==='proposed'){
+      for(const i of D.islands)s.append(el('path',{d:pathD(i.polygon),class:'island-shape'}));
+      for(const r of D.proposed.routes){s.append(line(r.path,'sea-route'));for(const q of r.path)s.append(el('circle',{cx:q[0],cy:q[1],r:4.5,class:'sea-end'}))}
+      for(const i of D.islands){const x=(Math.min(...i.polygon.map(p=>p[0]))+Math.max(...i.polygon.map(p=>p[0])))/2,y=Math.min(...i.polygon.map(p=>p[1]))-7,t=el('text',{x,y,class:'island-name'});t.textContent=i.name+'  +'+i.bonus;s.append(t)}
+    }else{
+      for(const r of D.currentLandRoutes)s.append(line(r.path,'current-land'));
+      for(const r of D.currentRoutes){s.append(line(r.path,'current-sea'));for(const q of r.path)s.append(el('circle',{cx:q[0],cy:q[1],r:3.5,class:'sea-end'}))}
+    }
+    const adj=mode==='proposed'?D.proposed.adjacency:D.current;
+    for(const p of src.provinces){const g=el('g',{class:'province'+(p.id===selected?' is-selected':''),'data-province-id':p.id,'data-owner':p.owner,tabindex:'0',role:'button','aria-label':p.name+', '+(p.owner==='seat1'?'Seat 1':'Seat 2')+', '+p.armies+' armies'});g.append(el('path',{d:pathD(p.polygon),class:'province-shape',fill:fill(p)}));const c=mode==='proposed'?p.center:p.labelAt;
+      const lines=p.name.split(' ');const first=lines.length>1?lines[0]:p.name,second=lines.length>1?lines.slice(1).join(' '):'';const name=el('text',{x:c[0],y:c[1]-(second?8:0),class:'province-name'});name.textContent=first;if(second){const t=el('tspan',{x:c[0],dy:17});t.textContent=second;name.append(t)}g.append(name);
+      const badge=el('text',{x:c[0],y:c[1]+(second?28:21),class:'province-badge'});badge.textContent=p.armies+' · '+(p.owner==='seat1'?'S1':'S2');g.append(badge);
+      if(p.production){const mark=el('text',{x:c[0],y:c[1]-(second?24:15),class:'production-mark'});mark.textContent='★';g.append(mark)}
+      const links=adj[p.id];if(selected&&[...links.land,...links.sea].includes(selected))g.classList.add('is-neighbor');
+      g.addEventListener('click',()=>select(p.id));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(p.id)}});s.append(g)
+    }
+    board.replaceChildren(s);
+  }
+  function select(id){selected=id;showSelection();draw()}
+  function setMode(value){mode=value;document.querySelector('#proposed-button').setAttribute('aria-pressed',String(mode==='proposed'));document.querySelector('#current-button').setAttribute('aria-pressed',String(mode==='current'));document.querySelector('#view-banner').textContent=mode==='proposed'?'Proposed shared-border geography · links changed; open Inspector for the full diff.':'Current generated geography · solid lines are current land borders; dashed lines are the current sea lanes.';showSelection();draw()}
+  const inspector=document.querySelector('#inspector'),inspectorButton=document.querySelector('#inspector-button');function setInspector(open){inspector.hidden=!open;inspectorButton.setAttribute('aria-expanded',String(open))}
+  document.querySelector('#proposed-button').onclick=()=>setMode('proposed');document.querySelector('#current-button').onclick=()=>setMode('current');inspectorButton.onclick=()=>setInspector(inspector.hidden);document.querySelector('#close-inspector').onclick=()=>setInspector(false);
+  document.querySelector('#export-svg').onclick=()=>{setMode('proposed');const xml=new XMLSerializer().serializeToString(board.querySelector('svg'));const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([xml],{type:'image/svg+xml'}));a.download='seed-1994-proposed-map.svg';a.click();URL.revokeObjectURL(a.href)};
+  renderIslandList();renderDiff();draw();
+})();
+</script>
+</body>
+</html>

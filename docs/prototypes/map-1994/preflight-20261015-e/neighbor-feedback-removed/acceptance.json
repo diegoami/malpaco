@@ -1,0 +1,285 @@
+{
+  "accepted": false,
+  "viewportRuns": [
+    "1280x800",
+    "1920x1080"
+  ],
+  "provinceCount": 46,
+  "islandCount": 9,
+  "graphSummary": {
+    "current": {
+      "landEdges": 61,
+      "seaEdges": 16
+    },
+    "proposed": {
+      "landEdges": 69,
+      "seaEdges": 16,
+      "provinceDegree": {
+        "province_4": 2,
+        "province_30": 4,
+        "province_8": 4,
+        "province_38": 2,
+        "province_28": 4,
+        "province_45": 2,
+        "province_41": 2,
+        "province_2": 2,
+        "province_16": 4,
+        "province_11": 2,
+        "province_31": 4,
+        "province_22": 2,
+        "province_9": 3,
+        "province_19": 2,
+        "province_1": 5,
+        "province_3": 4,
+        "province_40": 5,
+        "province_24": 3,
+        "province_17": 2,
+        "province_29": 5,
+        "province_33": 5,
+        "province_13": 4,
+        "province_0": 3,
+        "province_10": 5,
+        "province_12": 3,
+        "province_20": 6,
+        "province_36": 5,
+        "province_25": 3,
+        "province_5": 3,
+        "province_27": 3,
+        "province_37": 3,
+        "province_43": 3,
+        "province_6": 6,
+        "province_42": 5,
+        "province_32": 4,
+        "province_18": 4,
+        "province_34": 4,
+        "province_26": 4,
+        "province_7": 4,
+        "province_35": 4,
+        "province_44": 6,
+        "province_39": 6,
+        "province_14": 4,
+        "province_21": 3,
+        "province_15": 4,
+        "province_23": 3
+      },
+      "islandSeaDegree": {
+        "island_0": 4,
+        "island_1": 2,
+        "island_2": 2,
+        "island_3": 2,
+        "island_4": 5,
+        "island_5": 5,
+        "island_6": 4,
+        "island_7": 4,
+        "island_8": 4
+      }
+    }
+  },
+  "overlapControls": {
+    "positive": true,
+    "touching": false,
+    "separated": false
+  },
+  "feasibility": {
+    "method": "exhaustive cyclic rotations at degree-three vertices; spherical embedding iff a face permutation satisfies V-E+F=2",
+    "controls": {
+      "K4": {
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      "K3_3": {
+        "planar": false,
+        "rotationsTried": 64,
+        "eulerCases": 0
+      }
+    },
+    "islands": [
+      {
+        "island": "North Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "East Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "West Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "South Isle",
+        "vertices": 3,
+        "edges": 3,
+        "planar": true,
+        "rotationsTried": 1,
+        "eulerCases": 1
+      },
+      {
+        "island": "Central Isle",
+        "vertices": 5,
+        "edges": 7,
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      {
+        "island": "Harbor Isle",
+        "vertices": 5,
+        "edges": 7,
+        "planar": true,
+        "rotationsTried": 16,
+        "eulerCases": 2
+      },
+      {
+        "island": "Palm Isle",
+        "vertices": 7,
+        "edges": 10,
+        "planar": true,
+        "rotationsTried": 64,
+        "eulerCases": 4
+      },
+      {
+        "island": "Cliff Isle",
+        "vertices": 7,
+        "edges": 10,
+        "planar": false,
+        "rotationsTried": 64,
+        "eulerCases": 0
+      },
+      {
+        "island": "Great Isle",
+        "vertices": 10,
+        "edges": 15,
+        "planar": false,
+        "rotationsTried": 1024,
+        "eulerCases": 0
+      }
+    ]
+  },
+  "ambiguity": {
+    "ironPoint": {
+      "land": [
+        "South rest",
+        "High shore"
+      ],
+      "sea": [
+        "Lower field",
+        "Blue peak"
+      ]
+    },
+    "silverShore": {
+      "sea": [],
+      "finding": "no current sea lane; visual ambiguity only"
+    }
+  },
+  "failures": [
+    "selected-neighbour feedback mismatch in current mode for province_4: expected province_28,province_30,province_45,province_8, got ",
+    "selected-neighbour feedback mismatch in current mode for province_30: expected province_4,province_8, got ",
+    "selected-neighbour feedback mismatch in current mode for province_8: expected province_19,province_30,province_4,province_5, got ",
+    "selected-neighbour feedback mismatch in current mode for province_38: expected province_28,province_45, got ",
+    "selected-neighbour feedback mismatch in current mode for province_28: expected province_11,province_38,province_4,province_45, got ",
+    "selected-neighbour feedback mismatch in current mode for province_45: expected province_28,province_38,province_4,province_43, got ",
+    "selected-neighbour feedback mismatch in current mode for province_41: expected province_10,province_16,province_2,province_9, got ",
+    "selected-neighbour feedback mismatch in current mode for province_2: expected province_14,province_16,province_31,province_41, got ",
+    "selected-neighbour feedback mismatch in current mode for province_16: expected province_2,province_41, got ",
+    "selected-neighbour feedback mismatch in current mode for province_11: expected province_13,province_22,province_28,province_31, got ",
+    "selected-neighbour feedback mismatch in current mode for province_31: expected province_11,province_19,province_2,province_22, got ",
+    "selected-neighbour feedback mismatch in current mode for province_22: expected province_11,province_31, got ",
+    "selected-neighbour feedback mismatch in current mode for province_9: expected province_1,province_19,province_3,province_41, got ",
+    "selected-neighbour feedback mismatch in current mode for province_19: expected province_1,province_31,province_40,province_8,province_9, got ",
+    "selected-neighbour feedback mismatch in current mode for province_1: expected province_19,province_40,province_9, got ",
+    "selected-neighbour feedback mismatch in current mode for province_3: expected province_40,province_9, got ",
+    "selected-neighbour feedback mismatch in current mode for province_40: expected province_1,province_19,province_3,province_7, got ",
+    "selected-neighbour feedback mismatch in current mode for province_24: expected province_29,province_33, got ",
+    "selected-neighbour feedback mismatch in current mode for province_17: expected province_13,province_29,province_32,province_33, got ",
+    "selected-neighbour feedback mismatch in current mode for province_29: expected province_13,province_17,province_24, got ",
+    "selected-neighbour feedback mismatch in current mode for province_33: expected province_13,province_17,province_24, got ",
+    "selected-neighbour feedback mismatch in current mode for province_13: expected province_11,province_17,province_29,province_33,province_5, got ",
+    "selected-neighbour feedback mismatch in current mode for province_0: expected province_10,province_12,province_5, got ",
+    "selected-neighbour feedback mismatch in current mode for province_10: expected province_0,province_12,province_41,province_5, got ",
+    "selected-neighbour feedback mismatch in current mode for province_12: expected province_0,province_10,province_20, got ",
+    "selected-neighbour feedback mismatch in current mode for province_20: expected province_12,province_25,province_36, got ",
+    "selected-neighbour feedback mismatch in current mode for province_36: expected province_20,province_25,province_5, got ",
+    "selected-neighbour feedback mismatch in current mode for province_25: expected province_20,province_36, got ",
+    "selected-neighbour feedback mismatch in current mode for province_5: expected province_0,province_10,province_13,province_36,province_8, got ",
+    "selected-neighbour feedback mismatch in current mode for province_27: expected province_18,province_42,province_43, got ",
+    "selected-neighbour feedback mismatch in current mode for province_37: expected province_18,province_32,province_42, got ",
+    "selected-neighbour feedback mismatch in current mode for province_43: expected province_27,province_32,province_45,province_6,province_7, got ",
+    "selected-neighbour feedback mismatch in current mode for province_6: expected province_18,province_42,province_43, got ",
+    "selected-neighbour feedback mismatch in current mode for province_42: expected province_27,province_37,province_6, got ",
+    "selected-neighbour feedback mismatch in current mode for province_32: expected province_17,province_37,province_43, got ",
+    "selected-neighbour feedback mismatch in current mode for province_18: expected province_27,province_37,province_6, got ",
+    "selected-neighbour feedback mismatch in current mode for province_34: expected province_15,province_23,province_44, got ",
+    "selected-neighbour feedback mismatch in current mode for province_26: expected province_39,province_44,province_7, got ",
+    "selected-neighbour feedback mismatch in current mode for province_7: expected province_15,province_23,province_26,province_40,province_43, got ",
+    "selected-neighbour feedback mismatch in current mode for province_35: expected province_21,province_23,province_39, got ",
+    "selected-neighbour feedback mismatch in current mode for province_44: expected province_14,province_26,province_34, got ",
+    "selected-neighbour feedback mismatch in current mode for province_39: expected province_21,province_26,province_35, got ",
+    "selected-neighbour feedback mismatch in current mode for province_14: expected province_15,province_2,province_21,province_44, got ",
+    "selected-neighbour feedback mismatch in current mode for province_21: expected province_14,province_35,province_39, got ",
+    "selected-neighbour feedback mismatch in current mode for province_15: expected province_14,province_34,province_7, got ",
+    "selected-neighbour feedback mismatch in current mode for province_23: expected province_34,province_35,province_7, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_4: expected province_30,province_8, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_30: expected province_1,province_4,province_42,province_8, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_8: expected province_24,province_28,province_30,province_4, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_38: expected province_28,province_45, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_28: expected province_29,province_38,province_45,province_8, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_45: expected province_28,province_38, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_41: expected province_16,province_2, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_2: expected province_16,province_41, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_16: expected province_10,province_2,province_32,province_41, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_11: expected province_22,province_31, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_31: expected province_11,province_13,province_14,province_22, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_22: expected province_11,province_31, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_9: expected province_1,province_3,province_42, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_19: expected province_1,province_40, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_1: expected province_19,province_3,province_30,province_40,province_9, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_3: expected province_1,province_36,province_40,province_9, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_40: expected province_1,province_19,province_3,province_33,province_34, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_24: expected province_29,province_33,province_8, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_17: expected province_13,province_29, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_29: expected province_13,province_17,province_24,province_28,province_33, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_33: expected province_13,province_24,province_29,province_40,province_7, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_13: expected province_17,province_29,province_31,province_33, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_0: expected province_10,province_12,province_20, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_10: expected province_0,province_16,province_18,province_20,province_36, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_12: expected province_0,province_20,province_25, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_20: expected province_0,province_10,province_12,province_25,province_36,province_5, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_36: expected province_10,province_20,province_3,province_35,province_5, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_25: expected province_12,province_20,province_5, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_5: expected province_20,province_25,province_36, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_27: expected province_37,province_43,province_6, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_37: expected province_27,province_42,province_6, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_43: expected province_27,province_32,province_6, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_6: expected province_18,province_27,province_32,province_37,province_42,province_43, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_42: expected province_18,province_30,province_37,province_6,province_9, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_32: expected province_16,province_18,province_43,province_6, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_18: expected province_10,province_32,province_42,province_6, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_34: expected province_26,province_35,province_40,province_44, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_26: expected province_34,province_39,province_44,province_7, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_7: expected province_14,province_26,province_33,province_39, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_35: expected province_21,province_34,province_36,province_44, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_44: expected province_15,province_21,province_26,province_34,province_35,province_39, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_39: expected province_14,province_15,province_23,province_26,province_44,province_7, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_14: expected province_23,province_31,province_39,province_7, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_21: expected province_15,province_35,province_44, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_15: expected province_21,province_23,province_39,province_44, got ",
+    "selected-neighbour feedback mismatch in proposed mode for province_23: expected province_14,province_15,province_39, got ",
+    "province_20: complete name/army label rectangle escapes its province cell",
+    "province_6: complete name/army label rectangle escapes its province cell",
+    "province_18: complete name/army label rectangle escapes its province cell"
+  ]
+}

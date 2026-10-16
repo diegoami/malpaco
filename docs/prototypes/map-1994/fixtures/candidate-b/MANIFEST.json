@@ -1,0 +1,14 @@
+{
+  "purpose": "Disposable candidate bytes for the parent's pinned browser replay; do not install before replay authorization.",
+  "date": "2026-10-15",
+  "builder": "docs/prototypes/map-1994/fixtures/candidate-a/build-candidate.mjs",
+  "builderSha256": "566529b36013d307354fa7139ce3deeace34c1d5c3bb46c79c501110206448c8",
+  "preview": "preview.html",
+  "previewSha256": "e8e801b99f70132ea7f2982cf751ec0ce8d7aab857ffd1b2ffd22c45f666454e",
+  "inputs": {
+    "preflight-20261015-a/input/seed1994.json": "af0270d5026fa8151ba2789c14b3d052b51bcd6f867b61a00fee61406de79340",
+    "preflight-20261015-a/input/seed1994-state.json": "088b2ee70d839f8cb0caea821b01b65e24803d5e6285cbc0525210bdbf4b17db"
+  },
+  "runtimeDependencies": [],
+  "design": "Deterministic nine-island placement, irregular convex island hulls, Voronoi province tiling, and a short coastal spanning tree of proposed sea lanes."
+}

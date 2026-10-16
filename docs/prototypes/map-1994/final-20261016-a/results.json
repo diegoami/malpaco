@@ -1,0 +1,36 @@
+{
+  "node": "v24.20.0",
+  "image": "mcr.microsoft.com/playwright:v1.63.0-noble",
+  "results": [
+    {
+      "name": "browser",
+      "command": [
+        "node",
+        "docs/prototypes/map-1994/verify.mjs",
+        "docs/prototypes/map-1994/final-20261016-a/browser"
+      ],
+      "exitCode": 0,
+      "signal": null
+    },
+    {
+      "name": "unit",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exitCode": 1,
+      "signal": null
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 1,
+      "signal": null
+    }
+  ],
+  "previewSha256": "94106c6c8797e8640934f51fcd582ec96b222aa70e4ac9302e74085394a58763"
+}
