@@ -15,7 +15,7 @@
   },
   "reviewer": {
     "agent": "reviewer",
-    "default": "luna",
+    "default": "mm-m3",
     "startupTimeoutSec": 180,
     "idleTimeoutSec": 600,
     "totalTimeoutSec": 3600
@@ -72,6 +72,11 @@
       "id": "kimi-code-plan-global/k3",
       "variant": "low",
       "family": "kimi"
+    },
+    "mm-m3": {
+      "id": "minimax/MiniMax-M3",
+      "variant": "thinking",
+      "family": "minimax"
     }
   },
   "jail": {
