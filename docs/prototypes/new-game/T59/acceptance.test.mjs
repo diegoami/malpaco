@@ -22,7 +22,9 @@ test('identity and opening guards remain active',()=>{
 test('bonus guard remains active',()=>{const b=structuredClone(mock);b.islands[4].bonus++;assert(failures(audit(b)).some(e=>e.includes('Invalid bonus')));});
 test('changed frame and land adjacency each reject independently',()=>{
   const b=structuredClone(mock);b.bounds.width++;assert(failures(audit(b)).some(e=>e.includes('Comparison frame')));
-  const c=structuredClone(mock);c.provinces[0].borders=[];assert(failures(audit(c)).some(e=>e.includes('Land edges changed')));
+  const c=structuredClone(mock),p=c.provinces[0],other=c.provinces.find(q=>q.id===p.borders[0]);
+  p.borders=p.borders.filter(id=>id!==other.id);other.borders=other.borders.filter(id=>id!==p.id);
+  assert(failures(audit(c)).some(e=>e.includes('Land edges changed')));
 });
 test('both actual coast rotations are enforced independently',()=>{
   for(const [id,message] of [['island_0','North must rotate'],['island_7','Cliff must rotate']]){

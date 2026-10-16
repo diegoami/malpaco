@@ -8,7 +8,7 @@ const output=mkdtempSync(resolve(root,'evidence/rotation-mutant-'));
 const hash=b=>createHash('sha256').update(b).digest('hex'),results=[];
 function run(name,expected) {
   const r=spawnSync(process.execPath,['--test',resolve(root,'rotation.test.mjs')],{encoding:'utf8'});
-  writeFileSync(resolve(output,`${name}.stdout.txt`),r.stdout??'');writeFileSync(resolve(output,`${name}.stderr.txt`),r.stderr??'');
+  writeFileSync(resolve(output,`${name}.output.json`),JSON.stringify({stdout:r.stdout??'',stderr:r.stderr??''},null,2)+'\n');
   results.push({name,expected,exit:r.status,passed:r.status===expected});
 }
 try {

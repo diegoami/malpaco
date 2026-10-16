@@ -1,0 +1,11 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "docs/prototypes/new-game/T59/acceptance.test.mjs",
+    "docs/prototypes/new-game/T59/rotation.test.mjs"
+  ],
+  "exitCode": 0,
+  "stdout": "\u2714 T25 is meaningfully rejected: wrong links and absent rotations (145.283564ms)\n\u2714 rotated mock satisfies unchanged T24 and revised owner contract (121.766838ms)\n\u2714 exact approved edge delta is independently named (0.097288ms)\n\u2714 an unapproved extra change is rejected (169.484926ms)\n\u2714 identity and opening guards remain active (157.52169ms)\n\u2714 bonus guard remains active (159.97289ms)\n\u2714 changed frame and land adjacency each reject independently (307.525548ms)\n\u2714 both actual coast rotations are enforced independently (304.586873ms)\n\u2714 positive screen rotation is clockwise, negative anticlockwise (0.523591ms)\n\u2714 zero preserves vertices and arbitrary translations preserve shared boundaries (0.507807ms)\n\u2714 configured small angles vary and unreasonable/nonfinite values reject (0.186969ms)\n\u2139 tests 11\n\u2139 suites 0\n\u2139 pass 11\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 1411.529079\n",
+  "stderr": ""
+}

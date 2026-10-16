@@ -1,0 +1,25 @@
+{
+  "results": [
+    {
+      "name": "baseline",
+      "expected": 0,
+      "exit": 0,
+      "passed": true
+    },
+    {
+      "name": "rotation-deleted",
+      "expected": 1,
+      "exit": 1,
+      "passed": true
+    },
+    {
+      "name": "restored",
+      "expected": 0,
+      "exit": 0,
+      "passed": true
+    }
+  ],
+  "originalSha256": "ff905aaf1de6a63ecabb08a58f122c6540fe363be44a5db532ef9f386f6b899f",
+  "restoredSha256": "ff905aaf1de6a63ecabb08a58f122c6540fe363be44a5db532ef9f386f6b899f",
+  "passed": true
+}

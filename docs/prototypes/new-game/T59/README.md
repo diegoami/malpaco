@@ -16,6 +16,13 @@ There are 15 sea links, within the unchanged 14–18 range. All island bonuses
 match T25. See [comparison.json](comparison.json) for the exact edge changes,
 measured rotation angles, island areas, all 36 water gaps and route lengths.
 
+| View | Image |
+| --- | --- |
+| Installed 10° candidate | [1280x800](evidence/browser-FYyqil/board-1280x800.png), [1920x1080](evidence/browser-FYyqil/board-1920x1080.png), [800x540](evidence/browser-FYyqil/board-800x540.png) |
+| Subtler 5° comparison | [1280x800](evidence/browser-Js6nVC/board-1280x800.png) |
+| Same-frame T25 baseline | [1280x800](evidence/browser-FYyqil/before-1280x800.png) |
+| Corrected connections | [South rest–Fort town](evidence/browser-FYyqil/south-rest-fort-town-1280.png), [Rock bay–Upper ridge](evidence/browser-FYyqil/rock-bay-upper-ridge-1280.png) |
+
 ## Comparing small angles
 
 ```sh
@@ -61,6 +68,11 @@ delta and both actual geometry rotation assertions; the rotated mock passes.
 packing/overlap attempts and feasible mocks. Historical snapshots contain the
 absolute paths used then; they are evidence, not the portable build entry point.
 Nothing in T24/T25 is edited. The known T24 numeric issue #109 is untouched.
+One raw Node assertion log includes whitespace-only lines; its exact bytes are
+preserved in adjacent `raw-rotation-deleted-stdout.tar.gz`, with a member SHA
+manifest, and in earlier Git history. Extract that member to reconstruct its
+original path. Later rotation-mutant runs store raw stdout/stderr as JSON strings,
+preserving the contents without introducing whitespace errors.
 
 Archaeology returned reviewed [F022](https://github.com/diegoami/isle-wars-archaeology/blob/d5932c2cea7741e81012bd4619e55430aba81a37/findings/F022-pro-map-presentation.md#answers).
 Its bounded observations support checking whether shore contact and continuation
