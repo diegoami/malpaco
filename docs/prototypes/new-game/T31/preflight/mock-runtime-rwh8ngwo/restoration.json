@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T31/run-browser.py",
+    "mock-browser"
+  ],
+  "exit": 1,
+  "exactRestoration": {
+    "src/core/match-save.ts": true,
+    "src/ui/referenceGame.ts": true,
+    "src/ui/referenceBattleGame.ts": true,
+    "src/core/__t31_mock_codec.ts": true,
+    "src/ui/__t31_mock_files.ts": true
+  }
+}

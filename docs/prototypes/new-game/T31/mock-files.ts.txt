@@ -1,0 +1,35 @@
+// Disposable T31 feasibility controls, removed before production dispatch.
+import { deserializeVersionedMatch, serializeVersionedMatch } from "../core/__t31_mock_codec";
+import type { GameOptions, GameState } from "../core";
+import { h } from "./dom";
+const identity = { boardGenerator: { id: "fixed-reference", version: 1 }, rules: { id: "victory", version: 1 }, actionSchemaVersion: 2 };
+export function mockFiles(epoch: () => number, replace: (options: GameOptions, state: GameState) => void, options?: GameOptions, getState?: () => GameState): HTMLElement {
+  const installed = epoch(); let request = 0;
+  const alert = h("p", { role: "alert", class: "match-error" });
+  const input = h("input", { id: "reference-load-game-file", type: "file", accept: ".json,application/json" });
+  const label = h("label", { for: "reference-load-game-file" }, "Load game");
+  const save = h("button", { id: "reference-save-game", type: "button" }, "Save game");
+  save.addEventListener("click", () => {
+    if (installed !== epoch() || !options || !getState) return;
+    const text = serializeVersionedMatch(options, getState().history, identity);
+    const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+    h("a", { href: url, download: `malpaco-${options.seed}.json` }).click();
+    setTimeout(() => URL.revokeObjectURL(url), 0);
+  });
+  input.addEventListener("change", async () => {
+    const file = input.files?.[0]; if (!file || installed !== epoch()) return;
+    const own = ++request;
+    try {
+      const text = await file.text();
+      if (installed !== epoch() || own !== request) return;
+      const loaded = deserializeVersionedMatch(text);
+      if (loaded.formatVersion !== 2 || loaded.identity.boardGenerator.id !== "fixed-reference") throw Error("This game uses a generated map; load it in the generated game view.");
+      replace(loaded.options, loaded.state);
+    } catch (error) {
+      if (installed === epoch() && own === request) alert.textContent = "Load failed: " + (error instanceof Error ? error.message : String(error));
+    } finally { if (own === request) input.value = ""; }
+  });
+  return h("div", { class: "match-files t31-mock-files" },
+    h("style", {}, ".t31-mock-files{font-size:12px;position:relative;max-width:100%;flex-shrink:0}.t31-mock-files .match-error:not(:empty){pointer-events:none;position:fixed;top:80px;left:16px;z-index:5;background:#1b2934;padding:8px;border:1px solid #738693;width:min(430px,75vw)}"),
+    ...(options ? [save] : []), h("div", { class: "match-load" }, label, input), alert);
+}

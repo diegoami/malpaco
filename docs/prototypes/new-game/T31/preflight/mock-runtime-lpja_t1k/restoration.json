@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T31/run-command.py",
+    "mock-core",
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/versioned-match.test.ts"
+  ],
+  "exit": 0,
+  "exactRestoration": {
+    "src/core/match-save.ts": true,
+    "src/ui/referenceGame.ts": true,
+    "src/ui/referenceBattleGame.ts": true,
+    "src/core/__t31_mock_codec.ts": true,
+    "src/ui/__t31_mock_files.ts": true
+  }
+}
