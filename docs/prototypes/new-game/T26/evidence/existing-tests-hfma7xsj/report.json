@@ -1,0 +1,266 @@
+{
+  "baseline": "c71f9d8b9b7a9c2e2d5e81c90af5be0ddbbb8667",
+  "files": {
+    "tests/core/archipelago.test.ts": {
+      "before": "f6e4d733e4c55b759f61b08061965a7a37741f4046bd7b7e359188a182fce947",
+      "after": "f6e4d733e4c55b759f61b08061965a7a37741f4046bd7b7e359188a182fce947",
+      "equal": true
+    },
+    "tests/core/board-fairness.test.ts": {
+      "before": "6a4b8620b7f9c1eff70ed15e007784b18613a03e353dd38ecf5122cacfb1d460",
+      "after": "6a4b8620b7f9c1eff70ed15e007784b18613a03e353dd38ecf5122cacfb1d460",
+      "equal": true
+    },
+    "tests/core/board-gen.sweep.test.ts": {
+      "before": "5b8abde7448d439dba75842eb57362f33daa27c63cfbc4f2969d92bd2b43e5d5",
+      "after": "5b8abde7448d439dba75842eb57362f33daa27c63cfbc4f2969d92bd2b43e5d5",
+      "equal": true
+    },
+    "tests/core/board-gen.test.ts": {
+      "before": "f86f26018bfb916f3a43ad01226517815537b312f30dee3508dd1ae0f5a18fea",
+      "after": "f86f26018bfb916f3a43ad01226517815537b312f30dee3508dd1ae0f5a18fea",
+      "equal": true
+    },
+    "tests/core/bonuses.test.ts": {
+      "before": "2716f3894ff73ab8a166c60ae24a7b3f3c848009174f37e90af6395261692657",
+      "after": "2716f3894ff73ab8a166c60ae24a7b3f3c848009174f37e90af6395261692657",
+      "equal": true
+    },
+    "tests/core/combat.test.ts": {
+      "before": "f3c17bfa8e0a44e61adb3eda96764ca0a32c1cbc59d33706e8b29dba87bbb224",
+      "after": "f3c17bfa8e0a44e61adb3eda96764ca0a32c1cbc59d33706e8b29dba87bbb224",
+      "equal": true
+    },
+    "tests/core/complete-game.test.ts": {
+      "before": "de33a8caa27c9309acf54f40d4b5c59c74dfe83c0c057314a46ac9635045a25f",
+      "after": "de33a8caa27c9309acf54f40d4b5c59c74dfe83c0c057314a46ac9635045a25f",
+      "equal": true
+    },
+    "tests/core/computer.test.ts": {
+      "before": "78bc5881f01b7f8f866435dad38bd890fa0bde3569af11f2c3ae051c073841e6",
+      "after": "78bc5881f01b7f8f866435dad38bd890fa0bde3569af11f2c3ae051c073841e6",
+      "equal": true
+    },
+    "tests/core/determinism.test.ts": {
+      "before": "4f04ca8454d7e5725d0cd5e3177a7c089baafbdfa68e03378fcc7b063c1a25ca",
+      "after": "4f04ca8454d7e5725d0cd5e3177a7c089baafbdfa68e03378fcc7b063c1a25ca",
+      "equal": true
+    },
+    "tests/core/helpers.ts": {
+      "before": "e7d286328b30641f561e80c44373a4dc3d0752ead8fc299fa2f30b63ab81351a",
+      "after": "e7d286328b30641f561e80c44373a4dc3d0752ead8fc299fa2f30b63ab81351a",
+      "equal": true
+    },
+    "tests/core/malpaco-combat.test.ts": {
+      "before": "810a995d071be0310263e0d27e411d3a7593bd20f25e910aa561f81ab0ccfce0",
+      "after": "810a995d071be0310263e0d27e411d3a7593bd20f25e910aa561f81ab0ccfce0",
+      "equal": true
+    },
+    "tests/core/map.test.ts": {
+      "before": "5fc35787f61edc198f87715744297b7822b69fb94a95dc3ad334d133d039a743",
+      "after": "5fc35787f61edc198f87715744297b7822b69fb94a95dc3ad334d133d039a743",
+      "equal": true
+    },
+    "tests/core/match-save.test.ts": {
+      "before": "c4c4aea7340ca7fb4a6fbc60d5f914bb3b4d0d870b0461606894834c19743881",
+      "after": "c4c4aea7340ca7fb4a6fbc60d5f914bb3b4d0d870b0461606894834c19743881",
+      "equal": true
+    },
+    "tests/core/options.test.ts": {
+      "before": "2f2f76711d2e344a80848e8ab65533d22552b7d97c491096abf2ccf06abfd152",
+      "after": "2f2f76711d2e344a80848e8ab65533d22552b7d97c491096abf2ccf06abfd152",
+      "equal": true
+    },
+    "tests/core/purity.test.ts": {
+      "before": "14784a57ec94db186f56355b2fef022dc7ae61e96e8151c68af388b1c2fd602c",
+      "after": "14784a57ec94db186f56355b2fef022dc7ae61e96e8151c68af388b1c2fd602c",
+      "equal": true
+    },
+    "tests/core/reinforcement.test.ts": {
+      "before": "1d5ac749b8ca70bbb876f04b17527e7ea2f70ed738399b08d2cfcebd98727cef",
+      "after": "1d5ac749b8ca70bbb876f04b17527e7ea2f70ed738399b08d2cfcebd98727cef",
+      "equal": true
+    },
+    "tests/core/rng-streams.test.ts": {
+      "before": "f8fe7044c643e001f12664fa44b1247b3eae806da163b96ec6bf27dd4ff35d14",
+      "after": "f8fe7044c643e001f12664fa44b1247b3eae806da163b96ec6bf27dd4ff35d14",
+      "equal": true
+    },
+    "tests/core/save.test.ts": {
+      "before": "891229f9ef0d8869d73bfb797e7cd5041ec6c92d57a278ea24f01121e2cd3b31",
+      "after": "891229f9ef0d8869d73bfb797e7cd5041ec6c92d57a278ea24f01121e2cd3b31",
+      "equal": true
+    },
+    "tests/core/seats.test.ts": {
+      "before": "c22a0d02475ffa95c5cd5a26772e92312d2859476b91930ed284b6c6c026e958",
+      "after": "c22a0d02475ffa95c5cd5a26772e92312d2859476b91930ed284b6c6c026e958",
+      "equal": true
+    },
+    "tests/core/setup.test.ts": {
+      "before": "612e3b9ed7a04ee450399895ef1232c16b15595558109ac63050cf51274051f0",
+      "after": "612e3b9ed7a04ee450399895ef1232c16b15595558109ac63050cf51274051f0",
+      "equal": true
+    },
+    "tests/core/turns.test.ts": {
+      "before": "cc9b8f80f3b8a719a793ac80d828960045bca9288131f903e3c959e390b42216",
+      "after": "cc9b8f80f3b8a719a793ac80d828960045bca9288131f903e3c959e390b42216",
+      "equal": true
+    },
+    "tests/e2e/complete-game.spec.ts": {
+      "before": "593b7a4fb542eb1c43e929e010e2f539850188345e5d06e113e24c36327ac94e",
+      "after": "593b7a4fb542eb1c43e929e010e2f539850188345e5d06e113e24c36327ac94e",
+      "equal": true
+    },
+    "tests/e2e/computer.spec.ts": {
+      "before": "1871d273b48c8b6cd5a725e9d681d4da1eca7d96abfd2ec74db6abeaf25a6d5c",
+      "after": "1871d273b48c8b6cd5a725e9d681d4da1eca7d96abfd2ec74db6abeaf25a6d5c",
+      "equal": true
+    },
+    "tests/e2e/entry.spec.ts": {
+      "before": "33d38a5b1a5a2596eb8111f345e1b4c03d16a3e5de31c21db9611f013a3f3e17",
+      "after": "33d38a5b1a5a2596eb8111f345e1b4c03d16a3e5de31c21db9611f013a3f3e17",
+      "equal": true
+    },
+    "tests/e2e/finished-copy.spec.ts": {
+      "before": "9b5b9cbec6c26cbf9df32c14fd627a0f4af7f07474735c7a8a4f7eb8f4521a8e",
+      "after": "9b5b9cbec6c26cbf9df32c14fd627a0f4af7f07474735c7a8a4f7eb8f4521a8e",
+      "equal": true
+    },
+    "tests/e2e/game-setup.spec.ts": {
+      "before": "bfdcaaf3c95fb074abab9bd75e9a676fb4aa02c7533deb4246d3a60c9dc22e23",
+      "after": "bfdcaaf3c95fb074abab9bd75e9a676fb4aa02c7533deb4246d3a60c9dc22e23",
+      "equal": true
+    },
+    "tests/e2e/game-setup.spec.ts-snapshots/four-seat-1280x800-1280x800-linux.png": {
+      "before": "871645814d843d6e6994896e340d292a5f9d4f1755334654caff988b594352dd",
+      "after": "871645814d843d6e6994896e340d292a5f9d4f1755334654caff988b594352dd",
+      "equal": true
+    },
+    "tests/e2e/game-setup.spec.ts-snapshots/four-seat-1920x1080-1920x1080-linux.png": {
+      "before": "8788d962bad178d3b294d190e827b5733fda7de7407e5408a1d50420abdae9f0",
+      "after": "8788d962bad178d3b294d190e827b5733fda7de7407e5408a1d50420abdae9f0",
+      "equal": true
+    },
+    "tests/e2e/game-setup.spec.ts-snapshots/setup-1280x800-1280x800-linux.png": {
+      "before": "194ad30b5c272bb12902b0355201f4cea066449f20e833a142e9fcaf320e9178",
+      "after": "194ad30b5c272bb12902b0355201f4cea066449f20e833a142e9fcaf320e9178",
+      "equal": true
+    },
+    "tests/e2e/game-setup.spec.ts-snapshots/setup-1920x1080-1920x1080-linux.png": {
+      "before": "3dce0b4bb725d794c299ae9a5844ac16be81f7359d716e0d2787210698aaca28",
+      "after": "3dce0b4bb725d794c299ae9a5844ac16be81f7359d716e0d2787210698aaca28",
+      "equal": true
+    },
+    "tests/e2e/generated-board.spec.ts": {
+      "before": "6768eb58d100fdbc91ebe4ef3b2e781ffb46344433ab31f42a2446cb82e5975c",
+      "after": "6768eb58d100fdbc91ebe4ef3b2e781ffb46344433ab31f42a2446cb82e5975c",
+      "equal": true
+    },
+    "tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1280x800-linux.png": {
+      "before": "2325d273b1eec0dc174e4546177252c94a03e1d00de8897c6d238751402ccb96",
+      "after": "2325d273b1eec0dc174e4546177252c94a03e1d00de8897c6d238751402ccb96",
+      "equal": true
+    },
+    "tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1920x1080-linux.png": {
+      "before": "c938da0150150e9b7b0e5a210223e73637d630ad31e94ae309bdea45775e4550",
+      "after": "c938da0150150e9b7b0e5a210223e73637d630ad31e94ae309bdea45775e4550",
+      "equal": true
+    },
+    "tests/e2e/generated-game.spec.ts": {
+      "before": "7c69effa1625baf807f94aae54a9c87eb7c3aa0ee120fe6f29bb0ac8491039f5",
+      "after": "7c69effa1625baf807f94aae54a9c87eb7c3aa0ee120fe6f29bb0ac8491039f5",
+      "equal": true
+    },
+    "tests/e2e/generated-game.spec.ts-snapshots/generated-game-1280x800-linux.png": {
+      "before": "a70d2da38158bf0034a1e084c64810be8e4b652940a9ac58997ea5cee3503510",
+      "after": "a70d2da38158bf0034a1e084c64810be8e4b652940a9ac58997ea5cee3503510",
+      "equal": true
+    },
+    "tests/e2e/generated-game.spec.ts-snapshots/generated-game-1920x1080-linux.png": {
+      "before": "3d93466c122804074c1d3dfe2f82e93aa5220d26b3cd48f51da296502ccc290e",
+      "after": "3d93466c122804074c1d3dfe2f82e93aa5220d26b3cd48f51da296502ccc290e",
+      "equal": true
+    },
+    "tests/e2e/help.spec.ts": {
+      "before": "8fb03c619a3772535dc98c34b8f3b23f0d0adac194a75a49c2bfda01d4da7750",
+      "after": "8fb03c619a3772535dc98c34b8f3b23f0d0adac194a75a49c2bfda01d4da7750",
+      "equal": true
+    },
+    "tests/e2e/match-save.spec.ts": {
+      "before": "775afff42ed62666d6a0bd4e5877147c0f4d03880beee396fa2c30b846b47080",
+      "after": "775afff42ed62666d6a0bd4e5877147c0f4d03880beee396fa2c30b846b47080",
+      "equal": true
+    },
+    "tests/e2e/reinforcement.spec.ts": {
+      "before": "dca8ff9b0bf14a33020d0a1f0ae8b6329872b9e696ed9223d24400a2c3b7d0e8",
+      "after": "dca8ff9b0bf14a33020d0a1f0ae8b6329872b9e696ed9223d24400a2c3b7d0e8",
+      "equal": true
+    },
+    "tests/e2e/retry-validation.spec.ts": {
+      "before": "62a0f90589351c21d350c1cd79337ab55f8fbeaceb370b6e718c1f535d5c1e27",
+      "after": "62a0f90589351c21d350c1cd79337ab55f8fbeaceb370b6e718c1f535d5c1e27",
+      "equal": true
+    },
+    "tests/e2e/slice.spec.ts": {
+      "before": "4be59469b7badf518219601b767e989cf8bdbe53e9f86a11e3eb056a572838f3",
+      "after": "4be59469b7badf518219601b767e989cf8bdbe53e9f86a11e3eb056a572838f3",
+      "equal": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/board-1280x800-linux.png": {
+      "before": "4e1516852e83946614bd22a81122eaa319edae4f8f5f0ed502d0f6db7c370955",
+      "after": "4e1516852e83946614bd22a81122eaa319edae4f8f5f0ed502d0f6db7c370955",
+      "equal": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/board-1920x1080-linux.png": {
+      "before": "8a19d1e0358fbcdad8fb2bf40198e2d9ed37e437aff1695556c50d857a4e9ee7",
+      "after": "8a19d1e0358fbcdad8fb2bf40198e2d9ed37e437aff1695556c50d857a4e9ee7",
+      "equal": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/panel-1280x800-linux.png": {
+      "before": "309307bab8cf1366c3383ac321eb0e43f58013c1ff829886364e1376415ec7a1",
+      "after": "309307bab8cf1366c3383ac321eb0e43f58013c1ff829886364e1376415ec7a1",
+      "equal": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/panel-1920x1080-linux.png": {
+      "before": "456324f1527b1ffcced669ff74e26bf3bc65d7419f6bcfae0b013f41879ec003",
+      "after": "456324f1527b1ffcced669ff74e26bf3bc65d7419f6bcfae0b013f41879ec003",
+      "equal": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/result-dialog-1280x800-linux.png": {
+      "before": "a233f777322bf79b03f6f41d1e902d13559c0f20ba67e7474683f980a42f9347",
+      "after": "a233f777322bf79b03f6f41d1e902d13559c0f20ba67e7474683f980a42f9347",
+      "equal": true
+    },
+    "tests/e2e/slice.spec.ts-snapshots/result-dialog-1920x1080-linux.png": {
+      "before": "4e6f7b93fd9452a7dcdd7acd459dd9d8b72684c0baa06a3524ab49edaf7698cc",
+      "after": "4e6f7b93fd9452a7dcdd7acd459dd9d8b72684c0baa06a3524ab49edaf7698cc",
+      "equal": true
+    },
+    "tests/helpers/complete-game.ts": {
+      "before": "d52400c8d02e36f81bf7e017478c25f42340557da1ca55d07c67f173ff72f203",
+      "after": "d52400c8d02e36f81bf7e017478c25f42340557da1ca55d07c67f173ff72f203",
+      "equal": true
+    },
+    "tests/helpers/computer.ts": {
+      "before": "5840535ca59dca31005a84bb4d02c2b1139eab919b846471961c8b6b1264bb25",
+      "after": "5840535ca59dca31005a84bb4d02c2b1139eab919b846471961c8b6b1264bb25",
+      "equal": true
+    },
+    "tests/ui/game-setup.test.ts": {
+      "before": "af32d57bbbcfed919857262563cbe806e1f323ebbc7faebe1b56c9d477f8d706",
+      "after": "af32d57bbbcfed919857262563cbe806e1f323ebbc7faebe1b56c9d477f8d706",
+      "equal": true
+    },
+    "tests/ui/generated-board-layout.test.ts": {
+      "before": "cdd5c6c327a2ef434a8da01c2d1ff1aab362388cc5cffde604589255b4156878",
+      "after": "cdd5c6c327a2ef434a8da01c2d1ff1aab362388cc5cffde604589255b4156878",
+      "equal": true
+    },
+    "tests/ui/generated-game.test.ts": {
+      "before": "29278623f2e5f06c3e187f100db1292ae554ca48783587a4e07484cfaf76756c",
+      "after": "29278623f2e5f06c3e187f100db1292ae554ca48783587a4e07484cfaf76756c",
+      "equal": true
+    }
+  },
+  "allUnchanged": true
+}
