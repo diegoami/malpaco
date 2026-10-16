@@ -228,7 +228,7 @@ worktree mounted at `/work`, dependencies read-only, uid 1000. Local commands
 require that matching Playwright browser installation. Each build/check writes
 a fresh evidence directory; `study.json` selects the retained comparison.
 Source and parameters are snapshotted in each build, alongside board/HTML/SVG
-hashes. [artifact index](artifacts.v2.sha256.json) covers every retained artifact
+hashes. [artifact index](artifacts.v5.sha256.json) covers every retained artifact
 except the newest index itself; earlier outputs are never overwritten.
 `build.mjs` also updates the tracked `study.json` selector to its new output
 directory. That selector is mutable configuration, while each build directory
