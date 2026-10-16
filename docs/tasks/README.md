@@ -38,7 +38,8 @@ See the [sequence and dispatch checkpoints](../plans/new-game/README.md). Diffic
 | [T23](T23.md) | Approved-rules inventory and reuse decisions | Medium | #68 | — |
 | [T24](T24.md) | Geography contract and constraint-feasibility probe | Hard | #69 | T23 |
 | [T25](T25.md) | Compliant seed-1994 reference board | Hard | #70 | T22, T24 |
-| [T26](T26.md) | Reference-board walking skeleton | Medium | #71 | T25 |
+| [T59](T59.md) | Reference-map visual polish | Hard | #110 | T25 |
+| [T26](T26.md) | Reference-board walking skeleton | Medium | #71 | T25, T59 |
 | [T27](T27.md) | Explicit post-capture movement actions | Hard | #72 | T26 |
 | [T28](T28.md) | Battle controls and capture-choice UI | Hard | #73 | T27 |
 | [T29](T29.md) | One adjacent friendly move per turn | Medium | #74 | T28 |
