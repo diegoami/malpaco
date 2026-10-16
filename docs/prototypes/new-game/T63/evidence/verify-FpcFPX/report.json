@@ -1,0 +1,49 @@
+{
+  "input": "/work/docs/prototypes/new-game/T63/evidence/mutations-UmDMJx/changed-opening.json",
+  "constraints": {
+    "attachment": [],
+    "water": [],
+    "traceability": [],
+    "preserved": []
+  },
+  "identity": [
+    "Reference differs from selected A (identity/opening/graph/bonuses/geometry)"
+  ],
+  "landEdges": 61,
+  "seaLinks": 15,
+  "failures": [
+    "Reference differs from selected A (identity/opening/graph/bonuses/geometry)"
+  ],
+  "reproduction": {
+    "board.json": {
+      "actual": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+      "reproduced": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+      "equal": true
+    },
+    "map.svg": {
+      "actual": "35e4c1cb9ecc3a455840444448377694b5b8b9f68ad99bbdc2cc0b1f11b485f1",
+      "reproduced": "35e4c1cb9ecc3a455840444448377694b5b8b9f68ad99bbdc2cc0b1f11b485f1",
+      "equal": true
+    },
+    "preview.html": {
+      "actual": "39d9577f31f2da70db333ba2355a7e620519332a8f30c4bc9fbda48e5b3bb2e5",
+      "reproduced": "39d9577f31f2da70db333ba2355a7e620519332a8f30c4bc9fbda48e5b3bb2e5",
+      "equal": true
+    }
+  },
+  "sourceHashes": {
+    "audit.mjs": "af0ef182930903b96a386c8f492baed8664679f90c242141ce45f0c2585c23a0",
+    "construct.mjs": "1bee9da65d36393296c84a4eb23cde18a65a7cebc9f2a3c5e2d6f8b83a5d22cf",
+    "render.mjs": "f2a32209afc630c6ab409430bbfd8acb95a4151a744f40d54e762d824f82a73c",
+    "verify.mjs": "5d4d1bbad6cba47ae4f32d434a480e94e74fd606afb42dec0e9034184f3c601a",
+    "browser.mjs": "94be7836116355a44137e18308a5011f5ba649ccf43725c4bcf496f4b5fdec70",
+    "../T60/render.mjs": "bbfbc2572037176841fba395cf38ef0e569730fef790ea4a430e3b9c778b9665",
+    "../T60/evidence/build-LrdPTV/coast-first.json": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+    "../T62/contract.mjs": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+    "../T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746",
+    "../T24/contract.mjs": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+    "../T24/geometry.mjs": "de4ef1aa101184d52ac79dad77a8b28fa8e1acdcbcb70b574eb51ef461117f11",
+    "../T24/parameters.mjs": "3b5ab9aecc47ae4a1d36eedd6e0d2484c5e1819f6baae4aa15fe0c1ed483e354"
+  },
+  "accepted": false
+}

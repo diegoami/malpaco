@@ -1,0 +1,93 @@
+{
+  "records": [
+    {
+      "name": "hidden-count",
+      "command": [
+        "docs/prototypes/new-game/T63/browser.mjs",
+        "/work/docs/prototypes/new-game/T63/preflight/negative-OlFXTN/hidden-count.html"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"accepted\": false,\n  \"failures\": [\n    \"Error: 1280: invisible label/count province_4\\n    at check (file:///work/docs/prototypes/new-game/T63/browser.mjs:10:66)\\n    at file:///work/docs/prototypes/new-game/T63/browser.mjs:38:7\"\n  ],\n  \"output\": \"/work/docs/prototypes/new-game/T63/evidence/browser-sfn0M6\"\n}\n",
+      "stderr": "",
+      "inputSha256": "17c420bf4afaa4729666a9c18e90b00fe8dea66460356caddb8cb55a84ad063a"
+    },
+    {
+      "name": "keyboard-disabled",
+      "command": [
+        "docs/prototypes/new-game/T63/browser.mjs",
+        "/work/docs/prototypes/new-game/T63/preflight/negative-OlFXTN/keyboard-disabled.html"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"accepted\": false,\n  \"failures\": [\n    \"Error: 1280: Space selection missing province_4\\n    at check (file:///work/docs/prototypes/new-game/T63/browser.mjs:10:66)\\n    at file:///work/docs/prototypes/new-game/T63/browser.mjs:59:7\"\n  ],\n  \"output\": \"/work/docs/prototypes/new-game/T63/evidence/browser-BaT9Hi\"\n}\n",
+      "stderr": "",
+      "inputSha256": "1decc24f64dcf2e79f4011c684dc94cd5b845c4f66e85b6837b72d6c2433aa49"
+    },
+    {
+      "name": "wrong-route",
+      "command": [
+        "docs/prototypes/new-game/T63/browser.mjs",
+        "/work/docs/prototypes/new-game/T63/preflight/negative-OlFXTN/wrong-route.html"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"accepted\": false,\n  \"failures\": [\n    \"Error: Rendered sea paths differ from contract\\n    at check (file:///work/docs/prototypes/new-game/T63/browser.mjs:10:66)\\n    at file:///work/docs/prototypes/new-game/T63/browser.mjs:73:5\"\n  ],\n  \"output\": \"/work/docs/prototypes/new-game/T63/evidence/browser-G1F7LS\"\n}\n",
+      "stderr": "",
+      "inputSha256": "522db28cec1648d86428ef1e4307dc6cdbd387e2ab17f57f3efd3d0e0a8ea515"
+    },
+    {
+      "name": "neighbor-style",
+      "command": [
+        "docs/prototypes/new-game/T63/browser.mjs",
+        "/work/docs/prototypes/new-game/T63/preflight/negative-OlFXTN/neighbor-style.html"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"accepted\": false,\n  \"failures\": [\n    \"Error: 1280: visible neighbour styling missing province_4\\n    at check (file:///work/docs/prototypes/new-game/T63/browser.mjs:10:66)\\n    at file:///work/docs/prototypes/new-game/T63/browser.mjs:54:7\"\n  ],\n  \"output\": \"/work/docs/prototypes/new-game/T63/evidence/browser-XHKl9C\"\n}\n",
+      "stderr": "",
+      "inputSha256": "c73de6993e667815509016ea7aeddbd5fc76a8b20aa05081456ef110a4a5ad4b"
+    },
+    {
+      "name": "hidden-active-route",
+      "command": [
+        "docs/prototypes/new-game/T63/browser.mjs",
+        "/work/docs/prototypes/new-game/T63/preflight/negative-OlFXTN/hidden-active-route.html"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"accepted\": false,\n  \"failures\": [\n    \"Error: 1280: active routes not visibly highlighted province_4\\n    at check (file:///work/docs/prototypes/new-game/T63/browser.mjs:10:66)\\n    at file:///work/docs/prototypes/new-game/T63/browser.mjs:51:7\"\n  ],\n  \"output\": \"/work/docs/prototypes/new-game/T63/evidence/browser-TqCx4V\"\n}\n",
+      "stderr": "",
+      "inputSha256": "420d060c8eb5e5c4ac48743394466e3155f537857995bb8ce97fa5e13c07273b"
+    },
+    {
+      "name": "broken-export",
+      "command": [
+        "docs/prototypes/new-game/T63/browser.mjs",
+        "/work/docs/prototypes/new-game/T63/preflight/negative-OlFXTN/broken-export.html"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"accepted\": false,\n  \"failures\": [\n    \"Error: Export differs from actual map\\n    at check (file:///work/docs/prototypes/new-game/T63/browser.mjs:10:66)\\n    at file:///work/docs/prototypes/new-game/T63/browser.mjs:81:5\"\n  ],\n  \"output\": \"/work/docs/prototypes/new-game/T63/evidence/browser-6V66VK\"\n}\n",
+      "stderr": "",
+      "inputSha256": "2914cc32a11dd0f2462c6eac237c309a2e2c1537030e81beb4a35312742608b0"
+    },
+    {
+      "name": "deleted-adopted-diagnostics",
+      "command": [
+        "--test",
+        "docs/prototypes/new-game/T63/acceptance.test.mjs"
+      ],
+      "exit": 1,
+      "stdout": "✖ selected A retains every adopted group and exact identity (61.805439ms)\n✖ rejects changed opening armies and keeps independent constraint diagnostics (41.71805ms)\n✖ rejects changed owner and keeps independent constraint diagnostics (34.513326ms)\n✖ rejects changed production and keeps independent constraint diagnostics (33.458705ms)\n✖ rejects changed bonus and keeps independent constraint diagnostics (35.628938ms)\n✖ rejects changed land graph and keeps independent constraint diagnostics (32.89471ms)\n✖ rejects changed sea graph and keeps independent constraint diagnostics (30.624545ms)\n✖ rejects changed geometry and keeps independent constraint diagnostics (2.752865ms)\n✖ rejects changed label reservation and keeps independent constraint diagnostics (34.044532ms)\nℹ tests 9\nℹ suites 0\nℹ pass 0\nℹ fail 9\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 350.942139\n\n✖ failing tests:\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:6:1\n✖ selected A retains every adopted group and exact identity (61.805439ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [],\n  -   preserved: [],\n  -   traceability: [],\n  -   water: []\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:6:108)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.start (node:internal/test_runner/test:1257:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [], water: [], traceability: [], preserved: [] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:9:3\n✖ rejects changed opening armies and keeps independent constraint diagnostics (41.71805ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [],\n  -   preserved: [],\n  -   traceability: [],\n  -   water: []\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:9:137)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n      at Test.postRun (node:internal/test_runner/test:1537:19)\n      at Test.run (node:internal/test_runner/test:1462:12)\n      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [], water: [], traceability: [], preserved: [] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:9:3\n✖ rejects changed owner and keeps independent constraint diagnostics (34.513326ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [],\n  -   preserved: [],\n  -   traceability: [],\n  -   water: []\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:9:137)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n      at Test.postRun (node:internal/test_runner/test:1537:19)\n      at Test.run (node:internal/test_runner/test:1462:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [], water: [], traceability: [], preserved: [] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:9:3\n✖ rejects changed production and keeps independent constraint diagnostics (33.458705ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [],\n  -   preserved: [],\n  -   traceability: [],\n  -   water: []\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:9:137)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n      at Test.postRun (node:internal/test_runner/test:1537:19)\n      at Test.run (node:internal/test_runner/test:1462:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [], water: [], traceability: [], preserved: [] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:9:3\n✖ rejects changed bonus and keeps independent constraint diagnostics (35.628938ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [],\n  -   preserved: [\n  -     'bonus: Invalid bonus island_0'\n  -   ],\n  -   traceability: [],\n  -   water: []\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:9:137)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n      at Test.postRun (node:internal/test_runner/test:1537:19)\n      at Test.run (node:internal/test_runner/test:1462:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [], water: [], traceability: [], preserved: [ 'bonus: Invalid bonus island_0' ] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:9:3\n✖ rejects changed land graph and keeps independent constraint diagnostics (32.89471ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [],\n  -   preserved: [\n  -     'symmetry: Invalid/asymmetric borders province_8/province_4',\n  -     'borders: Declared/shared boundary mismatch province_4'\n  -   ],\n  -   traceability: [],\n  -   water: []\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:9:137)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n      at Test.postRun (node:internal/test_runner/test:1537:19)\n      at Test.run (node:internal/test_runner/test:1462:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [], water: [], traceability: [], preserved: [ 'symmetry: Invalid/asymmetric borders province_8/province_4', 'borders: Declared/shared boundary mismatch province_4' ] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:9:3\n✖ rejects changed sea graph and keeps independent constraint diagnostics (30.624545ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [],\n  -   preserved: [\n  -     'symmetry: Invalid/asymmetric seaLanes province_43/province_4',\n  -     'bonus: Invalid bonus island_0'\n  -   ],\n  -   traceability: [],\n  -   water: []\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:9:137)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n      at Test.postRun (node:internal/test_runner/test:1537:19)\n      at Test.run (node:internal/test_runner/test:1462:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [], water: [], traceability: [], preserved: [ 'symmetry: Invalid/asymmetric seaLanes province_43/province_4', 'bonus: Invalid bonus island_0' ] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:9:3\n✖ rejects changed geometry and keeps independent constraint diagnostics (2.752865ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [\n  -     'Malformed attachment input: Missing/non-finite/non-simple land geometry'\n  -   ],\n  -   preserved: [\n  -     'cells: Missing/non-finite/non-simple country or silhouette',\n  -     'borders: Cannot establish boundaries from invalid geometry',\n  -     'labels: Missing/non-finite label/country province_4'\n  -   ],\n  -   traceability: [\n  -     'Malformed traceability input: Missing/non-finite/non-simple land geometry'\n  -   ],\n  -   water: [\n  -     'Malformed water input: Missing/non-finite/non-simple land geometry'\n  -   ]\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:9:137)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n      at Test.postRun (node:internal/test_runner/test:1537:19)\n      at Test.run (node:internal/test_runner/test:1462:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [ 'Malformed attachment input: Missing/non-finite/non-simple land geometry' ], water: [ 'Malformed water input: Missing/non-finite/non-simple land geometry' ], traceability: [ 'Malformed traceability input: Missing/non-finite/non-simple land geometry' ], preserved: [ 'cells: Missing/non-finite/non-simple country or silhouette', 'borders: Cannot establish boundaries from invalid geometry', 'labels: Missing/non-finite label/country province_4' ] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n\ntest at docs/prototypes/new-game/T63/acceptance.test.mjs:9:3\n✖ rejects changed label reservation and keeps independent constraint diagnostics (34.044532ms)\n  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n  + actual - expected\n  \n  + {}\n  - {\n  -   attachment: [],\n  -   preserved: [\n  -     'labels: Hit square outside country/frame province_4'\n  -   ],\n  -   traceability: [],\n  -   water: []\n  - }\n  \n      at TestContext.<anonymous> (file:///work/docs/prototypes/new-game/T63/acceptance.test.mjs:9:137)\n      at Test.runInAsyncScope (node:async_hooks:227:14)\n      at Test.run (node:internal/test_runner/test:1397:25)\n      at Test.processPendingSubtests (node:internal/test_runner/test:969:18)\n      at Test.postRun (node:internal/test_runner/test:1537:19)\n      at Test.run (node:internal/test_runner/test:1462:12)\n      at async Test.processPendingSubtests (node:internal/test_runner/test:969:7) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: {},\n    expected: { attachment: [], water: [], traceability: [], preserved: [ 'labels: Hit square outside country/frame province_4' ] },\n    operator: 'deepStrictEqual',\n    diff: 'simple'\n  }\n",
+      "stderr": ""
+    },
+    {
+      "name": "changed-opening",
+      "command": [
+        "docs/prototypes/new-game/T63/verify.mjs",
+        "/work/docs/prototypes/new-game/T63/preflight/negative-OlFXTN/changed-opening.json"
+      ],
+      "exit": 1,
+      "stdout": "{\n  \"accepted\": false,\n  \"failures\": [\n    \"Reference differs from selected A (identity/opening/graph/bonuses/geometry)\"\n  ],\n  \"output\": \"/work/docs/prototypes/new-game/T63/evidence/verify-WNVAZr\"\n}\n",
+      "stderr": ""
+    }
+  ],
+  "restoredExactly": true,
+  "sourceSha256": "af0ef182930903b96a386c8f492baed8664679f90c242141ce45f0c2585c23a0",
+  "archiveSha256": "6f261d4b5577b6f98478aa4bd62aa344bc1c4fc0a548cb71522122434bd3f299"
+}

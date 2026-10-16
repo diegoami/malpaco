@@ -1,0 +1,11 @@
+import {mkdirSync,mkdtempSync,writeFileSync,readFileSync} from 'node:fs';
+import {dirname,resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+import {construct} from './construct.mjs';
+const root=dirname(fileURLToPath(import.meta.url));mkdirSync(resolve(root,'evidence'),{recursive:true});
+const output=mkdtempSync(resolve(root,'evidence/build-')),files=construct(),hash=b=>createHash('sha256').update(b).digest('hex');
+for(const[name,bytes]of Object.entries(files))writeFileSync(resolve(output,name),bytes);
+for(const name of ['construct.mjs','render.mjs'])writeFileSync(resolve(output,name+'.snapshot'),readFileSync(resolve(root,name)));
+writeFileSync(resolve(output,'hashes.json'),JSON.stringify(Object.fromEntries(Object.entries(files).map(([n,b])=>[n,hash(b)])),null,2)+'\n');
+console.log(JSON.stringify({output},null,2));
