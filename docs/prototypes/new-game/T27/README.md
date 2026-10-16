@@ -87,7 +87,7 @@ The ordinary reference game reaches conquest after541 actions at each size
 tests and core bytes; raw output, HTML report and legacy screenshots are in
 its archive, with reference captures stored beside it.
 
-Current portable index: `artifacts.v3.sha256.json` plus its referenced shards.
+Current portable index: `artifacts.v4.sha256.json` plus its referenced shards.
 Run `python3 docs/prototypes/new-game/T27/verify-evidence.py` and
 `python3 docs/prototypes/new-game/T27/verify-preflight.py` from any checkout.
 The index excludes itself and the subsequent verification command's own
@@ -100,3 +100,12 @@ Main independently repeated all8 actual-source mutations after reading Sol's
 final handoff (`parent-audit-1dsrjx7p`, source-mutations-u2f60y__). Baseline23
 cases passed, all8 deletions failed their intended assertions, and all4 source
 files restored exactly. The v3 index includes these fresh parent outputs.
+
+MiniMax M3 independently approved bec75b0 after core/unit/build/mutation/index
+checks. It cited the author's browser output rather than rerunning browsers;
+main explicitly compensated with `parent-postreview-l9mhso0i`, all80 cases
+passing, then a final23-case capture/replay check. Reviewer mutation evidence
+and exact session export are retained in `evidence/reviewer`; archive SHA
+verified against the review before import. Nonblocking fixture-validation
+suggestion is issue127; the central pending gate remains intentionally.
+The v4 index pins these final review and premerge outputs.
