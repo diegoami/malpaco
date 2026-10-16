@@ -1,0 +1,45 @@
+{
+  "input": "/home/diego/projects/malpaco/.cache/t63-work/docs/prototypes/new-game/T63/board.json",
+  "constraints": {
+    "attachment": [],
+    "water": [],
+    "traceability": [],
+    "preserved": []
+  },
+  "identity": [],
+  "landEdges": 61,
+  "seaLinks": 15,
+  "failures": [],
+  "reproduction": {
+    "board.json": {
+      "actual": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+      "reproduced": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+      "equal": true
+    },
+    "map.svg": {
+      "actual": "ba81008ab9b0e1ae7d2344153654b7b8120633b81132db2a6922e7e21f2cba99",
+      "reproduced": "ba81008ab9b0e1ae7d2344153654b7b8120633b81132db2a6922e7e21f2cba99",
+      "equal": true
+    },
+    "preview.html": {
+      "actual": "177a6fb549cca5c1c1d520e0b207053bfc4f5383b3d0bbb07f951953c98b1f4d",
+      "reproduced": "177a6fb549cca5c1c1d520e0b207053bfc4f5383b3d0bbb07f951953c98b1f4d",
+      "equal": true
+    }
+  },
+  "sourceHashes": {
+    "audit.mjs": "936e787e05ae6189f550e8a609e8fd09166180e1bf40c21ae5a5c56cc338b49b",
+    "construct.mjs": "77ce4531de9eab75396a0cfe301d2b9faee2759a51fa9f131a18a1d1d2d060cf",
+    "render.mjs": "2d4c369a1ecc527ba9a17e26ebf0afd7b803eeadd0212ebf68d8698ca062833b",
+    "verify.mjs": "5d4d1bbad6cba47ae4f32d434a480e94e74fd606afb42dec0e9034184f3c601a",
+    "browser.mjs": "e8eee523aa8b479fa2310036f9ae2af6caddaf1c51dc17df41e9124121b12bb4",
+    "../T60/render.mjs": "bbfbc2572037176841fba395cf38ef0e569730fef790ea4a430e3b9c778b9665",
+    "../T60/evidence/build-LrdPTV/coast-first.json": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+    "../T62/contract.mjs": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+    "../T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746",
+    "../T24/contract.mjs": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+    "../T24/geometry.mjs": "de4ef1aa101184d52ac79dad77a8b28fa8e1acdcbcb70b574eb51ef461117f11",
+    "../T24/parameters.mjs": "3b5ab9aecc47ae4a1d36eedd6e0d2484c5e1819f6baae4aa15fe0c1ed483e354"
+  },
+  "accepted": true
+}
