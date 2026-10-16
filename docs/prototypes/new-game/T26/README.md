@@ -88,7 +88,7 @@ opening,first attack and winner at both viewports. Final unit/build reports and
 `existing-tests-f6k9uofn` retain the complete checks and unchanged52-file seal.
 
 The immutable revision index is sharded into small readable parts. Its root is
-`artifacts.v3.sha256.json` (the verifier default; v2 pins the pre-race-fix revision). The initial monolithic index
+`artifacts.v4.sha256.json` (the verifier default; earlier indexes pin their historical revisions). The initial monolithic index
 is preserved byte-for-byte in `evidence/initial-index.tar.gz`; its loose original
 is ignored. Each shard and every original archived member is verified.
 
@@ -98,3 +98,12 @@ current DOM atomically in page.evaluate, preserving every existing boundary
 assertion. `atomic-panel-y_h92_li` passes all four cases; final mutation audit
 `mutations-z35f93h_` requires green core/full-browser baseline, catches6/6 and
 restores source bytes. The earlier failed recheck remains retained.
+
+Postreview premerge check: `premerge-atomic-21b_3lyl` passes4/4 including both
+541-action replays. MiniMax approved the production implementation and reported
+the test-helper race R1; the atomic-read correction above resolves it without
+assertion/golden changes. Exact exported review transcript and its limitation
+are retained in `evidence/review-transcript`: the harness deleted reviewer-local
+browser outputs during cleanup, so those binary bytes cannot be claimed as
+retained. Author outputs remain complete. Harness follow-up is issue125. Owner
+accepted integrated opening/winner captures; computer default integration is T32.
