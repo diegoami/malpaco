@@ -1,6 +1,7 @@
 import { attackTargets, resolve, whyNot } from "./combat";
 import { DeterministicRng } from "./rng";
 import { reinforcementIncome } from "./reinforcement";
+import { whyNotFriendlyMove } from "./movement";
 import { activePlayer, cloneState, livingPlayers, provincesOf } from "./state";
 import type { Action, ApplyResult, GameState, Player } from "./types";
 
@@ -44,6 +45,8 @@ function dispatch(next: GameState, action: Action): ApplyResult {
       return endTurn(next);
     case "captureMove":
       return captureMove(next, action.amount);
+    case "friendlyMove":
+      return friendlyMove(next, action.from, action.to, action.amount);
     default:
       return { ok: false, error: "unknown action" };
   }
@@ -113,6 +116,19 @@ function captureMove(state: GameState, requested: number | undefined): ApplyResu
   delete state.pendingCapture;
   state.phase = "attack";
   return { ok: true, state, outcome: null };
+}
+
+function friendlyMove(state: GameState, from: string, to: string, requested: number | undefined): ApplyResult {
+  const refusal = whyNotFriendlyMove(state, from, to);
+  if (refusal) return { ok: false, error: refusal };
+  const maximum = state.armies[from]! - 1;
+  const amount = requested === undefined ? maximum : requested;
+  if (!Number.isSafeInteger(amount) || amount < 1 || amount > maximum) {
+    return { ok: false, error: "Move a whole number of armies and leave at least one behind." };
+  }
+  state.armies[from] = state.armies[from]! - amount;
+  state.armies[to] = state.armies[to]! + amount;
+  return endTurn(state);
 }
 
 /** Passes play to the next living player after the selected ruleset's turn phases. */

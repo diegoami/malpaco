@@ -1,4 +1,4 @@
-import { activePlayer, apply, armyCount, cloneState, DeterministicRng, diceCount, ownerOf, pairResults, province, resolve, whyNot } from "../core";
+import { activePlayer, apply, armyCount, cloneState, DeterministicRng, diceCount, friendlySources, friendlyTargets, ownerOf, pairResults, province, resolve, whyNot } from "../core";
 import type { Action, AttackOutcome, GameState } from "../core";
 
 export type BattleSpeed = "slow" | "normal" | "fast";
@@ -12,6 +12,7 @@ export interface BattleRoll {
   readonly results: readonly ("attacker" | "defender" | "tie")[];
 }
 export interface BattleView {
+  readonly mode: "battle" | "move";
   readonly state: GameState;
   readonly from: string | null;
   readonly to: string | null;
@@ -63,10 +64,11 @@ export class BattleController {
   private generation = 0;
   private disposed = false;
   private watchExchanges = 0;
+  private beforeMove: BattleView | null = null;
 
   constructor(initial: GameState, private readonly scheduler: BattleScheduler, private readonly onChange?: (view: BattleView) => void) {
     this.current = {
-      state: initial, from: null, to: null, running: false, paused: false,
+      mode: "battle", state: initial, from: null, to: null, running: false, paused: false,
       threshold: DEFAULT_STOP_THRESHOLD, effectiveThreshold: 1, speed: "normal", revision: 0,
       lastOutcome: null, rolls: [], ties: 0, attackerWins: 0, defenderWins: 0, message: "",
     };
@@ -98,8 +100,13 @@ export class BattleController {
 
   select(from: string | null, to: string | null, revision?: number): boolean {
     if (!this.accepts(revision) || this.current.running || this.current.paused || this.pending() || this.state.phase !== "attack") return false;
-    if (from === null ? to !== null : !province(this.state.map, from) || ownerOf(this.state, from) !== activePlayer(this.state)?.id) return false;
-    if (to !== null && (from === null || whyNot(this.state, from, to) !== "")) return false;
+    if (this.current.mode === "move") {
+      if (from === null ? to !== null : !friendlySources(this.state).includes(from)) return false;
+      if (to !== null && (from === null || !friendlyTargets(this.state, from).includes(to))) return false;
+    } else {
+      if (from === null ? to !== null : !province(this.state.map, from) || ownerOf(this.state, from) !== activePlayer(this.state)?.id) return false;
+      if (to !== null && (from === null || whyNot(this.state, from, to) !== "")) return false;
+    }
     this.cancel();
     const changed = from !== this.current.from || to !== this.current.to;
     this.publish({ from, to, effectiveThreshold: this.clamp(from), message: "",
@@ -123,7 +130,25 @@ export class BattleController {
 
   private canExchange(): boolean {
     const { from, to } = this.current;
-    return !this.pending() && this.state.phase === "attack" && from !== null && to !== null && whyNot(this.state, from, to) === "";
+    return this.current.mode === "battle" && !this.pending() && this.state.phase === "attack" && from !== null && to !== null && whyNot(this.state, from, to) === "";
+  }
+
+  /** The draft consumes no engine action. Cancel restores the prior battle context. */
+  startFriendlyMove(revision?: number): boolean {
+    if (!this.accepts(revision) || this.current.mode !== "battle" || this.current.running || this.current.paused || this.pending() || friendlySources(this.state).length === 0) return false;
+    this.cancel();
+    this.beforeMove = this.current;
+    this.publish({ mode: "move", from: null, to: null, message: "Choose a marked source, then an owned neighbour. Confirming ends your turn." });
+    return true;
+  }
+
+  cancelFriendlyMove(revision?: number): boolean {
+    if (!this.accepts(revision) || this.current.mode !== "move" || !this.beforeMove) return false;
+    const { from, to, effectiveThreshold, lastOutcome, rolls, ties, attackerWins, defenderWins, message } = this.beforeMove;
+    this.beforeMove = null;
+    this.cancel();
+    this.publish({ mode: "battle", from, to, effectiveThreshold, lastOutcome, rolls, ties, attackerWins, defenderWins, message });
+    return true;
   }
 
   singleExchange(revision?: number): boolean {
@@ -199,6 +224,10 @@ export class BattleController {
   dispatch(action: Action, revision?: number): boolean {
     if (!this.accepts(revision) || this.pending() || this.current.running || this.current.paused) return false;
     if (action.kind === "captureMove") return false;
+    if (this.current.mode === "move") {
+      if (action.kind !== "friendlyMove" && action.kind !== "endTurn") return false;
+    } else if (action.kind === "friendlyMove") return false;
+    if (action.kind === "friendlyMove" && (action.from !== this.current.from || action.to !== this.current.to)) return false;
     if (action.kind === "attack") {
       if (action.from !== this.current.from || action.to !== this.current.to) return false;
       return this.singleExchange(revision);
@@ -206,7 +235,8 @@ export class BattleController {
     const result = apply(this.state, action);
     if (!result.ok) return false;
     this.cancel();
-    this.publish({ state: result.state, from: null, to: null, effectiveThreshold: 1,
+    this.beforeMove = null;
+    this.publish({ mode: "battle", state: result.state, from: null, to: null, effectiveThreshold: 1,
       lastOutcome: null, rolls: [], ties: 0, attackerWins: 0, defenderWins: 0, message: "",
     });
     return true;
@@ -216,7 +246,8 @@ export class BattleController {
     if (!this.accepts()) return false;
     this.cancel();
     this.watchExchanges = 0;
-    this.publish({ state: next, from: null, to: null, running: false, paused: false, effectiveThreshold: 1,
+    this.beforeMove = null;
+    this.publish({ mode: "battle", state: next, from: null, to: null, running: false, paused: false, effectiveThreshold: 1,
       lastOutcome: null, rolls: [], ties: 0, attackerWins: 0, defenderWins: 0, message: "",
     });
     return true;
@@ -226,7 +257,8 @@ export class BattleController {
     if (this.disposed) return false;
     this.cancel();
     this.disposed = true;
-    this.publish({ running: false, paused: false });
+    this.beforeMove = null;
+    this.publish({ mode: "battle", running: false, paused: false });
     return true;
   }
 }
