@@ -111,6 +111,7 @@ test("editable seeds, reload stability, actual generation failure and retry",asy
     await page.getByLabel("Seed",{exact:true}).fill(String(seed)); await page.getByRole("button",{name:"Generate",exact:true}).click(); await expect(page).toHaveURL(new RegExp(`seed=${seed}(?:&|$)`));
     expect(await page.locator(".country-name").allTextContents()).toEqual(board(seed).provinces.map(p=>p.name));
   }
+  await expect(page.locator('#prototype-route-mask rect[fill="black"]')).toHaveCount(map.provinces.length + map.islands.length);
   const before=await page.locator("#generated-map").innerHTML(); await page.reload(); await expect(page.locator("#generated-map")).toHaveJSProperty("innerHTML",before);
   await page.getByLabel("Seed",{exact:true}).fill("1506");await page.getByRole("button",{name:"Generate",exact:true}).click();await expect(page.getByRole("alert")).toContainText(/generation.*failed/i); await expect(page.locator("[data-country]")).toHaveCount(0);
   await page.getByRole("button",{name:"Retry",exact:true}).click();await expect(page.getByRole("alert")).toBeVisible();await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1506");

@@ -536,7 +536,7 @@ change for the new Players choice; authored/prototype goldens are preserved.
 
 ## Approved reference-game development route (T26)
 
-Open `?view=reference-game` on the running app. Setup offers two to four human
+Open `?view=reference-game&battle=legacy` for the T26 compatibility UI. Setup offers two to four human
 seats and a game seed; the approved T63 Nine Isles geography stays fixed while
 the regular seeded deal changes. The map uses the same legal graph as the pure
 rules. Place the whole income pool, start combat, select an attacker/target,
@@ -559,6 +559,44 @@ not visual parity or fun. Evidence/reproduction: [T26](prototypes/new-game/T26/R
 
 The ordinary action `{kind:"captureMove",amount?:number}` chooses the **total** moved into the captured country, including that first army. Bounds are one through all but one of the surviving source armies; omission selects the maximum. Only the remaining difference transfers, with no extra RNG draws or stack cap. Pending choices block all other commands, including end-turn. A completed choice returns to attacks, so its target can make a chained capture. Elimination occurs at ownership change; this preset checks conquest at end-turn before advancing the seat or computing income.
 
-The preset is staged for T28: `createReferenceGame(map,options,rules?)` accepts it explicitly. Existing `malpacoRules()`, Classic, generated/reference routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 owns their full save integration. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
+`createReferenceGame(map,options,rules?)` accepts the preset explicitly. T28 selects it on the default reference route; `battle=legacy` preserves the T26 UI and its exact assertions/goldens. Existing `malpacoRules()`, Classic, generated/authored routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 owns their full save integration. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
 
 Acceptance and actual-source mutation evidence, exact restoration records, pinned legacy browser captures and portable hash verification are retained in `docs/prototypes/new-game/T27/`.
+
+## Reference battle controls (T28)
+
+The default `?view=reference-game` is an explicitly developmental, all-human setup
+for the approved Nine Isles map. It uses the capture-choice preset. The intended
+one-human/three-computer game setup belongs to T32; reference save/load belongs
+to T31. Other routes and their saves retain their prior behavior.
+
+Select source and enemy target, then choose primary **Fight on** or **Single
+exchange**. The remembered threshold defaults to 2 and clamps to the source's
+starting stack minus one for each fresh battle. It stays fixed as armies fall;
+an attack starting with two armies can fight to one. Stop cancels the next
+exchange while preserving both stacks and visible context. A long battle pauses
+before exchange 13 until Keep watching or Stop. Threshold edits wait until Stop;
+Keep watching preserves the current run's threshold.
+
+The [pinned UI5/UI6 design](https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#combat-feedback)
+supplies the proposed presentation values: 400 ms per exchange and a 5-second
+watch budget at Normal; Slow scales by 1.5, Fast by 0.5. These are malpaco's
+approved proposals, not original-game timing measurements. Current speeds are
+Slow/Normal/Fast; Instant and full settings persistence remain T56. Threshold and
+speed are remembered through this mounted development setup's New game flow.
+
+`BattleController` has no DOM or wall clock. Its injected scheduler queues at
+most one future exchange; `apply` is the only state-changing engine entrypoint.
+The independent tie trace calls exported `resolve` on cloned state and seeded
+RNG, showing every tie and the decisive dice without extra game-stream draws.
+The board, context counts and result update from the authoritative outcome.
+Capture controls choose the total moved, default to the maximum, and offer
+minimum/maximum, minus/plus and direct typing. Pending move-in blocks unrelated
+inputs. Recreated controls capture revisions; cancelled timers carry generations,
+so stale controls and old callbacks refuse across transitions and disposal.
+
+The public seat totals and New game sit in the header to keep capture choices
+visible beside the board at both desktop sizes. The outcome remains visible
+after Stop and move-in. Passing unit/browser checks establish these behaviors;
+the owner judges readability and pacing from the retained captures in
+[T28](prototypes/new-game/T28/README.md).
