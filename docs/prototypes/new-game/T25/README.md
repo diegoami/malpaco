@@ -32,4 +32,4 @@ All rejected construction drafts and screenshots remain preserved, including the
 
 Proposal/source hashes are in [proposal-manifest.json](proposal-manifest.json). Original measurement directories are immutable; evidence hash indexes are versioned rather than replaced.
 
-The two failed-run drawings in `build-KGBcrF` contain whitespace-only lines. Their original bytes are preserved losslessly in `raw-drawings.tar.gz` with SHA-256 entries in `raw-drawings.json`; the uncompressed local originals are ignored, not edited. To check the older v2 hash index on a clean checkout, unpack that archive into its directory first. The source whitespace check remains unchanged.
+The failed-run drawings in `build-KGBcrF` and `build-pKqzUo` contain whitespace-only lines. Their original bytes are preserved losslessly in `raw-drawings.tar.gz` with SHA-256 entries in `raw-drawings.json`; the uncompressed local originals are ignored, not edited. To check an older hash index on a clean checkout, unpack each archive into its own directory first. The source whitespace check remains unchanged.
