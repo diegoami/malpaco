@@ -1,0 +1,250 @@
+{
+  "results": [
+    {
+      "label": "baseline",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 0,
+      "expected": "pass"
+    },
+    {
+      "label": "origin-metadata",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "round-boundary",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "skip-dead",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "threshold",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "disabled-domination",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "own-turn-only",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "complete-round-only",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "countries-first",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "army-tie",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "rotated-tie",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "human-loss",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "watch-suppression",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "watch-handoff",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "stop-freeze",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "no-extra-rng",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "expected": "fail"
+    },
+    {
+      "label": "restored",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 0,
+      "expected": "pass"
+    }
+  ],
+  "sourcesRestored": true,
+  "sourceHashes": {
+    "src/core/__t30_mock.ts": "ce0f125477bd3dc0c91d84615b8cb120b535892b3a358634af45bca2eaf85da3",
+    "src/core/setup.ts": "ae971717c84177f8eeb1df2c5c1026d8ca5a7b76775f88f59a7877c8340fa024",
+    "src/core/rules.ts": "81df62bc9344e1cf2c01c0666cd3447c6543169961f1e014b91f73e88803e6fd",
+    "src/ui/referenceBattleGame.ts": "d89731fb05376a18291d0ee1c71f2b6c0d2edf0b615da738782a2573447018f1"
+  },
+  "archiveSha256": "97db65fc2c53e5de792b93a4c1741decee4e9a33532a1ae7b8e87010f2fe0c0f",
+  "memberHashes": {
+    "baseline.stdout": "15ced803ed44c4dcfe11be5e34d3ecd18b93980257d57455353601b83646af2b",
+    "baseline.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "origin-metadata.source.ts": "84521bdd690ed1ab86ea04231db276a161cee22ec6d3112de454a896f365d02d",
+    "origin-metadata.stdout": "aa3aff391053743be64d30fad36a4c6722ceb240f25154eaf9f9615e679aa195",
+    "origin-metadata.stderr": "870daa0b47fa247fed4e8b94c4003186fa945c8a47e7d72a446f9d6ac8499c11",
+    "round-boundary.source.ts": "08fbc86d14cb6d0da2af1d08ddc6c9e6a9ef0e76dc4825d22afa735cfa90651f",
+    "round-boundary.stdout": "cd07550cb41c8d88df4543afcb6206fca130a2ff367d3a242140c8d09c3f7f26",
+    "round-boundary.stderr": "e18b7c780d02d50e80c45db42f55042887b929e694c7e926f32a9700b6c6d9d5",
+    "skip-dead.source.ts": "0667dd6d120756ed0c1f1a8e7aaf727ef73dfbb84fb8e53d2a22122e9a2f9470",
+    "skip-dead.stdout": "75bd4adb225a315409c18518fb0846499e13cdf7e2cc4b6ea184fe2f45616b0c",
+    "skip-dead.stderr": "7a38278b308c7315c070fa4a54791a60642be6e9c971e22d6348d906c9a1fbaa",
+    "threshold.source.ts": "e299923092fda9d577cbf4c97de67c01a9b905c6263c07d5a528090364881bea",
+    "threshold.stdout": "997d4bebee1d122129b01d3fa25a9c09afbd20dd30250f4f54014da2d653b72f",
+    "threshold.stderr": "1b63f4b39bb38b0ce2425eb8ac619525f3770a42af7aa6331e52d73574c7aa38",
+    "disabled-domination.source.ts": "193e33c5a6e7768b476e6eabf9759b40ff1666de3b0e741742c82dcf045c3735",
+    "disabled-domination.stdout": "2c9338110968d7450b43b382516709dfa38cd2d285fe6697c5b3b013602b2bd9",
+    "disabled-domination.stderr": "5911d315e240504eb8a2868bf5ff2f4b10ce0e8a3ef201f9251be7454c3a4958",
+    "own-turn-only.source.ts": "619dbcc201c8adc15bfad0cccedf652fb0c5ae38ca652f6a452877661f16f639",
+    "own-turn-only.stdout": "2e1afdff7f954090a0c6415966fcddf39be6664b704d1ea672305c49eec17fa6",
+    "own-turn-only.stderr": "5911d315e240504eb8a2868bf5ff2f4b10ce0e8a3ef201f9251be7454c3a4958",
+    "complete-round-only.source.ts": "630799152d964a00625d74718be6b4fcc2172c9b711766a2797b6438b1cd9f32",
+    "complete-round-only.stdout": "fb15d7b99662c6f0f02c53829cec275b20b92446d0bd337f7c2f2ff1af84b232",
+    "complete-round-only.stderr": "02078d2bfaf2331b8727070ce8c55125a1b6a0f1ff040bcff36c1cedbc64c4d9",
+    "countries-first.source.ts": "3d2fa27a5cbebe9a041ac5971a00f6247311983e9f00a03f40f35ec499b16480",
+    "countries-first.stdout": "c99c9ae561359d65a433d850a7be3ea86e9e54eff37e924afb9508971d6f98a4",
+    "countries-first.stderr": "81d4782f8133e7693430ead748068059fa670d7e5afb18d596c2d92916de60eb",
+    "army-tie.source.ts": "0619875e7c518742600d4eba5007dbf22de5003952f4e8033274f65bd2c48ae0",
+    "army-tie.stdout": "0562b7c2199de50c4b1e16696627e1b2d4900ec24b93d6075cb5e107f2bbced1",
+    "army-tie.stderr": "81d4782f8133e7693430ead748068059fa670d7e5afb18d596c2d92916de60eb",
+    "rotated-tie.source.ts": "c679ca1b2a3aceb5e836e218b0fa8baee7fca5e49c83f1ed087c3d22073f7537",
+    "rotated-tie.stdout": "849e952db28e31602867ff0c08cbf242efc44b5a08a4a43fed10edcfb2846966",
+    "rotated-tie.stderr": "93694be233e6dcab4d758ec774ad073043020b936f917161223651c1330e0327",
+    "human-loss.source.ts": "ea77b0fcf885bea3452b3f00bc8a80d4c57602b86334cf29020fd8d0b713252b",
+    "human-loss.stdout": "20bcee5dc0168171a6720560fe8b02963ff195b923dfeb45425d67ba3e431e38",
+    "human-loss.stderr": "6f56b32c7fa54785f80c3bc97756187ad89f9446afa6ca218088f275beaabe34",
+    "watch-suppression.source.ts": "fdf8b4f05f6afe26d056dd11ea8002b004818ee723e6e3fdd68693d394ddded2",
+    "watch-suppression.stdout": "cb7c262046d12d66621fcfe9a8ed822a61a82f9891be9b927211b8c8e826e1b4",
+    "watch-suppression.stderr": "5051d9a31437c29524231c37785197f6226b8a5c6fb2521f1e7bf5031878d593",
+    "watch-handoff.source.ts": "9935a18f8fa6a14dd4589d4b961fc9aa911f5cb270ce3bd4675ab9665ca9a864",
+    "watch-handoff.stdout": "6abccb83fc676c1b3273841a442ccc0ef80434bce5776ed6342b795723a3b7b6",
+    "watch-handoff.stderr": "e0fc02ad95b27ff24a32669a5d27469205c21726f72c2b31be92747d0749e62f",
+    "stop-freeze.source.ts": "65e527f7235aac3af98db12f72377b8fe87413a4c855756cf1354e0fcb07c4b9",
+    "stop-freeze.stdout": "809e44750a3c0e2d6691dbefe88d4b8b205b5fa806a205ba1e34bcaeffbc87cd",
+    "stop-freeze.stderr": "17857648b77828d64c8a339500ed787cbe6856523100d6f5221bc36c20847635",
+    "no-extra-rng.source.ts": "533e2debf846a3ed33d188c905512896547c5b3c180fe89b9830e9440b3d2b06",
+    "no-extra-rng.stdout": "4b7dd58c06c152be357e264229c4817ab20441be5ad148f6a5f94f7f52092f2c",
+    "no-extra-rng.stderr": "4535cff96b899f8b429a3eb81d2043d17501e5fd812b1cdd6d48282b29e4ed71",
+    "restored.stdout": "f577d68e008051d2fc57c1c683e087ffa257d48f12ce562291d6a26ba5f9dae5",
+    "restored.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

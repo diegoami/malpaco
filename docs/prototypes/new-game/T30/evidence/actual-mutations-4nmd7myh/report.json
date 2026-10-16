@@ -1,0 +1,487 @@
+{
+  "records": [
+    {
+      "name": "baseline-core",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "origin-metadata",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "round-wrap",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "dead-seat-skip",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "domination-threshold",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "domination-toggle",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "domination-own-turn",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "complete-round-boundary",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "country-ranking",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "army-ranking",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "rotated-ranking",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "no-human-loss",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "all-computer-exemption",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "watch-suppresses-prompt",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "watch-clears-result",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "watch-handoff",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "stop-freezes",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "choice-phase-gate",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "watch-rng",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "clone-origin",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "premature-capture-victory",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true,
+      "behavioralFailure": true
+    },
+    {
+      "name": "controller-revision",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/battle-controller-safety.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": false,
+      "matched": false,
+      "behavioralFailure": false
+    },
+    {
+      "name": "restored-core",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    },
+    {
+      "name": "result-reason",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t30-work/docs/prototypes/new-game/T30/run-browser.py",
+        "result-reason",
+        "--grep",
+        "domination"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "result-order",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t30-work/docs/prototypes/new-game/T30/run-browser.py",
+        "result-order",
+        "--grep",
+        "domination"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "finished-phase-controls",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t30-work/docs/prototypes/new-game/T30/run-browser.py",
+        "finished-phase-controls",
+        "--grep",
+        "domination"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "watch-button-action",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t30-work/docs/prototypes/new-game/T30/run-browser.py",
+        "watch-button-action",
+        "--grep",
+        "human loss"
+      ],
+      "exit": 1,
+      "wantedSuccess": false,
+      "matched": true
+    },
+    {
+      "name": "restored-core-final",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/victory-options.test.ts"
+      ],
+      "exit": 0,
+      "wantedSuccess": true,
+      "matched": true
+    }
+  ],
+  "archives": {
+    "raw-logs.tar.gz": {
+      "sha256": "95ba6e25f8e5eebdc7bcf698fab795b08052bbf83b8f936495f7bdfb20cd3d37",
+      "members": {
+        "baseline-core/stdout.txt": "8cee6d549bd5c20c10cd4f7b28d1c602ca3354131207aeabe906fa2f755520ee",
+        "baseline-core/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "origin-metadata/stdout.txt": "3133f0b6bbbe45b0b910257db5280a3859a2be1b3b60817e12e147babee3bcf2",
+        "origin-metadata/stderr.txt": "e8da50ae7b9d6f3433e931656b679f7676109c6c7b9e8343d88d1ca4ad759094",
+        "round-wrap/stdout.txt": "6f4d438812b0750cde88d398e84918ccb023d10556fc28f203366d57524f48a1",
+        "round-wrap/stderr.txt": "884ed6be1a06e429f455dc3a7f3f0dc74603991caf18b953db6a078113dab8c5",
+        "dead-seat-skip/stdout.txt": "73ffe86ecd43426629795f8025636def69283d7895104f8bdbd4d67b38a6cb24",
+        "dead-seat-skip/stderr.txt": "7a38278b308c7315c070fa4a54791a60642be6e9c971e22d6348d906c9a1fbaa",
+        "domination-threshold/stdout.txt": "70de69ae0efb1ff58e98f2837c3b5dd22202444cc62a5645bedb6fc472952ed8",
+        "domination-threshold/stderr.txt": "f1268b709893ed36e39872c47ece82a2ffd37997dd1ffbb4abcab451786c771e",
+        "domination-toggle/stdout.txt": "971010b0530fd5a85efa1879162ca4683d1d1edd18ed2edbfd4550828387f3ff",
+        "domination-toggle/stderr.txt": "5911d315e240504eb8a2868bf5ff2f4b10ce0e8a3ef201f9251be7454c3a4958",
+        "domination-own-turn/stdout.txt": "0c49b38cc22a031f2088d0399b392525bbf08222d1f06ec41437ebc49d901adb",
+        "domination-own-turn/stderr.txt": "5911d315e240504eb8a2868bf5ff2f4b10ce0e8a3ef201f9251be7454c3a4958",
+        "complete-round-boundary/stdout.txt": "7a0048c6b5e2ddaf2956407107602cce71c530645a4d52268ea15faa8f1230d3",
+        "complete-round-boundary/stderr.txt": "02078d2bfaf2331b8727070ce8c55125a1b6a0f1ff040bcff36c1cedbc64c4d9",
+        "country-ranking/stdout.txt": "7ff40960336e1eaa3bb7da8acd402741a48c09bc2bd44e800a22801a32006397",
+        "country-ranking/stderr.txt": "81d4782f8133e7693430ead748068059fa670d7e5afb18d596c2d92916de60eb",
+        "army-ranking/stdout.txt": "0f7a0dbd1176c74d6832824ed0f91fc186ca0192cdd164127bf0e62472d28679",
+        "army-ranking/stderr.txt": "81d4782f8133e7693430ead748068059fa670d7e5afb18d596c2d92916de60eb",
+        "rotated-ranking/stdout.txt": "adf378f730c489017d2e16b67095d05254fc751b45cdae66eba59ffe9180fe61",
+        "rotated-ranking/stderr.txt": "93694be233e6dcab4d758ec774ad073043020b936f917161223651c1330e0327",
+        "no-human-loss/stdout.txt": "7f877774461ebda602a210b29e181c086cb41e284e64b87dc40b3dae51f29343",
+        "no-human-loss/stderr.txt": "6f56b32c7fa54785f80c3bc97756187ad89f9446afa6ca218088f275beaabe34",
+        "all-computer-exemption/stdout.txt": "d8e2c94f73c41c75c85fccbef4f64a6c3d6621018abd5a5bed4a9cb8478c9918",
+        "all-computer-exemption/stderr.txt": "b1f8839e015c70c0382d7f46abc6eaf29b610e00b5f9c6506eabc9d716015be8",
+        "watch-suppresses-prompt/stdout.txt": "19c9982d659b59c7ebb3c3d49e2612c80458a940bd65d4c7fcc5d052c8636dd4",
+        "watch-suppresses-prompt/stderr.txt": "3623f3b954822ae1a89e5ff2f41ec22498a4a6aff7c1b060a9561ce333a23078",
+        "watch-clears-result/stdout.txt": "0692e817a189dd54207aed417cdb1b47a6d9b9debb554e226b543642a7683473",
+        "watch-clears-result/stderr.txt": "5c5a01ee8645c64c2c9b5c4a579708de095da67ca06759ffb2eed6dffb77ce05",
+        "watch-handoff/stdout.txt": "edb87237eb81e68efe36e43c9e7cbae5ded2f48c7ad23c7d1faf0b522e329394",
+        "watch-handoff/stderr.txt": "0f1579921862f8e6cc2ce9b2552c0e3542a95398129800ade7d65487be29c7bc",
+        "stop-freezes/stdout.txt": "6b71a616e2c2dbbd2ab27cf879c1b9a05efde5a9b643565a6d12f874d318f2c3",
+        "stop-freezes/stderr.txt": "0f0c60dd07b761ca791eee92f339ec6f8ce01ae52ed4e4ab69a0a6be358f5948",
+        "choice-phase-gate/stdout.txt": "d4431ed1e8d108be005ecf4930536d48f174a516572b1ee6c1d10bacf4ed6913",
+        "choice-phase-gate/stderr.txt": "ed1cf0d56881303143360a91dab581326c87af1b14d1f9c1bc92b3d4057f21ae",
+        "watch-rng/stdout.txt": "8d1aafc130d221d7c826d872d1bd299586c416b87d6d8c96aeb52112b2ae0ada",
+        "watch-rng/stderr.txt": "32df3a045cb52f22f23bb9fd3ba860d47177b5dcfc944528e722ba168ad78f7c",
+        "clone-origin/stdout.txt": "108996d61f96068663fce91cd62ec3935be3ba256a57652f70c67ce0179d4487",
+        "clone-origin/stderr.txt": "86c35472213af947a821bdec1d94109b64ba0cf912e7b2471c9102e3ef6853e7",
+        "premature-capture-victory/stdout.txt": "4481934f25cd6be84116986772a2c5b1ea10f124cfe90c2a6b2173a73326369e",
+        "premature-capture-victory/stderr.txt": "e669c3894eb16f083aa50e565485699014d338a4ddcc7795bb83d812e863a70e",
+        "controller-revision/stdout.txt": "037f612db7c24d67dfcd895433017bcee2410b342b0418ddf50449bb26e8b7bf",
+        "controller-revision/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "restored-core/stdout.txt": "8830b3c559e92b34e078ce157a22a423838afdc7d639bbde9da4780ded4c348b",
+        "restored-core/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "result-reason/stdout.txt": "6834d218ac6647f6b01a9dbc928d17a343279145f504f697b502fd42ee70b5aa",
+        "result-reason/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "result-order/stdout.txt": "c7777d1483491a1ef9b22a4cbf19b24702c00f286060b3e0dd8b0bee47874d6b",
+        "result-order/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "finished-phase-controls/stdout.txt": "860ce91b55fdab1d6ea222518bb3f311636cb0ff9be27473d7663de1818c1fe4",
+        "finished-phase-controls/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "watch-button-action/stdout.txt": "941fb7c2e21a01ab53874bb43d97db3e14a4752e67c37f564f1ac19e85a21aea",
+        "watch-button-action/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "restored-core-final/stdout.txt": "489dbf8d075a7992be09fe03ff538457718a2f945bd167920d2d67b8077110a0",
+        "restored-core-final/stderr.txt": "e49b794cae6663ada86efea1579a0381251a5d4d1ff9b0cefed3e5622b21317d"
+      }
+    },
+    "source-snapshots.tar.gz": {
+      "sha256": "731428401181648a4d9f53206d873e4f39e40bcc6b023ea63ca3b8716db1ddc7",
+      "members": {
+        "baseline/src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+        "baseline/src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+        "baseline/src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+        "baseline/src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+        "baseline/src/ui/referenceBattleGame.ts": "9804a4fc5368ae283a98a462254b4f60afdcd280bf26325d39c74bfa1220794c",
+        "baseline/src/ui/victoryView.ts": "9ed847ab4ef608a4c186bca0cae446388f296da85ac29f2bb4cfba88bec8237a",
+        "baseline/src/ui/battleController.ts": "26156d3bb3587b305372b20b4bbb8a305b958903dd5384e381d85cd77c8ee16d",
+        "origin-metadata/src/core/setup.ts": "1117a9a8ce2d1362952f6a802bef002856e25411d11b159a93b5e361d690f762",
+        "round-wrap/src/core/victory.ts": "7e03a43ac696cd050997c59b5e3df947c451bfa7234172924675cb591bf00083",
+        "dead-seat-skip/src/core/victory.ts": "43b257d369c251338ee27ce23ddec2a223008b92a21c94d1bdea5464fa628b41",
+        "domination-threshold/src/core/victory.ts": "5611b55ef67c95dafb7b47c86dd24de398b61c21b56904ba169011d05b35f7ee",
+        "domination-toggle/src/core/victory.ts": "0f5a7d258ddecf1e3071d25e001cdb19c9900b2626268174b626d595e595632d",
+        "domination-own-turn/src/core/victory.ts": "9ef72a34d624fdf21af80bbcc7f1a88685da99403ff17478edf8f4c91576edb4",
+        "complete-round-boundary/src/core/victory.ts": "d74b1e8a1acd633b04066e71a3e46f60f2b403fc4da13a1bffadcf777fc9204f",
+        "country-ranking/src/core/victory.ts": "c3b7c325db299c8109f51b065fe400b682e7227a68a1f14e871dcf203f1c61b6",
+        "army-ranking/src/core/victory.ts": "c5a51158f2feafe4bbb2908a84284044ef9d4a118b59f0510aac5e66fba0f301",
+        "rotated-ranking/src/core/victory.ts": "ad152f41f94a444b88aea7cc9ac1009b8d5a0d4eacc1b7e790a4b8f87afecf31",
+        "no-human-loss/src/core/victory.ts": "0b2481410a80f02e90d458ea38c9b76ee4b2b51b2f94b51624ccd712cb48f4c4",
+        "all-computer-exemption/src/core/victory.ts": "2e6638fc32e87a04c33f5654af909bb57cab66b3b1efd40cf429db46e4af1972",
+        "watch-suppresses-prompt/src/core/rules.ts": "a72698cd9510bc68cb5feeb09c51afae6df5d2ffd83ef9a7dcd4a126591595ef",
+        "watch-clears-result/src/core/rules.ts": "7af6ac3f6ec5415f0f91a580fd0c1b93cdf96ffa21198689ef3dbbf8a5e2eadd",
+        "watch-handoff/src/core/rules.ts": "15f8e9776900bbea7bf0bf5dc178ee6a190d54d3196a034ecf9ae114f833f1d0",
+        "stop-freezes/src/core/rules.ts": "be5c53d970f61313381594823615d160fca9aefe148e4179f8d61720734a3964",
+        "choice-phase-gate/src/core/rules.ts": "94932b6da704f3b3abe4637bdb24d54954872b67f0448ef81fab32b581c4d7e5",
+        "watch-rng/src/core/rules.ts": "d7863b65ed53be898764fa650a8d07dda8bd58f00500f7721f6ea489e2494069",
+        "clone-origin/src/core/state.ts": "34bd9678e76d384673e2e2e9495256eeb15d894925e11f672bc55fb2d9bdf24f",
+        "premature-capture-victory/src/core/rules.ts": "edd2a938e0b4a3338d39702216061759613e653abc1ef4fdc5145866a23efdfd",
+        "controller-revision/src/ui/battleController.ts": "2eed4df1bd7868b6572261592ca00b533cde7e53ee8119c01b2da5ae1ff69b53",
+        "result-reason/src/ui/victoryView.ts": "41df3f3f1e0322e3c16355134d4acf38236b0304a7a12a77233f84f80b28d62b",
+        "result-order/src/ui/victoryView.ts": "ae1c11b24b40503176df70daf6108cb65468a134b2f17ec12e5cf1b1e4293def",
+        "finished-phase-controls/src/ui/referenceBattleGame.ts": "5ec848f4f0a57fc4014c26e13de2714a7a23e4d6b6757dedcc06206ddeaa246b",
+        "watch-button-action/src/ui/victoryView.ts": "0a4ad7f56b5aaa061aba544ee676d1308ed0aa0c541eaace3152941bfe21b6ee",
+        "restored/src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+        "restored/src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+        "restored/src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+        "restored/src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+        "restored/src/ui/referenceBattleGame.ts": "9804a4fc5368ae283a98a462254b4f60afdcd280bf26325d39c74bfa1220794c",
+        "restored/src/ui/victoryView.ts": "9ed847ab4ef608a4c186bca0cae446388f296da85ac29f2bb4cfba88bec8237a",
+        "restored/src/ui/battleController.ts": "26156d3bb3587b305372b20b4bbb8a305b958903dd5384e381d85cd77c8ee16d",
+        "tool/check-mutations.py": "c990d7d1e5fa13e55f7d711108d506f0f1e4e875d273c0ba0ed925b68255be44"
+      }
+    }
+  },
+  "restored": {
+    "src/core/setup.ts": true,
+    "src/core/state.ts": true,
+    "src/core/victory.ts": true,
+    "src/core/rules.ts": true,
+    "src/ui/referenceBattleGame.ts": true,
+    "src/ui/victoryView.ts": true,
+    "src/ui/battleController.ts": true
+  },
+  "baselineBrowser": "evidence/implementation-browser-2wfu66ao",
+  "caught": 24,
+  "survivors": [
+    "controller-revision"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "issue": 125,
+  "scope": "Uncommitted operational runner only, not a canonical harness fix or T30 product change. Preserves fresh task-owned non-ignored regular files, skips symlinks/dependencies, hashes copies before existing deletion; exceptions stop deletion. Canonical #125 remains open.",
+  "before": "4775c074c1cf60541e768345ac874a028a951c801a582797528eee1570430730",
+  "after": "5b5121a13c8121d7866bafd5ad1e4ff2dbdbbe633d3ccb8c49568098cff25398"
+}

@@ -1,0 +1,10 @@
+{
+  "command": "cp src/ui/panel.ts src/ui/panel.ts.saved\npython3 -c \"\nwith open('src/ui/panel.ts', 'r') as f: content = f.read()\n# Mutation: always use seat instead of titleSeat (round-limit winner doesn't get own badge)\nmutated = content.replace('const titleSeat = result && winner ? state.players.indexOf(winner) : seat;', 'const titleSeat = seat;')\nwith open('src/ui/panel.ts', 'w') as f: f.write(mutated)\nprint('Wrote mutated file')\n\"\n./node_modules/.bin/vitest run tests/ui/victory-panel.test.ts 2>&1 | tail -20",
+  "observed": "failed-tests",
+  "metadata": {
+    "output": "Wrote mutated file\n+   \"#d98c3f\",\n+   \"#d98c3f\",\n  ]\n\n \u276f tests/ui/victory-panel.test.ts:54:6\n     52|   const turn = root.find(node => node.attrs.class === \"card turn\")!;\n     53|   expect([turn.find(node => node.tag === \"path\")!.attrs.fill, turn.pro\u2026\n     54|     .toEqual([seatLook(0).color, seatLook(0).color]);\n       |      ^\n     55| });\n     56|\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed (1)\n   Start at  22:57:20\n   Duration  184ms (transform 78%, import 14%, tests 6%, worker 2%)\n\n",
+    "exit": 0,
+    "truncated": false
+  },
+  "output": "Wrote mutated file\n+   \"#d98c3f\",\n+   \"#d98c3f\",\n  ]\n\n \u276f tests/ui/victory-panel.test.ts:54:6\n     52|   const turn = root.find(node => node.attrs.class === \"card turn\")!;\n     53|   expect([turn.find(node => node.tag === \"path\")!.attrs.fill, turn.pro\u2026\n     54|     .toEqual([seatLook(0).color, seatLook(0).color]);\n       |      ^\n     55| });\n     56|\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed (1)\n   Start at  22:57:20\n   Duration  184ms (transform 78%, import 14%, tests 6%, worker 2%)\n\n"
+}

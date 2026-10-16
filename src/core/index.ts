@@ -13,6 +13,7 @@ export {
   classicRules,
   captureChoiceRules,
   friendlyMoveRules,
+  victoryRules,
   cloneState,
   livingPlayers,
   malpacoRules,
