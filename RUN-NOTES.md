@@ -452,3 +452,4 @@ T60 independent review: Kimi1M approved 7e8875c, all DW scripts rerun and route/
 
 ## T61
 Main session implements, MiniMax M3 reviews, per owner 2026-10-16. Plan: reproduce arithmetic residuals, retain gap/overlap bypass controls, correct projection, independently review and run final CI. Parent preflight: A fails eight interior-boundary checks; dot-product mock passes all seven regression cases. Geometry bytes restored after mock.
+T61 correction: dot-product denominator avoids sqrt/square rounding. All 93 tests pass; projection, gap-bypass and overlap-bypass mutants killed and geometry bytes restored. Existing tolerance/checker/test files unchanged.

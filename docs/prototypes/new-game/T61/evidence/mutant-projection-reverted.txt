@@ -1,0 +1,44 @@
+✖ coincident: retained A subdivision (36.917892ms)
+✔ coincident: retained T25 subdivision (15.465693ms)
+✔ coincident: sloped full shared edge reversed=false (0.188454ms)
+✔ coincident: sloped full shared edge reversed=true (0.098674ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.42764
+
+✖ failing tests:
+
+test at docs/prototypes/new-game/T61/residual.test.mjs:9:2
+✖ coincident: retained A subdivision (36.917892ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'Explicit interior gap boundary province_0',
+  +   'Explicit interior gap boundary province_10',
+  +   'Explicit interior gap boundary province_36',
+  +   'Explicit interior gap boundary province_5',
+  +   'Explicit interior gap boundary province_34',
+  +   'Explicit interior gap boundary province_35',
+  +   'Explicit interior gap boundary province_14',
+  +   'Explicit interior gap boundary province_23'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/t61-work/docs/prototypes/new-game/T61/residual.test.mjs:9:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'Explicit interior gap boundary province_0', 'Explicit interior gap boundary province_10', 'Explicit interior gap boundary province_36', 'Explicit interior gap boundary province_5', 'Explicit interior gap boundary province_34', 'Explicit interior gap boundary province_35', 'Explicit interior gap boundary province_14', 'Explicit interior gap boundary province_23' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
