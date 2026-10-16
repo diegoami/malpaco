@@ -6,6 +6,9 @@ import { SaveFormatError } from "./save";
 import { createGame } from "./setup";
 import { apply } from "./rules";
 import type { Action, GameState } from "./types";
+import { referenceMap } from "./reference-map";
+import { createReferenceGame } from "./reference-game";
+import { victoryRules } from "./state";
 
 export const MATCH_SAVE_VERSION = 1;
 function actionFrom(value: unknown, index: number): Action {
@@ -48,4 +51,120 @@ export function serializeMatch(options: GameOptions, actions: readonly Action[])
   const text = JSON.stringify({ version: MATCH_SAVE_VERSION, options, actions });
   const validated = deserializeMatch(text);
   return JSON.stringify({ version: MATCH_SAVE_VERSION, options: validated.options, actions: validated.state.history }, null, 2);
+}
+
+/** [designed] T31 storage protocol: identities version algorithms, not positions.
+ * Searched the existing options/match codecs: v1 identifies only its implicit
+ * generated/malpaco path. Keep that path and its bytes unchanged above.
+ */
+export interface MatchIdentity {
+  readonly boardGenerator: { readonly id: string; readonly version: number };
+  readonly rules: { readonly id: string; readonly version: number };
+  readonly actionSchemaVersion: number;
+}
+
+export const REFERENCE_MATCH_IDENTITY: MatchIdentity = Object.freeze({
+  boardGenerator: Object.freeze({ id: "fixed-reference", version: 1 }),
+  rules: Object.freeze({ id: "victory", version: 1 }),
+  actionSchemaVersion: 2,
+});
+const LEGACY_MATCH_IDENTITY: MatchIdentity = Object.freeze({
+  boardGenerator: Object.freeze({ id: "generated", version: 1 }),
+  rules: Object.freeze({ id: "malpaco", version: 1 }),
+  actionSchemaVersion: 1,
+});
+
+export interface LoadedVersionedMatch {
+  readonly formatVersion: 1 | 2;
+  readonly identity: MatchIdentity;
+  readonly options: GameOptions;
+  readonly state: GameState;
+}
+
+function record(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function referenceIdentity(value: Record<string, unknown>): MatchIdentity {
+  // Only this combination is supported in v2. Other generators/presets are
+  // deliberately refused rather than migrated or paired with today's seed.
+  for (const field of ["boardGenerator", "rules"] as const) {
+    const part = value[field], expected = REFERENCE_MATCH_IDENTITY[field];
+    if (!record(part) || Object.keys(part).length !== 2 || part.id !== expected.id || part.version !== expected.version) {
+      throw new SaveFormatError(`Unsupported ${field}; expected ${expected.id}/${expected.version}.`, field);
+    }
+  }
+  if (value.actionSchemaVersion !== REFERENCE_MATCH_IDENTITY.actionSchemaVersion) {
+    throw new SaveFormatError("Unsupported action schema version; expected 2.", "actionSchemaVersion");
+  }
+  return REFERENCE_MATCH_IDENTITY;
+}
+
+function versionedAction(value: unknown, index: number): Action {
+  const fail = (): never => { throw new SaveFormatError(`Action ${index + 1} has an invalid shape.`, `actions[${index}]`); };
+  if (!record(value)) return fail();
+  let keys: string[];
+  switch (value.kind) {
+    case "reinforce": keys = ["kind", "province", "amount"]; break;
+    case "attack":
+    case "friendlyMove": keys = ["kind", "from", "to"]; break;
+    case "endReinforcement":
+    case "endTurn":
+    case "captureMove":
+    case "watchComputers":
+    case "stopGame": keys = ["kind"]; break;
+    default: return fail();
+  }
+  if ((value.kind === "captureMove" || value.kind === "friendlyMove") && Object.hasOwn(value, "amount")) keys.push("amount");
+  if (Object.keys(value).length !== keys.length || keys.some(key => !Object.hasOwn(value, key))) return fail();
+  for (const key of ["province", "from", "to"]) {
+    if (keys.includes(key) && (typeof value[key] !== "string" || value[key].length === 0)) return fail();
+  }
+  if (keys.includes("amount") && (typeof value.amount !== "number" || !Number.isSafeInteger(value.amount) || value.amount <= 0)) return fail();
+  return value as unknown as Action;
+}
+
+/** Rebuild from original options and recorded ordinary actions, without policy.
+ * The baseline computer policy consumes no RNG. A future policy that does must
+ * introduce a versioned replay protocol for its draws before claiming support.
+ */
+export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
+  let value: unknown;
+  try { value = JSON.parse(text); } catch { throw new SaveFormatError("Game file is not valid JSON."); }
+  if (!record(value)) throw new SaveFormatError("Game file must be an object.");
+  if (value.version === MATCH_SAVE_VERSION && !Object.hasOwn(value, "format")) {
+    return { formatVersion: 1, identity: LEGACY_MATCH_IDENTITY, ...deserializeMatch(text) };
+  }
+  if (value.format !== "malpaco-match") throw new SaveFormatError("Unsupported match format; expected malpaco-match.", "format");
+  if (value.version !== 2) throw new SaveFormatError("Unsupported match version; expected 2.", "version");
+  const keys = ["format", "version", "boardGenerator", "rules", "actionSchemaVersion", "options", "actions"];
+  if (Object.keys(value).length !== keys.length || keys.some(key => !Object.hasOwn(value, key)) || !Array.isArray(value.actions)) {
+    throw new SaveFormatError("Game file needs exactly format, version, boardGenerator, rules, actionSchemaVersion, options and an actions array.");
+  }
+  const identity = referenceIdentity(value);
+  let options: GameOptions;
+  try { options = validateGameOptions(value.options); } catch (error) {
+    throw new SaveFormatError(`Invalid game options: ${error instanceof Error ? error.message : String(error)}`, "options");
+  }
+  const actions = value.actions.map(versionedAction);
+  const created = createReferenceGame(referenceMap, options, victoryRules(options));
+  if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
+  let state = created.state;
+  for (let index = 0; index < actions.length; index++) {
+    const result = apply(state, actions[index]!);
+    if (!result.ok) throw new SaveFormatError(`Cannot replay action ${index + 1}: ${result.error}. Choose an intact game file.`, `actions[${index}]`);
+    state = result.state;
+  }
+  return { formatVersion: 2, identity, options, state };
+}
+
+/** Validate through the same replay path before emitting a readable v2 file. */
+export function serializeVersionedMatch(options: GameOptions, actions: readonly Action[], identity: MatchIdentity): string {
+  const payload = {
+    format: "malpaco-match", version: 2,
+    boardGenerator: identity.boardGenerator, rules: identity.rules,
+    actionSchemaVersion: identity.actionSchemaVersion, options, actions,
+  };
+  const validated = deserializeVersionedMatch(JSON.stringify(payload));
+  return JSON.stringify({ ...payload, options: validated.options, actions: validated.state.history }, null, 2);
 }

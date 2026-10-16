@@ -1,0 +1,162 @@
+{
+  "checks": [
+    {
+      "name": "generator-version",
+      "path": "src/core/match-save.ts",
+      "beforeSha256": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+      "mutantSha256": "eb85e454993a0169d7ef214fbfb46f5605b373dcca1f6e1ea21352a7e46e79d8",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t31-work/docs/prototypes/new-game/T31/run-command.py",
+        "control-generator-version",
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/versioned-match.test.ts"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T31/evidence/control-generator-version-2g0in5y6",
+      "killed": true,
+      "sourcesStable": true
+    },
+    {
+      "name": "rules-identity",
+      "path": "src/core/match-save.ts",
+      "beforeSha256": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+      "mutantSha256": "9d0b7ccbf4d3a2376fb361b89ac2596ce34c3e8707893c8d4b5780a5f14f2a65",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t31-work/docs/prototypes/new-game/T31/run-command.py",
+        "control-rules-identity",
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/versioned-match.test.ts"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T31/evidence/control-rules-identity-jp913g46",
+      "killed": true,
+      "sourcesStable": true
+    },
+    {
+      "name": "snapshot-refusal",
+      "path": "src/core/match-save.ts",
+      "beforeSha256": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+      "mutantSha256": "1c5eab4e4f11fa98b22e421d4aa454ea77e526e8ae6862ef8e5725c6ee711fd9",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t31-work/docs/prototypes/new-game/T31/run-command.py",
+        "control-snapshot-refusal",
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/versioned-match.test.ts"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T31/evidence/control-snapshot-refusal-0e3doimx",
+      "killed": true,
+      "sourcesStable": true
+    },
+    {
+      "name": "action-replay",
+      "path": "src/core/match-save.ts",
+      "beforeSha256": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+      "mutantSha256": "78e0fbed342e2ef482c30a440b4c1f4f9fad0edb50676c2df641753b90c35daa",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t31-work/docs/prototypes/new-game/T31/run-command.py",
+        "control-action-replay",
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/versioned-match.test.ts"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T31/evidence/control-action-replay-pxquv5dx",
+      "killed": true,
+      "sourcesStable": true
+    },
+    {
+      "name": "map-refusal",
+      "path": "src/ui/referenceMatchFiles.ts",
+      "beforeSha256": "f44c9e5f6868dae4fcb508a30af6e5a2d27a16b4515156069747a4f1c8db8870",
+      "mutantSha256": "b90b3c09f24fce024a3b103a89384b4df29bf58a7ce629a23fc30e1366054b91",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t31-work/docs/prototypes/new-game/T31/run-browser.py",
+        "control-map-refusal",
+        "--project=1280x800",
+        "--grep",
+        "bad loads",
+        "--timeout=7000"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T31/evidence/control-map-refusal-7bze9_ma",
+      "killed": true,
+      "sourcesStable": true
+    },
+    {
+      "name": "failed-load-atomicity",
+      "path": "src/ui/referenceMatchFiles.ts",
+      "beforeSha256": "f44c9e5f6868dae4fcb508a30af6e5a2d27a16b4515156069747a4f1c8db8870",
+      "mutantSha256": "f250e30f97c567d62b3be37aaf732abae45397bde180d43120650ee75d3fb323",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t31-work/docs/prototypes/new-game/T31/run-browser.py",
+        "control-failed-load-atomicity",
+        "--project=1280x800",
+        "--grep",
+        "bad loads",
+        "--timeout=7000"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T31/evidence/control-failed-load-atomicity-eur9gzd9",
+      "killed": true,
+      "sourcesStable": true
+    },
+    {
+      "name": "reader-lifecycle",
+      "path": "src/ui/referenceBattleGame.ts",
+      "beforeSha256": "f6aafc3e026168377f398a3fab0deb6ef324fa9ce648d8011ed9e7d8ba605d0b",
+      "mutantSha256": "58f9044d1807f36eb59f95fbd14762ba6afee2354e65c0079fe6e1fc4f2c0abd",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t31-work/docs/prototypes/new-game/T31/run-browser.py",
+        "control-reader-lifecycle",
+        "--project=1280x800",
+        "--grep",
+        "new game and a successful",
+        "--timeout=7000"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T31/evidence/control-reader-lifecycle-uz637s1s",
+      "killed": true,
+      "sourcesStable": true
+    },
+    {
+      "name": "pending-context",
+      "path": "src/ui/battleController.ts",
+      "beforeSha256": "368b05132ddeebb96774f1a0346abc2e779327fef787a75b1142e5ec79717f6b",
+      "mutantSha256": "5376c28dd5c3f679342a6561c52485e2e4c614857e605a80df6962e088e4e2bb",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t31-work/docs/prototypes/new-game/T31/run-command.py",
+        "control-pending-context",
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/versioned-match-context.test.ts"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T31/evidence/control-pending-context-0sanh1ia",
+      "killed": true,
+      "sourcesStable": true
+    }
+  ],
+  "exactRestoration": {
+    "src/core/match-save.ts": true,
+    "src/ui/referenceMatchFiles.ts": true,
+    "src/ui/referenceBattleGame.ts": true,
+    "src/ui/battleController.ts": true
+  }
+}

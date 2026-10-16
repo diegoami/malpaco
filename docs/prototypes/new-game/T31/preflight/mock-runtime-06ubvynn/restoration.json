@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T31/run-browser.py",
+    "mock-compatibility",
+    "--suites",
+    "tests/e2e/match-save.spec.ts,tests/e2e/reference-game.spec.ts,tests/e2e/friendly-move.spec.ts,tests/e2e/friendly-feedback.spec.ts,tests/e2e/victory-options.spec.ts"
+  ],
+  "exit": 0,
+  "exactRestoration": {
+    "src/core/match-save.ts": true,
+    "src/ui/referenceGame.ts": true,
+    "src/ui/referenceBattleGame.ts": true,
+    "src/core/__t31_mock_codec.ts": true,
+    "src/ui/__t31_mock_files.ts": true
+  }
+}

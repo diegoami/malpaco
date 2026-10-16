@@ -544,7 +544,8 @@ resolve exchanges, and hand off; the ordinary conquest result and New game work.
 The chosen A polygons and sea ports/routes are preserved, with live seat colours,
 counts and production markers. The route reuses the existing App/controller and
 pure setup/apply mechanics. Existing generated/authored routes and saved-game
-formats retain their behaviour. Reference-route save/load is not offered.
+formats retain their behaviour. This legacy reference route does not offer save/load;
+the modern reference route uses the T31 versioned files described below.
 
 This is the T26 walking skeleton, with the inventory’s known battle/movement/
 victory gaps assigned to T27–T30. It is the temporary reference milestone before
@@ -559,7 +560,7 @@ not visual parity or fun. Evidence/reproduction: [T26](prototypes/new-game/T26/R
 
 The ordinary action `{kind:"captureMove",amount?:number}` chooses the **total** moved into the captured country, including that first army. Bounds are one through all but one of the surviving source armies; omission selects the maximum. Only the remaining difference transfers, with no extra RNG draws or stack cap. Pending choices block all other commands, including end-turn. A completed choice returns to attacks, so its target can make a chained capture. Elimination occurs at ownership change; this preset checks conquest at end-turn before advancing the seat or computing income.
 
-`createReferenceGame(map,options,rules?)` accepts the preset explicitly. The default reference route now extends it with T29 friendly movement and T30 victory options; `battle=legacy` preserves the T26 UI and its exact assertions/goldens. Existing `malpacoRules()`, Classic, generated/authored routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 owns their full save integration. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
+`createReferenceGame(map,options,rules?)` accepts the preset explicitly. The default reference route now extends it with T29 friendly movement and T30 victory options; `battle=legacy` preserves the T26 UI and its exact assertions/goldens. Existing `malpacoRules()`, Classic, generated/authored routes and match-save v1 keep their prior behavior. New choice histories are plain JSON action lists replayed through `apply` from the same initial state; T31 integrates them into versioned files. T32 owns computer policy for the new interaction. T27 does not add a new log event or mutate the previous attack outcome; the outcome records the provisional movement and history records the quantity action.
 
 Acceptance and actual-source mutation evidence, exact restoration records, pinned legacy browser captures and portable hash verification are retained in `docs/prototypes/new-game/T27/`.
 
@@ -568,8 +569,8 @@ Acceptance and actual-source mutation evidence, exact restoration records, pinne
 The default `?view=reference-game` is an explicitly developmental setup for the approved
 Nine Isles map. Seats default to human, with manual computer-seat controls available.
 Its victory preset extends friendly movement and capture choice. The intended
-one-human/three-computer game setup belongs to T32; reference save/load belongs
-to T31. Other routes and their saves retain their prior behavior.
+one-human/three-computer game setup belongs to T32. T31 provides reference save/load.
+Other routes and their saves retain their prior behavior.
 
 Select source and enemy target, then choose primary **Fight on** or **Single
 exchange**. The remembered threshold defaults to 2 and clamps to the source's
@@ -661,7 +662,42 @@ a winner. Neither action draws RNG. `winner` remains authoritative; `result`
 provides a reason and sorted final country/army totals. The reference panel shows
 the reason/standings, Watch/Stop or restart guidance, with revision-bound controls
 and no active battle/move/phase controls at a result. These actions belong to the
-plain action history; their full save integration remains T31, and match-save v1
+plain action history; T31 integrates them into versioned files, and match-save v1
 retains its earlier behavior. Evidence and reproduction are under
 [T30](prototypes/new-game/T30/README.md); screenshots support owner assessment,
 not a claim that automated checks establish visual quality.
+
+## Versioned reference match files (T31)
+
+`serializeVersionedMatch(options, actions, identity)` emits readable JSON with
+exactly `format: "malpaco-match"`, `version: 2`, `boardGenerator`, `rules`,
+`actionSchemaVersion`, `options` and `actions`. The supported new identity is
+`fixed-reference/1` + `victory/1` + action schema 2. These are [designed] storage
+protocol constants after inspecting the existing options/match codecs; they
+identify the ordered T63 geography/deal path, victory preset and action grammar.
+A changed generator or rules algorithm must gain a new identity and explicitly
+retain or reject its old path. Full original GameOptions travel with the host;
+the envelope identifies the actual map despite the existing `options.board`
+vocabulary remaining `"generated"`.
+
+`deserializeVersionedMatch(text)` returns format version, identity, original
+options and a rebuilt state. Existing three-key version-1 saves delegate to
+unchanged `deserializeMatch`, with normalized `generated/1` + `malpaco/1` +
+schema 1 identity. The old serializer/output, options-only codec and generated
+UI remain unchanged. Unknown identities/combinations, extra snapshot fields,
+malformed actions and illegal histories throw `SaveFormatError` before a live
+match changes. All eight action kinds replay through `apply`; no computer policy
+runs during load. The current baseline policy consumes no RNG; a future policy
+that does needs a versioned replay protocol for those draws.
+
+The modern reference setup accepts Load game; gameplay offers Save game and
+Load game in a dedicated header row with inline error feedback. Valid generated
+files are clearly directed to the generated view, never painted on fixed SVG.
+Successful load/new game disposes readers and the replaced controller; failed
+load preserves the match and draft controls. Pending captures restore source,
+target and amount choice. Movement drafts, selections and battle playback are
+transient; saving a draft records only committed history and loading returns to
+attacks. Watch/Stop and terminal standings rebuild from their ordinary actions.
+Frozen merged-T30 histories, real browser file flows, source deletion controls,
+screenshots and exact restoration evidence live under
+[T31](prototypes/new-game/T31/README.md).

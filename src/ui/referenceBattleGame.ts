@@ -1,5 +1,5 @@
 import { activePlayer, attackTargets, friendlySources, friendlyTargets, ownerOf, whyNot } from "../core";
-import type { GameMap, GameState } from "../core";
+import type { GameMap, GameOptions, GameState } from "../core";
 import { BattleController } from "./battleController";
 import type { BattleSpeed } from "./battleController";
 import { BattleView } from "./battleView";
@@ -8,6 +8,7 @@ import { h } from "./dom";
 import { Panel } from "./panel";
 import { ReferenceMapView } from "./referenceMapView";
 import { VictoryView } from "./victoryView";
+import { ReferenceMatchFiles } from "./referenceMatchFiles";
 
 /** Session-only preferences. Full presentation persistence is T56. */
 export interface BattlePreferences { threshold: number; speed: BattleSpeed }
@@ -21,6 +22,7 @@ export class ReferenceBattleGame {
   private readonly friendly: FriendlyMoveView;
   private readonly victory: VictoryView;
   private readonly phaseActions: HTMLElement;
+  private readonly files: ReferenceMatchFiles;
   private hover: string | null = null;
   private mounted = false;
   private disposed = false;
@@ -30,7 +32,7 @@ export class ReferenceBattleGame {
     if (!this.controller.stop()) this.controller.select(null, null);
   };
 
-  constructor(private readonly map: GameMap, private readonly seed: number, private readonly onNewGame: () => void, state: GameState, preferences: BattlePreferences) {
+  constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState) => void) {
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
     }, view => {
@@ -57,14 +59,20 @@ export class ReferenceBattleGame {
     this.friendly = new FriendlyMoveView(this.controller);
     this.victory = new VictoryView(this.controller);
     this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el);
+    this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state);
   }
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
     const score = this.panel.el.querySelector<HTMLElement>(".score")!;
     const footer = this.panel.el.querySelector<HTMLElement>(".panel-foot")!;
+    const humans = this.options.seats.filter(seat => seat.kind === "human").length;
+    const computers = this.options.seats.length - humans;
+    const subtitle = computers
+      ? `Nine Isles · ${humans} human / ${computers} computer seats · Manual play · Seed ${this.options.seed}`
+      : `Nine Isles · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     root.replaceChildren(
-      h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, `Nine Isles · ${this.controller.state.players.length} human seats · Seed ${this.seed}`), score, footer),
+      h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, footer, this.files.el),
       h("main", { class: "stage" }, h("section", { class: "board" }, this.mapView.el), this.panel.el));
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
@@ -75,6 +83,7 @@ export class ReferenceBattleGame {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
   }
@@ -113,7 +122,7 @@ export class ReferenceBattleGame {
   private render(): void {
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
     this.renderMap();
-    this.panel.render({ state, from, to, blocked: from && to ? whyNot(state, from, to) : "Choose a source and target.", seed: this.seed,
+    this.panel.render({ state, from, to, blocked: from && to ? whyNot(state, from, to) : "Choose a source and target.", seed: this.options.seed,
       hint: state.phase === "reinforce" ? state.reinforcementPool ? "Place your armies on your countries, then start combat." : "All armies placed. Start combat when ready." : "",
     });
     if (state.phase === "capture") this.panel.el.querySelector("#turn-phase")!.textContent = "Capture move-in";

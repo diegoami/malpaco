@@ -1,0 +1,68 @@
+// Disposable T31 feasibility codec, removed before production dispatch.
+import raw from "../../docs/prototypes/new-game/T63/board.json" with { type: "json" };
+import { deserializeMatch } from "./match-save";
+import { SaveFormatError } from "./save";
+import { validateGameOptions } from "./options";
+import type { GameOptions } from "./options";
+import { createReferenceGame } from "./reference-game";
+import { victoryRules } from "./state";
+import { apply } from "./rules";
+import type { Action, GameMap, GameState, Province } from "./types";
+export interface MatchIdentity {
+  readonly boardGenerator: { readonly id: string; readonly version: number };
+  readonly rules: { readonly id: string; readonly version: number };
+  readonly actionSchemaVersion: number;
+}
+const modern: MatchIdentity = { boardGenerator: { id: "fixed-reference", version: 1 }, rules: { id: "victory", version: 1 }, actionSchemaVersion: 2 };
+const old: MatchIdentity = { boardGenerator: { id: "generated", version: 1 }, rules: { id: "malpaco", version: 1 }, actionSchemaVersion: 1 };
+const map: GameMap = { id: "reference-coast-first-a", name: "Nine Isles", bounds: raw.bounds, provinces: raw.provinces as unknown as readonly Province[], islands: raw.islands };
+function object(value: unknown): value is Record<string, unknown> { return !!value && typeof value === "object" && !Array.isArray(value); }
+function fail(message: string, field?: string): never { throw new SaveFormatError(message, field); }
+function identity(value: Record<string, unknown>): MatchIdentity {
+  for (const field of ["boardGenerator", "rules"] as const) {
+    const part = value[field], expected = modern[field];
+    if (!object(part) || Object.keys(part).length !== 2 || part.id !== expected.id || part.version !== expected.version) fail(`Unsupported ${field} identity.`, field);
+  }
+  if (value.actionSchemaVersion !== 2) fail("Unsupported action schema version.", "actionSchemaVersion");
+  return modern;
+}
+function action(value: unknown, index: number): Action {
+  const bad = (): never => fail(`Action ${index + 1} has an invalid shape.`, `actions[${index}]`);
+  if (!object(value)) return bad();
+  const fields = value.kind === "reinforce" ? ["kind", "province", "amount"]
+    : value.kind === "attack" || value.kind === "friendlyMove" ? ["kind", "from", "to"]
+    : ["endReinforcement", "endTurn", "captureMove", "watchComputers", "stopGame"].includes(String(value.kind)) ? ["kind"] : [];
+  if (!fields.length) return bad();
+  const optionalAmount = value.kind === "captureMove" || value.kind === "friendlyMove";
+  if (optionalAmount && Object.hasOwn(value, "amount")) fields.push("amount");
+  if (Object.keys(value).length !== fields.length || fields.some(key => !Object.hasOwn(value, key))) return bad();
+  for (const field of ["from", "to", "province"]) if (fields.includes(field) && (typeof value[field] !== "string" || !value[field])) return bad();
+  if (fields.includes("amount") && (typeof value.amount !== "number" || !Number.isSafeInteger(value.amount) || value.amount <= 0)) return bad();
+  return value as unknown as Action;
+}
+export function deserializeVersionedMatch(text: string): { formatVersion: 1 | 2; identity: MatchIdentity; options: GameOptions; state: GameState } {
+  let value: unknown; try { value = JSON.parse(text); } catch { return fail("Game file is not valid JSON."); }
+  if (!object(value)) return fail("Game file must be an object.");
+  if (value.version === 1 && !("format" in value)) return { formatVersion: 1, identity: old, ...deserializeMatch(text) };
+  if (value.format !== "malpaco-match") return fail("Unsupported match format.", "format");
+  if (value.version !== 2) return fail("Unsupported match version.", "version");
+  if (Object.keys(value).length !== 7 || !Array.isArray(value.actions)) return fail("Game file requires exactly format, version, boardGenerator, rules, actionSchemaVersion, options and actions.");
+  const selected = identity(value);
+  let options: GameOptions;
+  try { options = validateGameOptions(value.options); } catch (error) { return fail(`Invalid game options: ${error instanceof Error ? error.message : String(error)}`, "options"); }
+  const actions = value.actions.map(action);
+  const created = createReferenceGame(map, options, victoryRules(options));
+  if (!created.ok) return fail(created.errors.join("; "), "boardGenerator");
+  let state = created.state;
+  for (let index = 0; index < actions.length; index++) {
+    const result = apply(state, actions[index]!);
+    if (!result.ok) return fail(`Cannot replay action ${index + 1}: ${result.error}`, `actions[${index}]`);
+    state = result.state;
+  }
+  return { formatVersion: 2, identity: selected, options, state };
+}
+export function serializeVersionedMatch(options: GameOptions, actions: readonly Action[], selected: MatchIdentity): string {
+  const text = JSON.stringify({ format: "malpaco-match", version: 2, ...selected, options, actions });
+  const loaded = deserializeVersionedMatch(text);
+  return JSON.stringify({ format: "malpaco-match", version: 2, ...loaded.identity, options: loaded.options, actions: loaded.state.history }, null, 2);
+}
