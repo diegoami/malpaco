@@ -26,8 +26,10 @@ and mock removed after each run; mock sources and mutants retained. First
 mock build failed from an inferred return type and is retained; subsequent
 mock runs annotate the existing ApplyResult contract and pass.
 
-`preflight-mock.py` reproduces fresh mock outputs and restores actual source
-in finally. It is acceptance-pipeline evidence, never the implementation.
+`preflight-mock.py` reproduces fresh mock outputs at historical parent acceptance
+commit `8f20f56` and restores source in finally. Run it from that revision in
+a disposable worktree: the current implementation already exports the preset
+that the historical mock supplies. It is acceptance-pipeline evidence, never the implementation.
 `run-command.py` and `run-browser.py` retain fresh exact logs/archives/hashes.
 Only task-owned files and append-only run notes may change during implementation.
 
@@ -85,8 +87,11 @@ The ordinary reference game reaches conquest after541 actions at each size
 tests and core bytes; raw output, HTML report and legacy screenshots are in
 its archive, with reference captures stored beside it.
 
-Current portable index: `artifacts.v1.sha256.json` plus its referenced shards.
+Current portable index: `artifacts.v2.sha256.json` plus its referenced shards.
 Run `python3 docs/prototypes/new-game/T27/verify-evidence.py` and
 `python3 docs/prototypes/new-game/T27/verify-preflight.py` from any checkout.
 The index excludes itself and the subsequent verification command's own
 receipt to avoid a recursive checksum; the receipt is separately committed.
+
+The immutable v1 index verifies implementation revision `92cc02c`; v2 adds
+this historical reproduction clarification and the preceding verification receipt.
