@@ -32,13 +32,14 @@ async function click(page: Page, action: Action) {
   if(action.kind === "reinforce") await country(page,action.province).click();
   else if(action.kind === "endReinforcement") await page.locator("#start-combat-button").click();
   else if(action.kind === "endTurn") await page.locator("#end-turn-button").click();
-  else {
+  else if(action.kind === "attack") {
     const from = country(page,action.from);
     if(await from.getAttribute("aria-pressed") !== "true") await from.click();
     await country(page,action.to).click(); await page.locator("#attack-button").click();
     await expect(page.locator("#result-dialog")).toBeVisible();
     await page.getByRole("button",{name:"Continue",exact:true}).click();
   }
+  else throw new Error(`Unexpected legacy action: ${action.kind}`);
 }
 async function fitAndCapture(page: Page,name: string,project: string) {
   const selectors = ".match-files button, .match-load label, .match-load input, .match-error:not(:empty), #turn-title, #game-seed, #new-game-button, #end-turn-button";

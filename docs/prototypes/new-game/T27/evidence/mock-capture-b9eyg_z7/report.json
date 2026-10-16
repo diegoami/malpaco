@@ -1,0 +1,16 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/capture-choice.test.ts"
+  ],
+  "exit": 0,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t27-work\n\n\n Test Files  1 passed (1)\n      Tests  17 passed (17)\n   Start at  17:02:25\n   Duration  187ms (transform 66%, tests 20%, import 12%, worker 1%)\n\n",
+  "stderrTail": "",
+  "archiveSha256": "4cc7a70977076658e001eca475215242b05c05a9873a910881073ef2cf01bdf0",
+  "archiveMemberHashes": {
+    "stdout.txt": "8a8c80234f194bf3dd267b0a9b43a8238b21bbf5f8fbe7cb303f2cb9842f8afe",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

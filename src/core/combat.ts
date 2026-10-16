@@ -115,12 +115,19 @@ export function resolve(state: GameState, fromId: string, toId: string, dice: Di
     const available = armyCount(state, fromId) - 1;
     let wanted = attackerRolls.length;
     if (rules.capture === "all") wanted = available;
-    else if (rules.capture === "one") wanted = 1;
+    else if (rules.capture === "one" || rules.capture === "choice") wanted = 1;
     moved = Math.min(Math.max(wanted, 1), Math.max(1, available));
     state.ownerOf[toId] = attackerId;
     state.armies[fromId] = armyCount(state, fromId) - moved;
     state.armies[toId] = moved;
     captured = true;
+    if (rules.capture === "choice") {
+      // [designed] Interaction protocol for C-OWN-01: provisionally occupy with
+      // its minimum, then select the TOTAL move-in before another command.
+      // Searched pinned core-rules.md Ownership change; UI timing is unspecified.
+      state.pendingCapture = { from: fromId, to: toId, min: 1, max: available, defaultAmount: available };
+      state.phase = "capture";
+    }
   } else if (armyCount(state, fromId) <= 1 && rules.failurePenalty !== "none") {
     // The failure penalty: an attack that leaves the attacker on one army,
     // against a defender still standing, is a commitment, not a free roll.

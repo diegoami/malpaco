@@ -1,0 +1,29 @@
+// @ts-nocheck
+// Disposable parent pipeline mock, not the T27 implementation.
+import {apply as inherited} from './rules';
+import type {GameState,Action,ApplyResult,RuleSet} from './types';
+import {malpacoRules,cloneState,livingPlayers} from './state';
+export function captureChoiceRules():RuleSet{return {...malpacoRules(),id:'parent-mock-capture-choice'};}
+export function apply(state:GameState,action:Action):ApplyResult{
+ if(state.rules.id!=='parent-mock-capture-choice')return inherited(state,action);
+ if(state.pendingCapture){
+  if(action.kind!=='captureMove')return {ok:false,error:'choice required'};
+  const p=state.pendingCapture,n=action.amount??p.defaultAmount;
+  if(!Number.isSafeInteger(n)||n<p.min||n>p.max)return {ok:false,error:'invalid quantity'};
+  const next=cloneState(state);next.armies[p.to]+=n-1;
+  next.pendingCapture=null;next.phase='attack';next.history.push(action);return {ok:true,state:next,outcome:null};
+ }
+ if(action.kind==='captureMove')return {ok:false,error:'no pending choice'};
+ if(action.kind==='endTurn'&&livingPlayers(state).length===1){
+  const next=cloneState(state);next.phase='finished';next.winner=livingPlayers(state)[0].id;
+  next.log.push({event:'turn_ended',player:next.winner,turn:next.turnNumber},{event:'victory',player:next.winner,turn:next.turnNumber});next.history.push(action);return {ok:true,state:next,outcome:null};
+ }
+ const r=inherited({...state,rules:{...state.rules,combat:{...state.rules.combat,capture:'one'}}},action);
+ if(!r.ok)return r;
+ const next={...r.state,rules:state.rules};
+ if(r.outcome?.captured){
+  const max=next.armies[action.from];next.pendingCapture={from:action.from,to:action.to,min:1,max,defaultAmount:max};
+  next.phase='capture';next.winner='';next.log=next.log.filter(e=>e.event!=='victory');
+ }
+ return {...r,state:next};
+}

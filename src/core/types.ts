@@ -55,7 +55,7 @@ export interface CombatRules {
   readonly defenderDice: DiceRule;
   readonly ties: "defender" | "attacker" | "reroll";
   readonly failurePenalty: "loseProvince" | "endPhase" | "none";
-  readonly capture: "diceCount" | "all" | "one";
+  readonly capture: "diceCount" | "all" | "one" | "choice";
 }
 
 export interface SetupRules {
@@ -74,7 +74,16 @@ export interface RuleSet {
   readonly victory: readonly "conquest"[];
 }
 
-export type Phase = "reinforce" | "attack" | "redeploy" | "finished";
+export type Phase = "reinforce" | "attack" | "capture" | "redeploy" | "finished";
+
+/** Total move-in bounds, including the one army provisionally moved at capture. */
+export interface PendingCapture {
+  readonly from: string;
+  readonly to: string;
+  readonly min: number;
+  readonly max: number;
+  readonly defaultAmount: number;
+}
 
 export interface RngSnapshot {
   readonly seed: number;
@@ -85,7 +94,8 @@ export type Action =
   | { readonly kind: "reinforce"; readonly province: string; readonly amount: number }
   | { readonly kind: "endReinforcement" }
   | { readonly kind: "attack"; readonly from: string; readonly to: string }
-  | { readonly kind: "endTurn" };
+  | { readonly kind: "endTurn" }
+  | { readonly kind: "captureMove"; readonly amount?: number };
 
 export interface AttackOutcome {
   readonly event: "attack";
@@ -120,6 +130,8 @@ export interface GameState {
   armies: Record<string, number>;
   currentPlayer: number;
   phase: Phase;
+  /** Present only during the opt-in capture-choice protocol. */
+  pendingCapture?: PendingCapture;
   /** Unplaced income available during a reinforcement phase. */
   reinforcementPool: number;
   turnNumber: number;

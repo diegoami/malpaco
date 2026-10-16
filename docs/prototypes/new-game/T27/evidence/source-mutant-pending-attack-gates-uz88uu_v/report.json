@@ -1,0 +1,18 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/capture-choice.test.ts",
+    "tests/core/capture-choice-replay.test.ts",
+    "tests/core/capture-choice-compatibility.test.ts"
+  ],
+  "exit": 1,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t27-work\n\n \u276f tests/core/capture-choice.test.ts (17 tests | 1 failed) 30ms\n   \u276f explicit total move-in choice (17)\n     \u00d7 gates every unrelated command while pending, including another captureMove after completion 5ms\n\n Test Files  1 failed | 2 passed (3)\n      Tests  1 failed | 22 passed (23)\n   Start at  18:19:46\n   Duration  206ms (transform 73%, import 13%, tests 13%, worker 2%)\n\n",
+  "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/core/capture-choice.test.ts > explicit total move-in choice > gates every unrelated command while pending, including another captureMove after completion\nAssertionError: expected true to be false // Object.is equality\n\n- Expected\n+ Received\n\n- false\n+ true\n\n \u276f tests/core/capture-choice.test.ts:32:104\n     30|   const s=capture();pending(s);\n     31|   const actions:ChoiceAction[]=[{kind:\"reinforce\",province:\"sulo\",amou\u2026\n     32|   for(const a of actions){const before=structuredClone(s);expect(core.\u2026\n       |                                                                                                        ^\n     33|   expect(core.attackTargets(s,\"sulo\")).toEqual([]);expect(core.legalAt\u2026\n     34|   const done=act(s,{kind:\"captureMove\"});const before=structuredClone(\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n",
+  "archiveSha256": "686c07f5d970291f5ea9eafcecf7b2f7d9a67ad8c7a8cbd09aafe818446ccf95",
+  "archiveMemberHashes": {
+    "stdout.txt": "a555457c1616082f41878ce08755a3fdecbc4b47913d7b2f7514ed6f0ccbbfc2",
+    "stderr.txt": "93d5b1e04eb55c7803f4e93a63ac4bceee5264c06dd0941de569ce6602226f96"
+  }
+}

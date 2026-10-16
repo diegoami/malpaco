@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T27/verify-preflight.py"
+  ],
+  "exit": 0,
+  "stdoutTail": "Verified 48 historical files and all historical archive members\n",
+  "stderrTail": "",
+  "archiveSha256": "bd3d6e8ec39e30f03fe9323e8bfccdcdf8784bcce4e058835911f6f2a5c399de",
+  "archiveMemberHashes": {
+    "stdout.txt": "1e8df264eec0893985d141d4db0ddb5f1c890a53ba8ba48156de9da0ba164906",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

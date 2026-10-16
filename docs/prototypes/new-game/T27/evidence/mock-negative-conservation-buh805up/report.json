@@ -1,0 +1,16 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/capture-choice-replay.test.ts"
+  ],
+  "exit": 1,
+  "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t27-work\n\n \u276f tests/core/capture-choice-replay.test.ts (4 tests | 1 failed) 13ms\n   \u276f capture-choice action replay seam (4)\n     \u00d7 replays completed and chained choices exactly with hand-calculated conservation 4ms\n\n Test Files  1 failed (1)\n      Tests  1 failed | 3 passed (4)\n   Start at  17:03:09\n   Duration  170ms (transform 74%, import 13%, tests 11%, worker 2%)\n\n",
+  "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/core/capture-choice-replay.test.ts > capture-choice action replay seam > replays completed and chained choices exactly with hand-calculated conservation\nAssertionError: expected [ 4, 3, 2 ] to deeply equal [ 1, 2, 2 ]\n\n- Expected\n+ Received\n\n  [\n-   1,\n-   2,\n+   4,\n+   3,\n    2,\n  ]\n\n \u276f tests/core/capture-choice-replay.test.ts:21:87\n     19|   const start=initial(),a:ChoiceAction[]=[{kind:\"attack\",from:\"sulo\",t\u2026\n     20|   const live=a.reduce((s,a)=>act(s,a),start);expect(live.phase).toBe(\"\u2026\n     21|   expect([live.armies[\"sulo\"],live.armies[\"frostkabo\"],live.armies[\"lo\u2026\n       |                                                                                       ^\n     22|  });\n     23|  it(\"retains decisive pending capture and final end-turn victory as se\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n",
+  "archiveSha256": "03df8f77179862cdc627e916f92a4fcbfaeaa7989e740553d4e13474020fe208",
+  "archiveMemberHashes": {
+    "stdout.txt": "43a481c8ec2bfb57159618763b533302a86c71bf6451725ceb81d9c1db1b4acc",
+    "stderr.txt": "730457f353eda22d1d8f34c6ea190edfaae74800f04d3fb5fc26eaf839494cfc"
+  }
+}
