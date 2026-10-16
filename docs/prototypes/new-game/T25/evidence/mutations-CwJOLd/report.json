@@ -1,0 +1,137 @@
+{
+  "results": [
+    {
+      "name": "baseline-static",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/verify.mjs"
+      ],
+      "expected": 0,
+      "assertion": "",
+      "exitCode": 0,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "baseline-browser",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/browser.mjs"
+      ],
+      "expected": 0,
+      "assertion": "",
+      "exitCode": 0,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "keyboard",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/browser.mjs"
+      ],
+      "expected": 1,
+      "assertion": "Space selection missing",
+      "exitCode": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "neighbour-style",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/browser.mjs"
+      ],
+      "expected": 1,
+      "assertion": "visible neighbour styling missing",
+      "exitCode": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "rendered-name",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/browser.mjs"
+      ],
+      "expected": 1,
+      "assertion": "Rendered name changed",
+      "exitCode": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "rendered-route",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/browser.mjs"
+      ],
+      "expected": 1,
+      "assertion": "Rendered sea paths differ",
+      "exitCode": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "identity",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/verify.mjs"
+      ],
+      "expected": 1,
+      "assertion": "Identity changed",
+      "exitCode": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "opening",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/verify.mjs"
+      ],
+      "expected": 1,
+      "assertion": "Opening state changed",
+      "exitCode": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "income",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/verify.mjs"
+      ],
+      "expected": 1,
+      "assertion": "Invalid bonus",
+      "exitCode": 1,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "restored-static",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/verify.mjs"
+      ],
+      "expected": 0,
+      "assertion": "",
+      "exitCode": 0,
+      "signal": null,
+      "passed": true
+    },
+    {
+      "name": "restored-browser",
+      "args": [
+        "/work/docs/prototypes/new-game/T25/browser.mjs"
+      ],
+      "expected": 0,
+      "assertion": "",
+      "exitCode": 0,
+      "signal": null,
+      "passed": true
+    }
+  ],
+  "restored": {
+    "preview": true,
+    "board": true
+  },
+  "originalSha256": {
+    "preview": "27bd69c60c14dc653abd18058bdb1da998bebaa20f1b39e77a32c931ce525de2",
+    "board": "528ac486a9ef0baa1186898589206496fcc29ed9772320f3f7755c9a6af7cf9a"
+  },
+  "restoredSha256": {
+    "preview": "27bd69c60c14dc653abd18058bdb1da998bebaa20f1b39e77a32c931ce525de2",
+    "board": "528ac486a9ef0baa1186898589206496fcc29ed9772320f3f7755c9a6af7cf9a"
+  }
+}
