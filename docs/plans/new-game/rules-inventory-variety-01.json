@@ -1,0 +1,980 @@
+[
+  {
+    "id": "variety-001",
+    "document": "variety",
+    "requirement": "Terms of [core-rules.md](core-rules.md) (seat, country, island, border, stack, turn, round) hold here.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-002",
+    "document": "variety",
+    "requirement": "- **Card**: a card in a seat's hand. A seat's **hand** holds at most five.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-003",
+    "document": "variety",
+    "requirement": "- **Set**: three cards traded together, at most one set per turn.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-004",
+    "document": "variety",
+    "requirement": "- **Centre**: a production centre, a country that events can enrich or move.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-005",
+    "document": "variety",
+    "requirement": "- **Event**: a random happening between turns that changes armies, owners or centres.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-006",
+    "document": "variety",
+    "requirement": "- **Turn change**: the moment after one seat's turn (after its victory check) and before the next seat's income.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-007",
+    "document": "variety",
+    "requirement": "malpaco has eight kinds of card, with names of its own:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-008",
+    "document": "variety",
+    "requirement": "| Kind | Copies | What it does |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-009",
+    "document": "variety",
+    "requirement": "| Anchor | 11 | three Anchors are a set worth 5 armies |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-010",
+    "document": "variety",
+    "requirement": "| Compass | 7 | three Compasses are a set worth 8 armies |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-011",
+    "document": "variety",
+    "requirement": "| Lantern | 4 | three Lanterns are a set worth 15 armies |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-012",
+    "document": "variety",
+    "requirement": "| Surge | 4 | three Surges are a set that doubles the turn's pool *(V3)* |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-013",
+    "document": "variety",
+    "requirement": "| Raid | 4 | three Raids are a set that raids any enemy country ([The raid](#the-raid-and-the-shield)) *(V5)* |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-014",
+    "document": "variety",
+    "requirement": "| Wild | 5 | stands for any card in a set, up to two per set *(V2)* |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-015",
+    "document": "variety",
+    "requirement": "| Shield | 4 | held: cancels the next raid against its holder, then is discarded |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-016",
+    "document": "variety",
+    "requirement": "| Squall | 1 | never held: drawing it empties the drawer's hand *(V4)* |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-017",
+    "document": "variety",
+    "requirement": "40 cards in all. The counts are malpaco's own *(V1)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-kinds",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-018",
+    "document": "variety",
+    "requirement": "- At game start, the 40 cards are shuffled (from the game's seeded stream, after the deal and the centres) into a face-down **draw pile** *(V1)*. Every hand starts empty.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-deck",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-019",
+    "document": "variety",
+    "requirement": "- A drawn card leaves the pile. Traded, played and discarded cards, and a drawn Squall, go to a face-up **discard pile**.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-deck",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-020",
+    "document": "variety",
+    "requirement": "- When the draw pile is empty and a card must be drawn, the discard pile is shuffled (from the same stream) into a new draw pile. Cards in hands stay in hands.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-deck",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-021",
+    "document": "variety",
+    "requirement": "- The draw pile and the discard pile can never both be empty when a card is due: at most 4 × 5 = 20 cards are in hands, and the deck has 40.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-deck",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-022",
+    "document": "variety",
+    "requirement": "- The number of cards in each hand and in each pile is public. The kinds in a hand are seen only by that hand's seat; no seat, human or computer, reads another seat's hidden cards ([Fairness](#fairness-between-seats)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-deck",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-023",
+    "document": "variety",
+    "requirement": "- A seat that captured at least one country during its turn draws **one** card at the end of that turn (the end-of-turn effect of [core-rules.md, The turn](core-rules.md#the-turn)), before the victory check. One card, however many countries it captured.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#earning-a-card",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-024",
+    "document": "variety",
+    "requirement": "- Nothing cancels the draw: a failed attack later in the same turn does not.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#earning-a-card",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-025",
+    "document": "variety",
+    "requirement": "- A seat earns cards in no other way: no card at game start, none for an island, none from an event.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#earning-a-card",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-026",
+    "document": "variety",
+    "requirement": "- A hand holds at most **five** cards.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-hand",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-027",
+    "document": "variety",
+    "requirement": "- A seat that must draw while holding five first discards one of its five, any one, its own choice, and then draws, without seeing the new card first *(V11)*. Every seat follows this rule; which card the computer discards is its policy (T53).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-hand",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-028",
+    "document": "variety",
+    "requirement": "- **The Squall.** A seat that draws the Squall puts its whole hand, and the Squall, on the discard pile *(V4)*. Drawn into an empty hand it costs nothing. It is never held and never part of a set.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-hand",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-029",
+    "document": "variety",
+    "requirement": "- **When.** In the cards phase of its turn (after income, before placement), a seat may trade **one set**. It is never forced.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse reinforcement pool seam; no card trade actions exist.",
+    "missing": "One optional three-card set, up to two Wilds, fixed 5/8/15 income, Surge income doubling, Raid flow.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-030",
+    "document": "variety",
+    "requirement": "- **What a set is.** Three cards of one tradeable kind (Anchor, Compass, Lantern, Surge or Raid), of which up to two may be Wilds standing for the missing cards *(V2)*. At least one card must be of the kind itself: three Wilds are no set. Shields and the Squall are never part of a set.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse reinforcement pool seam; no card trade actions exist.",
+    "missing": "One optional three-card set, up to two Wilds, fixed 5/8/15 income, Surge income doubling, Raid flow.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-031",
+    "document": "variety",
+    "requirement": "- **What a set gives** *(V2, V3, V5)*:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse reinforcement pool seam; no card trade actions exist.",
+    "missing": "One optional three-card set, up to two Wilds, fixed 5/8/15 income, Surge income doubling, Raid flow.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-032",
+    "document": "variety",
+    "requirement": "| Set | Effect | | --- | --- | | three Anchors | 5 armies added to the pool | | three Compasses | 8 armies added to the pool | | three Lanterns | 15 armies added to the pool | | three Surges | the pool is doubled: the turn's income (country part and island bonuses) is added again | | three Raids | a raid ([below](#the-raid-and-the-shield)); no armies |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse reinforcement pool seam; no card trade actions exist.",
+    "missing": "One optional three-card set, up to two Wilds, fixed 5/8/15 income, Surge income doubling, Raid flow.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-033",
+    "document": "variety",
+    "requirement": "Values are fixed for the whole game; they do not grow with the number of sets traded.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse reinforcement pool seam; no card trade actions exist.",
+    "missing": "One optional three-card set, up to two Wilds, fixed 5/8/15 income, Surge income doubling, Raid flow.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-034",
+    "document": "variety",
+    "requirement": "- The traded cards go to the discard pile. The armies are placed this turn like the rest of the pool ([core-rules.md, Reinforcement](core-rules.md#reinforcement)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse reinforcement pool seam; no card trade actions exist.",
+    "missing": "One optional three-card set, up to two Wilds, fixed 5/8/15 income, Surge income doubling, Raid flow.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-035",
+    "document": "variety",
+    "requirement": "- Every seat trades under this rule, including the computer: it may skip a trade, and it may use at most two Wilds. Which set it trades, and when, is its policy (T53).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts"
+    ],
+    "assessment": "Reuse reinforcement pool seam; no card trade actions exist.",
+    "missing": "One optional three-card set, up to two Wilds, fixed 5/8/15 income, Surge income doubling, Raid flow.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-036",
+    "document": "variety",
+    "requirement": "- **The raid** *(V5)*. Trading three Raids, the seat chooses **any enemy country**, anywhere on the board. That stack is replaced by a whole number drawn uniformly from 1 to half its armies, rounded down (at least 1): 9 becomes 1 to 4, 40 becomes 1 to 20. A 1-army stack is unchanged. Ownership does not change, and the raiding seat's pool is unchanged.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-raid-and-the-shield",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T39",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "No raid/shield actions or hands exist; ownership and army state can be reused.",
+    "missing": "Enemy-anywhere targeting, uniform reduction bound, automatic Shield cancellation and precise discards.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-037",
+    "document": "variety",
+    "requirement": "- **The shield.** If the target country's owner holds a Shield, the Shield is discarded and the raid has no effect. This happens automatically: holding a Shield is the choice. The three traded cards are discarded either way, and nothing else in either hand changes.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-raid-and-the-shield",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T39",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "No raid/shield actions or hands exist; ownership and army state can be reused.",
+    "missing": "Enemy-anywhere targeting, uniform reduction bound, automatic Shield cancellation and precise discards.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-038",
+    "document": "variety",
+    "requirement": "- Every seat raids under the same rule. Whom the computer raids is its policy (T53).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-raid-and-the-shield",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T39",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "No raid/shield actions or hands exist; ownership and army state can be reused.",
+    "missing": "Enemy-anywhere targeting, uniform reduction bound, automatic Shield cancellation and precise discards.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-039",
+    "document": "variety",
+    "requirement": "- **Counter-play.** A raid needs a set of three, so it is rare and its build-up can be watched: hand counts are public. A Shield stops one. Distance does not protect a stack, and the loss grows with the stack (half or more of it), so one huge stack is the most exposed; several medium stacks lose less to any one raid.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-raid-and-the-shield",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T39",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "No raid/shield actions or hands exist; ownership and army state can be reused.",
+    "missing": "Enemy-anywhere targeting, uniform reduction bound, automatic Shield cancellation and precise discards.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "variety-040",
+    "document": "variety",
+    "requirement": "A seat that loses its last country puts its hand on the discard pile *(V6)*. Nobody takes it. (This settles what [core-rules.md, Ownership change](core-rules.md#ownership-change) left to T51.)",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#an-eliminated-seats-cards",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T37",
+      "T40"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/setup.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/setup.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Existing state/action seams have no deck, hand or draw implementation; capturedThisTurn can support the capture-earned draw.",
+    "missing": "Implement eight kinds, 40-card conservation, seeded draw/reshuffle, pre-draw discard, Squall and elimination discard.",
+    "disposition": "new",
+    "questions": []
+  }
+]

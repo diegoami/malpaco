@@ -1,0 +1,714 @@
+[
+  {
+    "id": "core-rules-081",
+    "document": "core-rules",
+    "requirement": "- The computer places under exactly the same rule; only its choice of countries is T53's.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#reinforcement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T38",
+      "T40"
+    ],
+    "code": [
+      "src/core/reinforcement.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/reinforcement.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Reuse once-per-turn pool and own-country placement with whole-pool gate. No production change is needed to preserve this seam.",
+    "missing": "Add card income and reversible UI staging before confirmation.",
+    "disposition": "reuse",
+    "questions": []
+  },
+  {
+    "id": "core-rules-082",
+    "document": "core-rules",
+    "requirement": "- At most **one move** per turn, made after the attacks; making it ends the turn *(decision 8)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#movement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T29",
+      "T32"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "No friendly movement action exists; redeploy is only a phase name.",
+    "missing": "Implement one adjacent friendly transfer, source >=1, legal range, capture participation and turn end.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "core-rules-083",
+    "document": "core-rules",
+    "requirement": "- A move goes from one of the seat's countries to a **neighbouring** country the seat owns.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#movement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T29",
+      "T32"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "No friendly movement action exists; redeploy is only a phase name.",
+    "missing": "Implement one adjacent friendly transfer, source >=1, legal range, capture participation and turn end.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "core-rules-084",
+    "document": "core-rules",
+    "requirement": "- The source keeps at least 1 army: a 1-army country cannot be a source, and the most that can move is all but one. The seat chooses how many (default: all but one).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#movement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T29",
+      "T32"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "No friendly movement action exists; redeploy is only a phase name.",
+    "missing": "Implement one adjacent friendly transfer, source >=1, legal range, capture participation and turn end.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "core-rules-085",
+    "document": "core-rules",
+    "requirement": "- A country captured this turn may attack again this turn, and may be the source or the destination of the move.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#movement",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T29",
+      "T32"
+    ],
+    "code": [
+      "src/core/types.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/turns.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "No friendly movement action exists; redeploy is only a phase name.",
+    "missing": "Implement one adjacent friendly transfer, source >=1, legal range, capture participation and turn end.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "core-rules-086",
+    "document": "core-rules",
+    "requirement": "- **Who may attack.** A seat may attack an enemy country that borders one of its own countries, from that country, if the attacking stack has **at least 2 armies**. There is no other requirement: no comparison with the defender's stack *(decision 7)*. The rule is the same for every seat.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#combat",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T54"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/combat.test.ts"
+    ],
+    "assessment": "Reuse legal-attack checks, one-die exchange resolution, rerolled ties and no-forfeit malpaco preset. One attack action already resolves an exchange but capture moves armies automatically.",
+    "missing": "Explicit battle state, stop/continue controls and chosen move-in; preserve single-exchange outcomes at every pace.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-087",
+    "document": "core-rules",
+    "requirement": "- **An exchange.** The attacker and the defender each roll one six-sided die. - The higher die wins; the loser of the exchange loses **one** army. - **Ties** are re-rolled until the dice differ, so each exchange is a fair coin for both sides *(decision 11)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#combat",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T54"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/combat.test.ts"
+    ],
+    "assessment": "Reuse legal-attack checks, one-die exchange resolution, rerolled ties and no-forfeit malpaco preset. One attack action already resolves an exchange but capture moves armies automatically.",
+    "missing": "Explicit battle state, stop/continue controls and chosen move-in; preserve single-exchange outcomes at every pace.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-088",
+    "document": "core-rules",
+    "requirement": "- Nothing but the two stacks and the dice enters an exchange: no level, setting, speed or hidden modifier. A card that changes combat is T51's and must say so on the card.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#combat",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T54"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/combat.test.ts"
+    ],
+    "assessment": "Reuse legal-attack checks, one-die exchange resolution, rerolled ties and no-forfeit malpaco preset. One attack action already resolves an exchange but capture moves armies automatically.",
+    "missing": "Explicit battle state, stop/continue controls and chosen move-in; preserve single-exchange outcomes at every pace.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-089",
+    "document": "core-rules",
+    "requirement": "- **A battle** is a sequence of exchanges between the same two countries. After every exchange the attacker may stop, at no cost. The battle ends when: - the defender reaches 0 armies: the country is captured ([Ownership change](#ownership-change)); - the attacker is down to 1 army: the battle stops, and the attacker keeps its country with 1 army *(decision 7)*; or - the attacker stops.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#combat",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T54"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/combat.test.ts"
+    ],
+    "assessment": "Reuse legal-attack checks, one-die exchange resolution, rerolled ties and no-forfeit malpaco preset. One attack action already resolves an exchange but capture moves armies automatically.",
+    "missing": "Explicit battle state, stop/continue controls and chosen move-in; preserve single-exchange outcomes at every pace.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-090",
+    "document": "core-rules",
+    "requirement": "- The UI (T52) offers one exchange per action and \"continue until captured, stopped, or down to N\". The engine resolves exchanges one at a time either way, so results do not depend on pace.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#combat",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T54"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/combat.test.ts"
+    ],
+    "assessment": "Reuse legal-attack checks, one-die exchange resolution, rerolled ties and no-forfeit malpaco preset. One attack action already resolves an exchange but capture moves armies automatically.",
+    "missing": "Explicit battle state, stop/continue controls and chosen move-in; preserve single-exchange outcomes at every pace.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-091",
+    "document": "core-rules",
+    "requirement": "- There is no limit on attacks or battles per turn, for any seat. How often the computer attacks is its policy (T53), not a rule.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#combat",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T54"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/combat.test.ts"
+    ],
+    "assessment": "Reuse legal-attack checks, one-die exchange resolution, rerolled ties and no-forfeit malpaco preset. One attack action already resolves an exchange but capture moves armies automatically.",
+    "missing": "Explicit battle state, stop/continue controls and chosen move-in; preserve single-exchange outcomes at every pace.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-092",
+    "document": "core-rules",
+    "requirement": "- No setup option changes combat. Difficulty comes from the deal and from the computer's strength (T53), never from the dice.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#combat",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T28",
+      "T54"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/combat.test.ts"
+    ],
+    "assessment": "Reuse legal-attack checks, one-die exchange resolution, rerolled ties and no-forfeit malpaco preset. One attack action already resolves an exchange but capture moves armies automatically.",
+    "missing": "Explicit battle state, stop/continue controls and chosen move-in; preserve single-exchange outcomes at every pace.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-093",
+    "document": "core-rules",
+    "requirement": "- When a defender reaches 0 armies, the country changes owner at once.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#ownership-change",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T37"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Capture and elimination exist; capture transfer is preset-driven rather than an explicit seat choice.",
+    "missing": "Legal chosen transfer before subsequent play and discard an eliminated hand.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-094",
+    "document": "core-rules",
+    "requirement": "- The attacker moves armies in from the attacking country: at least 1, at most all but one of the attacker's remaining armies. The seat chooses; the default is all but one. Armies are conserved: no stack cap clips them.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#ownership-change",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T37"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Capture and elimination exist; capture transfer is preset-driven rather than an explicit seat choice.",
+    "missing": "Legal chosen transfer before subsequent play and discard an eliminated hand.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-095",
+    "document": "core-rules",
+    "requirement": "- The computer follows the same rule; how many it moves is its policy (T53).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#ownership-change",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T37"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Capture and elimination exist; capture transfer is preset-driven rather than an explicit seat choice.",
+    "missing": "Legal chosen transfer before subsequent play and discard an eliminated hand.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-096",
+    "document": "core-rules",
+    "requirement": "- A seat left with no countries is **eliminated**: it is skipped for the rest of the game. What happens to its cards is T51's.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#ownership-change",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T27",
+      "T37"
+    ],
+    "code": [
+      "src/core/combat.ts",
+      "src/core/rules.ts"
+    ],
+    "tests": [
+      "tests/core/malpaco-combat.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Capture and elimination exist; capture transfer is preset-driven rather than an explicit seat choice.",
+    "missing": "Legal chosen transfer before subsequent play and discard an eliminated hand.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-097",
+    "document": "core-rules",
+    "requirement": "At the end of every turn (after the move, before the next seat's income), in this order:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-098",
+    "document": "core-rules",
+    "requirement": "1. **Total conquest**: a seat holding every country wins.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-099",
+    "document": "core-rules",
+    "requirement": "2. **Last seat standing**: if only one seat has countries, it wins (the same as 1, stated for 2- and 3-seat games where elimination is the usual end).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-100",
+    "document": "core-rules",
+    "requirement": "3. **Domination** (when the option is on, the default): a seat holding at least `ceil(0.75 × C)` countries, **35 of 46**, at the end of its own turn wins *(decision 9)*. The rule is the same for humans and computers; a human who wants to fight on turns the option off at setup.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-101",
+    "document": "core-rules",
+    "requirement": "4. **Round limit** (when the option is on): at the end of the last round's last turn, the seat with the most countries wins; ties are broken by total armies, then by turn order (the later seat wins) *(decision 10)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-102",
+    "document": "core-rules",
+    "requirement": "5. **No human left** (only in a game with at least one human): when every human seat is eliminated, the game ends as a loss for the humans; the player may watch the computers finish or stop.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-103",
+    "document": "core-rules",
+    "requirement": "There is no draw. A game with the domination win or the round limit on always ends; with both off it ends by total conquest only.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-104",
+    "document": "core-rules",
+    "requirement": "Events (T51) are not drawn while any seat is within 4 countries of winning: holding `ceil(0.75 × C) − 4` or more countries (31 of 46) when domination is on, or `C − 4` or more (42 of 46) when it is off. When the round limit is on, no events are drawn in its last 3 rounds either ([variety.md](variety.md#when-an-event-is-drawn), decision V12). The last turns are decided by play, not luck.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-105",
+    "document": "core-rules",
+    "requirement": "A finished game adds one win or loss per human seat to the record.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#victory",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T42",
+      "T46"
+    ],
+    "code": [
+      "src/core/rules.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/core/complete-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "Only conquest is implemented and checked immediately on capture; no domination/round-limit consumers or human-result records.",
+    "missing": "End-of-turn ordered victory, origin-aware final round and tie-break, no-human result/watch lifecycle, event suppression and exactly-once records.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-106",
+    "document": "core-rules",
+    "requirement": "- A **resign** control is always available to a human seat. Resigning records a loss, whatever the seat holds, and turns the seat over to the computer (if other humans remain) or ends the game. A seat turned over this way is played at Normal *(T52 UI18, the owner, 2026-10-12)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#leaving-a-game",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual export/load exists; no persistent per-game result ledger or canonical resign lifecycle.",
+    "missing": "Identity outside the rule RNG; overwrite charging, explicit resign and Normal takeover, no duplicate result.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-107",
+    "document": "core-rules",
+    "requirement": "- Starting a new game while one is in progress asks for confirmation and counts as resigning, unless the game is saved first *(decision 2)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#leaving-a-game",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual export/load exists; no persistent per-game result ledger or canonical resign lifecycle.",
+    "missing": "Identity outside the rule RNG; overwrite charging, explicit resign and Normal takeover, no duplicate result.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-108",
+    "document": "core-rules",
+    "requirement": "- Each game has an identity fixed when it starts and kept in its save; it is not drawn from the game stream. Saving a game into the slot while the slot holds a different, unfinished game records a loss for each human seat of that game that has no result yet, as resigning does; saving the same game again records nothing. The record keeps, for each game identity, the human seats whose result it holds, and never records a second result for one *(T52 UI14, the owner, 2026-10-12)*.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#leaving-a-game",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual export/load exists; no persistent per-game result ledger or canonical resign lifecycle.",
+    "missing": "Identity outside the rule RNG; overwrite charging, explicit resign and Normal takeover, no duplicate result.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "core-rules-109",
+    "document": "core-rules",
+    "requirement": "- The computer seats never concede; domination (above) replaces a concession offer.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md#leaving-a-game",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T45",
+      "T46"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/match-save.ts"
+    ],
+    "tests": [
+      "tests/core/match-save.test.ts",
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "Manual export/load exists; no persistent per-game result ledger or canonical resign lifecycle.",
+    "missing": "Identity outside the rule RNG; overwrite charging, explicit resign and Normal takeover, no duplicate result.",
+    "disposition": "extend",
+    "questions": []
+  }
+]

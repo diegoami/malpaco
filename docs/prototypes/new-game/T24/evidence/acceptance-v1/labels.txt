@@ -1,0 +1,21 @@
+✔ labels: positive geometric control (16.559022ms)
+✔ labels: rejects missing label (3.73336ms)
+✔ labels: rejects non-finite label (2.99552ms)
+✔ labels: rejects overlapping hit squares (2.419203ms)
+✔ labels: rejects insufficient 44px gap (2.22159ms)
+✔ labels: rejects undersized hit box (2.433128ms)
+✔ labels: rejects undersized count text (2.591137ms)
+✔ labels: rejects non-finite text specification (2.704967ms)
+✔ labels: rejects insufficient contrast (3.448651ms)
+✔ labels: rejects label outside country (6.689274ms)
+✔ labels: rejects hit area clipped by coast (5.832666ms)
+✔ labels: rejects unscaled positions cannot prove minimum-window fit (3.882466ms)
+✔ labels: rejects invalid frame (1.526988ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 100.626269

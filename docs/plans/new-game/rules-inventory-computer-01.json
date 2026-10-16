@@ -1,0 +1,1042 @@
+[
+  {
+    "id": "computer-001",
+    "document": "computer",
+    "requirement": "Terms of [core-rules.md](core-rules.md) and [variety.md](variety.md) (seat, country, island, border, stack, turn, round, card, set, centre, event) hold here.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-002",
+    "document": "computer",
+    "requirement": "- **Computer seat**: a seat whose actions are chosen by this policy. A human seat that resigns and is turned over to the computer becomes one.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-003",
+    "document": "computer",
+    "requirement": "- **Level**: the computer strength setting of a computer seat ([Difficulty levels](#difficulty-levels)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-004",
+    "document": "computer",
+    "requirement": "- **View**: what a computer seat may read when it decides ([Information](#information)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-005",
+    "document": "computer",
+    "requirement": "- **Front country**: an own country with at least one enemy neighbour. **Interior country**: an own country with none.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-006",
+    "document": "computer",
+    "requirement": "- **Threat on a country**: the largest stack among its enemy neighbours.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-007",
+    "document": "computer",
+    "requirement": "- **Capture chance** `cap(a, d)`: the exact chance that an attacking stack of `a` captures a stack of `d` if the battle is fought to its end, under ties re-rolled ([core-rules.md, Combat odds](core-rules.md#combat-odds)). It is public arithmetic that a human could do with the same table.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-008",
+    "document": "computer",
+    "requirement": "- **Leader**: a seat that the leader check treats as running away ([The leader check](#the-leader-check)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#terms",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-009",
+    "document": "computer",
+    "requirement": "These are requirements on every level. A level that breaks one is a bug, whatever its win rate.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#fairness-and-honesty",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-010",
+    "document": "computer",
+    "requirement": "- The computer acts only through the engine's action interface, the one a human seat's UI uses: trade a set or skip, place armies, start a battle, roll the next exchange or stop, choose a move-in, make the move or end the turn, choose a raid target, choose a discard. The engine checks every action against the rules of core-rules.md and variety.md and refuses an illegal one. No action exists only for the computer, and no rule reads whether a seat is a computer.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#one-rule-set",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-011",
+    "document": "computer",
+    "requirement": "- The computer is bound by T50's single attack rule (at least 2 armies, no comparison, no forfeit), one move per turn, one set per turn with at most two Wilds, the discard before a draw into a full hand, and every card and event rule, exactly as a human is.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#one-rule-set",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-012",
+    "document": "computer",
+    "requirement": "- **A computer seat's view** holds what a human in that seat could see on the screen and remember: the board, every owner and stack, the centres, the round, the options, the seat order, every seat's hand count, its own hand, the discard pile as the UI shows it to every seat, and the history of public happenings (each battle and its result, each traded set, which reveals its three cards on the face-up discard pile, each raid and Shield cancellation, each event).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#information",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-013",
+    "document": "computer",
+    "requirement": "- **It may not read**: another seat's cards, the order or contents of the draw pile beyond what follows from public information, the state or the next values of any random stream, whether another seat is human or computer, or the plans or hands of other computer seats. Each computer seat is a separate player: computer seats share no information and make no plan together.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#information",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-014",
+    "document": "computer",
+    "requirement": "- **How to build it.** The decision code receives a view object built from the public state and the seat's own hand; it has no reference to the engine's internal state. A test changes only hidden things (another hand's kinds, the draw pile's order, the game stream's state, another seat's human or computer flag) and checks that the computer's next action does not change ([Behaviour tests](#behaviour-tests)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#information",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-015",
+    "document": "computer",
+    "requirement": "- **A stream per computer seat** *(A8)*. A computer seat's own random choices (a tie between equally good actions, a planned mistake at a low level) come from its own seeded stream, derived from the game seed and the seat number, never from the game's stream. The game stream (dice, card draws, events, the deal) therefore yields the same sequence of raw values whatever the computer decides or how often it draws on its own stream. What the computer's choices do change is which battles are fought, so which of those values falls to which battle: that is play, not a change of the dice.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#randomness",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-016",
+    "document": "computer",
+    "requirement": "- **Replay.** Every computer action is recorded in the game's action list like a human's. A saved game ([core-rules.md, Stored files](core-rules.md#stored-files)) replays from settings, seed and actions without re-running the computer, so a later version of the computer cannot change a saved game. Re-running the computer from the same state, view and stream gives the same actions; the tests use this.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#randomness",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-017",
+    "document": "computer",
+    "requirement": "- core-rules.md's [Randomness](core-rules.md#randomness) section states the same (decision A8).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#randomness",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-018",
+    "document": "computer",
+    "requirement": "A level changes how the computer decides: its foresight, aggression, card timing, deliberate mistakes, leader check and card memory. It never changes a rule, a die, a card, an army count or the view. There is no bonus army, no better die and no extra card at any level. The human share setting ([core-rules.md, decision 6](core-rules.md#the-owners-decisions-2026-10-12)) stays a separate option: a player can face Hard computers with an even share, or Easy ones with a handicap.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#levels-change-decisions-only",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-019",
+    "document": "computer",
+    "requirement": "Each behaviour the predecessor gave its computer alone is dropped or replaced:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-020",
+    "document": "computer",
+    "requirement": "| The predecessor's computer-only behaviour | Row | malpaco |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-021",
+    "document": "computer",
+    "requirement": "| attacks in a drawn number of rounds (2 to 5, more with many countries) | C-AI-03 | dropped: the computer attacks while a battle is worth it, up to a pacing bound ([Attacks](#attacks)) |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-022",
+    "document": "computer",
+    "requirement": "| a drawn chance to skip a turn's attacks | C-AI-03 | dropped: a turn with no attack happens only when no battle is worth it |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-023",
+    "document": "computer",
+    "requirement": "| extra attack rounds once no human seat is left | C-AI-03 | dropped: the game ends when every human is out ([core-rules.md, Victory](core-rules.md#victory)), and the policy never reads seat kinds |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-024",
+    "document": "computer",
+    "requirement": "| a drawn minimum stack (3 to 5) and a drawn margin over the defender before it may attack | C-AI-04 | replaced: T50's one rule for every seat; the computer's caution is a capture-chance threshold in its policy |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-025",
+    "document": "computer",
+    "requirement": "| a uniform pick from a weighted list of candidate pairs | C-AI-02, C-AI-04 | replaced: the computer picks the battle worth most |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-026",
+    "document": "computer",
+    "requirement": "| placement by island ranks, fixed scores and drawn splits, with one-army seeds | C-AI-01, C-AI-02 | replaced: placement serves the turn's plan ([Placement](#placement)) |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-027",
+    "document": "computer",
+    "requirement": "| a fixed move table over 23 countries, corridor walks, and a centre source vetoed 7 times in 8 | C-AI-05 | replaced: one move chosen on the generated board by its purpose ([The move](#the-move)) |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-028",
+    "document": "computer",
+    "requirement": "| a fixed trade priority, always trading the first match | C-AI-06 | replaced: every seat may skip; the computer's card timing is its policy ([Cards](#cards)) |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-029",
+    "document": "computer",
+    "requirement": "| a fixed discard order on a full hand | C-AI-06 | replaced: the computer chooses its discard by what it keeps ([Discards](#discards)) |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-030",
+    "document": "computer",
+    "requirement": "| a different batching threshold for its exchanges | C-AI-06 | dropped: core-rules.md resolves every exchange one at a time for every seat |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-031",
+    "document": "computer",
+    "requirement": "| a capture split by fixed branches and drawn gates | C-AI-07 | replaced: a move-in chosen by the threats on the two countries ([Move-in after a capture](#move-in-after-a-capture)) |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-032",
+    "document": "computer",
+    "requirement": "| a difficulty level that changes only the human's dealt share | C-AI-08 | replaced: levels change the computer's decisions; the share is a separate setting |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-033",
+    "document": "computer",
+    "requirement": "| a stack cap of 999 in its placement | C-AI-01 | dropped: core-rules.md has no stack cap |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#the-predecessors-computer-only-behaviours",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-034",
+    "document": "computer",
+    "requirement": "Every phase uses the same few quantities, all computed from the view:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#how-the-computer-judges-a-position",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-035",
+    "document": "computer",
+    "requirement": "- **Income next turn**: `max(floor(countries / 3), 2)` plus the bonuses of the islands it holds completely ([core-rules.md, Reinforcement](core-rules.md#reinforcement)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#how-the-computer-judges-a-position",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-036",
+    "document": "computer",
+    "requirement": "- **Island progress**: for each island, how many of its countries the seat holds, how many it lacks, the island's bonus, and how many of its entrances (countries bordering another island) an owner would have to guard.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#how-the-computer-judges-a-position",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-037",
+    "document": "computer",
+    "requirement": "- **Exposure**: for each own country, `cap(threat, stack)`, the chance that its strongest enemy neighbour could take it in one battle. Exposure on an entrance of a held island puts the island's bonus at risk.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#how-the-computer-judges-a-position",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-038",
+    "document": "computer",
+    "requirement": "- **Card prospects**: the sets its hand makes or nearly makes, and the risk to them ([Cards](#cards)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#how-the-computer-judges-a-position",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-039",
+    "document": "computer",
+    "requirement": "- **Standing**: every seat's country count, income and hand count, from which the leader check reads ([The leader check](#the-leader-check)).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#how-the-computer-judges-a-position",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "computer-040",
+    "document": "computer",
+    "requirement": "A candidate action is judged by the change it makes to these quantities for the seat, weighed by named per-level weights (`W_COUNTRY`, `W_BONUS`, `W_EXPOSURE`, `W_CARD`, `W_LEADER` and so on). The weights are tuning constants, set so that each level meets its targets in [Measuring strength](#measuring-strength); this file fixes what they weigh, not their values. Foresight is how far a level chains its judgement inside its own turn ([Difficulty levels](#difficulty-levels)): it looks at the board after its own planned actions, never at hidden information.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/computer.md#how-the-computer-judges-a-position",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T47",
+      "T48",
+      "T49"
+    ],
+    "code": [
+      "src/core/computer.ts",
+      "src/core/types.ts",
+      "src/core/rng.ts"
+    ],
+    "tests": [
+      "tests/core/computer.test.ts",
+      "tests/core/rng-streams.test.ts"
+    ],
+    "assessment": "computerAction accepts the full GameState. Its basic legal-action policy is reusable as a baseline seam, not evidence of a private-information boundary or strategic levels.",
+    "missing": "Restricted public/own-hand view, exact odds/value quantities, independent streams and level policies with no hidden-state or seat-kind dependence.",
+    "disposition": "extend",
+    "questions": []
+  }
+]

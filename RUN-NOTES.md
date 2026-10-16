@@ -343,6 +343,43 @@ END T21 implementation complete: `npm run package:playable` builds a fresh stati
 
 Parent root-container package acceptance passed at `d92e2231440a777c56e64049480bb58d1bb86e5c`: 9 package files, 8 SHA-256 entries, 4 loopback HTTP paths, launcher ready at `127.0.0.1:4175`; archive SHA-256 `516e086ab1178efc406273e9b203595968643abc409072cc6faa5ca7a01e4ed3`. The exact parent log is retained as `docs/prototypes/playable/implementation-20261015-b/root-container-package-acceptance.txt` and added to that directory's SHA256SUMS. Existing B evidence files and their bytes were not changed. CI rerun and parent artifact-browser/review checks remain pending.
 
+
+## T23 — main session implementation, Kimi independent review
+
+Plan: enumerate the four pinned canonical designs independently; map every requirement to existing code/tests and destination tasks; retain gaps and owner questions; implement a strict coverage verifier. No production changes. Owner selected the main session to implement and Kimi 1M to review (2026-10-15).
+
+Preflight: 24 parent-authored tests exercise coverage, citations, mappings and provenance. A fixture mock passes 24/24; a completeness-only fake passes the positive control but fails all 23 negative controls. Both temporary verifiers were removed. Tracked transcripts: docs/plans/new-game/inventory-evidence/preflight-*.txt. Missing future files on main are not counted as behavioural red evidence.
+
+T23 implementation: independently enumerated 540 canonical source units (109 core, 84 variety, 136 computer, 211 UI); compared against clean commit 12fed5a. Added sealed coverage verifier, 16 small matrix files, reuse overview and source/mutation audits. All 24 tests pass; four real matrix mutations fail, then byte-identical restoration passes. No production files changed. Found per-country handicap transfer mismatch for T44; preserved G degree-six conflict for T24/T25.
+
+END T23 implementation
+- Deliverable: approved-rule matrix, independent manifest, verifier/tests and retained audits.
+- Checks: 540/540 coverage, zero unexplained omissions; 24/24 node tests; four rejected actual-matrix mutations with exact restoration; git diff --check clean.
+- Remaining gate: independent owner-selected Kimi 1M review and green CI before merge.
+- Handoff: production unchanged; T24 needs owner decisions after constraint feasibility evidence; T44 owns the observed transfer discrepancy.
+
+
+## T24 parent preflight — main session, Kimi 1M review selected
+
+Owner continued the sequential main-session implementation / direct Kimi 1M review workflow. Isolated branch task/T24-geography-contract-and-constraint-feasibility-probe. Plan: preflight one bypass per named constraint before implementation; establish a numerical contract with the owner; probe without production algorithm changes; retain genuine failures and witness/source hashes.
+
+Parent smoke: existing generator body returned 100/100 seeds 0..99 at one observed attempt each. Current UI layout minimum separation at assumed 800x460 board: 29.588 CSS px Euclidean / 28.884 maximum-coordinate distance. Pinned island-neighbour maximum is four, while implementation guards permit five; none of this sample violates four. Full-contract feasibility is not established by this smoke. Numerical proposals and measured evidence retained under T24. Acceptance preflight remains incomplete until the unspecified label/geometry budget is agreed.
+
+T24 parent graph preflight: 42 tests over counts/symmetry/connectivity/degree/crossings/bonus/fortress/concentration/remoteness/crowding. A fixture-matching mock passes all 42; an accept-everything mock fails all 32 negative controls, leaving the 10 positive controls green. Temporary contract.mjs mocks were removed. The graph control has no geographic geometry and must never be claimed as a joint feasibility witness. Geometry, coast and label acceptance preflight is pending the owner's numerical contract decision; no implementer guard or production algorithm was dispatched and no Kimi review or CI run started.
+
+T24 owner decision: accepted the numerical proposal for the first iteration (40px hit squares, 44px spacing, 800x460 board, tolerances, >=99% within 50 candidate attempts as a target). Parent geometry controls added before checker implementation: 82 tests total across all 15 constraint groups. Fixture mock passes 82/82; permissive checker fails all 67 negative controls and passes 15 positive controls. Temporary contract.mjs mocks removed. The hand-arranged witness and independent rectangle/visibility construction are test controls, not a production generation algorithm or 100-seed success claim.
+
+T24 checker batch: implemented independent graph and polygon/route/label checks under the task-owned prototype path. All 82 parent controls pass; the hand-arranged 46-country witness passes every one of the 15 constraints jointly. This proves one schematic arrangement, not a generated-board rate. No production code changed. Next: existing implementation sweep, retained candidate hashes/failures, exact guard-deletion mutations and independent Kimi review.
+
+T24 measurements: authoritative sweep evidence/runs/run-bbMp5F records 100 seeds / 5,000 attempts / zero fully geographic successes. One fixed witness passes all 15 groups. Cells/borders/coasts/intersections/labels fail every candidate; remoteness fails 157. Prototype + production source hashes are checked unchanged over the run. Preliminary run-NKe9GQ retained separately. Two extra red-before/green-after regressions cover an explicit tiny slit below the area-sum tolerance and infinite text size; source-centre route rejection is also tested. 85/85 tests pass; all 15 guard-deletion mutants fail through assertions and restore exact source bytes. Every task pattern command passes. No production changes.
+
+END T24 implementation
+- Delivered: first-iteration approved parameters; independent guard tests/checker; fixed geometric witness/SVG; bounded existing-generator sweep; per-seed attempts/failures/hashes/timings; mutation/restoration evidence.
+- Acceptance: full diagnostic probe exit 0 with targetMet=false and witness valid; all 15 pattern commands pass; all 85 tests pass; 15/15 guard-deletion mutants killed; git diff --check clean.
+- Remaining gates: independent Kimi 1M review and green required CI before merge. Owner review of the resulting feasibility evidence is required before downstream generation algorithms; 99% target is not demonstrated by this existing layout.
+
+T24 rework R1 (Kimi 1M round 1, 11m40s, rework): reproduced all original 85 tests passing after deleting only spacing's scale multiplication. Added an isolated 0.8-scale control where 40px hit squares still fit and the 44px gap is the sole refusal; the same mutant now fails. Mutation runner now kills 16/16 variants (15 groups + scale-only), restores exact source bytes, then passes 86/86 tests. All named acceptance patterns pass and every authoritative probe source hash remains unchanged. R2 historical 82-test count is preserved accurately; R3 unknown contrast remains documented for T52. No production/checker/probe behaviour changed. Evidence: T24/evidence/rework-r1 and mutations/run-Po8FYb. Return to the same owner-selected Kimi 1M for fix verification.
+
 ## T22 stage 1
 
 Plan: retain the supplied seed/state/probe bytes with provenance and hashes, independently recheck island land-graph embedding feasibility, and prepare the strict acceptance verifier plus a disposable self-contained candidate HTML fixture. Parent runs baseline absence, candidate replay, selected-neighbor mutation and byte restoration in the pinned Playwright image. No local browser, npm suite or build; no push until parent clears CI cost controls.
@@ -376,3 +413,5 @@ T22 archive correction: the previously completed candidate-G pinned replay remai
 Main session resumes in the isolated T22 worktree under the owner’s standing choice, with direct Kimi 1M selected for independent review. Install preview.html byte for byte from retained G (SHA-256 94106c6c8797e8640934f51fcd582ec96b222aa70e4ac9302e74085394a58763), update opening/verification instructions, then run final pinned browser acceptance, unit tests and build in a fresh tracked evidence directory. Existing G replay already proves missing-preview red, candidate green, selected-neighbour mutation red and exact restoration. All old measurement files remain unchanged, including whitespace in raw stderr. No production changes, no claim of T24 compliance, no owner visual approval or merge yet.
 
 T22 final verification: pinned Playwright 1.63.0-noble (Node 24.20.0, satisfying package Node >=22) accepted all 46 provinces/nine islands at 1280x800 and 1920x1080, including exact selection, geometry, topology disclosure and all 32 facing-coast midpoint checks. Final-A unit/build startup failed because dependencies were mounted read-only and Vite writes .vite-temp; retained those logs unchanged. Final-B reran only unit/build with temporary writable Vite caches: 429/429 tests and build passed. Final captures, SVGs, reports and both run logs are SHA-indexed. Parent inspected the 1280x800 capture. Preview bytes match retained G exactly. No production changes. END: implementation prepared for independent Kimi review and owner visual judgment; no later task dispatched.
+
+T22 integration preparation: merged current main before technical review. Only RUN-NOTES.md conflicted; retained main notes byte for byte and appended all T22 notes from the branch unchanged. The early Kimi session was stopped before any final review when this CI-blocking conflict was found; no findings or approval were produced. Reviewer will run on the mergeable final head. Production and installed preview bytes unchanged.

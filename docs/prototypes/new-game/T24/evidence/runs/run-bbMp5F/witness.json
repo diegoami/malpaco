@@ -1,0 +1,2164 @@
+{
+  "bounds": {
+    "x": 0,
+    "y": 0,
+    "width": 800,
+    "height": 460
+  },
+  "provinces": [
+    {
+      "id": "w0p0",
+      "island": "w0",
+      "borders": [
+        "w0p1",
+        "w0p5"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          40,
+          25
+        ],
+        [
+          90,
+          25
+        ],
+        [
+          90,
+          75
+        ],
+        [
+          40,
+          75
+        ]
+      ],
+      "labelAt": [
+        65,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p1",
+      "island": "w0",
+      "borders": [
+        "w0p0",
+        "w0p2",
+        "w0p6"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          90,
+          25
+        ],
+        [
+          140,
+          25
+        ],
+        [
+          140,
+          75
+        ],
+        [
+          90,
+          75
+        ]
+      ],
+      "labelAt": [
+        115,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p2",
+      "island": "w0",
+      "borders": [
+        "w0p1",
+        "w0p3",
+        "w0p7"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          140,
+          25
+        ],
+        [
+          190,
+          25
+        ],
+        [
+          190,
+          75
+        ],
+        [
+          140,
+          75
+        ]
+      ],
+      "labelAt": [
+        165,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p3",
+      "island": "w0",
+      "borders": [
+        "w0p2",
+        "w0p4",
+        "w0p8"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          190,
+          25
+        ],
+        [
+          240,
+          25
+        ],
+        [
+          240,
+          75
+        ],
+        [
+          190,
+          75
+        ]
+      ],
+      "labelAt": [
+        215,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p4",
+      "island": "w0",
+      "borders": [
+        "w0p3",
+        "w0p9"
+      ],
+      "seaLanes": [
+        "w1p0",
+        "w2p0"
+      ],
+      "polygon": [
+        [
+          240,
+          25
+        ],
+        [
+          290,
+          25
+        ],
+        [
+          290,
+          75
+        ],
+        [
+          240,
+          75
+        ]
+      ],
+      "labelAt": [
+        265,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p5",
+      "island": "w0",
+      "borders": [
+        "w0p0",
+        "w0p6"
+      ],
+      "seaLanes": [
+        "w3p0",
+        "w6p0"
+      ],
+      "polygon": [
+        [
+          40,
+          75
+        ],
+        [
+          90,
+          75
+        ],
+        [
+          90,
+          125
+        ],
+        [
+          40,
+          125
+        ]
+      ],
+      "labelAt": [
+        65,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p6",
+      "island": "w0",
+      "borders": [
+        "w0p1",
+        "w0p5",
+        "w0p7"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          90,
+          75
+        ],
+        [
+          140,
+          75
+        ],
+        [
+          140,
+          125
+        ],
+        [
+          90,
+          125
+        ]
+      ],
+      "labelAt": [
+        115,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p7",
+      "island": "w0",
+      "borders": [
+        "w0p2",
+        "w0p6",
+        "w0p8"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          140,
+          75
+        ],
+        [
+          190,
+          75
+        ],
+        [
+          190,
+          125
+        ],
+        [
+          140,
+          125
+        ]
+      ],
+      "labelAt": [
+        165,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p8",
+      "island": "w0",
+      "borders": [
+        "w0p3",
+        "w0p7",
+        "w0p9"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          190,
+          75
+        ],
+        [
+          240,
+          75
+        ],
+        [
+          240,
+          125
+        ],
+        [
+          190,
+          125
+        ]
+      ],
+      "labelAt": [
+        215,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w0p9",
+      "island": "w0",
+      "borders": [
+        "w0p4",
+        "w0p8"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          240,
+          75
+        ],
+        [
+          290,
+          75
+        ],
+        [
+          290,
+          125
+        ],
+        [
+          240,
+          125
+        ]
+      ],
+      "labelAt": [
+        265,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w1p0",
+      "island": "w1",
+      "borders": [
+        "w1p1",
+        "w1p4"
+      ],
+      "seaLanes": [
+        "w0p4"
+      ],
+      "polygon": [
+        [
+          330,
+          25
+        ],
+        [
+          380,
+          25
+        ],
+        [
+          380,
+          75
+        ],
+        [
+          330,
+          75
+        ]
+      ],
+      "labelAt": [
+        355,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w1p1",
+      "island": "w1",
+      "borders": [
+        "w1p0",
+        "w1p2",
+        "w1p5"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          380,
+          25
+        ],
+        [
+          430,
+          25
+        ],
+        [
+          430,
+          75
+        ],
+        [
+          380,
+          75
+        ]
+      ],
+      "labelAt": [
+        405,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w1p2",
+      "island": "w1",
+      "borders": [
+        "w1p1",
+        "w1p3",
+        "w1p6"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          430,
+          25
+        ],
+        [
+          480,
+          25
+        ],
+        [
+          480,
+          75
+        ],
+        [
+          430,
+          75
+        ]
+      ],
+      "labelAt": [
+        455,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w1p3",
+      "island": "w1",
+      "borders": [
+        "w1p2",
+        "w1p6"
+      ],
+      "seaLanes": [
+        "w2p0"
+      ],
+      "polygon": [
+        [
+          480,
+          25
+        ],
+        [
+          530,
+          25
+        ],
+        [
+          530,
+          75
+        ],
+        [
+          480,
+          75
+        ]
+      ],
+      "labelAt": [
+        505,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w1p4",
+      "island": "w1",
+      "borders": [
+        "w1p0",
+        "w1p5"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          330,
+          75
+        ],
+        [
+          380,
+          75
+        ],
+        [
+          380,
+          125
+        ],
+        [
+          330,
+          125
+        ]
+      ],
+      "labelAt": [
+        355,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w1p5",
+      "island": "w1",
+      "borders": [
+        "w1p1",
+        "w1p4",
+        "w1p6"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          380,
+          75
+        ],
+        [
+          430,
+          75
+        ],
+        [
+          430,
+          125
+        ],
+        [
+          380,
+          125
+        ]
+      ],
+      "labelAt": [
+        405,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w1p6",
+      "island": "w1",
+      "borders": [
+        "w1p2",
+        "w1p3",
+        "w1p5"
+      ],
+      "seaLanes": [
+        "w4p0"
+      ],
+      "polygon": [
+        [
+          430,
+          75
+        ],
+        [
+          530,
+          75
+        ],
+        [
+          530,
+          125
+        ],
+        [
+          430,
+          125
+        ]
+      ],
+      "labelAt": [
+        480,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w2p0",
+      "island": "w2",
+      "borders": [
+        "w2p1",
+        "w2p4"
+      ],
+      "seaLanes": [
+        "w1p3",
+        "w0p4"
+      ],
+      "polygon": [
+        [
+          570,
+          25
+        ],
+        [
+          620,
+          25
+        ],
+        [
+          620,
+          75
+        ],
+        [
+          570,
+          75
+        ]
+      ],
+      "labelAt": [
+        595,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w2p1",
+      "island": "w2",
+      "borders": [
+        "w2p0",
+        "w2p2",
+        "w2p5"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          620,
+          25
+        ],
+        [
+          670,
+          25
+        ],
+        [
+          670,
+          75
+        ],
+        [
+          620,
+          75
+        ]
+      ],
+      "labelAt": [
+        645,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w2p2",
+      "island": "w2",
+      "borders": [
+        "w2p1",
+        "w2p3",
+        "w2p6"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          670,
+          25
+        ],
+        [
+          720,
+          25
+        ],
+        [
+          720,
+          75
+        ],
+        [
+          670,
+          75
+        ]
+      ],
+      "labelAt": [
+        695,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w2p3",
+      "island": "w2",
+      "borders": [
+        "w2p2",
+        "w2p6"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          720,
+          25
+        ],
+        [
+          770,
+          25
+        ],
+        [
+          770,
+          75
+        ],
+        [
+          720,
+          75
+        ]
+      ],
+      "labelAt": [
+        745,
+        50
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w2p4",
+      "island": "w2",
+      "borders": [
+        "w2p0",
+        "w2p5"
+      ],
+      "seaLanes": [
+        "w5p1"
+      ],
+      "polygon": [
+        [
+          570,
+          75
+        ],
+        [
+          620,
+          75
+        ],
+        [
+          620,
+          125
+        ],
+        [
+          570,
+          125
+        ]
+      ],
+      "labelAt": [
+        595,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w2p5",
+      "island": "w2",
+      "borders": [
+        "w2p1",
+        "w2p4",
+        "w2p6"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          620,
+          75
+        ],
+        [
+          670,
+          75
+        ],
+        [
+          670,
+          125
+        ],
+        [
+          620,
+          125
+        ]
+      ],
+      "labelAt": [
+        645,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w2p6",
+      "island": "w2",
+      "borders": [
+        "w2p2",
+        "w2p3",
+        "w2p5"
+      ],
+      "seaLanes": [
+        "w8p1"
+      ],
+      "polygon": [
+        [
+          670,
+          75
+        ],
+        [
+          770,
+          75
+        ],
+        [
+          770,
+          125
+        ],
+        [
+          670,
+          125
+        ]
+      ],
+      "labelAt": [
+        720,
+        100
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w3p0",
+      "island": "w3",
+      "borders": [
+        "w3p1",
+        "w3p3"
+      ],
+      "seaLanes": [
+        "w0p5"
+      ],
+      "polygon": [
+        [
+          40,
+          180
+        ],
+        [
+          90,
+          180
+        ],
+        [
+          90,
+          230
+        ],
+        [
+          40,
+          230
+        ]
+      ],
+      "labelAt": [
+        65,
+        205
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w3p1",
+      "island": "w3",
+      "borders": [
+        "w3p0",
+        "w3p2",
+        "w3p4"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          90,
+          180
+        ],
+        [
+          140,
+          180
+        ],
+        [
+          140,
+          230
+        ],
+        [
+          90,
+          230
+        ]
+      ],
+      "labelAt": [
+        115,
+        205
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w3p2",
+      "island": "w3",
+      "borders": [
+        "w3p1",
+        "w3p4"
+      ],
+      "seaLanes": [
+        "w4p0"
+      ],
+      "polygon": [
+        [
+          140,
+          180
+        ],
+        [
+          190,
+          180
+        ],
+        [
+          190,
+          230
+        ],
+        [
+          140,
+          230
+        ]
+      ],
+      "labelAt": [
+        165,
+        205
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w3p3",
+      "island": "w3",
+      "borders": [
+        "w3p0",
+        "w3p4"
+      ],
+      "seaLanes": [
+        "w6p0"
+      ],
+      "polygon": [
+        [
+          40,
+          230
+        ],
+        [
+          90,
+          230
+        ],
+        [
+          90,
+          280
+        ],
+        [
+          40,
+          280
+        ]
+      ],
+      "labelAt": [
+        65,
+        255
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w3p4",
+      "island": "w3",
+      "borders": [
+        "w3p1",
+        "w3p2",
+        "w3p3"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          90,
+          230
+        ],
+        [
+          190,
+          230
+        ],
+        [
+          190,
+          280
+        ],
+        [
+          90,
+          280
+        ]
+      ],
+      "labelAt": [
+        140,
+        255
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w4p0",
+      "island": "w4",
+      "borders": [
+        "w4p1",
+        "w4p3"
+      ],
+      "seaLanes": [
+        "w3p2",
+        "w1p6"
+      ],
+      "polygon": [
+        [
+          330,
+          180
+        ],
+        [
+          380,
+          180
+        ],
+        [
+          380,
+          230
+        ],
+        [
+          330,
+          230
+        ]
+      ],
+      "labelAt": [
+        355,
+        205
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w4p1",
+      "island": "w4",
+      "borders": [
+        "w4p0",
+        "w4p2",
+        "w4p4"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          380,
+          180
+        ],
+        [
+          430,
+          180
+        ],
+        [
+          430,
+          230
+        ],
+        [
+          380,
+          230
+        ]
+      ],
+      "labelAt": [
+        405,
+        205
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w4p2",
+      "island": "w4",
+      "borders": [
+        "w4p1",
+        "w4p4"
+      ],
+      "seaLanes": [
+        "w5p2"
+      ],
+      "polygon": [
+        [
+          430,
+          180
+        ],
+        [
+          480,
+          180
+        ],
+        [
+          480,
+          230
+        ],
+        [
+          430,
+          230
+        ]
+      ],
+      "labelAt": [
+        455,
+        205
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w4p3",
+      "island": "w4",
+      "borders": [
+        "w4p0",
+        "w4p4"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          330,
+          230
+        ],
+        [
+          380,
+          230
+        ],
+        [
+          380,
+          280
+        ],
+        [
+          330,
+          280
+        ]
+      ],
+      "labelAt": [
+        355,
+        255
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w4p4",
+      "island": "w4",
+      "borders": [
+        "w4p1",
+        "w4p2",
+        "w4p3"
+      ],
+      "seaLanes": [
+        "w7p0"
+      ],
+      "polygon": [
+        [
+          380,
+          230
+        ],
+        [
+          480,
+          230
+        ],
+        [
+          480,
+          280
+        ],
+        [
+          380,
+          280
+        ]
+      ],
+      "labelAt": [
+        430,
+        255
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w5p0",
+      "island": "w5",
+      "borders": [
+        "w5p1",
+        "w5p2"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          670,
+          180
+        ],
+        [
+          720,
+          180
+        ],
+        [
+          720,
+          230
+        ],
+        [
+          670,
+          230
+        ]
+      ],
+      "labelAt": [
+        695,
+        205
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w5p1",
+      "island": "w5",
+      "borders": [
+        "w5p0",
+        "w5p2"
+      ],
+      "seaLanes": [
+        "w2p4"
+      ],
+      "polygon": [
+        [
+          720,
+          180
+        ],
+        [
+          770,
+          180
+        ],
+        [
+          770,
+          230
+        ],
+        [
+          720,
+          230
+        ]
+      ],
+      "labelAt": [
+        745,
+        205
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w5p2",
+      "island": "w5",
+      "borders": [
+        "w5p0",
+        "w5p1"
+      ],
+      "seaLanes": [
+        "w4p2",
+        "w8p1"
+      ],
+      "polygon": [
+        [
+          670,
+          230
+        ],
+        [
+          770,
+          230
+        ],
+        [
+          770,
+          280
+        ],
+        [
+          670,
+          280
+        ]
+      ],
+      "labelAt": [
+        720,
+        255
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w6p0",
+      "island": "w6",
+      "borders": [
+        "w6p1",
+        "w6p2"
+      ],
+      "seaLanes": [
+        "w3p3",
+        "w0p5"
+      ],
+      "polygon": [
+        [
+          40,
+          335
+        ],
+        [
+          90,
+          335
+        ],
+        [
+          90,
+          385
+        ],
+        [
+          40,
+          385
+        ]
+      ],
+      "labelAt": [
+        65,
+        360
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w6p1",
+      "island": "w6",
+      "borders": [
+        "w6p0",
+        "w6p2"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          90,
+          335
+        ],
+        [
+          140,
+          335
+        ],
+        [
+          140,
+          385
+        ],
+        [
+          90,
+          385
+        ]
+      ],
+      "labelAt": [
+        115,
+        360
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w6p2",
+      "island": "w6",
+      "borders": [
+        "w6p0",
+        "w6p1"
+      ],
+      "seaLanes": [
+        "w7p0",
+        "w8p2"
+      ],
+      "polygon": [
+        [
+          40,
+          385
+        ],
+        [
+          140,
+          385
+        ],
+        [
+          140,
+          435
+        ],
+        [
+          40,
+          435
+        ]
+      ],
+      "labelAt": [
+        90,
+        410
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w7p0",
+      "island": "w7",
+      "borders": [
+        "w7p1",
+        "w7p2"
+      ],
+      "seaLanes": [
+        "w6p2",
+        "w4p4"
+      ],
+      "polygon": [
+        [
+          380,
+          335
+        ],
+        [
+          430,
+          335
+        ],
+        [
+          430,
+          385
+        ],
+        [
+          380,
+          385
+        ]
+      ],
+      "labelAt": [
+        405,
+        360
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w7p1",
+      "island": "w7",
+      "borders": [
+        "w7p0",
+        "w7p2"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          430,
+          335
+        ],
+        [
+          480,
+          335
+        ],
+        [
+          480,
+          385
+        ],
+        [
+          430,
+          385
+        ]
+      ],
+      "labelAt": [
+        455,
+        360
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w7p2",
+      "island": "w7",
+      "borders": [
+        "w7p0",
+        "w7p1"
+      ],
+      "seaLanes": [
+        "w8p2"
+      ],
+      "polygon": [
+        [
+          380,
+          385
+        ],
+        [
+          480,
+          385
+        ],
+        [
+          480,
+          435
+        ],
+        [
+          380,
+          435
+        ]
+      ],
+      "labelAt": [
+        430,
+        410
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w8p0",
+      "island": "w8",
+      "borders": [
+        "w8p1",
+        "w8p2"
+      ],
+      "seaLanes": [],
+      "polygon": [
+        [
+          670,
+          335
+        ],
+        [
+          720,
+          335
+        ],
+        [
+          720,
+          385
+        ],
+        [
+          670,
+          385
+        ]
+      ],
+      "labelAt": [
+        695,
+        360
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w8p1",
+      "island": "w8",
+      "borders": [
+        "w8p0",
+        "w8p2"
+      ],
+      "seaLanes": [
+        "w5p2",
+        "w2p6"
+      ],
+      "polygon": [
+        [
+          720,
+          335
+        ],
+        [
+          770,
+          335
+        ],
+        [
+          770,
+          385
+        ],
+        [
+          720,
+          385
+        ]
+      ],
+      "labelAt": [
+        745,
+        360
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    },
+    {
+      "id": "w8p2",
+      "island": "w8",
+      "borders": [
+        "w8p0",
+        "w8p1"
+      ],
+      "seaLanes": [
+        "w7p2",
+        "w6p2"
+      ],
+      "polygon": [
+        [
+          670,
+          385
+        ],
+        [
+          770,
+          385
+        ],
+        [
+          770,
+          435
+        ],
+        [
+          670,
+          435
+        ]
+      ],
+      "labelAt": [
+        720,
+        410
+      ],
+      "hitSizeCss": 40,
+      "countTextCss": 14,
+      "countContrast": 4.5
+    }
+  ],
+  "islands": [
+    {
+      "id": "w0",
+      "provinces": [
+        "w0p0",
+        "w0p1",
+        "w0p2",
+        "w0p3",
+        "w0p4",
+        "w0p5",
+        "w0p6",
+        "w0p7",
+        "w0p8",
+        "w0p9"
+      ],
+      "bonus": 7,
+      "polygon": [
+        [
+          40,
+          25
+        ],
+        [
+          290,
+          25
+        ],
+        [
+          290,
+          125
+        ],
+        [
+          40,
+          125
+        ]
+      ]
+    },
+    {
+      "id": "w1",
+      "provinces": [
+        "w1p0",
+        "w1p1",
+        "w1p2",
+        "w1p3",
+        "w1p4",
+        "w1p5",
+        "w1p6"
+      ],
+      "bonus": 6,
+      "polygon": [
+        [
+          330,
+          25
+        ],
+        [
+          530,
+          25
+        ],
+        [
+          530,
+          125
+        ],
+        [
+          330,
+          125
+        ]
+      ]
+    },
+    {
+      "id": "w2",
+      "provinces": [
+        "w2p0",
+        "w2p1",
+        "w2p2",
+        "w2p3",
+        "w2p4",
+        "w2p5",
+        "w2p6"
+      ],
+      "bonus": 6,
+      "polygon": [
+        [
+          570,
+          25
+        ],
+        [
+          770,
+          25
+        ],
+        [
+          770,
+          125
+        ],
+        [
+          570,
+          125
+        ]
+      ]
+    },
+    {
+      "id": "w3",
+      "provinces": [
+        "w3p0",
+        "w3p1",
+        "w3p2",
+        "w3p3",
+        "w3p4"
+      ],
+      "bonus": 5,
+      "polygon": [
+        [
+          40,
+          180
+        ],
+        [
+          190,
+          180
+        ],
+        [
+          190,
+          280
+        ],
+        [
+          40,
+          280
+        ]
+      ]
+    },
+    {
+      "id": "w4",
+      "provinces": [
+        "w4p0",
+        "w4p1",
+        "w4p2",
+        "w4p3",
+        "w4p4"
+      ],
+      "bonus": 5,
+      "polygon": [
+        [
+          330,
+          180
+        ],
+        [
+          480,
+          180
+        ],
+        [
+          480,
+          280
+        ],
+        [
+          330,
+          280
+        ]
+      ]
+    },
+    {
+      "id": "w5",
+      "provinces": [
+        "w5p0",
+        "w5p1",
+        "w5p2"
+      ],
+      "bonus": 3,
+      "polygon": [
+        [
+          670,
+          180
+        ],
+        [
+          770,
+          180
+        ],
+        [
+          770,
+          280
+        ],
+        [
+          670,
+          280
+        ]
+      ]
+    },
+    {
+      "id": "w6",
+      "provinces": [
+        "w6p0",
+        "w6p1",
+        "w6p2"
+      ],
+      "bonus": 3,
+      "polygon": [
+        [
+          40,
+          335
+        ],
+        [
+          140,
+          335
+        ],
+        [
+          140,
+          435
+        ],
+        [
+          40,
+          435
+        ]
+      ]
+    },
+    {
+      "id": "w7",
+      "provinces": [
+        "w7p0",
+        "w7p1",
+        "w7p2"
+      ],
+      "bonus": 3,
+      "polygon": [
+        [
+          380,
+          335
+        ],
+        [
+          480,
+          335
+        ],
+        [
+          480,
+          435
+        ],
+        [
+          380,
+          435
+        ]
+      ]
+    },
+    {
+      "id": "w8",
+      "provinces": [
+        "w8p0",
+        "w8p1",
+        "w8p2"
+      ],
+      "bonus": 3,
+      "polygon": [
+        [
+          670,
+          335
+        ],
+        [
+          770,
+          335
+        ],
+        [
+          770,
+          435
+        ],
+        [
+          670,
+          435
+        ]
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "from": "w0p4",
+      "to": "w1p0",
+      "points": [
+        [
+          290,
+          50
+        ],
+        [
+          330,
+          50
+        ]
+      ]
+    },
+    {
+      "from": "w1p3",
+      "to": "w2p0",
+      "points": [
+        [
+          530,
+          50
+        ],
+        [
+          570,
+          50
+        ]
+      ]
+    },
+    {
+      "from": "w3p2",
+      "to": "w4p0",
+      "points": [
+        [
+          190,
+          205
+        ],
+        [
+          330,
+          205
+        ]
+      ]
+    },
+    {
+      "from": "w4p2",
+      "to": "w5p2",
+      "points": [
+        [
+          480,
+          205
+        ],
+        [
+          670,
+          255
+        ]
+      ]
+    },
+    {
+      "from": "w6p2",
+      "to": "w7p0",
+      "points": [
+        [
+          140,
+          410
+        ],
+        [
+          380,
+          360
+        ]
+      ]
+    },
+    {
+      "from": "w7p2",
+      "to": "w8p2",
+      "points": [
+        [
+          480,
+          410
+        ],
+        [
+          670,
+          410
+        ]
+      ]
+    },
+    {
+      "from": "w0p5",
+      "to": "w3p0",
+      "points": [
+        [
+          40,
+          125
+        ],
+        [
+          65,
+          180
+        ]
+      ]
+    },
+    {
+      "from": "w3p3",
+      "to": "w6p0",
+      "points": [
+        [
+          40,
+          280
+        ],
+        [
+          65,
+          335
+        ]
+      ]
+    },
+    {
+      "from": "w1p6",
+      "to": "w4p0",
+      "points": [
+        [
+          480,
+          125
+        ],
+        [
+          355,
+          180
+        ]
+      ]
+    },
+    {
+      "from": "w4p4",
+      "to": "w7p0",
+      "points": [
+        [
+          455,
+          280
+        ],
+        [
+          380,
+          335
+        ]
+      ]
+    },
+    {
+      "from": "w2p4",
+      "to": "w5p1",
+      "points": [
+        [
+          595,
+          125
+        ],
+        [
+          745,
+          180
+        ]
+      ]
+    },
+    {
+      "from": "w5p2",
+      "to": "w8p1",
+      "points": [
+        [
+          720,
+          280
+        ],
+        [
+          745,
+          335
+        ]
+      ]
+    },
+    {
+      "from": "w0p4",
+      "to": "w2p0",
+      "points": [
+        [
+          290,
+          50
+        ],
+        [
+          322,
+          17
+        ],
+        [
+          538,
+          17
+        ],
+        [
+          570,
+          50
+        ]
+      ]
+    },
+    {
+      "from": "w2p6",
+      "to": "w8p1",
+      "points": [
+        [
+          745,
+          125
+        ],
+        [
+          778,
+          172
+        ],
+        [
+          778,
+          288
+        ],
+        [
+          745,
+          335
+        ]
+      ]
+    },
+    {
+      "from": "w8p2",
+      "to": "w6p2",
+      "points": [
+        [
+          670,
+          410
+        ],
+        [
+          488,
+          443
+        ],
+        [
+          372,
+          443
+        ],
+        [
+          140,
+          410
+        ]
+      ]
+    },
+    {
+      "from": "w6p0",
+      "to": "w0p5",
+      "points": [
+        [
+          65,
+          335
+        ],
+        [
+          32,
+          288
+        ],
+        [
+          40,
+          125
+        ]
+      ]
+    }
+  ]
+}

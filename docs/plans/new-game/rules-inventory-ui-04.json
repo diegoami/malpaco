@@ -1,0 +1,957 @@
+[
+  {
+    "id": "ui-121",
+    "document": "ui",
+    "requirement": "- **Sets are found for the player**: the cards that make a set are marked as one group, with what it gives (5, 8 or 15 armies, the pool doubled with the amount, or a raid). Wilds in a set are shown standing for the kind.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-hand",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-122",
+    "document": "ui",
+    "requirement": "- Shields show that they act by themselves; the hand never holds the Squall.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-hand",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-123",
+    "document": "ui",
+    "requirement": "- In the cards phase, a seat holding a set sees a trade control on each set it can make, and skip. With several sets (they may share Wilds), each is offered separately and only one can be traded.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-124",
+    "document": "ui",
+    "requirement": "- Trading shows the three cards going face up to the discard pile and the pool rising by the set's value; a Surge set shows the pool doubling, with the added amount (variety.md, Trade-ins).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-125",
+    "document": "ui",
+    "requirement": "- A computer's trade is shown the same way, face up, as one step.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#trade-ins",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-126",
+    "document": "ui",
+    "requirement": "- After a Raid set is traded, every enemy country is marked as a target; choosing one shows what the raid can do before it is confirmed: the stack becomes 1 to half of itself (for example 40 becomes 1 to 20).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-raid-and-the-shield",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-127",
+    "document": "ui",
+    "requirement": "- **The result** is one step: the target's count drops to its new value with the loss shown, or, if its owner holds a Shield, a shield mark appears on the target, the Shield goes face up to the discard pile and the count stays. The log records either.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-raid-and-the-shield",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-128",
+    "document": "ui",
+    "requirement": "- When a seat draws the Squall, every seat sees it: the Squall and the drawer's whole hand go face up to the discard pile in one step, with the number of cards lost (variety.md, The hand). Drawn into an empty hand, it shows that nothing was lost.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-squall",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-129",
+    "document": "ui",
+    "requirement": "- **An eliminated seat's hand** goes face up to the discard pile in the step that shows the elimination (variety.md, V6), and the log names the cards.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#the-squall",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-130",
+    "document": "ui",
+    "requirement": "- When a capturing turn ends with five cards in the hand, a discard prompt opens before the draw (variety.md, V11): it says the hand is full, that one card must go before drawing, and that the new card is not seen first. The player picks any card; the discard goes face up. There is no skip.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#a-draw-into-a-full-hand",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-131",
+    "document": "ui",
+    "requirement": "- A computer's discard is shown face up, as one step, and logged.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#a-draw-into-a-full-hand",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-132",
+    "document": "ui",
+    "requirement": "- The drawn card is shown to its drawer only (the viewer); every other seat sees the hand count rise by one. A computer's draw shows only the count, unless it is the Squall.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#drawing-a-card",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-133",
+    "document": "ui",
+    "requirement": "- Every seat's hand count, the draw pile's count and the discard pile's count are always shown; the top of the discard pile is shown face up *(UI9 a)*. Every public card (traded, played, discarded, a Squall) is in the log. Another hand's kinds and the draw pile's order are never shown.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#what-is-public",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T40",
+      "T53"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts"
+    ],
+    "assessment": "No card UI exists; reuse the rendered action/feedback seams.",
+    "missing": "Complete sets, trade/skip, raid preview/Shield, Squall, forced pre-draw discard and public/private rendering.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-134",
+    "document": "ui",
+    "requirement": "*(UW-4; variety.md, Events and Production centres.)* Events happen only at a turn change, after the victory check and before the next seat's income, never inside a turn.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#events-and-centres",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T43",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Opening centres exist only in state; event presentation is absent.",
+    "missing": "Before/after event groups, marks/log/paused reasons, centre visibility and event pacing independent of computer fast-forward.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-135",
+    "document": "ui",
+    "requirement": "- **Every event is shown on the countries it hits**, all at once, in one step: a banner names the event in malpaco's words, the hit countries are highlighted, and each shows its change. - **Storm**: the 3 or 4 struck countries are outlined as one group; each shows its count before and after. - **Revolt**: the country changes colour and cue from its old owner to the new one, with an arrow between their sides; the island bonus it breaks or completes is named. - **Harvest**: each of the three centres shows its gain (+n, at most 10). - **Shift**: the three old centre marks and the three new ones are shown together, linked, then the old ones fade.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#events-and-centres",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T43",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Opening centres exist only in state; event presentation is absent.",
+    "missing": "Before/after event groups, marks/log/paused reasons, centre visibility and event pacing independent of computer fast-forward.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-136",
+    "document": "ui",
+    "requirement": "- **How long**: the event step holds until the player acts or `EVENT_HOLD` passes (3 s proposed at Normal; the predecessor's event messages stayed about 6 to 7 s, `runs/E018`). At Instant it is not held. At every speed the hit countries keep a small mark until the next human turn begins, and the log records the event with every country and count.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#events-and-centres",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T43",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Opening centres exist only in state; event presentation is absent.",
+    "missing": "Before/after event groups, marks/log/paused reasons, centre visibility and event pacing independent of computer fast-forward.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-137",
+    "document": "ui",
+    "requirement": "- **Events and computer turns**: an event at the turn change after a computer turn is never part of that turn's watch budget or its fast-forward; it is shown at its own pace. A storm hitting three countries right after a fast-forwarded computer turn is therefore still shown, with its three before-and-after counts.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#events-and-centres",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T43",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Opening centres exist only in state; event presentation is absent.",
+    "missing": "Before/after event groups, marks/log/paused reasons, centre visibility and event pacing independent of computer fast-forward.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-138",
+    "document": "ui",
+    "requirement": "- **Paused events**: when events are on, the round counter shows when no event can come and why: round 1, a seat within 4 countries of winning (31 of 46 with domination on, 42 with it off), or a round-limit game's last 3 rounds (core-rules.md, Victory; variety.md, V12).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#events-and-centres",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T43",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/setup.test.ts"
+    ],
+    "assessment": "Opening centres exist only in state; event presentation is absent.",
+    "missing": "Before/after event groups, marks/log/paused reasons, centre visibility and event pacing independent of computer fast-forward.",
+    "disposition": "new",
+    "questions": []
+  },
+  {
+    "id": "ui-139",
+    "document": "ui",
+    "requirement": "*(UW-10; computer.md, Quick turns, A6 and A17.)*",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#computer-turns",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-140",
+    "document": "ui",
+    "requirement": "- **Who is playing**: the standings and the phase bar mark the active computer seat, with its level (Easy, Normal or Hard) beside it at all times (computer.md, A3).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#computer-turns",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-141",
+    "document": "ui",
+    "requirement": "- **What is shown**, step by step, within computer.md's bounds:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#computer-turns",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-142",
+    "document": "ui",
+    "requirement": "| Step | At most a turn | What it shows | | --- | --- | --- | | trade-in | 1 | the three cards face up, the pool's change, a raid target and its result | | placement | 3 | each country that receives armies, with the number | | battle | 3 per battle, 10 battles | its start (both stacks, the target marked), the stacks part-way, its end with the tally, the capture and the move-in | | move | 1 | the source, the destination and the number | | discard | 1 | the discarded card face up |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#computer-turns",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-143",
+    "document": "ui",
+    "requirement": "That is at most 1 + 3 + 30 + 1 + 1 = 36 steps (computer.md, Quick turns). A battle of 1000 against 100 still takes 3 steps: 1000 against 100, the stacks part-way, the end. The end step's tally gives the exchanges each side won and the ties re-rolled.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#computer-turns",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-144",
+    "document": "ui",
+    "requirement": "- **Pacing** ([below](#pacing)): each step lasts `STEP_TIME`; a step that would end after `TURN_WATCH` seconds of the turn is not shown, and the rest of the turn is shown as one fast-forward step to its end state, with one log line per remaining action (A17). Play is unchanged.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#computer-turns",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-145",
+    "document": "ui",
+    "requirement": "- **Fast-forward by the player**: one control jumps the current computer turn to its end state, one step; a second shows every computer turn at Instant until a human seat is to act. Neither skips an event at a turn change, and both keep every log line.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#computer-turns",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-146",
+    "document": "ui",
+    "requirement": "- **Since your last turn**: when a human turn begins after computer turns, the countries that changed owner since that seat's last turn are marked until its first action, and a one-line summary (countries lost and gained, events) opens the log at that point.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#computer-turns",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-147",
+    "document": "ui",
+    "requirement": "*(UI6 a.)* Speed is a presentation setting (core-rules.md, Options) that scales every timing constant by one factor: Slow 1.5, Normal 1, Fast 0.5, Instant 0. It can be changed during a game from the board.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-148",
+    "document": "ui",
+    "requirement": "| Constant | At Normal (proposed) | What it times |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-149",
+    "document": "ui",
+    "requirement": "| `STEP_TIME` | 0.5 s | one step of a computer turn |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-150",
+    "document": "ui",
+    "requirement": "| `TURN_WATCH` | 15 s (computer.md's proposal) | a computer turn's watch budget |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-151",
+    "document": "ui",
+    "requirement": "| `EXCHANGE_TIME` | 0.4 s | one exchange of a human's battle |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-152",
+    "document": "ui",
+    "requirement": "| `HUMAN_BATTLE_WATCH` | 5 s | a human's battle before it pauses for the player's choice (keep watching, finish now, stop) |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-153",
+    "document": "ui",
+    "requirement": "| `EVENT_HOLD` | 3 s | an event step, unless the player acts first |",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-154",
+    "document": "ui",
+    "requirement": "What follows at Normal, as arithmetic on computer.md's bounds:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-155",
+    "document": "ui",
+    "requirement": "- A turn with a trade, 3 placements, `B` battles, a move and a discard has 6 + 3B steps. 30 steps fit in 15 s at 0.5 s each, so every turn of up to 8 battles is shown whole; only a turn of 9 or 10 battles reaches the budget.",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-156",
+    "document": "ui",
+    "requirement": "- A turn of 2 battles with 3 placements and a move, and no trade or discard, is 10 steps: 5 s at Normal, 7.5 s at Slow. The predecessor's computer turns took 4.9 to 18.2 s at its slow speed, with a median of 7.6 s, in one of the owner's recorded games (`runs/E018`); over the four recorded games it made about 1.8 attacks a turn (computer.md, Quick turns).",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#pacing",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T32",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/computer.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/computer.test.ts"
+    ],
+    "assessment": "Basic computer driver is reusable; no complete phase animation/watch budget exists.",
+    "missing": "Four speeds including Instant, <=36 steps, <=3 per battle, skip controls, since-last-turn feedback and unchanged replay.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-157",
+    "document": "ui",
+    "requirement": "*(UW-5.)* Always visible on the board screen, in the compact form at the smallest window. One row per seat, in turn order (so rows do not jump), each with:",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#standings",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-158",
+    "document": "ui",
+    "requirement": "- colour, owner cue, name or seat number, human or computer and its level;",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#standings",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-159",
+    "document": "ui",
+    "requirement": "- countries, with a bar towards the domination threshold (35 of 46) when domination is on;",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#standings",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  },
+  {
+    "id": "ui-160",
+    "document": "ui",
+    "requirement": "- total armies, next turn's income, hand count, islands held, centres held (when centres are shown);",
+    "citation": "https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/ui.md#standings",
+    "confidence": "designed",
+    "ownerDecision": "Canonical malpaco design approved by owner 2026-10-12; owner alternatives/history remain upstream. This is not confirmation of predecessor behaviour.",
+    "tasks": [
+      "T30",
+      "T43",
+      "T48",
+      "T54"
+    ],
+    "code": [
+      "src/ui/generatedGame.ts",
+      "src/core/types.ts"
+    ],
+    "tests": [
+      "tests/ui/generated-game.test.ts",
+      "tests/core/turns.test.ts"
+    ],
+    "assessment": "State has turn/log data and UI feedback; complete stable standings and filtered public history are missing.",
+    "missing": "Origin marker/round limit, leader and transfer reasons, complete public log with selectable countries, no private leak.",
+    "disposition": "extend",
+    "questions": []
+  }
+]
