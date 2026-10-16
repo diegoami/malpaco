@@ -39,10 +39,13 @@ try {
       check(await node.locator('.count').textContent()===`${p.owner==='seat1'?'1':'2'} · ${p.armies}`,`Rendered owner/armies changed ${p.id}`);
       check(await node.locator('.cell').getAttribute('d')==='M'+p.polygon.map(q=>q.join(',')).join('L')+'Z',`Rendered polygon differs ${p.id}`);
       check(await node.locator('.cell').getAttribute('fill')===(p.owner==='seat1'?'#4d91ba':'#d99a55'),`Rendered ownership differs ${p.id}`);
+      check(await node.locator('.centre').count()===(p.production?1:0),`Rendered production marker differs ${p.id}`);
       await clickCountry(p);
       const expected=[...p.borders,...p.seaLanes].sort();
       const actual=await page.locator('.neighbor').evaluateAll(ns=>ns.map(n=>n.dataset.id).sort());
       check(isDeepStrictEqual(actual,expected),`${viewport.width}: click neighbours mismatch ${p.id}`);
+      check(await page.locator('.neighbor .cell').evaluateAll(ns=>ns.every(n=>{const s=getComputedStyle(n);return s.stroke==='rgb(245, 220, 130)'&&parseFloat(s.strokeWidth)>=1.5;})),`${viewport.width}: visible neighbour styling missing ${p.id}`);
+      check(await node.locator('.cell').evaluate(n=>{const s=getComputedStyle(n);return s.stroke==='rgb(255, 247, 191)'&&parseFloat(s.strokeWidth)>=2;}),`${viewport.width}: visible selected styling missing ${p.id}`);
       check(await node.getAttribute('aria-pressed')==='true',`${viewport.width}: click selection missing ${p.id}`);
       const other=board.provinces[(board.provinces.indexOf(p)+1)%46];
       await clickCountry(other);await node.focus();await page.keyboard.press('Space');

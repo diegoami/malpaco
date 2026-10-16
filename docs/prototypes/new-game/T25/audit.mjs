@@ -44,9 +44,10 @@ export function diagnostics(board) {
     changes[field]={current:before,proposed:after,added:after.filter(e=>!before.includes(e)),removed:before.filter(e=>!after.includes(e))};
   }
   const combined={provinces:board.provinces.map(p=>({...p,all:[...p.borders,...p.seaLanes]}))};
-  return {changes,countries:board.provinces.map(p=>({id:p.id,name:p.name,degree:p.borders.length+p.seaLanes.length,crossings:p.seaLanes.length})),
+  return {changes,countries:board.provinces.map(p=>{const before=source.provinces.find(q=>q.id===p.id);return {id:p.id,name:p.name,currentDegree:before.borders.length+before.seaLanes.length,degree:p.borders.length+p.seaLanes.length,crossings:p.seaLanes.length};}),
     islands:board.islands.map(i=>({id:i.id,name:i.name,currentBonus:source.islands.find(q=>q.id===i.id).bonus,proposedBonus:i.bonus,
       entrances:i.provinces.filter(id=>board.provinces.find(p=>p.id===id).seaLanes.length),
+      currentEntrances:source.islands.find(s=>s.id===i.id).provinces.filter(id=>source.provinces.find(p=>p.id===id).seaLanes.length),
       neighbours:[...new Set(i.provinces.flatMap(id=>board.provinces.find(p=>p.id===id).seaLanes).map(id=>board.provinces.find(p=>p.id===id).island))].sort(),
       currentLandCuts:cuts({provinces:source.provinces.filter(p=>p.island===i.id)},'borders'),
       proposedLandCuts:cuts({provinces:board.provinces.filter(p=>p.island===i.id)},'borders')})),
