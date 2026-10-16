@@ -1,0 +1,7 @@
+# T32 complete computer-turn flow
+
+The existing deterministic policy retains its N-attacks-per-turn budget. Explicit capture choices add at most N ordinary capture actions; bulk reinforcement, start-combat and final move/end give a 2N+3 ordinary-action bound for a complete turn. Histories restart the policy count after endTurn, friendlyMove and watchComputers. Decisions consume no RNG and replay uses recorded ordinary actions.
+
+The reference UI defaults to one human and three Normal computers. Explicit control=manual starts two human seats and lets fixtures manually drive any configured controller metadata; battle=legacy remains unchanged. Human actions are gated during automatic computer turns, with Save/Load/New game and presentation speed available. A separate cancellable timer driver applies one ordinary action per step and stops on human loss or finished games. Old callbacks/readers never affect a replacement game.
+
+Main implements Medium T32 in its isolated worktree under the standing owner choice; independent MiniMax M3 reviews. Parent acceptance runs actual negatives and disposable-mock positives with exact source restoration before production. All existing assertions/goldens remain; manual fixture URLs and the modern total-seat label are adjusted explicitly for the new default. Evidence is retained as individual safe files/archives to permit Git deduplication, without broad duplicate review bundles.
