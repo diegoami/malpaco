@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "name": "keyboard",
+      "exitCode": 1,
+      "expectedFailureSeen": true,
+      "mutantSha256": "081e86e8bc3fb99a45f58b2ca38c064bbcad4683210d3029ea384ff02f5ce58f"
+    },
+    {
+      "name": "neighbour",
+      "exitCode": 1,
+      "expectedFailureSeen": true,
+      "mutantSha256": "96980ae6b2cfdfa93b0b3729263a2f644b3c43b91962a8b0f517dfe34bac9dd2"
+    },
+    {
+      "name": "rendered-name",
+      "exitCode": 1,
+      "expectedFailureSeen": true,
+      "mutantSha256": "573946adf282d5174bb3a87f3d0999dceb207f0cf1a04b3c3043e0aeb6f3cd1b"
+    }
+  ],
+  "originalSha256": "74f1a04a732a56397c565bb6945a6158a1c6a83a483cfcf41180313fda7843b2",
+  "originalUnchanged": true
+}
