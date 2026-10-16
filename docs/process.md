@@ -174,6 +174,51 @@ run, or the owner's decision with its basis. Plausible rules without either stay
 - The original files never enter the repository. CI fetches them from a private fixtures
   repository holding the whole corpus; tests find fixtures by name; local tests skip without them. (L17) A *model-driven run* of the original is a carve-out of this (§10): a known-good hash table in a finding, a gate that refuses any run record off that table, then a `model-driven` task (`docs/tasks/TEMPLATE.md`); it corroborates the owner's runs, never replaces them, and what it shows amends `spec/` and `findings/` one claim at a time, never in bulk. (L63)
 
+### 11.1 Requesting an archaeology investigation
+
+Owner-defined handoff, 2026-10-16 (L71): use an issue in
+[`diegoami/isle-wars-archaeology`](https://github.com/diegoami/isle-wars-archaeology/issues)
+when an implementation question needs exploration of the original game or static
+analysis/decompilation. Check existing findings and issues first; extend an existing
+request when it already covers the question. Research never decides malpaco's design.
+
+The main session files a request with these fields:
+
+- **Question:** bounded questions, separating observed behaviour from hypotheses.
+- **Consumer:** links to malpaco's issue/task and the implementation decision the
+  answer would inform; say whether work is blocked or can continue independently.
+- **Existing evidence:** reviewed finding/design links and gaps; do not ask another
+  session to repeat an answered investigation.
+- **Method:** inspect existing static/decompiled evidence first where useful;
+  request controlled exploration/recorded play for appearance, interaction or gaps
+  static evidence cannot resolve. A fixed table or bitmap is a possible answer;
+  do not assume a procedural algorithm exists.
+- **Expected result:** per-question answers with source identifiers, confidence,
+  reproducible commands or run provenance, measured results where applicable, and
+  explicit unknowns. Include bounded completion criteria and relevant negative cases.
+- **Boundaries:** no original code, assets, screenshots or decompiled excerpts enter
+  malpaco. Follow archaeology's own rules for local originals and published evidence.
+
+Use upstream `question` and `triage:needed` labels when available; the receiving
+session assigns any task contract, priority, models and worktree under its own
+process. Cross-link the request from the consuming malpaco issue. When the owner
+authorizes a handoff to a reachable archaeology session, send that session the
+issue URL and bounded request; keep the issue as the durable record and record
+any acknowledgment there. Filing an issue alone does not dispatch a session or
+start a model run. Track progress in issue labels
+and comments, not copied status tables; never claim a request is running without
+a receiving session's acknowledgment.
+
+For the return handoff, require reviewed findings in archaeology, with stable
+commit/section links and confidence (`confirmed`, `derived`, or still unknown).
+The main session checks affected malpaco claims and routes each result as a doc
+fix, bug, task-contract amendment or owner design question (§11). Import only
+permitted behavioural/design conclusions and citations, preserving original work
+(rule 19). Record what was adopted or deliberately differed from, with reasons.
+An unanswered request is never evidence, and unknown behaviour is never silently
+promoted to a confirmed rule. Readiness and blocking decisions remain explicit on
+the consuming issue.
+
 ## 12. Delegating decisions to Jev
 
 Jev takes a decision only when it recurs over many items, its answers are known up front, and a
