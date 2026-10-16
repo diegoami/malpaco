@@ -1,0 +1,5 @@
+# T31 versioned deterministic replay acceptance
+
+Pinned design: archaeology commit ae298e37c2f5177039e55767607f9345b6cb0e7a, core-rules.md Stored files/Randomness and approved taskT31. Saves identify format, board generator, rules and action schema. Rebuild from original settings/seed and ordinary actions, including pending captures, final friendly moves, Watch/Stop and terminal states; never load arbitrary rule/RNG snapshots. Unknown versions and illegal histories fail before replacing a live match. Preserve old supported files through their original path or reject clearly; never reinterpret a seed under a new generator.
+
+Main prepares actual-negative/disposable-mock-positive acceptance before production. Native Sol High implements HardT31 under renewed owner authorization, MiniMax M3 independently reviews. Existing legacy codecs/routes/presets/tests/goldens stay protected; new reference UI uses explicit control=manual in fixtures. Default1human3Normalcomputer policy/scheduling remainsT32.
