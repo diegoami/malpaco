@@ -24,9 +24,10 @@ generator is an implementation, not a reason to substitute that value for the
 approved range. Preserve existing rule constants where they agree with the design.
 
 Construct geography and topology together. Shared land borders must agree with
-legal adjacency, and sea routes must meet the middle of the intended countries'
-facing exposed coastlines. T24 makes the exact construction and tolerances
-reviewable. Geometry may constrain board construction, but combat and movement
+legal adjacency. For the selected A reference and dependent work, the owner-approved
+T62 contract replaces the old midpoint prescription with unique exposed-coast
+attachment, inward continuation and explicit route-clearance/separation limits.
+All unaffected T24 construction and usability limits remain unchanged. Geometry may constrain board construction, but combat and movement
 read declared adjacency, never coordinates. The G prototype is visual evidence;
 its degree-six countries cannot silently become the degree-2–5 production graph.
 
