@@ -1,0 +1,33 @@
+{
+  "approaches": [
+    {
+      "id": "fixture-a"
+    },
+    {
+      "id": "fixture-b"
+    },
+    {
+      "id": "fixture-c"
+    }
+  ],
+  "entries": [
+    {
+      "id": "baseline",
+      "role": "baseline",
+      "board": "input/reference-board.json",
+      "html": "input/reference.html"
+    },
+    {
+      "id": "mock-a",
+      "role": "candidate",
+      "board": "input/reference-board.json",
+      "html": "preflight/mock-a.html"
+    },
+    {
+      "id": "mock-b",
+      "role": "candidate",
+      "board": "preflight/mock-b.json",
+      "html": "preflight/mock-b.html"
+    }
+  ]
+}

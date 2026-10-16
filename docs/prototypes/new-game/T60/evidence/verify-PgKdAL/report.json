@@ -1,0 +1,3896 @@
+{
+  "accepted": false,
+  "failures": [
+    "mock-a: pinned identities/graph/opening changed",
+    "mock-a: duplicate geometry"
+  ],
+  "results": [
+    {
+      "id": "baseline",
+      "role": "baseline",
+      "graphSha256": "499514901b8e3e0917e73cb5728499cbf431152ecd2015b5c7397a290179b993",
+      "geometrySha256": "adb79a57b5718738f8f1f54da3dba47edd041fa71af2e8829902b886b12ee5c2",
+      "metrics": {
+        "units": "board coordinates; compare within the same 800x460 frame",
+        "limitations": "Distance and intersection proxies do not prove recognition or attractiveness. Shared-country route contacts may be intentional; inspect the pictures.",
+        "landArea": 228143.73388671875,
+        "routes": [
+          {
+            "edge": "province_4|province_43",
+            "from": "Wind dale",
+            "to": "River gate",
+            "length": 83.96339168763124,
+            "direct": 83.96339168763124,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 127.4713364777577,
+            "endpoints": [
+              {
+                "country": "province_43",
+                "nearestCompetingRegion": {
+                  "id": "province_18",
+                  "name": "Fort town",
+                  "distance": 55.70573705175384
+                }
+              },
+              {
+                "country": "province_4",
+                "nearestCompetingRegion": {
+                  "id": "province_8",
+                  "name": "North rest",
+                  "distance": 52.07607420169825
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_38|province_8",
+            "from": "North rest",
+            "to": "River keep",
+            "length": 218.33519365422396,
+            "direct": 195.77158988308383,
+            "detourRatio": 1.1152547404075088,
+            "bends": 1,
+            "unrelatedCoastClearance": 22.88177771831592,
+            "endpoints": [
+              {
+                "country": "province_8",
+                "nearestCompetingRegion": {
+                  "id": "province_30",
+                  "name": "New port",
+                  "distance": 58.64937947336768
+                }
+              },
+              {
+                "country": "province_38",
+                "nearestCompetingRegion": {
+                  "id": "province_45",
+                  "name": "Dark ford",
+                  "distance": 43.562744140625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_1|province_2",
+            "from": "South rest",
+            "to": "Stone watch",
+            "length": 224.48802380663028,
+            "direct": 171.6552777751542,
+            "detourRatio": 1.3077839884461928,
+            "bends": 2,
+            "unrelatedCoastClearance": 1.5058101185471147,
+            "endpoints": [
+              {
+                "country": "province_2",
+                "nearestCompetingRegion": {
+                  "id": "province_16",
+                  "name": "High shore",
+                  "distance": 52.123046875
+                }
+              },
+              {
+                "country": "province_1",
+                "nearestCompetingRegion": {
+                  "id": "province_9",
+                  "name": "Blue peak",
+                  "distance": 51.41552734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_19|province_24",
+            "from": "West haven",
+            "to": "New fell",
+            "length": 115.56957702516159,
+            "direct": 115.56957702516159,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 57.44746254208307,
+            "endpoints": [
+              {
+                "country": "province_19",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 51.334228515625
+                }
+              },
+              {
+                "country": "province_24",
+                "nearestCompetingRegion": {
+                  "id": "province_29",
+                  "name": "South fell",
+                  "distance": 58.677734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_12|province_34",
+            "from": "Wind gate",
+            "to": "Red field",
+            "length": 61.68203543457583,
+            "direct": 61.68203543457583,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 61.30024605533634,
+            "endpoints": [
+              {
+                "country": "province_12",
+                "nearestCompetingRegion": {
+                  "id": "province_5",
+                  "name": "Gold point",
+                  "distance": 51.6865234375
+                }
+              },
+              {
+                "country": "province_34",
+                "nearestCompetingRegion": {
+                  "id": "province_39",
+                  "name": "New rock",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_11|province_44",
+            "from": "Port ridge",
+            "to": "Wind town",
+            "length": 75.12946479949527,
+            "direct": 75.12946479949527,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 33.48376702910646,
+            "endpoints": [
+              {
+                "country": "province_44",
+                "nearestCompetingRegion": {
+                  "id": "province_23",
+                  "name": "Gold town",
+                  "distance": 49.53125
+                }
+              },
+              {
+                "country": "province_11",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.1142578125
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_18|province_2",
+            "from": "Fort town",
+            "to": "South rest",
+            "length": 61.1000791368419,
+            "direct": 61.1000791368419,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 79.88493515947243,
+            "endpoints": [
+              {
+                "country": "province_18",
+                "nearestCompetingRegion": {
+                  "id": "province_43",
+                  "name": "Wind dale",
+                  "distance": 53.302225934752386
+                }
+              },
+              {
+                "country": "province_2",
+                "nearestCompetingRegion": {
+                  "id": "province_16",
+                  "name": "High shore",
+                  "distance": 52.123046875
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_10|province_16",
+            "from": "High shore",
+            "to": "Lower field",
+            "length": 5.822177685390527,
+            "direct": 5.822177685390527,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 135.13104376479214,
+            "endpoints": [
+              {
+                "country": "province_16",
+                "nearestCompetingRegion": {
+                  "id": "province_2",
+                  "name": "South rest",
+                  "distance": 64
+                }
+              },
+              {
+                "country": "province_10",
+                "nearestCompetingRegion": {
+                  "id": "province_0",
+                  "name": "Low moor",
+                  "distance": 42.04759208325727
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_19|province_8",
+            "from": "North rest",
+            "to": "West haven",
+            "length": 96.92895187165612,
+            "direct": 71.54862939280333,
+            "detourRatio": 1.3547282833262164,
+            "bends": 1,
+            "unrelatedCoastClearance": 106.10630564975467,
+            "endpoints": [
+              {
+                "country": "province_8",
+                "nearestCompetingRegion": {
+                  "id": "province_30",
+                  "name": "New port",
+                  "distance": 63.953107821277925
+                }
+              },
+              {
+                "country": "province_19",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 58.6796875
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_1|province_34",
+            "from": "Stone watch",
+            "to": "Red field",
+            "length": 61.77708573457843,
+            "direct": 61.77708573457843,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 50.918033334654105,
+            "endpoints": [
+              {
+                "country": "province_1",
+                "nearestCompetingRegion": {
+                  "id": "province_9",
+                  "name": "Blue peak",
+                  "distance": 51.41552734375
+                }
+              },
+              {
+                "country": "province_34",
+                "nearestCompetingRegion": {
+                  "id": "province_39",
+                  "name": "New rock",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_24|province_45",
+            "from": "Dark ford",
+            "to": "New fell",
+            "length": 119.59922269538563,
+            "direct": 96.81408573868895,
+            "detourRatio": 1.2353493996544687,
+            "bends": 1,
+            "unrelatedCoastClearance": 103.87749602810474,
+            "endpoints": [
+              {
+                "country": "province_45",
+                "nearestCompetingRegion": {
+                  "id": "province_28",
+                  "name": "North town",
+                  "distance": 64
+                }
+              },
+              {
+                "country": "province_24",
+                "nearestCompetingRegion": {
+                  "id": "province_29",
+                  "name": "South fell",
+                  "distance": 58.677734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_11|province_29",
+            "from": "South fell",
+            "to": "Wind town",
+            "length": 69.29301250105213,
+            "direct": 69.29301250105213,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 50.54275303203327,
+            "endpoints": [
+              {
+                "country": "province_29",
+                "nearestCompetingRegion": {
+                  "id": "province_24",
+                  "name": "New fell",
+                  "distance": 51.41552734375
+                }
+              },
+              {
+                "country": "province_11",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.1142578125
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_39|province_5",
+            "from": "Gold point",
+            "to": "New rock",
+            "length": 62.65953886052438,
+            "direct": 62.65953886052438,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 151.48628061088496,
+            "endpoints": [
+              {
+                "country": "province_5",
+                "nearestCompetingRegion": {
+                  "id": "province_12",
+                  "name": "Wind gate",
+                  "distance": 52.616943359375
+                }
+              },
+              {
+                "country": "province_39",
+                "nearestCompetingRegion": {
+                  "id": "province_34",
+                  "name": "Red field",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_3|province_7",
+            "from": "Upper ridge",
+            "to": "Rock bay",
+            "length": 25.05607032111989,
+            "direct": 25.05607032111989,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 154.84319516495384,
+            "endpoints": [
+              {
+                "country": "province_3",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 30.01226994808798
+                }
+              },
+              {
+                "country": "province_7",
+                "nearestCompetingRegion": {
+                  "id": "province_26",
+                  "name": "South ridge",
+                  "distance": 27
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_13|province_31",
+            "from": "Bay ford",
+            "to": "New glen",
+            "length": 50.658872821218544,
+            "direct": 50.658872821218544,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 151.83948484045033,
+            "endpoints": [
+              {
+                "country": "province_13",
+                "nearestCompetingRegion": {
+                  "id": "province_17",
+                  "name": "Moon point",
+                  "distance": 51.334228515625
+                }
+              },
+              {
+                "country": "province_31",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.123046875
+                }
+              }
+            ]
+          }
+        ],
+        "interactions": [
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_38|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 152.00864225313111
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_1|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 124.90268015870092
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 209.61691868447176
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 278.39371165288554
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 376.0320650713078
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 109.09698750159903
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 279.7546265707454
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.84097185901445
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 237.4159954060722
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 294.78697678600025
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 358.75640842896183
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 382.00749089572463
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 271.1119177156448
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 493.29044140709743
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_1|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 201.66944214273275
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 29.26960971057598
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 262.4511927605643
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 202.10752197642998
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 221.0189862656374
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 374.3139610096519
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_19|province_8"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 201.66944214273275
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 74.64740853571672
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 174.6147842811897
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 344.1594475074841
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 169.54374721118023
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 281.13358057236763
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 196.4973968938281
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 32.767088373965706
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 248.34254394455363
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_18|province_2"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.92179446146218
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 164.45188424277936
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_1|province_34"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 301.5876105389875
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 270.06665843824555
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 131.97585912964266
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 85.82010003238538
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 436.8899331742761
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 252.33358641124738
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 157.66305774757117
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 253.8905584164965
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 386.3025710789903
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_19|province_8"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 14.925114660445628
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 196.4973968938281
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_24|province_45"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 109.9340661838186
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 323.7252473089844
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 146.6041823805499
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 189.61487181294964
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 272.8317055517232
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 153.79223293614717
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 108.05818781045437
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 226.16082788951374
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_1|province_34"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 350.993737800685
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 304.2145530038914
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 99.65763187058491
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 119.5186164472604
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 464.5147181356467
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 371.73881917941446
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 440.59597117365144
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 186.1964773502518
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 248.34254394455363
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 159.37287620936218
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_11|province_29"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 290.3610344060175
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 138.61061851262738
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 116.58471712816892
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.92179446146218
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 175.47414883565008
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 147.98413387650962
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 369.19341750704916
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 377.6220297526649
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 254.46968533049954
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 219.36050067110207
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 538.3393048465233
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 329.20446611048436
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 169.30973561108289
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 497.2141803540821
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 467.5901710392663
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 165.47813113818802
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 281.06844316976316
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 632.0889748705862
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 164.45188424277936
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 122.87991654590715
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 163.7630877506176
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 315.2520830059933
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 146.83002139070499
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 305.84954646877327
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 301.5876105389875
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 270.06665843824555
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 99.65763187058491
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 85.82010003238538
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 436.8899331742761
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 110.86450465823584
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 405.6971575560557
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 222.63082252322826
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 159.99776455874758
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 334.6590513567541
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 166.0507019878425
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 116.58471712816892
+          },
+          {
+            "routes": [
+              "province_39|province_5",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 176.7104813210505
+          },
+          {
+            "routes": [
+              "province_39|province_5",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 474.51693301642524
+          },
+          {
+            "routes": [
+              "province_3|province_7",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 329.2832807411198
+          }
+        ],
+        "totalRouteLength": 1332.062698035486,
+        "totalBends": 5
+      },
+      "constraints": {
+        "counts": [],
+        "symmetry": [],
+        "connectivity": [],
+        "degree": [],
+        "cells": [],
+        "borders": [],
+        "crossings": [],
+        "coasts": [],
+        "intersections": [],
+        "bonus": [],
+        "fortress": [],
+        "concentration": [],
+        "remoteness": [],
+        "crowding": [],
+        "labels": []
+      }
+    },
+    {
+      "id": "mock-a",
+      "role": "candidate",
+      "graphSha256": "b82d730aa1e3bba1eb4d1523f722a2825d1ac535bff40b835d092f963c5e2c16",
+      "geometrySha256": "adb79a57b5718738f8f1f54da3dba47edd041fa71af2e8829902b886b12ee5c2",
+      "metrics": {
+        "units": "board coordinates; compare within the same 800x460 frame",
+        "limitations": "Distance and intersection proxies do not prove recognition or attractiveness. Shared-country route contacts may be intentional; inspect the pictures.",
+        "landArea": 228143.73388671875,
+        "routes": [
+          {
+            "edge": "province_4|province_43",
+            "from": "Wind dale",
+            "to": "River gate",
+            "length": 83.96339168763124,
+            "direct": 83.96339168763124,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 127.4713364777577,
+            "endpoints": [
+              {
+                "country": "province_43",
+                "nearestCompetingRegion": {
+                  "id": "province_18",
+                  "name": "Fort town",
+                  "distance": 55.70573705175384
+                }
+              },
+              {
+                "country": "province_4",
+                "nearestCompetingRegion": {
+                  "id": "province_8",
+                  "name": "North rest",
+                  "distance": 52.07607420169825
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_38|province_8",
+            "from": "North rest",
+            "to": "River keep",
+            "length": 218.33519365422396,
+            "direct": 195.77158988308383,
+            "detourRatio": 1.1152547404075088,
+            "bends": 1,
+            "unrelatedCoastClearance": 22.88177771831592,
+            "endpoints": [
+              {
+                "country": "province_8",
+                "nearestCompetingRegion": {
+                  "id": "province_30",
+                  "name": "New port",
+                  "distance": 58.64937947336768
+                }
+              },
+              {
+                "country": "province_38",
+                "nearestCompetingRegion": {
+                  "id": "province_45",
+                  "name": "Dark ford",
+                  "distance": 43.562744140625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_1|province_2",
+            "from": "South rest",
+            "to": "Stone watch",
+            "length": 224.48802380663028,
+            "direct": 171.6552777751542,
+            "detourRatio": 1.3077839884461928,
+            "bends": 2,
+            "unrelatedCoastClearance": 1.5058101185471147,
+            "endpoints": [
+              {
+                "country": "province_2",
+                "nearestCompetingRegion": {
+                  "id": "province_16",
+                  "name": "High shore",
+                  "distance": 52.123046875
+                }
+              },
+              {
+                "country": "province_1",
+                "nearestCompetingRegion": {
+                  "id": "province_9",
+                  "name": "Blue peak",
+                  "distance": 51.41552734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_19|province_24",
+            "from": "West haven",
+            "to": "New fell",
+            "length": 115.56957702516159,
+            "direct": 115.56957702516159,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 57.44746254208307,
+            "endpoints": [
+              {
+                "country": "province_19",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 51.334228515625
+                }
+              },
+              {
+                "country": "province_24",
+                "nearestCompetingRegion": {
+                  "id": "province_29",
+                  "name": "South fell",
+                  "distance": 58.677734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_12|province_34",
+            "from": "Wind gate",
+            "to": "Red field",
+            "length": 61.68203543457583,
+            "direct": 61.68203543457583,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 61.30024605533634,
+            "endpoints": [
+              {
+                "country": "province_12",
+                "nearestCompetingRegion": {
+                  "id": "province_5",
+                  "name": "Gold point",
+                  "distance": 51.6865234375
+                }
+              },
+              {
+                "country": "province_34",
+                "nearestCompetingRegion": {
+                  "id": "province_39",
+                  "name": "New rock",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_11|province_44",
+            "from": "Port ridge",
+            "to": "Wind town",
+            "length": 75.12946479949527,
+            "direct": 75.12946479949527,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 33.48376702910646,
+            "endpoints": [
+              {
+                "country": "province_44",
+                "nearestCompetingRegion": {
+                  "id": "province_23",
+                  "name": "Gold town",
+                  "distance": 49.53125
+                }
+              },
+              {
+                "country": "province_11",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.1142578125
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_18|province_2",
+            "from": "Fort town",
+            "to": "South rest",
+            "length": 61.1000791368419,
+            "direct": 61.1000791368419,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 79.88493515947243,
+            "endpoints": [
+              {
+                "country": "province_18",
+                "nearestCompetingRegion": {
+                  "id": "province_43",
+                  "name": "Wind dale",
+                  "distance": 53.302225934752386
+                }
+              },
+              {
+                "country": "province_2",
+                "nearestCompetingRegion": {
+                  "id": "province_16",
+                  "name": "High shore",
+                  "distance": 52.123046875
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_10|province_16",
+            "from": "High shore",
+            "to": "Lower field",
+            "length": 5.822177685390527,
+            "direct": 5.822177685390527,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 135.13104376479214,
+            "endpoints": [
+              {
+                "country": "province_16",
+                "nearestCompetingRegion": {
+                  "id": "province_2",
+                  "name": "South rest",
+                  "distance": 64
+                }
+              },
+              {
+                "country": "province_10",
+                "nearestCompetingRegion": {
+                  "id": "province_0",
+                  "name": "Low moor",
+                  "distance": 42.04759208325727
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_19|province_8",
+            "from": "North rest",
+            "to": "West haven",
+            "length": 96.92895187165612,
+            "direct": 71.54862939280333,
+            "detourRatio": 1.3547282833262164,
+            "bends": 1,
+            "unrelatedCoastClearance": 106.10630564975467,
+            "endpoints": [
+              {
+                "country": "province_8",
+                "nearestCompetingRegion": {
+                  "id": "province_30",
+                  "name": "New port",
+                  "distance": 63.953107821277925
+                }
+              },
+              {
+                "country": "province_19",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 58.6796875
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_1|province_34",
+            "from": "Stone watch",
+            "to": "Red field",
+            "length": 61.77708573457843,
+            "direct": 61.77708573457843,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 50.918033334654105,
+            "endpoints": [
+              {
+                "country": "province_1",
+                "nearestCompetingRegion": {
+                  "id": "province_9",
+                  "name": "Blue peak",
+                  "distance": 51.41552734375
+                }
+              },
+              {
+                "country": "province_34",
+                "nearestCompetingRegion": {
+                  "id": "province_39",
+                  "name": "New rock",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_24|province_45",
+            "from": "Dark ford",
+            "to": "New fell",
+            "length": 119.59922269538563,
+            "direct": 96.81408573868895,
+            "detourRatio": 1.2353493996544687,
+            "bends": 1,
+            "unrelatedCoastClearance": 103.87749602810474,
+            "endpoints": [
+              {
+                "country": "province_45",
+                "nearestCompetingRegion": {
+                  "id": "province_28",
+                  "name": "North town",
+                  "distance": 64
+                }
+              },
+              {
+                "country": "province_24",
+                "nearestCompetingRegion": {
+                  "id": "province_29",
+                  "name": "South fell",
+                  "distance": 58.677734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_11|province_29",
+            "from": "South fell",
+            "to": "Wind town",
+            "length": 69.29301250105213,
+            "direct": 69.29301250105213,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 50.54275303203327,
+            "endpoints": [
+              {
+                "country": "province_29",
+                "nearestCompetingRegion": {
+                  "id": "province_24",
+                  "name": "New fell",
+                  "distance": 51.41552734375
+                }
+              },
+              {
+                "country": "province_11",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.1142578125
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_39|province_5",
+            "from": "Gold point",
+            "to": "New rock",
+            "length": 62.65953886052438,
+            "direct": 62.65953886052438,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 151.48628061088496,
+            "endpoints": [
+              {
+                "country": "province_5",
+                "nearestCompetingRegion": {
+                  "id": "province_12",
+                  "name": "Wind gate",
+                  "distance": 52.616943359375
+                }
+              },
+              {
+                "country": "province_39",
+                "nearestCompetingRegion": {
+                  "id": "province_34",
+                  "name": "Red field",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_3|province_7",
+            "from": "Upper ridge",
+            "to": "Rock bay",
+            "length": 25.05607032111989,
+            "direct": 25.05607032111989,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 154.84319516495384,
+            "endpoints": [
+              {
+                "country": "province_3",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 30.01226994808798
+                }
+              },
+              {
+                "country": "province_7",
+                "nearestCompetingRegion": {
+                  "id": "province_26",
+                  "name": "South ridge",
+                  "distance": 27
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_13|province_31",
+            "from": "Bay ford",
+            "to": "New glen",
+            "length": 50.658872821218544,
+            "direct": 50.658872821218544,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 151.83948484045033,
+            "endpoints": [
+              {
+                "country": "province_13",
+                "nearestCompetingRegion": {
+                  "id": "province_17",
+                  "name": "Moon point",
+                  "distance": 51.334228515625
+                }
+              },
+              {
+                "country": "province_31",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.123046875
+                }
+              }
+            ]
+          }
+        ],
+        "interactions": [
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_38|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 152.00864225313111
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_1|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 124.90268015870092
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 209.61691868447176
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 278.39371165288554
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 376.0320650713078
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 109.09698750159903
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 279.7546265707454
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.84097185901445
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 237.4159954060722
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 294.78697678600025
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 358.75640842896183
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 382.00749089572463
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 271.1119177156448
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 493.29044140709743
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_1|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 201.66944214273275
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 29.26960971057598
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 262.4511927605643
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 202.10752197642998
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 221.0189862656374
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 374.3139610096519
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_19|province_8"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 201.66944214273275
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 74.64740853571672
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 174.6147842811897
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 344.1594475074841
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 169.54374721118023
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 281.13358057236763
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 196.4973968938281
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 32.767088373965706
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 248.34254394455363
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_18|province_2"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.92179446146218
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 164.45188424277936
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_1|province_34"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 301.5876105389875
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 270.06665843824555
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 131.97585912964266
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 85.82010003238538
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 436.8899331742761
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 252.33358641124738
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 157.66305774757117
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 253.8905584164965
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 386.3025710789903
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_19|province_8"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 14.925114660445628
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 196.4973968938281
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_24|province_45"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 109.9340661838186
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 323.7252473089844
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 146.6041823805499
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 189.61487181294964
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 272.8317055517232
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 153.79223293614717
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 108.05818781045437
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 226.16082788951374
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_1|province_34"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 350.993737800685
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 304.2145530038914
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 99.65763187058491
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 119.5186164472604
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 464.5147181356467
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 371.73881917941446
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 440.59597117365144
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 186.1964773502518
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 248.34254394455363
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 159.37287620936218
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_11|province_29"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 290.3610344060175
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 138.61061851262738
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 116.58471712816892
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.92179446146218
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 175.47414883565008
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 147.98413387650962
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 369.19341750704916
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 377.6220297526649
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 254.46968533049954
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 219.36050067110207
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 538.3393048465233
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 329.20446611048436
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 169.30973561108289
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 497.2141803540821
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 467.5901710392663
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 165.47813113818802
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 281.06844316976316
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 632.0889748705862
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 164.45188424277936
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 122.87991654590715
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 163.7630877506176
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 315.2520830059933
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 146.83002139070499
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 305.84954646877327
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 301.5876105389875
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 270.06665843824555
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 99.65763187058491
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 85.82010003238538
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 436.8899331742761
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 110.86450465823584
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 405.6971575560557
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 222.63082252322826
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 159.99776455874758
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 334.6590513567541
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 166.0507019878425
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 116.58471712816892
+          },
+          {
+            "routes": [
+              "province_39|province_5",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 176.7104813210505
+          },
+          {
+            "routes": [
+              "province_39|province_5",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 474.51693301642524
+          },
+          {
+            "routes": [
+              "province_3|province_7",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 329.2832807411198
+          }
+        ],
+        "totalRouteLength": 1332.062698035486,
+        "totalBends": 5
+      },
+      "constraints": {
+        "counts": [],
+        "symmetry": [],
+        "connectivity": [],
+        "degree": [
+          "Degree province_30=1"
+        ],
+        "cells": [],
+        "borders": [
+          "Declared/shared boundary mismatch province_4",
+          "Declared/shared boundary mismatch province_30"
+        ],
+        "crossings": [],
+        "coasts": [],
+        "intersections": [],
+        "bonus": [],
+        "fortress": [],
+        "concentration": [],
+        "remoteness": [],
+        "crowding": [],
+        "labels": []
+      }
+    },
+    {
+      "id": "mock-b",
+      "role": "candidate",
+      "graphSha256": "499514901b8e3e0917e73cb5728499cbf431152ecd2015b5c7397a290179b993",
+      "geometrySha256": "2338c11568caaa58a29346756f83fcbdafc25cbf03fa64ae10634492271ae189",
+      "metrics": {
+        "units": "board coordinates; compare within the same 800x460 frame",
+        "limitations": "Distance and intersection proxies do not prove recognition or attractiveness. Shared-country route contacts may be intentional; inspect the pictures.",
+        "landArea": 228143.73388671875,
+        "routes": [
+          {
+            "edge": "province_4|province_43",
+            "from": "Wind dale",
+            "to": "River gate",
+            "length": 83.96339168763124,
+            "direct": 83.96339168763124,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 127.4713364777577,
+            "endpoints": [
+              {
+                "country": "province_43",
+                "nearestCompetingRegion": {
+                  "id": "province_18",
+                  "name": "Fort town",
+                  "distance": 55.70573705175384
+                }
+              },
+              {
+                "country": "province_4",
+                "nearestCompetingRegion": {
+                  "id": "province_8",
+                  "name": "North rest",
+                  "distance": 52.07607420169825
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_38|province_8",
+            "from": "North rest",
+            "to": "River keep",
+            "length": 218.33519365422396,
+            "direct": 195.77158988308383,
+            "detourRatio": 1.1152547404075088,
+            "bends": 1,
+            "unrelatedCoastClearance": 22.88177771831592,
+            "endpoints": [
+              {
+                "country": "province_8",
+                "nearestCompetingRegion": {
+                  "id": "province_30",
+                  "name": "New port",
+                  "distance": 58.64937947336768
+                }
+              },
+              {
+                "country": "province_38",
+                "nearestCompetingRegion": {
+                  "id": "province_45",
+                  "name": "Dark ford",
+                  "distance": 43.562744140625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_1|province_2",
+            "from": "South rest",
+            "to": "Stone watch",
+            "length": 224.48802380663028,
+            "direct": 171.6552777751542,
+            "detourRatio": 1.3077839884461928,
+            "bends": 2,
+            "unrelatedCoastClearance": 1.5058101185471147,
+            "endpoints": [
+              {
+                "country": "province_2",
+                "nearestCompetingRegion": {
+                  "id": "province_16",
+                  "name": "High shore",
+                  "distance": 52.123046875
+                }
+              },
+              {
+                "country": "province_1",
+                "nearestCompetingRegion": {
+                  "id": "province_9",
+                  "name": "Blue peak",
+                  "distance": 51.41552734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_19|province_24",
+            "from": "West haven",
+            "to": "New fell",
+            "length": 115.56957702516159,
+            "direct": 115.56957702516159,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 57.44746254208307,
+            "endpoints": [
+              {
+                "country": "province_19",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 51.334228515625
+                }
+              },
+              {
+                "country": "province_24",
+                "nearestCompetingRegion": {
+                  "id": "province_29",
+                  "name": "South fell",
+                  "distance": 58.677734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_12|province_34",
+            "from": "Wind gate",
+            "to": "Red field",
+            "length": 61.68203543457583,
+            "direct": 61.68203543457583,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 61.30024605533634,
+            "endpoints": [
+              {
+                "country": "province_12",
+                "nearestCompetingRegion": {
+                  "id": "province_5",
+                  "name": "Gold point",
+                  "distance": 51.6865234375
+                }
+              },
+              {
+                "country": "province_34",
+                "nearestCompetingRegion": {
+                  "id": "province_39",
+                  "name": "New rock",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_11|province_44",
+            "from": "Port ridge",
+            "to": "Wind town",
+            "length": 75.12946479949527,
+            "direct": 75.12946479949527,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 33.48376702910646,
+            "endpoints": [
+              {
+                "country": "province_44",
+                "nearestCompetingRegion": {
+                  "id": "province_23",
+                  "name": "Gold town",
+                  "distance": 49.53125
+                }
+              },
+              {
+                "country": "province_11",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.1142578125
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_18|province_2",
+            "from": "Fort town",
+            "to": "South rest",
+            "length": 61.1000791368419,
+            "direct": 61.1000791368419,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 79.88493515947243,
+            "endpoints": [
+              {
+                "country": "province_18",
+                "nearestCompetingRegion": {
+                  "id": "province_43",
+                  "name": "Wind dale",
+                  "distance": 53.302225934752386
+                }
+              },
+              {
+                "country": "province_2",
+                "nearestCompetingRegion": {
+                  "id": "province_16",
+                  "name": "High shore",
+                  "distance": 52.123046875
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_10|province_16",
+            "from": "High shore",
+            "to": "Lower field",
+            "length": 5.822177685390527,
+            "direct": 5.822177685390527,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 135.13104376479214,
+            "endpoints": [
+              {
+                "country": "province_16",
+                "nearestCompetingRegion": {
+                  "id": "province_2",
+                  "name": "South rest",
+                  "distance": 64
+                }
+              },
+              {
+                "country": "province_10",
+                "nearestCompetingRegion": {
+                  "id": "province_0",
+                  "name": "Low moor",
+                  "distance": 42.04759208325727
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_19|province_8",
+            "from": "North rest",
+            "to": "West haven",
+            "length": 96.92895187165612,
+            "direct": 71.54862939280333,
+            "detourRatio": 1.3547282833262164,
+            "bends": 1,
+            "unrelatedCoastClearance": 106.10630564975467,
+            "endpoints": [
+              {
+                "country": "province_8",
+                "nearestCompetingRegion": {
+                  "id": "province_30",
+                  "name": "New port",
+                  "distance": 63.953107821277925
+                }
+              },
+              {
+                "country": "province_19",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 58.6796875
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_1|province_34",
+            "from": "Stone watch",
+            "to": "Red field",
+            "length": 61.77708573457843,
+            "direct": 61.77708573457843,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 50.918033334654105,
+            "endpoints": [
+              {
+                "country": "province_1",
+                "nearestCompetingRegion": {
+                  "id": "province_9",
+                  "name": "Blue peak",
+                  "distance": 51.41552734375
+                }
+              },
+              {
+                "country": "province_34",
+                "nearestCompetingRegion": {
+                  "id": "province_39",
+                  "name": "New rock",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_24|province_45",
+            "from": "Dark ford",
+            "to": "New fell",
+            "length": 119.59922269538563,
+            "direct": 96.81408573868895,
+            "detourRatio": 1.2353493996544687,
+            "bends": 1,
+            "unrelatedCoastClearance": 103.87749602810474,
+            "endpoints": [
+              {
+                "country": "province_45",
+                "nearestCompetingRegion": {
+                  "id": "province_28",
+                  "name": "North town",
+                  "distance": 64
+                }
+              },
+              {
+                "country": "province_24",
+                "nearestCompetingRegion": {
+                  "id": "province_29",
+                  "name": "South fell",
+                  "distance": 58.677734375
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_11|province_29",
+            "from": "South fell",
+            "to": "Wind town",
+            "length": 69.29301250105213,
+            "direct": 69.29301250105213,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 50.54275303203327,
+            "endpoints": [
+              {
+                "country": "province_29",
+                "nearestCompetingRegion": {
+                  "id": "province_24",
+                  "name": "New fell",
+                  "distance": 51.41552734375
+                }
+              },
+              {
+                "country": "province_11",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.1142578125
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_39|province_5",
+            "from": "Gold point",
+            "to": "New rock",
+            "length": 62.65953886052438,
+            "direct": 62.65953886052438,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 151.48628061088496,
+            "endpoints": [
+              {
+                "country": "province_5",
+                "nearestCompetingRegion": {
+                  "id": "province_12",
+                  "name": "Wind gate",
+                  "distance": 52.616943359375
+                }
+              },
+              {
+                "country": "province_39",
+                "nearestCompetingRegion": {
+                  "id": "province_34",
+                  "name": "Red field",
+                  "distance": 49.8291015625
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_3|province_7",
+            "from": "Upper ridge",
+            "to": "Rock bay",
+            "length": 25.05607032111989,
+            "direct": 25.05607032111989,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 154.84319516495384,
+            "endpoints": [
+              {
+                "country": "province_3",
+                "nearestCompetingRegion": {
+                  "id": "province_40",
+                  "name": "Marsh keep",
+                  "distance": 30.01226994808798
+                }
+              },
+              {
+                "country": "province_7",
+                "nearestCompetingRegion": {
+                  "id": "province_26",
+                  "name": "South ridge",
+                  "distance": 27
+                }
+              }
+            ]
+          },
+          {
+            "edge": "province_13|province_31",
+            "from": "Bay ford",
+            "to": "New glen",
+            "length": 50.658872821218544,
+            "direct": 50.658872821218544,
+            "detourRatio": 1,
+            "bends": 0,
+            "unrelatedCoastClearance": 151.83948484045033,
+            "endpoints": [
+              {
+                "country": "province_13",
+                "nearestCompetingRegion": {
+                  "id": "province_17",
+                  "name": "Moon point",
+                  "distance": 51.334228515625
+                }
+              },
+              {
+                "country": "province_31",
+                "nearestCompetingRegion": {
+                  "id": "province_22",
+                  "name": "Old rock",
+                  "distance": 52.123046875
+                }
+              }
+            ]
+          }
+        ],
+        "interactions": [
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_38|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 152.00864225313111
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_1|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 124.90268015870092
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 209.61691868447176
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 278.39371165288554
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 376.0320650713078
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 109.09698750159903
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 279.7546265707454
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.84097185901445
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 237.4159954060722
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 294.78697678600025
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 358.75640842896183
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 382.00749089572463
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 271.1119177156448
+          },
+          {
+            "routes": [
+              "province_4|province_43",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 493.29044140709743
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_1|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 201.66944214273275
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 29.26960971057598
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 262.4511927605643
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 202.10752197642998
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 221.0189862656374
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 374.3139610096519
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_19|province_8"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 201.66944214273275
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 74.64740853571672
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 174.6147842811897
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 344.1594475074841
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 169.54374721118023
+          },
+          {
+            "routes": [
+              "province_38|province_8",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 281.13358057236763
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_19|province_24"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 196.4973968938281
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 32.767088373965706
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 248.34254394455363
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_18|province_2"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.92179446146218
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 164.45188424277936
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_1|province_34"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 301.5876105389875
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 270.06665843824555
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 131.97585912964266
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 85.82010003238538
+          },
+          {
+            "routes": [
+              "province_1|province_2",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 436.8899331742761
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_12|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 252.33358641124738
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 157.66305774757117
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 253.8905584164965
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 386.3025710789903
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_19|province_8"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 14.925114660445628
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 196.4973968938281
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_24|province_45"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 109.9340661838186
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 323.7252473089844
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 146.6041823805499
+          },
+          {
+            "routes": [
+              "province_19|province_24",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 189.61487181294964
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_11|province_44"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 272.8317055517232
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 153.79223293614717
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 108.05818781045437
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 226.16082788951374
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_1|province_34"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 350.993737800685
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 304.2145530038914
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 99.65763187058491
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 119.5186164472604
+          },
+          {
+            "routes": [
+              "province_12|province_34",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 464.5147181356467
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_18|province_2"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 371.73881917941446
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 440.59597117365144
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 186.1964773502518
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 248.34254394455363
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 159.37287620936218
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_11|province_29"
+            ],
+            "sharedCountry": true,
+            "closestDistance": 0
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 290.3610344060175
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 138.61061851262738
+          },
+          {
+            "routes": [
+              "province_11|province_44",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 116.58471712816892
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_10|province_16"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 129.92179446146218
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 175.47414883565008
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 147.98413387650962
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 369.19341750704916
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 377.6220297526649
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 254.46968533049954
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 219.36050067110207
+          },
+          {
+            "routes": [
+              "province_18|province_2",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 538.3393048465233
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_19|province_8"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 329.20446611048436
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 169.30973561108289
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 497.2141803540821
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 467.5901710392663
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 165.47813113818802
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 281.06844316976316
+          },
+          {
+            "routes": [
+              "province_10|province_16",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 632.0889748705862
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_1|province_34"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 164.45188424277936
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 122.87991654590715
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 163.7630877506176
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 315.2520830059933
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 146.83002139070499
+          },
+          {
+            "routes": [
+              "province_19|province_8",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 305.84954646877327
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_24|province_45"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 301.5876105389875
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 270.06665843824555
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 99.65763187058491
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 85.82010003238538
+          },
+          {
+            "routes": [
+              "province_1|province_34",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 436.8899331742761
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_11|province_29"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 110.86450465823584
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 405.6971575560557
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 222.63082252322826
+          },
+          {
+            "routes": [
+              "province_24|province_45",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 159.99776455874758
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_39|province_5"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 334.6590513567541
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 166.0507019878425
+          },
+          {
+            "routes": [
+              "province_11|province_29",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 116.58471712816892
+          },
+          {
+            "routes": [
+              "province_39|province_5",
+              "province_3|province_7"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 176.7104813210505
+          },
+          {
+            "routes": [
+              "province_39|province_5",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 474.51693301642524
+          },
+          {
+            "routes": [
+              "province_3|province_7",
+              "province_13|province_31"
+            ],
+            "sharedCountry": false,
+            "closestDistance": 329.2832807411198
+          }
+        ],
+        "totalRouteLength": 1332.062698035486,
+        "totalBends": 5
+      },
+      "constraints": {
+        "counts": [],
+        "symmetry": [],
+        "connectivity": [],
+        "degree": [],
+        "cells": [],
+        "borders": [],
+        "crossings": [],
+        "coasts": [],
+        "intersections": [],
+        "bonus": [],
+        "fortress": [],
+        "concentration": [],
+        "remoteness": [],
+        "crowding": [],
+        "labels": []
+      }
+    }
+  ]
+}

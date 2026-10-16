@@ -1,0 +1,40 @@
+{
+  "approaches": [
+    {
+      "id": "coast-first",
+      "description": "Co-designed envelopes, existing contact template, direct separated ports"
+    },
+    {
+      "id": "contact-dual",
+      "description": "Planar graph faces → region junctions → entrance coast arcs"
+    },
+    {
+      "id": "explicit-gates",
+      "description": "Pair-labelled coast gates clarify route identity; same geometry as B; no geographic shortening claim"
+    }
+  ],
+  "entries": [
+    {
+      "id": "baseline",
+      "role": "baseline",
+      "board": "evidence/build-SNZFL5/baseline.json",
+      "html": "evidence/build-SNZFL5/baseline.html",
+      "method": "Pinned T59 geometry, identical renderer"
+    },
+    {
+      "id": "coast-first",
+      "role": "candidate",
+      "board": "evidence/build-SNZFL5/coast-first.json",
+      "html": "evidence/build-SNZFL5/coast-first.html",
+      "method": "Co-designed envelopes, existing contact template, direct separated ports"
+    },
+    {
+      "id": "contact-dual",
+      "role": "candidate",
+      "board": "evidence/build-SNZFL5/contact-dual.json",
+      "html": "evidence/build-SNZFL5/contact-dual.html",
+      "method": "Planar graph faces → region junctions → entrance coast arcs"
+    }
+  ],
+  "gates": "evidence/build-SNZFL5/gates.html"
+}

@@ -1,0 +1,29 @@
+{
+  "buildExitCode": 0,
+  "boards": [
+    {
+      "id": "baseline",
+      "identical": true,
+      "sha256": "7cd9e1187e9b9009d15c56a6f94bf5fc49735f063caa93b9bdd575fad6512a7f",
+      "reproduced": "evidence/build-LrdPTV/baseline.json"
+    },
+    {
+      "id": "coast-first",
+      "identical": true,
+      "sha256": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+      "reproduced": "evidence/build-LrdPTV/coast-first.json"
+    },
+    {
+      "id": "contact-dual",
+      "identical": true,
+      "sha256": "40c3bb8c1cfde80e87c312068a222abd2a3f843f5d747cef39cd1064ec038a7d",
+      "reproduced": "evidence/build-LrdPTV/contact-dual.json"
+    },
+    {
+      "id": "ports-only",
+      "identical": true,
+      "sha256": "850d20a7dfe2ae93c12c0345f8dd477c18b19af9395e34a92f1fffbb10600858",
+      "reproduced": "evidence/build-LrdPTV/ports-only.json"
+    }
+  ]
+}
