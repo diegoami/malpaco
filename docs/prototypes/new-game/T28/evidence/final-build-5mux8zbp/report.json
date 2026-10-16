@@ -1,0 +1,15 @@
+{
+  "command": [
+    "npm",
+    "run",
+    "build"
+  ],
+  "exit": 0,
+  "stdoutTail": "\n> malpaco-spike-ts@0.0.0 build\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n\u2713 43 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.64 kB \u2502 gzip:  0.42 kB\ndist/assets/index-d9RD2Y_i.css   22.05 kB \u2502 gzip:  5.53 kB\ndist/assets/index-BuXG9_-k.js   180.63 kB \u2502 gzip: 43.33 kB\n\n\u2713 built in 94ms\n",
+  "stderrTail": "",
+  "archiveSha256": "8862f669f6eab1cb4d94bf285953c6fa525a220dabaaf17078060cb331f80acd",
+  "archiveMemberHashes": {
+    "stdout.txt": "d1b1f71375b2afb53405cffbb76b63aa1aa4daf9f3d075f008533175d20baf0d",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
