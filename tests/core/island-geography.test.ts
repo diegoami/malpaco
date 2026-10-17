@@ -1,4 +1,4 @@
-import {describe,it,expect} from "vitest";
+import {describe,it,expect,beforeAll} from "vitest";
 import {generateIslandGeography} from "../../src/core/island-geography";
 import type {IslandGeography} from "../../src/core/island-geography";
 const acceptance=new URL("../../docs/prototypes/new-game/T34/acceptance.mjs",import.meta.url).href;
@@ -62,3 +62,18 @@ it('records every rejected candidate, replays exhaustion and clamps the attempt 
   }
  }finally{vi.doUnmock('../../docs/prototypes/new-game/T34/witness.json');vi.resetModules();}
 },30000);
+
+// [designed] Owner's broader-layout requirement: fixed 32-seed corpus, reflection-invariant thirds and5%aspect variation.
+describe("meaningful silhouette and layout diversity",()=>{
+ const corpus:IslandGeography[]=[];
+ beforeAll(()=>{for(let seed=0;seed<32;seed++){const g=result(seed);expect(inspectGeography(g)).toEqual([]);corpus.push(g);}},180000);
+ it("places the10-country island both in the middle vertical third and outside it",()=>{
+  const placements=corpus.map(g=>{const largest=g.islands.find(i=>i.provinces.length===10)!;const ys=largest.polygon.map(p=>p[1]);const centre=(Math.min(...ys)+Math.max(...ys))/2;return centre>g.bounds.height/3&&centre<2*g.bounds.height/3;});
+  // This classification is unchanged by either whole-board reflection.
+  expect(placements).toContain(true);expect(placements).toContain(false);
+ });
+ it("changes at least one island silhouette aspect ratio by5% beyond fixed-point jitter",()=>{
+  const ranges=corpus[0]!.islands.map(island=>corpus.map(g=>{const p=g.islands.find(i=>i.id===island.id)!.polygon,x=p.map(p=>p[0]),y=p.map(p=>p[1]);return (Math.max(...x)-Math.min(...x))/(Math.max(...y)-Math.min(...y));}));
+  expect(ranges.some(values=>Math.max(...values)/Math.min(...values)>=1.05)).toBe(true);
+ });
+});
