@@ -31,6 +31,7 @@ test('provider/remapped model cannot reach Claude billing; credentials not in er
 test('coverage is explicit per changed file; generated evidence grouping cannot hide code',()=>{
  const files=['src/a.ts','docs/prototypes/T/report.json','docs/prototypes/T/check.py'];
  assert.equal(scopeProblems(final.result,files).length>0,true);
+ for(const script of ['check.py','check.js','check.ts','check.sh','page.html','component.jsx','extensionless']) assert.ok(scopeProblems(final.result+'\nEVIDENCE: docs/prototypes/T/', ['src/a.ts','docs/prototypes/T/'+script]).length,script);
  const complete=final.result+'\nFILE: docs/prototypes/T/check.py\nEVIDENCE: docs/prototypes/T/';assert.deepEqual(scopeProblems(complete,files),[]);
  assert.ok(scopeProblems(complete.replace('SCOPE: complete','SCOPE: incomplete'),files).length);
  const config={models:{claude:{id:'anthropic/'+id,family:'claude',backend:'claude'}},blocked:[]};
@@ -42,13 +43,15 @@ test('coverage is explicit per changed file; generated evidence grouping cannot 
  const plan=planPost({read:readReview(final.result,'T69 review (Claude)'),header:'T69 review (Claude)',doneWhen:2,source:'test',signature:'test'});assert.equal(plan.code,4);assert.equal(plan.label,null);
 });
 test('watched subprocess retains success, failure and timeout evidence, kills its own group',async()=>{
+ const parentTmp=process.env.TMPDIR;
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'claude-harness-'));
  const fake=path.join(root,'fake.mjs');
- fs.writeFileSync(fake,`import fs from 'node:fs'; const mode=process.env.FAKE_MODE; if(['hang','startup','idle'].includes(mode)){if(mode==='idle')console.log(JSON.stringify(${JSON.stringify(init)}));setInterval(()=>{},1000);}else{console.log(JSON.stringify(${JSON.stringify(init)})); console.log(JSON.stringify(${JSON.stringify(final)}));process.exitCode=mode==='fail'?7:0;}`);
+ fs.writeFileSync(fake,`import fs from 'node:fs'; const mode=process.env.FAKE_MODE; if(process.env.TMPDIR!==process.env.EXPECTED_TMPDIR || !fs.existsSync(process.env.TMPDIR)) throw Error('child temp directory not isolated'); if(['hang','startup','idle'].includes(mode)){if(mode==='idle')console.log(JSON.stringify(${JSON.stringify(init)}));setInterval(()=>{},1000);}else{console.log(JSON.stringify(${JSON.stringify(init)})); console.log(JSON.stringify(${JSON.stringify(final)}));process.exitCode=mode==='fail'?7:0;}`);
  for(const mode of ['ok','fail','hang','startup','idle']){
-  const evidenceDir=path.join(root,mode);const options={command:{exe:process.execPath,prefix:[fake]},args:[],workDir:root,evidenceDir,model:id,sessionId:'ours',env:{...process.env,FAKE_MODE:mode},startupTimeoutMs:mode==='startup'?150:1000,idleTimeoutMs:mode==='idle'?150:1000,totalTimeoutMs:mode==='hang'?150:3000,log:()=>{}};
+  const evidenceDir=path.join(root,mode);const options={command:{exe:process.execPath,prefix:[fake]},args:[],workDir:root,evidenceDir,model:id,sessionId:'ours',env:{...process.env,FAKE_MODE:mode,EXPECTED_TMPDIR:path.join(evidenceDir,'tmp')},startupTimeoutMs:mode==='startup'?150:1000,idleTimeoutMs:mode==='idle'?150:1000,totalTimeoutMs:mode==='hang'?150:3000,log:()=>{}};
   if(mode==='ok')assert.equal((await runClaudeWatched(options)).stdout,final.result);
   else await assert.rejects(runClaudeWatched(options));
+  assert.equal(process.env.TMPDIR,parentTmp);
   for(const name of ['stdout.jsonl','stderr.txt','receipt.json','final.md']) assert.ok(fs.existsSync(path.join(evidenceDir,name)),name);
   const receipt=JSON.parse(fs.readFileSync(path.join(evidenceDir,'receipt.json')));assert.equal(receipt.expectedModel,id);assert.ok(receipt.sha256['stdout.jsonl']);
   if(['hang','startup','idle'].includes(mode)){assert.throws(()=>process.kill(receipt.pid,0));assert.match(receipt.failure,new RegExp(mode==='hang'?'total timeout':mode+' timeout'));}

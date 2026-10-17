@@ -4,7 +4,8 @@ T69 implements issue155 following the owner-requested PR153 trials. Claude is se
 the same review entry point as OpenCode. The existing MiniMax default remains unchanged.
 
 ```bash
-HARNESS_SESSION_FAMILY=openai tools/harness/run-unit.sh review-PR /tmp/review-PR.log -- \
+mkdir -p .cache/harness-tmp
+TMPDIR="$PWD/.cache/harness-tmp" HARNESS_SESSION_FAMILY=openai tools/harness/run-unit.sh review-PR /tmp/review-PR.log -- \
   node tools/harness/review.mjs --pr PR --brief /tmp/review-brief.md \
   --reviewer claude-sonnet --issue ISSUE --apply-label
 ```
@@ -92,7 +93,9 @@ Run as one systemd unit with one `watch.sh` monitor. Track the printed stdout.js
 run log; `tools/harness/peek.sh <stdout.jsonl> -n 20` reads current Claude tool/message progress.
 The log prints the UUID and exact model after init. Startup, idle and total timeouts use the
 existing reviewer limits; timeout/cancellation kills this run's own process group and retains a
-failure receipt. There is no model/provider fallback. OpenCode continues to use its existing
+failure receipt. Claude children receive an evidence-local TMPDIR (and TEMP/TMP on Windows)
+without changing the parent environment, keeping temporary outputs on the project disk. Set
+the launcher TMPDIR as in the example so the parent poster also avoids a full system /tmp. There is no model/provider fallback. OpenCode continues to use its existing
 session/export monitoring path.
 
 Shared exits: 0 posted/labelled; 2 usage/stale brief; 3 no valid run (no label or post); 4 full

@@ -316,11 +316,3 @@ The owner’s 2026-10-16 task sequence uses the main session for Easy/Medium tas
 native Sol High for Hard tasks and Sol Max for Very Hard tasks, overriding the older
 effort cap for those explicitly requested implementations. MiniMax M3 reviews through
 OpenCode at its live-listed `thinking` variant. Existing task role defaults yield to this choice.
-
-## Claude CLI backend (T69)
-
-The owner requested direct Claude CLI reviews alongside OpenCode. `claude-sonnet` is explicitly
-selectable in harness.json, using the exact `claude-sonnet-5-5` ID discovered from live CLI init
-events. Its backend is `claude`, family `claude`; the independent-family/blocked rules apply.
-MiniMax remains the default. See [harness-claude.md](harness-claude.md) and issue155 for the actual
-trial, invocation, settings isolation, evidence retention and reusable adoption findings.

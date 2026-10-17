@@ -52,7 +52,8 @@ export function readClaudeEvents(text, model, sessionId) {
   }
   return { review: result.result, actualModel: init[0].model, sessionId, permissionDenials: result.permission_denials, assistantModels };
 }
-const groupedEvidence = (f) => f.startsWith('docs/prototypes/') && !/\.(?:[cm]?js|py|sh|[cm]?tsx?)$/i.test(f);
+// Only known generated data can be grouped; unknown/executable suffixes require FILE lines.
+const groupedEvidence = (f) => f.startsWith('docs/prototypes/') && /\.(?:jsonl?|txt|log|md|png|jpe?g|gif|webp|gz|zip|pdf)$/i.test(f);
 export function scopeProblems(review, files) {
   const lines = review.split(/\r?\n/);
   const scope = lines.filter((l) => /^SCOPE:/i.test(l));
@@ -74,6 +75,9 @@ export function resolveClaude(env = process.env) {
 export function runClaudeWatched({ command, args, workDir, evidenceDir, model, sessionId, env = process.env,
   startupTimeoutMs = 180000, idleTimeoutMs = 600000, totalTimeoutMs = 3600000, log = console.log }) {
   fs.mkdirSync(evidenceDir, { recursive: true });
+  const temporaryDir = path.join(evidenceDir, 'tmp');
+  fs.mkdirSync(temporaryDir, { recursive: true });
+  const childEnv = { ...env, TMPDIR: temporaryDir, ...(process.platform === 'win32' ? { TEMP: temporaryDir, TMP: temporaryDir } : {}) };
   const stdoutFile = path.join(evidenceDir, 'stdout.jsonl'), stderrFile = path.join(evidenceDir, 'stderr.txt');
   const outFd = fs.openSync(stdoutFile, 'w'), errFd = fs.openSync(stderrFile, 'w');
   const started = Date.now();
@@ -101,13 +105,13 @@ export function runClaudeWatched({ command, args, workDir, evidenceDir, model, s
       try { parsed = readClaudeEvents(stdout, model, sessionId); } catch (e) { failure ??= e.message; }
       if (exitCode !== 0) failure ??= `Claude CLI exit ${exitCode}.`;
       const receipt = { expectedModel: model, actualModel: observedModel, observedSessionId, assistantModels: parsed?.assistantModels ?? [], sessionId, pid: child?.pid ?? null, exitCode,
-        seconds: (Date.now() - started) / 1000, failure, cliVersion: command.version ?? null, command: [command.exe, ...command.prefix, ...args],
+        seconds: (Date.now() - started) / 1000, failure, temporaryDir, cliVersion: command.version ?? null, command: [command.exe, ...command.prefix, ...args],
         sha256: Object.fromEntries(['stdout.jsonl', 'stderr.txt', 'final.md', 'prompt.md', 'settings.json', 'inventory.json', 'full.diff'].filter((n) => fs.existsSync(path.join(evidenceDir, n))).map((n) => [n, hash(fs.readFileSync(path.join(evidenceDir, n)))])) };
       fs.writeFileSync(path.join(evidenceDir, 'receipt.json'), JSON.stringify(receipt, null, 2)+'\n');
       if (failure) reject(new ClaudeInfraError(`${failure} Evidence retained: ${evidenceDir}`));
       else resolve({ stdout: parsed.review, stderr: fs.readFileSync(stderrFile, 'utf8'), exitCode, seconds: receipt.seconds, sessionId, actualModel: parsed.actualModel });
     };
-    try { child = spawn(command.exe, [...command.prefix, ...args], { cwd: workDir, env, detached: process.platform !== 'win32', stdio: ['ignore', 'pipe', 'pipe'] }); }
+    try { child = spawn(command.exe, [...command.prefix, ...args], { cwd: workDir, env: childEnv, detached: process.platform !== 'win32', stdio: ['ignore', 'pipe', 'pipe'] }); }
     catch (e) { failure = e.message; finish(); return; }
     child.stdout.on('data', (d) => {
       fs.writeSync(outFd, d); lastActivity = Date.now(); pending += d.toString('utf8');
