@@ -76,7 +76,9 @@ requireTools('git', 'gh');
 
 const top0 = sh('git', ['rev-parse', '--show-toplevel']);
 const config = loadConfig(top0);
-const { top, workRoot } = repoPaths(config);
+const { top } = repoPaths(config);
+const workRoot = path.join(top, '.cache/review-worktrees');
+fs.mkdirSync(workRoot, {recursive:true});
 const rev = { ...config.reviewer, agent: 'reviewer150' };
 
 // The implementer's family never reviews.

@@ -35,7 +35,10 @@ function meets(a:GeoPoint,b:GeoPoint,c:GeoPoint,d:GeoPoint):boolean {
  const u=cross(a,b,c),v=cross(a,b,d),w=cross(c,d,a),z=cross(c,d,b);
  return (u>0&&v<0||u<0&&v>0)&&(w>0&&z<0||w<0&&z>0)||on(a,c,d)||on(b,c,d)||on(c,a,b)||on(d,a,b);
 }
-function proper(a:GeoPoint,b:GeoPoint,c:GeoPoint,d:GeoPoint):boolean {return cross(a,b,c)*cross(a,b,d)<0&&cross(c,d,a)*cross(c,d,b)<0;}
+function proper(a:GeoPoint,b:GeoPoint,c:GeoPoint,d:GeoPoint):boolean {
+ const u=cross(a,b,c),v=cross(a,b,d),w=cross(c,d,a),z=cross(c,d,b);
+ return (u>0&&v<0||u<0&&v>0)&&(w>0&&z<0||w<0&&z>0);
+}
 function locate(p:GeoPoint,ring:Ring):number {
  let winding=0;
  for(const[a,b]of edges(ring)){if(on(p,a,b))return 0;if(a[1]<=p[1]&&b[1]>p[1]&&cross(a,b,p)>0)winding++;if(a[1]>p[1]&&b[1]<=p[1]&&cross(a,b,p)<0)winding--;}
@@ -61,7 +64,7 @@ function derive(countries:GeographyCountry[]):void {
 function pointGap(p:GeoPoint,a:GeoPoint,b:GeoPoint,minimum:number):boolean {
  const n=norm2(a,b),t=dot(a,b,p),m2=minimum*minimum;
  if(n===0||t<=0)return norm2(p,a)>=m2;if(t>=n)return norm2(p,b)>=m2;
- return cross(a,b,p)**2>=m2*n;
+ return BigInt(cross(a,b,p))**2n>=BigInt(m2)*BigInt(n);
 }
 function segmentGap(a:GeoPoint,b:GeoPoint,c:GeoPoint,d:GeoPoint,minimum:number):boolean {
  return !meets(a,b,c,d)&&pointGap(a,c,d,minimum)&&pointGap(b,c,d,minimum)&&pointGap(c,a,b,minimum)&&pointGap(d,a,b,minimum);
@@ -77,7 +80,11 @@ function lengthCeil(a:GeoPoint,b:GeoPoint):number {
  const square=norm2(a,b);let lo=0,hi=Math.abs(a[0]-b[0])+Math.abs(a[1]-b[1]);
  while(lo<hi){const mid=Math.floor((lo+hi)/2);if(mid*mid>=square)hi=mid;else lo=mid+1;}return lo;
 }
-function roundPoint(p: readonly number[]):GeoPoint {return [Math.round(p[0]!),Math.round(p[1]!)];}
+/** Integer nearest quotient, ties toward positive infinity like the witness quantization. */
+function quotient(n:bigint,d:bigint):number {
+ let q=n/d,r=n%d;if(r<0n){q--;r+=d;}return Number(q+(2n*r>=d?1n:0n));
+}
+function roundPoint(p: readonly number[]):GeoPoint {return [p[0]!,p[1]!];}
 function newWitness(seed:number):IslandGeography {
  return {version:"island-geography-v1",seed,unitsPerPixel:Q,bounds:{...witness.bounds},islands:witness.islands.map(i=>({...i,polygon:i.polygon.map(roundPoint),provinces:[...i.provinces]})),provinces:witness.provinces.map(p=>({...p,polygon:p.polygon.map(roundPoint),labelAt:roundPoint(p.labelAt),borders:[]})),entranceReservations:witness.entranceReservations.map(r=>({...r,points:r.points.map(roundPoint)}))};
 }
@@ -101,8 +108,8 @@ function flipSubdivisions(g:IslandGeography,rng:DeterministicRng):void {
   const lanes=(id:string)=>g.entranceReservations.filter(r=>r.from===id||r.to===id).length;
   if(ps.slice(2).some(p=>p.borders.length>=4||p.borders.length+lanes(p.id)>=5)||rng.nextInt(0,1)===0)continue;
   const dx=b[0]-a[0],dy=b[1]-a[1],length=lengthCeil(a,b),half=Q/4;
-  const mid:GeoPoint=[Math.round((a[0]+b[0])/2),Math.round((a[1]+b[1])/2)];
-  const c=roundPoint([mid[0]-dy*half/length,mid[1]+dx*half/length]),d=roundPoint([mid[0]+dy*half/length,mid[1]-dx*half/length]);
+  const mid:GeoPoint=[quotient(BigInt(a[0]+b[0]),2n),quotient(BigInt(a[1]+b[1]),2n)];
+  const c:GeoPoint=[mid[0]+quotient(BigInt(-dy*half),BigInt(length)),mid[1]+quotient(BigInt(dx*half),BigInt(length))],d:GeoPoint=[mid[0]+quotient(BigInt(dy*half),BigInt(length)),mid[1]+quotient(BigInt(-dx*half),BigInt(length))];
   for(const p of ps){
    if(ids.includes(p.id)){const v=cross(a,b,p.labelAt)>0?c:d;let used=false;p.polygon=p.polygon.flatMap(q=>{if(!equal(q,a)&&!equal(q,b))return[q];if(used)return[];used=true;return[[...v] as GeoPoint];});}
    if(p.id===r||p.id===s){const old=p.id===r?a:b;p.polygon=p.polygon.flatMap(q=>equal(q,old)?(p.id===r?[d,c]:[c,d]).map(v=>[...v] as GeoPoint):[q]);}
@@ -119,21 +126,28 @@ function axisWarp(values:number[],limit:number,rng:DeterministicRng):AxisWarp {
  const offset=Math.max(Q-lo,Math.min(limit-Q-next[4]!,rng.nextInt(-Q,Q)));
  return {old,next,offset};
 }
-function axis(value:number,w:AxisWarp):number {
- let j=0;while(j<3&&value>w.old[j+1]!)j++;
- return Math.round(w.next[j]!+(value-w.old[j]!)*(w.next[j+1]!-w.next[j]!)/(w.old[j+1]!-w.old[j]!))+w.offset;
+function axisFraction(n:bigint,d:bigint,w:AxisWarp):number {
+ let j=0;while(j<3&&n>BigInt(w.old[j+1]!)*d)j++;
+ return w.next[j]!+quotient((n-BigInt(w.old[j]!)*d)*BigInt(w.next[j+1]!-w.next[j]!),d*BigInt(w.old[j+1]!-w.old[j]!))+w.offset;
 }
 function warp(g:IslandGeography,rng:DeterministicRng):void {
  const reflectX=rng.nextInt(0,1)!==0,reflectY=rng.nextInt(0,1)!==0;
  for(const island of g.islands){
   const countries=g.provinces.filter(p=>p.island===island.id),xw=axisWarp(island.polygon.map(p=>p[0]),g.bounds.width,rng),yw=axisWarp(island.polygon.map(p=>p[1]),g.bounds.height,rng);
-  const point=(p:GeoPoint):GeoPoint=>{const x=axis(p[0],xw),y=axis(p[1],yw);return[reflectX?g.bounds.width-x:x,reflectY?g.bounds.height-y:y];};
+  const pointAt=(a:GeoPoint,b:GeoPoint,n:bigint,d:bigint):GeoPoint=>{
+   const x=axisFraction(BigInt(a[0])*d+BigInt(b[0]-a[0])*n,d,xw),y=axisFraction(BigInt(a[1])*d+BigInt(b[1]-a[1])*n,d,yw);
+   return[reflectX?g.bounds.width-x:x,reflectY?g.bounds.height-y:y];
+  };
+  const point=(p:GeoPoint):GeoPoint=>pointAt(p,p,0n,1n);
   const cache=new Map<string,GeoPoint[]>();
   const edge=(u:GeoPoint,v:GeoPoint):GeoPoint[]=>{
    const order=u[0]<v[0]||u[0]===v[0]&&u[1]<v[1],a=order?u:v,b=order?v:u,k=key(a)+"|"+key(b);
    if(!cache.has(k)){
-    const ts=[0,1];for(const[dimension,w]of [[0,xw],[1,yw]] as const)if(b[dimension]!==a[dimension])for(const knot of w.old.slice(1,-1)){const t=(knot-a[dimension])/(b[dimension]-a[dimension]);if(t>0&&t<1)ts.push(t);}
-    ts.sort((a,b)=>a-b);const points=ts.map(t=>point([a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t]));cache.set(k,points.filter((p,j)=>j===0||!equal(p,points[j-1]!)));
+    const ts:[bigint,bigint][]=[[0n,1n],[1n,1n]];
+    for(const[dimension,w]of [[0,xw],[1,yw]] as const)if(b[dimension]!==a[dimension])for(const knot of w.old.slice(1,-1)){
+     let n=BigInt(knot-a[dimension]),d=BigInt(b[dimension]-a[dimension]);if(d<0n){n=-n;d=-d;}if(n>0n&&n<d)ts.push([n,d]);
+    }
+    ts.sort((a,b)=>{const v=a[0]*b[1]-b[0]*a[1];return v<0n?-1:v>0n?1:0;});const points=ts.map(([n,d])=>pointAt(a,b,n,d));cache.set(k,points.filter((p,j)=>j===0||!equal(p,points[j-1]!)));
    }
    const points=cache.get(k)!;return order?points:[...points].reverse();
   };
@@ -152,7 +166,7 @@ function corridorErrors(g:IslandGeography,r:GeographyCorridor):string[] {
    const island=g.islands.find(i=>i.id===p.island)!;
    if(locate(end,p.polygon)!==0||locate(end,island.polygon)!==0)fail.add("attachment: endpoint not exposed");
    for(const q of countries.filter(q=>q.island===p.island&&q.id!==p.id))if(locate(end,q.polygon)>=0||edges(q.polygon).some(([u,v])=>!pointGap(end,u,v,8*Q)))fail.add("attachment: ambiguous/close competitor");
-   const length=lengthCeil(end,next),inward=roundPoint([end[0]+(end[0]-next[0])*12*Q/length,end[1]+(end[1]-next[1])*12*Q/length]);
+   const length=lengthCeil(end,next),inward:GeoPoint=[end[0]+quotient(BigInt(end[0]-next[0])*BigInt(12*Q),BigInt(length)),end[1]+quotient(BigInt(end[1]-next[1])*BigInt(12*Q),BigInt(length))];
    if(locate(inward,p.polygon)!==1||edges(p.polygon).some(([u,v])=>!onlyEndpointContact(end,inward,u,v,end)))fail.add("attachment: inward continuation leaves country");
   }
   for(const p of countries)for(const[u,v]of edges(p.polygon))if(!onlyEndpointContact(a,b,u,v,p===from?a:p===to?b:undefined))fail.add("water: corridor touches land");
@@ -167,7 +181,7 @@ function repairReservations(g:IslandGeography,rng:DeterministicRng):void {
  const ports=(id:string):GeoPoint[]=>{
   if(options.has(id))return options.get(id)!;
   const p=g.provinces.find(p=>p.id===id)!,island=g.islands.find(i=>i.id===p.island)!,others=g.provinces.filter(q=>q.island===p.island&&q.id!==id);
-  const points=edges(p.polygon).flatMap(([a,b])=>{const mid:GeoPoint=[(a[0]+b[0])/2,(a[1]+b[1])/2];return Number.isInteger(mid[0])&&Number.isInteger(mid[1])?[a,mid]:[a];});
+  const points=edges(p.polygon).flatMap(([a,b])=>{const x=a[0]+b[0],y=a[1]+b[1];return x%2===0&&y%2===0?[a,[x/2,y/2] as GeoPoint]:[a];});
   const available=[...new Map(points.map(v=>[key(v),v])).values()].filter(v=>locate(v,island.polygon)===0&&others.every(q=>locate(v,q.polygon)<0&&edges(q.polygon).every(([a,b])=>pointGap(v,a,b,8*Q))));
   options.set(id,available);return available;
  };
