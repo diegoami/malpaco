@@ -1,0 +1,7 @@
+from pathlib import Path
+import subprocess,hashlib,json,tempfile
+r=Path('/home/diego/projects/malpaco/.cache/t33-work');root=r/'docs/prototypes/new-game/T33';o=Path(tempfile.mkdtemp(prefix='merged-main-integration-',dir=root/'evidence'));note=(r/'RUN-NOTES.md').read_bytes();(o/'RUN-NOTES.md').write_bytes(note);files=[p for folder in ['src','tests','data']for p in (r/folder).rglob('*')if p.is_file()];before={str(p.relative_to(r)):hashlib.sha256(p.read_bytes()).hexdigest()for p in files};incoming=subprocess.check_output(['git','show','origin/main:RUN-NOTES.md'],cwd=r);mainhead=subprocess.check_output(['git','rev-parse','origin/main'],cwd=r,text=True).strip();assert b'T65 parent END:'in incoming
+result=subprocess.run(['git','merge','--quiet','--no-commit','--no-ff','origin/main'],cwd=r,capture_output=True);(o/'merge-output.txt').write_bytes(result.stdout+result.stderr);conflicts=subprocess.check_output(['git','diff','--name-only','--diff-filter=U'],cwd=r,text=True).splitlines();assert set(conflicts)<={'RUN-NOTES.md'},conflicts
+(r/'RUN-NOTES.md').write_bytes(incoming+b'\n\n'+note[note.index(b'T33 validation PLAN'):])
+for n,h in before.items():assert hashlib.sha256((r/n).read_bytes()).hexdigest()==h,n
+subprocess.run(['git','add','RUN-NOTES.md'],cwd=r,check=True);(o/'report.json').write_text(json.dumps({'incomingMain':mainhead,'conflicts':conflicts,'mainNotesExactPrefix':(r/'RUN-NOTES.md').read_bytes().startswith(incoming),'sourceTestDataHashesUnchanged':before},indent=2)+'\n');print(o)
