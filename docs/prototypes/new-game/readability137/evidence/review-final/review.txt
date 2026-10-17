@@ -1,0 +1,46 @@
+Map readability review (MiniMax M3)
+approve
+Worktree: /home/diego/projects/malpaco-work/145-review-665bce08
+HEAD: cb6b4a012131c2da2300d1378d86d7bb314b56ec
+Diff:114 files vs origin/main (RUN-NOTES, docs/prototypes/new-game/readability137/* with 15 preserved run evidence dirs + 2 originals + 5 originals-spec/png + previews, src/styles.css, src/ui/referenceMapView.ts, tests/e2e/battle-controls.spec.ts, tests/e2e/map-readability.spec.ts new, tests/e2e/reference-game.spec.ts, tests/e2e/reference-game.spec.ts-snapshots/reference-game-{1280x800,1920x1080}-linux.png)
+Commands run:
+  git rev-parse --show-toplevel ; git rev-parse HEAD ; git diff --name-only origin/main...HEAD
+  python3 docs/prototypes/new-game/readability137/run.py
+  READABILITY_COMPATIBILITY=1 python3 docs/prototypes/new-game/readability137/run.py
+  python3 docs/prototypes/new-game/readability137/checks.py
+  python3 docs/prototypes/new-game/readability137/inheritance.py
+  python3 docs/prototypes/new-game/readability137/controls.py
+  Independent mutation: revert src/ui/referenceMapView.ts:38 count text to combined seat·army, run.py, then restore exact original bytes
+  npm test ; npm run build ; git diff --check
+DW1: ran python3 docs/prototypes/new-game/readability137/run.py → exit 0, 4/4 passed (army-only labels and ownership shapes; region names remain identifiable on mouse, keyboard and touch at1280x800 and 1920x1080)
+DW2: ran READABILITY_COMPATIBILITY=1 python3 docs/prototypes/new-game/readability137/run.py → exit 0, 18/18 passed (2 battle-controls exchanges, Stop, fight-on, capture min/max; map-readability army-only and mouse/keyboard/touch; reference-game setup and full 541-action replay; both 1280x800 and 1920x1080 sizes)
+DW3: ran python3 docs/prototypes/new-game/readability137/checks.py → exit 0 (npm test: 583/583 units passed; npm run build: tsc + vite build success; git diff --check: clean); ran python3 docs/prototypes/new-game/readability137/inheritance.py → exit 0 (247 inherited files checked, only the 6 declared presentation paths differ from base 63160ae)
+
+Final pass done
+
+R1 (not blocking, follow-up). src/ui/referenceMapView.ts:30 introduces `state.players[seat]!.name` in the aria-label description, replacing the base `${seat+1}` text. If `state.ownerOf[id]` is not in `state.players`, `findIndex` returns -1 and `state.players[-1]` is `undefined`; the `!` assertion then throws on `.name`. The base renderer tolerated seat -1 by rendering "0 armies" without crashing. In normal play every province has an owner (setup assigns all, capture swaps but never blanks), so the 18 pinned cases and 583 units never trip this — but it is a regression in defensive shape vs the base, not in any behaviour exercised by Done-when.
+
+R2 (not blocking, follow-up). tests/e2e/map-readability.spec.ts is a new file (created in661d69f, predates cb6b4a0) rather than one of the six declared inherited amendments. It is allowed by the brief's "new actual-browser acceptance" and is the source of the new fit-rectangle diagnostics; its strict containment condition (`c.left>=b.left&&c.right<=b.right&&c.top>=b.top&&c.bottom<=b.bottom`) is preserved exactly while only adding `count`/`badge` JSON for failure messages. No geometry, replay, count, interaction or input assertion in the two declared combined-text files is weakened.
+
+R3 (not blocking, follow-up). docs/prototypes/new-game/readability137/playwright.config.ts duplicates a `webServer.command` ("npx vite build && npx vite preview --port 4173 --strictPort") that is also in the root playwright.config.ts. Lives in the readability137 prototype tree and does not touch canonical files; main `playwright.config.ts` is byte-exact vs origin/main.
+
+No blocking findings.
+
+Audit details:
+- Inherited base63160ae. Only 6 declared paths differ (src/styles.css, src/ui/referenceMapView.ts, tests/e2e/reference-game.spec.ts, tests/e2e/battle-controls.spec.ts, and the two reference-game.spec.ts-snapshots/reference-game-*-linux.png opening goldens). 241 of 247 inherited files are byte-exact. New file tests/e2e/map-readability.spec.ts was not in the base and is therefore not in the inheritance check.
+- originals/reference-game.spec.ts and originals/battle-controls.spec.ts sha256 match the base; originals/reference-game-{1280x800,1920x1080}-linux.png match the base goldens byte-exact. originals/run-initial.py retains the original record-style script.
+- src/styles.css:9-1287 adds five scoped rules (#reference-map .name quiet by default 9px/400; .count weight 750; .badge stroke #d7e4eb; .country:is(:hover,:focus,.selected) .name enlarges to 12px/600 with stroke). No change to any other selector.
+- src/ui/referenceMapView.ts:14-18 replaces each rect .badge with a path. Per-render (lines 30-37) sets `d` to one of the four palette silhouettes from src/ui/palette.ts:13-18 (pill 94×34, hexagon 76×34, rectangle 60×34, diamond 76×38), then translates to count.getAttribute("x")/y-5 and uniform-scales to 44×20. count textContent is the army number only. aria-label gets "name, Seat N, X armies, player name" and the native <title> is kept in sync. Geometry, hit paths, regions, routes, core, saves and action semantics are unchanged.
+- tests/e2e/reference-game.spec.ts and tests/e2e/battle-controls.spec.ts only swap `${seat+1} · ${armies}` for `String(armies)` in three lines each; geometry/fit/replay/nonoverlap assertions and the new strict fit diagnostics are unchanged.
+- tests/e2e/reference-game.spec.ts-snapshots/reference-game-{1280x800,1920x1080}-linux.png are the only golden regenerations; the README says snapshots are not regenerated outside the two declared openings, and no other spec.ts-snapshots file in the diff was touched (verified via `git diff --name-only` for tests/e2e/*-snapshots/).
+- Previews (opening, selected, large-stack, touch, before) at 1280x800 and 1920x1080 are present in docs/prototypes/new-game/readability137/previews/ and their sha256 matches artifacts.json.
+- Author controls (controls.py): all 4 mutations restored byte-exact and produced exit=1 with expected failures:
+  - ownership-shapes → 2x map-readability.spec.ts:11 fail with shape mismatch (Expected rectangle, Received pill);
+  - quiet-names → 2x both map-readability tests fail with name font-size 12 vs quiet requirement and hover expectation;
+  - interactive-names → 2x map-readability.spec.ts:22 fail (hover font-size does not increase from 9);
+  - accessible-ownership → 4x fail (label is "province_4" instead of containing "Seat 3, 2 armies", and battle-source-name receives the province id instead of "New glen").
+- Independent mutation: I mutated src/ui/referenceMapView.ts:38 count textContent back to combined seat·army form, ran run.py, observed exit=1 with both the army-only assertion failure ("Expected 2 / Received 3 · 2") and the strict 143-army large-stack failure ("Expected 143 / Received 1 · 143"), and restored the file in a finally. Post-restore sha256 of src/ui/referenceMapView.ts matches HEAD byte-exact (875513e6…); git diff is empty; .saved file removed.
+- Author's pinned final run (evidence/run-g02rj6sl) reports exit=0, 18/18 passed, sourcesUnchangedDuringRun=True; my fresh run-w7efzg19 reproduces that 18/18.
+- Owner has explicitly withheld appearance/pacing approval (T33) and listed #138, #111, #117 as future work; per the contract these are out of scope and are not blocking.
+
+approve
