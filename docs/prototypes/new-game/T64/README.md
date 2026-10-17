@@ -1,0 +1,9 @@
+# Coastline feasibility and visual reference
+
+Owner pointed back to issue #66/T22, whose geographical prototype was approved in [PR67 comment6209845674](https://github.com/diegoami/malpaco/pull/67#issuecomment-6209845674). Its coherent irregular islands and shared-country geography are the reference. Its proposed adjacency differs from the current T63 playable graph; this evidence does not approve a topology substitution.
+
+`evidence/feasibility-baseline.json`: the immutable current T63 board satisfies every unchanged T62 inspection group. Its450 coast vertices include all country-coast vertices, so a canonical coordinate mapping can move every copy consistently.
+
+`probe.mjs` is a disposable geometry experiment, never imported by production. It freezes port-containing edges and internal-border junctions, applies deterministic seeded coast waves, and reruns the original independent T62 checks. `evidence/shape-probe-d0GsXr`: signed4/8/12-unit offsets fail protected hit squares. `evidence/shape-probe-cCakTw`: frame attenuation allows signed4 and outward4/8/12 to preserve every constraint; signed8/12 still fail. Every candidate remains retained, including failed geometry. The first script bytes were reconstructed from the exact authored patch after the second revision; marked as reconstructed rather than a contemporaneous source archive. Second script bytes copied directly.
+
+Pinned Playwright1.63 screenshots via `capture-probe.mjs` compare signed4/outward12 at1280x800. Main inspection: the fixed row layout and frozen junctions remain visibly rectangular. The accepted geometry probe alone does not establish naturalness or owner approval. Matching T22 more closely requires a design decision about allowing visual label/port positions to move while retaining gameplay connectivity and saves. No candidate was installed, no production change or CI run occurs here.
