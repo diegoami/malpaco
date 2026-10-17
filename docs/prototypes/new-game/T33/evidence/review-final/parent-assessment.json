@@ -1,0 +1,18 @@
+{
+  "reviewVerdict": "approve",
+  "reviewDurationSeconds": 771.378,
+  "reviewExit": 0,
+  "parentRun": "parent-final-qp_dw7rt",
+  "parentPass": 2,
+  "parentSourceAndRawArchivesVerified": true,
+  "historicalArtifactIndexAllEntriesMatch": true,
+  "R1": "Nonblocking test timing annotation; no assertion/timing/code changes necessary. Retain as follow-up.",
+  "R2": "Not reproduced as index drift: every existing indexed path matches its hash. Historical test copies legitimately differ from current source; immutable originals preserved. Index has no external tests/e2e key. Rebuild index after adding these receipts.",
+  "sourceArchiveChecks": 8,
+  "allStablePositiveInputsCurrent": true,
+  "negativeInputDifferences": [
+    "src/ui/computerTurnLoop.ts",
+    "src/ui/referenceMatchFiles.ts"
+  ],
+  "restoredRuntimeAndTestUnchanged": true
+}
