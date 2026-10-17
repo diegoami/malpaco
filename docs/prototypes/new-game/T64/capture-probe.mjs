@@ -5,7 +5,7 @@ if(!output||!fs.existsSync(output))throw Error('Pass a retained probe directory'
 const browser=await chromium.launch({headless:true});
 try{
  const page=await browser.newPage({viewport:{width:1280,height:800}});
- for(const name of ['outward-amplitude-12','signed-amplitude-4']){
+ for(const name of (process.argv.slice(3).length?process.argv.slice(3):['outward-amplitude-12','signed-amplitude-4'])){
   await page.goto('file://'+process.cwd()+'/'+output+'/'+name+'.html');
   await page.screenshot({path:output+'/'+name+'.png'});
  }

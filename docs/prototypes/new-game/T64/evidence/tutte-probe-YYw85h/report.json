@@ -1,0 +1,261 @@
+{
+  "source": "immutable T63",
+  "purpose": "fixed-graph geographical embedding feasibility; not installed",
+  "results": [
+    {
+      "turn": 0,
+      "missingReservations": [
+        {
+          "id": "province_4",
+          "reservationFound": false
+        },
+        {
+          "id": "province_30",
+          "reservationFound": false
+        },
+        {
+          "id": "province_38",
+          "reservationFound": false
+        },
+        {
+          "id": "province_28",
+          "reservationFound": false
+        },
+        {
+          "id": "province_41",
+          "reservationFound": false
+        },
+        {
+          "id": "province_11",
+          "reservationFound": false
+        },
+        {
+          "id": "province_31",
+          "reservationFound": false
+        },
+        {
+          "id": "province_1",
+          "reservationFound": false
+        },
+        {
+          "id": "province_40",
+          "reservationFound": false
+        },
+        {
+          "id": "province_29",
+          "reservationFound": false
+        },
+        {
+          "id": "province_13",
+          "reservationFound": false
+        },
+        {
+          "id": "province_20",
+          "reservationFound": false
+        },
+        {
+          "id": "province_5",
+          "reservationFound": false
+        },
+        {
+          "id": "province_6",
+          "reservationFound": false
+        },
+        {
+          "id": "province_18",
+          "reservationFound": false
+        },
+        {
+          "id": "province_34",
+          "reservationFound": false
+        },
+        {
+          "id": "province_44",
+          "reservationFound": false
+        },
+        {
+          "id": "province_39",
+          "reservationFound": false
+        },
+        {
+          "id": "province_23",
+          "reservationFound": false
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Competing-country margin below 8px province_12",
+          "Competing-country margin below 8px province_34",
+          "Competing-country margin below 8px province_44",
+          "Competing-country margin below 8px province_5",
+          "Competing-country margin below 8px province_39"
+        ],
+        "water": [],
+        "traceability": [
+          "Endpoint span below 20px province_12|province_34",
+          "Endpoint span below 20px province_39|province_5",
+          "Endpoint span below 20px province_3|province_7",
+          "Endpoint span below 20px province_13|province_31"
+        ],
+        "preserved": [
+          "labels: Hit square outside country/frame province_4",
+          "labels: Hit square outside country/frame province_30",
+          "labels: Hit square outside country/frame province_38",
+          "labels: Hit square outside country/frame province_28",
+          "labels: Hit square outside country/frame province_41",
+          "labels: Hit square outside country/frame province_11",
+          "labels: Hit square outside country/frame province_31",
+          "labels: Hit square outside country/frame province_1",
+          "labels: Hit square outside country/frame province_40",
+          "labels: Hit square outside country/frame province_29",
+          "labels: Hit square outside country/frame province_13",
+          "labels: Hit square outside country/frame province_20",
+          "labels: Hit square outside country/frame province_5",
+          "labels: Hit square outside country/frame province_6",
+          "labels: Hit square outside country/frame province_18",
+          "labels: Hit square outside country/frame province_34",
+          "labels: Hit square outside country/frame province_44",
+          "labels: Hit square outside country/frame province_39",
+          "labels: Hit square outside country/frame province_23",
+          "labels: Labels too close province_20/province_36",
+          "labels: Labels too close province_25/province_5",
+          "labels: Labels too close province_6/province_42",
+          "labels: Labels too close province_34/province_26",
+          "labels: Labels too close province_39/province_14"
+        ]
+      },
+      "accepted": false
+    },
+    {
+      "turn": 1,
+      "missingReservations": [
+        {
+          "id": "province_30",
+          "reservationFound": false
+        },
+        {
+          "id": "province_38",
+          "reservationFound": false
+        },
+        {
+          "id": "province_28",
+          "reservationFound": false
+        },
+        {
+          "id": "province_41",
+          "reservationFound": false
+        },
+        {
+          "id": "province_2",
+          "reservationFound": false
+        },
+        {
+          "id": "province_11",
+          "reservationFound": false
+        },
+        {
+          "id": "province_31",
+          "reservationFound": false
+        },
+        {
+          "id": "province_1",
+          "reservationFound": false
+        },
+        {
+          "id": "province_40",
+          "reservationFound": false
+        },
+        {
+          "id": "province_29",
+          "reservationFound": false
+        },
+        {
+          "id": "province_13",
+          "reservationFound": false
+        },
+        {
+          "id": "province_0",
+          "reservationFound": false
+        },
+        {
+          "id": "province_20",
+          "reservationFound": false
+        },
+        {
+          "id": "province_5",
+          "reservationFound": false
+        },
+        {
+          "id": "province_6",
+          "reservationFound": false
+        },
+        {
+          "id": "province_18",
+          "reservationFound": false
+        },
+        {
+          "id": "province_34",
+          "reservationFound": false
+        },
+        {
+          "id": "province_44",
+          "reservationFound": false
+        },
+        {
+          "id": "province_39",
+          "reservationFound": false
+        },
+        {
+          "id": "province_23",
+          "reservationFound": false
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Competing-country margin below 8px province_12",
+          "Competing-country margin below 8px province_34",
+          "Competing-country margin below 8px province_44",
+          "Inward 12px continuation leaves intended country province_11",
+          "Inward 12px continuation leaves intended country province_16",
+          "Inward 12px continuation leaves intended country province_29",
+          "Competing-country margin below 8px province_5",
+          "Competing-country margin below 8px province_39",
+          "Inward 12px continuation leaves intended country province_13"
+        ],
+        "water": [],
+        "traceability": [
+          "Endpoint span below 20px province_12|province_34",
+          "Endpoint span below 20px province_39|province_5",
+          "Endpoint span below 20px province_3|province_7"
+        ],
+        "preserved": [
+          "labels: Hit square outside country/frame province_30",
+          "labels: Hit square outside country/frame province_38",
+          "labels: Hit square outside country/frame province_28",
+          "labels: Hit square outside country/frame province_41",
+          "labels: Hit square outside country/frame province_2",
+          "labels: Hit square outside country/frame province_11",
+          "labels: Hit square outside country/frame province_31",
+          "labels: Hit square outside country/frame province_1",
+          "labels: Hit square outside country/frame province_40",
+          "labels: Hit square outside country/frame province_29",
+          "labels: Hit square outside country/frame province_13",
+          "labels: Hit square outside country/frame province_0",
+          "labels: Hit square outside country/frame province_20",
+          "labels: Hit square outside country/frame province_5",
+          "labels: Hit square outside country/frame province_6",
+          "labels: Hit square outside country/frame province_18",
+          "labels: Hit square outside country/frame province_34",
+          "labels: Hit square outside country/frame province_44",
+          "labels: Hit square outside country/frame province_39",
+          "labels: Hit square outside country/frame province_23",
+          "labels: Labels too close province_20/province_36",
+          "labels: Labels too close province_34/province_26",
+          "labels: Labels too close province_35/province_44",
+          "labels: Labels too close province_39/province_14"
+        ]
+      },
+      "accepted": false
+    }
+  ]
+}

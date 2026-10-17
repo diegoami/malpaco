@@ -1,0 +1,441 @@
+{
+  "source": "immutable T63",
+  "purpose": "fixed-graph dual geographical feasibility; not installed",
+  "results": [
+    {
+      "spread": 0.08,
+      "missingReservations": [
+        {
+          "id": "province_0",
+          "reservationFound": false
+        },
+        {
+          "id": "province_12",
+          "reservationFound": false
+        },
+        {
+          "id": "province_20",
+          "reservationFound": false
+        },
+        {
+          "id": "province_5",
+          "reservationFound": false
+        },
+        {
+          "id": "province_43",
+          "reservationFound": false
+        },
+        {
+          "id": "province_6",
+          "reservationFound": false
+        },
+        {
+          "id": "province_18",
+          "reservationFound": false
+        },
+        {
+          "id": "province_34",
+          "reservationFound": false
+        },
+        {
+          "id": "province_26",
+          "reservationFound": false
+        },
+        {
+          "id": "province_35",
+          "reservationFound": false
+        },
+        {
+          "id": "province_44",
+          "reservationFound": false
+        },
+        {
+          "id": "province_39",
+          "reservationFound": false
+        },
+        {
+          "id": "province_14",
+          "reservationFound": false
+        },
+        {
+          "id": "province_15",
+          "reservationFound": false
+        },
+        {
+          "id": "province_23",
+          "reservationFound": false
+        }
+      ],
+      "routing": [
+        {
+          "from": "province_43",
+          "to": "province_4",
+          "found": false,
+          "candidates": 468
+        },
+        {
+          "from": "province_8",
+          "to": "province_38",
+          "found": false,
+          "candidates": 1296
+        },
+        {
+          "from": "province_2",
+          "to": "province_1",
+          "found": false,
+          "candidates": 703
+        },
+        {
+          "from": "province_19",
+          "to": "province_24",
+          "found": false,
+          "candidates": 441
+        },
+        {
+          "from": "province_12",
+          "to": "province_34",
+          "found": false,
+          "candidates": 91
+        },
+        {
+          "from": "province_44",
+          "to": "province_11",
+          "found": false,
+          "candidates": 252
+        },
+        {
+          "from": "province_18",
+          "to": "province_2",
+          "found": false,
+          "candidates": 444
+        },
+        {
+          "from": "province_16",
+          "to": "province_10",
+          "found": false,
+          "candidates": 612
+        },
+        {
+          "from": "province_8",
+          "to": "province_19",
+          "found": false,
+          "candidates": 756
+        },
+        {
+          "from": "province_1",
+          "to": "province_34",
+          "found": false,
+          "candidates": 133
+        },
+        {
+          "from": "province_45",
+          "to": "province_24",
+          "found": false,
+          "candidates": 756
+        },
+        {
+          "from": "province_29",
+          "to": "province_11",
+          "found": false,
+          "candidates": 684
+        },
+        {
+          "from": "province_5",
+          "to": "province_39",
+          "found": false,
+          "candidates": 64
+        },
+        {
+          "from": "province_3",
+          "to": "province_7",
+          "found": false,
+          "candidates": 253
+        },
+        {
+          "from": "province_13",
+          "to": "province_31",
+          "found": false,
+          "candidates": 666
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_4",
+          "labels: Missing/non-finite label/country province_30",
+          "labels: Missing/non-finite label/country province_8",
+          "labels: Missing/non-finite label/country province_38",
+          "labels: Missing/non-finite label/country province_28",
+          "labels: Missing/non-finite label/country province_45",
+          "labels: Missing/non-finite label/country province_41",
+          "labels: Missing/non-finite label/country province_2",
+          "labels: Missing/non-finite label/country province_16",
+          "labels: Missing/non-finite label/country province_11",
+          "labels: Missing/non-finite label/country province_31",
+          "labels: Missing/non-finite label/country province_22",
+          "labels: Missing/non-finite label/country province_9",
+          "labels: Missing/non-finite label/country province_19",
+          "labels: Missing/non-finite label/country province_24",
+          "labels: Missing/non-finite label/country province_17",
+          "labels: Hit square outside country/frame province_0",
+          "labels: Hit square outside country/frame province_12",
+          "labels: Hit square outside country/frame province_20",
+          "labels: Hit square outside country/frame province_5",
+          "labels: Hit square outside country/frame province_43",
+          "labels: Hit square outside country/frame province_6",
+          "labels: Hit square outside country/frame province_18",
+          "labels: Missing/non-finite label/country province_34",
+          "labels: Hit square outside country/frame province_26",
+          "labels: Hit square outside country/frame province_35",
+          "labels: Missing/non-finite label/country province_44",
+          "labels: Missing/non-finite label/country province_39",
+          "labels: Hit square outside country/frame province_14",
+          "labels: Hit square outside country/frame province_15",
+          "labels: Missing/non-finite label/country province_23",
+          "labels: Labels too close province_25/province_5",
+          "labels: Labels too close province_32/province_18"
+        ]
+      },
+      "accepted": false
+    },
+    {
+      "spread": 0.2,
+      "missingReservations": [
+        {
+          "id": "province_1",
+          "reservationFound": false
+        },
+        {
+          "id": "province_40",
+          "reservationFound": false
+        },
+        {
+          "id": "province_29",
+          "reservationFound": false
+        },
+        {
+          "id": "province_13",
+          "reservationFound": false
+        },
+        {
+          "id": "province_0",
+          "reservationFound": false
+        },
+        {
+          "id": "province_12",
+          "reservationFound": false
+        },
+        {
+          "id": "province_20",
+          "reservationFound": false
+        },
+        {
+          "id": "province_5",
+          "reservationFound": false
+        },
+        {
+          "id": "province_27",
+          "reservationFound": false
+        },
+        {
+          "id": "province_43",
+          "reservationFound": false
+        },
+        {
+          "id": "province_6",
+          "reservationFound": false
+        },
+        {
+          "id": "province_18",
+          "reservationFound": false
+        },
+        {
+          "id": "province_34",
+          "reservationFound": false
+        },
+        {
+          "id": "province_26",
+          "reservationFound": false
+        },
+        {
+          "id": "province_35",
+          "reservationFound": false
+        },
+        {
+          "id": "province_44",
+          "reservationFound": false
+        },
+        {
+          "id": "province_39",
+          "reservationFound": false
+        },
+        {
+          "id": "province_14",
+          "reservationFound": false
+        },
+        {
+          "id": "province_15",
+          "reservationFound": false
+        },
+        {
+          "id": "province_23",
+          "reservationFound": false
+        }
+      ],
+      "routing": [
+        {
+          "from": "province_43",
+          "to": "province_4",
+          "found": false,
+          "candidates": 432
+        },
+        {
+          "from": "province_8",
+          "to": "province_38",
+          "found": false,
+          "candidates": 1296
+        },
+        {
+          "from": "province_2",
+          "to": "province_1",
+          "found": false,
+          "candidates": 592
+        },
+        {
+          "from": "province_19",
+          "to": "province_24",
+          "found": false,
+          "candidates": 441
+        },
+        {
+          "from": "province_12",
+          "to": "province_34",
+          "found": false,
+          "candidates": 60
+        },
+        {
+          "from": "province_44",
+          "to": "province_11",
+          "found": false,
+          "candidates": 180
+        },
+        {
+          "from": "province_18",
+          "to": "province_2",
+          "found": false,
+          "candidates": 296
+        },
+        {
+          "from": "province_16",
+          "to": "province_10",
+          "found": false,
+          "candidates": 720
+        },
+        {
+          "from": "province_8",
+          "to": "province_19",
+          "found": false,
+          "candidates": 756
+        },
+        {
+          "from": "province_1",
+          "to": "province_34",
+          "found": false,
+          "candidates": 80
+        },
+        {
+          "from": "province_45",
+          "to": "province_24",
+          "found": false,
+          "candidates": 756
+        },
+        {
+          "from": "province_29",
+          "to": "province_11",
+          "found": false,
+          "candidates": 576
+        },
+        {
+          "from": "province_5",
+          "to": "province_39",
+          "found": false,
+          "candidates": 37
+        },
+        {
+          "from": "province_3",
+          "to": "province_7",
+          "found": false,
+          "candidates": 338
+        },
+        {
+          "from": "province_13",
+          "to": "province_31",
+          "found": false,
+          "candidates": 555
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_4",
+          "labels: Missing/non-finite label/country province_30",
+          "labels: Missing/non-finite label/country province_8",
+          "labels: Missing/non-finite label/country province_38",
+          "labels: Missing/non-finite label/country province_28",
+          "labels: Missing/non-finite label/country province_45",
+          "labels: Missing/non-finite label/country province_41",
+          "labels: Missing/non-finite label/country province_2",
+          "labels: Missing/non-finite label/country province_16",
+          "labels: Missing/non-finite label/country province_11",
+          "labels: Missing/non-finite label/country province_31",
+          "labels: Missing/non-finite label/country province_22",
+          "labels: Hit square outside country/frame province_1",
+          "labels: Hit square outside country/frame province_40",
+          "labels: Missing/non-finite label/country province_24",
+          "labels: Missing/non-finite label/country province_17",
+          "labels: Hit square outside country/frame province_29",
+          "labels: Hit square outside country/frame province_13",
+          "labels: Hit square outside country/frame province_0",
+          "labels: Hit square outside country/frame province_12",
+          "labels: Hit square outside country/frame province_20",
+          "labels: Hit square outside country/frame province_5",
+          "labels: Hit square outside country/frame province_27",
+          "labels: Hit square outside country/frame province_43",
+          "labels: Hit square outside country/frame province_6",
+          "labels: Hit square outside country/frame province_18",
+          "labels: Missing/non-finite label/country province_34",
+          "labels: Hit square outside country/frame province_26",
+          "labels: Hit square outside country/frame province_35",
+          "labels: Missing/non-finite label/country province_44",
+          "labels: Missing/non-finite label/country province_39",
+          "labels: Hit square outside country/frame province_14",
+          "labels: Hit square outside country/frame province_15",
+          "labels: Missing/non-finite label/country province_23",
+          "labels: Labels too close province_25/province_5",
+          "labels: Labels too close province_32/province_18"
+        ]
+      },
+      "accepted": false
+    }
+  ]
+}
