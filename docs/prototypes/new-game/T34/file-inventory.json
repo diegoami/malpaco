@@ -388,8 +388,8 @@
     },
     {
       "path": "tests/core/island-geography.test.ts",
-      "sha256": "0f4e257af88bbce1d3a84b2386c789eb25f2a41f79eb5317a8a15ed46dc29251",
-      "purpose": "Independent frozen acceptance plus rejection/fairness/breadth controls."
+      "sha256": "825815e86c33421b45777926966432d3dbe369e070cfa883f34a1d1629de93be",
+      "purpose": "Independent frozen acceptance and breadth controls; the seeded geometry/topology case has an explicit 30s timeout."
     }
   ]
 }

@@ -41,6 +41,8 @@ Final current-source validation is retained in `evidence/r2-final-di4unq58`:14 f
 
 `evidence/integrity-jtiyx5h0` verifies100 recorded source/raw sets and all lossless member archives. `file-inventory.json` lists changed code/script paths, including historical executable probes and immutable source copies; `artifacts.json` indexes retained artifact hashes. Counts are available directly from these indexes.
 
+CI run39062558768 had one failure: the seeded geometry/topology case reached5124ms against Vitest's5000ms default, with617 other tests and the build passing. The existing case now has an explicit30000ms timeout; the targeted test passed in the pinned Playwright1.63.0 image at2 CPUs in2131ms (`evidence/timeout-target-md74d6dj`). Its assertions and production source are unchanged.
+
 
 ## Refusal-guard coverage
 

@@ -29,7 +29,7 @@ describe("seeded partial island geography",()=>{
   expect(JSON.stringify(a.provinces.map(p=>p.polygon))).not.toEqual(JSON.stringify(b.provinces.map(p=>p.polygon)));
   const graph=(g:IslandGeography)=>JSON.stringify(g.provinces.map(p=>[p.id,[...p.borders].sort()]));
   expect(new Set([graph(a),graph(b),graph(c)]).size).toBeGreaterThan(1);
- });
+ },30000);
  it("reports bounded exhaustion without a partial success or fallback board",()=>{
   const r=generateIslandGeography(42,{attempts:0});expect(r.ok).toBe(false);expect(r.attempts).toBe(0);expect(r).not.toHaveProperty("geography");expect(r.rng).toEqual({seed:42,state:42});
  });
