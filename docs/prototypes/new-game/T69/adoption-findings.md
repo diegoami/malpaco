@@ -20,4 +20,4 @@ Adoption:
 
 Limits: command permissions are mistakes-only safeguards, not an OS sandbox; scripts can perform arbitrary actions. Optional credential-jail-enabled Claude runs refuse explicitly because that mode is not integrated. Scope acknowledgments are reviewer claims, not proof of honest reasoning. Other provider CLI/model combinations and native Windows execution were not validated by this trial. Existing OpenCode2 migration remains separate (#143); no agy dependency is needed.
 
-Independent review and final CI: See PR156 reviews/checks for the final gate results; this note records the measured implementation. .
+Independent review and final CI: Merged as eddc62a46898abf7120ff2662d9e73b3a7167d0e after independent MiniMax approval and green CI39043544882 on exact head0a57b539. Six harness groups,593units/build/package and200source+200extracted browser cases passed. One CI run only; skip-ci squash avoided a duplicate main run. .
