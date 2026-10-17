@@ -4,7 +4,7 @@ import { s } from "./dom";
 import { initial, seatLook } from "./palette";
 
 export interface MapHandlers {
-  onProvince(id: string): void;
+  onProvince(id: string, activation?: { readonly inspect: boolean; readonly repeat: boolean }): void;
   onBackground(): void;
   onHover(id: string | null): void;
 }
