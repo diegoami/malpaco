@@ -2,6 +2,7 @@ import {describe,it,expect} from "vitest";
 import input from "../../docs/prototypes/new-game/T63/board.json";
 import {createHash} from "node:crypto";
 import {readFileSync} from "node:fs";
+import target from "../../docs/prototypes/new-game/T64/acceptance/board.json";
 type Board=typeof input;
 const implementation=new URL("../../docs/prototypes/new-game/T64/layout.mjs",import.meta.url).href;
 const contract=new URL("../../docs/prototypes/new-game/T62/contract.mjs",import.meta.url).href;
@@ -13,6 +14,7 @@ describe("fixed-reference geographical coast contract",()=>{
  it("changes all nine coast silhouettes and all countries while preserving the exact playable graph",()=>{
   const result=coastPostprocess(input);
   expect(semantics(result)).toEqual(semantics(input));
+  expect(result).toEqual(target);
   for(const island of input.islands)expect(result.islands.find(i=>i.id===island.id)!.polygon,island.id).not.toEqual(island.polygon);
   for(const country of input.provinces)expect(result.provinces.find(p=>p.id===country.id)!.polygon,country.id).not.toEqual(country.polygon);
   expect(result.routes.some((r,j)=>JSON.stringify(r.points)!==JSON.stringify(input.routes[j]!.points))).toBe(true);

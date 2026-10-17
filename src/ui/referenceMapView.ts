@@ -1,22 +1,22 @@
-// Adapt the approved T63 drawing to the existing controller interface.
-import drawing from "../../docs/prototypes/new-game/T63/map.svg?raw";
+// Adapt the geographical drawing to stable canonical game-country IDs.
+import drawing from "../../docs/prototypes/new-game/T64/map.svg?raw";
 import {s} from "./dom";
 import {seatLook} from "./palette";
 import type {GameMap} from "../core";
 import type {MapHandlers,MapViewState} from "./mapView";
 export class ReferenceMapView{
  readonly el:SVGSVGElement;
- constructor(map:GameMap,handlers:MapHandlers){
+ constructor(_map:GameMap,handlers:MapHandlers){
   this.el=new DOMParser().parseFromString(drawing,"image/svg+xml").documentElement as unknown as SVGSVGElement;
   this.el.id="reference-map";this.el.setAttribute("aria-label","Nine Isles reference map");
   const nodes=[...this.el.querySelectorAll<SVGGElement>(".country")];
   for(const[j,n]of nodes.entries()){
-   const id=n.dataset["id"]!,p=map.provinces.find(p=>p.id===id)!;
+   const id=n.dataset["id"]!;
    n.dataset["country"]=id;n.dataset["province"]=id;n.classList.add("province");
    n.querySelector(".cell")!.classList.add("country-shape");n.querySelector(".count")!.classList.add("army-count");
    // [designed] Reuse the score legend's ownership silhouettes within the existing label reservation.
    n.querySelector(".badge")!.replaceWith(s("path",{class:"badge"}));
-   if(!n.querySelector(".centre"))n.append(s("text",{class:"centre",x:p.labelAt[0]-25,y:p.labelAt[1]-10},"★"));
+   if(!n.querySelector(".centre"))n.append(s("text",{class:"centre",x:Number(n.querySelector(".count")!.getAttribute("x"))-25,y:Number(n.querySelector(".count")!.getAttribute("y"))-28},"★"));
    n.onclick=e=>handlers.onProvince(id,{inspect:e.shiftKey,repeat:false});n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
    n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id,{inspect:e.shiftKey,repeat:e.repeat});}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
   }

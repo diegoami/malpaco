@@ -1,0 +1,17 @@
+
+> malpaco-spike-ts@0.0.0 test
+> vitest run
+
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t64-work
+
+
+ Test Files  40 passed (40)
+      Tests  588 passed (588)
+   Start at  11:27:57
+   Duration  12.35s (tests 66%, transform 28%, import 5%, worker 1%)
+
+  Transform  transforming modules took 13.77s · 28% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+

@@ -13,6 +13,7 @@ const root=process.env["COAST_EVIDENCE_DIR"]??"screenshots";
 const country=(page:Page,id:string)=>page.locator(`[data-id="${id}"]`);
 function output(label:string){mkdirSync(root,{recursive:true});return mkdtempSync(join(root,label+"-"));}
 async function shot(page:Page,dir:string,name:string){await page.mouse.move(0,0);await page.screenshot({path:join(dir,name+".png")});}
+async function closeups(page:Page,dir:string,prefix:string){for(const [index,name]of[[7,"cliff"],[8,"great"]] as const)await page.locator(".coast").nth(index).screenshot({path:join(dir,`${prefix}-${name}.png`)});}
 async function painted(page:Page){
  await expect(page.locator(".country")).toHaveCount(46);
  expect(await page.locator(".coast").evaluateAll(nodes=>nodes.map(n=>n.getAttribute("d")))).toEqual(expected.islands.map(i=>"M"+i.polygon.map(p=>p.join(",")).join("L")+"Z"));
@@ -47,9 +48,9 @@ async function painted(page:Page){
 }
 for(const viewport of [{width:800,height:540},{width:1280,height:800},{width:1920,height:1080}])test(`standalone geography is painted and all46countries selectable at ${viewport.width}x${viewport.height}`,async({page},info)=>{
  const dir=output(`standalone-${viewport.width}-${info.project.name}`),errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));await page.setViewportSize(viewport);
- await page.setContent(readFileSync(new URL("../../docs/prototypes/new-game/T63/preview.html",import.meta.url),"utf8"));await shot(page,dir,"before-T63");
+ await page.setContent(readFileSync(new URL("../../docs/prototypes/new-game/T63/preview.html",import.meta.url),"utf8"));await shot(page,dir,"before-T63");await closeups(page,dir,"before-coast");
  await page.setContent(readFileSync(new URL("../../docs/prototypes/map-1994/preview.html",import.meta.url),"utf8"));await shot(page,dir,"approved-T22-reference");
- await page.setContent(readFileSync(new URL("../../docs/prototypes/new-game/T64/preview.html",import.meta.url),"utf8"));try{await painted(page);}finally{await shot(page,dir,"after-opening");}
+ await page.setContent(readFileSync(new URL("../../docs/prototypes/new-game/T64/preview.html",import.meta.url),"utf8"));try{await painted(page);}finally{await shot(page,dir,"after-opening");await closeups(page,dir,"after-coast");}
  for(const p of expected.provinces){await country(page,p.id).click();await expect(country(page,p.id)).toHaveAttribute("aria-pressed","true");expect(await page.locator(".country.neighbor").evaluateAll(nodes=>nodes.map(n=>(n as SVGGElement).dataset["id"]).sort())).toEqual([...p.borders,...p.seaLanes].sort());const collisions=await page.locator(".country-label").evaluateAll(nodes=>{const boxes=nodes.map(n=>n.getBoundingClientRect());return boxes.flatMap((a,j)=>boxes.slice(j+1).flatMap((b,k)=>a.right>b.left&&b.right>a.left&&a.bottom>b.top&&b.bottom>a.top?[[j,j+k+1]]:[]));});expect(collisions,`selected ${p.id}: labels overlap`).toEqual([]);}
  await country(page,expected.provinces[0]!.id).focus();await page.keyboard.press("Space");await expect(country(page,expected.provinces[0]!.id)).toHaveAttribute("aria-pressed","true");
  await shot(page,dir,"selected");expect(errors).toEqual([]);
@@ -57,7 +58,7 @@ for(const viewport of [{width:800,height:540},{width:1280,height:800},{width:192
 test("playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map",async({page},info)=>{
  const dir=output(`playable-${info.project.name}`),f=fixture("manual"),errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));
  await page.goto("/?control=manual");await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Seats",{exact:true}).selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();
- try{await painted(page);}finally{await shot(page,dir,"opening");}
+ try{await painted(page);}finally{await shot(page,dir,"opening");await closeups(page,dir,"coast");}
  for(const p of expected.provinces){await expect(country(page,p.id).locator(".centre")).toHaveAttribute("x",String(p.labelAt[0]!-25));await expect(country(page,p.id).locator(".centre")).toHaveAttribute("y",String(p.labelAt[1]!-10));}
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator("#start-combat-button").click();
  const save=async()=>{const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();const text=readFileSync((await(await event).path())!,"utf8");writeFileSync(join(dir,"save-"+Date.now()+".json"),text);return deserializeVersionedMatch(text).state;};

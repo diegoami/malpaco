@@ -3,7 +3,7 @@ import subprocess,tempfile,json,hashlib,tarfile,sys
 root=Path(__file__).resolve().parent
 repo=root.parents[3]
 out=Path(tempfile.mkdtemp(prefix="checks-",dir=root/"evidence"))
-files=[repo/"tests/ui/coast-postprocess.test.ts",root/"layout.mjs",root/"CONTRACT.md",root/"acceptance/board.json",repo/"docs/prototypes/new-game/T63/board.json"]
+files=sorted({p for folder in ['src','tests','data/maps','docs/prototypes/new-game/T63'] for p in (repo/folder).rglob('*') if p.is_file()} | {p for folder in ['T24','T60','T62'] for p in (repo/'docs/prototypes/new-game'/folder).glob('*.mjs')} | set(root.glob('*.mjs')) | {root/'CONTRACT.md',root/'acceptance/board.json',repo/'package.json',repo/'package-lock.json',root/'checks.py'})
 sha=lambda b:hashlib.sha256(b).hexdigest()
 inputs={str(p.relative_to(repo)):p.read_bytes() for p in files}
 with tarfile.open(out/"source-inputs.tar.gz","w:gz") as tar:
