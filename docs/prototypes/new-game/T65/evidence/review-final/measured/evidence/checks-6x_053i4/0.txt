@@ -1,0 +1,88 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2
+
+ ❯ tests/ui/region-border-postprocess.test.ts (5 tests | 3 failed) 2302ms
+   ❯ canonical shared region borders (5)
+     × replaces straight divisions with the frozen geographical border drawing 80ms
+     × retains exact metadata, coast, ports, labels and routes 76ms
+     × retains connected cells, exact contacts, subdivisions and protected reservations on five seeds 1861ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -10,11 +10,11 @@
+        "bonus": 3,
+        "id": "island_0",
+        "name": "North Isle",
+        "polygon": [
+          [
+-           505.73828125,
++           506.73828125,
+            82,
+          ],
+          [
+            507.791015625,
+            94.505859375,
+
+ ❯ tests/ui/region-border-postprocess.test.ts:12:137
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains exact metadata, coast, ports, labels and routes
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -10,11 +10,11 @@
+        "bonus": 3,
+        "id": "island_0",
+        "name": "North Isle",
+        "polygon": [
+          [
+-           505.73828125,
++           506.73828125,
+            82,
+          ],
+          [
+            507.791015625,
+            94.505859375,
+
+ ❯ tests/ui/region-border-postprocess.test.ts:14:112
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains connected cells, exact contacts, subdivisions and protected reservations on five seeds
+AssertionError: 1994: expected { attachment: [], water: [], …(2) } to deeply equal { attachment: [], water: [], …(2) }
+
+- Expected
++ Received
+
+  {
+    "attachment": [],
+-   "preserved": [],
++   "preserved": [
++     "cells: Subdivision gap/area mismatch island_0",
++   ],
+    "traceability": [],
+    "water": [],
+  }
+
+ ❯ tests/ui/region-border-postprocess.test.ts:15:210
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 2 passed (5)
+   Start at  12:20:02
+   Duration  2.52s (tests 95%, transform 4%, import 1%)
+

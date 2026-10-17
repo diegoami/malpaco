@@ -1,0 +1,69 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0
+
+ ❯ tests/ui/coast-postprocess.test.ts (5 tests | 2 failed) 7105ms
+   ❯ fixed-reference geographical coast contract (5)
+     × changes all nine coast silhouettes and all countries while preserving the exact playable graph 295ms
+     × retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints 1210ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -1625,12 +1625,12 @@
+        "countTextCss": 14,
+        "hitSizeCss": 40,
+        "id": "province_4",
+        "island": "island_0",
+        "labelAt": [
+-         367.25,
+-         67.5,
++         505.73828125,
++         82,
+        ],
+        "name": "River gate",
+        "owner": "seat1",
+        "polygon": [
+          [
+
+ ❯ tests/ui/coast-postprocess.test.ts:17:18
+     15|   const result=coastPostprocess(input);
+     16|   expect(semantics(result)).toEqual(semantics(input));
+     17|   expect(result).toEqual(target);
+       |                  ^
+     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id…
+     19|   for(const country of input.provinces)expect(result.provinces.find(p=…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints
+AssertionError: expected { attachment: [], water: [], …(2) } to deeply equal { attachment: [], water: [], …(2) }
+
+- Expected
++ Received
+
+  {
+    "attachment": [],
+-   "preserved": [],
++   "preserved": [
++     "labels: Hit square outside country/frame province_4",
++   ],
+    "traceability": [],
+    "water": [],
+  }
+
+ ❯ tests/ui/coast-postprocess.test.ts:29:27
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  11:54:49
+   Duration  7.30s (tests 99%, transform 1%)
+

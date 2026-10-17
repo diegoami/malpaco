@@ -1,0 +1,50 @@
+{
+  "cases": [
+    {
+      "name": "coast-identity",
+      "path": "docs/prototypes/new-game/T64/layout.mjs",
+      "originalSha256": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+      "mutatedSha256": "cc59425785368dde010261181ba2a2405c865ce799ab4f9f45ceda952a8f2a4b",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/checks-to16i2b8",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "graph-metadata",
+      "path": "docs/prototypes/new-game/T64/layout.mjs",
+      "originalSha256": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+      "mutatedSha256": "7d2a9c1bebc8768889ed91de33a219b2678e85269305c54dba6fe6c5d64b9bfa",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/checks-v_kw3pqf",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "label-outside-country",
+      "path": "docs/prototypes/new-game/T64/layout.mjs",
+      "originalSha256": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+      "mutatedSha256": "224ff8e12c5bea9ec1ddeb09a0027cd8f0626953e4616da888933625dc12a34c",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/checks-virnln2b",
+      "assertionNegative": true,
+      "restored": true
+    }
+  ],
+  "allRestored": true
+}

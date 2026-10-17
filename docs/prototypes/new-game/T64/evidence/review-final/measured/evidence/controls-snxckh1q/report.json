@@ -1,0 +1,127 @@
+{
+  "cases": [
+    {
+      "name": "coast-identity",
+      "path": "docs/prototypes/new-game/T64/layout.mjs",
+      "originalSha256": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+      "mutatedSha256": "cc59425785368dde010261181ba2a2405c865ce799ab4f9f45ceda952a8f2a4b",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/checks-m1hyczvz",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "graph-metadata",
+      "path": "docs/prototypes/new-game/T64/layout.mjs",
+      "originalSha256": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+      "mutatedSha256": "7d2a9c1bebc8768889ed91de33a219b2678e85269305c54dba6fe6c5d64b9bfa",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/checks-7jd0fkzu",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "capture-port-inland",
+      "path": "docs/prototypes/new-game/T64/layout.mjs",
+      "originalSha256": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+      "mutatedSha256": "f55a129d70f2f39d604d2e59e42056ed6f463316b3f21cdd13fc1acae83f5cb1",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/checks-_v38izbe",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "label-outside-country",
+      "path": "docs/prototypes/new-game/T64/layout.mjs",
+      "originalSha256": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+      "mutatedSha256": "224ff8e12c5bea9ec1ddeb09a0027cd8f0626953e4616da888933625dc12a34c",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/checks-v80s_g1t",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "stateful-construction",
+      "path": "docs/prototypes/new-game/T64/layout.mjs",
+      "originalSha256": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+      "mutatedSha256": "b92758ed7a81ffaffeb56e77dca8909d43abe6f1194617b626bd92516a38e453",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/checks-wyjd3cin",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "old-painted-map",
+      "path": "src/ui/referenceMapView.ts",
+      "originalSha256": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8",
+      "mutatedSha256": "c7cf01bb674b118183feceb42c65cfdf25309b6b37b7e37f90e5bc4ee5c488a1",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/run.py",
+        "--grep",
+        "playable geography"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/run-k_fx8p_z",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "canonical-star-positions",
+      "path": "src/ui/referenceMapView.ts",
+      "originalSha256": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8",
+      "mutatedSha256": "ac51203530a12b9fb0370da379772c251c627e3c9f7c53ebeed61f0be448b22f",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/run.py",
+        "--grep",
+        "playable geography"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/run-g8h6lhsl",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "caption-reservations",
+      "path": "docs/prototypes/new-game/T64/render.mjs",
+      "originalSha256": "bab4f21bcdf380ecd47c10fab6a64af0235804e4f21e141b8592ac48d0bdb050",
+      "mutatedSha256": "dfbd169b916266e95136f9ad06bf6f9fce205ff7831c3b3bb66d9d96a73fe5f0",
+      "rebuildExit": 0,
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/147-review-cd8647b0/docs/prototypes/new-game/T64/run.py"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/run-u_rzoxwd",
+      "assertionNegative": true,
+      "restored": true
+    }
+  ],
+  "allRestored": true
+}

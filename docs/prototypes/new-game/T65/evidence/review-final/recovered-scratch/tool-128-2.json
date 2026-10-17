@@ -1,0 +1,25 @@
+{
+  "type": "tool",
+  "tool": "bash",
+  "callID": "call_01a1496557a073d68681dbef",
+  "state": {
+    "status": "completed",
+    "input": {
+      "command": "ls /tmp/borders.mjs.saved /tmp/probe-test.ts /tmp/identity-test.mjs 2>&1"
+    },
+    "output": "ls: cannot access '/tmp/borders.mjs.saved': No such file or directory\nls: cannot access '/tmp/probe-test.ts': No such file or directory\nls: cannot access '/tmp/identity-test.mjs': No such file or directory\n",
+    "metadata": {
+      "output": "ls: cannot access '/tmp/borders.mjs.saved': No such file or directory\nls: cannot access '/tmp/probe-test.ts': No such file or directory\nls: cannot access '/tmp/identity-test.mjs': No such file or directory\n",
+      "exit": 2,
+      "truncated": false
+    },
+    "title": "ls /tmp/borders.mjs.saved /tmp/probe-test.ts /tmp/identity-test.mjs 2>&1",
+    "time": {
+      "start": 1792232740245,
+      "end": 1792232740255
+    }
+  },
+  "id": "prt_14965558c001WJJJGgmZW5mVec",
+  "sessionID": "ses_eb6a5dfd2ffe2XfnVidOhK6er6",
+  "messageID": "msg_1496549a1001F8Bo6KLqvxSvsF"
+}

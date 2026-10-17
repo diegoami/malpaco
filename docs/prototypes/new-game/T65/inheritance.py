@@ -1,7 +1,7 @@
 from pathlib import Path
 import hashlib,subprocess,json,tempfile
 root=Path(__file__).resolve().parent;repo=root.parents[3]
-base="26daa2b"
+base="439856b"
 allowed={'tests/e2e/coast-postprocess.spec.ts','src/ui/referenceMapView.ts','tests/e2e/reference-game.spec.ts','tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png','tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png'}
 args=["git","ls-tree","-r",base,"--","src","tests","data","docs/prototypes/new-game/T63","docs/prototypes/new-game/T64","docs/prototypes/map-1994","package.json","package-lock.json","playwright.config.ts","vite.config.ts"]
 rows=[]
