@@ -53,7 +53,7 @@ export class BattleView {
     const resultText = last ? last.captured ? "Target captured" : last.attackerLosses > 0 ? "Defender wins · source loses 1 army" : "Attacker wins · target loses 1 army" : "Ready for your choice";
     const result = h("div", { class: "battle-feedback", "aria-live": "polite", "aria-atomic": "true" },
       h("strong", { class: `battle-result${last?.captured ? " captured" : ""}` }, resultText),
-      h("p", { id: "battle-status" }, view.message || (canExchange ? "Fight on with Stop available, or choose one exchange." : "Select countries on the map.")),
+      h("p", { id: "battle-status" }, view.message || (pending ? "Confirm the army transfer below." : canExchange ? "Click the target again for one exchange, or Fight on. Stop pauses continuous attacks." : "Choose your country, then click an enemy to attack. Shift-click or Shift-Enter selects only.")),
     );
     const tally = h("p", { class: "battle-tally", "aria-label": "Battle tally" },
       `Won ${view.attackerWins} · Lost ${view.defenderWins} · Ties `, h("strong", { id: "battle-ties" }, String(view.ties)));

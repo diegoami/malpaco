@@ -25,7 +25,6 @@ async function clickAction(page: Page, action: CompleteAction) {
     const from = country(page, action.from);
     if (await from.getAttribute("aria-pressed") !== "true") await from.click();
     await country(page, action.to).click();
-    await page.locator("#single-exchange-button").click();
   } else throw Error(`Unhandled fixture click ${action.kind}`);
 }
 async function setup(page: Page, fixture: ReturnType<typeof plan>) {

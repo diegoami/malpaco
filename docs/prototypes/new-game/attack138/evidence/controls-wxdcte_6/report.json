@@ -1,0 +1,56 @@
+[
+  {
+    "name": "direct-activation",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+    "mutatedSha256": "a0262b849a412b737489f6e7d99386988b2b5d6f956a070c72c0f82b361b5e7b",
+    "output": "direct-activation-output.txt",
+    "restoredExactly": true
+  },
+  {
+    "name": "repeat-context",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+    "mutatedSha256": "00e08b8c6e6b56ccfe3351b1c2521c3b5e98730beb365a9af4c8dc88b7a66801",
+    "output": "repeat-context-output.txt",
+    "restoredExactly": true
+  },
+  {
+    "name": "shift-selection",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+    "mutatedSha256": "62d88cddd2ce43c75ff272a6ee2e1688089c8eae436b8077ff2f3d882a44908b",
+    "output": "shift-selection-output.txt",
+    "restoredExactly": true
+  },
+  {
+    "name": "held-key-repeat",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+    "mutatedSha256": "ffea593acc538ceef046b7843e268a85c7fce159176a4a391d62d690ddacf643",
+    "output": "held-key-repeat-output.txt",
+    "restoredExactly": true
+  },
+  {
+    "name": "refusal-feedback",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+    "mutatedSha256": "394ec82595eab49af67c10b35423622470c346e33cce1940b3c806b598d3a40d",
+    "output": "refusal-feedback-output.txt",
+    "restoredExactly": true
+  },
+  {
+    "name": "capture-auto-confirm",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+    "mutatedSha256": "1b5c13c0baf7e1afc169bdd25f9db2dcda89ebf05c6c093b3496dbf55451dd6b",
+    "output": "capture-auto-confirm-output.txt",
+    "restoredExactly": true
+  }
+]

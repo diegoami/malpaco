@@ -1,0 +1,28 @@
+{
+  "purpose": "disposable mock-positive proof; all source/assets restored",
+  "originalHashes": {
+    "docs/prototypes/new-game/T64/layout.mjs": "0e5842c7c615a51acd6aa911e0a2ddbf1a926a8666d1ecb59b1eb0abbd8612c5",
+    "src/ui/referenceMapView.ts": "1bfdbf2eb17462e7fac6bd2ed0a3f5518deea3aba1e3608cdc1f0d610f18ae47",
+    "docs/prototypes/new-game/T64/board.json": null,
+    "docs/prototypes/new-game/T64/map.svg": null,
+    "docs/prototypes/new-game/T64/preview.html": null
+  },
+  "restored": {
+    "docs/prototypes/new-game/T64/layout.mjs": true,
+    "src/ui/referenceMapView.ts": true,
+    "docs/prototypes/new-game/T64/board.json": true,
+    "docs/prototypes/new-game/T64/map.svg": true,
+    "docs/prototypes/new-game/T64/preview.html": true
+  },
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t64-work/docs/prototypes/new-game/T64/run.py"
+      ],
+      "exit": 0,
+      "output": "0.txt",
+      "tail": "{\n  \"output\": \"docs/prototypes/new-game/T64/evidence/run-gbtg5_5g\",\n  \"exit\": 0,\n  \"tail\": \"\\nRunning 8 tests using 2 workers\\n\\n  \\u2713  1 [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 800x540 (2.7s)\\n  \\u2713  2 [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 1280x800 (3.2s)\\n  \\u2713  4 [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:57:1 \\u203a playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map (1.3s)\\n  \\u2713  3 [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 1920x1080 (3.1s)\\n  \\u2713  5 [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 800x540 (2.7s)\\n  \\u2713  6 [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 1280x800 (3.1s)\\n  \\u2713  8 [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:57:1 \\u203a playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map (1.3s)\\n  \\u2713  7 [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 1920x1080 (3.1s)\\n\\n  8 passed (13.4s)\\nnpm notice\\nnpm notice New major version of npm available! 11.19.0 -> 12.2.0\\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\\nnpm notice To update run: npm install -g npm@12.2.0\\nnpm notice\\n\"\n}\n"
+    }
+  ]
+}

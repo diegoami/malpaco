@@ -178,7 +178,7 @@ test("successful load cancels queued fight-on work from the prior match", async 
   const attacks = state.map.provinces.filter(p => state.ownerOf[p.id] === mover && state.armies[p.id]! > 2).flatMap(p => [...p.borders, ...p.seaLanes].filter(id => state.ownerOf[id] !== mover).map(to => ({ kind: "attack" as const, from: p.id, to })));
   const queued = attacks.find(action => { const result = apply(state, action); return result.ok && result.state.phase === "attack" && result.state.armies[action.from]! > 1; });
   if (!queued) throw Error("Pinned move-ready must permit a queued exchange for stale-timer acceptance");
-  await country(page, queued.from).click(); await country(page, queued.to).click();
+  await country(page, queued.from).click(); await country(page, queued.to).click({modifiers:["Shift"]});
   await page.locator("#battle-stop-threshold").fill("1"); await page.locator("#battle-stop-threshold").press("Tab");
   await page.locator("#fight-on-button").click();
   await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "true");

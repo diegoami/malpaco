@@ -1,0 +1,42 @@
+{
+  "session": "ses_eb77695fdffegdAD84POtF8r3L",
+  "result": "No valid final review: automatic external_directory (/tmp/*) permission rejection at archive extraction; exact session read before retry",
+  "retained": true,
+  "files": {
+    "session.json": "b1b911985d18952c97b37f76dd4b68ba0742021671457762fd384843e334d723",
+    "stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr.txt": "fdd63d5f8b27358738deb8f4566ea40dd81f26ad749be3faa6d5b0f665868b54",
+    "assistant-messages.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "brief.md": "49264347673f3ab78b8f40f273dc708b1d7db110075a672742c9aa69107ba687"
+  },
+  "freshPublishedEvidence": {
+    "archive": "fresh-measured-evidence.tar.gz",
+    "sha256": "7dc4a3f39e0d84bce08b988d9cfc6b2112ebad01680c0b4674bfa73d96585acb",
+    "memberHashes": {
+      "evidence/controls-o78hqy1k/map-click-attacks-mutated.txt": "705e0325c8a1967f31df4103d67c5797ca12ed659bbaf8520824274370248c11",
+      "evidence/controls-o78hqy1k/capture-auto-confirms-mutated.txt": "ff9156e409cf869eb29e0ed38c9383502ffc702e19ddb8363f9c8a5677af0840",
+      "evidence/controls-o78hqy1k/report.json": "ee9cbcf3e26dd645eec1c36aa7330d7fb515d6f2c45dc08b771bfd1d32eaff41",
+      "evidence/controls-o78hqy1k/capture-auto-confirms-original.txt": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+      "evidence/controls-o78hqy1k/map-click-attacks-output.txt": "2b09f3c79308df86c8e40c384e65fb6a4259468bd34886edddd653272dae5485",
+      "evidence/controls-o78hqy1k/map-click-attacks-original.txt": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+      "evidence/controls-o78hqy1k/capture-auto-confirms-output.txt": "bad29c2ad53158c93dff8a4325696b5f57015e3c34fdd3b7b357d8fdd0c1b334",
+      "evidence/run-70zzaitz/raw-outputs.tar.gz": "10385595a3aea0dcb0a788492c272c831c9bfe0f7a1235a7eadbc89e9956f299",
+      "evidence/run-70zzaitz/report.json": "4c6e225f6c5bb59837e090308ad049517ac71713542ad7e1512a44ef246c9359",
+      "evidence/run-70zzaitz/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+      "evidence/run-70zzaitz/source-inputs.tar.gz": "32adf008335de8d34544fff5cf1e5d5dba862a281e18246251754c9e4cc0bf3e",
+      "evidence/run-twpa1ew1/raw-outputs.tar.gz": "078d281ee852586938816a4e0b6014742e6a3fd3dbe1c55abdaf34a30f4ab8ff",
+      "evidence/run-twpa1ew1/report.json": "795ef59bd758e0291d0fe18325385feb481c2578b555c74b8f9cc9120ab904b6",
+      "evidence/run-twpa1ew1/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+      "evidence/run-twpa1ew1/source-inputs.tar.gz": "ca2716d00ee08a1335ca80e51e796320a517e64b2e8c83fc2fc95b47b14f1def",
+      "evidence/run-zi34ln8o/raw-outputs.tar.gz": "cca89d0f7ce4043813d06a26937f57ce41ebe31333a74edfd8e671d06fa25372",
+      "evidence/run-zi34ln8o/report.json": "9a5417ec52dc5af7ca43e7b7b919b2ef37aa9e4d752669b90fa0502e67039400",
+      "evidence/run-zi34ln8o/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+      "evidence/run-zi34ln8o/source-inputs.tar.gz": "0d62a89cc284bd35c7b37af33928d66a81aaa714e2a806e9be5180d56b2c6dbb"
+    },
+    "note": "Inherited author files are already in the PR; local raw files are round-tripped in each fresh raw-outputs archive. Complete unfiltered copies remain local."
+  },
+  "localOnlyArchiveHashes": {
+    "run.log": "445b76461785357f02efd453956e4a39aae8cf946aea96c98511e1f943f2d2b3",
+    "retained-worktree-evidence.tar.gz": "9286e1c12eadb2424fd946e7ad9300fcdf67c22577901a1f616ded149675d4b3"
+  }
+}

@@ -8,6 +8,7 @@ import {createReferenceGame} from "../../src/core/reference-game";
 import {defaultOptions,apply,attackTargets} from "../../src/core";
 import type {GameMap,Province} from "../../src/core";
 import {nextAction,policyFor,ACTION_BUDGET} from "../helpers/complete-game";
+const drawing:typeof raw=JSON.parse(readFileSync(new URL("../../docs/prototypes/new-game/T65/board.json",import.meta.url),"utf8"));
 const map:GameMap={id:"reference-coast-first-a",name:"Nine Isles",bounds:raw.bounds,provinces:raw.provinces as unknown as readonly Province[],islands:raw.islands};
 function opening(){const r=createReferenceGame(map,{...defaultOptions(),seed:1994,seats:[{kind:"human"},{kind:"human"}],computerStrengths:[]});if(!r.ok)throw Error(r.errors.join(";"));return r.state;}
 const country=(page:Page,id:string)=>page.locator(`[data-country="${id}"]`);
@@ -21,11 +22,11 @@ async function panelTextFits(page:Page){
  })).then(rows=>rows.filter(r=>r.visible));
  expect(boxes.length).toBeGreaterThan(4);expect(boxes.filter(b=>!b.fits)).toEqual([]);
 }
-test("reference setup paints exact A geometry, routes, live counts and reachable controls",async({page},info)=>{
+test("reference setup paints current geography, routes, live counts and reachable controls",async({page},info)=>{
  const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));await setup(page);const state=opening();
  await expect(page.locator("[data-country]")).toHaveCount(46);
- for(const p of map.provinces){const n=country(page,p.id);await expect(n.locator(".country-shape")).toHaveAttribute("d","M"+p.polygon.map(q=>q.join(",")).join("L")+"Z");await expect(n).toHaveAttribute("data-owner",state.ownerOf[p.id]!);await expect(n).toHaveAttribute("data-armies",String(state.armies[p.id]));await expect(n.locator(".army-count")).toHaveText(`${state.players.findIndex(q=>q.id===state.ownerOf[p.id])+1} · ${state.armies[p.id]}`);}
- expect(await page.locator(".lane").evaluateAll(ns=>ns.map(n=>({edge:(n as SVGElement).dataset["edge"],points:n.getAttribute("points")})))).toEqual(raw.routes.map(r=>({edge:[r.from,r.to].sort().join("|"),points:r.points.map(p=>p.join(",")).join(" ")})));
+ for(const p of map.provinces){const n=country(page,p.id);await expect(n.locator(".country-shape")).toHaveAttribute("d","M"+drawing.provinces.find(q=>q.id===p.id)!.polygon.map(q=>q.join(",")).join("L")+"Z");await expect(n).toHaveAttribute("data-owner",state.ownerOf[p.id]!);await expect(n).toHaveAttribute("data-armies",String(state.armies[p.id]));await expect(n.locator(".army-count")).toHaveText(String(state.armies[p.id]));}
+ expect(await page.locator(".lane").evaluateAll(ns=>ns.map(n=>({edge:(n as SVGElement).dataset["edge"],points:n.getAttribute("points")})))).toEqual(drawing.routes.map(r=>({edge:[r.from,r.to].sort().join("|"),points:r.points.map(p=>p.join(",")).join(" ")})));
  const text=await page.locator(".country-label").evaluateAll(ns=>ns.map(n=>{const b=n.getBoundingClientRect(),count=n.querySelector(".army-count")!,s=getComputedStyle(count),m=(count as SVGGraphicsElement).getScreenCTM()!;return {x:b.x,y:b.y,right:b.right,bottom:b.bottom,width:b.width,height:b.height,countPx:parseFloat(s.fontSize)*Math.hypot(m.a,m.b),display:s.display,opacity:s.opacity};}));
  const v=page.viewportSize()!;for(const t of text){expect(t.width).toBeGreaterThan(0);expect(t.height).toBeGreaterThan(0);expect(t.countPx).toBeGreaterThanOrEqual(14-.01);expect(t.display).not.toBe("none");expect(Number(t.opacity)).toBeGreaterThan(0);expect(t.x).toBeGreaterThanOrEqual(0);expect(t.y).toBeGreaterThanOrEqual(0);expect(t.right).toBeLessThanOrEqual(v.width);expect(t.bottom).toBeLessThanOrEqual(v.height);}
  for(let i=0;i<text.length;i++)for(let j=i+1;j<text.length;j++){const a=text[i]!,b=text[j]!;expect(a.right<=b.x||b.right<=a.x||a.bottom<=b.y||b.bottom<=a.y,"labels overlap").toBe(true);}
@@ -41,7 +42,7 @@ test("ordinary reference clicks place, attack, hand off and replay legally to a 
  let state=opening();const policy=policyFor(state);let actions=0,attacks=0,handoffs=0,placements=0;
  while(state.phase!=="finished"&&actions<ACTION_BUDGET){
   const action=nextAction(state,policy),r=apply(state,action);if(!r.ok)throw Error(r.error);
-  if(action.kind==="reinforce"){await country(page,action.province).click();placements++;await expect(page.locator("#reinforcement-pool")).toHaveText(String(r.state.reinforcementPool));await expect(country(page,action.province).locator(".army-count")).toHaveText(`${r.state.players.findIndex(p=>p.id===r.state.ownerOf[action.province])+1} · ${r.state.armies[action.province]}`);}
+  if(action.kind==="reinforce"){await country(page,action.province).click();placements++;await expect(page.locator("#reinforcement-pool")).toHaveText(String(r.state.reinforcementPool));await expect(country(page,action.province).locator(".army-count")).toHaveText(String(r.state.armies[action.province]));}
   else if(action.kind==="endReinforcement")await page.locator("#start-combat-button").click();
   else if(action.kind==="endTurn"){await page.locator("#end-turn-button").click();handoffs++;await expect(page.locator("#turn-title")).toHaveText(`${r.state.players[r.state.currentPlayer]!.name}'s turn`);}
   else if(action.kind==="attack"){
@@ -50,7 +51,7 @@ test("ordinary reference clicks place, attack, hand off and replay legally to a 
    // Integration guard: legal target markers must correspond to painted outlines.
    await expect.poll(async()=>await page.locator('[data-target="true"] .cell').evaluateAll(ns=>ns.every(n=>{const s=getComputedStyle(n);return s.stroke==="rgb(245, 220, 130)"&&parseFloat(s.strokeWidth)>=1.5&&Number(s.opacity)>0;}))).toBe(true);
    await country(page,action.to).click();await page.locator("#attack-button").click();await expect(page.locator("#result-dialog")).toBeVisible();
-   for(const id of [action.from,action.to]){await expect(country(page,id)).toHaveAttribute("data-owner",r.state.ownerOf[id]!);await expect(country(page,id)).toHaveAttribute("data-armies",String(r.state.armies[id]));await expect(country(page,id).locator(".army-count")).toHaveText(`${r.state.players.findIndex(p=>p.id===r.state.ownerOf[id])+1} · ${r.state.armies[id]}`);}
+   for(const id of [action.from,action.to]){await expect(country(page,id)).toHaveAttribute("data-owner",r.state.ownerOf[id]!);await expect(country(page,id)).toHaveAttribute("data-armies",String(r.state.armies[id]));await expect(country(page,id).locator(".army-count")).toHaveText(String(r.state.armies[id]));}
    if(attacks===0)await capture(page,"first-attack",info.project.name);attacks++;await page.getByRole("button",{name:"Continue",exact:true}).click();
   }
   else throw new Error(`Unexpected legacy action: ${action.kind}`);

@@ -1,0 +1,17 @@
+{
+  "output": "docs/prototypes/new-game/T64/evidence/checks-423hb616",
+  "results": [
+    {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/coast-postprocess.test.ts"
+      ],
+      "exit": 0,
+      "output": "0.txt",
+      "sha256": "0fa7dfeb60a07d182847cbc7a2c795c3289ca8fdf0d08c285463c71585d59daf",
+      "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t64-work\n\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  10:51:09\n   Duration  725ms (tests 81%, transform 15%, import 4%)\n\n"
+    }
+  ]
+}

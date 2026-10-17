@@ -1,0 +1,30 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t64-work
+
+ ❯ tests/ui/coast-postprocess.test.ts (5 tests | 1 failed) 140ms
+   ❯ fixed-reference geographical coast contract (5)
+     × changes all nine coast silhouettes and all countries while preserving the exact playable graph 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph
+AssertionError: island_0: expected [ [ 326, 83 ], …(47) ] to not deeply equal [ [ 326, 83 ], …(47) ]
+
+Compared values have no visual difference.
+
+ ❯ tests/ui/coast-postprocess.test.ts:16:109
+     14|   const result=coastPostprocess(input);
+     15|   expect(semantics(result)).toEqual(semantics(input));
+     16|   for(const island of input.islands)expect(result.islands.find(i=>i.id…
+       |                                                                                                             ^
+     17|   for(const country of input.provinces)expect(result.provinces.find(p=…
+     18|   expect(result.routes.some((r,j)=>JSON.stringify(r.points)!==JSON.str…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  10:49:31
+   Duration  367ms (tests 51%, transform 40%, import 8%, worker 1%)
+

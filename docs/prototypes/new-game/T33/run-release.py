@@ -8,6 +8,7 @@ raw=out/'raw';raw.mkdir();(raw/'screenshots').mkdir();(out/'captures').mkdir()
 extracted=Path(tempfile.mkdtemp(prefix='malpaco-t33-extracted-'))
 relative=out.relative_to(repo)
 paths=sorted(set(p for folder in ['src','tests','tools/release','docs/prototypes/new-game/T63',str(root.relative_to(repo)/'fixtures')] for p in (repo/folder).rglob('*') if p.is_file())|set(p for p in root.glob('*') if p.is_file())|{repo/n for n in ['package.json','package-lock.json','index.html','tsconfig.json','playwright.config.ts','playwright.release.config.ts','vite.config.ts','docs/play.md','docs/spike.md','docs/prototypes/playable/acceptance.mjs']})
+paths=sorted(set(paths)|{p for folder in ['T64','T65'] for p in (repo/'docs/prototypes/new-game'/folder).glob('*') if p.is_file()})
 inputs={str(p.relative_to(repo)):p.read_bytes() for p in paths};sha=lambda b:hashlib.sha256(b).hexdigest()
 with tarfile.open(out/'source-inputs.tar.gz','w:gz') as a:
  for p in paths:a.add(p,arcname=str(p.relative_to(repo)))

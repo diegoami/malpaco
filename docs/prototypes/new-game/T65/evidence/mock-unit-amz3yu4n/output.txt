@@ -1,0 +1,17 @@
+{
+  "output": "docs/prototypes/new-game/T65/evidence/checks-x10v1fdb",
+  "results": [
+    {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/region-border-postprocess.test.ts"
+      ],
+      "exit": 0,
+      "output": "0.txt",
+      "sha256": "c90b3f42bcfdc4928a90a0c8ed4ede2bb4c5c8700ddc4611ff7dcd1d289522ae",
+      "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  12:02:17\n   Duration  1.91s (tests 94%, transform 5%, import 1%)\n\n"
+    }
+  ]
+}

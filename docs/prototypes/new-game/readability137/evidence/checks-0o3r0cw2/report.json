@@ -1,0 +1,34 @@
+[
+  {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0,
+    "output": "0.txt",
+    "sha256": "373571e4bc0920b6636a9ac0a06c3596a98152dd5a0a4d5755fd1f1707f5767f",
+    "tail": "\n> malpaco-spike-ts@0.0.0 test\n> vitest run\n\n\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/readability137-work\n\n\n Test Files  39 passed (39)\n      Tests  583 passed (583)\n   Start at  09:39:04\n   Duration  10.32s (tests 62%, transform 30%, import 7%, worker 1%)\n\n  Transform  transforming modules took 9.85s \u00b7 30% of tracked time, re-done on every run\n             persist transforms across runs with fsModuleCache: true\n             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns\n\n"
+  },
+  {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0,
+    "output": "1.txt",
+    "sha256": "5eb9e188c6f1bbc85e27b3fe29277105f153c7d340ce3fcf27f6f8392bc3f50f",
+    "tail": "\n> malpaco-spike-ts@0.0.0 build\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n\u2713 50 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.64 kB \u2502 gzip:  0.42 kB\ndist/assets/index-D71XpoA_.css   24.37 kB \u2502 gzip:  6.02 kB\ndist/assets/index-CH4Eg8J_.js   200.77 kB \u2502 gzip: 48.95 kB\n\n\u2713 built in 97ms\n"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "output": "2.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tail": ""
+  }
+]

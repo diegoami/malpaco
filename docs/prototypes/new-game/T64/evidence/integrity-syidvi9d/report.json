@@ -1,0 +1,53 @@
+{
+  "verified": [
+    {
+      "run": "run-238x6nzl",
+      "exit": 0,
+      "archivesVerified": true,
+      "inputDifferences": [],
+      "sourceStableDuringRun": true
+    },
+    {
+      "run": "run-1fmrg5u8",
+      "exit": 0,
+      "archivesVerified": true,
+      "inputDifferences": [],
+      "sourceStableDuringRun": true
+    },
+    {
+      "run": "run-9lsg_1fb",
+      "exit": 0,
+      "archivesVerified": true,
+      "inputDifferences": [
+        "docs/prototypes/new-game/T64/run.py",
+        "tests/e2e/coast-postprocess.spec.ts"
+      ],
+      "sourceStableDuringRun": true
+    },
+    {
+      "run": "checks-5dytkdwr",
+      "commands": [
+        [
+          "npm",
+          "test"
+        ],
+        [
+          "npm",
+          "run",
+          "build"
+        ],
+        [
+          "git",
+          "diff",
+          "--check"
+        ]
+      ],
+      "sourceStableDuringRun": true,
+      "sourceAndOutputHashesVerified": true,
+      "inputDifferences": []
+    }
+  ],
+  "eightControlsCaughtAndRestored": true,
+  "directCompatibilityOriginalsStillExact": 148,
+  "compatibilityDifferenceReason": "only additional close-up capture calls and forwarding ATTACK_EVIDENCE_DIR; no behavior/assertion/runtime changes"
+}

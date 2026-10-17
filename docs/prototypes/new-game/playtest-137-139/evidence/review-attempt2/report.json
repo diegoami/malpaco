@@ -1,0 +1,23 @@
+{
+  "session": "ses_eb75c964affe0jqpP1n23AfTDU",
+  "result": "No valid final review after automatic external_directory (/home/diego/projects/malpaco/*) rejection of package.json metadata read",
+  "retained": true,
+  "grantCorrection": "Local reviewer142 permits the dependency checkout directory already used by the browser runner; review target identity remains mandatory",
+  "files": {
+    "session.json": "fe7adbf131c0835df8d3d9e540d01f8a8b8aab46b5bbfd4254b484827167997a",
+    "stderr.txt": "dde8ad164b4ce5dfa4dc04d8956fc515879597361ca73ce3d8a3372021072f1d",
+    "corrected-local-agent.md": "af95e196bf3dcb0b568b76a451ab04598b9b9daf7ed610a214f75a50cd220481",
+    "assistant-messages.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "brief.md": "49264347673f3ab78b8f40f273dc708b1d7db110075a672742c9aa69107ba687"
+  },
+  "freshPublishedEvidence": {
+    "archive": "fresh-measured-evidence.tar.gz",
+    "sha256": "6a0adaf65ddfdb2919bc17132f968b0285872841b79e59fd95a06ed2fabc099f",
+    "memberHashes": {},
+    "note": "Inherited author files are already in the PR; local raw files are round-tripped in each fresh raw-outputs archive. Complete unfiltered copies remain local."
+  },
+  "localOnlyArchiveHashes": {
+    "run.log": "3687e3d6b417593c90da68b0816f5a48cf838f0bb8a3bc68c4200fea04b0e9c3",
+    "retained-worktree-evidence.tar.gz": "e1c22b53a3b3e3993e0941a102b371a6a88dc924db7302249f2e9194ca2f9d8b"
+  }
+}

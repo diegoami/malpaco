@@ -1,0 +1,24 @@
+{
+  "commands": [
+    {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/coast-postprocess.test.ts"
+      ],
+      "exit": 0,
+      "output": "0.txt",
+      "sha256": "2be5755529246077826b825446a8c8e4c46cc0cd16c4cfe3774d9f8b292a104b",
+      "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t64-work\n\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  11:10:32\n   Duration  7.27s (tests 99%, transform 1%)\n\n"
+    }
+  ],
+  "sourceHashes": {
+    "tests/ui/coast-postprocess.test.ts": "709e9f02c3aac0e5994f5975a05569f2e425994dec62bbac5c915fc08a1b6e3b",
+    "docs/prototypes/new-game/T64/layout.mjs": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+    "docs/prototypes/new-game/T64/CONTRACT.md": "a7b2d6521a27a74d30b8462af3286d89bbb5b06f4d50335780ecef460879ae93",
+    "docs/prototypes/new-game/T64/acceptance/board.json": "a2f8de1e46899c6330d3b370d2214d85251560d5236df66d37f4777ce1b75381",
+    "docs/prototypes/new-game/T63/board.json": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9"
+  },
+  "sourcesUnchangedDuringRun": true
+}

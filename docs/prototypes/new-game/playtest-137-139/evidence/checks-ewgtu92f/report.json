@@ -1,0 +1,50 @@
+[
+  {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0,
+    "output": "0.txt",
+    "sha256": "7c15615f80a2e065d5d77bae87e028ed5f001eec113b0d6e7f80aa4830fe217d"
+  },
+  {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0,
+    "output": "1.txt",
+    "sha256": "6c9914ccc4c704613da671f20b6fd100b7fa80e0578aa58889468a02685f065e"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "exit": 0,
+    "output": "2.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--exit-code",
+      "ee147f9",
+      "--",
+      "src",
+      "tests",
+      "data",
+      "package.json",
+      "package-lock.json",
+      "playwright.config.ts",
+      "vite.config.ts"
+    ],
+    "exit": 0,
+    "output": "3.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

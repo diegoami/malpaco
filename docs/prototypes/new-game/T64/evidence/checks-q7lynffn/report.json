@@ -1,0 +1,24 @@
+{
+  "commands": [
+    {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/coast-postprocess.test.ts"
+      ],
+      "exit": 1,
+      "output": "0.txt",
+      "sha256": "7f627218e0b58700435641a524808e6db7d56e22090fd4099e577604245c5923",
+      "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t64-work\n\n \u276f tests/ui/coast-postprocess.test.ts (5 tests | 1 failed) 140ms\n   \u276f fixed-reference geographical coast contract (5)\n     \u00d7 changes all nine coast silhouettes and all countries while preserving the exact playable graph 10ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph\nAssertionError: island_0: expected [ [ 326, 83 ], \u2026(47) ] to not deeply equal [ [ 326, 83 ], \u2026(47) ]\n\nCompared values have no visual difference.\n\n \u276f tests/ui/coast-postprocess.test.ts:16:109\n     14|   const result=coastPostprocess(input);\n     15|   expect(semantics(result)).toEqual(semantics(input));\n     16|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n       |                                                                                                             ^\n     17|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n     18|   expect(result.routes.some((r,j)=>JSON.stringify(r.points)!==JSON.str\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 4 passed (5)\n   Start at  10:49:31\n   Duration  367ms (tests 51%, transform 40%, import 8%, worker 1%)\n\n"
+    }
+  ],
+  "sourceHashes": {
+    "tests/ui/coast-postprocess.test.ts": "b3ed79d27a50f8b9be09a0d77177a569bcda1770b84ba7f313ba7073011fbdcb",
+    "docs/prototypes/new-game/T64/layout.mjs": "0e5842c7c615a51acd6aa911e0a2ddbf1a926a8666d1ecb59b1eb0abbd8612c5",
+    "docs/prototypes/new-game/T64/CONTRACT.md": "d0b42e7eb8c4e10d3a076f8d250dc5104caf2fb5018893cb96e384d68a55488b",
+    "docs/prototypes/new-game/T64/acceptance/board.json": "18a011507e7036558588f56063105fa0394a9658e24d34b18d87d6753276eb1b",
+    "docs/prototypes/new-game/T63/board.json": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9"
+  },
+  "sourcesUnchangedDuringRun": true
+}

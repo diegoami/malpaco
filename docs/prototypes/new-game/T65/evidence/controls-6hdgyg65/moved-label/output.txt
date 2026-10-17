@@ -1,0 +1,17 @@
+{
+  "output": "docs/prototypes/new-game/T65/evidence/checks-d_vucufo",
+  "results": [
+    {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/region-border-postprocess.test.ts"
+      ],
+      "exit": 1,
+      "output": "0.txt",
+      "sha256": "7cc99132e6c971bc0081893415f99ea357605e2dd1c01e4246de7c2d62cc0c53",
+      "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 2 failed) 10016ms\n   \u276f canonical shared region borders (5)\n     \u00d7 replaces straight divisions with the frozen geographical border drawing 90ms\n     \u00d7 retains exact metadata, coast, ports, labels and routes 81ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,11 +1625,11 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n+         368.25,\n          67.5,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains exact metadata, coast, ports, labels and routes\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,11 +1625,11 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n+         368.25,\n          67.5,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"production\": false,\n\n \u276f tests/ui/region-border-postprocess.test.ts:14:112\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:08:50\n   Duration  10.23s (tests 99%, transform 1%)\n\n"
+    }
+  ]
+}

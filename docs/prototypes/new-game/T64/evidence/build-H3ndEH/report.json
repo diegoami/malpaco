@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/home/diego/.nvm/versions/node/v24.21.0/bin/node",
+    "/home/diego/projects/malpaco/.cache/t64-work/docs/prototypes/new-game/T64/construct.mjs"
+  ],
+  "accepted": true,
+  "checks": {
+    "attachment": [],
+    "water": [],
+    "traceability": [],
+    "preserved": []
+  },
+  "semanticIdentity": true,
+  "inputHashes": {
+    "T63-board.json": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+    "layout-input.mjs": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+    "render-input.mjs": "bab4f21bcdf380ecd47c10fab6a64af0235804e4f21e141b8592ac48d0bdb050",
+    "construct-input.mjs": "a0104c5ad20bae2ec2574baacd722296333d8fb1b1bb70f98f4c8d3a1c907381"
+  },
+  "outputHashes": {
+    "board.json": "a2f8de1e46899c6330d3b370d2214d85251560d5236df66d37f4777ce1b75381",
+    "map.svg": "6e2d4a8b5be7cff98e4f4bf10c7ea1e29e16aadcd21b2d456846e3ff42d47b8e",
+    "preview.html": "2065af48a842b5357d41be4ef157f92013f8ecacf029ed8a6efdc6d710b18bc0"
+  }
+}
