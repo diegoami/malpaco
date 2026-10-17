@@ -1,0 +1,17 @@
+{
+  "name": "mine-independent-inspect-inversion",
+  "description": "Independent mutation that inverts the inspect parameter at the call site of clickProvince in referenceBattleGame.ts. This breaks both direct attack and Shift selection behaviors, demonstrating that the new MapHandlers activation metadata is required.",
+  "mutation": "src/ui/referenceBattleGame.ts: change `activation?.inspect ?? false` to `!(activation?.inspect ?? false)` in the onProvince handler",
+  "originalSha256": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+  "mutatedSha256": "e55110adeaa6dd8a349958880e6330334b1a6fed100de634745c8f12ef492c5b",
+  "testsFailed": 6,
+  "testsFailing": [
+    "mouse enemy activation attacks once and repeats without source/target reselection (1280x800)",
+    "mouse enemy activation attacks once and repeats without source/target reselection (1920x1080)",
+    "keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only (1280x800)",
+    "keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only (1920x1080)",
+    "Shift-click retains separate controls and Stop cancels the next continuous exchange (1280x800)",
+    "Shift-click retains separate controls and Stop cancels the next continuous exchange (1920x1080)"
+  ],
+  "restored": true
+}

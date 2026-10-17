@@ -5,8 +5,10 @@ Run `node serve.mjs` from this folder, then open <http://127.0.0.1:4175> in a de
 The root page opens Nine Isles setup, defaulting to one human against three
 Normal computers. Choose a seed and 2–4 seats; each seat can be Human or Computer.
 Select **Start game**. During your turn, place reinforcements on your territories,
-then choose **Start combat**. Select one of your territories and an adjacent
-enemy, then use **Single exchange** or **Fight on** (with **Stop** to pause).
+then choose **Start combat**. Select one of your territories, then click an adjacent
+enemy for one exchange. Click that enemy again to repeat; Enter/Space and touch work
+the same way. **Fight on** continues automatically; **Stop** pauses it. Shift-click
+(or Shift-Enter/Shift-Space) selects without attacking for **Single exchange** or **Fight on**.
 After capturing a territory, choose the army amount and **Confirm move-in**.
 You can make one adjacent friendly move per turn. Computer turns run automatically.
 **Save game** downloads a match file; **Load game** restores one, including an

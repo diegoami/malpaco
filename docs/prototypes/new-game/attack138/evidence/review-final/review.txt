@@ -1,0 +1,20 @@
+I've completed a thorough review of PR #146. Let me share my findings.
+
+Attack interaction review (MiniMax M3)
+approve
+worktree: /home/diego/projects/malpaco-work/146-review-4078203b at2e41aae90a5be07060cd9f8939e2412fec0152ae
+diff: 146 files changed, 11506 insertions(+), 20 deletions(-) vs origin/main (cb6b4a0 readability137 baseline)
+commands run: git rev-parse --show-toplevel/HEAD; git diff --name-only origin/main...HEAD; npm test; npm run build; git diff --check; python3 docs/prototypes/new-game/attack138/{run.py,run.py+ATTACK_COMPATIBILITY,checks.py,inheritance.py,controls.py}; independent in-place mutation of src/ui/referenceBattleGame.ts with exact SHA256 restoration
+DW1: ran python3 docs/prototypes/new-game/attack138/run.py → exit 0, 18/18 new direct-attack tests pass on pinned Playwright 1.63.0-noble at 1280x800 and 1920x1080 (mouse/keyboard/touch first+repeat, held-key suppression, Shift selection, invalid/friendly/one-army/computer gating, responsive Stop, capture min/intermediate/max with pending save/reload/upload).
+DW2: ran ATTACK_COMPATIBILITY=1 python3 docs/prototypes/new-game/attack138/run.py → exit 0, 78/78 affected cases pass (direct-attack + battle-controls + battle-accessibility + friendly-move + friendly-feedback + victory-options + versioned-match + computer-turn-flow + entry + map-readability).
+DW3: ran python3 docs/prototypes/new-game/attack138/checks.py → exit 0, npm test (583/583 vitest pass), npm run build (tsc + vite build clean), git diff --check (empty).
+DW3: ran python3 docs/prototypes/new-game/attack138/inheritance.py → exit 0, 248 inherited files audited against cb6b4a0; only the 10 declared input paths differ (4 runtime UI files, 6 declared test recipes); T63 fixtures, goldens, data/maps, package.json/playwright.config.ts/vite.config.ts byte-identical.
+Controls audit: ran python3 docs/prototypes/new-game/attack138/controls.py → all six author controls (direct-activation, repeat-context, shift-selection, held-key-repeat, refusal-feedback, capture-auto-confirm) and the corrected explicit capture negative (controls-bww1dzpr) exit 1 with byte-exact restoration of src/ui/referenceBattleGame.ts (sha256 b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52).
+Independent mutation: in-place inverted `activation?.inspect ?? false` → `!(activation?.inspect ?? false)` in src/ui/referenceBattleGame.ts onProvince handler, ran direct-attack + battle-controls + Shift-click tests against original/control refs, saved evidence under docs/prototypes/new-game/attack138/evidence/mine-independent-inspect-inversion/, restored source bytes (sha256 match). Exit 1 — 6 failures across mouse-enemy-activation/keyboard-attacks-agree/Shift-click-retains-separate-controls at both viewports — confirming that the new MapHandlers activation metadata is required for direct attack and Shift selection.
+
+R1 — nonblocking: docs/spike.md lines 575-578, docs/play.md lines 26-29, tools/release/PLAY.md lines 8-11 were amended to describe the new direct/repeat/Shift gestures. The phrasing in all three is consistent ("click an adjacent enemy for one exchange. Click that enemy again to repeat; Enter/Space and touch work the same way"). Verified against the new direct-attack.spec.ts behavior — wording matches the actual code path. No action needed; flagging only because the brief requires word-level consistency between the three docs and the source.
+
+R2 — nonblocking: docs/prototypes/new-game/attack138/evidence/mine-independent-inspect-inversion/ retains a fresh run directory (run-m5ddyv0h) plus report.json; the local hook described in the brief will copy docs/prototypes/new-game/attack138/ to .cache/attack138-review-retained/ on worktree removal, so this evidence is preserved. No action needed.
+
+Final pass done
+approve
