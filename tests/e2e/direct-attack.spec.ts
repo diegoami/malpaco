@@ -22,9 +22,10 @@ test("mouse enemy activation attacks once and repeats without source/target rese
 });
 test("keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only",async({page},info)=>{
  const f=await prepare(page);let state=f.state;await country(page,f.from).focus();await page.keyboard.press("Enter");await country(page,f.to).focus();await page.keyboard.press("Shift+Enter");await check(page,state);await context(page,f.from,f.to);
- await page.keyboard.press("Space");state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);
+ await country(page,f.to).focus();await page.keyboard.press("Shift+Space");await check(page,state);
+ await country(page,f.to).focus();await expect(country(page,f.to)).toBeFocused();await page.keyboard.press("Space");state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);
  for(const key of ["Enter"," "])await country(page,f.to).dispatchEvent("keydown",{key,repeat:true,bubbles:true});await check(page,state);
- await page.keyboard.press("Enter");state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);await context(page,f.from,f.to);await shot(page,"keyboard-repeat",info.project.name);
+ await country(page,f.to).focus();await expect(country(page,f.to)).toBeFocused();await page.keyboard.press("Enter");state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);await context(page,f.from,f.to);await shot(page,"keyboard-repeat",info.project.name);
 });
 test("touch uses the same one-exchange repeat gesture",async({page},info)=>{
  const f=await prepare(page);let state=f.state;await country(page,f.from).tap();await country(page,f.to).tap();state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);await country(page,f.to).tap();state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);await context(page,f.from,f.to);await shot(page,"touch-repeat",info.project.name);
@@ -34,7 +35,7 @@ for(const quantity of ["minimum","intermediate","maximum"] as const)test(`direct
  while(state.phase==="attack"&&attacks<128){await country(page,f.to).click();state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);attacks++;}
  expect(state.phase).toBe("capture");expect(state.pendingCapture!.max).toBeGreaterThan(2);await context(page,f.from,f.to);
  const pending=await check(page,state);await shot(page,`capture-${quantity}-pending`,info.project.name);
- for(let n=0;n<3;n++)await country(page,f.to).click();await country(page,f.to).focus();await page.keyboard.press("Enter");await page.keyboard.press("Space");await page.locator("#capture-amount").press("Enter");await page.locator("#fight-on-button").dispatchEvent("click");await page.clock.runFor(3000);expect(await save(page)).toBe(pending);
+ for(let n=0;n<3;n++)await country(page,f.to).click();await check(page,state);await country(page,f.to).focus();await page.keyboard.press("Enter");await page.keyboard.press("Space");await page.locator("#capture-amount").press("Enter");await page.locator("#fight-on-button").dispatchEvent("click");await page.clock.runFor(3000);expect(await save(page)).toBe(pending);
  await page.reload();await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"pending.json",mimeType:"application/json",buffer:Buffer.from(pending)});await check(page,state);await context(page,f.from,f.to);await expect(page.locator("#capture-amount")).toHaveAttribute("min",String(state.pendingCapture!.min));await expect(page.locator("#capture-amount")).toHaveAttribute("max",String(state.pendingCapture!.max));
  await page.locator("#capture-amount").fill("0");await page.locator("#confirm-capture-button").dispatchEvent("click");await check(page,state);
  const amount=quantity==="minimum"?state.pendingCapture!.min:quantity==="maximum"?state.pendingCapture!.max:state.pendingCapture!.min+1;

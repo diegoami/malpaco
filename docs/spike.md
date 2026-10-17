@@ -572,8 +572,12 @@ Its victory preset extends friendly movement and capture choice. The intended
 one-human/three-computer game setup belongs to T32. T31 provides reference save/load.
 Other routes and their saves retain their prior behavior.
 
-Select source and enemy target, then choose primary **Fight on** or **Single
-exchange**. The remembered threshold defaults to 2 and clamps to the source's
+The current reference host selects an owned source, then activates a legal enemy
+for one ordinary exchange; activating the same enemy repeats without reselection.
+Mouse, Enter/Space and touch agree; held-key repeats are ignored. Shift-click or
+Shift-Enter/Shift-Space selects only for primary **Fight on** or **Single exchange**.
+Computer turns and pending capture refuse these human inputs. Illegal targets show
+the engine's refusal reason. The remembered threshold defaults to 2 and clamps to the source's
 starting stack minus one for each fresh battle. It stays fixed as armies fall;
 an attack starting with two armies can fight to one. Stop cancels the next
 exchange while preserving both stacks and visible context. A long battle pauses

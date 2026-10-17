@@ -13,7 +13,7 @@ async function ready(page: Page, kind: "manual" | "capture") {
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   for (let n = 0; n < f.placements; n++) await country(page, f.from).click();
   await page.locator("#start-combat-button").click();
-  await country(page, f.from).click(); await country(page, f.to).click();
+  await country(page, f.from).click(); await country(page, f.to).click({modifiers:["Shift"]});
   await page.locator("#battle-stop-threshold").fill("1");
   await page.locator("#battle-stop-threshold").press("Tab");
   await page.locator("#battle-speed").selectOption("fast");

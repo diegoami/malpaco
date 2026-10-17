@@ -15,7 +15,7 @@ test("movement route emphasis includes own sea neighbours and excludes enemy rou
 
 test("Escape cancels a move draft and restores the previous battle selection",async({page})=>{
  const f=await ready(page),source=map.provinces.find(p=>p.id===f.from)!,enemy=[...source.borders,...source.seaLanes].find(id=>f.ready.ownerOf[id]!==f.ready.ownerOf[f.from])!;expect(enemy).toBeTruthy();
- await country(page,f.from).click();await country(page,enemy).click();const sourceName=await page.locator("#battle-source-name").textContent(),targetName=await page.locator("#battle-target-name").textContent();
+ await country(page,f.from).click();await country(page,enemy).click({modifiers:["Shift"]});const sourceName=await page.locator("#battle-source-name").textContent(),targetName=await page.locator("#battle-target-name").textContent();
  await page.locator("#start-friendly-move-button").click();await country(page,f.from).click();await country(page,f.to).click();await page.keyboard.press("Escape");
  await expect(page.getByRole("region",{name:"Friendly move",exact:true})).toBeHidden();await expect(page.getByRole("region",{name:"Battle controls",exact:true})).toHaveAttribute("data-history-count",String(f.ready.history.length));await expect(page.locator("#battle-source-name")).toHaveText(sourceName!);await expect(page.locator("#battle-target-name")).toHaveText(targetName!);
  for(const p of map.provinces)await expect(country(page,p.id)).toHaveAttribute("data-armies",String(f.ready.armies[p.id]));

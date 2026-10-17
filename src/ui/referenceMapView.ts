@@ -17,8 +17,8 @@ export class ReferenceMapView{
    // [designed] Reuse the score legend's ownership silhouettes within the existing label reservation.
    n.querySelector(".badge")!.replaceWith(s("path",{class:"badge"}));
    if(!n.querySelector(".centre"))n.append(s("text",{class:"centre",x:p.labelAt[0]-25,y:p.labelAt[1]-10},"★"));
-   n.onclick=()=>handlers.onProvince(id);n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
-   n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id);}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
+   n.onclick=e=>handlers.onProvince(id,{inspect:e.shiftKey,repeat:false});n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
+   n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id,{inspect:e.shiftKey,repeat:e.repeat});}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
   }
   this.el.onclick=e=>{if(!(e.target as Element).closest(".country"))handlers.onBackground();};
  }
