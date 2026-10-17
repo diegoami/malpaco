@@ -1276,3 +1276,12 @@ dialog h2 {
 .reference-match-files-setup .match-load input { flex:1; min-width:0; }
 
 #reference-computer-status { margin:0; font-size:13px; color:var(--muted); }
+
+/* [designed] Army counts lead; names remain available without a hover-only dependency.
+   Ownership silhouettes mirror the score legend, alongside color and full accessible labels. */
+#reference-map .name { font-size:9px; font-weight:400; stroke:none; }
+#reference-map .count { font-weight:750; }
+#reference-map .badge { stroke:#d7e4eb; stroke-width:.8; }
+#reference-map .country:is(:hover,:focus,.selected) .name {
+  font-size:12px; font-weight:600; stroke:#f8f2e2; stroke-width:1.5;
+}

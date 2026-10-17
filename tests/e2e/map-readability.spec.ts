@@ -25,11 +25,17 @@ test("region names remain identifiable on mouse, keyboard and touch without chan
  await first.hover();expect(await first.locator(".name").first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThan(normal);
  await page.mouse.move(0,0);await first.focus();expect(await first.locator(".name").first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThan(normal);
  await page.keyboard.press("ArrowRight");await expect(page.locator("[data-country]").nth(1)).toBeFocused();
+ const active=await page.locator(".topbar .score-row.active").getAttribute("data-player");
+ const source=page.locator(`[data-country][data-owner="${active}"]`).first();
+ while(Number(await page.locator("#reinforcement-pool").textContent())>0)await source.click();
+ await page.locator("#start-combat-button").click();await source.click();await expect(source).toHaveAttribute("aria-pressed","true");
+ const sourceName=(await source.getAttribute("aria-label"))!.split(",")[0]!;await expect(page.locator("#battle-source-name")).toHaveText(sourceName);
+ expect(await source.locator(".name").first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThan(normal);await shot(page,"selected",info.project.name);
  const save=pinned("round-limit");await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"round-limit.json",mimeType:"application/json",buffer:Buffer.from(save.text)});
  await expect(page.locator("#victory-reason")).toBeVisible();
  const armies=save.expected["armies"] as Record<string,number>,id=Object.keys(armies).find(id=>armies[id]===143)!;expect(id).toBeTruthy();
  await expect(country(page,id).locator(".army-count")).toHaveText("143");
- const fit=await country(page,id).evaluate(n=>{const c=(n.querySelector(".count")! as SVGGraphicsElement).getBoundingClientRect(),b=(n.querySelector(".badge")! as SVGGraphicsElement).getBoundingClientRect();return c.left>=b.left&&c.right<=b.right&&c.top>=b.top&&c.bottom<=b.bottom;});expect(fit).toBe(true);
+ const fit=await country(page,id).evaluate(n=>{const c=(n.querySelector(".count")! as SVGGraphicsElement).getBoundingClientRect(),b=(n.querySelector(".badge")! as SVGGraphicsElement).getBoundingClientRect();return {ok:c.left>=b.left&&c.right<=b.right&&c.top>=b.top&&c.bottom<=b.bottom,count:c.toJSON(),badge:b.toJSON()};});expect(fit.ok,JSON.stringify(fit)).toBe(true);
  await shot(page,"large-stack",info.project.name);
  const context=await browser.newContext({viewport:page.viewportSize()!,hasTouch:true});const touch=await context.newPage();
  try{await opening(touch);const node=touch.locator("[data-country]").first();const label=await node.getAttribute("aria-label");const box=await node.boundingBox();expect(box).not.toBeNull();await touch.touchscreen.tap(box!.x+box!.width/2,box!.y+box!.height/2);await expect(node).toHaveAttribute("aria-label",/Seat \d, \d+ armies/);expect(label).toBeTruthy();await expect(node.locator(".name").first()).toBeVisible();await shot(touch,"touch",info.project.name);}finally{await context.close();}
