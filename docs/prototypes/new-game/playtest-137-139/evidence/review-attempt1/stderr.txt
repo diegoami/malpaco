@@ -1,0 +1,1323 @@
+[0m
+> reviewer · MiniMax-M3
+[0m
+[0m$ [0mgit rev-parse --show-toplevel && git rev-parse HEAD && git diff --name-only origin/main...HEAD
+/home/diego/projects/malpaco-work/142-review-fc5e68f1
+e820073afbc98c57f42a8c98f1a981cb8977da34
+RUN-NOTES.md
+docs/prototypes/new-game/playtest-137-139/CONTRACT.md
+docs/prototypes/new-game/playtest-137-139/README.md
+docs/prototypes/new-game/playtest-137-139/artifacts.json
+docs/prototypes/new-game/playtest-137-139/controls.py
+docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/0.txt
+docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/1.txt
+docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/2.txt
+docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/3.txt
+docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/controls-c3ne44xu/preparation-failure.txt
+docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-mutated.txt
+docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-original.txt
+docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-output.txt
+docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/map-click-attacks-mutated.txt
+docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/map-click-attacks-original.txt
+docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/map-click-attacks-output.txt
+docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/.gitignore
+docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/raw-outputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/source-inputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/.gitignore
+docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/raw-outputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/source-inputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-nhlbpyan/.gitignore
+docs/prototypes/new-game/playtest-137-139/evidence/run-nhlbpyan/raw-outputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-nhlbpyan/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/run-nhlbpyan/source-inputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-u9y9ihi7/.gitignore
+docs/prototypes/new-game/playtest-137-139/evidence/run-u9y9ihi7/raw-outputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-u9y9ihi7/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/run-u9y9ihi7/source-inputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/.gitignore
+docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw-outputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/source-inputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-x2lsuoxx/.gitignore
+docs/prototypes/new-game/playtest-137-139/evidence/run-x2lsuoxx/raw-outputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-x2lsuoxx/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/run-x2lsuoxx/source-inputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-xhhv7in3/.gitignore
+docs/prototypes/new-game/playtest-137-139/evidence/run-xhhv7in3/raw-outputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/evidence/run-xhhv7in3/report.json
+docs/prototypes/new-game/playtest-137-139/evidence/run-xhhv7in3/source-inputs.tar.gz
+docs/prototypes/new-game/playtest-137-139/flow.spec.ts
+docs/prototypes/new-game/playtest-137-139/playwright.config.ts
+docs/prototypes/new-game/playtest-137-139/previews/legacy-1280x800.png
+docs/prototypes/new-game/playtest-137-139/previews/legacy-1920x1080.png
+docs/prototypes/new-game/playtest-137-139/previews/root-1280x800.png
+docs/prototypes/new-game/playtest-137-139/previews/root-1920x1080.png
+docs/prototypes/new-game/playtest-137-139/run.py
+[0m
+[0m→ [0mRead .harness-brief-pr142-mm-m3-efef8bf096e6.md
+[0m
+[0m$ [0mls -la
+total 304
+drwxrwxr-x 11 diego diego   4096 Oct 17 08:25 .
+drwxr-xr-x  5 diego diego   4096 Oct 17 08:25 ..
+drwxrwxr-x  5 diego diego   4096 Oct 17 08:25 .claude
+-rw-rw-r--  1 diego diego     72 Oct 17 08:25 .git
+drwxrwxr-x  3 diego diego   4096 Oct 17 08:25 .github
+-rw-rw-r--  1 diego diego    246 Oct 17 08:25 .gitignore
+-rw-rw-r--  1 diego diego  10351 Oct 17 08:25 .harness-brief-pr142-mm-m3-efef8bf096e6.md
+drwxrwxr-x  3 diego diego   4096 Oct 17 08:25 .opencode
+-rw-rw-r--  1 diego diego    967 Oct 17 08:25 AGENTS.md
+-rw-rw-r--  1 diego diego  12185 Oct 17 08:25 CLAUDE.md
+-rw-rw-r--  1 diego diego   1994 Oct 17 08:25 README.md
+-rw-rw-r--  1 diego diego 129947 Oct 17 08:25 RUN-NOTES.md
+drwxrwxr-x  3 diego diego   4096 Oct 17 08:25 data
+drwxrwxr-x  6 diego diego   4096 Oct 17 08:25 docs
+-rw-rw-r--  1 diego diego   4246 Oct 17 08:25 harness.json
+-rw-rw-r--  1 diego diego   7222 Oct 17 08:25 harness.lock
+-rw-rw-r--  1 diego diego    542 Oct 17 08:25 index.html
+-rw-rw-r--  1 diego diego  49831 Oct 17 08:25 package-lock.json
+-rw-rw-r--  1 diego diego    687 Oct 17 08:25 package.json
+-rw-rw-r--  1 diego diego    899 Oct 17 08:25 playwright.config.ts
+-rw-rw-r--  1 diego diego   1139 Oct 17 08:25 playwright.release.config.ts
+drwxrwxr-x  3 diego diego   4096 Oct 17 08:25 public
+drwxrwxr-x  4 diego diego   4096 Oct 17 08:25 src
+drwxrwxr-x  6 diego diego   4096 Oct 17 08:25 tests
+drwxrwxr-x  5 diego diego   4096 Oct 17 08:25 tools
+-rw-rw-r--  1 diego diego    580 Oct 17 08:25 tsconfig.json
+-rw-rw-r--  1 diego diego    382 Oct 17 08:25 vite.config.ts
+[0m
+[0m$ [0mgit log --oneline -20
+e820073 test: retain current and legacy flow playtest findings [skip ci]
+963f0c5 test: prepare bounded current and legacy flow playtest [skip ci]
+ee147f9 docs: preserve continuation decisions and CLI compatibility caveat [skip ci]
+dfeee44 fix: open the current playable game by default [skip ci]
+595ef5a feat(T32): complete baseline computer turns [skip ci]
+6117f4f feat(T31): versioned deterministic reference replay [skip ci]
+0948871 feat(T30): round origin and complete victory rules [skip ci]
+63cda03 feat(T29): one adjacent friendly move per turn [skip ci]
+759faea feat(T28): battle controls and explicit capture UI [skip ci]
+bdfd93a plan(T28): stage battle UI with preserved legacy coverage and cancellable pacing [skip ci]
+71e8d51 feat(T27): explicit post-capture movement engine [skip ci]
+5e14bf3 plan(T27): allow strict action narrowing in three browser drivers [skip ci]
+ef9e3ea plan(T27): clarify staged capture protocol without breaking legacy saves [skip ci]
+568d5f0 feat(T26): playable reference-board walking skeleton [skip ci]
+a45155f plan(T32): require owner-confirmed human versus three computers default [skip ci]
+c71f9d8 feat(T63): adopt exact coast-first reference package [skip ci]
+fbbd38d docs: align roadmap coast prescription with owner-approved T62 contract [skip ci]
+18b9160 docs(T26): own main entry point required for explicit development route [skip ci]
+6617416 feat(T62): adopt reviewed coast-entry contract for reference A [skip ci]
+adad420 docs: assign Hard backlog implementations to owner-selected Sol High [skip ci]
+[0m
+[0m$ [0mgit log --oneline ee147f9..HEAD
+e820073 test: retain current and legacy flow playtest findings [skip ci]
+963f0c5 test: prepare bounded current and legacy flow playtest [skip ci]
+[0m
+[0m$ [0mgit diff ee147f9..HEAD --stat
+RUN-NOTES.md                                       |   5 +
+ .../new-game/playtest-137-139/CONTRACT.md          |  11 +
+ .../prototypes/new-game/playtest-137-139/README.md |  44 +++
+ .../new-game/playtest-137-139/artifacts.json       |  47 +++
+ .../new-game/playtest-137-139/controls.py          |  28 ++
+ .../evidence/checks-ewgtu92f/0.txt                 |  14 +
+ .../evidence/checks-ewgtu92f/1.txt                 |  17 +
+ .../evidence/checks-ewgtu92f/2.txt                 |   0
+ .../evidence/checks-ewgtu92f/3.txt                 |   0
+ .../evidence/checks-ewgtu92f/report.json           |  50 +++
+ .../controls-c3ne44xu/preparation-failure.txt      |   1 +
+ .../capture-auto-confirms-mutated.txt              | 169 ++++++++++
+ .../capture-auto-confirms-original.txt             | 168 ++++++++++
+ .../capture-auto-confirms-output.txt               |   5 +
+ .../map-click-attacks-mutated.txt                  | 168 ++++++++++
+ .../map-click-attacks-original.txt                 | 168 ++++++++++
+ .../controls-w94sxuj5/map-click-attacks-output.txt |   5 +
+ .../evidence/controls-w94sxuj5/report.json         |  20 ++
+ .../evidence/run-b04tarxc/.gitignore               |   1 +
+ .../evidence/run-b04tarxc/raw-outputs.tar.gz       | Bin 0 -> 843 bytes
+ .../evidence/run-b04tarxc/report.json              | 288 ++++++++++++++++
+ .../evidence/run-b04tarxc/source-inputs.tar.gz     | Bin 0 -> 7980277 bytes
+ .../evidence/run-igoor_3g/.gitignore               |   1 +
+ .../evidence/run-igoor_3g/raw-outputs.tar.gz       | Bin 0 -> 6120214 bytes
+ .../evidence/run-igoor_3g/report.json              | 354 ++++++++++++++++++++
+ .../evidence/run-igoor_3g/source-inputs.tar.gz     | Bin 0 -> 7980585 bytes
+ .../evidence/run-nhlbpyan/.gitignore               |   1 +
+ .../evidence/run-nhlbpyan/raw-outputs.tar.gz       | Bin 0 -> 8752 bytes
+ .../evidence/run-nhlbpyan/report.json              | 296 +++++++++++++++++
+ .../evidence/run-nhlbpyan/source-inputs.tar.gz     | Bin 0 -> 7980341 bytes
+ .../evidence/run-u9y9ihi7/.gitignore               |   1 +
+ .../evidence/run-u9y9ihi7/raw-outputs.tar.gz       | Bin 0 -> 6845639 bytes
+ .../evidence/run-u9y9ihi7/report.json              | 364 +++++++++++++++++++++
+ .../evidence/run-u9y9ihi7/source-inputs.tar.gz     | Bin 0 -> 7980587 bytes
+ .../evidence/run-ux3f5pjl/.gitignore               |   1 +
+ .../evidence/run-ux3f5pjl/raw-outputs.tar.gz       | Bin 0 -> 6655746 bytes
+ .../evidence/run-ux3f5pjl/report.json              | 364 +++++++++++++++++++++
+ .../evidence/run-ux3f5pjl/source-inputs.tar.gz     | Bin 0 -> 7980601 bytes
+ .../evidence/run-x2lsuoxx/.gitignore               |   1 +
+ .../evidence/run-x2lsuoxx/raw-outputs.tar.gz       | Bin 0 -> 4016359 bytes
+ .../evidence/run-x2lsuoxx/report.json              | 340 +++++++++++++++++++
+ .../evidence/run-x2lsuoxx/source-inputs.tar.gz     | Bin 0 -> 7980614 bytes
+ .../evidence/run-xhhv7in3/.gitignore               |   1 +
+ .../evidence/run-xhhv7in3/raw-outputs.tar.gz       | Bin 0 -> 2696761 bytes
+ .../evidence/run-xhhv7in3/report.json              | 328 +++++++++++++++++++
+ .../evidence/run-xhhv7in3/source-inputs.tar.gz     | Bin 0 -> 7980606 bytes
+ .../new-game/playtest-137-139/flow.spec.ts         | 150 +++++++++
+ .../new-game/playtest-137-139/playwright.config.ts |  12 +
+ .../playtest-137-139/previews/legacy-1280x800.png  | Bin 0 -> 198050 bytes
+ .../playtest-137-139/previews/legacy-1920x1080.png | Bin 0 -> 349456 bytes
+ .../playtest-137-139/previews/root-1280x800.png    | Bin 0 -> 237117 bytes
+ .../playtest-137-139/previews/root-1920x1080.png   | Bin 0 -> 420970 bytes
+ docs/prototypes/new-game/playtest-137-139/run.py   |  29 ++
+ 53 files changed, 3452 insertions(+)
+[0m
+[0m$ [0mgit diff ee147f9..HEAD --name-only | xargs -I {} echo "=== {} ==="
+=== RUN-NOTES.md ===
+=== docs/prototypes/new-game/playtest-137-139/CONTRACT.md ===
+=== docs/prototypes/new-game/playtest-137-139/README.md ===
+=== docs/prototypes/new-game/playtest-137-139/artifacts.json ===
+=== docs/prototypes/new-game/playtest-137-139/controls.py ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/0.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/1.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/2.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/3.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/controls-c3ne44xu/preparation-failure.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-mutated.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-original.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-output.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/map-click-attacks-mutated.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/map-click-attacks-original.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/map-click-attacks-output.txt ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/.gitignore ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/raw-outputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/source-inputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/.gitignore ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/raw-outputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/source-inputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-nhlbpyan/.gitignore ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-nhlbpyan/raw-outputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-nhlbpyan/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-nhlbpyan/source-inputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-u9y9ihi7/.gitignore ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-u9y9ihi7/raw-outputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-u9y9ihi7/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-u9y9ihi7/source-inputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/.gitignore ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw-outputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/source-inputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-x2lsuoxx/.gitignore ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-x2lsuoxx/raw-outputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-x2lsuoxx/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-x2lsuoxx/source-inputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-xhhv7in3/.gitignore ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-xhhv7in3/raw-outputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-xhhv7in3/report.json ===
+=== docs/prototypes/new-game/playtest-137-139/evidence/run-xhhv7in3/source-inputs.tar.gz ===
+=== docs/prototypes/new-game/playtest-137-139/flow.spec.ts ===
+=== docs/prototypes/new-game/playtest-137-139/playwright.config.ts ===
+=== docs/prototypes/new-game/playtest-137-139/previews/legacy-1280x800.png ===
+=== docs/prototypes/new-game/playtest-137-139/previews/legacy-1920x1080.png ===
+=== docs/prototypes/new-game/playtest-137-139/previews/root-1280x800.png ===
+=== docs/prototypes/new-game/playtest-137-139/previews/root-1920x1080.png ===
+=== docs/prototypes/new-game/playtest-137-139/run.py ===
+[0m
+[0m$ [0mgit diff ee147f9..HEAD --name-only -- 'src/**' 'tests/**' 'data/**' 'public/**' 'index.html' 'tools/**' 'package.json' 'package-lock.json' 'tsconfig.json' 'vite.config.ts' 'playwright.config.ts' 'playwright.release.config.ts' '.github/**'
+(no output)
+[0m
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/CONTRACT.md
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/README.md
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/artifacts.json
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/controls.py
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/run.py
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/flow.spec.ts
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/playwright.config.ts
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/report.json
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/report.json
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/0.txt
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/checks-ewgtu92f/1.txt[90m [offset=1, limit=50][0m
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/report.json
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-output.txt
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/map-click-attacks-output.txt
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/controls-c3ne44xu/preparation-failure.txt
+[0m
+[0m$ [0mls -la docs/prototypes/new-game/playtest-137-139/evidence/
+total 48
+drwxrwxr-x 12 diego diego 4096 Oct 17 08:25 .
+drwxrwxr-x  4 diego diego 4096 Oct 17 08:25 ..
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 checks-ewgtu92f
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 controls-c3ne44xu
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 controls-w94sxuj5
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-b04tarxc
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-igoor_3g
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-nhlbpyan
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-u9y9ihi7
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-ux3f5pjl
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-x2lsuoxx
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-xhhv7in3
+[0m
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/report.json[90m [limit=100][0m
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/run-b04tarxc/report.json[90m [offset=270, limit=20][0m
+[0m
+[0m$ [0mgit diff ee147f9..HEAD -- RUN-NOTES.md
+diff --git a/RUN-NOTES.md b/RUN-NOTES.md
+index e3d3ebc..24860b0 100644
+--- a/RUN-NOTES.md
++++ b/RUN-NOTES.md
+@@ -596,3 +596,8 @@ Traceable checkpoints: T32 PR #135 → 595ef5a; launch PR #141 → dfeee44. The
+ Next-session issue entry points (GitHub labels are authoritative): T33 #78/docs/tasks/T33.md for the playable milestone and owner approval; #137 for confusing owner-seat/army-count labels and quieter names; #138 for attack/repeat UX; #139 for the valid old-route automatic-capture report and launch correction. Keep #138/#139 triage distinct from merely claiming the new entry fixes every older route. Coastlines #111/T64 and shared borders #117/T65 already cover later map postprocessing; avoid duplicates. Header/parser follow-up #136 and its linked cross-repo reports (goal2 #165, goal2-archaeology #258, isle-wars-archaeology #260) preserve the paid-review recovery case.
+ 
+ Workspace caution: AGENTS.md, CLAUDE.md, docs/environment.md, docs/tasks/T09.md, src/core/bonuses.ts and tests/core/bonuses.test.ts appeared modified on entry but all six byte contents matched HEAD when checked after the launch merge. Do not stage/clean/reset them speculatively. Existing .cache worktrees and backup files were deliberately retained; do not delete valuable drafts/evidence. Check real content against HEAD again if the next session sees differences. CLI binary/peek overrides are documented in docs/environment.md.
++
++
++Current-flow playtest PLAN (2026-10-17): owner selected main implementation and MiniMax review. Isolated triage/current-playable-flow retains real root/owner-legacy URL inputs, histories and screenshots at both sizes before deciding #137/#138 scope. No gameplay/T33 implementation, historical rules/save changes or duplicate CI. Preserve all inherited entries/worktrees/evidence.
++
++Current-flow playtest evidence: final 4/4 root/owner-legacy probes pass at both sizes; root Single exchange repetition, Stop and explicit pending capture/save-resume work. Legacy capture-all/target clearing reproduced (3-army example, not exact owner history). Two actual-source controls fail both root probes and restore exact bytes; all failures retained. Build/583 units and inherited runtime/test equality pass. No runtime/T33/geometry change; main submits evidence-only PR #142 for owner-selected independent MiniMax review. Draft pushes skip CI.
+[0m
+[0m$ [0mls -la docs/prototypes/new-game/playtest-137-139/previews/
+total 1192
+drwxrwxr-x 2 diego diego   4096 Oct 17 08:25 .
+drwxrwxr-x 4 diego diego   4096 Oct 17 08:25 ..
+-rw-rw-r-- 1 diego diego 198050 Oct 17 08:25 legacy-1280x800.png
+-rw-rw-r-- 1 diego diego 349456 Oct 17 08:25 legacy-1920x1080.png
+-rw-rw-r-- 1 diego diego 237117 Oct 17 08:25 root-1280x800.png
+-rw-rw-r-- 1 diego diego 420970 Oct 17 08:25 root-1920x1080.png
+[0m
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/previews/root-1280x800.png
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/previews/legacy-1280x800.png
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/previews/root-1920x1080.png
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/previews/legacy-1920x1080.png
+[0m
+[0m$ [0mls -la src/ui/referenceBattleGame.ts
+-rw-rw-r-- 1 diego diego 9860 Oct 17 08:25 src/ui/referenceBattleGame.ts
+[0m
+[0m→ [0mRead src/ui/referenceBattleGame.ts
+[0m
+[0m$ [0mls -la docs/prototypes/new-game/
+total 128
+drwxrwxr-x 16 diego diego  4096 Oct 17 08:25 .
+drwxrwxr-x 15 diego diego  4096 Oct 17 08:25 ..
+drwxrwxr-x  3 diego diego  4096 Oct 17 08:25 T24
+drwxrwxr-x  4 diego diego  4096 Oct 17 08:25 T25
+drwxrwxr-x  4 diego diego  4096 Oct 17 08:25 T26
+drwxrwxr-x  4 diego diego  4096 Oct 17 08:25 T27
+drwxrwxr-x  4 diego diego 12288 Oct 17 08:25 T28
+drwxrwxr-x  4 diego diego 12288 Oct 17 08:25 T29
+drwxrwxr-x  4 diego diego 20480 Oct 17 08:25 T30
+drwxrwxr-x  5 diego diego 20480 Oct 17 08:25 T31
+drwxrwxr-x  4 diego diego 20480 Oct 17 08:25 T32
+drwxrwxr-x  5 diego diego  4096 Oct 17 08:25 T60
+drwxrwxr-x  3 diego diego  4096 Oct 17 08:25 T61
+drwxrwxr-x  4 diego diego  4096 Oct 17 08:25 T62
+drwxrwxr-x  4 diego diego  4096 Oct 17 08:25 T63
+drwxrwxr-x  4 diego diego  4096 Oct 17 08:25 playtest-137-139
+[0m
+[0m$ [0mcat docs/review-brief.md 2>/dev/null | head -200 || echo "no file"; ls docs/
+# The review brief's own sections
+
+Every review brief carries these two sections, in full, after the numbered block of
+`process.md` §5 (or, in the review profile, after the brief's numbered lines). The reviewer reads
+the brief in another file, so paste them; never point to this one. Write "Blocking means" for the
+task; paste the second section as it is. (L47, L49)
+
+```text
+## Blocking means
+
+Any one is enough; a blocking finding means rework, never approve.
+1. A Done-when line fails, or cannot be run as written.
+2. What this task protects can be got past: <name it: the guard, check, permission, invariant,
+   rule value or file this task exists to protect>. A bypass you proved is blocking, even when it
+   looks like an edge case. Never "follow-up hardening" or "outside the threat model" unless the
+   task says so; if it does, quote the line. (L47)
+3. Behaviour the task forbids, or behaviour nobody asked for, inside a file the task requires. (L44)
+4. <project-specific items: a constant with no evidence, a test that passes with the behaviour
+   deleted, a status written into a document>
+Not blocking: wording, style, and defects in code the PR did not change: file those as follow-ups.
+When unsure, say how likely the problem is. Rate it blocking only if it is likely and would get
+past what the task protects; otherwise it is a follow-up. (L53)
+
+## Report every blocking finding in this one review
+
+This review is your only pass before the author fixes. Do not stop at the first blocking
+finding: finish reading the whole diff and the task file, check every Done-when line and
+every item under "Blocking means", and report all blocking findings together.
+
+- Before you write the verdict, make one last pass over the full diff for anything you have
+  not yet rated, and say "Final pass done" as the last line before the verdict.
+- Number the findings R1, R2, … in order of severity. A finding you held back because an
+  earlier one was already blocking is a review defect: if two problems share a cause, list
+  both and say so.
+- Do not rely on a later round. The author fixes everything you list, and the next review
+  checks those fixes and new code only, not anything you saw but did not report.
+- If you ran out of time or context before covering the whole diff, say which files or
+  sections you did not cover. Do not approve in that case.
+```
+environment.md
+jev
+lessons.md
+models.md
+plans
+play.md
+process.md
+prototypes
+review-brief.md
+spike.md
+tasks
+[0m
+[0m$ [0mcat docs/process.md 2>/dev/null | head -100 || echo "no file"
+# Process
+
+`CLAUDE.md` holds the rules, this file how they run, `/run-task` the procedure; each rule cites its lesson.
+
+## 0. Order of work
+
+1. **Evidence first** (for a rebuild): decode, decompile, and write the design with every claim tagged `[confirmed]`, `[derived]` or `[designed]`.
+2. **A walking skeleton before the fan-out**: scaffolding, the seams the rules plug into, one rule end to end, a CLI, and a thin screen a person can use. (L1)
+3. **The fan-out**: rules behind the seams, best-evidenced first.
+4. **The first playable build**: once the skeleton exists, the UI chain goes before more rules. Until it ships, only a bug that breaks play is scheduled (crash, stall, unwinnable game, save that will not load, order that can never succeed). (L1)
+
+Tag capability jumps, not phases. Release notes come from GitHub when the tag is cut.
+
+## 1. Roles
+
+| Role | Who | Does |
+| --- | --- | --- |
+| Main session | Claude, the session the user talks to | Plans, writes task files, runs `/run-task`, triages, merges, reports |
+| Implementer | The **`implementer` subagent** spawned inside Claude Code (worktree isolation) on a model of its own, not the orchestrator's (Opus spawns Sonnet; under Z.AI `sonnet` is GLM-5.3 Flash), or **the main session** directly, in its own worktree, where the provider cannot spawn one; asked before each implementation (CLAUDE.md rule 6). *Superseded: OpenCode via `implement.mjs` (removed), the GLM/MiMo/Sonnet chains (L42), the user asked before each run.* | One task, one branch, one PR, in its own worktree |
+| Reviewer | **One OpenCode run** via `tools/harness/review.mjs`, on the model the user names at the question before the review, `harness.json`'s `reviewer.default` (GPT-5.6 Luna) proposed first; never the session's family (L27), never a blocked model. Exit 3: read the final message, fix the cause, run again; exit 4: the main session reads the flagged review and decides (L28). *Superseded: the reviewer chains, the Claude fallback, the user asked at every review.* | Re-runs the Done-when, audits scope and evidence, posts one PR comment, applies the label |
+| Decider | Jev via `tools/harness/jev.mjs` (the `/jev` skill) | Repeated yes/no decisions over many items, at the confident ends only (§12) |
+| Generator | Models on OpenRouter (images, other families) and ElevenLabs (speech, sound, music) | Assets, each committed with a sidecar naming provider, model, prompt, date and cost |
+
+Before each implementation and each review the main session asks the user one question, with
+`harness.json`'s default proposed first (CLAUDE.md rule 6); no quota, tier or chain picks a model, and the
+roster changes through `/switch-model`. The implementer's family is the session's, read from the
+Anthropic environment variables (`lib/common.mjs` `sessionFamily`; the orchestrator is Claude, or GLM
+through Z.AI, MiniMax or Kimi when Claude's tokens are out), and the reviewer is never of it. Model ids come
+from `harness.json`, `models.mjs` or `opencode models`, never memory (L25).
+
+## 2. Task files
+
+`docs/tasks/T<nn>.md`, 150–400 words, from `docs/tasks/TEMPLATE.md`: Kind, Evidence, Owns,
+Scope, Done when, Hazards, Implementer, Reviewer, Merge after. Rules:
+- **Owns** names directories or files. Go finer only when two tasks run at once in one file: function-level Owns made one project open 27 PRs that only widened a list. (L5)
+- **Done when**: each line is one check a command can run. The main session runs each line before dispatch: it fails on `main` and passes on a mock fix. (L45) For a guard (a gate, check or tool whose failure lets a protected rule be bypassed), each constraint it enforces is its own numbered line, and the main session pushes the guard's tests to the task branch before dispatch, one mutation test per bypass class the design predicts, failing until the guard lands. (L64)
+- **Milestones**: a task likely to outlast one implementer run (about an hour), or whose Done-when is
+  all or nothing (an exact match, a whole model), is split into tasks that each merge on their own:
+  the static reading, any tool that produces ground truth, then the deliverable piece by piece. A
+  milestone's Done-when measures progress as a number (records matched, first divergent minute),
+  committed with each push, so a resumed run starts from it; the boundary sits where the evidence
+  already has a number, not at an arbitrary half of the scope. (L58)
+- The main session edits task files directly on `main`, the reason in the commit; the reviewer sees it. (L6)
+
+## 3. The loop
+
+`ready → implement → review → approved + green CI → squash merge → follow-up → unblock → report`.
+Rework sends the full review back to the same branch, at most two rounds (one for a fix), then
+escalates. The implementer script resumes a pushed branch; it never starts over. Before a merge the
+main session re-runs the check the approval rests on most; a different result is rework. (L46)
+
+What the review script guarantees, and why:
+- OpenCode starts with stdin closed; without it a run hangs before it starts. (L10)
+- No session in 180 s, no progress in 600 s, or no exit in 1 h kills the run's process tree. (L10)
+- The agent is checked on OpenCode's session record (L11); a rejected tool call fails the run (L26),
+  and the fix is a wider grant in the agent file, not a re-brief (CLAUDE.md rule 6.4).
+- The model runs at the effort its `harness.json` entry names (a heavy model at medium or low, a
+  light one at high), in the scripts' own data directory (L27, L29). One model, one run; no chain.
+- Exit 0: posted and labelled. 3: no review, nothing posted: read the final message (rule 8), fix
+  the cause, run again. 4: posted under a note, no label: the main session reads it and decides.
+
+**Decisions visible on the PR** (L18, owner 2026-10-13): the implementer choice (rule 6.1) and the
+reviewer choice (rule 6.2) go on the PR as comments **at decision time** — *before* the dispatch
+lands — not as a post-hoc summary after the run finishes. The PR's timeline then reads in causal
+order: "implementer M3 dispatched at <ts> (family <x>, reason: <one line>)" → "shipped at <sha>"
+→ "reviewer Luna dispatched at <ts> (family openai, reason: <one line>)" → "review posted". The
+main session posts these comments; the implementer/reviewer runs do not. A PR whose timeline
+shows only the implementer's commits and a final review is missing the decision record.
+
+## 4. The implementer brief
+
+The brief is the task file pasted in full, then this block, then on a rework round the review's URL.
+The `implementer` agent file repeats the run mechanics; this block is the contract, for the main
+session implementing directly as much as for the subagent. A line that needs the user's machine outside the
+worktree, or a cloud session, is the main session's (L26).
+
+```text
+You implement <T<nn>>. The task file above is the contract.
+- Build only what the task asks for, even inside a file it requires; say why for each changed file. (L44)
+- A Done-when you cannot meet: stop and report. Never weaken an assertion, skip a test or edit the task file.
+- **Constraint-feasibility probe** (when the task names structural constraints and a target success
+  rate): before any algorithmic change, run a small smoke test that confirms the constraint
+  set alone is feasible at the target rate (often a wide-seed sweep of the existing generator
+  body, plus the new constraints, with no algorithmic rewrite). If the probe shows the target
+  is unreachable, STOP and report. Do not weaken a constraint to make the algorithm pass
+  (rule 5); the user prefers a design amendment (preferred) over a quieter relaxation, and
+  the probe surfaces the conflict one round earlier than a full implementation.
+- Every new test fails before your change and passes after it; say how you checked.
+- Undo a mutation or scratch edit by writing back the file's saved contents (read it first,
+  restore it in a `finally`), or commit first; never `git checkout`, `git restore` or `git reset`
+  a file with uncommitted work: they return the last commit and destroy the rest. Keep the saved
+  copy inside your worktree (`<file>.saved`, deleted afterwards) or in a `mktemp -d` folder under
+  `/tmp`, never as a loose file elsewhere.
+- If you measure: every output a finding or the PR may cite goes under a tracked path the task owns,
+  pushed per batch and every 30 min, never deleted or overwritten; originals out, hashes recorded. (L40)
+- A comment that asserts behaviour at an edge comes with the test that visits that edge.
+- A defect you find outside the task: report it. A one-file mechanical fix that blocks you may
+  ride this PR, declared under Scope in the PR body.
+- Update any document your change makes wrong, in this PR. Never write status into a document.
+- PR body: Closes #<issue>; Scope (files and why); a fenced block with each Done-when command and
+[0m
+[0m$ [0mgrep -n "external_directory" CLAUDE.md
+(no output)
+[0m
+[0m✱ [0mGrep "external_directory"[90m in . · 9 matches[0m
+[0m→ [0mRead .opencode/agents/reviewer.md
+[0m
+[0m$ [0mwhich docker && docker ps 2>&1 | head -3
+/usr/bin/docker
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[0m
+[0m$ [0mls /home/diego/projects/malpaco/node_modules 2>&1 | head -3 || echo "doesn't exist"
+@jridgewell
+@oxc-project
+@playwright
+[0m
+[0m$ [0mdocker images 2>&1 | head -10
+WARNING: This output is designed for human readability. For machine-readable output, please use --format.
+IMAGE                                                                                  ID             DISK USAGE   CONTENT SIZE   EXTRA
+alpine:3.20                                                                            d9e853e87e55       12.2MB         3.71MB        
+busybox:1.31.0                                                                         fe301db49df0       2.08MB          763kB        
+busybox:1.36                                                                           73aaf090f3d8       6.76MB         2.21MB        
+ghcr.io/actions/jekyll-build-pages:v1.0.13                                             6791ebfd9121       1.08GB          289MB        
+golang:1.22-alpine                                                                     1699c10032ca        349MB         73.5MB        
+httpd:2.4-alpine                                                                       4e585da9d012       97.4MB         21.9MB        
+kindest/node@sha256:047357ac0cfea04663786a612ba1eaba9702bef25227a794b52890dd8bcd692e   047357ac0cfe       1.41GB          416MB        
+localhost:5050/private/secret-app:v1                                                   73aaf090f3d8       6.76MB         2.21MB
+[0m
+[0m$ [0mdocker images 2>&1 | grep playwright
+mcr.microsoft.com/playwright:v1.63.0-noble                                             eff16c30e6f3       3.55GB          956MB
+[0m
+[0m$ [0mgit diff ee147f9..HEAD -- 'src/**' 'tests/**' 'data/**' 'package.json' 'package-lock.json' 'playwright.config.ts' 'vite.config.ts' 'playwright.release.config.ts' 'index.html' 'tools/**' '.github/**' 2>&1 | head -10
+(no output)
+[0m
+[0m$ [0mgit diff ee147f9..HEAD --stat -- src tests data package.json package-lock.json playwright.config.ts vite.config.ts | head -20
+(no output)
+[0m
+[0m$ [0mgit status
+Not currently on any branch.
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.harness-brief-pr142-mm-m3-efef8bf096e6.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+[0m
+[0m$ [0mls -la docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/
+total 13836
+drwxrwxr-x  2 diego diego    4096 Oct 17 08:25 .
+drwxrwxr-x 12 diego diego    4096 Oct 17 08:25 ..
+-rw-rw-r--  1 diego diego       6 Oct 17 08:25 .gitignore
+-rw-rw-r--  1 diego diego 6120214 Oct 17 08:25 raw-outputs.tar.gz
+-rw-rw-r--  1 diego diego   47805 Oct 17 08:25 report.json
+-rw-rw-r--  1 diego diego 7980585 Oct 17 08:25 source-inputs.tar.gz
+[0m
+[0m$ [0mtar tzf docs/prototypes/new-game/playtest-137-139/evidence/run-igoor_3g/raw-outputs.tar.gz | head -30
+legacy-1280x800-1m2kuk/0-opening.json
+legacy-1280x800-1m2kuk/1-after-computer-opener.json
+legacy-1280x800-1m2kuk/2-human-turn.json
+legacy-1280x800-1m2kuk/3-ready.json
+legacy-1280x800-1m2kuk/4-repeated-map-selection-no-attack.json
+legacy-1280x800-1m2kuk/opening.png
+legacy-1280x800-1m2kuk/selected-target.png
+legacy-1920x1080-gxj9YR/0-opening.json
+legacy-1920x1080-gxj9YR/1-after-computer-opener.json
+legacy-1920x1080-gxj9YR/2-human-turn.json
+legacy-1920x1080-gxj9YR/3-ready.json
+legacy-1920x1080-gxj9YR/4-repeated-map-selection-no-attack.json
+legacy-1920x1080-gxj9YR/opening.png
+legacy-1920x1080-gxj9YR/selected-target.png
+output.txt
+root-1280x800-dGWbJy/0-opening.json
+root-1280x800-dGWbJy/1-after-computer-opener.json
+root-1280x800-dGWbJy/10-resumed-pending.json
+root-1280x800-dGWbJy/11-confirmed-1.json
+root-1280x800-dGWbJy/12-resumed-pending.json
+root-1280x800-dGWbJy/13-confirmed-2.json
+root-1280x800-dGWbJy/14-resumed-pending.json
+root-1280x800-dGWbJy/15-confirmed-3.json
+root-1280x800-dGWbJy/2-human-turn.json
+root-1280x800-dGWbJy/3-ready.json
+root-1280x800-dGWbJy/4-repeated-map-selection-no-attack.json
+root-1280x800-dGWbJy/5-repeated-single.json
+root-1280x800-dGWbJy/6-repeated-single.json
+root-1280x800-dGWbJy/7-stopped.json
+root-1280x800-dGWbJy/8-capture-interrupted-fight.json
+[0m
+[0m$ [0mnpm run build 2>&1 | tail -20
+> malpaco-spike-ts@0.0.0 build
+> tsc --noEmit -p src/core && tsc --noEmit && vite build
+
+sh: 1: tsc: not found
+[0m
+[0m$ [0mls node_modules/.bin/tsc 2>/dev/null && echo "found" || echo "not found"
+not found
+[0m
+[0m$ [0mls -la node_modules 2>/dev/null | head -3 || echo "doesn't exist"
+(no output)
+[0m
+[0m$ [0mls -la /home/diego/projects/malpaco/node_modules | head -5 2>&1 | head -5
+total 188
+drwxr-xr-x 40 diego diego  4096 Oct  7 17:09 .
+drwxr-xr-x 19 diego diego  4096 Oct 17 08:21 ..
+drwxr-xr-x  2 diego diego  4096 Oct  7 17:09 .bin
+-rw-r--r--  1 diego diego 24646 Oct  7 17:09 .package-lock.json
+[0m
+[0m$ [0mcat package.json
+{
+  "name": "malpaco-spike-ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "A TypeScript web stack spike for malpaco (issue #8). Decides nothing by itself.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit -p src/core && tsc --noEmit && vite build",
+    "package:playable": "node tools/release/package-playable.mjs",
+    "preview": "vite preview --port 4173 --strictPort",
+    "test": "vitest run",
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.3"
+  }
+}
+[0m
+[0m$ [0mls /home/diego/projects/malpaco/node_modules/.bin/ 2>&1 | head -10
+nanoid
+playwright
+playwright-core
+rolldown
+tsc
+vite
+vitest
+why-is-node-running
+[0m
+[0m$ [0mPATH="/home/diego/projects/malpaco/node_modules/.bin:$PATH" npm run build 2>&1 | tail -20
+> malpaco-spike-ts@0.0.0 build
+> tsc --noEmit -p src/core && tsc --noEmit && vite build
+
+error TS2688: Cannot find type definition file for 'node'.
+  The file is in the program because:
+    Entry point of type library 'node' specified in compilerOptions
+error TS2688: Cannot find type definition file for 'vite/client'.
+  The file is in the program because:
+    Entry point of type library 'vite/client' specified in compilerOptions
+[0m
+[0m$ [0mls /home/diego/projects/malpaco/node_modules/@types/ 2>&1 | head -10
+chai
+deep-eql
+estree
+node
+[0m
+[0m$ [0mls /home/diego/projects/malpaco/node_modules/@types/ 2>&1 | sort
+chai
+deep-eql
+estree
+node
+[0m
+[0m$ [0mcat tsconfig.json && echo "---" && cat src/core/tsconfig.json
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": ["src", "tests", "vite.config.ts", "playwright.config.ts"]
+}
+---
+{
+  // The rules core is compiled alone, with no DOM lib and no Node types, so a
+  // stray `document`, `window`, `performance`, `crypto` or `node:` import is a
+  // compile error here (npm run build runs this before the full type-check).
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "types": []
+  },
+  "include": ["./**/*.ts"]
+}
+[0m
+[0m$ [0mfind /home/diego/projects/malpaco/node_modules -name "client.d.ts" -path "*vite*" 2>/dev/null | head -3
+/home/diego/projects/malpaco/node_modules/vite/client.d.ts
+[0m
+[0m$ [0mPATH="/home/diego/projects/malpaco/node_modules/.bin:$PATH" node -e "console.log(require.resolve('vite/client'))" 2>&1 | head -5
+node:internal/modules/cjs/loader:1568
+  throw err;
+  ^
+
+Error: Cannot find module 'vite/client'
+[0m
+[0m$ [0mPATH="/home/diego/projects/malpaco/node_modules/.bin:$PATH" npx --yes typescript@7.0.2 -v 2>&1 | head -3
+Version 7.0.2
+[0m
+[0m$ [0mcd /tmp/opencode && rm -rf tsc-test && mkdir -p tsc-test && cd tsc-test && cat > tsconfig.json <<'EOF'
+{"compilerOptions":{"target":"ES2022","module":"ESNext","types":["vite/client"],"noEmit":true}}
+EOF
+ln -sf /home/diego/projects/malpaco/node_modules node_modules
+echo 'const x: string = 1' > test.ts
+PATH="/home/diego/projects/malpaco/node_modules/.bin:$PATH" tsc --noEmit 2>&1 | head -5
+ls node_modules/vite/client.d.ts
+test.ts(1,7): error TS2322: Type 'number' is not assignable to type 'string'.
+node_modules/vite/client.d.ts
+[0m
+[0m$ [0mln -sfn /home/diego/projects/malpaco/node_modules node_modules && PATH="/home/diego/projects/malpaco/node_modules/.bin:$PATH" npm run build 2>&1 | tail -20
+> malpaco-spike-ts@0.0.0 build
+> tsc --noEmit -p src/core && tsc --noEmit && vite build
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 50 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.64 kB │ gzip:  0.42 kB
+dist/assets/index-C4Swm2M3.css   24.09 kB │ gzip:  5.93 kB
+dist/assets/index-FGmBIwSR.js   200.38 kB │ gzip: 48.84 kB
+
+✓ built in 91ms
+[0m
+[0m$ [0mgit diff --check 2>&1 | head -20
+(no output)
+[0m
+[0m$ [0mgit diff --exit-code ee147f9 -- src tests data package.json package-lock.json playwright.config.ts vite.config.ts 2>&1 | head -20
+(no output)
+[0m
+[0m$ [0mgit diff ee147f9 HEAD -- src tests data package.json package-lock.json playwright.config.ts vite.config.ts | wc -l
+0
+[0m
+[0m$ [0mPATH="/home/diego/projects/malpaco/node_modules/.bin:$PATH" npm test 2>&1 | tail -30
+> malpaco-spike-ts@0.0.0 test
+> vitest run
+
+
+ RUN  v5.0.3 /home/diego/projects/malpaco-work/142-review-fc5e68f1
+
+
+ Test Files  39 passed (39)
+      Tests  583 passed (583)
+   Start at  08:29:33
+   Duration  10.02s (tests 65%, transform 27%, import 7%, worker 1%)
+
+  Transform  transforming modules took 8.32s · 27% of tracked time, re-done on every run
+             persist transforms across runs with fsModuleCache: true
+             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns
+[0m
+[0m$ [0mPATH="/home/diego/projects/malpaco/node_modules/.bin:$PATH" python3 docs/prototypes/new-game/playtest-137-139/run.py 2>&1 | tail -30
+{
+  "output": "docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1",
+  "exit": 0,
+  "tail": "\nRunning 4 tests using 2 workers\n\n  \u2713  2 [1280x800] \u203a docs/prototypes/new-game/playtest-137-139/flow.spec.ts:38:37 \u203a owner legacy URL automatic capture and target clearing (3.4s)\n  \u2713  1 [1280x800] \u203a docs/prototypes/new-game/playtest-137-139/flow.spec.ts:38:37 \u203a root repeat, Stop, capture choice and real save/resume (4.9s)\n  \u2713  4 [1920x1080] \u203a docs/prototypes/new-game/playtest-137-139/flow.spec.ts:38:37 \u203a owner legacy URL automatic capture and target clearing (3.5s)\n  \u2713  3 [1920x1080] \u203a docs/prototypes/new-game/playtest-137-139/flow.spec.ts:38:37 \u203a root repeat, Stop, capture choice and real save/resume (5.1s)\n\n  4 passed (10.4s)\nnpm notice\nnpm notice New major version of npm available! 11.19.0 -> 12.2.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\nnpm notice To update run: npm install -g npm@12.2.0\nnpm notice\n"
+}
+[0m
+[0m$ [0mls -la docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/
+total 14360
+drwx------  3 diego diego    4096 Oct 17 08:30 .
+drwxrwxr-x 13 diego diego    4096 Oct 17 08:29 ..
+-rw-rw-r--  1 diego diego       6 Oct 17 08:30 .gitignore
+drwxrwxr-x  7 diego diego    4096 Oct 17 08:29 raw
+-rw-rw-r--  1 diego diego 6656222 Oct 17 08:29 raw-outputs.tar.gz
+-rw-rw-r--  1 diego diego   41469 Oct 17 08:30 report.json
+-rw-rw-r--  1 diego diego 7980669 Oct 17 08:29 source-inputs.tar.gz
+[0m
+[0m$ [0mtar tzf docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw-outputs.tar.gz | head -20
+legacy-1280x800-72b8Cx/0-opening.json
+legacy-1280x800-72b8Cx/1-after-computer-opener.json
+legacy-1280x800-72b8Cx/2-human-turn.json
+legacy-1280x800-72b8Cx/3-ready.json
+legacy-1280x800-72b8Cx/4-repeated-map-selection-no-attack.json
+legacy-1280x800-72b8Cx/5-legacy-exchange.json
+legacy-1280x800-72b8Cx/6-legacy-exchange.json
+legacy-1280x800-72b8Cx/7-legacy-exchange.json
+legacy-1280x800-72b8Cx/8-automatic-transfer-complete.json
+legacy-1280x800-72b8Cx/automatic-capture-result.png
+legacy-1280x800-72b8Cx/observations.json
+legacy-1280x800-72b8Cx/opening.png
+legacy-1280x800-72b8Cx/selected-target.png
+legacy-1920x1080-YbH0bj/0-opening.json
+legacy-1920x1080-YbH0bj/1-after-computer-opener.json
+legacy-1920x1080-YbH0bj/2-human-turn.json
+legacy-1920x1080-YbH0bj/3-ready.json
+legacy-1920x1080-YbH0bj/4-repeated-map-selection-no-attack.json
+legacy-1920x1080-YbH0bj/5-legacy-exchange.json
+legacy-1920x1080-YbH0bj/6-legacy-exchange.json
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/report.json | python3 -c "import json,sys; r=json.load(sys.stdin); print('exit:', r['exit']); print('sourcesUnchanged:', r['sourcesUnchangedDuringRun']); print('outputTail:'); print(r['outputTail'])"
+exit: 0
+sourcesUnchanged: True
+outputTail:
+
+Running 4 tests using 2 workers
+
+  ✓  2 [1280x800] › docs/prototypes/new-game/playtest-137-139/flow.spec.ts:38:37 › owner legacy URL automatic capture and target clearing (3.4s)
+  ✓  1 [1280x800] › docs/prototypes/new-game/playtest-137-139/flow.spec.ts:38:37 › root repeat, Stop, capture choice and real save/resume (4.9s)
+  ✓  4 [1920x1080] › docs/prototypes/new-game/playtest-137-139/flow.spec.ts:38:37 › owner legacy URL automatic capture and target clearing (3.5s)
+  ✓  3 [1920x1080] › docs/prototypes/new-game/playtest-137-139/flow.spec.ts:38:37 › root repeat, Stop, capture choice and real save/resume (5.1s)
+
+  4 passed (10.4s)
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+[0m
+[0m$ [0mls docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/
+capture-auto-confirms-mutated.txt
+capture-auto-confirms-original.txt
+capture-auto-confirms-output.txt
+map-click-attacks-mutated.txt
+map-click-attacks-original.txt
+map-click-attacks-output.txt
+report.json
+[0m
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-original.txt
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/map-click-attacks-mutated.txt
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/capture-auto-confirms-mutated.txt
+[0m
+[0m$ [0mtar tzf docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/source-inputs.tar.gz 2>&1 | head -20
+data/maps/archipelago.json
+data/maps/small_sea.json
+docs/prototypes/new-game/T63/README.md
+docs/prototypes/new-game/T63/acceptance.test.mjs
+docs/prototypes/new-game/T63/artifacts.sha256.json
+docs/prototypes/new-game/T63/audit.mjs
+docs/prototypes/new-game/T63/board.json
+docs/prototypes/new-game/T63/browser.mjs
+docs/prototypes/new-game/T63/build.mjs
+docs/prototypes/new-game/T63/construct.mjs
+docs/prototypes/new-game/T63/evidence/browser-6V66VK/board-1280x800.png
+docs/prototypes/new-game/T63/evidence/browser-6V66VK/map-1280.svg
+docs/prototypes/new-game/T63/evidence/browser-6V66VK/report.json
+docs/prototypes/new-game/T63/evidence/browser-8bKfWq/Rock-bay-1280.png
+docs/prototypes/new-game/T63/evidence/browser-8bKfWq/Rock-bay-1920.png
+docs/prototypes/new-game/T63/evidence/browser-8bKfWq/Rock-bay-800.png
+docs/prototypes/new-game/T63/evidence/browser-8bKfWq/South-rest-1280.png
+docs/prototypes/new-game/T63/evidence/browser-8bKfWq/South-rest-1920.png
+docs/prototypes/new-game/T63/evidence/browser-8bKfWq/South-rest-800.png
+docs/prototypes/new-game/T63/evidence/browser-8bKfWq/board-1280x800.png
+[0m
+[0m$ [0mtar tzf docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/source-inputs.tar.gz 2>&1 | grep -c 'src/ui'
+21
+[0m
+[0m$ [0mtar tzf docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/source-inputs.tar.gz 2>&1 | grep 'src/ui'
+src/ui/app.ts
+src/ui/battleController.ts
+src/ui/battleView.ts
+src/ui/computerTurnLoop.ts
+src/ui/dom.ts
+src/ui/friendlyMoveView.ts
+src/ui/generatedGame.ts
+src/ui/generatedMapView.ts
+src/ui/help.ts
+src/ui/mapView.ts
+src/ui/palette.ts
+src/ui/panel.ts
+src/ui/prototype/layout.ts
+src/ui/prototype/preview.ts
+src/ui/referenceBattleGame.ts
+src/ui/referenceData.ts
+src/ui/referenceGame.ts
+src/ui/referenceMapView.ts
+src/ui/referenceMatchFiles.ts
+src/ui/resultDialog.ts
+src/ui/victoryView.ts
+[0m
+[0m$ [0mtar tzf docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/source-inputs.tar.gz 2>&1 | grep -c 'tests/'
+86
+[0m
+[0m$ [0mtar tzf docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/source-inputs.tar.gz 2>&1 | wc -l
+250
+[0m
+[0m$ [0mls -la docs/prototypes/new-game/playtest-137-139/evidence/ | grep run-
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-b04tarxc
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-igoor_3g
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-nhlbpyan
+drwx------  3 diego diego 4096 Oct 17 08:30 run-twpa1ew1
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-u9y9ihi7
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-ux3f5pjl
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-x2lsuoxx
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 run-xhhv7in3
+[0m
+[0m$ [0mcd docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw && ls -la root-1280x800-* | head -25
+total 1840
+drwx------ 2 diego diego   4096 Oct 17 08:29 .
+drwxrwxr-x 7 diego diego   4096 Oct 17 08:29 ..
+-rw-r--r-- 1 diego diego    748 Oct 17 08:29 0-opening.json
+-rw-r--r-- 1 diego diego   2506 Oct 17 08:29 1-after-computer-opener.json
+-rw-r--r-- 1 diego diego   2825 Oct 17 08:29 10-resumed-pending.json
+-rw-r--r-- 1 diego diego   2885 Oct 17 08:29 11-confirmed-1.json
+-rw-r--r-- 1 diego diego   2825 Oct 17 08:29 12-resumed-pending.json
+-rw-r--r-- 1 diego diego   2885 Oct 17 08:29 13-confirmed-2.json
+-rw-r--r-- 1 diego diego   2825 Oct 17 08:29 14-resumed-pending.json
+-rw-r--r-- 1 diego diego   2885 Oct 17 08:29 15-confirmed-3.json
+-rw-r--r-- 1 diego diego   2506 Oct 17 08:29 2-human-turn.json
+-rw-r--r-- 1 diego diego   2734 Oct 17 08:29 3-ready.json
+-rw-r--r-- 1 diego diego   2734 Oct 17 08:29 4-repeated-map-selection-no-attack.json
+-rw-r--r-- 1 diego diego   2825 Oct 17 08:29 5-repeated-single.json
+-rw-r--r-- 1 diego diego   2916 Oct 17 08:29 6-repeated-single.json
+-rw-r--r-- 1 diego diego   2825 Oct 17 08:29 7-stopped.json
+-rw-r--r-- 1 diego diego   2825 Oct 17 08:29 8-capture-interrupted-fight.json
+-rw-r--r-- 1 diego diego   2825 Oct 17 08:29 9-capture-not-auto-confirmed.json
+-rw-r--r-- 1 diego diego 234361 Oct 17 08:29 confirmed-1.png
+-rw-r--r-- 1 diego diego 234444 Oct 17 08:29 confirmed-2.png
+-rw-r--r-- 1 diego diego 234396 Oct 17 08:29 confirmed-3.png
+-rw-r--r-- 1 diego diego 137482 Oct 17 08:29 observations.json
+-rw-r--r-- 1 diego diego 238023 Oct 17 08:29 opening.png
+-rw-r--r-- 1 diego diego 237117 Oct 17 08:29 pending-capture.png
+[0m
+[0m✗ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-LoXhE1 failed
+[91m[1mError: [0mFile not found: /home/diego/projects/malpaco-work/142-review-fc5e68f1/docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-LoXhE1
+[0m
+[0m$ [0mls docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/
+legacy-1280x800-72b8Cx
+legacy-1920x1080-YbH0bj
+output.txt
+root-1280x800-WK8c86
+root-1920x1080-3Se6E6
+test-results
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/observations.json | head -50
+{
+  "url": "http://localhost:4173/",
+  "modern": true,
+  "seed": 1994,
+  "plan": {
+    "from": "province_30",
+    "to": "province_8",
+    "placements": 2,
+    "ready": {
+      "map": {
+        "id": "reference-coast-first-a",
+        "name": "Nine Isles",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "width": 800,
+          "height": 460
+        },
+        "provinces": [
+          {
+            "id": "province_4",
+            "name": "River gate",
+            "island": "island_0",
+            "polygon": [
+              [
+                326,
+                83
+              ],
+              [
+                333.8984375,
+                34.7861328125
+              ],
+              [
+                341.609375,
+                28.392578125
+              ],
+              [
+                349.2041015625,
+                25.41015625
+              ],
+              [
+                356.7431640625,
+                23.9658203125
+              ],
+              [
+                364.2080078125,
+                22.8935546875
+              ],
+              [
+                371.71875,
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/observations.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('url:', o['url']); print('modern:', o['modern']); print('annotations:', o['annotations'][:20])"
+url: http://localhost:4173/
+modern: True
+annotations: ['3 · 2', '1 · 1', '1 · 3', '2 · 1', '2 · 1', '3 · 1', '3 · 1', '3 · 3', '1 · 2', '2 · 3', '4 · 2', '3 · 2', '2 · 3', '4 · 1', '2 · 3', '4 · 1', '1 · 3', '4 · 1', '2 · 2', '1 · 3']
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/observations.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('errors:', o['errors'])"
+errors: []
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/pending-capture.png > /dev/null && file docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/pending-capture.png
+docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/pending-capture.png: PNG image data, 1280 x 800, 8-bit/color RGB, non-interlaced
+[0m
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/pending-capture.png
+[0m
+[0m$ [0msha256sum src/ui/referenceBattleGame.ts
+1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca  src/ui/referenceBattleGame.ts
+[0m
+[0m$ [0mgrep -E '"originalSha256":|src/ui/referenceBattleGame' docs/prototypes/new-game/playtest-137-139/evidence/controls-w94sxuj5/report.json
+"path": "src/ui/referenceBattleGame.ts",
+    "originalSha256": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+    "path": "src/ui/referenceBattleGame.ts",
+    "originalSha256": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+[0m
+[0m$ [0mpython3 docs/prototypes/new-game/playtest-137-139/controls.py 2>&1 | tail -30
+docs/prototypes/new-game/playtest-137-139/evidence/controls-o78hqy1k
+[
+  {
+    "name": "map-click-attacks",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+    "mutatedSha256": "705e0325c8a1967f31df4103d67c5797ca12ed659bbaf8520824274370248c11",
+    "output": "map-click-attacks-output.txt",
+    "restoredExactly": true
+  },
+  {
+    "name": "capture-auto-confirms",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+    "mutatedSha256": "ff9156e409cf869eb29e0ed38c9383502ffc702e19ddb8363f9c8a5677af0840",
+    "output": "capture-auto-confirms-output.txt",
+    "restoredExactly": true
+  }
+]
+[0m
+[0m$ [0msha256sum src/ui/referenceBattleGame.ts
+1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca  src/ui/referenceBattleGame.ts
+[0m
+[0m$ [0mls docs/prototypes/new-game/playtest-137-139/evidence/controls-o78hqy1k/
+capture-auto-confirms-mutated.txt
+capture-auto-confirms-original.txt
+capture-auto-confirms-output.txt
+map-click-attacks-mutated.txt
+map-click-attacks-original.txt
+map-click-attacks-output.txt
+report.json
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/controls-o78hqy1k/report.json
+[
+  {
+    "name": "map-click-attacks",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+    "mutatedSha256": "705e0325c8a1967f31df4103d67c5797ca12ed659bbaf8520824274370248c11",
+    "output": "map-click-attacks-output.txt",
+    "restoredExactly": true
+  },
+  {
+    "name": "capture-auto-confirms",
+    "path": "src/ui/referenceBattleGame.ts",
+    "exit": 1,
+    "originalSha256": "1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca",
+    "mutatedSha256": "ff9156e409cf869eb29e0ed38c9383502ffc702e19ddb8363f9c8a5677af0840",
+    "output": "capture-auto-confirms-output.txt",
+    "restoredExactly": true
+  }
+]
+[0m
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/legacy-1280x800-72b8Cx/opening.png
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/1-after-computer-opener.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('history length:', len(o['history'])); print('phase:', o['phase']); print('last 3 actions:', o['history'][-3:])"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json,sys; o=json.load(sys.stdin); print('history length:', len(o['history'])); print('phase:', o['phase']); print('last 3 actions:', o['history'][-3:])
+                                                                          ~^^^^^^^^^^^
+KeyError: 'history'
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/1-after-computer-opener.json | python3 -m json.tool | head -30
+{
+    "format": "malpaco-match",
+    "version": 2,
+    "boardGenerator": {
+        "id": "fixed-reference",
+        "version": 1
+    },
+    "rules": {
+        "id": "victory",
+        "version": 1
+    },
+    "actionSchemaVersion": 2,
+    "options": {
+        "seats": [
+            {
+                "kind": "human"
+            },
+            {
+                "kind": "computer"
+            },
+            {
+                "kind": "computer"
+            },
+            {
+                "kind": "computer"
+            }
+        ],
+        "board": "generated",
+        "startingArmiesRange": "1-3",
+        "humanShare": 0,
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/1-after-computer-opener.json | python3 -c "import json,sys; o=json.load(sys.stdin); s=o['state']; print('phase:', s['phase']); print('history length:', len(s['history'])); print('last 3:', s['history'][-3:])"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json,sys; o=json.load(sys.stdin); s=o['state']; print('phase:', s['phase']); print('history length:', len(s['history'])); print('last 3:', s['history'][-3:])
+                                               ~^^^^^^^^^
+KeyError: 'state'
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/1-after-computer-opener.json | python3 -c "import json,sys; o=json.load(sys.stdin); print(list(o.keys()))"
+['format', 'version', 'boardGenerator', 'rules', 'actionSchemaVersion', 'options', 'actions']
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/1-after-computer-opener.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions length:', len(o['actions']))"
+actions length: 23
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/legacy-1280x800-72b8Cx/1-after-computer-opener.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions length:', len(o['actions']))"
+actions length: 26
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/legacy-1280x800-72b8Cx/1-after-computer-opener.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('last action:', o['actions'][-1])"
+last action: {'kind': 'endTurn'}
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/legacy-1280x800-72b8Cx/7-legacy-exchange.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions length:', len(o['actions']))"
+actions length: 33
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/legacy-1280x800-72b8Cx/7-legacy-exchange.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions:', o['actions'][26:])"
+actions: [{'kind': 'reinforce', 'province': 'province_16', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_16', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_16', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_16', 'to': 'province_41'}, {'kind': 'attack', 'from': 'province_16', 'to': 'province_41'}, {'kind': 'attack', 'from': 'province_16', 'to': 'province_41'}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/legacy-1280x800-72b8Cx/8-automatic-transfer-complete.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions:', o['actions'][26:]); print('rules:', o['rules'])"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import json,sys; o=json.load(sys.stdin); print('actions:', o['actions'][26:]); print('rules:', o['rules'])
+                                                                                                   ~^^^^^^^^^
+KeyError: 'rules'
+actions: [{'kind': 'reinforce', 'province': 'province_16', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_16', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_16', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_16', 'to': 'province_41'}, {'kind': 'attack', 'from': 'province_16', 'to': 'province_41'}, {'kind': 'attack', 'from': 'province_16', 'to': 'province_41'}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/9-capture-not-auto-confirmed.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions length:', len(o['actions']))"
+actions length: 27
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/9-capture-not-auto-confirmed.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions:', o['actions'][23:])"
+actions: [{'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_30', 'to': 'province_8'}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/4-repeated-map-selection-no-attack.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions length:', len(o['actions'])); print('actions 23+:', o['actions'][23:])"
+actions length: 26
+actions 23+: [{'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'endReinforcement'}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/7-stopped.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions length:', len(o['actions'])); print('actions 23+:', o['actions'][23:])"
+actions length: 27
+actions 23+: [{'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_30', 'to': 'province_4'}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/5-repeated-single.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions 23+:', o['actions'][23:])"
+actions 23+: [{'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_30', 'to': 'province_4'}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/6-repeated-single.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions 23+:', o['actions'][23:])"
+actions 23+: [{'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_30', 'to': 'province_4'}, {'kind': 'attack', 'from': 'province_30', 'to': 'province_4'}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/8-capture-interrupted-fight.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions 23+:', o['actions'][23:])"
+actions 23+: [{'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_30', 'to': 'province_8'}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/8-capture-interrupted-fight.json | python3 -c "import json,sys; o=json.load(sys.stdin); a=o['actions']; print('actions 23+:', a[23:]); print('total:', len(a))"
+actions 23+: [{'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_30', 'to': 'province_8'}]
+total: 27
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/9-capture-not-auto-confirmed.json | python3 -c "import json,sys; o=json.load(sys.stdin); a=o['actions']; print('actions 23+:', a[23:]); print('total:', len(a))"
+actions 23+: [{'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'reinforce', 'province': 'province_30', 'amount': 1}, {'kind': 'endReinforcement'}, {'kind': 'attack', 'from': 'province_30', 'to': 'province_8'}]
+total: 27
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/11-confirmed-1.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions length:', len(o['actions'])); print('actions 27+:', o['actions'][27:])"
+actions length: 28
+actions 27+: [{'kind': 'captureMove', 'amount': 1}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/13-confirmed-2.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions 27+:', o['actions'][27:])"
+actions 27+: [{'kind': 'captureMove', 'amount': 2}]
+[0m
+[0m$ [0mcat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/15-confirmed-3.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('actions 27+:', o['actions'][27:])"
+actions 27+: [{'kind': 'captureMove', 'amount': 3}]
+[0m
+[0m$ [0mfor i in 10 12 14; do echo "=== ${i}-resumed-pending ==="; cat docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1/raw/root-1280x800-WK8c86/${i}-resumed-pending.json | python3 -c "import json,sys; o=json.load(sys.stdin); print('total:', len(o['actions'])); print('actions 27+:', o['actions'][27:])"; done
+=== 10-resumed-pending ===
+total: 27
+actions 27+: []
+=== 12-resumed-pending ===
+total: 27
+actions 27+: []
+=== 14-resumed-pending ===
+total: 27
+actions 27+: []
+[0m
+[0m$ [0mgit log --oneline -5 RUN-NOTES.md
+e820073 test: retain current and legacy flow playtest findings [skip ci]
+963f0c5 test: prepare bounded current and legacy flow playtest [skip ci]
+ee147f9 docs: preserve continuation decisions and CLI compatibility caveat [skip ci]
+dfeee44 fix: open the current playable game by default [skip ci]
+595ef5a feat(T32): complete baseline computer turns [skip ci]
+[0m
+[0m$ [0mtail -8 RUN-NOTES.md
+Next-session issue entry points (GitHub labels are authoritative): T33 #78/docs/tasks/T33.md for the playable milestone and owner approval; #137 for confusing owner-seat/army-count labels and quieter names; #138 for attack/repeat UX; #139 for the valid old-route automatic-capture report and launch correction. Keep #138/#139 triage distinct from merely claiming the new entry fixes every older route. Coastlines #111/T64 and shared borders #117/T65 already cover later map postprocessing; avoid duplicates. Header/parser follow-up #136 and its linked cross-repo reports (goal2 #165, goal2-archaeology #258, isle-wars-archaeology #260) preserve the paid-review recovery case.
+
+Workspace caution: AGENTS.md, CLAUDE.md, docs/environment.md, docs/tasks/T09.md, src/core/bonuses.ts and tests/core/bonuses.test.ts appeared modified on entry but all six byte contents matched HEAD when checked after the launch merge. Do not stage/clean/reset them speculatively. Existing .cache worktrees and backup files were deliberately retained; do not delete valuable drafts/evidence. Check real content against HEAD again if the next session sees differences. CLI binary/peek overrides are documented in docs/environment.md.
+
+
+Current-flow playtest PLAN (2026-10-17): owner selected main implementation and MiniMax review. Isolated triage/current-playable-flow retains real root/owner-legacy URL inputs, histories and screenshots at both sizes before deciding #137/#138 scope. No gameplay/T33 implementation, historical rules/save changes or duplicate CI. Preserve all inherited entries/worktrees/evidence.
+
+Current-flow playtest evidence: final 4/4 root/owner-legacy probes pass at both sizes; root Single exchange repetition, Stop and explicit pending capture/save-resume work. Legacy capture-all/target clearing reproduced (3-army example, not exact owner history). Two actual-source controls fail both root probes and restore exact bytes; all failures retained. Build/583 units and inherited runtime/test equality pass. No runtime/T33/geometry change; main submits evidence-only PR #142 for owner-selected independent MiniMax review. Draft pushes skip CI.
+[0m
+[0m$ [0mls -la .claude/hooks 2>/dev/null || ls -la .opencode/hooks 2>/dev/null || ls -la tools/harness 2>/dev/null | head -10
+total 16
+drwxrwxr-x 2 diego diego 4096 Oct 17 08:25 .
+drwxrwxr-x 5 diego diego 4096 Oct 17 08:25 ..
+-rwxrwxr-x 1 diego diego 2574 Oct 17 08:25 pre-commit-main-check.sh
+-rwxrwxr-x 1 diego diego 3960 Oct 17 08:25 session-start.sh
+[0m
+[0m$ [0mls -la tools/
+total 20
+drwxrwxr-x  5 diego diego 4096 Oct 17 08:25 .
+drwxrwxr-x 12 diego diego 4096 Oct 17 08:29 ..
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 board
+drwxrwxr-x  3 diego diego 4096 Oct 17 08:25 harness
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 release
+[0m
+[0m$ [0mls tools/harness/
+claim.mjs
+guard.mjs
+jev.mjs
+lib
+models.mjs
+peek.sh
+post-review.mjs
+review.mjs
+run-unit.sh
+switch-model.mjs
+watch.sh
+[0m
+[0m$ [0mgrep -E "precleanup|cleanup" tools/harness/*.mjs 2>&1 | head -10
+(no output)
+[0m
+[0m$ [0mgrep -E "precleanup|clean|retained|preserve" tools/harness/*.mjs 2>&1 | head -20
+(no output)
+[0m
+[0m$ [0mgrep -rE "precleanup|retained" tools/ 2>&1 | head -10
+(no output)
+[0m
+[0m✱ [0mGrep "precleanup"[90m in .claude · 0 matches[0m
+[0m
+[0m$ [0mls -la .claude/
+total 24
+drwxrwxr-x  5 diego diego 4096 Oct 17 08:25 .
+drwxrwxr-x 12 diego diego 4096 Oct 17 08:29 ..
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 agents
+drwxrwxr-x  2 diego diego 4096 Oct 17 08:25 hooks
+-rw-rw-r--  1 diego diego  471 Oct 17 08:25 settings.json
+drwxrwxr-x  6 diego diego 4096 Oct 17 08:25 skills
+[0m
+[0m$ [0mls .claude/hooks/
+pre-commit-main-check.sh
+session-start.sh
+[0m
+[0m→ [0mRead .claude/hooks/pre-commit-main-check.sh
+[0m→ [0mRead .claude/hooks/session-start.sh
+[0m
+[0m$ [0mmkdir -p /tmp/opencode/pr142-retained && ls -la /tmp/opencode/pr142-retained/
+total 0
+drwxrwxr-x 2 diego diego 40 Oct 17 08:35 .
+drwxr-xr-x 4 diego diego 80 Oct 17 08:35 ..
+[0m
+[0m$ [0mcp -r docs/prototypes/new-game/playtest-137-139/evidence/run-twpa1ew1 /tmp/opencode/pr142-retained/review-run && cp -r docs/prototypes/new-game/playtest-137-139/evidence/controls-o78hqy1k /tmp/opencode/pr142-retained/review-controls && ls -la /tmp/opencode/pr142-retained/
+total 0
+drwxrwxr-x 4 diego diego  80 Oct 17 08:35 .
+drwxr-xr-x 4 diego diego  80 Oct 17 08:35 ..
+drwx------ 2 diego diego 180 Oct 17 08:35 review-controls
+drwx------ 3 diego diego 140 Oct 17 08:35 review-run
+[0m
+[0m$ [0mls /tmp/opencode/pr142-retained/review-run/ && echo "---" && ls /tmp/opencode/pr142-retained/review-controls/
+raw
+raw-outputs.tar.gz
+report.json
+source-inputs.tar.gz
+---
+capture-auto-confirms-mutated.txt
+capture-auto-confirms-original.txt
+capture-auto-confirms-output.txt
+map-click-attacks-mutated.txt
+map-click-attacks-original.txt
+map-click-attacks-output.txt
+report.json
+[0m
+[0m$ [0mcd /tmp/opencode/pr142-retained && tar xzf review-run/source-inputs.tar.gz src/ui/referenceBattleGame.ts && sha256sum src/ui/referenceBattleGame.ts | head -1 && echo "---" && sha256sum docs/prototypes/new-game/../../../src/ui/referenceBattleGame.ts 2>/dev/null && sha256sum ../../../src/ui/referenceBattleGame.ts
+1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca  src/ui/referenceBattleGame.ts
+---
+[0m
+[0m$ [0mcd /tmp/opencode/pr142-retained && sha256sum ../../../src/ui/referenceBattleGame.ts
+sha256sum: ../../../src/ui/referenceBattleGame.ts: No such file or directory
+[0m
+[0m$ [0mcd /home/diego/projects/malpaco-work/142-review-fc5e68f1 && sha256sum src/ui/referenceBattleGame.ts && cd /tmp/opencode/pr142-retained && sha256sum src/ui/referenceBattleGame.ts
+1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca  src/ui/referenceBattleGame.ts
+1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca  src/ui/referenceBattleGame.ts
+[0m
+[0m$ [0mcd /home/diego/projects/malpaco-work/142-review-fc5e68f1 && find . -name "review-err.txt" 2>/dev/null && rm -f /tmp/opencode/pr142-retained/src -rf 2>/dev/null; ls /tmp/opencode/pr142-retained/
+review-controls
+review-run
+[0m
+[0m$ [0mrm -rf /tmp/opencode/pr142-retained/src 2>/dev/null; ls /tmp/opencode/pr142-retained/
+review-controls
+review-run
+[0m
+[0m→ [0mRead playwright.config.ts
+[0m→ [0mRead docs/prototypes/new-game/playtest-137-139/playwright.config.ts
+[0m
+[0m$ [0mgit diff --exit-code ee147f9 -- src tests data package.json package-lock.json playwright.config.ts vite.config.ts 2>&1; echo "exit: $?"
+exit: 0
+[0m
+[0m$ [0mgrep "evidence/run-ux3f5pjl" docs/prototypes/new-game/playtest-137-139/artifacts.json | head -5
+"evidence/run-ux3f5pjl/raw-outputs.tar.gz": "4d1762f61cd61a4324e45065d8c5e5713b9991a75f356ba4cd76cb08dc2d316b",
+  "evidence/run-ux3f5pjl/report.json": "6a308fb2928650fb4833d3b8a4787c3ebddeb3118731600923f379d3d066d208",
+  "evidence/run-ux3f5pjl/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+  "evidence/run-ux3f5pjl/source-inputs.tar.gz": "29111aa8b03a885746f096aa8495ccc1468f94de419dc4fccf33e01745b26b81",
+[0m
+[0m$ [0mgrep '"6a308fb2928650fb4833d3b8a4787c3ebddeb3118731600923f379d3d066d208"' docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/report.json | head -1; echo "---"; sha256sum docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/report.json
+---
+6a308fb2928650fb4833d3b8a4787c3ebddeb3118731600923f379d3d066d208  docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/report.json
+[0m
+[0m$ [0mgrep '"archiveSha256"' docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/report.json | head -1; sha256sum docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw-outputs.tar.gz
+"archiveSha256": "4d1762f61cd61a4324e45065d8c5e5713b9991a75f356ba4cd76cb08dc2d316b",
+4d1762f61cd61a4324e45065d8c5e5713b9991a75f356ba4cd76cb08dc2d316b  docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw-outputs.tar.gz
+[0m
+[0m$ [0mfile docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw/legacy-1280x800-nfrFGy/opening.png
+docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw/legacy-1280x800-nfrFGy/opening.png: cannot open `docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw/legacy-1280x800-nfrFGy/opening.png' (No such file or directory)
+[0m
+[0m$ [0mtar tzf docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw-outputs.tar.gz | grep legacy-1280x800- | head -20
+legacy-1280x800-nfrFGy/0-opening.json
+legacy-1280x800-nfrFGy/1-after-computer-opener.json
+legacy-1280x800-nfrFGy/2-human-turn.json
+legacy-1280x800-nfrFGy/3-ready.json
+legacy-1280x800-nfrFGy/4-repeated-map-selection-no-attack.json
+legacy-1280x800-nfrFGy/5-legacy-exchange.json
+legacy-1280x800-nfrFGy/6-legacy-exchange.json
+legacy-1280x800-nfrFGy/7-legacy-exchange.json
+legacy-1280x800-nfrFGy/8-automatic-transfer-complete.json
+legacy-1280x800-nfrFGy/automatic-capture-result.png
+legacy-1280x800-nfrFGy/observations.json
+legacy-1280x800-nfrFGy/opening.png
+legacy-1280x800-nfrFGy/selected-target.png
+[0m
+[93m[1m! [0mpermission requested: external_directory (/tmp/*); auto-rejecting
+[0m✗ [0mmkdir -p /tmp/extract-ux3f5pjl && tar xzf docs/prototypes/new-game/playtest-137-139/evidence/run-ux3f5pjl/raw-outputs.tar.gz -C /tmp/extract-ux3f5pjl --wildcards "*legacy-1280x800-nfrFGy/opening.png" 2>&1 | head; ls -la /tmp/extract-ux3f5pjl failed
+[91m[1mError: [0mThe user rejected permission to use this specific tool call.

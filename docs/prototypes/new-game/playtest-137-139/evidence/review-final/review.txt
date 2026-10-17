@@ -1,0 +1,30 @@
+Current-flow playtest review (MiniMax M3)
+approve
+
+Worktree: /home/diego/projects/malpaco-work/142-review-4355b56f (HEAD e820073afbc98c57f42a8c98f1a981cb8977da34). Diff vs origin/main: 53 files, all under docs/prototypes/new-game/playtest-137-139/ and the append-only RUN-NOTES.md; no changes to src/, tests/, data/, package.json, package-lock.json, playwright.config.ts, vite.config.ts.
+
+Commands run from the worktree:
+- `git rev-parse --show-toplevel && git rev-parse HEAD && git diff --name-only origin/main...HEAD` — proved tree and PR scope.
+- `git diff --stat ee147f9..HEAD -- src tests data package.json package-lock.json playwright.config.ts vite.config.ts` — empty; runtime and inherited files unchanged.
+- `git diff --check` — exit 0.
+- `ln -s /home/diego/projects/malpaco/node_modules node_modules && npm run build` — exit 0 (50 modules, dist/index-FGmBIwSR.js 200.38 kB). Symlink removed afterwards.
+- `npm test` — exit 0, 583 passed / 583 (39 files, 11.95 s).
+- `python3 docs/prototypes/new-game/playtest-137-139/run.py` — exit 0, fresh evidence/run-96gh4lcb/ with sourcesUnchangedDuringRun true, 4/4 tests pass at1280×800 and 1920×1080 in 11.0 s.
+- `python3 docs/prototypes/new-game/playtest-137-139/controls.py` — exit 0; both controls exit 1 (root probes fail by behavioral assertion, legacy probes pass) and restoredExactly true; source bytes verified before/after via sha256sum (1e589b2f9f2c7ef99b1bd25a6e07b7b4c7c0ab28192ff450df42d9970f024aca matches both mutated and restored states).
+- `sha256sum` against the 45 artifacts.json entries and against every sourceHash in run-96gh4lcb (250 paths) — all match the worktree bytes for non-investigation paths; tar-extracted source-inputs.tar.gz hashes also all match.
+- `diff` over all 250 sourceHashes between my run-96gh4lcb and the PR's run-ux3f5pjl — zero differences.
+- `tar tzf` raw-outputs.tar.gz and source-inputs.tar.gz for each new evidence directory — 78 raw-output members and 250 source-input members in run-96gh4lcb.
+- Read README.md, CONTRACT.md, run.py, controls.py, flow.spec.ts, playwright.config.ts, all report.json files, and the failure-retained outputs in run-b04tarxc, run-nhlbpyan, run-igoor_3g, controls-c3ne44xu, controls-w94sxuj5; viewed all four previews plus my run's pending-capture, stopped, automatic-capture-result, opening screenshots.
+- `/tmp/opencode/pr142-retained/` already held a pre-existing review-run and review-controls (from a prior harness precleanup hook); I added my fresh run-96gh4lcb and controls-_qv7_yj5 copies alongside the originals and did not modify the originals.
+
+DW1: ran `python3 docs/prototypes/new-game/playtest-137-139/run.py` → exit 0, 4 passed (10–11 s) at both layouts; sourcesUnchangedDuringRun true; all 250 sourceHashes byte-equal to the PR's run-ux3f5pjl and to the on-disk worktree; raw-outputs.tar.gz and source-inputs.tar.gz round-trip. The new evidence directory is `docs/prototypes/new-game/playtest-137-139/evidence/run-96gh4lcb/`.
+
+DW2: ran `npm run build`, `npm test` (583/583), `git diff --check`, and `git diff --exit-code ee147f9 -- src tests data package.json package-lock.json playwright.config.ts vite.config.ts` → all exit 0; build artifact, test count, and empty diff against parent match the PR's checks-ewgtu92f report.json. README separates observations (top table) from proposed triage (rules #137/#138/#139 plus "Next scope: rule 11 favors T33 validation…no T33 appearance approval"), retains genuine failures (run-b04tarxc config cwd, run-nhlbpyan download-throttle, run-igoor_3g legacy save-through-modal, controls-c3ne44xu selector uniqueness), and explicitly disclaims owner approval and T33 readiness. No production/runtime change.
+
+R1 (nonblocking): the legacy automatic-capture PNG hash in my fresh run (5f71bf12…) differs by 2 bytes from the committed preview (85b402e2…), but the visual content is identical and both files display "Iron point captured! 3 armies move in from High shore" with the same High shore → Iron point (province_16 → province_41) trace from a single deterministic seed and a paused clock at 2026-10-17T12:00:00Z. The 2-byte delta is almost certainly a non-deterministic PNG frame header or zero-padded metadata chunk rather than a content change; the same `capturePlan` reproducibly selects the same 3-exchange province_16 → province_41 path, and the 8-automatic-transfer-complete action history in my run ends with the same three `attack` actions and no `captureMove` as the PR's, so the underlying behavior is unchanged. This is a benign reproducibility note (browser PNGs are not byte-deterministic), not a behavior or contract defect; the README does not claim PNG byte equality. No fix required.
+
+R2 (nonblocking): the README states "23 current / 26 legacy actions before the human" for the computer opener; my fresh run's after-computer-opener saves count to 23 and 26 actions respectively at both viewports, exactly matching the claim. Not a defect, just verification of a stated number.
+
+Final pass done. No blocking findings; the PR is a faithful bounded playtest that does not change runtime, historical rules/saves, goldens, or inherited assertions, retains every failure that informed the final probe (run-b04tarxc, run-nhlbpyan, run-igoor_3g, controls-c3ne44xu) with honest cause notes, and correctly defers T33/#137/#138/#139 to future authorized scope.
+
+approve
