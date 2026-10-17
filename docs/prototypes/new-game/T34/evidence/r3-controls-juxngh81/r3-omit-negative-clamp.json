@@ -1,0 +1,13 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/island-geography.test.ts",
+    "-t",
+    "negative attempt"
+  ],
+  "exit": 1,
+  "output": "{\n  \"output\": \"docs/prototypes/new-game/T34/evidence/r3-omit-negative-clamp-m4_uwj6s\",\n  \"exit\": 1,\n  \"stdoutTail\": \"\\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t34-work\\n\\n \\u276f tests/core/island-geography.test.ts (22 tests | 1 failed | 21 skipped) 12ms\\n   \\u00d7 clamps negative attempt budgets to untouched zero-attempt exhaustion 11ms\\n\\n Test Files  1 failed (1)\\n      Tests  1 failed | 21 skipped (22)\\n   Start at  19:56:54\\n   Duration  203ms (transform 76%, import 12%, tests 10%, worker 2%)\\n\\n\",\n  \"stderrTail\": \"\\n\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af Failed Tests 1 \\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\n\\n FAIL  tests/core/island-geography.test.ts > clamps negative attempt budgets to untouched zero-attempt exhaustion\\nAssertionError: expected -3 to be +0 // Object.is equality\\n\\n- Expected\\n+ Received\\n\\n- 0\\n+ -3\\n\\n \\u276f tests/core/island-geography.test.ts:146:82\\n\\n \\u276f withMockedWitness tests/core/island-geography.test.ts:111:95\\n \\u276f tests/core/island-geography.test.ts:145:2\\n\\n\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af[1/1]\\u23af\\n\\n\"\n}\n",
+  "stderr": ""
+}

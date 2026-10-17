@@ -1,0 +1,1048 @@
+{
+  "command": [
+    "/home/diego/.nvm/versions/node/v24.21.0/bin/node",
+    "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/sweep.mjs"
+  ],
+  "seeds": 100,
+  "successes": 99,
+  "successTarget": 0.99,
+  "attemptsMax": 50,
+  "targetMet": false,
+  "failureCounts": {
+    "labels": 926,
+    "attachment": 584,
+    "water": 120,
+    "degree": 41,
+    "traceability": 11
+  },
+  "layoutBands": {
+    "middle": 38,
+    "outer": 61
+  },
+  "aspectRanges": {
+    "island_0": {
+      "min": 1.2111774729688398,
+      "max": 1.6468173768915333
+    },
+    "island_1": {
+      "min": 1.1655969372952242,
+      "max": 1.5336064747699487
+    },
+    "island_2": {
+      "min": 1.5355487123955196,
+      "max": 2.0819600292764338
+    },
+    "island_3": {
+      "min": 1.0964874881112459,
+      "max": 1.5193602757800166
+    },
+    "island_4": {
+      "min": 1.455176170867315,
+      "max": 1.8566415108368342
+    },
+    "island_5": {
+      "min": 1.3560974629759222,
+      "max": 1.721497347077448
+    },
+    "island_6": {
+      "min": 1.5599215898578445,
+      "max": 1.8945674487278286
+    },
+    "island_7": {
+      "min": 1.4585982560515918,
+      "max": 1.8961622741893636
+    },
+    "island_8": {
+      "min": 2.124214671959491,
+      "max": 2.9756968860414443
+    }
+  },
+  "geometryHashes": 99,
+  "topologyHashes": 4,
+  "sourceHashes": {
+    "src/core/board-fairness.ts": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717",
+    "src/core/board-gen.ts": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942",
+    "src/core/bonuses.ts": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+    "src/core/combat.ts": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+    "src/core/computer.ts": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+    "src/core/index.ts": "0bd09500dcfda1a093e97b52efbea2a17a94663d342fab3a5daab96f0d711381",
+    "src/core/island-geography.ts": "83d0f292cbd7b4ec8cd2e1a05b8e883ae2dd467b0921eb058a63c28fc64febae",
+    "src/core/map.ts": "3457bf4de33874cd78aa2a06a29819c8d7920e1c1eb36ce0500d326d5092cdaf",
+    "src/core/match-save.ts": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+    "src/core/movement.ts": "ef59529db0f70d17677af8d229c07a8cdb79bef5eac2d51f6790bd675cdfa323",
+    "src/core/options.ts": "0103f21c5afe6a99d968079633a06f169f6941c129b94c212b9e93e547748513",
+    "src/core/reference-game.ts": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+    "src/core/reference-map.ts": "cc920c2840843391f83bb9d1c393afc5342cfeb5625ecd2ca56f7252f85ec090",
+    "src/core/reinforcement.ts": "b9a7fe2203bcff3aa06beebf5ec3ac8c2103641a0522a5e4805714b216452556",
+    "src/core/rng.ts": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498",
+    "src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+    "src/core/save.ts": "54eb5f98c7bc6ac90d39a3d2ddf53eef4fd37c5f53b609d847d20289433b9748",
+    "src/core/seats.ts": "4e67c932ef1b420c7b4e07d646dfe423c249bd3dd90eed60549ea01b8ba06f67",
+    "src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+    "src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+    "src/core/types.ts": "c4dce555abebede88237ef08ad926cc166e2076f3a468d1124f495f99bf61183",
+    "src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+    "tests/core/island-geography.test.ts": "438e66e72c053a0a18b382548a044b87b03d1d1b6bde37fc34c00d8548c821d5",
+    "docs/prototypes/new-game/T24/README.md": "5bc762f10be832416b5e8e9ef72ee6233092b8912f4d0f04489f468f00b07f21",
+    "docs/prototypes/new-game/T24/contract-proposal.md": "4955c1883c456e0f4805a9811fab9ba6d733ff285bd77086bce41a30d382f4c3",
+    "docs/prototypes/new-game/T24/contract.mjs": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+    "docs/prototypes/new-game/T24/contract.test.mjs": "8fdc8d7e697511116efab6ae600c7659f4052c9c651703131a3e059b156cf60d",
+    "docs/prototypes/new-game/T24/existing.mjs": "378650b34a7639ca876bef3955bd59239a8e2c8cf49c4beb8e16e7d46dcdeae2",
+    "docs/prototypes/new-game/T24/geometry-preflight.test.mjs": "c9e5f8b52cd101bdb22ff78b56bec5b655e2cca9691eea0d8b5fcc1f423b36b1",
+    "docs/prototypes/new-game/T24/geometry.mjs": "de4ef1aa101184d52ac79dad77a8b28fa8e1acdcbcb70b574eb51ef461117f11",
+    "docs/prototypes/new-game/T24/graph-fixture.mjs": "2248ad6aa448e0c30ffe088ea56ff1eab8bab2409e0e5336d2b240d973fab2f0",
+    "docs/prototypes/new-game/T24/graph-preflight.test.mjs": "6d84a5409782d98c629c8bfa8b72f0d82b40f71fb7b8f6d058721485be184e6e",
+    "docs/prototypes/new-game/T24/mutations.mjs": "c74b52140e02f3075d80f8cee375e59c1e0e2945a45d90128e60dde66e191cdf",
+    "docs/prototypes/new-game/T24/parameters.mjs": "3b5ab9aecc47ae4a1d36eedd6e0d2484c5e1819f6baae4aa15fe0c1ed483e354",
+    "docs/prototypes/new-game/T24/probe.mjs": "ee0082ddab93435f751bb252e6e9c21c8406673da5088ae0699cb8c2c03970b0",
+    "docs/prototypes/new-game/T24/witness.mjs": "746eda238e12bf27e30ca9fa6a94fcb37b646bd5fb14796d6c82bb2afa309f12",
+    "docs/prototypes/new-game/T62/README.md": "460584fc1df423c3dafe4e65d7681d5eebe28189e7df17c692652202e4cbe40c",
+    "docs/prototypes/new-game/T62/artifacts.sha256.json": "ec18f7b21546e854976c949e5b9f336848f4c3d67c9d05fd25d864f4e5666433",
+    "docs/prototypes/new-game/T62/artifacts.v2.sha256.json": "4744e4365f4dca51636927b7f7156e6c7c1a33fa29d2ac93ce4f3ee7c14bbedb",
+    "docs/prototypes/new-game/T62/artifacts.v3.sha256.json": "6f563498ac05bfa2af4b1e96fdc605374a8746c6f791b2c13761bfb5e9f4632b",
+    "docs/prototypes/new-game/T62/audit.py": "a3256b4e7ef551351172a9c82923e7556abf7c4f0aab08183decc3a0857d1bf6",
+    "docs/prototypes/new-game/T62/contract.mjs": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+    "docs/prototypes/new-game/T62/contract.test.mjs": "03b0102a19efe5521446ebee7f602a6f20cfb1ed2c6cb99331d0fd5ce82f83d5",
+    "docs/prototypes/new-game/T62/guards.test.mjs": "e20110ac5d19c7eb0b7e5f3625229ef46972057e0d17555a273fe0d256381760",
+    "docs/prototypes/new-game/T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746",
+    "docs/prototypes/new-game/T62/pr-body.md": "eb3f54d640b5fa1cf20ead51e53cc368bf5e6648d6681827f4def756418ca242",
+    "docs/prototypes/new-game/T62/prepare-pr.py": "f9c241146e84584493ba5e93e93a0b8781fe6cd236b1f286657924265245e8a3",
+    "docs/prototypes/new-game/T62/probe.mjs": "250fc44ac2b9be6b9b9285d539e87aa345555e49017775e23f41487d4f84362b",
+    "docs/prototypes/new-game/T62/validate.py": "20bd501977ffef1d1fac788677197021dbed41fe46a636038da44b4245fa18da",
+    "docs/prototypes/new-game/T62/verify-evidence.py": "18bee1f5f6dedb69493132dfc75f0fce9d25542b1c4e92ee870f64fcc24287e0",
+    "docs/prototypes/new-game/T34/CONTRACT.md": "4c117758c48c42a722e9b95a20b7fada575866837e526e43a9f780e03e33f21e",
+    "docs/prototypes/new-game/T34/README.md": "655d8d1654f4da60391ef3d0a80e3b4dfc93524ebc760c0d7b29a93a7b142925",
+    "docs/prototypes/new-game/T34/acceptance.mjs": "0adb4f2efc20a38dc65718041094f91acc239172b4ef8d5883643a5a89ce0f15",
+    "docs/prototypes/new-game/T34/archive-evidence.py": "0ca723ca8b79d8af34452cc3397326e2fc4e16855cabb609b109c9a44549e18c",
+    "docs/prototypes/new-game/T34/artifacts.json": "8850e95fc1ad0cf5cfad646d4865bb1d8a62e5c18574a37a1c81c1a75b0b4f41",
+    "docs/prototypes/new-game/T34/candidate.ts": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de",
+    "docs/prototypes/new-game/T34/controls.py": "fb8330733290668529d806c979097be88976d09176c89b7d55fe14bdaa121f4e",
+    "docs/prototypes/new-game/T34/family-candidate.ts": "1bfe1823e72b9502fc98da7794cbf590ebe03d580367bd7ab715c0b19424b62f",
+    "docs/prototypes/new-game/T34/family-smoke.mjs": "287ae5557e0d2ec7d2f3acd278e997b6c5c73b220516dc8d835e03f0fb3038fe",
+    "docs/prototypes/new-game/T34/family-smoke.py": "b18380de1561e00426ecc004c613ae189e2248bf2a812694c9c28388eb39847c",
+    "docs/prototypes/new-game/T34/feasibility-smoke.mjs": "3b5ba5c3010ea2c115c07b9ddbae0af52ad874f7f24ea5e4a884d19f08f5c642",
+    "docs/prototypes/new-game/T34/feasibility-wide.mjs": "eef4ff0e4f3e97576776b65691a6319da64ed10492fb47841e0337d41d94bc77",
+    "docs/prototypes/new-game/T34/flip-probe.mjs": "a35a48801d11da4d673dd2b27a8bf06c6f4c6d1e8451c326f8b2b8a225097240",
+    "docs/prototypes/new-game/T34/full-preflight.py": "76861b1d045ad3ee0144c7100593bb0d4d958ef992a4fd5ba0f7fa615dc0629f",
+    "docs/prototypes/new-game/T34/preflight.py": "a49044f7f5bf4f2713a3d9a9c89794b2530e220c3a9611f0468c6c854e111f0a",
+    "docs/prototypes/new-game/T34/prepare-witness.mjs": "6072045f785b960009a6e36f245036e75d7c542711649690fa8b16bd4feb3496",
+    "docs/prototypes/new-game/T34/r1-controls.py": "6ecf946be102bf2b777f3f7073924e7712b3735ba5051616a7542bb754104e00",
+    "docs/prototypes/new-game/T34/r2-controls.py": "64a1df39038f6b10a96cb062dc4981f02f0e89894d1d3d4cc9ad14a0175b48e8",
+    "docs/prototypes/new-game/T34/r2-preflight.py": "1090d68b0ed78437c5be86557cd3b075f4a1c13ac461e1d600e75727234afd59",
+    "docs/prototypes/new-game/T34/run-browser.py": "fafebee6b26ae83ba10645ec9a07cb2820deb90e9b4b3d38f7cc409357cb39c2",
+    "docs/prototypes/new-game/T34/run-command.py": "3a7a0414be62a8c70652f09b6ff763cf0a33ff1aba9aee0a7b376cbdf21136b2",
+    "docs/prototypes/new-game/T34/sweep.mjs": "5ae5701ac653d2c0d401dbdea8a6ec1b6984e8b955cbf6d105d9dc68f9441564",
+    "docs/prototypes/new-game/T34/verify-evidence.py": "9642abab150d6e7a81d88e36f28b09804a7e3385259895b13a05d8c6f3a86756",
+    "docs/prototypes/new-game/T34/witness-provenance.json": "fb15b6d4235f3655e7e81cf5926587c5d58212a5cc46990d52b58271f557bf84",
+    "docs/prototypes/new-game/T34/witness.json": "149fc1922c6895d003866709e26300f008340a2cac0bf0f91bb672cb0c23df35"
+  },
+  "sourcesUnchanged": true,
+  "records": [
+    {
+      "seed": 0,
+      "exported": true,
+      "success": true,
+      "attempts": 7,
+      "replayHash": "0fd849c2359ba437ed60532fa61a8b3473ca17d5d47775ce5ce8f6aa737292e3",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "exported": true,
+      "success": true,
+      "attempts": 15,
+      "replayHash": "e9d1e4925428aa125db06b1a0496cde1f8e3db5dca55be2684bd2b063bb5314a",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "exported": true,
+      "success": true,
+      "attempts": 3,
+      "replayHash": "e3eac33d0daa6dbd37eef4cb4028933a3df243f25c38349d54451bc8f97a9b6f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 3,
+      "exported": true,
+      "success": true,
+      "attempts": 22,
+      "replayHash": "b21e475b6652e2e294e97ff7066d09114a313923833cc2e4e0f05430230b214a",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 4,
+      "exported": true,
+      "success": true,
+      "attempts": 10,
+      "replayHash": "4f9dced201c59bedf439a9c09ab227bfeae18ac3c645a87411680ce4f7fb0738",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 5,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "aa0c4eb1eafb35f6741e80456ac42d21626a3ccc59aa25e0c4626a230e29080f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 6,
+      "exported": true,
+      "success": true,
+      "attempts": 8,
+      "replayHash": "32eeaa83e7539f01958fd7516dc1c02cfb0d00f477fcb71d28c9fb1a40ea81e9",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "exported": true,
+      "success": true,
+      "attempts": 9,
+      "replayHash": "9142d1e7491f7e63872580a7078b07e250f2ebe9e321b16a1e4dc65d5e7bdc2c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 8,
+      "exported": true,
+      "success": true,
+      "attempts": 5,
+      "replayHash": "a85e3b992bbcfc6dbf1cbca4341847216fef9be4ff3611c2684209e00fec4ebf",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 9,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "65ab3b1989f5e934113cb5109e46754970bdb47bdda2c1a2db04297d86d8829d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 10,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "1b3f39bdc7db099aca4c1ab8f43a58ef217207f8e39ba1c1acb58fb6068055b3",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 11,
+      "exported": true,
+      "success": true,
+      "attempts": 23,
+      "replayHash": "3fc637c6cf80d1da15fc50dc44f356ea3eaf299b6ff87f4d576d498f318b1826",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 12,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "902a2a8c84f9099a74eb5d5e048dd815c858c56432c1f895ee30002cd173eccf",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 13,
+      "exported": true,
+      "success": true,
+      "attempts": 6,
+      "replayHash": "a718dc3e9ae40b31e6bbe7a1a958f1ebc79f095734b34016f2ccf613270d1971",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 14,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "ee0474c4cdffda8b96e3daad586f7d9db94e4559eb7a8428c34940eacf845726",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 15,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "cfd100ba84a58c4469218830f46820eafe3c9398c66b4fb24f0209662cd98252",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 16,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "4bfbefe80dccc730f496b33007972e6641af237f81c1b4169480229a485c7ba3",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 17,
+      "exported": true,
+      "success": true,
+      "attempts": 8,
+      "replayHash": "c3adde52df718dd69e439219d266fbb709b3b5af189bbc0320316c70192b5d1e",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 18,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "490bf0a4de12b4a2332150cb89320d092f2d5f04a79bc312721c5a29180050c1",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 19,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "de31ddd1614a8c9a4b562c2a8b4934e435a82ad3e0ee8d179eae3a7552c2454d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 20,
+      "exported": true,
+      "success": true,
+      "attempts": 8,
+      "replayHash": "255d14b3c0af9a84386358179839a3a45eaae532b020438be251a6c2409383f3",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 21,
+      "exported": true,
+      "success": true,
+      "attempts": 20,
+      "replayHash": "8539d5559e0d47d6f1bd153e0e0f2ccc3bb308686b6c258c3e1c8671769333d3",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 22,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "17f67379618371f5317f0073d2e609d471f082c5dc282c3d4cc3d7419b93607c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 23,
+      "exported": true,
+      "success": true,
+      "attempts": 21,
+      "replayHash": "46ca68e0070560ca9a86d22471a65728a9d8720d27e8be890f6c7458b4f5a572",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 24,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "62ada4886b3c35c1ea052acf3e6865dbe24bc0527804a6d3920f8210e0329db8",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 25,
+      "exported": true,
+      "success": true,
+      "attempts": 12,
+      "replayHash": "60e72dc98450ad3b184d66b3bb257dcffa51eb25025bbdba91959fc39a31f3b6",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 26,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "598ffe031e938bf4e8cbee4115d3ea3cebb84263009089cbae9cf397833910eb",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 27,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "94f4ef0aea2795f66de4fcccd1dad60f0e1f9c59a64c279d8e7e4d0c9dc3ef03",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 28,
+      "exported": true,
+      "success": true,
+      "attempts": 7,
+      "replayHash": "2fe711902888d39d662ab2a4483f4ba3a3ec4ca0893bede56c10bd966200e453",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 29,
+      "exported": true,
+      "success": true,
+      "attempts": 24,
+      "replayHash": "364e414418b6b90237199469431a674d86bf2d330dc4a0e36dfa27d69faa719f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 30,
+      "exported": true,
+      "success": true,
+      "attempts": 14,
+      "replayHash": "3a73b2736f058c52d9b9efdac9d1af9523ecaeac78b98ba04bb8eb7ae9a2858c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 31,
+      "exported": true,
+      "success": true,
+      "attempts": 5,
+      "replayHash": "e196deacb82086886b5af9c1861122ef9bcef706cb17b87eed65476cca5ac864",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 32,
+      "exported": true,
+      "success": true,
+      "attempts": 3,
+      "replayHash": "d393607c089f66f930c75f12573780313435ac31a2810edda81d16eece408f25",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 33,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "635959d9f85c66810774cebe7796d7af1a906c15c5eb245cc133c0bbec59c7b9",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 34,
+      "exported": true,
+      "success": true,
+      "attempts": 6,
+      "replayHash": "cbcc9221638f461bea9ca7007dbae420e66f3be0577b7405460c6c5835ed5502",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 35,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "2b039fd8d33c7c27ee8ebf8c9ddb46429e76331d0bf287ef501666a7218a7aca",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 36,
+      "exported": true,
+      "success": true,
+      "attempts": 6,
+      "replayHash": "f4427fc769cb94e8b67d7f1df8a03ec3ba724a3b6466b4174af89177e6535c6d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 37,
+      "exported": true,
+      "success": true,
+      "attempts": 12,
+      "replayHash": "fb18c9190e75dc04c4831f402670736ff2aa5d05083b35d965a9abd78c31e1e0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 38,
+      "exported": true,
+      "success": true,
+      "attempts": 11,
+      "replayHash": "f7695caca496a752773683d0661fd89d4d0292a5c9014581748e661c0d1809cc",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 39,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "4970195ec323b12ca987f0bb20551ec13b83358d1afc2b7e48266db69b995a0f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 40,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "a25e7c13c9e7ac56aa57c2b2b4fca58976e0bd55347de2286a9acab922dda999",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 41,
+      "exported": true,
+      "success": true,
+      "attempts": 3,
+      "replayHash": "44cf8f55730f8b6da75c55609465c6cbae77d5f7bf5f181f7caf8b06058d5606",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "b428e5698dd3b9421320ce40ba307a61de921572c73a328e586705149a94cbfe",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 43,
+      "exported": true,
+      "success": true,
+      "attempts": 9,
+      "replayHash": "7cb1ea1157f72dd67a30ba97f267e0fc1a5ae92799a167d312877c40ebeed7b4",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 44,
+      "exported": true,
+      "success": true,
+      "attempts": 7,
+      "replayHash": "89f38e6751f7deec22d9ca1af63b6659d7750da480d41d9573adbf1b16722b64",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 45,
+      "exported": true,
+      "success": true,
+      "attempts": 7,
+      "replayHash": "801c0ec461858b4f3cbcb05064b269703e5e0297cde5e3286f658cdd688f19c6",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 46,
+      "exported": true,
+      "success": true,
+      "attempts": 9,
+      "replayHash": "e8a9decf8c0cc7805a03ed7755c9915e04c6dc1d50bdcaab32944bf14c904834",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 47,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "b1e6bc99b40dcfe7fb334abc1d3723ed53c9b6e01aa7c97a7867e6ba78cf8ddc",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 48,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "f589b3d436acbe79e89cb121f9b03c883ea1e3e7b606f66c643487994f17ab94",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 49,
+      "exported": true,
+      "success": true,
+      "attempts": 5,
+      "replayHash": "df8a6d6ecf6c0bf31f605abeeb46d9a1848a15e0ca0c6d35de1bf05c381967a0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 50,
+      "exported": true,
+      "success": true,
+      "attempts": 5,
+      "replayHash": "fc247ef17c4e6f81e08d11794331c3ffe6e3ab66d2f552d366ad6b6dd47e7e10",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 51,
+      "exported": true,
+      "success": true,
+      "attempts": 14,
+      "replayHash": "8496bc9aa6e729af67ca5c1a4facc8a989a75bbfafbcf5c924315ed6f3dc4176",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 52,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "23c71d73243916e813214e075aa89366fed38e1e64b96802d7cc00a6c3e9db31",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 53,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "fdcbf61cb954e39a20e13e56458d010d0cfd79bd763d8274f8aad91705b0e310",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 54,
+      "exported": true,
+      "success": true,
+      "attempts": 6,
+      "replayHash": "da63041711b3646fd64844f21503188a134e8caaf3d22587e6a7e577e2850a96",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 55,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "e9c9f15212b3cc2bd45e7c3cf9e74d3a8e138b35f52c90934fc6a99fdcd934b8",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 56,
+      "exported": true,
+      "success": true,
+      "attempts": 10,
+      "replayHash": "50e1d817e433e779be08f355bcdbb81a1407c261943190550ed6b23e81f23e96",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 57,
+      "exported": true,
+      "success": true,
+      "attempts": 11,
+      "replayHash": "53280da56c0b43216c24db1cb788b59b05e7d8b51615d9309e5de3484d50c628",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 58,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "107d3445edbb54dc8b800ea38666500217a0f77ae71115c72cb858a61db5cc45",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 59,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "42a64f33963064f9640b04211545b0f9437b3684eb9bbe287794f662746a0d74",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 60,
+      "exported": true,
+      "success": true,
+      "attempts": 7,
+      "replayHash": "537b7ebd24a0ec545fd12f6889262a6df61e53ca4f8aaae9f49128ecbe23bbf6",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 61,
+      "exported": true,
+      "success": true,
+      "attempts": 5,
+      "replayHash": "96e0f22569f608b190be97ef0e8c94fb16a51c8b81b4ed095388920270b5bdc3",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 62,
+      "exported": true,
+      "success": true,
+      "attempts": 3,
+      "replayHash": "f3d6d6d4b924bc8f7893e8a77bb89d2beaddedf9cecd568210fcf749ef490864",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 63,
+      "exported": true,
+      "success": true,
+      "attempts": 7,
+      "replayHash": "9c4bab0961fb55209f205e2566d4d5b9cafac3df3ec2a5b894ed341750e65355",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 64,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "cd795a8baa2901119b94c70d964ee0dcd32d6a592350674b0f3cfc4b4f6cc431",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 65,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "5514fc3772aa917783764089537585e55ab099c385ffbb5a368792be47add364",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 66,
+      "exported": true,
+      "success": true,
+      "attempts": 16,
+      "replayHash": "466515732cb7eeff98f101eca300a22c2b7895a44f03be2e53696a930978845f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 67,
+      "exported": true,
+      "success": true,
+      "attempts": 5,
+      "replayHash": "74cb25dd1c680cd12514eb060d77e4fb14b6e563ea9e31c12a6b4d85ab8fa11f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 68,
+      "exported": true,
+      "success": true,
+      "attempts": 11,
+      "replayHash": "f4bc2d6f75d634eac98ea18ad22bc70770466a3a2ff07208c171f55313d68d07",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 69,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "199a40778e2748f4ca39eecc3b994abf6d9f8e93f86c511f3861d1372de227b7",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 70,
+      "exported": true,
+      "success": true,
+      "attempts": 3,
+      "replayHash": "c70474c7c8404dc1b3b321618810e7d51fc2bb652e77437377da83878476ecc8",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 71,
+      "exported": true,
+      "success": true,
+      "attempts": 3,
+      "replayHash": "dc5641f86676381ad00877b6412987081e4f4b89cc45c0535942b90020f23b4f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 72,
+      "exported": true,
+      "success": true,
+      "attempts": 5,
+      "replayHash": "5c9717bf37599a0bb8fc2f27ef905c7005573d6ae2131a9987aa15edfb1e860d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 73,
+      "exported": true,
+      "success": true,
+      "attempts": 11,
+      "replayHash": "1f97d203c80f2931c7d5e39d6c81f959db67d179909f4ef22ab802445947b830",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 74,
+      "exported": true,
+      "success": true,
+      "attempts": 7,
+      "replayHash": "a6fcfaed04e3869d752e399aaa601b49f1d4a3db346c4a52091cc1b17164f866",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 75,
+      "exported": true,
+      "success": true,
+      "attempts": 11,
+      "replayHash": "0033bf8ea6fd26515e2f8c68390b29ed858387000329b213feb015ea10ab196c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 76,
+      "exported": true,
+      "success": true,
+      "attempts": 3,
+      "replayHash": "ce9ae050b8bf89ca958041d6b67525b543e2ccf97ec1acd1ea3ee33073187414",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 77,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "7c3045604912c1bd346e51ec0952a890007626fac368826b4550d5b2be96931d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 78,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "46dd7e63638e06cceac2117872683e114b22a56ef91b5a698f5b7673316598b8",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 79,
+      "exported": true,
+      "success": true,
+      "attempts": 9,
+      "replayHash": "35e17c619f532ef822a0aa2c09a9b568bcf4f5942247d9a808f99e789e915611",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 80,
+      "exported": true,
+      "success": true,
+      "attempts": 14,
+      "replayHash": "b93ee0833be40435cebdc5abfdc4a685881cb39cbd46369aa909b6b71bec16aa",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 81,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "23a2e28c40dbcecdb958d08e35d916fc1e59919a6cadd51906f871ebb570bee0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 82,
+      "exported": true,
+      "success": true,
+      "attempts": 24,
+      "replayHash": "a58cb55b670ca52cf1e283a655edc22f0b8b1639dd9e2adc4a34045ad9218354",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 83,
+      "exported": true,
+      "success": true,
+      "attempts": 9,
+      "replayHash": "01ab8ad449475ae195add432cf433f108343eb551d1302e1931180d988b9dc36",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 84,
+      "exported": true,
+      "success": true,
+      "attempts": 8,
+      "replayHash": "c3ab11061d7a64c20c4ee5868fd544347446b87d816a1ecb3d3ac61c8684176f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 85,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "30ab50b64a2f19514b75433e80276beb6d25a49b87e4f9770c80138ffbebe862",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 86,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "1868a50acbf16173d38255660e5c383e5297d5b5fecbf99e47c48cc50f4d1ab2",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 87,
+      "exported": true,
+      "success": true,
+      "attempts": 10,
+      "replayHash": "3579c2a433e50a9b0b6c8caf3125ebac7308e9ab334c808e8200f64b08e09ddb",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 88,
+      "exported": true,
+      "success": true,
+      "attempts": 6,
+      "replayHash": "bfd23ef518000c38570758eff3ad891738eb340442d7645412636fa5fa365a67",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 89,
+      "exported": true,
+      "success": true,
+      "attempts": 16,
+      "replayHash": "451509a5c73eb8dcb3dbd71dedfad4223865f42d5b1077389a6093e4634a5396",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 90,
+      "exported": true,
+      "success": true,
+      "attempts": 17,
+      "replayHash": "774b770a4692821d1f9c9e2a3daa52e6ca895aae93dc36a0c7adc316de059375",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 91,
+      "exported": true,
+      "success": true,
+      "attempts": 36,
+      "replayHash": "a3e9d2a7d600ded4dd3838280b35476cd82d8ee5b407328bb1293a2d0ca01929",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 92,
+      "exported": true,
+      "success": true,
+      "attempts": 11,
+      "replayHash": "63803c1a89b2404da5cf9fa2d9a1957b7858cbc4eab21f2c5389a34ea8852bd7",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 93,
+      "exported": true,
+      "success": true,
+      "attempts": 11,
+      "replayHash": "fbb318fb2cf53b776161497cbb2880378b4c882adff44d88d5a4db86daa11d30",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 94,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "c7254513e65fb3d4d79b181bd0143ef76672e2771f40b2f255c5d591777b098a",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 95,
+      "exported": true,
+      "success": true,
+      "attempts": 4,
+      "replayHash": "832100d1f77256cd04f7c397aa036e3491ebb37ecab7db4ba3426f3b7e9cfb92",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 96,
+      "exported": true,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "8d32c4306734a33de63143cd355cc0eecd159b7af34166454c2dd8e9d5f7e558",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 97,
+      "exported": true,
+      "success": true,
+      "attempts": 17,
+      "replayHash": "2b636a3753178e69e71886374ac127582dac6aac93a9b74bc1246b6550a215ba",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 98,
+      "exported": true,
+      "success": false,
+      "attempts": 12,
+      "replayHash": "5cdeea90d00a4642ef27c1634b8a4a9f78f6f669e431447f275c1f63751588ff",
+      "identical": true,
+      "errors": [
+        "traceability: Route separation below 10px province_4|province_43/province_4|province_43",
+        "preserved: symmetry: Duplicate seaLanes province_4",
+        "preserved: symmetry: Duplicate seaLanes province_43",
+        "preserved: crossings: Routes do not match sea edges one-to-one"
+      ]
+    },
+    {
+      "seed": 99,
+      "exported": true,
+      "success": true,
+      "attempts": 2,
+      "replayHash": "0fc86f0bb99b4a6c0f00a0c65c55dc99d001aa43f84487a2d6233c608d7d7ab9",
+      "identical": true,
+      "errors": []
+    }
+  ],
+  "scope": "Bounded partial geography family. Owner-required breadth checks factor whole-board mirrors:10-country island occupies middle and outer thirds; an island aspect range exceeds5%. Existing structural/display constraints and seed budget unchanged. Not complete playable boards or arbitrary planar topology; T35 completes connectivity choices/fairness and T36 measures1000 seeds with UI."
+}

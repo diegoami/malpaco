@@ -1,0 +1,12 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/island-geography.test.ts"
+  ],
+  "exit": 0,
+  "expected": 0,
+  "stdout": "{\n  \"output\": \"docs/prototypes/new-game/T34/evidence/r4-focused-lf1vfxpq\",\n  \"exit\": 0,\n  \"stdoutTail\": \"\\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t34-work\\n\\n\\n Test Files  1 passed (1)\\n      Tests  25 passed (25)\\n   Start at  21:11:31\\n   Duration  34.26s (tests 100%)\\n\\n\",\n  \"stderrTail\": \"\"\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,933 @@
+{
+  "command": [
+    "/home/diego/.nvm/versions/node/v24.21.0/bin/node",
+    "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/sweep.mjs"
+  ],
+  "seeds": 100,
+  "successes": 100,
+  "successTarget": 0.99,
+  "attemptsMax": 50,
+  "targetMet": false,
+  "failureCounts": {},
+  "layoutBands": {
+    "middle": 0,
+    "outer": 100
+  },
+  "aspectRanges": {
+    "island_0": {
+      "min": 1.3674626280723363,
+      "max": 1.3869534191989488
+    },
+    "island_1": {
+      "min": 1.2846083595276527,
+      "max": 1.3006087354611653
+    },
+    "island_2": {
+      "min": 1.8327801718369423,
+      "max": 1.8651628007882415
+    },
+    "island_3": {
+      "min": 1.3476606691483126,
+      "max": 1.365931930152321
+    },
+    "island_4": {
+      "min": 1.7016581124848016,
+      "max": 1.7242482312922707
+    },
+    "island_5": {
+      "min": 1.551586963619072,
+      "max": 1.573488433651332
+    },
+    "island_6": {
+      "min": 1.7463900420056624,
+      "max": 1.763494148369648
+    },
+    "island_7": {
+      "min": 1.56600647155144,
+      "max": 1.580766166139205
+    },
+    "island_8": {
+      "min": 2.574862962917948,
+      "max": 2.603297321996834
+    }
+  },
+  "geometryHashes": 100,
+  "topologyHashes": 4,
+  "sourceHashes": {
+    "src/core/board-fairness.ts": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717",
+    "src/core/board-gen.ts": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942",
+    "src/core/bonuses.ts": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+    "src/core/combat.ts": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+    "src/core/computer.ts": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+    "src/core/index.ts": "0bd09500dcfda1a093e97b52efbea2a17a94663d342fab3a5daab96f0d711381",
+    "src/core/island-geography.ts": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de",
+    "src/core/map.ts": "3457bf4de33874cd78aa2a06a29819c8d7920e1c1eb36ce0500d326d5092cdaf",
+    "src/core/match-save.ts": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+    "src/core/movement.ts": "ef59529db0f70d17677af8d229c07a8cdb79bef5eac2d51f6790bd675cdfa323",
+    "src/core/options.ts": "0103f21c5afe6a99d968079633a06f169f6941c129b94c212b9e93e547748513",
+    "src/core/reference-game.ts": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+    "src/core/reference-map.ts": "cc920c2840843391f83bb9d1c393afc5342cfeb5625ecd2ca56f7252f85ec090",
+    "src/core/reinforcement.ts": "b9a7fe2203bcff3aa06beebf5ec3ac8c2103641a0522a5e4805714b216452556",
+    "src/core/rng.ts": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498",
+    "src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+    "src/core/save.ts": "54eb5f98c7bc6ac90d39a3d2ddf53eef4fd37c5f53b609d847d20289433b9748",
+    "src/core/seats.ts": "4e67c932ef1b420c7b4e07d646dfe423c249bd3dd90eed60549ea01b8ba06f67",
+    "src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+    "src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+    "src/core/types.ts": "c4dce555abebede88237ef08ad926cc166e2076f3a468d1124f495f99bf61183",
+    "src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+    "tests/core/island-geography.test.ts": "cbb55123d7bcc6ac1ac123ea8ff704d9b3903f6fc4804422b9cca88dbbdf4fde",
+    "docs/prototypes/new-game/T24/README.md": "5bc762f10be832416b5e8e9ef72ee6233092b8912f4d0f04489f468f00b07f21",
+    "docs/prototypes/new-game/T24/contract-proposal.md": "4955c1883c456e0f4805a9811fab9ba6d733ff285bd77086bce41a30d382f4c3",
+    "docs/prototypes/new-game/T24/contract.mjs": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+    "docs/prototypes/new-game/T24/contract.test.mjs": "8fdc8d7e697511116efab6ae600c7659f4052c9c651703131a3e059b156cf60d",
+    "docs/prototypes/new-game/T24/existing.mjs": "378650b34a7639ca876bef3955bd59239a8e2c8cf49c4beb8e16e7d46dcdeae2",
+    "docs/prototypes/new-game/T24/geometry-preflight.test.mjs": "c9e5f8b52cd101bdb22ff78b56bec5b655e2cca9691eea0d8b5fcc1f423b36b1",
+    "docs/prototypes/new-game/T24/geometry.mjs": "de4ef1aa101184d52ac79dad77a8b28fa8e1acdcbcb70b574eb51ef461117f11",
+    "docs/prototypes/new-game/T24/graph-fixture.mjs": "2248ad6aa448e0c30ffe088ea56ff1eab8bab2409e0e5336d2b240d973fab2f0",
+    "docs/prototypes/new-game/T24/graph-preflight.test.mjs": "6d84a5409782d98c629c8bfa8b72f0d82b40f71fb7b8f6d058721485be184e6e",
+    "docs/prototypes/new-game/T24/mutations.mjs": "c74b52140e02f3075d80f8cee375e59c1e0e2945a45d90128e60dde66e191cdf",
+    "docs/prototypes/new-game/T24/parameters.mjs": "3b5ab9aecc47ae4a1d36eedd6e0d2484c5e1819f6baae4aa15fe0c1ed483e354",
+    "docs/prototypes/new-game/T24/probe.mjs": "ee0082ddab93435f751bb252e6e9c21c8406673da5088ae0699cb8c2c03970b0",
+    "docs/prototypes/new-game/T24/witness.mjs": "746eda238e12bf27e30ca9fa6a94fcb37b646bd5fb14796d6c82bb2afa309f12",
+    "docs/prototypes/new-game/T62/README.md": "460584fc1df423c3dafe4e65d7681d5eebe28189e7df17c692652202e4cbe40c",
+    "docs/prototypes/new-game/T62/artifacts.sha256.json": "ec18f7b21546e854976c949e5b9f336848f4c3d67c9d05fd25d864f4e5666433",
+    "docs/prototypes/new-game/T62/artifacts.v2.sha256.json": "4744e4365f4dca51636927b7f7156e6c7c1a33fa29d2ac93ce4f3ee7c14bbedb",
+    "docs/prototypes/new-game/T62/artifacts.v3.sha256.json": "6f563498ac05bfa2af4b1e96fdc605374a8746c6f791b2c13761bfb5e9f4632b",
+    "docs/prototypes/new-game/T62/audit.py": "a3256b4e7ef551351172a9c82923e7556abf7c4f0aab08183decc3a0857d1bf6",
+    "docs/prototypes/new-game/T62/contract.mjs": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+    "docs/prototypes/new-game/T62/contract.test.mjs": "03b0102a19efe5521446ebee7f602a6f20cfb1ed2c6cb99331d0fd5ce82f83d5",
+    "docs/prototypes/new-game/T62/guards.test.mjs": "e20110ac5d19c7eb0b7e5f3625229ef46972057e0d17555a273fe0d256381760",
+    "docs/prototypes/new-game/T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746",
+    "docs/prototypes/new-game/T62/pr-body.md": "eb3f54d640b5fa1cf20ead51e53cc368bf5e6648d6681827f4def756418ca242",
+    "docs/prototypes/new-game/T62/prepare-pr.py": "f9c241146e84584493ba5e93e93a0b8781fe6cd236b1f286657924265245e8a3",
+    "docs/prototypes/new-game/T62/probe.mjs": "250fc44ac2b9be6b9b9285d539e87aa345555e49017775e23f41487d4f84362b",
+    "docs/prototypes/new-game/T62/validate.py": "20bd501977ffef1d1fac788677197021dbed41fe46a636038da44b4245fa18da",
+    "docs/prototypes/new-game/T62/verify-evidence.py": "18bee1f5f6dedb69493132dfc75f0fce9d25542b1c4e92ee870f64fcc24287e0",
+    "docs/prototypes/new-game/T34/CONTRACT.md": "4c117758c48c42a722e9b95a20b7fada575866837e526e43a9f780e03e33f21e",
+    "docs/prototypes/new-game/T34/README.md": "655d8d1654f4da60391ef3d0a80e3b4dfc93524ebc760c0d7b29a93a7b142925",
+    "docs/prototypes/new-game/T34/acceptance.mjs": "0adb4f2efc20a38dc65718041094f91acc239172b4ef8d5883643a5a89ce0f15",
+    "docs/prototypes/new-game/T34/archive-evidence.py": "0ca723ca8b79d8af34452cc3397326e2fc4e16855cabb609b109c9a44549e18c",
+    "docs/prototypes/new-game/T34/artifacts.json": "8850e95fc1ad0cf5cfad646d4865bb1d8a62e5c18574a37a1c81c1a75b0b4f41",
+    "docs/prototypes/new-game/T34/candidate.ts": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de",
+    "docs/prototypes/new-game/T34/controls.py": "fb8330733290668529d806c979097be88976d09176c89b7d55fe14bdaa121f4e",
+    "docs/prototypes/new-game/T34/family-candidate.ts": "1bfe1823e72b9502fc98da7794cbf590ebe03d580367bd7ab715c0b19424b62f",
+    "docs/prototypes/new-game/T34/feasibility-smoke.mjs": "3b5ba5c3010ea2c115c07b9ddbae0af52ad874f7f24ea5e4a884d19f08f5c642",
+    "docs/prototypes/new-game/T34/feasibility-wide.mjs": "eef4ff0e4f3e97576776b65691a6319da64ed10492fb47841e0337d41d94bc77",
+    "docs/prototypes/new-game/T34/flip-probe.mjs": "a35a48801d11da4d673dd2b27a8bf06c6f4c6d1e8451c326f8b2b8a225097240",
+    "docs/prototypes/new-game/T34/full-preflight.py": "76861b1d045ad3ee0144c7100593bb0d4d958ef992a4fd5ba0f7fa615dc0629f",
+    "docs/prototypes/new-game/T34/preflight.py": "a49044f7f5bf4f2713a3d9a9c89794b2530e220c3a9611f0468c6c854e111f0a",
+    "docs/prototypes/new-game/T34/prepare-witness.mjs": "6072045f785b960009a6e36f245036e75d7c542711649690fa8b16bd4feb3496",
+    "docs/prototypes/new-game/T34/r1-controls.py": "6ecf946be102bf2b777f3f7073924e7712b3735ba5051616a7542bb754104e00",
+    "docs/prototypes/new-game/T34/run-browser.py": "fafebee6b26ae83ba10645ec9a07cb2820deb90e9b4b3d38f7cc409357cb39c2",
+    "docs/prototypes/new-game/T34/run-command.py": "3a7a0414be62a8c70652f09b6ff763cf0a33ff1aba9aee0a7b376cbdf21136b2",
+    "docs/prototypes/new-game/T34/sweep.mjs": "44c483f761871bc8ebc557158d80b7e251ac9fff630477a08fa0bec1363d501b",
+    "docs/prototypes/new-game/T34/verify-evidence.py": "9642abab150d6e7a81d88e36f28b09804a7e3385259895b13a05d8c6f3a86756",
+    "docs/prototypes/new-game/T34/witness-provenance.json": "fb15b6d4235f3655e7e81cf5926587c5d58212a5cc46990d52b58271f557bf84",
+    "docs/prototypes/new-game/T34/witness.json": "149fc1922c6895d003866709e26300f008340a2cac0bf0f91bb672cb0c23df35"
+  },
+  "sourcesUnchanged": true,
+  "records": [
+    {
+      "seed": 0,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "58123e38bb9d180313df2aabe62244250f488e26427b674ebe7178183388b6a3",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "a0e9ad6354b87a6f9993a488898ce7bb899e9077163302f692f754f286bee720",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "ee63b5b510aef312d1411e9120d4183d99dd6a9cb94d6bd9e9e40608998fcdd1",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 3,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "e2fc7bce828e0d56ae84fc4d72fe04c90b84b386c1e0848d3770794bfbb6a3ef",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 4,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "ec3b3c45707c2e7efed423eea75757a52472f9fec22c9463701491e817a4f007",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 5,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "7121b4a8792d48a296ce6a7708e6f30a0fb4853f775a6ad636ea993f0aa07ade",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 6,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "38eab4ee938658298f6446988a5d6bfef8431c52fd2562ebff296c74084b316a",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "0976047e0c067c5330cef120f06180f2fb82e6bcc85e50bff7daa97575259894",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 8,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "25e2bf4c40624f9a33dadb836712198ebd66dcf333016c0f9f4e33b5307e53ab",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 9,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "1041d751e40c62ab735b2400874e0b51ca7e57f6eb57cdacf125d74d8f6e82a0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 10,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "2e541478c6a89d4b293be464dfeba7a3776fe787c12e4ba24e8a7451c9508fb4",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 11,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "34b792da0f344de54ff21cff44d41474564c2bc4b75b7763505490e8771fb490",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 12,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "5a2aea39736cc29422640029e40e7983c38a3c02fa4a9f1edeb20838f8926040",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 13,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "d055da888206adbb95d8d8a583893f37b613d546b3996b848c5ce40107e2eb51",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 14,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "c2dca93b0da58f807977e49e9cef09e6e57ba09741d6fa97d8df5f22ea06957b",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 15,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "5628e5ffaff76117f73b0e343af0c2897ae01b50cd196437cc02fd1166f4f79c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 16,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "0a98bf979bf9cc613816578dd4a168f7b4ae3763889b67be6f85996f2f3fc5d6",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 17,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "dc69cb85fcfc64086241ca9fbe9b27c5e1881926cb0bc1f9b235f6728fb3759a",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 18,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "04c901d8b30a042eb61cee46f8584f2ae8b343da9007dddf0be89530a6f1d706",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 19,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "d3e4de3a23704f3901ba3f8e4220d23f4740e30e46349304be8904bdae6bc503",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 20,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "cb62718d404ca65a5b7fa4154a562e2bbfd3ee3b6dc36c5aafa6b974a772fb6d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 21,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "6f7e48f6593af8148dd4435ee20330c115b9fafad5e0a2ac13327b3ed1f37134",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 22,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "88fde4828d6834b8754e92937c7b0f6c9d65d97ab724632d4e616bd504e50d21",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 23,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "38cf1860a76d2021c453b074cd6063d81d98ab793e057535b272645f854e72ba",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 24,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "44842dbee5f5a5f83e004024754eb4465d5b61f2d429b0117f606a562142c9a1",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 25,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "3c384b6553b1ab03a1c826524324196353c5d9d744df302f834b2718a1abd5e6",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 26,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "2a89cbed2474454b27106bdd220e817558d313528623e94eae233044194ed6ab",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 27,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "213b4e641b81b1e0cbd191d844577cc6c7fb704d0f398e4896dd52adb53bbf33",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 28,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "c4141afa2846e544dc91a268c19cfb6e0838097782d24a8efc48a813976af3d2",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 29,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "96d946d041aea8e8e000a00698caf2306a397561a6fc7404859f00360551d23b",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 30,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "b9e03dcc5d2374ac1f676000b1b13a69880f473ecc9f393b4a10c7f0c8d9ece3",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 31,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "85ac33492968ae1895162e2eecaffd1a6f3edb1b407abfd8eceb05285696224e",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 32,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "277b04e026ace39cf39a9adf8b97360f24c36099198eb4a7ba5de6c59f8d8e06",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 33,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "34bb857fc44b2b04c1cdaab04519771bcf7a4be8fcb98104daa074c83b881b17",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 34,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "7ef62e864eb0f6eb57dc20fcfb6e100d86baa22d2126d5ee72054f1e08e702f4",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 35,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "5318e3c6af158f00dde399d6f724692edd90fcc3ca56549183f5458340d6e5b8",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 36,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "f8056ce669a5f078cd7e68d9889fb1bd1bd67cf3a4676e07ff4ad678baf11ac5",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 37,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "55c09ee252554bf349938607bdb6f2b4827403f007b4740fb9cd7b765d63940c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 38,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "7ef00d98f69a5db978a9544ed2530bd8f0896742191204f4db7725faf305b35a",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 39,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "e588968d3724d342c6bd26830814966360ce50afbea418d0afea5f1df0a750cb",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 40,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "b4d144a892a5195c22f787146921e106f71521f33b77381890d9b4303356a073",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 41,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "6c68016ce68f47a6f67ddbc1d425eeefe382473302f214ab5206839606a0bb90",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "5c47e233ba5394fcd4816c40c5a4042bdccc321eaa8ef15d1574279a2f193f50",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 43,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "663346d889416318b47d8df762910c90098988d5d96d4abfb64198444157dabc",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 44,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "ab856fab3217fbd4264b91f4ba43d862bbb1b3b7103a4b6f361291b83872c491",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 45,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "a0da7a7f82ede4c00f4a4689fa62aaa7bafaef8eb7e31c70c27a01ab1da9fdc0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 46,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "0a091fe45aba9df556981b70ee560fab90facdca5ee517df757890af1bbc3f13",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 47,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "37dfce4efb75621c7fc8922bd11a95f9ac0be8bfeb16fd17013f628cf28aa143",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 48,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "27d077bab09ed39126964d2c01f581aa6b85b22bd5c1ef5b77559d3882dfc573",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 49,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "f398f1c7aac8c37a59c96c2112d117a0e51cf5cfc143924de0c76fc6a715804b",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 50,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "ae7f6d76d7ce56483eefd1c49ae9e2109eb91f014306df3d70c097bf1924fd8c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 51,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "2247ed58ed5ee14e4c132e70ab502360848c30f1ee99ad85399dc9e425cffe86",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 52,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "8171ee072e6c58038a91dfa07d8bff88748c7657a1a633de2404286cee074407",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 53,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "8a82b28c89229ee5cf25fe7a1975bd3f75f5ea1d45156ae91dc702699abb2c1e",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 54,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "5b7f33dbababc6561b55f2ba8778c210ec75cf5eb3037801c5f26681d9d3f1d0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 55,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "5083fb673f9a9d3c8c831536d844e5a22805623f191f18be8b6109dad274b950",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 56,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "42b69077dc9fb2a51afe4024bccc7b62bca0e490e25f2591a8fc591b8292617a",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 57,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "9d3a65fb0161b04b2dbf3c79009999bc1a24958905ae6144842fd59d53960b27",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 58,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "0ecc2a22d99d144f40db309e9c8138b5f503db16bdba4a4528e9e7c0930cfbe4",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 59,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "39346825f5e99807240f6e6d23770cc660de5ead4adf333d5fcfe333a40edbae",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 60,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "1cd4d2529da83a2e11c051e5d9fbdf9468cb5803999b0b3a0f3e62a5dcc17d30",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 61,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "8a65b0533a02f614699dccbf0309fce2ebd9cc180252d9d0e18d7461d77fa9d8",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 62,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "aa18b12150b1650e1aaade37810c8e1d38e9d0c646d239fb347badaadd2ffab0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 63,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "671a9449c2d12bdd3924f6ce16353a076b6fc6781bfc746292ab54abc1890aa7",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 64,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "6987b577943aba01380540c42ad709f81444df47d80d1ddc1144b3c20b9bf963",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 65,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "dcf16367764beac8f88a2e08b2b83d374cb7365137e6bdd299d89a98b813f2c0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 66,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "301783377c89751aee0ccac76bc2dd02dda403835f0c4b6a09f944956eb76724",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 67,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "e2257c92c73862345c2b209cb02353b11953d66b619243c8ff9f4729471716f8",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 68,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "22f7660f7eb303c6cca7bb18f5df2b2aa77f4375a039a398893e4fb113ab5d6c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 69,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "20ca32c6a03b1b112d403019184a1163befa12aefe620e0abd4431a33fd223f2",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 70,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "68e5a8ba101aceb0fbea9d470bff4e400518f729f70d1e76113409326c0ffe49",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 71,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "2cf1fe65ce857dd616ce71e7f13b65eddafb98e334ba56ece5ca32b2d62caaee",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 72,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "4950320e37e2bc50b51dd8aee4a6b3f1c181a6fa320e6415bd7f1b0ba6e98d89",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 73,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "49b7ec548901acb69808ac79221564308b1083e2ed6c8ab431e8df31d47cc273",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 74,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "078a7cb22d4a11b1805b2a754c89045572c103054ddf27f01543258a8a4560cf",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 75,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "b78682f85ab38205cd6bfda94133bfaeab49a77fa06ab1fed1a8032123c38d8d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 76,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "8a6d5893c5d942469d3b773c284696fa6089f055a30eaf5d9e3773eba2486424",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 77,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "4e831252e70647220353adea4d6f115eef6b8408677993c3b40779be9830b63d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 78,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "2280c680be42a9a4e78187359edd204f42e880e374e80a9bd93bcbabffb524f5",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 79,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "c4b918a7386b9e8b723c4e898de49668ed88578672402792b43519473d89f4d4",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 80,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "b422f87e89181ac3084c30f6808acba189d7edbbcbcac074d13645ae73f64d93",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 81,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "e70580cf75c73f705f6434719038244b514408871fb6a68bc48034bf7deb9328",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 82,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "6b0bf7f137889f72997b7b5990c5f17f3d89c20cecfe0e9f90d77064e933e844",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 83,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "682e214fb21c5ce0a89d014cf125fa183e02b1c0b6a037768b189a13d884d42b",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 84,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "19ae54d985ddf87a9120f3434b782caec5f3656e7468fc1d6ab378aef604ccb4",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 85,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "8e814c66bad3a60d48ec1bfaf493481dc3f38a1b12297ad997e730feb8ba298b",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 86,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "0f9c7edc91dfb41c8ac7e77a749e194b650798f9f601dc7173ce89ee8b48fb2f",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 87,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "4d5f8a3885ba9ada8a313cf66be5cf3015905fa2551ea8b84efa30961fa3ca44",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 88,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "a7e379b6e7b99b4e1c879ed24d752eddf55d0b643c9575073d266d63c5b1470c",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 89,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "9b221cca0fe841925386e6ae4bbaef9f0e7d7901db15f380a4aac1b7b9a6ae8d",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 90,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "2b3a4488e6e390fe0fe137e0e594b9202a0c9eec00263a22a5df31adf8f07bde",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 91,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "8be4038e4f505bd82f5630a44b9fd9e047a4996fbff3cfd11c0331e89fa9c014",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 92,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "a02bd86481c3c0e605318d713af2deb49c6a6e2d8bfa4d0df779146795abe639",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 93,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "c992692267d39cc56d7d8454a2bb39b0365db30974ec1a226a6f5c8ddd084b49",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 94,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "90d93e6d41ed2d74b8997a312b90416624ad461796ef07d535b43b9fe25909d0",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 95,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "ace4451c69182918a0ba1fb0c56e8fea961ebd555e64c4190bb72acbdd5c588e",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 96,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "b8667df4114aba4462e154b12f82a57b26abfe49c28bba172b0337c3280a8106",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 97,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "6de184ad884bff1538aae31a360d47de196f68ae388993a9fb772aea8284128b",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 98,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "80816a3fa7eacb14f6beb6f3c7c0168450134784f3b178238817f571250c8498",
+      "identical": true,
+      "errors": []
+    },
+    {
+      "seed": 99,
+      "success": true,
+      "attempts": 1,
+      "replayHash": "0e1161b1b445cc730dc57b11062476872158045c62364e5ee8a2a8fd6fb47b18",
+      "identical": true,
+      "errors": []
+    }
+  ],
+  "scope": "Bounded partial geography family. Owner-required breadth checks factor whole-board mirrors:10-country island occupies middle and outer thirds; an island aspect range exceeds5%. Existing structural/display constraints and seed budget unchanged. Not complete playable boards or arbitrary planar topology; T35 completes connectivity choices/fairness and T36 measures1000 seeds with UI."
+}

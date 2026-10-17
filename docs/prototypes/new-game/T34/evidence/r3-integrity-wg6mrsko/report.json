@@ -1,0 +1,18 @@
+{
+  "results": [
+    {
+      "label": "r3-verifier-before",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-verifier-after",
+      "exit": 0,
+      "expected": 0
+    }
+  ],
+  "originalSha256": "9642abab150d6e7a81d88e36f28b09804a7e3385259895b13a05d8c6f3a86756",
+  "finalSha256": "62b8a45ebb5dce181ecd97c9b5ba9bf498489920a262151e9102dcdccbff0836",
+  "finalSourceRestored": true,
+  "scope": "Optional manifest.archive with legacy filename default; actual original fails on the retained named Claude archive, corrected verifier checks both legacy and named member archives."
+}

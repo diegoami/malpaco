@@ -1,0 +1,34 @@
+{
+  "originalSha256": "298aa3019b6bcb81244c4eddf72ddd56ca0cdaba7911ea9118f2c62f34667c52",
+  "candidateSha256": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de",
+  "restoredExactly": true,
+  "commands": [
+    {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/island-geography.test.ts"
+      ],
+      "exit": 0,
+      "output": "mock-units-output.txt"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "output": "mock-build-output.txt"
+    },
+    {
+      "command": [
+        "node",
+        "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/sweep.mjs"
+      ],
+      "exit": 0,
+      "output": "mock-sweep-output.txt"
+    }
+  ]
+}

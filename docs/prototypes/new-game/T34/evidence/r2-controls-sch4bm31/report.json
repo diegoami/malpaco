@@ -1,0 +1,58 @@
+{
+  "results": [
+    {
+      "label": "invalid-export-before",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "label": "invalid-export-after",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "omit-layout-plans",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "omit-shape-warp",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "omit-single-count",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "omit-large-single",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "omit-concentration",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "omit-failure-history",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "omit-attempt-clamp",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "return-after-first-rejection",
+      "exit": 1,
+      "expected": 1
+    }
+  ],
+  "coreRestored": true,
+  "sweepRestored": true,
+  "coreSha256": "ddf63b0aaee80d85ec2422c8048d2c49ee5d164a07483c21600ff5a839f7e369",
+  "sweepSha256": "5ae5701ac653d2c0d401dbdea8a6ec1b6984e8b955cbf6d105d9dc68f9441564"
+}

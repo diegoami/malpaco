@@ -1,0 +1,45 @@
+{
+  "failedCI": 39062558768,
+  "failedHead": "88e17e0dbc2f3b5a98919885a31718e11e13a874",
+  "correction": "ad12b835179b679f0093c51adda2fe960e900357",
+  "onlyTestDifference": "30000ms timeout argument on existing seed variation test",
+  "allAssertionsAndSeedsUnchanged": true,
+  "coreSha256": "ddf63b0aaee80d85ec2422c8048d2c49ee5d164a07483c21600ff5a839f7e369",
+  "testSha256": "825815e86c33421b45777926966432d3dbe369e070cfa883f34a1d1629de93be",
+  "pinnedTargetReportSha256": "dd1fe0097b85ec5238446e2c18ba2144cc115d02b0449eb3dfc1964348d71eed",
+  "pinnedSourceStable": true,
+  "independentApprovalStillApplies": true,
+  "parentCaughtMetadataErrors": [
+    {
+      "staleHash": "README.md",
+      "old": "312b99a2bcd1a6f2d2e4837c3b9d66e9047a89dc36a370b0bfe293579a356b37",
+      "current": "89b5ac1c96b00d3d93d31a4cbf85f82de8b7cd92bf4b58435ab5770bea4b54d0"
+    },
+    {
+      "oldPath": "docs/prototypes/new-game/T34/evidence/ci-timeout-20261017/archive-manifest.json",
+      "correctPath": "evidence/ci-timeout-20261017/archive-manifest.json"
+    },
+    {
+      "oldPath": "docs/prototypes/new-game/T34/evidence/ci-timeout-20261017/failed-ci.tar.gz",
+      "correctPath": "evidence/ci-timeout-20261017/failed-ci.tar.gz"
+    },
+    {
+      "oldPath": "docs/prototypes/new-game/T34/evidence/timeout-target-md74d6dj/raw-logs.tar.gz",
+      "correctPath": "evidence/timeout-target-md74d6dj/raw-logs.tar.gz"
+    },
+    {
+      "oldPath": "docs/prototypes/new-game/T34/evidence/timeout-target-md74d6dj/report.json",
+      "correctPath": "evidence/timeout-target-md74d6dj/report.json"
+    },
+    {
+      "oldPath": "docs/prototypes/new-game/T34/evidence/timeout-target-md74d6dj/source-inputs.tar.gz",
+      "correctPath": "evidence/timeout-target-md74d6dj/source-inputs.tar.gz"
+    },
+    {
+      "staleHash": "file-inventory.json",
+      "old": "5432935d355f14c443d5ea4af6421d7fc704dd98eabab1fe78ac6a8ecbe8e7f6",
+      "current": "0c9d15802ef4e91a09937a9c4faba08af33c7bcba829757e94415267247bc1da"
+    }
+  ],
+  "originalIncorrectIndexPreserved": "artifact-index-before-parent.json.gz"
+}

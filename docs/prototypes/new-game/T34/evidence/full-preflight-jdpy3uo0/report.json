@@ -1,0 +1,52 @@
+{
+  "originalSha256": "591eebae4998f39fb4c7e3213d52ba5e15de0ee1d6428b77044f8975fe69e489",
+  "candidateSha256": "298aa3019b6bcb81244c4eddf72ddd56ca0cdaba7911ea9118f2c62f34667c52",
+  "restoredExactly": true,
+  "commands": [
+    {
+      "label": "absent-all-units",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/run-command.py",
+        "absent-all-units",
+        "npm",
+        "test"
+      ],
+      "exit": 1
+    },
+    {
+      "label": "mock-all-units",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/run-command.py",
+        "mock-all-units",
+        "npm",
+        "test"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "mock-build",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/run-command.py",
+        "mock-full-build",
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "mock-browser",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/run-browser.py",
+        "mock-browser",
+        "--suites",
+        "tests/e2e/reference-complete-game.spec.ts,tests/e2e/reference-game.spec.ts,tests/e2e/versioned-match.spec.ts,tests/e2e/entry.spec.ts"
+      ],
+      "exit": 1
+    }
+  ]
+}

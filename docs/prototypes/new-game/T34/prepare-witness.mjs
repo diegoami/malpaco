@@ -1,0 +1,9 @@
+import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';import {createHash} from 'node:crypto';import {onSegment,distance} from '../T24/geometry.mjs';
+const root=path.dirname(fileURLToPath(import.meta.url)),source=fs.readFileSync(path.join(root,'../T64/board.json')),b=JSON.parse(source),Q=2048;
+const point=p=>{const result=p.map(v=>v*Q);if(result.some(v=>!Number.isSafeInteger(v)))throw Error('Inexact witness coordinate');return result;};
+const ring=(poly,island)=>{
+ const vertices=[...b.provinces.filter(p=>p.island===island).flatMap(p=>p.polygon),...b.routes.flatMap(r=>[r.points[0],r.points.at(-1)])];
+ return poly.flatMap((a,j)=>{const z=poly[(j+1)%poly.length],ps=[a,...vertices.filter(p=>onSegment(p,a,z)&&distance(p,z)>1e-6)].sort((p,q)=>distance(a,p)-distance(a,q));return [...new Map(ps.map(p=>[JSON.stringify(p),p])).values()].map(point);});
+};
+const witness={unitsPerPixel:Q,bounds:Object.fromEntries(Object.entries(b.bounds).map(([k,v])=>[k,v*Q])),islands:b.islands.map(i=>({id:i.id,polygon:ring(i.polygon,i.id),provinces:i.provinces})),provinces:b.provinces.map(p=>({id:p.id,island:p.island,polygon:ring(p.polygon,p.island),labelAt:point(p.labelAt)})),entranceReservations:b.routes.map(r=>({...r,points:r.points.map(point)}))};
+fs.writeFileSync(path.join(root,'witness.json'),JSON.stringify(witness)+'\n',{flag:'wx'});fs.writeFileSync(path.join(root,'witness-provenance.json'),JSON.stringify({source:'T64/board.json',sourceSha256:createHash('sha256').update(source).digest('hex'),scope:'Original malpaco geographical witness; strips owners/armies/sea adjacency/bonuses. Normalizes shared primitive edges and port vertices exactly, preserving all coordinates at 1/2048px. Seeded construction starts from this feasible family, not arbitrary planar partitions.'},null,2)+'\n',{flag:'wx'});console.log('Wrote integer witness; no playable state exported.');
