@@ -3,6 +3,7 @@ import hashlib,json,sys
 E=Path(__file__).resolve().parent
 if len(sys.argv)>1: E=Path(sys.argv[1])
 assessment=json.loads((E/'assessment.json').read_text())
+assert set(assessment['attempts'])=={'attempt-1','attempt-2','attempt-3'}
 assert assessment['model_trial_urls'] and assessment['review_findings_relayed'] is True
 for name in assessment['attempts']:
  p=E/name
