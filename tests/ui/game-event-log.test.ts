@@ -29,3 +29,12 @@ test("result text identifies the winner, reason and ranked countries/armies with
   expect(text).toContain("Domination"); expect(text).toContain("1."); expect(text).toContain("countries"); expect(text).toContain("armies");
   expect(text).not.toContain('"standings"');
 });
+
+test("capture region counts are labelled net while casualty and transfer details stay separate", () => {
+  const loaded = deserializeVersionedMatch(pinned("domination").text), history = new GameEventHistory(loaded.options);
+  history.append(loaded.state);
+  const capture = history.events.find(event => event.regions.some(region => region.description.includes("Net after combat and capture")));
+  expect(capture).toBeDefined();
+  expect(capture!.notes.join(" ")).toContain("combat casualties");
+  expect(capture!.notes.join(" ")).toContain("capture transfer");
+});

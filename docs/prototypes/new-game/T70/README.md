@@ -90,6 +90,9 @@ Current commands (run long jobs through `tools/harness/run-unit.sh`):
 ```sh
 python3 docs/prototypes/new-game/T70/production-checks.py positive
 python3 docs/prototypes/new-game/T70/production-checks.py regressions
+python3 docs/prototypes/new-game/T70/production-checks.py ci-like
+python3 docs/prototypes/new-game/T70/production-checks.py focused-rework
+python3 docs/prototypes/new-game/T70/production-checks.py rework-omissions
 python3 docs/prototypes/new-game/T70/production-checks.py omissions
 ```
 
@@ -100,6 +103,15 @@ requires a behavioral failure and restores the original bytes in `finally`. All 
 project-local temporary files, fresh built previews and per-command Playwright output paths.
 Each unique run retains source inputs, raw logs/reports/contexts, screenshots, hashes, timings
 and input-restoration checks. `production-evidence.json` indexes these receipts.
+
+Round 1 rework adds `focused-rework` for the playback and event-log unit suites,
+`rework-omissions` for fail-before checks of the capture-net, pause-state and queued-dialog-focus
+corrections, and `edge-baseline`, which runs the edge spec at both viewport sizes with
+`PLAYBACK_EVIDENCE_DIR` unset and expects the six original screenshot failures. `ci-like` runs
+the full browser regression set with that variable unset. It preserves the ignored `screenshots/`
+tree in a before-run archive and copies new or changed default-folder captures into its fresh
+evidence directory before capture archiving. Rework receipts and the corrected source hashes live
+in `rework-round1-evidence.json`; the historical `production-evidence.json` remains unchanged.
 
 Measured production findings:
 
@@ -120,6 +132,26 @@ Measured production findings:
   modal Escape isolation and the local Very slow option. Every source input restored exactly.
 - `20261017T203339633857Z-production-final-units`: final restored source passed all 622
   Vitest tests, 6 harness tests and build. No core, save-format or policy changes were made.
+
+Round 1 rework receipts:
+
+- `20261017T205023483568Z-production-edge-baseline`: all six original edge cases fail in the
+  unset-variable environment with the undefined screenshot-path `TypeError` (5.022s).
+- `20261017T205212108759Z-production-focused-rework`: both focused suites pass (5 tests, 0.785s).
+- `20261017T205343381272Z-production-rework-omissions`: capture-net wording and duplicate pause
+  state regressions each fail at their new assertion; source restoration passes.
+- `20261017T205454797144Z-production-ci-like`: retained 53/54 pass and one 1920x1080 popup
+  sequence timeout. The timeout followed Escape-close and immediate keyboard input; the queued
+  close event's unconditional focus callback caused it. This failed run's inputs, trace and
+  screenshots remain preserved.
+- `20261017T205703507153Z-production-rework-omissions`: all three reintroduced regressions
+  (capture wording, pause state and queued dialog focus) fail at their expected assertions;
+  source restoration passes.
+- `20261017T205811986853Z-production-final-units`: 623 Vitest tests, 6 harness tests and the
+  build pass on the corrected source.
+- `20261017T205919009714Z-production-ci-like`: all 56 browser cases pass with
+  `PLAYBACK_EVIDENCE_DIR` unset (33.647s). The run retains a pre-run archive of the 25 MB ignored
+  screenshot tree and copies 19 fresh or changed screenshots into its evidence archive.
 
 The two parent acceptance specs retain their frozen SHA-256 hashes. Browser measurements are
 Chromium at 1280×800 and 1920×1080; appearance remains the owner's judgment. No CI, independent

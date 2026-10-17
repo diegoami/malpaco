@@ -11,6 +11,7 @@ test("modal Escape preserves continuous combat; local/global very-slow controls 
   for (let i = 0; i < f.placements; i++) await page.locator(`[data-country="${f.from}"]`).click();
   await page.locator("#start-combat-button").click(); await page.locator(`[data-country="${f.from}"]`).click(); await page.locator(`[data-country="${f.to}"]`).click({ modifiers: ["Shift"] });
   await page.locator("#game-speed").selectOption("very-slow"); await expect(page.locator("#battle-speed")).toHaveValue("very-slow");
+  await expect(page.locator("#game-pause-button")).not.toHaveAttribute("aria-pressed");
   await page.locator("#battle-speed").selectOption("normal"); await expect(page.locator("#game-speed")).toHaveValue("normal");
   await page.locator("#battle-stop-threshold").fill("1"); await page.locator("#battle-stop-threshold").press("Tab"); await page.locator("#fight-on-button").click();
   const battle = page.getByRole("region", { name: "Battle controls", exact: true }), count = Number(await battle.getAttribute("data-history-count"));
@@ -22,7 +23,7 @@ test("modal Escape preserves continuous combat; local/global very-slow controls 
   expect(await dialog.evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
   expect(await dialog.evaluate(node => Number(getComputedStyle(node).opacity))).toBe(1);
   const close = dialog.getByRole("button", { name: "Close game event log", exact: true }); await expect(close).toBeInViewport();
-  const root = process.env["PLAYBACK_EVIDENCE_DIR"]!; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-modal-${info.project.name}.png`) });
+  const root = process.env["PLAYBACK_EVIDENCE_DIR"] ?? "screenshots"; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-modal-${info.project.name}.png`) });
 });
 
 test("default four-seat controls fit and a paused computer is labelled paused", async ({ page }, info) => {
@@ -31,7 +32,16 @@ test("default four-seat controls fit and a paused computer is labelled paused", 
   for (const locator of [page.locator("#game-log-button"), page.locator("#game-pause-button"), page.locator("#game-speed"), ...await page.locator('[data-testid="player-army-total"]').all()]) await expect(locator).toBeInViewport();
   const f = pinned("watch"); await page.getByLabel("Load game", { exact: true }).setInputFiles({ name: "watch.json", mimeType: "application/json", buffer: Buffer.from(f.text) });
   await page.locator("#game-pause-button").click(); await expect(page.locator("#reference-computer-status")).toHaveText(/Paused/); await expect(page.locator("#reference-computer-status")).not.toHaveText(/playing/);
-  const root = process.env["PLAYBACK_EVIDENCE_DIR"]!; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-paused-computer-${info.project.name}.png`) });
+  const root = process.env["PLAYBACK_EVIDENCE_DIR"] ?? "screenshots"; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-paused-computer-${info.project.name}.png`) });
+});
+
+test("closing the event log does not steal focus from the next keyboard action", async ({ page }) => {
+  await page.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
+  await page.goto("/?view=reference-game&control=manual"); await page.getByRole("button", { name: "Start game", exact: true }).click();
+  const dialog = page.getByRole("dialog", { name: "Game event log", exact: true }), button = page.locator("#game-log-button"), country = page.locator("[data-country]").first();
+  await button.focus(); await button.press("Enter"); await expect(dialog).toBeVisible(); await page.keyboard.press("Escape"); await expect(dialog).not.toBeVisible();
+  await country.focus(); await page.locator("dialog.game-event-log").dispatchEvent("close"); await expect(country).toBeFocused();
+  await country.press("Enter"); await expect(dialog).not.toBeVisible(); await page.getByRole("button", { name: "Save game", exact: true }).click();
 });
 
 test("failed load feedback stays readable without covering capture or playback controls", async ({ page }, info) => {
@@ -46,5 +56,5 @@ test("failed load feedback stays readable without covering capture or playback c
       expect(await page.locator(`#${id}`).evaluate(node => { const r = node.getBoundingClientRect(); return r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; })).toBe(true);
     }
   }
-  const root = process.env["PLAYBACK_EVIDENCE_DIR"]!; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-invalid-load-${info.project.name}.png`) });
+  const root = process.env["PLAYBACK_EVIDENCE_DIR"] ?? "screenshots"; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-invalid-load-${info.project.name}.png`) });
 });

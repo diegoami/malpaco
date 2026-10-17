@@ -1,0 +1,579 @@
+{
+  "round": 1,
+  "baseHead": "ed379764094e835137a957f255794cf5e1541fc0",
+  "reviewArchive": "docs/prototypes/new-game/T70/claude-review-round1/",
+  "reviewArchiveStatus": "Parent confirmed complete and ready; included unchanged in this receipt.",
+  "changes": {
+    "tests/e2e/playback-edge-cases.spec.ts": "Adds screenshots fallback for all three captures, asserts pause button has no redundant aria-pressed state, and deterministically protects keyboard focus after the queued native-dialog close event.",
+    "src/ui/referenceBattleGame.ts": "Removes aria-pressed from the Pause/Resume button whose accessible name already reports its state.",
+    "src/ui/gameEventLog.ts": "Labels captured-region army counts as net after combat and capture; removes unconditional close-event focus that could steal subsequent keyboard focus.",
+    "tests/ui/game-event-log.test.ts": "Asserts capture region net wording and separate casualty/transfer notes.",
+    "docs/prototypes/new-game/T70/production-checks.py": "Adds unset-PLAYBACK_EVIDENCE_DIR baseline/CI-like modes, preserves pre-run screenshots, copies fresh or changed fallback captures, and adds narrow rework omission checks.",
+    "docs/prototypes/new-game/T70/README.md": "Documents rework modes and retained baseline, failed run, positive and omission evidence.",
+    "docs/prototypes/new-game/T70/rework-round1-evidence.json": "Indexes complete round 1 sources, outputs, restoration proofs and focused outcomes.",
+    "RUN-NOTES.md": "Records implementation and run results as required by the implementer contract."
+  },
+  "frozenAcceptance": {
+    "tests/e2e/playback-controls.spec.ts": {
+      "sha256": "ede804c4731b38d89199d7068ca843ed563afe1d4ebab48bbbdfb8fb273ac908",
+      "baseSha256": "ede804c4731b38d89199d7068ca843ed563afe1d4ebab48bbbdfb8fb273ac908",
+      "byteIdenticalToBase": true
+    },
+    "tests/e2e/game-event-log.spec.ts": {
+      "sha256": "361c691482389eed539b2dcce841d2e46609c54e784242440f6b8872ad1edcf7",
+      "baseSha256": "361c691482389eed539b2dcce841d2e46609c54e784242440f6b8872ad1edcf7",
+      "byteIdenticalToBase": true
+    }
+  },
+  "saveCode": {
+    "src/core/match-save.ts": {
+      "sha256": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+      "baseSha256": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+      "byteIdenticalToBase": true
+    },
+    "src/ui/referenceMatchFiles.ts": {
+      "sha256": "f44c9e5f6868dae4fcb508a30af6e5a2d27a16b4515156069747a4f1c8db8870",
+      "baseSha256": "f44c9e5f6868dae4fcb508a30af6e5a2d27a16b4515156069747a4f1c8db8870",
+      "byteIdenticalToBase": true
+    }
+  },
+  "forbiddenDiffPaths": {
+    "coreTestsData": [],
+    "empty": true
+  },
+  "historicalProductionEvidence": {
+    "path": "docs/prototypes/new-game/T70/production-evidence.json",
+    "sha256": "41f41c29f8558d3bce6849f4c3dcc9bd2a657e207cead18a463be9f17718a463",
+    "baseSha256": "41f41c29f8558d3bce6849f4c3dcc9bd2a657e207cead18a463be9f17718a463",
+    "unchanged": true
+  },
+  "currentProductionSourceHashes": {
+    "src/ui/gameEventLog.ts": "936b8076a9821dc4b40a42b99bb4589e27232b100cefdd8acded0dd42f5301b3",
+    "src/ui/referenceBattleGame.ts": "f98c5608e9e784008731906b57bd0d40b54bffd9c7744980d5f0ccd3b07e3d38"
+  },
+  "runs": [
+    {
+      "path": "docs/prototypes/new-game/T70/20261017T205023483568Z-production-edge-baseline",
+      "reportSha256": "eafc6ec6a8c9ee8e39d868f53f59a1e3fd2a69b6f86422169052a663e85db7b4",
+      "sourceArchiveSha256": "636b5c9a778112ba316170ce206472d9744fa7f8d2056e45af387a9d0fc82e00",
+      "rawLogsSha256": "99e312929bf6d0c9319610edb9cae5da517fe06cfbc53cd6fe286610abe42e46",
+      "capturesSha256": "3623d691f6fecbfdd597866585d5cc1a3ec4b1f0dce8e62705a527d6d7de4efe",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "presentation-edges-unset-env-baseline",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T205023483568Z-production-edge-baseline/presentation-edges-unset-env-baseline/test-results",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "--workers=2"
+          ],
+          "exitCode": 1,
+          "seconds": 5.022,
+          "expected": 1
+        }
+      ],
+      "defaultScreenshotsBeforeArchived": true,
+      "defaultScreenshotOutputs": []
+    },
+    {
+      "path": "docs/prototypes/new-game/T70/20261017T205212108759Z-production-focused-rework",
+      "reportSha256": "af2e3ec0aff4ec54a7de0d14ad8b2669823135431be6b7565d9eac9bce252d0b",
+      "sourceArchiveSha256": "43144616ccf6d1ba62ada2703398c43514385dcefba1e90ca8fb9844777cbd25",
+      "rawLogsSha256": "39e1911000e1c080533900898989d9c64530cc8010f8503c902097be68640858",
+      "capturesSha256": "12a6dbd04c7d17774818938f0e3dc1bd92691d913e5181363d30f2b77a53d589",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "focused-rework",
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/playback-controls.test.ts",
+            "tests/ui/game-event-log.test.ts"
+          ],
+          "exitCode": 0,
+          "seconds": 0.785,
+          "expected": 0
+        }
+      ],
+      "defaultScreenshotsBeforeArchived": false,
+      "defaultScreenshotOutputs": []
+    },
+    {
+      "path": "docs/prototypes/new-game/T70/20261017T205222044473Z-production-final-units",
+      "reportSha256": "1746b719c0fb4189de399f53f33723036c09a6f268f0d9e56e561e643044e940",
+      "sourceArchiveSha256": "43ce4b0ec47a0b1a3b4fd56706b2efff226ccc320a4d20cb665de0dd931e3fcb",
+      "rawLogsSha256": "dffda0a4c4889e925cc7c4d5c00b3d1b869ef28bfe0b311257b6f073ac4a4168",
+      "capturesSha256": "209eeb437441bf3f7645b20aff9a557582d59a5f3734ac5739e58ed3ac3b411e",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "unit-tests",
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exitCode": 0,
+          "seconds": 44.132,
+          "expected": 0
+        },
+        {
+          "name": "build",
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exitCode": 0,
+          "seconds": 0.941,
+          "expected": 0
+        }
+      ],
+      "defaultScreenshotsBeforeArchived": false,
+      "defaultScreenshotOutputs": []
+    },
+    {
+      "path": "docs/prototypes/new-game/T70/20261017T205343381272Z-production-rework-omissions",
+      "reportSha256": "f692b81d5a74fbe759e971c86b0acb6be77507c1ce26537ee2779474f12662ba",
+      "sourceArchiveSha256": "52f257976bfa71720752dc47b8262efd79d119e17691a14fb9e5d9e3cc00346b",
+      "rawLogsSha256": "0fd43878afecb8e5d1d0687dc28f44077f2c5fbcb2e0d82df328b979ed25bd30",
+      "capturesSha256": "0384c745f1d44af69b32fd61ee579801ce8c1d2a6ab784a5eb061dcfa5441048",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "capture-net-label",
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/game-event-log.test.ts",
+            "-t",
+            "capture region counts are labelled net"
+          ],
+          "exitCode": 1,
+          "seconds": 0.834,
+          "expected": 1
+        },
+        {
+          "name": "pause-pressed-state",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T205343381272Z-production-rework-omissions/pause-pressed-state/test-results",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "--grep",
+            "modal Escape",
+            "--project=1280x800",
+            "--workers=1"
+          ],
+          "exitCode": 1,
+          "seconds": 8.637,
+          "expected": 1
+        }
+      ],
+      "defaultScreenshotsBeforeArchived": false,
+      "defaultScreenshotOutputs": []
+    },
+    {
+      "path": "docs/prototypes/new-game/T70/20261017T205454797144Z-production-ci-like",
+      "reportSha256": "5f3f25f23470c6b350ed1c58c0df914714e3e4bff4b841407ff02c18d1d4b31d",
+      "sourceArchiveSha256": "531eee022a89f83e4ff815e8fb8ecbca261e5693d21c20e020f72b5f0367dab4",
+      "rawLogsSha256": "8d20eee762354e0303731228aff94873319c296f2570f8521c860f9f38a4d68f",
+      "capturesSha256": "f198b58cca490ab166e06fdb9ef13f0260ce432e7ff43c5439e73faac368181c",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "all-browser-regressions-unset-playback-env",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T205454797144Z-production-ci-like/all-browser-regressions-unset-playback-env/test-results",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "tests/e2e/computer-turn-flow.spec.ts",
+            "tests/e2e/battle-controls.spec.ts",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "tests/e2e/versioned-match.spec.ts",
+            "tests/e2e/finished-copy.spec.ts",
+            "--workers=2"
+          ],
+          "exitCode": 1,
+          "seconds": 59.49,
+          "expected": 0
+        }
+      ],
+      "defaultScreenshotsBeforeArchived": true,
+      "defaultScreenshotOutputs": [
+        {
+          "path": "finished-copy-BCyzAK/winning-attack-finished-1280x800.png",
+          "sha256": "7cf335e5739a0bb47c5f125945929526da19e2d5ca4e6ba5b0b0f9a7ab976f72",
+          "bytes": 270748
+        },
+        {
+          "path": "finished-copy-CTGL0x/winning-attack-escape-1280x800.png",
+          "sha256": "18a9c316da7c5233288fcc812f09f4f7aa107bb03c75dd0cfe42954d52a85854",
+          "bytes": 271107
+        },
+        {
+          "path": "finished-copy-H5fiU7/loaded-finished-1280x800.png",
+          "sha256": "f19c5109650fcb408ee3364eb2e13c21849da65f0b4b4a3881c19cff0ba06b83",
+          "bytes": 271344
+        },
+        {
+          "path": "finished-copy-KRSzbJ/loaded-finished-1920x1080.png",
+          "sha256": "e6ba533fc8c92bb225eeff0c95f4a3a8882dadd5fd32634e7cc6abc2056803e6",
+          "bytes": 425268
+        },
+        {
+          "path": "finished-copy-nk28Or/winning-attack-escape-1920x1080.png",
+          "sha256": "2f36790f86824f865872a0e411ef09be5830dc39e62248f1313ffb44f5a85279",
+          "bytes": 425759
+        },
+        {
+          "path": "finished-copy-xl2MMO/winning-attack-finished-1920x1080.png",
+          "sha256": "61d8748d8fe2734f0c91ca9d794a8cb8e4f205eee37fca1f24e5a72fd7b77859",
+          "bytes": 425130
+        },
+        {
+          "path": "game-event-log-1280x800.png",
+          "sha256": "8ca87e5e8637392d9f3264b0e8210be540c6b0b85c3a48a7ef6ff4835e546e56",
+          "bytes": 149101
+        },
+        {
+          "path": "game-event-log-1920x1080.png",
+          "sha256": "5a26edb9cdb01e6d73030d14f65fb32ee62e0a5bd724dc64e45d8fda1e05128d",
+          "bytes": 268164
+        },
+        {
+          "path": "playback-default-four-seats-1280x800.png",
+          "sha256": "5669f44d9b3ce8f987f73357eacb38ae859f0ce97912ecede8b84a3b8818b656",
+          "bytes": 252515
+        },
+        {
+          "path": "playback-default-four-seats-1920x1080.png",
+          "sha256": "4ff16817df04e489a49f498516aa497e85a9a7a48afc28db98a0c05ac9725a95",
+          "bytes": 421308
+        },
+        {
+          "path": "playback-eliminated-1280x800.png",
+          "sha256": "b6685554b358e0bbdb4db623f33ba9ab3d5e870c5a3f25dc2c11e0272da7a9d8",
+          "bytes": 248559
+        },
+        {
+          "path": "playback-eliminated-1920x1080.png",
+          "sha256": "3cc3497c87433d392b706a1a7b262c6f283765ae022739e2465f19a30f9c30ee",
+          "bytes": 430236
+        },
+        {
+          "path": "playback-paused-battle-1280x800.png",
+          "sha256": "080634a94e986d9350daa2e69b38173ffc23845b1109a8f76b79bccae8a118e7",
+          "bytes": 262105
+        },
+        {
+          "path": "playback-paused-battle-1920x1080.png",
+          "sha256": "c09c24aae7b329ad3f077f4de96bde7a8e19893f8fc9d6eaaa08cae803f288b8",
+          "bytes": 438372
+        },
+        {
+          "path": "playback-paused-computer-1280x800.png",
+          "sha256": "c4545ac877b8af6fcd6d44eb5a99bc7cfdec734eb352d0916b515b24a55ffa9d",
+          "bytes": 262615
+        },
+        {
+          "path": "playback-paused-computer-1920x1080.png",
+          "sha256": "4664fb976ff00c60cff3fa9092cfc89e8a40940dec00b174c65f4b1715d5ea4c",
+          "bytes": 438937
+        },
+        {
+          "path": "playback-totals-1280x800.png",
+          "sha256": "6e2d425fdec3b4667bde825f946306f17be84f8619802b65608f5c0de008211e",
+          "bytes": 244210
+        },
+        {
+          "path": "playback-totals-1920x1080.png",
+          "sha256": "267e0496b1e5492b3ce865d37aa74b7af430d941ed54c3425974722f854634cd",
+          "bytes": 415356
+        },
+        {
+          "path": "playback-very-slow-1280x800.png",
+          "sha256": "7245b15019ec622be07e23ddcb5580e520223fc3e907e5c9050219504def1f81",
+          "bytes": 262078
+        },
+        {
+          "path": "playback-very-slow-1920x1080.png",
+          "sha256": "15284aa5e7acd4603765f8fae37aef275edefee58d9635ffd4fd4cb5f54ec550",
+          "bytes": 446991
+        },
+        {
+          "path": "production-invalid-load-1280x800.png",
+          "sha256": "17cc8336d65f85807d7dedd79003f16a78dbe163a3dadbacf9611e0f0ea5e8b1",
+          "bytes": 261391
+        },
+        {
+          "path": "production-invalid-load-1920x1080.png",
+          "sha256": "c4d43d7b6a025899ce4dd897e98b534393e3f9b54a26a39a70f5b7f6b7f358d9",
+          "bytes": 446693
+        },
+        {
+          "path": "production-modal-1280x800.png",
+          "sha256": "79ebfebc7a3f3960f66bcb4f2b8798ebb54a13bda8003b69166226240034d9cc",
+          "bytes": 154991
+        },
+        {
+          "path": "production-modal-1920x1080.png",
+          "sha256": "96668230847892690bfc81e7827ca2b6235453048c7504cf234c4ac4a9a0b98f",
+          "bytes": 287133
+        },
+        {
+          "path": "production-paused-computer-1280x800.png",
+          "sha256": "cad5e66f8961d9bf18bc5f0de20b18fef0bb555f944b848d3e6678ce055d4d04",
+          "bytes": 256070
+        },
+        {
+          "path": "production-paused-computer-1920x1080.png",
+          "sha256": "e59243ac7087854e56dcefe5662f85b3d3570d227ef69ae12bb2c121d8cfd963",
+          "bytes": 427049
+        }
+      ]
+    },
+    {
+      "path": "docs/prototypes/new-game/T70/20261017T205703507153Z-production-rework-omissions",
+      "reportSha256": "552df90edbf596f98027b18fb9965b4743867ae02a7471d4c18d3d6584a556c6",
+      "sourceArchiveSha256": "a5c8b96807dbfedaf110886796648393e97e0137538064def1c50e5fc00b2c2e",
+      "rawLogsSha256": "c39abd19d03ff1c2f801afb5d07d549af1b6939a8e42f0b05aec1bfe17b14e2b",
+      "capturesSha256": "9147856605bfee211adf12cedd39b558c6d44e80450a5a3d68e92a042c2d123e",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "capture-net-label",
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/game-event-log.test.ts",
+            "-t",
+            "capture region counts are labelled net"
+          ],
+          "exitCode": 1,
+          "seconds": 0.795,
+          "expected": 1
+        },
+        {
+          "name": "pause-pressed-state",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T205703507153Z-production-rework-omissions/pause-pressed-state/test-results",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "--grep",
+            "modal Escape",
+            "--project=1280x800",
+            "--workers=1"
+          ],
+          "exitCode": 1,
+          "seconds": 7.449,
+          "expected": 1
+        },
+        {
+          "name": "queued-dialog-close-focus",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T205703507153Z-production-rework-omissions/queued-dialog-close-focus/test-results",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "--grep",
+            "closing the event log does not steal focus",
+            "--workers=2"
+          ],
+          "exitCode": 1,
+          "seconds": 7.154,
+          "expected": 1
+        }
+      ],
+      "defaultScreenshotsBeforeArchived": false,
+      "defaultScreenshotOutputs": []
+    },
+    {
+      "path": "docs/prototypes/new-game/T70/20261017T205811986853Z-production-final-units",
+      "reportSha256": "e1b47044da6e89d0cd2d345ef33787971a230ad724febf947e27ca38c8728ac8",
+      "sourceArchiveSha256": "9070885fee020c4e05503db17ac07d323c5e9f280968f86b5e47889e7da99595",
+      "rawLogsSha256": "ad018525c965a0c6f00beff2e96c62f12bac12a79abf9b1b5fbdebc7d5fc0db5",
+      "capturesSha256": "f68f8504d35b3f05467f11e307687d3fa004762b308ae64d07f0c2bb2c193881",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "unit-tests",
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exitCode": 0,
+          "seconds": 39.239,
+          "expected": 0
+        },
+        {
+          "name": "build",
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exitCode": 0,
+          "seconds": 0.745,
+          "expected": 0
+        }
+      ],
+      "defaultScreenshotsBeforeArchived": false,
+      "defaultScreenshotOutputs": []
+    },
+    {
+      "path": "docs/prototypes/new-game/T70/20261017T205919009714Z-production-ci-like",
+      "reportSha256": "07525a8f3e6588ec64359922fbcf51380b10cd76413030ad065f0cdbef1b96ae",
+      "sourceArchiveSha256": "398494b4bf1c598dba3fd59bfd7f1c77d67495117b8334894adcaebf1d81e45e",
+      "rawLogsSha256": "894c913accfd7562025ff7f7f874f2ccde0706f9a2da495687278a421ea68890",
+      "capturesSha256": "1d038b02da2ecce82988968ef9317509515487a93a85dcc20bfddf6cd40d3abd",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "all-browser-regressions-unset-playback-env",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T205919009714Z-production-ci-like/all-browser-regressions-unset-playback-env/test-results",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "tests/e2e/computer-turn-flow.spec.ts",
+            "tests/e2e/battle-controls.spec.ts",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "tests/e2e/versioned-match.spec.ts",
+            "tests/e2e/finished-copy.spec.ts",
+            "--workers=2"
+          ],
+          "exitCode": 0,
+          "seconds": 33.647,
+          "expected": 0
+        }
+      ],
+      "defaultScreenshotsBeforeArchived": true,
+      "defaultScreenshotOutputs": [
+        {
+          "path": "finished-copy-C4rMcG/winning-attack-finished-1280x800.png",
+          "sha256": "6d6b9a23d2c00a3310cae4a719a7cac965b2a903ce31ec81da58a99571ba345c",
+          "bytes": 270745
+        },
+        {
+          "path": "finished-copy-FqTr5N/loaded-finished-1920x1080.png",
+          "sha256": "e6ba533fc8c92bb225eeff0c95f4a3a8882dadd5fd32634e7cc6abc2056803e6",
+          "bytes": 425268
+        },
+        {
+          "path": "finished-copy-GddeII/winning-attack-escape-1920x1080.png",
+          "sha256": "61d8748d8fe2734f0c91ca9d794a8cb8e4f205eee37fca1f24e5a72fd7b77859",
+          "bytes": 425130
+        },
+        {
+          "path": "finished-copy-HURNB6/winning-attack-escape-1280x800.png",
+          "sha256": "7cf335e5739a0bb47c5f125945929526da19e2d5ca4e6ba5b0b0f9a7ab976f72",
+          "bytes": 270748
+        },
+        {
+          "path": "finished-copy-axwKez/winning-attack-finished-1920x1080.png",
+          "sha256": "61d8748d8fe2734f0c91ca9d794a8cb8e4f205eee37fca1f24e5a72fd7b77859",
+          "bytes": 425130
+        },
+        {
+          "path": "finished-copy-ua5JxY/loaded-finished-1280x800.png",
+          "sha256": "f19c5109650fcb408ee3364eb2e13c21849da65f0b4b4a3881c19cff0ba06b83",
+          "bytes": 271344
+        },
+        {
+          "path": "game-event-log-1280x800.png",
+          "sha256": "c3b49923127d6a8fd1666af3be6be95d4b8aba112a7e90a8295059218f7a6df2",
+          "bytes": 149280
+        },
+        {
+          "path": "game-event-log-1920x1080.png",
+          "sha256": "189ca495988934f37656d21264e9e5c34a0e2fd81886ab9a49e344fa3abc6778",
+          "bytes": 268197
+        },
+        {
+          "path": "playback-default-four-seats-1280x800.png",
+          "sha256": "2670a3493428e23419c66880609205785a95327c3813f9c868c5ac1bae8a696b",
+          "bytes": 252468
+        },
+        {
+          "path": "playback-default-four-seats-1920x1080.png",
+          "sha256": "df7dae77d2eb415b6a7018bef085eb448b9a23f4ced671d46e0cf0cfcc950aa2",
+          "bytes": 421306
+        },
+        {
+          "path": "playback-eliminated-1280x800.png",
+          "sha256": "1825b734a921c890535611d68a4f90ec90f077961ca43f13d9cae7f80eb35699",
+          "bytes": 248565
+        },
+        {
+          "path": "playback-eliminated-1920x1080.png",
+          "sha256": "93f7a3a2556bdaa2641a6c93a0ee927f771bd3cb74b70b293ccf7cae3321f274",
+          "bytes": 430248
+        },
+        {
+          "path": "playback-paused-battle-1280x800.png",
+          "sha256": "bd239007c01e5ed6b612ea82aa026a0359d13b577bec6ff3b753115aa0140983",
+          "bytes": 262116
+        },
+        {
+          "path": "playback-paused-battle-1920x1080.png",
+          "sha256": "5bf22668d49e5dc4261d0d8fecebd02b46e32fc842eabdfd58ba8c2605c4ece3",
+          "bytes": 438388
+        },
+        {
+          "path": "playback-paused-computer-1920x1080.png",
+          "sha256": "603f55797ae860207cda0e19030d114775b528c9a3b8521cdc60fd2d12540f5d",
+          "bytes": 438919
+        },
+        {
+          "path": "playback-totals-1920x1080.png",
+          "sha256": "ad8c40dc83804cba714356f51e987c9cfa51b455b2ec973b04996b5db73c963a",
+          "bytes": 415363
+        },
+        {
+          "path": "production-modal-1280x800.png",
+          "sha256": "e49aa080c97c2cb6691d29a75744877e1f644c42f8b7dce2bc10add6e627199d",
+          "bytes": 154995
+        },
+        {
+          "path": "production-modal-1920x1080.png",
+          "sha256": "7dde0b80e655e3f5d5883b724328c2e98a5d6ed047bc941f632d8eee7de20e50",
+          "bytes": 287161
+        },
+        {
+          "path": "production-paused-computer-1280x800.png",
+          "sha256": "22d2beb95dda7472338c175f20deb537e97a38e5a044a0b815ab5ded91350c6a",
+          "bytes": 256023
+        }
+      ]
+    }
+  ],
+  "overallRestoration": true,
+  "ciLikeFinal": {
+    "playbackEvidenceDir": "unset",
+    "cases": 56,
+    "passed": 56,
+    "durationSeconds": 33.647
+  }
+}

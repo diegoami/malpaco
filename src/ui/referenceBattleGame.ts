@@ -148,7 +148,6 @@ export class ReferenceBattleGame {
     this.eventLog.update(this.controller.state);
     this.playbackPause.textContent = this.controller.playbackPaused ? "Resume" : "Pause";
     this.playbackPause.setAttribute("aria-label", this.controller.playbackPaused ? "Resume game" : "Pause game");
-    this.playbackPause.setAttribute("aria-pressed", String(this.controller.playbackPaused));
     this.playbackSpeed.value = this.controller.view.speed;
     this.renderMap();
     this.panel.render({ prominentArmyTotals: true, state, from, to, blocked: from && to ? whyNot(state, from, to) : "Choose a source and target.", seed: this.options.seed,

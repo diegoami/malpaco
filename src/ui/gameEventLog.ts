@@ -91,7 +91,7 @@ export class GameEventHistory {
       }
       const event: GameEvent = { index: this.count + 1,
         heading: `Action ${this.count + 1} · Round ${before.turnNumber} · ${activePlayer(before)!.name} · ${reason} · ${PHASE_NAMES[before.phase]} → ${PHASE_NAMES[after.phase]}`,
-        regions: regionChanges(before, after, result.outcome?.captured ? "Combat and capture" : reason, action.kind === "attack" ? [action.from, action.to] : []), notes };
+        regions: regionChanges(before, after, result.outcome?.captured ? "Net after combat and capture" : reason, action.kind === "attack" ? [action.from, action.to] : []), notes };
       this.events.push(event); added.push(event); this.previous = after; this.count++;
     }
     return added;
@@ -114,7 +114,6 @@ export class GameEventLog {
       this.dialog.showModal();
       this.list.lastElementChild?.scrollIntoView({ block: "end" });
     };
-    this.dialog.addEventListener("close", () => this.button.focus({ preventScroll: true }));
     this.dialog.append(h("header", { class: "game-event-log-head" }, h("h2", { id: "game-event-log-title" }, "Game event log"), close), this.list);
     this.append(this.history.events[0]!);
   }
