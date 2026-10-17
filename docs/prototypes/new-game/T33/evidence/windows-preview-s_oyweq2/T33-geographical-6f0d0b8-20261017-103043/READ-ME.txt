@@ -1,0 +1,10 @@
+Malpaco appearance/pacing review candidate
+
+Double-click START-MALPACO.cmd in Windows Explorer (Node.js 22+), then open http://127.0.0.1:4175/. Open OPEN-REVIEW.html for screenshots and matched map comparisons.
+
+Includes readability #137, direct/repeat attack #138, geographical/coast #111 and shared borders #117. Current gameplay connections and canonical saves are preserved. Fixed Nine Isles reference board; generated boards remain separate work. Appearance/pacing approval remains yours.
+
+Package source commit: 6f0d0b8de0fa815110d6b0dcef02f732e410392e
+Archive SHA256: 32aa87c8fc88c138c24045609a33617d2786848bf1a09ee51d68ea08b3610a37
+
+Optional example saves: saves/pending-capture.json (resume a capture choice), saves/winner.json (finished conquest). Use Load game.

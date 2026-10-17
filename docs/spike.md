@@ -713,3 +713,22 @@ screenshots and exact restoration evidence live under
 [T31](prototypes/new-game/T31/README.md).
 
 The reference route defaults to one human against three Normal baseline computers. `?view=reference-game&control=manual` retains explicit manual testing (including computer seat metadata). Automatic seats resolve ordinary capture and move actions; save/load and New game remain available. The policy is deterministic and bounded; this does not complete the strategic strength levels. See `docs/prototypes/new-game/T32/README.md`.
+
+
+## Reference playable validation (T33)
+
+The packaged root uses the fixed T63 Nine Isles geography, complete ordinary turn,
+automatic baseline computer turns and versioned local save/load. Seeds vary the
+deal and RNG sequence; generated geography remains separate final-game work. The
+release reuses the self-contained Node launcher and archive checksums, with no
+source checkout or installed npm dependencies required by recipients.
+
+`tests/e2e/reference-complete-game.spec.ts` drives a real one-human/one-computer
+setup at seed 7 through ordinary controls, including one friendly move, automatic
+computer turns, pending-capture download/reload/upload, elimination and conquest.
+Domination is disabled in that fixture so conquest is reached. The frozen history
+contains 809 actions (579 human, 230 computer); existing entry acceptance separately
+checks the untouched default one-human/three-Normal-computer setup. The same
+complete-game acceptance runs against an extracted package. Screenshots/evidence
+under [T33](prototypes/new-game/T33/) support the owner's separate appearance and
+pacing judgment; automated completion is not that approval.
