@@ -1,0 +1,99 @@
+SECOND OWNER-REQUESTED CLAUDE CLI TRIAL, same PR153 and exact HEAD 6fde4cb2c371bfdc933892f19b2cf7cb9573168b, base 50a2dcbf8eee240872e82199fb3cb2b3c45e6c03. Use local Git, not GitHub diff API (that API cannot return this oversized diff). A complete local diff is /home/diego/projects/malpaco/.cache/claude-cli-review-153-trial2/full.diff with EVERY line also in bounded 240-line chunks /home/diego/projects/malpaco/.cache/claude-cli-review-153-trial2/diff-parts/. /home/diego/projects/malpaco/.cache/claude-cli-review-153-trial2/changed-files.json lists all changed file hashes and sizes. /home/diego/projects/malpaco/.cache/claude-cli-review-153-trial2/workflow.diff contains primary workflow/receipt runner/clock changes, not a replacement for inventory-wide scope assessment.
+Permission fix: read/search tools and read-only shell commands git diff/show/status/rev-parse, cat, sed, head, tail, ls, wc, rg, echo are granted. Verifier BOTH python3 and python3 -I forms are granted. Independent guard controls are available by executing exactly `python3 /home/diego/projects/malpaco/.cache/claude-cli-review-153-trial2/checks.py` (or -I). Read checks.py first, then execute it yourself. It runs positive verifier, exact PR whitespace check, altered prompt, missing receipt, false accepted denied review, missing cleanup and duplicate-result with matching updated hash controls. It writes retained copies only beneath /home/diego/projects/malpaco/.cache/claude-cli-review-153-trial2; never modifies reviewed input. Use this permitted helper instead of arbitrary shell/python mutations. You may independently scrutinize these controls; explicitly identify gaps. Do NOT execute historical agy run.py (paid models/global settings). No browser/CI rerun needed for this documentation/receipt trial: clock-line browser coverage is pre-existing evidence, label that as not independently rerun.
+You must actually run both Done-when commands (including git diff --check BASE HEAD, not an empty working-tree diff). Read CLAUDE.md, docs/process.md, task and primary changed code. Assess all paths in inventory: executable/docs changes require inspection, retained raw evidence may be checked as a grouped evidence class with explicit coverage statement rather than reading every generated log. Read relevant evidence supporting a finding. Avoid claiming exhaustive binary/log inspection. Record which diff/evidence classes you covered. Your review is complete for the task only if all Done-when are accounted for, no required check was denied, and scope/evidence assessment is explicit. Report a rework finding if needed; approval is not the goal of this trial. No posting, git mutations, installs, subagents or global settings changes.
+
+Review PR #153 in this repo. Use gh to read the diff and comments, then summarize bugs, security issues and style problems by severity. This is an owner-requested supplemental Claude CLI trial of an already merged PR, not a new merge gate. You did not write it. Exact reviewed premerge HEAD is 6fde4cb2c371bfdc933892f19b2cf7cb9573168b. Prove HEAD and fetch PR metadata/base SHA with gh. Because PR is merged, use its PR diff and original base, not a diff against current origin/main.
+Read CLAUDE.md and docs/process.md. Read-only review: do not edit any file, post comments, push, install, dispatch CI, spawn subagents or mutate global settings. Available tools are intentionally restricted. Focus on docs/harness-agy.md, the receipt verifier, retained attempt runners and the one-line test-clock correction; evidence archives need only be inspected when relevant. Do not recursively dump large evidence. Re-run the receipt verifier if permitted; do not repeat browser/CI suites for this supplemental trial. State all checks not run and coverage limits. Report no findings if none substantiated. Existing prior reviews are context, not proof.
+Full task contract follows:
+# T68 Pilot agy CLI review workflow with Sonnet
+
+- **Kind**: infrastructure, bounded model trial.
+- **Issue**: #152 · **Branch**: `task/T68-agy-sonnet-review` · **Merge after**: —.
+- **Difficulty**: Medium; external CLI permissions and evidence retention.
+- **Implementer**: main session, as already selected by the owner, in an isolated worktree.
+- **Reviewer**: standing owner-selected MiniMax via OpenCode reviews workflow changes; the owner explicitly selected Sonnet through agy for the supplemental T34 pilot. Existing T34 MiniMax review remains authoritative.
+- **Evidence**: owner request of 2026-10-17; installed `agy --help` and live `agy models` output.
+- **Owns**: docs/harness-agy.md; docs/prototypes/new-game/T68/**; append-only RUN-NOTES.md; blocking one-line test-clock correction in tests/e2e/reference-complete-game.spec.ts (#151, rule 12).
+- **Scope**: Establish a reproducible optional agy review procedure using a live Sonnet model ID, isolated checkout, bounded noninteractive execution and retained prompt, CLI output, exit code and duration. Try one actual supplemental review of T34. Diagnose startup/auth/permission failures and retain them; never claim a failed trial approved code. Keep canonical OpenCode review automation and its current T34 run intact. No CI dispatch for the measurement or provider fallback. Scope exception under rule 12: carry the exact independently reviewed one-line #151 clock initialization fix if the required workflow PR CI exposes the inherited past-time failure; preserve every existing assertion and retain the failed/positive evidence.
+- **Done when**:
+  1. `python3 docs/prototypes/new-game/T68/verify.py` validates live discovery, exact reviewed commit, prompt and output hashes, exit/duration and parent assessment for the actual attempted review. It refuses missing or altered receipts.
+  2. `git diff --check` passes; workflow documentation gives the actual invocation, permissions, progress/retention procedure and observed limitations, and the trial is recorded in model-trials #3, cross-linked with isle-wars-archaeology#9.
+- **Hazards**: Permission failures require explicit grants, never silent retries with a different provider. Do not expose credentials, alter another review worktree, weaken T34 checks or count a supplemental review as its CI gate. Include Sonnet's tripwire in full. Planning contract is authored on main; production documentation and measurement occur in the task worktree.
+
+Reviewer process follows (read-only limitation overrides mutation instructions):
+
+
+```text
+<T<nn>> review (<model>)
+You review PR #<n> at <sha>. You did not write it. The task file follows.
+0. Prove the tree: HEAD is <sha> and the diff against origin/main is the PR's; findings name its files.
+1. Re-run every Done-when line yourself, and account for each (L32). The PR's evidence is no proof.
+2. [evidence-driven] Every constant traces to a fixture, report or investigation; a [designed] one says what was searched.
+3. [seeded] No wall clock, unseeded random or order-dependent iteration in rule code.
+4. Every changed file and behaviour is one the task asks for (L44); docs it makes wrong are updated.
+5. Sweep the diff: tests that pass with the behaviour deleted (mutate, rebuild clean, re-take any
+   negative result), branches no input reaches, edge comments without a test, <project classes>.
+   Undo a mutation or scratch edit by writing back the file's saved contents (read it first,
+   restore it in a `finally`), or commit first; never `git checkout`, `git restore` or `git reset`
+   a file with uncommitted work: they return the last commit and destroy the rest. Keep the saved
+   copy inside your worktree (`<file>.saved`, deleted afterwards) or in a `mktemp -d` folder under
+   `/tmp`, never as a loose file elsewhere.
+6. <docs/review-brief.md in full: "Blocking means" for this task, then its one-pass section (L47, L49)>
+Prove each finding (run it, or delete the behaviour and name the test that fails) or label it
+unverified. Your final message is the review: the header; the verdict (approve | approve after
+named fixes | rework | user decision); per Done-when line `DW<k>: ran <command> → <result>` or
+`DW<k>: not run — <reason>`; the findings R1..Rn (file:line, blocking or not); the verdict again
+last. Never post it: the script posts it and applies the label.
+```
+
+A further review, such as `/code-review <pr>` on an architecture task, runs only when the user asks
+for it and names the model (CLAUDE.md rule 6.2: one review unless the user asks for more); then
+always with the PR number, since a bare invocation from an agent reviews the wrong tree. (L8)
+
+
+# The review brief's own sections
+
+Every review brief carries these two sections, in full, after the numbered block of
+`process.md` §5 (or, in the review profile, after the brief's numbered lines). The reviewer reads
+the brief in another file, so paste them; never point to this one. Write "Blocking means" for the
+task; paste the second section as it is. (L47, L49)
+
+```text
+## Blocking means
+
+Any one is enough; a blocking finding means rework, never approve.
+1. A Done-when line fails, or cannot be run as written.
+2. What this task protects can be got past: <name it: the guard, check, permission, invariant,
+   rule value or file this task exists to protect>. A bypass you proved is blocking, even when it
+   looks like an edge case. Never "follow-up hardening" or "outside the threat model" unless the
+   task says so; if it does, quote the line. (L47)
+3. Behaviour the task forbids, or behaviour nobody asked for, inside a file the task requires. (L44)
+4. <project-specific items: a constant with no evidence, a test that passes with the behaviour
+   deleted, a status written into a document>
+Not blocking: wording, style, and defects in code the PR did not change: file those as follow-ups.
+When unsure, say how likely the problem is. Rate it blocking only if it is likely and would get
+past what the task protects; otherwise it is a follow-up. (L53)
+
+## Report every blocking finding in this one review
+
+This review is your only pass before the author fixes. Do not stop at the first blocking
+finding: finish reading the whole diff and the task file, check every Done-when line and
+every item under "Blocking means", and report all blocking findings together.
+
+- Before you write the verdict, make one last pass over the full diff for anything you have
+  not yet rated, and say "Final pass done" as the last line before the verdict.
+- Number the findings R1, R2, … in order of severity. A finding you held back because an
+  earlier one was already blocking is a review defect: if two problems share a cause, list
+  both and say so.
+- Do not rely on a later round. The author fixes everything you list, and the next review
+  checks those fixes and new code only, not anything you saw but did not report.
+- If you ran out of time or context before covering the whole diff, say which files or
+  sections you did not cover. Do not approve in that case.
+```
+
+Out of your depth: stop and hand back, with an ESCALATE block, when any of these happens:
+two hypotheses for the same question have failed; you would rely on bytes, code or behaviour
+you cannot explain; you are about to write a claim you cannot back with evidence; or you have
+made three attempts at one step without progress. The ESCALATE block gives what you tried,
+the evidence so far, and the exact question you could not answer. Never guess a format or a cause.
+Do not push: this review is read-only.
