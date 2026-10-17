@@ -1,0 +1,1 @@
+Owner explicitly requested a Claude CLI review. Supplemental review of merged PR #153 at 6fde4cb2c371bfdc933892f19b2cf7cb9573168b. Main-session implementer; Claude CLI configured default model at medium effort, actual model to be read from init. Isolated checkout, read-only commands, no CI or replacement of existing MiniMax gate. Full output and limitations retained.
