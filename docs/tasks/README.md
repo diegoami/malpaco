@@ -92,3 +92,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T66](T66.md) | Cancel superseded pull-request CI runs | Easy | #108 | — |
 | [T67](T67.md) | Lightweight planning-only CI gate | Hard | #118 | T66 |
 | [T68](T68.md) | Pilot agy CLI review workflow with Sonnet | Medium | #152 | — |
+
+| [T69](T69.md) | Claude CLI review backend | Hard | #155 | — |

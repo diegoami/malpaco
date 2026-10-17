@@ -1,0 +1,43 @@
+{
+  "expectedModel": "claude-sonnet-5-5",
+  "actualModel": null,
+  "sessionId": "1230a1d2-b1fb-40ee-8b3c-72ddd49e1e62",
+  "pid": 3890390,
+  "exitCode": 0,
+  "seconds": 357.888,
+  "failure": "Claude permission denial; widen the trusted grant before another run.",
+  "command": [
+    "claude",
+    "-p",
+    "Read the full review brief at /home/diego/projects/malpaco/.cache/t69-work/.cache/review-evidence/pr153-700f41f906d6/prompt.md before any other action.",
+    "--model",
+    "claude-sonnet-5-5",
+    "--effort",
+    "high",
+    "--setting-sources",
+    "",
+    "--settings",
+    "/home/diego/projects/malpaco/.cache/t69-work/.cache/review-evidence/pr153-700f41f906d6/settings.json",
+    "--permission-mode",
+    "dontAsk",
+    "--permission-prompts",
+    "none",
+    "--tools",
+    "Bash,Read,Grep,Glob",
+    "--strict-mcp-config",
+    "--disable-slash-commands",
+    "--no-chrome",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--session-id",
+    "1230a1d2-b1fb-40ee-8b3c-72ddd49e1e62",
+    "--add-dir",
+    "/home/diego/projects/malpaco/.cache/t69-work/.cache/review-evidence/pr153-700f41f906d6"
+  ],
+  "sha256": {
+    "stdout.jsonl": "f171f018d8fff452f080ae87309291ae6822940ca9fee88262d24b625f75068d",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "final.md": "e57f13d2ed2e89d5cd9882d708a239ba0dd39294a6c308641154fe392b7ffd72"
+  }
+}
