@@ -8,7 +8,7 @@ import {createReferenceGame} from "../../src/core/reference-game";
 import {defaultOptions,apply,attackTargets} from "../../src/core";
 import type {GameMap,Province} from "../../src/core";
 import {nextAction,policyFor,ACTION_BUDGET} from "../helpers/complete-game";
-const drawing:typeof raw=JSON.parse(readFileSync(new URL("../../docs/prototypes/new-game/T64/board.json",import.meta.url),"utf8"));
+const drawing:typeof raw=JSON.parse(readFileSync(new URL("../../docs/prototypes/new-game/T65/board.json",import.meta.url),"utf8"));
 const map:GameMap={id:"reference-coast-first-a",name:"Nine Isles",bounds:raw.bounds,provinces:raw.provinces as unknown as readonly Province[],islands:raw.islands};
 function opening(){const r=createReferenceGame(map,{...defaultOptions(),seed:1994,seats:[{kind:"human"},{kind:"human"}],computerStrengths:[]});if(!r.ok)throw Error(r.errors.join(";"));return r.state;}
 const country=(page:Page,id:string)=>page.locator(`[data-country="${id}"]`);
