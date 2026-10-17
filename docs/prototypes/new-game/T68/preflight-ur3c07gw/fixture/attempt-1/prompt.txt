@@ -1,0 +1,98 @@
+T34 supplemental review (agy Sonnet). Owner explicitly requested this extra review. You did not write this task. Review PR #150 at 7f1860dac78932629340c561e8fae4cfcdf44589 against base 9215373e6020472c60fe7708dcd58802c4e9dccf. Work only in this isolated checkout. Read CLAUDE.md first.
+This is a READ-ONLY supplemental review, not a replacement for the existing MiniMax merge review. Never edit/delete files, commit/push, post GitHub comments, start CI or servers, install packages or change dependencies. Use terminal read-only commands and existing dependencies for focused tests if permitted. Do not request terminal permission interactively: if a tool cannot run, report it accurately. Focus on src/core/island-geography.ts, tests/core/island-geography.test.ts and T34/acceptance.mjs and CONTRACT.md. Audit the full changed source diff and declared clock fix. No need to enumerate thousands of archived evidence members. Independently run the 10 geography tests if allowed. Account explicitly for each task Done-when; mark checks not run rather than infer approval. Time budget 12 minutes. A limited review must not approve the whole task.
+
+Full task contract:
+# T34 Seeded island silhouettes and province subdivisions
+
+- **Kind**: slice
+- **Issue**: #79 · **Branch**: `task/T34-seeded-island-silhouettes-and-province-subdivisions` · **Merge after**: T33, T24, T62, T63.
+- **Difficulty**: Very hard; estimate, not a model assignment.
+- **Implementer**: owner-selected under rule 6; use an isolated worktree and record the choice before dispatch.
+- **Reviewer**: owner-selected OpenCode model of another family under rule 6; record the choice before review.
+- **Evidence**: [pinned core-rules design](https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/core-rules.md), owner roadmap accepted 2026-10-15, and upstream task evidence. T23 resolves source anchors; new constants need citations or explicit [designed] provenance.
+- **Owns**: src/core/**; tests/core/**; docs/prototypes/new-game/T34/**; docs/spike.md; append-only RUN-NOTES.md.
+- **Scope**: Build seeded geography using the owner-selected A construction direction and T62 coast-entry contract alongside unchanged T24 structural limits. Jointly reserve entrance-country coast opportunities, island placement/orientation, water corridors and real label space; do not freeze arbitrary subdivisions before considering links. Derive land adjacency from positive shared boundaries. Rules never read positions. Export partial geography and entrance reservations for T35 inspection, never incomplete playable boards. Start with retained feasible witnesses and preserve failures; a single reference does not prove generality.
+- **Done when**:
+  1. `npx vitest run tests/core/island-geography.test.ts` — prescribed island sizes, connected valid cells, no interior overlaps/gaps, symmetric shared-boundary adjacency and contract land-degree headroom hold for all exported successes.
+  2. `node docs/prototypes/new-game/T34/sweep.mjs` — enumerate seeds 0..99 with fixed bounded attempts; report valid subdivisions/100, per-constraint failures and replay hashes against the approved T24 budget, with no discarded failures.
+  3. `npm test` and `npm run build` pass; affected pinned browser suites pass without weakening existing assertions. Retain measured outputs, screenshots where applicable, commands and hashes in the owned evidence path; report negative-before/positive-after checks and exact restoration.
+- **Hazards**: Run the feasibility smoke before algorithm changes. If the approved target is unreachable, stop; do not relax degree, label or shape constraints. Main session preflights acceptance before dispatch; unresolved design conflicts stop implementation, never weaken a Done-when.
+
+
+
+```text
+<T<nn>> review (<model>)
+You review PR #<n> at <sha>. You did not write it. The task file follows.
+0. Prove the tree: HEAD is <sha> and the diff against origin/main is the PR's; findings name its files.
+1. Re-run every Done-when line yourself, and account for each (L32). The PR's evidence is no proof.
+2. [evidence-driven] Every constant traces to a fixture, report or investigation; a [designed] one says what was searched.
+3. [seeded] No wall clock, unseeded random or order-dependent iteration in rule code.
+4. Every changed file and behaviour is one the task asks for (L44); docs it makes wrong are updated.
+5. Sweep the diff: tests that pass with the behaviour deleted (mutate, rebuild clean, re-take any
+   negative result), branches no input reaches, edge comments without a test, <project classes>.
+   Undo a mutation or scratch edit by writing back the file's saved contents (read it first,
+   restore it in a `finally`), or commit first; never `git checkout`, `git restore` or `git reset`
+   a file with uncommitted work: they return the last commit and destroy the rest. Keep the saved
+   copy inside your worktree (`<file>.saved`, deleted afterwards) or in a `mktemp -d` folder under
+   `/tmp`, never as a loose file elsewhere.
+6. <docs/review-brief.md in full: "Blocking means" for this task, then its one-pass section (L47, L49)>
+Prove each finding (run it, or delete the behaviour and name the test that fails) or label it
+unverified. Your final message is the review: the header; the verdict (approve | approve after
+named fixes | rework | user decision); per Done-when line `DW<k>: ran <command> → <result>` or
+`DW<k>: not run — <reason>`; the findings R1..Rn (file:line, blocking or not); the verdict again
+last. Never post it: the script posts it and applies the label.
+```
+
+A further review, such as `/code-review <pr>` on an architecture task, runs only when the user asks
+for it and names the model (CLAUDE.md rule 6.2: one review unless the user asks for more); then
+always with the PR number, since a bare invocation from an agent reviews the wrong tree. (L8)
+
+
+# The review brief's own sections
+
+Every review brief carries these two sections, in full, after the numbered block of
+`process.md` §5 (or, in the review profile, after the brief's numbered lines). The reviewer reads
+the brief in another file, so paste them; never point to this one. Write "Blocking means" for the
+task; paste the second section as it is. (L47, L49)
+
+```text
+## Blocking means
+
+Any one is enough; a blocking finding means rework, never approve.
+1. A Done-when line fails, or cannot be run as written.
+2. What this task protects can be got past: <name it: the guard, check, permission, invariant,
+   rule value or file this task exists to protect>. A bypass you proved is blocking, even when it
+   looks like an edge case. Never "follow-up hardening" or "outside the threat model" unless the
+   task says so; if it does, quote the line. (L47)
+3. Behaviour the task forbids, or behaviour nobody asked for, inside a file the task requires. (L44)
+4. <project-specific items: a constant with no evidence, a test that passes with the behaviour
+   deleted, a status written into a document>
+Not blocking: wording, style, and defects in code the PR did not change: file those as follow-ups.
+When unsure, say how likely the problem is. Rate it blocking only if it is likely and would get
+past what the task protects; otherwise it is a follow-up. (L53)
+
+## Report every blocking finding in this one review
+
+This review is your only pass before the author fixes. Do not stop at the first blocking
+finding: finish reading the whole diff and the task file, check every Done-when line and
+every item under "Blocking means", and report all blocking findings together.
+
+- Before you write the verdict, make one last pass over the full diff for anything you have
+  not yet rated, and say "Final pass done" as the last line before the verdict.
+- Number the findings R1, R2, … in order of severity. A finding you held back because an
+  earlier one was already blocking is a review defect: if two problems share a cause, list
+  both and say so.
+- Do not rely on a later round. The author fixes everything you list, and the next review
+  checks those fixes and new code only, not anything you saw but did not report.
+- If you ran out of time or context before covering the whole diff, say which files or
+  sections you did not cover. Do not approve in that case.
+```
+
+Blocking means: likely violations of T34's determinism, integer geometry, no complete-game state, geographic constraints, provenance or tests that do not protect the implemented behavior. Give exact source lines and evidence; label unverified concerns. Final response must contain verdict, DW1/DW2/DW3, numbered findings, and final coverage limitations.
+
+Out of your depth: stop and hand back, with an ESCALATE block, when any of these happens:
+two hypotheses for the same question have failed; you would rely on bytes, code or behaviour
+you cannot explain; you are about to write a claim you cannot back with evidence; or you have
+made three attempts at one step without progress. Push your branch first. The ESCALATE block
+gives what you tried, the evidence so far, and the exact question you could not answer. Never
+guess a format or a cause.
