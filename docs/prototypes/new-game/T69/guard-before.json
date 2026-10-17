@@ -1,0 +1,14 @@
+[
+  {
+    "command": "E=/tmp/evidence; sha256sum \"$E/full.diff\"",
+    "refused": "the reviewer may not run what the guard cannot read before it runs (a variable, substitution, glob or brace where a command could stand, $'…' with an escape, a shell with options or reading stdin, or a git alias): refused `sha256sum \"$E/full.diff\"`"
+  },
+  {
+    "command": "python3 -c \"import json; p=[1,2,3]; print(p[:2])\"",
+    "refused": "the reviewer may not run what the guard cannot read before it runs (a variable, substitution, glob or brace where a command could stand, $'…' with an escape, a shell with options or reading stdin, or a git alias): refused `p[:2]`"
+  },
+  {
+    "command": "node -e \"console.log(JSON.stringify({a:1}))\"",
+    "refused": null
+  }
+]

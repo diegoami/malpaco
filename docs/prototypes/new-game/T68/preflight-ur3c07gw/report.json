@@ -1,0 +1,46 @@
+{
+  "verifier_sha256": "edc41e2f66e7c79008cb32a578b1bf4daee30ab2c94f9be3b49906d415746d2e",
+  "checks": [
+    {
+      "label": "positive",
+      "exit": 0,
+      "output": "T68 receipts, discovery, output hashes and parent assessments verified\n"
+    },
+    {
+      "label": "missing-output",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/diego/projects/malpaco/.cache/t68-work/docs/prototypes/new-game/T68/verify.py\", line 14, in <module>\n    assert hashlib.sha256((p/file).read_bytes()).hexdigest()==receipt[key], (name,file)\n                          ~~~~~~~~~~~~~~~~~~~^^\n  File \"/usr/lib/python3.14/pathlib/__init__.py\", line 778, in read_bytes\n    with self.open(mode='rb', buffering=0) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/pathlib/__init__.py\", line 772, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/diego/projects/malpaco/.cache/t68-work/docs/prototypes/new-game/T68/preflight-ur3c07gw/fixture/attempt-3/output.jsonl'\n"
+    },
+    {
+      "label": "changed-prompt",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/diego/projects/malpaco/.cache/t68-work/docs/prototypes/new-game/T68/verify.py\", line 14, in <module>\n    assert hashlib.sha256((p/file).read_bytes()).hexdigest()==receipt[key], (name,file)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('attempt-3', 'prompt.txt')\n"
+    },
+    {
+      "label": "wrong-head",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/diego/projects/malpaco/.cache/t68-work/docs/prototypes/new-game/T68/verify.py\", line 11, in <module>\n    assert receipt['reviewed_commit']=='7f1860dac78932629340c561e8fae4cfcdf44589'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "label": "forged-output-hash",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/diego/projects/malpaco/.cache/t68-work/docs/prototypes/new-game/T68/verify.py\", line 14, in <module>\n    assert hashlib.sha256((p/file).read_bytes()).hexdigest()==receipt[key], (name,file)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('attempt-3', 'output.jsonl')\n"
+    },
+    {
+      "label": "accept-denied-run",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/diego/projects/malpaco/.cache/t68-work/docs/prototypes/new-game/T68/verify.py\", line 23, in <module>\n    if result.get('denied_actions'): assert note['accepted_review'] is False\n                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "label": "cleanup-not-complete",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/diego/projects/malpaco/.cache/t68-work/docs/prototypes/new-game/T68/verify.py\", line 30, in <module>\n    assert cleanup['temporary_grants_removed'] is True and cleanup['other_settings_preserved'] is True\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+    },
+    {
+      "label": "restored-positive",
+      "exit": 0,
+      "output": "T68 receipts, discovery, output hashes and parent assessments verified\n"
+    }
+  ],
+  "all_restored": true
+}

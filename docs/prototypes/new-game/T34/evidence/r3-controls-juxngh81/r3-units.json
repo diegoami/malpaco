@@ -1,0 +1,9 @@
+{
+  "command": [
+    "npm",
+    "test"
+  ],
+  "exit": 0,
+  "output": "{\n  \"output\": \"docs/prototypes/new-game/T34/evidence/r3-units-96dowfp3\",\n  \"exit\": 0,\n  \"stdoutTail\": \"\\n> malpaco-spike-ts@0.0.0 test\\n> node --test tools/harness/test/*.test.mjs && vitest run\\n\\n\\u2714 actual selected model and real final required, not exit0 or quoted content (1.50201ms)\\n\\u2714 provider/remapped model cannot reach Claude billing; credentials not in errors (1.069889ms)\\n\\u2714 coverage is explicit per changed file; generated evidence grouping cannot hide code (2.217125ms)\\n\\u2714 watched subprocess retains success, failure and timeout evidence, kills its own group (664.403846ms)\\n\\u2714 real review entry selects Claude without OpenCode, publishes once, refuses failed gates (1679.66036ms)\\n\\u2714 native Claude command denials cover OpenCode publishing policy without a second Bash parser (0.796268ms)\\n\\u2139 tests 6\\n\\u2139 suites 0\\n\\u2139 pass 6\\n\\u2139 fail 0\\n\\u2139 cancelled 0\\n\\u2139 skipped 0\\n\\u2139 todo 0\\n\\u2139 duration_ms 2399.958081\\n\\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t34-work\\n\\n\\n Test Files  42 passed (42)\\n      Tests  615 passed (615)\\n   Start at  19:57:36\\n   Duration  40.13s (tests 82%, transform 15%, import 3%)\\n\\n\",\n  \"stderrTail\": \"\"\n}\n",
+  "stderr": ""
+}

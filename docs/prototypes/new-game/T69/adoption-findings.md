@@ -1,0 +1,23 @@
+Claude CLI backend implementation and reusable findings (T69 / PR156).
+
+The new path uses the existing review.mjs command and shared family/blocked/stale-head checks, final parser, posting and labels. Select the registered claude-sonnet key; MiniMax remains the default. Implementation/documentation: https://github.com/diegoami/malpaco/pull/156 .
+
+What worked:
+- Claude CLI2.1.292 with the exact claude-sonnet-5-5 model, discovered from real init events and confirmed in assistant responses. Registered as anthropic/claude-sonnet-5-5 with backend: claude. Other projects must verify their own model availability; there is no fallback.
+- --setting-sources '' plus one trusted invocation-generated settings file excludes user/project/local model remapping and PR-controlled hooks. Managed administrator policies may still apply. Reject third-party endpoint flags and conflicting environment model overrides; verify startup and response IDs exactly. Do not use --bare for an existing OAuth setup, because that mode disables OAuth discovery.
+- Native Claude Bash publishing denials matching the OpenCode policy work for ordinary loops, variable paths, test commands and negative controls. The strict legacy Bash reader caused false rejections in two initial trials; those were retained and diagnosed. Keep the trusted credential-path hook for file tools. No bypassPermissions or global settings edits.
+- The complete local Git diff and changed-file inventory avoid GitHub's 20000-line diff API limit. Chunk large diffs for readable tool output, not to omit changes.
+- A real native-permission run completed in41.542s, exact startup/response model, zero denied calls, both subject-task checks and a copied altered-prompt negative control. Its deliberately limited scope produced a held/no-label posting plan; it is not a new approval of T68.
+- Claude child TMPDIR is evidence-local without changing the parent environment; set the launcher TMPDIR to project storage too when system /tmp is full. Unknown/executable file types require explicit FILE accounting.
+- Six offline harness test groups exercise the actual entry point with fake Claude/GitHub and no OpenCode installation. Twelve source omission controls fail and restore exact bytes. Existing593units/build and parser/family self-tests pass.
+
+Adoption:
+1. Port tools/harness/lib/claude.mjs, the Claude branch in review.mjs, switch-model/lib/switch support, peek.sh, the Claude fixture tests and npm test wiring together. Preserve the adopting repository's own guard module, labels, worktree convention and default reviewer. Read docs/harness-claude.md rather than rerunning archived measurement scripts.
+2. Register the verified full model ID with switch-model.mjs --role reviewer --backend claude --model anthropic/EXACT_ID --name claude-sonnet --variant high --register-only. For a Codex implementer, set HARNESS_SESSION_FAMILY=openai truthfully; never change it to evade family independence.
+3. Use the normal review.mjs --pr N --brief FILE --reviewer claude-sonnet --issue N --apply-label command, as one run-unit.sh job with one watch.sh monitor. Claude needs its normal authenticated CLI. HARNESS_CLAUDE_EXE can select a binary; HARNESS_REVIEW_WORKTREE_ROOT can choose a writable isolated-tree root.
+4. Inspect the printed UUID, actual model and stdout events. peek.sh accepts the Claude stdout.jsonl path. Preserve full prompt/settings/diff/inventory/output/stderr/final/receipt, and copy evidence into the task's tracked owned path before cleanup. Claude worktrees are retained. --dry-run still bills a model but does not post or label.
+5. Treat exit3 as an invalid execution and exit4 as a full retained review needing main-session assessment. Missing DW or scope cannot approve. Read every final before a retry and relay findings in full. Do not duplicate CI.
+
+Limits: command permissions are mistakes-only safeguards, not an OS sandbox; scripts can perform arbitrary actions. Optional credential-jail-enabled Claude runs refuse explicitly because that mode is not integrated. Scope acknowledgments are reviewer claims, not proof of honest reasoning. Other provider CLI/model combinations and native Windows execution were not validated by this trial. Existing OpenCode2 migration remains separate (#143); no agy dependency is needed.
+
+Independent review and final CI: Merged as eddc62a46898abf7120ff2662d9e73b3a7167d0e after independent MiniMax approval and green CI39043544882 on exact head0a57b539. Six harness groups,593units/build/package and200source+200extracted browser cases passed. One CI run only; skip-ci squash avoided a duplicate main run. .

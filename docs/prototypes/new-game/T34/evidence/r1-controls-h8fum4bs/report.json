@@ -1,0 +1,26 @@
+{
+  "results": [
+    {
+      "mutation": "omit-failure-history",
+      "exit": 1
+    },
+    {
+      "mutation": "omit-attempt-clamp",
+      "exit": 1
+    },
+    {
+      "mutation": "return-after-first-rejection",
+      "exit": 1
+    },
+    {
+      "command": "r1-final-units",
+      "exit": 0
+    },
+    {
+      "command": "r1-final-build",
+      "exit": 0
+    }
+  ],
+  "core_restored": true,
+  "original_sha256": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de"
+}

@@ -1,0 +1,12 @@
+{
+  "allow": [
+    "command(regex:^git\\ rev\\-parse\\ HEAD$)",
+    "command(regex:^git\\ status\\ \\-\\-short$)",
+    "command(regex:^git\\ diff\\ \\-\\-stat\\ 9215373e6020472c60fe7708dcd58802c4e9dccf\\ HEAD$)",
+    "command(regex:^git\\ diff\\ 9215373e6020472c60fe7708dcd58802c4e9dccf\\ HEAD\\ \\-\\-\\ src\\ tests$)",
+    "command(regex:^npx\\ vitest\\ run\\ tests/core/island\\-geography\\.test\\.ts$)"
+  ],
+  "deny": [
+    "write_file(*)"
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "format": "malpaco-match",
+  "version": 2,
+  "boardGenerator": {
+    "id": "fixed-reference",
+    "version": 1
+  },
+  "rules": {
+    "id": "victory",
+    "version": 1
+  },
+  "actionSchemaVersion": 2,
+  "options": {
+    "seats": [
+      {
+        "kind": "human"
+      },
+      {
+        "kind": "computer"
+      }
+    ],
+    "board": "generated",
+    "startingArmiesRange": "1-3",
+    "humanShare": 0,
+    "computerStrengths": [
+      "Normal"
+    ],
+    "eventFrequency": "Normal",
+    "dominationWin": false,
+    "roundLimit": null,
+    "seed": 7,
+    "animationSpeed": "normal",
+    "sound": true
+  },
+  "actions": [
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "friendlyMove",
+      "from": "province_4",
+      "to": "province_30",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_21",
+      "amount": 7
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_32",
+      "to": "province_42"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_33",
+      "to": "province_17"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_6",
+      "to": "province_27"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_28",
+      "to": "province_45"
+    },
+    {
+      "kind": "attack",
+      "from": "province_29",
+      "to": "province_11"
+    },
+    {
+      "kind": "attack",
+      "from": "province_44",
+      "to": "province_11"
+    },
+    {
+      "kind": "attack",
+      "from": "province_21",
+      "to": "province_14"
+    },
+    {
+      "kind": "attack",
+      "from": "province_21",
+      "to": "province_14"
+    },
+    {
+      "kind": "attack",
+      "from": "province_21",
+      "to": "province_14"
+    },
+    {
+      "kind": "attack",
+      "from": "province_21",
+      "to": "province_14"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_8",
+      "to": "province_4"
+    },
+    {
+      "kind": "friendlyMove",
+      "from": "province_14",
+      "to": "province_26"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_10",
+      "amount": 1
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_10",
+      "to": "province_12"
+    },
+    {
+      "kind": "attack",
+      "from": "province_10",
+      "to": "province_12"
+    },
+    {
+      "kind": "attack",
+      "from": "province_10",
+      "to": "province_12"
+    },
+    {
+      "kind": "attack",
+      "from": "province_10",
+      "to": "province_12"
+    }
+  ]
+}
