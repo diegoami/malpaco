@@ -274,7 +274,7 @@ const LEADING = new Set(['if', 'then', 'else', 'elif', 'fi', 'do', 'done', 'whil
 const SAFE = new Set(['echo', 'printf', 'cat', 'ls', 'grep', 'egrep', 'fgrep', 'head', 'tail', 'wc', 'uniq', 'diff', 'cmp',
   'test', '[', '[[', 'stat', 'file', 'cut', 'tr', 'basename', 'dirname', 'realpath', 'readlink', 'jq', 'pwd', 'true',
   'false', 'mkdir', 'touch', 'rm', 'cp', 'mv', 'cd', 'export', 'read', 'tee', 'date', 'sleep', 'du', 'df', 'tree', 'which',
-  'type', 'wait']);
+  'type', 'wait', 'sha256sum']);
 // Markers for what the guard refuses because it cannot read it.
 const UNREAD = '\0unread';
 const DEEP = '\0deep';
@@ -317,6 +317,15 @@ function run(ws, depth, cmd) {
   if (head.dynamic) return [unread];
   const name = base(head.text);
   if (['for', 'select', 'case'].includes(head.text) || SAFE.has(name)) return [];
+  // Interpreter source is code, not shell text. Like a script file, it is outside this
+  // mistakes-only command reader's boundary (documented above). Still inspect the enclosing
+  // shell and all substitutions, so `python -c 'print(1)'; gh ...` cannot hide the gh write.
+  if (/^python(?:\d+(?:\.\d+)*)?$/.test(name) || name === 'node') {
+    let at = 0;
+    while (args[at] && !args[at].dynamic && ['-I', '-B', '-E', '-s', '-S', '-u', '-O', '-OO'].includes(args[at].text)) at++;
+    const flag = name === 'node' ? ['-e', '--eval'] : ['-c'];
+    if (args[at] && !args[at].dynamic && flag.includes(args[at].text) && args[at+1]) return args[at+1].dynamic ? [unread] : [];
+  }
   if (name === 'git') return gitParts(args, unread);
   if (name === 'gh') return ghParts(args, unread);
   if (depth >= 5 && (SHELL.test(name) || name === 'eval')) return [`${DEEP} ${cmd}`];

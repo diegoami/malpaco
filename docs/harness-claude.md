@@ -45,8 +45,9 @@ from selecting GLM or changing the reviewer hook. `--model` pins the exact ID, a
 must match it and the requested session UUID. The adapter enables only Bash, Read, Grep and Glob,
 with the existing trusted reviewer PreToolUse guard. Bash may build, test and mutate files for
 negative controls; the guard rejects git commits/pushes and GitHub writes. It has the same
-mistakes-only limits documented in lib/guard.mjs: it is not an OS sandbox, and a test script can
-execute code. File tools also use the existing credential-path guard. No permission bypass,
+mistakes-only limits documented in lib/guard.mjs: it is not an OS sandbox. Script files and literal Python `-c`/Node `-e` code can
+execute code and are outside the shell-text reader. The enclosing shell and substitutions
+remain checked, and a dynamic inline-code argument is refused. File tools also use the existing credential-path guard. No permission bypass,
 subagents, checkout-supplied hooks or global permission edits are used. An optional credential
 jail continues through the existing guard when configured; the default is off.
 
@@ -72,7 +73,7 @@ still read the final and assess coverage. No software parser can prove the model
 file. Missing scope is posted with all findings under a note, without approval or a status label.
 
 Retained: full prompt/settings/diff/inventory, stdout events, stderr, final and receipt containing
-exact expected/actual model, session, exit/duration, failure and output hashes. Raw CLI failures
+exact expected/actual model, session, exit/duration, failure, CLI version and prompt/settings/inventory/diff/output hashes. Raw CLI failures
 and finals are retained as well. Review evidence must be copied into the task's owned tracked
 path and pushed before cleanup; `.cache` is durable locally but is not published evidence.
 Do not rerun historical trial runners: their paths identify the original measurement.

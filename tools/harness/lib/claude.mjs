@@ -23,7 +23,7 @@ export function claudeSettings(guard) {
   // No user/project/local settings loaded. Only this trusted launcher's hook is installed.
   const quote = (s) => `'${s.replaceAll("'", "'\\''")}'`;
   return { permissions: { allow: ['Bash', 'Read', 'Grep', 'Glob'], deny: ['Agent', 'Edit', 'Write'] },
-    hooks: { PreToolUse: [{ matcher: 'Bash|Read|Grep|Glob', hooks: [{ type: 'command', command: `${quote(process.execPath)} ${quote(guard)} reviewer` }] }] } };
+    hooks: { PreToolUse: [{ matcher: 'Bash|Read|Grep|Glob', hooks: [{ type: 'command', command: `CLAUDE_PROJECT_DIR=${quote(path.resolve(path.dirname(guard), '../..'))} ${quote(process.execPath)} ${quote(guard)} reviewer` }] }] } };
 }
 export function readClaudeEvents(text, model, sessionId) {
   let events;
@@ -92,8 +92,8 @@ export function runClaudeWatched({ command, args, workDir, evidenceDir, model, s
       try { parsed = readClaudeEvents(stdout, model, sessionId); } catch (e) { failure ??= e.message; }
       if (exitCode !== 0) failure ??= `Claude CLI exit ${exitCode}.`;
       const receipt = { expectedModel: model, actualModel: parsed?.actualModel ?? null, sessionId, pid: child?.pid ?? null, exitCode,
-        seconds: (Date.now() - started) / 1000, failure, command: [command.exe, ...command.prefix, ...args],
-        sha256: Object.fromEntries(['stdout.jsonl', 'stderr.txt', 'final.md'].map((n) => [n, hash(fs.readFileSync(path.join(evidenceDir, n)))])) };
+        seconds: (Date.now() - started) / 1000, failure, cliVersion: command.version ?? null, command: [command.exe, ...command.prefix, ...args],
+        sha256: Object.fromEntries(['stdout.jsonl', 'stderr.txt', 'final.md', 'prompt.md', 'settings.json', 'inventory.json', 'full.diff'].filter((n) => fs.existsSync(path.join(evidenceDir, n))).map((n) => [n, hash(fs.readFileSync(path.join(evidenceDir, n)))])) };
       fs.writeFileSync(path.join(evidenceDir, 'receipt.json'), JSON.stringify(receipt, null, 2)+'\n');
       if (failure) reject(new ClaudeInfraError(`${failure} Evidence retained: ${evidenceDir}`));
       else resolve({ stdout: parsed.review, stderr: fs.readFileSync(stderrFile, 'utf8'), exitCode, seconds: receipt.seconds, sessionId, actualModel: parsed.actualModel });

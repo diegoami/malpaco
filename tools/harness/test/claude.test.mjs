@@ -51,7 +51,7 @@ test('watched subprocess retains success, failure and timeout evidence, kills it
   else await assert.rejects(runClaudeWatched(options));
   for(const name of ['stdout.jsonl','stderr.txt','receipt.json','final.md']) assert.ok(fs.existsSync(path.join(evidenceDir,name)),name);
   const receipt=JSON.parse(fs.readFileSync(path.join(evidenceDir,'receipt.json')));assert.equal(receipt.expectedModel,id);assert.ok(receipt.sha256['stdout.jsonl']);
-  if(['hang','startup','idle'].includes(mode))assert.throws(()=>process.kill(receipt.pid,0));
+  if(['hang','startup','idle'].includes(mode)){assert.throws(()=>process.kill(receipt.pid,0));assert.match(receipt.failure,new RegExp(mode==='hang'?'total timeout':mode+' timeout'));}
  }
 });
 
@@ -81,4 +81,15 @@ test('real review entry selects Claude without OpenCode, publishes once, refuses
   if(['scope','dw'].includes(mode))assert.match(fs.readFileSync(trace+'.body','utf8'),/R1: test full findings survive flags/);
  }
  assert.equal(git('rev-parse','HEAD'),head);assert.equal(JSON.parse(fs.readFileSync(path.join(repo,'harness.json'))).reviewer.default,'claude');
+});
+
+test('review guard permits inspection commands and still checks outer publishing commands',async()=>{
+ const { refusal }=await import('../lib/guard.mjs');
+ assert.equal(refusal('E=/tmp/evidence; sha256sum "$E/full.diff"','reviewer'),null);
+ assert.equal(refusal('python3 -c "import json; p=[1,2,3]; print(p[:2])"','reviewer'),null);
+ assert.equal(refusal('python3 -I -c "import json; p=[1,2]; print(p[:1])"','reviewer'),null);
+ assert.equal(refusal('node -e "console.log(JSON.stringify({a:1}))"','reviewer'),null);
+ assert.ok(refusal('python3 -c "print(1)"; gh pr comment 1 --body bad','reviewer'));
+ assert.ok(refusal('node -e "console.log(1)" && git push origin main','reviewer'));
+ assert.ok(refusal('sha256sum "$(gh pr comment 1 --body bad)"','reviewer'));
 });

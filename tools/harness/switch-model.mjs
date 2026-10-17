@@ -60,6 +60,8 @@ if (a.block || a.unblock) {
   process.exit(0);
 }
 if (!a.role || !a.model) die(2, 'Usage: switch-model.mjs --role implementer|reviewer --model ... [--probe] [--dry-run], --block X, --unblock X, or --show');
+if (a['register-only'] && a.role !== 'reviewer') die(2, '--register-only is for reviewer registration. Nothing written.');
+if (a.backend && a.role !== 'reviewer') die(2, '--backend is for reviewers. Nothing written.');
 if (a.role === 'implementer') {
   let plan;
   try { plan = planSwitch(config, { role: 'implementer', id: a.model, sessionFamily: own }); } catch (e) { die(/^Refused/.test(e.message) ? 1 : 2, e.message); }
