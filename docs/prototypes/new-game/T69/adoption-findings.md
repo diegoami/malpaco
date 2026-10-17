@@ -1,6 +1,6 @@
 Claude CLI backend implementation and reusable findings (T69 / PR156).
 
-The new path uses the existing review.mjs command and shared family/blocked/stale-head checks, final parser, posting and labels. Select the registered claude-sonnet key; MiniMax remains the default. Implementation/documentation: REPLACE_CODE_LINK .
+The new path uses the existing review.mjs command and shared family/blocked/stale-head checks, final parser, posting and labels. Select the registered claude-sonnet key; MiniMax remains the default. Implementation/documentation: https://github.com/diegoami/malpaco/pull/156 .
 
 What worked:
 - Claude CLI2.1.292 with the exact claude-sonnet-5-5 model, discovered from real init events and confirmed in assistant responses. Registered as anthropic/claude-sonnet-5-5 with backend: claude. Other projects must verify their own model availability; there is no fallback.
@@ -8,7 +8,8 @@ What worked:
 - Native Claude Bash publishing denials matching the OpenCode policy work for ordinary loops, variable paths, test commands and negative controls. The strict legacy Bash reader caused false rejections in two initial trials; those were retained and diagnosed. Keep the trusted credential-path hook for file tools. No bypassPermissions or global settings edits.
 - The complete local Git diff and changed-file inventory avoid GitHub's 20000-line diff API limit. Chunk large diffs for readable tool output, not to omit changes.
 - A real native-permission run completed in41.542s, exact startup/response model, zero denied calls, both subject-task checks and a copied altered-prompt negative control. Its deliberately limited scope produced a held/no-label posting plan; it is not a new approval of T68.
-- Six offline harness test groups exercise the actual entry point with fake Claude/GitHub and no OpenCode installation. Ten source omission controls fail and restore exact bytes. Existing593units/build and parser/family self-tests pass.
+- Claude child TMPDIR is evidence-local without changing the parent environment; set the launcher TMPDIR to project storage too when system /tmp is full. Unknown/executable file types require explicit FILE accounting.
+- Six offline harness test groups exercise the actual entry point with fake Claude/GitHub and no OpenCode installation. Twelve source omission controls fail and restore exact bytes. Existing593units/build and parser/family self-tests pass.
 
 Adoption:
 1. Port tools/harness/lib/claude.mjs, the Claude branch in review.mjs, switch-model/lib/switch support, peek.sh, the Claude fixture tests and npm test wiring together. Preserve the adopting repository's own guard module, labels, worktree convention and default reviewer. Read docs/harness-claude.md rather than rerunning archived measurement scripts.
@@ -19,4 +20,4 @@ Adoption:
 
 Limits: command permissions are mistakes-only safeguards, not an OS sandbox; scripts can perform arbitrary actions. Optional credential-jail-enabled Claude runs refuse explicitly because that mode is not integrated. Scope acknowledgments are reviewer claims, not proof of honest reasoning. Other provider CLI/model combinations and native Windows execution were not validated by this trial. Existing OpenCode2 migration remains separate (#143); no agy dependency is needed.
 
-Independent review and final CI: REPLACE_VALIDATION .
+Independent review and final CI: See PR156 reviews/checks for the final gate results; this note records the measured implementation. .

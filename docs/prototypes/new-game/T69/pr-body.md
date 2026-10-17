@@ -17,8 +17,10 @@ passes
 git diff --check
 passes
 python3 docs/prototypes/new-game/T69/verify-evidence.py
-11 archives verified; current harness runtime/tests match green source-stable checks
+13 archives verified; current harness runtime/tests match green source-stable checks
 ```
-Ten real source omission controls fail and restore exact bytes. Real Claude native-permission run: claude-sonnet-5-5/high, exit0/41.542s, no denials, both subject-task checks and copied-prompt negative control ran. Its deliberately partial review is correctly held without label; dry-run made no GitHub writes. Both earlier strict-guard infrastructure failures are preserved and diagnosed. Final response-model validator successfully replays the retained actual stream. No CI dispatched before independent approval.
+Twelve real source omission controls fail and restore exact bytes. Real Claude native-permission run: claude-sonnet-5-5/high, exit0/41.542s, no denials, both subject-task checks and copied-prompt negative control ran. Its deliberately partial review is correctly held without label; dry-run made no GitHub writes. Both earlier strict-guard infrastructure failures are preserved and diagnosed. Final response-model validator successfully replays the retained actual stream. No CI dispatched before independent approval.
 
-Docs changed: docs/harness-claude.md, docs/process.md, docs/models.md, run-task procedure and RUN-NOTES.md. Adoption and reusable findings go to155. Optional jail-enabled Claude launches explicitly refuse; command permissions are mistakes-only safeguards, not an OS sandbox.
+Docs changed: docs/harness-claude.md, docs/process.md, run-task procedure and RUN-NOTES.md. Adoption and reusable findings go to155. Optional jail-enabled Claude launches explicitly refuse; command permissions are mistakes-only safeguards, not an OS sandbox.
+
+Independent MiniMax M3 approved the implementation and focused follow-up. The first full final was recovered after system/tmp ENOSPC; the focused run exited0/229s. Its DW2 wording caused a formatting-only parser hold, manually accepted after verifying the same command and cases ran under DW1. R1 executable grouping coverage fixed by class; R2 documentation precision fixed. Shared docs/models copy and legacy Bash guard remain unchanged. Parent six-group acceptance and retained-archive verification pass on byte-identical reviewed runtime/tests. This final receipt triggers one CI; merge waits for that exact head to be green.

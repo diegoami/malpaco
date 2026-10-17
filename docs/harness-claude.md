@@ -75,8 +75,9 @@ no inherited registrations are pruned. `HARNESS_REVIEW_WORKTREE_ROOT` can choose
 worktree directory for this invocation. Evidence lives in the launcher's `.cache/review-evidence/`.
 
 A final must account for every Done-when and each changed path. Use `FILE: exact/path` for
-inspected files; `EVIDENCE: docs/prototypes/task/` may group generated evidence, but cannot cover
-JS/TS/Python/shell scripts. `SCOPE: complete` is required, and `UNCOVERED:` holds the review.
+inspected files; `EVIDENCE: docs/prototypes/task/` may group only known generated-data suffixes: JSON/JSONL, TXT, LOG, MD, PNG, JPG/JPEG,
+GIF, WEBP, GZ, ZIP and PDF. Every other file type, including HTML, JSX, scripts and
+extensionless files, requires a FILE line. `SCOPE: complete` is required, and `UNCOVERED:` holds the review.
 These are reviewer claims, like DW lines, not proof of honest inspection. The main session must
 still read the final and assess coverage. No software parser can prove the model understood a
 file. Missing scope is posted with all findings under a note, without approval or a status label.
