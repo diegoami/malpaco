@@ -152,3 +152,36 @@ it('floors fractional attempt budgets before recording exhausted attempts',async
   for(const [i,f]of r.failures.entries()){expect(f.attempt).toBe(i+1);expect(f.candidate).toBeDefined();expect(f.constraints).toContain('labels: unusable hit reservation');}
  });
 });
+
+// Deliberately invalid geometry isolates each upper degree bound. Identical triangle
+// boundaries derive a clique and cannot undergo a T1 flip; no borders are mocked.
+function degreeClique(g:IslandGeography,size:number):string {
+ const island=g.islands.find(i=>i.id==='island_5')!;
+ const countries=g.provinces.filter(p=>p.island===island.id);
+ if(size===6){const extra=structuredClone(countries[0]!);extra.id='degree_extra';countries.push(extra);g.provinces.push(extra);island.provinces.push(extra.id);}
+ for(const p of countries)p.polygon=[[900000,500000],[1000000,500000],[900000,600000]];
+ return countries[0]!.id;
+}
+function forceDegreeLanes(g:IslandGeography,source:string,targets:string[]):void {
+ // Only this source may be considered by the real port repair. Its unavailable
+ // headroom prevents repair from silently moving the excess lanes elsewhere.
+ g.islands.find(i=>i.id===g.provinces.find(p=>p.id===source)!.island)!.provinces=[source];
+ g.entranceReservations=targets.map(to=>({from:source,to,points:[[900000,500000],[1200000,500000]]}));
+}
+const upperDegreeCases=[
+ {name:'more than four land neighbours',clause:0,mutate:(g:IslandGeography)=>{degreeClique(g,6);g.entranceReservations=[];}},
+ {name:'four land neighbours plus two lanes',clause:1,mutate:(g:IslandGeography)=>{forceDegreeLanes(g,degreeClique(g,5),['province_38','province_41']);}},
+ {name:'more than two reserved lanes',clause:2,mutate:(g:IslandGeography)=>{forceDegreeLanes(g,'province_38',['province_41','province_11','province_24']);}}
+];
+for(const c of upperDegreeCases)it(`refuses ${c.name} with isolated degree constraint`,async()=>{
+ await withMockedWitness(c.mutate,generate=>{
+  const r=generate(42,{attempts:3});expect(r.ok).toBe(false);expect(r.attempts).toBe(3);expect(r.failures).toHaveLength(3);expect(r).not.toHaveProperty('geography');
+  for(const [i,f]of r.failures.entries()){
+   expect(f.attempt).toBe(i+1);expect(f.candidate).toBeDefined();expect(f.constraints).toContain('degree: insufficient entrance headroom');
+   const g=f.candidate!;
+   const violations=g.provinces.map(p=>{const lanes=g.entranceReservations.filter(r=>r.from===p.id||r.to===p.id).length;return [p.borders.length>4,p.borders.length+lanes>5,lanes>2];});
+   expect(g.provinces.every(p=>p.borders.length>=2)).toBe(true);
+   for(let clause=0;clause<3;clause++)expect(violations.some(v=>v[clause])).toBe(clause===c.clause);
+  }
+ });
+},30000);

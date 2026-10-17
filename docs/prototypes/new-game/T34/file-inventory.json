@@ -1,5 +1,5 @@
 {
-  "scope": "All77 code/script paths changed against origin/main, including historical executable probes and immutable source copies. Inert invocation snapshots remain byte-identical; review-tools/README.md labels them. Evidence data/archives preserve measurements and original inputs. Current refusal rework changes tests and optional archive-filename verification, with production core byte-identical.",
+  "scope": "Changed code/script paths including preserved historical executable probes and immutable source copies. R4 appends three isolated upper-degree tests and a new targeted omission runner; runtime and historical R3 runner bytes remain unchanged.",
   "files": [
     {
       "path": "docs/prototypes/new-game/T34/acceptance.mjs",
@@ -352,6 +352,11 @@
       "purpose": "Actual hardcoded archive-filename fail-before/pass-after and byte-exact final verifier restoration."
     },
     {
+      "path": "docs/prototypes/new-game/T34/r4-controls.py",
+      "sha256": "c8323d64d7bcec9e196ab5789a19c9e7a280a724dc88139b79d756d74a667440",
+      "purpose": "Separate actual-source omission per upper degree clause with exact restoration and focused/full units/build receipts."
+    },
+    {
       "path": "docs/prototypes/new-game/T34/review-tools/retention-runner.mjs",
       "sha256": "23d0faa0c858f8e64c4eae34dd8428c2d55aa61fc93fdbdce823fcecbb24e838",
       "purpose": "Historical independent-review retention adapter."
@@ -383,7 +388,7 @@
     },
     {
       "path": "tests/core/island-geography.test.ts",
-      "sha256": "91ba0bd9583d1543f2d909d2ad17b27931aa83e2f1aa1bccc4b52f8692bc3cc5",
+      "sha256": "0f4e257af88bbce1d3a84b2386c789eb25f2a41f79eb5317a8a15ed46dc29251",
       "purpose": "Independent frozen acceptance plus rejection/fairness/breadth controls."
     }
   ]

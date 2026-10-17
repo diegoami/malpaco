@@ -10,6 +10,7 @@ npm run build
 python3 docs/prototypes/new-game/T34/run-browser.py compatibility --suites tests/e2e/reference-complete-game.spec.ts,tests/e2e/reference-game.spec.ts,tests/e2e/versioned-match.spec.ts,tests/e2e/entry.spec.ts
 python3 docs/prototypes/new-game/T34/r2-controls.py
 python3 docs/prototypes/new-game/T34/r3-controls.py
+python3 docs/prototypes/new-game/T34/r4-controls.py
 ```
 
 Use Node24, or Node22.15+ for the prototype TypeScript loader hooks. Every command wrapper writes a fresh owned directory with source hashes, exact source inputs and raw output archives. The sweep retains all100 outcomes, rejected candidates, constraint classes and replay hashes. Large raw seed/source sets are archived byte-exact with member hashes; loose originals remain local and are ignored rather than deleted.
@@ -38,7 +39,7 @@ Final current-source validation is retained in `evidence/r2-final-di4unq58`:14 f
 
 `controls.py` is the historical first-family omission runner for `candidate.ts`; its port-repair marker predates the broader constructor. Use `r2-controls.py` for the current source. Frozen run snapshots retain the exact docs/scripts present during each run. Later README/archival documentation changes do not change the tested core, acceptance test or sweep hashes; the archive utility added after the sweep began is absent from that sweep's enumerated inputs. No numerical rerun is claimed for documentation-only additions.
 
-`evidence/integrity-jtiyx5h0` verifies100 recorded source/raw sets and all lossless member archives. `file-inventory.json` lists all77 changed code/script paths, including historical executable probes and immutable source copies; `artifacts.json` indexes1025 retained artifact hashes.
+`evidence/integrity-jtiyx5h0` verifies100 recorded source/raw sets and all lossless member archives. `file-inventory.json` lists changed code/script paths, including historical executable probes and immutable source copies; `artifacts.json` indexes retained artifact hashes. Counts are available directly from these indexes.
 
 
 ## Refusal-guard coverage
@@ -49,3 +50,10 @@ Claude round1 returned **rework**, with positive acceptance green and explicit i
 
 
 The refusal coverage rework passes22 focused cases,615 Vitest cases plus6 harness tests, and build (`evidence/r3-controls-juxngh81`). All eight new guard/budget omissions fail their targeted tests; restoration is exact. `preservation.json` also confirms every original acceptance-test byte remains as a prefix and both historical reviewer snapshot files are byte-identical. `r3-integrity.py` reproduces the verifier's old hardcoded-filename failure on the named Claude archive, then verifies113 source/raw sets and all legacy/named member archives after the one-line optional `manifest.archive` fix (`evidence/r3-integrity-wg6mrsko`, `evidence/integrity-0r1nlkux`). The default legacy archive name is preserved. Later receipt/inventory/docs updates do not change tested production or acceptance-test bytes.
+
+
+## Separate upper degree limits
+
+Claude round2 found three upper subconditions unprotected by the earlier zero-neighbour test. The appended cases separately require the recorded degree refusal for more than four shared-boundary neighbours, four neighbours plus two lanes, and two neighbours plus three lanes. Each retained candidate also proves that all other degree subconditions are false. Shared boundaries are derived from deliberately invalid overlapping triangle cliques; the fixture never mocks adjacency. Restricting available source countries prevents real reservation repairs from hiding excess lanes. Other geometry constraints may fail independently, so every case asserts the exact degree refusal rather than generic rejection.
+
+Use `r4-controls.py` for the three separate upper-clause omissions and focused/full unit/build validation. Keep `r3-controls.py` for its historical eight guard/budget controls; it does not independently cover these three upper clauses. The core remains byte-identical, so the latest independent review's unchanged100-seed sweep and24 browser results apply without another broad rerun. Full round2 review evidence is retained in `evidence/claude-review-round2`; reviewer coverage completion and approval remain main-session work.

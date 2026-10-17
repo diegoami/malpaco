@@ -1,0 +1,14 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/island-geography.test.ts",
+    "-t",
+    "refuses four land neighbours plus two lanes"
+  ],
+  "exit": 1,
+  "expected": 1,
+  "stdout": "{\n  \"output\": \"docs/prototypes/new-game/T34/evidence/r4-omit-combined-upper-ka_hewow\",\n  \"exit\": 1,\n  \"stdoutTail\": \"\\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t34-work\\n\\n \\u276f tests/core/island-geography.test.ts (25 tests | 1 failed | 24 skipped) 115ms\\n   \\u00d7 refuses four land neighbours plus two lanes with isolated degree constraint 114ms\\n\\n Test Files  1 failed (1)\\n      Tests  1 failed | 24 skipped (25)\\n   Start at  21:11:29\\n   Duration  325ms (tests 48%, transform 42%, import 9%, worker 1%)\\n\\n\",\n  \"stderrTail\": \"\\n\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af Failed Tests 1 \\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\n\\n FAIL  tests/core/island-geography.test.ts > refuses four land neighbours plus two lanes with isolated degree constraint\\nAssertionError: expected [ \\u2026(10) ] to include 'degree: insufficient entrance headroom'\\n \\u276f tests/core/island-geography.test.ts:180:88\\n    178|   const r=generate(42,{attempts:3});expect(r.ok).toBe(false);expect(r.\\u2026\\n    179|   for(const [i,f]of r.failures.entries()){\\n    180|    expect(f.attempt).toBe(i+1);expect(f.candidate).toBeDefined();expec\\u2026\\n       |                                                                                        ^\\n    181|    const g=f.candidate!;\\n    182|    const violations=g.provinces.map(p=>{const lanes=g.entranceReservat\\u2026\\n \\u276f withMockedWitness tests/core/island-geography.test.ts:111:95\\n \\u276f tests/core/island-geography.test.ts:177:2\\n\\n\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af[1/1]\\u23af\\n\\n\"\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,51 @@
+{
+  "startUtc": "2026-10-17T19:11:28.142389+00:00",
+  "endUtc": "2026-10-17T19:12:46.243250+00:00",
+  "durationSeconds": 78.100861,
+  "results": [
+    {
+      "label": "r4-omit-land-upper",
+      "exit": 1,
+      "expected": 1,
+      "omittedClause": "||p.borders.length>4",
+      "modifiedCoreSha256": "96cfe46291f58876a29325b179fd177cf3e458e9d905f5ce8e8c20c9e3699253",
+      "restoredCoreSha256": "ddf63b0aaee80d85ec2422c8048d2c49ee5d164a07483c21600ff5a839f7e369"
+    },
+    {
+      "label": "r4-omit-combined-upper",
+      "exit": 1,
+      "expected": 1,
+      "omittedClause": "||p.borders.length+lanes>5",
+      "modifiedCoreSha256": "fa497652b83145b5f30bb3103e2ca35b647c518782272c8cc48b1f03ff9a81c4",
+      "restoredCoreSha256": "ddf63b0aaee80d85ec2422c8048d2c49ee5d164a07483c21600ff5a839f7e369"
+    },
+    {
+      "label": "r4-omit-lanes-upper",
+      "exit": 1,
+      "expected": 1,
+      "omittedClause": "||lanes>2",
+      "modifiedCoreSha256": "f36a145e9cbc423b93a1dca4fa108f5ef85473bdc35dfc1e7e789178c35d177f",
+      "restoredCoreSha256": "ddf63b0aaee80d85ec2422c8048d2c49ee5d164a07483c21600ff5a839f7e369"
+    },
+    {
+      "label": "r4-focused",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "label": "r4-units",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "label": "r4-build",
+      "exit": 0,
+      "expected": 0
+    }
+  ],
+  "coreRestored": true,
+  "coreSha256": "ddf63b0aaee80d85ec2422c8048d2c49ee5d164a07483c21600ff5a839f7e369",
+  "originalArchiveSha256": "1800d2d57da20f902959e0a15be98d8786b4d6fd58ebced7ebb65766ca7ce5d1",
+  "coreArchiveRestoresExact": true,
+  "scope": "Three isolated degree tests; no runtime change. Prior independent sweep and browsers apply to identical runtime."
+}
