@@ -16,6 +16,9 @@ command=['docker','run','--rm','--user','1000:1000','-v',str(raw/'screenshots')+
 sources=sorted(set(suites+[str(p.relative_to(repo)) for p in (repo/'src/core').glob('*.ts')]+[str(p.relative_to(repo)) for p in (repo/'src/ui').rglob('*.ts')]+[str(p.relative_to(repo)) for p in (repo/'tests/ui').glob('battle*.ts')]+[str(p.relative_to(repo)) for p in (repo/'tests/e2e').glob('*friendly*.ts')]+[str(p.relative_to(repo)) for p in (repo/'tests').rglob('*.ts')]+['src/main.ts','src/styles.css','playwright.config.ts','package-lock.json','package.json',str(root.relative_to(repo)/'run-browser.py'),'docs/prototypes/new-game/T63/board.json','docs/prototypes/new-game/T63/map.svg','data/maps/small_sea.json']))
 sources+= [str(p.relative_to(repo)) for p in (repo/'docs/prototypes/new-game/T31/fixtures').glob('*.json')]
 sources += [str(p.relative_to(repo)) for folder in ['T64','T65'] for p in (repo/'docs/prototypes/new-game'/folder).glob('*') if p.is_file()]
+sources += [str(p.relative_to(repo)) for folder in ['src','tests','data',str(root.relative_to(repo)/'fixtures')] for p in (repo/folder).rglob('*') if p.is_file()]
+sources += ['docs/prototypes/new-game/T64/acceptance/board.json','docs/prototypes/new-game/T65/acceptance/board.json','docs/prototypes/map-1994/preview.html']
+sources=sorted(set(sources))
 inputs={p:(repo/p).read_bytes() for p in sources}
 with tarfile.open(out/'source-inputs.tar.gz','w:gz') as a:
  for p in sources:a.add(repo/p,arcname=p)

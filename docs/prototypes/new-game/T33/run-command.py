@@ -13,6 +13,11 @@ for folder in ['T24','T60','T62','T64','T65']:
 for name in ['package.json','package-lock.json','vitest.config.ts','docs/prototypes/map-1994/preview.html']:
  p=repo/name
  if p.is_file():inputs[name]=p.read_bytes()
+for folder in ['src','tests','data',str(root.relative_to(repo)/'fixtures')]:
+ for p in (repo/folder).rglob('*'):
+  if p.is_file():inputs[str(p.relative_to(repo))]=p.read_bytes()
+for name in ['docs/prototypes/new-game/T64/acceptance/board.json','docs/prototypes/new-game/T65/acceptance/board.json']:
+ inputs[name]=(repo/name).read_bytes()
 with tarfile.open(out/'source-inputs.tar.gz','w:gz') as a:
  for name,data in inputs.items():entry=tarfile.TarInfo(name);entry.size=len(data);a.addfile(entry,io.BytesIO(data))
 r=subprocess.run(sys.argv[2:],cwd=repo,capture_output=True)
