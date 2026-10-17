@@ -15,7 +15,9 @@ async function save(p: Page) {
   return p.evaluate(() => (Reflect.get(window, "playbackSaveBlob") as Blob).text());
 }
 async function load(p: Page, text: string) {
+  const previousInput = await p.getByLabel("Load game", { exact: true }).elementHandle();
   await p.getByLabel("Load game", { exact: true }).setInputFiles({ name: "playback.json", mimeType: "application/json", buffer: Buffer.from(text) });
+  await expect.poll(() => previousInput!.evaluate(node => node.isConnected)).toBe(false);
   await expect(p.locator("[data-country]")).toHaveCount(46);
 }
 async function begin(p: Page, manual = false) {
@@ -43,7 +45,7 @@ async function totals(p: Page, state?: GameState) {
   const s = state ?? deserializeVersionedMatch(await save(p)).state;
   await expect(p.locator('[data-testid="player-army-total"]')).toHaveCount(s.players.length);
   for (const player of s.players) {
-    const total = p.locator(`[data-testid="player-army-total"][data-player="${player.id}"]`);
+    const total = p.locator(`[data-player="${player.id}"] [data-testid="player-army-total"]`);
     const owned = s.map.provinces.filter(country => s.ownerOf[country.id] === player.id);
     const expected = owned.reduce((sum, country) => sum + s.armies[country.id]!, 0);
     const painted = await p.locator(`[data-country][data-owner="${player.id}"]`).evaluateAll(nodes => nodes.reduce((sum, node) => sum + Number((node as HTMLElement).dataset["armies"]), 0));

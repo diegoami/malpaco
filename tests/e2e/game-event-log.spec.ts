@@ -11,7 +11,9 @@ async function save(p: Page) {
   return p.evaluate(() => (Reflect.get(window, "eventLogSave") as Blob).text());
 }
 async function load(p: Page, text: string) {
+  const previousInput = await p.getByLabel("Load game", { exact: true }).elementHandle();
   await p.getByLabel("Load game", { exact: true }).setInputFiles({ name: "event-log.json", mimeType: "application/json", buffer: Buffer.from(text) });
+  await expect.poll(() => previousInput!.evaluate(node => node.isConnected)).toBe(false);
   await expect(p.locator("[data-country]")).toHaveCount(46);
 }
 async function begin(p: Page) {
