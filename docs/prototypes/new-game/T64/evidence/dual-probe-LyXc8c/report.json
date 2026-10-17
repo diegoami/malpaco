@@ -1,0 +1,361 @@
+{
+  "source": "immutable T63",
+  "purpose": "fixed-graph dual geographical feasibility; not installed",
+  "results": [
+    {
+      "spread": 0.02,
+      "missingReservations": [],
+      "routing": [
+        {
+          "from": "province_43",
+          "to": "province_4",
+          "found": true,
+          "candidates": 44
+        },
+        {
+          "from": "province_8",
+          "to": "province_38",
+          "found": false,
+          "candidates": 121
+        },
+        {
+          "from": "province_2",
+          "to": "province_1",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_19",
+          "to": "province_24",
+          "found": true,
+          "candidates": 36
+        },
+        {
+          "from": "province_12",
+          "to": "province_34",
+          "found": true,
+          "candidates": 28
+        },
+        {
+          "from": "province_44",
+          "to": "province_11",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_18",
+          "to": "province_2",
+          "found": true,
+          "candidates": 55
+        },
+        {
+          "from": "province_16",
+          "to": "province_10",
+          "found": true,
+          "candidates": 37
+        },
+        {
+          "from": "province_8",
+          "to": "province_19",
+          "found": true,
+          "candidates": 65
+        },
+        {
+          "from": "province_1",
+          "to": "province_34",
+          "found": true,
+          "candidates": 42
+        },
+        {
+          "from": "province_45",
+          "to": "province_24",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_29",
+          "to": "province_11",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_5",
+          "to": "province_39",
+          "found": true,
+          "candidates": 29
+        },
+        {
+          "from": "province_3",
+          "to": "province_7",
+          "found": true,
+          "candidates": 24
+        },
+        {
+          "from": "province_13",
+          "to": "province_31",
+          "found": true,
+          "candidates": 66
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Endpoint not on intended exposed coast province_8",
+          "Ambiguous endpoint province_8",
+          "Competing-country margin below 8px province_8",
+          "Inward 12px continuation leaves intended country province_8",
+          "Endpoint not on intended exposed coast province_38"
+        ],
+        "water": [
+          "Route endpoint lies inside a country"
+        ],
+        "traceability": [],
+        "preserved": [
+          "cells: Cell overlap province_16/province_10",
+          "cells: Cell overlap province_16/province_12",
+          "cells: Islands overlap/touch island_2/island_6",
+          "labels: Labels too close province_25/province_5"
+        ]
+      },
+      "accepted": false
+    },
+    {
+      "spread": 0.04,
+      "missingReservations": [],
+      "routing": [
+        {
+          "from": "province_43",
+          "to": "province_4",
+          "found": true,
+          "candidates": 44
+        },
+        {
+          "from": "province_8",
+          "to": "province_38",
+          "found": false,
+          "candidates": 121
+        },
+        {
+          "from": "province_2",
+          "to": "province_1",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_19",
+          "to": "province_24",
+          "found": true,
+          "candidates": 36
+        },
+        {
+          "from": "province_12",
+          "to": "province_34",
+          "found": true,
+          "candidates": 28
+        },
+        {
+          "from": "province_44",
+          "to": "province_11",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_18",
+          "to": "province_2",
+          "found": true,
+          "candidates": 44
+        },
+        {
+          "from": "province_16",
+          "to": "province_10",
+          "found": true,
+          "candidates": 37
+        },
+        {
+          "from": "province_8",
+          "to": "province_19",
+          "found": true,
+          "candidates": 65
+        },
+        {
+          "from": "province_1",
+          "to": "province_34",
+          "found": true,
+          "candidates": 42
+        },
+        {
+          "from": "province_45",
+          "to": "province_24",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_29",
+          "to": "province_11",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_5",
+          "to": "province_39",
+          "found": true,
+          "candidates": 23
+        },
+        {
+          "from": "province_3",
+          "to": "province_7",
+          "found": true,
+          "candidates": 28
+        },
+        {
+          "from": "province_13",
+          "to": "province_31",
+          "found": true,
+          "candidates": 66
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Endpoint not on intended exposed coast province_8",
+          "Ambiguous endpoint province_8",
+          "Competing-country margin below 8px province_8",
+          "Inward 12px continuation leaves intended country province_8",
+          "Endpoint not on intended exposed coast province_38"
+        ],
+        "water": [
+          "Route endpoint lies inside a country"
+        ],
+        "traceability": [],
+        "preserved": [
+          "cells: Cell overlap province_16/province_10",
+          "cells: Cell overlap province_16/province_12",
+          "cells: Islands overlap/touch island_2/island_6",
+          "labels: Labels too close province_25/province_5"
+        ]
+      },
+      "accepted": false
+    },
+    {
+      "spread": 0.06,
+      "missingReservations": [
+        {
+          "id": "province_5",
+          "reservationFound": false,
+          "largestSquareCss": 39.01049389385947
+        }
+      ],
+      "routing": [
+        {
+          "from": "province_43",
+          "to": "province_4",
+          "found": true,
+          "candidates": 44
+        },
+        {
+          "from": "province_8",
+          "to": "province_38",
+          "found": false,
+          "candidates": 121
+        },
+        {
+          "from": "province_2",
+          "to": "province_1",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_19",
+          "to": "province_24",
+          "found": true,
+          "candidates": 36
+        },
+        {
+          "from": "province_12",
+          "to": "province_34",
+          "found": true,
+          "candidates": 28
+        },
+        {
+          "from": "province_44",
+          "to": "province_11",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_18",
+          "to": "province_2",
+          "found": true,
+          "candidates": 44
+        },
+        {
+          "from": "province_16",
+          "to": "province_10",
+          "found": true,
+          "candidates": 37
+        },
+        {
+          "from": "province_8",
+          "to": "province_19",
+          "found": true,
+          "candidates": 65
+        },
+        {
+          "from": "province_1",
+          "to": "province_34",
+          "found": true,
+          "candidates": 42
+        },
+        {
+          "from": "province_45",
+          "to": "province_24",
+          "found": true,
+          "candidates": 66
+        },
+        {
+          "from": "province_29",
+          "to": "province_11",
+          "found": true,
+          "candidates": 55
+        },
+        {
+          "from": "province_5",
+          "to": "province_39",
+          "found": true,
+          "candidates": 23
+        },
+        {
+          "from": "province_3",
+          "to": "province_7",
+          "found": true,
+          "candidates": 28
+        },
+        {
+          "from": "province_13",
+          "to": "province_31",
+          "found": true,
+          "candidates": 66
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Endpoint not on intended exposed coast province_8",
+          "Ambiguous endpoint province_8",
+          "Competing-country margin below 8px province_8",
+          "Inward 12px continuation leaves intended country province_8",
+          "Endpoint not on intended exposed coast province_38"
+        ],
+        "water": [
+          "Route endpoint lies inside a country"
+        ],
+        "traceability": [],
+        "preserved": [
+          "cells: Cell overlap province_16/province_10",
+          "cells: Cell overlap province_16/province_12",
+          "cells: Islands overlap/touch island_2/island_6",
+          "labels: Hit square outside country/frame province_5",
+          "labels: Labels too close province_25/province_5"
+        ]
+      },
+      "accepted": false
+    }
+  ]
+}

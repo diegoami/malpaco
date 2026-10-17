@@ -15,9 +15,9 @@ const key=p=>JSON.stringify(p),pair=(a,b)=>[a,b].sort().join('|');
 const rounded=p=>p.map(v=>Math.round(v*1024)/1024);
 const tau=2*Math.PI,angle=p=>(Math.atan2(p[1],p[0])+tau)%tau;
 const unique=points=>[...new Map(points.map(p=>[key(p),p])).values()];
-const frames=[[410,82,91,66],[709,86,86,66],[133,238,87,62],[709,393,85,63],[420,233,111,64],[691,238,105,66],[144,380,132,77],[138,87,132,84],[447,389,156,70]];
+const frames=[[410,82,91,66],[709,86,86,66],[110,238,100,52],[709,393,85,63],[420,233,111,64],[691,238,105,66],[144,380,132,77],[138,87,132,84],[447,389,156,70]];
 function candidate(spread){
- const board=structuredClone(before),coasts=new Map(),placement=[];
+ const board=structuredClone(before),coasts=new Map(),placement=[],labelCandidates=new Map();
  for(const island of before.islands){
   const index=Number(island.id.split('_').at(-1)),[cx,cy,rx,ry]=frames[index],phase=index*1.93+.013*before.seed;
   const countries=before.provinces.filter(p=>p.island===island.id),ring=island.polygon;
@@ -34,7 +34,8 @@ function candidate(spread){
   });
   if(new Set(cycle).size!==countries.length)throw Error('Expected one coast arc per country');
   const n=cycle.length;
-  const site=new Map(cycle.map((id,j)=>{const theta=Math.PI+tau*(j+.5)/n+([-.5,0,0,0,0,0,0,.7,0][index]);return[id,[Math.cos(theta),Math.sin(theta)]];}));
+  const weights=cycle.map(id=>1+.1*(4-countries.find(p=>p.id===id).borders.length)),total=weights.reduce((a,b)=>a+b,0);
+  const site=new Map(cycle.map((id,j)=>{const theta=Math.PI+tau*(weights.slice(0,j).reduce((a,b)=>a+b,0)+weights[j]/2)/total+([-.8,0,0,0,0,0,0,.7,0][index]);return[id,[Math.cos(theta),Math.sin(theta)]];}));
   const outer=new Set(cycle.map((id,j)=>pair(id,cycle[(j+1)%n])));
   const chords=[...new Set(countries.flatMap(p=>p.borders.map(id=>pair(p.id,id))))].filter(k=>!outer.has(k)).map(k=>k.split('|'));
   let faces=[cycle];
@@ -50,9 +51,9 @@ function candidate(spread){
   });
   const offset=[0,1].map(axis=>(Math.min(...centres.map(p=>p[axis]))+Math.max(...centres.map(p=>p[axis])))/2);
   const vertices=centres.map(p=>[p[0]-offset[0],p[1]-offset[1]]);
-  const coast=Array.from({length:120},(_,j)=>{
-   const theta=tau*j/120,dx=Math.cos(theta),dy=Math.sin(theta);
-   const desired=1+.024*Math.sin(theta*3+phase)+.008*Math.sin(theta*5-phase)+.018*(1+Math.sin(theta*4+phase));
+  const coast=Array.from({length:36},(_,j)=>{
+   const theta=tau*j/36,dx=Math.cos(theta),dy=Math.sin(theta);
+   const desired=1+.055*Math.sin(theta*3+phase)+.025*Math.sin(theta*5-phase)+.018*(1+Math.sin(theta*4+phase));
    const limits=[dx>0?(797-cx)/(rx*dx):dx<0?(3-cx)/(rx*dx):Infinity,dy>0?(457-cy)/(ry*dy):dy<0?(3-cy)/(ry*dy):Infinity];
    const r=Math.min(desired,...limits);return[r*dx,r*dy];
   });
@@ -79,7 +80,8 @@ function candidate(spread){
    const mean=[0,1].map(axis=>points.reduce((s,p)=>s+p[axis],0)/points.length);
    points.sort((a,b)=>Math.atan2(a[1]-mean[1],a[0]-mean[0])-Math.atan2(b[1]-mean[1],b[0]-mean[0]));
    const p=board.provinces.find(p=>p.id===id);p.polygon=unique(points.map(physical));
-   coasts.set(id,unique([start,...arc,end].map(physical)));
+   const chain=unique([start,...arc,end]).sort((a,b)=>(angle(a)-angle(start)+tau)%tau-(angle(b)-angle(start)+tau)%tau).map(physical);
+   coasts.set(id,unique(chain.flatMap((p,j)=>j+1<chain.length?[p,[(p[0]+chain[j+1][0])/2,(p[1]+chain[j+1][1])/2]]:[p])));
   }
  }
  for(const p of board.provinces){
@@ -100,7 +102,18 @@ function candidate(spread){
   candidates.sort((a,b)=>b.score-a.score);
   const selected=candidates.find(({center:[x,y]})=>[[-20,-20],[-20,20],[20,-20],[20,20]].every(([dx,dy])=>location([x+dx,y+dy],ring)>=0));
   if(selected??candidates[0])p.labelAt=(selected??candidates[0]).center;
+  labelCandidates.set(p.id,candidates.filter(({center:[x,y]})=>[[-20,-20],[-20,20],[20,-20],[20,20]].every(([dx,dy])=>location([x+dx,y+dy],ring)>=0)));
   placement.push({id:p.id,reservationFound:!!selected,largestSquareCss:candidates[0]?.score*2});
+ }
+ // Jointly respect the unchanged44px centre-spacing reservation.
+ for(let pass=0;pass<46;pass++){
+  const clashes=board.provinces.flatMap((p,j)=>board.provinces.slice(j+1).filter(q=>Math.abs(p.labelAt[0]-q.labelAt[0])<44&&Math.abs(p.labelAt[1]-q.labelAt[1])<47).map(q=>[p,q]));
+  if(!clashes.length)break;let changed=false;
+  for(const pair of clashes)for(const p of pair){
+   const selected=labelCandidates.get(p.id).find(c=>board.provinces.every(q=>q.id===p.id||(Math.abs(c.center[0]-q.labelAt[0])>=44||Math.abs(c.center[1]-q.labelAt[1])>=47)));
+   if(selected){p.labelAt=selected.center;changed=true;break;}
+  }
+  if(!changed)break;
  }
  // Port candidate search is separated from layout, using unchanged T62 checks.
  const routed=[];const routing=[];

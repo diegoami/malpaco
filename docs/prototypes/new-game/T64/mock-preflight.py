@@ -1,5 +1,5 @@
 from pathlib import Path
-import json,subprocess,tempfile,hashlib,shutil
+import json,subprocess,tempfile,hashlib,shutil,sys
 repo=Path('/home/diego/projects/malpaco/.cache/t64-work');root=repo/'docs/prototypes/new-game/T64'
 out=Path(tempfile.mkdtemp(prefix='mock-preflight-',dir=root/'evidence'))
 owned=[root/'layout.mjs',repo/'src/ui/referenceMapView.ts',root/'board.json',root/'map.svg',root/'preview.html']
@@ -21,12 +21,16 @@ export function coastPostprocess(input){
  return b;
 }
 ''')
- source=root/'evidence/dual-probe-APvw3p'
+ source=root/'evidence/dual-probe-pBNspT'
  for name,extension in [('board.json','json'),('map.svg','svg'),('preview.html','html')]:shutil.copy2(source/('spread-0.02.'+extension),root/name)
+ if '--water-captions' in sys.argv:
+  code="import fs from 'node:fs';import {svg,html} from './docs/prototypes/new-game/T64/render.mjs';const b=JSON.parse(fs.readFileSync('docs/prototypes/new-game/T64/board.json'));fs.writeFileSync('docs/prototypes/new-game/T64/map.svg',svg(b));fs.writeFileSync('docs/prototypes/new-game/T64/preview.html',html(b));"
+  subprocess.run(['node','--input-type=module','-e',code],cwd=repo,check=True)
  p=repo/'src/ui/referenceMapView.ts';text=p.read_text();assert text.count('T63/map.svg?raw')==1;text=text.replace('T63/map.svg?raw','T64/map.svg?raw').replace('x:p.labelAt[0]-25,y:p.labelAt[1]-10','x:Number(n.querySelector(".count")!.getAttribute("x"))-25,y:Number(n.querySelector(".count")!.getAttribute("y"))-28');p.write_text(text)
  for p in owned:
   dest=out/'mock-inputs'/p.relative_to(repo);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,dest)
- for index,command in enumerate([['python3',str(root/'checks.py'),'--focused'],['python3',str(root/'checks.py')],['python3',str(root/'run.py')]]):
+ commands=[['python3',str(root/'run.py')]] if '--browser-only' in sys.argv else [['python3',str(root/'checks.py'),'--focused'],['python3',str(root/'checks.py')],['python3',str(root/'run.py')]]
+ for index,command in enumerate(commands):
   with (out/f'{index}.txt').open('wb') as log:r=subprocess.run(command,cwd=repo,stdout=log,stderr=subprocess.STDOUT)
   rows.append({'command':command,'exit':r.returncode,'output':f'{index}.txt','tail':(out/f'{index}.txt').read_text()[-3500:]})
   if r.returncode:break

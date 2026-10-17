@@ -1,0 +1,37 @@
+{
+  "output": "docs/prototypes/new-game/T64/evidence/checks-wv0dncjh",
+  "results": [
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "output": "0.txt",
+      "sha256": "372c9cb0058960b94dff6a03e2f64757081ef79390b2c4bc978a0ecfbf7b7bad",
+      "tail": "\n> malpaco-spike-ts@0.0.0 test\n> vitest run\n\n\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t64-work\n\n\n Test Files  40 passed (40)\n      Tests  588 passed (588)\n   Start at  10:51:11\n   Duration  13.48s (tests 59%, transform 34%, import 6%, worker 1%)\n\n  Transform  transforming modules took 16.33s \u00b7 34% of tracked time, re-done on every run\n             persist transforms across runs with fsModuleCache: true\n             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns\n\n"
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "output": "1.txt",
+      "sha256": "a3731353f0a4d4294e512626d5544acf9acdb1a746364a4aace0d17612d57250",
+      "tail": "\n> malpaco-spike-ts@0.0.0 build\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n\u2713 50 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.64 kB \u2502 gzip:  0.42 kB\ndist/assets/index-D71XpoA_.css   24.37 kB \u2502 gzip:  6.02 kB\ndist/assets/index-CepY5UUM.js   237.58 kB \u2502 gzip: 63.63 kB\n\n\u2713 built in 276ms\n"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "output": "2.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tail": ""
+    }
+  ]
+}

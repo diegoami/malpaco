@@ -1,0 +1,28 @@
+{
+  "purpose": "disposable mock-positive proof; all source/assets restored",
+  "originalHashes": {
+    "docs/prototypes/new-game/T64/layout.mjs": "0e5842c7c615a51acd6aa911e0a2ddbf1a926a8666d1ecb59b1eb0abbd8612c5",
+    "src/ui/referenceMapView.ts": "1bfdbf2eb17462e7fac6bd2ed0a3f5518deea3aba1e3608cdc1f0d610f18ae47",
+    "docs/prototypes/new-game/T64/board.json": null,
+    "docs/prototypes/new-game/T64/map.svg": null,
+    "docs/prototypes/new-game/T64/preview.html": null
+  },
+  "restored": {
+    "docs/prototypes/new-game/T64/layout.mjs": true,
+    "src/ui/referenceMapView.ts": true,
+    "docs/prototypes/new-game/T64/board.json": true,
+    "docs/prototypes/new-game/T64/map.svg": true,
+    "docs/prototypes/new-game/T64/preview.html": true
+  },
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t64-work/docs/prototypes/new-game/T64/run.py"
+      ],
+      "exit": 1,
+      "output": "0.txt",
+      "tail": " - 1\\n    + Received  + 6\\n\\n    - Array []\\n    + Array [\\n    +   Array [\\n    +     6,\\n    +     8,\\n    +   ],\\n    + ]\\n\\n      51 |  await page.setContent(readFileSync(new URL(\\\"../../docs/prototypes/map-1994/preview.html\\\",import.meta.url),\\\"utf8\\\"));await shot(page,dir,\\\"approved-T22-reference\\\");\\n      52 |  await page.setContent(readFileSync(new URL(\\\"../../docs/prototypes/new-game/T64/preview.html\\\",import.meta.url),\\\"utf8\\\"));try{await painted(page);}finally{await shot(page,dir,\\\"after-opening\\\");}\\n    > 53 |  for(const p of expected.provinces){await country(page,p.id).click();await expect(country(page,p.id)).toHaveAttribute(\\\"aria-pressed\\\",\\\"true\\\");expect(await page.locator(\\\".country.neighbor\\\").evaluateAll(nodes=>nodes.map(n=>(n as SVGGElement).dataset[\\\"id\\\"]).sort())).toEqual([...p.borders,...p.seaLanes].sort());const collisions=await page.locator(\\\".country-label\\\").evaluateAll(nodes=>{const boxes=nodes.map(n=>n.getBoundingClientRect());return boxes.flatMap((a,j)=>boxes.slice(j+1).flatMap((b,k)=>a.right>b.left&&b.right>a.left&&a.bottom>b.top&&b.bottom>a.top?[[j,j+k+1]]:[]));});expect(collisions,`selected ${p.id}: labels overlap`).toEqual([]);}\\n         |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ^\\n      54 |  await country(page,expected.provinces[0]!.id).focus();await page.keyboard.press(\\\"Space\\\");await expect(country(page,expected.provinces[0]!.id)).toHaveAttribute(\\\"aria-pressed\\\",\\\"true\\\");\\n      55 |  await shot(page,dir,\\\"selected\\\");expect(errors).toEqual([]);\\n      56 | });\\n        at /work/tests/e2e/coast-postprocess.spec.ts:53:632\\n\\n    Error Context: docs/prototypes/new-game/T64/evidence/run-mq0mq4rh/raw/test-results/coast-postprocess-standalo-a07c8-ies-selectable-at-1920x1080-1920x1080/error-context.md\\n\\n  6 failed\\n    [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 800x540 \\n    [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 1280x800 \\n    [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 1920x1080 \\n    [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 800x540 \\n    [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 1280x800 \\n    [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:48:97 \\u203a standalone geography is painted and all46countries selectable at 1920x1080 \\n  2 passed (10.4s)\\nnpm notice\\nnpm notice New major version of npm available! 11.19.0 -> 12.2.0\\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\\nnpm notice To update run: npm install -g npm@12.2.0\\nnpm notice\\n\"\n}\n"
+    }
+  ]
+}
