@@ -13,7 +13,7 @@ async function prepare(page:Page,kind:Parameters<typeof fixture>[0]){
  await expect(region(page)).toBeVisible();await expect(page.locator("#battle-stop-threshold")).toHaveValue("2");await paint(page,f.ready);return f;
 }
 async function paint(page:Page,state:GameState){
- for(const p of map.provinces){await expect(country(page,p.id)).toHaveAttribute("data-owner",state.ownerOf[p.id]!);await expect(country(page,p.id)).toHaveAttribute("data-armies",String(state.armies[p.id]));await expect(country(page,p.id).locator(".army-count")).toHaveText(`${state.players.findIndex(q=>q.id===state.ownerOf[p.id])+1} · ${state.armies[p.id]}`);}
+ for(const p of map.provinces){await expect(country(page,p.id)).toHaveAttribute("data-owner",state.ownerOf[p.id]!);await expect(country(page,p.id)).toHaveAttribute("data-armies",String(state.armies[p.id]));await expect(country(page,p.id).locator(".army-count")).toHaveText(String(state.armies[p.id]));}
 }
 async function history(page:Page,count:number){await expect(region(page)).toHaveAttribute("data-history-count",String(count));}
 async function capture(page:Page,name:string,project:string){const root=process.env["BATTLE_EVIDENCE_DIR"]??"screenshots";mkdirSync(root,{recursive:true});const dir=mkdtempSync(join(root,"battle-"));await page.mouse.move(0,0);await page.screenshot({path:join(dir,`${name}-${project}.png`)});}

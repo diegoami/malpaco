@@ -14,6 +14,8 @@ export class ReferenceMapView{
    const id=n.dataset["id"]!,p=map.provinces.find(p=>p.id===id)!;
    n.dataset["country"]=id;n.dataset["province"]=id;n.classList.add("province");
    n.querySelector(".cell")!.classList.add("country-shape");n.querySelector(".count")!.classList.add("army-count");
+   // [designed] Reuse the score legend's ownership silhouettes within the existing label reservation.
+   n.querySelector(".badge")!.replaceWith(s("path",{class:"badge"}));
    if(!n.querySelector(".centre"))n.append(s("text",{class:"centre",x:p.labelAt[0]-25,y:p.labelAt[1]-10},"★"));
    n.onclick=()=>handlers.onProvince(id);n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
    n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id);}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
@@ -25,8 +27,15 @@ export class ReferenceMapView{
    const id=n.dataset["country"]!,seat=state.players.findIndex(p=>p.id===state.ownerOf[id]);
    n.dataset["owner"]=state.ownerOf[id]!;n.dataset["armies"]=String(state.armies[id]);n.dataset["target"]=String(view.targets.includes(id));n.dataset["selected"]=String(view.selected===id);
    n.classList.toggle("selected",view.selected===id);n.classList.toggle("neighbor",view.targets.includes(id));n.setAttribute("aria-pressed",String(view.selected===id));
-   n.setAttribute("aria-label",`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies`);
-   (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;n.querySelector(".count")!.textContent=`${seat+1} · ${state.armies[id]}`;
+   const description=`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies, ${state.players[seat]!.name}`;
+   n.setAttribute("aria-label",description);n.querySelector("title")!.textContent=description;
+   const badge=n.querySelector(".badge")!,count=n.querySelector(".count")!;
+   badge.setAttribute("d",seatLook(seat).badge);
+   // Derived from the four palette paths (the pill includes its rounded ends).
+   // [designed] Keep the original 44-unit width; 20-unit height contains bold count glyphs.
+   const [width,height]=([[94,34],[76,34],[60,34],[76,38]] as const)[seat]!;
+   badge.setAttribute("transform",`translate(${count.getAttribute("x")},${Number(count.getAttribute("y"))-5}) scale(${44/width},${20/height})`);
+   (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;n.querySelector(".count")!.textContent=String(state.armies[id]);
    (n.querySelector(".centre") as SVGElement).style.display=state.productionCentres.includes(id)?"":"none";
   }
   for(const r of this.el.querySelectorAll<SVGPolylineElement>(".lane"))r.classList.toggle("active",r.dataset["edge"]!.split("|").includes(view.selected??""));
