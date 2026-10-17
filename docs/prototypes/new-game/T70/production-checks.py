@@ -78,5 +78,8 @@ finally:
             if path.is_file() and (path.suffix == ".log" or "test-results" in path.parts or "playwright-report" in path.parts):
                 archive.add(path, arcname=str(path.relative_to(RUN)), recursive=False)
     manifest["rawLogsSha256"] = sha((RUN / "raw-logs.tar.gz").read_bytes())
+    with tarfile.open(RUN / "captures.tar.gz", "w:gz") as archive:
+        for path in sorted(RUN.rglob("*.png")): archive.add(path, arcname=str(path.relative_to(RUN)), recursive=False)
+    manifest["capturesSha256"] = sha((RUN / "captures.tar.gz").read_bytes())
     (RUN / "report.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print(RUN.relative_to(ROOT), flush=True)

@@ -124,3 +124,9 @@ Measured production findings:
 The two parent acceptance specs retain their frozen SHA-256 hashes. Browser measurements are
 Chromium at 1280×800 and 1920×1080; appearance remains the owner's judgment. No CI, independent
 review or merge was performed by the producer.
+
+Manual PNG captures are preserved in per-run `captures.tar.gz` archives because the repository
+ignores directories named `screenshots`. The index records both archive and member hashes;
+original loose PNGs remain locally. Older source/log receipts are unchanged. Future production
+wrapper runs create the capture archive automatically. This packaging change adds no runtime
+or assertion changes.
