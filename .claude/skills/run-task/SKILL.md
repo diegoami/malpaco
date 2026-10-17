@@ -52,7 +52,9 @@ environment (`switch-model.mjs --show` prints it); the reviewer is never of that
      block), pushing
      after every commit, and opening the PR with the template body.
 
-3. **Review.** First ask the user ONE question (CLAUDE.md rule 6 rule 2): which OpenCode model
+3. **Review.** A registered `backend: "claude"` model uses the same command below; see
+   `docs/harness-claude.md` for exact identity checks, trusted grants, coverage and retained
+   evidence. Existing defaults and family rules still apply. First ask the user ONE question (CLAUDE.md rule 6 rule 2): which OpenCode model
    reviews? Put `harness.json`'s `reviewer.default` first (`gpt-6.1-sol` for a guard, a gate or
    a hard task), then the registered models that are neither of the session's family nor
    blocked (`switch-model.mjs --show`). Record the answer on the PR. Label `status:in-review`.

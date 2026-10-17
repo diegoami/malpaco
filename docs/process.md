@@ -17,7 +17,7 @@ Tag capability jumps, not phases. Release notes come from GitHub when the tag is
 | --- | --- | --- |
 | Main session | Claude, the session the user talks to | Plans, writes task files, runs `/run-task`, triages, merges, reports |
 | Implementer | The **`implementer` subagent** spawned inside Claude Code (worktree isolation) on a model of its own, not the orchestrator's (Opus spawns Sonnet; under Z.AI `sonnet` is GLM-5.3 Flash), or **the main session** directly, in its own worktree, where the provider cannot spawn one; asked before each implementation (CLAUDE.md rule 6). *Superseded: OpenCode via `implement.mjs` (removed), the GLM/MiMo/Sonnet chains (L42), the user asked before each run.* | One task, one branch, one PR, in its own worktree |
-| Reviewer | **One OpenCode run** via `tools/harness/review.mjs`, on the model the user names at the question before the review, `harness.json`'s `reviewer.default` (GPT-5.6 Luna) proposed first; never the session's family (L27), never a blocked model. Exit 3: read the final message, fix the cause, run again; exit 4: the main session reads the flagged review and decides (L28). *Superseded: the reviewer chains, the Claude fallback, the user asked at every review.* | Re-runs the Done-when, audits scope and evidence, posts one PR comment, applies the label |
+| Reviewer | **One OpenCode run, or explicitly selected Claude CLI backend** via `tools/harness/review.mjs`, on the model the user names at the question before the review, `harness.json`'s `reviewer.default` (GPT-5.6 Luna) proposed first; never the session's family (L27), never a blocked model. Exit 3: read the final message, fix the cause, run again; exit 4: the main session reads the flagged review and decides (L28). *Superseded: the reviewer chains, the Claude fallback, the user asked at every review.* | Re-runs the Done-when, audits scope and evidence, posts one PR comment, applies the label |
 | Decider | Jev via `tools/harness/jev.mjs` (the `/jev` skill) | Repeated yes/no decisions over many items, at the confident ends only (§12) |
 | Generator | Models on OpenRouter (images, other families) and ElevenLabs (speech, sound, music) | Assets, each committed with a sidecar naming provider, model, prompt, date and cost |
 
@@ -129,6 +129,15 @@ last. Never post it: the script posts it and applies the label.
 A further review, such as `/code-review <pr>` on an architecture task, runs only when the user asks
 for it and names the model (CLAUDE.md rule 6.2: one review unless the user asks for more); then
 always with the PR number, since a bare invocation from an agent reviews the wrong tree. (L8)
+
+### Claude CLI backend (owner request, T69)
+
+An explicitly selected `harness.json` model with `backend: "claude"` runs through the same
+`review.mjs --reviewer <name>` command and shared parser/poster/labels. See
+[Claude CLI reviews](harness-claude.md) for model verification, trusted settings, grants,
+retained evidence and coverage acknowledgments. The independent-family and blocked-list rules
+still apply; this adds a backend without changing the default. Claude failures never reroute
+through OpenCode. A rejected command, missing scope or incomplete Done-when cannot approve.
 
 ## 6. Bugs, fixes, triage
 
