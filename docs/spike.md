@@ -541,8 +541,14 @@ seats and a game seed; the approved T63 Nine Isles geography stays fixed while
 the regular seeded deal changes. The map uses the same legal graph as the pure
 rules. Place the whole income pool, start combat, select an attacker/target,
 resolve exchanges, and hand off; the ordinary conquest result and New game work.
-The chosen A polygons and sea ports/routes are preserved, with live seat colours,
-counts and production markers. The route reuses the existing App/controller and
+T26 originally preserved the chosen A polygons and sea ports/routes, with live
+seat colours, counts and production markers. T64 subsequently gives both reference
+hosts the owner-requested geographical drawing following T22/#66: visual country
+positions, labels, ports and route shapes move, while the canonical T63 engine map,
+61 land/15 sea connections, ordered deals and save/replay identities stay unchanged.
+Live production markers use the drawing anchors. The deterministic constructor,
+unchanged geometry constraints and matched evidence are in
+[the T64 drawing](prototypes/new-game/T64/README.md). The route reuses the existing App/controller and
 pure setup/apply mechanics. Existing generated/authored routes and saved-game
 formats retain their behaviour. This legacy reference route does not offer save/load;
 the modern reference route uses the T31 versioned files described below.

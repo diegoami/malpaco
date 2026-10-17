@@ -1,0 +1,723 @@
+{
+  "session": "ses_eb6bf402bffeHKf1vwgjoyx7zk",
+  "model": {
+    "id": "MiniMax-M3",
+    "providerID": "minimax",
+    "variant": "thinking"
+  },
+  "durationSeconds": 1158.252,
+  "reviewedHead": "26daa2b95173e114343678c0ea95d0b0695cc005",
+  "freshFiles": {
+    "evidence/checks-virnln2b/report.json": "d78ad0f5c85a1b99dbd2f529daa72d329c9876a05f863efff7132e99cb83c7fb",
+    "evidence/checks-virnln2b/0.txt": "5e776eada5bcfe46662a3566fa8053f83893ef183ae70fd1029378eeb4164c8f",
+    "evidence/checks-virnln2b/source-inputs.tar.gz": "1cb295bd6ce185cff7e041070003daa61afd6134814208e189ebab4db5fa8c88",
+    "evidence/checks-unhu_0pw/report.json": "ed8f7d922c83d5784259c8cb94105d3f3b02c283408fccfc25e697bbec2ee278",
+    "evidence/checks-unhu_0pw/0.txt": "fd477c7b8ab736c616623aae2c0b33a5cc17e90eebbdd02c7ec0872a9de1507e",
+    "evidence/checks-unhu_0pw/source-inputs.tar.gz": "b263233b0ab321f8b8db0dd8e1526f0572e6b0aa8c5dbed82769946dac02c693",
+    "evidence/checks-7jd0fkzu/report.json": "d002ba8669114c4fa85662ba35e2289b3b1a2b7214513b5f9f494706f11aac9e",
+    "evidence/checks-7jd0fkzu/0.txt": "3e3e56caee17d5f547a9da7745c8bdd7064f168bec0526e39a37a95108de692a",
+    "evidence/checks-7jd0fkzu/source-inputs.tar.gz": "29d3ae0fac059ed05c9775a3899e32dca83081bbdad86080332a524234297ea3",
+    "evidence/checks-wyjd3cin/report.json": "bd8743887b58f630aa16eedf81823ad1724df52423ca1c7ea49d74d241fa1777",
+    "evidence/checks-wyjd3cin/0.txt": "500b79270df5504dbe63dc85066842fc7448fbee9276e3aa68d8bee23d74f4ad",
+    "evidence/checks-wyjd3cin/source-inputs.tar.gz": "e4535c6461fa1d3b78a77470994c49636c5f0eb8d82500cb852083eb8740d801",
+    "evidence/checks-ry8hz9v3/report.json": "1b394e9142dadcaa6c330dee83b63b6b84b1787b409f8163a1524d1de617c3ee",
+    "evidence/checks-ry8hz9v3/2.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/checks-ry8hz9v3/0.txt": "66f25379db681d8c726e08ca453a07dbc8ec9d84cc8c4f524d4121251b8b78ae",
+    "evidence/checks-ry8hz9v3/1.txt": "dc39c35be661b9a1b45186b63dbc542d9cb6d1fd7d9a59b5d6305decb6b04487",
+    "evidence/checks-ry8hz9v3/source-inputs.tar.gz": "bb2eeec59111ceb2afce167d69a6ebec99a73cee46264bf90cd1d5cb6005c91a",
+    "evidence/checks-seyk506s/report.json": "f001a7525bc4c144ef47284cf1626980620f035eb5eca078b48cebf01cd3e944",
+    "evidence/checks-seyk506s/0.txt": "8cd9440a9b9abd96f34136b994672ccc53dc10f0c349ae25d49fcbfe734e86ca",
+    "evidence/checks-seyk506s/source-inputs.tar.gz": "b17f6a612cb2fb254cc38ee49847ef9469ca9e2e4ae0f99e087ef5acf648f3f0",
+    "evidence/run-iyqwv6ih/raw-outputs.tar.gz": "1465f4bf308e466add9ced8613e833077648347f0602061de2cffd5f6124bff7",
+    "evidence/run-iyqwv6ih/report.json": "3152fe735465285df1c974a6fa8c14877099dbea39ce23a63bc8d264222660e5",
+    "evidence/run-iyqwv6ih/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-iyqwv6ih/source-inputs.tar.gz": "862efc6bcb066e235e25ba98d34a2fa7ee902e2e5a44d807dc6acfa50ad55c42",
+    "evidence/checks-a06f_x6k/report.json": "e794acf726a799e07397d0280747c1bd4f4e0fb1df67b9fbfa442b6247b4f386",
+    "evidence/checks-a06f_x6k/0.txt": "f64c1ccf57ff9225c377c1a77f4947ae0d4e1b3503ce1ce05d360a510b2cbb42",
+    "evidence/checks-a06f_x6k/source-inputs.tar.gz": "fef32ad72215397f4a1d47f0943cc41a83746257023e6f7a3caa4ee644deb494",
+    "evidence/checks-m1hyczvz/report.json": "70fe164965f29fe75b800bce426f5375466fcad96566e94c8c0d45fc47a4b1d6",
+    "evidence/checks-m1hyczvz/0.txt": "70ddb73b850a30070dd669d5d93a89218c1407abdd8fb26d97758f20d930faac",
+    "evidence/checks-m1hyczvz/source-inputs.tar.gz": "695c912dacd1942b5d9ce26d1f381421529ceb65f39cde9afdea57d250f3909e",
+    "evidence/checks-v80s_g1t/report.json": "ac07595ebb7e36b7a35bf5f0dc075f869584450a3793b1859e11ae9424b1fcfd",
+    "evidence/checks-v80s_g1t/0.txt": "37ba2ef92af5ec1b1829af6acff6de79c064575d7184b457489234fee5c42493",
+    "evidence/checks-v80s_g1t/source-inputs.tar.gz": "56fd4f2572b1d84cbb1d34768b31e9b59fbbd6bb6424c451fbbbd56f344c36fc",
+    "evidence/checks-7mr_ekhs/report.json": "b1a2c126ffd9a352cc7bc4ce08f559a3ab0507c02ece54daa9c8265e8ba30677",
+    "evidence/checks-7mr_ekhs/0.txt": "e9d3fe411e79e66e6f7fc4367b8f0dfb5cb86487e08bb3fc7b562f27714c2924",
+    "evidence/checks-7mr_ekhs/source-inputs.tar.gz": "71f10ce4f304576d65f2f31bf00993b791cc4c974eb6fabd6f4684307911d7ec",
+    "evidence/checks-to16i2b8/report.json": "ddc22859bd63f65e212e15a9b7213fa1c43f07b1d4896c16c2662124f43619ec",
+    "evidence/checks-to16i2b8/0.txt": "a9eb51e4d4460c8eaf1297e18a8469f5e8c91560c3b48c64b853a30dfd9bfa5e",
+    "evidence/checks-to16i2b8/source-inputs.tar.gz": "45eb324aeae919691678ac4e237d8eff13d60e09505561bc0edc34a1a85a1da1",
+    "evidence/checks-v_kw3pqf/report.json": "70be1e03394d18d70f0e8b3219dedfae91938ef7f87356eabafe0fce80966b14",
+    "evidence/checks-v_kw3pqf/0.txt": "fbb99eee858a0bf3b030124c43e352aac57dafb71396397b342a77a2c96d1fe0",
+    "evidence/checks-v_kw3pqf/source-inputs.tar.gz": "db92c1e809cd34689e17dc8f32fa092a6999f1427cb8cad2bc197259e38128a0",
+    "evidence/inheritance-j8rrb8g4/report.json": "2e18e9a7651d8814ad8ebf0591faa971d3c7c9b3da16ae749be3b73f12f46e59",
+    "evidence/run-k_fx8p_z/raw-outputs.tar.gz": "be3560d4f15e3e6091b21469a810748737696dc99353ab063557c7c2c62edb66",
+    "evidence/run-k_fx8p_z/report.json": "fcbcbce673bf45481fdf091a7ee47f98cde7d7cca6c9ff69661dd26e611e4118",
+    "evidence/run-k_fx8p_z/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-k_fx8p_z/source-inputs.tar.gz": "88d0469413a175bb2ede29e803ee2977c467381822d2d89d6fd3c32d64bb89bf",
+    "evidence/controls-0h348ya1/report.json": "df341cf50ba0d44d8d38ed92e7ca17a362083acfdcb58c1e68eebc3e947e1471",
+    "evidence/controls-0h348ya1/script-input.py": "b51bca92e87ca896ef23831f66963c953d74cb3aab8f185afa646918f691b595",
+    "evidence/checks-lewb8_28/report.json": "6e2978bfbf1e40728da1958135aa07d16a7a961444da2c80a226800dfb026a6a",
+    "evidence/checks-lewb8_28/2.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/checks-lewb8_28/0.txt": "62ef40d7de5e6e5bfb76f0a44408ac714d37e2490aa8b60f399ed1fe155a846c",
+    "evidence/checks-lewb8_28/1.txt": "d541f2c2cb44916e485caefca140ccfdcadbbe989d7e480164f8fb2ac0770b82",
+    "evidence/checks-lewb8_28/source-inputs.tar.gz": "e3542597779dc6b32a46e447fbd92e6b51a98fc637544ef68808d879de25bdac",
+    "evidence/run-h0fp0wht/raw-outputs.tar.gz": "786efea55687dce3334826f3a11bf742ea47912b72587bb4f444d9bd0233c67e",
+    "evidence/run-h0fp0wht/report.json": "941f1b471406939a2def3c00c28ccda35217a63a2488ebd99f99a9a4c8e6e5cd",
+    "evidence/run-h0fp0wht/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-h0fp0wht/source-inputs.tar.gz": "b06a0f311a552db6121c43581ff35c4ad4dd5c031e908b1c236726a1b763bf3e",
+    "evidence/controls-snxckh1q/report.json": "cc14006492bcf9dc6e08dfb8dd8c3b6dca54c4533483457c6459aa00837d3ce9",
+    "evidence/controls-snxckh1q/script-input.py": "b51bca92e87ca896ef23831f66963c953d74cb3aab8f185afa646918f691b595",
+    "evidence/run-u_rzoxwd/raw-outputs.tar.gz": "3b96dae1a2551c1e30d8cd771bb7233e1b0072be88beb7996d451cb2adc34125",
+    "evidence/run-u_rzoxwd/report.json": "efa64f8b1a6c7b9cf49fd19e6435ed62b7c453244df368e9ba1d78d564c63851",
+    "evidence/run-u_rzoxwd/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-u_rzoxwd/source-inputs.tar.gz": "c43790b0d6917f6652f6c71db2e0843de7453f83501d80fd7c455624ef41107e",
+    "evidence/controls-jj0uczd6/report.json": "574f17124e96bec0c3a626e3a2ddc2dccdc2e9096476fa4574f56335bc44f576",
+    "evidence/controls-jj0uczd6/script-input.py": "b51bca92e87ca896ef23831f66963c953d74cb3aab8f185afa646918f691b595",
+    "evidence/checks-_v38izbe/report.json": "833514c492a563fa2bfb0497fa1bbc59e56ac9be411fc178de8064bee24158a8",
+    "evidence/checks-_v38izbe/0.txt": "dc04602990d5167c9d8e8fe8c2e5bbfa53f9aa08947a588a72e205e64cfee337",
+    "evidence/checks-_v38izbe/source-inputs.tar.gz": "f153120b55be2973c32e77a9ce43fd20bb6e4bc24136725b0641456ef4467ae8",
+    "evidence/run-2swi5d2j/raw-outputs.tar.gz": "e6f01c8b318bdb602428a56716670b9023fdd1f68baef2f85a5af3748c00a0ad",
+    "evidence/run-2swi5d2j/report.json": "332ebae895f3e8a07410979e1ed071b16a14076756f080aa06e3ccbb298329db",
+    "evidence/run-2swi5d2j/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-2swi5d2j/source-inputs.tar.gz": "e1e4bfb9f98c527b4d5610434da1127f650eec366dd1d271fcd81d7528397055",
+    "evidence/checks-8pb26kej/report.json": "bbe55529d7ca6e3c09d2742cfe53be74dadf4bc109634ec73b14a2233dcad5e7",
+    "evidence/checks-8pb26kej/0.txt": "64c802b11128209d0c22b92906f1029bcc8f273d9b6fda0932382e34a944e8a4",
+    "evidence/checks-8pb26kej/source-inputs.tar.gz": "535b4a3f3ea783f6f1bf24d93dd0fff95f19412c5cbb38787e73639997d43adb",
+    "evidence/run-nqs_tea3/raw-outputs.tar.gz": "b5edeec19f5a307deb392001a64f33ddab9c7e1bca35e9e24c6dbc4514163d13",
+    "evidence/run-nqs_tea3/report.json": "52488d0a0b932b5bc5bdf51f429563d258bebd2d550319c30b80853627b772bb",
+    "evidence/run-nqs_tea3/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-nqs_tea3/source-inputs.tar.gz": "398c0f9818a97176b484aa9cc2135d76b578562dbfe19b5f4f408db2af3515c3",
+    "evidence/run-g8h6lhsl/raw-outputs.tar.gz": "c0e38e44094b07428dde7ff98a29c5208db4c1aec32d4478e0188c2d33a3cd71",
+    "evidence/run-g8h6lhsl/report.json": "8718cabb310245b581a3124b73c0c395d2ea4b84e5e124faec5d6a230744a753",
+    "evidence/run-g8h6lhsl/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-g8h6lhsl/source-inputs.tar.gz": "881c24ae4a371f67e3ad86ce86ec61c240bcbe21db677a05d105ec4b6b3a6e45",
+    "evidence/run-cprlhbic/raw-outputs.tar.gz": "c87c20699ea585970eaf2a16827b3e900b1c46dfc899d41352dc0c19ccb81ce7",
+    "evidence/run-cprlhbic/report.json": "c897b9760e4ca0995ec67c96d00fd4fc16608bd5496951befed27bd7e7eb369e",
+    "evidence/run-cprlhbic/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-cprlhbic/source-inputs.tar.gz": "3f4916f02c07a0009854ca92075e0e032fe28861be40d813dfcd755916e54cd8",
+    "evidence/run-s4wp0ni5/raw-outputs.tar.gz": "34e3d43925fe986a4e4fe51dd194a8d42536cdac8a4ed50fb091b92e969bcd4c",
+    "evidence/run-s4wp0ni5/report.json": "c5276ea1ea6c0eb3135b55aafd8af06ca5e191b18981ea6afa4682f080086857",
+    "evidence/run-s4wp0ni5/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-s4wp0ni5/source-inputs.tar.gz": "9d2cd34a24950577686f33a5f7c995d872944f2765673b5ca92eabe393442d12",
+    "evidence/controls-jj0uczd6/old-painted-map/output.txt": "2d09cf6f57f72c5a24a02c47a44b634c3b59f87a9fb6226c1ac8dbaa6fda6dc8",
+    "evidence/controls-jj0uczd6/old-painted-map/mutated-source.txt": "c7cf01bb674b118183feceb42c65cfdf25309b6b37b7e37f90e5bc4ee5c488a1",
+    "evidence/controls-jj0uczd6/coast-identity/output.txt": "75df826396f97b8d1f910eb3340bc5e0cf37798eab642cd068ece2ae4a743a3b",
+    "evidence/controls-jj0uczd6/coast-identity/mutated-source.txt": "cc59425785368dde010261181ba2a2405c865ce799ab4f9f45ceda952a8f2a4b",
+    "evidence/controls-jj0uczd6/caption-reservations/output.txt": "c164a769aa57ffea8b493b0b0f2a0d892beee5a70125352e24c128a4e0388a37",
+    "evidence/controls-jj0uczd6/caption-reservations/mutated-source.txt": "dfbd169b916266e95136f9ad06bf6f9fce205ff7831c3b3bb66d9d96a73fe5f0",
+    "evidence/controls-jj0uczd6/caption-reservations/build.txt": "402b6c3602338142b8c879e1655dc2ee853e50adf4f8cac1846a975d8128bb7e",
+    "evidence/controls-jj0uczd6/label-outside-country/output.txt": "bf51f307cfdc332a90ad856c6ac812d0a522c97abe98dfc853f84b7131bdf6e1",
+    "evidence/controls-jj0uczd6/label-outside-country/mutated-source.txt": "224ff8e12c5bea9ec1ddeb09a0027cd8f0626953e4616da888933625dc12a34c",
+    "evidence/controls-jj0uczd6/canonical-star-positions/output.txt": "473a800c4f681afd9c48b30f6b1a98425ef1f1d07df1510078b9569c85aa1965",
+    "evidence/controls-jj0uczd6/canonical-star-positions/mutated-source.txt": "ac51203530a12b9fb0370da379772c251c627e3c9f7c53ebeed61f0be448b22f",
+    "evidence/controls-jj0uczd6/capture-port-inland/output.txt": "5596b638a56fc71c41bcc04fecd5c40dd0c17e27cc2bb5b3f649dcdceefc57e9",
+    "evidence/controls-jj0uczd6/capture-port-inland/mutated-source.txt": "f55a129d70f2f39d604d2e59e42056ed6f463316b3f21cdd13fc1acae83f5cb1",
+    "evidence/controls-jj0uczd6/stateful-construction/output.txt": "12ce11a97aeab2a0521fa3bd874b0a834043c4810713a49caa443feb1ec260c7",
+    "evidence/controls-jj0uczd6/stateful-construction/mutated-source.txt": "b92758ed7a81ffaffeb56e77dca8909d43abe6f1194617b626bd92516a38e453",
+    "evidence/controls-jj0uczd6/graph-metadata/output.txt": "590495f11db602361659d6218b1b90e1673b090b33901a3013e3b062fef85b56",
+    "evidence/controls-jj0uczd6/graph-metadata/mutated-source.txt": "7d2a9c1bebc8768889ed91de33a219b2678e85269305c54dba6fe6c5d64b9bfa",
+    "evidence/controls-jj0uczd6/originals/src/ui/referenceMapView.ts": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8",
+    "evidence/controls-jj0uczd6/originals/docs/prototypes/new-game/T64/layout.mjs": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+    "evidence/controls-jj0uczd6/originals/docs/prototypes/new-game/T64/board.json": "a2f8de1e46899c6330d3b370d2214d85251560d5236df66d37f4777ce1b75381",
+    "evidence/controls-jj0uczd6/originals/docs/prototypes/new-game/T64/map.svg": "6e2d4a8b5be7cff98e4f4bf10c7ea1e29e16aadcd21b2d456846e3ff42d47b8e",
+    "evidence/controls-jj0uczd6/originals/docs/prototypes/new-game/T64/preview.html": "2065af48a842b5357d41be4ef157f92013f8ecacf029ed8a6efdc6d710b18bc0",
+    "evidence/controls-jj0uczd6/originals/docs/prototypes/new-game/T64/render.mjs": "bab4f21bcdf380ecd47c10fab6a64af0235804e4f21e141b8592ac48d0bdb050",
+    "evidence/controls-jj0uczd6/caption-reservations/regenerated/board.json": "a2f8de1e46899c6330d3b370d2214d85251560d5236df66d37f4777ce1b75381",
+    "evidence/controls-jj0uczd6/caption-reservations/regenerated/layout-input.mjs": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+    "evidence/controls-jj0uczd6/caption-reservations/regenerated/report.json": "e24a8c2eb0e8eccba6f67dc221e991342a55cdc1380a490b8a61ad09e8dbcfe8",
+    "evidence/controls-jj0uczd6/caption-reservations/regenerated/map.svg": "105bfa7afaf0021f5dc34e569d4919e636ece01a18b650d1ef356a67f65d9323",
+    "evidence/controls-jj0uczd6/caption-reservations/regenerated/T63-board.json": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+    "evidence/controls-jj0uczd6/caption-reservations/regenerated/construct-input.mjs": "a0104c5ad20bae2ec2574baacd722296333d8fb1b1bb70f98f4c8d3a1c907381",
+    "evidence/controls-jj0uczd6/caption-reservations/regenerated/preview.html": "6fc2cb801da32cfe68727a5ca3b5e8556ca61b437df75a529334fba09734cb70",
+    "evidence/controls-jj0uczd6/caption-reservations/regenerated/render-input.mjs": "dfbd169b916266e95136f9ad06bf6f9fce205ff7831c3b3bb66d9d96a73fe5f0",
+    "evidence/controls-snxckh1q/old-painted-map/output.txt": "0e416056b17bc84142f1b1b2eda8db0c1b74501d81bbde2dfad9ad8675e1d699",
+    "evidence/controls-snxckh1q/old-painted-map/mutated-source.txt": "c7cf01bb674b118183feceb42c65cfdf25309b6b37b7e37f90e5bc4ee5c488a1",
+    "evidence/controls-snxckh1q/coast-identity/output.txt": "cdd7c578c4eb4f504eec417ac7461dc25b832360913b55914e445e63f1cf64ce",
+    "evidence/controls-snxckh1q/coast-identity/mutated-source.txt": "cc59425785368dde010261181ba2a2405c865ce799ab4f9f45ceda952a8f2a4b",
+    "evidence/controls-snxckh1q/caption-reservations/output.txt": "0ee4a6c2e99ec4f8f77aadf84403a378484b2bbc8669979eeb279cf7a771f86e",
+    "evidence/controls-snxckh1q/caption-reservations/mutated-source.txt": "dfbd169b916266e95136f9ad06bf6f9fce205ff7831c3b3bb66d9d96a73fe5f0",
+    "evidence/controls-snxckh1q/caption-reservations/build.txt": "ed361b3555bc7dd1ed123d90e7f5d370c3ebc0518c5fc33a8ae0296954c9e2cf",
+    "evidence/controls-snxckh1q/label-outside-country/output.txt": "b980bc8283b0417fd011bd0f65db4b53533f160fd5ae1211c4c3d170df4343a4",
+    "evidence/controls-snxckh1q/label-outside-country/mutated-source.txt": "224ff8e12c5bea9ec1ddeb09a0027cd8f0626953e4616da888933625dc12a34c",
+    "evidence/controls-snxckh1q/canonical-star-positions/output.txt": "a6a7d28ad268de03e1e9728c923b7c9750f8975f97bc0a14d71752a298e81cf0",
+    "evidence/controls-snxckh1q/canonical-star-positions/mutated-source.txt": "ac51203530a12b9fb0370da379772c251c627e3c9f7c53ebeed61f0be448b22f",
+    "evidence/controls-snxckh1q/capture-port-inland/output.txt": "a840ba825e7411c76e28e39d9d6239155f0aab7fe9674516a49189ac3f98dc8d",
+    "evidence/controls-snxckh1q/capture-port-inland/mutated-source.txt": "f55a129d70f2f39d604d2e59e42056ed6f463316b3f21cdd13fc1acae83f5cb1",
+    "evidence/controls-snxckh1q/stateful-construction/output.txt": "56eb0383639f2b5d4343ca14b6a54117ec8a2a24c34082983fc68379556c074a",
+    "evidence/controls-snxckh1q/stateful-construction/mutated-source.txt": "b92758ed7a81ffaffeb56e77dca8909d43abe6f1194617b626bd92516a38e453",
+    "evidence/controls-snxckh1q/graph-metadata/output.txt": "5c69e07f07eaee5588bcf0e089be6aaa4d54ff5b4c7bf57358e5a16e11a5a500",
+    "evidence/controls-snxckh1q/graph-metadata/mutated-source.txt": "7d2a9c1bebc8768889ed91de33a219b2678e85269305c54dba6fe6c5d64b9bfa",
+    "evidence/controls-snxckh1q/originals/src/ui/referenceMapView.ts": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8",
+    "evidence/controls-snxckh1q/originals/docs/prototypes/new-game/T64/layout.mjs": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+    "evidence/controls-snxckh1q/originals/docs/prototypes/new-game/T64/board.json": "a2f8de1e46899c6330d3b370d2214d85251560d5236df66d37f4777ce1b75381",
+    "evidence/controls-snxckh1q/originals/docs/prototypes/new-game/T64/map.svg": "6e2d4a8b5be7cff98e4f4bf10c7ea1e29e16aadcd21b2d456846e3ff42d47b8e",
+    "evidence/controls-snxckh1q/originals/docs/prototypes/new-game/T64/preview.html": "2065af48a842b5357d41be4ef157f92013f8ecacf029ed8a6efdc6d710b18bc0",
+    "evidence/controls-snxckh1q/originals/docs/prototypes/new-game/T64/render.mjs": "bab4f21bcdf380ecd47c10fab6a64af0235804e4f21e141b8592ac48d0bdb050",
+    "evidence/controls-snxckh1q/caption-reservations/regenerated/board.json": "a2f8de1e46899c6330d3b370d2214d85251560d5236df66d37f4777ce1b75381",
+    "evidence/controls-snxckh1q/caption-reservations/regenerated/layout-input.mjs": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+    "evidence/controls-snxckh1q/caption-reservations/regenerated/report.json": "f46e2b687b87806a87edde1622f98c32601ed8c8974457dd0ccdae75017c1385",
+    "evidence/controls-snxckh1q/caption-reservations/regenerated/map.svg": "105bfa7afaf0021f5dc34e569d4919e636ece01a18b650d1ef356a67f65d9323",
+    "evidence/controls-snxckh1q/caption-reservations/regenerated/T63-board.json": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+    "evidence/controls-snxckh1q/caption-reservations/regenerated/construct-input.mjs": "a0104c5ad20bae2ec2574baacd722296333d8fb1b1bb70f98f4c8d3a1c907381",
+    "evidence/controls-snxckh1q/caption-reservations/regenerated/preview.html": "6fc2cb801da32cfe68727a5ca3b5e8556ca61b437df75a529334fba09734cb70",
+    "evidence/controls-snxckh1q/caption-reservations/regenerated/render-input.mjs": "dfbd169b916266e95136f9ad06bf6f9fce205ff7831c3b3bb66d9d96a73fe5f0",
+    "evidence/controls-0h348ya1/coast-identity/output.txt": "2789adae27cac0f6dc14215a49444070825817ad031b23fde615def75e299c26",
+    "evidence/controls-0h348ya1/coast-identity/mutated-source.txt": "cc59425785368dde010261181ba2a2405c865ce799ab4f9f45ceda952a8f2a4b",
+    "evidence/controls-0h348ya1/label-outside-country/output.txt": "948bc2ae06b6a597d3c1ffc4355795f57eb48360b3d928c29b3cf43fee2ab6d0",
+    "evidence/controls-0h348ya1/label-outside-country/mutated-source.txt": "224ff8e12c5bea9ec1ddeb09a0027cd8f0626953e4616da888933625dc12a34c",
+    "evidence/controls-0h348ya1/graph-metadata/output.txt": "654862cd3d4013b1795458da42117f28325c4ee668274662e110b73d4dacbecf",
+    "evidence/controls-0h348ya1/graph-metadata/mutated-source.txt": "7d2a9c1bebc8768889ed91de33a219b2678e85269305c54dba6fe6c5d64b9bfa",
+    "evidence/controls-0h348ya1/originals/src/ui/referenceMapView.ts": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8",
+    "evidence/controls-0h348ya1/originals/docs/prototypes/new-game/T64/layout.mjs": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+    "evidence/controls-0h348ya1/originals/docs/prototypes/new-game/T64/board.json": "a2f8de1e46899c6330d3b370d2214d85251560d5236df66d37f4777ce1b75381",
+    "evidence/controls-0h348ya1/originals/docs/prototypes/new-game/T64/map.svg": "6e2d4a8b5be7cff98e4f4bf10c7ea1e29e16aadcd21b2d456846e3ff42d47b8e",
+    "evidence/controls-0h348ya1/originals/docs/prototypes/new-game/T64/preview.html": "2065af48a842b5357d41be4ef157f92013f8ecacf029ed8a6efdc6d710b18bc0",
+    "evidence/controls-0h348ya1/originals/docs/prototypes/new-game/T64/render.mjs": "bab4f21bcdf380ecd47c10fab6a64af0235804e4f21e141b8592ac48d0bdb050"
+  },
+  "archiveChecks": [
+    {
+      "report": "measured/evidence/checks-virnln2b/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "5e776eada5bcfe46662a3566fa8053f83893ef183ae70fd1029378eeb4164c8f",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0\n\n \u276f tests/ui/coast-postprocess.test.ts (5 tests | 2 failed) 7561ms\n   \u276f fixed-reference geographical coast contract (5)\n     \u00d7 changes all nine coast silhouettes and all countries while preserving the exact playable graph 332ms\n     \u00d7 retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints 1309ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,12 +1625,12 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n-         67.5,\n+         505.73828125,\n+         82,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n          [\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints\nAssertionError: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"labels: Hit square outside country/frame province_4\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/coast-postprocess.test.ts:29:27\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  11:54:20\n   Duration  7.78s (tests 98%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "224ff8e12c5bea9ec1ddeb09a0027cd8f0626953e4616da888933625dc12a34c"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-unhu_0pw/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "fd477c7b8ab736c616623aae2c0b33a5cc17e90eebbdd02c7ec0872a9de1507e",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0\n\n \u276f tests/ui/coast-postprocess.test.ts (5 tests | 2 failed) 7549ms\n   \u276f fixed-reference geographical coast contract (5)\n     \u00d7 changes all nine coast silhouettes and all countries while preserving the exact playable graph 298ms\n     \u00d7 retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints 1255ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -4682,12 +4682,12 @@\n    \"routes\": [\n      {\n        \"from\": \"province_43\",\n        \"points\": [\n          [\n-           278.62890625,\n-           87,\n+           238.5,\n+           74,\n          ],\n          [\n            317.9111328125,\n            87.90283203125,\n          ],\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints\nAssertionError: expected { \u2026(4) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n-   \"attachment\": [],\n+   \"attachment\": [\n+     \"Endpoint not on intended exposed coast province_43\",\n+   ],\n    \"preserved\": [],\n    \"traceability\": [],\n-   \"water\": [],\n+   \"water\": [\n+     \"Route endpoint lies inside a country\",\n+   ],\n  }\n\n \u276f tests/ui/coast-postprocess.test.ts:29:27\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  11:54:41\n   Duration  7.76s (tests 99%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "f55a129d70f2f39d604d2e59e42056ed6f463316b3f21cdd13fc1acae83f5cb1"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-7jd0fkzu/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "3e3e56caee17d5f547a9da7745c8bdd7064f168bec0526e39a37a95108de692a",
+          "tail": "ts/ui/coast-postprocess.test.ts:16:29\n     14|  it(\"changes all nine coast silhouettes and all countries while preser\u2026\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n       |                             ^\n     17|   expect(result).toEqual(target);\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints\nAssertionError: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"symmetry: Invalid/asymmetric borders province_30/province_4\",\n+     \"symmetry: Invalid/asymmetric borders province_8/province_4\",\n+     \"connectivity: Island land disconnected island_0\",\n+     \"degree: Degree province_4=1\",\n+     \"borders: Declared/shared boundary mismatch province_4\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/coast-postprocess.test.ts:29:27\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > ownership, army sizes and live production flags do not influence geography or lose metadata\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -117,14 +117,11 @@\n      },\n    ],\n    \"provinces\": [\n      {\n        \"armies\": 143,\n-       \"borders\": [\n-         \"province_30\",\n-         \"province_8\",\n-       ],\n+       \"borders\": [],\n        \"countContrast\": 4.5,\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n\n \u276f tests/ui/coast-postprocess.test.ts:35:29\n     33|   const varied=structuredClone(input);for(const[j,p]of varied.province\u2026\n     34|   const base=coastPostprocess(input),output=coastPostprocess(varied);\n     35|   expect(semantics(output)).toEqual(semantics(varied));\n       |                             ^\n     36|   expect(output.provinces.map(p=>[p.id,p.polygon,p.labelAt])).toEqual(\u2026\n     37|   expect(output.islands).toEqual(base.islands);expect(output.routes).t\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[3/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > leaves approved T22 and canonical T63 reference files immutable\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -117,14 +117,11 @@\n      },\n    ],\n    \"provinces\": [\n      {\n        \"armies\": 2,\n-       \"borders\": [\n-         \"province_30\",\n-         \"province_8\",\n-       ],\n+       \"borders\": [],\n        \"countContrast\": 4.5,\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n\n \u276f tests/ui/coast-postprocess.test.ts:43:46\n     41|   expect(sha(\"../../docs/prototypes/map-1994/preview.html\")).toBe(\"941\u2026\n     42|   expect(sha(\"../../docs/prototypes/new-game/T63/board.json\")).toBe(\"e\u2026\n     43|   expect(semantics(coastPostprocess(input))).toEqual(semantics(input));\n       |                                              ^\n     44|  },20000);\n     45| });\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[4/4]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  4 failed | 1 passed (5)\n   Start at  11:55:39\n   Duration  7.87s (tests 98%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "7d2a9c1bebc8768889ed91de33a219b2678e85269305c54dba6fe6c5d64b9bfa"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-wyjd3cin/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "500b79270df5504dbe63dc85066842fc7448fbee9276e3aa68d8bee23d74f4ad",
+          "tail": " coast contract (5)\n     \u00d7 changes all nine coast silhouettes and all countries while preserving the exact playable graph 303ms\n     \u00d7 same frozen input and seed reproduce identical geometry without mutating canonical map bytes 2296ms\n     \u00d7 ownership, army sizes and live production flags do not influence geography or lose metadata 2376ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 3 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1632,11 +1632,11 @@\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n          [\n-           327.9755859375,\n+           327.9765625,\n            60.34765625,\n          ],\n          [\n            334.369140625,\n            50.3310546875,\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/3]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > same frozen input and seed reproduce identical geometry without mutating canonical map bytes\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1632,11 +1632,11 @@\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n          [\n-           327.9765625,\n+           327.9755859375,\n            60.34765625,\n          ],\n          [\n            334.369140625,\n            50.3310546875,\n\n \u276f tests/ui/coast-postprocess.test.ts:25:17\n     23|   const source=structuredClone(input),bytes=JSON.stringify(source);fre\u2026\n     24|   const first=coastPostprocess(source),second=coastPostprocess(source);\n     25|   expect(first).toEqual(second);expect(JSON.stringify(source)).toBe(by\u2026\n       |                 ^\n     26|  },30000);\n     27|  it(\"retains unchanged T62 subdivision, exact contacts, landing, water\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/3]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > ownership, army sizes and live production flags do not influence geography or lose metadata\nAssertionError: expected [ [ 'province_4', \u2026(2) ], \u2026(45) ] to deeply equal [ \u2026(46) ]\n\n- Expected\n+ Received\n\n@@ -1,11 +1,11 @@\n  [\n    [\n      \"province_4\",\n      [\n        [\n-         327.9765625,\n+         327.9755859375,\n          60.34765625,\n        ],\n        [\n          334.369140625,\n          50.3310546875,\n\n \u276f tests/ui/coast-postprocess.test.ts:36:63\n     34|   const base=coastPostprocess(input),output=coastPostprocess(varied);\n     35|   expect(semantics(output)).toEqual(semantics(varied));\n     36|   expect(output.provinces.map(p=>[p.id,p.polygon,p.labelAt])).toEqual(\u2026\n       |                                                               ^\n     37|   expect(output.islands).toEqual(base.islands);expect(output.routes).t\u2026\n     38|  },30000);\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[3/3]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  3 failed | 2 passed (5)\n   Start at  11:56:04\n   Duration  7.69s (tests 99%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "b92758ed7a81ffaffeb56e77dca8909d43abe6f1194617b626bd92516a38e453"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-ry8hz9v3/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exit": 0,
+          "output": "0.txt",
+          "sha256": "66f25379db681d8c726e08ca453a07dbc8ec9d84cc8c4f524d4121251b8b78ae",
+          "tail": "\n> malpaco-spike-ts@0.0.0 test\n> vitest run\n\n\n RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0\n\n\n Test Files  40 passed (40)\n      Tests  588 passed (588)\n   Start at  11:47:44\n   Duration  12.15s (tests 70%, transform 24%, import 5%, worker 1%)\n\n"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "output": "1.txt",
+          "sha256": "dc39c35be661b9a1b45186b63dbc542d9cb6d1fd7d9a59b5d6305decb6b04487",
+          "tail": "\n> malpaco-spike-ts@0.0.0 build\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n\u2713 50 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.64 kB \u2502 gzip:  0.42 kB\ndist/assets/index-D71XpoA_.css   24.37 kB \u2502 gzip:  6.02 kB\ndist/assets/index-CoOvqv6G.js   201.28 kB \u2502 gzip: 51.34 kB\n\n\u2713 built in 103ms\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit": 0,
+          "output": "2.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "tail": ""
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {},
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-seyk506s/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "8cd9440a9b9abd96f34136b994672ccc53dc10f0c349ae25d49fcbfe734e86ca",
+          "tail": " coast contract (5)\n     \u00d7 changes all nine coast silhouettes and all countries while preserving the exact playable graph 288ms\n     \u00d7 same frozen input and seed reproduce identical geometry without mutating canonical map bytes 2281ms\n     \u00d7 ownership, army sizes and live production flags do not influence geography or lose metadata 2258ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 3 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1632,11 +1632,11 @@\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n          [\n-           327.9755859375,\n+           327.9765625,\n            60.34765625,\n          ],\n          [\n            334.369140625,\n            50.3310546875,\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/3]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > same frozen input and seed reproduce identical geometry without mutating canonical map bytes\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1632,11 +1632,11 @@\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n          [\n-           327.9765625,\n+           327.9755859375,\n            60.34765625,\n          ],\n          [\n            334.369140625,\n            50.3310546875,\n\n \u276f tests/ui/coast-postprocess.test.ts:25:17\n     23|   const source=structuredClone(input),bytes=JSON.stringify(source);fre\u2026\n     24|   const first=coastPostprocess(source),second=coastPostprocess(source);\n     25|   expect(first).toEqual(second);expect(JSON.stringify(source)).toBe(by\u2026\n       |                 ^\n     26|  },30000);\n     27|  it(\"retains unchanged T62 subdivision, exact contacts, landing, water\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/3]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > ownership, army sizes and live production flags do not influence geography or lose metadata\nAssertionError: expected [ [ 'province_4', \u2026(2) ], \u2026(45) ] to deeply equal [ \u2026(46) ]\n\n- Expected\n+ Received\n\n@@ -1,11 +1,11 @@\n  [\n    [\n      \"province_4\",\n      [\n        [\n-         327.9765625,\n+         327.9755859375,\n          60.34765625,\n        ],\n        [\n          334.369140625,\n          50.3310546875,\n\n \u276f tests/ui/coast-postprocess.test.ts:36:63\n     34|   const base=coastPostprocess(input),output=coastPostprocess(varied);\n     35|   expect(semantics(output)).toEqual(semantics(varied));\n     36|   expect(output.provinces.map(p=>[p.id,p.polygon,p.labelAt])).toEqual(\u2026\n       |                                                               ^\n     37|   expect(output.islands).toEqual(base.islands);expect(output.routes).t\u2026\n     38|  },30000);\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[3/3]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  3 failed | 2 passed (5)\n   Start at  11:54:57\n   Duration  7.48s (tests 98%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "b92758ed7a81ffaffeb56e77dca8909d43abe6f1194617b626bd92516a38e453"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-iyqwv6ih/report.json",
+      "exit": 1,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/map.svg": "105bfa7afaf0021f5dc34e569d4919e636ece01a18b650d1ef356a67f65d9323",
+        "docs/prototypes/new-game/T64/preview.html": "6fc2cb801da32cfe68727a5ca3b5e8556ca61b437df75a529334fba09734cb70",
+        "docs/prototypes/new-game/T64/render.mjs": "dfbd169b916266e95136f9ad06bf6f9fce205ff7831c3b3bb66d9d96a73fe5f0"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-a06f_x6k/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "f64c1ccf57ff9225c377c1a77f4947ae0d4e1b3503ce1ce05d360a510b2cbb42",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0\n\n \u276f tests/ui/coast-postprocess.test.ts (5 tests | 2 failed) 7105ms\n   \u276f fixed-reference geographical coast contract (5)\n     \u00d7 changes all nine coast silhouettes and all countries while preserving the exact playable graph 295ms\n     \u00d7 retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints 1210ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,12 +1625,12 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n-         67.5,\n+         505.73828125,\n+         82,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n          [\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints\nAssertionError: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"labels: Hit square outside country/frame province_4\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/coast-postprocess.test.ts:29:27\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  11:54:49\n   Duration  7.30s (tests 99%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "224ff8e12c5bea9ec1ddeb09a0027cd8f0626953e4616da888933625dc12a34c"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-m1hyczvz/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "70ddb73b850a30070dd669d5d93a89218c1407abdd8fb26d97758f20d930faac",
+          "tail": "     [\n-           137.7890625,\n-           291.60888671875,\n+           132.7166748046875,\n+           312,\n          ],\n          [\n-           156.2255859375,\n-           299.36474609375,\n+           132.7005615234375,\n+           336,\n          ],\n        ],\n        \"to\": \"province_10\",\n      },\n      {\n        \"from\": \"province_8\",\n        \"points\": [\n          [\n-           410,\n-           148.63671875,\n+           432.12548828125,\n+           143.98681640625,\n          ],\n          [\n-           399.689453125,\n-           166.5849609375,\n+           432.464599609375,\n+           184,\n          ],\n        ],\n        \"to\": \"province_19\",\n      },\n      {\n        \"from\": \"province_1\",\n        \"points\": [\n          [\n-           369.7392578125,\n-           295.2666015625,\n+           363.70556640625,\n+           311.1689453125,\n          ],\n          [\n-           365.328125,\n-           335.1552734375,\n+           362.458984375,\n+           336.964599609375,\n          ],\n        ],\n        \"to\": \"province_34\",\n      },\n      {\n        \"from\": \"province_45\",\n        \"points\": [\n          [\n-           663.95703125,\n-           145.873046875,\n+           679.256591796875,\n+           143.899658203125,\n          ],\n          [\n-           648.66943359375,\n-           181.06591796875,\n+           678.2099609375,\n+           184,\n          ],\n        ],\n        \"to\": \"province_24\",\n      },\n      {\n        \"from\": \"province_29\",\n        \"points\": [\n          [\n-           648.23388671875,\n-           295.5791015625,\n+           649.2630615234375,\n+           311.716064453125,\n          ],\n          [\n-           664.7626953125,\n-           336.2109375,\n+           654.2763671875,\n+           338.54345703125,\n          ],\n        ],\n        \"to\": \"province_11\",\n      },\n      {\n        \"from\": \"province_5\",\n        \"points\": [\n          [\n-           280.3671875,\n-           408.953125,\n+           263.3740234375,\n+           403.99072265625,\n          ],\n          [\n-           299.974609375,\n-           401.373046875,\n+           297.462890625,\n+           404.271484375,\n          ],\n        ],\n        \"to\": \"province_39\",\n      },\n      {\n        \"from\": \"province_3\",\n        \"points\": [\n          [\n-           429.81298828125,\n-           298.7060546875,\n+           437.050048828125,\n+           312,\n          ],\n          [\n-           432.6337890625,\n-           335.87890625,\n+           437.3515625,\n+           336,\n          ],\n        ],\n        \"to\": \"province_7\",\n      },\n      {\n        \"from\": \"province_13\",\n        \"points\": [\n          [\n-           781.21435546875,\n-           264.51416015625,\n+           728.7369384765625,\n+           311.716064453125,\n          ],\n          [\n-           763.83984375,\n-           344.5595703125,\n+           728.064453125,\n+           336.05224609375,\n          ],\n        ],\n        \"to\": \"province_31\",\n      },\n    ],\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 4 passed (5)\n   Start at  11:55:37\n   Duration  577ms (tests 71%, transform 22%, import 5%, worker 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "cc59425785368dde010261181ba2a2405c865ce799ab4f9f45ceda952a8f2a4b"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-v80s_g1t/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "37ba2ef92af5ec1b1829af6acff6de79c064575d7184b457489234fee5c42493",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0\n\n \u276f tests/ui/coast-postprocess.test.ts (5 tests | 2 failed) 7433ms\n   \u276f fixed-reference geographical coast contract (5)\n     \u00d7 changes all nine coast silhouettes and all countries while preserving the exact playable graph 304ms\n     \u00d7 retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints 1254ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,12 +1625,12 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n-         67.5,\n+         505.73828125,\n+         82,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n          [\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints\nAssertionError: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"labels: Hit square outside country/frame province_4\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/coast-postprocess.test.ts:29:27\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  11:55:56\n   Duration  7.67s (tests 98%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "224ff8e12c5bea9ec1ddeb09a0027cd8f0626953e4616da888933625dc12a34c"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-7mr_ekhs/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "e9d3fe411e79e66e6f7fc4367b8f0dfb5cb86487e08bb3fc7b562f27714c2924",
+          "tail": "     [\n-           137.7890625,\n-           291.60888671875,\n+           132.7166748046875,\n+           312,\n          ],\n          [\n-           156.2255859375,\n-           299.36474609375,\n+           132.7005615234375,\n+           336,\n          ],\n        ],\n        \"to\": \"province_10\",\n      },\n      {\n        \"from\": \"province_8\",\n        \"points\": [\n          [\n-           410,\n-           148.63671875,\n+           432.12548828125,\n+           143.98681640625,\n          ],\n          [\n-           399.689453125,\n-           166.5849609375,\n+           432.464599609375,\n+           184,\n          ],\n        ],\n        \"to\": \"province_19\",\n      },\n      {\n        \"from\": \"province_1\",\n        \"points\": [\n          [\n-           369.7392578125,\n-           295.2666015625,\n+           363.70556640625,\n+           311.1689453125,\n          ],\n          [\n-           365.328125,\n-           335.1552734375,\n+           362.458984375,\n+           336.964599609375,\n          ],\n        ],\n        \"to\": \"province_34\",\n      },\n      {\n        \"from\": \"province_45\",\n        \"points\": [\n          [\n-           663.95703125,\n-           145.873046875,\n+           679.256591796875,\n+           143.899658203125,\n          ],\n          [\n-           648.66943359375,\n-           181.06591796875,\n+           678.2099609375,\n+           184,\n          ],\n        ],\n        \"to\": \"province_24\",\n      },\n      {\n        \"from\": \"province_29\",\n        \"points\": [\n          [\n-           648.23388671875,\n-           295.5791015625,\n+           649.2630615234375,\n+           311.716064453125,\n          ],\n          [\n-           664.7626953125,\n-           336.2109375,\n+           654.2763671875,\n+           338.54345703125,\n          ],\n        ],\n        \"to\": \"province_11\",\n      },\n      {\n        \"from\": \"province_5\",\n        \"points\": [\n          [\n-           280.3671875,\n-           408.953125,\n+           263.3740234375,\n+           403.99072265625,\n          ],\n          [\n-           299.974609375,\n-           401.373046875,\n+           297.462890625,\n+           404.271484375,\n          ],\n        ],\n        \"to\": \"province_39\",\n      },\n      {\n        \"from\": \"province_3\",\n        \"points\": [\n          [\n-           429.81298828125,\n-           298.7060546875,\n+           437.050048828125,\n+           312,\n          ],\n          [\n-           432.6337890625,\n-           335.87890625,\n+           437.3515625,\n+           336,\n          ],\n        ],\n        \"to\": \"province_7\",\n      },\n      {\n        \"from\": \"province_13\",\n        \"points\": [\n          [\n-           781.21435546875,\n-           264.51416015625,\n+           728.7369384765625,\n+           311.716064453125,\n          ],\n          [\n-           763.83984375,\n-           344.5595703125,\n+           728.064453125,\n+           336.05224609375,\n          ],\n        ],\n        \"to\": \"province_31\",\n      },\n    ],\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 4 passed (5)\n   Start at  11:54:31\n   Duration  497ms (tests 72%, transform 23%, import 5%, worker 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "cc59425785368dde010261181ba2a2405c865ce799ab4f9f45ceda952a8f2a4b"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-to16i2b8/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "a9eb51e4d4460c8eaf1297e18a8469f5e8c91560c3b48c64b853a30dfd9bfa5e",
+          "tail": "     [\n-           137.7890625,\n-           291.60888671875,\n+           132.7166748046875,\n+           312,\n          ],\n          [\n-           156.2255859375,\n-           299.36474609375,\n+           132.7005615234375,\n+           336,\n          ],\n        ],\n        \"to\": \"province_10\",\n      },\n      {\n        \"from\": \"province_8\",\n        \"points\": [\n          [\n-           410,\n-           148.63671875,\n+           432.12548828125,\n+           143.98681640625,\n          ],\n          [\n-           399.689453125,\n-           166.5849609375,\n+           432.464599609375,\n+           184,\n          ],\n        ],\n        \"to\": \"province_19\",\n      },\n      {\n        \"from\": \"province_1\",\n        \"points\": [\n          [\n-           369.7392578125,\n-           295.2666015625,\n+           363.70556640625,\n+           311.1689453125,\n          ],\n          [\n-           365.328125,\n-           335.1552734375,\n+           362.458984375,\n+           336.964599609375,\n          ],\n        ],\n        \"to\": \"province_34\",\n      },\n      {\n        \"from\": \"province_45\",\n        \"points\": [\n          [\n-           663.95703125,\n-           145.873046875,\n+           679.256591796875,\n+           143.899658203125,\n          ],\n          [\n-           648.66943359375,\n-           181.06591796875,\n+           678.2099609375,\n+           184,\n          ],\n        ],\n        \"to\": \"province_24\",\n      },\n      {\n        \"from\": \"province_29\",\n        \"points\": [\n          [\n-           648.23388671875,\n-           295.5791015625,\n+           649.2630615234375,\n+           311.716064453125,\n          ],\n          [\n-           664.7626953125,\n-           336.2109375,\n+           654.2763671875,\n+           338.54345703125,\n          ],\n        ],\n        \"to\": \"province_11\",\n      },\n      {\n        \"from\": \"province_5\",\n        \"points\": [\n          [\n-           280.3671875,\n-           408.953125,\n+           263.3740234375,\n+           403.99072265625,\n          ],\n          [\n-           299.974609375,\n-           401.373046875,\n+           297.462890625,\n+           404.271484375,\n          ],\n        ],\n        \"to\": \"province_39\",\n      },\n      {\n        \"from\": \"province_3\",\n        \"points\": [\n          [\n-           429.81298828125,\n-           298.7060546875,\n+           437.050048828125,\n+           312,\n          ],\n          [\n-           432.6337890625,\n-           335.87890625,\n+           437.3515625,\n+           336,\n          ],\n        ],\n        \"to\": \"province_7\",\n      },\n      {\n        \"from\": \"province_13\",\n        \"points\": [\n          [\n-           781.21435546875,\n-           264.51416015625,\n+           728.7369384765625,\n+           311.716064453125,\n          ],\n          [\n-           763.83984375,\n-           344.5595703125,\n+           728.064453125,\n+           336.05224609375,\n          ],\n        ],\n        \"to\": \"province_31\",\n      },\n    ],\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 4 passed (5)\n   Start at  11:54:10\n   Duration  484ms (tests 69%, transform 24%, import 6%, worker 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "cc59425785368dde010261181ba2a2405c865ce799ab4f9f45ceda952a8f2a4b"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-v_kw3pqf/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "fbb99eee858a0bf3b030124c43e352aac57dafb71396397b342a77a2c96d1fe0",
+          "tail": "ts/ui/coast-postprocess.test.ts:16:29\n     14|  it(\"changes all nine coast silhouettes and all countries while preser\u2026\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n       |                             ^\n     17|   expect(result).toEqual(target);\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints\nAssertionError: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"symmetry: Invalid/asymmetric borders province_30/province_4\",\n+     \"symmetry: Invalid/asymmetric borders province_8/province_4\",\n+     \"connectivity: Island land disconnected island_0\",\n+     \"degree: Degree province_4=1\",\n+     \"borders: Declared/shared boundary mismatch province_4\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/coast-postprocess.test.ts:29:27\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > ownership, army sizes and live production flags do not influence geography or lose metadata\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -117,14 +117,11 @@\n      },\n    ],\n    \"provinces\": [\n      {\n        \"armies\": 143,\n-       \"borders\": [\n-         \"province_30\",\n-         \"province_8\",\n-       ],\n+       \"borders\": [],\n        \"countContrast\": 4.5,\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n\n \u276f tests/ui/coast-postprocess.test.ts:35:29\n     33|   const varied=structuredClone(input);for(const[j,p]of varied.province\u2026\n     34|   const base=coastPostprocess(input),output=coastPostprocess(varied);\n     35|   expect(semantics(output)).toEqual(semantics(varied));\n       |                             ^\n     36|   expect(output.provinces.map(p=>[p.id,p.polygon,p.labelAt])).toEqual(\u2026\n     37|   expect(output.islands).toEqual(base.islands);expect(output.routes).t\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[3/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > leaves approved T22 and canonical T63 reference files immutable\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -117,14 +117,11 @@\n      },\n    ],\n    \"provinces\": [\n      {\n        \"armies\": 2,\n-       \"borders\": [\n-         \"province_30\",\n-         \"province_8\",\n-       ],\n+       \"borders\": [],\n        \"countContrast\": 4.5,\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n\n \u276f tests/ui/coast-postprocess.test.ts:43:46\n     41|   expect(sha(\"../../docs/prototypes/map-1994/preview.html\")).toBe(\"941\u2026\n     42|   expect(sha(\"../../docs/prototypes/new-game/T63/board.json\")).toBe(\"e\u2026\n     43|   expect(semantics(coastPostprocess(input))).toEqual(semantics(input));\n       |                                              ^\n     44|  },20000);\n     45| });\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[4/4]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  4 failed | 1 passed (5)\n   Start at  11:54:11\n   Duration  7.92s (tests 98%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "7d2a9c1bebc8768889ed91de33a219b2678e85269305c54dba6fe6c5d64b9bfa"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-k_fx8p_z/report.json",
+      "exit": 1,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {
+        "src/ui/referenceMapView.ts": "c7cf01bb674b118183feceb42c65cfdf25309b6b37b7e37f90e5bc4ee5c488a1"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-lewb8_28/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exit": 0,
+          "output": "0.txt",
+          "sha256": "62ef40d7de5e6e5bfb76f0a44408ac714d37e2490aa8b60f399ed1fe155a846c",
+          "tail": "\n> malpaco-spike-ts@0.0.0 test\n> vitest run\n\n\n RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0\n\n\n Test Files  40 passed (40)\n      Tests  588 passed (588)\n   Start at  11:48:00\n   Duration  11.80s (tests 69%, transform 25%, import 5%, worker 1%)\n\n  Transform  transforming modules took 11.31s \u00b7 25% of tracked time, re-done on every run\n             persist transforms across runs with fsModuleCache: true\n             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns\n\n"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "output": "1.txt",
+          "sha256": "d541f2c2cb44916e485caefca140ccfdcadbbe989d7e480164f8fb2ac0770b82",
+          "tail": "\n> malpaco-spike-ts@0.0.0 build\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n\u2713 50 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.64 kB \u2502 gzip:  0.42 kB\ndist/assets/index-D71XpoA_.css   24.37 kB \u2502 gzip:  6.02 kB\ndist/assets/index-CoOvqv6G.js   201.28 kB \u2502 gzip: 51.34 kB\n\n\u2713 built in 107ms\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit": 0,
+          "output": "2.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "tail": ""
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {},
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-h0fp0wht/report.json",
+      "exit": 1,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {
+        "src/ui/referenceMapView.ts": "ac51203530a12b9fb0370da379772c251c627e3c9f7c53ebeed61f0be448b22f"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-u_rzoxwd/report.json",
+      "exit": 1,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/map.svg": "105bfa7afaf0021f5dc34e569d4919e636ece01a18b650d1ef356a67f65d9323",
+        "docs/prototypes/new-game/T64/preview.html": "6fc2cb801da32cfe68727a5ca3b5e8556ca61b437df75a529334fba09734cb70",
+        "docs/prototypes/new-game/T64/render.mjs": "dfbd169b916266e95136f9ad06bf6f9fce205ff7831c3b3bb66d9d96a73fe5f0"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-_v38izbe/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "dc04602990d5167c9d8e8fe8c2e5bbfa53f9aa08947a588a72e205e64cfee337",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0\n\n \u276f tests/ui/coast-postprocess.test.ts (5 tests | 2 failed) 7552ms\n   \u276f fixed-reference geographical coast contract (5)\n     \u00d7 changes all nine coast silhouettes and all countries while preserving the exact playable graph 284ms\n     \u00d7 retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints 1250ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -4682,12 +4682,12 @@\n    \"routes\": [\n      {\n        \"from\": \"province_43\",\n        \"points\": [\n          [\n-           278.62890625,\n-           87,\n+           238.5,\n+           74,\n          ],\n          [\n            317.9111328125,\n            87.90283203125,\n          ],\n\n \u276f tests/ui/coast-postprocess.test.ts:17:18\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n     17|   expect(result).toEqual(target);\n       |                  ^\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n     19|   for(const country of input.provinces)expect(result.provinces.find(p=\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints\nAssertionError: expected { \u2026(4) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n-   \"attachment\": [],\n+   \"attachment\": [\n+     \"Endpoint not on intended exposed coast province_43\",\n+   ],\n    \"preserved\": [],\n    \"traceability\": [],\n-   \"water\": [],\n+   \"water\": [\n+     \"Route endpoint lies inside a country\",\n+   ],\n  }\n\n \u276f tests/ui/coast-postprocess.test.ts:29:27\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  11:55:47\n   Duration  7.76s (tests 98%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "f55a129d70f2f39d604d2e59e42056ed6f463316b3f21cdd13fc1acae83f5cb1"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-2swi5d2j/report.json",
+      "exit": 0,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {},
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-8pb26kej/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/coast-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "64c802b11128209d0c22b92906f1029bcc8f273d9b6fda0932382e34a944e8a4",
+          "tail": "ts/ui/coast-postprocess.test.ts:16:29\n     14|  it(\"changes all nine coast silhouettes and all countries while preser\u2026\n     15|   const result=coastPostprocess(input);\n     16|   expect(semantics(result)).toEqual(semantics(input));\n       |                             ^\n     17|   expect(result).toEqual(target);\n     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints\nAssertionError: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"symmetry: Invalid/asymmetric borders province_30/province_4\",\n+     \"symmetry: Invalid/asymmetric borders province_8/province_4\",\n+     \"connectivity: Island land disconnected island_0\",\n+     \"degree: Degree province_4=1\",\n+     \"borders: Declared/shared boundary mismatch province_4\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/coast-postprocess.test.ts:29:27\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > ownership, army sizes and live production flags do not influence geography or lose metadata\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -117,14 +117,11 @@\n      },\n    ],\n    \"provinces\": [\n      {\n        \"armies\": 143,\n-       \"borders\": [\n-         \"province_30\",\n-         \"province_8\",\n-       ],\n+       \"borders\": [],\n        \"countContrast\": 4.5,\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n\n \u276f tests/ui/coast-postprocess.test.ts:35:29\n     33|   const varied=structuredClone(input);for(const[j,p]of varied.province\u2026\n     34|   const base=coastPostprocess(input),output=coastPostprocess(varied);\n     35|   expect(semantics(output)).toEqual(semantics(varied));\n       |                             ^\n     36|   expect(output.provinces.map(p=>[p.id,p.polygon,p.labelAt])).toEqual(\u2026\n     37|   expect(output.islands).toEqual(base.islands);expect(output.routes).t\u2026\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[3/4]\u23af\n\n FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > leaves approved T22 and canonical T63 reference files immutable\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -117,14 +117,11 @@\n      },\n    ],\n    \"provinces\": [\n      {\n        \"armies\": 2,\n-       \"borders\": [\n-         \"province_30\",\n-         \"province_8\",\n-       ],\n+       \"borders\": [],\n        \"countContrast\": 4.5,\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n\n \u276f tests/ui/coast-postprocess.test.ts:43:46\n     41|   expect(sha(\"../../docs/prototypes/map-1994/preview.html\")).toBe(\"941\u2026\n     42|   expect(sha(\"../../docs/prototypes/new-game/T63/board.json\")).toBe(\"e\u2026\n     43|   expect(semantics(coastPostprocess(input))).toEqual(semantics(input));\n       |                                              ^\n     44|  },20000);\n     45| });\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[4/4]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  4 failed | 1 passed (5)\n   Start at  11:54:32\n   Duration  7.87s (tests 99%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T64/layout.mjs": "7d2a9c1bebc8768889ed91de33a219b2678e85269305c54dba6fe6c5d64b9bfa"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-nqs_tea3/report.json",
+      "exit": 0,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {},
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-g8h6lhsl/report.json",
+      "exit": 1,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {
+        "src/ui/referenceMapView.ts": "ac51203530a12b9fb0370da379772c251c627e3c9f7c53ebeed61f0be448b22f"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-cprlhbic/report.json",
+      "exit": 0,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {},
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-s4wp0ni5/report.json",
+      "exit": 1,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {
+        "src/ui/referenceMapView.ts": "c7cf01bb674b118183feceb42c65cfdf25309b6b37b7e37f90e5bc4ee5c488a1"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    }
+  ],
+  "interruptedRawArchived": [],
+  "completeLocalRetention": "/home/diego/projects/malpaco/.cache/t64-review-retained/147-review-cd8647b0"
+}

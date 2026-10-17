@@ -1,0 +1,326 @@
+{
+  "source": "immutable T63",
+  "purpose": "fixed-graph dual geographical feasibility; not installed",
+  "results": [
+    {
+      "spread": 0.02,
+      "missingReservations": [],
+      "routing": [
+        {
+          "from": "province_43",
+          "to": "province_4",
+          "found": true,
+          "candidates": 504
+        },
+        {
+          "from": "province_8",
+          "to": "province_38",
+          "found": true,
+          "candidates": 1296
+        },
+        {
+          "from": "province_2",
+          "to": "province_1",
+          "found": true,
+          "candidates": 740
+        },
+        {
+          "from": "province_19",
+          "to": "province_24",
+          "found": true,
+          "candidates": 420
+        },
+        {
+          "from": "province_12",
+          "to": "province_34",
+          "found": true,
+          "candidates": 98
+        },
+        {
+          "from": "province_44",
+          "to": "province_11",
+          "found": true,
+          "candidates": 216
+        },
+        {
+          "from": "province_18",
+          "to": "province_2",
+          "found": true,
+          "candidates": 518
+        },
+        {
+          "from": "province_16",
+          "to": "province_10",
+          "found": true,
+          "candidates": 449
+        },
+        {
+          "from": "province_8",
+          "to": "province_19",
+          "found": true,
+          "candidates": 756
+        },
+        {
+          "from": "province_1",
+          "to": "province_34",
+          "found": true,
+          "candidates": 140
+        },
+        {
+          "from": "province_45",
+          "to": "province_24",
+          "found": true,
+          "candidates": 720
+        },
+        {
+          "from": "province_29",
+          "to": "province_11",
+          "found": true,
+          "candidates": 720
+        },
+        {
+          "from": "province_5",
+          "to": "province_39",
+          "found": true,
+          "candidates": 78
+        },
+        {
+          "from": "province_3",
+          "to": "province_7",
+          "found": true,
+          "candidates": 84
+        },
+        {
+          "from": "province_13",
+          "to": "province_31",
+          "found": true,
+          "candidates": 703
+        }
+      ],
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "accepted": true
+    },
+    {
+      "spread": 0.04,
+      "missingReservations": [],
+      "routing": [
+        {
+          "from": "province_43",
+          "to": "province_4",
+          "found": true,
+          "candidates": 504
+        },
+        {
+          "from": "province_8",
+          "to": "province_38",
+          "found": true,
+          "candidates": 1296
+        },
+        {
+          "from": "province_2",
+          "to": "province_1",
+          "found": true,
+          "candidates": 740
+        },
+        {
+          "from": "province_19",
+          "to": "province_24",
+          "found": true,
+          "candidates": 420
+        },
+        {
+          "from": "province_12",
+          "to": "province_34",
+          "found": true,
+          "candidates": 91
+        },
+        {
+          "from": "province_44",
+          "to": "province_11",
+          "found": true,
+          "candidates": 216
+        },
+        {
+          "from": "province_18",
+          "to": "province_2",
+          "found": true,
+          "candidates": 481
+        },
+        {
+          "from": "province_16",
+          "to": "province_10",
+          "found": true,
+          "candidates": 449
+        },
+        {
+          "from": "province_8",
+          "to": "province_19",
+          "found": true,
+          "candidates": 756
+        },
+        {
+          "from": "province_1",
+          "to": "province_34",
+          "found": true,
+          "candidates": 140
+        },
+        {
+          "from": "province_45",
+          "to": "province_24",
+          "found": true,
+          "candidates": 720
+        },
+        {
+          "from": "province_29",
+          "to": "province_11",
+          "found": true,
+          "candidates": 684
+        },
+        {
+          "from": "province_5",
+          "to": "province_39",
+          "found": true,
+          "candidates": 78
+        },
+        {
+          "from": "province_3",
+          "to": "province_7",
+          "found": true,
+          "candidates": 88
+        },
+        {
+          "from": "province_13",
+          "to": "province_31",
+          "found": true,
+          "candidates": 703
+        }
+      ],
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": [
+          "labels: Labels too close province_0/province_20"
+        ]
+      },
+      "accepted": false
+    },
+    {
+      "spread": 0.06,
+      "missingReservations": [
+        {
+          "id": "province_5",
+          "reservationFound": false,
+          "largestSquareCss": 39.360281720847375
+        }
+      ],
+      "routing": [
+        {
+          "from": "province_43",
+          "to": "province_4",
+          "found": true,
+          "candidates": 468
+        },
+        {
+          "from": "province_8",
+          "to": "province_38",
+          "found": true,
+          "candidates": 1296
+        },
+        {
+          "from": "province_2",
+          "to": "province_1",
+          "found": true,
+          "candidates": 703
+        },
+        {
+          "from": "province_19",
+          "to": "province_24",
+          "found": true,
+          "candidates": 441
+        },
+        {
+          "from": "province_12",
+          "to": "province_34",
+          "found": true,
+          "candidates": 91
+        },
+        {
+          "from": "province_44",
+          "to": "province_11",
+          "found": true,
+          "candidates": 216
+        },
+        {
+          "from": "province_18",
+          "to": "province_2",
+          "found": true,
+          "candidates": 444
+        },
+        {
+          "from": "province_16",
+          "to": "province_10",
+          "found": true,
+          "candidates": 485
+        },
+        {
+          "from": "province_8",
+          "to": "province_19",
+          "found": true,
+          "candidates": 756
+        },
+        {
+          "from": "province_1",
+          "to": "province_34",
+          "found": true,
+          "candidates": 133
+        },
+        {
+          "from": "province_45",
+          "to": "province_24",
+          "found": true,
+          "candidates": 756
+        },
+        {
+          "from": "province_29",
+          "to": "province_11",
+          "found": true,
+          "candidates": 684
+        },
+        {
+          "from": "province_5",
+          "to": "province_39",
+          "found": true,
+          "candidates": 72
+        },
+        {
+          "from": "province_3",
+          "to": "province_7",
+          "found": true,
+          "candidates": 88
+        },
+        {
+          "from": "province_13",
+          "to": "province_31",
+          "found": true,
+          "candidates": 703
+        }
+      ],
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": [
+          "labels: Hit square outside country/frame province_5",
+          "labels: Labels too close province_0/province_20"
+        ]
+      },
+      "accepted": false
+    }
+  ]
+}

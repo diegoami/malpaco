@@ -1,0 +1,220 @@
+{
+  "source": "immutable T63",
+  "purpose": "fixed-graph geographical embedding feasibility; not installed",
+  "results": [
+    {
+      "turn": 0,
+      "missingReservations": [
+        {
+          "id": "province_0",
+          "reservationFound": false
+        },
+        {
+          "id": "province_10",
+          "reservationFound": false
+        },
+        {
+          "id": "province_25",
+          "reservationFound": false
+        },
+        {
+          "id": "province_5",
+          "reservationFound": false
+        },
+        {
+          "id": "province_27",
+          "reservationFound": false
+        },
+        {
+          "id": "province_32",
+          "reservationFound": false
+        },
+        {
+          "id": "province_34",
+          "reservationFound": false
+        },
+        {
+          "id": "province_26",
+          "reservationFound": false
+        },
+        {
+          "id": "province_7",
+          "reservationFound": false
+        },
+        {
+          "id": "province_35",
+          "reservationFound": false
+        },
+        {
+          "id": "province_44",
+          "reservationFound": false
+        },
+        {
+          "id": "province_39",
+          "reservationFound": false
+        },
+        {
+          "id": "province_14",
+          "reservationFound": false
+        },
+        {
+          "id": "province_21",
+          "reservationFound": false
+        },
+        {
+          "id": "province_15",
+          "reservationFound": false
+        },
+        {
+          "id": "province_23",
+          "reservationFound": false
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_17",
+          "labels: Hit square outside country/frame province_0",
+          "labels: Hit square outside country/frame province_10",
+          "labels: Hit square outside country/frame province_25",
+          "labels: Hit square outside country/frame province_5",
+          "labels: Hit square outside country/frame province_27",
+          "labels: Missing/non-finite label/country province_42",
+          "labels: Hit square outside country/frame province_32",
+          "labels: Hit square outside country/frame province_34",
+          "labels: Hit square outside country/frame province_26",
+          "labels: Hit square outside country/frame province_7",
+          "labels: Missing/non-finite label/country province_35",
+          "labels: Hit square outside country/frame province_44",
+          "labels: Hit square outside country/frame province_39",
+          "labels: Hit square outside country/frame province_14",
+          "labels: Hit square outside country/frame province_21",
+          "labels: Missing/non-finite label/country province_15",
+          "labels: Hit square outside country/frame province_23",
+          "labels: Labels too close province_36/province_25"
+        ]
+      },
+      "accepted": false
+    },
+    {
+      "turn": 1,
+      "missingReservations": [
+        {
+          "id": "province_0",
+          "reservationFound": false
+        },
+        {
+          "id": "province_20",
+          "reservationFound": false
+        },
+        {
+          "id": "province_25",
+          "reservationFound": false
+        },
+        {
+          "id": "province_5",
+          "reservationFound": false
+        },
+        {
+          "id": "province_27",
+          "reservationFound": false
+        },
+        {
+          "id": "province_37",
+          "reservationFound": false
+        },
+        {
+          "id": "province_32",
+          "reservationFound": false
+        },
+        {
+          "id": "province_34",
+          "reservationFound": false
+        },
+        {
+          "id": "province_26",
+          "reservationFound": false
+        },
+        {
+          "id": "province_7",
+          "reservationFound": false
+        },
+        {
+          "id": "province_35",
+          "reservationFound": false
+        },
+        {
+          "id": "province_44",
+          "reservationFound": false
+        },
+        {
+          "id": "province_39",
+          "reservationFound": false
+        },
+        {
+          "id": "province_14",
+          "reservationFound": false
+        },
+        {
+          "id": "province_21",
+          "reservationFound": false
+        },
+        {
+          "id": "province_15",
+          "reservationFound": false
+        },
+        {
+          "id": "province_23",
+          "reservationFound": false
+        }
+      ],
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_19",
+          "labels: Hit square outside country/frame province_0",
+          "labels: Hit square outside country/frame province_20",
+          "labels: Hit square outside country/frame province_25",
+          "labels: Hit square outside country/frame province_5",
+          "labels: Hit square outside country/frame province_27",
+          "labels: Hit square outside country/frame province_37",
+          "labels: Missing/non-finite label/country province_42",
+          "labels: Hit square outside country/frame province_32",
+          "labels: Hit square outside country/frame province_34",
+          "labels: Hit square outside country/frame province_26",
+          "labels: Hit square outside country/frame province_7",
+          "labels: Missing/non-finite label/country province_35",
+          "labels: Hit square outside country/frame province_44",
+          "labels: Hit square outside country/frame province_39",
+          "labels: Hit square outside country/frame province_14",
+          "labels: Hit square outside country/frame province_21",
+          "labels: Missing/non-finite label/country province_15",
+          "labels: Hit square outside country/frame province_23",
+          "labels: Labels too close province_36/province_25",
+          "labels: Labels too close province_37/province_43"
+        ]
+      },
+      "accepted": false
+    }
+  ]
+}

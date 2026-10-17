@@ -1,0 +1,47 @@
+{
+  "purpose": "disposable mock-positive proof; all source/assets restored",
+  "originalHashes": {
+    "docs/prototypes/new-game/T64/layout.mjs": "0e5842c7c615a51acd6aa911e0a2ddbf1a926a8666d1ecb59b1eb0abbd8612c5",
+    "src/ui/referenceMapView.ts": "1bfdbf2eb17462e7fac6bd2ed0a3f5518deea3aba1e3608cdc1f0d610f18ae47",
+    "docs/prototypes/new-game/T64/board.json": null,
+    "docs/prototypes/new-game/T64/map.svg": null,
+    "docs/prototypes/new-game/T64/preview.html": null
+  },
+  "restored": {
+    "docs/prototypes/new-game/T64/layout.mjs": true,
+    "src/ui/referenceMapView.ts": true,
+    "docs/prototypes/new-game/T64/board.json": true,
+    "docs/prototypes/new-game/T64/map.svg": true,
+    "docs/prototypes/new-game/T64/preview.html": true
+  },
+  "commands": [
+    {
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t64-work/docs/prototypes/new-game/T64/checks.py",
+        "--focused"
+      ],
+      "exit": 0,
+      "output": "0.txt",
+      "tail": "{\n  \"output\": \"docs/prototypes/new-game/T64/evidence/checks-423hb616\",\n  \"results\": [\n    {\n      \"command\": [\n        \"npx\",\n        \"vitest\",\n        \"run\",\n        \"tests/ui/coast-postprocess.test.ts\"\n      ],\n      \"exit\": 0,\n      \"output\": \"0.txt\",\n      \"sha256\": \"0fa7dfeb60a07d182847cbc7a2c795c3289ca8fdf0d08c285463c71585d59daf\",\n      \"tail\": \"\\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t64-work\\n\\n\\n Test Files  1 passed (1)\\n      Tests  5 passed (5)\\n   Start at  10:51:09\\n   Duration  725ms (tests 81%, transform 15%, import 4%)\\n\\n\"\n    }\n  ]\n}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t64-work/docs/prototypes/new-game/T64/checks.py"
+      ],
+      "exit": 0,
+      "output": "1.txt",
+      "tail": "{\n  \"output\": \"docs/prototypes/new-game/T64/evidence/checks-wv0dncjh\",\n  \"results\": [\n    {\n      \"command\": [\n        \"npm\",\n        \"test\"\n      ],\n      \"exit\": 0,\n      \"output\": \"0.txt\",\n      \"sha256\": \"372c9cb0058960b94dff6a03e2f64757081ef79390b2c4bc978a0ecfbf7b7bad\",\n      \"tail\": \"\\n> malpaco-spike-ts@0.0.0 test\\n> vitest run\\n\\n\\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t64-work\\n\\n\\n Test Files  40 passed (40)\\n      Tests  588 passed (588)\\n   Start at  10:51:11\\n   Duration  13.48s (tests 59%, transform 34%, import 6%, worker 1%)\\n\\n  Transform  transforming modules took 16.33s \\u00b7 34% of tracked time, re-done on every run\\n             persist transforms across runs with fsModuleCache: true\\n             learn more: https://vitest.dev/guide/improving-performance#caching-between-reruns\\n\\n\"\n    },\n    {\n      \"command\": [\n        \"npm\",\n        \"run\",\n        \"build\"\n      ],\n      \"exit\": 0,\n      \"output\": \"1.txt\",\n      \"sha256\": \"a3731353f0a4d4294e512626d5544acf9acdb1a746364a4aace0d17612d57250\",\n      \"tail\": \"\\n> malpaco-spike-ts@0.0.0 build\\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\\n\\nvite v8.3.2 building client environment for production...\\ntransforming...\\n\\u2713 50 modules transformed.\\nrendering chunks...\\ncomputing gzip size...\\ndist/index.html                   0.64 kB \\u2502 gzip:  0.42 kB\\ndist/assets/index-D71XpoA_.css   24.37 kB \\u2502 gzip:  6.02 kB\\ndist/assets/index-CepY5UUM.js   237.58 kB \\u2502 gzip: 63.63 kB\\n\\n\\u2713 built in 276ms\\n\"\n    },\n    {\n      \"command\": [\n        \"git\",\n        \"diff\",\n        \"--check\"\n      ],\n      \"exit\": 0,\n      \"output\": \"2.txt\",\n      \"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\",\n      \"tail\": \"\"\n    }\n  ]\n}\n"
+    },
+    {
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t64-work/docs/prototypes/new-game/T64/run.py"
+      ],
+      "exit": 0,
+      "output": "2.txt",
+      "tail": "{\n  \"output\": \"docs/prototypes/new-game/T64/evidence/run-kjr1vusn\",\n  \"exit\": 0,\n  \"tail\": \"\\nRunning 8 tests using 2 workers\\n\\n  \\u2713  1 [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:33:97 \\u203a standalone geography is painted and all46countries selectable at 800x540 (3.7s)\\n  \\u2713  2 [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:33:97 \\u203a standalone geography is painted and all46countries selectable at 1280x800 (3.8s)\\n  \\u2713  4 [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:42:1 \\u203a playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map (1.5s)\\n  \\u2713  3 [1280x800] \\u203a tests/e2e/coast-postprocess.spec.ts:33:97 \\u203a standalone geography is painted and all46countries selectable at 1920x1080 (3.4s)\\n  \\u2713  5 [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:33:97 \\u203a standalone geography is painted and all46countries selectable at 800x540 (3.3s)\\n  \\u2713  6 [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:33:97 \\u203a standalone geography is painted and all46countries selectable at 1280x800 (3.5s)\\n  \\u2713  7 [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:33:97 \\u203a standalone geography is painted and all46countries selectable at 1920x1080 (3.5s)\\n  \\u2713  8 [1920x1080] \\u203a tests/e2e/coast-postprocess.spec.ts:42:1 \\u203a playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map (1.6s)\\n\\n  8 passed (15.7s)\\nnpm notice\\nnpm notice New major version of npm available! 11.19.0 -> 12.2.0\\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\\nnpm notice To update run: npm install -g npm@12.2.0\\nnpm notice\\n\"\n}\n"
+    }
+  ]
+}

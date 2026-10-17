@@ -1,0 +1,43 @@
+// Adapt the geographical drawing to stable canonical game-country IDs.
+import drawing from "../../docs/prototypes/new-game/T63/map.svg?raw";
+import {s} from "./dom";
+import {seatLook} from "./palette";
+import type {GameMap} from "../core";
+import type {MapHandlers,MapViewState} from "./mapView";
+export class ReferenceMapView{
+ readonly el:SVGSVGElement;
+ constructor(_map:GameMap,handlers:MapHandlers){
+  this.el=new DOMParser().parseFromString(drawing,"image/svg+xml").documentElement as unknown as SVGSVGElement;
+  this.el.id="reference-map";this.el.setAttribute("aria-label","Nine Isles reference map");
+  const nodes=[...this.el.querySelectorAll<SVGGElement>(".country")];
+  for(const[j,n]of nodes.entries()){
+   const id=n.dataset["id"]!;
+   n.dataset["country"]=id;n.dataset["province"]=id;n.classList.add("province");
+   n.querySelector(".cell")!.classList.add("country-shape");n.querySelector(".count")!.classList.add("army-count");
+   // [designed] Reuse the score legend's ownership silhouettes within the existing label reservation.
+   n.querySelector(".badge")!.replaceWith(s("path",{class:"badge"}));
+   if(!n.querySelector(".centre"))n.append(s("text",{class:"centre",x:Number(n.querySelector(".count")!.getAttribute("x"))-25,y:Number(n.querySelector(".count")!.getAttribute("y"))-28},"★"));
+   n.onclick=e=>handlers.onProvince(id,{inspect:e.shiftKey,repeat:false});n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
+   n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id,{inspect:e.shiftKey,repeat:e.repeat});}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
+  }
+  this.el.onclick=e=>{if(!(e.target as Element).closest(".country"))handlers.onBackground();};
+ }
+ render(view:MapViewState){const{state}=view;
+  for(const n of this.el.querySelectorAll<SVGGElement>(".country")){
+   const id=n.dataset["country"]!,seat=state.players.findIndex(p=>p.id===state.ownerOf[id]);
+   n.dataset["owner"]=state.ownerOf[id]!;n.dataset["armies"]=String(state.armies[id]);n.dataset["target"]=String(view.targets.includes(id));n.dataset["selected"]=String(view.selected===id);
+   n.classList.toggle("selected",view.selected===id);n.classList.toggle("neighbor",view.targets.includes(id));n.setAttribute("aria-pressed",String(view.selected===id));
+   const description=`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies, ${state.players[seat]!.name}`;
+   n.setAttribute("aria-label",description);n.querySelector("title")!.textContent=description;
+   const badge=n.querySelector(".badge")!,count=n.querySelector(".count")!;
+   badge.setAttribute("d",seatLook(seat).badge);
+   // Derived from the four palette paths (the pill includes its rounded ends).
+   // [designed] Keep the original 44-unit width; 20-unit height contains bold count glyphs.
+   const [width,height]=([[94,34],[76,34],[60,34],[76,38]] as const)[seat]!;
+   badge.setAttribute("transform",`translate(${count.getAttribute("x")},${Number(count.getAttribute("y"))-5}) scale(${44/width},${20/height})`);
+   (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;n.querySelector(".count")!.textContent=String(state.armies[id]);
+   (n.querySelector(".centre") as SVGElement).style.display=state.productionCentres.includes(id)?"":"none";
+  }
+  for(const r of this.el.querySelectorAll<SVGPolylineElement>(".lane"))r.classList.toggle("active",r.dataset["edge"]!.split("|").includes(view.selected??""));
+ }
+}

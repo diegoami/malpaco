@@ -1,0 +1,21 @@
+{
+  "cases": [
+    {
+      "name": "old-painted-map",
+      "path": "src/ui/referenceMapView.ts",
+      "originalSha256": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8",
+      "mutatedSha256": "c7cf01bb674b118183feceb42c65cfdf25309b6b37b7e37f90e5bc4ee5c488a1",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco/.cache/t64-work/docs/prototypes/new-game/T64/run.py",
+        "--grep",
+        "playable geography"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T64/evidence/run-1h09_ob_",
+      "assertionNegative": true,
+      "restored": true
+    }
+  ],
+  "allRestored": true
+}

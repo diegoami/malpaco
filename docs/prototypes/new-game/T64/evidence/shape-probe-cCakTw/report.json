@@ -1,0 +1,97 @@
+{
+  "purpose": "Disposable geometry/visual probe; no production change",
+  "results": [
+    {
+      "outward": false,
+      "amplitude": 4,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "accepted": true
+    },
+    {
+      "outward": false,
+      "amplitude": 8,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": [
+          "labels: Hit square outside country/frame province_38",
+          "labels: Hit square outside country/frame province_45",
+          "labels: Hit square outside country/frame province_9",
+          "labels: Hit square outside country/frame province_17",
+          "labels: Hit square outside country/frame province_33",
+          "labels: Hit square outside country/frame province_27",
+          "labels: Hit square outside country/frame province_34",
+          "labels: Hit square outside country/frame province_35",
+          "labels: Hit square outside country/frame province_21"
+        ]
+      },
+      "accepted": false
+    },
+    {
+      "outward": false,
+      "amplitude": 12,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": [
+          "labels: Hit square outside country/frame province_4",
+          "labels: Hit square outside country/frame province_38",
+          "labels: Hit square outside country/frame province_45",
+          "labels: Hit square outside country/frame province_9",
+          "labels: Hit square outside country/frame province_3",
+          "labels: Hit square outside country/frame province_17",
+          "labels: Hit square outside country/frame province_33",
+          "labels: Hit square outside country/frame province_13",
+          "labels: Hit square outside country/frame province_5",
+          "labels: Hit square outside country/frame province_27",
+          "labels: Hit square outside country/frame province_6",
+          "labels: Hit square outside country/frame province_42",
+          "labels: Hit square outside country/frame province_34",
+          "labels: Hit square outside country/frame province_35",
+          "labels: Hit square outside country/frame province_21"
+        ]
+      },
+      "accepted": false
+    },
+    {
+      "outward": true,
+      "amplitude": 4,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "accepted": true
+    },
+    {
+      "outward": true,
+      "amplitude": 8,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "accepted": true
+    },
+    {
+      "outward": true,
+      "amplitude": 12,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "accepted": true
+    }
+  ]
+}
