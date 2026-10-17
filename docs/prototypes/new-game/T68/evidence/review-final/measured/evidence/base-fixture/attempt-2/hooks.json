@@ -1,0 +1,16 @@
+{
+  "t68-review-terminal": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/diego/projects/malpaco/.cache/agy-t34-review/.agents/t68-permission.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

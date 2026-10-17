@@ -1,0 +1,29 @@
+T68 review (MiniMax M3)
+approve
+
+worktree: /home/diego/projects/malpaco/.cache/review-worktrees/153-review-b423e362
+HEAD: 552680003c17bcb3abb66e5b2bf3b6e03f0c083f
+diff: 72 files in RUN-NOTES.md, docs/harness-agy.md, docs/prototypes/new-game/T68/{.gitignore,assessment.json,verify.py,source-integrity.json,attempt-{1,2,3}/*,preflight-{hwba792m,ur3c07gw,z3xjbl1z}/*}
+commands run: git rev-parse; git diff --check; python3 docs/prototypes/new-game/T68/verify.py (positive); python3 docs/prototypes/new-game/T68/verify.py docs/prototypes/new-game/T68/preflight-z3xjbl1z/fixture; python3 docs/prototypes/new-game/T68/verify.py with mutated copies under docs/prototypes/new-game/T68/evidence/{base-fixture,test-missing-output,test-changed-prompt,test-missing-attempt,test-accept-denied,test-cleanup-incomplete,test-wrong-head,test-forged-hash,test-missing-urls,test-relay-false}; gzip -t on each cli.log.gz; zcat of cli.log.gz to corroborate conversation IDs and permission settings; sha256sum of receipts, prompts, output.jsonl, source files in /home/diego/projects/malpaco/.cache/agy-t34-review; jq on assessment.json; diff between preflight fixtures and actual receipts.
+DW1: ran `python3 docs/prototypes/new-game/T68/verify.py` → exit 0, prints "T68 receipts, discovery, output hashes and parent assessments verified".
+DW2: ran `git diff --check` → exit 0, no whitespace errors.
+
+R1 (non-blocking, follow-up) — docs/prototypes/new-game/T68/verify.py:18 does not validate that `output.jsonl` has no other than exactly one `event:"result"` line at the end (only asserts `len(results)==1`). The current retainments all happen to have one; a malformed stream with extra result events would still produce a single result from the last one and pass. Not exercised by any of the five required checks. Not blocking for a bounded optional pilot; worth a future tighten if more reviews land.
+R2 (non-blocking, follow-up) — docs/prototypes/new-game/T68/preflight-hwba792m/ holds an older verifier-snapshot of the receipts (only attempt-1/2, single model_trial_url, no settings-cleanup), and preflight-ur3c07gw/ omits the missing-attempt test that preflight-z3xjbl1z added. They retain the development trajectory (verifier_sha256 differs: 324f83d2…, edc41e2f…, e795803b…; line numbers in tracebacks shift from 14→14→15), which is honest historical measurement. They are not blockers; the current verify.py + preflight-z3xjbl1z cover the contract.
+R3 (non-blocking, follow-up) — docs/prototypes/new-game/T68/attempt-2/permission.py:4 does an exact `cmd in allowed` match against the command line. The CLI log shows the hook loaded ("loaded 1 named hooks from 1 hooks.json file(s)") but the tool was still soft-denied ("Print mode: soft-denying tool confirmation 'RunCommand' at step 3"), so this exact-match was ineffective. The harness-agy.md narrative calls this out correctly and labels it a failed approach. No code path is relying on this.
+R4 (non-blocking, follow-up) — docs/prototypes/new-game/T68/attempt-3/run.py:27-30 detects that the CLI rewrote settings.json serialization ("settings_restored": false in receipt; settings-cleanup.json explains it). The byte-level guard worked as designed: refused to overwrite concurrent changes. The parent then manually removed only the temporary permission object, recorded in settings-cleanup.json with before/after SHA-256. This is a documented limitation, not a bypass.
+
+All five required mutation checks were reproduced against the verifier with fixtures copied under docs/prototypes/new-game/T68/evidence/base-fixture/ (originals at attempt-1/, attempt-2/, attempt-3/, assessment.json untouched; SHA-256 before/after identical: 68cf3aa8…f2e5d, e38533fe…0928, c5346d94…b9f28, bb7f1fd1…cc00a, 624d90a2…c0983). The full log is at docs/prototypes/new-game/T68/evidence/MUTATION_TESTS.md. Every required case exits 1 with an assertion error naming the offending invariant:
+- changed prompt: AssertionError ('attempt-3', 'prompt.txt') at verify.py:15
+- missing output: FileNotFoundError at hash read, verify.py:15
+- missing attempt: AssertionError on attempts-set, verify.py:6
+- accepting denied result: AssertionError on denied_actions vs accepted_review, verify.py:24
+- false cleanup receipt: AssertionError on cleanup invariants, verify.py:31
+
+Three additional checks also passed: wrong-head (AssertionError at verify.py:12), forged output-hash with matched file bytes (AssertionError ('attempt-3', 'output.jsonl') at verify.py:15), and review_findings_relayed=False or empty model_trial_urls (AssertionError at verify.py:7).
+
+CLI logs (attempt-1: 211 lines, attempt-2: 208 lines, attempt-3: 209 lines, all gzip-valid) corroborate the parent_assessment claims: attempt-2 confirms the hook loaded but the tool was soft-denied; attempt-3 confirms the documented permissions.allow was applied with the exact five anchored commands and a `write_file(*)` deny. Each CLI log mentions its output.jsonl conversation ID. source-integrity.json's six critical hashes (src/core/island-geography.ts e73e399e…, tests/core/island-geography.test.ts 832c1499…, docs/prototypes/new-game/T34/acceptance.mjs 0adb4f2e…, docs/prototypes/new-game/T34/witness.json 149fc192…, docs/prototypes/new-game/T34/CONTRACT.md 4c117758…, tests/e2e/reference-complete-game.spec.ts 9642aad6…) all match the actual files at /home/diego/projects/malpaco/.cache/agy-t34-review. The three prompts all carry Sonnet's tripwire in full (lines 81-92 of docs/models.md verbatim). RUN-NOTES.md append-only at line 716+ accurately summarizes the pilot. docs/harness-agy.md gives the actual invocation (agy --model claude-sonnet-5-5-high --effort high --mode plan --output-format stream-json --print-timeout 12m), the documented permissions.allow approach, the run-unit.sh/watch.sh retention procedure, and the observed headless limitations.
+
+Final pass done.
+
+approve

@@ -1,0 +1,16 @@
+{
+  "checks": [
+    {
+      "label": "positive",
+      "exit": 0,
+      "output": "T68 receipts, discovery, output hashes and parent assessments verified\n"
+    },
+    {
+      "label": "duplicate-result-with-updated-hash",
+      "exit": 1,
+      "output": "Traceback (most recent call last):\n  File \"/home/diego/projects/malpaco/.cache/t68-work/docs/prototypes/new-game/T68/verify.py\", line 19, in <module>\n    assert len(results)==1\n           ^^^^^^^^^^^^^^^\nAssertionError\n"
+    }
+  ],
+  "reviewer_R1_duplicate_event_claim_reproduced": false,
+  "exact_one_result_guard_rejects": true
+}
