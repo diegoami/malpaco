@@ -1,0 +1,142 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco-work/147-review-cd8647b0
+
+ ❯ tests/ui/coast-postprocess.test.ts (5 tests | 4 failed) 7651ms
+   ❯ fixed-reference geographical coast contract (5)
+     × changes all nine coast silhouettes and all countries while preserving the exact playable graph 282ms
+     × retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints 1331ms
+     × ownership, army sizes and live production flags do not influence geography or lose metadata 2402ms
+     × leaves approved T22 and canonical T63 reference files immutable 1229ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > changes all nine coast silhouettes and all countries while preserving the exact playable graph
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -117,14 +117,11 @@
+      },
+    ],
+    "provinces": [
+      {
+        "armies": 2,
+-       "borders": [
+-         "province_30",
+-         "province_8",
+-       ],
++       "borders": [],
+        "countContrast": 4.5,
+        "countTextCss": 14,
+        "hitSizeCss": 40,
+        "id": "province_4",
+        "island": "island_0",
+
+ ❯ tests/ui/coast-postprocess.test.ts:16:29
+     14|  it("changes all nine coast silhouettes and all countries while preser…
+     15|   const result=coastPostprocess(input);
+     16|   expect(semantics(result)).toEqual(semantics(input));
+       |                             ^
+     17|   expect(result).toEqual(target);
+     18|   for(const island of input.islands)expect(result.islands.find(i=>i.id…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints
+AssertionError: expected { attachment: [], water: [], …(2) } to deeply equal { attachment: [], water: [], …(2) }
+
+- Expected
++ Received
+
+  {
+    "attachment": [],
+-   "preserved": [],
++   "preserved": [
++     "symmetry: Invalid/asymmetric borders province_30/province_4",
++     "symmetry: Invalid/asymmetric borders province_8/province_4",
++     "connectivity: Island land disconnected island_0",
++     "degree: Degree province_4=1",
++     "borders: Declared/shared boundary mismatch province_4",
++   ],
+    "traceability": [],
+    "water": [],
+  }
+
+ ❯ tests/ui/coast-postprocess.test.ts:29:27
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > ownership, army sizes and live production flags do not influence geography or lose metadata
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -117,14 +117,11 @@
+      },
+    ],
+    "provinces": [
+      {
+        "armies": 143,
+-       "borders": [
+-         "province_30",
+-         "province_8",
+-       ],
++       "borders": [],
+        "countContrast": 4.5,
+        "countTextCss": 14,
+        "hitSizeCss": 40,
+        "id": "province_4",
+        "island": "island_0",
+
+ ❯ tests/ui/coast-postprocess.test.ts:35:29
+     33|   const varied=structuredClone(input);for(const[j,p]of varied.province…
+     34|   const base=coastPostprocess(input),output=coastPostprocess(varied);
+     35|   expect(semantics(output)).toEqual(semantics(varied));
+       |                             ^
+     36|   expect(output.provinces.map(p=>[p.id,p.polygon,p.labelAt])).toEqual(…
+     37|   expect(output.islands).toEqual(base.islands);expect(output.routes).t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  tests/ui/coast-postprocess.test.ts > fixed-reference geographical coast contract > leaves approved T22 and canonical T63 reference files immutable
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -117,14 +117,11 @@
+      },
+    ],
+    "provinces": [
+      {
+        "armies": 2,
+-       "borders": [
+-         "province_30",
+-         "province_8",
+-       ],
++       "borders": [],
+        "countContrast": 4.5,
+        "countTextCss": 14,
+        "hitSizeCss": 40,
+        "id": "province_4",
+        "island": "island_0",
+
+ ❯ tests/ui/coast-postprocess.test.ts:43:46
+     41|   expect(sha("../../docs/prototypes/map-1994/preview.html")).toBe("941…
+     42|   expect(sha("../../docs/prototypes/new-game/T63/board.json")).toBe("e…
+     43|   expect(semantics(coastPostprocess(input))).toEqual(semantics(input));
+       |                                              ^
+     44|  },20000);
+     45| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  11:55:39
+   Duration  7.87s (tests 98%, transform 1%)
+
