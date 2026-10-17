@@ -58,7 +58,7 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
     else if (action.kind === "endTurn") await page.locator("#end-turn-button").click();
     else if (action.kind === "attack") {
       if (await country(page, action.from).getAttribute("aria-pressed") !== "true") await country(page, action.from).click();
-      await country(page, action.to).click(); await page.locator("#single-exchange-button").click();
+      await country(page, action.to).click();
       if (!battle) { await screenshot("battle"); battle = true; }
     } else if (action.kind === "friendlyMove") {
       await page.locator("#start-friendly-move-button").click(); await country(page, action.from).click(); await country(page, action.to).click();
