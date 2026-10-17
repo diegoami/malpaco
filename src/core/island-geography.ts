@@ -13,7 +13,7 @@ export interface IslandGeography {
   provinces: GeographyCountry[];
   entranceReservations: GeographyCorridor[];
 }
-export interface GeographyFailure { attempt: number; constraints: string[] }
+export interface GeographyFailure { attempt: number; constraints: string[]; candidate?: IslandGeography }
 export type GeographyResult =
   | { ok: true; geography: IslandGeography; attempts: number; failures: GeographyFailure[]; rng: RngSnapshot }
   | { ok: false; attempts: number; failures: GeographyFailure[]; rng: RngSnapshot };

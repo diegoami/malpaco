@@ -9,6 +9,7 @@ function result(seed:number):IslandGeography {
  if(!r.ok)throw Error("Expected exported geography");
  expect(r.attempts).toBeGreaterThanOrEqual(1);expect(r.attempts).toBeLessThanOrEqual(50);
  expect(r.failures).toHaveLength(r.attempts-1);
+ for(const[j,f]of r.failures.entries()){expect(f.attempt).toBe(j+1);expect(f.constraints.length).toBeGreaterThan(0);expect(f.candidate).toBeDefined();}
  return r.geography;
 }
 describe("seeded partial island geography",()=>{
@@ -24,6 +25,7 @@ describe("seeded partial island geography",()=>{
  });
  it("uses the seed to vary geometry and at least one land subdivision topology",()=>{
   const a=result(0),b=result(1),c=result(42);
+  expect(JSON.stringify(a.islands.map(i=>i.polygon))).not.toEqual(JSON.stringify(b.islands.map(i=>i.polygon)));
   expect(JSON.stringify(a.provinces.map(p=>p.polygon))).not.toEqual(JSON.stringify(b.provinces.map(p=>p.polygon)));
   const graph=(g:IslandGeography)=>JSON.stringify(g.provinces.map(p=>[p.id,[...p.borders].sort()]));
   expect(new Set([graph(a),graph(b),graph(c)]).size).toBeGreaterThan(1);
