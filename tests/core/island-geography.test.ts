@@ -41,3 +41,24 @@ describe("seeded partial island geography",()=>{
   const leak=structuredClone(base);Object.assign(leak.provinces[0]!,{seaLanes:[]});expect(inspectGeography(leak)).toContain("partial: playable rules/state leaked");
  });
 });
+
+it('records every rejected candidate, replays exhaustion and clamps the attempt budget',async()=>{
+ const {vi}=await import('vitest');
+ vi.resetModules();
+ vi.doMock('../../docs/prototypes/new-game/T34/witness.json',async()=>{
+  const actual=await vi.importActual<{default:{provinces:{labelAt:number[]}[]}}>('../../docs/prototypes/new-game/T34/witness.json');
+  const bad=structuredClone(actual.default); for(const p of bad.provinces)p.labelAt=[0,0];
+  return {default:bad};
+ });
+ try {
+  const {generateIslandGeography:generate}=await import('../../src/core/island-geography');
+  const a=generate(42,{attempts:3}),b=generate(42,{attempts:3});
+  expect(a.ok).toBe(false);expect(a.attempts).toBe(3);expect(a.failures).toHaveLength(3);expect(b).toEqual(a);
+  for(const [i,f]of a.failures.entries()){expect(f.attempt).toBe(i+1);expect(f.constraints.length).toBeGreaterThan(0);expect(f.candidate).toBeDefined();}
+  expect(a.rng.state).not.toBe(42);
+  const clamped=generate(42,{attempts:51});expect(clamped.ok).toBe(false);expect(clamped.attempts).toBe(50);expect(clamped.failures).toHaveLength(50);
+  for(const attempts of [NaN,Infinity,-Infinity]){
+   const none=generate(42,{attempts});expect(none.ok).toBe(false);expect(none.attempts).toBe(0);expect(none.failures).toEqual([]);expect(none.rng).toEqual({seed:42,state:42});
+  }
+ }finally{vi.doUnmock('../../docs/prototypes/new-game/T34/witness.json');vi.resetModules();}
+},30000);

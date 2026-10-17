@@ -1,0 +1,51 @@
+{
+  "originalSha256": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de",
+  "records": [
+    {
+      "label": "no-subdivision-exchange",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/island-geography.test.ts"
+      ],
+      "exit": 1,
+      "mutatedSha256": "408d63f031696c0ec41442ecdb9f6fe0702ead877df2d75391db600f33213185",
+      "restoredExactly": true
+    },
+    {
+      "label": "no-coast-warp",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/island-geography.test.ts"
+      ],
+      "exit": 1,
+      "mutatedSha256": "43fb37d0feeb1341c12e3849c6b4b6ebc6ab09884841dec17c022d726e7a8c68",
+      "restoredExactly": true
+    },
+    {
+      "label": "no-port-repair",
+      "command": [
+        "node",
+        "/home/diego/projects/malpaco/.cache/review-worktrees/150-review-511ac9d7/docs/prototypes/new-game/T34/sweep.mjs"
+      ],
+      "exit": 1,
+      "mutatedSha256": "65a55d4ef0be407f47def4911e7220121a49c1caeb92b9efbf350000bd5514d5",
+      "restoredExactly": true
+    },
+    {
+      "label": "ignored-attempt-budget",
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/island-geography.test.ts"
+      ],
+      "exit": 1,
+      "mutatedSha256": "dc36788941e138359fb8ab8ebfc57ca3323c13378f72b1a676521fca4e38be51",
+      "restoredExactly": true
+    }
+  ]
+}
