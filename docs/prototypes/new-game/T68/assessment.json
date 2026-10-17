@@ -1,0 +1,38 @@
+{
+  "attempts": {
+    "attempt-1": {
+      "conversation_id": "9a040485-e53f-44bc-93a4-d56a178c0da4",
+      "denied_actions": [
+        {
+          "action": "command",
+          "display_name": "RunCommand"
+        }
+      ],
+      "accepted_review": false,
+      "parent_assessment": "No review produced. Introductory text only; terminal command soft-denied despite exit 0/SUCCESS. Default request-review permissions require grants."
+    },
+    "attempt-2": {
+      "conversation_id": "e2a698ca-cbe2-4afc-91cd-9215c4c53e4f",
+      "denied_actions": [
+        {
+          "action": "command",
+          "display_name": "RunCommand"
+        }
+      ],
+      "accepted_review": false,
+      "parent_assessment": "No review produced. Introductory text only; terminal command soft-denied despite exit 0/SUCCESS. Checkout hook loaded but did not supersede headless command approval; documented settings.allow grants required."
+    },
+    "attempt-3": {
+      "conversation_id": "14ceeb9c-fdf7-4283-a848-d5b1f70ade1a",
+      "denied_actions": [],
+      "accepted_review": true,
+      "parent_assessment": "Valid supplemental review, NOT an approval: verdict rework. Focused10/10 passes; DW2/DW3, mutations and evidence audit not run. Full final relayed without omissions at PR150 comment6233951448. R1 probable test gap requires parent reproduction; R2 must be assessed against actual T34 scope. R3-R6 scope/maintenance/edge notes retained, no source changes in this pilot. Temporary grants removed by parent after CLI serialization blocked automatic byte restoration."
+    }
+  },
+  "model_trial_urls": [
+    "https://github.com/diegoami/malpaco/issues/3#issuecomment-6233911137",
+    "https://github.com/diegoami/malpaco/issues/3#issuecomment-6233935226",
+    "https://github.com/diegoami/malpaco/issues/3#issuecomment-6233956425"
+  ],
+  "review_findings_relayed": true
+}

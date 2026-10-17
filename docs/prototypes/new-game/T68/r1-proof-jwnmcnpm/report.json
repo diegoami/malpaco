@@ -1,0 +1,31 @@
+{
+  "source_head": "7f1860dac78932629340c561e8fae4cfcdf44589",
+  "checks": [
+    {
+      "label": "baseline",
+      "exit": 0,
+      "core_sha256": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de",
+      "test_sha256": "832c1499c59e9ef13e25e0ca3d3ce57fbec1aab6760842d53b70150181668f34"
+    },
+    {
+      "label": "omitted-history-existing-tests",
+      "exit": 0,
+      "core_sha256": "834764fa0cada77dee02954ea74f288665bf67511dc2ced4b12ac6b90908d1fa",
+      "test_sha256": "832c1499c59e9ef13e25e0ca3d3ce57fbec1aab6760842d53b70150181668f34"
+    },
+    {
+      "label": "forced-rejection-positive",
+      "exit": 0,
+      "core_sha256": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de",
+      "test_sha256": "737894a9e9dfb56d95dd7b9023e2545f5c53edea9117ec87f49877870ec30e3a"
+    },
+    {
+      "label": "omitted-history-new-test",
+      "exit": 1,
+      "core_sha256": "834764fa0cada77dee02954ea74f288665bf67511dc2ced4b12ac6b90908d1fa",
+      "test_sha256": "737894a9e9dfb56d95dd7b9023e2545f5c53edea9117ec87f49877870ec30e3a"
+    }
+  ],
+  "all_restored": true,
+  "finding": "R1 confirmed: existing10 tests pass with failure-history recording deleted; added disposable forced-rejection test passes original and fails mutant. No production edits."
+}
