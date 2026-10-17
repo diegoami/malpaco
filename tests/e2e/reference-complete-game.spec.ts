@@ -29,7 +29,7 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
   const evidence = mkdtempSync(join(root, `reference-complete-${info.project.name}-`));
   const errors: string[] = []; page.on("pageerror", e => errors.push(e.message)); page.on("console", m => {if (m.type() === "error") errors.push(m.text());});
   const screenshot = async (name: string) => { await page.mouse.move(0, 0); await page.screenshot({path: join(evidence, name + ".png"), animations: "disabled"}); };
-  await page.clock.install(); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
+  await page.clock.install({time: new Date("2026-10-17T00:00:00Z")}); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
   await page.goto("/");
   await expect(page.getByLabel("Seat 1 control", {exact: true})).toHaveValue("human");
   for (let seat = 2; seat <= 4; seat++) await expect(page.getByLabel(`Seat ${seat} control`, {exact: true})).toHaveValue("computer");
