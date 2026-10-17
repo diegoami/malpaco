@@ -127,7 +127,7 @@ export class Panel {
             "div",
             {},
             h("div", { class: "score-name" }, p.name + (p.kind === "computer" ? " · Computer" : "")),
-            m.prominentArmyTotals ? h("div", { class: "score-num" }, h("strong", { "data-testid": "player-army-total", "data-player": p.id }, `Total armies: ${armyTotal(state, p.id)}`), h("div", {}, `${provincesOf(state, p.id).length} provinces`)) : h("div", { class: "score-num" }, `${provincesOf(state, p.id).length} provinces \u00b7 ${armyTotal(state, p.id)} armies`),
+            m.prominentArmyTotals ? h("div", { class: "score-num" }, h("strong", { "data-testid": "player-army-total" }, `Total armies: ${armyTotal(state, p.id)}`), h("div", {}, `${provincesOf(state, p.id).length} provinces`)) : h("div", { class: "score-num" }, `${provincesOf(state, p.id).length} provinces \u00b7 ${armyTotal(state, p.id)} armies`),
           ),
         ),
       ),

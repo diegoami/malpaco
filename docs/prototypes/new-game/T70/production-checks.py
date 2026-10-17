@@ -3,7 +3,7 @@
 import datetime, gzip, hashlib, json, os, pathlib, shutil, signal, subprocess, sys, tarfile, time
 ROOT = pathlib.Path(__file__).resolve().parents[4]
 MODE = sys.argv[1]
-if MODE not in ("positive", "omissions", "regressions", "edges", "edge-baseline", "ci-like", "focused-rework", "rework-omissions", "final-units"): raise SystemExit("Expected positive, omissions, regressions, edges, edge-baseline, ci-like, focused-rework, rework-omissions or final-units")
+if MODE not in ("positive", "omissions", "regressions", "edges", "edge-baseline", "ci-like", "ci-targeted-pinned", "ci-full-pinned", "focused-rework", "rework-omissions", "final-units"): raise SystemExit("Expected positive, omissions, regressions, edges, edge-baseline, ci-like, ci-targeted-pinned, ci-full-pinned, focused-rework, rework-omissions or final-units")
 RUN = ROOT / "docs/prototypes/new-game/T70" / (datetime.datetime.now(datetime.UTC).strftime("%Y%m%dT%H%M%S%fZ") + "-production-" + MODE)
 RUN.mkdir(parents=True)
 sha = lambda data: hashlib.sha256(data).hexdigest()
@@ -31,7 +31,7 @@ def run(name, command, expected=0):
     global child
     command = [str(RUN / name / "test-results") if token == str(RUN / "test-results") else token for token in command]
     command_env = dict(env, PLAYWRIGHT_HTML_OUTPUT_DIR=str(RUN / name / "playwright-report"))
-    if MODE in ("edge-baseline", "ci-like"):
+    if MODE in ("edge-baseline", "ci-like", "ci-targeted-pinned", "ci-full-pinned"):
         command_env.pop("PLAYBACK_EVIDENCE_DIR", None)
         default_screenshots = ROOT / "screenshots"
         before = {str(path.relative_to(default_screenshots)): sha(path.read_bytes())
@@ -46,7 +46,7 @@ def run(name, command, expected=0):
     with (RUN / (name + ".log")).open("w") as log:
         child = subprocess.Popen(command, cwd=ROOT, env=command_env, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
         code = child.wait()
-    if MODE in ("edge-baseline", "ci-like"):
+    if MODE in ("edge-baseline", "ci-like", "ci-targeted-pinned", "ci-full-pinned"):
         copied = []
         for path in sorted((ROOT / "screenshots").rglob("*.png")):
             relative = str(path.relative_to(ROOT / "screenshots"))
@@ -61,6 +61,16 @@ def run(name, command, expected=0):
     if (expected == 0 and code != 0) or (expected != 0 and code == 0): raise RuntimeError(f"Unexpected exit {code} for {name}")
 def browser(*flags): return ["npx", "playwright", "test", "--output", str(RUN / "test-results"), *flags]
 def edge(*flags): return browser("tests/e2e/playback-edge-cases.spec.ts", *flags)
+def pinned_browser(name, *specs):
+    relative = (RUN / name).relative_to(ROOT).as_posix()
+    output = f"/work/{relative}/test-results"
+    html = f"/work/{relative}/playwright-report"
+    return ["docker", "run", "--rm", "--cpus=2", "--user=1000:1000",
+        "-v", f"{ROOT}:/work", "-v", "/home/diego/projects/malpaco/node_modules:/work/node_modules:ro",
+        "--tmpfs", "/work/node_modules/.vite-temp:rw,mode=1777", "--tmpfs", "/work/node_modules/.vite:rw,mode=1777",
+        "-e", "TMPDIR=/work/.cache/t70-tmp", "-e", "CI=true", "-e", f"PLAYWRIGHT_HTML_OUTPUT_DIR={html}",
+        "-w", "/work", "mcr.microsoft.com/playwright:v1.63.0-noble",
+        "npx", "playwright", "test", *specs, "--workers=2", "--output", output]
 try:
     if MODE == "final-units":
         run("unit-tests", ["npm", "test"]); run("build", ["npm", "run", "build"])
@@ -77,6 +87,10 @@ try:
         run("presentation-edges-unset-env-baseline", edge("--workers=2"), expected=1)
     elif MODE == "ci-like":
         run("all-browser-regressions-unset-playback-env", browser("tests/e2e/playback-controls.spec.ts", "tests/e2e/game-event-log.spec.ts", "tests/e2e/computer-turn-flow.spec.ts", "tests/e2e/battle-controls.spec.ts", "tests/e2e/playback-edge-cases.spec.ts", "tests/e2e/versioned-match.spec.ts", "tests/e2e/finished-copy.spec.ts", "--workers=2"))
+    elif MODE == "ci-targeted-pinned":
+        run("targeted-updated-acceptance-and-map-readability", pinned_browser("targeted-updated-acceptance-and-map-readability", "tests/e2e/playback-controls.spec.ts", "tests/e2e/game-event-log.spec.ts", "tests/e2e/map-readability.spec.ts"))
+    elif MODE == "ci-full-pinned":
+        run("full-playwright-suite", pinned_browser("full-playwright-suite"))
     elif MODE == "regressions":
         run("build", ["npm", "run", "build"])
         run("all-browser-regressions", browser("tests/e2e/playback-controls.spec.ts", "tests/e2e/game-event-log.spec.ts", "tests/e2e/computer-turn-flow.spec.ts", "tests/e2e/battle-controls.spec.ts", "tests/e2e/playback-edge-cases.spec.ts", "tests/e2e/versioned-match.spec.ts", "tests/e2e/finished-copy.spec.ts", "--workers=2"))

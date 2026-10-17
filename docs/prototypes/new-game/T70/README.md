@@ -93,6 +93,8 @@ python3 docs/prototypes/new-game/T70/production-checks.py regressions
 python3 docs/prototypes/new-game/T70/production-checks.py ci-like
 python3 docs/prototypes/new-game/T70/production-checks.py focused-rework
 python3 docs/prototypes/new-game/T70/production-checks.py rework-omissions
+python3 docs/prototypes/new-game/T70/production-checks.py ci-targeted-pinned
+python3 docs/prototypes/new-game/T70/production-checks.py ci-full-pinned
 python3 docs/prototypes/new-game/T70/production-checks.py omissions
 ```
 
@@ -103,6 +105,12 @@ requires a behavioral failure and restores the original bytes in `finally`. All 
 project-local temporary files, fresh built previews and per-command Playwright output paths.
 Each unique run retains source inputs, raw logs/reports/contexts, screenshots, hashes, timings
 and input-restoration checks. `production-evidence.json` indexes these receipts.
+
+The two `*-pinned` commands run in the Playwright 1.63.0 Noble image with two CPUs and the
+shared read-only dependency tree. They set `CI=true` and project-local `TMPDIR` without passing
+`PLAYBACK_EVIDENCE_DIR`; `ci-targeted-pinned` runs the acceptance and map-readability cases, and
+`ci-full-pinned` runs the complete Playwright suite. They archive the default screenshot folder
+before testing and copy new or changed captures into the run.
 
 Round 1 rework adds `focused-rework` for the playback and event-log unit suites,
 `rework-omissions` for fail-before checks of the capture-net, pause-state and queued-dialog-focus
@@ -162,3 +170,24 @@ ignores directories named `screenshots`. The index records both archive and memb
 original loose PNGs remain locally. Older source/log receipts are unchanged. Future production
 wrapper runs create the capture archive automatically. This packaging change adds no runtime
 or assertion changes.
+
+## CI correction
+
+- `20261017T211913715285Z-production-ci-targeted-pinned` preserves the fail-before run. The
+  updated playback/event-log acceptance passed, while both map-readability viewport cases
+  caught the duplicate `data-player` identity on the army-total child.
+- `20261017T212048696675Z-production-ci-targeted-pinned` passed all 18 updated acceptance and
+  map-readability cases in the pinned Playwright 1.63.0 Noble container with two CPUs
+  (22.006s wrapper time). `PLAYBACK_EVIDENCE_DIR` was not passed into the container; the run
+  archived the old default screenshot folder and retained 13 fresh or changed PNGs.
+- `20261017T212157876756Z-production-ci-full-pinned` passed all 222 Playwright cases in the
+  same pinned container (374.448s). The run preserves reports, traces, sources and 334
+  changed/default-folder PNGs. It also archives the 20 suite-created retry-validation captures
+  while leaving their original files untouched. Exact Docker commands and hashes are in
+  `ci-correction-evidence.json`.
+
+The correction removes only the redundant child-level `data-player`; each score row remains the
+player identity. Both passing run manifests record exact source-input restoration. The revised
+frozen acceptance specs, core, `tests/core` and `data` remain byte-identical to their indexed
+hashes. The parent load-completion proof and complete original failed-CI archive are retained
+alongside these runs.
