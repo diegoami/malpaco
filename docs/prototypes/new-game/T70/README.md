@@ -1,4 +1,4 @@
-# T70 acceptance preflight
+# T70 playback, event log and evidence
 
 The acceptance tests drive the real reference route and exported match data. Playback uses a
 frozen Playwright clock and ordinary engine replay as an independent oracle. The default
@@ -12,14 +12,16 @@ after and signed net changes come from independent engine replay. Casualty check
 correct player and region with losses, separately from capture/friendly transfers. Save/load,
 append, reopen and a fresh match test duplication and reset behavior.
 
-From this worktree, reproduce the negative baseline or the disposable positive mock:
+The baseline/mock helper is historical and its patch anchors intentionally target the
+immutable parent-acceptance commit `10727dc`. Run the following commands only from a separate
+checkout of that commit, never from the implemented tree:
 
 ```sh
 python3 docs/prototypes/new-game/T70/mock-preflight.py baseline --workers=2
 python3 docs/prototypes/new-game/T70/mock-preflight.py mock --workers=2
 ```
 
-For all four Done-when commands, the main session runs one full mock preflight:
+The parent used the following full mock command at that same acceptance commit:
 
 ```sh
 tools/harness/run-unit.sh t70-parent-preflight docs/prototypes/new-game/T70/parent-preflight-unit.log -- python3 docs/prototypes/new-game/T70/mock-preflight.py mock --full --workers=2
@@ -59,9 +61,9 @@ the full input set above. All completed runs record exact production-source rest
 
 `event-log-mock.ts` is a disposable feasibility prototype. It replays only on construction and
 processes appended actions incrementally. Its raw result-object text is a prototype shortcut;
-production must describe winner/rank/reason in readable language. The mock does not establish
-production quality or the owner's appearance approval. In particular, the production host
-must keep Escape used to dismiss a modal from also stopping/selecting the battle behind it.
+the production module describes winner/rank/reason in readable language. The mock does not establish
+production quality or the owner's appearance approval. The production host
+guards modal Escape so it cannot also stop/select the battle behind it.
 
 - The next browser-only parent probe again passed 29/30: moving status first exposed
   the same height problem at Confirm move-in. The mock now lets Save/Load share the
@@ -74,3 +76,51 @@ must keep Escape used to dismiss a modal from also stopping/selecting the battle
 
 Future runs retain Playwright failure contexts, HTML reports and each spec's screenshots
 inside their unique evidence directory; another run cannot overwrite those outputs.
+
+## Production reproduction
+
+The runtime code uses `src/ui/gameEventLog.ts`; it never imports the historical prototype.
+The projection reconstructs loaded history once, then processes appended actions. Initial
+country details collapse, recent events open in view, and an opaque modal has a sticky Close
+control. Global pause retains a pending human exchange, cancels both timers and invalidates
+queued callbacks. Shared legacy Panel hosts keep their original score markup.
+
+Current commands (run long jobs through `tools/harness/run-unit.sh`):
+
+```sh
+python3 docs/prototypes/new-game/T70/production-checks.py positive
+python3 docs/prototypes/new-game/T70/production-checks.py regressions
+python3 docs/prototypes/new-game/T70/production-checks.py omissions
+```
+
+`positive` runs focused units, all units/build, the four Done-when browser specs and the regular
+CI edge spec. `regressions` adds the changed header's existing versioned-match/finished-copy
+flows in one 54-case browser run. `omissions` removes eight real protections one at a time,
+requires a behavioral failure and restores the original bytes in `finally`. All commands use
+project-local temporary files, fresh built previews and per-command Playwright output paths.
+Each unique run retains source inputs, raw logs/reports/contexts, screenshots, hashes, timings
+and input-restoration checks. `production-evidence.json` indexes these receipts.
+
+Measured production findings:
+
+- `20261017T202822698113Z-production-positive`: 4 focused, 622 Vitest and 6 harness tests,
+  build and 30 Done-when browser cases passed. The extra edge invocation failed before Vite
+  started because its temporary docs-directory config inherited the wrong working directory.
+  Original config/spec bytes remain in this input archive. The edge spec moved into the normal
+  e2e directory under the owner's Owns amendment; that temporary config was removed.
+- `20261017T203039442477Z-production-regressions`: build and 54 browser cases passed,
+  including the existing legacy score and save/load flows. The header gives invalid-load
+  feedback a full-width row; the retained 1280 screenshot shows capture confirmation fitting.
+- `20261017T203147619221Z-production-edges`: all 6 edge cases passed after disabling only
+  the new modal's inherited fade animation. Frozen clocks had captured its opening opacity;
+  the new assertion requires opacity 1 and the retained screenshot is fully opaque.
+- `20261017T203232801059Z-production-omissions`: eight actual omissions failed at their
+  expected assertions: computer timer cancellation, dequeued human callback invalidation,
+  paused manual refusal, real totals, complete replay, region/player-paired casualties,
+  modal Escape isolation and the local Very slow option. Every source input restored exactly.
+- `20261017T203339633857Z-production-final-units`: final restored source passed all 622
+  Vitest tests, 6 harness tests and build. No core, save-format or policy changes were made.
+
+The two parent acceptance specs retain their frozen SHA-256 hashes. Browser measurements are
+Chromium at 1280×800 and 1920×1080; appearance remains the owner's judgment. No CI, independent
+review or merge was performed by the producer.

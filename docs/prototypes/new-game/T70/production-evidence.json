@@ -1,0 +1,438 @@
+{
+  "frozenAcceptance": {
+    "tests/e2e/playback-controls.spec.ts": "ede804c4731b38d89199d7068ca843ed563afe1d4ebab48bbbdfb8fb273ac908",
+    "tests/e2e/game-event-log.spec.ts": "361c691482389eed539b2dcce841d2e46609c54e784242440f6b8872ad1edcf7"
+  },
+  "productionSource": {
+    "src/ui/battleController.ts": "6e58be9a0c5084ff1b60c68f14930ba7289b487ac5c91be95ef0cbf6891ca247",
+    "src/ui/battleView.ts": "39658da08720e7ed6dc01fc047e88468a92df0290ba466f2d33bdba19eb85a51",
+    "src/ui/computerTurnLoop.ts": "dd75ae15d78323e2a80f67ac577564dc5ff6a10470f7aa464b0eb529932fbbe9",
+    "src/ui/gameEventLog.ts": "e34500a1ea35ca6cbba063f76bb3a8e4733f32209fc3832ed73ecb7017faea8e",
+    "src/ui/panel.ts": "6b2b83936e0a7cf65aee6c6aebc6bb9531261a33779f55ffbcca8b126b7fd9b4",
+    "src/ui/referenceBattleGame.ts": "8d420a4467d2badd27876c541991dd37cb10a239d1ba58ce426fb07376144f19",
+    "src/styles.css": "1a8e8a99f9add03665d979d5899139b94e83dcb5fb1767c0574846bdcaa874d7"
+  },
+  "runs": [
+    {
+      "run": "docs/prototypes/new-game/T70/20261017T202822698113Z-production-positive",
+      "reportSha256": "d00685fcb8662b509ffaa6c31e1fb7533d85dfc8543dd489345a1e26574dafa4",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "focused",
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/playback-controls.test.ts",
+            "tests/ui/game-event-log.test.ts"
+          ],
+          "exitCode": 0,
+          "seconds": 0.727,
+          "expected": 0
+        },
+        {
+          "name": "unit-tests",
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exitCode": 0,
+          "seconds": 38.023,
+          "expected": 0
+        },
+        {
+          "name": "build",
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exitCode": 0,
+          "seconds": 0.777,
+          "expected": 0
+        },
+        {
+          "name": "acceptance",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T202822698113Z-production-positive/test-results",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "tests/e2e/computer-turn-flow.spec.ts",
+            "tests/e2e/battle-controls.spec.ts",
+            "--workers=2"
+          ],
+          "exitCode": 0,
+          "seconds": 23.585,
+          "expected": 0
+        },
+        {
+          "name": "presentation-edges",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T202822698113Z-production-positive/test-results",
+            "-c",
+            "docs/prototypes/new-game/T70/production-playwright.config.ts",
+            "--workers=2"
+          ],
+          "exitCode": 1,
+          "seconds": 0.912,
+          "expected": 0
+        }
+      ],
+      "artifacts": {
+        "browser-outputs.tar.gz": "cc1d236a23bc6f407819568afa1f18b9303349aedfc887fb3907d095ebb64cc0",
+        "raw-logs.tar.gz": "e103bc3ee6f3b9b0a9fb686640ac03d43bf75a265e116e26be72b47fdf5ba2cb",
+        "screenshots/battle/battle-4NROcu/capture-maximum-done-1920x1080.png": "7370edb65160beda0d19942991f7c3826cbcdc5438a3d0c0df659a6a8ec55edf",
+        "screenshots/battle/battle-9xo6m7/threshold-stop-1280x800.png": "66c1cb2162c0a7cbebb72fe8ebea08884b1e7018aeba883a9d5ab555efa62a8c",
+        "screenshots/battle/battle-CmtcXz/capture-minimum-pending-1280x800.png": "7d275ccdd0971d5e5da3e585369b8c54eaad229fc48b4c69a72ea7f74903b805",
+        "screenshots/battle/battle-HYBZos/threshold-stop-1920x1080.png": "0c6110447ba61082c426dbfd41899fa13a33352887a9fade8dfb15e818419fe6",
+        "screenshots/battle/battle-KVvnvB/single-tie-1920x1080.png": "08c4a2aff36ce7156822cca5e97f8f6f8bfcd3be3e37c4ffc6a90d495aaca02e",
+        "screenshots/battle/battle-PDTjip/capture-maximum-pending-1280x800.png": "e2bceb280b12ed994a99eac921f9da16830e59f7e6b6e5a2de1a649f00f31dc1",
+        "screenshots/battle/battle-TbxlPS/capture-minimum-pending-1920x1080.png": "a626b7bb312510573e911dff4cd6aa89bbcfb4cb2cb03a206c87d4f608a808af",
+        "screenshots/battle/battle-WZS6Gm/capture-maximum-pending-1920x1080.png": "abb02dc5974f9c7280bd6a2b9a5bd2a1ea35769044c26d45787926bd2775cfb1",
+        "screenshots/battle/battle-dwyIxu/single-tie-1280x800.png": "64bd0a61494e18fc8cecea4921361d146d0da14f83f2bf4da5d9de57ab279cb7",
+        "screenshots/battle/battle-hOjP9m/capture-minimum-done-1280x800.png": "c957d9d9c3375b4d79c2210f71b408589fe59fc44dbbbf8f3a229b0cb3d79fd7",
+        "screenshots/battle/battle-rT14WR/manual-stop-1280x800.png": "efc28c740a0903587f1884f750de7af75674116e52bd0bbd4ff4a9f3a273c1f0",
+        "screenshots/battle/battle-rjdzOX/capture-minimum-done-1920x1080.png": "4d3fa843b999e5eab639a13b9f987628aabb33b019ca802a72e989f4bbf77e92",
+        "screenshots/battle/battle-vJldel/capture-maximum-done-1280x800.png": "b7ea6fde392e9065265ee8e3bc87070aa8ba0b4e809079aabb2334e110ce38d6",
+        "screenshots/battle/battle-zwwE62/manual-stop-1920x1080.png": "ef85713cb33e04111257c89fc3b94d7c6ad53ba725532945ad342256dc0a0815",
+        "screenshots/computer/flow-42NNQt/human-return-1920x1080.png": "dd5b43d82eff5cbbb436fd42683802b37a62bdcd81131c85998ccf914074c9bf",
+        "screenshots/computer/flow-7MHdAr/computer-turn-1920x1080.png": "6b21094a21c35cbd467ecf94e4559627c6e454f607acd77d408b3bbd0d476e19",
+        "screenshots/computer/flow-EtJLQP/human-return-1280x800.png": "15886f831b77570b07d76b853ea104af3ea4c134d6562eae7cca80281338c4cf",
+        "screenshots/computer/flow-F2Swcp/stopped-1280x800.png": "ae0e6d08bb40cdf70a6813d82aaa05ed2cb1015cb15e6c2444cc56cd905ef34e",
+        "screenshots/computer/flow-ZZaDTU/computer-turn-1280x800.png": "f20a973942d120d6f972a0e546faf12dd9a7823a77cc2a9fe6c90fc526d64ffa",
+        "screenshots/computer/flow-gSL6G8/stopped-1920x1080.png": "cc396e1afc28fd9383b396dece457633ca16b1c3da4a5f4f39fae0aa741c1573",
+        "screenshots/computer/flow-nizSNE/pending-computer-1920x1080.png": "72ef3af37fd226e19aba0857ebc7ae849ff84e69560568d0b61066932bd82212",
+        "screenshots/computer/flow-rxqKbI/pending-computer-1280x800.png": "2c152d7f5f5cc8d5d12b233e0b3e0d35dec864e7e06ab0da1495b31de292e1d0",
+        "screenshots/game-event-log-1280x800.png": "29b84143e6c3037eacca0e4a5100cc8b5e6382b32215a1f8578e1debac95349a",
+        "screenshots/game-event-log-1920x1080.png": "493d7756c443f86b6f5eaa301f68f85d9e4d7f1bdf721d6980b7509b8cdc0193",
+        "screenshots/playback-default-four-seats-1280x800.png": "87aecfa82a56f1c6248803f8d40c60e04998ae082d990a98fb75c89a20e223a7",
+        "screenshots/playback-default-four-seats-1920x1080.png": "e1cd3d7e165b98a7c2324b71528a540c9ff5f3c5d73b755806bc91e99e94c768",
+        "screenshots/playback-eliminated-1280x800.png": "9dcd3a207ef96f753c38b4e61282acbbadb83312c2fa6f473c51f6be49678168",
+        "screenshots/playback-eliminated-1920x1080.png": "c1c2bb77d4962e008194ee433eaa5c999a72595cedb4b820f9d1ab41dcf63bb3",
+        "screenshots/playback-paused-battle-1280x800.png": "1661857fff9a0a751c080af8b14814e4882df703691b358d0fd319b13f6f8d8a",
+        "screenshots/playback-paused-battle-1920x1080.png": "0bdabcbcf5a3a4257d241fecbccf9573fb0d8482c13caf059be0205d4d71de09",
+        "screenshots/playback-paused-computer-1280x800.png": "e91d2f81c224f065e0c960181e58cc94d5c70af2d28a0837c6848717d82c33fb",
+        "screenshots/playback-paused-computer-1920x1080.png": "b3931482de75350c96950eb87bb9152e472db1c4c7fe42c3dc548260bc78720f",
+        "screenshots/playback-totals-1280x800.png": "8edb8ceb2673fb8622a02e424a78dfb145db5f3ad4c806437120f95bd5103451",
+        "screenshots/playback-totals-1920x1080.png": "8491c42a01a85bedd9bc4e87ada9577071b27e0a0582eeede49a6d6fc6c42295",
+        "screenshots/playback-very-slow-1280x800.png": "2549e3e1b014239da3a83006ddc7d4558d946a79541242de1373ef0de08db809",
+        "screenshots/playback-very-slow-1920x1080.png": "33cc8785834ae38fef8018e0cd42655843bcb99564a058f830e95f68d4edb964",
+        "source-inputs.tar.gz": "0fdf3f88f8d1a353b9ac0a5a7bfcb8052f4b80c380457dc0afc8ba2a294fb859"
+      }
+    },
+    {
+      "run": "docs/prototypes/new-game/T70/20261017T203039442477Z-production-regressions",
+      "reportSha256": "72693aa2989be10133be95aaefb504c2aa3943c34e05b273542ac0fc2bb7f0ce",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "build",
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exitCode": 0,
+          "seconds": 0.735,
+          "expected": 0
+        },
+        {
+          "name": "all-browser-regressions",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T203039442477Z-production-regressions/all-browser-regressions/test-results",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "tests/e2e/computer-turn-flow.spec.ts",
+            "tests/e2e/battle-controls.spec.ts",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "tests/e2e/versioned-match.spec.ts",
+            "tests/e2e/finished-copy.spec.ts",
+            "--workers=2"
+          ],
+          "exitCode": 0,
+          "seconds": 32.148,
+          "expected": 0
+        }
+      ],
+      "artifacts": {
+        "browser-outputs.tar.gz": "a8c2cca632dd570aa2aea102a2b713ae7f80ff2b203ccfd0549c3157f2012bb8",
+        "raw-logs.tar.gz": "08bbe7f4be7a019d609ae9c2a532a27ed0ff2728bbeef3494ff782750cc3a970",
+        "screenshots/battle/battle-86YdH7/single-tie-1920x1080.png": "cae58600cb8208d9e559b42825d76eaf48e25e051b75bea26848da0268f6bc5a",
+        "screenshots/battle/battle-AJJado/threshold-stop-1920x1080.png": "88237c7f52be3e48616535d650569b00cfeaf66a635422b08a9a032d054b1dae",
+        "screenshots/battle/battle-GROgKx/capture-maximum-done-1920x1080.png": "21e321bd4262a814c337be14a3a72081b8f4ffd931afafa10570175c5c3069d0",
+        "screenshots/battle/battle-Gd2vSH/capture-minimum-done-1920x1080.png": "babe16083b10a26fb01bdf53700855a3a8cae9965dafda5d8daf4e7c29ae539a",
+        "screenshots/battle/battle-NCxP1F/capture-minimum-done-1280x800.png": "2b1abecb4069f39f01d318e68cabd7acd9a7711bb8f5407e00415b5ec19e7f5f",
+        "screenshots/battle/battle-T3eVFO/manual-stop-1280x800.png": "315880de15a56dcfef73d74ab6864b51457ea75fed2ded513a6a154b4489d2c5",
+        "screenshots/battle/battle-TsDBpL/capture-minimum-pending-1920x1080.png": "835b2e649a66c211d0c1b5539aac5c8e9995fd667e02753e100e62b5508053c9",
+        "screenshots/battle/battle-g7vwUV/capture-maximum-pending-1920x1080.png": "5ce33f32681658fa7f05fe3759a829266ae6111a429bb7557709e03c3cbb7164",
+        "screenshots/battle/battle-hgFWiP/manual-stop-1920x1080.png": "9122395476124ebb3241e3c2d2c8ce4fa764424c0ed8a7d2874040e229e3a23f",
+        "screenshots/battle/battle-n8ldrl/capture-minimum-pending-1280x800.png": "a86c033a25f0002150bb017aef5dfe06e0e2032cbcbbfa792f29880ffb59a6bb",
+        "screenshots/battle/battle-nIM4aa/single-tie-1280x800.png": "6dd52c9e460611f0f2235665623580fa7d817fd4429c4e54f5e24fa48af6dde5",
+        "screenshots/battle/battle-nPqY9E/threshold-stop-1280x800.png": "91a1bdc2f4910e38b1094c105e5c7542e689cbb54806d6078f538c52343efea3",
+        "screenshots/battle/battle-ncih2L/capture-maximum-pending-1280x800.png": "6830d47f0e8071b4dc277339694f5f6a6ce420f494371b7ab62a7bd86e66aa3b",
+        "screenshots/battle/battle-o5yfN1/capture-maximum-done-1280x800.png": "87f4f93bd88eac725bbce72badb88e4217fd030a0b2cd2882b62ad9ada3a70b9",
+        "screenshots/computer/flow-0l1Mwg/stopped-1280x800.png": "733029563821384b7acdcba86a4bc674a624d2eca176376e91a6cbaf7293923f",
+        "screenshots/computer/flow-7d3JUd/human-return-1280x800.png": "be88b314acc80d998fcd98ebe63ae468778aa89eaec6f153c9ebc2981d07750f",
+        "screenshots/computer/flow-NEXYh4/pending-computer-1280x800.png": "740cb5ab25d3f4eb3e4360edcf6ccabb3e0b46be74b900e0d1f3507b25b523f3",
+        "screenshots/computer/flow-TzClKj/computer-turn-1280x800.png": "c804ac234c9b4d7f49f3c32d60e70426473b1979d590b5d2f92cc074196139dc",
+        "screenshots/computer/flow-aTv4sL/stopped-1920x1080.png": "49cf8cf00f59ee4b613b68aae2f12b1c569070b76e1c780a6580aaa7d12fada1",
+        "screenshots/computer/flow-cGQdXJ/computer-turn-1920x1080.png": "6ccd84684aa7465e391be77617bfab73ddbf9d0f723b22a8eb36e09a8dda0f5a",
+        "screenshots/computer/flow-rIAIMU/human-return-1920x1080.png": "a3c6e0fdea440dca172e30badcd4b5515d96c7909597067ed550ba327e039e21",
+        "screenshots/computer/flow-zPMnfp/pending-computer-1920x1080.png": "7f581dd4de8f0e8aa96cf499a0fd937bde6efabcc1b5d410dbcb0dc055dc6d1b",
+        "screenshots/game-event-log-1280x800.png": "68461173f6be8d9ef1dcb46a49c49f9baef808b62df389688e3ed1df6998ceec",
+        "screenshots/game-event-log-1920x1080.png": "0cfb24c0a6d6ce2bbe2f737e3dab3e49176cf9d88ebb25da0d6d5db22440d8bb",
+        "screenshots/playback-default-four-seats-1280x800.png": "7cb73a97b02ff84dc368f0bc0cd940d9d0834e9d9b0e0567dfa31bcf16353025",
+        "screenshots/playback-default-four-seats-1920x1080.png": "c2e06e247aa00a81f4b3e8422dac1702e2b08f309bda656720fe51c1c7f7614d",
+        "screenshots/playback-eliminated-1280x800.png": "7e72481b6886c19a075fa20b254996e600fde5ecd2b7f329ade2c6b728fc871d",
+        "screenshots/playback-eliminated-1920x1080.png": "93f7a3a2556bdaa2641a6c93a0ee927f771bd3cb74b70b293ccf7cae3321f274",
+        "screenshots/playback-paused-battle-1280x800.png": "c762e59b22fe2c4468a5e6e43494ca5663429991805ecf0b844d62c7e3ee7d2d",
+        "screenshots/playback-paused-battle-1920x1080.png": "c29fac91757ce3b7983f8896ef952fd1288725018d47a675221ff9c773adebb9",
+        "screenshots/playback-paused-computer-1280x800.png": "9368b63a8aac0367b6ca424fcd33cf413da021c54ee183300b97f7db45e2638b",
+        "screenshots/playback-paused-computer-1920x1080.png": "d70c6f1bf996e86b1263a79c8876442863d1b771bb91fdd255296bcf9ec3664d",
+        "screenshots/playback-totals-1280x800.png": "6e2d425fdec3b4667bde825f946306f17be84f8619802b65608f5c0de008211e",
+        "screenshots/playback-totals-1920x1080.png": "ad8c40dc83804cba714356f51e987c9cfa51b455b2ec973b04996b5db73c963a",
+        "screenshots/playback-very-slow-1280x800.png": "7245b15019ec622be07e23ddcb5580e520223fc3e907e5c9050219504def1f81",
+        "screenshots/playback-very-slow-1920x1080.png": "bf3c983e6c20655daf65e9b42ca287e78eaa09a544e2ea560c559bc36d04231f",
+        "screenshots/production-invalid-load-1280x800.png": "17cc8336d65f85807d7dedd79003f16a78dbe163a3dadbacf9611e0f0ea5e8b1",
+        "screenshots/production-invalid-load-1920x1080.png": "c4d43d7b6a025899ce4dd897e98b534393e3f9b54a26a39a70f5b7f6b7f358d9",
+        "screenshots/production-modal-1280x800.png": "0e46560eecb6ada09933a3e9e0126f5081bfa0ac9d5222648d6c2ed1d5adead9",
+        "screenshots/production-modal-1920x1080.png": "d43e7031e756d6d760552ac445d62f5f834a863119fc0a709ccb9f159f53a83b",
+        "screenshots/production-paused-computer-1280x800.png": "22d2beb95dda7472338c175f20deb537e97a38e5a044a0b815ab5ded91350c6a",
+        "screenshots/production-paused-computer-1920x1080.png": "e59243ac7087854e56dcefe5662f85b3d3570d227ef69ae12bb2c121d8cfd963",
+        "screenshots/versioned/versioned-1uzzzJ/move-draft-1280x800.png": "d1a5b37c6c976dc126cfa38b0b5785ed27dc86f67526bcf37394a9025dbf977f",
+        "screenshots/versioned/versioned-2nKag3/failed-load-1280x800.png": "4f14084fafdb4f27bde8883699457a5d04c25c12fa6fac256e769cfc7a231779",
+        "screenshots/versioned/versioned-LmJV7E/move-completed-1280x800.png": "482d12630b7777ac326f1857b84ae466f02f64d0da29708224dcebb874953e80",
+        "screenshots/versioned/versioned-OLdHa8/placement-1920x1080.png": "04198aef744bd0129ecdf91b9a4cd078ed3720519d4ff6cea2cbb36236efa011",
+        "screenshots/versioned/versioned-ONLZhn/stop-1280x800.png": "2c8d27fc5ae80a76b0a2ad58184246bc0e65e9e88f7bf069b4fa09cdcf4e5970",
+        "screenshots/versioned/versioned-Sj5d7x/move-draft-1920x1080.png": "148afcf435db1082871ae937cf1b1c57780b2aba0d4cd0a42106f33b22236936",
+        "screenshots/versioned/versioned-aHc4zq/pending-capture-1280x800.png": "ea46ecf7dd9ac1db3727da4e624b62b6643150099ca32a65ccc173ec10803992",
+        "screenshots/versioned/versioned-evvCru/domination-1920x1080.png": "6f3c6047daa6f6cf6a7bbe021f6f81f732365e46847f4b11f0c1ac3da87a343c",
+        "screenshots/versioned/versioned-fSRAbs/pending-capture-1920x1080.png": "3d91afffc1e29ba8eca4537948f32a22f167201787085e0e556d8c14df1d2117",
+        "screenshots/versioned/versioned-jgaoxY/move-completed-1920x1080.png": "e095051d0b69fdbced0c8987b31ba94772a60164529a4feb09638bc71871dc3d",
+        "screenshots/versioned/versioned-ppgQDx/failed-load-1920x1080.png": "b4e0c4c22aab3d5d565c50b43a47083c0448311e216d90a345c1da11af4b0721",
+        "screenshots/versioned/versioned-waNfXz/round-limit-1280x800.png": "f9e77f0229ee4076ec8438a70eabd4aaf84289429a0eb946ba2c62dbb77f5cf7",
+        "screenshots/versioned/versioned-wp3HAo/placement-1280x800.png": "07dfd19d7a34e8227112ac7b0947eacdd5a96a3675e654b5574cb0d59e0ebf56",
+        "screenshots/versioned/versioned-xgbqfM/round-limit-1920x1080.png": "962a03075b5f87600948bbd938131dff174e4f44c49edbbc7c75dc0a1cddd169",
+        "screenshots/versioned/versioned-z13BKP/domination-1280x800.png": "074a423cf0e829c50979ea4f6376fe48e9106764ffedc6c7da5de1b246e6d856",
+        "screenshots/versioned/versioned-zY3Fve/stop-1920x1080.png": "a13b2a913bcdee70dad96a3fa1f8f33e75bf20560b4f5b61199ece1bae81f429",
+        "source-inputs.tar.gz": "27d08ea9145384d484a7483e08d987107bfd7d0c2d58e518d765fd882372b824"
+      }
+    },
+    {
+      "run": "docs/prototypes/new-game/T70/20261017T203147619221Z-production-edges",
+      "reportSha256": "cd5935bcf69265e016be6adaced72ae71a7770432e4fbe99f18548ee8229b847",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "presentation-edges",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T203147619221Z-production-edges/presentation-edges/test-results",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "--workers=2"
+          ],
+          "exitCode": 0,
+          "seconds": 4.304,
+          "expected": 0
+        }
+      ],
+      "artifacts": {
+        "raw-logs.tar.gz": "a5106ecd75fda9feda3f80bc4f9a0e5bd038655a93cc9295284576e88925c29d",
+        "screenshots/production-invalid-load-1280x800.png": "17cc8336d65f85807d7dedd79003f16a78dbe163a3dadbacf9611e0f0ea5e8b1",
+        "screenshots/production-invalid-load-1920x1080.png": "c4d43d7b6a025899ce4dd897e98b534393e3f9b54a26a39a70f5b7f6b7f358d9",
+        "screenshots/production-modal-1280x800.png": "05760a3e26c95b7c5c38c485bcd4577c9b7c43fa18a43286f4bc1c6916b316b8",
+        "screenshots/production-modal-1920x1080.png": "df039f03af62f039621ba8b792c4cd98cd62ef9155205ffeae994ebbbe2a4c55",
+        "screenshots/production-paused-computer-1280x800.png": "399bb186d1ffba636a247c1e37e061d3aa8f71d3d08b9f6ef72bead3c76cd237",
+        "screenshots/production-paused-computer-1920x1080.png": "576985a5d8a85e5f032d9f11dbf13c1342965013a26bfc4e8ffacbd0e555d984",
+        "source-inputs.tar.gz": "61fb5b7f07764334792a17b53ba099de709d64982680df1a8c885bad56d62f44"
+      }
+    },
+    {
+      "run": "docs/prototypes/new-game/T70/20261017T203232801059Z-production-omissions",
+      "reportSha256": "119a92901c9c6e664905dc171b9ee01a04b340f7fc18074ea14b9037a442c4b1",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "computer-pause",
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/playback-controls.test.ts",
+            "-t",
+            "paused computer rejects"
+          ],
+          "exitCode": 1,
+          "seconds": 0.643,
+          "expected": 1
+        },
+        {
+          "name": "battle-stale",
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/playback-controls.test.ts",
+            "-t",
+            "global pause invalidates"
+          ],
+          "exitCode": 1,
+          "seconds": 0.624,
+          "expected": 1
+        },
+        {
+          "name": "manual-pause",
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/playback-controls.test.ts",
+            "-t",
+            "paused computer rejects"
+          ],
+          "exitCode": 1,
+          "seconds": 0.618,
+          "expected": 1
+        },
+        {
+          "name": "totals",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T203232801059Z-production-omissions/totals/test-results",
+            "tests/e2e/playback-controls.spec.ts",
+            "--grep",
+            "labelled army totals",
+            "--project=1280x800",
+            "--workers=1"
+          ],
+          "exitCode": 1,
+          "seconds": 7.115,
+          "expected": 1
+        },
+        {
+          "name": "complete-log",
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/game-event-log.test.ts",
+            "-t",
+            "complete replay is cached"
+          ],
+          "exitCode": 1,
+          "seconds": 0.654,
+          "expected": 1
+        },
+        {
+          "name": "combat-casualties",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T203232801059Z-production-omissions/combat-casualties/test-results",
+            "tests/e2e/game-event-log.spec.ts",
+            "--grep",
+            "complete domination",
+            "--project=1280x800",
+            "--workers=1"
+          ],
+          "exitCode": 1,
+          "seconds": 2.226,
+          "expected": 1
+        },
+        {
+          "name": "modal-escape",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T203232801059Z-production-omissions/modal-escape/test-results",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "--grep",
+            "modal Escape",
+            "--project=1280x800",
+            "--workers=1"
+          ],
+          "exitCode": 1,
+          "seconds": 7.484,
+          "expected": 1
+        },
+        {
+          "name": "local-speed",
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T203232801059Z-production-omissions/local-speed/test-results",
+            "tests/e2e/playback-edge-cases.spec.ts",
+            "--grep",
+            "modal Escape",
+            "--project=1280x800",
+            "--workers=1"
+          ],
+          "exitCode": 1,
+          "seconds": 7.309,
+          "expected": 1
+        }
+      ],
+      "artifacts": {
+        "raw-logs.tar.gz": "837fbc2fc52aded7d5af14f0e5e85e3f14000a57a5a60d4eb38e6ab4c716e6d4",
+        "source-inputs.tar.gz": "047816d637067948824511bc904e85bb842a86a278071e2212fd29147e51b238"
+      }
+    },
+    {
+      "run": "docs/prototypes/new-game/T70/20261017T203339633857Z-production-final-units",
+      "reportSha256": "ddd060d32d828785d4e13add91c9fd67ec25ddcca4908912dad278886173ddf8",
+      "inputsUnchanged": true,
+      "commands": [
+        {
+          "name": "unit-tests",
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exitCode": 0,
+          "seconds": 52.125,
+          "expected": 0
+        },
+        {
+          "name": "build",
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exitCode": 0,
+          "seconds": 1.235,
+          "expected": 0
+        }
+      ],
+      "artifacts": {
+        "raw-logs.tar.gz": "8ad4f7402bc68e81ddb113019374aa915293488bbbb0129324d9facb166695a5",
+        "source-inputs.tar.gz": "38e27e444eb90c3e936a4697f1e188dffc74c2cf4627d96c05ce6159507205be"
+      }
+    }
+  ]
+}

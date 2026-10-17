@@ -1,3 +1,4 @@
+import { GameEventLog } from "./gameEventLog";
 import { activePlayer, attackTargets, friendlySources, friendlyTargets, ownerOf, whyNot } from "../core";
 import type { GameMap, GameOptions, GameState } from "../core";
 import { ComputerTurnLoop } from "./computerTurnLoop";
@@ -18,6 +19,10 @@ export interface BattlePreferences { threshold: number; speed: BattleSpeed }
 export class ReferenceBattleGame {
   private readonly computer: ComputerTurnLoop | null;
   private readonly computerStatus = h("p", { id: "reference-computer-status", role: "status" });
+  private readonly playbackPause = h("button", { id: "game-pause-button", type: "button" }, "Pause");
+  private readonly playbackSpeed = h("select", { id: "game-speed", "aria-label": "Game speed" },
+    ...["very-slow", "slow", "normal", "fast"].map(value => h("option", { value }, value === "very-slow" ? "Very slow (2 s)" : value[0]!.toUpperCase() + value.slice(1))));
+  private readonly eventLog: GameEventLog;
   private readonly controller: BattleController;
   private readonly mapView: ReferenceMapView;
   private readonly panel: Panel;
@@ -30,12 +35,13 @@ export class ReferenceBattleGame {
   private mounted = false;
   private disposed = false;
   private readonly onKeyDown = (event: KeyboardEvent) => {
-    if (event.key !== "Escape") return;
+    if (event.key !== "Escape" || this.eventLog.isOpen) return;
     if (this.controller.cancelFriendlyMove()) return;
     if (!this.controller.stop()) this.controller.select(null, null);
   };
 
   constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState) => void, private readonly automatic = false) {
+    this.eventLog = new GameEventLog(options);
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
     }, view => {
@@ -63,6 +69,8 @@ export class ReferenceBattleGame {
     this.friendly = new FriendlyMoveView(this.controller);
     this.victory = new VictoryView(this.controller);
     this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el, this.computerStatus);
+    this.playbackPause.onclick = () => this.controller.setPlaybackPaused(!this.controller.playbackPaused);
+    this.playbackSpeed.onchange = () => this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed);
     this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state);
   }
 
@@ -76,7 +84,7 @@ export class ReferenceBattleGame {
       ? `Nine Isles · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `Nine Isles · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     root.replaceChildren(
-      h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, footer, this.files.el),
+      h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, h("div", { class: "game-playback" }, this.eventLog.button, this.eventLog.dialog, this.playbackPause, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed), footer, this.files.el),
       h("main", { class: "stage" }, h("section", { class: "board" }, this.mapView.el), this.panel.el));
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
@@ -88,13 +96,14 @@ export class ReferenceBattleGame {
     if (this.disposed) return;
     this.disposed = true;
     this.computer?.dispose();
+    this.eventLog.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
   }
 
   private clickProvince(id: string, inspect = false): void {
-    if (this.disposed) return;
+    if (this.disposed || this.controller.playbackPaused) return;
     const { state, from, to, mode, running, paused } = this.controller.view;
     if (this.computerActive() || running || paused || state.pendingCapture || state.phase === "finished" || state.phase === "human-loss") return;
     if (mode === "move") {
@@ -115,7 +124,7 @@ export class ReferenceBattleGame {
 
   private renderMap(): void {
     const { state, from, to, running, paused, mode } = this.controller.view;
-    const blocked = this.computerActive() || running || paused || state.pendingCapture !== undefined || state.phase === "finished" || state.phase === "human-loss";
+    const blocked = this.controller.playbackPaused || this.computerActive() || running || paused || state.pendingCapture !== undefined || state.phase === "finished" || state.phase === "human-loss";
     const targets = blocked ? [] : mode === "move" ? from ? friendlyTargets(state, from) : friendlySources(state) : from ? attackTargets(state, from) : [];
     this.mapView.render({ state, selected: from, target: to, targets, hover: this.hover, flash: [] });
     if (mode === "move") {
@@ -136,8 +145,13 @@ export class ReferenceBattleGame {
 
   private render(): void {
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
+    this.eventLog.update(this.controller.state);
+    this.playbackPause.textContent = this.controller.playbackPaused ? "Resume" : "Pause";
+    this.playbackPause.setAttribute("aria-label", this.controller.playbackPaused ? "Resume game" : "Pause game");
+    this.playbackPause.setAttribute("aria-pressed", String(this.controller.playbackPaused));
+    this.playbackSpeed.value = this.controller.view.speed;
     this.renderMap();
-    this.panel.render({ state, from, to, blocked: from && to ? whyNot(state, from, to) : "Choose a source and target.", seed: this.options.seed,
+    this.panel.render({ prominentArmyTotals: true, state, from, to, blocked: from && to ? whyNot(state, from, to) : "Choose a source and target.", seed: this.options.seed,
       hint: state.phase === "reinforce" ? state.reinforcementPool ? "Place your armies on your countries, then start combat." : "All armies placed. Start combat when ready." : "",
     });
     if (state.phase === "capture") this.panel.el.querySelector("#turn-phase")!.textContent = "Capture move-in";
@@ -163,10 +177,10 @@ export class ReferenceBattleGame {
     this.victory.render(state, revision);
     const computer = this.computerActive();
     this.computerStatus.hidden = !computer;
-    this.computerStatus.textContent = computer ? `${activePlayer(state)!.name} is playing…` : "";
-    if (computer) {
+    this.computerStatus.textContent = computer ? this.controller.playbackPaused ? `${activePlayer(state)!.name} · Paused` : `${activePlayer(state)!.name} is playing…` : "";
+    if (computer || this.controller.playbackPaused) {
       for (const el of this.panel.el.querySelectorAll<HTMLButtonElement | HTMLInputElement>(".action button,.action input")) el.disabled = true;
-      this.panel.el.querySelector(".hint")?.replaceChildren(document.createTextNode("Computer turn. Save, load or start a new game at any time."));
+      this.panel.el.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; save, load and new game remain available." : "Computer turn. Save, load or start a new game at any time."));
     }
     this.computer?.update();
   }
