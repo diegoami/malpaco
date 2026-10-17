@@ -22,8 +22,15 @@ export function validateClaudeEnvironment(env, model) {
 export function claudeSettings(guard) {
   // No user/project/local settings loaded. Only this trusted launcher's hook is installed.
   const quote = (s) => `'${s.replaceAll("'", "'\\''")}'`;
-  return { permissions: { allow: ['Bash', 'Read', 'Grep', 'Glob'], deny: ['Agent', 'Edit', 'Write'] },
-    hooks: { PreToolUse: [{ matcher: 'Bash|Read|Grep|Glob', hooks: [{ type: 'command', command: `CLAUDE_PROJECT_DIR=${quote(path.resolve(path.dirname(guard), '../..'))} ${quote(process.execPath)} ${quote(guard)} reviewer` }] }] } };
+  const publishing = ['git push *', 'git -C * push *', 'git commit *', 'git -C * commit *',
+    'git push', 'git commit', 'git * push*', 'git * commit*',
+    ...['merge', 'comment', 'review', 'edit', 'create', 'close', 'reopen'].map((v) => `gh pr ${v} *`),
+    ...['edit', 'comment', 'create', 'close', 'reopen', 'delete', 'transfer'].map((v) => `gh issue ${v} *`),
+    'gh run rerun *', 'gh run cancel *', 'gh workflow run *',
+    ...['POST', 'PATCH', 'PUT', 'DELETE'].flatMap((v) => [`gh api *-X ${v}*`, `gh api *-X${v}*`, `gh api *--method ${v}*`, `gh api *--method=${v}*`]),
+    'gh api *-f*', 'gh api *-F*', 'gh api *--input*'];
+  return { permissions: { allow: ['Bash', 'Read', 'Grep', 'Glob'], deny: ['Agent', 'Edit', 'Write', ...publishing.map((p) => `Bash(${p})`)] },
+    hooks: { PreToolUse: [{ matcher: 'Read|Grep|Glob', hooks: [{ type: 'command', command: `CLAUDE_PROJECT_DIR=${quote(path.resolve(path.dirname(guard), '../..'))} ${quote(process.execPath)} ${quote(guard)} reviewer` }] }] } };
 }
 export function readClaudeEvents(text, model, sessionId) {
   let events;
@@ -32,6 +39,8 @@ export function readClaudeEvents(text, model, sessionId) {
   const results = events.filter((e) => e.type === 'result');
   if (init.length !== 1 || results.length !== 1) fail('Claude must emit exactly one init and one final result.');
   if (init[0].model !== model || init[0].session_id !== sessionId || results[0].session_id !== sessionId) fail('Claude actual model or session differs from the selection.');
+  const assistantModels = [...new Set(events.filter((e) => e.type === 'assistant' && e.message?.model).map((e) => e.message.model))];
+  if (assistantModels.some((actual) => actual !== model)) fail('Claude response model differs from the selected model.');
   const result = results[0];
   if (result.is_error !== false || result.subtype !== 'success' || typeof result.result !== 'string' || !result.result.trim()) fail('Claude did not return a successful final review.');
   if (!Array.isArray(result.permission_denials) || result.permission_denials.length) fail('Claude permission denial; widen the trusted grant before another run.');
@@ -41,7 +50,7 @@ export function readClaudeEvents(text, model, sessionId) {
       if (part.type === 'tool_result' && part.is_error && /PreToolUse[\s\S]*hook[\s\S]*(?:blocked|error)|blocked by[\s\S]*hook|Permission to use[\s\S]*denied/i.test(String(part.content))) fail('Claude tool hook rejected a call.');
     }
   }
-  return { review: result.result, actualModel: init[0].model, sessionId, permissionDenials: result.permission_denials };
+  return { review: result.result, actualModel: init[0].model, sessionId, permissionDenials: result.permission_denials, assistantModels };
 }
 const groupedEvidence = (f) => f.startsWith('docs/prototypes/') && !/\.(?:[cm]?js|py|sh|[cm]?tsx?)$/i.test(f);
 export function scopeProblems(review, files) {
@@ -69,7 +78,7 @@ export function runClaudeWatched({ command, args, workDir, evidenceDir, model, s
   const outFd = fs.openSync(stdoutFile, 'w'), errFd = fs.openSync(stderrFile, 'w');
   const started = Date.now();
   return new Promise((resolve, reject) => {
-    let child, timer, exitCode = null, failure = null, lastActivity = started, pending = '', initSeen = false;
+    let child, timer, exitCode = null, failure = null, lastActivity = started, pending = '', initSeen = false, observedModel = null, observedSessionId = null;
     const stop = (reason) => {
       failure ??= reason;
       if (child?.pid) {
@@ -91,7 +100,7 @@ export function runClaudeWatched({ command, args, workDir, evidenceDir, model, s
       fs.writeFileSync(path.join(evidenceDir, 'final.md'), rawFinal);
       try { parsed = readClaudeEvents(stdout, model, sessionId); } catch (e) { failure ??= e.message; }
       if (exitCode !== 0) failure ??= `Claude CLI exit ${exitCode}.`;
-      const receipt = { expectedModel: model, actualModel: parsed?.actualModel ?? null, sessionId, pid: child?.pid ?? null, exitCode,
+      const receipt = { expectedModel: model, actualModel: observedModel, observedSessionId, assistantModels: parsed?.assistantModels ?? [], sessionId, pid: child?.pid ?? null, exitCode,
         seconds: (Date.now() - started) / 1000, failure, cliVersion: command.version ?? null, command: [command.exe, ...command.prefix, ...args],
         sha256: Object.fromEntries(['stdout.jsonl', 'stderr.txt', 'final.md', 'prompt.md', 'settings.json', 'inventory.json', 'full.diff'].filter((n) => fs.existsSync(path.join(evidenceDir, n))).map((n) => [n, hash(fs.readFileSync(path.join(evidenceDir, n)))])) };
       fs.writeFileSync(path.join(evidenceDir, 'receipt.json'), JSON.stringify(receipt, null, 2)+'\n');
@@ -108,7 +117,7 @@ export function runClaudeWatched({ command, args, workDir, evidenceDir, model, s
         try {
           const event = JSON.parse(line);
           if (event.type === 'system' && event.subtype === 'init') {
-            initSeen = true;
+            initSeen = true; observedModel = event.model; observedSessionId = event.session_id;
             if (event.model !== model || event.session_id !== sessionId) stop('Claude actual model/session mismatch.');
             else log(`claude: session ${sessionId} started (${event.model}); events ${stdoutFile}`);
           }

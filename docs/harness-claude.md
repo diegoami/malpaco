@@ -40,16 +40,24 @@ model-remapping environment variables before a model call. It never prints crede
 global auth/settings. Existing OAuth environment authentication works in the measured trials.
 
 `--setting-sources ''` excludes user, project and local settings; only invocation-generated
-settings from the trusted launcher checkout are loaded. This prevents a PR's `.claude` settings
+settings from the trusted launcher checkout are requested. Administrator-managed policies can
+still apply; the adapter cannot override them and refuses conflicting identity or denied calls.
+This prevents a PR's `.claude` settings
 from selecting GLM or changing the reviewer hook. `--model` pins the exact ID, and the init event
-must match it and the requested session UUID. The adapter enables only Bash, Read, Grep and Glob,
-with the existing trusted reviewer PreToolUse guard. Bash may build, test and mutate files for
-negative controls; the guard rejects git commits/pushes and GitHub writes. It has the same
-mistakes-only limits documented in lib/guard.mjs: it is not an OS sandbox. Script files and literal Python `-c`/Node `-e` code can
-execute code and are outside the shell-text reader. The enclosing shell and substitutions
-remain checked, and a dynamic inline-code argument is refused. File tools also use the existing credential-path guard. No permission bypass,
-subagents, checkout-supplied hooks or global permission edits are used. An optional credential
-jail continues through the existing guard when configured; the default is off.
+must match it and the requested session UUID. Every assistant response model ID, when present,
+must also match; a fallback after startup cannot approve. The adapter enables only Bash, Read, Grep and Glob. Claude's native Bash deny rules mirror
+OpenCode's publishing restrictions and add common API mutation forms. Native permissions handle
+compound commands; no separate Bash parser is installed in this backend. The trusted existing
+PreToolUse hook still checks credential paths for Read/Grep/Glob, with the launcher's project
+context pinned explicitly. Bash may build, test and mutate copies in its worktree.
+
+These are safeguards against mistakes, matching OpenCode's coarse command policy, not an OS
+sandbox. Arbitrary programs/scripts can execute code, access other files or invoke a publishing
+API. The prompt still forbids publishing, subagents and global settings edits. No permission
+bypass or checkout-supplied hooks are used. Claude refuses to launch when the optional credential
+jail is enabled, because that mode has not been integrated; it never silently ignores it.
+See the official [permission documentation](https://code.claude.com/docs/en/permissions) for
+native deny precedence and compound-command handling. The default jail setting remains off.
 
 Every permission denial or rejected hook invalidates the run. Read its full retained final,
 fix the trusted grant, then decide whether another run is authorized. Never count exit0 alone.

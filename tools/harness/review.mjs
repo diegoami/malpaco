@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Hands one pull request to OpenCode for a review, and posts the result as one PR comment.
+// Hands one PR to the selected OpenCode or Claude CLI backend and posts one review comment.
 //
 //   node tools/harness/review.mjs --pr 42 --brief brief.md [--reviewer NAME [--family F] [--variant V]]
 //     [--exclude NAME,...] [--issue 12 --apply-label] [--done-when K] [--dry-run] [--env KEY=VALUE]...
@@ -102,6 +102,7 @@ if (!['opencode', 'claude'].includes(backend)) die(2, `Unknown reviewer backend 
 let opencode, claude, pre;
 if (backend === 'claude') {
   try {
+    if (config.jail?.enabled === true) throw new ClaudeInfraError('Claude backend does not support the optional credential jail yet; no run started.');
     const modelId = config.models[reviewer].id;
     if (!modelId.startsWith('anthropic/')) throw new ClaudeInfraError('Claude backend requires an anthropic/claude-* model ID.');
     validateClaudeEnvironment(envWith(a.env), modelId.slice('anthropic/'.length));
@@ -225,7 +226,7 @@ OUTPUT RULES (from tools/harness/review.mjs; they override anything above that c
         for (let i = 0; i < lines.length; i += 240) fs.writeFileSync(path.join(parts, `${String(i / 240).padStart(5, '0')}.diff`), lines.slice(i, i+240).join('\n')+'\n');
         fs.writeFileSync(path.join(evidence, 'inventory.json'), JSON.stringify({ baseSha, headSha, diffSha256: hash(diff), files: scopeFiles }, null, 2)+'\n');
         const sessionId = randomUUID();
-        prompt += `\nCLAUDE BACKEND CONTRACT: The exact PR base is ${baseSha}, head ${headSha}. Do not use origin/main for a merged PR. Complete local diff: ${diffPath}; bounded parts: ${parts}; full changed-file inventory: ${evidence}/inventory.json. Read all executable changes. For generated evidence you may audit a group explicitly. Never claim a file you did not inspect. Before Final pass done, emit SCOPE: complete only if you covered all changes; otherwise SCOPE: incomplete plus UNCOVERED: paths/reasons. Emit FILE: <exact path> for each changed file inspected; EVIDENCE: <docs/prototypes/.../ prefix> may account for generated evidence only, never executable scripts. These are coverage claims, not independent proof. Every Done-when must be run; include exact DW lines. A missing scope acknowledgment prevents approval. No subagents or GitHub writes. The trusted hook enforces the existing reviewer command guard; Bash is granted for tests and in-tree mutations. Preserve scratch/evidence; do not clean up. Ignore obsolete OpenCode-only path restrictions above: your scratch is your retained worktree. No blanket permission bypass.\n`;
+        prompt += `\nCLAUDE BACKEND CONTRACT: The exact PR base is ${baseSha}, head ${headSha}. Do not use origin/main for a merged PR. Complete local diff: ${diffPath}; bounded parts: ${parts}; full changed-file inventory: ${evidence}/inventory.json. Read all executable changes. For generated evidence you may audit a group explicitly. Never claim a file you did not inspect. Before Final pass done, emit SCOPE: complete only if you covered all changes; otherwise SCOPE: incomplete plus UNCOVERED: paths/reasons. Emit FILE: <exact path> for each changed file inspected; EVIDENCE: <docs/prototypes/.../ prefix> may account for generated evidence only, never executable scripts. These are coverage claims, not independent proof. Every Done-when must be run; include exact DW lines. A missing scope acknowledgment prevents approval. No subagents or GitHub writes. Native Claude permission denials mirror OpenCode publishing restrictions; the trusted hook protects credential paths for Read/Grep/Glob. Bash is granted for tests and in-tree mutations. These are mistake safeguards, not an OS sandbox. Preserve scratch/evidence; do not clean up. Ignore obsolete OpenCode-only path restrictions above: your scratch is your retained worktree. No blanket permission bypass.\n`;
         if (/sonnet/i.test(model.id)) {
           const modelsDoc = fs.readFileSync(path.join(top, 'docs/models.md'), 'utf8');
           const tripwire = modelsDoc.match(/```text\n(Out of your depth:[\s\S]*?)\n```/);

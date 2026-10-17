@@ -14,7 +14,7 @@ const final = { type: 'result', subtype: 'success', is_error: false, session_id:
 const encode = (events) => events.map((e) => JSON.stringify(e)).join('\n')+'\n';
 test('actual selected model and real final required, not exit0 or quoted content', () => {
  assert.equal(readClaudeEvents(encode([init,final]), id, 'ours').review,final.result);
- for (const events of [[final],[init],[init,init,final],[init,final,final],[{...init,model:'glm-5.3'},final],[{...init,model:'claude-opus-5-5'},final],[{...init,session_id:'other'},final],[init,{...final,session_id:'other'}],[init,{...final,is_error:true}],[init,{...final,subtype:'error_max_turns'}],[init,{...final,permission_denials:[{tool_name:'Bash'}]}]]) assert.throws(()=>readClaudeEvents(encode(events),id,'ours'));
+ for (const events of [[final],[init],[init,init,final],[init,final,final],[{...init,model:'glm-5.3'},final],[init,{type:'assistant',message:{model:'glm-5.3',content:[]}},final],[{...init,model:'claude-opus-5-5'},final],[{...init,session_id:'other'},final],[init,{...final,session_id:'other'}],[init,{...final,is_error:true}],[init,{...final,subtype:'error_max_turns'}],[init,{...final,permission_denials:[{tool_name:'Bash'}]}]]) assert.throws(()=>readClaudeEvents(encode(events),id,'ours'));
  assert.throws(()=>readClaudeEvents(encode([init,final])+'{',id,'ours'));
  assert.throws(()=>readClaudeEvents(encode([init,{type:'user',message:{content:[{type:'tool_result',content:'PreToolUse hook blocked this tool call',is_error:true}]}},final]),id,'ours'));
  assert.doesNotThrow(()=>readClaudeEvents(encode([init,{type:'assistant',message:{content:[{type:'text',text:'Permission to use Bash has been denied (quoted fixture)'}]}},final]),id,'ours'));
@@ -69,12 +69,16 @@ test('real review entry selects Claude without OpenCode, publishes once, refuses
  const gh=path.join(root,'gh.mjs'),cli=path.join(root,'claude.mjs'),trace=path.join(root,'gh-trace');
  fs.writeFileSync(gh,`import fs from 'node:fs'; const a=process.argv.slice(2);if(a.includes('--version')){console.log('gh fake');}else if(a[0]==='pr'&&a[1]==='view'){console.log(a.includes('headRefOid,baseRefOid')?JSON.stringify({headRefOid:process.env.HEAD_SHA,baseRefOid:process.env.BASE_SHA}):'');}else{fs.appendFileSync(process.env.TRACE,JSON.stringify(a)+'\\n');if(a.includes('--body-file'))fs.writeFileSync(process.env.TRACE+'.body',fs.readFileSync(a[a.indexOf('--body-file')+1]));}`);
  fs.writeFileSync(cli,`import fs from 'node:fs';import path from 'node:path';const a=process.argv.slice(2);if(a.includes('--version')){console.log('2.1.292 (Claude Code)');process.exit(0);}const v=k=>a[a.indexOf(k)+1];if(v('--setting-sources')!=='')throw Error('settings not isolated');const dir=path.dirname(v('--settings'));const s=JSON.parse(fs.readFileSync(v('--settings')));if(!s.hooks.PreToolUse.length)throw Error('no guard');const inv=JSON.parse(fs.readFileSync(path.join(dir,'inventory.json')));if(!fs.readFileSync(path.join(dir,'full.diff'),'utf8').includes('+head'))throw Error('no local diff');const mode=process.env.CASE;console.log(JSON.stringify({type:'system',subtype:'init',session_id:v('--session-id'),model:mode==='wrong'?'glm-5.3':v('--model')}));if(mode==='missing')process.exit(0);const r=['T69 review (Claude)','approve',mode==='dw'?'DW1: not run — fixture':'DW1: ran git diff --check → passed',...(mode==='scope'?[]:inv.files.map(f=>'FILE: '+f)),'SCOPE: complete','R1: test full findings survive flags','Final pass done','approve'].join('\\n');console.log(JSON.stringify({type:'result',subtype:'success',is_error:false,session_id:v('--session-id'),permission_denials:mode==='denied'?[{tool_name:'Bash'}]:[],result:r}));if(mode==='exit')process.exitCode=7;`);
- for(const mode of ['ok','scope','dw','wrong','missing','denied','exit']){
+ const seenEvidence=new Set();
+ for(const mode of ['ok','scope','dw','wrong','missing','denied','exit','jail']){
   fs.writeFileSync(trace,'');
+  const cfgPath=path.join(repo,'harness.json');const cfg=JSON.parse(fs.readFileSync(cfgPath));cfg.jail={enabled:mode==='jail'};fs.writeFileSync(cfgPath,JSON.stringify(cfg));
   const env={...process.env,HARNESS_GH_EXE:gh,HARNESS_CLAUDE_EXE:cli,HARNESS_OPENCODE_EXE:'/does/not/exist',HARNESS_SESSION_FAMILY:'openai',HEAD_SHA:head,BASE_SHA:base,TRACE:trace,CASE:mode};
   for(const k of Object.keys(env))if(k.startsWith('ANTHROPIC_')||k.startsWith('CLAUDE_CODE_USE_'))delete env[k];
   const r=spawnSync(process.execPath,[path.resolve('tools/harness/review.mjs'),'--pr','1','--brief',brief,'--issue','2','--apply-label'],{cwd:repo,env,encoding:'utf8',timeout:15000});
   assert.equal(r.status,mode==='ok'?0:['scope','dw'].includes(mode)?4:3,mode+'\n'+r.stdout+'\n'+r.stderr);
+  if(mode==='jail'){assert.match(r.stderr,/does not support the optional credential jail/);assert.ok(fs.readFileSync(trace,'utf8').split('\n').filter(Boolean).map(JSON.parse).every(a=>a[1]==='view'));continue;}
+  const evidenceRoot=path.join(repo,'.cache/review-evidence');const fresh=fs.readdirSync(evidenceRoot).find(n=>!seenEvidence.has(n));assert.ok(fresh);seenEvidence.add(fresh);const receipt=JSON.parse(fs.readFileSync(path.join(evidenceRoot,fresh,'receipt.json')));assert.equal(receipt.actualModel,mode==='wrong'?'glm-5.3':id);
   const writes=fs.readFileSync(trace,'utf8').split('\n').filter(Boolean).map(JSON.parse);
   assert.equal(writes.filter(a=>a[0]==='pr'&&a[1]==='comment').length,['ok','scope','dw'].includes(mode)?1:0,mode);
   assert.equal(writes.some(a=>a.includes('--add-label')),mode==='ok',mode);
@@ -83,13 +87,11 @@ test('real review entry selects Claude without OpenCode, publishes once, refuses
  assert.equal(git('rev-parse','HEAD'),head);assert.equal(JSON.parse(fs.readFileSync(path.join(repo,'harness.json'))).reviewer.default,'claude');
 });
 
-test('review guard permits inspection commands and still checks outer publishing commands',async()=>{
- const { refusal }=await import('../lib/guard.mjs');
- assert.equal(refusal('E=/tmp/evidence; sha256sum "$E/full.diff"','reviewer'),null);
- assert.equal(refusal('python3 -c "import json; p=[1,2,3]; print(p[:2])"','reviewer'),null);
- assert.equal(refusal('python3 -I -c "import json; p=[1,2]; print(p[:1])"','reviewer'),null);
- assert.equal(refusal('node -e "console.log(JSON.stringify({a:1}))"','reviewer'),null);
- assert.ok(refusal('python3 -c "print(1)"; gh pr comment 1 --body bad','reviewer'));
- assert.ok(refusal('node -e "console.log(1)" && git push origin main','reviewer'));
- assert.ok(refusal('sha256sum "$(gh pr comment 1 --body bad)"','reviewer'));
+test('native Claude command denials cover OpenCode publishing policy without a second Bash parser',()=>{
+ const settings=claudeSettings('/trusted/tools/harness/guard.mjs');
+ const agent=fs.readFileSync('.opencode/agents/reviewer.md','utf8');
+ for(const m of agent.split('  bash:')[1].split('---')[0].matchAll(/^    "([^"]+)": deny$/gm))assert.ok(settings.permissions.deny.includes('Bash('+m[1]+')'),m[1]);
+ assert.ok(settings.permissions.deny.includes('Bash(gh api *-X POST*)'));
+ assert.equal(settings.hooks.PreToolUse.some(h=>h.matcher.split('|').includes('Bash')),false);
+ assert.equal(settings.hooks.PreToolUse.some(h=>h.matcher.split('|').includes('Read')),true);
 });
