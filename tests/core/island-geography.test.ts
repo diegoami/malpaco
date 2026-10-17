@@ -77,3 +77,25 @@ describe("meaningful silhouette and layout diversity",()=>{
   expect(ranges.some(values=>Math.max(...values)/Math.min(...values)>=1.05)).toBe(true);
  });
 });
+
+// Reservations already determine distinct entrance countries, so partial successes must
+// preserve the T24 fortress/concentration budget before T35 constructs playable data.
+it('rejects reservations that concentrate entrances and bonuses into fortress islands',async()=>{
+ const {vi}=await import('vitest');vi.resetModules();
+ vi.doMock('../../docs/prototypes/new-game/T34/witness.json',async()=>{
+  const actual=await vi.importActual<{default:IslandGeography}>('../../docs/prototypes/new-game/T34/witness.json');
+  const bad=structuredClone(actual.default);
+  // Four disjoint retained crossings leave eight islands with one entrance each.
+  bad.entranceReservations=[0,2,4,10].map(i=>bad.entranceReservations[i]!);
+  return {default:bad};
+ });
+ try {
+  const {generateIslandGeography:generate}=await import('../../src/core/island-geography');
+  const r=generate(42,{attempts:3});expect(r.ok).toBe(false);expect(r.failures).toHaveLength(3);
+  for(const f of r.failures){
+   expect(f.constraints).toContain('fortress: too many single-entry islands');
+   expect(f.constraints).toContain('fortress: large single-entry island');
+   expect(f.constraints).toContain('concentration: single-entry bonuses exceed quarter');
+  }
+ }finally{vi.doUnmock('../../docs/prototypes/new-game/T34/witness.json');vi.resetModules();}
+},30000);
