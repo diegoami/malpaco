@@ -48,7 +48,7 @@ export class ReferenceBattleGame {
     this.controller.setThreshold(threshold);
     this.controller.setSpeed(speed);
     this.mapView = new ReferenceMapView(map, {
-      onProvince: id => this.clickProvince(id),
+      onProvince: (id, activation) => { if (!activation?.repeat) this.clickProvince(id, activation?.inspect ?? false); },
       onBackground: () => { this.controller.select(null, null); },
       onHover: id => { this.hover = id; if (this.mounted && !this.disposed) this.renderMap(); },
     });
@@ -93,9 +93,10 @@ export class ReferenceBattleGame {
     window.removeEventListener("keydown", this.onKeyDown);
   }
 
-  private clickProvince(id: string): void {
+  private clickProvince(id: string, inspect = false): void {
     if (this.disposed) return;
-    const { state, from, to, mode } = this.controller.view;
+    const { state, from, to, mode, running, paused } = this.controller.view;
+    if (this.computerActive() || running || paused || state.pendingCapture || state.phase === "finished" || state.phase === "human-loss") return;
     if (mode === "move") {
       if (from && friendlyTargets(state, from).includes(id)) this.controller.select(from, id);
       else this.controller.select(id === from ? null : id, null);
@@ -104,7 +105,11 @@ export class ReferenceBattleGame {
     } else if (ownerOf(state, id) === activePlayer(state)?.id) {
       this.controller.select(from === id && to === null ? null : id, null);
     } else if (from !== null) {
-      this.controller.select(from, id);
+      if (this.controller.select(from, id)) {
+        if (!inspect) this.controller.singleExchange();
+      } else {
+        this.battle.el.querySelector("#battle-status")!.textContent = whyNot(state, from, id);
+      }
     }
   }
 
