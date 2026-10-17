@@ -39,7 +39,8 @@ if (view === "reference-game") {
   mountGeneratedPreview(root);
 } else if (view === "generated-game") {
   mountGeneratedGame(root);
-} else {
-  // Includes game-setup and unknown view values; both safely land on setup.
+} else if (view === "game-setup") {
   mountGameSetup(root);
+} else {
+  mountReferenceGame(root);
 }
