@@ -8,6 +8,8 @@ the archived Godot proof of concept.
 
 How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process.md). Tasks:
 [docs/tasks/](docs/tasks/README.md).
+For session continuity, read the latest decisions in [RUN-NOTES.md](RUN-NOTES.md)
+and query current GitHub issue labels; historical notes are not task status.
 
 ## Play
 

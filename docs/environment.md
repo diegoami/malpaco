@@ -28,6 +28,18 @@ which cannot use the run's Linux paths and survives the kill of a timed-out run:
 tests failed through it. The runner skips the shim and falls back to `~/.opencode/bin/opencode`;
 `HARNESS_OPENCODE_EXE` overrides both. WSL and Windows keep separate logins: log in from WSL.
 
+A local CLI compatibility trap was observed during the 2026-10-17 entry review
+([PR #141](https://github.com/diegoami/malpaco/pull/141)): the currently installed
+binary rejected the harness's positional `models <provider>` and `export <session>`
+arguments. The successfully reviewed run used
+`HARNESS_OPENCODE_EXE=/home/diego/.opencode/bin/opencode.1.18.32.bak`.
+For `tools/harness/peek.sh`, the corresponding override is **`OPENCODE_BIN`**, not
+`HARNESS_OPENCODE_EXE`. Verify that local binary still exists and its live model
+list before reusing it; this records a working local fallback, not a requirement
+to pin every future machine to that path. Use the actual session family for
+`HARNESS_SESSION_FAMILY` when an environment override is needed, preserving the
+independent-family review rule.
+
 **On Windows**, `npm install -g opencode-ai@1.18`.
 
 Then run `npm test` in the harness repository. The tests against the real OpenCode run wherever
