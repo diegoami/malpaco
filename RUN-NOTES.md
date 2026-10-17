@@ -599,3 +599,5 @@ Workspace caution: AGENTS.md, CLAUDE.md, docs/environment.md, docs/tasks/T09.md,
 
 
 Current-flow playtest PLAN (2026-10-17): owner selected main implementation and MiniMax review. Isolated triage/current-playable-flow retains real root/owner-legacy URL inputs, histories and screenshots at both sizes before deciding #137/#138 scope. No gameplay/T33 implementation, historical rules/save changes or duplicate CI. Preserve all inherited entries/worktrees/evidence.
+
+Current-flow playtest evidence: final 4/4 root/owner-legacy probes pass at both sizes; root Single exchange repetition, Stop and explicit pending capture/save-resume work. Legacy capture-all/target clearing reproduced (3-army example, not exact owner history). Two actual-source controls fail both root probes and restore exact bytes; all failures retained. Build/583 units and inherited runtime/test equality pass. No runtime/T33/geometry change; main submits evidence-only PR #142 for owner-selected independent MiniMax review. Draft pushes skip CI.
