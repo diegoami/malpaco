@@ -8,7 +8,7 @@ out = Path(tempfile.mkdtemp(prefix='run-', dir=root / 'evidence'))
 raw = out / 'raw'
 raw.mkdir()
 relative = out.relative_to(repo)
-files = sorted(set(p for folder in ['src', 'tests', 'data/maps', 'docs/prototypes/new-game/T63'] for p in (repo / folder).rglob('*') if p.is_file()) | set(root.glob('*.ts')) | set(root.glob('*.mjs')) | {root/'acceptance/board.json', repo/'docs/prototypes/map-1994/preview.html'} | {root/name for name in ['board.json','map.svg','preview.html'] if (root/name).is_file()} | {p for folder in ['T24','T60','T62','T64'] for p in (repo/'docs/prototypes/new-game'/folder).glob('*.mjs')} | {root / 'run.py', root / 'CONTRACT.md', repo / 'package.json', repo / 'package-lock.json', repo / 'playwright.config.ts'})
+files = sorted(set(p for folder in ['src', 'tests', 'data/maps', 'docs/prototypes/new-game/T63'] for p in (repo / folder).rglob('*') if p.is_file()) | set(root.glob('*.ts')) | set(root.glob('*.mjs')) | {root/'acceptance/board.json', repo/'docs/prototypes/map-1994/preview.html'} | {root/name for name in ['board.json','map.svg','preview.html'] if (root/name).is_file()} | {p for folder in ['T24','T60','T62','T64'] for p in (repo/'docs/prototypes/new-game'/folder).glob('*.mjs')} | {r/'docs/prototypes/new-game/T64'/n for r in [repo] for n in ['board.json','map.svg','preview.html']} | {root / 'run.py', root / 'CONTRACT.md', repo / 'package.json', repo / 'package-lock.json', repo / 'playwright.config.ts'})
 sha = lambda b: hashlib.sha256(b).hexdigest()
 inputs = {str(p.relative_to(repo)): p.read_bytes() for p in files}
 with tarfile.open(out / 'source-inputs.tar.gz', 'w:gz') as archive:

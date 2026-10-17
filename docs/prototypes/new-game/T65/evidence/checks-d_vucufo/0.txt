@@ -1,0 +1,66 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work
+
+ ❯ tests/ui/region-border-postprocess.test.ts (5 tests | 2 failed) 10016ms
+   ❯ canonical shared region borders (5)
+     × replaces straight divisions with the frozen geographical border drawing 90ms
+     × retains exact metadata, coast, ports, labels and routes 81ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -1625,11 +1625,11 @@
+        "countTextCss": 14,
+        "hitSizeCss": 40,
+        "id": "province_4",
+        "island": "island_0",
+        "labelAt": [
+-         367.25,
++         368.25,
+          67.5,
+        ],
+        "name": "River gate",
+        "owner": "seat1",
+        "polygon": [
+
+ ❯ tests/ui/region-border-postprocess.test.ts:12:137
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains exact metadata, coast, ports, labels and routes
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -1625,11 +1625,11 @@
+        "countTextCss": 14,
+        "hitSizeCss": 40,
+        "id": "province_4",
+        "island": "island_0",
+        "labelAt": [
+-         367.25,
++         368.25,
+          67.5,
+        ],
+        "name": "River gate",
+        "owner": "seat1",
+        "production": false,
+
+ ❯ tests/ui/region-border-postprocess.test.ts:14:112
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  12:08:50
+   Duration  10.23s (tests 99%, transform 1%)
+

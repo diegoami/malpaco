@@ -14,7 +14,9 @@ const country=(page:Page,id:string)=>page.locator(`[data-id="${id}"]`);
 function output(label:string){mkdirSync(root,{recursive:true});return mkdtempSync(join(root,label+"-"));}
 async function shot(page:Page,dir:string,name:string){await page.mouse.move(0,0);await page.screenshot({path:join(dir,name+".png")});}
 async function closeups(page:Page,dir:string,prefix:string){for(const [index,name]of[[7,"cliff"],[8,"great"]] as const)await page.locator(".coast").nth(index).screenshot({path:join(dir,`${prefix}-${name}.png`)});}
-async function painted(page:Page){
+const playablePaint:typeof expectedType=JSON.parse(readFileSync(new URL("../../docs/prototypes/new-game/T65/board.json",import.meta.url),"utf8"));
+async function painted(page:Page,expectedPaint=expected){
+ const expected=expectedPaint;
  await expect(page.locator(".country")).toHaveCount(46);
  expect(await page.locator(".coast").evaluateAll(nodes=>nodes.map(n=>n.getAttribute("d")))).toEqual(expected.islands.map(i=>"M"+i.polygon.map(p=>p.join(",")).join("L")+"Z"));
  for(const p of expected.provinces)await expect(country(page,p.id).locator(".cell")).toHaveAttribute("d","M"+p.polygon.map(q=>q.join(",")).join("L")+"Z");
@@ -58,7 +60,7 @@ for(const viewport of [{width:800,height:540},{width:1280,height:800},{width:192
 test("playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map",async({page},info)=>{
  const dir=output(`playable-${info.project.name}`),f=fixture("manual"),errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));
  await page.goto("/?control=manual");await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Seats",{exact:true}).selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();
- try{await painted(page);}finally{await shot(page,dir,"opening");await closeups(page,dir,"coast");}
+ try{await painted(page,playablePaint);}finally{await shot(page,dir,"opening");await closeups(page,dir,"coast");}
  for(const p of expected.provinces){await expect(country(page,p.id).locator(".centre")).toHaveAttribute("x",String(p.labelAt[0]!-25));await expect(country(page,p.id).locator(".centre")).toHaveAttribute("y",String(p.labelAt[1]!-10));}
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator("#start-combat-button").click();
  const save=async()=>{const event=page.waitForEvent("download");await page.getByRole("button",{name:"Save game",exact:true}).click();const text=readFileSync((await(await event).path())!,"utf8");writeFileSync(join(dir,"save-"+Date.now()+".json"),text);return deserializeVersionedMatch(text).state;};

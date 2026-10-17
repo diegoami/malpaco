@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/home/diego/.nvm/versions/node/v24.21.0/bin/node",
+    "/home/diego/projects/malpaco/.cache/t65-work/docs/prototypes/new-game/T65/construct.mjs"
+  ],
+  "accepted": true,
+  "checks": {
+    "attachment": [],
+    "water": [],
+    "traceability": [],
+    "preserved": []
+  },
+  "semanticIdentity": true,
+  "inputHashes": {
+    "T64-board.json": "a2f8de1e46899c6330d3b370d2214d85251560d5236df66d37f4777ce1b75381",
+    "borders-input.mjs": "6d2d68eb54d404e326b8b09a8f477a6108cfcdd125eabe77188a83bfa206926d",
+    "render-input.mjs": "bab4f21bcdf380ecd47c10fab6a64af0235804e4f21e141b8592ac48d0bdb050",
+    "construct-input.mjs": "522ceb1520a720620c58029e34a77a492afe374d2e1374b4462be2e41a11c573"
+  },
+  "outputHashes": {
+    "board.json": "cf2f5fc6aac2631aa8f40157a3ad2d823ff87dd135f7c59767774db730af85b7",
+    "map.svg": "26cdfeaf4a13ff65b4dd8db41ac3287d34c9a7694f16d3f5fdd34675bc83de41",
+    "preview.html": "6330871f09f901d2cda3b8ea02416dcac1d7dc51cbe014cc4a7d42bce8a3ec8f"
+  }
+}
