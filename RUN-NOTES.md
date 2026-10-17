@@ -675,3 +675,5 @@ T64 review retention: invocation-local runner omits global worktree prune, prese
 # T65 shared-border presentation pass
 
 PLAN: owner requires #117 before another presentation and selected main implementation/MiniMax review. Start isolated T65 work on reviewed-parent26daa2b while T64 independent review runs; merge only after T64. Preserve T64 coast/port/route/label geometry and exact current graph/core saves. First extract each shared boundary canonically, probe seeded restrained curves against unchanged T62 and native reservations, retain failures, lock independent unit/browser acceptance and prove old-negative/disposable-positive restoration. No terrain work, inherited cleanup or CI before one final approved head. T33 appearance/pacing remains owner decision.
+
+T65 preflight: canonical extraction finds61 unique shared borders. Fifteen amplitude/seed combinations pass unchangedT62; selected max5/1994 bends60, retains one protected Southridge/Southreach straight contact. Exact scripts/candidates/screens retained. Frozen acceptance and identity stub now lock independent tests before production; no appearance approval claim.
