@@ -1,0 +1,85 @@
+I'll start with the rules file and the tree proof.
+The tests pass: 10 of 10. The diff output was truncated, so I'll read the source file in full.
+# T34 supplemental review, PR #150 at 7f1860d (agy Sonnet)
+
+This is a limited supplemental review. It does not approve the task, and it does not replace the MiniMax merge review.
+
+**Verdict: rework.** R1 is blocking. R2 needs an owner decision.
+
+**Tree proof**
+- `git rev-parse HEAD` returned `7f1860dac78932629340c561e8fae4cfcdf44589`.
+- `git status --short` showed only untracked `.agents/` and `node_modules`. Nothing is modified.
+- `git diff --stat` against base 9215373 shows 486 files, +1,207,433 and −1. The −1 is the clock-fix line. The top of the stat list was truncated, so I did not see every file name.
+- The source diff output was also truncated at its start. Its shown tail and line count are consistent with only [island-geography.ts](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts), [the test](file:///home/diego/projects/malpaco/.cache/agy-t34-review/tests/core/island-geography.test.ts) and [reference-complete-game.spec.ts](file:///home/diego/projects/malpaco/.cache/agy-t34-review/tests/e2e/reference-complete-game.spec.ts) changing under `src` and `tests`. This is likely, not proven.
+
+## Done-when
+
+- **DW1:** ran `npx vitest run tests/core/island-geography.test.ts` → 1 file, **10/10 passed** (1.42 s).
+  - Success checks cover only seeds 0, 1, 7, 42, 99 and 1994. "All exported successes" rests on the sweep, which I did not run.
+  - The geometry checks (overlaps, gaps, adjacency, degree headroom) are delegated to [acceptance.mjs](file:///home/diego/projects/malpaco/.cache/agy-t34-review/docs/prototypes/new-game/T34/acceptance.mjs), which calls the T62/T24 checkers.
+- **DW2:** not run. `node docs/prototypes/new-game/T34/sweep.mjs` writes an evidence directory, and I was told not to write files.
+  - I did read the retained report, [sweep-XOJBkB/report.json](file:///home/diego/projects/malpaco/.cache/agy-t34-review/docs/prototypes/new-game/T34/evidence/sweep-XOJBkB/report.json). It claims 100/100 successes, `failureCounts: {}`, 100 geometry hashes and 4 topology hashes.
+  - That is the PR's own evidence, not a run of mine.
+- **DW3:** not run (`npm test`, `npm run build`, the pinned browser suites).
+  - I have not verified the claimed 603 units and 24 browsers.
+  - I have not verified that the e2e clock fix passes.
+
+## Findings
+
+**R1 (blocking, likely) — [island-geography.ts:217-221](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L217-L221) and [the test, lines 10-13 and 31-33](file:///home/diego/projects/malpaco/.cache/agy-t34-review/tests/core/island-geography.test.ts#L10-L13): the retry, failure-history and exhaustion behaviour has no test that exercises it.**
+- Retained evidence shows `failureCounts: {}` for seeds 0..99. Every seed succeeds on attempt 1, so `failures` is always empty.
+- In the 10 tests, the `failures` loop at lines 12-13 appears never to run with real data. I am inferring this from the sweep evidence and did not rerun it.
+- The only exhaustion test uses `attempts: 0`, which has no failure records.
+- Deleting `failures.push(...)` or the retry loop would likely still pass all 10 tests. I did not mutate the source because this review is read-only, so this is **unverified**.
+- This weakens the Done-when requirement of "no discarded failures" and the record-every-rejected-attempt promise in CONTRACT.md.
+- The PR also says the removal of `repairReservations` was caught only by the sweep (77/100). The unit tests may not catch it either (unverified).
+- Needed: a test with a forced or scripted rejection that checks the failure records, the attempt count and the `ok:false` result with failures. Also add the missing clamp tests: `attempts` of 51, `NaN` and `Infinity`.
+
+**R2 (user decision, likely) — [island-geography.ts:121-160](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L121-L160) and [:94-120](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L94-L120): the "seeded silhouettes" are one fixed witness with tiny perturbations.**
+- Per axis, the warp expands each of 4 intervals by 0 to 0.5 px (line 124). Placement jitter is ±1 px (line 126).
+- Beyond that, the only variation is a whole-board reflection and one local flip per eligible island. The sweep measures just 4 topologies.
+- "100 distinct geometry hashes" is therefore trivially met, because a 1-unit change gives a new hash.
+- The scope says "a single reference does not prove generality" and asks for island placement and orientation. Here orientation is only a global mirror.
+- CONTRACT.md admits this limit. Whether it satisfies the intent of T34 is the owner's call. If the owner accepts it, the 100/100 figure should be reported as covering this narrow family only.
+- This is derived from the code and not measured.
+
+**R3 (non-blocking) — [island-geography.ts:23](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L23): core code imports a `docs/` evidence file.**
+- Shipping code depends on [witness.json](file:///home/diego/projects/malpaco/.cache/agy-t34-review/docs/prototypes/new-game/T34/witness.json) under `docs/`. The task owns that path, but docs reorganisation or pruning could break the build.
+- The purity test and the core tsconfig appear compatible with this import. `npm run build` was not run.
+- The leftover process comment at line 21, "Installed in src/core after disposable acceptance preflight", should be removed.
+
+**R4 (non-blocking) — [island-geography.ts:25-26 and 164-175](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L25-L26): thresholds are hardcoded copies of the T24/T62 parameters.**
+- The 8, 10, 12, 20 and 40 px values and the 44/47 px label gaps trace to [T62/parameters.mjs](file:///home/diego/projects/malpaco/.cache/agy-t34-review/docs/prototypes/new-game/T62/parameters.mjs) and [T24/parameters.mjs](file:///home/diego/projects/malpaco/.cache/agy-t34-review/docs/prototypes/new-game/T24/parameters.mjs). T62 labels them `[designed]` and CONTRACT.md cites them, so rule 17 is met.
+- `MAX_ATTEMPTS = 50` duplicates `P.attemptsMax`. [sweep.mjs:11](file:///home/diego/projects/malpaco/.cache/agy-t34-review/docs/prototypes/new-game/T34/sweep.mjs#L11) passes `P.attemptsMax`, which the generator silently clamps to 50. The two values could drift without notice.
+
+**R5 (non-blocking)**
+- [Line 216](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L216): a non-finite `attempts` (including `Infinity`) silently becomes 0 attempts, and no test covers it (see R1).
+- [Line 164](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L164): `corridorErrors` does not return early on a short corridor. For coincident endpoints, `lengthCeil` at line 169 would give 0 and `BigInt` division would throw `RangeError`. I think this is unreachable, since ports are filtered to at least 20 px apart and islands are separated (unverified).
+- [Line 197](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L197): `byId` in `candidateErrors` is unused.
+- [Line 212](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L212) repeats the route-separation check that `corridorErrors` already makes.
+- [Line 125](file:///home/diego/projects/malpaco/.cache/agy-t34-review/src/core/island-geography.ts#L125): "Up to1/2px" has missing spaces.
+
+**R6 (non-blocking, unverified) — clock fix in [reference-complete-game.spec.ts:32](file:///home/diego/projects/malpaco/.cache/agy-t34-review/tests/e2e/reference-complete-game.spec.ts#L32).**
+- It is one line, outside T34's Owns list. It changes `install()` to `install({time: new Date("2026-10-17T00:00:00Z")})` before `pauseAt` 12:00Z.
+- It weakens no assertion.
+- It is declared in [RUN-NOTES.md line 725](file:///home/diego/projects/malpaco/.cache/agy-t34-review/RUN-NOTES.md#L725) under rule 12, with issue #151. Rule 12 says "declared under Scope". The task file's Scope does not mention it, and I could not see the PR body.
+- I did not run it, so whether it fixes the failure is unverified.
+
+**Checks that passed in my read**
+- **Determinism (rule 18):** no `Date`, `Math.random` or unseeded randomness. The stream is one `DeterministicRng`, map and array iteration is deterministic, and stable sorts are used.
+- **Integer geometry:** the rational warp and squared-distance comparisons use BigInt. `Number` products stay within safe range.
+- **No playable state:** the exported shape has no owner, armies, routes or `seaLanes`, and the test asserts this, including a negative control.
+- **Provenance:** witness source and SHA are pinned in [witness-provenance.json](file:///home/diego/projects/malpaco/.cache/agy-t34-review/docs/prototypes/new-game/T34/witness-provenance.json).
+
+## Coverage limits
+
+Not covered:
+- DW2 and DW3 were not run.
+- No mutation was performed.
+- Not read: [docs/spike.md](file:///home/diego/projects/malpaco/.cache/agy-t34-review/docs/spike.md) (2-line change), `review-tools/*`, `run-*.py`, `verify-evidence.py`, and the evidence archives and screenshots.
+- The T64/T65 geometry (witness validity) was not independently re-derived.
+- I did not check whether other docs the PR makes wrong were updated.
+
+Final pass done.
+
+**Verdict: rework.** R1 is blocking. R2 needs an owner decision. This limited review cannot approve the task.

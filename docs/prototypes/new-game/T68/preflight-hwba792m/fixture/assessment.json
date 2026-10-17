@@ -1,0 +1,30 @@
+{
+  "attempts": {
+    "attempt-1": {
+      "conversation_id": "9a040485-e53f-44bc-93a4-d56a178c0da4",
+      "denied_actions": [
+        {
+          "action": "command",
+          "display_name": "RunCommand"
+        }
+      ],
+      "accepted_review": false,
+      "parent_assessment": "No review produced. Introductory text only; terminal command soft-denied despite exit 0/SUCCESS. Default request-review permissions require grants."
+    },
+    "attempt-2": {
+      "conversation_id": "e2a698ca-cbe2-4afc-91cd-9215c4c53e4f",
+      "denied_actions": [
+        {
+          "action": "command",
+          "display_name": "RunCommand"
+        }
+      ],
+      "accepted_review": false,
+      "parent_assessment": "No review produced. Introductory text only; terminal command soft-denied despite exit 0/SUCCESS. Checkout hook loaded but did not supersede headless command approval; documented settings.allow grants required."
+    }
+  },
+  "model_trial_urls": [
+    "https://github.com/diegoami/malpaco/issues/3#issuecomment-6233911137"
+  ],
+  "review_findings_relayed": true
+}
