@@ -77,6 +77,13 @@
       "id": "minimax/MiniMax-M3",
       "variant": "thinking",
       "family": "minimax"
+    },
+    "claude-sonnet": {
+      "id": "anthropic/claude-sonnet-5-5",
+      "backend": "claude",
+      "variant": "high",
+      "family": "claude",
+      "note": "Direct Claude CLI, exact model verified against init. Live-discovered in owner-requested trials. No provider remapping; docs/harness-claude.md."
     }
   },
   "jail": {

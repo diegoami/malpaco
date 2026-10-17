@@ -40,8 +40,9 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { randomBytes } from 'node:crypto';
+import { randomBytes, randomUUID } from 'node:crypto';
 import { runOpenCodeWatched, resolveOpenCode, OpenCodeInfraError, keyProblem } from './lib/opencode.mjs';
+import { resolveClaude, validateClaudeEnvironment, claudeSettings, runClaudeWatched, ClaudeInfraError, scopeProblems, hash } from './lib/claude.mjs';
 import { credentialJail, OFF_WARNING } from './lib/jail.mjs';
 import { readReview, doneWhenCount, briefTargets } from './lib/chain.mjs';
 import { planPost, publish } from './lib/post.mjs';
@@ -96,20 +97,30 @@ const fams = implementerFamilies(config.models, implementedBy);
 say(`implemented by: ${fams.families.join(', ')} (the session's family from the Anthropic environment${implementedBy.length ? `, plus ${implementedBy.join(', ')}` : ''})`);
 const fallback = 'Nothing posted. Read the run\'s final message (CLAUDE.md rule 25) and fix the cause; another reviewer is the user\'s call.';
 // OpenCode is looked for only now, so that its absence is reported with the same fallback (Sol's R1 on PR 41).
-let opencode;
-try { opencode = resolveOpenCode(); } catch (e) {
-  if (e instanceof OpenCodeInfraError) die(3, `OpenCode unavailable: ${e.message} ${fallback}`);
-  throw e;
+const backend = config.models[reviewer].backend ?? 'opencode';
+if (!['opencode', 'claude'].includes(backend)) die(2, `Unknown reviewer backend ${backend}`);
+let opencode, claude, pre;
+if (backend === 'claude') {
+  try {
+    const modelId = config.models[reviewer].id;
+    if (!modelId.startsWith('anthropic/')) throw new ClaudeInfraError('Claude backend requires an anthropic/claude-* model ID.');
+    validateClaudeEnvironment(envWith(a.env), modelId.slice('anthropic/'.length));
+    claude = resolveClaude(envWith(a.env));
+    pre = { env: envWith(a.env) };
+    say(`claude: ${claude.version}`);
+  } catch (e) { if (e instanceof ClaudeInfraError) die(3, `${e.message} ${fallback}`); throw e; }
+} else {
+  try { opencode = resolveOpenCode(); } catch (e) {
+    if (e instanceof OpenCodeInfraError) die(3, `OpenCode unavailable: ${e.message} ${fallback}`);
+    throw e;
+  }
+  const jail = config.jail?.enabled === true ? credentialJail() : { off: 'harness.json does not enable it', quiet: true };
+  if (jail.off && !jail.quiet) say(OFF_WARNING(jail.off));
+  else if (!jail.off) opencode = { exe: jail.exe, prefix: [...jail.args, '--', opencode.exe, ...opencode.prefix] };
+  pre = await prepareOpenCode({ opencode, chain: [reviewer], models: config.models, env: envWith(a.env), cwd: top, log: say });
+  for (const p of pre.problems) say(p);
+  if (!pre.usable.length) die(3, `OpenCode unavailable: ${pre.problems.join('; ')}. ${fallback}`);
 }
-// OpenCode, and every command it runs, in the credential jail (lib/jail.mjs, #68): the reviewer
-// reads and tests, and this script posts. Only where harness.json turns it on (jail.enabled); where
-// it is on but cannot run, the log says so first.
-const jail = config.jail?.enabled === true ? credentialJail() : { off: 'harness.json does not enable it', quiet: true };
-if (jail.off && !jail.quiet) say(OFF_WARNING(jail.off));
-else if (!jail.off) opencode = { exe: jail.exe, prefix: [...jail.args, '--', opencode.exe, ...opencode.prefix] };
-const pre = await prepareOpenCode({ opencode, chain: [reviewer], models: config.models, env: envWith(a.env), cwd: top, log: say });
-for (const p of pre.problems) say(p);
-if (!pre.usable.length) die(3, `OpenCode unavailable: ${pre.problems.join('; ')}. ${fallback}`);
 
 // The reviewer's agent and OpenCode config come from this checkout, the main session's, never from
 // the PR under review: OpenCode reads a project's .opencode/ by default, so a PR's own reviewer.md
@@ -117,9 +128,12 @@ if (!pre.usable.length) die(3, `OpenCode unavailable: ${pre.problems.join('; ')}
 // 1.18.34: without these two variables a PR's reviewer.md with `git push *: allow` was the one
 // loaded (#10, L34; ic2-conquest's reviewer does the same).
 const agentFile = path.join(top, '.opencode', 'agents', `${rev.agent}.md`);
-if (!fs.existsSync(agentFile)) die(2, `The reviewer agent is missing from this checkout: ${agentFile}. Nothing run.`);
+if (backend === 'opencode' && !fs.existsSync(agentFile)) die(2, `The reviewer agent is missing from this checkout: ${agentFile}. Nothing run.`);
 const reviewEnv = { ...pre.env, OPENCODE_CONFIG_DIR: path.join(top, '.opencode'), OPENCODE_DISABLE_PROJECT_CONFIG: '1' };
-const headSha = sh('gh', ['pr', 'view', String(a.pr), '--json', 'headRefOid', '--jq', '.headRefOid'], { cwd: top });
+const prMeta = JSON.parse(sh('gh', ['pr', 'view', String(a.pr), '--json', 'headRefOid,baseRefOid'], { cwd: top }));
+const headSha = prMeta.headRefOid;
+const baseSha = prMeta.baseRefOid;
+if (![headSha, baseSha].every((s) => /^[0-9a-f]{40}$/.test(s))) die(2, 'PR head/base identity missing or invalid.');
 // A brief that names another commit as the one to review would make the reviewer's tree proof stop
 // it after a billed run (#23): refuse it before any worktree or model run.
 const stale = [...new Set(briefTargets(brief.join('\n')))].filter((c) => c !== headSha.toLowerCase());
@@ -130,13 +144,14 @@ if (stale.length) {
 }
 sh('git', ['-C', top, 'fetch', '-q', 'origin', `pull/${a.pr}/head`]);
 // A path of this invocation's own; only this tree is ever removed.
-const worktree = path.join(workRoot, `${a.pr}-review-${randomBytes(4).toString('hex')}`);
+const worktree = path.join(process.env.HARNESS_REVIEW_WORKTREE_ROOT ? path.resolve(process.env.HARNESS_REVIEW_WORKTREE_ROOT) : workRoot, `${a.pr}-review-${randomBytes(4).toString('hex')}`);
 let created = false;
 const removeTree = () => {
   if (!created) return;
+  if (backend === 'claude') { say(`retained worktree: ${worktree}`); created = false; return; }
   sh('git', ['-C', top, 'worktree', 'remove', '--force', worktree], { allowFail: true });
   fs.rmSync(worktree, { recursive: true, force: true });
-  sh('git', ['-C', top, 'worktree', 'prune'], { allowFail: true });
+  // Never prune inherited worktree registrations.
   created = false;
 };
 const newTree = () => {
@@ -152,7 +167,7 @@ const newTree = () => {
 const attempt = async (m) => {
       const model = config.models[m];
       const header = a.reviewer ? briefHeader : briefHeader.replace(/\([^()]*\)\s*$/, `(${m})`);
-      const prompt = `${header}\n${brief.slice(1).join('\n')}
+      let prompt = `${header}\n${brief.slice(1).join('\n')}
 
 ---
 OUTPUT RULES (from tools/harness/review.mjs; they override anything above that conflicts):
@@ -190,7 +205,47 @@ OUTPUT RULES (from tools/harness/review.mjs; they override anything above that c
       const watch = watchLine(m, model);
       if (watch) say(watch);
       let run;
-      try {
+      let scopeFiles = [];
+      if (backend === 'claude') {
+        const evidence = path.resolve(top, '.cache', 'review-evidence', `pr${a.pr}-${randomBytes(6).toString('hex')}`);
+        fs.mkdirSync(evidence, { recursive: true });
+        const local = (args) => sh('git', args, { cwd: worktree });
+        // Large diffs use a file descriptor, never spawnSync's bounded stdout buffer.
+        const { spawnSync } = await import('node:child_process');
+        const diffPath = path.join(evidence, 'full.diff');
+        const diffFd = fs.openSync(diffPath, 'w');
+        let diffRun;
+        try { diffRun = spawnSync('git', ['diff', '--no-ext-diff', '--no-textconv', baseSha, headSha], { cwd: worktree, stdio: ['ignore', diffFd, 'pipe'] }); }
+        finally { fs.closeSync(diffFd); }
+        if (diffRun.status !== 0) throw new Error('Cannot construct exact local PR diff.');
+        scopeFiles = local(['diff', '--name-only', baseSha, headSha]).split('\n').filter(Boolean);
+        const diff = fs.readFileSync(diffPath, 'utf8');
+        const lines = diff.split('\n');
+        const parts = path.join(evidence, 'diff-parts'); fs.mkdirSync(parts);
+        for (let i = 0; i < lines.length; i += 240) fs.writeFileSync(path.join(parts, `${String(i / 240).padStart(5, '0')}.diff`), lines.slice(i, i+240).join('\n')+'\n');
+        fs.writeFileSync(path.join(evidence, 'inventory.json'), JSON.stringify({ baseSha, headSha, diffSha256: hash(diff), files: scopeFiles }, null, 2)+'\n');
+        const sessionId = randomUUID();
+        prompt += `\nCLAUDE BACKEND CONTRACT: The exact PR base is ${baseSha}, head ${headSha}. Do not use origin/main for a merged PR. Complete local diff: ${diffPath}; bounded parts: ${parts}; full changed-file inventory: ${evidence}/inventory.json. Read all executable changes. For generated evidence you may audit a group explicitly. Never claim a file you did not inspect. Before Final pass done, emit SCOPE: complete only if you covered all changes; otherwise SCOPE: incomplete plus UNCOVERED: paths/reasons. Emit FILE: <exact path> for each changed file inspected; EVIDENCE: <docs/prototypes/.../ prefix> may account for generated evidence only, never executable scripts. These are coverage claims, not independent proof. Every Done-when must be run; include exact DW lines. A missing scope acknowledgment prevents approval. No subagents or GitHub writes. The trusted hook enforces the existing reviewer command guard; Bash is granted for tests and in-tree mutations. Preserve scratch/evidence; do not clean up. Ignore obsolete OpenCode-only path restrictions above: your scratch is your retained worktree. No blanket permission bypass.\n`;
+        if (/sonnet/i.test(model.id)) {
+          const modelsDoc = fs.readFileSync(path.join(top, 'docs/models.md'), 'utf8');
+          const tripwire = modelsDoc.match(/```text\n(Out of your depth:[\s\S]*?)\n```/);
+          if (!tripwire) throw new Error('Missing Sonnet tripwire in trusted docs/models.md.');
+          prompt += '\nThe read-only contract overrides the tripwire instruction to push: never push.\n'+tripwire[1]+'\n';
+        }
+        fs.writeFileSync(path.join(evidence, 'prompt.md'), prompt);
+        const settingsPath = path.join(evidence, 'settings.json');
+        fs.writeFileSync(settingsPath, JSON.stringify(claudeSettings(path.join(top, 'tools/harness/guard.mjs')), null, 2)+'\n');
+        const args = ['-p', `Read the full review brief at ${evidence}/prompt.md before any other action.`, '--model', model.id.slice('anthropic/'.length),
+          '--effort', model.variant ?? 'medium', '--setting-sources', '', '--settings', settingsPath,
+          '--permission-mode', 'dontAsk', '--permission-prompts', 'none', '--tools', 'Bash,Read,Grep,Glob',
+          '--strict-mcp-config', '--disable-slash-commands', '--no-chrome', '--verbose', '--output-format', 'stream-json', '--session-id', sessionId, '--add-dir', evidence];
+        say(`claude: evidence ${evidence}; worktree retained after completion`);
+        try {
+          run = await runClaudeWatched({ command: claude, args, workDir: worktree, evidenceDir: evidence,
+            model: model.id.slice('anthropic/'.length), sessionId, env: { ...pre.env, CLAUDE_PROJECT_DIR: top },
+            startupTimeoutMs: rev.startupTimeoutSec * 1000, idleTimeoutMs: rev.idleTimeoutSec * 1000, totalTimeoutMs: rev.totalTimeoutSec * 1000, log: say });
+        } catch (e) { if (e instanceof ClaudeInfraError) return { ok: false, reason: e.message }; throw e; }
+      } else try {
         run = await runOpenCodeWatched({
           args: ocArgs(worktree, rev.agent, model), prompt, workDir: worktree, title: `pr${a.pr}-${m}`,
           startupTimeoutMs: rev.startupTimeoutSec * 1000, idleTimeoutMs: rev.idleTimeoutSec * 1000,
@@ -206,7 +261,11 @@ OUTPUT RULES (from tools/harness/review.mjs; they override anything above that c
       if (run.permissionRejected) {
         return { ok: false, reason: `permission rejected: ${run.permissionRejected}${run.permissionHint ? `; ${run.permissionHint}` : ''}`, detail: run.output };
       }
-      const read = readReview(run.stdout, header);
+      let read = readReview(run.stdout, header);
+      if (backend === 'claude' && read.kind === 'ok') {
+        const problems = scopeProblems(read.review, scopeFiles);
+        if (problems.length) read = { kind: 'flagged', review: run.stdout, note: problems.join('; ') };
+      }
       if (read.kind === 'none') return { ok: false, reason: read.reason, detail: run.output };
       return { ok: true, value: { ...read, header, model } };
 };

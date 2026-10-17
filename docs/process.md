@@ -130,6 +130,15 @@ A further review, such as `/code-review <pr>` on an architecture task, runs only
 for it and names the model (CLAUDE.md rule 6.2: one review unless the user asks for more); then
 always with the PR number, since a bare invocation from an agent reviews the wrong tree. (L8)
 
+### Claude CLI backend (owner request, T69)
+
+An explicitly selected `harness.json` model with `backend: "claude"` runs through the same
+`review.mjs --reviewer <name>` command and shared parser/poster/labels. See
+[Claude CLI reviews](harness-claude.md) for model verification, trusted settings, grants,
+retained evidence and coverage acknowledgments. The independent-family and blocked-list rules
+still apply; this adds a backend without changing the default. Claude failures never reroute
+through OpenCode. A rejected command, missing scope or incomplete Done-when cannot approve.
+
 ## 6. Bugs, fixes, triage
 
 Bugs and non-blocking review findings are filed with `triage:needed`: one `T<nn> follow-up` issue

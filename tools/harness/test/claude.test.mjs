@@ -6,6 +6,7 @@ import path from 'node:path';
 import { validateClaudeEnvironment, readClaudeEvents, scopeProblems, runClaudeWatched, claudeSettings } from '../lib/claude.mjs';
 import { readReview } from '../lib/chain.mjs';
 import { planPost } from '../lib/post.mjs';
+import { planSwitch } from '../lib/switch.mjs';
 import { reviewRefusal, namedModel } from '../lib/common.mjs';
 const id = 'claude-sonnet-5-5';
 const init = { type: 'system', subtype: 'init', model: id, session_id: 'ours' };
@@ -36,19 +37,48 @@ test('coverage is explicit per changed file; generated evidence grouping cannot 
  assert.equal(namedModel(config,'claude',{},()=>assert.fail()),'claude');
  assert.ok(reviewRefusal(config.models,'claude',[],{HARNESS_SESSION_FAMILY:'claude'}));
  assert.equal(reviewRefusal(config.models,'claude',[],{HARNESS_SESSION_FAMILY:'openai'}),null);
+ const switched=planSwitch(config,{id:'anthropic/'+id,backend:'claude',name:'claude',sessionFamily:'openai',variant:'high'});assert.equal(switched.entry.backend,'claude');assert.equal(planSwitch(switched.config,{id:'anthropic/'+id,sessionFamily:'openai'}).entry.backend,'claude');assert.throws(()=>planSwitch(config,{id:'openai/gpt-x',backend:'claude',sessionFamily:'minimax'}));
  config.blocked=['claude'];assert.throws(()=>namedModel(config,'claude',{},(c,m)=>{throw Error(m)}));
  const plan=planPost({read:readReview(final.result,'T69 review (Claude)'),header:'T69 review (Claude)',doneWhen:2,source:'test',signature:'test'});assert.equal(plan.code,4);assert.equal(plan.label,null);
 });
 test('watched subprocess retains success, failure and timeout evidence, kills its own group',async()=>{
  const root=fs.mkdtempSync(path.join(os.tmpdir(),'claude-harness-'));
  const fake=path.join(root,'fake.mjs');
- fs.writeFileSync(fake,`import fs from 'node:fs'; const mode=process.env.FAKE_MODE; if(mode==='hang'){setInterval(()=>{},1000);}else{console.log(JSON.stringify(${JSON.stringify(init)})); console.log(JSON.stringify(${JSON.stringify(final)}));process.exitCode=mode==='fail'?7:0;}`);
- for(const mode of ['ok','fail','hang']){
-  const evidenceDir=path.join(root,mode);const options={command:{exe:process.execPath,prefix:[fake]},args:[],workDir:root,evidenceDir,model:id,sessionId:'ours',env:{...process.env,FAKE_MODE:mode},startupTimeoutMs:1000,idleTimeoutMs:1000,totalTimeoutMs:mode==='hang'?150:3000,log:()=>{}};
+ fs.writeFileSync(fake,`import fs from 'node:fs'; const mode=process.env.FAKE_MODE; if(['hang','startup','idle'].includes(mode)){if(mode==='idle')console.log(JSON.stringify(${JSON.stringify(init)}));setInterval(()=>{},1000);}else{console.log(JSON.stringify(${JSON.stringify(init)})); console.log(JSON.stringify(${JSON.stringify(final)}));process.exitCode=mode==='fail'?7:0;}`);
+ for(const mode of ['ok','fail','hang','startup','idle']){
+  const evidenceDir=path.join(root,mode);const options={command:{exe:process.execPath,prefix:[fake]},args:[],workDir:root,evidenceDir,model:id,sessionId:'ours',env:{...process.env,FAKE_MODE:mode},startupTimeoutMs:mode==='startup'?150:1000,idleTimeoutMs:mode==='idle'?150:1000,totalTimeoutMs:mode==='hang'?150:3000,log:()=>{}};
   if(mode==='ok')assert.equal((await runClaudeWatched(options)).stdout,final.result);
   else await assert.rejects(runClaudeWatched(options));
   for(const name of ['stdout.jsonl','stderr.txt','receipt.json','final.md']) assert.ok(fs.existsSync(path.join(evidenceDir,name)),name);
   const receipt=JSON.parse(fs.readFileSync(path.join(evidenceDir,'receipt.json')));assert.equal(receipt.expectedModel,id);assert.ok(receipt.sha256['stdout.jsonl']);
-  if(mode==='hang')assert.throws(()=>process.kill(receipt.pid,0));
+  if(['hang','startup','idle'].includes(mode))assert.throws(()=>process.kill(receipt.pid,0));
  }
+});
+
+test('real review entry selects Claude without OpenCode, publishes once, refuses failed gates', async()=>{
+ const { spawnSync } = await import('node:child_process');
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'claude-entry-')), repo=path.join(root,'repo');fs.mkdirSync(repo);
+ const git=(...args)=>{const r=spawnSync('git',args,{cwd:repo,encoding:'utf8'});assert.equal(r.status,0,r.stderr);return r.stdout.trim();};
+ git('init','-q');git('config','user.email','test@example.invalid');git('config','user.name','fixture');
+ fs.writeFileSync(path.join(repo,'a.txt'),'base\n');git('add','.');git('commit','-qm','base');const base=git('rev-parse','HEAD');
+ fs.writeFileSync(path.join(repo,'a.txt'),'head\n');git('add','.');git('commit','-qm','head');const head=git('rev-parse','HEAD');
+ git('update-ref','refs/pull/1/head',head);git('remote','add','origin',repo);
+ fs.cpSync(new URL('../',import.meta.url),path.join(repo,'tools/harness'),{recursive:true});fs.mkdirSync(path.join(repo,'docs'));fs.copyFileSync(path.resolve('docs/models.md'),path.join(repo,'docs/models.md'));
+ fs.writeFileSync(path.join(repo,'harness.json'),JSON.stringify({worktreeRoot:'work',models:{claude:{id:'anthropic/'+id,family:'claude',backend:'claude',variant:'medium'}},blocked:[],reviewer:{default:'claude',startupTimeoutSec:2,idleTimeoutSec:2,totalTimeoutSec:5}}));
+ const brief=path.join(root,'brief.md');fs.writeFileSync(brief,`T69 review (Claude)\nYou review PR #1 at ${head}.\n# T69 fixture\n- **Done when**:\n  1. git diff --check BASE HEAD passes.\n- **Hazards**: none.\n`);
+ const gh=path.join(root,'gh.mjs'),cli=path.join(root,'claude.mjs'),trace=path.join(root,'gh-trace');
+ fs.writeFileSync(gh,`import fs from 'node:fs'; const a=process.argv.slice(2);if(a.includes('--version')){console.log('gh fake');}else if(a[0]==='pr'&&a[1]==='view'){console.log(a.includes('headRefOid,baseRefOid')?JSON.stringify({headRefOid:process.env.HEAD_SHA,baseRefOid:process.env.BASE_SHA}):'');}else{fs.appendFileSync(process.env.TRACE,JSON.stringify(a)+'\\n');if(a.includes('--body-file'))fs.writeFileSync(process.env.TRACE+'.body',fs.readFileSync(a[a.indexOf('--body-file')+1]));}`);
+ fs.writeFileSync(cli,`import fs from 'node:fs';import path from 'node:path';const a=process.argv.slice(2);if(a.includes('--version')){console.log('2.1.292 (Claude Code)');process.exit(0);}const v=k=>a[a.indexOf(k)+1];if(v('--setting-sources')!=='')throw Error('settings not isolated');const dir=path.dirname(v('--settings'));const s=JSON.parse(fs.readFileSync(v('--settings')));if(!s.hooks.PreToolUse.length)throw Error('no guard');const inv=JSON.parse(fs.readFileSync(path.join(dir,'inventory.json')));if(!fs.readFileSync(path.join(dir,'full.diff'),'utf8').includes('+head'))throw Error('no local diff');const mode=process.env.CASE;console.log(JSON.stringify({type:'system',subtype:'init',session_id:v('--session-id'),model:mode==='wrong'?'glm-5.3':v('--model')}));if(mode==='missing')process.exit(0);const r=['T69 review (Claude)','approve',mode==='dw'?'DW1: not run — fixture':'DW1: ran git diff --check → passed',...(mode==='scope'?[]:inv.files.map(f=>'FILE: '+f)),'SCOPE: complete','R1: test full findings survive flags','Final pass done','approve'].join('\\n');console.log(JSON.stringify({type:'result',subtype:'success',is_error:false,session_id:v('--session-id'),permission_denials:mode==='denied'?[{tool_name:'Bash'}]:[],result:r}));if(mode==='exit')process.exitCode=7;`);
+ for(const mode of ['ok','scope','dw','wrong','missing','denied','exit']){
+  fs.writeFileSync(trace,'');
+  const env={...process.env,HARNESS_GH_EXE:gh,HARNESS_CLAUDE_EXE:cli,HARNESS_OPENCODE_EXE:'/does/not/exist',HARNESS_SESSION_FAMILY:'openai',HEAD_SHA:head,BASE_SHA:base,TRACE:trace,CASE:mode};
+  for(const k of Object.keys(env))if(k.startsWith('ANTHROPIC_')||k.startsWith('CLAUDE_CODE_USE_'))delete env[k];
+  const r=spawnSync(process.execPath,[path.resolve('tools/harness/review.mjs'),'--pr','1','--brief',brief,'--issue','2','--apply-label'],{cwd:repo,env,encoding:'utf8',timeout:15000});
+  assert.equal(r.status,mode==='ok'?0:['scope','dw'].includes(mode)?4:3,mode+'\n'+r.stdout+'\n'+r.stderr);
+  const writes=fs.readFileSync(trace,'utf8').split('\n').filter(Boolean).map(JSON.parse);
+  assert.equal(writes.filter(a=>a[0]==='pr'&&a[1]==='comment').length,['ok','scope','dw'].includes(mode)?1:0,mode);
+  assert.equal(writes.some(a=>a.includes('--add-label')),mode==='ok',mode);
+  if(['scope','dw'].includes(mode))assert.match(fs.readFileSync(trace+'.body','utf8'),/R1: test full findings survive flags/);
+ }
+ assert.equal(git('rev-parse','HEAD'),head);assert.equal(JSON.parse(fs.readFileSync(path.join(repo,'harness.json'))).reviewer.default,'claude');
 });
