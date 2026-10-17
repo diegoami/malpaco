@@ -1,0 +1,63 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work
+
+ ❯ tests/ui/region-border-postprocess.test.ts (5 tests | 2 failed) 2346ms
+   ❯ canonical shared region borders (5)
+     × replaces straight divisions with the frozen geographical border drawing 83ms
+     × retains connected cells, exact contacts, subdivisions and protected reservations on five seeds 1894ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing
+AssertionError: expected { seed: 1994, …(4) } to deeply equal { seed: 1994, …(4) }
+
+- Expected
++ Received
+
+@@ -1664,11 +1664,11 @@
+          [
+            384.5087890625,
+            19.3427734375,
+          ],
+          [
+-           386.01171875,
++           387.01171875,
+            24.806640625,
+          ],
+          [
+            387.7578125,
+            30.1767578125,
+
+ ❯ tests/ui/region-border-postprocess.test.ts:12:137
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains connected cells, exact contacts, subdivisions and protected reservations on five seeds
+AssertionError: 1994: expected { attachment: [], water: [], …(2) } to deeply equal { attachment: [], water: [], …(2) }
+
+- Expected
++ Received
+
+  {
+    "attachment": [],
+-   "preserved": [],
++   "preserved": [
++     "cells: Subdivision gap/area mismatch island_0",
++     "cells: Cell overlap province_4/province_30",
++   ],
+    "traceability": [],
+    "water": [],
+  }
+
+ ❯ tests/ui/region-border-postprocess.test.ts:15:210
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 3 passed (5)
+   Start at  12:08:43
+   Duration  2.57s (tests 95%, transform 4%, import 1%)
+

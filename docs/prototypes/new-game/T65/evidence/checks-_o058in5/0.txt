@@ -1,0 +1,25 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work
+
+ ❯ tests/ui/region-border-postprocess.test.ts (5 tests | 1 failed) 9679ms
+   ❯ canonical shared region borders (5)
+     × same frozen input and seed give identical boundaries and different seeds change the curves 245ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > same frozen input and seed give identical boundaries and different seeds change the curves
+AssertionError: expected { seed: 1994, …(4) } to not deeply equal { seed: 1994, …(4) }
+
+Compared values have no visual difference.
+
+ ❯ tests/ui/region-border-postprocess.test.ts:13:287
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  12:08:33
+   Duration  9.89s (tests 99%, transform 1%)
+

@@ -1,0 +1,387 @@
+{
+  "archives": [
+    {
+      "report": "evidence/checks-3ln0f15t/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs"
+      ],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "39a56db3411c8184a873f7948f964a42fb247e5458d408c7638502116f894f4e",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 3 failed) 2374ms\n   \u276f canonical shared region borders (5)\n     \u00d7 replaces straight divisions with the frozen geographical border drawing 78ms\n     \u00d7 retains exact metadata, coast, ports, labels and routes 85ms\n     \u00d7 retains connected cells, exact contacts, subdivisions and protected reservations on five seeds 1888ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 3 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -10,11 +10,11 @@\n        \"bonus\": 3,\n        \"id\": \"island_0\",\n        \"name\": \"North Isle\",\n        \"polygon\": [\n          [\n-           505.73828125,\n+           506.73828125,\n            82,\n          ],\n          [\n            507.791015625,\n            94.505859375,\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/3]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains exact metadata, coast, ports, labels and routes\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -10,11 +10,11 @@\n        \"bonus\": 3,\n        \"id\": \"island_0\",\n        \"name\": \"North Isle\",\n        \"polygon\": [\n          [\n-           505.73828125,\n+           506.73828125,\n            82,\n          ],\n          [\n            507.791015625,\n            94.505859375,\n\n \u276f tests/ui/region-border-postprocess.test.ts:14:112\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/3]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains connected cells, exact contacts, subdivisions and protected reservations on five seeds\nAssertionError: 1994: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"cells: Subdivision gap/area mismatch island_0\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/region-border-postprocess.test.ts:15:210\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[3/3]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  3 failed | 2 passed (5)\n   Start at  12:08:47\n   Duration  2.61s (tests 95%, transform 4%, import 1%)\n\n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-4yli3436/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exit": 0,
+          "output": "0.txt",
+          "sha256": "eba79fd114d3398f56982c82a8bcdc022d1bf4c959c0a9a34867d99e23d71ec7",
+          "tail": "\n> malpaco-spike-ts@0.0.0 test\n> vitest run\n\n\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n\n Test Files  41 passed (41)\n      Tests  593 passed (593)\n   Start at  12:09:32\n   Duration  14.43s (tests 73%, transform 22%, import 4%)\n\n"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "output": "1.txt",
+          "sha256": "e74e0064b94e85834039fb835ec67912476d3c0fa3f6151341c4496a86f62456",
+          "tail": "\n> malpaco-spike-ts@0.0.0 build\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n\u2713 50 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.64 kB \u2502 gzip:  0.42 kB\ndist/assets/index-D71XpoA_.css   24.37 kB \u2502 gzip:  6.02 kB\ndist/assets/index-BGAYVDUS.js   239.01 kB \u2502 gzip: 61.35 kB\n\n\u2713 built in 192ms\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit": 2,
+          "output": "2.txt",
+          "sha256": "adb6c4b7ec7da40f62c9b13b4558edbdf60dbf6959f681c3176f6deaf05627cc",
+          "tail": "utput.txt:44: trailing whitespace.\n+  3) [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1920x1080 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:59: trailing whitespace.\n+  4) [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:58:1 \u203a playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:87: trailing whitespace.\n+  5) [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 800x540 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:102: trailing whitespace.\n+  6) [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1280x800 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:117: trailing whitespace.\n+  7) [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1920x1080 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:132: trailing whitespace.\n+  8) [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:58:1 \u203a playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:161: trailing whitespace.\n+    [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 800x540 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:162: trailing whitespace.\n+    [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1280x800 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:163: trailing whitespace.\n+    [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1920x1080 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:164: trailing whitespace.\n+    [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:58:1 \u203a playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:165: trailing whitespace.\n+    [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 800x540 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:166: trailing whitespace.\n+    [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1280x800 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:167: trailing whitespace.\n+    [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1920x1080 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:168: trailing whitespace.\n+    [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:58:1 \u203a playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map \n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-6v0x867b/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs"
+      ],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "d211c5b8bc1cfb40879fb250f3f65ef298ffd3e43c1bdeb8b96430ee53dbdcd1",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 2 failed) 2346ms\n   \u276f canonical shared region borders (5)\n     \u00d7 replaces straight divisions with the frozen geographical border drawing 83ms\n     \u00d7 retains connected cells, exact contacts, subdivisions and protected reservations on five seeds 1894ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1664,11 +1664,11 @@\n          [\n            384.5087890625,\n            19.3427734375,\n          ],\n          [\n-           386.01171875,\n+           387.01171875,\n            24.806640625,\n          ],\n          [\n            387.7578125,\n            30.1767578125,\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains connected cells, exact contacts, subdivisions and protected reservations on five seeds\nAssertionError: 1994: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"cells: Subdivision gap/area mismatch island_0\",\n+     \"cells: Cell overlap province_4/province_30\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/region-border-postprocess.test.ts:15:210\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:08:43\n   Duration  2.57s (tests 95%, transform 4%, import 1%)\n\n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-6wbyg72l/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/checks.py",
+        "src/ui/referenceMapView.ts",
+        "tests/e2e/coast-postprocess.spec.ts",
+        "tests/e2e/reference-game.spec.ts",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png"
+      ],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 0,
+          "output": "0.txt",
+          "sha256": "63ab588a2614dc64811799eedf1d627d75ee46bf0c0ed4a0e50a3f2578fc3f53",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  12:02:26\n   Duration  9.44s (tests 99%, transform 1%)\n\n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-7pgctabj/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs"
+      ],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "ba9e2f3979872288e5c5b86b17f0ed1e970b655daad18a39d20fb7d337b36f4d",
+          "tail": "],\n-         [\n-           473.54296875,\n-           400.3173828125,\n-         ],\n-         [\n            473.1123046875,\n            394.5146484375,\n-         ],\n-         [\n-           478.62890625,\n-           394.83203125,\n-         ],\n-         [\n-           484.1435546875,\n-           395.1669921875,\n-         ],\n-         [\n-           489.658203125,\n-           395.53125,\n-         ],\n-         [\n-           495.1689453125,\n-           395.9921875,\n-         ],\n-         [\n-           500.6748046875,\n-           396.55078125,\n-         ],\n-         [\n-           506.18359375,\n-           397.04296875,\n-         ],\n-         [\n-           511.7060546875,\n-           397.2216796875,\n          ],\n-         [\n-           517.25,\n-           396.8466796875,\n-         ],\n        ],\n        \"production\": false,\n        \"seaLanes\": [],\n      },\n      {\n@@ -10085,100 +4669,12 @@\n          [\n            526.2109375,\n            453.40234375,\n          ],\n          [\n-           524.78515625,\n-           447.7802734375,\n-         ],\n-         [\n-           524.302734375,\n-           442.1015625,\n-         ],\n-         [\n-           523.69921875,\n-           436.4296875,\n-         ],\n-         [\n-           523.5302734375,\n-           430.732421875,\n-         ],\n-         [\n-           523.3056640625,\n-           425.0380859375,\n-         ],\n-         [\n-           523.0693359375,\n-           419.34375,\n-         ],\n-         [\n-           523.6708984375,\n-           413.599609375,\n-         ],\n-         [\n-           523.20703125,\n-           407.919921875,\n-         ],\n-         [\n-           522.9501953125,\n-           402.2275390625,\n-         ],\n-         [\n            522.7919921875,\n            396.529296875,\n-         ],\n-         [\n-           528.5322265625,\n-           396.419921875,\n-         ],\n-         [\n-           534.271484375,\n-           396.291015625,\n-         ],\n-         [\n-           540.0107421875,\n-           396.1416015625,\n-         ],\n-         [\n-           545.7490234375,\n-           395.9755859375,\n-         ],\n-         [\n-           551.4892578125,\n-           395.9033203125,\n-         ],\n-         [\n-           557.23046875,\n-           395.8505859375,\n-         ],\n-         [\n-           562.970703125,\n-           395.79296875,\n-         ],\n-         [\n-           568.7109375,\n-           395.7216796875,\n-         ],\n-         [\n-           574.43359375,\n-           394.6162109375,\n-         ],\n-         [\n-           580.158203125,\n-           393.583984375,\n-         ],\n-         [\n-           585.904296875,\n-           393.8466796875,\n-         ],\n-         [\n-           591.650390625,\n-           394.1083984375,\n-         ],\n-         [\n-           597.3984375,\n-           394.5107421875,\n          ],\n        ],\n        \"production\": false,\n        \"seaLanes\": [],\n      },\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > same frozen input and seed give identical boundaries and different seeds change the curves\nAssertionError: expected { seed: 1994, \u2026(4) } to not deeply equal { seed: 1994, \u2026(4) }\n\nCompared values have no visual difference.\n\n \u276f tests/ui/region-border-postprocess.test.ts:13:287\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:08:31\n   Duration  812ms (tests 80%, transform 16%, import 3%, worker 1%)\n\n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-_o058in5/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs"
+      ],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "2f6588f7bed944f5d02df0d1f3967547fd22441a1a64bc130dacb19017b62e13",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 1 failed) 9679ms\n   \u276f canonical shared region borders (5)\n     \u00d7 same frozen input and seed give identical boundaries and different seeds change the curves 245ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > same frozen input and seed give identical boundaries and different seeds change the curves\nAssertionError: expected { seed: 1994, \u2026(4) } to not deeply equal { seed: 1994, \u2026(4) }\n\nCompared values have no visual difference.\n\n \u276f tests/ui/region-border-postprocess.test.ts:13:287\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 4 passed (5)\n   Start at  12:08:33\n   Duration  9.89s (tests 99%, transform 1%)\n\n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-d_vucufo/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs"
+      ],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "7cc99132e6c971bc0081893415f99ea357605e2dd1c01e4246de7c2d62cc0c53",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 2 failed) 10016ms\n   \u276f canonical shared region borders (5)\n     \u00d7 replaces straight divisions with the frozen geographical border drawing 90ms\n     \u00d7 retains exact metadata, coast, ports, labels and routes 81ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,11 +1625,11 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n+         368.25,\n          67.5,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains exact metadata, coast, ports, labels and routes\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,11 +1625,11 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n+         368.25,\n          67.5,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"production\": false,\n\n \u276f tests/ui/region-border-postprocess.test.ts:14:112\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:08:50\n   Duration  10.23s (tests 99%, transform 1%)\n\n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-wn5nii60/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs",
+        "docs/prototypes/new-game/T65/checks.py",
+        "src/ui/referenceMapView.ts",
+        "tests/e2e/coast-postprocess.spec.ts",
+        "tests/e2e/reference-game.spec.ts",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png"
+      ],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "f71cf6af086eed7d0594660e1d324529dbc66f1c8b8aecf93922fe8b781704c2",
+          "tail": "\n-         ],\n-         [\n-           473.54296875,\n-           400.3173828125,\n-         ],\n-         [\n            473.1123046875,\n            394.5146484375,\n-         ],\n-         [\n-           478.62890625,\n-           394.83203125,\n-         ],\n-         [\n-           484.1435546875,\n-           395.1669921875,\n-         ],\n-         [\n-           489.658203125,\n-           395.53125,\n-         ],\n-         [\n-           495.1689453125,\n-           395.9921875,\n-         ],\n-         [\n-           500.6748046875,\n-           396.55078125,\n-         ],\n-         [\n-           506.18359375,\n-           397.04296875,\n-         ],\n-         [\n-           511.7060546875,\n-           397.2216796875,\n          ],\n-         [\n-           517.25,\n-           396.8466796875,\n-         ],\n        ],\n        \"production\": false,\n        \"seaLanes\": [],\n      },\n      {\n@@ -10085,100 +4669,12 @@\n          [\n            526.2109375,\n            453.40234375,\n          ],\n          [\n-           524.78515625,\n-           447.7802734375,\n-         ],\n-         [\n-           524.302734375,\n-           442.1015625,\n-         ],\n-         [\n-           523.69921875,\n-           436.4296875,\n-         ],\n-         [\n-           523.5302734375,\n-           430.732421875,\n-         ],\n-         [\n-           523.3056640625,\n-           425.0380859375,\n-         ],\n-         [\n-           523.0693359375,\n-           419.34375,\n-         ],\n-         [\n-           523.6708984375,\n-           413.599609375,\n-         ],\n-         [\n-           523.20703125,\n-           407.919921875,\n-         ],\n-         [\n-           522.9501953125,\n-           402.2275390625,\n-         ],\n-         [\n            522.7919921875,\n            396.529296875,\n-         ],\n-         [\n-           528.5322265625,\n-           396.419921875,\n-         ],\n-         [\n-           534.271484375,\n-           396.291015625,\n-         ],\n-         [\n-           540.0107421875,\n-           396.1416015625,\n-         ],\n-         [\n-           545.7490234375,\n-           395.9755859375,\n-         ],\n-         [\n-           551.4892578125,\n-           395.9033203125,\n-         ],\n-         [\n-           557.23046875,\n-           395.8505859375,\n-         ],\n-         [\n-           562.970703125,\n-           395.79296875,\n-         ],\n-         [\n-           568.7109375,\n-           395.7216796875,\n-         ],\n-         [\n-           574.43359375,\n-           394.6162109375,\n-         ],\n-         [\n-           580.158203125,\n-           393.583984375,\n-         ],\n-         [\n-           585.904296875,\n-           393.8466796875,\n-         ],\n-         [\n-           591.650390625,\n-           394.1083984375,\n-         ],\n-         [\n-           597.3984375,\n-           394.5107421875,\n          ],\n        ],\n        \"production\": false,\n        \"seaLanes\": [],\n      },\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > same frozen input and seed give identical boundaries and different seeds change the curves\nAssertionError: expected { seed: 1994, \u2026(4) } to not deeply equal { seed: 1994, \u2026(4) }\n\nCompared values have no visual difference.\n\n \u276f tests/ui/region-border-postprocess.test.ts:13:287\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:00:46\n   Duration  809ms (tests 81%, transform 16%, import 3%)\n\n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-x10v1fdb/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs",
+        "docs/prototypes/new-game/T65/checks.py",
+        "src/ui/referenceMapView.ts",
+        "tests/e2e/coast-postprocess.spec.ts",
+        "tests/e2e/reference-game.spec.ts",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png"
+      ],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 0,
+          "output": "0.txt",
+          "sha256": "c90b3f42bcfdc4928a90a0c8ed4ede2bb4c5c8700ddc4611ff7dcd1d289522ae",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  12:02:17\n   Duration  1.91s (tests 94%, transform 5%, import 1%)\n\n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/checks-y2f6s43s/report.json",
+      "sourcesVerified": true,
+      "rawVerified": false,
+      "currentDifferences": [],
+      "stable": true,
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exit": 0,
+          "output": "0.txt",
+          "sha256": "9e14faa1757b81e456c1be4c42c9741de66218ac0532b081fee9b5295e44771d",
+          "tail": "\n> malpaco-spike-ts@0.0.0 test\n> vitest run\n\n\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t65-work\n\n\n Test Files  41 passed (41)\n      Tests  593 passed (593)\n   Start at  12:10:06\n   Duration  13.19s (tests 76%, transform 19%, import 4%, worker 1%)\n\n"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "output": "1.txt",
+          "sha256": "d1e695b6ff37fbfa3d2eec148748fe7ae71ec672098d25a338838ac197796af1",
+          "tail": "\n> malpaco-spike-ts@0.0.0 build\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n\u2713 50 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.64 kB \u2502 gzip:  0.42 kB\ndist/assets/index-D71XpoA_.css   24.37 kB \u2502 gzip:  6.02 kB\ndist/assets/index-BGAYVDUS.js   239.01 kB \u2502 gzip: 61.35 kB\n\n\u2713 built in 126ms\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit": 2,
+          "output": "2.txt",
+          "sha256": "adb6c4b7ec7da40f62c9b13b4558edbdf60dbf6959f681c3176f6deaf05627cc",
+          "tail": "utput.txt:44: trailing whitespace.\n+  3) [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1920x1080 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:59: trailing whitespace.\n+  4) [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:58:1 \u203a playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:87: trailing whitespace.\n+  5) [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 800x540 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:102: trailing whitespace.\n+  6) [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1280x800 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:117: trailing whitespace.\n+  7) [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1920x1080 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:132: trailing whitespace.\n+  8) [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:58:1 \u203a playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:161: trailing whitespace.\n+    [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 800x540 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:162: trailing whitespace.\n+    [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1280x800 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:163: trailing whitespace.\n+    [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1920x1080 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:164: trailing whitespace.\n+    [1280x800] \u203a tests/e2e/region-border-postprocess.spec.ts:58:1 \u203a playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:165: trailing whitespace.\n+    [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 800x540 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:166: trailing whitespace.\n+    [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1280x800 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:167: trailing whitespace.\n+    [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:49:97 \u203a standalone shared borders is painted and all46countries selectable at 1920x1080 \ndocs/prototypes/new-game/T65/evidence/run-veqmpvnq/raw/output.txt:168: trailing whitespace.\n+    [1920x1080] \u203a tests/e2e/region-border-postprocess.spec.ts:58:1 \u203a playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map \n"
+        }
+      ]
+    },
+    {
+      "report": "evidence/run-0v7o4i6w/report.json",
+      "sourcesVerified": true,
+      "rawVerified": true,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/run.py",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png"
+      ],
+      "stable": false,
+      "exit": 0,
+      "commands": null
+    },
+    {
+      "report": "evidence/run-3n3blalz/report.json",
+      "sourcesVerified": true,
+      "rawVerified": true,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/run.py"
+      ],
+      "stable": true,
+      "exit": 0,
+      "commands": null
+    },
+    {
+      "report": "evidence/run-5ue8h08l/report.json",
+      "sourcesVerified": true,
+      "rawVerified": true,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/run.py",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png"
+      ],
+      "stable": true,
+      "exit": 0,
+      "commands": null
+    },
+    {
+      "report": "evidence/run-8qs9wm3d/report.json",
+      "sourcesVerified": true,
+      "rawVerified": true,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs",
+        "docs/prototypes/new-game/T65/run.py",
+        "tests/e2e/coast-postprocess.spec.ts",
+        "tests/e2e/reference-game.spec.ts",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png"
+      ],
+      "stable": true,
+      "exit": 0,
+      "commands": null
+    },
+    {
+      "report": "evidence/run-glsonqst/report.json",
+      "sourcesVerified": true,
+      "rawVerified": true,
+      "currentDifferences": [],
+      "stable": true,
+      "exit": 0,
+      "commands": null
+    },
+    {
+      "report": "evidence/run-veqmpvnq/report.json",
+      "sourcesVerified": true,
+      "rawVerified": true,
+      "currentDifferences": [
+        "docs/prototypes/new-game/T65/borders.mjs",
+        "docs/prototypes/new-game/T65/run.py",
+        "src/ui/referenceMapView.ts",
+        "tests/e2e/coast-postprocess.spec.ts",
+        "tests/e2e/reference-game.spec.ts",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png",
+        "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png"
+      ],
+      "stable": true,
+      "exit": 1,
+      "commands": null
+    },
+    {
+      "report": "evidence/run-x5_g4wf9/report.json",
+      "sourcesVerified": true,
+      "rawVerified": true,
+      "currentDifferences": [
+        "src/ui/referenceMapView.ts"
+      ],
+      "stable": true,
+      "exit": 1,
+      "commands": null
+    }
+  ]
+}

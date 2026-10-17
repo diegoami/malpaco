@@ -1,0 +1,26 @@
+{
+  "type": "tool",
+  "tool": "bash",
+  "callID": "call_01a1496182cf777fa462ec8a",
+  "state": {
+    "status": "completed",
+    "input": {
+      "command": "cat > /tmp/probe-test.ts << 'EOF'\nimport {describe,it,expect} from \"vitest\";\nimport input from \"../../docs/prototypes/new-game/T64/board.json\";\nimport target from \"../../docs/prototypes/new-game/T65/acceptance/board.json\";\ntype Board=typeof input;\nconst {naturalizeBorders}=await import(new URL(\"../../docs/prototypes/new-game/T65/borders.mjs\",import.meta.url).href) as {naturalizeBorders:(b:Board,s?:number)=>Board};\ndescribe(\"aliasing probe\",()=>{\n it(\"global flattened points\",()=>{\n  const result=naturalizeBorders(input);\n  const points=result.provinces.flatMap(p=>p.polygon);\n  console.log(\"global flat points:\",points.length,\"unique:\",new Set(points.map(JSON.stringify)).size);\n });\n it(\"per-province uniqueness\",()=>{\n  const result=naturalizeBorders(input);\n  for(const p of result.provinces){\n   const us=new Set(p.polygon.map(JSON.stringify));\n   if(us.size!==p.polygon.length)console.log(\"province\",p.id,\"has\",p.polygon.length-us.size,\"aliases\");\n  }\n  expect(true).toBe(true);\n });\n});\nEOF\ncp /tmp/probe-test.ts tests/ui/probe-aliasing.test.ts\ntimeout 120 npx vitest run tests/ui/probe-aliasing.test.ts 2>&1 | tail -30\nrm tests/ui/probe-aliasing.test.ts",
+      "timeout": 180000
+    },
+    "output": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2\n\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  12:21:29\n   Duration  269ms (transform 50%, tests 37%, import 12%, worker 2%)\n\n",
+    "metadata": {
+      "output": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2\n\n\n Test Files  1 passed (1)\n      Tests  2 passed (2)\n   Start at  12:21:29\n   Duration  269ms (transform 50%, tests 37%, import 12%, worker 2%)\n\n",
+      "exit": 0,
+      "truncated": false
+    },
+    "title": "cat > /tmp/probe-test.ts << 'EOF'\nimport {describe,it,expect} from \"vitest\";\nimport input from \"../../docs/prototypes/new-game/T64/board.json\";\nimport target from \"../../docs/prototypes/new-game/T65/acceptance/board.json\";\ntype Board=typeof input;\nconst {naturalizeBorders}=await import(new URL(\"../../docs/prototypes/new-game/T65/borders.mjs\",import.meta.url).href) as {naturalizeBorders:(b:Board,s?:number)=>Board};\ndescribe(\"aliasing probe\",()=>{\n it(\"global flattened points\",()=>{\n  const result=naturalizeBorders(input);\n  const points=result.provinces.flatMap(p=>p.polygon);\n  console.log(\"global flat points:\",points.length,\"unique:\",new Set(points.map(JSON.stringify)).size);\n });\n it(\"per-province uniqueness\",()=>{\n  const result=naturalizeBorders(input);\n  for(const p of result.provinces){\n   const us=new Set(p.polygon.map(JSON.stringify));\n   if(us.size!==p.polygon.length)console.log(\"province\",p.id,\"has\",p.polygon.length-us.size,\"aliases\");\n  }\n  expect(true).toBe(true);\n });\n});\nEOF\ncp /tmp/probe-test.ts tests/ui/probe-aliasing.test.ts\ntimeout 120 npx vitest run tests/ui/probe-aliasing.test.ts 2>&1 | tail -30\nrm tests/ui/probe-aliasing.test.ts",
+    "time": {
+      "start": 1792232489161,
+      "end": 1792232489908
+    }
+  },
+  "id": "prt_1496180bf0010SXJgAfO32XW6r",
+  "sessionID": "ses_eb6a5dfd2ffe2XfnVidOhK6er6",
+  "messageID": "msg_149617149001uEm1dtc2EaKpYB"
+}

@@ -1,0 +1,279 @@
+{
+  "session": "ses_eb6a5dfd2ffe2XfnVidOhK6er6",
+  "model": {
+    "id": "MiniMax-M3",
+    "providerID": "minimax",
+    "variant": "thinking"
+  },
+  "durationSeconds": 750.318,
+  "reviewedHead": "ffe49c10851d06476497d471b7f82df2593c0e99",
+  "freshFiles": {
+    "evidence/run-3nt1w6vn/raw-outputs.tar.gz": "ed5634cadaadc1054f61b2ea50050cf2831680cef4579ee7fe60f78bc1da26e2",
+    "evidence/run-3nt1w6vn/report.json": "2d7d9ccc1c0345cf755d89ba9925cbbd232a399b1231345799c95fcafb7b46d4",
+    "evidence/run-3nt1w6vn/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-3nt1w6vn/source-inputs.tar.gz": "e453daa7f25ce1d2c39ea80a7ec3f91644710278cc98e3305e1a9226af6cf502",
+    "evidence/checks-tdxyiepe/report.json": "c425fdf84b3f9512f65e77ee99c039b3bc9f780a1d85a03d77f534af3ec74a59",
+    "evidence/checks-tdxyiepe/2.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/checks-tdxyiepe/0.txt": "3ccbbcfb1163b8abcf426c2a870f5d4fcf57a110040d81de239d12c8424bb874",
+    "evidence/checks-tdxyiepe/1.txt": "2025127ad56ca7def5b4c3017bac3ecc7451d85a7a2466e2bd9bcd1984178478",
+    "evidence/checks-tdxyiepe/source-inputs.tar.gz": "242884a16cc6472420e9bc9791533218d904a9779ee534066dc43a818b4a7c50",
+    "evidence/inheritance-gwht_7qj/report.json": "39f3773bda424f425c955cdc53f7c68165c00d04b0cdb8e96a36f2b142dc4850",
+    "evidence/checks-i6s205gf/report.json": "e4b02800c52132e65f1b5e042132bd9513a7165e93f4c217930df1b65bb2a97b",
+    "evidence/checks-i6s205gf/0.txt": "4aedb965e6f4b9a078916318c870ce7c021ec4d96ab915714c706351fd5503b6",
+    "evidence/checks-i6s205gf/source-inputs.tar.gz": "309ce12c399e0a5bb1739df30cff9b12f366da5e1c21ee72f1d06035bbc41ab5",
+    "evidence/checks-6x_053i4/report.json": "c49f9c0e955a5ae966f7ee683f11c7687a9733f8fff72e074d7a5d0b0cde1e09",
+    "evidence/checks-6x_053i4/0.txt": "0a795cf4d6059e30984903b4b84d58c407a75bd06916b177e717120ef586a2ac",
+    "evidence/checks-6x_053i4/source-inputs.tar.gz": "d4da501f639899bf4e00b21c74bb14ecb14cad09f2c872ac7899abc414b43205",
+    "evidence/checks-vkaa7ne4/report.json": "9405cc8a3f521f586ab667b85eb76bd8337363b7b24d2e0cb3e4b54dfc6fe978",
+    "evidence/checks-vkaa7ne4/0.txt": "e079cd6d4d8215567ded566d25f2824cbbff1f894a94a6f9196131d45f4dd639",
+    "evidence/checks-vkaa7ne4/source-inputs.tar.gz": "06b6d3cb062d2656f8c02a56f62f14cc85e65bd46b6784c1eac8b58727aebb45",
+    "evidence/checks-zxcs_g99/report.json": "a51606d0d62383ea64e87c1835139099f55380037a6020661bb087bfdb6593c3",
+    "evidence/checks-zxcs_g99/0.txt": "b4ee7c1d58456218d7c3bf7ddc143009efb375ec298ac37a2b792e3574d66a92",
+    "evidence/checks-zxcs_g99/source-inputs.tar.gz": "a512724a42ea55ac6b5be37aba24d5d195f3f48108d5db336a3cf1dc9566be95",
+    "evidence/review-probe-b9b105a2/report.json": "3476723d907893103cc14fed8212f5244e54fe7ce5675075daff053107ec6557",
+    "evidence/review-probe-b9b105a2/probe.mjs": "4d32a3d649ea1654f39da9701ae64639b469bbf5683eda3c85d6463a8ada499c",
+    "evidence/controls-zb9k3chj/report.json": "7568127fb44a9d3c371cd2dd3b6ca9db48694c7ed2aeef52b21d5b63b6b2b8ea",
+    "evidence/controls-zb9k3chj/script-input.py": "72a5a98fbd0837577b813bc15ae18e0f0a13f3734f0cec2266152cc6a786eb01",
+    "evidence/run-2ffpy4hy/raw-outputs.tar.gz": "8b6751c5aa7efbe816d8fde4902ecb4b6086522a4f2519b952afc5b9a93f21c6",
+    "evidence/run-2ffpy4hy/report.json": "0cdc2416983f197fd66030670726bda2de10050eb696b5e6d3d6f199e8f17615",
+    "evidence/run-2ffpy4hy/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-2ffpy4hy/source-inputs.tar.gz": "3cd5e29e05ba80c4d0403447c496c970ff75e6ea55b6b8749058e6b782349ce5",
+    "evidence/run-yy4x49di/raw-outputs.tar.gz": "1f8e96d7231c9b1ab360615f8ebf60e5783bfe3f7e801572ec0f626b9089ec20",
+    "evidence/run-yy4x49di/report.json": "1109dff99d7127b9cd2f8cb03f88cff5b9703621ede93e17ae293a0550629d72",
+    "evidence/run-yy4x49di/.gitignore": "fa7cadf041a79b6b93bb9853e479d62cf3e83f2e12a71939ba1dd2db9916aadc",
+    "evidence/run-yy4x49di/source-inputs.tar.gz": "609abc34abf3450f381c338fc3212ebb5a50c270d2fe01eb0de0238342fd4afc",
+    "evidence/checks-pkyuyr7n/report.json": "23b424a65716c4d3691b4028b0c7858688d0c836a36a6ff38a58c2b2799e52c8",
+    "evidence/checks-pkyuyr7n/0.txt": "ceb1716d5f50e3d534c2c650ec9f851bf4a696a47a04012059b467356b76eb7a",
+    "evidence/checks-pkyuyr7n/source-inputs.tar.gz": "0636cf7f3af3c9e48610a35c179a9da6d38b2832020e57800e9ddcb1f362df96",
+    "evidence/controls-zb9k3chj/ignored-seed/output.txt": "f9219f076c00274b5fd0c85d3c707b652a6b5ee5bd0cdb32eb33ab0798ed90f1",
+    "evidence/controls-zb9k3chj/ignored-seed/mutated-source.txt": "a1715bac91c95a826c995fe4bfcb20eaaa7550d6b06c9caa5b728bb294f2b08e",
+    "evidence/controls-zb9k3chj/moved-coast/output.txt": "aacf2d008091557da2a48bdef9d6e7075364f3ac08014a47da6515aba62aaff1",
+    "evidence/controls-zb9k3chj/moved-coast/mutated-source.txt": "c9a1818d5d136eb9e237eef5a84a2787e439fbaeeba553729b3665d6f2d068f5",
+    "evidence/controls-zb9k3chj/moved-label/output.txt": "6f9915a41a8d0677eb67123af31446ba07a1caa8ec53029b9b1d8e686c05963f",
+    "evidence/controls-zb9k3chj/moved-label/mutated-source.txt": "05922975c6e1346cae5d7d8cb4815e545d91bc754289534c98ecc96ffebf35d3",
+    "evidence/controls-zb9k3chj/old-painted-borders/output.txt": "afa014f2fc321f9801ce345aabc375a33dfd68f16c6b8ee59c7519312c98d58a",
+    "evidence/controls-zb9k3chj/old-painted-borders/mutated-source.txt": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8",
+    "evidence/controls-zb9k3chj/border-identity/output.txt": "ed141be5a55ada545e19354f223c5dda3f261d5d3c20eaae032a443a25e8d470",
+    "evidence/controls-zb9k3chj/border-identity/mutated-source.txt": "dfe52ba81d2f0da80be907acfb41ca97d2560373bcd039af3cdc012f3c50833d",
+    "evidence/controls-zb9k3chj/independent-country-noise/output.txt": "ca46dabc7bb9e021f766181ef593ae259cf20e0dde5ffb4293f644e987c3e51d",
+    "evidence/controls-zb9k3chj/independent-country-noise/mutated-source.txt": "155f19d825b503e32c192945474e36ecbd66cc18193b6d7bc681533542811ab3",
+    "evidence/controls-zb9k3chj/originals/src/ui/referenceMapView.ts": "ab50db577a60151e27ac288b6b5d7d101587273566f3f14e14170988694ef205",
+    "evidence/controls-zb9k3chj/originals/docs/prototypes/new-game/T65/borders.mjs": "6d2d68eb54d404e326b8b09a8f477a6108cfcdd125eabe77188a83bfa206926d",
+    "evidence/controls-zb9k3chj/originals/docs/prototypes/new-game/T65/board.json": "cf2f5fc6aac2631aa8f40157a3ad2d823ff87dd135f7c59767774db730af85b7",
+    "evidence/controls-zb9k3chj/originals/docs/prototypes/new-game/T65/map.svg": "26cdfeaf4a13ff65b4dd8db41ac3287d34c9a7694f16d3f5fdd34675bc83de41",
+    "evidence/controls-zb9k3chj/originals/docs/prototypes/new-game/T65/preview.html": "6330871f09f901d2cda3b8ea02416dcac1d7dc51cbe014cc4a7d42bce8a3ec8f"
+  },
+  "archiveChecks": [
+    {
+      "report": "measured/evidence/run-3nt1w6vn/report.json",
+      "exit": 1,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {
+        "src/ui/referenceMapView.ts": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-tdxyiepe/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exit": 0,
+          "output": "0.txt",
+          "sha256": "3ccbbcfb1163b8abcf426c2a870f5d4fcf57a110040d81de239d12c8424bb874",
+          "tail": "\n> malpaco-spike-ts@0.0.0 test\n> vitest run\n\n\n RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2\n\n\n Test Files  41 passed (41)\n      Tests  593 passed (593)\n   Start at  12:16:06\n   Duration  12.86s (tests 73%, transform 23%, import 4%, worker 1%)\n\n"
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "output": "1.txt",
+          "sha256": "2025127ad56ca7def5b4c3017bac3ecc7451d85a7a2466e2bd9bcd1984178478",
+          "tail": "\n> malpaco-spike-ts@0.0.0 build\n> tsc --noEmit -p src/core && tsc --noEmit && vite build\n\nvite v8.3.2 building client environment for production...\ntransforming...\n\u2713 50 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.64 kB \u2502 gzip:  0.42 kB\ndist/assets/index-D71XpoA_.css   24.37 kB \u2502 gzip:  6.02 kB\ndist/assets/index-BGAYVDUS.js   239.01 kB \u2502 gzip: 61.35 kB\n\n\u2713 built in 125ms\n"
+        },
+        {
+          "command": [
+            "git",
+            "diff",
+            "--check"
+          ],
+          "exit": 0,
+          "output": "2.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "tail": ""
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {},
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-i6s205gf/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "4aedb965e6f4b9a078916318c870ce7c021ec4d96ab915714c706351fd5503b6",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 2 failed) 2274ms\n   \u276f canonical shared region borders (5)\n     \u00d7 replaces straight divisions with the frozen geographical border drawing 78ms\n     \u00d7 retains connected cells, exact contacts, subdivisions and protected reservations on five seeds 1851ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1664,11 +1664,11 @@\n          [\n            384.5087890625,\n            19.3427734375,\n          ],\n          [\n-           386.01171875,\n+           387.01171875,\n            24.806640625,\n          ],\n          [\n            387.7578125,\n            30.1767578125,\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains connected cells, exact contacts, subdivisions and protected reservations on five seeds\nAssertionError: 1994: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"cells: Subdivision gap/area mismatch island_0\",\n+     \"cells: Cell overlap province_4/province_30\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/region-border-postprocess.test.ts:15:210\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:19:59\n   Duration  2.49s (tests 95%, transform 4%, import 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T65/borders.mjs": "155f19d825b503e32c192945474e36ecbd66cc18193b6d7bc681533542811ab3"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-6x_053i4/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "0a795cf4d6059e30984903b4b84d58c407a75bd06916b177e717120ef586a2ac",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 3 failed) 2302ms\n   \u276f canonical shared region borders (5)\n     \u00d7 replaces straight divisions with the frozen geographical border drawing 80ms\n     \u00d7 retains exact metadata, coast, ports, labels and routes 76ms\n     \u00d7 retains connected cells, exact contacts, subdivisions and protected reservations on five seeds 1861ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 3 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -10,11 +10,11 @@\n        \"bonus\": 3,\n        \"id\": \"island_0\",\n        \"name\": \"North Isle\",\n        \"polygon\": [\n          [\n-           505.73828125,\n+           506.73828125,\n            82,\n          ],\n          [\n            507.791015625,\n            94.505859375,\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/3]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains exact metadata, coast, ports, labels and routes\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -10,11 +10,11 @@\n        \"bonus\": 3,\n        \"id\": \"island_0\",\n        \"name\": \"North Isle\",\n        \"polygon\": [\n          [\n-           505.73828125,\n+           506.73828125,\n            82,\n          ],\n          [\n            507.791015625,\n            94.505859375,\n\n \u276f tests/ui/region-border-postprocess.test.ts:14:112\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/3]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains connected cells, exact contacts, subdivisions and protected reservations on five seeds\nAssertionError: 1994: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"cells: Subdivision gap/area mismatch island_0\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/region-border-postprocess.test.ts:15:210\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[3/3]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  3 failed | 2 passed (5)\n   Start at  12:20:02\n   Duration  2.52s (tests 95%, transform 4%, import 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T65/borders.mjs": "c9a1818d5d136eb9e237eef5a84a2787e439fbaeeba553729b3665d6f2d068f5"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-vkaa7ne4/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "e079cd6d4d8215567ded566d25f2824cbbff1f894a94a6f9196131d45f4dd639",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 1 failed) 9296ms\n   \u276f canonical shared region borders (5)\n     \u00d7 same frozen input and seed give identical boundaries and different seeds change the curves 220ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > same frozen input and seed give identical boundaries and different seeds change the curves\nAssertionError: expected { seed: 1994, \u2026(4) } to not deeply equal { seed: 1994, \u2026(4) }\n\nCompared values have no visual difference.\n\n \u276f tests/ui/region-border-postprocess.test.ts:13:287\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 4 passed (5)\n   Start at  12:19:48\n   Duration  9.49s (tests 99%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T65/borders.mjs": "a1715bac91c95a826c995fe4bfcb20eaaa7550d6b06c9caa5b728bb294f2b08e"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-zxcs_g99/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "b4ee7c1d58456218d7c3bf7ddc143009efb375ec298ac37a2b792e3574d66a92",
+          "tail": "\n-         ],\n-         [\n-           473.54296875,\n-           400.3173828125,\n-         ],\n-         [\n            473.1123046875,\n            394.5146484375,\n-         ],\n-         [\n-           478.62890625,\n-           394.83203125,\n-         ],\n-         [\n-           484.1435546875,\n-           395.1669921875,\n-         ],\n-         [\n-           489.658203125,\n-           395.53125,\n-         ],\n-         [\n-           495.1689453125,\n-           395.9921875,\n-         ],\n-         [\n-           500.6748046875,\n-           396.55078125,\n-         ],\n-         [\n-           506.18359375,\n-           397.04296875,\n-         ],\n-         [\n-           511.7060546875,\n-           397.2216796875,\n          ],\n-         [\n-           517.25,\n-           396.8466796875,\n-         ],\n        ],\n        \"production\": false,\n        \"seaLanes\": [],\n      },\n      {\n@@ -10085,100 +4669,12 @@\n          [\n            526.2109375,\n            453.40234375,\n          ],\n          [\n-           524.78515625,\n-           447.7802734375,\n-         ],\n-         [\n-           524.302734375,\n-           442.1015625,\n-         ],\n-         [\n-           523.69921875,\n-           436.4296875,\n-         ],\n-         [\n-           523.5302734375,\n-           430.732421875,\n-         ],\n-         [\n-           523.3056640625,\n-           425.0380859375,\n-         ],\n-         [\n-           523.0693359375,\n-           419.34375,\n-         ],\n-         [\n-           523.6708984375,\n-           413.599609375,\n-         ],\n-         [\n-           523.20703125,\n-           407.919921875,\n-         ],\n-         [\n-           522.9501953125,\n-           402.2275390625,\n-         ],\n-         [\n            522.7919921875,\n            396.529296875,\n-         ],\n-         [\n-           528.5322265625,\n-           396.419921875,\n-         ],\n-         [\n-           534.271484375,\n-           396.291015625,\n-         ],\n-         [\n-           540.0107421875,\n-           396.1416015625,\n-         ],\n-         [\n-           545.7490234375,\n-           395.9755859375,\n-         ],\n-         [\n-           551.4892578125,\n-           395.9033203125,\n-         ],\n-         [\n-           557.23046875,\n-           395.8505859375,\n-         ],\n-         [\n-           562.970703125,\n-           395.79296875,\n-         ],\n-         [\n-           568.7109375,\n-           395.7216796875,\n-         ],\n-         [\n-           574.43359375,\n-           394.6162109375,\n-         ],\n-         [\n-           580.158203125,\n-           393.583984375,\n-         ],\n-         [\n-           585.904296875,\n-           393.8466796875,\n-         ],\n-         [\n-           591.650390625,\n-           394.1083984375,\n-         ],\n-         [\n-           597.3984375,\n-           394.5107421875,\n          ],\n        ],\n        \"production\": false,\n        \"seaLanes\": [],\n      },\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > same frozen input and seed give identical boundaries and different seeds change the curves\nAssertionError: expected { seed: 1994, \u2026(4) } to not deeply equal { seed: 1994, \u2026(4) }\n\nCompared values have no visual difference.\n\n \u276f tests/ui/region-border-postprocess.test.ts:13:287\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:19:47\n   Duration  739ms (tests 82%, transform 15%, import 3%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T65/borders.mjs": "dfe52ba81d2f0da80be907acfb41ca97d2560373bcd039af3cdc012f3c50833d"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-2ffpy4hy/report.json",
+      "exit": 0,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {},
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/run-yy4x49di/report.json",
+      "exit": 0,
+      "commands": null,
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": true,
+      "sourceDifferences": {},
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    },
+    {
+      "report": "measured/evidence/checks-pkyuyr7n/report.json",
+      "exit": null,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/ui/region-border-postprocess.test.ts"
+          ],
+          "exit": 1,
+          "output": "0.txt",
+          "sha256": "ceb1716d5f50e3d534c2c650ec9f851bf4a696a47a04012059b467356b76eb7a",
+          "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 2 failed) 9638ms\n   \u276f canonical shared region borders (5)\n     \u00d7 replaces straight divisions with the frozen geographical border drawing 89ms\n     \u00d7 retains exact metadata, coast, ports, labels and routes 77ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,11 +1625,11 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n+         368.25,\n          67.5,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"polygon\": [\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains exact metadata, coast, ports, labels and routes\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1625,11 +1625,11 @@\n        \"countTextCss\": 14,\n        \"hitSizeCss\": 40,\n        \"id\": \"province_4\",\n        \"island\": \"island_0\",\n        \"labelAt\": [\n-         367.25,\n+         368.25,\n          67.5,\n        ],\n        \"name\": \"River gate\",\n        \"owner\": \"seat1\",\n        \"production\": false,\n\n \u276f tests/ui/region-border-postprocess.test.ts:14:112\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:20:05\n   Duration  9.86s (tests 99%, transform 1%)\n\n"
+        }
+      ],
+      "sourceArchiveVerified": true,
+      "rawArchiveVerified": false,
+      "sourceDifferences": {
+        "docs/prototypes/new-game/T65/borders.mjs": "05922975c6e1346cae5d7d8cb4815e545d91bc754289534c98ecc96ffebf35d3"
+      },
+      "reviewerScratch": {},
+      "scratchMatchesOriginal": true,
+      "sourcesUnchangedDuringRun": true
+    }
+  ],
+  "interruptedRawArchived": [],
+  "completeLocalRetention": "/home/diego/projects/malpaco/.cache/t65-review-retained/148-review-b9b105a2"
+}

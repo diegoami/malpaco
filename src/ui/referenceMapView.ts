@@ -1,5 +1,5 @@
 // Adapt the geographical drawing to stable canonical game-country IDs.
-import drawing from "../../docs/prototypes/new-game/T64/map.svg?raw";
+import drawing from "../../docs/prototypes/new-game/T65/map.svg?raw";
 import {s} from "./dom";
 import {seatLook} from "./palette";
 import type {GameMap} from "../core";

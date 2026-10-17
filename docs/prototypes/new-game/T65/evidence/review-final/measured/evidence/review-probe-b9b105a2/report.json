@@ -1,0 +1,66 @@
+{
+  "rows": [
+    {
+      "check": "T64-T65-semantic-identity",
+      "match": true
+    },
+    {
+      "check": "contact-graph-identity",
+      "pairsFromGeometry": 61,
+      "pairsDeclared": 61,
+      "match": true
+    },
+    {
+      "check": "shared-edge-opposite-orientation",
+      "twoOwnerEdges": 749,
+      "sameDirectionCount": 0
+    },
+    {
+      "check": "within-province-vertex-uniqueness",
+      "aliasedProvinces": 0
+    },
+    {
+      "check": "simple-polygons",
+      "badProvinces": [],
+      "badIslands": []
+    },
+    {
+      "check": "T63-T65-contact-graph-identity",
+      "T63pairs": 61,
+      "T65pairs": 61,
+      "identical": true
+    },
+    {
+      "check": "bend-straight-count",
+      "bent": 60,
+      "straight": 1,
+      "straightPairs": [
+        "province_14|province_26"
+      ],
+      "straightNames": [
+        "South reach / South ridge"
+      ]
+    },
+    {
+      "check": "deterministic-output",
+      "match": true,
+      "bytes": 80258
+    },
+    {
+      "check": "subdivision-distribution",
+      "min": 1,
+      "max": 22,
+      "mean": "12.28"
+    },
+    {
+      "check": "T62-inspect",
+      "totalErrors": 0,
+      "errors": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      }
+    }
+  ]
+}
