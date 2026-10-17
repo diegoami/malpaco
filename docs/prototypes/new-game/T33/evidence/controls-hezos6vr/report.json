@@ -1,0 +1,20 @@
+[
+  {
+    "name": "computer-no-dispatch",
+    "path": "src/ui/computerTurnLoop.ts",
+    "exit": 1,
+    "originalSha256": "9aeba293696dcfe6bf415929fabad69e0b731e109b066df3f5e2243ed8ad10a2",
+    "mutatedSha256": "34513ce8655e20a8847e87a5c0d77520c121074272ed6409c81314411fbd0d51",
+    "output": "computer-no-dispatch-output.txt",
+    "restoredExactly": true
+  },
+  {
+    "name": "load-no-replacement",
+    "path": "src/ui/referenceMatchFiles.ts",
+    "exit": 1,
+    "originalSha256": "f44c9e5f6868dae4fcb508a30af6e5a2d27a16b4515156069747a4f1c8db8870",
+    "mutatedSha256": "90ab27dca4205eed8bf0dd9f6a4f1a9817e075e22bb38057ce0af9f402a2be86",
+    "output": "load-no-replacement-output.txt",
+    "restoredExactly": true
+  }
+]

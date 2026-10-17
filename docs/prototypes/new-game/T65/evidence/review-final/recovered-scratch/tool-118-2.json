@@ -1,0 +1,25 @@
+{
+  "type": "tool",
+  "tool": "bash",
+  "callID": "call_01a14964fec172cda4ccf00f",
+  "state": {
+    "status": "completed",
+    "input": {
+      "command": "rm -f /tmp/borders.mjs.saved /tmp/probe-test.ts /tmp/identity-test.mjs\necho \"Cleaned up /tmp scratch files\""
+    },
+    "output": "Cleaned up /tmp scratch files\n",
+    "metadata": {
+      "output": "Cleaned up /tmp scratch files\n",
+      "exit": 0,
+      "truncated": false
+    },
+    "title": "rm -f /tmp/borders.mjs.saved /tmp/probe-test.ts /tmp/identity-test.mjs\necho \"Cleaned up /tmp scratch files\"",
+    "time": {
+      "start": 1792232717499,
+      "end": 1792232717515
+    }
+  },
+  "id": "prt_14964fcac001248eqEcVM4Ly6U",
+  "sessionID": "ses_eb6a5dfd2ffe2XfnVidOhK6er6",
+  "messageID": "msg_14964f6ca001YYjAlJF7BvePTY"
+}

@@ -1,0 +1,960 @@
+ci	Set up job	﻿2026-10-17T10:08:23.1936180Z Current runner version: '2.337.0'
+ci	Set up job	2026-10-17T10:08:23.1958545Z ##[group]Runner Image Provisioner
+ci	Set up job	2026-10-17T10:08:23.1959319Z Hosted Compute Agent
+ci	Set up job	2026-10-17T10:08:23.1959817Z Version: 20261012.601
+ci	Set up job	2026-10-17T10:08:23.1960362Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+ci	Set up job	2026-10-17T10:08:23.1960996Z Build Date: 2026-10-12T17:48:21Z
+ci	Set up job	2026-10-17T10:08:23.1961553Z Worker ID: {90712a9b-aae8-46a3-9484-42362e312e8c}
+ci	Set up job	2026-10-17T10:08:23.1962102Z Region: westus3
+ci	Set up job	2026-10-17T10:08:23.1962601Z Cloud: Azure
+ci	Set up job	2026-10-17T10:08:23.1963103Z ##[endgroup]
+ci	Set up job	2026-10-17T10:08:23.1964302Z ##[group]Operating System
+ci	Set up job	2026-10-17T10:08:23.1964809Z Ubuntu
+ci	Set up job	2026-10-17T10:08:23.1965223Z 24.04.5
+ci	Set up job	2026-10-17T10:08:23.1965701Z LTS
+ci	Set up job	2026-10-17T10:08:23.1966158Z ##[endgroup]
+ci	Set up job	2026-10-17T10:08:23.1966636Z ##[group]Runner Image
+ci	Set up job	2026-10-17T10:08:23.1967140Z Image: ubuntu-24.04
+ci	Set up job	2026-10-17T10:08:23.1967600Z Version: 20261012.334.1
+ci	Set up job	2026-10-17T10:08:23.1968647Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+ci	Set up job	2026-10-17T10:08:23.1970129Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+ci	Set up job	2026-10-17T10:08:23.1970919Z ##[endgroup]
+ci	Set up job	2026-10-17T10:08:23.1971997Z ##[group]GITHUB_TOKEN Permissions
+ci	Set up job	2026-10-17T10:08:23.1973516Z Contents: read
+ci	Set up job	2026-10-17T10:08:23.1974036Z Metadata: read
+ci	Set up job	2026-10-17T10:08:23.1974617Z Packages: read
+ci	Set up job	2026-10-17T10:08:23.1975074Z ##[endgroup]
+ci	Set up job	2026-10-17T10:08:23.1976830Z Secret source: Actions
+ci	Set up job	2026-10-17T10:08:23.1977619Z Cache mode: write
+ci	Set up job	2026-10-17T10:08:23.1978388Z Prepare workflow directory
+ci	Set up job	2026-10-17T10:08:23.2298064Z Prepare all required actions
+ci	Set up job	2026-10-17T10:08:23.2339334Z Getting action download info
+ci	Set up job	2026-10-17T10:08:23.5144675Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+ci	Set up job	2026-10-17T10:08:23.5956380Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+ci	Set up job	2026-10-17T10:08:23.7047225Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+ci	Set up job	2026-10-17T10:08:23.9691601Z Complete job name: ci
+ci	Initialize containers	﻿2026-10-17T10:08:24.0125705Z ##[group]Checking docker version
+ci	Initialize containers	2026-10-17T10:08:24.0136488Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+ci	Initialize containers	2026-10-17T10:08:24.0805367Z '1.48'
+ci	Initialize containers	2026-10-17T10:08:24.0815656Z Docker daemon API version: '1.48'
+ci	Initialize containers	2026-10-17T10:08:24.0816351Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+ci	Initialize containers	2026-10-17T10:08:24.0950101Z '1.48'
+ci	Initialize containers	2026-10-17T10:08:24.0960888Z Docker client API version: '1.48'
+ci	Initialize containers	2026-10-17T10:08:24.0966119Z ##[endgroup]
+ci	Initialize containers	2026-10-17T10:08:24.0969889Z ##[group]Clean up resources from previous jobs
+ci	Initialize containers	2026-10-17T10:08:24.0974455Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=4475bc"
+ci	Initialize containers	2026-10-17T10:08:24.1098728Z ##[command]/usr/bin/docker network prune --force --filter "label=4475bc"
+ci	Initialize containers	2026-10-17T10:08:24.1215985Z ##[endgroup]
+ci	Initialize containers	2026-10-17T10:08:24.1216482Z ##[group]Create local container network
+ci	Initialize containers	2026-10-17T10:08:24.1225728Z ##[command]/usr/bin/docker network create --label 4475bc github_network_33a421f39320461cb4aae40253ca2aac
+ci	Initialize containers	2026-10-17T10:08:24.1819762Z 60148d124f22a2348fd11484cb1b3b2ca8b1cb597458e767a3871b5f576cc876
+ci	Initialize containers	2026-10-17T10:08:24.1834440Z ##[endgroup]
+ci	Initialize containers	2026-10-17T10:08:24.1854197Z ##[group]Starting job container
+ci	Initialize containers	2026-10-17T10:08:24.1872137Z ##[command]/usr/bin/docker pull mcr.microsoft.com/playwright:v1.63.0-noble
+ci	Initialize containers	2026-10-17T10:08:24.5437684Z v1.63.0-noble: Pulling from playwright
+ci	Initialize containers	2026-10-17T10:08:24.6511304Z 0926a8eb0e60: Pulling fs layer
+ci	Initialize containers	2026-10-17T10:08:24.6512193Z e2bfec3c8017: Pulling fs layer
+ci	Initialize containers	2026-10-17T10:08:24.6512810Z 74c72610aa2d: Pulling fs layer
+ci	Initialize containers	2026-10-17T10:08:24.6513408Z d8cf7dc1ff62: Pulling fs layer
+ci	Initialize containers	2026-10-17T10:08:24.6513887Z b4dfe9b5d621: Pulling fs layer
+ci	Initialize containers	2026-10-17T10:08:24.6514467Z a2ac83a9a562: Pulling fs layer
+ci	Initialize containers	2026-10-17T10:08:24.6515015Z 1b189482e65c: Pulling fs layer
+ci	Initialize containers	2026-10-17T10:08:24.6515402Z d8cf7dc1ff62: Waiting
+ci	Initialize containers	2026-10-17T10:08:24.6515768Z b4dfe9b5d621: Waiting
+ci	Initialize containers	2026-10-17T10:08:24.6516431Z a2ac83a9a562: Waiting
+ci	Initialize containers	2026-10-17T10:08:24.6516775Z 1b189482e65c: Waiting
+ci	Initialize containers	2026-10-17T10:08:24.8597012Z 74c72610aa2d: Verifying Checksum
+ci	Initialize containers	2026-10-17T10:08:24.8598546Z 74c72610aa2d: Download complete
+ci	Initialize containers	2026-10-17T10:08:25.0042534Z 0926a8eb0e60: Download complete
+ci	Initialize containers	2026-10-17T10:08:25.2615913Z e2bfec3c8017: Verifying Checksum
+ci	Initialize containers	2026-10-17T10:08:25.2622112Z e2bfec3c8017: Download complete
+ci	Initialize containers	2026-10-17T10:08:25.9356717Z a2ac83a9a562: Verifying Checksum
+ci	Initialize containers	2026-10-17T10:08:25.9357921Z a2ac83a9a562: Download complete
+ci	Initialize containers	2026-10-17T10:08:26.1652145Z d8cf7dc1ff62: Verifying Checksum
+ci	Initialize containers	2026-10-17T10:08:26.1654648Z d8cf7dc1ff62: Download complete
+ci	Initialize containers	2026-10-17T10:08:26.2902537Z b4dfe9b5d621: Verifying Checksum
+ci	Initialize containers	2026-10-17T10:08:26.5168066Z 0926a8eb0e60: Pull complete
+ci	Initialize containers	2026-10-17T10:08:26.7557875Z 1b189482e65c: Verifying Checksum
+ci	Initialize containers	2026-10-17T10:08:26.7558739Z 1b189482e65c: Download complete
+ci	Initialize containers	2026-10-17T10:08:39.2062138Z e2bfec3c8017: Pull complete
+ci	Initialize containers	2026-10-17T10:08:39.2395886Z 74c72610aa2d: Pull complete
+ci	Initialize containers	2026-10-17T10:08:49.5663227Z d8cf7dc1ff62: Pull complete
+ci	Initialize containers	2026-10-17T10:08:55.8801762Z b4dfe9b5d621: Pull complete
+ci	Initialize containers	2026-10-17T10:08:58.7009620Z a2ac83a9a562: Pull complete
+ci	Initialize containers	2026-10-17T10:09:01.5213059Z 1b189482e65c: Pull complete
+ci	Initialize containers	2026-10-17T10:09:01.5242229Z Digest: sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27
+ci	Initialize containers	2026-10-17T10:09:01.5257856Z Status: Downloaded newer image for mcr.microsoft.com/playwright:v1.63.0-noble
+ci	Initialize containers	2026-10-17T10:09:01.5260907Z mcr.microsoft.com/playwright:v1.63.0-noble
+ci	Initialize containers	2026-10-17T10:09:01.5405320Z ##[command]/usr/bin/docker create --name 8b0ef156c6eb4055b232d9265841f075_mcrmicrosoftcomplaywrightv1630noble_0e1d23 --label 4475bc --workdir /__w/malpaco/malpaco --network github_network_33a421f39320461cb4aae40253ca2aac  -e "HOME=/github/home" -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work":"/__w" -v "/home/runner/actions-runner/cached/2.337.0/externals":"/__e":ro -v "/home/runner/work/_temp":"/__w/_temp" -v "/home/runner/work/_actions":"/__w/_actions" -v "/opt/hostedtoolcache":"/__t" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" --entrypoint "tail" mcr.microsoft.com/playwright:v1.63.0-noble "-f" "/dev/null"
+ci	Initialize containers	2026-10-17T10:09:01.5636821Z 1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448
+ci	Initialize containers	2026-10-17T10:09:01.5655546Z ##[command]/usr/bin/docker start 1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448
+ci	Initialize containers	2026-10-17T10:09:01.7294402Z 1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448
+ci	Initialize containers	2026-10-17T10:09:01.7312349Z ##[command]/usr/bin/docker ps --all --filter id=1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+ci	Initialize containers	2026-10-17T10:09:01.7418196Z 1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448 Up Less than a second
+ci	Initialize containers	2026-10-17T10:09:01.7433455Z ##[command]/usr/bin/docker inspect --format "{{range .Config.Env}}{{println .}}{{end}}" 1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448
+ci	Initialize containers	2026-10-17T10:09:01.7535738Z HOME=/github/home
+ci	Initialize containers	2026-10-17T10:09:01.7536240Z GITHUB_ACTIONS=true
+ci	Initialize containers	2026-10-17T10:09:01.7536571Z CI=true
+ci	Initialize containers	2026-10-17T10:09:01.7536848Z PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ci	Initialize containers	2026-10-17T10:09:01.7537353Z LANG=C.UTF-8
+ci	Initialize containers	2026-10-17T10:09:01.7537603Z LC_ALL=C.UTF-8
+ci	Initialize containers	2026-10-17T10:09:01.7537869Z PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+ci	Initialize containers	2026-10-17T10:09:01.7555526Z ##[endgroup]
+ci	Initialize containers	2026-10-17T10:09:01.7563460Z ##[group]Waiting for all services to be ready
+ci	Initialize containers	2026-10-17T10:09:01.7564840Z ##[endgroup]
+ci	Run actions/checkout@v4	﻿2026-10-17T10:09:01.7806532Z ##[group]Run actions/checkout@v4
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7806998Z with:
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7807188Z   repository: diegoami/malpaco
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7809390Z   token: ***
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7809575Z   ssh-strict: true
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7809754Z   ssh-user: git
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7809937Z   persist-credentials: true
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7810136Z   clean: true
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7810320Z   sparse-checkout-cone-mode: true
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7810746Z   fetch-depth: 1
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7810920Z   fetch-tags: false
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7811095Z   show-progress: true
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7811269Z   lfs: false
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7811424Z   submodules: false
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7811592Z   set-safe-directory: true
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7811795Z   allow-unsafe-pr-checkout: false
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7812186Z ##[endgroup]
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.7861926Z ##[command]/usr/bin/docker exec  1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448 sh -c "cat /etc/*release | grep ^ID"
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9481028Z Syncing repository: diegoami/malpaco
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9482347Z ##[group]Getting Git version info
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9482632Z Working directory is '/__w/malpaco/malpaco'
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9483109Z [command]/usr/bin/git version
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9483322Z git version 2.43.0
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9508647Z ##[endgroup]
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9524999Z Temporarily overriding HOME='/__w/_temp/76891d0a-3f35-4734-a1a0-b9d53866ecd1' before making global git config changes
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9530711Z Adding repository directory to the temporary git global config as a safe directory
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9531467Z [command]/usr/bin/git config --global --add safe.directory /__w/malpaco/malpaco
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9568720Z Deleting the contents of '/__w/malpaco/malpaco'
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9571877Z ##[group]Initializing the repository
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9575559Z [command]/usr/bin/git init /__w/malpaco/malpaco
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9612174Z hint: Using 'master' as the name for the initial branch. This default branch name
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9622237Z hint: is subject to change. To configure the initial branch name to use in all
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9622745Z hint: of your new repositories, which will suppress this warning, call:
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9623251Z hint: 
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9623624Z hint: 	git config --global init.defaultBranch <name>
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9623988Z hint: 
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9624234Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9624795Z hint: 'development'. The just-created branch can be renamed via this command:
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9625296Z hint: 
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9625551Z hint: 	git branch -m <name>
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9626145Z Initialized empty Git repository in /__w/malpaco/malpaco/.git/
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9634712Z [command]/usr/bin/git remote add origin https://github.com/diegoami/malpaco
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9666341Z ##[endgroup]
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9666841Z ##[group]Disabling automatic garbage collection
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9670969Z [command]/usr/bin/git config --local gc.auto 0
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9698589Z ##[endgroup]
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9699283Z ##[group]Setting up auth
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9704011Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9731389Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9968735Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+ci	Run actions/checkout@v4	2026-10-17T10:09:01.9996673Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+ci	Run actions/checkout@v4	2026-10-17T10:09:02.0225230Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+ci	Run actions/checkout@v4	2026-10-17T10:09:02.0260037Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+ci	Run actions/checkout@v4	2026-10-17T10:09:02.0467679Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+ci	Run actions/checkout@v4	2026-10-17T10:09:02.0505094Z ##[endgroup]
+ci	Run actions/checkout@v4	2026-10-17T10:09:02.0505672Z ##[group]Fetching the repository
+ci	Run actions/checkout@v4	2026-10-17T10:09:02.0513395Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +ba3d32e9ae64c7630e17ebeac724964cf4100b67:refs/remotes/pull/147/merge
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.8945081Z From https://github.com/diegoami/malpaco
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.8945875Z  * [new ref]         ba3d32e9ae64c7630e17ebeac724964cf4100b67 -> pull/147/merge
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.8969954Z ##[endgroup]
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.8970767Z ##[group]Determining the checkout info
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.8971998Z ##[endgroup]
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.8972676Z [command]/usr/bin/git sparse-checkout disable
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.9036089Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.9078269Z ##[group]Checking out the ref
+ci	Run actions/checkout@v4	2026-10-17T10:10:22.9079109Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/147/merge
+ci	Run actions/checkout@v4	2026-10-17T10:10:23.9371231Z Updating files:  30% (2632/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.0169231Z Updating files:  31% (2687/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.0607773Z Updating files:  32% (2774/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.1396264Z Updating files:  33% (2861/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.1673465Z Updating files:  34% (2947/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.1720523Z Updating files:  35% (3034/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.2231474Z Updating files:  36% (3121/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.2562146Z Updating files:  37% (3207/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.3377210Z Updating files:  38% (3294/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.3883793Z Updating files:  39% (3381/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.4345775Z Updating files:  40% (3467/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.4793796Z Updating files:  41% (3554/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.5779231Z Updating files:  42% (3641/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.5858761Z Updating files:  43% (3727/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.5908840Z Updating files:  44% (3814/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.5976823Z Updating files:  45% (3901/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.6560052Z Updating files:  46% (3987/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.7119213Z Updating files:  47% (4074/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.7499108Z Updating files:  48% (4161/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.8004571Z Updating files:  49% (4247/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.8653876Z Updating files:  50% (4334/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.9238316Z Updating files:  51% (4421/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.9419857Z Updating files:  51% (4490/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:24.9743316Z Updating files:  52% (4507/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.0259191Z Updating files:  53% (4594/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.0314892Z Updating files:  54% (4681/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.0368244Z Updating files:  55% (4767/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.0410413Z Updating files:  56% (4854/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.0498254Z Updating files:  57% (4941/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.1111488Z Updating files:  58% (5027/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.1757398Z Updating files:  59% (5114/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.2437585Z Updating files:  60% (5201/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.4510134Z Updating files:  61% (5287/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.4554958Z Updating files:  62% (5374/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.5381694Z Updating files:  63% (5461/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.6005277Z Updating files:  64% (5547/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.6051447Z Updating files:  65% (5634/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.6097503Z Updating files:  66% (5721/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.6149135Z Updating files:  67% (5807/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.6361446Z Updating files:  68% (5894/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.7242537Z Updating files:  69% (5981/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.7801756Z Updating files:  70% (6067/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.8355319Z Updating files:  71% (6154/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.8712738Z Updating files:  72% (6241/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.8782731Z Updating files:  73% (6327/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.9014599Z Updating files:  74% (6414/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.9080197Z Updating files:  75% (6501/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.9240214Z Updating files:  76% (6587/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.9243481Z Updating files:  76% (6672/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.9624425Z Updating files:  77% (6674/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:25.9849749Z Updating files:  78% (6761/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.0460516Z Updating files:  79% (6847/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.0955848Z Updating files:  80% (6934/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.1394631Z Updating files:  81% (7021/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.3450088Z Updating files:  82% (7107/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.4997905Z Updating files:  83% (7194/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.5265316Z Updating files:  84% (7281/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.5600226Z Updating files:  85% (7367/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.7327456Z Updating files:  86% (7454/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:26.9235386Z Updating files:  87% (7541/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:27.0696460Z Updating files:  87% (7596/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:27.6174866Z Updating files:  88% (7627/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:27.9241565Z Updating files:  89% (7714/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.1850256Z Updating files:  89% (7774/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.4097520Z Updating files:  90% (7801/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.4948344Z Updating files:  91% (7887/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.5710098Z Updating files:  92% (7974/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.6138323Z Updating files:  93% (8061/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.6923617Z Updating files:  94% (8147/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7009517Z Updating files:  95% (8234/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7099317Z Updating files:  96% (8321/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7139643Z Updating files:  97% (8407/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7187603Z Updating files:  98% (8494/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7338849Z Updating files:  99% (8581/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7339578Z Updating files: 100% (8667/8667)
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7339801Z Updating files: 100% (8667/8667), done.
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7597339Z Note: switching to 'refs/remotes/pull/147/merge'.
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7597700Z 
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7597945Z You are in 'detached HEAD' state. You can look around, make experimental
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7598720Z changes and commit them, and you can discard any commits you make in this
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7599295Z state without impacting any branches by switching back to a branch.
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7599623Z 
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7599858Z If you want to create a new branch to retain commits you create, you may
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7600394Z do so (now or later) by using -c with the switch command. Example:
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7600721Z 
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7600853Z   git switch -c <new-branch-name>
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7601072Z 
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7601175Z Or undo this operation with:
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7601374Z 
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7601473Z   git switch -
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7601614Z 
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7601885Z Turn off this advice by setting config variable advice.detachedHead to false
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7602236Z 
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.7602654Z HEAD is now at ba3d32e Merge 9248e608fbb0013f23e937b34de8fd7cd44ff113 into 3d60b2d6c962e145199a44bee43d9bcf1d270785
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.8043375Z ##[endgroup]
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.8085590Z [command]/usr/bin/git log -1 --format=%H
+ci	Run actions/checkout@v4	2026-10-17T10:10:28.8129153Z ba3d32e9ae64c7630e17ebeac724964cf4100b67
+ci	Run actions/setup-node@v4	﻿2026-10-17T10:10:28.8621737Z ##[group]Run actions/setup-node@v4
+ci	Run actions/setup-node@v4	2026-10-17T10:10:28.8621981Z with:
+ci	Run actions/setup-node@v4	2026-10-17T10:10:28.8622147Z   node-version: 22
+ci	Run actions/setup-node@v4	2026-10-17T10:10:28.8622320Z   cache: npm
+ci	Run actions/setup-node@v4	2026-10-17T10:10:28.8622484Z   always-auth: false
+ci	Run actions/setup-node@v4	2026-10-17T10:10:28.8622668Z   check-latest: false
+ci	Run actions/setup-node@v4	2026-10-17T10:10:28.8624686Z   token: ***
+ci	Run actions/setup-node@v4	2026-10-17T10:10:28.8624855Z ##[endgroup]
+ci	Run actions/setup-node@v4	2026-10-17T10:10:28.8631000Z ##[command]/usr/bin/docker exec  1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448 sh -c "cat /etc/*release | grep ^ID"
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.2580649Z Found in cache @ /__t/node/22.23.3/x64
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.2585979Z (node:146) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.2586865Z (Use `node --trace-deprecation ...` to show where the warning was created)
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.2588616Z ##[group]Environment details
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.5991156Z node: v22.23.3
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.5991534Z npm: 10.9.9
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.5991777Z yarn: 1.22.22
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.5993081Z ##[endgroup]
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.6005539Z [command]/__t/node/22.23.3/x64/bin/npm config get cache
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.6977603Z /github/home/.npm
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.9028546Z Cache hit for: node-cache-Linux-x64-npm-1cf1bf7c308ef1f1b0575a702733c72b62005b79a403dd39a02372a813053a30
+ci	Run actions/setup-node@v4	2026-10-17T10:10:29.9139852Z (node:146) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+ci	Run actions/setup-node@v4	2026-10-17T10:10:31.1359139Z Received 24363458 of 28557762 (85.3%), 23.2 MBs/sec
+ci	Run actions/setup-node@v4	2026-10-17T10:10:31.1791476Z Received 28557762 of 28557762 (100.0%), 26.1 MBs/sec
+ci	Run actions/setup-node@v4	2026-10-17T10:10:31.1791834Z Cache Size: ~27 MB (28557762 B)
+ci	Run actions/setup-node@v4	2026-10-17T10:10:31.1807946Z [command]/usr/bin/tar -xf /__w/_temp/d9133a46-2c8e-479b-9dbd-4c5f55d69d32/cache.tgz -P -C /__w/malpaco/malpaco -z
+ci	Run actions/setup-node@v4	2026-10-17T10:10:31.3128514Z Cache restored successfully
+ci	Run actions/setup-node@v4	2026-10-17T10:10:31.3144837Z Cache restored from key: node-cache-Linux-x64-npm-1cf1bf7c308ef1f1b0575a702733c72b62005b79a403dd39a02372a813053a30
+ci	Install	﻿2026-10-17T10:10:31.3681069Z ##[group]Run npm ci
+ci	Install	2026-10-17T10:10:31.3681355Z ^[[36;1mnpm ci^[[0m
+ci	Install	2026-10-17T10:10:31.3684945Z shell: sh -e {0}
+ci	Install	2026-10-17T10:10:31.3685184Z ##[endgroup]
+ci	Install	2026-10-17T10:10:32.8084047Z 
+ci	Install	2026-10-17T10:10:32.8091821Z added 42 packages, and audited 43 packages in 1s
+ci	Install	2026-10-17T10:10:32.8092259Z 
+ci	Install	2026-10-17T10:10:32.8092541Z 12 packages are looking for funding
+ci	Install	2026-10-17T10:10:32.8092937Z   run `npm fund` for details
+ci	Install	2026-10-17T10:10:32.8094531Z 
+ci	Install	2026-10-17T10:10:32.8094805Z found 0 vulnerabilities
+ci	Build (type-check, then bundle)	﻿2026-10-17T10:10:32.8680275Z ##[group]Run npm run build
+ci	Build (type-check, then bundle)	2026-10-17T10:10:32.8680560Z ^[[36;1mnpm run build^[[0m
+ci	Build (type-check, then bundle)	2026-10-17T10:10:32.8680886Z shell: sh -e {0}
+ci	Build (type-check, then bundle)	2026-10-17T10:10:32.8681065Z ##[endgroup]
+ci	Build (type-check, then bundle)	2026-10-17T10:10:32.9942119Z 
+ci	Build (type-check, then bundle)	2026-10-17T10:10:32.9942898Z > malpaco-spike-ts@0.0.0 build
+ci	Build (type-check, then bundle)	2026-10-17T10:10:32.9943490Z > tsc --noEmit -p src/core && tsc --noEmit && vite build
+ci	Build (type-check, then bundle)	2026-10-17T10:10:32.9943797Z 
+ci	Build (type-check, then bundle)	2026-10-17T10:10:33.8760051Z ^[[36mvite v8.3.2 ^[[32mbuilding client environment for production...^[[36m^[[39m
+ci	Build (type-check, then bundle)	2026-10-17T10:10:33.8839833Z transforming...
+ci	Build (type-check, then bundle)	2026-10-17T10:10:33.9651008Z ✓ 50 modules transformed.
+ci	Build (type-check, then bundle)	2026-10-17T10:10:34.0002543Z rendering chunks...
+ci	Build (type-check, then bundle)	2026-10-17T10:10:34.0209026Z computing gzip size...
+ci	Build (type-check, then bundle)	2026-10-17T10:10:34.0216860Z dist/index.html                   0.64 kB │ gzip:  0.42 kB
+ci	Build (type-check, then bundle)	2026-10-17T10:10:34.0218014Z dist/assets/index-D71XpoA_.css   24.37 kB │ gzip:  6.02 kB
+ci	Build (type-check, then bundle)	2026-10-17T10:10:34.0219260Z dist/assets/index-CoOvqv6G.js   201.28 kB │ gzip: 51.34 kB
+ci	Build (type-check, then bundle)	2026-10-17T10:10:34.0219851Z 
+ci	Build (type-check, then bundle)	2026-10-17T10:10:34.0220504Z ^[[32m✓ built in 146ms^[[39m
+ci	Vitest (rules core)	﻿2026-10-17T10:10:34.1157957Z ##[group]Run npm test
+ci	Vitest (rules core)	2026-10-17T10:10:34.1158455Z ^[[36;1mnpm test^[[0m
+ci	Vitest (rules core)	2026-10-17T10:10:34.1158810Z shell: sh -e {0}
+ci	Vitest (rules core)	2026-10-17T10:10:34.1158989Z ##[endgroup]
+ci	Vitest (rules core)	2026-10-17T10:10:34.3061022Z 
+ci	Vitest (rules core)	2026-10-17T10:10:34.3061762Z > malpaco-spike-ts@0.0.0 test
+ci	Vitest (rules core)	2026-10-17T10:10:34.3062131Z > vitest run
+ci	Vitest (rules core)	2026-10-17T10:10:34.3062288Z 
+ci	Vitest (rules core)	2026-10-17T10:10:34.5549859Z 
+ci	Vitest (rules core)	2026-10-17T10:10:34.5555933Z ^[[1m^[[30m^[[46m RUN ^[[49m^[[39m^[[22m ^[[36mv5.0.3 ^[[39m^[[90m/__w/malpaco/malpaco^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:34.5556384Z 
+ci	Vitest (rules core)	2026-10-17T10:10:34.8261289Z  ^[[32m✓^[[39m tests/core/board-fairness.test.ts ^[[2m(^[[22m^[[2m27 tests^[[22m^[[2m)^[[22m^[[32m 22^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:35.0540082Z  ^[[32m✓^[[39m tests/core/combat.test.ts ^[[2m(^[[22m^[[2m19 tests^[[22m^[[2m)^[[22m^[[32m 30^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:35.1520556Z  ^[[32m✓^[[39m tests/core/victory-options.test.ts ^[[2m(^[[22m^[[2m40 tests^[[22m^[[2m)^[[22m^[[32m 177^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:35.3411350Z  ^[[32m✓^[[39m tests/core/options.test.ts ^[[2m(^[[22m^[[2m25 tests^[[22m^[[2m)^[[22m^[[32m 18^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:35.5714878Z  ^[[32m✓^[[39m tests/core/malpaco-combat.test.ts ^[[2m(^[[22m^[[2m16 tests^[[22m^[[2m)^[[22m^[[32m 79^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:36.1713086Z  ^[[32m✓^[[39m tests/core/versioned-match.test.ts ^[[2m(^[[22m^[[2m15 tests^[[22m^[[2m)^[[22m^[[33m 417^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:36.4318928Z  ^[[32m✓^[[39m tests/core/friendly-move.test.ts ^[[2m(^[[22m^[[2m29 tests^[[22m^[[2m)^[[22m^[[32m 68^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:36.4832325Z  ^[[32m✓^[[39m tests/core/setup.test.ts ^[[2m(^[[22m^[[2m18 tests^[[22m^[[2m)^[[22m^[[33m 1245^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:36.4833488Z    ^[[32m✓^[[39m generated initial deal ^[[2m(18)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:36.4834882Z      ^[[33m^[[2m✓^[[22m^[[39m assigns every country once with no complete islands across seeds 1..100^[[33m 712^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:36.6059412Z  ^[[32m✓^[[39m tests/core/save.test.ts ^[[2m(^[[22m^[[2m12 tests^[[22m^[[2m)^[[22m^[[32m 10^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:36.7368811Z  ^[[32m✓^[[39m tests/ui/battle-controller.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[32m 45^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:36.7684426Z  ^[[32m✓^[[39m tests/core/rng-streams.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[32m 12^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:36.9897111Z  ^[[32m✓^[[39m tests/core/turns.test.ts ^[[2m(^[[22m^[[2m15 tests^[[22m^[[2m)^[[22m^[[32m 86^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:37.2272132Z  ^[[32m✓^[[39m tests/core/bonuses.test.ts ^[[2m(^[[22m^[[2m8 tests^[[22m^[[2m)^[[22m^[[32m 66^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:37.4520394Z  ^[[32m✓^[[39m tests/core/capture-choice.test.ts ^[[2m(^[[22m^[[2m17 tests^[[22m^[[2m)^[[22m^[[32m 76^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:37.6756187Z  ^[[32m✓^[[39m tests/ui/friendly-move-controller.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[32m 49^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:37.8306738Z  ^[[32m✓^[[39m tests/core/seats.test.ts ^[[2m(^[[22m^[[2m15 tests^[[22m^[[2m)^[[22m^[[32m 7^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:38.7207536Z  ^[[32m✓^[[39m tests/core/board-gen.test.ts ^[[2m(^[[22m^[[2m135 tests^[[22m^[[2m)^[[22m^[[33m 3739^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:38.7213626Z    ^[[32m✓^[[39m generateBoard ^[[2m(133)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:38.7215060Z      ^[[32m✓^[[39m R2: the real fairness checks reject, retry and exhaust ^[[2m(5)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:38.7216354Z        ^[[33m^[[2m✓^[[22m^[[39m all five checks pass on every generated board, seeds 1..50^[[33m 321^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:38.7217443Z      ^[[32m✓^[[39m R9 (R11 follow-up): entrance reuse at the cap ^[[2m(1)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:38.7218855Z        ^[[33m^[[2m✓^[[22m^[[39m an island at its entrance cap still takes lanes on existing entrances, never a new one^[[33m 1058^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:38.7220189Z      ^[[32m✓^[[39m R6: MAX_BOARD_ATTEMPTS is the smallest cap with >= 99 % on the 200-seed sweep ^[[2m(1)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:38.7221651Z        ^[[33m^[[2m✓^[[22m^[[39m the pinned cap reaches 99 % and one fewer attempt does not^[[33m 989^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:38.8053171Z  ^[[32m✓^[[39m tests/core/match-save.test.ts ^[[2m(^[[22m^[[2m23 tests^[[22m^[[2m)^[[22m^[[33m 840^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:38.9138886Z  ^[[32m✓^[[39m tests/core/archipelago.test.ts ^[[2m(^[[22m^[[2m7 tests^[[22m^[[2m)^[[22m^[[32m 17^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:39.2102892Z ^[[90mstdout^[[2m | tests/core/reference-game.test.ts^[[2m > ^[[22m^[[2mapproved A reference game^[[2m > ^[[22m^[[2mordinary apply actions place income, attack, hand off and legally reach conquest without input mutation
+ci	Vitest (rules core)	2026-10-17T10:10:39.2104691Z ^[[22m^[[39m{"seed":1994,"actions":541,"attacks":163,"captures":23,"handoffs":20,"placements":337,"winner":"seat2"}
+ci	Vitest (rules core)	2026-10-17T10:10:39.2105211Z 
+ci	Vitest (rules core)	2026-10-17T10:10:39.2159930Z  ^[[32m✓^[[39m tests/core/reference-game.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 149^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:39.4240380Z  ^[[32m✓^[[39m tests/core/determinism.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 45^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:39.5842354Z  ^[[32m✓^[[39m tests/core/purity.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 16^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:39.7862357Z  ^[[32m✓^[[39m tests/core/reinforcement.test.ts ^[[2m(^[[22m^[[2m11 tests^[[22m^[[2m)^[[22m^[[32m 41^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:40.2664517Z  ^[[32m✓^[[39m tests/ui/generated-board-layout.test.ts ^[[2m(^[[22m^[[2m7 tests^[[22m^[[2m)^[[22m^[[33m 320^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:40.5325505Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 1, 2 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:40.5330699Z ^[[22m^[[39m{"seed":1,"seats":2,"actions":482,"handoffs":18,"rounds":10,"skippedDead":0}
+ci	Vitest (rules core)	2026-10-17T10:10:40.5332957Z 
+ci	Vitest (rules core)	2026-10-17T10:10:40.6248231Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 1, 3 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:40.6252611Z ^[[22m^[[39m{"seed":1,"seats":3,"actions":664,"handoffs":32,"rounds":12,"skippedDead":1}
+ci	Vitest (rules core)	2026-10-17T10:10:40.6253352Z 
+ci	Vitest (rules core)	2026-10-17T10:10:40.7213704Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 1, 4 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:40.7219908Z ^[[22m^[[39m{"seed":1,"seats":4,"actions":1024,"handoffs":69,"rounds":19,"skippedDead":3}
+ci	Vitest (rules core)	2026-10-17T10:10:40.7220388Z 
+ci	Vitest (rules core)	2026-10-17T10:10:40.7728698Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 42, 2 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:40.7730321Z ^[[22m^[[39m{"seed":42,"seats":2,"actions":495,"handoffs":16,"rounds":9,"skippedDead":0}
+ci	Vitest (rules core)	2026-10-17T10:10:40.7730783Z 
+ci	Vitest (rules core)	2026-10-17T10:10:40.8333270Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 42, 3 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:40.8335064Z ^[[22m^[[39m{"seed":42,"seats":3,"actions":681,"handoffs":28,"rounds":11,"skippedDead":2}
+ci	Vitest (rules core)	2026-10-17T10:10:40.8335740Z 
+ci	Vitest (rules core)	2026-10-17T10:10:40.9615321Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 42, 4 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:40.9617597Z ^[[22m^[[39m{"seed":42,"seats":4,"actions":1333,"handoffs":101,"rounds":27,"skippedDead":3}
+ci	Vitest (rules core)	2026-10-17T10:10:40.9618398Z 
+ci	Vitest (rules core)	2026-10-17T10:10:40.9934350Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 1994, 2 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:40.9936813Z ^[[22m^[[39m{"seed":1994,"seats":2,"actions":349,"handoffs":12,"rounds":7,"skippedDead":0}
+ci	Vitest (rules core)	2026-10-17T10:10:40.9937450Z 
+ci	Vitest (rules core)	2026-10-17T10:10:41.0424686Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 1994, 3 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:41.0427557Z ^[[22m^[[39m{"seed":1994,"seats":3,"actions":588,"handoffs":29,"rounds":11,"skippedDead":1}
+ci	Vitest (rules core)	2026-10-17T10:10:41.0428340Z 
+ci	Vitest (rules core)	2026-10-17T10:10:41.0895641Z ^[[90mstdout^[[2m | tests/core/complete-game.test.ts^[[2m > ^[[22m^[[2mcomplete generated human games through legal actions^[[2m > ^[[22m^[[2mseed 1994, 4 seats: elimination, living handoff, conquest and frozen finish
+ci	Vitest (rules core)	2026-10-17T10:10:41.0897955Z ^[[22m^[[39m{"seed":1994,"seats":4,"actions":737,"handoffs":43,"rounds":12,"skippedDead":1}
+ci	Vitest (rules core)	2026-10-17T10:10:41.0898826Z 
+ci	Vitest (rules core)	2026-10-17T10:10:41.0918331Z  ^[[32m✓^[[39m tests/core/complete-game.test.ts ^[[2m(^[[22m^[[2m9 tests^[[22m^[[2m)^[[22m^[[33m 664^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:41.2828018Z  ^[[32m✓^[[39m tests/ui/victory-panel.test.ts ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m)^[[22m^[[32m 9^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:43.7984389Z  ^[[32m✓^[[39m tests/core/computer.test.ts ^[[2m(^[[22m^[[2m11 tests^[[22m^[[2m)^[[22m^[[33m 2344^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:43.7985929Z    ^[[33m^[[2m✓^[[22m^[[39m mixed action-only replay and subsequent decisions match through computer victory^[[33m 1627^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:43.9450054Z  ^[[32m✓^[[39m tests/core/capture-choice-replay.test.ts ^[[2m(^[[22m^[[2m4 tests^[[22m^[[2m)^[[22m^[[32m 23^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:44.0895582Z  ^[[32m✓^[[39m tests/core/map.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[32m 12^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:44.8699525Z  ^[[32m✓^[[39m tests/ui/game-setup.test.ts ^[[2m(^[[22m^[[2m40 tests^[[22m^[[2m)^[[22m^[[33m 523^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:45.0702406Z  ^[[32m✓^[[39m tests/core/friendly-move-edges.test.ts ^[[2m(^[[22m^[[2m3 tests^[[22m^[[2m)^[[22m^[[32m 17^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:45.2624457Z  ^[[32m✓^[[39m tests/ui/computer-input.test.ts ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m)^[[22m^[[32m 21^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:45.4762021Z  ^[[32m✓^[[39m tests/ui/battle-controller-safety.test.ts ^[[2m(^[[22m^[[2m6 tests^[[22m^[[2m)^[[22m^[[32m 39^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:47.9225490Z  ^[[32m✓^[[39m tests/core/board-gen.sweep.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[33m 2287^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:47.9226662Z    ^[[32m✓^[[39m wide-seed sweep (C-BRD-01, ≥ 99 % within MAX_BOARD_ATTEMPTS) ^[[2m(2)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:47.9227508Z      ^[[33m^[[2m✓^[[22m^[[39m 200 seeds success rate is ≥ 99 %^[[33m 1594^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:47.9228798Z      ^[[33m^[[2m✓^[[22m^[[39m each seed is deterministic: re-running the same seed produces the same result (C-RND-01)^[[33m 690^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:48.1181223Z  ^[[32m✓^[[39m tests/core/capture-choice-compatibility.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 17^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:48.5095072Z  ^[[32m✓^[[39m tests/ui/generated-game.test.ts ^[[2m(^[[22m^[[2m7 tests^[[22m^[[2m)^[[22m^[[32m 207^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:48.6432472Z  ^[[32m✓^[[39m tests/ui/versioned-match-context.test.ts ^[[2m(^[[22m^[[2m2 tests^[[22m^[[2m)^[[22m^[[32m 10^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:48.8130454Z  ^[[32m✓^[[39m tests/core/reference-map-validation.test.ts ^[[2m(^[[22m^[[2m1 test^[[22m^[[2m)^[[22m^[[32m 7^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:50.4920949Z  ^[[32m✓^[[39m tests/ui/coast-postprocess.test.ts ^[[2m(^[[22m^[[2m5 tests^[[22m^[[2m)^[[22m^[[33m 11481^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:50.4922005Z    ^[[32m✓^[[39m fixed-reference geographical coast contract ^[[2m(5)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:50.4923177Z      ^[[33m^[[2m✓^[[22m^[[39m changes all nine coast silhouettes and all countries while preserving the exact playable graph^[[33m 583^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:50.4924634Z      ^[[33m^[[2m✓^[[22m^[[39m same frozen input and seed reproduce identical geometry without mutating canonical map bytes^[[33m 3628^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:50.4926055Z      ^[[33m^[[2m✓^[[22m^[[39m retains unchanged T62 subdivision, exact contacts, landing, water and label/hit constraints^[[33m 2623^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:50.4927485Z      ^[[33m^[[2m✓^[[22m^[[39m ownership, army sizes and live production flags do not influence geography or lose metadata^[[33m 3569^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:50.4928856Z      ^[[33m^[[2m✓^[[22m^[[39m leaves approved T22 and canonical T63 reference files immutable^[[33m 1076^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9045603Z  ^[[32m✓^[[39m tests/core/computer-turn-flow.test.ts ^[[2m(^[[22m^[[2m12 tests^[[22m^[[2m)^[[22m^[[33m 16998^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9046850Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 1/2^[[33m 853^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9050140Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 1/3^[[33m 1952^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9051261Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 1/4^[[33m 2972^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9052153Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 42/2^[[33m 803^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9053068Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 42/3^[[33m 1816^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9053979Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 42/4^[[33m 4218^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9054905Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 1994/2^[[33m 473^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9055831Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 1994/3^[[33m 892^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9056747Z    ^[[33m^[[2m✓^[[22m^[[39m complete bounded deterministic reference turns 1994/4^[[33m 2999^[[2mms^[[22m^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9093228Z 
+ci	Vitest (rules core)	2026-10-17T10:10:53.9099062Z ^[[2m Test Files ^[[22m ^[[1m^[[32m40 passed^[[39m^[[22m^[[90m (40)^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9101967Z ^[[2m      Tests ^[[22m ^[[1m^[[32m588 passed^[[39m^[[22m^[[90m (588)^[[39m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9102606Z ^[[2m   Start at ^[[22m 10:10:34
+ci	Vitest (rules core)	2026-10-17T10:10:53.9107141Z ^[[2m   Duration ^[[22m 19.35s^[[2m (tests 94%, import 3%, transform 2%)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9120590Z 
+ci	Vitest (rules core)	2026-10-17T10:10:53.9121636Z ^[[2m    Isolate ^[[22m ^[[33m40 workers spawned^[[39m^[[2m · ~105ms startup each (spawn + environment, per file)^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9123196Z ^[[2m            ^[[22m ^[[2mat least ~1.29s faster with ^[[22m^[[33misolate: false^[[39m^[[2m — reuses workers across files instead of one per file^[[22m
+ci	Vitest (rules core)	2026-10-17T10:10:53.9123924Z 
+ci	Playwright (headless UI tests, screenshots and goldens)	﻿2026-10-17T10:10:53.9504445Z ##[group]Run npx playwright test --workers=2
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:10:53.9504757Z ^[[36;1mnpx playwright test --workers=2^[[0m
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:10:53.9505086Z shell: sh -e {0}
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:10:53.9505261Z ##[endgroup]
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:10:56.6576469Z 
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:10:56.6577000Z Running 190 tests using 2 workers
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:10:56.6577220Z 
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:10:58.3595992Z   ✓    2 [1280x800] › tests/e2e/battle-accessibility.spec.ts:36:1 › capture confirmation, quantities and context fit together with an accurate phase (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:10:58.7688489Z   ✓    1 [1280x800] › tests/e2e/battle-accessibility.spec.ts:50:1 › keyboard Stop retains focus across an exchange; new game cancels work and remembers preferences (1.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:00.1877998Z   ✓    3 [1280x800] › tests/e2e/battle-controls.spec.ts:25:1 › one chosen exchange shows actual ties, dice and live stacks without a later exchange (1.8s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:00.3505288Z   ✓    4 [1280x800] › tests/e2e/battle-controls.spec.ts:32:1 › manual Stop takes effect before the next exchange while context stays visible (1.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:01.6687115Z   ✓    5 [1280x800] › tests/e2e/battle-controls.spec.ts:37:1 › fight-on stops at the chosen fixed threshold after a loss (1.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:03.4607631Z   ✓    6 [1280x800] › tests/e2e/battle-controls.spec.ts:42:54 › capture minimum preserves armies and rejects stale/unrelated controls (3.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:04.6855988Z   ✓    7 [1280x800] › tests/e2e/battle-controls.spec.ts:42:54 › capture maximum preserves armies and rejects stale/unrelated controls (3.0s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:06.7107693Z   ✓    8 [1280x800] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 800x540 (3.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:08.1590976Z   ✓    9 [1280x800] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 1280x800 (3.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:09.7530693Z   ✓   11 [1280x800] › tests/e2e/coast-postprocess.spec.ts:58:1 › playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map (1.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:10.3450766Z   ✓   10 [1280x800] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 1920x1080 (3.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:11.9695063Z   ✓   13 [1280x800] › tests/e2e/computer-turn-flow.spec.ts:16:1 › untouched setup starts one human and three Normal computers and consecutive turns return (1.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:13.0235658Z   ✓   14 [1280x800] › tests/e2e/computer-turn-flow.spec.ts:27:1 › loaded computer capture resolves without a click; replacement and new game cancel old callbacks (1.0s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:13.9467145Z   ✓   15 [1280x800] › tests/e2e/computer-turn-flow.spec.ts:36:1 › loss waits for Watch or Stop; finished game schedules no play; manual route stays manual (912ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:14.1082126Z   ✓   16 [1280x800] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (146ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:15.6611580Z   ✓   17 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (1.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:16.7292206Z   ✓   18 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:17.8973502Z   ✓   19 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:18.8939702Z   ✓   20 [1280x800] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped (983ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:20.1824941Z   ✓   21 [1280x800] › tests/e2e/direct-attack.spec.ts:20:1 › mouse enemy activation attacks once and repeats without source/target reselection (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:21.4000306Z   ✓   22 [1280x800] › tests/e2e/direct-attack.spec.ts:23:1 › keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:22.5709538Z   ✓   23 [1280x800] › tests/e2e/direct-attack.spec.ts:30:1 › touch uses the same one-exchange repeat gesture (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:24.8263854Z   ✓   24 [1280x800] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture minimum waits for explicit choice through save/reload/upload (2.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:26.6780659Z   ✓   25 [1280x800] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture intermediate waits for explicit choice through save/reload/upload (1.8s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:28.5217063Z   ✓   26 [1280x800] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture maximum waits for explicit choice through save/reload/upload (1.8s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:29.7078609Z   ✓   27 [1280x800] › tests/e2e/direct-attack.spec.ts:44:1 › Shift-click retains separate controls and Stop cancels the next continuous exchange (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:30.8023092Z   ✓   28 [1280x800] › tests/e2e/direct-attack.spec.ts:47:1 › friendly, distant and one-army inputs refuse attacks with the engine reason (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:31.4579800Z   ✓   29 [1280x800] › tests/e2e/direct-attack.spec.ts:52:1 › automatic computer attack phase refuses map, touch and keyboard human activations (646ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:32.1413748Z   ✓   30 [1280x800] › tests/e2e/entry.spec.ts:30:1 › root and unrecognized views open the playable reference match with one human and three computers (668ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:32.7582923Z   ✓   31 [1280x800] › tests/e2e/entry.spec.ts:70:1 › recognized entry routes remain explicit and authored data is available only by route (600ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:33.8412462Z   ✓   32 [1280x800] › tests/e2e/finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:34.3684636Z   ✓   33 [1280x800] › tests/e2e/finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape (514ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:35.0053453Z   ✓   34 [1280x800] › tests/e2e/friendly-feedback.spec.ts:7:1 › movement route emphasis includes own sea neighbours and excludes enemy routes (623ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:35.8666096Z   ✓   35 [1280x800] › tests/e2e/friendly-feedback.spec.ts:16:1 › Escape cancels a move draft and restores the previous battle selection (847ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:37.6385329Z   ✓   36 [1280x800] › tests/e2e/friendly-move.spec.ts:19:52 › friendly minimum transfer ends turn, fits and refuses stale confirmation (1.8s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:39.4639058Z   ✓   37 [1280x800] › tests/e2e/friendly-move.spec.ts:19:52 › friendly maximum transfer ends turn, fits and refuses stale confirmation (1.8s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:40.8705788Z   ✓   38 [1280x800] › tests/e2e/friendly-move.spec.ts:29:1 › cancel returns to attacks without movement; skip hands off normally (1.4s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:42.3470268Z   ✓   39 [1280x800] › tests/e2e/friendly-move.spec.ts:33:1 › a just-captured country can supply the final friendly move (1.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:44.4837330Z   ✓   40 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (2.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:46.5469015Z   ✓   41 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (2.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:48.9470285Z   ✓   42 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (2.4s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:49.7021068Z   ✓   43 [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (746ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:50.8057619Z   ✓   44 [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:52.6345874Z   ✓   45 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.8s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:53.9903144Z   ✓   46 [1280x800] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:54.3845503Z   ✓   47 [1280x800] › tests/e2e/generated-board.spec.ts:121:1 › golden: settled opt-in generated preview (385ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:56.6969192Z   ✓   48 [1280x800] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (2.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:57.2740268Z   ✓   49 [1280x800] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (566ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:58.4063866Z   ✓   50 [1280x800] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:58.9560990Z   ✓   12 [1280x800] › tests/e2e/complete-game.spec.ts:30:1 › normal three-human clicks eliminate, skip a dead seat, conquer, freeze and restart (49.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:58.9934442Z   ✓   51 [1280x800] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (568ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:59.3027473Z   ✓   53 [1280x800] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (293ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:59.4889530Z   ✓   52 [1280x800] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (500ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:11:59.6617888Z   ✓   54 [1280x800] › tests/e2e/help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus (342ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:00.7937823Z   ✓   56 [1280x800] › tests/e2e/help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:00.8925346Z   ✓   55 [1280x800] › tests/e2e/help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match (1.4s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:01.1924531Z   ✓   57 [1280x800] › tests/e2e/map-readability.spec.ts:11:1 › army-only labels and ownership shapes reduce the default name hierarchy (383ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:02.0381980Z   ✓   58 [1280x800] › tests/e2e/map-readability.spec.ts:22:1 › region names remain identifiable on mouse, keyboard and touch without changing inputs (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:05.8563656Z   ✓   59 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (4.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:06.6229963Z   ✓   60 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (4.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:07.6528698Z   ✓   62 [1280x800] › tests/e2e/match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again (1.0s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:09.3262598Z   ✓   63 [1280x800] › tests/e2e/reference-game.spec.ts:25:1 › reference setup paints current geography, routes, live counts and reachable controls (1.7s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:10.4114964Z   ✓   61 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (4.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:13.9970214Z   ✓   65 [1280x800] › tests/e2e/reinforcement.spec.ts:86:1 › placement spends only on owned provinces, then combat hands off a fresh pool (3.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:14.6333952Z   ✓   66 [1280x800] › tests/e2e/reinforcement.spec.ts:117:1 › both seats place armies and enter combat before returning to Blue in round two (625ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:17.1047141Z   ✓   67 [1280x800] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings (2.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:17.3196330Z   ✓   68 [1280x800] › tests/e2e/slice.spec.ts:404:1 › the page loads with the title, the turn and both buttons (196ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:17.6840495Z   ✓   69 [1280x800] › tests/e2e/slice.spec.ts:415:1 › all 14 provinces render, visible, on top, and told apart by more than colour (353ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:17.9853063Z   ✓   70 [1280x800] › tests/e2e/slice.spec.ts:466:1 › the board is painted: the pixels inside every province are its owner's palette colour (291ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:18.3561909Z   ✓   71 [1280x800] › tests/e2e/slice.spec.ts:488:1 › every badge and name is actually painted, not merely present in the DOM (359ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:18.5733339Z   ✓   72 [1280x800] › tests/e2e/slice.spec.ts:553:1 › the layout fits the viewport: no page scroll, map and panel both fully visible (206ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:18.7929894Z   ✓   73 [1280x800] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1366x768: New game and the seed in view, nothing to scroll (210ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:19.0088421Z   ✓   74 [1280x800] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1600x900: New game and the seed in view, nothing to scroll (204ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:19.2389973Z   ✓   75 [1280x800] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1920x1080: New game and the seed in view, nothing to scroll (219ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:19.4855643Z   ✓   76 [1280x800] › tests/e2e/slice.spec.ts:597:1 › hovering a province outlines it and names it (237ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:19.9437352Z   ✓   77 [1280x800] › tests/e2e/slice.spec.ts:606:1 › selecting a province highlights it and its targets, dims the rest and enables Attack only with a target (447ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:21.0554903Z   ✓   78 [1280x800] › tests/e2e/slice.spec.ts:625:1 › legal-target markers and the arrow stay clear of every label, whichever province is selected (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:21.4941412Z   ✓   79 [1280x800] › tests/e2e/slice.spec.ts:642:1 › an illegal target is refused with the reason, and nothing is selected as a target (427ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:26.4520366Z   ✓   80 [1280x800] › tests/e2e/slice.spec.ts:651:1 › one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots) (4.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:27.1229546Z   ✓   81 [1280x800] › tests/e2e/slice.spec.ts:760:1 › End turn passes play to the other player, whose provinces become the playable ones (665ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:27.4816215Z   ✓   82 [1280x800] › tests/e2e/slice.spec.ts:781:1 › a province can be selected and a target chosen with the keyboard alone (349ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:27.8420221Z   ✓   83 [1280x800] › tests/e2e/slice.spec.ts:812:1 › golden: the whole board as painted, hatched seat included (350ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:28.1332868Z   ✓   84 [1280x800] › tests/e2e/slice.spec.ts:818:1 › golden: the panel as laid out (277ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:29.3967114Z   ✓   85 [1280x800] › tests/e2e/slice.spec.ts:824:1 › golden: the result dialog with its dice and verdicts (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:29.9573951Z   ✓   86 [1280x800] › tests/e2e/versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement (523ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:30.5350473Z   ✓   87 [1280x800] › tests/e2e/versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm (569ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:31.5774046Z   ✓   88 [1280x800] › tests/e2e/versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn (1.0s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:33.1981955Z   ✓   89 [1280x800] › tests/e2e/versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable (1.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:34.0370362Z   ✓   90 [1280x800] › tests/e2e/versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls (829ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:34.5909189Z   ✓   91 [1280x800] › tests/e2e/versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers (542ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:35.4120662Z   ✓   92 [1280x800] › tests/e2e/versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match (811ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:45.5503874Z {"kind":"domination","actions":190,"winner":"seat2"}
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:12:45.5650005Z   ✓   93 [1280x800] › tests/e2e/victory-options.spec.ts:70:1 › domination result names winner/reason, final standings, freezes and restarts (10.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:00.0146137Z   ✓   94 [1280x800] › tests/e2e/victory-options.spec.ts:99:1 › round limit finishes after a complete rotated round and explains the score (14.4s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:05.0023717Z {"project":"1280x800","actions":541,"attacks":163,"handoffs":20,"placements":337,"winner":"seat2"}
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:05.0140708Z   ✓   64 [1280x800] › tests/e2e/reference-game.spec.ts:40:1 › ordinary reference clicks place, attack, hand off and replay legally to a winner (55.7s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:06.6934806Z   ✓   96 [1920x1080] › tests/e2e/battle-accessibility.spec.ts:36:1 › capture confirmation, quantities and context fit together with an accurate phase (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:07.9845705Z   ✓   97 [1920x1080] › tests/e2e/battle-accessibility.spec.ts:50:1 › keyboard Stop retains focus across an exchange; new game cancels work and remembers preferences (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:09.7406975Z   ✓   98 [1920x1080] › tests/e2e/battle-controls.spec.ts:25:1 › one chosen exchange shows actual ties, dice and live stacks without a later exchange (1.7s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:11.2710894Z   ✓   99 [1920x1080] › tests/e2e/battle-controls.spec.ts:32:1 › manual Stop takes effect before the next exchange while context stays visible (1.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:12.7553807Z   ✓  100 [1920x1080] › tests/e2e/battle-controls.spec.ts:37:1 › fight-on stops at the chosen fixed threshold after a loss (1.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:15.7177230Z   ✓  101 [1920x1080] › tests/e2e/battle-controls.spec.ts:42:54 › capture minimum preserves armies and rejects stale/unrelated controls (2.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:18.6520753Z   ✓  102 [1920x1080] › tests/e2e/battle-controls.spec.ts:42:54 › capture maximum preserves armies and rejects stale/unrelated controls (2.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:21.7710043Z   ✓  103 [1920x1080] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 800x540 (3.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:25.3137210Z   ✓  104 [1920x1080] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 1280x800 (3.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:27.6210482Z {"kind":"human-loss","actionsPerRun":239,"resumedHandoffs":3}
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:27.6312970Z   ✓   95 [1280x800] › tests/e2e/victory-options.spec.ts:128:1 › human loss offers Stop or Watch; Watch resumes computers and Stop freezes (27.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:29.0529471Z   ✓  105 [1920x1080] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 1920x1080 (3.7s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:30.3896018Z   ✓  106 [1920x1080] › tests/e2e/coast-postprocess.spec.ts:58:1 › playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map (2.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:32.4831820Z   ✓  108 [1920x1080] › tests/e2e/computer-turn-flow.spec.ts:16:1 › untouched setup starts one human and three Normal computers and consecutive turns return (2.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:33.7776382Z   ✓  109 [1920x1080] › tests/e2e/computer-turn-flow.spec.ts:27:1 › loaded computer capture resolves without a click; replacement and new game cancel old callbacks (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:34.8606566Z   ✓  110 [1920x1080] › tests/e2e/computer-turn-flow.spec.ts:36:1 › loss waits for Watch or Stop; finished game schedules no play; manual route stays manual (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:35.0272063Z   ✓  111 [1920x1080] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (150ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:37.0939964Z   ✓  112 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (2.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:38.4844804Z   ✓  113 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (1.4s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:40.0455783Z   ✓  114 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (1.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:41.1048302Z   ✓  115 [1920x1080] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped (1.0s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:42.3552032Z   ✓  116 [1920x1080] › tests/e2e/direct-attack.spec.ts:20:1 › mouse enemy activation attacks once and repeats without source/target reselection (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:43.6099421Z   ✓  117 [1920x1080] › tests/e2e/direct-attack.spec.ts:23:1 › keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:44.8098895Z   ✓  118 [1920x1080] › tests/e2e/direct-attack.spec.ts:30:1 › touch uses the same one-exchange repeat gesture (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:46.9287259Z   ✓  119 [1920x1080] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture minimum waits for explicit choice through save/reload/upload (2.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:49.6635461Z   ✓  120 [1920x1080] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture intermediate waits for explicit choice through save/reload/upload (2.7s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:51.9229275Z   ✓  121 [1920x1080] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture maximum waits for explicit choice through save/reload/upload (2.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:53.2447542Z   ✓  122 [1920x1080] › tests/e2e/direct-attack.spec.ts:44:1 › Shift-click retains separate controls and Stop cancels the next continuous exchange (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:54.5102335Z   ✓  123 [1920x1080] › tests/e2e/direct-attack.spec.ts:47:1 › friendly, distant and one-army inputs refuse attacks with the engine reason (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:55.2376193Z   ✓  124 [1920x1080] › tests/e2e/direct-attack.spec.ts:52:1 › automatic computer attack phase refuses map, touch and keyboard human activations (715ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:56.0046440Z   ✓  125 [1920x1080] › tests/e2e/entry.spec.ts:30:1 › root and unrecognized views open the playable reference match with one human and three computers (748ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:56.8063593Z   ✓  126 [1920x1080] › tests/e2e/entry.spec.ts:70:1 › recognized entry routes remain explicit and authored data is available only by route (789ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:58.0971255Z   ✓  127 [1920x1080] › tests/e2e/finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:58.7175371Z   ✓  128 [1920x1080] › tests/e2e/finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape (604ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:13:59.4157487Z   ✓  129 [1920x1080] › tests/e2e/friendly-feedback.spec.ts:7:1 › movement route emphasis includes own sea neighbours and excludes enemy routes (678ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:00.3951250Z   ✓  130 [1920x1080] › tests/e2e/friendly-feedback.spec.ts:16:1 › Escape cancels a move draft and restores the previous battle selection (963ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:02.5223297Z   ✓  131 [1920x1080] › tests/e2e/friendly-move.spec.ts:19:52 › friendly minimum transfer ends turn, fits and refuses stale confirmation (2.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:04.7122099Z   ✓  132 [1920x1080] › tests/e2e/friendly-move.spec.ts:19:52 › friendly maximum transfer ends turn, fits and refuses stale confirmation (2.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:06.2869486Z   ✓  133 [1920x1080] › tests/e2e/friendly-move.spec.ts:29:1 › cancel returns to attacks without movement; skip hands off normally (1.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:07.9017412Z   ✓  134 [1920x1080] › tests/e2e/friendly-move.spec.ts:33:1 › a just-captured country can supply the final friendly move (1.6s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:10.1989029Z   ✓  135 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (2.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:12.0938304Z   ✓  136 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (1.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:14.7761386Z   ✓  137 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (2.7s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:15.5574240Z   ✓  138 [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (772ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:16.9460325Z   ✓  139 [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:19.2312735Z   ✓  140 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (2.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:21.5332120Z   ✓  141 [1920x1080] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (2.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:22.0922395Z   ✓  142 [1920x1080] › tests/e2e/generated-board.spec.ts:121:1 › golden: settled opt-in generated preview (547ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:22.9429462Z   ✓  107 [1920x1080] › tests/e2e/complete-game.spec.ts:30:1 › normal three-human clicks eliminate, skip a dead seat, conquer, freeze and restart (53.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:23.4955170Z   ✓  144 [1920x1080] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (520ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:24.6205961Z   ✓  145 [1920x1080] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:25.0930116Z   ✓  143 [1920x1080] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (3.0s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:25.1569290Z   ✓  146 [1920x1080] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (525ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:25.4501526Z   ✓  148 [1920x1080] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (283ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:25.6576676Z   ✓  147 [1920x1080] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (552ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:25.7914449Z   ✓  149 [1920x1080] › tests/e2e/help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus (324ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:26.7684026Z   ✓  150 [1920x1080] › tests/e2e/help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:27.1540965Z   ✓  151 [1920x1080] › tests/e2e/help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game (1.4s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:27.2384475Z   ✓  152 [1920x1080] › tests/e2e/map-readability.spec.ts:11:1 › army-only labels and ownership shapes reduce the default name hierarchy (456ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:28.4664582Z   ✓  153 [1920x1080] › tests/e2e/map-readability.spec.ts:22:1 › region names remain identifiable on mouse, keyboard and touch without changing inputs (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:32.4937990Z   ✓  154 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (5.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:33.4671160Z   ✓  155 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (5.0s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:34.6225468Z   ✓  157 [1920x1080] › tests/e2e/match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:36.5552140Z   ✓  158 [1920x1080] › tests/e2e/reference-game.spec.ts:25:1 › reference setup paints current geography, routes, live counts and reachable controls (1.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:37.4204526Z   ✓  156 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (4.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:41.3242214Z   ✓  160 [1920x1080] › tests/e2e/reinforcement.spec.ts:86:1 › placement spends only on owned provinces, then combat hands off a fresh pool (3.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:42.0024078Z   ✓  161 [1920x1080] › tests/e2e/reinforcement.spec.ts:117:1 › both seats place armies and enter combat before returning to Blue in round two (662ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:44.7435600Z   ✓  162 [1920x1080] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings (2.7s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:45.0064832Z   ✓  163 [1920x1080] › tests/e2e/slice.spec.ts:404:1 › the page loads with the title, the turn and both buttons (244ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:45.3947219Z   ✓  164 [1920x1080] › tests/e2e/slice.spec.ts:415:1 › all 14 provinces render, visible, on top, and told apart by more than colour (377ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:45.8434235Z   ✓  165 [1920x1080] › tests/e2e/slice.spec.ts:466:1 › the board is painted: the pixels inside every province are its owner's palette colour (435ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:46.3489663Z   ✓  166 [1920x1080] › tests/e2e/slice.spec.ts:488:1 › every badge and name is actually painted, not merely present in the DOM (494ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:46.6106836Z   ✓  167 [1920x1080] › tests/e2e/slice.spec.ts:553:1 › the layout fits the viewport: no page scroll, map and panel both fully visible (253ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:46.8667453Z   ✓  168 [1920x1080] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1366x768: New game and the seed in view, nothing to scroll (244ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:47.1621539Z   ✓  169 [1920x1080] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1600x900: New game and the seed in view, nothing to scroll (281ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:47.4050728Z   ✓  170 [1920x1080] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1920x1080: New game and the seed in view, nothing to scroll (230ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:47.6908448Z   ✓  171 [1920x1080] › tests/e2e/slice.spec.ts:597:1 › hovering a province outlines it and names it (275ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:48.2113295Z   ✓  172 [1920x1080] › tests/e2e/slice.spec.ts:606:1 › selecting a province highlights it and its targets, dims the rest and enables Attack only with a target (509ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:49.4789794Z   ✓  173 [1920x1080] › tests/e2e/slice.spec.ts:625:1 › legal-target markers and the arrow stay clear of every label, whichever province is selected (1.3s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:49.9712480Z   ✓  174 [1920x1080] › tests/e2e/slice.spec.ts:642:1 › an illegal target is refused with the reason, and nothing is selected as a target (477ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:55.3887900Z   ✓  175 [1920x1080] › tests/e2e/slice.spec.ts:651:1 › one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots) (5.4s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:56.5399740Z   ✓  176 [1920x1080] › tests/e2e/slice.spec.ts:760:1 › End turn passes play to the other player, whose provinces become the playable ones (1.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:57.0464765Z   ✓  177 [1920x1080] › tests/e2e/slice.spec.ts:781:1 › a province can be selected and a target chosen with the keyboard alone (491ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:57.5433833Z   ✓  178 [1920x1080] › tests/e2e/slice.spec.ts:812:1 › golden: the whole board as painted, hatched seat included (482ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:57.9014590Z   ✓  179 [1920x1080] › tests/e2e/slice.spec.ts:818:1 › golden: the panel as laid out (336ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:59.3337671Z   ✓  180 [1920x1080] › tests/e2e/slice.spec.ts:824:1 › golden: the result dialog with its dice and verdicts (1.4s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:14:59.9580818Z   ✓  181 [1920x1080] › tests/e2e/versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement (600ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:00.6346118Z   ✓  182 [1920x1080] › tests/e2e/versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm (666ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:01.8267624Z   ✓  183 [1920x1080] › tests/e2e/versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn (1.2s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:03.6764943Z   ✓  184 [1920x1080] › tests/e2e/versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable (1.8s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:04.6448528Z   ✓  185 [1920x1080] › tests/e2e/versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls (959ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:05.2111033Z   ✓  186 [1920x1080] › tests/e2e/versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers (552ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:05.8900992Z   ✓  187 [1920x1080] › tests/e2e/versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match (669ms)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:16.4278013Z {"kind":"domination","actions":190,"winner":"seat2"}
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:16.4404998Z   ✓  188 [1920x1080] › tests/e2e/victory-options.spec.ts:70:1 › domination result names winner/reason, final standings, freezes and restarts (10.5s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:31.4164936Z   ✓  189 [1920x1080] › tests/e2e/victory-options.spec.ts:99:1 › round limit finishes after a complete rotated round and explains the score (15.0s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:32.4698597Z {"project":"1920x1080","actions":541,"attacks":163,"handoffs":20,"placements":337,"winner":"seat2"}
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:32.4851491Z   ✓  159 [1920x1080] › tests/e2e/reference-game.spec.ts:40:1 › ordinary reference clicks place, attack, hand off and replay legally to a winner (55.9s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:56.4725939Z {"kind":"human-loss","actionsPerRun":239,"resumedHandoffs":3}
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:56.4828943Z   ✓  190 [1920x1080] › tests/e2e/victory-options.spec.ts:128:1 › human loss offers Stop or Watch; Watch resumes computers and Stop freezes (25.1s)
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:56.5438012Z 
+ci	Playwright (headless UI tests, screenshots and goldens)	2026-10-17T10:15:56.5443295Z   190 passed (5.0m)
+ci	Package and verify playable artifact	﻿2026-10-17T10:15:58.4226369Z ##[group]Run fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"
+ci	Package and verify playable artifact	2026-10-17T10:15:58.4226826Z ^[[36;1mfresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"^[[0m
+ci	Package and verify playable artifact	2026-10-17T10:15:58.4227180Z ^[[36;1mecho "PLAYABLE_EXTRACTED_DIR=$fresh_dir" >> "$GITHUB_ENV"^[[0m
+ci	Package and verify playable artifact	2026-10-17T10:15:58.4227514Z ^[[36;1mnode docs/prototypes/playable/acceptance.mjs "$fresh_dir"^[[0m
+ci	Package and verify playable artifact	2026-10-17T10:15:58.4228538Z shell: sh -e {0}
+ci	Package and verify playable artifact	2026-10-17T10:15:58.4228721Z ##[endgroup]
+ci	Package and verify playable artifact	2026-10-17T10:15:59.7635217Z PASS extracted artifact: 9 files; 8 SHA-256 entries; checked 4 HTTP paths on 127.0.0.1:4175
+ci	Package and verify playable artifact	2026-10-17T10:15:59.7636269Z source commit: ba3d32e9ae64c7630e17ebeac724964cf4100b67
+ci	Package and verify playable artifact	2026-10-17T10:15:59.7637010Z extracted package: /tmp/malpaco-playable-ci.p0yXsh/malpaco-playable
+ci	Package and verify playable artifact	2026-10-17T10:15:59.7637769Z launcher stdout: Malpaco is ready at http://127.0.0.1:4175
+ci	Package and verify playable artifact	2026-10-17T10:15:59.7644155Z archive SHA-256: 47fdd80b70211ff7615e2d6227bb3fd070b055375ec0a3165d1db6281fae4290
+ci	Package and verify playable artifact	2026-10-17T10:15:59.7645028Z archive files: 9; extracted to /tmp/malpaco-playable-ci.p0yXsh
+ci	Playwright (extracted playable artifact)	﻿2026-10-17T10:16:02.7650788Z ##[group]Run npx playwright test --config playwright.release.config.ts --workers=2
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:02.7651274Z ^[[36;1mnpx playwright test --config playwright.release.config.ts --workers=2^[[0m
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:02.7651706Z shell: sh -e {0}
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:02.7651872Z env:
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:02.7652090Z   PLAYABLE_EXTRACTED_DIR: /tmp/malpaco-playable-ci.p0yXsh
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:02.7652349Z ##[endgroup]
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:03.8189067Z 
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:03.8189801Z Running 190 tests using 2 workers
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:03.8190686Z 
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:05.4606777Z   ✓    1 [1280x800] › tests/e2e/battle-accessibility.spec.ts:36:1 › capture confirmation, quantities and context fit together with an accurate phase (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:05.8027626Z   ✓    2 [1280x800] › tests/e2e/battle-accessibility.spec.ts:50:1 › keyboard Stop retains focus across an exchange; new game cancels work and remembers preferences (1.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:07.2749382Z   ✓    3 [1280x800] › tests/e2e/battle-controls.spec.ts:25:1 › one chosen exchange shows actual ties, dice and live stacks without a later exchange (1.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:07.3549512Z   ✓    4 [1280x800] › tests/e2e/battle-controls.spec.ts:32:1 › manual Stop takes effect before the next exchange while context stays visible (1.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:08.7752024Z   ✓    5 [1280x800] › tests/e2e/battle-controls.spec.ts:37:1 › fight-on stops at the chosen fixed threshold after a loss (1.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:10.3785409Z   ✓    6 [1280x800] › tests/e2e/battle-controls.spec.ts:42:54 › capture minimum preserves armies and rejects stale/unrelated controls (3.0s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:11.6360955Z   ✓    7 [1280x800] › tests/e2e/battle-controls.spec.ts:42:54 › capture maximum preserves armies and rejects stale/unrelated controls (2.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:13.4969583Z   ✓    8 [1280x800] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 800x540 (3.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:15.0927164Z   ✓    9 [1280x800] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 1280x800 (3.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:16.6391277Z   ✓   11 [1280x800] › tests/e2e/coast-postprocess.spec.ts:58:1 › playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map (1.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:17.2497251Z   ✓   10 [1280x800] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 1920x1080 (3.7s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:18.8329808Z   ✓   13 [1280x800] › tests/e2e/computer-turn-flow.spec.ts:16:1 › untouched setup starts one human and three Normal computers and consecutive turns return (1.6s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:19.8959482Z   ✓   14 [1280x800] › tests/e2e/computer-turn-flow.spec.ts:27:1 › loaded computer capture resolves without a click; replacement and new game cancel old callbacks (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:20.8111177Z   ✓   15 [1280x800] › tests/e2e/computer-turn-flow.spec.ts:36:1 › loss waits for Watch or Stop; finished game schedules no play; manual route stays manual (902ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:20.9591645Z   ✓   16 [1280x800] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (131ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:22.5172927Z   ✓   17 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (1.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:23.6530521Z   ✓   18 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:24.8318388Z   ✓   19 [1280x800] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:25.7436410Z   ✓   20 [1280x800] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped (903ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:26.8270679Z   ✓   21 [1280x800] › tests/e2e/direct-attack.spec.ts:20:1 › mouse enemy activation attacks once and repeats without source/target reselection (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:27.9163406Z   ✓   22 [1280x800] › tests/e2e/direct-attack.spec.ts:23:1 › keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:28.8909022Z   ✓   23 [1280x800] › tests/e2e/direct-attack.spec.ts:30:1 › touch uses the same one-exchange repeat gesture (963ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:30.7973310Z   ✓   24 [1280x800] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture minimum waits for explicit choice through save/reload/upload (1.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:32.6436536Z   ✓   25 [1280x800] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture intermediate waits for explicit choice through save/reload/upload (1.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:34.5457709Z   ✓   26 [1280x800] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture maximum waits for explicit choice through save/reload/upload (1.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:35.6596787Z   ✓   27 [1280x800] › tests/e2e/direct-attack.spec.ts:44:1 › Shift-click retains separate controls and Stop cancels the next continuous exchange (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:36.7096493Z   ✓   28 [1280x800] › tests/e2e/direct-attack.spec.ts:47:1 › friendly, distant and one-army inputs refuse attacks with the engine reason (1.0s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:37.2966510Z   ✓   29 [1280x800] › tests/e2e/direct-attack.spec.ts:52:1 › automatic computer attack phase refuses map, touch and keyboard human activations (576ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:38.0534269Z   ✓   30 [1280x800] › tests/e2e/entry.spec.ts:30:1 › root and unrecognized views open the playable reference match with one human and three computers (737ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:38.7563253Z   ✓   31 [1280x800] › tests/e2e/entry.spec.ts:70:1 › recognized entry routes remain explicit and authored data is available only by route (691ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:39.8261647Z   ✓   32 [1280x800] › tests/e2e/finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:40.3543799Z   ✓   33 [1280x800] › tests/e2e/finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape (514ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:40.9733256Z   ✓   34 [1280x800] › tests/e2e/friendly-feedback.spec.ts:7:1 › movement route emphasis includes own sea neighbours and excludes enemy routes (605ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:41.8531148Z   ✓   35 [1280x800] › tests/e2e/friendly-feedback.spec.ts:16:1 › Escape cancels a move draft and restores the previous battle selection (868ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:43.6584356Z   ✓   36 [1280x800] › tests/e2e/friendly-move.spec.ts:19:52 › friendly minimum transfer ends turn, fits and refuses stale confirmation (1.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:45.5076453Z   ✓   37 [1280x800] › tests/e2e/friendly-move.spec.ts:19:52 › friendly maximum transfer ends turn, fits and refuses stale confirmation (1.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:46.9288456Z   ✓   38 [1280x800] › tests/e2e/friendly-move.spec.ts:29:1 › cancel returns to attacks without movement; skip hands off normally (1.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:48.3752688Z   ✓   39 [1280x800] › tests/e2e/friendly-move.spec.ts:33:1 › a just-captured country can supply the final friendly move (1.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:50.5560306Z   ✓   40 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (2.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:52.7018258Z   ✓   41 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (2.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:55.0991741Z   ✓   42 [1280x800] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (2.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:55.9538004Z   ✓   43 [1280x800] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (844ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:57.0365662Z   ✓   44 [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:16:58.9018484Z   ✓   45 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:00.4278602Z   ✓   46 [1280x800] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (1.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:00.8061741Z   ✓   47 [1280x800] › tests/e2e/generated-board.spec.ts:121:1 › golden: settled opt-in generated preview (368ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:03.0821637Z   ✓   48 [1280x800] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (2.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:03.6482969Z   ✓   49 [1280x800] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (554ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:04.4183557Z   ✓   12 [1280x800] › tests/e2e/complete-game.spec.ts:30:1 › normal three-human clicks eliminate, skip a dead seat, conquer, freeze and restart (47.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:04.8741079Z   ✓   51 [1280x800] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (426ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:04.9073493Z   ✓   50 [1280x800] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:05.1815357Z   ✓   53 [1280x800] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (260ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:05.3574679Z   ✓   52 [1280x800] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (463ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:05.4952430Z   ✓   54 [1280x800] › tests/e2e/help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus (295ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:06.7121413Z   ✓   56 [1280x800] › tests/e2e/help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:06.7236919Z   ✓   55 [1280x800] › tests/e2e/help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match (1.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:07.1377617Z   ✓   57 [1280x800] › tests/e2e/map-readability.spec.ts:11:1 › army-only labels and ownership shapes reduce the default name hierarchy (410ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:07.9298367Z   ✓   58 [1280x800] › tests/e2e/map-readability.spec.ts:22:1 › region names remain identifiable on mouse, keyboard and touch without changing inputs (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:11.6896711Z   ✓   59 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (4.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:12.6200683Z   ✓   60 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (4.7s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:13.6982533Z   ✓   62 [1280x800] › tests/e2e/match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:15.1961436Z   ✓   63 [1280x800] › tests/e2e/reference-game.spec.ts:25:1 › reference setup paints current geography, routes, live counts and reachable controls (1.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:16.1831502Z   ✓   61 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (4.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:19.7854064Z   ✓   65 [1280x800] › tests/e2e/reinforcement.spec.ts:86:1 › placement spends only on owned provinces, then combat hands off a fresh pool (3.6s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:20.3436670Z   ✓   66 [1280x800] › tests/e2e/reinforcement.spec.ts:117:1 › both seats place armies and enter combat before returning to Blue in round two (546ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:22.9267270Z   ✓   67 [1280x800] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings (2.6s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:23.1482784Z   ✓   68 [1280x800] › tests/e2e/slice.spec.ts:404:1 › the page loads with the title, the turn and both buttons (201ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:23.5093267Z   ✓   69 [1280x800] › tests/e2e/slice.spec.ts:415:1 › all 14 provinces render, visible, on top, and told apart by more than colour (347ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:23.8164960Z   ✓   70 [1280x800] › tests/e2e/slice.spec.ts:466:1 › the board is painted: the pixels inside every province are its owner's palette colour (297ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:24.1716144Z   ✓   71 [1280x800] › tests/e2e/slice.spec.ts:488:1 › every badge and name is actually painted, not merely present in the DOM (345ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:24.3865679Z   ✓   72 [1280x800] › tests/e2e/slice.spec.ts:553:1 › the layout fits the viewport: no page scroll, map and panel both fully visible (202ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:24.5826595Z   ✓   73 [1280x800] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1366x768: New game and the seed in view, nothing to scroll (184ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:24.8035545Z   ✓   74 [1280x800] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1600x900: New game and the seed in view, nothing to scroll (211ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:25.0003619Z   ✓   75 [1280x800] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1920x1080: New game and the seed in view, nothing to scroll (187ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:25.2615664Z   ✓   76 [1280x800] › tests/e2e/slice.spec.ts:597:1 › hovering a province outlines it and names it (250ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:25.7786476Z   ✓   77 [1280x800] › tests/e2e/slice.spec.ts:606:1 › selecting a province highlights it and its targets, dims the rest and enables Attack only with a target (495ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:26.8523766Z   ✓   78 [1280x800] › tests/e2e/slice.spec.ts:625:1 › legal-target markers and the arrow stay clear of every label, whichever province is selected (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:27.2830129Z   ✓   79 [1280x800] › tests/e2e/slice.spec.ts:642:1 › an illegal target is refused with the reason, and nothing is selected as a target (418ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:32.2561375Z   ✓   80 [1280x800] › tests/e2e/slice.spec.ts:651:1 › one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots) (5.0s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:33.2945017Z   ✓   81 [1280x800] › tests/e2e/slice.spec.ts:760:1 › End turn passes play to the other player, whose provinces become the playable ones (1.0s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:33.6618383Z   ✓   82 [1280x800] › tests/e2e/slice.spec.ts:781:1 › a province can be selected and a target chosen with the keyboard alone (356ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:34.0365858Z   ✓   83 [1280x800] › tests/e2e/slice.spec.ts:812:1 › golden: the whole board as painted, hatched seat included (365ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:34.3013594Z   ✓   84 [1280x800] › tests/e2e/slice.spec.ts:818:1 › golden: the panel as laid out (252ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:35.5769507Z   ✓   85 [1280x800] › tests/e2e/slice.spec.ts:824:1 › golden: the result dialog with its dice and verdicts (1.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:36.1332156Z   ✓   86 [1280x800] › tests/e2e/versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement (533ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:36.6837760Z   ✓   87 [1280x800] › tests/e2e/versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm (541ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:37.8465265Z   ✓   88 [1280x800] › tests/e2e/versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:39.5547719Z   ✓   89 [1280x800] › tests/e2e/versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable (1.7s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:40.4422513Z   ✓   90 [1280x800] › tests/e2e/versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls (877ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:40.9960110Z   ✓   91 [1280x800] › tests/e2e/versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers (545ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:41.6239494Z   ✓   92 [1280x800] › tests/e2e/versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match (617ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:51.7769881Z {"kind":"domination","actions":190,"winner":"seat2"}
+ci	Playwright (extracted playable artifact)	2026-10-17T10:17:51.7862281Z   ✓   93 [1280x800] › tests/e2e/victory-options.spec.ts:70:1 › domination result names winner/reason, final standings, freezes and restarts (10.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:05.9642347Z   ✓   94 [1280x800] › tests/e2e/victory-options.spec.ts:99:1 › round limit finishes after a complete rotated round and explains the score (14.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:10.2192504Z {"project":"1280x800","actions":541,"attacks":163,"handoffs":20,"placements":337,"winner":"seat2"}
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:10.2342196Z   ✓   64 [1280x800] › tests/e2e/reference-game.spec.ts:40:1 › ordinary reference clicks place, attack, hand off and replay legally to a winner (55.0s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:11.7833294Z   ✓   96 [1920x1080] › tests/e2e/battle-accessibility.spec.ts:36:1 › capture confirmation, quantities and context fit together with an accurate phase (982ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:13.0970008Z   ✓   97 [1920x1080] › tests/e2e/battle-accessibility.spec.ts:50:1 › keyboard Stop retains focus across an exchange; new game cancels work and remembers preferences (1.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:14.8434373Z   ✓   98 [1920x1080] › tests/e2e/battle-controls.spec.ts:25:1 › one chosen exchange shows actual ties, dice and live stacks without a later exchange (1.7s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:16.2553797Z   ✓   99 [1920x1080] › tests/e2e/battle-controls.spec.ts:32:1 › manual Stop takes effect before the next exchange while context stays visible (1.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:17.6219160Z   ✓  100 [1920x1080] › tests/e2e/battle-controls.spec.ts:37:1 › fight-on stops at the chosen fixed threshold after a loss (1.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:20.4743230Z   ✓  101 [1920x1080] › tests/e2e/battle-controls.spec.ts:42:54 › capture minimum preserves armies and rejects stale/unrelated controls (2.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:23.2526586Z   ✓  102 [1920x1080] › tests/e2e/battle-controls.spec.ts:42:54 › capture maximum preserves armies and rejects stale/unrelated controls (2.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:26.2102574Z   ✓  103 [1920x1080] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 800x540 (2.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:29.5833273Z   ✓  104 [1920x1080] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 1280x800 (3.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:32.7998812Z {"kind":"human-loss","actionsPerRun":239,"resumedHandoffs":3}
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:32.8110508Z   ✓   95 [1280x800] › tests/e2e/victory-options.spec.ts:128:1 › human loss offers Stop or Watch; Watch resumes computers and Stop freezes (26.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:33.2236944Z   ✓  105 [1920x1080] › tests/e2e/coast-postprocess.spec.ts:49:97 › standalone geography is painted and all46countries selectable at 1920x1080 (3.6s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:35.7110155Z   ✓  107 [1920x1080] › tests/e2e/coast-postprocess.spec.ts:58:1 › playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map (2.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:37.6750780Z   ✓  108 [1920x1080] › tests/e2e/computer-turn-flow.spec.ts:16:1 › untouched setup starts one human and three Normal computers and consecutive turns return (1.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:38.9683983Z   ✓  109 [1920x1080] › tests/e2e/computer-turn-flow.spec.ts:27:1 › loaded computer capture resolves without a click; replacement and new game cancel old callbacks (1.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:39.9418992Z   ✓  110 [1920x1080] › tests/e2e/computer-turn-flow.spec.ts:36:1 › loss waits for Watch or Stop; finished game schedules no play; manual route stays manual (960ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:40.0973444Z   ✓  111 [1920x1080] › tests/e2e/computer.spec.ts:19:1 › setup offers computer opponents (134ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:42.0167976Z   ✓  112 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2 (1.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:43.4678217Z   ✓  113 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3 (1.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:44.9163455Z   ✓  114 [1920x1080] › tests/e2e/computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4 (1.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:46.0050903Z   ✓  115 [1920x1080] › tests/e2e/computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:47.2065552Z   ✓  116 [1920x1080] › tests/e2e/direct-attack.spec.ts:20:1 › mouse enemy activation attacks once and repeats without source/target reselection (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:48.4110976Z   ✓  117 [1920x1080] › tests/e2e/direct-attack.spec.ts:23:1 › keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:49.5727125Z   ✓  118 [1920x1080] › tests/e2e/direct-attack.spec.ts:30:1 › touch uses the same one-exchange repeat gesture (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:51.7426892Z   ✓  119 [1920x1080] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture minimum waits for explicit choice through save/reload/upload (2.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:53.9412962Z   ✓  120 [1920x1080] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture intermediate waits for explicit choice through save/reload/upload (2.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:56.0595601Z   ✓  121 [1920x1080] › tests/e2e/direct-attack.spec.ts:33:69 › direct capture maximum waits for explicit choice through save/reload/upload (2.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:57.3156415Z   ✓  122 [1920x1080] › tests/e2e/direct-attack.spec.ts:44:1 › Shift-click retains separate controls and Stop cancels the next continuous exchange (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:58.5205597Z   ✓  123 [1920x1080] › tests/e2e/direct-attack.spec.ts:47:1 › friendly, distant and one-army inputs refuse attacks with the engine reason (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:18:59.1665987Z   ✓  124 [1920x1080] › tests/e2e/direct-attack.spec.ts:52:1 › automatic computer attack phase refuses map, touch and keyboard human activations (631ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:00.0446903Z   ✓  125 [1920x1080] › tests/e2e/entry.spec.ts:30:1 › root and unrecognized views open the playable reference match with one human and three computers (862ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:01.0031464Z   ✓  126 [1920x1080] › tests/e2e/entry.spec.ts:70:1 › recognized entry routes remain explicit and authored data is available only by route (937ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:02.3459538Z   ✓  127 [1920x1080] › tests/e2e/finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game (1.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:02.9641175Z   ✓  128 [1920x1080] › tests/e2e/finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape (599ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:03.7253730Z   ✓  129 [1920x1080] › tests/e2e/friendly-feedback.spec.ts:7:1 › movement route emphasis includes own sea neighbours and excludes enemy routes (746ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:04.6480710Z   ✓  130 [1920x1080] › tests/e2e/friendly-feedback.spec.ts:16:1 › Escape cancels a move draft and restores the previous battle selection (902ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:06.6727512Z   ✓  131 [1920x1080] › tests/e2e/friendly-move.spec.ts:19:52 › friendly minimum transfer ends turn, fits and refuses stale confirmation (2.0s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:08.7606295Z   ✓  132 [1920x1080] › tests/e2e/friendly-move.spec.ts:19:52 › friendly maximum transfer ends turn, fits and refuses stale confirmation (2.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:10.2981735Z   ✓  133 [1920x1080] › tests/e2e/friendly-move.spec.ts:29:1 › cancel returns to attacks without movement; skip hands off normally (1.5s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:11.9233807Z   ✓  134 [1920x1080] › tests/e2e/friendly-move.spec.ts:33:1 › a just-captured country can supply the final friendly move (1.6s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:13.8179271Z   ✓  135 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip (1.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:16.0426074Z   ✓  136 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip (2.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:18.7814227Z   ✓  137 [1920x1080] › tests/e2e/game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip (2.7s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:19.6877857Z   ✓  138 [1920x1080] › tests/e2e/game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery (892ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:21.0344905Z   ✓  139 [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (1.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:22.9984989Z   ✓  140 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (2.0s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:24.7700678Z   ✓  141 [1920x1080] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (1.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:25.3045051Z   ✓  142 [1920x1080] › tests/e2e/generated-board.spec.ts:121:1 › golden: settled opt-in generated preview (519ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:26.8986238Z   ✓  106 [1920x1080] › tests/e2e/complete-game.spec.ts:30:1 › normal three-human clicks eliminate, skip a dead seat, conquer, freeze and restart (53.7s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:27.4404335Z   ✓  144 [1920x1080] › tests/e2e/generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts (508ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:28.2458005Z   ✓  143 [1920x1080] › tests/e2e/generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport (2.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:28.5849261Z   ✓  145 [1920x1080] › tests/e2e/generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:28.7893196Z   ✓  146 [1920x1080] › tests/e2e/generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers (526ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:29.0229466Z   ✓  148 [1920x1080] › tests/e2e/generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel (221ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:29.2560244Z   ✓  147 [1920x1080] › tests/e2e/generated-game.spec.ts:94:1 › golden: generated gameplay opening (657ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:29.3828650Z   ✓  149 [1920x1080] › tests/e2e/help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus (341ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:30.3733722Z   ✓  150 [1920x1080] › tests/e2e/help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:30.7984234Z   ✓  151 [1920x1080] › tests/e2e/help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game (1.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:30.8736362Z   ✓  152 [1920x1080] › tests/e2e/map-readability.spec.ts:11:1 › army-only labels and ownership shapes reduce the default name hierarchy (489ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:32.1091735Z   ✓  153 [1920x1080] › tests/e2e/map-readability.spec.ts:22:1 › region names remain identifiable on mouse, keyboard and touch without changing inputs (1.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:36.2912726Z   ✓  154 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (5.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:37.3528632Z   ✓  155 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (5.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:38.6130704Z   ✓  157 [1920x1080] › tests/e2e/match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:40.4696336Z   ✓  158 [1920x1080] › tests/e2e/reference-game.spec.ts:25:1 › reference setup paints current geography, routes, live counts and reachable controls (1.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:41.0649461Z   ✓  156 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (4.8s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:44.9906140Z   ✓  160 [1920x1080] › tests/e2e/reinforcement.spec.ts:86:1 › placement spends only on owned provinces, then combat hands off a fresh pool (3.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:45.6745910Z   ✓  161 [1920x1080] › tests/e2e/reinforcement.spec.ts:117:1 › both seats place armies and enter combat before returning to Blue in round two (675ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:48.5644904Z   ✓  162 [1920x1080] › tests/e2e/retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings (2.9s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:48.8141791Z   ✓  163 [1920x1080] › tests/e2e/slice.spec.ts:404:1 › the page loads with the title, the turn and both buttons (231ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:49.1873340Z   ✓  164 [1920x1080] › tests/e2e/slice.spec.ts:415:1 › all 14 provinces render, visible, on top, and told apart by more than colour (362ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:49.6185339Z   ✓  165 [1920x1080] › tests/e2e/slice.spec.ts:466:1 › the board is painted: the pixels inside every province are its owner's palette colour (418ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:50.1206541Z   ✓  166 [1920x1080] › tests/e2e/slice.spec.ts:488:1 › every badge and name is actually painted, not merely present in the DOM (488ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:50.3732293Z   ✓  167 [1920x1080] › tests/e2e/slice.spec.ts:553:1 › the layout fits the viewport: no page scroll, map and panel both fully visible (242ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:50.6147874Z   ✓  168 [1920x1080] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1366x768: New game and the seed in view, nothing to scroll (231ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:50.8752920Z   ✓  169 [1920x1080] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1600x900: New game and the seed in view, nothing to scroll (249ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:51.1131956Z   ✓  170 [1920x1080] › tests/e2e/slice.spec.ts:579:3 › the panel never overflows at 1920x1080: New game and the seed in view, nothing to scroll (224ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:51.3941302Z   ✓  171 [1920x1080] › tests/e2e/slice.spec.ts:597:1 › hovering a province outlines it and names it (271ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:51.9091188Z   ✓  172 [1920x1080] › tests/e2e/slice.spec.ts:606:1 › selecting a province highlights it and its targets, dims the rest and enables Attack only with a target (500ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:53.1565831Z   ✓  173 [1920x1080] › tests/e2e/slice.spec.ts:625:1 › legal-target markers and the arrow stay clear of every label, whichever province is selected (1.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:53.6420883Z   ✓  174 [1920x1080] › tests/e2e/slice.spec.ts:642:1 › an illegal target is refused with the reason, and nothing is selected as a target (475ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:19:59.0442369Z   ✓  175 [1920x1080] › tests/e2e/slice.spec.ts:651:1 › one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots) (5.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:00.1889069Z   ✓  176 [1920x1080] › tests/e2e/slice.spec.ts:760:1 › End turn passes play to the other player, whose provinces become the playable ones (1.1s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:00.6546349Z   ✓  177 [1920x1080] › tests/e2e/slice.spec.ts:781:1 › a province can be selected and a target chosen with the keyboard alone (454ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:01.1300883Z   ✓  178 [1920x1080] › tests/e2e/slice.spec.ts:812:1 › golden: the whole board as painted, hatched seat included (454ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:01.4788801Z   ✓  179 [1920x1080] › tests/e2e/slice.spec.ts:818:1 › golden: the panel as laid out (327ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:02.8935553Z   ✓  180 [1920x1080] › tests/e2e/slice.spec.ts:824:1 › golden: the result dialog with its dice and verdicts (1.4s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:03.4985606Z   ✓  181 [1920x1080] › tests/e2e/versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement (573ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:04.1099017Z   ✓  182 [1920x1080] › tests/e2e/versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm (600ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:05.3835311Z   ✓  183 [1920x1080] › tests/e2e/versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn (1.3s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:07.3562447Z   ✓  184 [1920x1080] › tests/e2e/versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable (2.0s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:08.2906029Z   ✓  185 [1920x1080] › tests/e2e/versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls (921ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:08.8813817Z   ✓  186 [1920x1080] › tests/e2e/versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers (577ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:09.5720909Z   ✓  187 [1920x1080] › tests/e2e/versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match (680ms)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:20.1450570Z {"kind":"domination","actions":190,"winner":"seat2"}
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:20.1587080Z   ✓  188 [1920x1080] › tests/e2e/victory-options.spec.ts:70:1 › domination result names winner/reason, final standings, freezes and restarts (10.6s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:34.7796609Z   ✓  189 [1920x1080] › tests/e2e/victory-options.spec.ts:99:1 › round limit finishes after a complete rotated round and explains the score (14.6s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:35.6294970Z {"project":"1920x1080","actions":541,"attacks":163,"handoffs":20,"placements":337,"winner":"seat2"}
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:35.6444029Z   ✓  159 [1920x1080] › tests/e2e/reference-game.spec.ts:40:1 › ordinary reference clicks place, attack, hand off and replay legally to a winner (55.2s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:59.5099133Z {"kind":"human-loss","actionsPerRun":239,"resumedHandoffs":3}
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:59.5186010Z   ✓  190 [1920x1080] › tests/e2e/victory-options.spec.ts:128:1 › human loss offers Stop or Watch; Watch resumes computers and Stop freezes (24.7s)
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:59.5712570Z 
+ci	Playwright (extracted playable artifact)	2026-10-17T10:20:59.5715880Z   190 passed (4.9m)
+ci	Upload screenshots	﻿2026-10-17T10:21:01.4572993Z ##[group]Run actions/upload-artifact@v4
+ci	Upload screenshots	2026-10-17T10:21:01.4573245Z with:
+ci	Upload screenshots	2026-10-17T10:21:01.4573416Z   name: screenshots
+ci	Upload screenshots	2026-10-17T10:21:01.4573600Z   path: screenshots/
+ci	Upload screenshots	2026-10-17T10:21:01.4573785Z   if-no-files-found: error
+ci	Upload screenshots	2026-10-17T10:21:01.4573983Z   compression-level: 6
+ci	Upload screenshots	2026-10-17T10:21:01.4574183Z   overwrite: false
+ci	Upload screenshots	2026-10-17T10:21:01.4574364Z   include-hidden-files: false
+ci	Upload screenshots	2026-10-17T10:21:01.4574554Z env:
+ci	Upload screenshots	2026-10-17T10:21:01.4574768Z   PLAYABLE_EXTRACTED_DIR: /tmp/malpaco-playable-ci.p0yXsh
+ci	Upload screenshots	2026-10-17T10:21:01.4575033Z ##[endgroup]
+ci	Upload screenshots	2026-10-17T10:21:01.4577967Z ##[command]/usr/bin/docker exec  1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448 sh -c "cat /etc/*release | grep ^ID"
+ci	Upload screenshots	2026-10-17T10:21:01.6910049Z (node:5172) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ci	Upload screenshots	2026-10-17T10:21:01.6911172Z (Use `node --trace-deprecation ...` to show where the warning was created)
+ci	Upload screenshots	2026-10-17T10:21:01.9160668Z With the provided path, there will be 720 files uploaded
+ci	Upload screenshots	2026-10-17T10:21:01.9165859Z Artifact name is valid!
+ci	Upload screenshots	2026-10-17T10:21:01.9166514Z Root directory input is valid!
+ci	Upload screenshots	2026-10-17T10:21:02.2411097Z Beginning upload of artifact content to blob storage
+ci	Upload screenshots	2026-10-17T10:21:02.5177708Z (node:5172) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+ci	Upload screenshots	2026-10-17T10:21:03.2226933Z Uploaded bytes 8388608
+ci	Upload screenshots	2026-10-17T10:21:03.4483629Z Uploaded bytes 16777216
+ci	Upload screenshots	2026-10-17T10:21:03.5260482Z Uploaded bytes 25165824
+ci	Upload screenshots	2026-10-17T10:21:03.6526093Z Uploaded bytes 33554432
+ci	Upload screenshots	2026-10-17T10:21:03.7111739Z Uploaded bytes 41943040
+ci	Upload screenshots	2026-10-17T10:21:03.9646586Z Uploaded bytes 50331648
+ci	Upload screenshots	2026-10-17T10:21:04.2105376Z Uploaded bytes 58720256
+ci	Upload screenshots	2026-10-17T10:21:04.4552548Z Uploaded bytes 67108864
+ci	Upload screenshots	2026-10-17T10:21:04.7265401Z Uploaded bytes 75497472
+ci	Upload screenshots	2026-10-17T10:21:04.9850571Z Uploaded bytes 83886080
+ci	Upload screenshots	2026-10-17T10:21:05.2729541Z Uploaded bytes 92274688
+ci	Upload screenshots	2026-10-17T10:21:05.5311844Z Uploaded bytes 100663296
+ci	Upload screenshots	2026-10-17T10:21:05.8138838Z Uploaded bytes 109051904
+ci	Upload screenshots	2026-10-17T10:21:06.0695679Z Uploaded bytes 117440512
+ci	Upload screenshots	2026-10-17T10:21:06.3119223Z Uploaded bytes 125829120
+ci	Upload screenshots	2026-10-17T10:21:06.4777744Z Uploaded bytes 131835518
+ci	Upload screenshots	2026-10-17T10:21:06.5381024Z Finished uploading artifact content to blob storage!
+ci	Upload screenshots	2026-10-17T10:21:06.5382465Z SHA256 digest of uploaded artifact zip is f2a7b0cb0923f44ea031e93939316871b557d59697ce4fc2dee2533d353cb067
+ci	Upload screenshots	2026-10-17T10:21:06.5383729Z Finalizing artifact upload
+ci	Upload screenshots	2026-10-17T10:21:06.8072027Z Artifact screenshots.zip successfully finalized. Artifact ID 12097224192
+ci	Upload screenshots	2026-10-17T10:21:06.8073079Z Artifact screenshots has been successfully uploaded! Final size is 131835518 bytes. Artifact ID is 12097224192
+ci	Upload screenshots	2026-10-17T10:21:06.8078985Z Artifact download URL: https://github.com/diegoami/malpaco/actions/runs/39023751867/artifacts/12097224192
+ci	Upload playable archive	﻿2026-10-17T10:21:06.8311886Z ##[group]Run actions/upload-artifact@v4
+ci	Upload playable archive	2026-10-17T10:21:06.8312266Z with:
+ci	Upload playable archive	2026-10-17T10:21:06.8312523Z   name: malpaco-playable
+ci	Upload playable archive	2026-10-17T10:21:06.8312853Z   path: release/malpaco-playable.tar.gz
+ci	Upload playable archive	2026-10-17T10:21:06.8313218Z   if-no-files-found: error
+ci	Upload playable archive	2026-10-17T10:21:06.8313523Z   compression-level: 6
+ci	Upload playable archive	2026-10-17T10:21:06.8313829Z   overwrite: false
+ci	Upload playable archive	2026-10-17T10:21:06.8314108Z   include-hidden-files: false
+ci	Upload playable archive	2026-10-17T10:21:06.8314420Z env:
+ci	Upload playable archive	2026-10-17T10:21:06.8314748Z   PLAYABLE_EXTRACTED_DIR: /tmp/malpaco-playable-ci.p0yXsh
+ci	Upload playable archive	2026-10-17T10:21:06.8315170Z ##[endgroup]
+ci	Upload playable archive	2026-10-17T10:21:06.8319943Z ##[command]/usr/bin/docker exec  1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448 sh -c "cat /etc/*release | grep ^ID"
+ci	Upload playable archive	2026-10-17T10:21:07.0612410Z (node:5197) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ci	Upload playable archive	2026-10-17T10:21:07.0613660Z (Use `node --trace-deprecation ...` to show where the warning was created)
+ci	Upload playable archive	2026-10-17T10:21:07.0675293Z With the provided path, there will be 1 file uploaded
+ci	Upload playable archive	2026-10-17T10:21:07.0677582Z Artifact name is valid!
+ci	Upload playable archive	2026-10-17T10:21:07.0679919Z Root directory input is valid!
+ci	Upload playable archive	2026-10-17T10:21:07.4159337Z Beginning upload of artifact content to blob storage
+ci	Upload playable archive	2026-10-17T10:21:07.4442022Z (node:5197) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+ci	Upload playable archive	2026-10-17T10:21:07.8375598Z Uploaded bytes 414130
+ci	Upload playable archive	2026-10-17T10:21:07.8958749Z Finished uploading artifact content to blob storage!
+ci	Upload playable archive	2026-10-17T10:21:07.8959716Z SHA256 digest of uploaded artifact zip is d80b927cbb019bb762767b740e79ffd3c9d515e1c00c482ea81856138a3b6b46
+ci	Upload playable archive	2026-10-17T10:21:07.8960375Z Finalizing artifact upload
+ci	Upload playable archive	2026-10-17T10:21:08.1493380Z Artifact malpaco-playable.zip successfully finalized. Artifact ID 12098086036
+ci	Upload playable archive	2026-10-17T10:21:08.1494436Z Artifact malpaco-playable has been successfully uploaded! Final size is 414130 bytes. Artifact ID is 12098086036
+ci	Upload playable archive	2026-10-17T10:21:08.1499814Z Artifact download URL: https://github.com/diegoami/malpaco/actions/runs/39023751867/artifacts/12098086036
+ci	Post Run actions/setup-node@v4	﻿2026-10-17T10:21:08.1694709Z Post job cleanup.
+ci	Post Run actions/setup-node@v4	2026-10-17T10:21:08.1700151Z ##[command]/usr/bin/docker exec  1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448 sh -c "cat /etc/*release | grep ^ID"
+ci	Post Run actions/setup-node@v4	2026-10-17T10:21:08.3508986Z (node:5222) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ci	Post Run actions/setup-node@v4	2026-10-17T10:21:08.3509687Z (Use `node --trace-deprecation ...` to show where the warning was created)
+ci	Post Run actions/setup-node@v4	2026-10-17T10:21:08.3512414Z Cache hit occurred on the primary key node-cache-Linux-x64-npm-1cf1bf7c308ef1f1b0575a702733c72b62005b79a403dd39a02372a813053a30, not saving cache.
+ci	Post Run actions/checkout@v4	﻿2026-10-17T10:21:08.3646326Z Post job cleanup.
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.3652886Z ##[command]/usr/bin/docker exec  1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448 sh -c "cat /etc/*release | grep ^ID"
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5398843Z [command]/usr/bin/git version
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5450156Z git version 2.43.0
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5484900Z Temporarily overriding HOME='/__w/_temp/e06d7e62-447c-4fe9-813f-44cb81ea6031' before making global git config changes
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5486506Z Adding repository directory to the temporary git global config as a safe directory
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5492523Z [command]/usr/bin/git config --global --add safe.directory /__w/malpaco/malpaco
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5526118Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5561302Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5812472Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5836163Z http.https://github.com/.extraheader
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5846829Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.5884768Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.6137143Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+ci	Post Run actions/checkout@v4	2026-10-17T10:21:08.6172047Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+ci	Stop containers	﻿2026-10-17T10:21:08.6541247Z Stop and remove container: 8b0ef156c6eb4055b232d9265841f075_mcrmicrosoftcomplaywrightv1630noble_0e1d23
+ci	Stop containers	2026-10-17T10:21:08.6544886Z ##[command]/usr/bin/docker rm --force 1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448
+ci	Stop containers	2026-10-17T10:21:09.0456735Z 1eb4bd43981627d2fb69eff196035c845c1e4f0d6c33c213e89c2f69e4faa448
+ci	Stop containers	2026-10-17T10:21:09.0479881Z Remove container network: github_network_33a421f39320461cb4aae40253ca2aac
+ci	Stop containers	2026-10-17T10:21:09.0483804Z ##[command]/usr/bin/docker network rm github_network_33a421f39320461cb4aae40253ca2aac
+ci	Stop containers	2026-10-17T10:21:09.1589033Z github_network_33a421f39320461cb4aae40253ca2aac
+ci	Complete job	﻿2026-10-17T10:21:09.1655317Z Cleaning up orphan processes
+ci	Complete job	2026-10-17T10:21:09.1939484Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

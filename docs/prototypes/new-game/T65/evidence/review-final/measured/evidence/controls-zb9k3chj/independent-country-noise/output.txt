@@ -1,0 +1,17 @@
+{
+  "output": "docs/prototypes/new-game/T65/evidence/checks-i6s205gf",
+  "results": [
+    {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/region-border-postprocess.test.ts"
+      ],
+      "exit": 1,
+      "output": "0.txt",
+      "sha256": "4aedb965e6f4b9a078916318c870ce7c021ec4d96ab915714c706351fd5503b6",
+      "tail": "\n RUN  v5.0.3 /home/diego/projects/malpaco-work/148-review-b9b105a2\n\n \u276f tests/ui/region-border-postprocess.test.ts (5 tests | 2 failed) 2274ms\n   \u276f canonical shared region borders (5)\n     \u00d7 replaces straight divisions with the frozen geographical border drawing 78ms\n     \u00d7 retains connected cells, exact contacts, subdivisions and protected reservations on five seeds 1851ms\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > replaces straight divisions with the frozen geographical border drawing\nAssertionError: expected { seed: 1994, \u2026(4) } to deeply equal { seed: 1994, \u2026(4) }\n\n- Expected\n+ Received\n\n@@ -1664,11 +1664,11 @@\n          [\n            384.5087890625,\n            19.3427734375,\n          ],\n          [\n-           386.01171875,\n+           387.01171875,\n            24.806640625,\n          ],\n          [\n            387.7578125,\n            30.1767578125,\n\n \u276f tests/ui/region-border-postprocess.test.ts:12:137\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n FAIL  tests/ui/region-border-postprocess.test.ts > canonical shared region borders > retains connected cells, exact contacts, subdivisions and protected reservations on five seeds\nAssertionError: 1994: expected { attachment: [], water: [], \u2026(2) } to deeply equal { attachment: [], water: [], \u2026(2) }\n\n- Expected\n+ Received\n\n  {\n    \"attachment\": [],\n-   \"preserved\": [],\n+   \"preserved\": [\n+     \"cells: Subdivision gap/area mismatch island_0\",\n+     \"cells: Cell overlap province_4/province_30\",\n+   ],\n    \"traceability\": [],\n    \"water\": [],\n  }\n\n \u276f tests/ui/region-border-postprocess.test.ts:15:210\n\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[2/2]\u23af\n\n\n Test Files  1 failed (1)\n      Tests  2 failed | 3 passed (5)\n   Start at  12:19:59\n   Duration  2.49s (tests 95%, transform 4%, import 1%)\n\n"
+    }
+  ]
+}

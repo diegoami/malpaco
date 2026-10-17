@@ -1,0 +1,96 @@
+{
+  "cases": [
+    {
+      "name": "border-identity",
+      "path": "docs/prototypes/new-game/T65/borders.mjs",
+      "originalSha256": "6d2d68eb54d404e326b8b09a8f477a6108cfcdd125eabe77188a83bfa206926d",
+      "mutatedSha256": "dfe52ba81d2f0da80be907acfb41ca97d2560373bcd039af3cdc012f3c50833d",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/148-review-b9b105a2/docs/prototypes/new-game/T65/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T65/evidence/checks-zxcs_g99",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "ignored-seed",
+      "path": "docs/prototypes/new-game/T65/borders.mjs",
+      "originalSha256": "6d2d68eb54d404e326b8b09a8f477a6108cfcdd125eabe77188a83bfa206926d",
+      "mutatedSha256": "a1715bac91c95a826c995fe4bfcb20eaaa7550d6b06c9caa5b728bb294f2b08e",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/148-review-b9b105a2/docs/prototypes/new-game/T65/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T65/evidence/checks-vkaa7ne4",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "independent-country-noise",
+      "path": "docs/prototypes/new-game/T65/borders.mjs",
+      "originalSha256": "6d2d68eb54d404e326b8b09a8f477a6108cfcdd125eabe77188a83bfa206926d",
+      "mutatedSha256": "155f19d825b503e32c192945474e36ecbd66cc18193b6d7bc681533542811ab3",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/148-review-b9b105a2/docs/prototypes/new-game/T65/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T65/evidence/checks-i6s205gf",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "moved-coast",
+      "path": "docs/prototypes/new-game/T65/borders.mjs",
+      "originalSha256": "6d2d68eb54d404e326b8b09a8f477a6108cfcdd125eabe77188a83bfa206926d",
+      "mutatedSha256": "c9a1818d5d136eb9e237eef5a84a2787e439fbaeeba553729b3665d6f2d068f5",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/148-review-b9b105a2/docs/prototypes/new-game/T65/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T65/evidence/checks-6x_053i4",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "moved-label",
+      "path": "docs/prototypes/new-game/T65/borders.mjs",
+      "originalSha256": "6d2d68eb54d404e326b8b09a8f477a6108cfcdd125eabe77188a83bfa206926d",
+      "mutatedSha256": "05922975c6e1346cae5d7d8cb4815e545d91bc754289534c98ecc96ffebf35d3",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/148-review-b9b105a2/docs/prototypes/new-game/T65/checks.py",
+        "--focused"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T65/evidence/checks-pkyuyr7n",
+      "assertionNegative": true,
+      "restored": true
+    },
+    {
+      "name": "old-painted-borders",
+      "path": "src/ui/referenceMapView.ts",
+      "originalSha256": "ab50db577a60151e27ac288b6b5d7d101587273566f3f14e14170988694ef205",
+      "mutatedSha256": "2065bb30be95af1513dd88ce123649e34910ff0d0f0b11e7efb64cdeb930a2a8",
+      "command": [
+        "python3",
+        "/home/diego/projects/malpaco-work/148-review-b9b105a2/docs/prototypes/new-game/T65/run.py",
+        "--grep",
+        "playable shared borders"
+      ],
+      "exit": 1,
+      "evidence": "docs/prototypes/new-game/T65/evidence/run-3nt1w6vn",
+      "assertionNegative": true,
+      "restored": true
+    }
+  ],
+  "allRestored": true
+}

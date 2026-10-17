@@ -16,7 +16,9 @@ The candidate includes readability #137, direct/repeat attack #138, geographical
 | Current unit suite | `updated-presentation-units-dx_k0679`:593pass |
 | Archive integrity | `updated-integrity-mkek5fm0`:all four source/raw archive pairs verified; no runtime/drawing differences |
 
-Paths in the table are under `evidence/`. The sole current-input recipe amendment removes the obsolete second Single exchange press after direct target activation. No actions, expected states, fixture, assertions or timing limits were relaxed. Source complete-game inputs match current sources exactly. Package runtime, tests and static drawing inputs match current bytes; later changes concern provenance capture and presentation documentation.
+Paths in the table are under `evidence/`. Current source-deletion controls `evidence/controls-hezos6vr` also catch omitted computer dispatch and omitted loaded-session replacement at both sizes, with exact restoration. The reviewed-parent integration retains identical source/test/data hashes.
+
+The sole current-input recipe amendment removes the obsolete second Single exchange press after direct target activation. No actions, expected states, fixture, assertions or timing limits were relaxed. Source complete-game inputs match current sources exactly. Package runtime, tests and static drawing inputs match current bytes; later changes concern provenance capture and presentation documentation.
 
 Package source commit:`6f0d0b8de0fa815110d6b0dcef02f732e410392e`. Archive SHA-256:`32aa87c8fc88c138c24045609a33617d2786848bf1a09ee51d68ea08b3610a37`. Exact archive is `evidence/release-in9xedra/malpaco-playable.tar.gz`. `evidence/windows-preview-mwli6fhu` contains the prepared extracted package/gallery with opening,battle,friendly move,computer turn,capture choice,save/resume,elimination and winner at both sizes,plus matched T22/T63/T64/T65 map views and close-ups. Its copy manifest hashes every included file. Node.js22+ launches the package without source checkout or npm dependencies.
 
