@@ -1,0 +1,1 @@
+const fs=require('fs');const {chromium}=require('playwright');(async()=>{const b=await chromium.launch({headless:true});const p=await b.newPage({viewport:{width:1200,height:1400}});await p.setContent(fs.readFileSync(process.argv[2],'utf8'));await p.screenshot({path:process.argv[3],fullPage:true});await b.close()})().catch(e=>{console.error(e);process.exitCode=1});

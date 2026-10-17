@@ -1,0 +1,78 @@
+{
+  "samples": [
+    {
+      "variant": "global-label-fortyeight",
+      "valid": 6,
+      "attempts": [
+        4,
+        19,
+        10,
+        5,
+        1,
+        1
+      ]
+    },
+    {
+      "variant": "global-sixteen",
+      "valid": 5,
+      "attempts": [
+        2,
+        50,
+        23,
+        39,
+        34,
+        50
+      ]
+    },
+    {
+      "variant": "global-label-sixteen",
+      "valid": 6,
+      "attempts": [
+        1,
+        1,
+        1,
+        3,
+        1,
+        2
+      ]
+    },
+    {
+      "variant": "global-thirtytwo",
+      "valid": 1,
+      "attempts": [
+        50,
+        50,
+        50,
+        50,
+        16,
+        50
+      ]
+    },
+    {
+      "variant": "global-fortyeight",
+      "valid": 0,
+      "attempts": [
+        50,
+        50,
+        50,
+        50,
+        50,
+        50
+      ]
+    },
+    {
+      "variant": "global-label-thirtytwo",
+      "valid": 6,
+      "attempts": [
+        1,
+        2,
+        3,
+        1,
+        2,
+        5
+      ]
+    }
+  ],
+  "scope": "Diagnostic six seeds only; no full breadth acceptance, no current production changes. Global coordinated monotone warp and real label repair under unchanged checker; all failed candidates retained.",
+  "designed_prototype_values": "4 global warp intervals; expansion samples16/32/48 CSSpx then normalize frame extent; label offset grid radius24 CSSpx,3 passes. These are sampling/repair choices only, not relaxed game/display constraints."
+}
