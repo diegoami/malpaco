@@ -1,0 +1,783 @@
+{
+  "scope": "Constraint feasibility only; same narrow T34 candidate family. No T35 algorithm, deal, version identity, success-rate or generality claim.",
+  "sourceHead": "7f1860dac78932629340c561e8fae4cfcdf44589",
+  "sourceHashes": {
+    "src/core/board-fairness.ts": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717",
+    "src/core/board-gen.ts": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942",
+    "src/core/bonuses.ts": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+    "src/core/combat.ts": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+    "src/core/computer.ts": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+    "src/core/index.ts": "0bd09500dcfda1a093e97b52efbea2a17a94663d342fab3a5daab96f0d711381",
+    "src/core/island-geography.ts": "e73e399e89a74fe939def6a2b1f551d94c9d59a63e57f1ae0e106d58d18cf2de",
+    "src/core/map.ts": "3457bf4de33874cd78aa2a06a29819c8d7920e1c1eb36ce0500d326d5092cdaf",
+    "src/core/match-save.ts": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+    "src/core/movement.ts": "ef59529db0f70d17677af8d229c07a8cdb79bef5eac2d51f6790bd675cdfa323",
+    "src/core/options.ts": "0103f21c5afe6a99d968079633a06f169f6941c129b94c212b9e93e547748513",
+    "src/core/reference-game.ts": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+    "src/core/reference-map.ts": "cc920c2840843391f83bb9d1c393afc5342cfeb5625ecd2ca56f7252f85ec090",
+    "src/core/reinforcement.ts": "b9a7fe2203bcff3aa06beebf5ec3ac8c2103641a0522a5e4805714b216452556",
+    "src/core/rng.ts": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498",
+    "src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+    "src/core/save.ts": "54eb5f98c7bc6ac90d39a3d2ddf53eef4fd37c5f53b609d847d20289433b9748",
+    "src/core/seats.ts": "4e67c932ef1b420c7b4e07d646dfe423c249bd3dd90eed60549ea01b8ba06f67",
+    "src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+    "src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+    "src/core/types.ts": "c4dce555abebede88237ef08ad926cc166e2076f3a468d1124f495f99bf61183",
+    "src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+    "docs/prototypes/new-game/T24/contract.mjs": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+    "docs/prototypes/new-game/T24/contract.test.mjs": "8fdc8d7e697511116efab6ae600c7659f4052c9c651703131a3e059b156cf60d",
+    "docs/prototypes/new-game/T24/existing.mjs": "378650b34a7639ca876bef3955bd59239a8e2c8cf49c4beb8e16e7d46dcdeae2",
+    "docs/prototypes/new-game/T24/geometry-preflight.test.mjs": "c9e5f8b52cd101bdb22ff78b56bec5b655e2cca9691eea0d8b5fcc1f423b36b1",
+    "docs/prototypes/new-game/T24/geometry.mjs": "de4ef1aa101184d52ac79dad77a8b28fa8e1acdcbcb70b574eb51ef461117f11",
+    "docs/prototypes/new-game/T24/graph-fixture.mjs": "2248ad6aa448e0c30ffe088ea56ff1eab8bab2409e0e5336d2b240d973fab2f0",
+    "docs/prototypes/new-game/T24/graph-preflight.test.mjs": "6d84a5409782d98c629c8bfa8b72f0d82b40f71fb7b8f6d058721485be184e6e",
+    "docs/prototypes/new-game/T24/mutations.mjs": "c74b52140e02f3075d80f8cee375e59c1e0e2945a45d90128e60dde66e191cdf",
+    "docs/prototypes/new-game/T24/parameters.mjs": "3b5ab9aecc47ae4a1d36eedd6e0d2484c5e1819f6baae4aa15fe0c1ed483e354",
+    "docs/prototypes/new-game/T24/probe.mjs": "ee0082ddab93435f751bb252e6e9c21c8406673da5088ae0699cb8c2c03970b0",
+    "docs/prototypes/new-game/T24/witness.mjs": "746eda238e12bf27e30ca9fa6a94fcb37b646bd5fb14796d6c82bb2afa309f12",
+    "docs/prototypes/new-game/T62/contract.mjs": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+    "docs/prototypes/new-game/T62/contract.test.mjs": "03b0102a19efe5521446ebee7f602a6f20cfb1ed2c6cb99331d0fd5ce82f83d5",
+    "docs/prototypes/new-game/T62/guards.test.mjs": "e20110ac5d19c7eb0b7e5f3625229ef46972057e0d17555a273fe0d256381760",
+    "docs/prototypes/new-game/T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746",
+    "docs/prototypes/new-game/T62/probe.mjs": "250fc44ac2b9be6b9b9285d539e87aa345555e49017775e23f41487d4f84362b",
+    "docs/prototypes/new-game/T34/acceptance.mjs": "0adb4f2efc20a38dc65718041094f91acc239172b4ef8d5883643a5a89ce0f15",
+    "docs/prototypes/new-game/T34/witness.json": "149fc1922c6895d003866709e26300f008340a2cac0bf0f91bb672cb0c23df35",
+    "docs/prototypes/new-game/T35/feasibility.mjs": "a38385c14cbfe13b4e46d8a828a3a5bfe58e82eed07d68bab72a6b79d0be8943"
+  },
+  "sourcesUnchanged": true,
+  "feasible": true,
+  "records": [
+    {
+      "seed": 0,
+      "removed": -1,
+      "routeCount": 15,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 0,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 0,
+      "removed": 1,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 2,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 3,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 4,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 5,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 6,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 0,
+      "removed": 7,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 8,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 9,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 10,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 11,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 12,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 13,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 0,
+      "removed": 14,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": -1,
+      "routeCount": 15,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 0,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "removed": 1,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 2,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 3,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 4,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 5,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 6,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 1,
+      "removed": 7,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 8,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 9,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 10,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 11,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 12,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 13,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1,
+      "removed": 14,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": -1,
+      "routeCount": 15,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 0,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "removed": 1,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 2,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 3,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 4,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 5,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 6,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "removed": 7,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 8,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 9,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 10,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 11,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 12,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 13,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 2,
+      "removed": 14,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": -1,
+      "routeCount": 15,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 0,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "removed": 1,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 2,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 3,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 4,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 5,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 6,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 7,
+      "removed": 7,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 8,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 9,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 10,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 11,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 12,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 13,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 7,
+      "removed": 14,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": -1,
+      "routeCount": 15,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 0,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "removed": 1,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 2,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 3,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 4,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 5,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 6,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 42,
+      "removed": 7,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 8,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 9,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 10,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 11,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 12,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 13,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 42,
+      "removed": 14,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": -1,
+      "routeCount": 15,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 0,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 1994,
+      "removed": 1,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 2,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 3,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 4,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 5,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 6,
+      "routeCount": 14,
+      "ok": false,
+      "errors": [
+        {
+          "group": "preserved",
+          "error": "fortress: Single-entrance fortress limits exceeded"
+        }
+      ]
+    },
+    {
+      "seed": 1994,
+      "removed": 7,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 8,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 9,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 10,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 11,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 12,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 13,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    },
+    {
+      "seed": 1994,
+      "removed": 14,
+      "routeCount": 14,
+      "ok": true,
+      "errors": []
+    }
+  ]
+}
