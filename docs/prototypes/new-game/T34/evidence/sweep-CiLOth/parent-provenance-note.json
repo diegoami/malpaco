@@ -1,0 +1,5 @@
+{
+  "reason": "Main session added a coast-variation assertion while this sweep was already running. Generator inputs stayed unchanged, but test source differs from its start snapshot. Retain this run as diagnostic, not the final stable-input acceptance; rerun after edits finish.",
+  "oldTestSha256": "961e76c3cc08059416968f01ada169cce821456ee75e3ac2c46c10675b5698af",
+  "newTestSha256": "832c1499c59e9ef13e25e0ca3d3ce57fbec1aab6760842d53b70150181668f34"
+}

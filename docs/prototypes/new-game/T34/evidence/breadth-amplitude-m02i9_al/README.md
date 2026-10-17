@@ -1,0 +1,3 @@
+# Broader amplitude diagnostic
+
+Main-session disposable probe on original T34 head7f1860d. Existing six-seed feasibility passes narrow geography; increasing independent warp/placement alone does not meet unchanged constraints. This is failed feasibility evidence, not a delivered broader generator. All18 seed outcomes and every rejected attempt/candidate are archived; loose originals remain in the preserved task/T34-broader-geography-preflight worktree. `run-probe.py` restores original core bytes in finally; probe-report confirms restoration. Core behavior was changed only in that separate disposable worktree; current T34 production unchanged. Source hashes inside each sample pin the exact temporary amplitude implementation.

@@ -1,0 +1,17 @@
+{
+  "originalSha256": "b68e153dbe9c4eb12419158f0bcd47133bc70c0addd636130a9ca6edc582458a",
+  "candidateSha256": "15a6a29d0856e409807d60683219222fe99e4669860a666c1d3405201744ebfd",
+  "restoredExactly": true,
+  "commands": [
+    {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/island-geography.test.ts"
+      ],
+      "exit": 1,
+      "output": "mock-units-output.txt"
+    }
+  ]
+}

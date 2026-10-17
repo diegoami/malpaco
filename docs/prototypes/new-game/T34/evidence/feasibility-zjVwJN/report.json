@@ -1,0 +1,114 @@
+{
+  "kind": "existing fixed-reference construction feasibility smoke",
+  "seeds": [
+    0,
+    1,
+    2,
+    7,
+    42,
+    1994
+  ],
+  "attemptsPerSeed": 1,
+  "accepted": 6,
+  "records": [
+    {
+      "seed": 0,
+      "accepted": true,
+      "stage": "inspect",
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "boardHash": "755d06e98f3b8d9c75b6c244cd711a99286e2c7e5a3a7770bef2ad2188462782"
+    },
+    {
+      "seed": 1,
+      "accepted": true,
+      "stage": "inspect",
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "boardHash": "c974f993b2ba6e5153488575d3edf43a6ca3d3d85b4537f48311b1a134bf3ced"
+    },
+    {
+      "seed": 2,
+      "accepted": true,
+      "stage": "inspect",
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "boardHash": "9d36a365fc351b3ef65c75275276ddd4efcd1bd32779cf532e2f9c1477a610a0"
+    },
+    {
+      "seed": 7,
+      "accepted": true,
+      "stage": "inspect",
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "boardHash": "bb4c2922b3ff4878e05c3cdcedb668b5840c1b241de6c52a4852f52d6ed58c5d"
+    },
+    {
+      "seed": 42,
+      "accepted": true,
+      "stage": "inspect",
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "boardHash": "b04d42ad47c890aea9a73a45923eccc262f533ab86c61920871e354430eba2fc"
+    },
+    {
+      "seed": 1994,
+      "accepted": true,
+      "stage": "inspect",
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      },
+      "boardHash": "d580af36465d0ed5f21c2bf2151f3c5d89c47541542c3c5b5de35402bcf7509e"
+    }
+  ],
+  "sourceHashes": {
+    "docs/prototypes/new-game/T63/board.json": "ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9",
+    "docs/prototypes/new-game/T24/contract.mjs": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+    "docs/prototypes/new-game/T24/contract.test.mjs": "8fdc8d7e697511116efab6ae600c7659f4052c9c651703131a3e059b156cf60d",
+    "docs/prototypes/new-game/T24/existing.mjs": "378650b34a7639ca876bef3955bd59239a8e2c8cf49c4beb8e16e7d46dcdeae2",
+    "docs/prototypes/new-game/T24/geometry-preflight.test.mjs": "c9e5f8b52cd101bdb22ff78b56bec5b655e2cca9691eea0d8b5fcc1f423b36b1",
+    "docs/prototypes/new-game/T24/geometry.mjs": "de4ef1aa101184d52ac79dad77a8b28fa8e1acdcbcb70b574eb51ef461117f11",
+    "docs/prototypes/new-game/T24/graph-fixture.mjs": "2248ad6aa448e0c30ffe088ea56ff1eab8bab2409e0e5336d2b240d973fab2f0",
+    "docs/prototypes/new-game/T24/graph-preflight.test.mjs": "6d84a5409782d98c629c8bfa8b72f0d82b40f71fb7b8f6d058721485be184e6e",
+    "docs/prototypes/new-game/T24/mutations.mjs": "c74b52140e02f3075d80f8cee375e59c1e0e2945a45d90128e60dde66e191cdf",
+    "docs/prototypes/new-game/T24/parameters.mjs": "3b5ab9aecc47ae4a1d36eedd6e0d2484c5e1819f6baae4aa15fe0c1ed483e354",
+    "docs/prototypes/new-game/T24/probe.mjs": "ee0082ddab93435f751bb252e6e9c21c8406673da5088ae0699cb8c2c03970b0",
+    "docs/prototypes/new-game/T24/witness.mjs": "746eda238e12bf27e30ca9fa6a94fcb37b646bd5fb14796d6c82bb2afa309f12",
+    "docs/prototypes/new-game/T62/contract.mjs": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+    "docs/prototypes/new-game/T62/contract.test.mjs": "03b0102a19efe5521446ebee7f602a6f20cfb1ed2c6cb99331d0fd5ce82f83d5",
+    "docs/prototypes/new-game/T62/guards.test.mjs": "e20110ac5d19c7eb0b7e5f3625229ef46972057e0d17555a273fe0d256381760",
+    "docs/prototypes/new-game/T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746",
+    "docs/prototypes/new-game/T62/probe.mjs": "250fc44ac2b9be6b9b9285d539e87aa345555e49017775e23f41487d4f84362b",
+    "docs/prototypes/new-game/T64/layout.mjs": "833e255eee8d4ec1e3efd3852dc3bfaf08044eda716a93e2f672a7dbb6b0b116",
+    "docs/prototypes/new-game/T65/borders.mjs": "6d2d68eb54d404e326b8b09a8f477a6108cfcdd125eabe77188a83bfa206926d",
+    "docs/prototypes/new-game/T34/feasibility-smoke.mjs": "3b5ba5c3010ea2c115c07b9ddbae0af52ad874f7f24ea5e4a884d19f08f5c642"
+  },
+  "sourcesUnchanged": true,
+  "targetRateEstablished": false,
+  "topologyVaried": false,
+  "constraintsRelaxed": false,
+  "limitations": "Six diagnostic seeds on one reference graph; not T34 implementation, 100-seed acceptance, or a demonstrated 99%/50-attempt generation target. Any failures are retained, never filtered."
+}

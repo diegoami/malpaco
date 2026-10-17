@@ -1,0 +1,1084 @@
+{
+  "command": [
+    "/home/diego/.nvm/versions/node/v24.21.0/bin/node",
+    "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/sweep.mjs"
+  ],
+  "seeds": 100,
+  "successes": 0,
+  "successTarget": 0.99,
+  "attemptsMax": 50,
+  "targetMet": false,
+  "failureCounts": {
+    "Geography construction not installed": 100
+  },
+  "geometryHashes": 0,
+  "topologyHashes": 0,
+  "sourceHashes": {
+    "src/core/board-fairness.ts": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717",
+    "src/core/board-gen.ts": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942",
+    "src/core/bonuses.ts": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+    "src/core/combat.ts": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+    "src/core/computer.ts": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+    "src/core/index.ts": "0bd09500dcfda1a093e97b52efbea2a17a94663d342fab3a5daab96f0d711381",
+    "src/core/island-geography.ts": "591eebae4998f39fb4c7e3213d52ba5e15de0ee1d6428b77044f8975fe69e489",
+    "src/core/map.ts": "3457bf4de33874cd78aa2a06a29819c8d7920e1c1eb36ce0500d326d5092cdaf",
+    "src/core/match-save.ts": "47a0ad5da653c60a0ae51e587863e02674a65d1319a7facf4bbafe9e64e2aae3",
+    "src/core/movement.ts": "ef59529db0f70d17677af8d229c07a8cdb79bef5eac2d51f6790bd675cdfa323",
+    "src/core/options.ts": "0103f21c5afe6a99d968079633a06f169f6941c129b94c212b9e93e547748513",
+    "src/core/reference-game.ts": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+    "src/core/reference-map.ts": "cc920c2840843391f83bb9d1c393afc5342cfeb5625ecd2ca56f7252f85ec090",
+    "src/core/reinforcement.ts": "b9a7fe2203bcff3aa06beebf5ec3ac8c2103641a0522a5e4805714b216452556",
+    "src/core/rng.ts": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498",
+    "src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+    "src/core/save.ts": "54eb5f98c7bc6ac90d39a3d2ddf53eef4fd37c5f53b609d847d20289433b9748",
+    "src/core/seats.ts": "4e67c932ef1b420c7b4e07d646dfe423c249bd3dd90eed60549ea01b8ba06f67",
+    "src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+    "src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+    "src/core/types.ts": "c4dce555abebede88237ef08ad926cc166e2076f3a468d1124f495f99bf61183",
+    "src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+    "tests/core/island-geography.test.ts": "961e76c3cc08059416968f01ada169cce821456ee75e3ac2c46c10675b5698af",
+    "docs/prototypes/new-game/T24/README.md": "5bc762f10be832416b5e8e9ef72ee6233092b8912f4d0f04489f468f00b07f21",
+    "docs/prototypes/new-game/T24/contract-proposal.md": "4955c1883c456e0f4805a9811fab9ba6d733ff285bd77086bce41a30d382f4c3",
+    "docs/prototypes/new-game/T24/contract.mjs": "b1c78e7ad1e8ebc217b5a76e32a30e224fbbe9b009fe03b4a248d3ab62bbee04",
+    "docs/prototypes/new-game/T24/contract.test.mjs": "8fdc8d7e697511116efab6ae600c7659f4052c9c651703131a3e059b156cf60d",
+    "docs/prototypes/new-game/T24/existing.mjs": "378650b34a7639ca876bef3955bd59239a8e2c8cf49c4beb8e16e7d46dcdeae2",
+    "docs/prototypes/new-game/T24/geometry-preflight.test.mjs": "c9e5f8b52cd101bdb22ff78b56bec5b655e2cca9691eea0d8b5fcc1f423b36b1",
+    "docs/prototypes/new-game/T24/geometry.mjs": "de4ef1aa101184d52ac79dad77a8b28fa8e1acdcbcb70b574eb51ef461117f11",
+    "docs/prototypes/new-game/T24/graph-fixture.mjs": "2248ad6aa448e0c30ffe088ea56ff1eab8bab2409e0e5336d2b240d973fab2f0",
+    "docs/prototypes/new-game/T24/graph-preflight.test.mjs": "6d84a5409782d98c629c8bfa8b72f0d82b40f71fb7b8f6d058721485be184e6e",
+    "docs/prototypes/new-game/T24/mutations.mjs": "c74b52140e02f3075d80f8cee375e59c1e0e2945a45d90128e60dde66e191cdf",
+    "docs/prototypes/new-game/T24/parameters.mjs": "3b5ab9aecc47ae4a1d36eedd6e0d2484c5e1819f6baae4aa15fe0c1ed483e354",
+    "docs/prototypes/new-game/T24/probe.mjs": "ee0082ddab93435f751bb252e6e9c21c8406673da5088ae0699cb8c2c03970b0",
+    "docs/prototypes/new-game/T24/witness.mjs": "746eda238e12bf27e30ca9fa6a94fcb37b646bd5fb14796d6c82bb2afa309f12",
+    "docs/prototypes/new-game/T62/README.md": "460584fc1df423c3dafe4e65d7681d5eebe28189e7df17c692652202e4cbe40c",
+    "docs/prototypes/new-game/T62/artifacts.sha256.json": "ec18f7b21546e854976c949e5b9f336848f4c3d67c9d05fd25d864f4e5666433",
+    "docs/prototypes/new-game/T62/artifacts.v2.sha256.json": "4744e4365f4dca51636927b7f7156e6c7c1a33fa29d2ac93ce4f3ee7c14bbedb",
+    "docs/prototypes/new-game/T62/artifacts.v3.sha256.json": "6f563498ac05bfa2af4b1e96fdc605374a8746c6f791b2c13761bfb5e9f4632b",
+    "docs/prototypes/new-game/T62/audit.py": "a3256b4e7ef551351172a9c82923e7556abf7c4f0aab08183decc3a0857d1bf6",
+    "docs/prototypes/new-game/T62/contract.mjs": "7f30ca2237b9d858d4b0a226cdfb0d0fddc6a1a6e918be0a282673a14ab31346",
+    "docs/prototypes/new-game/T62/contract.test.mjs": "03b0102a19efe5521446ebee7f602a6f20cfb1ed2c6cb99331d0fd5ce82f83d5",
+    "docs/prototypes/new-game/T62/guards.test.mjs": "e20110ac5d19c7eb0b7e5f3625229ef46972057e0d17555a273fe0d256381760",
+    "docs/prototypes/new-game/T62/parameters.mjs": "722bfb1f62b58259f7067c173b7defdca069b02430a765d54cb620cc8e3b1746",
+    "docs/prototypes/new-game/T62/pr-body.md": "eb3f54d640b5fa1cf20ead51e53cc368bf5e6648d6681827f4def756418ca242",
+    "docs/prototypes/new-game/T62/prepare-pr.py": "f9c241146e84584493ba5e93e93a0b8781fe6cd236b1f286657924265245e8a3",
+    "docs/prototypes/new-game/T62/probe.mjs": "250fc44ac2b9be6b9b9285d539e87aa345555e49017775e23f41487d4f84362b",
+    "docs/prototypes/new-game/T62/validate.py": "20bd501977ffef1d1fac788677197021dbed41fe46a636038da44b4245fa18da",
+    "docs/prototypes/new-game/T62/verify-evidence.py": "18bee1f5f6dedb69493132dfc75f0fce9d25542b1c4e92ee870f64fcc24287e0",
+    "docs/prototypes/new-game/T34/README.md": "849c6e6fe94bf54ef4b832a674fc597823a214d0ca43f48e2b0aa5bed2d11b7e",
+    "docs/prototypes/new-game/T34/acceptance.mjs": "0adb4f2efc20a38dc65718041094f91acc239172b4ef8d5883643a5a89ce0f15",
+    "docs/prototypes/new-game/T34/candidate.ts": "ccbeba6dd178e3955f7066f03255ec32cea24fa041c78acb95341d0297a1c743",
+    "docs/prototypes/new-game/T34/feasibility-smoke.mjs": "3b5ba5c3010ea2c115c07b9ddbae0af52ad874f7f24ea5e4a884d19f08f5c642",
+    "docs/prototypes/new-game/T34/feasibility-wide.mjs": "eef4ff0e4f3e97576776b65691a6319da64ed10492fb47841e0337d41d94bc77",
+    "docs/prototypes/new-game/T34/flip-probe.mjs": "a35a48801d11da4d673dd2b27a8bf06c6f4c6d1e8451c326f8b2b8a225097240",
+    "docs/prototypes/new-game/T34/preflight.py": "a49044f7f5bf4f2713a3d9a9c89794b2530e220c3a9611f0468c6c854e111f0a",
+    "docs/prototypes/new-game/T34/prepare-witness.mjs": "6072045f785b960009a6e36f245036e75d7c542711649690fa8b16bd4feb3496",
+    "docs/prototypes/new-game/T34/run-command.py": "3a7a0414be62a8c70652f09b6ff763cf0a33ff1aba9aee0a7b376cbdf21136b2",
+    "docs/prototypes/new-game/T34/sweep.mjs": "d3b40662a4d3adf3266549a6be8b1e105096da8d5148c591b350836564a9b698",
+    "docs/prototypes/new-game/T34/witness-provenance.json": "fb15b6d4235f3655e7e81cf5926587c5d58212a5cc46990d52b58271f557bf84",
+    "docs/prototypes/new-game/T34/witness.json": "149fc1922c6895d003866709e26300f008340a2cac0bf0f91bb672cb0c23df35"
+  },
+  "sourcesUnchanged": true,
+  "records": [
+    {
+      "seed": 0,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "2b9c5338cf5497fe0b33a330776ef40c867e17f37b0d95a6509d39e5a903c387",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 1,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "bbceb1a2a39283ac282df59eb21fe979cf010295a5f80aa4ef8055249897aa0d",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 2,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "8cee76578a72eee8ff0079304f957ee6263a5a721a4b1169b0144420186d67a9",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 3,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "a97aef6512efde9b9e0c6affe349500c8914f9ce8c98007db3a8ac5fe6d65cab",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 4,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "6ecaa4b46a0124b5437117481a9dc23313c2e088063f95a7481a146894c7e97c",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 5,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "f1e318d4e771ff004f25a9acd14b9126217c21e629d20f3fcf0eef19c6fe4d83",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 6,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "87896d914721123971dd2004379e99ff85c705d1a65722ca2722c60c2af9809a",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 7,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "4ff240f6e19ec8b9bd12813daba9b31fe8c884485ff9115e8246e37ed24afcdc",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 8,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "89db6fd4f962bb265dc7f3bae0f28e2e7087db90646ce333eb6bf2bd8a49c7c2",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 9,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "5bc8b647f404665713c82fe1dae0d74eece22f3147d05d886b6369c4399c48e4",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 10,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "ab2c1f454952114c4624d9b3cac9342a2771e37467a3b4dd5519f619e0797ec5",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 11,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "6197bcd51012e90a0036b8a35dd6c7b5c61bdbac6d1692507a24572582c4966d",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 12,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "e26f99dc0b17bc7881c263aae4aaac86eef895b8b05bd94e926e82550f0a1df3",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 13,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "fde51028cb2eff9ef1473f6f46e46ac6a3dd4211dabb3b341e9b28d465a36907",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 14,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "b9ce1d51239da7f20a8aea81f05f1d86cab590557afbf9c0b47234f9ec6bb65b",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 15,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "0c8e671ebb0715fdc1e5ea9c50121dae55ff4a84077722b663a2a01cf38c3114",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 16,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "71a597dfd6e922c5fa74106ef05dd144667b03ceb53bdaccee1960ee0ba7b27f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 17,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "9c7741979222e9315da2017a3f4aa01929c9651e848d063fd17cee25b457761f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 18,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "a104c82765b007607dca4790321370d17a5d99efb7c97e436cf340ba37fa3e8e",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 19,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "7aea13ee3b9a1a27ad9efc063b055008de37935acc8912dde6079d21be2a9320",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 20,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "cee1afbde284b1f3bfd3592dd1d9bba5c0b7f3093b2a12315c095aca1c253e0a",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 21,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "f7513c8fd208035ec6db584f68a8ece84c26aa4c3b2eff58f8fd8181e7f55ad8",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 22,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "dc605a78bbbffa3678154f1e91fad73ff45fa94d282b81a768a75532db894f41",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 23,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "aa9f112ff09e5c7f207743fbc582ac9280d867c251fc40e2bfd332fa691b2108",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 24,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "46ce175319f6a587a5f7a9ff9080688b75fb53c5cebdeb24cc0b6c831103b0ea",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 25,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "207b936d23535c972c55a1c2c065f6959216a0cbab80467f9db9081fd7dc277d",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 26,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "9af548816bc0d7e54efe9223532c56285f37717d85b9a54c9905464e78a6871f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 27,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "49668b857603c39e07961ca291a942b7eb43e5a79893411d39601d165730aebf",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 28,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "746971550fa8ae73a1cc1dfcae777579f93911dec9a7eee5e94ce01d82019775",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 29,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "556f494d148bc6fbf51663966094739cb30efa64c5f5b2c9c4776823b71d1361",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 30,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "f26f7cafc01ec7ea1c10dda3675471fd337fa679f7272b38ef9cd31a63bfd44f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 31,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "44ecc9f8d2ebb403afcb8ebd3b3d4b743fc1bcac6016ad5f63a5e916b254dcb8",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 32,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "92266c6dc7f26c7d9f498b1c112f9dd3c09155e0cf5d99b45d97cf9b017417be",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 33,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "1cebe57f2959c242496288dc8bf48e235bbf63a91ec9b6f70f3f5178615a7579",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 34,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "17f660b9945b70a78eafb40b8d29d2320e7feb00cf529e1b4f5b57a39bd292ae",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 35,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "1f36354fa25997e0f000b2b2722c7a1ee02d729debf6422f7b59411a77330385",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 36,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "8e90241fe4c322fa87da00b60ba8269bcccb17256e5dbe7179beade3c22db2b8",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 37,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "519c172ae8b4088bb631514cda1a6215fcefa64f86f12dd360bf818df14d9b9d",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 38,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "4d29fcdee56583d9ae1e556e74662997dc51c925efb035418ebe64d530748b38",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 39,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "6d12274fa92597dc0a6ebb87bef794765f074e9872ef0bfe4d77bb17ff69e1bd",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 40,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "f59c2826e6628cfd2f3ad682aee865daf49d5d44c0da43a3d8aedf0d3b59ca96",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 41,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "d96c93c671844c17263c6b0527323ec8b41f5da14ef6d5292afb94290ed34585",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 42,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "ff59b930fa52b29e5ec9aefa8b6483b339b1892aa948bc0de22ebe3d3e0086c5",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 43,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "e37d4ce95f7bc6ee0533904000f3efc2c72b08b3d84c816603b18961da0819aa",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 44,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "1707f7e7e8a877b5475eedad8b57ebbae87b3111e903865dcc8ab2d0fd7e52a8",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 45,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "8a69e0050bdadca67e75de58e17cbce673e8723c368d15e16e25c42d5f0544cd",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 46,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "27f374a2de2cd07988876de7f51c1473449efcde3fe09233b373f17e29586e45",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 47,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "e222d997a88c760607eeb3db44b1970b8bf8381dda20641405c33b6abc9db65f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 48,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "101409e0461d7f89bf47586942e590078add6c430533e3840312735acdb83daa",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 49,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "c2a18cbfeafd256323c9c3552286783b9c34ffe316538e683552e6c7a2887d5f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 50,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "d7eecf0fadb480babf0343be6058678586b288acd11411a1f7338ddefd2ccc2f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 51,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "1be0b4184a0a7b353bd775af999ab9960df28cdb04296c8f2a1217c4895bec86",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 52,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "e3773d551ebe264fc9b4212ec4184908818bbec04cfd4205bcfef482ecc9dc04",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 53,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "c82edee5c65d4e1ed80471f29175afaef7a88a03c57e6085f35e722638a00188",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 54,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "636f4aea79bc2ff128ec44730f5ab6a6e807726de5969bafa7b75c9b7aff8fa9",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 55,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "7787e06fe0712c854d1ee2495d1d7a6953fc7d03d98d5c35f87f26c62d160133",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 56,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "32076ef1794b3c010b9c97651990e7b8fb0d2551215178dcb85aee8801a9ca18",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 57,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "34020699063b6f72e9cca2c4c2f8ac7caed97dcc669d2eddb5fac8c30ca834a5",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 58,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "d8b54eaccc1a4e35af43f7de254880f10891803b3e1bfbdd5d98e6bcb5c57e79",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 59,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "3ca273f5bd7f2e6802e0a6aa071e0ac420187630c118b875e14b2d2c08a01f36",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 60,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "6d5b6cd1ef7ac0c5f29f8e972c12464c19e795a79d2222031b90e414805730f0",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 61,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "895aebb4a99b52afa59471e6f99dcb6bb9047c6218f9777abe39c9ef4b1760a3",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 62,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "c1a01feaadbd0504d3bb3180505c7ebe1ba5079bda14e7fe3acebb6c19881145",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 63,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "1bc73cd2c4f9f8897ba13db67d6fe60bf770d7048f818fa9fa306b091e3ca835",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 64,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "39cf4b05e0fdc5dea5e36f9175e595dc892508f46281845319454c928090178e",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 65,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "a8bfc140cd96ad5e358496182a97dfbe22556aa972642195b6c937f4e1322cec",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 66,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "8dda100c3d1cebd4748b3b09a5ec00672b731148ea16ccf4875053bb45b767ee",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 67,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "7ad7d149b747769e71ff1f9d209d086a456244c06293e610c8eff7c977f05a7a",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 68,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "865031e67c046c0be2ba2971b1d3291a85c4ea4c358536484992134e52496b89",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 69,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "ccdb315337ea955bf2f97c8dffe05de8d74f38ede47f143644f27342c0584df3",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 70,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "d24d01f529787b8dfcbe35b4ea3bd6a4f1a86837aa353fa042eb8ef77c723d13",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 71,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "d9d0e1ed3490e7296d6fd00ef1c30e0942e3685674eff7e271546fc95fe2b632",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 72,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "004ca0575cd0ed30fbd3acd95fdbf44ccf49991574615fb92b82a6aefe2d52e3",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 73,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "28c68928eb075218c618b05550c7571aa594f7e3453867c1acd6a57e51c6ef95",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 74,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "b586b4fcd8868527b002726f9b3a59725427f025a9a330362110aeb76a3e4bb4",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 75,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "243b120864696cc4785d4c982bce8057f228fbc7848ee0ea86aaf7aad835b390",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 76,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "607aea56ac11858d88d8dd4da56bfb38263c7f4825ad00eea90596e17b424712",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 77,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "24289afb3d00e138c8b4e57e7135a089f625a4398a2577aa3c3f5a3b3905972d",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 78,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "d4e849b8e5ad9e6df8960cd5c8346b027adfc5d1bf3a638b302af01e4663181c",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 79,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "8996968e0d7e1fb631f09295c8ad00d5b67476ee05689f17637b401bcd228036",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 80,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "0d0fddefb2087e54d5550fecb508164dac5880cdcd1736b4a879c51370f59c24",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 81,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "8c90165ef0afebba33b25aa2ff103bfb105c151c6325b58662de9952e3ac95a5",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 82,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "867bacb991a94795ba9e6dbc6aa476292c783069c17f8cd2500e74329312722a",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 83,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "02114e17876b22c6d2fedc5fc844ded661dc6e3888d2b545e9aa7d2d1d131f18",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 84,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "a5bf169b06855a1c97f6129bebbfaa253c49ba9d7c07444fc5733a63007a49a2",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 85,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "173a61719c78e921e00c857377fcaac6139c8697433ead500f85333185463a1f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 86,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "7c6ae9fd497a17702a4a0c195b691aa21d49226115400c2924651e06e2a5f487",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 87,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "fc9bc017edb081a4a93ce0624b46bec2e3a79559fadd5e595c15b24b26c3e979",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 88,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "131419c0e74f5c691bdeba3561a5309526a6e280c48c419aee4fa91ba39f442c",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 89,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "3dac0cd90a5c70f0265d65384ede39eaebd6de39e235da618b6dd83c01e2121f",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 90,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "9684d687d92eea4d52e2a2dc18ac01d073aa8795a0c0c6af3d9b5b0dcb442060",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 91,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "b320702f332c624f93ccc83f686b46e31181525a8f221676a2185198c4ed3298",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 92,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "2b39dad9eb927dbc1d9e8e4c4d885c34b9bc206e735e63eb62fc5b29fa0fdcc1",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 93,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "4dd8ca6c8dde41769c523d5de4d9e649aad8ed0c539d5663ae1df149a9b58509",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 94,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "8bbcdd7168c56f2e0a84a4aa701d37fb810fc6f81055175c3d23bcbb4859c8fa",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 95,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "6357da3e5cf1c85a8198341bed9e3dfb97ce5850fb7fef404c119972fc2d3907",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 96,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "4109b1c652df5e8f86cc80fea428a4e70780b24bef001e37e8c61664631dffcc",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 97,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "9753323697dc364a3deee7f368b317a0511bd333a33e5b08597efea61db28487",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 98,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "c31d02607d2aaf02b38c96352dc16974c38c20a1fb1d45ab5043ccab951cc4d2",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    },
+    {
+      "seed": 99,
+      "success": false,
+      "attempts": 0,
+      "replayHash": "98befb39f3421508fc087239a91ef30c3324701e204880eddaa5cf902ad9a152",
+      "identical": true,
+      "errors": [
+        "No accepted subdivision"
+      ]
+    }
+  ],
+  "scope": "Witness-based seeded partial geography, two local T1 exchange sites and joint corridor/label/placement rejection. Not complete playable boards or arbitrary planar topology; T35 completes connectivity choices/fairness and T36 measures 1000 seeds with UI."
+}

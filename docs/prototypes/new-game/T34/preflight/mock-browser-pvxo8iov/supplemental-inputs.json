@@ -1,0 +1,21 @@
+{
+  "reason": "The initial wrapper hashed new task inputs but its archive still iterated the earlier sources list. Exact omitted inputs recovered by matching recorded hashes; no substitution. Future wrapper archives the inputs dictionary.",
+  "sourceHashes": {
+    "docs/prototypes/new-game/T34/candidate.ts": "298aa3019b6bcb81244c4eddf72ddd56ca0cdaba7911ea9118f2c62f34667c52",
+    "docs/prototypes/new-game/T34/acceptance.mjs": "0adb4f2efc20a38dc65718041094f91acc239172b4ef8d5883643a5a89ce0f15",
+    "docs/prototypes/new-game/T34/feasibility-smoke.mjs": "3b5ba5c3010ea2c115c07b9ddbae0af52ad874f7f24ea5e4a884d19f08f5c642",
+    "docs/prototypes/new-game/T34/flip-probe.mjs": "a35a48801d11da4d673dd2b27a8bf06c6f4c6d1e8451c326f8b2b8a225097240",
+    "docs/prototypes/new-game/T34/preflight.py": "a49044f7f5bf4f2713a3d9a9c89794b2530e220c3a9611f0468c6c854e111f0a",
+    "docs/prototypes/new-game/T34/witness-provenance.json": "fb15b6d4235f3655e7e81cf5926587c5d58212a5cc46990d52b58271f557bf84",
+    "docs/prototypes/new-game/T34/feasibility-wide.mjs": "eef4ff0e4f3e97576776b65691a6319da64ed10492fb47841e0337d41d94bc77",
+    "docs/prototypes/new-game/T34/run-command.py": "3a7a0414be62a8c70652f09b6ff763cf0a33ff1aba9aee0a7b376cbdf21136b2",
+    "docs/prototypes/new-game/T34/prepare-witness.mjs": "6072045f785b960009a6e36f245036e75d7c542711649690fa8b16bd4feb3496",
+    "docs/prototypes/new-game/T34/README.md": "849c6e6fe94bf54ef4b832a674fc597823a214d0ca43f48e2b0aa5bed2d11b7e",
+    "docs/prototypes/new-game/T34/full-preflight.py": "76861b1d045ad3ee0144c7100593bb0d4d958ef992a4fd5ba0f7fa615dc0629f",
+    "docs/prototypes/new-game/T34/sweep.mjs": "d3b40662a4d3adf3266549a6be8b1e105096da8d5148c591b350836564a9b698",
+    "docs/prototypes/new-game/T34/witness.json": "149fc1922c6895d003866709e26300f008340a2cac0bf0f91bb672cb0c23df35",
+    "docs/prototypes/new-game/T33/fixtures/conquest.json": "14c21042974fb266938afb1e2e53ebb049e27062baa44358331b3885fad44ddf",
+    "docs/prototypes/new-game/T33/fixtures/SHA256SUMS": "b022d96ac24fbedd477e3fe60b6fab535cde24ef9c622a01a2a541fad41147f2"
+  },
+  "archiveSha256": "9f142a902cf7bb892f0201c21217b99e07254de0bd8e1a2596c8e569f2850ed6"
+}

@@ -732,3 +732,5 @@ checks the untouched default one-human/three-Normal-computer setup. The same
 complete-game acceptance runs against an extracted package. Screenshots/evidence
 under [T33](prototypes/new-game/T33/) support the owner's separate appearance and
 pacing judgment; automated completion is not that approval.
+
+The seeded island-geography constructor (`src/core/island-geography.ts`, T34) is a pure partial-data API. Its bounded witness-based family varies coast/cell geometry, four land topologies, placement and exposed port reservations under unchanged T24/T62 limits. It exports no owners, armies, sea adjacency or bonuses and does not change the fixed-reference default. T35 completes playable boards and T36 integrates and measures the generated-map UI; see `docs/prototypes/new-game/T34/CONTRACT.md` for sampling and generality limits.

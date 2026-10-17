@@ -1,0 +1,645 @@
+{
+  "command": [
+    "/home/diego/.nvm/versions/node/v24.21.0/bin/node",
+    "/home/diego/projects/malpaco/.cache/t34-work/docs/prototypes/new-game/T34/flip-probe.mjs"
+  ],
+  "reports": [
+    {
+      "name": "candidate-0.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.125,
+      "ro": false,
+      "so": false,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_40"
+        ]
+      }
+    },
+    {
+      "name": "candidate-1.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.125,
+      "ro": false,
+      "so": true,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_9",
+          "labels: Missing/non-finite label/country province_40"
+        ]
+      }
+    },
+    {
+      "name": "candidate-2.json",
+      "accepted": true,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.125,
+      "ro": true,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      }
+    },
+    {
+      "name": "candidate-3.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.25,
+      "ro": false,
+      "so": false,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_40"
+        ]
+      }
+    },
+    {
+      "name": "candidate-4.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.25,
+      "ro": false,
+      "so": true,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_9",
+          "labels: Missing/non-finite label/country province_40"
+        ]
+      }
+    },
+    {
+      "name": "candidate-5.json",
+      "accepted": true,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.25,
+      "ro": true,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      }
+    },
+    {
+      "name": "candidate-6.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.5,
+      "ro": false,
+      "so": false,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_40"
+        ]
+      }
+    },
+    {
+      "name": "candidate-7.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.5,
+      "ro": false,
+      "so": true,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_9",
+          "labels: Missing/non-finite label/country province_40"
+        ]
+      }
+    },
+    {
+      "name": "candidate-8.json",
+      "accepted": true,
+      "edge": {
+        "a": [
+          421.90234375,
+          232.6162109375
+        ],
+        "b": [
+          419.7880859375,
+          232.650390625
+        ],
+        "countries": [
+          "province_19",
+          "province_3"
+        ],
+        "r": "province_40",
+        "s": "province_9"
+      },
+      "half": 0.5,
+      "ro": true,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      }
+    },
+    {
+      "name": "candidate-9.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.125,
+      "ro": false,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": [
+          "cells: Subdivision gap/area mismatch island_5",
+          "cells: Cell overlap province_24/province_17",
+          "cells: Cell overlap province_17/province_29",
+          "borders: Declared/shared boundary mismatch province_24",
+          "borders: Declared/shared boundary mismatch province_17",
+          "borders: Declared/shared boundary mismatch province_33"
+        ]
+      }
+    },
+    {
+      "name": "candidate-10.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.125,
+      "ro": false,
+      "so": true,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_29"
+        ]
+      }
+    },
+    {
+      "name": "candidate-11.json",
+      "accepted": true,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.125,
+      "ro": true,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      }
+    },
+    {
+      "name": "candidate-12.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.25,
+      "ro": false,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": [
+          "cells: Subdivision gap/area mismatch island_5",
+          "cells: Cell overlap province_24/province_17",
+          "cells: Cell overlap province_17/province_29",
+          "borders: Declared/shared boundary mismatch province_24",
+          "borders: Declared/shared boundary mismatch province_17",
+          "borders: Declared/shared boundary mismatch province_33"
+        ]
+      }
+    },
+    {
+      "name": "candidate-13.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.25,
+      "ro": false,
+      "so": true,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_29"
+        ]
+      }
+    },
+    {
+      "name": "candidate-14.json",
+      "accepted": true,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.25,
+      "ro": true,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      }
+    },
+    {
+      "name": "candidate-15.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.5,
+      "ro": false,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": [
+          "cells: Subdivision gap/area mismatch island_5",
+          "cells: Cell overlap province_24/province_17",
+          "cells: Cell overlap province_17/province_29",
+          "borders: Declared/shared boundary mismatch province_24",
+          "borders: Declared/shared boundary mismatch province_17",
+          "borders: Declared/shared boundary mismatch province_33"
+        ]
+      }
+    },
+    {
+      "name": "candidate-16.json",
+      "accepted": false,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.5,
+      "ro": false,
+      "so": true,
+      "checks": {
+        "attachment": [
+          "Malformed attachment input: Missing/non-finite/non-simple land geometry"
+        ],
+        "water": [
+          "Malformed water input: Missing/non-finite/non-simple land geometry"
+        ],
+        "traceability": [
+          "Malformed traceability input: Missing/non-finite/non-simple land geometry"
+        ],
+        "preserved": [
+          "cells: Missing/non-finite/non-simple country or silhouette",
+          "borders: Cannot establish boundaries from invalid geometry",
+          "labels: Missing/non-finite label/country province_29"
+        ]
+      }
+    },
+    {
+      "name": "candidate-17.json",
+      "accepted": true,
+      "edge": {
+        "a": [
+          690.7998046875,
+          237.6396484375
+        ],
+        "b": [
+          689.2001953125,
+          238.3955078125
+        ],
+        "countries": [
+          "province_24",
+          "province_33"
+        ],
+        "r": "province_17",
+        "s": "province_29"
+      },
+      "half": 0.5,
+      "ro": true,
+      "so": false,
+      "checks": {
+        "attachment": [],
+        "water": [],
+        "traceability": [],
+        "preserved": []
+      }
+    }
+  ],
+  "accepted": 6
+}
