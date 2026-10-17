@@ -51,8 +51,10 @@ function candidate(spread){
   const offset=[0,1].map(axis=>(Math.min(...centres.map(p=>p[axis]))+Math.max(...centres.map(p=>p[axis])))/2);
   const vertices=centres.map(p=>[p[0]-offset[0],p[1]-offset[1]]);
   const coast=Array.from({length:120},(_,j)=>{
-   const theta=tau*j/120,r=1+.024*Math.sin(theta*3+phase)+.008*Math.sin(theta*5-phase);
-   return[r*Math.cos(theta),r*Math.sin(theta)];
+   const theta=tau*j/120,dx=Math.cos(theta),dy=Math.sin(theta);
+   const desired=1+.024*Math.sin(theta*3+phase)+.008*Math.sin(theta*5-phase)+.018*(1+Math.sin(theta*4+phase));
+   const limits=[dx>0?(797-cx)/(rx*dx):dx<0?(3-cx)/(rx*dx):Infinity,dy>0?(457-cy)/(ry*dy):dy<0?(3-cy)/(ry*dy):Infinity];
+   const r=Math.min(desired,...limits);return[r*dx,r*dy];
   });
   const junctions=cycle.map((id,j)=>{
    const prev=cycle[(j+n-1)%n],face=faces.findIndex(f=>f.includes(id)&&f.includes(prev));
@@ -120,7 +122,7 @@ function candidate(spread){
  return {board,placement,routing};
 }
 const results=[];
-for(const spread of [.02,.04,.06]){
+for(const spread of [.02]){
  const {board,placement,routing}=candidate(spread),checks=inspect(board),name='spread-'+spread;
  fs.writeFileSync(path.join(output,name+'.json'),JSON.stringify(board,null,2)+'\n');
  fs.writeFileSync(path.join(output,name+'.svg'),svg(board));
