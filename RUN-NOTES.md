@@ -621,3 +621,7 @@ Readability large-stack fit: exact rectangles show bold143 glyphs extend0.47/0.7
 Readability final fit positive: all6 focused/golden cases pass at bothsizes on44×20normalized badges, strict143count containment and oldnonoverlap guards unchanged; only2declared reference opening goldens updated. Matched before/opening/selection/touch/large-stack previews retained. Run final18and583units/build onstablebytes before committing review head.
 
 END #137 implementation: final18/18pinned cases (stable recorded sources),583units/build/whitespace pass; both541-action games and strict143stackfit pass.4source-deletion controls caught with exactrestoration; all failedwidth/height attempts retained. Only2runtimepresentationpaths,2declaredtextassertionfiles,2intentionalgoldens change outside owned evidence/newacceptance. Main inspected matchedviews. IndependentMiniMax review follows; noCI yet. Owner additionally requires #138, #111, #117 before next presentation; noT33approval.
+
+# Attack interaction #138
+
+PLAN: main implements, MiniMax reviews under owner pairing; isolated stacked branch after readability137. Lock actual mouse/keyboard/touch one-exchange/repeat, Shift selection, held-key/capture/computer gates and real pending save/upload acceptance before production. Explicitly amend only six existing input recipes, no assertions/fixtures/goldens. Coast111/borders117 follow before next presentation; T33 remains unapproved.
