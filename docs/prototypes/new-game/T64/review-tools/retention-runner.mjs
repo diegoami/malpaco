@@ -143,7 +143,7 @@ const removeTree = () => {
   } catch(e) { say(`RETENTION ERROR: ${e.message}`); throw e; }
   sh('git', ['-C', top, 'worktree', 'remove', '--force', worktree], { allowFail: true });
   fs.rmSync(worktree, { recursive: true, force: true });
-  sh('git', ['-C', top, 'worktree', 'prune'], { allowFail: true });
+  // Preserve inherited worktree registrations; remove only this new review tree.
   created = false;
 };
 const newTree = () => {

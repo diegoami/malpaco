@@ -669,3 +669,5 @@ END T64 implementation: pure deterministic constructor reproducespBNspT exactly;
 T64 review preparation: live backupCLI listsminimax/MiniMax-M3; harnessmm-m3/thinking isowner-selected independentfamily. Invocation-localreviewer147 grant/retention runner copiedfromsuccessful146; fullownedT64evidence retainedbeforecleanup, canonicalharness unchanged. Exactlocalfiles archivedunderT64/review-tools. No product/test changes afterf217fca; finalreviewhead followsreceiptpush.
 
 T64 coveragecompletion: includeexistingbattle-accessibility/friendly-feedback in affectedselector;8/8additional cases pass run-4elvj6jz withverifiedcurrentinputs/archives. Prior82plus8nowcomplete90cases; no runtime/assertion/default8case change. IndependentMiniMax runsall90onfinalhead. coverage-integrity recordssolelaterconfigselectiondiff; noCI launched.
+
+T64 review retention: invocation-local runner omits global worktree prune, preserving inherited registrations and removing only its own new review tree after full owned-evidence copy. Exact updated runner archived; canonical harness unchanged. Final review head follows this receipt push; no product/test changes.
