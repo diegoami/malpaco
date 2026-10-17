@@ -1,4 +1,4 @@
-"""Actual-source omission controls; originals and every measured output survive."""
+"""Historical first-family controls for candidate.ts; current source uses r2-controls.py."""
 from pathlib import Path
 import subprocess,tempfile,json,hashlib
 root=Path(__file__).resolve().parent;repo=root.parents[3];out=Path(tempfile.mkdtemp(prefix='controls-',dir=root/'evidence'));target=repo/'src/core/island-geography.ts';original=target.read_bytes();sha=lambda b:hashlib.sha256(b).hexdigest();(out/'original-source.txt').write_bytes(original);records=[]
