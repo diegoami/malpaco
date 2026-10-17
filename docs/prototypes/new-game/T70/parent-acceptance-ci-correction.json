@@ -1,0 +1,11 @@
+{
+  "reason": "CI39069554707: duplicate row identities and valid-load helper could return before file.text completion",
+  "old": {
+    "tests/e2e/playback-controls.spec.ts": "ede804c4731b38d89199d7068ca843ed563afe1d4ebab48bbbdfb8fb273ac908",
+    "tests/e2e/game-event-log.spec.ts": "361c691482389eed539b2dcce841d2e46609c54e784242440f6b8872ad1edcf7"
+  },
+  "new": {
+    "tests/e2e/playback-controls.spec.ts": "46feb0fd44d3e64c99de67a7ab40a908772ee749f5bef704c8152881a3fe5762",
+    "tests/e2e/game-event-log.spec.ts": "dc30a76c6118924ab9780e2b7b3598b51670def96f6fc5e6aaf38084e834b684"
+  }
+}

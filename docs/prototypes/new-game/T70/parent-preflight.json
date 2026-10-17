@@ -1,0 +1,187 @@
+{
+  "reports": [
+    {
+      "run": "20261017T201327056320Z-baseline",
+      "exit": 1,
+      "restorationExact": true,
+      "commands": []
+    },
+    {
+      "run": "20261017T201428536100Z-mock",
+      "exit": 1,
+      "restorationExact": true,
+      "commands": []
+    },
+    {
+      "run": "20261017T201616412567Z-mock",
+      "exit": 0,
+      "restorationExact": true,
+      "commands": []
+    },
+    {
+      "run": "20261017T201727721306Z-mock",
+      "exit": 0,
+      "restorationExact": true,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "--grep",
+            "popup works",
+            "--workers=2"
+          ],
+          "log": "playwright.log",
+          "exitCode": 0,
+          "seconds": 3.03
+        }
+      ]
+    },
+    {
+      "run": "20261017T201753693853Z-baseline",
+      "exit": 1,
+      "restorationExact": true,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "--grep",
+            "popup|complete",
+            "--workers=2"
+          ],
+          "log": "playwright.log",
+          "exitCode": 1,
+          "seconds": 18.752
+        }
+      ]
+    },
+    {
+      "run": "20261017T201855903020Z-mock",
+      "exit": 1,
+      "restorationExact": true,
+      "commands": [
+        {
+          "command": [
+            "npm",
+            "test"
+          ],
+          "log": "unit-tests.log",
+          "exitCode": 0,
+          "seconds": 39.361
+        },
+        {
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "log": "build.log",
+          "exitCode": 0,
+          "seconds": 0.792
+        },
+        {
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "tests/e2e/computer-turn-flow.spec.ts",
+            "tests/e2e/battle-controls.spec.ts",
+            "--workers=2"
+          ],
+          "log": "playwright.log",
+          "exitCode": 1,
+          "seconds": 23.578
+        }
+      ]
+    },
+    {
+      "run": "20261017T202045231598Z-mock",
+      "exit": 1,
+      "restorationExact": true,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "--workers=2",
+            "tests/e2e/computer-turn-flow.spec.ts",
+            "tests/e2e/battle-controls.spec.ts"
+          ],
+          "log": "playwright.log",
+          "exitCode": 1,
+          "seconds": 22.822
+        }
+      ]
+    },
+    {
+      "run": "20261017T202218843844Z-mock",
+      "exit": 0,
+      "restorationExact": true,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T202218843844Z-mock/test-results",
+            "tests/e2e/computer-turn-flow.spec.ts",
+            "--grep",
+            "loaded computer capture",
+            "--project=1280x800",
+            "--workers=1"
+          ],
+          "log": "playwright.log",
+          "exitCode": 0,
+          "seconds": 2.769
+        }
+      ]
+    },
+    {
+      "run": "20261017T202258208997Z-mock",
+      "exit": 0,
+      "restorationExact": true,
+      "commands": [
+        {
+          "command": [
+            "npx",
+            "playwright",
+            "test",
+            "tests/e2e/playback-controls.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "--output",
+            "/home/diego/projects/malpaco/.cache/t70-work/docs/prototypes/new-game/T70/20261017T202258208997Z-mock/test-results",
+            "--workers=2",
+            "tests/e2e/computer-turn-flow.spec.ts",
+            "tests/e2e/battle-controls.spec.ts"
+          ],
+          "log": "playwright.log",
+          "exitCode": 0,
+          "seconds": 21.731
+        }
+      ]
+    }
+  ],
+  "frozenAcceptance": {
+    "tests/e2e/playback-controls.spec.ts": "ede804c4731b38d89199d7068ca843ed563afe1d4ebab48bbbdfb8fb273ac908",
+    "tests/e2e/game-event-log.spec.ts": "361c691482389eed539b2dcce841d2e46609c54e784242440f6b8872ad1edcf7"
+  },
+  "productionMatchesHEAD": true,
+  "fullPositiveRun": "20261017T201855903020Z-mock",
+  "finalBrowserRun": "20261017T202258208997Z-mock",
+  "interpretation": "Full unit/build passed; only CSS/layout differed for subsequent 30/30 browser positive. No assertion or runtime change between full and final parent positive."
+}

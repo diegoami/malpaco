@@ -1,0 +1,35 @@
+{
+  "mode": "mock",
+  "original": {
+    "src/ui/battleController.ts": "62ecc72537f1671ec4d4bdff2513b978ae5f5ae69e04da47a040942395e814c6",
+    "src/ui/computerTurnLoop.ts": "9aeba293696dcfe6bf415929fabad69e0b731e109b066df3f5e2243ed8ad10a2",
+    "src/ui/referenceBattleGame.ts": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+    "src/ui/panel.ts": "81164c21b74ac95a9ac818ff659ffe3ee5b25a1075241bc9be2e60e8b69c0d52",
+    "src/styles.css": "b1ac605d7e0638f5a306e5731d4aa5332c960782f3503ae8c5a8acf598caf10e"
+  },
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/playback-controls.spec.ts",
+    "--workers=2"
+  ],
+  "tested": {
+    "src/ui/battleController.ts": "2289c0ad2ee0239fcbdc99152ef6a6ccca33e4599afbbc42252f8ee581567967",
+    "src/ui/computerTurnLoop.ts": "ba1849788c681d98dc5591eb96b1c2228e63aebbed34151c182b1a603d039558",
+    "src/ui/referenceBattleGame.ts": "52cfbe713067a8407c0c79b28c86b07f9eb5fd125081afd48993a530744525e2",
+    "src/ui/panel.ts": "46c9181e8c03d244766b2ecff555186290de1a0368971d23c34152df9213a110",
+    "src/styles.css": "1bb7bdb42575bac9342fb9796307d810d453b527906709687da7ef3c659d1190",
+    "tests/e2e/playback-controls.spec.ts": "ede804c4731b38d89199d7068ca843ed563afe1d4ebab48bbbdfb8fb273ac908",
+    "docs/prototypes/new-game/T70/mock-preflight.py": "8e48c56a08b7f0fbf213f84d1281c99fc9a4ee0d7aec2f0efeb490411405010e"
+  },
+  "exitCode": 0,
+  "restored": {
+    "src/ui/battleController.ts": "62ecc72537f1671ec4d4bdff2513b978ae5f5ae69e04da47a040942395e814c6",
+    "src/ui/computerTurnLoop.ts": "9aeba293696dcfe6bf415929fabad69e0b731e109b066df3f5e2243ed8ad10a2",
+    "src/ui/referenceBattleGame.ts": "b02cebd039c80a9e7edae67c521171f28b420678cf1347af626b953976391d52",
+    "src/ui/panel.ts": "81164c21b74ac95a9ac818ff659ffe3ee5b25a1075241bc9be2e60e8b69c0d52",
+    "src/styles.css": "b1ac605d7e0638f5a306e5731d4aa5332c960782f3503ae8c5a8acf598caf10e"
+  },
+  "restorationExact": true
+}
