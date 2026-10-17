@@ -9,6 +9,7 @@ npm test
 npm run build
 python3 docs/prototypes/new-game/T34/run-browser.py compatibility --suites tests/e2e/reference-complete-game.spec.ts,tests/e2e/reference-game.spec.ts,tests/e2e/versioned-match.spec.ts,tests/e2e/entry.spec.ts
 python3 docs/prototypes/new-game/T34/r2-controls.py
+python3 docs/prototypes/new-game/T34/r3-controls.py
 ```
 
 Use Node24, or Node22.15+ for the prototype TypeScript loader hooks. Every command wrapper writes a fresh owned directory with source hashes, exact source inputs and raw output archives. The sweep retains all100 outcomes, rejected candidates, constraint classes and replay hashes. Large raw seed/source sets are archived byte-exact with member hashes; loose originals remain local and are ignored rather than deleted.
@@ -37,4 +38,14 @@ Final current-source validation is retained in `evidence/r2-final-di4unq58`:14 f
 
 `controls.py` is the historical first-family omission runner for `candidate.ts`; its port-repair marker predates the broader constructor. Use `r2-controls.py` for the current source. Frozen run snapshots retain the exact docs/scripts present during each run. Later README/archival documentation changes do not change the tested core, acceptance test or sweep hashes; the archive utility added after the sweep began is absent from that sweep's enumerated inputs. No numerical rerun is claimed for documentation-only additions.
 
-`evidence/integrity-jtiyx5h0` verifies100 recorded source/raw sets and all lossless member archives. `file-inventory.json` lists all75 changed code/script paths, including historical executable probes and immutable source copies; `artifacts.json` indexes952 retained artifact hashes.
+`evidence/integrity-jtiyx5h0` verifies100 recorded source/raw sets and all lossless member archives. `file-inventory.json` lists all77 changed code/script paths, including historical executable probes and immutable source copies; `artifacts.json` indexes1025 retained artifact hashes.
+
+
+## Refusal-guard coverage
+
+Claude round1 returned **rework**, with positive acceptance green and explicit incomplete review coverage; its complete final/receipts/archive remain in `evidence/claude-review-round1`. The added mocked-witness cases visit each previously unprotected refusal class directly after real label/port repairs: non-simple cells, outside frame, island overlap/contact, duplicate country pairs, bonus headroom and country degree headroom. Each requires its exact constraint in every rejected-candidate record. Separate invalid-witness cases assert negative budgets clamp to zero without RNG advance and fractional budgets floor before exhausted attempts are recorded. Production core bytes remain unchanged.
+
+`r3-controls.py` removes each exact guard or budget operation, runs its matching new test, restores the original core in `finally`, then runs focused/full units and build. These are coverage controls, not an algorithm change; the independent review's100-seed sweep and24 pinned browsers apply to identical production bytes. Historical review/agent/probe files are explicitly inert invocation snapshots; see `review-tools/README.md`. `family-provenance.json` and CONTRACT.md describe the bounded manual placement search and distinguish a designed, locally validated14-route plan from owner visual approval.
+
+
+The refusal coverage rework passes22 focused cases,615 Vitest cases plus6 harness tests, and build (`evidence/r3-controls-juxngh81`). All eight new guard/budget omissions fail their targeted tests; restoration is exact. `preservation.json` also confirms every original acceptance-test byte remains as a prefix and both historical reviewer snapshot files are byte-identical. `r3-integrity.py` reproduces the verifier's old hardcoded-filename failure on the named Claude archive, then verifies113 source/raw sets and all legacy/named member archives after the one-line optional `manifest.archive` fix (`evidence/r3-integrity-wg6mrsko`, `evidence/integrity-0r1nlkux`). The default legacy archive name is preserved. Later receipt/inventory/docs updates do not change tested production or acceptance-test bytes.

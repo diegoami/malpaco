@@ -1,0 +1,13 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/core/island-geography.test.ts",
+    "-t",
+    "refuses insufficient island bonus"
+  ],
+  "exit": 1,
+  "output": "{\n  \"output\": \"docs/prototypes/new-game/T34/evidence/r3-omit-bonus-headroom-gy7xiggx\",\n  \"exit\": 1,\n  \"stdoutTail\": \"\\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t34-work\\n\\n \\u276f tests/core/island-geography.test.ts (22 tests | 1 failed | 21 skipped) 598ms\\n   \\u00d7 refuses insufficient island bonus headroom with the specific recorded constraint 597ms\\n\\n Test Files  1 failed (1)\\n      Tests  1 failed | 21 skipped (22)\\n   Start at  19:56:52\\n   Duration  797ms (tests 84%, transform 13%, import 2%)\\n\\n\",\n  \"stderrTail\": \"\\n\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af Failed Tests 1 \\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\n\\n FAIL  tests/core/island-geography.test.ts > refuses insufficient island bonus headroom with the specific recorded constraint\\nAssertionError: expected [ \\u2026(4) ] to include 'crossings: insufficient bonus headroom'\\n \\u276f tests/core/island-geography.test.ts:141:127\\n    139|  await withMockedWitness(c.mutate,generate=>{\\n    140|   const r=generate(42,{attempts:3});expect(r.ok).toBe(false);expect(r.\\u2026\\n    141|   for(const [i,f]of r.failures.entries()){expect(f.attempt).toBe(i+1);\\u2026\\n       |                                                                                                                               ^\\n    142|  });\\n    143| },30000);\\n \\u276f withMockedWitness tests/core/island-geography.test.ts:111:95\\n \\u276f tests/core/island-geography.test.ts:139:2\\n\\n\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af\\u23af[1/1]\\u23af\\n\\n\"\n}\n",
+  "stderr": ""
+}

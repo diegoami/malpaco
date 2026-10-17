@@ -22,5 +22,5 @@ for p in sorted([*(root/'evidence').rglob('report.json'),*(root/'preflight').rgl
   checks.append({'report':str(p.relative_to(root)),'sourceAndAvailableRawVerified':True,'exit':d.get('exit'),'targetMet':d.get('targetMet'),'sourcesUnchanged':d.get('sourcesUnchangedDuringRun',d.get('sourcesUnchanged'))})
 for p in root.rglob('archive-manifest.json'):
  if 'sources'in p.parts or 'raw'in p.parts:continue
- d=json.loads(p.read_text());a=p.parent/'measured-inputs-and-seeds.tar.gz';assert sha(a.read_bytes())==d['sha256'];assert members(a)==d['members']
+ d=json.loads(p.read_text());a=p.parent/d.get('archive','measured-inputs-and-seeds.tar.gz');assert sha(a.read_bytes())==d['sha256'];assert members(a)==d['members']
 out=Path(tempfile.mkdtemp(prefix='integrity-',dir=root/'evidence'));(out/'report.json').write_text(json.dumps({'checks':checks,'verified':len(checks)},indent=2)+'\n');print(json.dumps({'output':str(out.relative_to(repo)),'verified':len(checks)}))

@@ -1,5 +1,5 @@
 {
-  "scope": "All75 code/script paths changed against origin/main, including historical executable probes and immutable source copies. Evidence data/PNG/archive files retain measurements; README/CONTRACT/provenance/spike/RUN-NOTES explain design and receipt paths. Inventory lists current working bytes after documentation-only historical-runner header update.",
+  "scope": "All77 code/script paths changed against origin/main, including historical executable probes and immutable source copies. Inert invocation snapshots remain byte-identical; review-tools/README.md labels them. Evidence data/archives preserve measurements and original inputs. Current refusal rework changes tests and optional archive-filename verification, with production core byte-identical.",
   "files": [
     {
       "path": "docs/prototypes/new-game/T34/acceptance.mjs",
@@ -342,6 +342,16 @@
       "purpose": "Historical disposable parent breadth preflight with original restoration."
     },
     {
+      "path": "docs/prototypes/new-game/T34/r3-controls.py",
+      "sha256": "f2a8aec703564cf5e6eeaa01bff457c8b5170f6ae61d1765b4e3bb731c4d4b1a",
+      "purpose": "Eight exact refusal/budget source omissions, byte-exact restoration and final focused/full-unit/build checks."
+    },
+    {
+      "path": "docs/prototypes/new-game/T34/r3-integrity.py",
+      "sha256": "50cf9b7dae2d27a1557d239766b7904319fbf2073fb93db2c2b77f44e2f901ec",
+      "purpose": "Actual hardcoded archive-filename fail-before/pass-after and byte-exact final verifier restoration."
+    },
+    {
       "path": "docs/prototypes/new-game/T34/review-tools/retention-runner.mjs",
       "sha256": "23d0faa0c858f8e64c4eae34dd8428c2d55aa61fc93fdbdce823fcecbb24e838",
       "purpose": "Historical independent-review retention adapter."
@@ -363,7 +373,7 @@
     },
     {
       "path": "docs/prototypes/new-game/T34/verify-evidence.py",
-      "sha256": "9642abab150d6e7a81d88e36f28b09804a7e3385259895b13a05d8c6f3a86756",
+      "sha256": "62b8a45ebb5dce181ecd97c9b5ba9bf498489920a262151e9102dcdccbff0836",
       "purpose": "Verifies source/raw/archive member hashes."
     },
     {
@@ -373,7 +383,7 @@
     },
     {
       "path": "tests/core/island-geography.test.ts",
-      "sha256": "438e66e72c053a0a18b382548a044b87b03d1d1b6bde37fc34c00d8548c821d5",
+      "sha256": "91ba0bd9583d1543f2d909d2ad17b27931aa83e2f1aa1bccc4b52f8692bc3cc5",
       "purpose": "Independent frozen acceptance plus rejection/fairness/breadth controls."
     }
   ]

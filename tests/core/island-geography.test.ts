@@ -99,3 +99,56 @@ it('rejects reservations that concentrate entrances and bonuses into fortress is
   }
  }finally{vi.doUnmock('../../docs/prototypes/new-game/T34/witness.json');vi.resetModules();}
 },30000);
+
+
+// Clone the retained witness, then exercise the real constructor including both repair passes.
+async function withMockedWitness(mutate:(g:IslandGeography)=>void,check:(generate:typeof generateIslandGeography)=>void):Promise<void>{
+ const {vi}=await import('vitest');vi.resetModules();
+ vi.doMock('../../docs/prototypes/new-game/T34/witness.json',async()=>{
+  const actual=await vi.importActual<{default:IslandGeography}>('../../docs/prototypes/new-game/T34/witness.json');
+  const bad=structuredClone(actual.default);mutate(bad);return {default:bad};
+ });
+ try{const {generateIslandGeography:generate}=await import('../../src/core/island-geography');check(generate);}
+ finally{vi.doUnmock('../../docs/prototypes/new-game/T34/witness.json');vi.resetModules();}
+}
+const refusalCases:{name:string;constraint:string;mutate:(g:IslandGeography)=>void}[]=[
+ {name:'non-simple cells',constraint:'cells: non-simple polygon',mutate:g=>{
+  const q=2048;g.islands[1]!.polygon=[[650*q,50*q],[750*q,125*q],[650*q,125*q],[750*q,50*q]];
+ }},
+ {name:'cells outside the frame',constraint:'cells: outside frame',mutate:g=>{g.provinces[0]!.polygon[0]![0]=-800*2048;}},
+ {name:'islands touching or overlapping',constraint:'cells: islands touch/overlap',mutate:g=>{
+  // These islands remain fixed under all three placement plans.
+  g.islands[1]!.polygon=structuredClone(g.islands[3]!.polygon);
+ }},
+ {name:'duplicate reserved country pairs',constraint:'crossings: duplicate reserved country pair',mutate:g=>{
+  const crossing=g.entranceReservations[10]!;
+  // Restrict repair candidates on two fixed islands so repairs cannot hide the duplicate.
+  for(const id of [crossing.from,crossing.to])g.islands.find(i=>i.id===g.provinces.find(p=>p.id===id)!.island)!.provinces=[id];
+  g.entranceReservations.push(structuredClone(crossing));
+ }},
+ {name:'insufficient island bonus headroom',constraint:'crossings: insufficient bonus headroom',mutate:g=>{
+  // A declared one-country island cannot hold even T24's minimum bonus of two.
+  g.islands[1]!.provinces=g.islands[1]!.provinces.slice(0,1);
+ }},
+ {name:'insufficient country degree headroom',constraint:'degree: insufficient entrance headroom',mutate:g=>{
+  // A detached cell has zero shared-boundary neighbours after adjacency is re-derived.
+  g.provinces[0]!.polygon=[[5000,5000],[8000,5000],[5000,8000]];
+ }}
+];
+for(const c of refusalCases)it(`refuses ${c.name} with the specific recorded constraint`,async()=>{
+ await withMockedWitness(c.mutate,generate=>{
+  const r=generate(42,{attempts:3});expect(r.ok).toBe(false);expect(r.attempts).toBe(3);expect(r.failures).toHaveLength(3);expect(r).not.toHaveProperty('geography');
+  for(const [i,f]of r.failures.entries()){expect(f.attempt).toBe(i+1);expect(f.candidate).toBeDefined();expect(f.constraints).toContain(c.constraint);}
+ });
+},30000);
+it('clamps negative attempt budgets to untouched zero-attempt exhaustion',async()=>{
+ await withMockedWitness(g=>{for(const p of g.provinces)p.labelAt=[0,0];},generate=>{
+  const r=generate(42,{attempts:-3});expect(r.ok).toBe(false);expect(r.attempts).toBe(0);expect(r.failures).toEqual([]);expect(r.rng).toEqual({seed:42,state:42});expect(r).not.toHaveProperty('geography');
+ });
+});
+it('floors fractional attempt budgets before recording exhausted attempts',async()=>{
+ await withMockedWitness(g=>{for(const p of g.provinces)p.labelAt=[0,0];},generate=>{
+  const r=generate(42,{attempts:2.75});expect(r.ok).toBe(false);expect(r.attempts).toBe(2);expect(r.failures).toHaveLength(2);expect(r).not.toHaveProperty('geography');
+  for(const [i,f]of r.failures.entries()){expect(f.attempt).toBe(i+1);expect(f.candidate).toBeDefined();expect(f.constraints).toContain('labels: unusable hit reservation');}
+ });
+});

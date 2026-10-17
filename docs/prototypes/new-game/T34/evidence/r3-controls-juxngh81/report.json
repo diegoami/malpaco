@@ -1,0 +1,66 @@
+{
+  "startUtc": "2026-10-17T17:56:45.362972+00:00",
+  "endUtc": "2026-10-17T17:58:17.983921+00:00",
+  "results": [
+    {
+      "label": "r3-omit-non-simple",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-omit-outside-frame",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-omit-island-overlap",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-omit-duplicate-pair",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-omit-bonus-headroom",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-omit-degree-headroom",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-omit-negative-clamp",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-omit-fractional-floor",
+      "exit": 1,
+      "expected": 1
+    },
+    {
+      "label": "r3-focused",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "label": "r3-units",
+      "exit": 0,
+      "expected": 0
+    },
+    {
+      "label": "r3-build",
+      "exit": 0,
+      "expected": 0
+    }
+  ],
+  "coreRestored": true,
+  "coreSha256": "ddf63b0aaee80d85ec2422c8048d2c49ee5d164a07483c21600ff5a839f7e369",
+  "originalArchiveSha256": "1800d2d57da20f902959e0a15be98d8786b4d6fd58ebced7ebb65766ca7ce5d1",
+  "coreArchiveRestoresExact": true,
+  "scope": "Test/docs-only rework. No algorithm change; prior independent100-seed sweep and24 browsers remain on identical production bytes."
+}
