@@ -7,6 +7,12 @@ out=Path(tempfile.mkdtemp(prefix=sys.argv[1]+'-',dir=root/'evidence'))
 inputs={str(p.relative_to(repo)):p.read_bytes() for folder in ['src/core','src/ui','tests/core','tests/ui','tests/e2e'] for p in (repo/folder).rglob('*.ts')}
 inputs.update({str(p.relative_to(repo)):p.read_bytes() for p in (repo/'docs/prototypes/new-game/T31/fixtures').glob('*.json')})
 inputs['docs/prototypes/new-game/T63/board.json']=(repo/'docs/prototypes/new-game/T63/board.json').read_bytes()
+for folder in ['T24','T60','T62','T64','T65']:
+ for p in (repo/'docs/prototypes/new-game'/folder).glob('*'):
+  if p.is_file():inputs[str(p.relative_to(repo))]=p.read_bytes()
+for name in ['package.json','package-lock.json','vitest.config.ts','docs/prototypes/map-1994/preview.html']:
+ p=repo/name
+ if p.is_file():inputs[name]=p.read_bytes()
 with tarfile.open(out/'source-inputs.tar.gz','w:gz') as a:
  for name,data in inputs.items():entry=tarfile.TarInfo(name);entry.size=len(data);a.addfile(entry,io.BytesIO(data))
 r=subprocess.run(sys.argv[2:],cwd=repo,capture_output=True)
