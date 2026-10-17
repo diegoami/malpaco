@@ -94,3 +94,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T68](T68.md) | Pilot agy CLI review workflow with Sonnet | Medium | #152 | — |
 
 | [T69](T69.md) | Claude CLI review backend | Hard | #155 | — |
+
+| [T70](T70.md) | Visible army totals, playback controls and popup event log | Medium | #158 | T32, T33 |
