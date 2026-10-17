@@ -1,0 +1,1 @@
+Parent importer initially treated reviewer scratch .saved inputs as PR files and stopped on missing src/styles.css.saved. These scratch bytes are preserved in the reviewer source archives. Correct classification checks them against their corresponding reviewed source without recreating/deleting scratch files. No review/CI rerun.
