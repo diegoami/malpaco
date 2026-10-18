@@ -1,0 +1,15 @@
+{
+  "file": "tests/ui/generated-geography-presentation.test.ts",
+  "sourceSha256": "0bb4f49d677cc7458624615f0c0b7432be9f517687a116116dfaa1d1d21cdbb7",
+  "line": 27,
+  "test": "retains all original398 refusal attempts and exact final RNG without deriving a replacement",
+  "error": "Test timed out in 5000ms.",
+  "reportedDurationMs": 5170,
+  "assertionMismatchReported": false,
+  "context": [
+    "},120000);",
+    "it('retains all original398 refusal attempts and exact final RNG without deriving a replacement',()=>{const text=read('seed-398-result.json'),result=JSON.parse(text);expect(sha(text)).toBe(frozenOracles.find(r=>r.seed===398)!.resultHash);expect(result.ok).toBe(false);expect(result.attempts).toBe(50);expect(result.failures).toHaveLength(50);expect(JSON.stringify(createGeographicGame(JSON.parse(read('seed-398-options.json'))))).toBe(text);});",
+    "it('normal cards1994 save replays its original state and geography',()=>{const normal=JSON.parse(read('normal-1994-result.json')),loaded=deserializeVersionedMatch(read('normal-1994-save.json'));expect(JSON.stringify(loaded.state)).toBe(JSON.stringify(normal.state));expect(JSON.stringify(loaded.geography)).toBe(JSON.stringify(normal.geography));expect(normal.state.rules.cards).toBe('raid-v1');});",
+    "it('explicitly rejects unsupported input rather than returning old polygons',()=>{const input=JSON.parse(read('seed-1994-result.json')).geography;expect(()=>derivePresentation({...input,version:'future'})).toThrow(/Unsupported/);});"
+  ]
+}

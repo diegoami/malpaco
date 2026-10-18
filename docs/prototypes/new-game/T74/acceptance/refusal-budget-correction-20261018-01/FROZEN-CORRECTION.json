@@ -1,0 +1,20 @@
+{
+  "reason": "Full integrated818test collection exceeded Vitest default5000ms on unchanged50-attempt refusal398 (reported5170ms), no assertion mismatch. Main contracte0fae018 assigns same explicit120000ms corpus-test budget as12accepted-map cases; UI5secondload-readiness checks and all refusal/RNG/geometry assertions unchanged.",
+  "sourceBefore": "0d6474d9c902c190533e38d0837708513739ecc3",
+  "replacements": {
+    "tests/ui/generated-geography-presentation.test.ts": {
+      "before": "0bb4f49d677cc7458624615f0c0b7432be9f517687a116116dfaa1d1d21cdbb7",
+      "after": "0b05226fd770d9b38921e9ddd5dc43e9a7b1257f97720d91f69d6e4c850f25a0"
+    },
+    "docs/tasks/T74.md": {
+      "before": "c43ce9392da0f00f7081adcf8c067d025fd2e9f6d6d28f700cf7eb1866237059",
+      "after": "66d4ba65de56cc93525f716a5c4126c83ef7d11c1fc80d126844cdd8e281a678"
+    }
+  },
+  "onlyTestBudgetChanged": true,
+  "initialFullResult": "817/818Vitest+8/8harness; no package/build run",
+  "parentCorrectionCandidates": {
+    "drawing-test.proposed.ts": "0b05226fd770d9b38921e9ddd5dc43e9a7b1257f97720d91f69d6e4c850f25a0",
+    "T74.amended.md": "66d4ba65de56cc93525f716a5c4126c83ef7d11c1fc80d126844cdd8e281a678"
+  }
+}
