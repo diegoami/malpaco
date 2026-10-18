@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--pull=never",
+    "--rm",
+    "--init",
+    "--ipc=host",
+    "--user",
+    "1000:1000",
+    "-v",
+    "/home/diego/projects/malpaco/.cache/t71-work:/work",
+    "-w",
+    "/work",
+    "-e",
+    "BATTLE_EVIDENCE_DIR=docs/prototypes/new-game/T71/parent-final/ci-accessibility-correction/screenshots",
+    "mcr.microsoft.com/playwright:v1.63.0-noble",
+    "npx",
+    "playwright",
+    "test",
+    "tests/e2e/battle-accessibility.spec.ts",
+    "--config",
+    "docs/prototypes/new-game/T71/implementation-log-20261018/playwright.config.ts",
+    "--output",
+    "/work/docs/prototypes/new-game/T71/parent-final/ci-accessibility-correction/results",
+    "--workers=2"
+  ],
+  "exit": 0,
+  "seconds": 8.235214205000375,
+  "sourceUnchangedFromReviewed": true
+}
