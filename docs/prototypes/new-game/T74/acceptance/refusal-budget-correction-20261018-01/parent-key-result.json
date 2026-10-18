@@ -1,0 +1,19 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/ui/generated-geography-presentation.test.ts",
+    "-t",
+    "retains all original398",
+    "--reporter",
+    "verbose"
+  ],
+  "exit": 0,
+  "passed": 1,
+  "otherCasesNotSelected": 14,
+  "testDurationMs": 5020,
+  "reportedTotalSeconds": 5.56,
+  "reason": "Targeted refusal50attempt check; no full15case rerun. Existing state/RNG/refusal assertions byte-identical, only explicit120000ms corpus-test budget.",
+  "unitStatus": "Result=success\nExecMainStatus=0\n"
+}

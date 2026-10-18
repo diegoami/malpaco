@@ -1,0 +1,73 @@
+{
+  "sourceCheckpointParent": "8a530688",
+  "prerequisite": "7fc757f8",
+  "predispatch": "https://github.com/diegoami/malpaco/pull/186#issuecomment-6254468779",
+  "drawingVersion": "t72-relocated-flow-spread-v2",
+  "sources": {
+    "src/ui/generatedGeographyPresentation.ts": {
+      "candidate": "docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentation.ts",
+      "sha256": "ec0bdf8aad3b67b847be19926bf2470738a498f99f6aa762d7a28a944dbe548a",
+      "mode": "0o644"
+    },
+    "src/ui/generatedGeographyPresentation.worker.ts": {
+      "candidate": "docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentation.worker.ts",
+      "sha256": "3dc714a7387900f8a0795f0a549859d300b1528b88c8a9db5161862132ca3374",
+      "mode": "0o644"
+    },
+    "src/ui/generatedGeographyPresentationService.ts": {
+      "candidate": "docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentationService.ts",
+      "sha256": "c5dd8c8f80cb76f1ac5bd95257551fbb92ff58633ec3857a9d4df333d6c8a1df",
+      "mode": "0o644"
+    }
+  },
+  "manifestSha256": {
+    "docs/prototypes/new-game/T74/acceptance/FROZEN-ACCEPTANCE.json": "59a0c281a134a0cef420daf137e66389ef7aed3ac58548cf10126facd698fc2a",
+    "docs/prototypes/new-game/T74/acceptance/validated-inputs.json": "3507241eef5e56bfd2ac5603d9a04a62c5248c302ee2a311431b37ee632a09d8",
+    "docs/prototypes/new-game/T74/archives/phase-a-receipt.json": "b53cb1cfa7505f1dba468b6b533e6f0e1e901f43bd2d5c090be385d5940ac23b",
+    "docs/prototypes/new-game/T74/archives/parent-validation-receipt.json": "ee5bbea1b854ba48b381e97b399cbac0bb9d6a9e2ff3065c048d45951ee4d34c"
+  },
+  "positiveRun": {
+    "manifestSha256": "aa0bbb4f091fe7c8e3689f15f093fb85ad254111de802eca3aabab6f91db137f",
+    "npmTest": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 91.51988863945007
+    },
+    "build": {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 1.2048027515411377
+    },
+    "baseline": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/generated-geography-presentation.test.ts",
+        "tests/ui/generated-geography-presentation-service.test.ts"
+      ],
+      "exit": 1,
+      "elapsedSeconds": 0.6311385631561279
+    }
+  },
+  "prerequisiteChangeAfterPositive": {
+    "path": "tests/e2e/computer-cards.spec.ts",
+    "reason": "Exact corrected T73 prerequisite7fc merged after validation; only Playwright native-download timing helper changes, outside npm/Vite tested input execution; existing4/4targetedcorrectedpreflight+sameheadCI39160704380 retained. NoT74orcore/runtimechange."
+  },
+  "remainingGates": [
+    "Main independent fresh keychecks",
+    "Independent approving review",
+    "Actual T73 green approval/merge dependency",
+    "Final green CI before merge"
+  ],
+  "freshHeavyRuns": 0,
+  "verifierSha256": "06f0cc0f273b09d9fc043bad66f9cc528002de6b1090a84325902b96a00f593c",
+  "modeAuthority": "Exact frozen working modes come from original committed archive member modes or226validated entries; Git executable-bit semantics are checked separately because Git100644 normalizes0644/0664."
+}

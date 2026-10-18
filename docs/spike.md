@@ -1073,3 +1073,11 @@ and all349members of three committed archive parts in memory, without loose
 helpers. Older T73 whole-tree proofs remain historical rather than being rewritten
 for this new provider. Main owns independent review, dependency approval and final
 greenCI; no playable integration or release packaging is implied by this layer.
+
+T74's standalone proof is portable across normal Git checkouts: tracked files
+must match committed bytes and Git executable semantics. Git100644 does not retain
+original0664 group-write bits. Exact original POSIX-mode preservation remains an
+original-transaction claim authenticated by its restoration receipt and the full
+archive-member/inner-inventory mode checks; it is not claimed for a fresh export.
+The before-review portability correction preserves all old proof/report/manifest
+receipts separately and changes no runtime, tests, frozen inputs or archive modes.

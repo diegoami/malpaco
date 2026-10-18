@@ -1,0 +1,42 @@
+
+> malpaco-spike-ts@0.1.0 test
+> node --test tools/harness/test/*.test.mjs && vitest run
+
+✔ actual selected model and real final required, not exit0 or quoted content (1.728433ms)
+✔ provider/remapped model cannot reach Claude billing; credentials not in errors (1.200714ms)
+✔ coverage is explicit per changed file; generated evidence grouping cannot hide code (2.463701ms)
+✔ watched subprocess retains success, failure and timeout evidence, kills its own group (677.542879ms)
+✔ real review entry selects Claude without OpenCode, publishes once, refuses failed gates (1742.011732ms)
+✔ Claude dependency materialization makes an independent real copy and preserves relative .bin links (3.070137ms)
+✔ Claude dependency materialization skips absent installs and refuses outside, overlapping, or existing destinations (2.186305ms)
+✔ native Claude command denials cover OpenCode publishing policy without a second Bash parser (0.676549ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2485.344895
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t75-work
+
+ ❯ tests/ui/generated-geography-presentation.test.ts (15 tests | 1 failed) 79888ms
+   × retains all original398 refusal attempts and exact final RNG without deriving a replacement 5170ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/generated-geography-presentation.test.ts > retains all original398 refusal attempts and exact final RNG without deriving a replacement
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ tests/ui/generated-geography-presentation.test.ts:27:1
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 59 passed (60)
+      Tests  1 failed | 817 passed (818)
+   Start at  22:13:11
+   Duration  82.73s (tests 90%, transform 6%, import 3%)
+
