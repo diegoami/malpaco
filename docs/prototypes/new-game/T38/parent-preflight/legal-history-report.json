@@ -1,0 +1,56 @@
+[
+  {
+    "history": "reshuffle-match",
+    "kind": "Anchor",
+    "supported": true,
+    "at": 113,
+    "hand": [
+      "Anchor",
+      "Anchor",
+      "Lantern",
+      "Anchor"
+    ],
+    "basePool": 2,
+    "afterPool": 7
+  },
+  {
+    "history": "reshuffle-match",
+    "kind": "Raid",
+    "supported": false,
+    "at": 151,
+    "hand": [
+      "Raid",
+      "Anchor",
+      "Wild",
+      "Anchor",
+      "Raid"
+    ]
+  },
+  {
+    "history": "reshuffle-match",
+    "kind": "Compass",
+    "supported": true,
+    "at": 294,
+    "hand": [
+      "Shield",
+      "Shield",
+      "Compass",
+      "Compass",
+      "Wild"
+    ],
+    "basePool": 6,
+    "afterPool": 14
+  },
+  {
+    "history": "reshuffle-match",
+    "actions": 392,
+    "skips": 63,
+    "finalPhase": "cards"
+  },
+  {
+    "history": "decisive-match",
+    "actions": 214,
+    "skips": 19,
+    "finalPhase": "finished"
+  }
+]

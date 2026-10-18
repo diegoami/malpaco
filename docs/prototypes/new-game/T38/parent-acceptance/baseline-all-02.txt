@@ -1,0 +1,225 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t38-work
+
+ ❯ tests/core/card-sets.test.ts (23 tests | 22 failed) 65ms
+   ❯ one optional homogeneous set and approved fixed income (23)
+     × classifies all512ordered triples against explicit independent homogeneous/Wild tables 8ms
+     × enters cards after income on initial setup and every turn, even with empty hands 4ms
+     × blocks all ordinary input until cards decision, without mutating state/history/RNG 1ms
+     × skip with 0 held cards preserves income and cards, permits placement 4ms
+     × skip with 3 held cards preserves income and cards, permits placement 5ms
+     × skip with 5 held cards preserves income and cards, permits placement 2ms
+     × Anchor with 0Wilds has fixed value and spends exactly one set 2ms
+     × Anchor with 1Wilds has fixed value and spends exactly one set 2ms
+     × Anchor with 2Wilds has fixed value and spends exactly one set 2ms
+     × Compass with 0Wilds has fixed value and spends exactly one set 2ms
+     × Compass with 1Wilds has fixed value and spends exactly one set 2ms
+     × Compass with 2Wilds has fixed value and spends exactly one set 3ms
+     × Lantern with 0Wilds has fixed value and spends exactly one set 2ms
+     × Lantern with 1Wilds has fixed value and spends exactly one set 1ms
+     × Lantern with 2Wilds has fixed value and spends exactly one set 2ms
+     × Surge with 0Wilds has fixed value and spends exactly one set 1ms
+     × Surge with 1Wilds has fixed value and spends exactly one set 2ms
+     × Surge with 2Wilds has fixed value and spends exactly one set 2ms
+     × keeps nonselected cards in order and discards in original hand order 1ms
+     × refuses invalid sets/indices and staged Raid with no consumption or RNG changes 1ms
+     × Surge doubles a previously computed pool exactly once even if board income later changes 2ms
+     × later turns keep fixed values rather than increasing a global trade counter 1ms
+ ❯ tests/core/card-sets-replay.test.ts (9 tests | 9 failed) 1893ms
+   ❯ real trade/skip histories with permanent stage identities (9)
+     × Anchor real cards phase saves, trades, reloads and places without recomputing the pool 6ms
+     × Compass real cards phase saves, trades, reloads and places without recomputing the pool 1ms
+     × Surge real cards phase saves, trades, reloads and places without recomputing the pool 1ms
+     × exact cards2/schema4 identity begins and resumes skip/placement (false) 3ms
+     × exact cards2/schema4 identity begins and resumes skip/placement (true) 1880ms
+     × ordinary skipped history keeps deck-v1 outcome/RNG exactly: legal-reshuffle-match-skips.json 1ms
+     × ordinary skipped history keeps deck-v1 outcome/RNG exactly: legal-decisive-match-skips.json 0ms
+     × rejects malformed trade wire shapes at a genuinely valid trade point 0ms
+     × refuses mismatched/future stage tuples and preserves legacy and victory save paths 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 31 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > Anchor real cards phase saves, trades, reloads and places without recomputing the pool
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > Compass real cards phase saves, trades, reloads and places without recomputing the pool
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > Surge real cards phase saves, trades, reloads and places without recomputing the pool
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/core/card-sets-replay.test.ts:16:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/31]⎯
+
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > exact cards2/schema4 identity begins and resumes skip/placement (false)
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > exact cards2/schema4 identity begins and resumes skip/placement (true)
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets-replay.test.ts:24:64
+     22|  },30000);
+     23|  for(const geographic of [false,true])it(`exact cards2/schema4 identit…
+     24|   const o=options(37),s=opening(37,geographic);expect(s.phase).toBe('c…
+       |                                                                ^
+     25|   expect(identity(geographic)).toEqual({boardGenerator:{id:geographic?…
+     26|   const skipped=act(replay(s,o,geographic),{kind:'skipCards'});expect(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/31]⎯
+
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > ordinary skipped history keeps deck-v1 outcome/RNG exactly: legal-reshuffle-match-skips.json
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > ordinary skipped history keeps deck-v1 outcome/RNG exactly: legal-decisive-match-skips.json
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/core/card-sets-replay.test.ts:30:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/31]⎯
+
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > rejects malformed trade wire shapes at a genuinely valid trade point
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/core/card-sets-replay.test.ts:36:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/31]⎯
+
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > refuses mismatched/future stage tuples and preserves legacy and victory save paths
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/core/card-sets-replay.test.ts:42:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > classifies all512ordered triples against explicit independent homogeneous/Wild tables
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/core/card-sets.test.ts:12:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > enters cards after income on initial setup and every turn, even with empty hands
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:18:35
+     16|  });
+     17|  it('enters cards after income on initial setup and every turn, even w…
+     18|   let s=opening();expect(s.phase).toBe('cards');expect(cards(s).hands[…
+       |                                   ^
+     19|   const initial=s.currentPlayer;
+     20|   for(let turn=0;turn<8;turn++){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > blocks all ordinary input until cards decision, without mutating state/history/RNG
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:27:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > skip with 0 held cards preserves income and cards, permits placement
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > skip with 3 held cards preserves income and cards, permits placement
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > skip with 5 held cards preserves income and cards, permits placement
+Error: {"kind":"skipCards"}: unknown action
+ ❯ act tests/core/card-sets-fixture.ts:18:112
+
+ ❯ tests/core/card-sets.test.ts:31:66
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Compass with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Compass with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Compass with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Lantern with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Lantern with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Lantern with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge with 2Wilds has fixed value and spends exactly one set
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:37:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > keeps nonselected cards in order and discards in original hand order
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:42:90
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > refuses invalid sets/indices and staged Raid with no consumption or RNG changes
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:45:210
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge doubles a previously computed pool exactly once even if board income later changes
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:50:70
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/31]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > later turns keep fixed values rather than increasing a global trade counter
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:55:69
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/31]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  31 failed | 1 passed (32)
+   Start at  13:36:01
+   Duration  2.35s (tests 76%, transform 21%, import 3%)
+

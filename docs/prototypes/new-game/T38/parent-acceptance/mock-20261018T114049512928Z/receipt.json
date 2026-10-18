@@ -1,0 +1,78 @@
+{
+  "replacements": {
+    "src/core/cards.ts": "5a0a501ea94a290f963809c2abe22eb8a714da2eec1b36596f9b30963ee83567",
+    "src/core/index.ts": "fff96f5683645f3039c57c81779cafedfd3b3ce19cb208994b348773828b3143",
+    "src/core/match-save.ts": "b27b917eb22ea9cd2a50ce141e25e3d8037376650771c5e0731abac51f30054c",
+    "src/core/rules.ts": "4cd1d08a15ad5b745e4cb32583593479c5a4e0660f917659be72412c3c7568ec",
+    "src/core/setup.ts": "2ce20b0a0b67ab53f2171d456acc66044c2ef084f640f5a0b01a082ab99178b0",
+    "src/core/state.ts": "314bf2945975ec085dc1f45c771e22a4552aa47e2bd039329f9fb8f2cef94042",
+    "src/core/types.ts": "a5437184af28d27140b53fdb16d943dbd75867b21ea7670c914efc32dfc544c4",
+    "src/ui/gameEventLog.ts": "bab7ead955614bde6fcb4389171babf199699302c4d45b6b8530218fdc362a1b"
+  },
+  "commands": [
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "durationSeconds": 1.227217097999528
+    },
+    {
+      "name": "wrong-set-value",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/card-sets.test.ts",
+        "tests/core/card-sets-replay.test.ts"
+      ],
+      "exit": 1,
+      "durationSeconds": 16.409136791000492
+    },
+    {
+      "name": "wrong-wild-limit",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/card-sets.test.ts",
+        "tests/core/card-sets-replay.test.ts"
+      ],
+      "exit": 1,
+      "durationSeconds": 16.034809877000953
+    },
+    {
+      "name": "browsers",
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--init",
+        "--ipc=host",
+        "--user",
+        "1000:1000",
+        "-v",
+        "/home/diego/projects/malpaco/.cache/t38-work:/work",
+        "-w",
+        "/work",
+        "-e",
+        "HOME=/tmp",
+        "mcr.microsoft.com/playwright:v1.63.0-noble",
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/versioned-match.spec.ts",
+        "tests/e2e/reference-complete-game.spec.ts",
+        "tests/e2e/game-event-log.spec.ts",
+        "tests/e2e/geographic-review-guards.spec.ts",
+        "--workers=2"
+      ],
+      "exit": 0,
+      "durationSeconds": 67.76634643099896
+    }
+  ],
+  "restoredExactly": true
+}

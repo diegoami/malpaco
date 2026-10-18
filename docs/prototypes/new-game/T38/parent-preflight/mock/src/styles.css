@@ -1,0 +1,1327 @@
+@font-face {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
+:root {
+  --bg: #0c1722;
+  --surface: #14232f;
+  --surface-2: #1b2f3e;
+  --line: #2b4457;
+  --text: #e9eef2;
+  --muted: #9bb0bf;
+  --accent: #f2c14e;
+  --accent-ink: #2a1d00;
+  --sea-1: #1f5d82;
+  --sea-2: #123c58;
+  --sand: #e6d6a8;
+  --focus: #ffffff;
+  --danger: #ff7a66;
+  --ok: #7ad69a;
+  --radius: 10px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.4 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  overflow: hidden;
+}
+
+#app {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+
+/* --- top bar -------------------------------------------------------------- */
+
+.topbar {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+.topbar h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.subtitle {
+  color: var(--muted);
+}
+
+/* --- stage: board + panel ------------------------------------------------- */
+
+.stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  min-height: 0;
+}
+.board {
+  position: relative;
+  min-height: 0;
+  padding: 12px;
+}
+#map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--line), 0 12px 40px rgb(0 0 0 / 0.45);
+}
+
+/* --- the map -------------------------------------------------------------- */
+
+.sea {
+  fill: url(#seaGradient);
+}
+.wave {
+  fill: none;
+  stroke: #fff;
+  stroke-opacity: 0.06;
+  stroke-width: 3;
+}
+.lane {
+  fill: none;
+  stroke: #fff;
+  stroke-opacity: 0.55;
+  stroke-width: 3;
+  stroke-dasharray: 3 11;
+  stroke-linecap: round;
+}
+.shore path {
+  fill: var(--sand);
+  stroke: var(--sand);
+  stroke-width: 22;
+  stroke-linejoin: round;
+}
+
+.province {
+  cursor: default;
+  outline: none;
+  transition: opacity 0.2s;
+}
+.province.is-mine {
+  cursor: pointer;
+}
+.province .shape {
+  fill: var(--owner);
+  stroke: var(--owner-dark);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  transition: fill 0.35s;
+}
+.province .hatch {
+  display: none;
+  pointer-events: none;
+  stroke: none;
+}
+.province.seat-1 .hatch {
+  display: block;
+}
+.province.is-dim {
+  opacity: 0.68;
+}
+.badge-shape {
+  fill: var(--owner-dark);
+  stroke: #fff;
+  stroke-opacity: 0.85;
+  stroke-width: 2.5;
+}
+.badge-initial,
+.badge-count,
+.name {
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+.badge-initial {
+  font: 700 15px Inter, system-ui, sans-serif;
+  fill: #fff;
+  fill-opacity: 0.8;
+}
+.badge-count {
+  font: 800 25px Inter, system-ui, sans-serif;
+  fill: #fff;
+}
+.name {
+  font: 600 21px Inter, system-ui, sans-serif;
+  fill: #fff;
+  paint-order: stroke;
+  stroke: rgb(0 20 35 / 0.85);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+.province.flash .shape {
+  animation: flash 0.9s ease-out;
+}
+.province.flash .badge {
+  animation: pop 0.6s ease-out;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes flash {
+  0% {
+    filter: brightness(1.9);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.overlay path {
+  fill: none;
+  stroke-linejoin: round;
+}
+.ov-hover {
+  stroke: #fff;
+  stroke-width: 4;
+  fill: rgb(255 255 255 / 0.14) !important;
+}
+.ov-selected {
+  stroke: #fff;
+  stroke-width: 7;
+  filter: drop-shadow(0 0 8px rgb(255 255 255 / 0.9));
+}
+.ov-target {
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-dasharray: 16 10;
+  animation: march 0.9s linear infinite;
+}
+.ov-chosen {
+  stroke: var(--accent);
+  stroke-width: 8;
+  fill: rgb(242 193 78 / 0.22) !important;
+  filter: drop-shadow(0 0 8px rgb(242 193 78 / 0.9));
+}
+.ov-arrow {
+  stroke: #fff;
+  stroke-width: 6;
+  stroke-dasharray: 2 12;
+  stroke-linecap: round;
+  animation: march 0.6s linear infinite;
+}
+@keyframes march {
+  to {
+    stroke-dashoffset: -26;
+  }
+}
+.tag rect {
+  fill: #fff;
+  stroke: rgb(0 20 35 / 0.7);
+  stroke-width: 2;
+}
+.tag.target rect {
+  fill: var(--accent);
+}
+.tag text {
+  text-anchor: middle;
+  font: 800 16px Inter, system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  fill: #0c1722;
+}
+.crosshair circle {
+  fill: rgb(12 23 34 / 0.85);
+  stroke: var(--accent);
+  stroke-width: 3.5;
+}
+.crosshair path {
+  stroke: var(--accent);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.tip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  gap: 2px;
+  min-width: 170px;
+  padding: 8px 12px;
+  background: rgb(8 16 24 / 0.94);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  pointer-events: none;
+  font-size: 14px;
+  z-index: 3;
+}
+.tip[hidden] {
+  display: none;
+}
+.muted {
+  color: var(--muted);
+}
+.toast {
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  transform: translate(-50%, -20px);
+  padding: 10px 22px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+}
+.toast.show {
+  animation: toast 1.8s ease-out;
+}
+@keyframes toast {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
+  12%,
+  75% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* --- the side panel ------------------------------------------------------- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  padding: 12px 16px 12px 4px;
+  overflow: auto;
+}
+.panel[data-phase="reinforce"] {
+  gap: 8px;
+}
+.panel[data-phase="reinforce"] .card {
+  padding: 10px 12px;
+}
+.panel[data-phase="reinforce"] .legend {
+  display: none;
+}
+.card {
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.turn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-left: 6px solid var(--owner, var(--line));
+}
+.turn-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+.turn-sub {
+  color: var(--muted);
+  font-size: 13px;
+}
+.chip {
+  flex: none;
+}
+.score {
+  display: grid;
+  gap: 8px;
+}
+.score-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.score-row.active {
+  background: var(--surface-2);
+}
+.score-name {
+  font-weight: 600;
+}
+.score-num {
+  color: var(--muted);
+  font-size: 13px;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.steps {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.steps li {
+  display: grid;
+  grid-template-columns: 24px 52px 1fr;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+}
+.steps li.done {
+  color: var(--text);
+}
+.step-n {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  font-size: 12px;
+  font-weight: 700;
+}
+.steps li.done .step-n {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.income-row,
+.pool-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 3px 0;
+  color: var(--muted);
+}
+.income-row strong,
+.pool-row strong {
+  color: var(--text);
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+}
+.pool-row {
+  margin-top: 5px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  color: var(--text);
+  font-weight: 700;
+}
+.buttons #start-combat-button {
+  grid-column: 1 / -1;
+}
+.step-value {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.3;
+}
+.legend-icon {
+  flex: none;
+}
+.hint {
+  /* Up to three lines when a hint is long, so it never pushes the buttons down;
+     no reserved space when it is short (a fixed height left an empty band above
+     the buttons). */
+  max-height: 4.1em;
+  overflow: hidden;
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+button {
+  font: inherit;
+  font-weight: 700;
+  padding: 11px 14px;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, border-color 0.15s;
+}
+button:hover:not(:disabled) {
+  background: #264257;
+  border-color: #4a6a80;
+}
+button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+button.primary:hover:not(:disabled) {
+  background: #ffd36d;
+  border-color: #ffd36d;
+}
+button.quiet {
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 13px;
+}
+button:disabled,
+button.primary:disabled {
+  /* Reads as off: flat, outlined, no accent colour. */
+  opacity: 1;
+  background: transparent;
+  border: 1px dashed var(--line);
+  color: #6f8696;
+  cursor: not-allowed;
+}
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.province:focus-visible {
+  outline: none;
+}
+.log-card {
+  flex: 1;
+  /* The log shrinks first (and scrolls inside) when the panel runs out of
+     height, so the buttons and the seed stay reachable without scrolling. The
+     floor is [measured]: the panel's spare height is 119px at 1366x768 and 75px
+     (local) at a zoomed 1600x900, so 96 keeps 1366x768 fitting by 23px while a
+     width-only zoom breakpoint overflows a zoomed 1600x900 by about 27px —
+     which is what the panel test at those sizes holds the media query to. */
+  min-height: 96px;
+  overflow: auto;
+}
+.log {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.log li:first-child {
+  color: var(--text);
+}
+.panel-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* --- the result dialog ---------------------------------------------------- */
+
+dialog {
+  width: min(520px, 92vw);
+  padding: 24px 28px 20px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid #4a6a80;
+  border-radius: 14px;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 0.6);
+}
+dialog[open] {
+  animation: rise 0.25s ease-out;
+}
+dialog::backdrop {
+  background: rgb(4 10 16 / 0.45);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+dialog h2 {
+  margin: 0 0 14px;
+  font-size: 20px;
+}
+.dice-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 3), 1fr);
+  gap: 8px 10px;
+  justify-items: center;
+  margin-bottom: 14px;
+}
+.dice-grid .side {
+  grid-column: 1 / -1;
+  justify-self: start;
+  font-weight: 700;
+  color: var(--muted);
+}
+.versus {
+  display: contents;
+}
+.verdict {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.verdict.up {
+  color: var(--ok);
+}
+.verdict.down {
+  color: var(--danger);
+}
+.verdict.none {
+  color: var(--muted);
+}
+.die {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  width: 52px;
+  height: 52px;
+  padding: 7px;
+  background: #f4f1e8;
+  border-radius: 10px;
+  box-shadow: inset 0 -3px 0 rgb(0 0 0 / 0.18), 0 3px 8px rgb(0 0 0 / 0.4);
+  animation: tumble 0.6s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.die.defender {
+  background: #2b3b48;
+}
+.die i {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin: auto;
+  border-radius: 50%;
+}
+.die .pip {
+  background: #1b2630;
+}
+.die.defender .pip {
+  background: #f4f1e8;
+}
+@keyframes tumble {
+  0% {
+    transform: rotate(-200deg) scale(0.3);
+    opacity: 0;
+  }
+  70% {
+    transform: rotate(14deg) scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(0) scale(1);
+  }
+}
+.headline {
+  margin: 4px 0 2px;
+  font-size: 26px;
+  font-weight: 800;
+}
+.headline.captured,
+.headline.won {
+  color: var(--ok);
+}
+.headline.lost {
+  color: var(--danger);
+}
+.detail {
+  margin: 0 0 6px;
+  color: var(--muted);
+}
+.extra {
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  background: var(--surface-2);
+  border-radius: 8px;
+  font-weight: 700;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* A bigger screen gets a bigger panel and bigger secondary text, as the map's
+   names grow. Height is part of the condition: at 1600x900 the zoomed panel no
+   longer fits, and Playwright holds the panel open at 1366x768, 1600x900 and
+   1920x1080. */
+@media (min-width: 1600px) and (min-height: 1000px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr) 440px;
+  }
+  .panel,
+  dialog {
+    zoom: 1.3;
+  }
+}
+
+/* T13 prototype only. [designed] Atlas sizing, text, coastline/terrain colours,
+   stroke widths and spacing after inspecting MapView's labels/sea/coast and the
+   existing stage/panel CSS. A compact header and route footer leave at least
+   11 rendered pixels per country name at the two acceptance viewports. */
+#app.prototype-root {
+  display: block;
+}
+#generated-prototype {
+  height: 100%;
+  padding: 12px 20px;
+  display: grid;
+  grid-template-rows: 52px 24px minmax(0, 1fr) 110px;
+  gap: 8px;
+  background: #0e2634;
+}
+#generated-prototype .prototype-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+#generated-prototype h1 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 600;
+  letter-spacing: -.035em;
+}
+#generated-prototype .prototype-eyebrow {
+  margin: 0 0 3px;
+  color: #8daab7;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .17em;
+}
+#generated-prototype .prototype-seed-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #bed0d7;
+  font-size: 12px;
+}
+#generated-prototype input {
+  width: 112px;
+  padding: 8px 10px;
+  border: 1px solid #456473;
+  border-radius: 5px;
+  background: #0b1e2a;
+  color: #fff;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+#generated-prototype button {
+  padding: 8px 14px;
+  font-size: 12px;
+  border-radius: 5px;
+}
+#generated-prototype .prototype-generate {
+  background: #ddc982;
+  color: #243624;
+  border-color: #ddc982;
+}
+#generated-prototype .prototype-legend {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 11px;
+  color: #b1c6ce;
+}
+#generated-prototype .prototype-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+#generated-prototype .prototype-legend p {
+  margin: 0;
+  margin-left: auto;
+}
+#generated-prototype .prototype-key {
+  display: inline-block;
+  width: 26px;
+  border-top: 2px solid #e9dba6;
+}
+#generated-prototype .prototype-key-sea {
+  border-color: #83c9e5;
+  border-top-style: dashed;
+}
+#generated-prototype .prototype-map-wrap {
+  min-height: 0;
+  border: 1px solid #355565;
+  border-radius: 7px;
+  overflow: hidden;
+  background: #12374b;
+}
+#generated-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: #12374b;
+}
+#generated-map .prototype-sea {
+  fill: #12374b;
+}
+#generated-map .prototype-coast {
+  fill: #445c57;
+  stroke: #c7bc8e;
+  stroke-width: 7px;
+  stroke-linejoin: round;
+}
+#generated-map .prototype-island-title {
+  fill: #d9e4e1;
+  font: 600 15px Inter, system-ui, sans-serif;
+  letter-spacing: .025em;
+}
+#generated-map [data-country] {
+  cursor: pointer;
+  outline: none;
+}
+#generated-map .country-shape {
+  fill: #7ba78c;
+  stroke: #345746;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+}
+#generated-map .country-name {
+  fill: #10291e;
+  font: 600 18px Inter, system-ui, sans-serif;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  user-select: none;
+}
+#generated-map [data-country]:hover .country-shape,
+#generated-map [data-country]:focus-visible .country-shape {
+  stroke: #fff;
+  stroke-width: 3px;
+}
+#generated-map [data-neighbour="true"] .country-shape {
+  stroke: #e9dba6;
+  stroke-width: 3px;
+}
+#generated-map [aria-pressed="true"] .country-shape {
+  fill: #ddc982;
+  stroke: #fff;
+  stroke-width: 3px;
+}
+#generated-map .prototype-routes {
+  pointer-events: none;
+}
+#generated-map [data-connection] {
+  fill: none;
+  stroke: #e9dba6;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-opacity: .55;
+}
+#generated-map [data-connection="sea"] {
+  stroke: #83c9e5;
+  stroke-width: 2.5px;
+  stroke-dasharray: 6 7;
+  stroke-opacity: .7;
+}
+#generated-map [data-highlighted="true"] {
+  stroke-opacity: 1;
+  stroke-width: 4px;
+}
+#generated-prototype .prototype-selection {
+  display: grid;
+  grid-template-columns: 265px minmax(0, 1fr);
+  gap: 20px;
+  padding: 13px 16px;
+  border-top: 1px solid #355565;
+  background: #142e3c;
+  border-radius: 5px;
+}
+#generated-prototype #selected-country {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+#generated-prototype #selected-neighbours {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-content: start;
+}
+#generated-prototype .prototype-neighbour-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  align-content: start;
+}
+#generated-prototype .prototype-neighbour-list h3 {
+  width: 100%;
+  margin: 0 0 3px;
+  color: #e9dba6;
+  font-size: 11px;
+  font-weight: 600;
+}
+#generated-prototype .prototype-neighbours-sea h3 {
+  color: #83c9e5;
+}
+#generated-prototype .prototype-neighbour-list span,
+#generated-prototype .prototype-selection-hint {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #c7d7dd;
+}
+#generated-prototype .prototype-selection-hint {
+  grid-column: 1 / -1;
+  align-self: center;
+}
+#generated-prototype .prototype-no-neighbours {
+  color: #8daab7;
+}
+#generated-prototype .prototype-error {
+  grid-row: 3 / -1;
+  align-self: center;
+  justify-self: center;
+  width: min(600px, 100%);
+  padding: 28px;
+  background: #142e3c;
+  border: 1px solid #456473;
+  border-radius: 7px;
+}
+#generated-prototype .prototype-error h2 {
+  color: #f0bd92;
+}
+
+
+/* [designed] Keep the T13 atlas beside the normal controls. The 288px panel
+   leaves country names and counts above 11 rendered pixels at 1280x800. */
+#generated-game {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+#generated-game .stage {
+  grid-template-columns: minmax(0, 1fr) 288px;
+}
+#generated-game .subtitle {
+  display: none;
+}
+#generated-game .generated-seed,
+#generated-game .generated-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#generated-game .generated-seed {
+  margin-left: auto;
+}
+#generated-game input {
+  width: 100px;
+}
+#generated-game .generated-legend {
+  gap: 18px;
+  font-size: 12px;
+  color: var(--muted);
+}
+#generated-game .generated-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#generated-game .generated-legend i {
+  width: 22px;
+  border-top: 2px solid #e9dba6;
+}
+#generated-game .generated-legend .generated-sea-key {
+  border-color: #83c9e5;
+  border-top-style: dashed;
+}
+#generated-game #generated-map .country-name {
+  font-size: 18px;
+  fill: #071923;
+}
+#generated-game #generated-map .army-count {
+  font: 700 18px Inter, system-ui, sans-serif;
+  fill: #071923;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+#generated-game #generated-map [data-selected="true"] .country-shape {
+  stroke: white;
+  stroke-width: 4px;
+}
+#generated-game #generated-map [data-target="true"] .country-shape {
+  stroke: #ffe08a;
+  stroke-width: 4px;
+  stroke-dasharray: 5 3;
+}
+#generated-game #generated-map .prototype-island-title {
+  font-size: 18px;
+}
+#generated-game .generated-error {
+  padding: 24px;
+}
+#generated-game .generated-error form {
+  justify-content: start;
+  margin: 20px 0;
+}
+
+
+/* Match the existing desktop panel zoom with its intended column width. */
+@media (min-width: 1600px) and (min-height: 1000px) {
+  #generated-game .stage {
+    grid-template-columns: minmax(0, 1fr) 440px;
+  }
+}
+
+/* [designed] Minimal setup after inspecting generated-game's route and panel. */
+#game-setup.setup-root {
+  position: relative; display: grid; place-items: center; padding: 32px;
+}
+.setup-card {
+  width: min(540px, 100%); display: grid; gap: 14px;
+}
+.setup-card h1, .setup-card p {
+  margin: 0;
+}
+.setup-card label {
+  font-weight: 700;
+}
+.setup-card input, .setup-card select {
+  width: 100%; min-width: 0; padding: 12px; font: inherit; color: var(--text); background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px;
+}
+.setup-card [role="alert"] {
+  color: #f0bd92;
+}
+#game-setup .help-open {
+  position: absolute; top: 16px; right: 16px;
+}
+/* Keep every score and action visible for the additional human seats. */
+#generated-game:is([data-seats="3"], [data-seats="4"]) .panel {
+  gap: 6px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .score {
+  gap: 2px; padding: 8px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .score-row {
+  padding: 3px 4px; gap: 6px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .card {
+  padding: 8px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .log-card {
+  min-height: 50px;
+}
+#generated-game:is([data-seats="3"], [data-seats="4"]) .legend {
+  margin-top: 6px; font-size: 11px;
+}
+
+/* Selection values wrap instead of clipping in the compact generated panel. */
+#generated-game .steps li {
+  grid-template-columns: 24px 44px minmax(0, 1fr); gap: 6px;
+}
+#generated-game .step-value {
+  white-space: normal; overflow: visible; overflow-wrap: anywhere;
+}
+
+/* The wrapped attack selection needs more room; the scrollable log yields it. */
+#generated-game[data-seats="2"] .panel[data-phase="attack"] .log-card {
+  min-height: 50px;
+}
+
+/* [designed] Local save/load controls beside the generated-game seed. */
+.match-files { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.match-load { display:flex; align-items:center; gap:6px; }
+.match-load label { font-size:12px; white-space:nowrap; }
+.match-load input { font-size:12px; width:180px; max-width:100%; }
+.match-error { margin:0; max-width:440px; font-size:12px; }
+.match-error:empty { display:none; }
+#game-setup .match-load { margin-top:12px; }
+#generated-game .topbar { flex-wrap:wrap; }
+/* Keep failure feedback readable without shifting an active match's controls. */
+#generated-game .topbar { position:relative; }
+#generated-game .match-error:not(:empty) {
+  position:absolute;
+  top:100%;
+  left:20px;
+  right:auto;
+  z-index:5;
+  max-width:min(640px, calc(100vw - 40px));
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:var(--surface);
+  box-shadow:0 4px 12px #0008;
+}
+
+.help-dialog {
+  box-sizing: border-box;
+  zoom: 1;
+  max-height: 80vh;
+  max-width: min(42rem, calc(100vw - 2rem));
+  overflow: auto;
+  padding: 1.25rem;
+  color: #f2f5f7;
+  background: #101f2b;
+  border: 1px solid #8a9ba8;
+  border-radius: 12px;
+}
+.help-dialog[open] {
+  animation: none;
+}
+.help-dialog::backdrop {
+  background: #0009;
+}
+.help-dialog h2 {
+  margin-top: 0;
+}
+.help-dialog h3 {
+  margin: 1rem 0 0.25rem;
+}
+.help-dialog p {
+  margin: 0.25rem 0;
+  line-height: 1.45;
+}
+.help-actions {
+  position: sticky;
+  bottom: 0;
+  padding: 0.75rem 0 0;
+  text-align: right;
+  background: #101f2b;
+}
+
+/* Fixed reference route; existing authored/generated routes retain their styles. */
+#reference-setup{height:100vh;display:grid;place-items:center;padding:32px}
+:is(#reference-game, #geographic-game){height:100vh;display:grid;grid-template-rows:auto minmax(0,1fr)}
+:is(#reference-game, #geographic-game) .stage{grid-template-columns:minmax(0,1fr) 288px}
+#reference-map{display:block;width:100%;height:100%}
+
+/* [designed] Reuse the existing compact seat and selection layout. */
+
+:is(#reference-game, #geographic-game):is([data-seats="3"], [data-seats="4"]) .panel {
+  gap: 6px;
+}
+:is(#reference-game, #geographic-game):is([data-seats="3"], [data-seats="4"]) .score {
+  gap: 2px; padding: 8px;
+}
+:is(#reference-game, #geographic-game):is([data-seats="3"], [data-seats="4"]) .score-row {
+  padding: 3px 4px; gap: 6px;
+}
+:is(#reference-game, #geographic-game):is([data-seats="3"], [data-seats="4"]) .card {
+  padding: 8px;
+}
+:is(#reference-game, #geographic-game):is([data-seats="3"], [data-seats="4"]) .log-card {
+  min-height: 50px;
+}
+:is(#reference-game, #geographic-game):is([data-seats="3"], [data-seats="4"]) .legend {
+  margin-top: 6px; font-size: 11px;
+}
+
+/* Selection values wrap instead of clipping in the compact generated panel. */
+:is(#reference-game, #geographic-game) .steps li {
+  grid-template-columns: 24px 44px minmax(0, 1fr); gap: 6px;
+}
+:is(#reference-game, #geographic-game) .step-value {
+  white-space: normal; overflow: visible; overflow-wrap: anywhere;
+}
+
+/* The wrapped attack selection needs more room; the scrollable log yields it. */
+:is(#reference-game, #geographic-game)[data-seats="2"] .panel[data-phase="attack"] .log-card {
+  min-height: 50px;
+}
+
+@media (min-width:1600px) and (min-height:1000px) {
+  :is(#reference-game, #geographic-game) .stage { grid-template-columns:minmax(0,1fr) 440px; }
+}
+
+/* [designed] T28 reference battle layout. The legacy development variant and
+   every other route retain their existing dimensions and goldens. */
+:is(#reference-game, #geographic-game).battle-reference .stage { grid-template-columns:minmax(0,1fr) 350px; }
+.battle-reference .panel { gap:8px; overflow-y:auto; }
+.battle-reference .panel .card { padding:10px; }
+.battle-reference .topbar { align-items:center; flex-wrap:wrap; gap:12px; }
+.battle-reference .topbar > .score { display:flex; margin-left:auto; gap:8px; padding:4px; border:0; background:none; }
+.battle-reference .topbar .score-row { padding:4px; gap:6px; }
+.battle-reference .topbar .score-name { font-size:13px; }
+.battle-reference .topbar .score-num { font-size:12px; }
+.battle-reference .topbar .panel-foot { margin:0; gap:8px; }
+.battle-reference .topbar .seed { display:none; }
+.battle-reference .action { display:flex; flex-direction:column; gap:8px; }
+.battle-reference #attack-button { display:none; }
+.battle-reference .action[data-battle="true"] > :is(.pick,.hint,.legend) { display:none; }
+.battle-reference .action[data-battle="true"] > .buttons { order:2; margin-top:0; }
+.battle-reference .action[data-battle="true"] #end-turn-button { width:100%; grid-column:1 / -1; }
+.battle-reference .log-card { min-height:48px; }
+.battle-controls { min-width:0; }
+.battle-controls[hidden] { display:none; }
+.battle-title { margin:0 0 8px; font-size:16px; color:var(--accent); }
+.battle-context { display:grid; gap:5px; }
+.battle-country { display:grid; grid-template-columns:40px minmax(0,1fr) auto; align-items:baseline; gap:6px; }
+.battle-country strong { font-size:13px; overflow-wrap:anywhere; }
+.battle-label,.battle-help { color:var(--muted); font-size:12px; }
+.battle-count { min-width:30px; padding:1px 5px; border:1px solid var(--line); border-radius:4px; font-weight:750; text-align:center; }
+.battle-settings { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:10px 0 0; }
+.battle-settings label { display:flex; flex-direction:column; gap:4px; font-size:12px; color:var(--muted); }
+.battle-settings :is(input,select),.capture-choice input { min-width:0; width:100%; height:34px; border:1px solid #6c8597; border-radius:5px; padding:4px 8px; background:var(--bg); color:var(--text); font:inherit; }
+.battle-help { margin:5px 0 8px; line-height:1.3; }
+.battle-actions { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) 64px; gap:6px; }
+.battle-controls button { min-height:36px; margin:0; padding:6px 10px; font-size:13px; }
+#single-exchange-button { grid-column:2; grid-row:1; padding-inline:4px; }
+#stop-battle-button { grid-column:3; grid-row:1; }
+.battle-feedback { margin-top:10px; }
+.battle-result { font-size:13px; }
+.battle-result.captured { color:var(--ok); }
+#battle-status { margin:3px 0 0; font-size:12px; line-height:1.35; }
+.battle-tally { margin:7px 0; color:var(--muted); font-size:12px; }
+.battle-rolls { display:flex; flex-direction:column; gap:5px; list-style:none; margin:0; padding:0; }
+.battle-rolls li { display:flex; align-items:center; justify-content:center; gap:10px; padding:3px 0; }
+.battle-die { width:30px; height:30px; display:grid; place-items:center; font-size:18px; font-weight:800; background:var(--bg); border:2px solid #9dbece; border-radius:5px; }
+.defender-die { border-color:#e5bb8c; }
+.battle-dice-verdict { min-width:116px; text-align:center; font-size:12px; }
+.battle-rolls [data-result="tie"] { color:var(--accent); }
+.capture-choice { border-top:1px solid #6c8597; margin-top:9px; padding-top:9px; }
+.capture-choice h3 { font-size:14px; margin:0; color:var(--ok); }
+.capture-choice p { margin:4px 0 7px; font-size:12px; color:var(--muted); }
+.capture-choice label { display:flex; align-items:center; gap:8px; font-size:12px; }
+.capture-choice input { flex:1; }
+.capture-adjust { display:grid; grid-template-columns:1fr 36px 36px 1fr; gap:5px; margin:6px 0; }
+.capture-adjust button { padding:4px; }
+#confirm-capture-button { width:100%; }
+@media (min-width:1600px) and (min-height:1000px) {
+  :is(#reference-game, #geographic-game).battle-reference .stage { grid-template-columns:minmax(0,1fr) 440px; }
+  .battle-controls button { min-height:40px; }
+}
+
+/* T29 transient move selection uses the reference battle panel. */
+.friendly-quantity { display:flex; align-items:center; gap:8px; font-size:13px; margin:12px 0; }
+.friendly-quantity input { min-width:0; flex:1; width:100px; padding:6px; background:var(--bg); color:var(--text); border:1px solid var(--line); border-radius:5px; font:inherit; }
+#confirm-friendly-move-button { width:100%; margin-bottom:8px; }
+.friendly-draft-actions { display:grid; gap:6px; }
+
+/* [designed] T30 setup and result reuse the compact reference panel. */
+#reference-setup:has(.victory-setup) { overflow-y:auto; padding:20px; }
+.victory-setup { gap:9px; }
+.reference-controller-fields,.reference-victory-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.reference-controller-fields > div,.reference-victory-options > div { display:grid; align-content:start; gap:5px; }
+.victory-setup :is(input,select) { padding:8px; }
+.reference-victory-options .reference-domination { display:flex; align-items:center; gap:8px; }
+.reference-domination input { width:20px; height:20px; margin:0; }
+.victory-result[hidden] { display:none; }
+#victory-reason { margin:0 0 12px; }
+#victory-standings { width:100%; border-collapse:collapse; font-size:13px; font-variant-numeric:tabular-nums; }
+#victory-standings caption { text-align:left; color:var(--muted); margin-bottom:6px; }
+#victory-standings :is(th,td) { padding:7px 4px; border-bottom:1px solid var(--line); text-align:right; }
+#victory-standings th:first-child { text-align:left; }
+.victory-guidance { margin:12px 0 0; color:var(--muted); font-size:13px; }
+.victory-choices { display:grid; gap:8px; margin-top:12px; }
+.battle-reference .panel:is([data-phase="finished"],[data-phase="human-loss"]) .action > :is(.pick,.hint,.legend) { display:none; }
+
+/* [designed] T31 gives file feedback its own header space, beside the inputs.
+   It wraps within that row and never floats over the board or live controls. */
+.reference-match-files {
+  flex-basis:100%; display:grid;
+  grid-template-columns:auto auto minmax(0,1fr);
+  gap:8px 16px; align-items:center; min-width:0; min-height:34px;
+}
+.reference-match-files .match-error { max-width:none; overflow-wrap:anywhere; }
+.reference-match-files .match-load { min-width:0; }
+.reference-match-files-setup { grid-template-columns:minmax(0,1fr); }
+.reference-match-files-setup .match-load { flex-wrap:wrap; }
+.reference-match-files-setup .match-load input { flex:1; min-width:0; }
+
+#reference-computer-status { margin:0; font-size:13px; color:var(--muted); }
+
+/* [designed] Army counts lead; names remain available without a hover-only dependency.
+   Ownership silhouettes mirror the score legend, alongside color and full accessible labels. */
+#reference-map .name { font-size:9px; font-weight:400; stroke:none; }
+#reference-map .count { font-weight:750; }
+#reference-map .badge { stroke:#d7e4eb; stroke-width:.8; }
+#reference-map .country:is(:hover,:focus,.selected) .name {
+  font-size:12px; font-weight:600; stroke:#f8f2e2; stroke-width:1.5;
+}
+
+/* [designed] T70 keeps totals and session playback available above the board. */
+[data-testid="player-army-total"] { display:block; font-size:16px; white-space:nowrap; }
+.game-playback { display:flex; align-items:center; gap:8px; }
+.battle-reference #reference-computer-status { order:-1; margin:0; }
+/* File controls share the playback row; error feedback gets the full header width. */
+.battle-reference .reference-match-files { display:contents; }
+.battle-reference .reference-match-files .match-error { flex-basis:100%; }
+.game-event-log { width:min(900px,90vw); max-height:80vh; padding:0; overflow:auto; border:1px solid var(--line); border-radius:12px; background:#12202e; color:#f1f5f9; }
+.game-event-log::backdrop { background:#000a; }
+.game-event-log-head { position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 20px; background:#1a2d3d; border-bottom:1px solid var(--line); }
+.game-event-log-head h2 { margin:0; font-size:20px; }
+.game-event-log[open] { animation:none; }
+.game-event-list { margin:0; padding:8px 24px 20px; list-style:none; }
+.game-event { padding:12px 0; border-bottom:1px solid var(--line); }
+.game-event h3,.game-event summary { margin:0 0 8px; font-size:15px; color:#f2c14e; }
+.game-event summary { cursor:pointer; }
+.game-event p { margin:5px 0; }
+.game-event-note { color:#c3d3e2; }
+
+/* [designed] T36 uses accepted 800x460 geometry in the established T70 shell.
+   Shapes, palette, 44x20 badges and 5-unit count baseline reuse the reference UI. */
+#geographic-setup {height:100vh;display:grid;place-items:center;padding:32px;overflow:auto}
+#geographic-game {height:100vh;display:grid;grid-template-rows:auto minmax(0,1fr)}
+#geographic-map {display:block;width:100%;height:100%}
+#geographic-map .water {fill:#193e51}
+#geographic-map .coast {fill:#3c6570;stroke:#8baca7;stroke-width:2}
+#geographic-map .lane {fill:none;stroke:#efd49a;stroke-width:1.7;stroke-dasharray:4 3;stroke-linejoin:round}
+#geographic-map .lane.active {stroke:#fff7bf;stroke-width:3}
+#geographic-map .cell {stroke:#244654;stroke-width:.9;stroke-linejoin:round}
+#geographic-map .country {cursor:pointer;outline:none}
+#geographic-map .country.selected .cell {stroke:#fff7bf;stroke-width:2.6}
+#geographic-map .country.neighbor .cell {stroke:#f5dc82;stroke-width:1.9}
+#geographic-map .country:focus-visible .cell {stroke:white;stroke-width:3}
+#geographic-map .country-label {pointer-events:none}
+#geographic-map .badge {fill:#132b3b;stroke:#d7e4eb;stroke-width:.8}
+#geographic-map .count {font:750 14px system-ui;fill:white;text-anchor:middle}
+#geographic-map .name {font:400 9px system-ui;fill:#102637;text-anchor:middle;visibility:hidden}
+#geographic-map .country:is(:hover,:focus,.selected) .name {font-size:12px;font-weight:600;visibility:visible;stroke:#f8f2e2;stroke-width:1.5;paint-order:stroke}
+#geographic-map .centre {font:10px system-ui;fill:#fff5bd;stroke:#122f40;stroke-width:.4;paint-order:stroke}

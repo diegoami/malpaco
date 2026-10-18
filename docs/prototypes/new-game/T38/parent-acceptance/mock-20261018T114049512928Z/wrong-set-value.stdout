@@ -1,0 +1,18 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t38-work
+
+ ❯ tests/core/card-sets.test.ts (23 tests | 4 failed) 291ms
+   ❯ one optional homogeneous set and approved fixed income (23)
+     × Anchor with 0Wilds has fixed value and spends exactly one set 11ms
+     × Anchor with 1Wilds has fixed value and spends exactly one set 3ms
+     × Anchor with 2Wilds has fixed value and spends exactly one set 2ms
+     × later turns keep fixed values rather than increasing a global trade counter 1ms
+ ❯ tests/core/card-sets-replay.test.ts (9 tests | 1 failed) 15425ms
+   ❯ real trade/skip histories with permanent stage identities (9)
+     × Anchor real cards phase saves, trades, reloads and places without recomputing the pool 28ms
+
+ Test Files  2 failed (2)
+      Tests  5 failed | 27 passed (32)
+   Start at  13:40:51
+   Duration  15.83s (tests 96%, transform 3%, import 1%)
+

@@ -1,0 +1,47 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > Anchor real cards phase saves, trades, reloads and places without recomputing the pool
+AssertionError: expected 8 to be 7 // Object.is equality
+
+- Expected
++ Received
+
+- 7
++ 8
+
+ ❯ tests/core/card-sets-replay.test.ts:18:194
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 2Wilds has fixed value and spends exactly one set
+AssertionError: expected 9 to be 8 // Object.is equality
+
+- Expected
++ Received
+
+- 8
++ 9
+
+ ❯ tests/core/card-sets.test.ts:38:71
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > later turns keep fixed values rather than increasing a global trade counter
+AssertionError: expected 9 to be 8 // Object.is equality
+
+- Expected
++ Received
+
+- 8
++ 9
+
+ ❯ tests/core/card-sets.test.ts:57:150
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
