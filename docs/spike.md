@@ -1081,3 +1081,13 @@ original-transaction claim authenticated by its restoration receipt and the full
 archive-member/inner-inventory mode checks; it is not claimed for a fresh export.
 The before-review portability correction preserves all old proof/report/manifest
 receipts separately and changes no runtime, tests, frozen inputs or archive modes.
+
+T74's50-attempt refusal398 corpus test now has the same explicit120-second test
+budget as its twelve accepted-map cases. The parent-owned change followed an
+integrated817/818result whose only failure exceeded Vitest's implicit5seconds at
+5170ms, without an assertion mismatch. Contract and test replacements are separately
+frozen; the proof permits exactly those two before/after hashes and reconstructs
+the original test by reversing only the new argument. No engine/RNG assertion,
+UI5second readiness check or runtime deadline changed. The targeted refusal passes
+5020msbody/5.56stotal; historical806+8/build and the817/818failure remain distinct.
+No corrected integrated-suite green or paid review is claimed by this evidence.
