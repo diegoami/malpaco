@@ -1,0 +1,11 @@
+{
+  "verifiedCommittedHead": "169532bbdb3e4b9fd90ffa054b7623830c9cb7cf",
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T74/production/verify-adoption.py"
+  ],
+  "exit": 0,
+  "elapsedSeconds": 2.0803068050008733,
+  "stdout": "{\"acceptedMaps\": 12, \"actualVitestFiles\": 59, \"actualVitestTests\": 806, \"archiveMembers\": 349, \"buildExit\": 0, \"committedArchiveParts\": 3, \"connectedCountries\": 552, \"correctedHeadFullSuiteRun\": false, \"explicitFrozenReplacements\": 2, \"explicitRefusal\": 398, \"freshHeavyRuns\": 0, \"frozenInputs\": 99, \"full40Hits\": 552, \"harnessTests\": 8, \"looseEvidenceRequired\": false, \"mismatches\": 0, \"negativeControls\": 5, \"originalProposalTests\": 22, \"primaryOverlayCases\": 35328, \"sourceCandidateEqualities\": 3, \"supplementOverlayCases\": 1472, \"targetedRefusalPassed\": 1, \"validatedInputs\": 226}\n",
+  "stderr": ""
+}
