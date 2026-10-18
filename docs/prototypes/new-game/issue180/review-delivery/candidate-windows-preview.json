@@ -1,0 +1,74 @@
+{
+  "head": "1daada6dd93c26ef49f0fe85b5e769707d7f1691",
+  "commands": [
+    {
+      "name": "production-proof",
+      "argv": [
+        "python3",
+        "docs/prototypes/new-game/issue180/production/verify-adoption.py"
+      ],
+      "exit": 0,
+      "seconds": 5.037202377003268
+    },
+    {
+      "name": "package",
+      "argv": [
+        "node",
+        "tools/release/package-playable.mjs"
+      ],
+      "exit": 0,
+      "seconds": 1.7109247170010349
+    },
+    {
+      "name": "extracted-battle-fit",
+      "argv": [
+        "docker",
+        "run",
+        "--pull=never",
+        "--rm",
+        "--init",
+        "--ipc=host",
+        "--user",
+        "1000:1000",
+        "-v",
+        "/home/diego/projects/malpaco/.cache/issue180-work:/work",
+        "-w",
+        "/work",
+        "-e",
+        "HOME=/tmp",
+        "-e",
+        "PLAYABLE_EXTRACTED_DIR=/work/docs/prototypes/new-game/issue180/preview-20261018-190001/extracted",
+        "-e",
+        "PLAYABLE_EVIDENCE_DIR=/work/docs/prototypes/new-game/issue180/preview-20261018-190001/extracted-evidence",
+        "mcr.microsoft.com/playwright:v1.63.0-noble",
+        "node_modules/.bin/playwright",
+        "test",
+        "tests/e2e/battle-panel-fit.spec.ts",
+        "--config",
+        "playwright.release.config.ts",
+        "--workers=2"
+      ],
+      "exit": 0,
+      "seconds": 31.1355947560005
+    }
+  ],
+  "release": "T73 candidate; not0.1.0 published",
+  "bundle": "/home/diego/projects/malpaco/.cache/issue180-dispatch/preview-20261018-190001/T73-battle-fit-1daada6d-20261018-190001",
+  "archiveSha256": "1a403854adae6e3bf474d37c671ed49afeea70133a1a65a54a7712201baf172f",
+  "screenshots": 48,
+  "verifiedPackage": true,
+  "files": 68,
+  "windowsPath": "/mnt/c/Users/diego/malpaco-preview/T73-battle-fit-1daada6d-20261018-190001",
+  "filesVerified": 69,
+  "httpVerified": {
+    "BUILD.json": "29a56665b4a5fb3a20b24df281cd5b6370c097a36f0af2cbd06bffdf2dd7e3ed",
+    "PLAY.md": "6181823ed1f99316ab581555afcc2e53fbad593eac4e43db075fdc5de59957a2",
+    "assets/index-B8lxC96R.css": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+    "assets/index-C4yhHA5_.js": "2a39107257db968aaa98b9c70e926eff3f705a9e5f2851c3c4c7a32780308902",
+    "fonts/Inter-LICENSE.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+    "fonts/InterVariable.woff2": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+    "index.html": "f441e15efe45656d4118fee80057357eabc80d8cd6e63fc1e67011e6755f43ea"
+  },
+  "currentGlobalGalleryUnchanged": true,
+  "currentGlobalGallerySha256": "3d7f8c8207d12ea0cf75e22cea3a900d306bf48c55897dddc22c88d0d4dfbabb"
+}
