@@ -1,0 +1,21 @@
+[
+  {
+    "file": "compact-panels.spec.ts",
+    "title": "geographic: computer phase changes keep actual card bounds stable",
+    "project": "1280x800",
+    "expectedStatus": "passed",
+    "status": "failed",
+    "retry": 0,
+    "durationMs": 4672,
+    "errors": [
+      {
+        "location": {
+          "file": "/home/diego/projects/malpaco/.cache/t75-work/tests/e2e/compact-panels.spec.ts",
+          "column": 64,
+          "line": 21
+        },
+        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  19 |  const previous=await p.getByLabel('Load game',{exact:true}).elementHandle();\n  20 |  await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'panels.json',mimeType:'application/json',buffer:Buffer.from(text)});\n> 21 |  await expect.poll(()=>previous!.evaluate(el=>el.isConnected)).toBe(false);await expect(p.locator('[data-country]')).toHaveCount(46);\n     |                                                                ^\n  22 | }\n  23 | async function bounds(p:Page){return p.locator('.battle-reference').evaluate(root=>{\n  24 |  const selectors=['.topbar','.board','.panel','.panel>.turn','.panel>.action','.panel>.log-card'];\n    at load (/home/diego/projects/malpaco/.cache/t75-work/tests/e2e/compact-panels.spec.ts:21:64)\n    at /home/diego/projects/malpaco/.cache/t75-work/tests/e2e/compact-panels.spec.ts:43:4"
+      }
+    ]
+  }
+]

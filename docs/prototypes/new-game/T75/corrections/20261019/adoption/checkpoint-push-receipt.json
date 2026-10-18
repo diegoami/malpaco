@@ -1,0 +1,20 @@
+{
+  "commit": "cb8e320b73b0f134ac8c73ba210b554211b0a0ad",
+  "subject": "fix: adopt exact T75 presentation performance correction [skip ci]",
+  "firstPush": {
+    "exit": 128,
+    "reason": "No upstream branch configured; no remote update from this attempt."
+  },
+  "explicitPush": {
+    "command": [
+      "git",
+      "push",
+      "--set-upstream",
+      "origin",
+      "task/T75-playable-border-release"
+    ],
+    "exit": 0,
+    "remoteUpdate": "8acb2a69..cb8e320b",
+    "upstreamSet": true
+  }
+}

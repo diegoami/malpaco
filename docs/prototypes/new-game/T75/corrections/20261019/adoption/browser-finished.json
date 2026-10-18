@@ -1,0 +1,29 @@
+{
+  "name": "04-extracted-browser",
+  "command": [
+    "npx",
+    "playwright",
+    "test",
+    "--config",
+    "playwright.release.config.ts",
+    "geographic-presentation.spec.ts",
+    "geographic-board.spec.ts",
+    "geographic-review-guards.spec.ts",
+    "battle-panel-fit.spec.ts",
+    "cards.spec.ts",
+    "computer-cards.spec.ts",
+    "cards-result-layout.spec.ts",
+    "match-save.spec.ts",
+    "versioned-match.spec.ts",
+    "playback-controls.spec.ts",
+    "playback-edge-cases.spec.ts",
+    "compact-panels.spec.ts",
+    "game-event-log.spec.ts",
+    "--workers=2",
+    "--reporter=list,html,json"
+  ],
+  "exit": 1,
+  "seconds": 639.94,
+  "expectedCases": 166,
+  "expectedSpecs": 13
+}

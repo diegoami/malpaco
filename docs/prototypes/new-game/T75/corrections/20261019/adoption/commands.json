@@ -1,0 +1,62 @@
+[
+  {
+    "name": "01-committed-proof",
+    "command": [
+      "python3",
+      "docs/prototypes/new-game/T75/production/verify-adoption.py"
+    ],
+    "exit": 0,
+    "seconds": 5.057,
+    "log": "docs/prototypes/new-game/T75/corrections/20261019/adoption/logs/01-committed-proof-stdout-stderr.txt"
+  },
+  {
+    "name": "02-integrated-npm-test",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0,
+    "seconds": 91.277,
+    "log": "docs/prototypes/new-game/T75/corrections/20261019/adoption/logs/02-integrated-npm-test-stdout-stderr.txt"
+  },
+  {
+    "name": "03-static-package",
+    "command": [
+      "node",
+      "docs/prototypes/playable/acceptance.mjs",
+      "/tmp/malpaco-t75-corrected-fc33zzrh"
+    ],
+    "exit": 0,
+    "seconds": 5.739,
+    "log": "docs/prototypes/new-game/T75/corrections/20261019/adoption/logs/03-static-package-stdout-stderr.txt"
+  },
+  {
+    "name": "04-extracted-browser",
+    "command": [
+      "npx",
+      "playwright",
+      "test",
+      "--config",
+      "playwright.release.config.ts",
+      "geographic-presentation.spec.ts",
+      "geographic-board.spec.ts",
+      "geographic-review-guards.spec.ts",
+      "battle-panel-fit.spec.ts",
+      "cards.spec.ts",
+      "computer-cards.spec.ts",
+      "cards-result-layout.spec.ts",
+      "match-save.spec.ts",
+      "versioned-match.spec.ts",
+      "playback-controls.spec.ts",
+      "playback-edge-cases.spec.ts",
+      "compact-panels.spec.ts",
+      "game-event-log.spec.ts",
+      "--workers=2",
+      "--reporter=list,html,json"
+    ],
+    "exit": 1,
+    "seconds": 639.94,
+    "expectedCases": 166,
+    "expectedSpecs": 13
+  }
+]

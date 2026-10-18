@@ -20,3 +20,8 @@ The archived package is temporary-source preflight evidence only. BUILD truthful
 ## Exact performance correction
 
 The original adoption results above are historical. Parent corrections/20261019/FROZEN.json authenticates exactly three replacements: the pure-provider exact-output performance candidate, reviewed dev-watch configuration, and its README paragraph. Original manifests/canonical candidates/prior proof and failed CI remain immutable. The updated verifier checks both complete archives and all unchanged inputs; current validation is separately recorded in ../corrections/20261019/adoption/validation.json. Candidate unit console text was lost to a disclosed log collision; only its exit0/77.1s survives. Fresh integrated validation must provide current unit output. The new provider does not inherit the old source review approval; independent correction review, owner acceptance and green final CI remain main-owned gates.
+
+
+### Current adopted-source validation
+
+Checkpoint cb8e320b: small proof passed; fresh npm test818Vitest/60files+9harness and static package10files/9checksums/4HTTP passed. The one extracted166-case run at two workers ended165passed/1failed (compact-panels geographic computer-phase1280x800: original5000ms old Load-widget detach poll). No rerun/fix occurred;0.1.0 is not ready. Full report, all statuses/raw logs/failure video/context, truthful cb8e BUILD/package hashes, strict15,071-input/inventoried-output restoration and disclosed ignored fallback screenshot-routing limitation are in ../corrections/20261019/adoption/REPORT.md and validation.json. Earlier results remain historical. Review, owner acceptance and finalCI/release are deferred main-owned gates.

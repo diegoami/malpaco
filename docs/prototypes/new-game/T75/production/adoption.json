@@ -130,6 +130,17 @@
     "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019/adoption/validation.json",
     "priorCandidateUnitConsoleRetained": false,
     "priorCandidateUnitExit": 0,
-    "priorCandidateUnitSeconds": 77.1
+    "priorCandidateUnitSeconds": 77.1,
+    "validatedSourceCommit": "cb8e320b73b0f134ac8c73ba210b554211b0a0ad",
+    "currentResult": {
+      "proofExit": 0,
+      "integratedVitestPassed": 818,
+      "harnessPassed": 9,
+      "staticPackageExit": 0,
+      "extractedPassed": 165,
+      "extractedFailed": 1,
+      "releaseReady": false,
+      "outputRoutingLimitation": "See correction adoption REPORT.md/output-routing-limitation.json; ignored fallback screenshots were not inventoried before the run."
+    }
   }
 }
