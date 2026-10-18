@@ -9,7 +9,7 @@
     "docs/prototypes/new-game/T75/acceptance/freeze-attempt-01.json": "d0fac804858e9c76c4175936025cbcafacada35a89f05b0cf4e52f50eb82c3c2",
     "docs/prototypes/new-game/T75/archives/preflight-receipt.json": "498be51560d376ecf9fff7cb51f78244e2f01b401525c983417858ed3568c25e"
   },
-  "verifierSha256": "f3ab949e1dd80f29d92101e136a6c682611c95c8c9704a7698e8a4b71890b7cf",
+  "verifierSha256": "4bbd3bf8447b0452a45637c8832fe2838db22d0839cc5ac03c88930bb65b0b34",
   "spikePrefixSha256": "a512127a140278f80c5d7e758a8f370d3f67fbf78b2f33fa3d8662340987da3d",
   "spikePrefixBytes": 78385,
   "sources": {
@@ -117,5 +117,19 @@
     "one independent Kimi review",
     "one final-head green CI",
     "exact tested artifact/tag publication after acceptance"
-  ]
+  ],
+  "freshHeavyRunsMeaning": "Historical original adoption only; current correction validation is recorded separately.",
+  "correction": {
+    "frozenSha256": "aab9d8472aefc646662af0f51f8e636b210470d45d8e4863b5095699c26b8f03",
+    "parentFreeze": "8acb2a694f8e371286130c4ae037a68634fbe0ce",
+    "replacements": [
+      "src/ui/generatedGeographyPresentation.ts",
+      "vite.config.ts",
+      "README.md"
+    ],
+    "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019/adoption/validation.json",
+    "priorCandidateUnitConsoleRetained": false,
+    "priorCandidateUnitExit": 0,
+    "priorCandidateUnitSeconds": 77.1
+  }
 }

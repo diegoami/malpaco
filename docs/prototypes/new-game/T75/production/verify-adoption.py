@@ -44,10 +44,25 @@ check(set(historical)==expected_history,'exactly three named historical paths')
 check({p:h for p,h in validated.items() if PurePosixPath(p).is_absolute()}==historical,'all historical hashes exact')
 current={p:h for p,h in validated.items() if p not in historical}
 check(len(current)==204 and all(not PurePosixPath(p).is_absolute() and '..' not in PurePosixPath(p).parts for p in current),'204 safe current repository inputs')
-for path,sha in current.items():exact(path,sha)
+# Explicit correction authority: original manifests stay historical and immutable.
+correction_base=BASE+'corrections/20261019/'
+correction=json.loads(exact(correction_base+'FROZEN.json','aab9d8472aefc646662af0f51f8e636b210470d45d8e4863b5095699c26b8f03'))
+replacements=correction['replacements']
+check(set(replacements)=={'src/ui/generatedGeographyPresentation.ts','vite.config.ts','README.md'},'exact three correction paths')
+check(len(set(replacements)&set(current))==2 and len(set(replacements)&set(frozen['candidateHashes']))==2,'exact two current and two canonical corrections')
+for path,row in replacements.items():
+    original_sha=current[path] if path in current else frozen['candidateHashes'][path]
+    check(row['before']==original_sha,'authenticated original replacement '+path)
+    check(exact(path,row['after'])==exact(row['canonical'],row['after']),'exact frozen correction '+path)
+for name,sha in correction['priorProofHashes'].items():exact(correction_base+'prior-proof/'+name,sha)
+for path,sha in correction['watchGuardHashes'].items():exact(path,sha)
+check(replacements['vite.config.ts']['after']=='4cae5bff592c0ddf81b0ab12ec4d0778ec153d90bb34a07d8d7cfbfb95a7d6c5','reviewed watch candidate')
+for path,sha in current.items():exact(path,replacements[path]['after'] if path in replacements else sha)
 for path,sha in frozen['candidateHashes'].items():
     candidate=exact(BASE+'production-candidate/'+path,sha)
-    if path!='docs/spike-addition.md':check(exact(path,sha)==candidate,'canonical equality '+path)
+    if path!='docs/spike-addition.md':
+        if path in replacements:check(replacements[path]['before']==sha,'original canonical correction '+path)
+        else:check(exact(path,sha)==candidate,'canonical equality '+path)
 for path,sha in frozen['fixtureHashes'].items():exact(BASE+'preflight/phase-b-20261018-01/'+path,sha)
 spike=exact('docs/spike.md');prefix=spike[:adoption['spikePrefixBytes']]
 check(adoption['freezeCommit']=='dd704cef4c5325e98a3f245d213c891b226787d0','fixed parent prefix authority')
@@ -148,3 +163,46 @@ worker=http[0]['url'].split(':4175/',1)[1];check(digest(inner_files[worker])==ht
 check(not adoption['temporaryPackageOfficial'] and adoption['freshHeavyRuns']==0,'explicit evidence/release limitation')
 attempt=json.loads(exact(BASE+'acceptance/freeze-attempt-01.json'));check('file-type bits' in attempt['result'] and attempt['archiveBytes']==receipt['archiveBytes'],'original parent receipt-mode failure retained')
 print(json.dumps({'candidateEqualities':15,'currentValidatedInputs':204,'historicalMetadataInputs':3,'totalValidatedInputs':207,'fixtures':26,'committedArchiveParts':8,'archiveMembers':875,'exactOriginalTarPermissions':875,'originalMountedPositive':15,'browserNegativeControls':4,'fourWorkerOriginalFailures':5,'sourceTwoWorkerPassed':46,'integratedVitestPassed':818,'harnessPassed':8,'staticPackageFiles':10,'checksumEntries':9,'extractedBrowserPassed':166,'extractedSpecs':13,'workerHttpStatus':200,'freshHeavyRuns':0,'looseEvidenceRequired':False,'temporaryPackageOfficial':False,'mismatches':0},sort_keys=True))
+
+# Parent-frozen failed-CI, diagnosis and exact candidate archive. No loose phases required.
+correction_receipt=json.loads(exact(correction_base+'archive-receipt.json',correction['archiveReceiptSha256']))
+check(len(correction_receipt['parts'])==9 and len(correction_receipt['members'])==834 and correction_receipt['archiveBytes']==135078149,'correction archive fixed inventory')
+check(correction_receipt['archiveSha256']=='92ba40c574a26f329ab402021b1e5e51f67c7936c2368be5f6a89972eacaef48','correction archive fixed identity')
+correction_needed={'performance/candidate.ts','performance/original.ts','performance/commands.json','performance/restoration.json','performance/comparison.json','performance/logs/unit.txt','performance/REPORT.md','diagnosis/trace-normal-unprofiled.json'}
+for name in ['normal-unprofiled','mock-clock-polls','throttle2']:
+    correction_needed|={'performance/result-'+name+'.json','performance/trace-'+name+'.json'}
+payload=io.BytesIO();hasher=hashlib.sha256()
+for part in correction_receipt['parts']:
+    data=exact(part['path'],part['sha256']);check(len(data)==part['size'],'correction part size');payload.write(data);hasher.update(data)
+check(payload.tell()==135078149 and hasher.hexdigest()==correction_receipt['archiveSha256'],'complete correction concatenation')
+expected={row['path']:row for row in correction_receipt['members']};check(len(expected)==834,'unique correction inventory');seen=set();retained_correction={};payload.seek(0)
+with tarfile.open(fileobj=payload,mode='r:gz') as archive:
+    for member in archive:
+        check(member.isfile() and not PurePosixPath(member.name).is_absolute() and '..' not in PurePosixPath(member.name).parts,'safe regular correction member')
+        check(member.name in expected and member.name not in seen,'exact unique correction member');seen.add(member.name);row=expected[member.name]
+        check(member.mode==row['mode'] and member.size==row['size'],'correction POSIX permissions/size')
+        stream=archive.extractfile(member);h=hashlib.sha256();chunks=[]
+        while chunk:=stream.read(1024*1024):
+            h.update(chunk)
+            if member.name in correction_needed:chunks.append(chunk)
+        check(h.hexdigest()==row['sha256'],'correction member bytes '+member.name)
+        if member.name in correction_needed:retained_correction[member.name]=b''.join(chunks)
+check(seen==set(expected) and correction_needed<=set(retained_correction),'complete correction archive')
+check(retained_correction['performance/candidate.ts']==exact('src/ui/generatedGeographyPresentation.ts'),'adopted exact archived candidate')
+check(digest(retained_correction['performance/original.ts'])==replacements['src/ui/generatedGeographyPresentation.ts']['before'],'archived original provider')
+def correction_record(path):return json.loads(retained_correction[path])
+commands=correction_record('performance/commands.json')
+check([r['name'] for r in commands]==['unit','typecheck-core','typecheck','build','browser'] and all(r['exit']==0 for r in commands),'bounded candidate command exits')
+check(commands[0]['seconds']==77.1 and b'console output' in retained_correction['performance/REPORT.md'],'honest unit-log collision duration/report')
+check(b'passed (' not in retained_correction['performance/logs/unit.txt'],'missing unit stdout remains missing')
+restore=correction_record('performance/restoration.json')
+check(not restore['changedProtectedInputs'] and restore['head']=='9653f42851a7c27e561d115e02155361e71d5fb6' and restore['server4311Closed'] and restore['error'] is None,'original candidate transaction restored')
+original_trace=correction_record('diagnosis/trace-normal-unprofiled.json')
+for name,clock,rate in [('normal-unprofiled',False,1),('mock-clock-polls',True,1),('throttle2',False,2)]:
+    result=correction_record('performance/result-'+name+'.json');trace=correction_record('performance/trace-'+name+'.json')
+    check(result['clock'] is clock and result['rate']==rate and not result['profile'] and not result.get('error'),'actual native/paused/throttled case '+name)
+    check([r['kind'] for r in result['operations']]==['cold-file','warm-file','new-game-same-seed'],'all candidate actions '+name)
+    check(all(len(r['readiness'])==2 and all(c['status']=='fulfilled' for c in r['readiness']) for r in result['operations'][:2]),'original5000ms cold/warm checks '+name)
+    check(trace['input']==original_trace['input'] and trace['output']==original_trace['output'],'complete Worker input/output equality '+name)
+    check(trace['keyCount']==1 and trace['allKeysEqual'] and [e['kind'] for e in trace['events'] if e['event']=='worker-post']==['derive'] and [e['kind'] for e in trace['events'] if e['event']=='worker-reply']==['success'],'real Worker success/cache identity '+name)
+print(json.dumps({'explicitCorrectionPaths':3,'changedCurrentInputs':2,'changedCanonicalRuntimeEqualities':2,'correctionArchiveParts':9,'correctionArchiveMembers':834,'candidateOriginal5000msCases':3,'completeWorkerInputOutputEqualities':3,'candidateUnitExit':0,'candidateUnitSeconds':77.1,'candidateUnitConsoleRetained':False,'historicalFreshHeavyRuns':0,'currentValidationSeparate':True,'mismatches':0},sort_keys=True))
