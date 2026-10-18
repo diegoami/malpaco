@@ -1,0 +1,36 @@
+{
+  "before_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+  "mode_before": "0o644",
+  "browser": {
+    "exit": 0,
+    "seconds": 32.6500253070044
+  },
+  "affected": {
+    "command": [
+      "bash",
+      "docs/prototypes/new-game/issue180/preflight/run-affected.sh"
+    ],
+    "exit": 1,
+    "seconds": 204.43058423099865
+  },
+  "npm-test": {
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0,
+    "seconds": 63.61260029100231
+  },
+  "npm-build": {
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0,
+    "seconds": 1.5856472369996482
+  },
+  "after_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+  "mode_after": "0o644",
+  "exact_restoration": true
+}

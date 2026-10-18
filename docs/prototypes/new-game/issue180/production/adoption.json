@@ -1,0 +1,211 @@
+{
+  "task": "T73",
+  "issue": 180,
+  "pr": 183,
+  "implementer": "owner-selected native GPT-6.1 Sol Medium",
+  "dispatch": "https://github.com/diegoami/malpaco/pull/183#issuecomment-6253790013",
+  "frozenCheckpoint": "627ba81a2fa1192f36bdaef385d6e393cdc4ec01",
+  "source": {
+    "path": "src/styles.css",
+    "candidate": "docs/prototypes/new-game/issue180/production-candidate/src/styles.css",
+    "sha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64",
+    "reason": "Keep complete active battle/capture controls visible; use bounded stable action space and independent retained-history scrolling."
+  },
+  "manifestSha256": {
+    "docs/prototypes/new-game/issue180/parent-final/FROZEN-ACCEPTANCE.json": "d3867de70b8c27f0f5eb49be042e5fd21efecda5c3f3548f5f5dafba3d965092",
+    "docs/prototypes/new-game/issue180/parent-final/validated-inputs.json": "b92b5cde8bec811a4e4862cb4f24476be6698b9ca8a227425da46c670da67712",
+    "docs/prototypes/new-game/issue180/parent-final/acceptance-summary.json": "53ff346d4c34298e21582a422f76467b41bb4a242e571e8aa1accfd7aabd531a",
+    "docs/prototypes/new-game/issue180/archives/parent-preflight-final-receipt.json": "9cea5a5e6f24ffeabdc3c003157624c512ac4394ccd30dc19033c966cb41835f"
+  },
+  "counts": {
+    "frozen": 18,
+    "validated": 222,
+    "archiveParts": 28,
+    "archiveMembers": 1689,
+    "unitReuseInputs": 132
+  },
+  "acceptanceSummary": {
+    "layoutAndAffectedCombined": {
+      "passed": 108,
+      "failed": 2,
+      "path": "anchor-correction/combined-receipt.json"
+    },
+    "failedCaseRetake": {
+      "passed": 0,
+      "failed": 2,
+      "path": "parent-download-retake-20261018-183413/receipt.json"
+    },
+    "unchangedFailedCasesControl": {
+      "passed": 2,
+      "failed": 0,
+      "path": "download-diagnostic/css5-selection-receipt.json"
+    },
+    "singleCombinedRunGreen": false,
+    "downloadCause": "unresolved; no workaround authorized",
+    "independentRegularSuiteAndFinalGreenCIRequired": true,
+    "fullBuild": "anchor-correction/build-receipt.json",
+    "unitReuse": "anchor-correction/unit-input-reuse.json",
+    "candidateSha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64",
+    "allOriginalsRetained": true
+  },
+  "reusedEvidence": {
+    "docs/prototypes/new-game/issue180/anchor-correction/combined-receipt.json": {
+      "before_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+      "before_mode": "0o644",
+      "commands": [
+        {
+          "argv": [
+            "bash",
+            "docs/prototypes/new-game/issue180/anchor-correction/run-browser.sh",
+            "combined"
+          ],
+          "exit": 1,
+          "seconds": 299.38219372500316
+        }
+      ],
+      "after_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+      "after_mode": "0o644",
+      "exact_restoration": true,
+      "other_input_mismatches": []
+    },
+    "docs/prototypes/new-game/issue180/parent-download-retake-20261018-183413/receipt.json": {
+      "purpose": "One main-authorized exact failed-case retake after full final/report/timeout source inspection; initial combined108/110 remains recorded; no changed assertions, test timeout, source/controller, launch flags or retries",
+      "args": [
+        "docker",
+        "run",
+        "--pull=never",
+        "--rm",
+        "--init",
+        "--ipc=host",
+        "--user",
+        "1000:1000",
+        "-v",
+        "/home/diego/projects/malpaco/.cache/issue180-work:/work",
+        "-w",
+        "/work",
+        "-e",
+        "HOME=/tmp",
+        "mcr.microsoft.com/playwright:v1.63.0-noble",
+        "node_modules/.bin/playwright",
+        "test",
+        "tests/e2e/computer-cards.spec.ts",
+        "-c",
+        "docs/prototypes/new-game/issue180/anchor-correction/playwright.config.ts",
+        "--grep",
+        "three consecutive computers",
+        "--project",
+        "1280x800",
+        "--output",
+        "docs/prototypes/new-game/issue180/parent-download-retake-20261018-183413/test-results"
+      ],
+      "proposalSha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64",
+      "exit": 1,
+      "seconds": 94.21984051600157,
+      "exactRestoration": true,
+      "allInputsExact": true
+    },
+    "docs/prototypes/new-game/issue180/download-diagnostic/css5-selection-receipt.json": {
+      "source_before_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+      "source_mode_before": "0o644",
+      "applied_sha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64",
+      "command": {
+        "argv": [
+          "bash",
+          "docs/prototypes/new-game/issue180/download-diagnostic/run-selection.sh"
+        ],
+        "exit": 0,
+        "seconds": 9.493428132998815
+      },
+      "source_after_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+      "source_mode_after": "0o644",
+      "exact_restoration": true,
+      "other_input_mismatches": []
+    },
+    "docs/prototypes/new-game/issue180/anchor-correction/build-receipt.json": {
+      "before_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+      "before_mode": "0o644",
+      "commands": [
+        {
+          "argv": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "seconds": 1.022448745003203
+        }
+      ],
+      "after_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+      "after_mode": "0o644",
+      "exact_restoration": true,
+      "other_input_mismatches": []
+    },
+    "docs/prototypes/new-game/issue180/anchor-correction/build-input-evidence.json": {
+      "proposal_input_path": "docs/prototypes/new-game/issue180/anchor-correction/source/styles.proposed.css",
+      "proposal_sha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64",
+      "build_receipt": "build-receipt.json",
+      "wrapper": "run-build.py",
+      "note": "Wrapper writes this proposal before npm run build; output CSS retained below corroborates the bounded allocation. Actual source is restored afterward.",
+      "built_css": [
+        {
+          "path": "dist/assets/index-B8lxC96R.css",
+          "sha256": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+          "contains_final_allocation": true
+        }
+      ]
+    },
+    "docs/prototypes/new-game/issue180/anchor-correction/unit-input-reuse.json": {
+      "checked": 132,
+      "mismatches": []
+    },
+    "docs/prototypes/new-game/issue180/preflight/candidate-3-restoration.json": {
+      "before_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+      "mode_before": "0o644",
+      "browser": {
+        "exit": 0,
+        "seconds": 32.6500253070044
+      },
+      "affected": {
+        "command": [
+          "bash",
+          "docs/prototypes/new-game/issue180/preflight/run-affected.sh"
+        ],
+        "exit": 1,
+        "seconds": 204.43058423099865
+      },
+      "npm-test": {
+        "command": [
+          "npm",
+          "test"
+        ],
+        "exit": 0,
+        "seconds": 63.61260029100231
+      },
+      "npm-build": {
+        "command": [
+          "npm",
+          "run",
+          "build"
+        ],
+        "exit": 0,
+        "seconds": 1.5856472369996482
+      },
+      "after_sha256": "257fbe1be6f70f4dda1a7750ca1fd4ba9be9950ef54e1c9b0d97bd14abf7b7d9",
+      "mode_after": "0o644",
+      "exact_restoration": true
+    }
+  },
+  "scopeReasons": {
+    "src/styles.css": "Exact frozen runtime adoption; no rules, actions, RNG, save, map or controller edits.",
+    "docs/spike.md": "Document bounded sidebar allocation and limits of retained acceptance results.",
+    "RUN-NOTES.md": "Append the authorized plan, checkpoint progress and END record.",
+    "docs/prototypes/new-game/issue180/production/": "Standalone proof, exact adoption metadata, proof commands/results and formal report."
+  },
+  "remainingGates": [
+    "independent reviewer regular affected-suite validation",
+    "owner appearance judgment",
+    "one final-head green CI"
+  ],
+  "heavyRunsRepeated": false,
+  "nativeAggregateTelemetry": "unavailable; no token count or agent exit code invented"
+}

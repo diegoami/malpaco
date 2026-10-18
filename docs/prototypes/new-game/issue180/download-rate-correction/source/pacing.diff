@@ -1,0 +1,22 @@
+--- tests/e2e/computer-cards.spec.ts
++++ paced/tests/e2e/computer-cards.spec.ts
+@@ -1,13 +1,18 @@
+ import {expect,test} from '@playwright/test';
+ import type {Page,TestInfo} from '@playwright/test';
+ import {readFileSync} from 'node:fs';
++import {performance} from 'node:perf_hooks';
++import {setTimeout as waitForRealTime} from 'node:timers/promises';
+ import * as c from '../../src/core';
+ import type {Action,GameState,LoadedVersionedMatch} from '../../src/core';
+ import {fixture,input,step,prefix,lastHumanHandoff,humanReturnHandoff,discardPrefix,spectator,settleNoSet} from './computer-cards-fixtures';
+ const cards=(p:Page)=>p.getByRole('region',{name:'Cards',exact:true});
+ const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
+ async function begin(p:Page,url='/'){await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await p.goto(url);}
+-async function nativeSave(p:Page){const event=p.waitForEvent('download');await p.getByRole('button',{name:'Save game',exact:true}).click();const path=await(await event).path();if(!path)throw Error('Native download missing');return readFileSync(path,'utf8');}
++// [designed] 120ms real-time margin prevents Chromium's ten-download/second burst gate.
++// Source: LocalFrame::ShouldThrottleDownload; Node time leaves the paused game clock unchanged.
++const nativeSaveCompletedAt=new WeakMap<Page,number>();
++async function nativeSave(p:Page){const previous=nativeSaveCompletedAt.get(p);if(previous!==undefined){const remaining=120-(performance.now()-previous);if(remaining>0)await waitForRealTime(Math.ceil(remaining));}const event=p.waitForEvent('download');await p.getByRole('button',{name:'Save game',exact:true}).click();const path=await(await event).path();if(!path)throw Error('Native download missing');const text=readFileSync(path,'utf8');nativeSaveCompletedAt.set(p,performance.now());return text;}
+ async function saved(p:Page){return c.deserializeVersionedMatch(await nativeSave(p));}
+ async function load(p:Page,text:string){const previous=await p.getByLabel('Load game',{exact:true}).elementHandle();await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'computer-cards.json',mimeType:'application/json',buffer:Buffer.from(text)});await expect.poll(()=>previous!.evaluate(n=>n.isConnected)).toBe(false);await expect(p.locator('[data-country]')).toHaveCount(46);}
+ async function exact(p:Page,original:LoadedVersionedMatch,state:GameState){const actual=await saved(p);expect(actual.identity).toEqual(original.identity);expect(actual.options).toEqual(original.options);expect(actual.geography).toEqual(original.geography);expect(actual.state).toEqual(state);return actual;}

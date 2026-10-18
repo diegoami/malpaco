@@ -1,0 +1,82 @@
+{
+  "cwd": "/home/diego/projects/malpaco/.cache/issue180-work",
+  "discovery": {
+    "command": "node_modules/.bin/playwright test -c docs/prototypes/new-game/issue180/preflight/discover.config.ts",
+    "runs": [
+      {
+        "exit": 1,
+        "reason": "initial relative source import had one extra parent segment",
+        "seconds": 1.19
+      },
+      {
+        "exit": 0,
+        "seconds": 4.74
+      },
+      {
+        "exit": 0,
+        "seconds": 4.4,
+        "reason": "added legal running attack prefix discovery"
+      }
+    ]
+  },
+  "background_pattern": "bash tools/harness/run-unit.sh issue180-LABEL docs/prototypes/new-game/issue180/preflight/LABEL.log -- COMMAND",
+  "browser_command": "bash docs/prototypes/new-game/issue180/preflight/run-browser.sh LABEL",
+  "baseline_runs": [
+    {
+      "label": "baseline-1",
+      "exit": 1,
+      "seconds": 3,
+      "reason": "owned config webServer cwd defaulted to config folder; no application baseline evidence"
+    },
+    {
+      "label": "baseline-2",
+      "exit": 1,
+      "seconds": 9,
+      "reason": "measurement used first class card rather than action; no complete baseline evidence"
+    },
+    {
+      "label": "baseline-3",
+      "exit": 1,
+      "seconds": 34,
+      "reason": "complete actual layout failures; v2 spec"
+    },
+    {
+      "label": "baseline-4",
+      "exit": 1,
+      "seconds": 30,
+      "reason": "complete actual layout failures; final spec with card choices/event-log/reading position"
+    }
+  ],
+  "candidate_runs": [
+    {
+      "label": "candidate-1",
+      "command": "python3 docs/prototypes/new-game/issue180/preflight/run-candidate.py (initial version with candidate-1 literal)",
+      "browser_exit": 1,
+      "seconds": 32,
+      "reason": "all controls/state/retention checks pass; oldest log row cannot fit 56px log card"
+    },
+    {
+      "label": "candidate-2",
+      "command": "python3 docs/prototypes/new-game/issue180/preflight/run-candidate.py candidate-2",
+      "details": "candidate-2-restoration.json records browser and subsequent commands, exact exits/durations and restoration"
+    },
+    {
+      "label": "candidate-3",
+      "command": "python3 docs/prototypes/new-game/issue180/preflight/run-candidate.py candidate-3",
+      "browser_exit": 0,
+      "browser_seconds": 32,
+      "details": "Same final spec as baseline-4/candidate-2; candidate-3-restoration.json records downstream command exact exits/durations and restoration"
+    },
+    {
+      "label": "candidate-4",
+      "command": "python3 docs/prototypes/new-game/issue180/preflight/run-candidate.py candidate-4",
+      "details": "Same final regression; narrowed heading selector only. See candidate-4-restoration.json for exact browser/targeted exits,durations,restoration. Initial user-bus sandbox denial was resolved by approved escalation of exact same systemd start command."
+    }
+  ],
+  "monitor": "One bash tools/harness/watch.sh --label issue180-LABEL --unit mlp-issue180-LABEL --file docs/prototypes/new-game/issue180/preflight/LABEL.log --every 60 per unit; candidate-2 additionally watches its three check logs",
+  "docker": "run-browser.sh and run-affected.sh retain exact argv, no install/network/pull; --rm --pull=never --user 1000:1000 --ipc=host -e HOME=/tmp -v $PWD:/work -w /work mcr.microsoft.com/playwright:v1.63.0-noble",
+  "proposal_typecheck": {
+    "command": "node_modules/.bin/tsc --noEmit -p docs/prototypes/new-game/issue180/preflight/tsconfig.proposal.json",
+    "exit": 0
+  }
+}

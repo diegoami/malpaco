@@ -1,0 +1,24 @@
+{
+  "layoutAndAffectedCombined": {
+    "passed": 108,
+    "failed": 2,
+    "path": "anchor-correction/combined-receipt.json"
+  },
+  "failedCaseRetake": {
+    "passed": 0,
+    "failed": 2,
+    "path": "parent-download-retake-20261018-183413/receipt.json"
+  },
+  "unchangedFailedCasesControl": {
+    "passed": 2,
+    "failed": 0,
+    "path": "download-diagnostic/css5-selection-receipt.json"
+  },
+  "singleCombinedRunGreen": false,
+  "downloadCause": "unresolved; no workaround authorized",
+  "independentRegularSuiteAndFinalGreenCIRequired": true,
+  "fullBuild": "anchor-correction/build-receipt.json",
+  "unitReuse": "anchor-correction/unit-input-reuse.json",
+  "candidateSha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64",
+  "allOriginalsRetained": true
+}
