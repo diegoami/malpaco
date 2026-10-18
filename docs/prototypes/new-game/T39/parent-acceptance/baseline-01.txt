@@ -1,0 +1,234 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t39-work
+
+ ❯ tests/core/raid-shield-replay.test.ts (10 tests | 10 failed) 12ms
+   ❯ real Raid/Shield match codec (10)
+     × uses exact cards3/schema5 identity and the actual setup (false) 6ms
+     × uses exact cards3/schema5 identity and the actual setup (true) 0ms
+     × reconstructs legal-before-trade from options/actions only and continues exactly 1ms
+     × reconstructs legal-pending-raid from options/actions only and continues exactly 0ms
+     × reconstructs legal-shielded-raid from options/actions only and continues exactly 0ms
+     × reconstructs legal-unshielded-raid from options/actions only and continues exactly 0ms
+     × rejects friendly/unknown targets atomically both live and through actual replay 1ms
+     × strictly rejects malformed target actions and forged state rather than trusting saved pending metadata 0ms
+     × rejects unsupported stage/schema/board tuples without reinterpreting a Raid history 1ms
+     × preserves existing trade-v1 legal histories and permanent Raid refusal 1ms
+ ❯ tests/core/raid-shield.test.ts (19 tests | 19 failed) 34ms
+   ❯ Raid and automatic Shield defence (19)
+     × exports a separate raid-v1 stage and leaves the historical trade stage frozen 6ms
+     × draws uniformly through the bounded RNG interface for stack 1 1ms
+     × draws uniformly through the bounded RNG interface for stack 2 1ms
+     × draws uniformly through the bounded RNG interface for stack 3 0ms
+     × draws uniformly through the bounded RNG interface for stack 4 0ms
+     × draws uniformly through the bounded RNG interface for stack 9 0ms
+     × draws uniformly through the bounded RNG interface for stack 10 0ms
+     × draws uniformly through the bounded RNG interface for stack 1000000007 0ms
+     × spends exactly the selected Raid set once (Raid/Raid/Raid) before asking for a target 4ms
+     × spends exactly the selected Raid set once (Raid/Wild/Raid) before asking for a target 1ms
+     × spends exactly the selected Raid set once (Wild/Raid/Wild) before asking for a target 1ms
+     × gates every unrelated action while a target is pending; invalid targets leave the original state exact 1ms
+     × reaches a remote enemy without adjacency, preserves ownership/pool and advances only rules RNG 1ms
+     × one army stays one while consuming the defined single bounded draw 1ms
+     × automatically spends the first Shield only, preserves the stack and draws no RNG 1ms
+     × logs only explicit public raid information (Shield=false) 1ms
+     × logs only explicit public raid information (Shield=true) 2ms
+     × deep-clones pending metadata and refuses a target outside the proper stage/player/phase 1ms
+     × keeps trade-v1 Raid refusal atomic and ordinary combat independently available after resolution 9ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 29 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > uses exact cards3/schema5 identity and the actual setup (false)
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > uses exact cards3/schema5 identity and the actual setup (true)
+SaveFormatError: Unsupported rules; expected cards/1.
+ ❯ supportedIdentity src/core/match-save.ts:123:13
+    121|     const part = value[field], required = expected[field];
+    122|     if (!record(part) || Object.keys(part).length !== 2 || part.id !==…
+    123|       throw new SaveFormatError(`Unsupported ${field}; expected ${requ…
+       |             ^
+    124|     }
+    125|   }
+ ❯ deserializeVersionedMatch src/core/match-save.ts:181:20
+ ❯ Module.serializeVersionedMatch src/core/match-save.ts:207:21
+ ❯ tests/core/raid-shield-replay.test.ts:6:43
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/29]⎯
+
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > reconstructs legal-before-trade from options/actions only and continues exactly
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > reconstructs legal-pending-raid from options/actions only and continues exactly
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > reconstructs legal-shielded-raid from options/actions only and continues exactly
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > reconstructs legal-unshielded-raid from options/actions only and continues exactly
+SaveFormatError: Unsupported rules; expected cards/1.
+ ❯ supportedIdentity src/core/match-save.ts:123:13
+    121|     const part = value[field], required = expected[field];
+    122|     if (!record(part) || Object.keys(part).length !== 2 || part.id !==…
+    123|       throw new SaveFormatError(`Unsupported ${field}; expected ${requ…
+       |             ^
+    124|     }
+    125|   }
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:181:20
+ ❯ saved tests/core/raid-shield-fixture.ts:28:171
+ ❯ tests/core/raid-shield-replay.test.ts:9:31
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/29]⎯
+
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > rejects friendly/unknown targets atomically both live and through actual replay
+SaveFormatError: Unsupported rules; expected cards/1.
+ ❯ supportedIdentity src/core/match-save.ts:123:13
+    121|     const part = value[field], required = expected[field];
+    122|     if (!record(part) || Object.keys(part).length !== 2 || part.id !==…
+    123|       throw new SaveFormatError(`Unsupported ${field}; expected ${requ…
+       |             ^
+    124|     }
+    125|   }
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:181:20
+ ❯ saved tests/core/raid-shield-fixture.ts:28:171
+ ❯ tests/core/raid-shield-replay.test.ts:15:115
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/29]⎯
+
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > strictly rejects malformed target actions and forged state rather than trusting saved pending metadata
+SaveFormatError: Unsupported rules; expected cards/1.
+ ❯ supportedIdentity src/core/match-save.ts:123:13
+    121|     const part = value[field], required = expected[field];
+    122|     if (!record(part) || Object.keys(part).length !== 2 || part.id !==…
+    123|       throw new SaveFormatError(`Unsupported ${field}; expected ${requ…
+       |             ^
+    124|     }
+    125|   }
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:181:20
+ ❯ saved tests/core/raid-shield-fixture.ts:28:171
+ ❯ tests/core/raid-shield-replay.test.ts:16:131
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/29]⎯
+
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > rejects unsupported stage/schema/board tuples without reinterpreting a Raid history
+SaveFormatError: Unsupported rules; expected cards/1.
+ ❯ supportedIdentity src/core/match-save.ts:123:13
+    121|     const part = value[field], required = expected[field];
+    122|     if (!record(part) || Object.keys(part).length !== 2 || part.id !==…
+    123|       throw new SaveFormatError(`Unsupported ${field}; expected ${requ…
+       |             ^
+    124|     }
+    125|   }
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:181:20
+ ❯ saved tests/core/raid-shield-fixture.ts:28:171
+ ❯ tests/core/raid-shield-replay.test.ts:17:112
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/29]⎯
+
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > preserves existing trade-v1 legal histories and permanent Raid refusal
+SaveFormatError: Unsupported rules; expected cards/1.
+ ❯ supportedIdentity src/core/match-save.ts:123:13
+    121|     const part = value[field], required = expected[field];
+    122|     if (!record(part) || Object.keys(part).length !== 2 || part.id !==…
+    123|       throw new SaveFormatError(`Unsupported ${field}; expected ${requ…
+       |             ^
+    124|     }
+    125|   }
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:181:20
+ ❯ saved tests/core/raid-shield-fixture.ts:28:171
+ ❯ tests/core/raid-shield-replay.test.ts:19:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > exports a separate raid-v1 stage and leaves the historical trade stage frozen
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/core/raid-shield.test.ts:4:117
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > draws uniformly through the bounded RNG interface for stack 1
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > draws uniformly through the bounded RNG interface for stack 2
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > draws uniformly through the bounded RNG interface for stack 3
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > draws uniformly through the bounded RNG interface for stack 4
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > draws uniformly through the bounded RNG interface for stack 9
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > draws uniformly through the bounded RNG interface for stack 10
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > draws uniformly through the bounded RNG interface for stack 1000000007
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/core/raid-shield.test.ts:6:30
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > spends exactly the selected Raid set once (Raid/Raid/Raid) before asking for a target
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > spends exactly the selected Raid set once (Raid/Wild/Raid) before asking for a target
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > spends exactly the selected Raid set once (Wild/Raid/Wild) before asking for a target
+Error: {"kind":"tradeCards","handIndices":[2,0,1]}: Raid sets require the later targeted Raid rules
+ ❯ act tests/core/raid-shield-fixture.ts:17:110
+
+ ❯ tests/core/raid-shield.test.ts:9:74
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > gates every unrelated action while a target is pending; invalid targets leave the original state exact
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: Raid sets require the later targeted Raid rules
+ ❯ act tests/core/raid-shield-fixture.ts:17:110
+
+ ❯ tests/core/raid-shield.test.ts:12:40
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > reaches a remote enemy without adjacency, preserves ownership/pool and advances only rules RNG
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: Raid sets require the later targeted Raid rules
+ ❯ act tests/core/raid-shield-fixture.ts:17:110
+
+ ❯ tests/core/raid-shield.test.ts:16:40
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > one army stays one while consuming the defined single bounded draw
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: Raid sets require the later targeted Raid rules
+ ❯ act tests/core/raid-shield-fixture.ts:17:110
+
+ ❯ tests/core/raid-shield.test.ts:19:126
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > automatically spends the first Shield only, preserves the stack and draws no RNG
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: Raid sets require the later targeted Raid rules
+ ❯ act tests/core/raid-shield-fixture.ts:17:110
+
+ ❯ tests/core/raid-shield.test.ts:21:91
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > logs only explicit public raid information (Shield=false)
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > logs only explicit public raid information (Shield=true)
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: Raid sets require the later targeted Raid rules
+ ❯ act tests/core/raid-shield-fixture.ts:17:110
+
+ ❯ tests/core/raid-shield.test.ts:24:112
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > deep-clones pending metadata and refuses a target outside the proper stage/player/phase
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: Raid sets require the later targeted Raid rules
+ ❯ act tests/core/raid-shield-fixture.ts:17:110
+
+ ❯ tests/core/raid-shield.test.ts:26:133
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/29]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > keeps trade-v1 Raid refusal atomic and ordinary combat independently available after resolution
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: Raid sets require the later targeted Raid rules
+ ❯ act tests/core/raid-shield-fixture.ts:17:110
+
+ ❯ tests/core/raid-shield.test.ts:27:263
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/29]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  29 failed (29)
+   Start at  14:53:25
+   Duration  627ms (transform 82%, import 11%, tests 5%, worker 2%)
+

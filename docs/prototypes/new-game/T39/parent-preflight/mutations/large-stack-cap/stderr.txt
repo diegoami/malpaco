@@ -1,0 +1,17 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/prototypes/new-game/T39/parent-preflight/probe.test.ts > T39 disposable actual source mock > scripted bounds include odd/even/one/large with one bounded draw
+AssertionError: expected 20 to be 5000 // Object.is equality
+
+- Expected
++ Received
+
+- 5000
++ 20
+
+ ❯ docs/prototypes/new-game/T39/parent-preflight/probe.test.ts:31:240
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

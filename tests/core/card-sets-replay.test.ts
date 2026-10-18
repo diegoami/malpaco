@@ -40,7 +40,7 @@ describe('real trade/skip histories with permanent stage identities',()=>{
  },30000);
  it('refuses mismatched/future stage tuples and preserves legacy and victory save paths',()=>{
   expect(api.tradeCardsRules).toBeTypeOf('function');const o=options(),wire=JSON.parse(core.serializeVersionedMatch(o,[],identity()));
-  for(const patch of [{rules:{id:'cards',version:1}},{rules:{id:'cards',version:3},actionSchemaVersion:5},{actionSchemaVersion:3},{actionSchemaVersion:5},{boardGenerator:{id:'geographic',version:2}},{rules:{id:'cards',version:2,extra:1}}])expect(()=>core.deserializeVersionedMatch(JSON.stringify({...wire,...patch}))).toThrow();
+  for(const patch of [{rules:{id:'cards',version:1}},{rules:{id:'cards',version:4},actionSchemaVersion:6},{actionSchemaVersion:3},{actionSchemaVersion:5},{boardGenerator:{id:'geographic',version:2}},{rules:{id:'cards',version:2,extra:1}}])expect(()=>core.deserializeVersionedMatch(JSON.stringify({...wire,...patch}))).toThrow();
   for(const old of [core.REFERENCE_CARD_MATCH_IDENTITY,core.GEOGRAPHIC_CARD_MATCH_IDENTITY,core.REFERENCE_MATCH_IDENTITY,core.GEOGRAPHIC_MATCH_IDENTITY]){
    const value=JSON.parse(core.serializeVersionedMatch(o,[],old));expect(core.deserializeVersionedMatch(JSON.stringify(value)).state.phase).toBe('reinforce');
    expect(()=>core.deserializeVersionedMatch(JSON.stringify({...value,actions:[{kind:'skipCards'}]}))).toThrow();expect(()=>core.deserializeVersionedMatch(JSON.stringify({...value,actions:[{kind:'tradeCards',handIndices:[0,1,2]}]}))).toThrow();

@@ -1,0 +1,125 @@
+{
+  "replacements": {
+    "src/core/cards.ts": "25bd5df153885e8ae1445bbd41bed52dbf7ce9a2c97c1b8bb19a97326455fd57",
+    "src/core/index.ts": "bad317dec8cf1fbf04d74f3bef5543ca7302cfa318987f7c1bb0c6740a25da32",
+    "src/core/match-save.ts": "48c8dd5cbeff3d934dba24bbed4a9174ab2a77bfd06296798f85140a515d2155",
+    "src/core/raid.ts": "ccf7c5e88a0d1b7043e7a9df22c819264e1009032f8a7843ae6c89bb34549297",
+    "src/core/rules.ts": "ed9711b35a69071b4c60cddb42f30c9041b212dd47c5839a6ffb2706898b868a",
+    "src/core/setup.ts": "4c64a58768f8d5ac23a61b42e645332c5ee7171cda5dd2f02213d9904f022a46",
+    "src/core/state.ts": "1f5642915e4e40752649efb5c6d191ab7a5b85fe4760fc7d302961d8d79ec8b4",
+    "src/core/types.ts": "ff79ab5b60890f325f487ab5d17aef7a4d534677011e96f42658c3d2e3f144d1",
+    "src/ui/gameEventLog.ts": "b21b2ae538fcfda78ed74c7d1989a46c8912f3558005a4b35815498ae7a10d9a",
+    "src/ui/panel.ts": "ffa930aa8a577e3c14bd38d2c1b4defcda376ed73b46c0b4d89ce008e1d68923"
+  },
+  "commands": [
+    {
+      "name": "focused",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/raid-shield.test.ts",
+        "tests/core/raid-shield-replay.test.ts"
+      ],
+      "exit": 0,
+      "durationSeconds": 2.5884964959986974
+    },
+    {
+      "name": "pending-gate",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/raid-shield.test.ts",
+        "tests/core/raid-shield-replay.test.ts"
+      ],
+      "exit": 1,
+      "durationSeconds": 2.514384310998139
+    },
+    {
+      "name": "friendly-target",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/raid-shield.test.ts",
+        "tests/core/raid-shield-replay.test.ts"
+      ],
+      "exit": 1,
+      "durationSeconds": 2.5300955829989107
+    },
+    {
+      "name": "wrong-shield",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/raid-shield.test.ts",
+        "tests/core/raid-shield-replay.test.ts"
+      ],
+      "exit": 1,
+      "durationSeconds": 2.3231589940005506
+    },
+    {
+      "name": "upper-cap",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/raid-shield.test.ts",
+        "tests/core/raid-shield-replay.test.ts"
+      ],
+      "exit": 1,
+      "durationSeconds": 2.1888568029971793
+    },
+    {
+      "name": "units",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "exit": 1,
+      "durationSeconds": 55.90919403600128
+    },
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "durationSeconds": 1.2437726659991313
+    },
+    {
+      "name": "browsers",
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--init",
+        "--ipc=host",
+        "--user",
+        "1000:1000",
+        "-v",
+        "/home/diego/projects/malpaco/.cache/t39-work:/work",
+        "-w",
+        "/work",
+        "-e",
+        "HOME=/tmp",
+        "mcr.microsoft.com/playwright:v1.63.0-noble",
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/versioned-match.spec.ts",
+        "tests/e2e/reference-complete-game.spec.ts",
+        "tests/e2e/game-event-log.spec.ts",
+        "tests/e2e/geographic-review-guards.spec.ts",
+        "--workers=2"
+      ],
+      "exit": 0,
+      "durationSeconds": 74.83205897299922
+    }
+  ],
+  "restoredExactly": true
+}

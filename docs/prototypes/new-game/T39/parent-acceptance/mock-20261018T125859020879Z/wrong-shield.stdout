@@ -1,0 +1,15 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t39-work
+
+ ❯ tests/core/raid-shield.test.ts (20 tests | 1 failed) 89ms
+   ❯ Raid and automatic Shield defence (20)
+     × automatically spends the first Shield only, preserves the stack and draws no RNG 7ms
+ ❯ tests/core/raid-shield-replay.test.ts (10 tests | 1 failed) 1165ms
+   ❯ real Raid/Shield match codec (10)
+     × reconstructs legal-shielded-raid from options/actions only and continues exactly 20ms
+
+ Test Files  2 failed (2)
+      Tests  2 failed | 28 passed (30)
+   Start at  14:59:06
+   Duration  1.48s (tests 73%, transform 23%, import 4%, worker 1%)
+

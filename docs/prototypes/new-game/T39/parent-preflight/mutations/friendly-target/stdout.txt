@@ -1,0 +1,12 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t39-work
+
+ ❯ docs/prototypes/new-game/T39/parent-preflight/probe.test.ts (5 tests | 1 failed | 4 skipped) 35ms
+   ❯ T39 disposable actual source mock (5)
+     × synthetic remote choice spends once and gates every unrelated action, invalid targets atomic 34ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  14:48:49
+   Duration  588ms (transform 83%, import 9%, tests 7%, worker 1%)
+

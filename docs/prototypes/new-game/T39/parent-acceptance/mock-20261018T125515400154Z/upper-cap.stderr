@@ -1,0 +1,22 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > draws uniformly through the bounded RNG interface for stack 1000000007
+AssertionError: expected [ [ 1, 20 ] ] to deeply equal [ [ 1, 500000003 ] ]
+
+- Expected
++ Received
+
+  [
+    [
+      1,
+-     500000003,
++     20,
+    ],
+  ]
+
+ ❯ tests/core/raid-shield.test.ts:6:227
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

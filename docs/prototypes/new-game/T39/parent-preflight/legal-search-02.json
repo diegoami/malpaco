@@ -1,0 +1,79 @@
+[
+  {
+    "seed": 1,
+    "actionsBefore": 273,
+    "actionsPending": 274,
+    "round": 9,
+    "player": "seat4",
+    "indices": [
+      0,
+      1,
+      4
+    ],
+    "hand": [
+      "Raid",
+      "Wild",
+      "Shield",
+      "Anchor",
+      "Wild"
+    ],
+    "pool": 4,
+    "outcomes": [
+      {
+        "name": "shielded",
+        "target": "province_41",
+        "before": 1,
+        "after": 1,
+        "beforeRng": {
+          "seed": 1,
+          "state": 3361909039
+        },
+        "afterRng": {
+          "seed": 1,
+          "state": 3361909039
+        },
+        "defenderHandBefore": [
+          "Raid",
+          "Shield",
+          "Anchor",
+          "Wild",
+          "Surge"
+        ],
+        "defenderHandAfter": [
+          "Raid",
+          "Anchor",
+          "Wild",
+          "Surge"
+        ]
+      },
+      {
+        "name": "unshielded",
+        "target": "province_4",
+        "before": 5,
+        "after": 1,
+        "beforeRng": {
+          "seed": 1,
+          "state": 3361909039
+        },
+        "afterRng": {
+          "seed": 1,
+          "state": 898507556
+        },
+        "defenderHandBefore": [
+          "Compass",
+          "Lantern",
+          "Anchor",
+          "Anchor",
+          "Anchor"
+        ],
+        "defenderHandAfter": [
+          "Compass",
+          "Lantern",
+          "Anchor",
+          "Anchor",
+          "Anchor"
+        ]
+      }
+    ]
+  }
+]

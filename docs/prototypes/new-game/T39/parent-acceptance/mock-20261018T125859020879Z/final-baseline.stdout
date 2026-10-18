@@ -1,0 +1,43 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t39-work
+
+ ❯ tests/core/raid-shield-replay.test.ts (10 tests | 10 failed) 10ms
+   ❯ real Raid/Shield match codec (10)
+     × uses exact cards3/schema5 identity and the actual setup (false) 4ms
+     × uses exact cards3/schema5 identity and the actual setup (true) 0ms
+     × reconstructs legal-before-trade from options/actions only and continues exactly 1ms
+     × reconstructs legal-pending-raid from options/actions only and continues exactly 0ms
+     × reconstructs legal-shielded-raid from options/actions only and continues exactly 0ms
+     × reconstructs legal-unshielded-raid from options/actions only and continues exactly 0ms
+     × rejects friendly/unknown targets atomically both live and through actual replay 1ms
+     × strictly rejects malformed target actions and forged state rather than trusting saved pending metadata 0ms
+     × rejects unsupported stage/schema/board tuples without reinterpreting a Raid history 1ms
+     × preserves existing trade-v1 legal histories and permanent Raid refusal 0ms
+ ❯ tests/core/raid-shield.test.ts (20 tests | 20 failed) 31ms
+   ❯ Raid and automatic Shield defence (20)
+     × exports a separate raid-v1 stage and leaves the historical trade stage frozen 8ms
+     × draws uniformly through the bounded RNG interface for stack 1 1ms
+     × draws uniformly through the bounded RNG interface for stack 2 1ms
+     × draws uniformly through the bounded RNG interface for stack 3 0ms
+     × draws uniformly through the bounded RNG interface for stack 4 0ms
+     × draws uniformly through the bounded RNG interface for stack 9 0ms
+     × draws uniformly through the bounded RNG interface for stack 10 0ms
+     × draws uniformly through the bounded RNG interface for stack 1000000007 0ms
+     × spends exactly the selected Raid set once (Raid/Raid/Raid) before asking for a target 3ms
+     × spends exactly the selected Raid set once (Raid/Wild/Raid) before asking for a target 2ms
+     × spends exactly the selected Raid set once (Wild/Raid/Wild) before asking for a target 1ms
+     × gates every unrelated action while a target is pending; invalid targets leave the original state exact 1ms
+     × reaches a remote enemy without adjacency, preserves ownership/pool and advances only rules RNG 1ms
+     × actual effects use the full odd/even/large interval rather than a capped or disconnected helper 1ms
+     × one army stays one while consuming the defined single bounded draw 1ms
+     × automatically spends the first Shield only, preserves the stack and draws no RNG 1ms
+     × logs only explicit public raid information (Shield=false) 1ms
+     × logs only explicit public raid information (Shield=true) 1ms
+     × deep-clones pending metadata and refuses a target outside the proper stage/player/phase 1ms
+     × keeps trade-v1 Raid refusal atomic and ordinary combat independently available after resolution 5ms
+
+ Test Files  2 failed (2)
+      Tests  30 failed (30)
+   Start at  14:58:59
+   Duration  410ms (transform 76%, import 15%, tests 8%, worker 1%)
+

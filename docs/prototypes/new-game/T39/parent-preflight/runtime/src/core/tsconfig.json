@@ -1,0 +1,11 @@
+{
+  // The rules core is compiled alone, with no DOM lib and no Node types, so a
+  // stray `document`, `window`, `performance`, `crypto` or `node:` import is a
+  // compile error here (npm run build runs this before the full type-check).
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "types": []
+  },
+  "include": ["./**/*.ts"]
+}

@@ -1,0 +1,18 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/prototypes/new-game/T39/parent-preflight/probe.test.ts > T39 disposable actual source mock > synthetic remote choice spends once and gates every unrelated action, invalid targets atomic
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ reject docs/prototypes/new-game/T39/parent-preflight/probe.test.ts:14:95
+
+ ❯ docs/prototypes/new-game/T39/parent-preflight/probe.test.ts:33:220
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
