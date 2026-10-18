@@ -1,0 +1,29 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/prototypes/new-game/T38/parent-preflight/mock/tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > reconstructs a reached full-hand choice and actual reshuffle from options and ordinary actions
+Error: ENOENT: no such file or directory, open '/home/diego/projects/malpaco/.cache/t38-work/docs/prototypes/new-game/T38/parent-preflight/mock/docs/prototypes/new-game/T37/fixtures/reshuffle-before-match.json'
+ ❯ read docs/prototypes/new-game/T38/parent-preflight/mock/tests/core/card-deck-replay.test.ts:48:29
+     46|  it('reconstructs a reached full-hand choice and actual reshuffle from…
+     47|   cards(opening());
+     48|   const read=(name:string)=>readFileSync(new URL('../../docs/prototype…
+       |                             ^
+     49|   const beforePayload=JSON.parse(read('reshuffle-before-match.json')),…
+     50|   expect(beforePayload.actions).toHaveLength(328);expect(afterPayload.…
+ ❯ docs/prototypes/new-game/T38/parent-preflight/mock/tests/core/card-deck-replay.test.ts:49:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  docs/prototypes/new-game/T38/parent-preflight/mock/tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > the real decisive capturing turn waits for discard and rewards before replayed victory
+Error: ENOENT: no such file or directory, open '/home/diego/projects/malpaco/.cache/t38-work/docs/prototypes/new-game/T38/parent-preflight/mock/docs/prototypes/new-game/T37/fixtures/decisive-before-match.json'
+ ❯ read docs/prototypes/new-game/T38/parent-preflight/mock/tests/core/card-deck-replay.test.ts:63:29
+     61|  it('the real decisive capturing turn waits for discard and rewards be…
+     62|   cards(opening());
+     63|   const read=(name:string)=>readFileSync(new URL('../../docs/prototype…
+       |                             ^
+     64|   const beforePayload=JSON.parse(read('decisive-before-match.json')),a…
+     65|   expect(beforePayload.actions).toHaveLength(194);expect(afterPayload.…
+ ❯ docs/prototypes/new-game/T38/parent-preflight/mock/tests/core/card-deck-replay.test.ts:64:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+

@@ -79,3 +79,8 @@ export { cardsRules } from './state';
 export {CARD_COMPOSITION,HAND_LIMIT,cardView} from './cards';
 export type {CardKind,CardState,CardView} from './cards';
 export {REFERENCE_CARD_MATCH_IDENTITY,GEOGRAPHIC_CARD_MATCH_IDENTITY} from './match-save';
+
+export {tradeCardsRules} from './state';
+export {classifyCardSet} from './cards';
+export type {TradeableCardKind,PendingRaid} from './cards';
+export {REFERENCE_TRADE_CARD_MATCH_IDENTITY,GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY} from './match-save';

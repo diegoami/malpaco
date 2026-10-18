@@ -1,0 +1,60 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-sets-replay.test.ts > real trade/skip histories with permanent stage identities > Surge real cards phase saves, trades, reloads and places without recomputing the pool
+Error: {"kind":"tradeCards","handIndices":[0,1,4]}: those cards are not a set
+ ❯ act tests/core/card-sets-fixture.ts:18:112
+
+ ❯ tests/core/card-sets-replay.test.ts:18:106
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > classifies all512ordered triples against explicit independent homogeneous/Wild tables
+AssertionError: Anchor,Wild,Wild: expected null to be 'Anchor' // Object.is equality
+
+- Expected:
+"Anchor"
+
++ Received:
+null
+
+ ❯ tests/core/card-sets.test.ts:13:168
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Compass with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Lantern with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge with 2Wilds has fixed value and spends exactly one set
+Error: {"kind":"tradeCards","handIndices":[2,0,1]}: those cards are not a set
+ ❯ act tests/core/card-sets-fixture.ts:18:112
+
+ ❯ tests/core/card-sets.test.ts:37:44
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > keeps nonselected cards in order and discards in original hand order
+Error: {"kind":"tradeCards","handIndices":[4,2,0]}: those cards are not a set
+ ❯ act tests/core/card-sets-fixture.ts:18:112
+
+ ❯ tests/core/card-sets.test.ts:42:115
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge doubles a previously computed pool exactly once even if board income later changes
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: those cards are not a set
+ ❯ act tests/core/card-sets-fixture.ts:18:112
+
+ ❯ tests/core/card-sets.test.ts:51:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > later turns keep fixed values rather than increasing a global trade counter
+Error: {"kind":"tradeCards","handIndices":[0,1,2]}: those cards are not a set
+ ❯ act tests/core/card-sets-fixture.ts:18:112
+
+ ❯ tests/core/card-sets.test.ts:57:75
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+

@@ -1,0 +1,12 @@
+OUTPUT docs/prototypes/new-game/T38/implementation/validation-20261018T124257123824Z
+START sets
+END {"name": "sets", "argv": ["npx", "vitest", "run", "tests/core/card-sets.test.ts"], "exitCode": 0, "durationSeconds": 0.8858052530013083, "inputsUnchanged": true}
+START replay
+END {"name": "replay", "argv": ["npx", "vitest", "run", "tests/core/card-sets-replay.test.ts"], "exitCode": 0, "durationSeconds": 11.885086238999065, "inputsUnchanged": true}
+START units
+END {"name": "units", "argv": ["npm", "test"], "exitCode": 0, "durationSeconds": 44.02200740400076, "inputsUnchanged": true}
+START build
+END {"name": "build", "argv": ["npm", "run", "build"], "exitCode": 0, "durationSeconds": 1.058391678998305, "inputsUnchanged": true}
+START browsers
+END {"name": "browsers", "argv": ["docker", "run", "--rm", "--init", "--ipc=host", "--user", "1000:1000", "-v", "/home/diego/projects/malpaco/.cache/t38-work:/work", "-w", "/work", "-e", "HOME=/tmp", "mcr.microsoft.com/playwright:v1.63.0-noble", "npx", "playwright", "test", "tests/e2e/versioned-match.spec.ts", "tests/e2e/reference-complete-game.spec.ts", "tests/e2e/game-event-log.spec.ts", "tests/e2e/geographic-review-guards.spec.ts", "--workers=2"], "exitCode": 0, "durationSeconds": 64.6721970059989, "inputsUnchanged": true}
+FINAL docs/prototypes/new-game/T38/implementation/validation-20261018T124257123824Z True

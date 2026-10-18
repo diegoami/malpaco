@@ -1,0 +1,259 @@
+diff --git a/src/core/cards.ts b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/cards.ts
+index 4c24a29..7fb4daa 100644
+--- a/src/core/cards.ts
++++ b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/cards.ts
+@@ -22,7 +22,7 @@ export function cardView(state:GameState,viewer:string):CardView {
+ }
+ /** Stable deck-v1 protocol: kind order as above, top at index zero. */
+ export function initializeCards(state:GameState,rng:DeterministicRng):void {
+- if(state.rules.cards!=='deck-v1')return;
++ if(state.rules.cards!=='deck-v1' && state.rules.cards!=='trade-v1')return;
+  const cards=(Object.entries(CARD_COMPOSITION) as [CardKind,number][]).flatMap(([k,n])=>Array<CardKind>(n).fill(k));
+  state.cards={drawPile:rng.shuffled(cards),discardPile:[],hands:Object.fromEntries(state.players.map(p=>[p.id,[]]))};
+  state.rng=rng.snapshot();
+@@ -33,3 +33,16 @@ export function drawReward(state:GameState):void {
+  const card=c.drawPile.shift();if(!card)throw Error('Card conservation violated: no card to draw');
+  if(card==='Squall'){c.discardPile.push(...c.hands[player]!,card);c.hands[player]=[];}else c.hands[player]!.push(card);
+ }
++
++/** Reserved for T39's separately versioned targeted Raid protocol; never active in trade-v1. */
++export interface PendingRaid { readonly player:string }
++export type TradeableCardKind='Anchor'|'Compass'|'Lantern'|'Surge'|'Raid';
++/** [designed] approved T23 variety-030: one genuine kind, zero to two Wilds. */
++export function classifyCardSet(cards:readonly CardKind[]):TradeableCardKind|null {
++ if(cards.length!==3)return null;
++ const genuine=cards.filter(k=>k!=='Wild');
++ if(!genuine.length)return null;
++ const kind=genuine[0]!;
++ if(kind!=='Anchor'&&kind!=='Compass'&&kind!=='Lantern'&&kind!=='Surge'&&kind!=='Raid')return null;
++ return genuine.every(k=>k===kind)?kind:null;
++}
+
+diff --git a/src/core/index.ts b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/index.ts
+index 758f0af..00c0f66 100644
+--- a/src/core/index.ts
++++ b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/index.ts
+@@ -79,3 +79,8 @@ export { cardsRules } from './state';
+ export {CARD_COMPOSITION,HAND_LIMIT,cardView} from './cards';
+ export type {CardKind,CardState,CardView} from './cards';
+ export {REFERENCE_CARD_MATCH_IDENTITY,GEOGRAPHIC_CARD_MATCH_IDENTITY} from './match-save';
++
++export {tradeCardsRules} from './state';
++export {classifyCardSet} from './cards';
++export type {TradeableCardKind,PendingRaid} from './cards';
++export {REFERENCE_TRADE_CARD_MATCH_IDENTITY,GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY} from './match-save';
+
+diff --git a/src/core/match-save.ts b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/match-save.ts
+index 3245653..14b0ca6 100644
+--- a/src/core/match-save.ts
++++ b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/match-save.ts
+@@ -10,7 +10,7 @@ import { referenceMap } from "./reference-map";
+ import { createReferenceGame } from "./reference-game";
+ import { createGeographicGame } from "./geographic-game";
+ import type {IslandGeography} from "./island-geography";
+-import { cardsRules, victoryRules } from "./state";
++import { cardsRules, tradeCardsRules, victoryRules } from "./state";
+ 
+ export const MATCH_SAVE_VERSION = 1;
+ function actionFrom(value: unknown, index: number): Action {
+@@ -103,11 +103,14 @@ export const GEOGRAPHIC_MATCH_IDENTITY: MatchIdentity = Object.freeze({
+  */
+ export const REFERENCE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'fixed-reference',version:1}),rules:Object.freeze({id:'cards',version:1}),actionSchemaVersion:3});
+ export const GEOGRAPHIC_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:1}),rules:Object.freeze({id:'cards',version:1}),actionSchemaVersion:3});
++export const REFERENCE_TRADE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'fixed-reference',version:1}),rules:Object.freeze({id:'cards',version:2}),actionSchemaVersion:4});
++export const GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:1}),rules:Object.freeze({id:'cards',version:2}),actionSchemaVersion:4});
+ function supportedIdentity(value: Record<string, unknown>): MatchIdentity {
+   const generator = value.boardGenerator;
+   const cardStage=record(value.rules)&&value.rules.id==='cards';
++  const tradeStage=cardStage&&record(value.rules)&&value.rules.version===2;
+   const expected = record(generator) && generator.id === "geographic"
+-    ? (cardStage?GEOGRAPHIC_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY) : (cardStage?REFERENCE_CARD_MATCH_IDENTITY:REFERENCE_MATCH_IDENTITY);
++    ? (tradeStage?GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY:cardStage?GEOGRAPHIC_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY) : (tradeStage?REFERENCE_TRADE_CARD_MATCH_IDENTITY:cardStage?REFERENCE_CARD_MATCH_IDENTITY:REFERENCE_MATCH_IDENTITY);
+   // Each supported generator keeps its exact rules/action tuple for replay.
+   for (const field of ["boardGenerator", "rules"] as const) {
+     const part = value[field], required = expected[field];
+@@ -126,8 +129,13 @@ function versionedAction(value: unknown, index: number, schema: number): Action
+   if (!record(value)) return fail();
+   let keys: string[];
+   switch (value.kind) {
++    case 'tradeCards':
++      if(schema!==4||!Array.isArray(value.handIndices)||value.handIndices.length!==3||new Set(value.handIndices).size!==3||value.handIndices.some(i=>typeof i!=='number'||!Number.isSafeInteger(i)||i<0))return fail();
++      keys=['kind','handIndices'];break;
++    case 'skipCards':
++      if(schema!==4)return fail();keys=['kind'];break;
+     case 'discardCard':
+-      if(schema!==3||typeof value.handIndex!=='number'||!Number.isSafeInteger(value.handIndex)||value.handIndex<0)return fail();
++      if((schema!==3&&schema!==4)||typeof value.handIndex!=='number'||!Number.isSafeInteger(value.handIndex)||value.handIndex<0)return fail();
+       keys=['kind','handIndex'];break;
+     case "reinforce": keys = ["kind", "province", "amount"]; break;
+     case "attack":
+@@ -171,7 +179,7 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
+     throw new SaveFormatError(`Invalid game options: ${error instanceof Error ? error.message : String(error)}`, "options");
+   }
+   const actions = value.actions.map((action,index)=>versionedAction(action,index,identity.actionSchemaVersion));
+-  const rules=identity.rules.id==='cards'?cardsRules(options):victoryRules(options);
++  const rules=identity.rules.id==='cards'?(identity.rules.version===2?tradeCardsRules(options):cardsRules(options)):victoryRules(options);
+   const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules):null;
+   const created=geographic??createReferenceGame(referenceMap,options,rules);
+   if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
+
+diff --git a/src/core/rules.ts b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/rules.ts
+index b3bc66d..e3772a0 100644
+--- a/src/core/rules.ts
++++ b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/rules.ts
+@@ -1,4 +1,4 @@
+-import { drawReward, HAND_LIMIT } from './cards';
++import { classifyCardSet, drawReward, HAND_LIMIT } from './cards';
+ import { attackTargets, resolve, whyNot } from "./combat";
+ import { DeterministicRng } from "./rng";
+ import { reinforcementIncome } from "./reinforcement";
+@@ -41,6 +41,8 @@ export function apply(state: GameState, action: Action): ApplyResult {
+ 
+ function dispatch(next: GameState, action: Action): ApplyResult {
+   switch (action.kind) {
++    case 'tradeCards': return tradeCards(next,action.handIndices);
++    case 'skipCards': return skipCards(next);
+     case 'discardCard': return discardCard(next,action.handIndex);
+     case "reinforce":
+       return reinforce(next, action.province, action.amount);
+@@ -158,7 +160,7 @@ function endTurn(state: GameState): ApplyResult {
+     if (!activePlayer(state)?.eliminated) break;
+   }
+   const next = activePlayer(state);
+-  state.phase = state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
++  state.phase = state.rules.cards === "trade-v1" ? "cards" : state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
+   state.capturedThisTurn = false;
+   state.reinforcementPool = state.rules.turnSequence === "reinforcement" && next && !next.eliminated
+     ? reinforcementIncome(state, next.id).total
+@@ -168,7 +170,7 @@ function endTurn(state: GameState): ApplyResult {
+ 
+ /** End-of-turn seam: later reward/effect work belongs before victory, never after handoff. */
+ function completeTurn(state: GameState): ApplyResult {
+-  if(state.rules.cards==='deck-v1' && state.cards && state.capturedThisTurn){
++  if((state.rules.cards==='deck-v1'||state.rules.cards==='trade-v1') && state.cards && state.capturedThisTurn){
+     const player=activePlayer(state)!.id;
+     if(state.cards.hands[player]!.length===HAND_LIMIT){state.cards.pendingDiscard={player};return {ok:true,state,outcome:null};}
+     drawReward(state);
+@@ -177,7 +179,7 @@ function completeTurn(state: GameState): ApplyResult {
+ }
+ function discardCard(state:GameState,index:number):ApplyResult {
+   const c=state.cards,p=activePlayer(state)!.id;
+-  if(state.rules.cards!=='deck-v1'||!c?.pendingDiscard||c.pendingDiscard.player!==p)return {ok:false,error:'no card discard is pending'};
++  if((state.rules.cards!=='deck-v1'&&state.rules.cards!=='trade-v1')||!c?.pendingDiscard||c.pendingDiscard.player!==p)return {ok:false,error:'no card discard is pending'};
+   if(!Number.isSafeInteger(index)||index<0||index>=c.hands[p]!.length)return {ok:false,error:'choose a card in your hand'};
+   c.discardPile.push(c.hands[p]!.splice(index,1)[0]!);delete c.pendingDiscard;
+   drawReward(state);return finalizeTurn(state);
+@@ -192,7 +194,7 @@ function finalizeTurn(state: GameState): ApplyResult {
+ function beginNextTurn(state: GameState, handoff = nextLivingTurn(state)): void {
+   state.currentPlayer = handoff.seat;
+   if (handoff.completedRound) state.turnNumber += 1;
+-  state.phase = state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
++  state.phase = state.rules.cards === "trade-v1" ? "cards" : state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
+   state.capturedThisTurn = false;
+   state.reinforcementPool = state.rules.turnSequence === "reinforcement"
+     ? reinforcementIncome(state, activePlayer(state)!.id).total : 0;
+@@ -231,3 +233,24 @@ function checkVictory(state: GameState): boolean {
+   state.log.push({ event: "victory", player: state.winner, turn: state.turnNumber });
+   return true;
+ }
++
++function skipCards(state:GameState):ApplyResult {
++ if(state.rules.cards!=='trade-v1'||state.phase!=='cards'||!state.cards)return {ok:false,error:'not in the cards phase'};
++ state.phase='reinforce';return {ok:true,state,outcome:null};
++}
++function tradeCards(state:GameState,indices:readonly number[]):ApplyResult {
++ if(state.rules.cards!=='trade-v1'||state.phase!=='cards'||!state.cards)return {ok:false,error:'not in the cards phase'};
++ const c=state.cards,p=activePlayer(state)!.id,hand=c.hands[p]!;
++ if(!Array.isArray(indices)||indices.length!==3||new Set(indices).size!==3||indices.some(i=>!Number.isSafeInteger(i)||i<0||i>=hand.length))return {ok:false,error:'choose three distinct cards in your hand'};
++ const kind=classifyCardSet(indices.map(i=>hand[i]!));
++ if(!kind)return {ok:false,error:'those cards are not a set'};
++ // T38 explicitly defers target/effect to T39's separately versioned Raid stage.
++ if(kind==='Raid')return {ok:false,error:'Raid sets require the later targeted Raid rules'};
++ const chosen=new Set(indices);
++ c.discardPile.push(...hand.filter((_,i)=>chosen.has(i)));
++ c.hands[p]=hand.filter((_,i)=>!chosen.has(i));
++ // T23 variety-032/043: income was computed once on entry; no placement yet.
++ if(kind==='Surge')state.reinforcementPool*=2;
++ else state.reinforcementPool+=({Anchor:5,Compass:8,Lantern:15} as const)[kind];
++ state.phase='reinforce';return {ok:true,state,outcome:null};
++}
+
+diff --git a/src/core/setup.ts b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/setup.ts
+index 6d181a1..7839874 100644
+--- a/src/core/setup.ts
++++ b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/setup.ts
+@@ -81,7 +81,7 @@ function createGameValidated(
+ 
+   const state: GameState = {
+       map: board.map, rules, players, ownerOf, armies, currentPlayer: firstSeat,
+-      phase: rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
++      phase: rules.cards === "trade-v1" ? "cards" : rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
+       reinforcementPool: 0, turnNumber: 1, capturedThisTurn: false, rng: rng.snapshot(), computerRngs,
+       ...(rules.victoryOptions ? { roundOrigin: firstSeat } : {}),
+       log: [{ event: "game_started", seed: validated.seed, players: players.length }],
+
+diff --git a/src/core/state.ts b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/state.ts
+index 9d6c741..1c04f12 100644
+--- a/src/core/state.ts
++++ b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/state.ts
+@@ -202,7 +202,7 @@ function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly P
+     ownerOf: ownerOfMap,
+     armies,
+     currentPlayer: 0,
+-    phase: rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
++    phase: rules.cards === "trade-v1" ? "cards" : rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
+     reinforcementPool: 0,
+     turnNumber: 1,
+     ...(rules.victoryOptions ? { roundOrigin: 0 } : {}),
+@@ -254,3 +254,8 @@ export function newGameFromOptions(map: GameMap, rules: RuleSet, options: GameOp
+   });
+   return newGameWithPlayers(map, rules, playerList, seed);
+ }
++
++/** [designed] T38 stage; T23 variety-029..035. deck-v1 remains frozen. */
++export function tradeCardsRules(options:Pick<GameOptions,'dominationWin'|'roundLimit'>=defaultOptions()):RuleSet {
++ return {...cardsRules(options),id:'malpaco-card-trades',cards:'trade-v1'};
++}
+
+diff --git a/src/core/types.ts b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/types.ts
+index 6da697e..84cd807 100644
+--- a/src/core/types.ts
++++ b/docs/prototypes/new-game/T38/parent-preflight/mock/src/core/types.ts
+@@ -80,7 +80,7 @@ export interface RuleSet {
+   readonly victoryOptions?: { readonly dominationWin: boolean; readonly roundLimit: 20 | 30 | 40 | null };
+ }
+ 
+-export type Phase = "reinforce" | "attack" | "capture" | "redeploy" | "human-loss" | "finished";
++export type Phase = "cards" | "reinforce" | "attack" | "capture" | "redeploy" | "human-loss" | "finished";
+ 
+ export interface FinalStanding {
+   readonly player: string;
+@@ -108,6 +108,8 @@ export interface RngSnapshot {
+ }
+ 
+ export type Action =
++  | { readonly kind: "tradeCards"; readonly handIndices: readonly [number, number, number] }
++  | { readonly kind: "skipCards" }
+   | { readonly kind: "discardCard"; readonly handIndex: number }
+   | { readonly kind: "reinforce"; readonly province: string; readonly amount: number }
+   | { readonly kind: "endReinforcement" }
+
+diff --git a/src/ui/gameEventLog.ts b/docs/prototypes/new-game/T38/parent-preflight/mock/src/ui/gameEventLog.ts
+index 2d8adfd..77e02c3 100644
+--- a/src/ui/gameEventLog.ts
++++ b/docs/prototypes/new-game/T38/parent-preflight/mock/src/ui/gameEventLog.ts
+@@ -14,12 +14,14 @@ export interface GameEvent {
+   readonly notes: readonly string[];
+ }
+ const ACTION_NAMES: Record<Action["kind"], string> = {
++  tradeCards: "Trade cards", skipCards: "Skip cards",
+   discardCard: "Card discard",
+   reinforce: "Reinforcement placement", endReinforcement: "Start combat", attack: "Combat",
+   captureMove: "Capture transfer", friendlyMove: "Friendly transfer", endTurn: "End turn",
+   watchComputers: "Watch computers", stopGame: "Stop game",
+ };
+ const PHASE_NAMES: Record<GameState["phase"], string> = {
++  cards: "Cards",
+   reinforce: "Reinforcement", attack: "Attack", capture: "Capture move-in", redeploy: "Handoff",
+   "human-loss": "Human seats eliminated", finished: "Finished",
+ };
