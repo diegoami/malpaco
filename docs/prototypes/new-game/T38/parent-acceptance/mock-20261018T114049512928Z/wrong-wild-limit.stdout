@@ -1,0 +1,22 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t38-work
+
+ ❯ tests/core/card-sets.test.ts (23 tests | 8 failed) 286ms
+   ❯ one optional homogeneous set and approved fixed income (23)
+     × classifies all512ordered triples against explicit independent homogeneous/Wild tables 9ms
+     × Anchor with 2Wilds has fixed value and spends exactly one set 4ms
+     × Compass with 2Wilds has fixed value and spends exactly one set 2ms
+     × Lantern with 2Wilds has fixed value and spends exactly one set 2ms
+     × Surge with 2Wilds has fixed value and spends exactly one set 2ms
+     × keeps nonselected cards in order and discards in original hand order 2ms
+     × Surge doubles a previously computed pool exactly once even if board income later changes 2ms
+     × later turns keep fixed values rather than increasing a global trade counter 1ms
+ ❯ tests/core/card-sets-replay.test.ts (9 tests | 1 failed) 14975ms
+   ❯ real trade/skip histories with permanent stage identities (9)
+     × Surge real cards phase saves, trades, reloads and places without recomputing the pool 19ms
+
+ Test Files  2 failed (2)
+      Tests  9 failed | 23 passed (32)
+   Start at  13:41:07
+   Duration  15.42s (tests 96%, transform 4%, import 1%)
+

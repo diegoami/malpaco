@@ -80,7 +80,7 @@ export interface RuleSet {
   readonly victoryOptions?: { readonly dominationWin: boolean; readonly roundLimit: 20 | 30 | 40 | null };
 }
 
-export type Phase = "reinforce" | "attack" | "capture" | "redeploy" | "human-loss" | "finished";
+export type Phase = "cards" | "reinforce" | "attack" | "capture" | "redeploy" | "human-loss" | "finished";
 
 export interface FinalStanding {
   readonly player: string;
@@ -108,6 +108,8 @@ export interface RngSnapshot {
 }
 
 export type Action =
+  | { readonly kind: "tradeCards"; readonly handIndices: readonly [number, number, number] }
+  | { readonly kind: "skipCards" }
   | { readonly kind: "discardCard"; readonly handIndex: number }
   | { readonly kind: "reinforce"; readonly province: string; readonly amount: number }
   | { readonly kind: "endReinforcement" }
@@ -154,7 +156,7 @@ export interface GameState {
   phase: Phase;
   /** Present only during the opt-in capture-choice protocol. */
   pendingCapture?: PendingCapture;
-  /** Unplaced income available during a reinforcement phase. */
+  /** Unplaced income available during cards and reinforcement phases. */
   reinforcementPool: number;
   turnNumber: number;
   /** Fixed seeded first-seat index; retained even after that seat is eliminated. */

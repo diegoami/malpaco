@@ -1,0 +1,176 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t38-work
+
+ ❯ tests/core/card-sets-replay.test.ts (0 test)
+ ❯ tests/core/card-sets.test.ts (23 tests | 22 failed) 66ms
+   ❯ one optional homogeneous set and approved fixed income (23)
+     × classifies all512ordered triples against explicit independent homogeneous/Wild tables 8ms
+     × enters cards after income on initial setup and every turn, even with empty hands 3ms
+     × blocks all ordinary input until cards decision, without mutating state/history/RNG 1ms
+     × skip with 0 held cards preserves income and cards, permits placement 3ms
+     × skip with 3 held cards preserves income and cards, permits placement 2ms
+     × skip with 5 held cards preserves income and cards, permits placement 5ms
+     × Anchor with 0Wilds has fixed value and spends exactly one set 2ms
+     × Anchor with 1Wilds has fixed value and spends exactly one set 2ms
+     × Anchor with 2Wilds has fixed value and spends exactly one set 2ms
+     × Compass with 0Wilds has fixed value and spends exactly one set 2ms
+     × Compass with 1Wilds has fixed value and spends exactly one set 2ms
+     × Compass with 2Wilds has fixed value and spends exactly one set 4ms
+     × Lantern with 0Wilds has fixed value and spends exactly one set 2ms
+     × Lantern with 1Wilds has fixed value and spends exactly one set 2ms
+     × Lantern with 2Wilds has fixed value and spends exactly one set 4ms
+     × Surge with 0Wilds has fixed value and spends exactly one set 2ms
+     × Surge with 1Wilds has fixed value and spends exactly one set 2ms
+     × Surge with 2Wilds has fixed value and spends exactly one set 2ms
+     × keeps nonselected cards in order and discards in original hand order 1ms
+     × refuses invalid sets/indices and staged Raid with no consumption or RNG changes 1ms
+     × Surge doubles a previously computed pool exactly once even if board income later changes 1ms
+     × later turns keep fixed values rather than increasing a global trade counter 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-sets-replay.test.ts [ tests/core/card-sets-replay.test.ts ]
+Error: Transform failed with 1 error:
+
+[31m[PARSE_ERROR] [0mExpected a semicolon or an implicit semicolon after a statement, but found none
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m tests/core/card-sets-replay.test.ts:38:156 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m38 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249mf[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249m([0m[38;5;249mc[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249m [0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m [0m[38;5;249mo[0m[38;5;249mf[0m[38;5;249m [0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249m)[0m[38;5;249me[0m[38;5;249mx[0m[38;5;249mp[0m[38;5;249me[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249m([0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m=[0m[38;5;249m>[0m[38;5;249mc[0m[38;5;249mo[0m[38;5;249mr[0m[38;5;249me[0m[38;5;249m.[0m[38;5;249md[0m[38;5;249me[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249ma[0m[38;5;249ml[0m[38;5;249mi[0m[38;5;249mz[0m[38;5;249me[0m[38;5;249mV[0m[38;5;249me[0m[38;5;249mr[0m[38;5;249ms[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249me[0m[38;5;249md[0m[38;5;249mM[0m[38;5;249ma[0m[38;5;249mt[0m[38;5;249mc[0m[38;5;249mh[0m[38;5;249m([0m[38;5;249mJ[0m[38;5;249mS[0m[38;5;249mO[0m[38;5;249mN[0m[38;5;249m.[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mn[0m[38;5;249mg[0m[38;5;249mi[0m[38;5;249mf[0m[38;5;249my[0m[38;5;249m([0m[38;5;249m{[0m[38;5;249m.[0m[38;5;249m.[0m[38;5;249m.[0m[38;5;249mb[0m[38;5;249ma[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249m,[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249m:[0m[38;5;249m[[0m[38;5;249m.[0m[38;5;249m.[0m[38;5;249m.[0m[38;5;249mb[0m[38;5;249ma[0m[38;5;249ms[0m[38;5;249me[0m[38;5;249m.[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249ms[0m[38;5;249m,[0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m][0m[38;5;249m}[0m[38;5;249m)[0m[38;5;249m)[0m[38;5;249m)[0m[38;5;249m,[0m[38;5;249mJ[0m[38;5;249mS[0m[38;5;249mO[0m[38;5;249mN[0m[38;5;249m.[0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249mr[0m[38;5;249mi[0m[38;5;249mn[0m[38;5;249mg[0m[38;5;249mi[0m[38;5;249mf[0m[38;5;249my[0m[38;5;249m([0m[38;5;249ma[0m[38;5;249mc[0m[38;5;249mt[0m[38;5;249mi[0m[38;5;249mo[0m[38;5;249mn[0m[38;5;249m)[0m[38;5;249m)[0m[38;5;249m.[0m[38;5;249mt[0m[38;5;249mo[0m[38;5;249mT[0m[38;5;249mh[0m[38;5;249mr[0m[38;5;249mo[0m[38;5;249mw[0m[38;5;249m([0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m   │[0m                                                                                                                                                            │ 
+ [38;5;240m   │[0m                                                                                                                                                            ╰─ 
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: Try inserting a semicolon here
+[38;5;246m────╯[0m
+
+  Plugin: vite:oxc
+  File: /home/diego/projects/malpaco/.cache/t38-work/tests/core/card-sets-replay.test.ts
+ ❯ transformWithOxc node_modules/vite/dist/node/chunks/node.js:7581:19
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:7653:26
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8545:51
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:19988:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/23]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 22 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > classifies all512ordered triples against explicit independent homogeneous/Wild tables
+AssertionError: expected undefined to be type of 'function'
+
+Expected: "function"
+Received: "undefined"
+
+ ❯ tests/core/card-sets.test.ts:12:31
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/23]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > enters cards after income on initial setup and every turn, even with empty hands
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:18:35
+     16|  });
+     17|  it('enters cards after income on initial setup and every turn, even w…
+     18|   let s=opening();expect(s.phase).toBe('cards');expect(cards(s).hands[…
+       |                                   ^
+     19|   const initial=s.currentPlayer;
+     20|   for(let turn=0;turn<8;turn++){
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/23]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > blocks all ordinary input until cards decision, without mutating state/history/RNG
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:27:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/23]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > skip with 0 held cards preserves income and cards, permits placement
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > skip with 3 held cards preserves income and cards, permits placement
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > skip with 5 held cards preserves income and cards, permits placement
+Error: {"kind":"skipCards"}: unknown action
+ ❯ act tests/core/card-sets-fixture.ts:18:112
+
+ ❯ tests/core/card-sets.test.ts:31:66
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/23]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Anchor with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Compass with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Compass with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Compass with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Lantern with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Lantern with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Lantern with 2Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge with 0Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge with 1Wilds has fixed value and spends exactly one set
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge with 2Wilds has fixed value and spends exactly one set
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:37:19
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/23]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > keeps nonselected cards in order and discards in original hand order
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:42:90
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/23]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > refuses invalid sets/indices and staged Raid with no consumption or RNG changes
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:45:210
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/23]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > Surge doubles a previously computed pool exactly once even if board income later changes
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:50:70
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/23]⎯
+
+ FAIL  tests/core/card-sets.test.ts > one optional homogeneous set and approved fixed income > later turns keep fixed values rather than increasing a global trade counter
+AssertionError: expected 'reinforce' to be 'cards' // Object.is equality
+
+Expected: "cards"
+Received: "reinforce"
+
+ ❯ tests/core/card-sets.test.ts:55:69
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/23]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  22 failed | 1 passed (23)
+   Start at  13:35:29
+   Duration  610ms (transform 73%, tests 15%, import 9%, worker 3%)
+

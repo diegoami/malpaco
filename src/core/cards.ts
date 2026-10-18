@@ -22,7 +22,7 @@ export function cardView(state:GameState,viewer:string):CardView {
 }
 /** Stable deck-v1 protocol: kind order as above, top at index zero. */
 export function initializeCards(state:GameState,rng:DeterministicRng):void {
- if(state.rules.cards!=='deck-v1')return;
+ if(state.rules.cards!=='deck-v1' && state.rules.cards!=='trade-v1')return;
  const cards=(Object.entries(CARD_COMPOSITION) as [CardKind,number][]).flatMap(([k,n])=>Array<CardKind>(n).fill(k));
  state.cards={drawPile:rng.shuffled(cards),discardPile:[],hands:Object.fromEntries(state.players.map(p=>[p.id,[]]))};
  state.rng=rng.snapshot();
@@ -32,4 +32,20 @@ export function drawReward(state:GameState):void {
  if(!c.drawPile.length){const rng=DeterministicRng.fromSnapshot(state.rng);c.drawPile=rng.shuffled(c.discardPile);c.discardPile=[];state.rng=rng.snapshot();}
  const card=c.drawPile.shift();if(!card)throw Error('Card conservation violated: no card to draw');
  if(card==='Squall'){c.discardPile.push(...c.hands[player]!,card);c.hands[player]=[];}else c.hands[player]!.push(card);
+}
+
+/** Reserved for T39's separately versioned targeted Raid protocol; never active in trade-v1. */
+export interface PendingRaid { readonly player:string }
+export type TradeableCardKind='Anchor'|'Compass'|'Lantern'|'Surge'|'Raid';
+/** [designed] approved T23 variety-030: one genuine kind, zero to two Wilds.
+ * trade-v1 shares the frozen deck's representation and draw timing. The set
+ * classifier includes Raid; effect availability belongs to the staged rules.
+ */
+export function classifyCardSet(cards:readonly CardKind[]):TradeableCardKind|null {
+ if(cards.length!==3)return null;
+ const genuine=cards.filter(k=>k!=='Wild');
+ if(!genuine.length)return null;
+ const kind=genuine[0]!;
+ if(kind!=='Anchor'&&kind!=='Compass'&&kind!=='Lantern'&&kind!=='Surge'&&kind!=='Raid')return null;
+ return genuine.every(k=>k===kind)?kind:null;
 }
