@@ -1,0 +1,17 @@
+{
+  "sourceHead": "74372e300b6fcd835a8af834cf9676393bc2ef0c",
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/issue180/download-rate-correction/production/verify-correction.py"
+  ],
+  "exit": 0,
+  "seconds": 0.47671305700350786,
+  "stdout": "{\"expectedInputsHEADAndWorking\": 226, \"frozenEvidenceHEADAndWorking\": 28, \"historicalInputsChecked\": 240, \"explicitReplacements\": [\"docs/tasks/T73.md\", \"tests/e2e/computer-cards.spec.ts\"], \"proposalExact\": true, \"onlyNativeSaveDelta\": true, \"runtimeCssUnchanged\": true, \"oldProofHistoricalAndUnchanged\": true, \"reusedTargetedCases\": \"4/4\", \"freshHeavyRuns\": 0, \"mismatches\": 0, \"remainingGates\": [\"parent mechanical correction scope judgment\", \"fresh parent keycases\", \"new final-head green CI\"]}\n",
+  "stderr": "",
+  "mainJudgment": "Approve the declared mechanical native-save pacing correction: exact proposal/helper-only reversal proves no changed oracle/assertion/deadline/page.clock or production bytes. Existing independent Kimi product/layout approval and explicit owner appearance acceptance continue to cover unchanged CSS. One review per PR; no automatic extra review. Original failed CI is retained; this new head will receive one automatic full CI.",
+  "retainedPreflight": "4/4 two consecutive-computer cases both desktops,23.233s; no full corrected CI claim",
+  "independentReview": "https://github.com/diegoami/malpaco/pull/183#issuecomment-6253951143",
+  "ownerLayoutApproval": "https://github.com/diegoami/malpaco/pull/183#issuecomment-6253953904",
+  "originalFailedCI": 39157702142,
+  "mergeGate": "Fresh physical layout keycases immediately before merge, approving independent review + owner look + exact final CI green."
+}
