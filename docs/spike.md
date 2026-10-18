@@ -784,8 +784,8 @@ card actions in old schemas. `cards/1` permanently means deck-only rules;
 later trade and raid behavior needs distinct exact identities while preserving
 this replay path. Existing legacy and victory identities and their RNG draws
 remain unchanged. Current T36 setup/UI defaults continue using victory rules;
-T40 adds card controls and explicitly enables the appropriate stage, and T41
-owns computer card policy. The deck-only preset supplies no trade/raid effects.
+T40 adds card controls for supported versioned card files; T41 owns computer
+card policy and default activation. The deck-only preset supplies no trade/raid effects.
 
 The sole adjacent UI edit adds the `discardCard` name to the event log's typed
 action-label record, as authorized by the amended T37 scope. No layout or
@@ -856,3 +856,47 @@ Current default games, ordinary combat and computer policy are unchanged;
 T40 owns card controls and T41 owns computer card policy. Frozen acceptance,
 legal action-only fixtures and measured evidence live under
 `docs/prototypes/new-game/T39/`.
+
+### Human card interactions (T40)
+
+`CardController(battle, viewer)` projects a fixed viewer's hand through
+`CardControllerView`: phase, revision, public hand/pile counts and discard top,
+valid sets, Raid target/preview and private reward notice. `chooseSet`, `skip`,
+`discard`, `selectRaidTarget` and `confirmRaid` use the current battle revision;
+`update`, `reset` and `dispose` cancel stale choices on state replacement or
+game-generation changes. `CardView` renders this projection and a hand inspector.
+Country names in Raid previews and public outcomes come from the current map's
+province lookup, matching reference and geographic boards.
+
+The entry is Load game with an actual supported versioned card checkpoint,
+including historical deck/trade stages and Raid cards/3 with schema 5. Card
+files with zero or one human seat are accepted; multiple human seats are refused
+until T53 supplies privacy handover. Zero-human files remain load-compatible;
+T40 supplies no computer card policy or promise of computer continuation through
+card choices. Ordinary new games continue using `victoryRules` until T41.
+
+Trades, skips, Raid targets and forced pre-draw discards dispatch ordinary core
+actions and therefore save/replay normally. A no-set human cards phase submits
+one ordinary `skipCards`. Reward Continue acknowledges presentation only: it
+adds no rule or saved action. Pending choices gate unrelated board/turn input;
+private reward acknowledgement also defers a decisive result's display.
+
+Public feedback contains hand/pile counts, discard top and spent-card effects,
+including Shield and Squall. An ordinary drawn card's kind is private to its
+viewer and never enters public log text; other seats' hands and draw-pile order
+are not rendered. At `64bbe6e`, eight production files were exact adoptions of
+the final parent-validated runtime, including named Raid targets and decisive
+Continue geometry. Historical prototype comments remain provenance. Per-file
+reasons and that historical input-equivalence proof are recorded in
+`docs/prototypes/new-game/T40/production/production-adoption.json`.
+
+The subsequent result-layout correction appends three scoped CSS selectors to
+that stylesheet. A visible result uses the remaining action space as a column;
+optional standings scroll inside it while mandatory loss choices remain visible.
+The following hand inspector also fits. Hidden results during private reward
+Continue and normal card layouts keep their existing styling. The fixed 320/380
+action tracks and the other seven adopted UI files are unchanged. Current CSS
+therefore differs from the historical eight-file verifier's expected hash;
+`docs/prototypes/new-game/T40/result-layout-production.json` records the exact
+append and the frozen candidate equivalence. Neither adoption changed test
+assertions or configuration.

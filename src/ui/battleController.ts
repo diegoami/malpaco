@@ -60,6 +60,14 @@ function exchangeRolls(before: GameState, from: string, to: string): BattleRoll[
 
 /** One authoritative state, one cancellable continuation, no DOM or wall clock. */
 export class BattleController {
+  private replacementGeneration=0;
+  get gameGeneration():number {return this.replacementGeneration;}
+  private cardRewardPending = false;
+  setCardRewardPending(value:boolean):void {
+    if(value===this.cardRewardPending||this.disposed)return;
+    this.cardRewardPending=value;this.cancel();this.publish({running:false,paused:false});
+  }
+  get cardAcknowledgmentPending():boolean {return this.cardRewardPending;}
   private globallyPaused = false;
   get playbackPaused(): boolean { return this.globallyPaused; }
 
@@ -90,10 +98,10 @@ export class BattleController {
   get view(): BattleView { return this.current; }
 
   private accepts(revision?: number, humanInput = true): boolean {
-    return !this.disposed && (!humanInput || (!this.playbackPaused && this.allowInput(this.state))) && (revision === undefined || revision === this.current.revision);
+    return !this.disposed && (!humanInput || !this.cardRewardPending) && (!humanInput || (!this.playbackPaused && this.allowInput(this.state))) && (revision === undefined || revision === this.current.revision);
   }
 
-  private pending(): boolean { return this.state.phase === "capture" || this.state.pendingCapture !== undefined; }
+  private pending(): boolean { return this.state.phase === "capture" || this.state.pendingCapture !== undefined || this.state.cards?.pendingDiscard!==undefined || this.state.cards?.pendingRaid!==undefined; }
 
   private publish(patch: Partial<BattleView>): void {
     this.current = { ...this.current, ...patch, revision: this.current.revision + 1 };
@@ -236,7 +244,7 @@ export class BattleController {
   }
 
   dispatch(action: Action, revision?: number): boolean {
-    if (!this.accepts(revision) || this.pending() || this.current.running || this.current.paused) return false;
+    if (!this.accepts(revision) || this.state.pendingCapture || this.state.phase==='capture' || this.current.running || this.current.paused) return false;
     if (action.kind === "captureMove") return false;
     if (this.current.mode === "move") {
       if (action.kind !== "friendlyMove" && action.kind !== "endTurn") return false;
@@ -258,7 +266,7 @@ export class BattleController {
 
   /** Automatic seats still use ordinary engine actions, without human selections. */
   dispatchComputer(action: Action, revision?: number): boolean {
-    if (this.playbackPaused || !this.accepts(revision, false) || activePlayer(this.state)?.kind !== "computer" || this.state.phase === "human-loss" || this.state.phase === "finished") return false;
+    if (this.cardRewardPending || this.playbackPaused || !this.accepts(revision, false) || activePlayer(this.state)?.kind !== "computer" || this.state.phase === "human-loss" || this.state.phase === "finished") return false;
     const before = this.state, result = apply(before, action);
     if (!result.ok) return false;
     this.cancel(); this.beforeMove = null;
@@ -276,7 +284,9 @@ export class BattleController {
   replaceGame(next: GameState, _reason: "load" | "new-game"): boolean {
     if (!this.accepts(undefined, false)) return false;
     this.cancel();
+    this.replacementGeneration++;
     this.watchExchanges = 0;
+    this.cardRewardPending = false;
     this.globallyPaused = false;
     this.beforeMove = null;
     this.publish({ mode: "battle", state: next, from: next.pendingCapture?.from ?? null, to: next.pendingCapture?.to ?? null, running: false, paused: false, effectiveThreshold: 1,
