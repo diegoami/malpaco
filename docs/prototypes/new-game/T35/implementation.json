@@ -1,14 +1,15 @@
 {
-  "scope": "T35 native Sol Medium implementation; no default/UI change. Historical archive snapshots are inert.",
-  "runtimeCommit": "b8b91c9",
+  "scope": "T35 native Sol Medium implementation with first scoped Luna High rework; no default/UI change. Historical archive snapshots are inert.",
+  "runtimeCommit": "69b3ead",
   "sourceHashes": {
     "src/core/geographic-board.ts": "ba7cad309bc0fcded4b5a89ca14e22a6cecac7b809efd4537512e6d37fc62514",
-    "src/core/geographic-game.ts": "33ae2b9833ed0abaa2ef7a0b3e6922d76e8cb4c27c3e79cb5b1b8a1494e2d918",
+    "src/core/geographic-game.ts": "24b557fec59571d89b4eb66924706978cd570ff70a635cf4ad033a6712533c79",
     "src/core/island-geography.ts": "ab58ae1639288487cb8d102eee016e98b5059cf7c975c91ed6bfe1f5bc685f68",
     "src/core/match-save.ts": "7dd9a9a107a33ce667d029410db99d5bd167fcf1d1c0a7855936b06711466489",
     "src/core/index.ts": "cb8ea79afe7fab958163d4fcaf30f41911abfd00721b042418b9ad4c3e28a1bf",
     "tests/core/geographic-game.test.ts": "daa176aebbcdf17b1e3d0e7fdc9c98b65065985910b16ee49a9f89182d4ec13a",
     "tests/core/geographic-board.test.ts": "8bcf16370bc0807d0abb636bcec191b2018a630f20f46fc722855f05dabf5836",
+    "tests/core/geographic-match-identity.test.ts": "454281d89890e2ea1bf17be6720b72ff58df9946d227a334b7d7fabe1bc13d37",
     "docs/prototypes/new-game/T35/acceptance.mjs": "f622ee83946858e37ed416e566e938134884a24c18c13962f6903b5a41edade7",
     "docs/prototypes/new-game/T35/sweep.mjs": "02327e1aae7e4219ab8f13399c294b46f2ae3a69720b0d82a8606d70be50a6e4"
   },
@@ -239,6 +240,70 @@
         "docs/prototypes/new-game/T35/evidence/final-browser-nnh9cb8k",
         "docs/prototypes/new-game/T35/evidence/final-browser-sequential-v9btzj_v"
       ]
+    },
+    "rework-dw1": {
+      "reportSha256": "102ed18f6b11dc03410e0459ff33c08b1f6ed6c58c767ec36f07cc2f8e96ab42",
+      "exit": 0,
+      "durationSeconds": 14.54262182399998,
+      "sourceInputsStable": true,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/geographic-board.test.ts",
+        "tests/core/geographic-match-identity.test.ts"
+      ],
+      "evidence": "evidence/rework-dw1-qj2exynd"
+    },
+    "rework-focused": {
+      "reportSha256": "1f17f902f2b57eacc0d5a0cf10c0dd6af47f092259777a668ca0c2f4f176093b",
+      "exit": 0,
+      "durationSeconds": 15.339514384000267,
+      "sourceInputsStable": true,
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/geographic-board.test.ts",
+        "tests/core/geographic-game.test.ts",
+        "tests/core/geographic-match-identity.test.ts"
+      ],
+      "evidence": "evidence/rework-focused-azorja45"
+    },
+    "rework-units": {
+      "reportSha256": "80c5e1ed7f93beb0a4a2d51a51c295da097c3659ab367862d2efb16a820aa327",
+      "exit": 0,
+      "durationSeconds": 48.63247357299997,
+      "sourceInputsStable": true,
+      "command": [
+        "npm",
+        "test"
+      ],
+      "evidence": "evidence/rework-units2-m317sf83"
+    },
+    "rework-build": {
+      "reportSha256": "9f9e430cf0d33523c46f390b16914ecadabb1f0a8e4dbedcab86e5589beefae6",
+      "exit": 0,
+      "durationSeconds": 1.2538793870003246,
+      "sourceInputsStable": true,
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "evidence": "evidence/rework-build-93dwn5vt"
+    },
+    "rework-units-retry": {
+      "reportSha256": "c57cb49d774e41c38466e1e95afafb1ce46a5ce1944e9a22f02228af4dfbbe39",
+      "exit": 0,
+      "durationSeconds": 59.61276269200016,
+      "sourceInputsStable": true,
+      "command": [
+        "npm",
+        "test"
+      ],
+      "evidence": "evidence/rework-units-6ax4c2wy",
+      "note": "Duplicate sequential npm test run; wrapper output retained in report."
     }
   },
   "sweep": {
@@ -352,5 +417,15 @@
     "implementation-initial-retained-ez45n7zq": "5dd04e6bf02e961e08a4e24c648a7abf735726587e7bd25217a1550358110b45",
     "implementation-final-retained-py0avz4x": "f63486da11a75393151d35815d313c6cf42e1c389b55968115b4122c7ae43407"
   },
-  "limitations": "Bounded accepted T34 family; owner visual judgment and generated-map UI belong to T36. Independent review and CI are parent actions."
+  "limitations": "Bounded accepted T34 family; owner visual judgment and generated-map UI belong to T36. Independent review and CI are parent actions.",
+  "firstScopedRework": {
+    "implementer": "native GPT-6 Luna High",
+    "commit": "69b3ead80c9e01e1cbb3cb3748eff37c98322966",
+    "productionChange": "Capped exhaustion diagnostic recommends another seed; RNG, map, deal, codec and numeric budgets unchanged.",
+    "docs": "README clarifies the frozen geographic-board header as historical provenance and describes the current acceptance commands and test counts.",
+    "frozenOriginalAcceptanceSha256": "8bcf16370bc0807d0abb636bcec191b2018a630f20f46fc722855f05dabf5836",
+    "parentIdentityTestsSha256": "454281d89890e2ea1bf17be6720b72ff58df9946d227a334b7d7fabe1bc13d37",
+    "identityOmissionControls": "evidence/parent-identity-controls-cm55u2ql; three exact omissions (rules, action schema, extra identity key) fail their targeted tests, with restoration recorded by parent.",
+    "unchangedPriorEvidence": "Prior independent 100-seed sweep and 24 pinned browser pass remain applicable to unchanged generation, RNG, and UI code; independent follow-up reviewer will rerun DW checks."
+  }
 }
