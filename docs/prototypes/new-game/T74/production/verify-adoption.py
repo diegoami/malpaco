@@ -17,7 +17,8 @@ def exact(path,expected=None,mode=None):
     tree=subprocess.check_output(['git','ls-tree','HEAD','--',path],cwd=ROOT,env=ENV).decode().split()
     check(len(tree)>=3 and tree[1]=='blob','committed blob '+path)
     gm=int(tree[0],8)&0o777;wm=(ROOT/path).stat().st_mode&0o777
-    check(gm==wm,'working/committed mode '+path)
+    # Git stores the executable bit, not POSIX group-write permission.
+    check(bool(gm&0o111)==bool(wm&0o111),'working/committed executable mode '+path)
     if mode is not None:check(wm==int(mode,8),'expected mode '+path)
     return data
 self_path=BASE+'production/verify-adoption.py'
@@ -28,7 +29,23 @@ for path,h in adoption['manifestSha256'].items():exact(path,h)
 frozen=json.loads(committed(BASE+'acceptance/FROZEN-ACCEPTANCE.json'))
 validated=json.loads(committed(BASE+'acceptance/validated-inputs.json'))
 check(len(frozen['inputs'])==99,'frozen count99')
-for p,h in frozen['inputs'].items():exact(p,h)
+# Exact working modes come from original archived copies or validated inputs;
+# Git's100644 alone cannot distinguish0644 from0664.
+phase_receipt=json.loads(committed(BASE+'archives/phase-a-receipt.json'))
+for p,h in frozen['inputs'].items():
+    if p.startswith(BASE+'acceptance/measurements/'):
+        origin=BASE+'preflight/phase-a-20261018-01/measurements/'+p.rsplit('/',1)[1]
+        mode=oct(phase_receipt['members'][origin]['mode'])
+    elif p.startswith(BASE+'production-candidate/src/ui/'):
+        origin=BASE+'preflight/phase-a-20261018-01/proposal/'+p.rsplit('/',1)[1]
+        mode=oct(phase_receipt['members'][origin]['mode'])
+    elif p in [BASE+'acceptance/API.md',BASE+'acceptance/frozen-oracles.json']:
+        origin=BASE+'preflight/phase-a-20261018-01/proposal/'+p.rsplit('/',1)[1]
+        mode=oct(phase_receipt['members'][origin]['mode'])
+    else:
+        check(p in validated['expectedAfterAdoption'],'frozen mode authority '+p)
+        mode=validated['expectedAfterAdoption'][p]['mode']
+    exact(p,h,mode)
 check(len(validated['expectedAfterAdoption'])==226,'validated count226')
 for p,e in validated['expectedAfterAdoption'].items():exact(p,e['sha256'],e['mode'])
 check(len(adoption['sources'])==3,'three provider sources')
