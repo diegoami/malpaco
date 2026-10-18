@@ -25,6 +25,7 @@ export class BattleView {
     this.el.dataset["paused"] = String(view.paused);
     this.el.dataset["revision"] = String(revision);
     this.el.dataset["speed"] = view.speed;
+    this.el.dataset["pendingCapture"] = String(!!pending);
 
     const context = h("div", { class: "battle-context" },
       h("div", { class: "battle-country" }, h("span", { class: "battle-label" }, "From"), h("strong", { id: "battle-source-name" }, from ? province(state.map, from)!.name : "Choose your country"), h("span", { id: "battle-source-armies", class: "battle-count", "aria-label": "Source armies" }, from ? String(armyCount(state, from)) : "—")),
