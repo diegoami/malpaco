@@ -1,0 +1,37 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t74-work
+
+ ❯ tests/ui/generated-geography-presentation-service.test.ts (0 test)
+ ❯ tests/ui/generated-geography-presentation.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/generated-geography-presentation-service.test.ts [ tests/ui/generated-geography-presentation-service.test.ts ]
+Error: Cannot find module '../../src/ui/generatedGeographyPresentationService' imported from /home/diego/projects/malpaco/.cache/t74-work/tests/ui/generated-geography-presentation-service.test.ts
+ ❯ tests/ui/generated-geography-presentation-service.test.ts:2:1
+      1| import {it,expect,vi} from 'vitest';
+      2| import {PresentationService} from '../../src/ui/generatedGeographyPres…
+       | ^
+      3| import type {WorkerPort,WorkerRequest,WorkerResponse} from '../../src/…
+      4| import {DRAWING_VERSION,presentationKey} from '../../src/ui/generatedG…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/ui/generated-geography-presentation.test.ts [ tests/ui/generated-geography-presentation.test.ts ]
+Error: Cannot find module '../../src/ui/generatedGeographyPresentation' imported from /home/diego/projects/malpaco/.cache/t74-work/tests/ui/generated-geography-presentation.test.ts
+ ❯ tests/ui/generated-geography-presentation.test.ts:4:1
+      2| import {readFileSync} from 'node:fs';
+      3| import {createHash} from 'node:crypto';
+      4| import {derivePresentation,DRAWING_VERSION} from '../../src/ui/generat…
+       | ^
+      5| import type {AcceptedGeometry,Presentation} from '../../src/ui/generat…
+      6| import {createGeographicGame} from '../../src/core/geographic-game';
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  no tests
+   Start at  21:52:53
+   Duration  135ms (worker 97%, environment 3%)
+

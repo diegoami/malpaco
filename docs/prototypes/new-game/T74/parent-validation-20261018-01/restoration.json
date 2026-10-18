@@ -1,0 +1,58 @@
+{
+  "results": {
+    "baseline": {
+      "command": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/generated-geography-presentation.test.ts",
+        "tests/ui/generated-geography-presentation-service.test.ts"
+      ],
+      "exit": 1,
+      "elapsedSeconds": 0.6311385631561279
+    },
+    "npm-test": {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 91.51988863945007
+    },
+    "build": {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "elapsedSeconds": 1.2048027515411377
+    }
+  },
+  "error": null,
+  "providersOriginallyAbsent": true,
+  "providersRemoved": true,
+  "restoredPreexistingFiles": [],
+  "changedPreexistingFiles": [],
+  "protectedFileCount": 13934,
+  "headBefore": "6f2e5fae7564d1dc909558172ec204fd80f206eb",
+  "headAfter": "6f2e5fae7564d1dc909558172ec204fd80f206eb",
+  "indexBefore": "412f4e6de58e5e0cbdf556e163d68fe9a687aae25e0b9d3eb2269b69d99762a4",
+  "indexAfter": "412f4e6de58e5e0cbdf556e163d68fe9a687aae25e0b9d3eb2269b69d99762a4",
+  "canonicalHashesBefore": {
+    "/home/diego/projects/malpaco/.cache/t74-work/docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentation.ts": "ec0bdf8aad3b67b847be19926bf2470738a498f99f6aa762d7a28a944dbe548a",
+    "/home/diego/projects/malpaco/.cache/t74-work/docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentation.worker.ts": "3dc714a7387900f8a0795f0a549859d300b1528b88c8a9db5161862132ca3374",
+    "/home/diego/projects/malpaco/.cache/t74-work/docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentationService.ts": "c5dd8c8f80cb76f1ac5bd95257551fbb92ff58633ec3857a9d4df333d6c8a1df"
+  },
+  "canonicalHashesAfter": {
+    "/home/diego/projects/malpaco/.cache/t74-work/docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentation.ts": "ec0bdf8aad3b67b847be19926bf2470738a498f99f6aa762d7a28a944dbe548a",
+    "/home/diego/projects/malpaco/.cache/t74-work/docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentation.worker.ts": "3dc714a7387900f8a0795f0a549859d300b1528b88c8a9db5161862132ca3374",
+    "/home/diego/projects/malpaco/.cache/t74-work/docs/prototypes/new-game/T74/production-candidate/src/ui/generatedGeographyPresentationService.ts": "c5dd8c8f80cb76f1ac5bd95257551fbb92ff58633ec3857a9d4df333d6c8a1df"
+  },
+  "frozenAcceptanceExact": true,
+  "distOriginallyPresent": false,
+  "distRestored": true,
+  "cacheOriginallyPresent": true,
+  "cacheRestored": true,
+  "restored": true
+}
