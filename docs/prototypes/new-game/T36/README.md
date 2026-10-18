@@ -117,4 +117,9 @@ default review setup is the automatic harness integration above. The final harne
 `evidence/reviewer-dependencies-amendment-20261018/`. The source actual-CLI probe archive
 is retained unchanged at `review-permission-diagnostics/permission-diagnostics.tar.gz`
 (SHA256 `35cb5cca3fc957ddb5485a8569ab7b8176ebc38acdba182167c9c5a7c6435289`), with its
-member manifest beside it.
+member manifest beside it. A no-Claude real-source copy probe retained under
+`evidence/reviewer-dependencies-real-copy-20261018/` copied all 1,454 regular files and
+8 symlinks from the launcher source; source/copy content tree hashes matched, no regular
+file inode was shared, and a write/byte-exact restore in the copy left the source hash
+unchanged. The copy remained in `/tmp/t36-private-dependency-copy-URaDXV/` for parent
+validation.
