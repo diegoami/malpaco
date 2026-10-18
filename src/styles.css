@@ -1376,3 +1376,38 @@ dialog h2 {
 /* Full shared sidebar history uses one bounded list scroller in every host. */
 .log-card { display:flex; flex-direction:column; overflow:hidden; }
 .log { min-height:0; overflow-y:auto; }
+
+/* Disposable T40 card interaction proposal. Existing T71 grid tracks unchanged. */
+.card-interactions{min-height:0;overflow:auto;display:flex;flex-direction:column;gap:4px}
+.card-interactions[hidden]{display:none}
+.card-public-counts{font-size:11px;margin:0}
+.own-card-hand{display:flex;flex-wrap:wrap;gap:3px}
+.own-card-hand>strong{width:100%;font-size:12px}
+.own-card{display:grid;grid-template-columns:auto 1fr;gap:2px 4px;border:1px solid #77848b;border-radius:4px;padding:3px;min-width:68px;font-size:11px}
+.own-card small{grid-column:1/-1;font-size:9px;max-width:95px}
+.card-choice-controls{display:flex;flex-direction:column;gap:3px;font-size:12px}
+.card-choice-controls button{font-size:11px;padding:5px}
+.battle-reference[data-panel-detail] .action:has(.card-interactions:not([hidden])){overflow:auto}
+.battle-reference[data-panel-detail] .action:has(.card-choice-controls strong)>:is(.battle-controls,.friendly-move-controls){display:none}
+
+/* Card choices use available action space; T71's outer tracks stay exact. */
+.card-interactions{flex:1;overflow:hidden;gap:3px}
+.own-card-hand{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;flex-shrink:0}
+.own-card-hand>strong{grid-column:1/-1}
+.own-card{display:flex;flex-direction:column;min-width:0;gap:1px;padding:2px;font-size:10px}
+.own-card small{font-size:8px;line-height:1.1;max-width:none}
+.card-choice-controls{min-height:0;flex:1;gap:3px;font-size:11px}
+.card-choice-controls p{margin:0}
+.card-choice-controls button{font-size:10px;padding:3px;min-height:23px;flex-shrink:0}
+.card-set-list{display:flex;flex-direction:column;gap:3px;min-height:23px;overflow:auto}
+.card-set-list:empty{display:none}
+.card-public-counts{font-size:10px;line-height:1.15;flex-shrink:0}
+.battle-reference[data-panel-detail] .action:has(.card-interactions:not([hidden])){overflow:hidden}
+
+/* Mandatory cards replace inactive placement/battle detail inside the same track. */
+.battle-reference[data-panel-detail] .action[data-card-choice="true"] > :is(.pick,.hint,.legend,.buttons){display:none}
+
+/* UI9 permits the own hand one action away outside a mandatory decision. */
+.card-interactions[data-choice="false"]{flex:0 0 auto;min-height:50px}
+.card-interactions[data-choice="false"]>.card-choice-controls:empty{display:none}
+.battle-reference[data-panel-detail] .action:has(.card-interactions[data-choice="false"]:not([hidden]))>.battle-controls:not([hidden]){flex:1;overflow:auto}

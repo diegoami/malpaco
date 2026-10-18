@@ -7,6 +7,7 @@ import {App} from "./app";
 import {h} from "./dom";
 import {ReferenceBattleGame} from "./referenceBattleGame";
 import type {BattlePreferences} from "./referenceBattleGame";
+import type {LoadedVersionedMatch} from "../core/match-save";
 import type {GameOptions,GameState} from "../core";
 import {ReferenceMatchFiles} from "./referenceMatchFiles";
 export function mountReferenceGame(root:HTMLElement){
@@ -20,10 +21,10 @@ export function mountReferenceGame(root:HTMLElement){
  let current:App|ReferenceBattleGame|null=null;
  let setupFiles:ReferenceMatchFiles|null=null;
  const dispose=()=>{setupFiles?.dispose();setupFiles=null;current?.dispose();current=null;};
- const mountMatch=(options:GameOptions,state:GameState)=>{
+ const mountMatch=(options:GameOptions,state:GameState,loaded?:LoadedVersionedMatch)=>{
   const app=legacy
    ?new App(referenceMap,options.seed,()=>setup(),state,(map,handlers)=>new ReferenceMapView(map,handlers))
-   :new ReferenceBattleGame(referenceMap,options,()=>setup(),state,preferences,mountMatch,!manual);
+   :new ReferenceBattleGame(referenceMap,options,()=>setup(),state,preferences,mountMatch,!manual,loaded?.initialState?{identity:loaded.identity,label:"Nine Isles",initialState:loaded.initialState,createMap:(map,handlers)=>new ReferenceMapView(map,handlers)}:undefined);
   dispose();
   seed=String(options.seed);seats=String(options.seats.length);
   controllers=Array.from({length:4},(_,i)=>options.seats[i]?.kind??"human");

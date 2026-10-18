@@ -1,0 +1,357 @@
+{
+  "parentFrozenCommit": "657826617e83177715cea1f0c4f7836a771c5daf",
+  "implementer": "Owner-selected native Sol Medium",
+  "choiceBeforeDispatch": "https://github.com/diegoami/malpaco/pull/176#issuecomment-6251755666",
+  "method": "Verbatim eight-file adoption; no source edits after validated candidate, no new tests or assertion/configuration changes. Retained heavy checks reused only after exact integrated input proof.",
+  "proof": {
+    "adopted": [
+      {
+        "path": "src/ui/cardController.ts",
+        "sha256": "86210ae98f99e1618f1427b8335eba88d9b1d787d3dd72e07bf0e34e896cfe2a",
+        "bytes": 7611,
+        "reason": "Fixed-viewer card state, legal set choices, named Raid targeting, discard and reward lifecycle."
+      },
+      {
+        "path": "src/ui/cardView.ts",
+        "sha256": "4a0c00b91f6af7b9b182fb222b1c0661b66165c6a6fa2aef8fcdd98275215e4a",
+        "bytes": 3657,
+        "reason": "Own-hand inspector, public counts, set/discard/Raid/reward controls."
+      },
+      {
+        "path": "src/ui/battleController.ts",
+        "sha256": "7f3c44f392c383be7c8964eb97aaf253517b1a590fcbbec06bbb6868e7784148",
+        "bytes": 15489,
+        "reason": "Gate unrelated actions while mandatory choices or private reward acknowledgement are pending."
+      },
+      {
+        "path": "src/ui/referenceBattleGame.ts",
+        "sha256": "1088d59bc29db67873a89045117d463fa11c2c69b0b04fea676fc32e2f63cc2c",
+        "bytes": 14443,
+        "reason": "Mount card controls and route board targets; defer decisive result until Continue."
+      },
+      {
+        "path": "src/ui/referenceGame.ts",
+        "sha256": "9bec278a918f9ea44c63a0630f602fe35f434aa609b69fcd3f5bce37912ed803",
+        "bytes": 5414,
+        "reason": "Carry loaded versioned match context into the reference battle host."
+      },
+      {
+        "path": "src/ui/referenceMatchFiles.ts",
+        "sha256": "46ede4bb28eb2578205e1076ad1e3a1db2e359b13fe792e5a9b15796b6655439",
+        "bytes": 3373,
+        "reason": "Accept supported zero/one-human card files and refuse unsupported multiple-human handover."
+      },
+      {
+        "path": "src/ui/gameEventLog.ts",
+        "sha256": "ac37c320219a60bd04470a7bf8ad1848bb28af5fb2514c2728aea826f0456226",
+        "bytes": 8958,
+        "reason": "Append public spent-card/outcome notes without ordinary draw identities."
+      },
+      {
+        "path": "src/styles.css",
+        "sha256": "2eb627dacc520381fb722f119ed62e281d66f94bebaa221dde3e6290f9773ff5",
+        "bytes": 41641,
+        "reason": "Fit card hand, choices and reward acknowledgement in both desktop panel modes."
+      }
+    ],
+    "comparisons": {
+      "validatedIntegratedInputs": {
+        "count": 246,
+        "mismatches": []
+      },
+      "frozenAcceptance": {
+        "count": 39,
+        "mismatches": []
+      },
+      "retainedOriginals": {
+        "count": 2125,
+        "mismatches": []
+      }
+    },
+    "parentFrozenManifestSha256": "5e5b1922e19375484afa2910620e945f6181bfbe666d36f647e2bb6bb8e7fd57",
+    "exactEquivalence": true
+  },
+  "reusedMeasuredCommands": [
+    {
+      "receipt": "parent-acceptance/unit-positive-02/receipt.json",
+      "runs": null,
+      "exit": 0,
+      "seconds": 3.5815007839992177
+    },
+    {
+      "receipt": "parent-acceptance/browser-execution-03/receipt.json",
+      "runs": [
+        {
+          "name": "baseline",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--init",
+            "--ipc=host",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t40-work:/work",
+            "-w",
+            "/work",
+            "-e",
+            "HOME=/tmp",
+            "-e",
+            "T40_OUTPUT=/work/docs/prototypes/new-game/T40/parent-acceptance/browser-execution-03/baseline-results",
+            "-e",
+            "T40_JSON=/work/docs/prototypes/new-game/T40/parent-acceptance/browser-execution-03/baseline.json",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "node_modules/.bin/playwright",
+            "test",
+            "--config",
+            "docs/prototypes/new-game/T40/parent-acceptance/browser-execution-03/browser.config.ts",
+            "--workers=2",
+            "--grep",
+            "Anchor: literal effect"
+          ],
+          "exit": 1,
+          "seconds": 10.591765632998431
+        },
+        {
+          "name": "candidate-positive",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--init",
+            "--ipc=host",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t40-work:/work",
+            "-w",
+            "/work",
+            "-e",
+            "HOME=/tmp",
+            "-e",
+            "T40_OUTPUT=/work/docs/prototypes/new-game/T40/parent-acceptance/browser-execution-03/candidate-positive-results",
+            "-e",
+            "T40_JSON=/work/docs/prototypes/new-game/T40/parent-acceptance/browser-execution-03/candidate-positive.json",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "node_modules/.bin/playwright",
+            "test",
+            "--config",
+            "docs/prototypes/new-game/T40/parent-acceptance/browser-execution-03/browser.config.ts",
+            "--workers=2"
+          ],
+          "exit": 0,
+          "seconds": 54.75865011000133
+        }
+      ],
+      "exit": null,
+      "seconds": null
+    },
+    {
+      "receipt": "parent-acceptance/dw3-validation-02/receipt.json",
+      "runs": [
+        {
+          "name": "npm-test",
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exit": 0,
+          "seconds": 67.04971413600288
+        },
+        {
+          "name": "npm-build",
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "seconds": 1.6723698300047545
+        },
+        {
+          "name": "affected-browser",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--init",
+            "--ipc=host",
+            "--cpus=2",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t40-work:/work",
+            "-w",
+            "/work",
+            "-e",
+            "HOME=/tmp",
+            "-e",
+            "T40_OUTPUT=/work/docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/affected-browser-results",
+            "-e",
+            "T40_JSON=/work/docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/affected-browser.json",
+            "-e",
+            "COMPACT_PANEL_RESULTS_DIR=/work/docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/affected-browser-results",
+            "-e",
+            "COMPACT_PANEL_EVIDENCE_DIR=/work/docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/compact-evidence",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "node_modules/.bin/playwright",
+            "test",
+            "--config",
+            "docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/affected.config.ts",
+            "--workers=2"
+          ],
+          "exit": 0,
+          "seconds": 359.48845337900275
+        },
+        {
+          "name": "compact-browser",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--init",
+            "--ipc=host",
+            "--cpus=2",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t40-work:/work",
+            "-w",
+            "/work",
+            "-e",
+            "HOME=/tmp",
+            "-e",
+            "T40_OUTPUT=/work/docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/compact-browser-results",
+            "-e",
+            "T40_JSON=/work/docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/compact-browser.json",
+            "-e",
+            "COMPACT_PANEL_RESULTS_DIR=/work/docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/compact-browser-results",
+            "-e",
+            "COMPACT_PANEL_EVIDENCE_DIR=/work/docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/compact-evidence",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "node_modules/.bin/playwright",
+            "test",
+            "--config",
+            "docs/prototypes/new-game/T40/parent-acceptance/dw3-validation-02/compact.config.ts",
+            "--workers=2"
+          ],
+          "exit": 1,
+          "seconds": 157.83135141199455
+        }
+      ],
+      "exit": null,
+      "seconds": null
+    },
+    {
+      "receipt": "parent-acceptance/compact-comparison-01/receipt.json",
+      "runs": [
+        {
+          "name": "baseline",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--init",
+            "--ipc=host",
+            "--cpus=2",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t40-work:/work",
+            "-w",
+            "/work",
+            "-e",
+            "HOME=/tmp",
+            "-e",
+            "T40_JSON=/work/docs/prototypes/new-game/T40/parent-acceptance/compact-comparison-01/baseline.json",
+            "-e",
+            "COMPACT_PANEL_RESULTS_DIR=/work/docs/prototypes/new-game/T40/parent-acceptance/compact-comparison-01/baseline-results",
+            "-e",
+            "COMPACT_PANEL_EVIDENCE_DIR=/work/docs/prototypes/new-game/T40/parent-acceptance/compact-comparison-01/baseline-evidence",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "node_modules/.bin/playwright",
+            "test",
+            "--config",
+            "docs/prototypes/new-game/T40/parent-acceptance/compact-comparison-01/compact.config.ts",
+            "--workers=2",
+            "--project=1280x800",
+            "--grep",
+            "geographic (compact|detailed): real computer actions"
+          ],
+          "exit": 0,
+          "seconds": 34.30856924500404
+        },
+        {
+          "name": "candidate",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--init",
+            "--ipc=host",
+            "--cpus=2",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t40-work:/work",
+            "-w",
+            "/work",
+            "-e",
+            "HOME=/tmp",
+            "-e",
+            "T40_JSON=/work/docs/prototypes/new-game/T40/parent-acceptance/compact-comparison-01/candidate.json",
+            "-e",
+            "COMPACT_PANEL_RESULTS_DIR=/work/docs/prototypes/new-game/T40/parent-acceptance/compact-comparison-01/candidate-results",
+            "-e",
+            "COMPACT_PANEL_EVIDENCE_DIR=/work/docs/prototypes/new-game/T40/parent-acceptance/compact-comparison-01/candidate-evidence",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "node_modules/.bin/playwright",
+            "test",
+            "--config",
+            "docs/prototypes/new-game/T40/parent-acceptance/compact-comparison-01/compact.config.ts",
+            "--workers=2",
+            "--project=1280x800",
+            "--grep",
+            "geographic (compact|detailed): real computer actions"
+          ],
+          "exit": 0,
+          "seconds": 32.63893158800056
+        }
+      ],
+      "exit": null,
+      "seconds": null
+    }
+  ],
+  "results": {
+    "newUnits": 19,
+    "newBrowsers": 24,
+    "vitest": 752,
+    "harness": 8,
+    "build": "pass",
+    "affectedBrowsers": 138,
+    "compact": "Initial full batch 30 pass / 2 original 30-second timeouts. Exact two candidate cases retaken successfully at 27\u201328s versus unchanged baseline 29s; all32 distinct cases pass across retained runs, not an initially green full batch."
+  },
+  "negativeControls": "Parent missing-UI baseline19units+2browsers; privacy, replacement-generation, no-set, mandatory/reward gating, decisive Continue geometry and Raid button omissions fail intended assertions; exact restoration receipts retained.",
+  "deadline": "Only parent-authorized existing geographic deck-shuffle test deadline5s\u219230s after measured6776ms timeout; all seeds/assertions retained. Adoption edits no tests.",
+  "scopeFiles": {
+    "src/ui/cardController.ts": "Fixed-viewer card state, legal set choices, named Raid targeting, discard and reward lifecycle.",
+    "src/ui/cardView.ts": "Own-hand inspector, public counts, set/discard/Raid/reward controls.",
+    "src/ui/battleController.ts": "Gate unrelated actions while mandatory choices or private reward acknowledgement are pending.",
+    "src/ui/referenceBattleGame.ts": "Mount card controls and route board targets; defer decisive result until Continue.",
+    "src/ui/referenceGame.ts": "Carry loaded versioned match context into the reference battle host.",
+    "src/ui/referenceMatchFiles.ts": "Accept supported zero/one-human card files and refuse unsupported multiple-human handover.",
+    "src/ui/gameEventLog.ts": "Append public spent-card/outcome notes without ordinary draw identities.",
+    "src/styles.css": "Fit card hand, choices and reward acknowledgement in both desktop panel modes.",
+    "docs/spike.md": "Document actual public API, staged entry, privacy and acknowledgement semantics.",
+    "RUN-NOTES.md": "Append formal plan, commit progress and END.",
+    "docs/prototypes/new-game/T40/production/**": "Reproducible full-byte, frozen-input and original-retention proof plus adoption metadata."
+  },
+  "limitations": [
+    "Owner appearance judgment remains main-owned.",
+    "Independent review and final CI remain main-owned.",
+    "No card default activation or computer policy before T41.",
+    "No review, CI, merge, package or Windows preview launched by formal implementer.",
+    "Native aggregate token telemetry unavailable."
+  ]
+}

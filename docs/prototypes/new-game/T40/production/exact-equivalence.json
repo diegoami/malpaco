@@ -1,0 +1,60 @@
+{
+  "adopted": [
+    {
+      "path": "src/ui/cardController.ts",
+      "sha256": "86210ae98f99e1618f1427b8335eba88d9b1d787d3dd72e07bf0e34e896cfe2a",
+      "bytes": 7611
+    },
+    {
+      "path": "src/ui/cardView.ts",
+      "sha256": "4a0c00b91f6af7b9b182fb222b1c0661b66165c6a6fa2aef8fcdd98275215e4a",
+      "bytes": 3657
+    },
+    {
+      "path": "src/ui/battleController.ts",
+      "sha256": "7f3c44f392c383be7c8964eb97aaf253517b1a590fcbbec06bbb6868e7784148",
+      "bytes": 15489
+    },
+    {
+      "path": "src/ui/referenceBattleGame.ts",
+      "sha256": "1088d59bc29db67873a89045117d463fa11c2c69b0b04fea676fc32e2f63cc2c",
+      "bytes": 14443
+    },
+    {
+      "path": "src/ui/referenceGame.ts",
+      "sha256": "9bec278a918f9ea44c63a0630f602fe35f434aa609b69fcd3f5bce37912ed803",
+      "bytes": 5414
+    },
+    {
+      "path": "src/ui/referenceMatchFiles.ts",
+      "sha256": "46ede4bb28eb2578205e1076ad1e3a1db2e359b13fe792e5a9b15796b6655439",
+      "bytes": 3373
+    },
+    {
+      "path": "src/ui/gameEventLog.ts",
+      "sha256": "ac37c320219a60bd04470a7bf8ad1848bb28af5fb2514c2728aea826f0456226",
+      "bytes": 8958
+    },
+    {
+      "path": "src/styles.css",
+      "sha256": "2eb627dacc520381fb722f119ed62e281d66f94bebaa221dde3e6290f9773ff5",
+      "bytes": 41641
+    }
+  ],
+  "comparisons": {
+    "validatedIntegratedInputs": {
+      "count": 246,
+      "mismatches": []
+    },
+    "frozenAcceptance": {
+      "count": 39,
+      "mismatches": []
+    },
+    "retainedOriginals": {
+      "count": 2125,
+      "mismatches": []
+    }
+  },
+  "parentFrozenManifestSha256": "5e5b1922e19375484afa2910620e945f6181bfbe666d36f647e2bb6bb8e7fd57",
+  "exactEquivalence": true
+}

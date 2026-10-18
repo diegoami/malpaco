@@ -1,3 +1,5 @@
+import {CardController} from "./cardController";
+import {CardView} from "./cardView";
 import { GameEventLog } from "./gameEventLog";
 import { activePlayer, attackTargets, friendlySources, friendlyTargets, ownerOf, whyNot } from "../core";
 import type { GameMap, GameOptions, GameState } from "../core";
@@ -22,6 +24,8 @@ export interface BattlePreferences { threshold: number; speed: BattleSpeed; deta
 /** Reference-route host: the controller owns every selection and ordinary action. */
 export class ReferenceBattleGame {
   private readonly computer: ComputerTurnLoop | null;
+  private readonly cards:CardController;
+  private readonly cardControls:CardView;
   private readonly computerStatus = h("p", { id: "reference-computer-status", role: "status" });
   private readonly playbackPause = h("button", { id: "game-pause-button", type: "button" }, "Pause");
   private readonly playbackSpeed = h("select", { id: "game-speed", "aria-label": "Game speed" },
@@ -57,6 +61,9 @@ export class ReferenceBattleGame {
       preferences.speed = view.speed;
       if (this.mounted && !this.disposed) this.render();
     }, next => !this.automatic || activePlayer(next)?.kind === "human" || next.phase === "human-loss");
+    const human=state.players.filter(p=>p.kind!=='computer');
+    this.cards=new CardController(this.controller,human.length===1?human[0]!.id:'');
+    this.cardControls=new CardView(this.cards,this.controller);
     this.computer = automatic ? new ComputerTurnLoop(this.controller, { schedule: (cb, delay) => window.setTimeout(cb, delay), cancel: id => window.clearTimeout(id) }) : null;
     const threshold = preferences.threshold, speed = preferences.speed;
     this.controller.setThreshold(threshold);
@@ -76,7 +83,7 @@ export class ReferenceBattleGame {
     this.battle = new BattleView(this.controller);
     this.friendly = new FriendlyMoveView(this.controller);
     this.victory = new VictoryView(this.controller);
-    this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el, this.computerStatus);
+    this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el, this.cardControls.el, this.computerStatus);
     this.playbackPause.onclick = () => this.controller.setPlaybackPaused(!this.controller.playbackPaused);
     this.playbackSpeed.onchange = () => this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed);
     this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation));
@@ -105,6 +112,8 @@ export class ReferenceBattleGame {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.cardControls.dispose();
+    this.cards.dispose();
     this.computer?.dispose();
     this.eventLog.dispose();
     this.files.dispose();
@@ -114,6 +123,9 @@ export class ReferenceBattleGame {
 
   private clickProvince(id: string, inspect = false): void {
     if (this.disposed || this.controller.playbackPaused) return;
+    const card=this.cards.view;
+    if(card.phase==='raid-target'){this.cards.selectRaidTarget(id,card.revision);this.render();return;}
+    if(card.phase==='discard'||card.phase==='reward'||card.phase==='sets')return;
     const { state, from, to, mode, running, paused } = this.controller.view;
     if (this.computerActive() || running || paused || state.pendingCapture || state.phase === "finished" || state.phase === "human-loss") return;
     if (mode === "move") {
@@ -134,9 +146,11 @@ export class ReferenceBattleGame {
 
   private renderMap(): void {
     const { state, from, to, running, paused, mode } = this.controller.view;
-    const blocked = this.controller.playbackPaused || this.computerActive() || running || paused || state.pendingCapture !== undefined || state.phase === "finished" || state.phase === "human-loss";
+    const blocked = this.controller.playbackPaused || this.computerActive() || running || paused || state.pendingCapture !== undefined || state.cards?.pendingDiscard!==undefined || this.controller.cardAcknowledgmentPending || state.phase === "finished" || state.phase === "human-loss";
     const targets = blocked ? [] : mode === "move" ? from ? friendlyTargets(state, from) : friendlySources(state) : from ? attackTargets(state, from) : [];
-    this.mapView.render({ state, selected: from, target: to, targets, hover: this.hover, flash: [] });
+    const card=this.cards.view;
+    const raidTargets=card.phase==='raid-target'?state.map.provinces.filter(p=>state.ownerOf[p.id]!==activePlayer(state)!.id).map(p=>p.id):null;
+    this.mapView.render({ state, selected: from, target: card.selectedTarget??to, targets:raidTargets??targets, hover: this.hover, flash: [] });
     if (mode === "move") {
       for (const route of this.mapView.el.querySelectorAll<SVGPolylineElement>(".lane")) {
         const ends = route.dataset["edge"]!.split("|");
@@ -155,6 +169,8 @@ export class ReferenceBattleGame {
 
   private render(): void {
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
+    this.cards.update();
+    this.cardControls.render();
     this.eventLog.update(this.controller.state);
     this.playbackPause.textContent = this.controller.playbackPaused ? "Resume" : "Pause";
     this.playbackPause.setAttribute("aria-label", this.controller.playbackPaused ? "Resume game" : "Pause game");
@@ -166,6 +182,7 @@ export class ReferenceBattleGame {
     if (state.phase === "capture") this.panel.el.querySelector("#turn-phase")!.textContent = "Capture move-in";
     if (mode === "move") this.panel.el.querySelector("#turn-phase")!.textContent = "Friendly move";
     const action = this.panel.el.querySelector<HTMLElement>(".action")!;
+    action.dataset["cardChoice"]=String(["sets","raid-target","discard","reward"].includes(this.cards.view.phase));
     action.dataset["battle"] = String(state.phase !== "reinforce");
     // Phase controls also capture a revision; an old End turn cannot become a
     // fresh command after a capture or an automatic exchange.
@@ -179,12 +196,14 @@ export class ReferenceBattleGame {
     move.style.display = state.phase === "attack" ? "" : "none";
     move.addEventListener("click", () => { this.controller.startFriendlyMove(revision); });
     this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, move);
-    this.phaseActions.style.display = mode === "move" || state.result ? "none" : "";
+    this.phaseActions.style.display = mode === "move" || state.result || ['sets','raid-target','discard','reward'].includes(this.cards.view.phase) ? "none" : "";
+    if(state.phase==='cards')this.panel.el.querySelector('#turn-phase')!.textContent=this.cards.view.phase==='raid-target'?'Raid target':'Cards';
     this.battle.render(this.controller.view);
-    if (mode === "move" || state.result) this.battle.el.hidden = true;
+    if (mode === "move" || state.result || ["sets","raid-target","discard","reward"].includes(this.cards.view.phase)) this.battle.el.hidden = true;
     this.friendly.render(this.controller.view);
     this.victory.render(state, revision);
-    const computer = this.computerActive();
+    if(this.controller.cardAcknowledgmentPending)this.victory.el.hidden=true;
+    const computer = this.computerActive() && !this.controller.cardAcknowledgmentPending;
     this.panel.el.dataset["computerActive"] = String(computer);
     this.computerStatus.hidden = !computer;
     this.computerStatus.textContent = computer ? this.controller.playbackPaused ? `${activePlayer(state)!.name} · Paused` : `${activePlayer(state)!.name} is playing…` : "";

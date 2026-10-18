@@ -43,6 +43,7 @@ export class ReferenceMatchFiles {
             ? "This game uses a generated map; load it in the main game screen."
             : "This game uses a generated map; load it in the generated game view.");
         }
+        if(loaded.state.cards&&loaded.options.seats.filter(seat=>seat.kind==='human').length>1)throw new Error('Card play currently supports at most one human seat. Shared-screen handover is not available yet.');
         onLoad(loaded.options, loaded.state,loaded);
       } catch (error) {
         if (!this.disposed && own === this.request) this.error.textContent = "Load failed: " + this.message(error);
