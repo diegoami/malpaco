@@ -5,11 +5,11 @@ import type {Page} from '@playwright/test';
 import {readFileSync,mkdirSync} from 'node:fs';
 import {join} from 'node:path';
 import {createHash} from 'node:crypto';
-import {activePlayer,apply,attackTargets} from '../../src/core';
+import {activePlayer,apply,attackTargets,raidCardsRules,victoryRules} from '../../src/core';
 import type {Action,GameOptions,GameState} from '../../src/core';
 import {defaultOptions} from '../../src/core/options';
 import {createGeographicGame} from '../../src/core/geographic-game';
-import {GEOGRAPHIC_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY,deserializeVersionedMatch} from '../../src/core/match-save';
+import {GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY,deserializeVersionedMatch} from '../../src/core/match-save';
 import {pinned} from '../core/versioned-match-fixture';
 import frozenCorpus from '../../docs/prototypes/new-game/T36/corpus-selection.json' with {type:'json'};
 import layoutSupplement from '../../docs/prototypes/new-game/T36/corpus-supplement.json' with {type:'json'};
@@ -21,7 +21,12 @@ const corpus:Corpus=process.env['GEOGRAPHIC_CORPUS_FILE']?JSON.parse(readFileSyn
 const visualSelection=[...corpus.selection,...layoutSupplement.selection];
 const hash=(x:unknown)=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const optionsFor=(seed:number):GameOptions=>({...defaultOptions(),seed,seats:[{kind:'human'},{kind:'human'}],computerStrengths:[]});
-function expected(seed:number){const options=optionsFor(seed),r=createGeographicGame(options);if(!r.ok)throw Error(r.errors.join('; '));return {options,...r};}
+// Historical/manual fixtures retain victory/1, including their exact dice stream.
+function expected(seed:number){const options=optionsFor(seed),r=createGeographicGame(options,victoryRules(options));if(!r.ok)throw Error(r.errors.join('; '));return {options,...r};}
+// New normal one-human setup consumes the cards3 opening shuffle. No policy oracle.
+function expectedNormal(seed:number){const options={...defaultOptions(),seed},r=createGeographicGame(options,raidCardsRules(options));if(!r.ok)throw Error(r.errors.join('; '));let state=r.state;
+ if(activePlayer(state)!.kind==='human'){expect(state.phase).toBe('cards');expect(state.cards!.hands[activePlayer(state)!.id]).toEqual([]);state=step(state,{kind:'skipCards'});}
+ return {...r,options,initialState:r.state,state};} 
 const country=(p:Page,id:string)=>p.locator(`#geographic-map [data-country="${id}"]`);
 const numbers=(s:string)=>[...s.matchAll(/-?(?:\d+\.?\d*|\.\d+)/g)].map(m=>Number(m[0]));
 async function setup(p:Page,seed=1994){await p.goto(`/?seed=${seed}&control=manual`);await expect(p.getByRole('button',{name:'Start game',exact:true})).toBeVisible();}
@@ -64,11 +69,13 @@ test('measured corpus fixture is frozen and reproducible',()=>{
  }expect(new Set(shapes).size).toBeGreaterThan(1);expect(new Set(layoutSupplement.layoutDiagnostics.map(r=>r.family))).toEqual(new Set(['top','middle','bottom']));
 });
 test('root and unknown view retain the established setup and playback controls',async({page})=>{
+ await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));
  for(const url of ['/','/?view=unknown&seed=1994']){
   await page.goto(url);await expect(page.getByLabel('Seats',{exact:true})).toHaveValue('4');
   for(let n=1;n<=4;n++)await expect(page.getByLabel(`Seat ${n} control`,{exact:true})).toHaveValue(n===1?'human':'computer');
   await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();await expect(page.locator('#reference-map')).toHaveCount(0);
   await expect(page.locator('#game-pause-button')).toBeVisible();await expect(page.locator('#game-speed')).toBeVisible();await expect(page.locator('#game-log-button')).toBeVisible();await expect(page.locator('[data-testid="player-army-total"]')).toHaveCount(4);
+  const actual=deserializeVersionedMatch(await save(page)),opening=expectedNormal(1994);expect(actual.identity).toEqual(GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY);expect(actual.options).toEqual(opening.options);expect(actual.initialState).toEqual(opening.initialState);expect(actual.geography).toEqual(opening.geography);expect(actual.state).toEqual(opening.state);expect(actual.state.rules.cards).toBe('raid-v1');
  }
 });
 for(const item of visualSelection)test(`seed ${item.seed} paints actual geography and contained legible army labels`,async({page},info)=>{
@@ -124,7 +131,7 @@ for(const refusal of corpus.refusalSeeds.slice(0,1))test(`real measured refusal 
 
 test('geographic computer playback pauses and cancels stale work on load',async({page})=>{
  await page.clock.install();await page.clock.pauseAt(new Date());await page.goto('/');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
- let state=deserializeVersionedMatch(await save(page)).state;
+ let initial=deserializeVersionedMatch(await save(page));expect(initial.identity).toEqual(GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY);expect(initial.state.rules.cards).toBe('raid-v1');expect(initial.state).toEqual(expectedNormal(1994).state);let state=initial.state;
  for(let n=0;n<50&&(activePlayer(state)!.kind!=='computer'||state.phase!=='attack');n++){
   if(activePlayer(state)!.kind==='human'){
    if(state.phase==='reinforce'){const own=state.map.provinces.find(p=>state.ownerOf[p.id]===activePlayer(state)!.id)!;while(state.reinforcementPool>0){await country(page,own.id).click();state=step(state,{kind:'reinforce',province:own.id,amount:1});}await page.locator('#start-combat-button').click();state=step(state,{kind:'endReinforcement'});}
