@@ -1,0 +1,29 @@
+{
+  "reviewedHead": "c55fc55f9d37eb55e54cc47cc425a3e25da6d1de",
+  "reviewUrl": "https://github.com/diegoami/malpaco/pull/160#issuecomment-6246341775",
+  "verdict": "approve",
+  "model": "claude-sonnet-5-5",
+  "effort": "medium",
+  "exit": 0,
+  "durationSeconds": 588.101,
+  "denials": [],
+  "fullFinalRead": true,
+  "scopeComplete": true,
+  "reviewTrackedClean": true,
+  "archiveChecks": [
+    {
+      "path": "claude-review-round1",
+      "members": 1158,
+      "sha256": "1b0e4acb7b461e7420f08ac09c14e23a00f1e22f9d1a81803a7fbd6bf1a21603"
+    },
+    {
+      "path": "claude-review-round2",
+      "members": 1175,
+      "sha256": "0da37ab3e94e0728bd3a71bc30561d495cab878ae3a6febdac553c8e953ff66e"
+    }
+  ],
+  "productionAcceptanceHashesUnchanged": true,
+  "parentKeyCheck": "evidence/parent-final-_207mhej/report.json",
+  "parentKeyCases": 18,
+  "ci": "One final receipt push will trigger CI; no unchanged-head rerun."
+}
