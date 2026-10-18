@@ -1,0 +1,21 @@
+{
+  "reconstruct": "cat complete-review.tar.gz.part* > complete-review.tar.gz",
+  "sha256": "5509739847743f49eae39d87507d055146de777e59aab630c7411c3ff4debe9f",
+  "parts": [
+    {
+      "name": "complete-review.tar.gz.part01",
+      "bytes": 25165824,
+      "sha256": "2bfa035378e941ebeb69a3d8f50871782aabbe0c7010be1da8687b4fd1b960ff"
+    },
+    {
+      "name": "complete-review.tar.gz.part02",
+      "bytes": 25165824,
+      "sha256": "f3b3bf5c129582eab709cca0a1c373bd5db897f6c9b81065ea863c5a064af2f5"
+    },
+    {
+      "name": "complete-review.tar.gz.part03",
+      "bytes": 18311139,
+      "sha256": "de25d1a2dbf5e4559c0853d4d116e0bbacf5999183de181f09b6c4359c8b730d"
+    }
+  ]
+}
