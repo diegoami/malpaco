@@ -101,3 +101,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T71](T71.md) | Stable compact computer-turn panels | Medium | #163 | T36; coordinate T40 UI ownership |
 
 | [T72](T72.md) | Natural generated islands and region borders: visual prototype | Hard | #173 | T36 |
+
+| [T74](T74.md) | Versioned generated-map presentation and worker cache | Hard | #185 | T73 |
+
+| [T75](T75.md) | Playable border redraw and 0.1.0 release candidate | Hard | #184 | T73, T74 |
