@@ -202,7 +202,7 @@ function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly P
     ownerOf: ownerOfMap,
     armies,
     currentPlayer: 0,
-    phase: rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
+    phase: rules.cards === "trade-v1" ? "cards" : rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
     reinforcementPool: 0,
     turnNumber: 1,
     ...(rules.victoryOptions ? { roundOrigin: 0 } : {}),
@@ -253,4 +253,9 @@ export function newGameFromOptions(map: GameMap, rules: RuleSet, options: GameOp
     };
   });
   return newGameWithPlayers(map, rules, playerList, seed);
+}
+
+/** [designed] T38 stage; T23 variety-029..035. deck-v1 remains frozen. */
+export function tradeCardsRules(options:Pick<GameOptions,'dominationWin'|'roundLimit'>=defaultOptions()):RuleSet {
+ return {...cardsRules(options),id:'malpaco-card-trades',cards:'trade-v1'};
 }

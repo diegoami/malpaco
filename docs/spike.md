@@ -785,10 +785,40 @@ later trade and raid behavior needs distinct exact identities while preserving
 this replay path. Existing legacy and victory identities and their RNG draws
 remain unchanged. Current T36 setup/UI defaults continue using victory rules;
 T40 adds card controls and explicitly enables the appropriate stage, and T41
-owns computer card policy. This core addition supplies no trade/raid effects.
+owns computer card policy. The deck-only preset supplies no trade/raid effects.
 
 The sole adjacent UI edit adds the `discardCard` name to the event log's typed
 action-label record, as authorized by the amended T37 scope. No layout or
 interactive card flow changes. Frozen acceptance, legal action histories,
 negative controls and implementation evidence are retained under
 `docs/prototypes/new-game/T37/`.
+
+
+### Card sets and Surge (T38)
+
+`tradeCardsRules(options?)` opts into `trade-v1`. Every opening turn and living-seat
+handoff computes ordinary income once, then enters `cards` before placement.
+`{kind:"skipCards"}` keeps that pool and hand; `{kind:"tradeCards", handIndices:[a,b,c]}`
+selects three distinct cards from the active hand. A successful action proceeds
+to reinforcement, enforcing one optional set through the phase boundary.
+
+The approved T23 variety-029..035/043 design requires one genuine tradeable kind
+and at most two Wilds. Anchor adds 5, Compass adds 8, Lantern adds 15; Surge doubles
+the existing income, including complete-island bonuses. Values stay fixed.
+Shields, Squall, three Wilds and mixed genuine kinds are invalid. Discards append
+in original hand order; these actions consume no RNG. `classifyCardSet` returns
+the structural `TradeableCardKind` or null, including Raid. T38's frozen stage
+refuses Raid effects atomically; exported `PendingRaid` is only the type seam
+for T39's separate targeted protocol. It creates no incomplete pending phase.
+
+`REFERENCE_TRADE_CARD_MATCH_IDENTITY` and `GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY`
+select the existing generator version 1 with `cards/2` and action schema 4.
+The strict real codec reconstructs all state from options and ordinary actions.
+The `cards/1` plus schema 3 deck preset, victory identities and legacy saves
+retain their old semantics; future `cards/3`/schema 5 is refused. Playable defaults
+continue using `victoryRules`; T40 owns card UI and T41 computer card policy.
+The sole adjacent UI edit supplies exhaustive action/phase labels in
+`gameEventLog.ts`, under the task's mechanical scope amendment.
+
+Frozen independent acceptance, ordinary-action fixtures, baseline/mutation
+controls and production measurements live under `docs/prototypes/new-game/T38/`.
