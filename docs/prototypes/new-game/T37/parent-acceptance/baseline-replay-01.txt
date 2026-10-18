@@ -1,0 +1,101 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+ ❯ tests/core/card-deck-replay.test.ts (7 tests | 7 failed) 1796ms
+   ❯ deck replay and same-stream continuation (7)
+     × reshuffles the actual discard pile deterministically, preserving pending input and computer streams 6ms
+     × real production codec reconstructs card rules and legal action/RNG continuation (false) 1ms
+     × real production codec reconstructs card rules and legal action/RNG continuation (true) 1785ms
+     × reconstructs a reached full-hand pending choice from options/actions and continues through a real reshuffle 1ms
+     × the decisive capture still receives its single reward before the replayed victory 1ms
+     × keeps historical victory and legacy codecs distinct and rejects unsupported card identity tuples 0ms
+     × rejects malformed discard shapes and forged snapshots through the real decoder 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > reshuffles the actual discard pile deterministically, preserving pending input and computer streams
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck-replay.test.ts:28:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > real production codec reconstructs card rules and legal action/RNG continuation (false)
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > real production codec reconstructs card rules and legal action/RNG continuation (true)
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ tests/core/card-deck-replay.test.ts:38:59
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > reconstructs a reached full-hand pending choice from options/actions and continues through a real reshuffle
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ tests/core/card-deck-replay.test.ts:46:102
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > the decisive capture still receives its single reward before the replayed victory
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ tests/core/card-deck-replay.test.ts:57:178
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > keeps historical victory and legacy codecs distinct and rejects unsupported card identity tuples
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ tests/core/card-deck-replay.test.ts:70:30
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > rejects malformed discard shapes and forged snapshots through the real decoder
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ tests/core/card-deck-replay.test.ts:80:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed (7)
+   Start at  13:10:11
+   Duration  2.28s (tests 83%, transform 15%, import 2%)
+

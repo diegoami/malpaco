@@ -1,0 +1,16 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > a captured turn still earns after a later failed exchange ends attack phase
+Error: {"kind":"attack","from":"province_4","to":"province_8"}: River gate needs at least 2 armies to attack
+ ❯ act tests/core/card-deck-fixture.ts:23:99
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+       |                                                                                                   ^
+     24| export function ready(s:State):State {
+     25|  if(s.phase!=='reinforce')return s;
+ ❯ tests/core/card-deck.test.ts:32:47
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

@@ -1,0 +1,41 @@
+[
+  {
+    "seed": 1,
+    "actions": 5000,
+    "round": 412,
+    "phase": "attack",
+    "draw": 29,
+    "discard": 2,
+    "handCounts": {
+      "seat1": 4,
+      "seat2": 0,
+      "seat3": 3,
+      "seat4": 2
+    }
+  },
+  {
+    "seed": 2,
+    "actions": 329,
+    "round": 16,
+    "action": {
+      "kind": "discardCard",
+      "handIndex": 0
+    },
+    "beforeRng": {
+      "seed": 2,
+      "state": 2233696394
+    },
+    "afterRng": {
+      "seed": 2,
+      "state": 778201463
+    },
+    "beforeDraw": 0,
+    "afterDraw": 25,
+    "handCounts": {
+      "seat1": 4,
+      "seat2": 1,
+      "seat3": 5,
+      "seat4": 5
+    }
+  }
+]

@@ -1,0 +1,195 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+ ❯ tests/core/card-deck.test.ts (13 tests | 13 failed) 1213ms
+   ❯ approved deck and private hands (13)
+     × has exactly the approved eight kinds and five-card cap, empty opening hands 8ms
+     × shuffles after the deal and centres on the same rules stream (false) 1ms
+     × shuffles after the deal and centres on the same rules stream (true) 1193ms
+     × does not reward a non-capturing turn or consume any rules/computer RNG 2ms
+     × awards one top card for multiple real captures and never at capture confirmation 1ms
+     × a captured turn still earns after a later failed exchange ends attack phase 1ms
+     × waits for a chosen discard before drawing, victory or handoff; refuses every other action atomically 1ms
+     × does a friendly transfer once even when its end-turn reward requires discard 1ms
+     × Squall discards itself and all 0 held cards without replacement 1ms
+     × Squall discards itself and all 5 held cards without replacement 1ms
+     × discards an eliminated enemy hand immediately, before capture move or end turn 1ms
+     × returns only the viewer hand and public counts, without mutable aliases or hidden kinds in logs 1ms
+     × deep clones card arrays and pending metadata; out-of-phase discard is atomic 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > has exactly the approved eight kinds and five-card cap, empty opening hands
+AssertionError: expected undefined to deeply equal { Anchor: 11, Compass: 7, …(6) }
+
+- Expected:
+{
+  "Anchor": 11,
+  "Compass": 7,
+  "Lantern": 4,
+  "Raid": 4,
+  "Shield": 4,
+  "Squall": 1,
+  "Surge": 4,
+  "Wild": 5,
+}
+
++ Received:
+undefined
+
+ ❯ tests/core/card-deck.test.ts:7:50
+      5| describe('approved deck and private hands',()=>{
+      6|  it('has exactly the approved eight kinds and five-card cap, empty ope…
+      7|   const s=opening();expect(api.CARD_COMPOSITION).toEqual(COMPOSITION);…
+       |                                                  ^
+      8|   expect(cards(s).drawPile).toHaveLength(40);expect(cards(s).discardPi…
+      9|   expect(cards(s).hands).toEqual(Object.fromEntries(s.players.map(p=>[…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > shuffles after the deal and centres on the same rules stream (false)
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > shuffles after the deal and centres on the same rules stream (true)
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ tests/core/card-deck.test.ts:14:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > does not reward a non-capturing turn or consume any rules/computer RNG
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ tests/core/card-deck.test.ts:20:10
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > awards one top card for multiple real captures and never at capture confirmation
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck.test.ts:23:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > a captured turn still earns after a later failed exchange ends attack phase
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck.test.ts:30:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > waits for a chosen discard before drawing, victory or handoff; refuses every other action atomically
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck.test.ts:37:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > does a friendly transfer once even when its end-turn reward requires discard
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck.test.ts:46:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > Squall discards itself and all 0 held cards without replacement
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > Squall discards itself and all 5 held cards without replacement
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck.test.ts:51:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > discards an eliminated enemy hand immediately, before capture move or end turn
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck.test.ts:56:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > returns only the viewer hand and public counts, without mutable aliases or hidden kinds in logs
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck.test.ts:61:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/13]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > deep clones card arrays and pending metadata; out-of-phase discard is atomic
+AssertionError: opt-in rules initialize the real deck: expected undefined to be defined
+ ❯ cards tests/core/card-deck-fixture.ts:22:94
+     20|  if(!r.ok)throw Error(r.errors.join(';'));return r.state;
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+       |                                                                                              ^
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+     24| export function ready(s:State):State {
+ ❯ arrange tests/core/card-deck-fixture.ts:35:10
+ ❯ tests/core/card-deck.test.ts:67:11
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/13]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  13 failed (13)
+   Start at  13:09:13
+   Duration  1.61s (tests 81%, transform 16%, import 2%)
+

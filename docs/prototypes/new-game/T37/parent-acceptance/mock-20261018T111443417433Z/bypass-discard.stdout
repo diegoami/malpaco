@@ -1,0 +1,20 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+ ❯ tests/core/card-deck.test.ts (13 tests | 4 failed) 1840ms
+   ❯ approved deck and private hands (13)
+     × waits for a chosen discard before drawing, victory or handoff; refuses every other action atomically 6ms
+     × does a friendly transfer once even when its end-turn reward requires discard 2ms
+     × Squall discards itself and all 5 held cards without replacement 1ms
+     × deep clones card arrays and pending metadata; out-of-phase discard is atomic 3ms
+ ❯ tests/core/card-deck-replay.test.ts (7 tests | 3 failed) 10178ms
+   ❯ deck replay and same-stream continuation (7)
+     × reshuffles the actual discard pile deterministically, preserving pending input and computer streams 12ms
+     × reconstructs a reached full-hand choice and actual reshuffle from options and ordinary actions 5ms
+     × the real decisive capturing turn waits for discard and rewards before replayed victory 3ms
+
+ Test Files  2 failed (2)
+      Tests  7 failed | 13 passed (20)
+   Start at  13:14:45
+   Duration  10.58s (tests 95%, transform 4%, import 1%)
+

@@ -1,0 +1,29 @@
+
+> malpaco-spike-ts@0.0.0 test
+> node --test tools/harness/test/*.test.mjs && vitest run
+
+✔ actual selected model and real final required, not exit0 or quoted content (1.962434ms)
+✔ provider/remapped model cannot reach Claude billing; credentials not in errors (1.288192ms)
+✔ coverage is explicit per changed file; generated evidence grouping cannot hide code (2.699704ms)
+✔ watched subprocess retains success, failure and timeout evidence, kills its own group (685.289965ms)
+✔ real review entry selects Claude without OpenCode, publishes once, refuses failed gates (2153.520708ms)
+✔ Claude dependency materialization makes an independent real copy and preserves relative .bin links (3.295843ms)
+✔ Claude dependency materialization skips absent installs and refuses outside, overlapping, or existing destinations (2.34886ms)
+✔ native Claude command denials cover OpenCode publishing policy without a second Bash parser (0.782978ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2910.754812
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+
+ Test Files  50 passed (50)
+      Tests  665 passed (665)
+   Start at  13:13:16
+   Duration  43.55s (tests 84%, transform 13%, import 3%)
+

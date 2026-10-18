@@ -1,0 +1,23 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+ ❯ docs/prototypes/new-game/T37/parent-preflight/integrated-mock/probe.test.ts (5 tests | 1 failed) 6374ms
+   ❯ integrated disposable core sources (5)
+     × real geographic card tuple rebuilds from options and retains old geographic identity 6278ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/integrated-mock/probe.test.ts > integrated disposable core sources > real geographic card tuple rebuilds from options and retains old geographic identity
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ docs/prototypes/new-game/T37/parent-preflight/integrated-mock/probe.test.ts:50:2
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 passed (5)
+   Start at  13:08:34
+   Duration  6.76s (tests 96%, transform 4%)
+
