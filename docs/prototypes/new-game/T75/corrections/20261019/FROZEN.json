@@ -1,0 +1,35 @@
+{
+  "authority": "Main T75 contract amendments6fe636fb+806ef2f2; combinationdecisionPR1886255899090,watchPR1906255899395/issue1876255899681",
+  "contextHead": "643e8112eb1be2c11807f41682738ec0830ac8e7",
+  "replacements": {
+    "src/ui/generatedGeographyPresentation.ts": {
+      "before": "ec0bdf8aad3b67b847be19926bf2470738a498f99f6aa762d7a28a944dbe548a",
+      "after": "59137044a36f65ae303d80e4d5e90861cdbfdb66aa7ef04621152d71b89e1883",
+      "canonical": "docs/prototypes/new-game/T75/corrections/20261019/candidate.ts"
+    },
+    "vite.config.ts": {
+      "before": "603ee167f8621daf3874af336f2443e12ba973f2bccf275ae7ff1a0e9e4200d7",
+      "after": "4cae5bff592c0ddf81b0ab12ec4d0778ec153d90bb34a07d8d7cfbfb95a7d6c5",
+      "canonical": "docs/prototypes/dev-watch/issue187/production-candidate/vite.config.ts"
+    },
+    "README.md": {
+      "before": "af11fbd08aeb743cf7b1db9f24e50a1b6f67734c7f49be8b30485b40d3ad5c88",
+      "after": "79bd196319c7187d678c4d3c122605caced90d3b8c012d7fb61e3abf9eebbf39",
+      "canonical": "docs/prototypes/new-game/T75/corrections/20261019/README-with-reviewed-watch-note.md"
+    }
+  },
+  "archiveReceiptSha256": "7adc1b512affe39209b09f0c46672719f42479ef3d9f1e5916cfc2f191a296af",
+  "priorProofHashes": {
+    "README.md": "cf7e08d8b0c04b3562fc9fab3af2ddd750c4685c98bac7d9b3e26abec23cbd2e",
+    "REPORT.md": "2bc5989fa9e88920a1ac1d344f022ac8d7a4d0451d45a7860b9cb575075ec0a6",
+    "adoption.json": "c2553f2087b8df81b26eb91d4ed618acf87c6c03bd08f713f7cc269b026f497c",
+    "verify-adoption.py": "f3ab949e1dd80f29d92101e136a6c682611c95c8c9704a7698e8a4b71890b7cf"
+  },
+  "watchGuardHashes": {
+    "tools/harness/test/dev-watch.test.mjs": "a53e750412baf01e918eab558031f574933918949e6215ec63e8348173c56aaf",
+    "docs/prototypes/dev-watch/issue187/acceptance/probe.mjs": "89c06105dec7fc6ddb04d6e5478d52658f72c74b8b801d0c6234a8875024f94e",
+    "docs/prototypes/dev-watch/issue187/acceptance/vitest-probe.mjs": "9ca178a675c7f206519963366084c982a2ac4d2b1c98ce1c84abda44d4738fa8"
+  },
+  "scope": "Exact performance-only candidate591 plus independently reviewed watchconfig4cae and its README paragraph. Only two original validated-current inputs change; original manifests/15canonical candidates/875archive remain immutable historical authority. No original acceptance/fixture/deadline/source host/worker/service/core/save/RNG change. Lost candidate unit console explicitly retained/disclosed; fresh full npm test after adoption must supply current evidence.",
+  "remaining": "Formal adopt exactcandidate and small proof metadata; parent full validation, authorized independent correction review, shared exact-head greenCI/freshkeys before merge/tag. Original188reviewcoversoldsource; no claim newprovideralreadyreviewed."
+}
