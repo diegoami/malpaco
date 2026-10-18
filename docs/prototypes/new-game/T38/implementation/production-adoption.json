@@ -1,0 +1,110 @@
+{
+  "sourceCommit": "8f90366e8a030e5516ec6ea3b5da9f32b0026925",
+  "parentFrozenCommit": "e134c20",
+  "choice": "native owner-selected Sol Medium",
+  "decision": "https://github.com/diegoami/malpaco/pull/168#issuecomment-6250037873",
+  "files": [
+    {
+      "path": "src/core/cards.ts",
+      "reason": "Initialize opt-in trade deck and classify approved sets; reserve PendingRaid type.",
+      "sha256": "33dfbbb9c9457708599cd7792d16579b81e86d160afaad8d600c1f325a6c3177"
+    },
+    {
+      "path": "src/core/index.ts",
+      "reason": "Export trade factory, structural classifier, kind/seam types and exact replay identities.",
+      "sha256": "fff96f5683645f3039c57c81779cafedfd3b3ce19cb208994b348773828b3143"
+    },
+    {
+      "path": "src/core/match-save.ts",
+      "reason": "Strict cards2/schema4 action grammar and factory selection; retain exact old tuples.",
+      "sha256": "1aa46b9d1e6f7ade3fc42fd7030fa89ddede65d98bbc73f9324f2d5cfea8d7e1"
+    },
+    {
+      "path": "src/core/rules.ts",
+      "reason": "Apply one trade or skip before placement; preserve capture draws/discards for trade stage.",
+      "sha256": "2acc2403c816dbf3f9036acff609b2ac67056064270a2d4674413f4bf4fd0e77"
+    },
+    {
+      "path": "src/core/setup.ts",
+      "reason": "Enter cards phase after initial modern income only for trade-v1.",
+      "sha256": "2ce20b0a0b67ab53f2171d456acc66044c2ef084f640f5a0b01a082ab99178b0"
+    },
+    {
+      "path": "src/core/state.ts",
+      "reason": "Add trade factory and legacy-constructor cards-phase entry.",
+      "sha256": "314bf2945975ec085dc1f45c771e22a4552aa47e2bd039329f9fb8f2cef94042"
+    },
+    {
+      "path": "src/core/types.ts",
+      "reason": "Represent cards phase, trade/skip actions and pool lifetime.",
+      "sha256": "8e39613cc00af38524d55620886db121efd3b934de715ed4519de42ceb474430"
+    },
+    {
+      "path": "src/ui/gameEventLog.ts",
+      "reason": "Mechanical exhaustive phase/action labels authorized under amended scope.",
+      "sha256": "bab7ead955614bde6fcb4389171babf199699302c4d45b6b8530218fdc362a1b"
+    },
+    {
+      "path": "docs/spike.md",
+      "reason": "Document staged public API, provenance, replay/default compatibility and T39/T40/T41 boundaries.",
+      "sha256": "fd082e58fb0d6ebc94413b34de2d1b91183eb68d94977ec501b34a0310bfef40"
+    }
+  ],
+  "frozenAcceptance": {
+    "tests/core/card-sets-fixture.ts": {
+      "expected": "56017a7466f71a27ed120ac9a82b65c7463d03b719815edf6534deda69050705",
+      "actual": "56017a7466f71a27ed120ac9a82b65c7463d03b719815edf6534deda69050705"
+    },
+    "tests/core/card-sets.test.ts": {
+      "expected": "5b69162a9eaa24a2e1d8c4453af4355654bece5564a432418d18d0b60deb96bb",
+      "actual": "5b69162a9eaa24a2e1d8c4453af4355654bece5564a432418d18d0b60deb96bb"
+    },
+    "tests/core/card-sets-replay.test.ts": {
+      "expected": "786ce1fe54d4d69d3b9934eb45a474ef0f5b4fa1832286e8b1df066fc1749a19",
+      "actual": "786ce1fe54d4d69d3b9934eb45a474ef0f5b4fa1832286e8b1df066fc1749a19"
+    },
+    "docs/prototypes/new-game/T38/fixtures/legal-Surge-after.json": {
+      "expected": "9d4d0efdeed8c9759ae29214465bd6b7f06d10ffd9930a5ef3dd79a1a56ae895",
+      "actual": "9d4d0efdeed8c9759ae29214465bd6b7f06d10ffd9930a5ef3dd79a1a56ae895"
+    },
+    "docs/prototypes/new-game/T38/fixtures/legal-Surge-before.json": {
+      "expected": "d5d5274994404874bd492aca465a9246346487ae91a2660f67d7502d5f9a32cd",
+      "actual": "d5d5274994404874bd492aca465a9246346487ae91a2660f67d7502d5f9a32cd"
+    },
+    "docs/prototypes/new-game/T38/fixtures/legal-decisive-match-skips.json": {
+      "expected": "81369d79f0bd2bf09695e268f94cf53e5494697025022b8487bf22f6574ad3a8",
+      "actual": "81369d79f0bd2bf09695e268f94cf53e5494697025022b8487bf22f6574ad3a8"
+    },
+    "docs/prototypes/new-game/T38/fixtures/legal-reshuffle-match-Anchor-after.json": {
+      "expected": "cc1bd43681b7042f2a3314b7d58b7ff60e1f14a1a62fcbfcfd0b85c6fe102af9",
+      "actual": "cc1bd43681b7042f2a3314b7d58b7ff60e1f14a1a62fcbfcfd0b85c6fe102af9"
+    },
+    "docs/prototypes/new-game/T38/fixtures/legal-reshuffle-match-Anchor-before.json": {
+      "expected": "b25c6be196a2681ef0ad08875b8059f65c900168f7c170a775235db5d8cf888d",
+      "actual": "b25c6be196a2681ef0ad08875b8059f65c900168f7c170a775235db5d8cf888d"
+    },
+    "docs/prototypes/new-game/T38/fixtures/legal-reshuffle-match-Compass-after.json": {
+      "expected": "083a6996b1c32785895411c5ed0a0d84930cbaed2ad94983ec709bf74c512512",
+      "actual": "083a6996b1c32785895411c5ed0a0d84930cbaed2ad94983ec709bf74c512512"
+    },
+    "docs/prototypes/new-game/T38/fixtures/legal-reshuffle-match-Compass-before.json": {
+      "expected": "179af0343018b3cc5a747487a427bb5e024df62d67f6f8f14d2879b1d5a36244",
+      "actual": "179af0343018b3cc5a747487a427bb5e024df62d67f6f8f14d2879b1d5a36244"
+    },
+    "docs/prototypes/new-game/T38/fixtures/legal-reshuffle-match-skips.json": {
+      "expected": "7bd90e4b4e6a042a0fffd24982e004ee590430c631b1aec70dc038b04b7f4f6f",
+      "actual": "7bd90e4b4e6a042a0fffd24982e004ee590430c631b1aec70dc038b04b7f4f6f"
+    }
+  },
+  "negativeControlsReused": {
+    "baseline": "parent-acceptance/baseline-all-02.txt; 31 fail / 1 old compatibility passes",
+    "setValue": "parent-acceptance/mock-20261018T114049512928Z/wrong-set-value.stdout; Anchor5->6; five failures",
+    "wildLimit": "parent-acceptance/mock-20261018T114049512928Z/wrong-wild-limit.stdout; nine failures",
+    "restoration": "parent receipt restoredExactly:true; eight production token streams match proven mock"
+  },
+  "limits": [
+    "No CI, independent review or merge performed.",
+    "No default/UI flow/computer policy changes.",
+    "Native aggregate token telemetry unavailable; command durations retained."
+  ]
+}
