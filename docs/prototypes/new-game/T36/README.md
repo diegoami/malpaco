@@ -78,3 +78,11 @@ The owner approved appearance and pacing of18f46af subject to review and greenCI
 that exact-head provenance is retained in `parent-review-round1`. The later panel
 redesign request is issue163 and is outside this bounded rework. Fresh rework package
 proof and independent follow-up are recorded separately.
+
+The bounded rework subsequently passed a fresh36-case extracted-artifact run
+(frozen geographic30 plus six review guards). Its BUILD identifies committed
+runtime `2ebb039741c275259420a294c2c1838be6b79810`; every extracted checksum verified.
+`rework-final-proof.json` links that package,12 fresh captures, source58/unit/build
+proof and the verified251-member/four-part fresh-evidence archive. Prior release
+and dist outputs were saved and member-verified before packaging. Independent
+follow-up and greenCI are separate; neither is claimed by this native rework.
