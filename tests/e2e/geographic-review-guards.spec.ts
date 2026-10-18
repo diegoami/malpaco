@@ -1,10 +1,10 @@
 import {expect,test} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {readFileSync} from 'node:fs';
-import {activePlayer,apply,defaultOptions} from '../../src/core';
+import {activePlayer,apply,defaultOptions,victoryRules} from '../../src/core';
 import type {Action,GameState} from '../../src/core';
 import {createGeographicGame} from '../../src/core/geographic-game';
-import {deserializeVersionedMatch,GEOGRAPHIC_MATCH_IDENTITY,serializeVersionedMatch} from '../../src/core/match-save';
+import {deserializeVersionedMatch,GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY,serializeVersionedMatch} from '../../src/core/match-save';
 
 async function save(page:Page){const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Save game',exact:true}).click();return readFileSync((await(await pending).path())!,'utf8');}
 async function start(page:Page,reference=false,manual=false){await page.goto(`/?seed=1994${reference?'&view=reference-game':''}${manual?'&control=manual':''}`);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator(reference?'#reference-map':'#geographic-map')).toBeVisible();}
@@ -12,7 +12,7 @@ function reinforce(state:GameState,id:string){const result=apply(state,{kind:'re
 
 test('active geographic Enter and Space each place an army',async({page})=>{
  const options={...defaultOptions(),seed:1994,seats:[{kind:'human' as const},{kind:'human' as const}],computerStrengths:[]};
- const game=createGeographicGame(options);if(!game.ok)throw Error(game.errors.join('; '));
+ const game=createGeographicGame(options,victoryRules(options));if(!game.ok)throw Error(game.errors.join('; '));
  await start(page,false,true);let expected=game.state;
  const id=expected.map.provinces.find(p=>expected.ownerOf[p.id]===activePlayer(expected)!.id)!.id;
  for(const key of ['Enter','Space']){
@@ -42,7 +42,11 @@ test('explicit reference rejects geographic v2 with correct guidance and preserv
 
 async function shell(page:Page,reference:boolean){
  await start(page,reference);await expect(page.getByTestId('player-army-total')).toHaveCount(4);
- const loaded=deserializeVersionedMatch(await save(page)),state=loaded.state;
+ const loaded=deserializeVersionedMatch(await save(page));let state=loaded.state;
+ expect(loaded.identity).toEqual(reference?REFERENCE_MATCH_IDENTITY:GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY);expect(state.rules.cards).toBe(reference?undefined:'raid-v1');
+ // The normal card setup may still be at a computer's empty-hand cards phase;
+ // the fixed human may already have recorded its synchronous no-set skip.
+ if(state.phase==='cards'){expect(reference).toBe(false);expect(state.cards!.hands[activePlayer(state)!.id]).toEqual([]);const skipped=apply(state,{kind:'skipCards'});if(!skipped.ok)throw Error(skipped.error);state=skipped.state;}
  expect(state.phase).toBe('reinforce');
  const id=state.map.provinces.find(p=>state.ownerOf[p.id]===activePlayer(state)!.id)!.id;
  const actions:Action[]=[...state.history,{kind:'reinforce',province:id,amount:state.reinforcementPool},{kind:'endReinforcement'}];
@@ -58,7 +62,7 @@ async function shell(page:Page,reference:boolean){
  });
 }
 test('default four-seat geographic shell shares reference responsive layout',async({page},info)=>{
- await page.clock.install();
+ await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));
  const reference=await shell(page,true),geographic=await shell(page,false);
  console.log(JSON.stringify({kind:'responsive-shell',viewport:info.project.name,reference,geographic}));expect(geographic).toEqual(reference);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
