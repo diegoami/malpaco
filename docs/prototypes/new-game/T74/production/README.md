@@ -56,3 +56,23 @@ under portability-correction-20261018-01/original-7ab54604/. Old proof01–03 an
 production REPORT/manifest remain unchanged historical evidence. The correction
 REPORT/manifest record the parent's deterministic fresh-export failure and the
 two corrected committed positives; no heavy validation was repeated.
+
+## Explicit refusal398 test budget
+
+A later integrated818test run passed817cases and timed out only refusal398 at
+5170ms against Vitest's implicit5000ms budget, without an assertion mismatch.
+Main amended the contract and parent-froze exactly two replacements: T74.md and
+the drawing test, whose sole code delta adds120000ms to that50-attempt case,
+matching the12accepted corpus cases. Reversing only that argument reconstructs
+the original test exactly. Every refusal/state/RNG assertion and UI5second
+readiness check remains unchanged; no product deadline or source is changed.
+
+The active proof pins acceptance/refusal-budget-correction-20261018-01/
+FROZEN-CORRECTION.json and permits exactly its two before→after hashes, checking
+both old99/226original hashes and current proposed/task bytes. All other old
+inputs, Git portability semantics and strict archive mode/hash/inventory checks
+remain intact. Old manifests/reports are historical unchanged. Parent's targeted
+positive is1passed/14notselected,5020msbody/5.56stotal; it is separate from the
+historical806+8/build and original integrated817/818failure. No corrected-head
+full-suite green or paid review is claimed. Main will rerun the integrated818
+collection and arrange its one actual review after success.

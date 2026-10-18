@@ -30,13 +30,42 @@ check(digest(committed(self_path))==adoption['verifierSha256'],'committed verifi
 for path,h in adoption['manifestSha256'].items():exact(path,h)
 frozen=json.loads(committed(BASE+'acceptance/FROZEN-ACCEPTANCE.json'))
 validated=json.loads(committed(BASE+'acceptance/validated-inputs.json'))
+correction_path=BASE+'acceptance/refusal-budget-correction-20261018-01/FROZEN-CORRECTION.json'
+check(adoption['refusalBudgetCorrection']['path']==correction_path,'fixed correction manifest path')
+correction=json.loads(exact(correction_path,adoption['refusalBudgetCorrection']['sha256']))
+replacement_paths={'docs/tasks/T74.md','tests/ui/generated-geography-presentation.test.ts'}
+check(set(correction['replacements'])==replacement_paths,'exactly two frozen replacements')
+check(correction['onlyTestBudgetChanged'] is True,'parent budget-only contract')
+for path,row in correction['replacements'].items():
+    check(frozen['inputs'][path]==row['before'],'original frozen before hash '+path)
+    check(validated['expectedAfterAdoption'][path]['sha256']==row['before'],'original validated before hash '+path)
+def current_hash(path,original_hash):
+    if path not in replacement_paths:return original_hash
+    row=correction['replacements'][path]
+    check(original_hash==row['before'],'declared original input hash '+path)
+    return row['after']
+correction_dir=correction_path.rsplit('/',1)[0]+'/'
+original_test=exact(correction_dir+'drawing-test.original.ts',correction['replacements']['tests/ui/generated-geography-presentation.test.ts']['before'])
+proposed_test=exact(correction_dir+'drawing-test.proposed.ts',correction['replacements']['tests/ui/generated-geography-presentation.test.ts']['after'])
+check(exact('tests/ui/generated-geography-presentation.test.ts')==proposed_test,'exact frozen proposed test')
+refusal_lines=[line for line in proposed_test.splitlines(keepends=True) if line.startswith(b"it('retains all original398 refusal attempts")]
+check(len(refusal_lines)==1 and refusal_lines[0].count(b'},120000);')==1,'one explicit refusal budget argument')
+reversed_test=proposed_test.replace(refusal_lines[0],refusal_lines[0].replace(b'},120000);',b'});'))
+check(reversed_test==original_test,'reverse only refusal120000ms reconstructs exact original')
+original_task=exact(correction_dir+'T74.original.md',correction['replacements']['docs/tasks/T74.md']['before'])
+proposed_task=exact(correction_dir+'T74.amended.md',correction['replacements']['docs/tasks/T74.md']['after'])
+check(exact('docs/tasks/T74.md')==proposed_task,'exact frozen amended contract')
+key=json.loads(exact(correction_dir+'parent-key-result.json'))
+failure=json.loads(exact(correction_dir+'integrated-failure.json'))
+check(key['exit']==0 and key['passed']==1 and key['otherCasesNotSelected']==14 and key['testDurationMs']==5020,'targeted original parent positive')
+check(failure['error']=='Test timed out in 5000ms.' and failure['reportedDurationMs']==5170 and failure['assertionMismatchReported'] is False,'retained original default-budget failure')
 check(len(frozen['inputs'])==99,'frozen count99')
 # Tracked checkouts preserve Git bytes/executable semantics, not original POSIX
 # group-write bits. Exact original modes remain authenticated in tar members,
 # inner manifests and the archived original-transaction restoration receipt below.
-for p,h in frozen['inputs'].items():exact(p,h)
+for p,h in frozen['inputs'].items():exact(p,current_hash(p,h))
 check(len(validated['expectedAfterAdoption'])==226,'validated count226')
-for p,e in validated['expectedAfterAdoption'].items():exact(p,e['sha256'],e['mode'])
+for p,e in validated['expectedAfterAdoption'].items():exact(p,current_hash(p,e['sha256']),e['mode'])
 check(len(adoption['sources'])==3,'three provider sources')
 for p,e in adoption['sources'].items():check(exact(p,e['sha256'],e['mode'])==exact(e['candidate'],e['sha256'],e['mode']),'canonical provider equality '+p)
 check(adoption['positiveRun']==validated['positiveRun'],'declared original command results')
@@ -101,4 +130,4 @@ for file,key in [('baseline','baseline'),('npm-test','npmTest'),('build','build'
     check(result==validated['positiveRun'][key],'archived original command '+file)
 check('806 passed (806)' in retained[parent_root+'npm-test.log'].decode() and '59 passed (59)' in retained[parent_root+'npm-test.log'].decode() and 'pass 8' in retained[parent_root+'npm-test.log'].decode(),'actual full-suite counts')
 check('Cannot find module' in retained[parent_root+'baseline.log'].decode(),'honest import-level baseline')
-print(json.dumps({'sourceCandidateEqualities':3,'frozenInputs':99,'validatedInputs':226,'committedArchiveParts':parts_count,'archiveMembers':member_count,'acceptedMaps':12,'connectedCountries':552,'full40Hits':552,'explicitRefusal':398,'primaryOverlayCases':35328,'supplementOverlayCases':1472,'originalProposalTests':22,'negativeControls':5,'actualVitestTests':806,'actualVitestFiles':59,'harnessTests':8,'buildExit':0,'freshHeavyRuns':0,'looseEvidenceRequired':False,'mismatches':0},sort_keys=True))
+print(json.dumps({'sourceCandidateEqualities':3,'frozenInputs':99,'validatedInputs':226,'committedArchiveParts':parts_count,'archiveMembers':member_count,'acceptedMaps':12,'connectedCountries':552,'full40Hits':552,'explicitRefusal':398,'primaryOverlayCases':35328,'supplementOverlayCases':1472,'originalProposalTests':22,'negativeControls':5,'actualVitestTests':806,'actualVitestFiles':59,'harnessTests':8,'buildExit':0,'freshHeavyRuns':0,'looseEvidenceRequired':False,'mismatches':0,'explicitFrozenReplacements':2,'targetedRefusalPassed':1,'correctedHeadFullSuiteRun':False},sort_keys=True))

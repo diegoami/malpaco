@@ -49,3 +49,15 @@ attributed to the archived restoration receipt. Runtime/frozen inputs are not
 chmodded or edited. Original proof/adoption/README/report/manifest and root failure
 receipt are retained separately, with a new correction report/manifest. Only the
 two small committed-directory/fresh-export proof positives are rerun.
+
+
+Parent-owned refusal-budget correction: integrated818collection passed817 and
+timed out refusal398 at5170ms/default5000ms, with no assertion mismatch. Main
+amended T74 and parent-froze only the task/test replacements; the test adds an
+explicit120000ms corpus budget and retains every assertion and UI readiness
+deadline. Active proof pins exactly those two replacements and reconstructs the
+original test by reversing that single argument. Parent targeted1/1 passes
+(14notselected,5020msbody); historical806+8/build,817/818failure and this targeted
+positive remain separate. No corrected full-suite green or paid Kimi session is
+claimed; main owns integrated rerun and review. All old proof generations remain
+unchanged historical evidence.

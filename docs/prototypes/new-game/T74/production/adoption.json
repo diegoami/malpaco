@@ -24,7 +24,17 @@
     "docs/prototypes/new-game/T74/acceptance/FROZEN-ACCEPTANCE.json": "59a0c281a134a0cef420daf137e66389ef7aed3ac58548cf10126facd698fc2a",
     "docs/prototypes/new-game/T74/acceptance/validated-inputs.json": "3507241eef5e56bfd2ac5603d9a04a62c5248c302ee2a311431b37ee632a09d8",
     "docs/prototypes/new-game/T74/archives/phase-a-receipt.json": "b53cb1cfa7505f1dba468b6b533e6f0e1e901f43bd2d5c090be385d5940ac23b",
-    "docs/prototypes/new-game/T74/archives/parent-validation-receipt.json": "ee5bbea1b854ba48b381e97b399cbac0bb9d6a9e2ff3065c048d45951ee4d34c"
+    "docs/prototypes/new-game/T74/archives/parent-validation-receipt.json": "ee5bbea1b854ba48b381e97b399cbac0bb9d6a9e2ff3065c048d45951ee4d34c",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/integrated-failure-REPORT.md": "bcd34e710212f0ac15de450cfd8d843e1f7509e88907ae3a0dff86e8b3d406c0",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/key-test.log": "6a6e32426f090c27110437ca4d0fcfffe839223bc24be7d210abef934e14eb85",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/FROZEN-CORRECTION.json": "e22f5754317789ff689d209b8ea026d39284841e0b31cfe3bcf24d2a3d7f8c1b",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/integrated-failure.log": "9ce7e17ca280e698d780ae0106f51e6a41e0a5f8f62799865ea9800171654715",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/integrated-failure.json": "e24926f38eab8370f5d24c78c9a8dc0b25b7575520ec158b7689eb43750a000d",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/T74.original.md": "c43ce9392da0f00f7081adcf8c067d025fd2e9f6d6d28f700cf7eb1866237059",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/parent-key-result.json": "80f514295521caf5d74d075123b5da17c179f12b18fcd9d32be69dfb47729357",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/drawing-test.proposed.ts": "0b05226fd770d9b38921e9ddd5dc43e9a7b1257f97720d91f69d6e4c850f25a0",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/drawing-test.original.ts": "0bb4f49d677cc7458624615f0c0b7432be9f517687a116116dfaa1d1d21cdbb7",
+    "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/T74.amended.md": "66d4ba65de56cc93525f716a5c4126c83ef7d11c1fc80d126844cdd8e281a678"
   },
   "positiveRun": {
     "manifestSha256": "aa0bbb4f091fe7c8e3689f15f093fb85ad254111de802eca3aabab6f91db137f",
@@ -68,6 +78,17 @@
     "Final green CI before merge"
   ],
   "freshHeavyRuns": 0,
-  "verifierSha256": "39134e8762853b2560726e780b8c8195cc4043df2080ca34969dba0e87f72ff3",
-  "modeAuthority": "Tracked committed/working files use Git executable-bit semantics (100644/100755); Git does not preserve original group-write bits. Original exact POSIX modes remain strictly verified inside all archive members/inner manifests and attributed to the archived original transaction restoration receipt, not a fresh checkout."
+  "verifierSha256": "05129906b59b604d5b818c17fb766e704d3cd21aec3edfbde073ecd1d9419e11",
+  "modeAuthority": "Tracked committed/working files use Git executable-bit semantics (100644/100755); Git does not preserve original group-write bits. Original exact POSIX modes remain strictly verified inside all archive members/inner manifests and attributed to the archived original transaction restoration receipt, not a fresh checkout.",
+  "refusalBudgetCorrection": {
+    "path": "docs/prototypes/new-game/T74/acceptance/refusal-budget-correction-20261018-01/FROZEN-CORRECTION.json",
+    "sha256": "e22f5754317789ff689d209b8ea026d39284841e0b31cfe3bcf24d2a3d7f8c1b",
+    "allowedPaths": [
+      "docs/tasks/T74.md",
+      "tests/ui/generated-geography-presentation.test.ts"
+    ],
+    "reason": "Full integrated818test collection exceeded Vitest default5000ms on unchanged50-attempt refusal398 (reported5170ms), no assertion mismatch. Main contracte0fae018 assigns same explicit120000ms corpus-test budget as12accepted-map cases; UI5secondload-readiness checks and all refusal/RNG/geometry assertions unchanged.",
+    "historicalFullRunUnchanged": true,
+    "correctedHeadFullSuiteRun": false
+  }
 }
