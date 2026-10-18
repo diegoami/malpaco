@@ -656,6 +656,7 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
   await page.mouse.move(2, 400); // off the map, so the tooltip does not cover the tags
   await shot(page, info, "02-selected");
   const logBefore = await page.locator(".log li").count();
+  const logTextsBefore = await page.locator(".log li").allTextContents();
   await page.getByRole("button", { name: "Attack" }).click();
 
   const dialog = page.locator("#result-dialog");
@@ -733,8 +734,9 @@ test("one game, in sequence: select, attack by clicks, read the dice, end the tu
   const after = await holdings(page);
   expect(after).not.toEqual(before); // the state changed
   expect(total(after)).toBeLessThan(total(before)); // an attack always costs somebody an army
-  await expect(page.locator(".log li")).toHaveCount(Math.min(7, logBefore + 1));
-  await expect(page.locator(".log li").first()).toContainText("\u2192");
+  await expect(page.locator(".log li")).toHaveCount(logBefore + 1);
+  expect((await page.locator(".log li").allTextContents()).slice(0, logBefore)).toEqual(logTextsBefore);
+  await expect(page.locator(".log li").last()).toContainText("\u2192");
 
   // The map shows exactly what the engine said.
   const mover = before[from]!.owner;

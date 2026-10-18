@@ -90,3 +90,26 @@ for(const detail of ['compact','detailed'])test(`reference ${detail}: human-loss
  await page.locator('#stop-game-button').click();const result=apply(previous,{kind:'stopGame'});if(!result.ok)throw Error(result.error);expect(deserializeVersionedMatch(await save(page)).state).toEqual(result.state);
  await load(page,pinned('human-loss').text);await page.locator('#watch-computers-button').click();expect(deserializeVersionedMatch(await save(page)).state.watchingComputers).toBe(true);
 });
+
+for(const host of ['reference','geographic'])test(`${host}: complete battle history scrolls without deleting entries or moving an older reader`,async({page},info)=>{
+ await begin(page,host);
+ for(const detail of ['compact','detailed']){
+  await load(page,input(host,'friendly-movement'));await mode(page).selectOption(detail);
+  let state=deserializeVersionedMatch(await save(page)).state;const log=page.getByRole('list',{name:'Battle log',exact:true}),rows=log.locator('li');
+  const events=state.log.filter(e=>e.event!=='game_started');expect(events.length).toBeGreaterThan(7);await expect(rows).toHaveCount(events.length);
+  const oldTexts=await rows.allTextContents();const first=events[0]!;
+  if(first.event==='attack'){expect(oldTexts[0]).toContain(state.map.provinces.find(p=>p.id===first.from)!.name);expect(oldTexts[0]).toContain(state.map.provinces.find(p=>p.id===first.to)!.name);}
+  const geometry=await bounds(page);expect(await log.evaluate(el=>el.scrollHeight>el.clientHeight)).toBe(true);
+  await log.evaluate(el=>{el.scrollTop=0;});await expect(rows.first()).toBeInViewport();
+  await log.evaluate(el=>{el.scrollTop=el.scrollHeight;});
+  const action=computerAction(state)!;expect(action.kind).toBe('friendlyMove');const result=apply(state,action);if(!result.ok)throw Error(result.error);state=result.state;await page.clock.runFor(350);
+  await expect(rows).toHaveCount(state.log.filter(e=>e.event!=='game_started').length);expect((await rows.allTextContents()).slice(0,oldTexts.length)).toEqual(oldTexts);
+  expect(await log.evaluate(el=>{const top=el.scrollTop;el.scrollTop=el.scrollHeight;const maximum=el.scrollTop;el.scrollTop=top;return top===maximum;})).toBe(true);stable(await bounds(page),geometry);
+  await log.evaluate(el=>{el.scrollTop=Math.min(48,el.scrollHeight-el.clientHeight);});const reading=await log.evaluate(el=>el.scrollTop),beforeLength=state.log.length;
+  await mode(page).selectOption(detail==='compact'?'detailed':'compact');expect(await log.evaluate(el=>el.scrollTop)).toBe(reading);await mode(page).selectOption(detail);
+  for(let n=0;n<20&&state.log.length===beforeLength;n++){const a=computerAction(state);expect(a).not.toBeNull();const r=apply(state,a!);if(!r.ok)throw Error(r.error);state=r.state;await page.clock.runFor(350);}
+  expect(state.log.length).toBeGreaterThan(beforeLength);await expect(rows).toHaveCount(state.log.filter(e=>e.event!=='game_started').length);expect(await log.evaluate(el=>el.scrollTop)).toBe(reading);expect((await rows.allTextContents()).slice(0,oldTexts.length)).toEqual(oldTexts);stable(await bounds(page),geometry);
+  await page.screenshot({path:evidence(info,host,detail+'-complete-history-scrolled')+'.png'});
+  await load(page,input(host,'reinforcement'));await expect(page.getByRole('list',{name:'Battle log',exact:true}).locator('li')).toHaveCount(0);
+ }
+});
