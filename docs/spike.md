@@ -1025,3 +1025,51 @@ runtime CSS, and all other historical 18/222 acceptance inputs. Both named hash
 replacements are explicit; older manifests and the archive verifier are preserved.
 The previously verified 28-part/1,689-member archive is not recomputed for this
 narrow helper correction.
+
+#### T74 versioned generated-geography presentation provider
+
+The UI layer now contains a pure presentation derivation, dedicated worker and
+bounded immutable result service. These three modules exactly adopt the
+parent-frozen typed port of approved T72 shared-boundary deformation, version
+`t72-relocated-flow-spread-v2`. They return native SVG coast/country polygons,
+display anchors and routes with original logical ids. Logical gameplay geometry,
+save identity, accepted attempts/refusals and RNG remain untouched. The current
+geographic renderer/host does not consume this sidecar yet; T75 owns activation.
+
+`derivePresentation` owns/freeze-protects its output without mutating or freezing
+caller arrays. `PresentationService.request(geometry,signal?)` deduplicates pending
+content and caches eight immutable completed drawings [designed]. Its exact key
+includes complete accepted geometry plus drawing version/constants, never seed
+alone. The dedicated worker keeps expensive flow off the UI thread. Cancellation
+rejects subscribers and drops stale results; it cannot preempt synchronous CPU
+work already executing. Disposal terminates the worker. Derivation failure is
+retryable; terminal worker error fails future requests immediately until the host
+recreates the service. There is no old-polygon fallback or per-render derivation.
+
+Parent-frozen acceptance covers twelve accepted maps/552countries plus398's
+complete50-attempt refusal. Approved-five outputs match T72 exactly; unchanged
+T62/T24 checks protect contacts, gaps/overlap, full40-unit hits and route margins.
+The exact typed output matches those independently validated complete oracles.
+Actual production overlay checks retain35,328primary/1,472three-digit cases and
+52PNGs with existing14pxcounts/fourbadges/conditional12pxnames. Existing star/name
+polish and owner appearance judgment remain explicit limits. This bounded corpus
+is not an arbitrary-seed success-rate or cross-platform font/performance claim;
+observed derivation3.119–3.720s explains the worker boundary.
+
+The actual new test paths first fail import-level without provider modules, not
+assertion-level. Exact temporary adoption then passes one full806Vitest/59file
+plus8harness run (91.520s) and build (1.205s); the standalone proof authenticates
+reuse. The sole declared later input change is corrected T73's Playwright
+native-download helper, outside npm/Vite executed tests. Formal adoption repeats
+only the small read-only proof, not those heavy commands. Final five meaningful
+controls and exact restoration, real-worker responsiveness, all earlier failures
+and complete parent restoration remain in the committed T74 archives.
+
+`docs/prototypes/new-game/T74/production/README.md` documents API, evidence and
+limits; `production/adoption.json` pins immutable manifests. Run
+`python3 docs/prototypes/new-game/T74/production/verify-adoption.py` to verify
+99frozen/226validated committed+working inputs, three exact provider equalities
+and all349members of three committed archive parts in memory, without loose
+helpers. Older T73 whole-tree proofs remain historical rather than being rewritten
+for this new provider. Main owns independent review, dependency approval and final
+greenCI; no playable integration or release packaging is implied by this layer.
