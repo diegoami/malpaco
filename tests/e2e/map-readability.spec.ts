@@ -7,7 +7,7 @@ import {seatLook} from "../../src/ui/palette";
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 const output=process.env["READABILITY_EVIDENCE_DIR"]??"screenshots";
 async function shot(page:Page,name:string,project:string){mkdirSync(output,{recursive:true});await page.mouse.move(0,0);await page.screenshot({path:join(output,`${name}-${project}.png`)});}
-async function opening(page:Page){await page.goto("/?control=manual");await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByLabel("Seats",{exact:true}).selectOption("4");await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("[data-country]")).toHaveCount(46);}
+async function opening(page:Page){await page.goto("/?view=reference-game&control=manual");await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByLabel("Seats",{exact:true}).selectOption("4");await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("[data-country]")).toHaveCount(46);}
 test("army-only labels and ownership shapes reduce the default name hierarchy",async({page},info)=>{
  await opening(page);await shot(page,"opening",info.project.name);
  const rows=await page.locator("[data-country]").evaluateAll(ns=>ns.map(n=>{

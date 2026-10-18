@@ -1,0 +1,7 @@
+{
+  "acceptedAsBehaviorProof": false,
+  "reason": "Pinned Node/Playwright rejected static JSON fixture import without type:json attribute before test collection. No browser behavior was tested.",
+  "retainedRun": "evidence/baseline-geographic-zaploehn",
+  "candidateRestored": true,
+  "correction": "Add standard JSON import attribute to new unfrozen acceptance spec; no production change or assertion relaxation."
+}

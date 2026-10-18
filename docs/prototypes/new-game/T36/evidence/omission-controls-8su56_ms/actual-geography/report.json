@@ -1,0 +1,22 @@
+{
+  "name": "actual-geography",
+  "file": "src/ui/geographicMapView.ts",
+  "beforeSha256": "2b5af73da63af4b8ae10eeeb26588a35654cb0057c24f0a5c36d9bfb676c330a",
+  "omittedSha256": "932a13695255dea503c8e03909d57a937fcac4a76ef2d2781e35240a969865e9",
+  "command": [
+    "/usr/bin/python3",
+    "/home/diego/projects/malpaco/.cache/t36-work/docs/prototypes/new-game/T36/run-browser.py",
+    "omit-actual-geography",
+    "--project=1280x800",
+    "--grep",
+    "seed 1994 paints actual",
+    "--max-failures=1"
+  ],
+  "startedUtc": "2026-10-18T06:46:33.601950+00:00",
+  "exit": 1,
+  "run": "docs/prototypes/new-game/T36/evidence/omit-actual-geography-pxbsba9q",
+  "actualBehaviorAssertionFailed": true,
+  "restored": true,
+  "afterSha256": "2b5af73da63af4b8ae10eeeb26588a35654cb0057c24f0a5c36d9bfb676c330a",
+  "endedUtc": "2026-10-18T06:46:38.269540+00:00"
+}

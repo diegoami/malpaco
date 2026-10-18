@@ -1,0 +1,24 @@
+{
+  "name": "typed-refusal-report",
+  "file": "src/ui/geographicGame.ts",
+  "beforeSha256": "d314f588f6a56a7b2d15aab73b61e05f7432e795ceda49825a582d523317ae7e",
+  "omittedSha256": "c31bad4a9797f4994039203158b8c27d9e318da792607f44a5b57f6b3483d69a",
+  "command": [
+    "/usr/bin/python3",
+    "/home/diego/projects/malpaco/.cache/t36-work/docs/prototypes/new-game/T36/run-command.py",
+    "omit-typed-refusal-report",
+    "npx",
+    "vitest",
+    "run",
+    "tests/ui/geographic-game.test.ts",
+    "-t",
+    "reports all typed bounded refusal records"
+  ],
+  "startedUtc": "2026-10-18T06:47:24.848768+00:00",
+  "exit": 1,
+  "run": "docs/prototypes/new-game/T36/evidence/omit-typed-refusal-report-5k4e8w30",
+  "actualBehaviorAssertionFailed": true,
+  "restored": true,
+  "afterSha256": "d314f588f6a56a7b2d15aab73b61e05f7432e795ceda49825a582d523317ae7e",
+  "endedUtc": "2026-10-18T06:47:26.269971+00:00"
+}

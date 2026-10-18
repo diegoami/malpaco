@@ -1,0 +1,27 @@
+
+> malpaco-spike-ts@0.0.0 test
+> node --test tools/harness/test/*.test.mjs && vitest run
+
+✔ actual selected model and real final required, not exit0 or quoted content (1.20675ms)
+✔ provider/remapped model cannot reach Claude billing; credentials not in errors (0.947879ms)
+✔ coverage is explicit per changed file; generated evidence grouping cannot hide code (1.972398ms)
+✔ watched subprocess retains success, failure and timeout evidence, kills its own group (650.145122ms)
+✔ real review entry selects Claude without OpenCode, publishes once, refuses failed gates (1352.663721ms)
+✔ native Claude command denials cover OpenCode publishing policy without a second Bash parser (1.607714ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2050.796061
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t36-work
+
+
+ Test Files  48 passed (48)
+      Tests  645 passed (645)
+   Start at  08:43:59
+   Duration  35.34s (tests 84%, transform 12%, import 3%)
+

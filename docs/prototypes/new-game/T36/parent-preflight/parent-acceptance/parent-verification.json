@@ -1,0 +1,22 @@
+{
+  "fullNativeFinalRead": true,
+  "archiveParts": 23,
+  "archiveMembers": 2856,
+  "archiveSha256": "0c6e08a939172dbd5e2079d8697b34fc4eb4d4fc735fa1e02becfc0f5cf569d3",
+  "candidatePacketFiles": 33,
+  "frozenAcceptanceHashes": {
+    "tests/e2e/geographic-board.spec.ts": "79bb2e3fb85597a004510c0b7916d80c1f3e75e287961d92e575c5461323994c",
+    "tests/ui/geographic-game.test.ts": "b3f8eaf200ed559cf4834cbe3aa8fbcf0964cd315550335111aeffa8dfc1556f",
+    "docs/prototypes/new-game/T36/sweep.mjs": "bc5272d29715efc8270fafd7b8d978cbb7aea9e12d340dde978f309a7b90a32f",
+    "docs/prototypes/new-game/T36/corpus-selection.json": "9f5b55f22a429977426f1308a5e68f92b8c0ab09893b2f7d136e1c3b2cf701d9",
+    "docs/prototypes/new-game/T36/corpus-supplement.json": "fa9c13f388b56bbb45deedde82ebf0722faf70b0faeb8cc13ebcae995e0949c6"
+  },
+  "baselineFilesRestored": 53,
+  "newRuntimeFilesAbsent": [
+    "src/ui/geographicGame.ts",
+    "src/ui/geographicMapView.ts",
+    "src/ui/matchPresentation.ts"
+  ],
+  "productionDiffEmpty": true,
+  "passed": true
+}

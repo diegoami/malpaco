@@ -1,0 +1,22 @@
+{
+  "name": "save-identity",
+  "file": "src/ui/referenceBattleGame.ts",
+  "beforeSha256": "8780a555af2a114185005794d3084026f33c86aa852b2e020532f4709c0a76ec",
+  "omittedSha256": "8f996b46b351d5b65ebd45c26fa016bf50e9ae86ebd73ef538ec4f7be60cb978",
+  "command": [
+    "/usr/bin/python3",
+    "/home/diego/projects/malpaco/.cache/t36-work/docs/prototypes/new-game/T36/run-browser.py",
+    "omit-save-identity",
+    "--project=1280x800",
+    "--grep",
+    "geographic replay and reference identity",
+    "--max-failures=1"
+  ],
+  "startedUtc": "2026-10-18T06:46:49.181363+00:00",
+  "exit": 1,
+  "run": "docs/prototypes/new-game/T36/evidence/omit-save-identity-kq_ymbh0",
+  "actualBehaviorAssertionFailed": true,
+  "restored": true,
+  "afterSha256": "8780a555af2a114185005794d3084026f33c86aa852b2e020532f4709c0a76ec",
+  "endedUtc": "2026-10-18T06:47:22.568754+00:00"
+}

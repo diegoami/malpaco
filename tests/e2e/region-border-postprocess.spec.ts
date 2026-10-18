@@ -57,7 +57,7 @@ for(const viewport of [{width:800,height:540},{width:1280,height:800},{width:192
 });
 test("playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map",async({page},info)=>{
  const dir=output(`playable-${info.project.name}`),f=fixture("manual"),errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));
- await page.goto("/?control=manual");await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Seats",{exact:true}).selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();
+ await page.goto("/?view=reference-game&control=manual");await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Seats",{exact:true}).selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();
  try{await painted(page);}finally{await shot(page,dir,"opening");await closeups(page,dir,"coast");}
  for(const p of expected.provinces){await expect(country(page,p.id).locator(".centre")).toHaveAttribute("x",String(p.labelAt[0]!-25));await expect(country(page,p.id).locator(".centre")).toHaveAttribute("y",String(p.labelAt[1]!-10));}
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator("#start-combat-button").click();

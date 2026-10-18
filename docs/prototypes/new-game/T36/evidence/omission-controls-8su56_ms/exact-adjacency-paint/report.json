@@ -1,0 +1,22 @@
+{
+  "name": "exact-adjacency-paint",
+  "file": "src/ui/referenceBattleGame.ts",
+  "beforeSha256": "8780a555af2a114185005794d3084026f33c86aa852b2e020532f4709c0a76ec",
+  "omittedSha256": "fde88da4a2fa61fdb21c4b6596ec044c6f200dbfc7064285def466e409497348",
+  "command": [
+    "/usr/bin/python3",
+    "/home/diego/projects/malpaco/.cache/t36-work/docs/prototypes/new-game/T36/run-browser.py",
+    "omit-exact-adjacency-paint",
+    "--project=1280x800",
+    "--grep",
+    "painted borders use",
+    "--max-failures=1"
+  ],
+  "startedUtc": "2026-10-18T06:46:43.641346+00:00",
+  "exit": 1,
+  "run": "docs/prototypes/new-game/T36/evidence/omit-exact-adjacency-paint-yv39rndy",
+  "actualBehaviorAssertionFailed": true,
+  "restored": true,
+  "afterSha256": "8780a555af2a114185005794d3084026f33c86aa852b2e020532f4709c0a76ec",
+  "endedUtc": "2026-10-18T06:46:49.180648+00:00"
+}

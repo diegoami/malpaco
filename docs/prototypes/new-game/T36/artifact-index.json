@@ -1,0 +1,290 @@
+{
+  "createdUtc": "2026-10-18T06:57:39.102516+00:00",
+  "scope": "Verified disposable T36 parent preflight; production source restored",
+  "summary": {
+    "path": "docs/prototypes/new-game/T36/preflight-summary.json",
+    "sha256": "117548b5b929cf6cb0e1f29bbf1581012004e9f7eb71354c73f1536c8fc792f6"
+  },
+  "preflight": {
+    "path": "docs/prototypes/new-game/T36/PREFLIGHT.md",
+    "sha256": "16c506d380dc53682a2e2acb8634535afbaf7313a9670a0422ffdf8a1da59865"
+  },
+  "adoptionPacket": "docs/prototypes/new-game/T36/parent-preflight/final-adoption-packet-iw8i9oys",
+  "acceptanceHashes": {
+    "tests/e2e/geographic-board.spec.ts": "79bb2e3fb85597a004510c0b7916d80c1f3e75e287961d92e575c5461323994c",
+    "tests/ui/geographic-game.test.ts": "b3f8eaf200ed559cf4834cbe3aa8fbcf0964cd315550335111aeffa8dfc1556f",
+    "docs/prototypes/new-game/T36/sweep.mjs": "bc5272d29715efc8270fafd7b8d978cbb7aea9e12d340dde978f309a7b90a32f",
+    "docs/prototypes/new-game/T36/corpus-selection.json": "9f5b55f22a429977426f1308a5e68f92b8c0ab09893b2f7d136e1c3b2cf701d9",
+    "docs/prototypes/new-game/T36/corpus-supplement.json": "fa9c13f388b56bbb45deedde82ebf0722faf70b0faeb8cc13ebcae995e0949c6"
+  },
+  "restoration": {
+    "pending": false,
+    "productionRestored": true,
+    "receipt": "docs/prototypes/new-game/T36/parent-preflight/restoration-_0gy8hdh/receipt.json",
+    "receiptSha256": "fac85a8667da313a1d2044cf08034c9a292344e17f3ebec57a6e332e085aeae5",
+    "target": {
+      "directory": "baseline-post-t35-c51a0ab2ffaf",
+      "manifest": "baseline-post-t35-c51a0ab2ffaf/manifest.json",
+      "head": "c51a0ab2ffafeb28a97b0ed05e8468dcdaddd2d7",
+      "dependencyHead": "c55fc55f9d37eb55e54cc47cc425a3e25da6d1de"
+    },
+    "absentNewProductionPaths": [
+      "src/ui/geographicGame.ts",
+      "src/ui/geographicMapView.ts",
+      "src/ui/matchPresentation.ts"
+    ],
+    "restoredProductionHashes": {
+      "src/main.ts": "da7ee5d83c87cf9cee1a9af0b2aafab973636f3ae426eb28cc98283188280f50",
+      "src/styles.css": "1a8e8a99f9add03665d979d5899139b94e83dcb5fb1767c0574846bdcaa874d7",
+      "src/ui/victoryView.ts": "543de7532e9694c84924fa289b0f1e19d42f641da242cc1a78723560f9157b77",
+      "src/ui/battleController.ts": "6e58be9a0c5084ff1b60c68f14930ba7289b487ac5c91be95ef0cbf6891ca247",
+      "src/ui/referenceMapView.ts": "ab50db577a60151e27ac288b6b5d7d101587273566f3f14e14170988694ef205",
+      "src/ui/gameEventLog.ts": "936b8076a9821dc4b40a42b99bb4589e27232b100cefdd8acded0dd42f5301b3",
+      "src/ui/app.ts": "e6c1835e5340d1d444f992e87fe46446eb2cd24f08136e4da8c1fd93e343c95b",
+      "src/ui/resultDialog.ts": "f96501e48c1733e853337ad067057a3d21c62c7f92b1b93c6ac81e8518c466ab",
+      "src/ui/panel.ts": "64cd3638ffc7182e1dfe2349a540cc889572f8ac92945f0d88cb83c4100b4756",
+      "src/ui/generatedGame.ts": "a470ffece8b9c2f211cbb844c0b24615128f379ccd4da24adb7c13e6779da511",
+      "src/ui/dom.ts": "98e4209555588e02eb0353e7a05f30edb4e9567be0973b6ad63bf66d90f60a77",
+      "src/ui/help.ts": "d90bc88385eb345e0ff5fdcf7ad2cfa6d86f08f5dfdad1b3737d5bb1fdc3dfca",
+      "src/ui/generatedMapView.ts": "56dc90f8f5686ba106956b3fe818bbdfa17d675aa90c512415cc0c7083f463cb",
+      "src/ui/friendlyMoveView.ts": "b4f085d1a0e3e209708b41ca14e8e1abe584b562e2ca9aba58671b578d53b8f2",
+      "src/ui/referenceGame.ts": "52cacb0cc5ce5c466b0f2eae0030a7020f582dba92ca4699a7ad5b22793873e9",
+      "src/ui/referenceMatchFiles.ts": "f44c9e5f6868dae4fcb508a30af6e5a2d27a16b4515156069747a4f1c8db8870",
+      "src/ui/computerTurnLoop.ts": "dd75ae15d78323e2a80f67ac577564dc5ff6a10470f7aa464b0eb529932fbbe9",
+      "src/ui/mapView.ts": "e8d1f61afb90cf2bb2115c00a851b7169359183029b4e7c07eb608ef8c8e07bc",
+      "src/ui/palette.ts": "a95c4345c8c6bda72b1ffc5dd440988e80bc9dae22d94eb632318d3b7038d499",
+      "src/ui/battleView.ts": "39658da08720e7ed6dc01fc047e88468a92df0290ba466f2d33bdba19eb85a51",
+      "src/ui/referenceBattleGame.ts": "f98c5608e9e784008731906b57bd0d40b54bffd9c7744980d5f0ccd3b07e3d38",
+      "src/ui/referenceData.ts": "3a87c0d8b84e431b89e8763da7d9bfe0a84234be8a2ef77e91b648e3d6797ee9",
+      "src/core/seats.ts": "4e67c932ef1b420c7b4e07d646dfe423c249bd3dd90eed60549ea01b8ba06f67",
+      "src/core/setup.ts": "fccc270a649c303916dcb421b69986dc5f61bc9d3428d92cef7bf3b57a070ad2",
+      "src/core/options.ts": "0103f21c5afe6a99d968079633a06f169f6941c129b94c212b9e93e547748513",
+      "src/core/rules.ts": "49d029cb2b2ea05efddbd183f08162ea8bd00805ee97216f4b923b47fc4280c4",
+      "src/core/board-gen.ts": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942",
+      "src/core/map.ts": "3457bf4de33874cd78aa2a06a29819c8d7920e1c1eb36ce0500d326d5092cdaf",
+      "src/core/geographic-board.ts": "ba7cad309bc0fcded4b5a89ca14e22a6cecac7b809efd4537512e6d37fc62514",
+      "src/core/match-save.ts": "7dd9a9a107a33ce667d029410db99d5bd167fcf1d1c0a7855936b06711466489",
+      "src/core/island-geography.ts": "ab58ae1639288487cb8d102eee016e98b5059cf7c975c91ed6bfe1f5bc685f68",
+      "src/core/bonuses.ts": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+      "src/core/types.ts": "c4dce555abebede88237ef08ad926cc166e2076f3a468d1124f495f99bf61183",
+      "src/core/geographic-game.ts": "24b557fec59571d89b4eb66924706978cd570ff70a635cf4ad033a6712533c79",
+      "src/core/reinforcement.ts": "b9a7fe2203bcff3aa06beebf5ec3ac8c2103641a0522a5e4805714b216452556",
+      "src/core/victory.ts": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9",
+      "src/core/board-fairness.ts": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717",
+      "src/core/combat.ts": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7",
+      "src/core/movement.ts": "ef59529db0f70d17677af8d229c07a8cdb79bef5eac2d51f6790bd675cdfa323",
+      "src/core/save.ts": "54eb5f98c7bc6ac90d39a3d2ddf53eef4fd37c5f53b609d847d20289433b9748",
+      "src/core/index.ts": "cb8ea79afe7fab958163d4fcaf30f41911abfd00721b042418b9ad4c3e28a1bf",
+      "src/core/reference-game.ts": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45",
+      "src/core/computer.ts": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+      "src/core/reference-map.ts": "cc920c2840843391f83bb9d1c393afc5342cfeb5625ecd2ca56f7252f85ec090",
+      "src/core/tsconfig.json": "0845dff0e382127412de693151d9b026e14a8b5070cb9f8a0036fc26e0997c8b",
+      "src/core/rng.ts": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498",
+      "src/core/state.ts": "94b1bad7f33ec60f0876ad410b20f9c9ca9e4e20cc9f78cb26dde95dce0ff9eb",
+      "src/ui/prototype/layout.ts": "43ef9e6098fec0c42b8c4a42bb1b45aed981771eaec578c36e122fc4c0f98aca",
+      "src/ui/prototype/preview.ts": "a814552e8e7a0235516a3d014b0c95faf24eb66efd8337196a146b4aefa9461e",
+      "README.md": "09da3cd355c2135792f8e20146003e2bb30d712d53a66d0ae63f7d1f9aeb0d03",
+      "docs/play.md": "a7028897c031153442aac64dbd3eec1874396e17e5ab5ac795fc54c0226f9021",
+      "docs/spike.md": "a147bcd10e0d17a819c13601f0adcd69357544870c780cfa8540780a65ca4211",
+      "tools/release/PLAY.md": "19c42a3665584bbf0fee1555290b32d2eedd17f52be4f7b028c1af4af634d4b0"
+    },
+    "sourceDiffEmpty": true
+  },
+  "sourceStillRestoredAfterArchival": true,
+  "losslessArchive": {
+    "receipt": "docs/prototypes/new-game/T36/evidence/final-parent-evidence-fy1g0y9z/receipt.json",
+    "receiptSha256": "cce8fbe7844ca887079279a9e768c06e9b4bd9161beb64825f0b46af3ccb44fc",
+    "archiveSha256": "0c6e08a939172dbd5e2079d8697b34fc4eb4d4fc735fa1e02becfc0f5cf569d3",
+    "members": 2856,
+    "parts": [
+      {
+        "name": "originals.tar.gz.part01",
+        "bytes": 25165824,
+        "sha256": "c6944cd67a5ce84a58cad099e33d6629771b2e3344de6f6fab09e4431edb60ed"
+      },
+      {
+        "name": "originals.tar.gz.part02",
+        "bytes": 25165824,
+        "sha256": "67f843ce2adc616f2549697d61446a239f957e1aee02bd2f03f5f2822b265988"
+      },
+      {
+        "name": "originals.tar.gz.part03",
+        "bytes": 25165824,
+        "sha256": "fc35ebc97460117d4cfba9e609af8f2d152008e682ea45ca7590aef914e308dc"
+      },
+      {
+        "name": "originals.tar.gz.part04",
+        "bytes": 25165824,
+        "sha256": "2df004497bf0f7452bd1a4e0cec563566aee331ad1626f1e3ef684c3878bf31d"
+      },
+      {
+        "name": "originals.tar.gz.part05",
+        "bytes": 25165824,
+        "sha256": "54626dbef66d4f1ee24fc9d1c5a4b2d5f88a2d8a311fb0e55c86d54fcb1415d0"
+      },
+      {
+        "name": "originals.tar.gz.part06",
+        "bytes": 25165824,
+        "sha256": "d06fc9124cff07636d97b0a92dbab52becd8981cac7573c2f448f347732b33fe"
+      },
+      {
+        "name": "originals.tar.gz.part07",
+        "bytes": 25165824,
+        "sha256": "29819345012f4cfa57b925a4b8a0cd506c05af5548117e6661ee1642cec20ecb"
+      },
+      {
+        "name": "originals.tar.gz.part08",
+        "bytes": 25165824,
+        "sha256": "35523bc55635c065c937dc1945aaa2a34d8f8eed8b6562a76be2b3a968764d54"
+      },
+      {
+        "name": "originals.tar.gz.part09",
+        "bytes": 25165824,
+        "sha256": "cb2434cf0434ee579411e9daac216019865b669f9090ec8daabbbedc2b710e78"
+      },
+      {
+        "name": "originals.tar.gz.part10",
+        "bytes": 25165824,
+        "sha256": "4ca74c2caad286754588a607c91a0e83b7ece3ad70cac2f54935deea0998f90a"
+      },
+      {
+        "name": "originals.tar.gz.part11",
+        "bytes": 25165824,
+        "sha256": "ec1b51a8aa449c4d3e6e496c84a10b8325488c514b0cd37363d5defc2bb5526d"
+      },
+      {
+        "name": "originals.tar.gz.part12",
+        "bytes": 25165824,
+        "sha256": "4de9c11cac7899d1dfd30aea417f901c0b21ebbc26014e880cd8a0457381bd4e"
+      },
+      {
+        "name": "originals.tar.gz.part13",
+        "bytes": 25165824,
+        "sha256": "d429b1574285f5819f3e96e1a958e83ed4f56b46b8804c1a5e7e528da777ff96"
+      },
+      {
+        "name": "originals.tar.gz.part14",
+        "bytes": 25165824,
+        "sha256": "d7248d6796a1c7b51e1ccf4623d44e917f254895320b59e071054e2dd7bca5ce"
+      },
+      {
+        "name": "originals.tar.gz.part15",
+        "bytes": 25165824,
+        "sha256": "5368b7a149fcfad9d984c4f5bebe3a9db88f78ef5f303976708d79c15bca8d83"
+      },
+      {
+        "name": "originals.tar.gz.part16",
+        "bytes": 25165824,
+        "sha256": "7a7f3484caf426ae28f23b44898e20ff7b405135759304afbd52636073440401"
+      },
+      {
+        "name": "originals.tar.gz.part17",
+        "bytes": 25165824,
+        "sha256": "c772d108628c801279ee4df6674f0581a62f9b26f47e06eff5019c70437da646"
+      },
+      {
+        "name": "originals.tar.gz.part18",
+        "bytes": 25165824,
+        "sha256": "f3aea0f0497dcf29183699eea8c6062fe56fa9e32c45cf352b18e4ad4e517b3e"
+      },
+      {
+        "name": "originals.tar.gz.part19",
+        "bytes": 25165824,
+        "sha256": "5f23cec0b638a187a6aad7b317856e5221507ae087c63f8df80e3483ad4e584a"
+      },
+      {
+        "name": "originals.tar.gz.part20",
+        "bytes": 25165824,
+        "sha256": "18e1397023bde89e78436dbef9cf7a06049a98b4ad18f20580bed4307c4e7e76"
+      },
+      {
+        "name": "originals.tar.gz.part21",
+        "bytes": 25165824,
+        "sha256": "3ccd377f9d203510745b1638ac27b5c7b57b7e70d3f337cfd0623ca20a69908e"
+      },
+      {
+        "name": "originals.tar.gz.part22",
+        "bytes": 25165824,
+        "sha256": "24b60623824a5e886b76a35a2312e7bfa9ce1269d72ab15c53bc4c9fd56e6d21"
+      },
+      {
+        "name": "originals.tar.gz.part23",
+        "bytes": 10631971,
+        "sha256": "cf9a0880772291b548933d810c2dc4b1b2bcee0f1cb894d01c74b0607f513fb1"
+      }
+    ],
+    "allMembersVerified": true,
+    "allPartsVerified": true,
+    "looseOriginalsPreserved": true,
+    "localFullArchiveIgnored": "docs/prototypes/new-game/T36/evidence/final-parent-evidence-fy1g0y9z/originals.tar.gz"
+  },
+  "sourceHelperFiles": {
+    "docs/prototypes/new-game/T36/PREFLIGHT.md": "16c506d380dc53682a2e2acb8634535afbaf7313a9670a0422ffdf8a1da59865",
+    "docs/prototypes/new-game/T36/README.md": "7440084e21e1efba9b405387c7d40c0d0c1f7f49ec0d26045441357f81bbd36d",
+    "docs/prototypes/new-game/T36/archive-evidence.py": "c7d4d4be24fa19bb065e8af517c4c937ad1e1b58366507d6a5718a049ae10ed3",
+    "docs/prototypes/new-game/T36/controls.py": "3ed9bc3dbfea5d68f30da50632f950fbee86758ba50a6db2f581777aa1cf9df8",
+    "docs/prototypes/new-game/T36/corpus-selection.json": "9f5b55f22a429977426f1308a5e68f92b8c0ab09893b2f7d136e1c3b2cf701d9",
+    "docs/prototypes/new-game/T36/corpus-supplement.json": "fa9c13f388b56bbb45deedde82ebf0722faf70b0faeb8cc13ebcae995e0949c6",
+    "docs/prototypes/new-game/T36/fixture-probe.mjs": "c0e4abe5fcba09775376c3919f82a9c618d88e001122a61485bbab27eaaa3ead",
+    "docs/prototypes/new-game/T36/measured-report.json": "da26459a8e5a791027a1cdc08b3474eade7676747cfe94f7e6735dded0033428",
+    "docs/prototypes/new-game/T36/negative-proof.py": "0e1ce949d5cd7272bc46e831b11eaecd8895c0bbbeb6a9b241e140dfc9a0b814",
+    "docs/prototypes/new-game/T36/preflight-summary.json": "117548b5b929cf6cb0e1f29bbf1581012004e9f7eb71354c73f1536c8fc792f6",
+    "docs/prototypes/new-game/T36/run-browser.py": "91157b1b9558da493cc1adb0d0403b0d136074e0bb0899617cc5f42c35fda1a0",
+    "docs/prototypes/new-game/T36/run-command.py": "541007fdb15fc418e9ee2efe6a5c05d5492973c13b4031c6173c1980a51c34ac",
+    "docs/prototypes/new-game/T36/source-state.py": "82696845c134beeea0b64e56e3e8bebec27d84f55eef82dd03a78704b0788777",
+    "docs/prototypes/new-game/T36/sweep.mjs": "bc5272d29715efc8270fafd7b8d978cbb7aea9e12d340dde978f309a7b90a32f",
+    "docs/prototypes/new-game/T36/verify-evidence.py": "fa960be5744cf3e81d04a2f3da78c36a3ce5368568ef0745623bd64ce119424e"
+  },
+  "reportHashes": {
+    "docs/prototypes/new-game/T36/evidence/baseline-geographic-browser-transaction-mehax3_m/report.json": "d8ef81b0d41579c471fd9192ffae002c54379f969a480f9b5fea5ffc018cedf7",
+    "docs/prototypes/new-game/T36/evidence/baseline-geographic-browser-zjl5akdr/report.json": "58e855fd2aa30b70a351a7ddbcaeb39018d49750e9e3f7d10e52f944463c539d",
+    "docs/prototypes/new-game/T36/evidence/baseline-geographic-browser2-_0t9j92q/report.json": "bc3409f1cf862f7392e9b5d9eaaa419e69f1d3738aff69ca90e2b63fbcaf10f2",
+    "docs/prototypes/new-game/T36/evidence/baseline-geographic-browser2-transaction-njmqw473/report.json": "6eeaac3814520d6a412e146d01dc4f6d2013e6c771349c54c9b0e2c1b207d152",
+    "docs/prototypes/new-game/T36/evidence/baseline-geographic-zaploehn/report.json": "594f18a6aa7ce758699e8166d0de875aaf4d892ea2a88c7073751a0c80b18d38",
+    "docs/prototypes/new-game/T36/evidence/baseline-geographic2-83i0yvfd/report.json": "17763e7212368585aa1e640fc8367bbe49ea04bd45a4ac97ef18e92dbcadd7ba",
+    "docs/prototypes/new-game/T36/evidence/baseline-ui-unit-25_kuqa6/report.json": "9e817294171ed83e8d83109e634ecdec300615f1a5ad17949e2be4938c04276d",
+    "docs/prototypes/new-game/T36/evidence/baseline-ui-unit-transaction-7sxze4av/report.json": "fae56bee851c7f54b2c50051a34266690d9d12707194b40c54e0c61cd237f96f",
+    "docs/prototypes/new-game/T36/evidence/dependency-sync-typecheck-f8fk9a5v/report.json": "9b02a354f5396e6f978bf4c1882881a000adb505fd27352b0e27c1db9e7a1d10",
+    "docs/prototypes/new-game/T36/evidence/final-build-_q00150i/report.json": "886de47ed9703e8cb87bc99077573b84198164f4b60b1605811bb0f5e2edce59",
+    "docs/prototypes/new-game/T36/evidence/final-draft-typecheck-y9h575lp/report.json": "f1f870a10b7c62edf5cfd817f63a041a4d95b0c702c9dae026a16ab1b211aaac",
+    "docs/prototypes/new-game/T36/evidence/final-units-7fkzjfwk/report.json": "3a80329c5d8b753952bc868c39b67449dfe8dcecbf9ef44dfa86a697e7b4bc01",
+    "docs/prototypes/new-game/T36/evidence/first-combat-fixtures-enrzrrq7/report.json": "2c8a04ac8e6d9354aa22e5cc80a38331e6e958bd26201d0bb8b85bc5bd6f54d4",
+    "docs/prototypes/new-game/T36/evidence/geographic-positive-qxre2etc/report.json": "948fc4c934b1e016fa3c5d1b63b0298a80c1c840dd5f710a53fe6fd3ccdad089",
+    "docs/prototypes/new-game/T36/evidence/old-e2e-20261018T062531Z-h8mmoyfv/report.json": "c0b318312511449695cf5d6622b05e8de73e363158ea6d3f9f0873db4f9735d1",
+    "docs/prototypes/new-game/T36/evidence/omission-controls-8su56_ms/actual-geography/report.json": "10968f889d0c988a6bf729cc7d8631d01f70614dbfcbd6dd7a9289e00a0a410a",
+    "docs/prototypes/new-game/T36/evidence/omission-controls-8su56_ms/exact-adjacency-paint/report.json": "7de88c322cba5d75dafb1ffc7ae5fcdbe37249f67e54dad04b0c3ee555cd3f39",
+    "docs/prototypes/new-game/T36/evidence/omission-controls-8su56_ms/paused-battle-timer/report.json": "f0125bb4770dafd8a346d493643b9e85c90d1c7ff5a3f39402904f83b0e0c128",
+    "docs/prototypes/new-game/T36/evidence/omission-controls-8su56_ms/replay-origin/report.json": "4989e8338477b9fce8cef7e141cfdc08a5c86dc9a8c4612a76c7403f092336d0",
+    "docs/prototypes/new-game/T36/evidence/omission-controls-8su56_ms/report.json": "38c69f2664fc9273fd6f6afdb405b602e1c6ed38f0a0a4f63dd05284d8598909",
+    "docs/prototypes/new-game/T36/evidence/omission-controls-8su56_ms/save-identity/report.json": "67888e70c17594630c325875f8482645a3d2eb3bbc48142d98bfc9aeefd62965",
+    "docs/prototypes/new-game/T36/evidence/omission-controls-8su56_ms/typed-refusal-report/report.json": "ba32f00ac2c8fdae282086e07e36a0e9ac6718e026676444e63c3623c29abe59",
+    "docs/prototypes/new-game/T36/evidence/omission-controls-8su56_ms/visible-owner-fill/report.json": "6dd34c3c7896b254645f7dc626e77cf6278e2b6236250bc2ae3f8299971d4c77",
+    "docs/prototypes/new-game/T36/evidence/omit-actual-geography-pxbsba9q/report.json": "01fc32c4e49851e5e20dcff0ae805c2cfd8a96a9c8fa4092b086bf192dc3fb6c",
+    "docs/prototypes/new-game/T36/evidence/omit-exact-adjacency-paint-yv39rndy/report.json": "ac9c0e574d66cbc8f574ad936aeb0ae3c252dfcb62dd55374b0e265ab1033884",
+    "docs/prototypes/new-game/T36/evidence/omit-paused-battle-timer-j7a6kvmb/report.json": "e3d3be59260d97d6cba63420b02c5cd595eed0828153bfdd949e9cb969f86bef",
+    "docs/prototypes/new-game/T36/evidence/omit-replay-origin-fu93ofla/report.json": "7ff974bfdd38de5b3cc832899e43df17ffc792c19f48b43283e659fbccb71892",
+    "docs/prototypes/new-game/T36/evidence/omit-save-identity-kq_ymbh0/report.json": "a5d54831b2f8ef6d5212e072e5f1444fe4c07ffab68cfb2ff775a1d23159e297",
+    "docs/prototypes/new-game/T36/evidence/omit-typed-refusal-report-5k4e8w30/report.json": "cb3d58c12dc8a1b9f400ed35de9346b9c1fb2005795f37f8a84a8cb266cdf34b",
+    "docs/prototypes/new-game/T36/evidence/omit-visible-owner-fill-xtxt373i/report.json": "1be978b828ba7f143a8a270e3e1e6ece442a8fa985e0a6924c38a299ac7783b3",
+    "docs/prototypes/new-game/T36/evidence/parent-wide-itutk8p2/report.json": "5e9501affc87bc789c28708f7ee7beb7e68aa142bf7d552f017b08c220b69e9d",
+    "docs/prototypes/new-game/T36/evidence/phase1-final-typecheck-8b1t2n6w/report.json": "70ebb50eea148e8630ac1261d72c53c04a28a7b0a4a100e530cebd909647364e",
+    "docs/prototypes/new-game/T36/evidence/phase1-typecheck-pkihkqjr/report.json": "b674432f92ccab3318a52fcdf49d34c032adee29f235b71baf6581266102fc5b",
+    "docs/prototypes/new-game/T36/evidence/positive-ui-unit-8n5f4frc/report.json": "035c451343237da7199c37a3eedc3f71db2077610969dfbefec956b317952d0a",
+    "docs/prototypes/new-game/T36/evidence/restored-candidate-clean-build-6eitgch_/report.json": "2519002976e0cc830b3646c5744891e4c419e850233b4be9bd59ffd2b35c5b71",
+    "docs/prototypes/new-game/T36/evidence/sweep-ZIcS6O/report.json": "da26459a8e5a791027a1cdc08b3474eade7676747cfe94f7e6735dded0033428"
+  },
+  "archiveProgressLog": {
+    "path": "docs/prototypes/new-game/T36/evidence/final-archive-unit.log",
+    "sha256": "6777add913f05b7a172cf44f418800edb57fb94c97939def3ceee8642f139dda"
+  },
+  "deferred": {
+    "freshGeographicExtractedArtifact": "Parent explicitly defers to exact committed formal producer head before Windows preview",
+    "ownerAppearanceApproval": false,
+    "formalProducerReviewCIAndDelivery": true
+  },
+  "candidateFileReasons": {
+    "path": "docs/prototypes/new-game/T36/candidate-file-reasons.json",
+    "sha256": "8409659292bec76f984aab31daec57d6062d18486cf516335a54879048cb6247",
+    "files": 33
+  }
+}
