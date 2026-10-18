@@ -8,6 +8,7 @@ import { apply } from "./rules";
 import type { Action, GameState } from "./types";
 import { referenceMap } from "./reference-map";
 import { createReferenceGame } from "./reference-game";
+import { createGeographicGame } from "./geographic-game";
 import { victoryRules } from "./state";
 
 export const MATCH_SAVE_VERSION = 1;
@@ -85,19 +86,27 @@ function record(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function referenceIdentity(value: Record<string, unknown>): MatchIdentity {
-  // Only this combination is supported in v2. Other generators/presets are
-  // deliberately refused rather than migrated or paired with today's seed.
+export const GEOGRAPHIC_MATCH_IDENTITY: MatchIdentity = Object.freeze({
+  boardGenerator: Object.freeze({ id: "geographic", version: 1 }),
+  rules: Object.freeze({ id: "victory", version: 1 }),
+  actionSchemaVersion: 2,
+});
+
+function supportedIdentity(value: Record<string, unknown>): MatchIdentity {
+  const generator = value.boardGenerator;
+  const expected = record(generator) && generator.id === "geographic"
+    ? GEOGRAPHIC_MATCH_IDENTITY : REFERENCE_MATCH_IDENTITY;
+  // Each supported generator keeps its exact rules/action tuple for replay.
   for (const field of ["boardGenerator", "rules"] as const) {
-    const part = value[field], expected = REFERENCE_MATCH_IDENTITY[field];
-    if (!record(part) || Object.keys(part).length !== 2 || part.id !== expected.id || part.version !== expected.version) {
-      throw new SaveFormatError(`Unsupported ${field}; expected ${expected.id}/${expected.version}.`, field);
+    const part = value[field], required = expected[field];
+    if (!record(part) || Object.keys(part).length !== 2 || part.id !== required.id || part.version !== required.version) {
+      throw new SaveFormatError(`Unsupported ${field}; expected ${required.id}/${required.version}.`, field);
     }
   }
-  if (value.actionSchemaVersion !== REFERENCE_MATCH_IDENTITY.actionSchemaVersion) {
+  if (value.actionSchemaVersion !== expected.actionSchemaVersion) {
     throw new SaveFormatError("Unsupported action schema version; expected 2.", "actionSchemaVersion");
   }
-  return REFERENCE_MATCH_IDENTITY;
+  return expected;
 }
 
 function versionedAction(value: unknown, index: number): Action {
@@ -141,13 +150,13 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
   if (Object.keys(value).length !== keys.length || keys.some(key => !Object.hasOwn(value, key)) || !Array.isArray(value.actions)) {
     throw new SaveFormatError("Game file needs exactly format, version, boardGenerator, rules, actionSchemaVersion, options and an actions array.");
   }
-  const identity = referenceIdentity(value);
+  const identity = supportedIdentity(value);
   let options: GameOptions;
   try { options = validateGameOptions(value.options); } catch (error) {
     throw new SaveFormatError(`Invalid game options: ${error instanceof Error ? error.message : String(error)}`, "options");
   }
   const actions = value.actions.map(versionedAction);
-  const created = createReferenceGame(referenceMap, options, victoryRules(options));
+  const created = identity.boardGenerator.id==='geographic' ? createGeographicGame(options,victoryRules(options)) : createReferenceGame(referenceMap, options, victoryRules(options));
   if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
   let state = created.state;
   for (let index = 0; index < actions.length; index++) {

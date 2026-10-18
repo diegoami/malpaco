@@ -246,7 +246,10 @@ function placeLayout(g:IslandGeography,layout:number):void {
  for(const[id,dx,dy]of shifts){const move=(p:GeoPoint):GeoPoint=>[p[0]+dx,p[1]+dy],island=g.islands.find(i=>i.id===id)!;island.polygon=island.polygon.map(move);for(const p of g.provinces.filter(p=>p.island===id)){p.polygon=p.polygon.map(move);p.labelAt=move(p.labelAt);}}
 }
 export function generateIslandGeography(seed:number,options:{attempts?:number}={}):GeographyResult {
- const rng=new DeterministicRng(seed),raw=options.attempts??MAX_ATTEMPTS,budget=Number.isFinite(raw)?Math.max(0,Math.min(MAX_ATTEMPTS,Math.floor(raw))):0,failures:GeographyFailure[]=[];
+ return generateIslandGeographyWithRng(new DeterministicRng(seed),options);
+}
+export function generateIslandGeographyWithRng(rng:DeterministicRng,options:{attempts?:number}={}):GeographyResult {
+ const raw=options.attempts??MAX_ATTEMPTS,budget=Number.isFinite(raw)?Math.max(0,Math.min(MAX_ATTEMPTS,Math.floor(raw))):0,failures:GeographyFailure[]=[];
  for(let attempt=1;attempt<=budget;attempt++){
   const geography=newWitness(rng.seed);flipSubdivisions(geography,rng);placeLayout(geography,rng.nextInt(0,2));warp(geography,rng);repairLabels(geography);repairLayoutReservations(geography,rng);const constraints=candidateErrors(geography);
   if(constraints.length===0)return {ok:true,geography,attempts:attempt,failures,rng:rng.snapshot()};
