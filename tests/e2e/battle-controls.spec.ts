@@ -8,7 +8,7 @@ const region=(p:Page)=>p.getByRole("region",{name:"Battle controls",exact:true})
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 async function prepare(page:Page,kind:Parameters<typeof fixture>[0]){
  const f=fixture(kind);await page.clock.install();await page.clock.pauseAt(new Date());await page.goto("/?view=reference-game&control=manual");
- await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Seats",{exact:true}).selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();
+ await page.getByLabel("Seed",{exact:true}).fill(String(f.seed));await page.getByLabel("Seats",{exact:true}).selectOption("2");await page.getByRole("button",{name:"Start game",exact:true}).click();await page.getByRole("combobox",{name:"Panel detail",exact:true}).selectOption("detailed");
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator("#start-combat-button").click();await country(page,f.from).click();await country(page,f.to).click({modifiers:["Shift"]});
  await expect(region(page)).toBeVisible();await expect(page.locator("#battle-stop-threshold")).toHaveValue("2");await paint(page,f.ready);return f;
 }
@@ -20,7 +20,7 @@ async function capture(page:Page,name:string,project:string){const root=process.
 async function context(page:Page,s:GameState,from:string,to:string){
  await expect(page.locator("#battle-source-name")).toHaveText(map.provinces.find(p=>p.id===from)!.name);await expect(page.locator("#battle-target-name")).toHaveText(map.provinces.find(p=>p.id===to)!.name);
  await expect(page.locator("#battle-source-armies")).toHaveText(String(s.armies[from]));await expect(page.locator("#battle-target-armies")).toHaveText(String(s.armies[to]));
- const v=page.viewportSize()!;for(const id of ["fight-on-button","single-exchange-button","stop-battle-button","battle-stop-threshold","battle-speed"]){const n=page.locator('#'+id);await expect(n).toBeVisible();const b=await n.boundingBox();expect(b).not.toBeNull();expect(b!.x).toBeGreaterThanOrEqual(0);expect(b!.y).toBeGreaterThanOrEqual(0);expect(b!.x+b!.width).toBeLessThanOrEqual(v.width);expect(b!.y+b!.height).toBeLessThanOrEqual(v.height);}
+ const v=page.viewportSize()!;for(const id of ["fight-on-button","single-exchange-button","stop-battle-button","battle-stop-threshold","battle-speed"]){const n=page.locator('#'+id);if(s.pendingCapture){if(id!=="battle-speed")await expect(n).toBeDisabled();await expect(n).toBeHidden();continue;}await expect(n).toBeVisible();const b=await n.boundingBox();expect(b).not.toBeNull();expect(b!.x).toBeGreaterThanOrEqual(0);expect(b!.y).toBeGreaterThanOrEqual(0);expect(b!.x+b!.width).toBeLessThanOrEqual(v.width);expect(b!.y+b!.height).toBeLessThanOrEqual(v.height);}
 }
 test("one chosen exchange shows actual ties, dice and live stacks without a later exchange",async({page},info)=>{
  const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));const f=await prepare(page,"tie");await page.locator("#single-exchange-button").click();const next=step(f.ready,{kind:"attack",from:f.from,to:f.to});
