@@ -1,0 +1,130 @@
+{
+  "excluded": [
+    "manifest.json (this directory only)"
+  ],
+  "historicalProductionManifestSha256": "6127b6ef01fca0aa4dfae82f0db17fb71f23fe9dfee4be7c2095274a17c90967",
+  "activeFilesSha256": {
+    "docs/prototypes/new-game/T74/production/verify-adoption.py": "39134e8762853b2560726e780b8c8195cc4043df2080ca34969dba0e87f72ff3",
+    "docs/prototypes/new-game/T74/production/adoption.json": "8be34040cb8af799f5de25357cd767788ee1f00579704bf832de5f6eb9ff0c91",
+    "docs/prototypes/new-game/T74/production/README.md": "9085f028fbae7d8c5847551232b6b974c60fbf3ce536f085a1e4903e417bafad",
+    "docs/prototypes/new-game/T74/production/PR-BODY.md": "f45f1fe4ba749839bb4e90e6a02d439121b8e84297ab9284060beff33fdb6cd4",
+    "docs/spike.md": "a0e437f4f89ceb72ea91dea9c18edc5aa8fc5ec1c177c11c4d2e39458e01c33c",
+    "RUN-NOTES.md": "2cd73065b15d83d494b04ed438ce30488066cfd010aaa172a086eabd718e72df"
+  },
+  "files": [
+    {
+      "path": "PR-update-receipt.json",
+      "sha256": "02c07fb7170d81b6af5f0923d4879e78580fc3f70f2e112e4247a8463c627cf4",
+      "bytes": 86,
+      "mode": "0o644"
+    },
+    {
+      "path": "REPORT.md",
+      "sha256": "b2ab2cbd22ff66f7a7d9624ff9bbdec0f48d9a653b8c2a030237d6f1b7beab73",
+      "bytes": 6802,
+      "mode": "0o644"
+    },
+    {
+      "path": "fresh-export-committed-proof.json",
+      "sha256": "82972051fc9a343d480df3daeb3f478940e600efee0c179cbefdda3709eef8ae",
+      "bytes": 934,
+      "mode": "0o644"
+    },
+    {
+      "path": "fresh-export-committed-proof.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": "0o644"
+    },
+    {
+      "path": "fresh-export-committed-proof.stdout.log",
+      "sha256": "55599be61335781f4407f7276077f34a041dbde499eb780e10fd11a4c4011aed",
+      "bytes": 488,
+      "mode": "0o644"
+    },
+    {
+      "path": "fresh-export-manifest.json",
+      "sha256": "98a09aa181b0a74cde5fe9426552db996c6681b52a1535933aeaefe00c7a01a7",
+      "bytes": 86284,
+      "mode": "0o644"
+    },
+    {
+      "path": "immutable-inputs-before.json",
+      "sha256": "e9ab841836e160b0cc76a90d7111d4f612ae20c65022dcf280d7d988053f4e35",
+      "bytes": 54600,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-7ab54604/PR-BODY.md",
+      "sha256": "7eef3f0ca2a843731944aa01c8bd764c0db98c67f6acaaf0202b970167819757",
+      "bytes": 3624,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-7ab54604/README.md",
+      "sha256": "046af35ccec4d6f224af9852a028386564f97a42b2e64f6535e87869c1f865c1",
+      "bytes": 7757,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-7ab54604/REPORT.md",
+      "sha256": "89f69fb6b630ec327e192112561e5934a43ed68aa31021278a2af83e5339489b",
+      "bytes": 8968,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-7ab54604/adoption.json",
+      "sha256": "2d94df58d4ecb5dc1287f0093f073e63b879981a92e0defd2b5df3f988dbe4e9",
+      "bytes": 3242,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-7ab54604/manifest.json",
+      "sha256": "6127b6ef01fca0aa4dfae82f0db17fb71f23fe9dfee4be7c2095274a17c90967",
+      "bytes": 2699,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-7ab54604/verify-adoption.py",
+      "sha256": "06f0cc0f273b09d9fc043bad66f9cc528002de6b1090a84325902b96a00f593c",
+      "bytes": 10046,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-committed-proof.json",
+      "sha256": "7a032de0af47ec9d79bcf18535c07ff03a255e9ddd28fc39edcde930d4d3c189",
+      "bytes": 890,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-committed-proof.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": "0o644"
+    },
+    {
+      "path": "original-committed-proof.stdout.log",
+      "sha256": "55599be61335781f4407f7276077f34a041dbde499eb780e10fd11a4c4011aed",
+      "bytes": 488,
+      "mode": "0o644"
+    },
+    {
+      "path": "preservation-after.json",
+      "sha256": "6928adda8cbc2659f128f498f7815fc17915fae2a310978cc306196b834cd691",
+      "bytes": 54606,
+      "mode": "0o644"
+    },
+    {
+      "path": "root-fresh-checkout-failure.json",
+      "sha256": "a97e30d7d736305aeb07bbdf8f5c9ece8beb9c0f426a50d0fa27dc70c7aa49a8",
+      "bytes": 536,
+      "mode": "0o644"
+    },
+    {
+      "path": "run-two-proofs.py",
+      "sha256": "86944d783587a39ba3cb3a464e814d0e09957b9a785cf2bda9297b1faade21d9",
+      "bytes": 3091,
+      "mode": "0o644"
+    }
+  ]
+}
