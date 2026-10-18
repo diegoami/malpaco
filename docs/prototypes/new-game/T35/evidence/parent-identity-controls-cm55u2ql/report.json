@@ -1,0 +1,51 @@
+{
+  "results": [
+    {
+      "name": "rules",
+      "exit": 1,
+      "mutation": {
+        "old": "for (const field of [\"boardGenerator\", \"rules\"] as const) {",
+        "new": "for (const field of [\"boardGenerator\", \"rules\"] as const) {\n    if (field === \"rules\" && expected === GEOGRAPHIC_MATCH_IDENTITY) continue;"
+      },
+      "mutantSha256": "852f83ea00b314c2734b4c5c7e9b0d31e080aeff43e79b8b565022e5497780c3",
+      "wrapper": {
+        "output": "docs/prototypes/new-game/T35/evidence/parent-identity-omit-rules-joe121lr",
+        "exit": 1,
+        "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t35-work\n\n \u276f tests/core/geographic-match-identity.test.ts (6 tests | 3 failed) 1103ms\n   \u00d7 refuses geographic identity with different rules 544ms\n   \u00d7 refuses geographic identity with different rules version 292ms\n   \u00d7 refuses geographic identity with extra rules key 258ms\n\n Test Files  1 failed (1)\n      Tests  3 failed | 3 passed (6)\n   Start at  07:42:07\n   Duration  1.67s (tests 74%, transform 22%, import 4%)\n\n",
+        "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 3 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/core/geographic-match-identity.test.ts > refuses geographic identity with different rules\n FAIL  tests/core/geographic-match-identity.test.ts > refuses geographic identity with different rules version\n FAIL  tests/core/geographic-match-identity.test.ts > refuses geographic identity with extra rules key\nAssertionError: expected [Function] to throw an error\n\n- Expected:\nnull\n\n+ Received:\nundefined\n\n \u276f tests/core/geographic-match-identity.test.ts:21:80\n     19|   ['extra rules key', {rules:{id:'victory',version:1,extra:true}}, /un\u2026\n     20| ] as const)('refuses geographic identity with %s', (_name, change, mes\u2026\n     21|   expect(() => deserializeVersionedMatch(JSON.stringify({...base,...ch\u2026\n       |                                                                                ^\n     22| });\n     23|\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/3]\u23af\n\n"
+      }
+    },
+    {
+      "name": "schema",
+      "exit": 1,
+      "mutation": {
+        "old": "if (value.actionSchemaVersion !== expected.actionSchemaVersion) {",
+        "new": "if (expected !== GEOGRAPHIC_MATCH_IDENTITY && value.actionSchemaVersion !== expected.actionSchemaVersion) {"
+      },
+      "mutantSha256": "79afa7a89df19961bcdf9e302b478dff0799b53be80374e7607001eb62ef2b50",
+      "wrapper": {
+        "output": "docs/prototypes/new-game/T35/evidence/parent-identity-omit-schema-3618xi0l",
+        "exit": 1,
+        "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t35-work\n\n \u276f tests/core/geographic-match-identity.test.ts (6 tests | 1 failed) 464ms\n   \u00d7 refuses geographic identity with different action schema 454ms\n\n Test Files  1 failed (1)\n      Tests  1 failed | 5 passed (6)\n   Start at  07:42:10\n   Duration  831ms (tests 65%, transform 30%, import 5%, worker 1%)\n\n",
+        "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 1 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/core/geographic-match-identity.test.ts > refuses geographic identity with different action schema\nAssertionError: expected [Function] to throw an error\n\n- Expected:\nnull\n\n+ Received:\nundefined\n\n \u276f tests/core/geographic-match-identity.test.ts:21:80\n     19|   ['extra rules key', {rules:{id:'victory',version:1,extra:true}}, /un\u2026\n     20| ] as const)('refuses geographic identity with %s', (_name, change, mes\u2026\n     21|   expect(() => deserializeVersionedMatch(JSON.stringify({...base,...ch\u2026\n       |                                                                                ^\n     22| });\n     23|\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/1]\u23af\n\n"
+      }
+    },
+    {
+      "name": "extra-key",
+      "exit": 1,
+      "mutation": {
+        "old": "Object.keys(part).length !== 2 || ",
+        "new": ""
+      },
+      "mutantSha256": "43f5d2b345c8b7272a94526b2768aad1c86505720012810a731239345750252e",
+      "wrapper": {
+        "output": "docs/prototypes/new-game/T35/evidence/parent-identity-omit-extra-key-ocl3rqrq",
+        "exit": 1,
+        "stdoutTail": "\n RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t35-work\n\n \u276f tests/core/geographic-match-identity.test.ts (6 tests | 2 failed) 994ms\n   \u00d7 refuses geographic identity with extra generator key 510ms\n   \u00d7 refuses geographic identity with extra rules key 474ms\n\n Test Files  1 failed (1)\n      Tests  2 failed | 4 passed (6)\n   Start at  07:42:12\n   Duration  1.40s (tests 80%, transform 16%, import 3%)\n\n",
+        "stderrTail": "\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af Failed Tests 2 \u23af\u23af\u23af\u23af\u23af\u23af\u23af\n\n FAIL  tests/core/geographic-match-identity.test.ts > refuses geographic identity with extra generator key\n FAIL  tests/core/geographic-match-identity.test.ts > refuses geographic identity with extra rules key\nAssertionError: expected [Function] to throw an error\n\n- Expected:\nnull\n\n+ Received:\nundefined\n\n \u276f tests/core/geographic-match-identity.test.ts:21:80\n     19|   ['extra rules key', {rules:{id:'victory',version:1,extra:true}}, /un\u2026\n     20| ] as const)('refuses geographic identity with %s', (_name, change, mes\u2026\n     21|   expect(() => deserializeVersionedMatch(JSON.stringify({...base,...ch\u2026\n       |                                                                                ^\n     22| });\n     23|\n\n\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af\u23af[1/2]\u23af\n\n"
+      }
+    }
+  ],
+  "restoredSha256": "7dd9a9a107a33ce667d029410db99d5bd167fcf1d1c0a7855936b06711466489",
+  "exactRestoration": true
+}
