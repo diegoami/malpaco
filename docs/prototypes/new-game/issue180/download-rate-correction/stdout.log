@@ -1,0 +1,9 @@
+
+Running 4 tests using 2 workers
+
+  ✓  2 [1280x800] › tests/e2e/computer-cards.spec.ts:56:1 › three consecutive computers perform literal Raid decisions and reach the correct human-loss choices (7.8s)
+  ✓  1 [1280x800] › tests/e2e/computer-cards.spec.ts:75:1 › three consecutive computers discard oldest cards and return a living human to actual board placement (8.0s)
+  ✓  3 [1920x1080] › tests/e2e/computer-cards.spec.ts:56:1 › three consecutive computers perform literal Raid decisions and reach the correct human-loss choices (7.7s)
+  ✓  4 [1920x1080] › tests/e2e/computer-cards.spec.ts:75:1 › three consecutive computers discard oldest cards and return a living human to actual board placement (7.9s)
+
+  4 passed (21.2s)
