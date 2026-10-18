@@ -1,0 +1,55 @@
+✖ Vite ignores only its own retained cache and preserves application and test watching (1560.519629ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1600.339108
+
+✖ failing tests:
+
+test at tools/harness/test/dev-watch.test.mjs:7:1
+✖ Vite ignores only its own retained cache and preserves application and test watching (1560.519629ms)
+  AssertionError [ERR_ASSERTION]: probe.mjs failed; complete evidence: /home/diego/projects/malpaco/.cache/issue187-work/.cache/dev-watch-check-aCBRWF
+  
+  node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: configuration must ignore only this checkout cache
+  + actual - expected
+  
+  + '**/.cache/**'
+  - '/home/diego/projects/malpaco/.cache/issue187-work/.cache'
+  
+      at file:///home/diego/projects/malpaco/.cache/issue187-work/docs/prototypes/dev-watch/issue187/acceptance/probe.mjs:31:12
+      at Array.map (<anonymous>)
+      at file:///home/diego/projects/malpaco/.cache/issue187-work/docs/prototypes/dev-watch/issue187/acceptance/probe.mjs:30:65
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '**/.cache/**',
+    expected: '/home/diego/projects/malpaco/.cache/issue187-work/.cache',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+  
+  Node.js v24.21.0
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/issue187-work/tools/harness/test/dev-watch.test.mjs:18:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,23 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: configuration must ignore only this checkout cache
++ actual - expected
+
++ '**/.cache/**'
+- '/home/diego/projects/malpaco/.cache/issue187-work/.cache'
+
+    at file:///home/diego/projects/malpaco/.cache/issue187-work/docs/prototypes/dev-watch/issue187/acceptance/probe.mjs:31:12
+    at Array.map (<anonymous>)
+    at file:///home/diego/projects/malpaco/.cache/issue187-work/docs/prototypes/dev-watch/issue187/acceptance/probe.mjs:30:65
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '**/.cache/**',
+  expected: '/home/diego/projects/malpaco/.cache/issue187-work/.cache',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.21.0

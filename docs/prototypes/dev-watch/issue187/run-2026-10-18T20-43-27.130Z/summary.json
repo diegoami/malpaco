@@ -1,0 +1,38 @@
+[
+  {
+    "name": "baseline",
+    "initialWatches": 45,
+    "afterAddedWatches": 79,
+    "initialDirectories": 18,
+    "afterAddedDirectories": 28,
+    "http": {
+      "/src/main.ts": 200,
+      "/data/maps/probe.json": 200,
+      "/probe.txt": 200
+    },
+    "changes": [
+      "src/main.ts",
+      "data/maps/probe.json",
+      "public/probe.txt",
+      "tests/probe.test.ts"
+    ]
+  },
+  {
+    "name": "proposed",
+    "initialWatches": 10,
+    "afterAddedWatches": 10,
+    "initialDirectories": 7,
+    "afterAddedDirectories": 7,
+    "http": {
+      "/src/main.ts": 200,
+      "/data/maps/probe.json": 200,
+      "/probe.txt": 200
+    },
+    "changes": [
+      "src/main.ts",
+      "data/maps/probe.json",
+      "public/probe.txt",
+      "tests/probe.test.ts"
+    ]
+  }
+]
