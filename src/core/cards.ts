@@ -15,14 +15,14 @@ import type { GameState } from './types';
 export type CardKind = 'Anchor'|'Compass'|'Lantern'|'Surge'|'Raid'|'Wild'|'Shield'|'Squall';
 export const CARD_COMPOSITION: Readonly<Record<CardKind,number>> = Object.freeze({Anchor:11,Compass:7,Lantern:4,Surge:4,Raid:4,Wild:5,Shield:4,Squall:1});
 export const HAND_LIMIT = 5;
-export interface CardState {drawPile:CardKind[];discardPile:CardKind[];hands:Record<string,CardKind[]>;pendingDiscard?:{readonly player:string}}
+export interface CardState {drawPile:CardKind[];discardPile:CardKind[];hands:Record<string,CardKind[]>;pendingDiscard?:{readonly player:string};pendingRaid?:PendingRaid}
 export interface CardView {readonly drawCount:number;readonly discardCount:number;readonly handCounts:Readonly<Record<string,number>>;readonly hand:readonly CardKind[]}
 export function cardView(state:GameState,viewer:string):CardView {
  const c=state.cards;return {drawCount:c?.drawPile.length??0,discardCount:c?.discardPile.length??0,handCounts:Object.fromEntries(state.players.map(p=>[p.id,c?.hands[p.id]?.length??0])),hand:[...(c?.hands[viewer]??[])]};
 }
 /** Stable deck-v1 protocol: kind order as above, top at index zero. */
 export function initializeCards(state:GameState,rng:DeterministicRng):void {
- if(state.rules.cards!=='deck-v1' && state.rules.cards!=='trade-v1')return;
+ if(state.rules.cards!=='deck-v1' && state.rules.cards!=='trade-v1' && state.rules.cards!=='raid-v1')return;
  const cards=(Object.entries(CARD_COMPOSITION) as [CardKind,number][]).flatMap(([k,n])=>Array<CardKind>(n).fill(k));
  state.cards={drawPile:rng.shuffled(cards),discardPile:[],hands:Object.fromEntries(state.players.map(p=>[p.id,[]]))};
  state.rng=rng.snapshot();
@@ -34,7 +34,7 @@ export function drawReward(state:GameState):void {
  if(card==='Squall'){c.discardPile.push(...c.hands[player]!,card);c.hands[player]=[];}else c.hands[player]!.push(card);
 }
 
-/** Reserved for T39's separately versioned targeted Raid protocol; never active in trade-v1. */
+/** Public target choice after a Raid set is spent; absent in historical stages. */
 export interface PendingRaid { readonly player:string }
 export type TradeableCardKind='Anchor'|'Compass'|'Lantern'|'Surge'|'Raid';
 /** [designed] approved T23 variety-030: one genuine kind, zero to two Wilds.

@@ -1,0 +1,99 @@
+{
+  "utc": "2026-10-18T13:15:24.328706+00:00",
+  "base": "cb95d454",
+  "frozenSets": {
+    "docs/prototypes/new-game/T39/parent-acceptance/FROZEN-ACCEPTANCE.json": {
+      "tests/core/raid-shield-fixture.ts": "3cf5c39f71d4e94ef8f0dba754b4a5de71e4997c71c3f85e2ed105c0224c172f",
+      "tests/core/raid-shield.test.ts": "94720af53ac697a0e3899803477a462b60a2289b2841d46cd0300b463689c2b3",
+      "tests/core/raid-shield-replay.test.ts": "bc0010e21224fcaeb7d5dd806ecbca7f1b3dd017bd411c757bf87e9ca3cbfd2e",
+      "tests/core/card-sets-replay.test.ts": "5a16d00bc943b88fb7aba6f4f567afe35b56387b0d9b7d8d25c2010fc36520d4",
+      "docs/prototypes/new-game/T38/parent-acceptance/FROZEN-ACCEPTANCE.json": "0b596b473a6ee9a97f1076f86de6677b1f17c6624fa206f2a45376817aabd73d",
+      "docs/prototypes/new-game/T39/fixtures/legal-before-trade.json": "e5e774d95108158941539c94af4a9248ba6cb35b5119130593fde8fdd10314b4",
+      "docs/prototypes/new-game/T39/fixtures/legal-pending-raid.json": "f1e8b6959a36c712d16e8a86b76af6c32252c73e49ac7e1352205c2f10e39669",
+      "docs/prototypes/new-game/T39/fixtures/legal-shielded-raid.json": "19e6a01713b1869c8d988f583669246516297db67b5ef466ea7103762fe59a28",
+      "docs/prototypes/new-game/T39/fixtures/legal-unshielded-raid.json": "507f49be2d94d5b37695e9e30e87d219dcd7eb9ea94001da09f088b8196532f6"
+    },
+    "docs/prototypes/new-game/T71/parent-acceptance/FROZEN-ACCEPTANCE.json": {
+      "tests/ui/compact-panels.test.ts": "62ed432e351dcd986965fb66c2431af29653190951f67bfc875fc20037cbc41b",
+      "tests/e2e/compact-panels.spec.ts": "d61582025f1801d7abc6eee307e12d8a06036cdf4477212736bfb935778347c1",
+      "tests/e2e/battle-controls.spec.ts": "a3f68704259f7929b7bb90a380f44f9394b70a766fbf90ee6cadd6b08fc98102",
+      "docs/prototypes/new-game/T71/fixtures/fixture-discovery.json": "e765d2a309ea4fada9242068bfc55d7cb9a25cdf8f9537797dd67ccfb0a3a320",
+      "docs/prototypes/new-game/T71/fixtures/geographic-capture-movement.json": "324307add4c0cfe7ff2a500fa3999ace86ff7a0c8acd149fbef2127297b654d1",
+      "docs/prototypes/new-game/T71/fixtures/geographic-capture-pending.json": "9a6de35d7969d4f42196edb4f93504fb74cc2b300cbdce240c168cbd6ed436aa",
+      "docs/prototypes/new-game/T71/fixtures/geographic-exchange.json": "9a6de35d7969d4f42196edb4f93504fb74cc2b300cbdce240c168cbd6ed436aa",
+      "docs/prototypes/new-game/T71/fixtures/geographic-friendly-movement.json": "8de6132224e17c91c7a9a641a2edfeb28a42c5e67f5a47b2d1379f63b5c7dbeb",
+      "docs/prototypes/new-game/T71/fixtures/geographic-reinforcement.json": "fbc035e2bb7b3e1aa90ded8fd29a9cba4643beaa0ee58a9281eef26f0d3f8807",
+      "docs/prototypes/new-game/T71/fixtures/geographic-repeated-pair.json": "a9209ff80c6ef904de478e0915043f9256db1bcf5941edc0b952a9cde103b110",
+      "docs/prototypes/new-game/T71/fixtures/geographic-selection-ready.json": "12c3e56af38f8ccebf606f01faa5d9927280ca8eafd9adccd2daac3d3d60dfd7",
+      "docs/prototypes/new-game/T71/fixtures/reference-capture-movement.json": "21b6b2e41ff1c8eb791f1a25a297e168bcb616dba85ff1fc19644eccad5b7dca",
+      "docs/prototypes/new-game/T71/fixtures/reference-capture-pending.json": "dda5d032f8ea5a2d637b5e94236f62a9ac2519a51d6bf0c03dcaf7101977dbc7",
+      "docs/prototypes/new-game/T71/fixtures/reference-exchange.json": "dda5d032f8ea5a2d637b5e94236f62a9ac2519a51d6bf0c03dcaf7101977dbc7",
+      "docs/prototypes/new-game/T71/fixtures/reference-friendly-movement.json": "789d6e8eaeb0e3613708bb74944ced933475aa1abf94443bf16d14c5551b48b1",
+      "docs/prototypes/new-game/T71/fixtures/reference-reinforcement.json": "42a1f4090a13636736892d58198cadb8e63942edeab4b92bd75b389857adffc2",
+      "docs/prototypes/new-game/T71/fixtures/reference-repeated-pair.json": "e5e47221d7d2a7d96039069c76e6c2c58fddb75025c089ea13c21b6b8da3ba92",
+      "docs/prototypes/new-game/T71/fixtures/reference-selection-ready.json": "b29fb15e9fad304bff6859fc0b43bc8537fb1a1104f7a630267b058c1d1e365e",
+      "tests/e2e/slice.spec.ts": "a8b2de389bbe4bec2bb39841bacd8d35247fc531fdf4a87954dcdaa19237db72"
+    }
+  },
+  "sources": {
+    "src/core/cards.ts": {
+      "baseline": "33dfbbb9c9457708599cd7792d16579b81e86d160afaad8d600c1f325a6c3177",
+      "candidate": "25bd5df153885e8ae1445bbd41bed52dbf7ce9a2c97c1b8bb19a97326455fd57",
+      "production": "25bd5df153885e8ae1445bbd41bed52dbf7ce9a2c97c1b8bb19a97326455fd57"
+    },
+    "src/core/index.ts": {
+      "baseline": "fff96f5683645f3039c57c81779cafedfd3b3ce19cb208994b348773828b3143",
+      "candidate": "bad317dec8cf1fbf04d74f3bef5543ca7302cfa318987f7c1bb0c6740a25da32",
+      "production": "bad317dec8cf1fbf04d74f3bef5543ca7302cfa318987f7c1bb0c6740a25da32"
+    },
+    "src/core/match-save.ts": {
+      "baseline": "1aa46b9d1e6f7ade3fc42fd7030fa89ddede65d98bbc73f9324f2d5cfea8d7e1",
+      "candidate": "48c8dd5cbeff3d934dba24bbed4a9174ab2a77bfd06296798f85140a515d2155",
+      "production": "48c8dd5cbeff3d934dba24bbed4a9174ab2a77bfd06296798f85140a515d2155"
+    },
+    "src/core/raid.ts": {
+      "baseline": null,
+      "candidate": "ccf7c5e88a0d1b7043e7a9df22c819264e1009032f8a7843ae6c89bb34549297",
+      "production": "ccf7c5e88a0d1b7043e7a9df22c819264e1009032f8a7843ae6c89bb34549297"
+    },
+    "src/core/rules.ts": {
+      "baseline": "2acc2403c816dbf3f9036acff609b2ac67056064270a2d4674413f4bf4fd0e77",
+      "candidate": "ed9711b35a69071b4c60cddb42f30c9041b212dd47c5839a6ffb2706898b868a",
+      "production": "ed9711b35a69071b4c60cddb42f30c9041b212dd47c5839a6ffb2706898b868a"
+    },
+    "src/core/setup.ts": {
+      "baseline": "2ce20b0a0b67ab53f2171d456acc66044c2ef084f640f5a0b01a082ab99178b0",
+      "candidate": "4c64a58768f8d5ac23a61b42e645332c5ee7171cda5dd2f02213d9904f022a46",
+      "production": "4c64a58768f8d5ac23a61b42e645332c5ee7171cda5dd2f02213d9904f022a46"
+    },
+    "src/core/state.ts": {
+      "baseline": "314bf2945975ec085dc1f45c771e22a4552aa47e2bd039329f9fb8f2cef94042",
+      "candidate": "1f5642915e4e40752649efb5c6d191ab7a5b85fe4760fc7d302961d8d79ec8b4",
+      "production": "1f5642915e4e40752649efb5c6d191ab7a5b85fe4760fc7d302961d8d79ec8b4"
+    },
+    "src/core/types.ts": {
+      "baseline": "8e39613cc00af38524d55620886db121efd3b934de715ed4519de42ceb474430",
+      "candidate": "ff79ab5b60890f325f487ab5d17aef7a4d534677011e96f42658c3d2e3f144d1",
+      "production": "ff79ab5b60890f325f487ab5d17aef7a4d534677011e96f42658c3d2e3f144d1"
+    },
+    "src/ui/gameEventLog.ts": {
+      "baseline": "bab7ead955614bde6fcb4389171babf199699302c4d45b6b8530218fdc362a1b",
+      "candidate": "b21b2ae538fcfda78ed74c7d1989a46c8912f3558005a4b35815498ae7a10d9a",
+      "production": "b21b2ae538fcfda78ed74c7d1989a46c8912f3558005a4b35815498ae7a10d9a"
+    },
+    "src/ui/panel.ts": {
+      "baseline": "e2a8e0adecf9206f431cbe37e8ca8285338c5c55d6da19bdf11b793df691c67d",
+      "production": "5af365091c7bc846e943471b24502c79d275eaff08ada92d50d1d29e1413983a",
+      "mechanicalCase": "    case \"raid\":\n      return entry.shielded ? `T${entry.turn} ${name(entry.player)} raid at ${where(entry.province)} cancelled by Shield` : `T${entry.turn} ${name(entry.player)} raids ${where(entry.province)}: ${entry.before} \u2192 ${entry.after}`;\n",
+      "onlyInsertedCase": true,
+      "historicalWholePanelNotInstalled": true
+    }
+  },
+  "preservedT71": {
+    "src/ui/referenceBattleGame.ts": "5b19d8b07233be5d7c9982aabf946f8bfddce282111ea8c8d045c9faf0e7fffb",
+    "src/ui/panelDetail.ts": "bedbbfa613696f03d92d047bff1e49bc9f76133c9a0ea8008def2e48df46b632",
+    "src/ui/battleView.ts": "b1778ba732c5cf03c3c400dd036ee0a26b8b1af01f8e0a9a8056434cbb27105b",
+    "src/styles.css": "1a73277c520286b44664f2c74bfd1201e3c2e92d9274093944abc2a6ff441555"
+  },
+  "reuseReason": "Nine full mirrors match parent source hashes; current T71 Panel differs only by the identical public Raid formatter case. Parent core omission controls remain applicable."
+}

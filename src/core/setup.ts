@@ -81,7 +81,7 @@ function createGameValidated(
 
   const state: GameState = {
       map: board.map, rules, players, ownerOf, armies, currentPlayer: firstSeat,
-      phase: rules.cards === "trade-v1" ? "cards" : rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
+      phase: (rules.cards === "trade-v1" || rules.cards === "raid-v1") ? "cards" : rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
       reinforcementPool: 0, turnNumber: 1, capturedThisTurn: false, rng: rng.snapshot(), computerRngs,
       ...(rules.victoryOptions ? { roundOrigin: firstSeat } : {}),
       log: [{ event: "game_started", seed: validated.seed, players: players.length }],

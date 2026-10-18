@@ -14,6 +14,7 @@ export interface GameEvent {
   readonly notes: readonly string[];
 }
 const ACTION_NAMES: Record<Action["kind"], string> = {
+  raidTarget: "Raid target",
   tradeCards: "Trade cards", skipCards: "Skip cards",
   discardCard: "Card discard",
   reinforce: "Reinforcement placement", endReinforcement: "Start combat", attack: "Combat",

@@ -808,17 +808,51 @@ the existing income, including complete-island bonuses. Values stay fixed.
 Shields, Squall, three Wilds and mixed genuine kinds are invalid. Discards append
 in original hand order; these actions consume no RNG. `classifyCardSet` returns
 the structural `TradeableCardKind` or null, including Raid. T38's frozen stage
-refuses Raid effects atomically; exported `PendingRaid` is only the type seam
-for T39's separate targeted protocol. It creates no incomplete pending phase.
+refuses Raid effects atomically. Targeted effects and pending target state
+require the separate `raid-v1` protocol below; `trade-v1` creates no pending Raid.
 
 `REFERENCE_TRADE_CARD_MATCH_IDENTITY` and `GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY`
 select the existing generator version 1 with `cards/2` and action schema 4.
 The strict real codec reconstructs all state from options and ordinary actions.
 The `cards/1` plus schema 3 deck preset, victory identities and legacy saves
-retain their old semantics; future `cards/3`/schema 5 is refused. Playable defaults
+retain their old semantics. T39 adds the separate `cards/3`/schema 5 tuple;
+unsupported future `cards/4`/schema 6 remains refused. Playable defaults
 continue using `victoryRules`; T40 owns card UI and T41 computer card policy.
 The sole adjacent UI edit supplies exhaustive action/phase labels in
 `gameEventLog.ts`, under the task's mechanical scope amendment.
 
 Frozen independent acceptance, ordinary-action fixtures, baseline/mutation
 controls and production measurements live under `docs/prototypes/new-game/T38/`.
+
+
+### Raid targeting and automatic Shield defence (T39)
+
+`raidCardsRules(options?)` opts into `raid-v1`, preserving the existing optional
+cards phase and ordinary set classifier. Trading a Raid set spends its three
+cards once and records `pendingRaid.player`; placement and unrelated actions
+remain blocked until `{kind:"raidTarget", province}` chooses any living enemy's
+country, without an adjacency requirement. Unknown or friendly targets fail
+without changing state, history or RNG. A successful target clears the pending
+choice and proceeds to reinforcement with ownership and the computed pool intact.
+
+The approved designed T23 variety-036/037 rules replace an unshielded stack with
+an inclusive uniform integer from 1 to `max(1, floor(stack/2))`, without an upper
+cap. Protocol choices pinned by this task are designed: one bounded rules-RNG
+draw even for a one-army target; a held Shield cancels the effect with no draw
+and discards the first Shield in hand order. The spent Raid set remains spent
+in either outcome. The public raid event records only player, target, defender,
+old/new armies, Shield cancellation and turn; it does not expose the remaining
+hand. Evidence: the pinned T23 variety inventory and
+[approved variety design](https://github.com/diegoami/isle-wars-archaeology/blob/ae298e37c2f5177039e55767607f9345b6cb0e7a/design/variety.md#the-raid-and-the-shield).
+
+`REFERENCE_RAID_CARD_MATCH_IDENTITY` and
+`GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY` retain their generator/1 and select
+cards/3 plus action schema 5. The actual strict codec reconstructs target choices,
+Shield cancellation and unshielded effects from options/actions. Historical
+deck-v1 and trade-v1 identities remain exact; trade-v1 still refuses Raid effects.
+The exhaustive event-log label and public sidebar formatter are mechanical
+consumers of the new action/event; T71's full-history/scroller remains unchanged.
+Current default games, ordinary combat and computer policy are unchanged;
+T40 owns card controls and T41 owns computer card policy. Frozen acceptance,
+legal action-only fixtures and measured evidence live under
+`docs/prototypes/new-game/T39/`.

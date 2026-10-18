@@ -41,6 +41,8 @@ function describeLog(state: GameState, entry: LogEntry): string | null {
   const name = (id: string) => state.players.find((p) => p.id === id)?.name ?? id;
   const where = (id: string) => province(state.map, id)?.name ?? id;
   switch (entry.event) {
+    case "raid":
+      return entry.shielded ? `T${entry.turn} ${name(entry.player)} raid at ${where(entry.province)} cancelled by Shield` : `T${entry.turn} ${name(entry.player)} raids ${where(entry.province)}: ${entry.before} → ${entry.after}`;
     case "attack": {
       const result = entry.captured ? `took ${where(entry.to)}` : entry.penalty ? `lost ${where(entry.from)}` : `-${entry.attackerLosses} / -${entry.defenderLosses}`;
       return `T${entry.turn} ${name(entry.attacker)}: ${where(entry.from)} → ${where(entry.to)}, ${result}`;

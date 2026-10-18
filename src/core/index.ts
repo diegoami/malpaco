@@ -84,3 +84,7 @@ export {tradeCardsRules} from './state';
 export {classifyCardSet} from './cards';
 export type {TradeableCardKind,PendingRaid} from './cards';
 export {REFERENCE_TRADE_CARD_MATCH_IDENTITY,GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY} from './match-save';
+
+export {raidCardsRules} from './state';
+export {raidStackAfter} from './raid';
+export {REFERENCE_RAID_CARD_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY} from './match-save';
