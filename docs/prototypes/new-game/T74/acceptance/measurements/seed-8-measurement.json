@@ -1,0 +1,127 @@
+{
+  "seed": 8,
+  "ok": true,
+  "attempts": 5,
+  "refusals": 4,
+  "resultHash": "8f8a84c8de5f5827f4cb1e8fa3d344480e5fafb5d1210ff3e7ac84f598444ba1",
+  "rngHash": "f5344f5dfb6650e396e0eaf4e4a2462c5251f5c17ac16af683a5af2a1c5389ed",
+  "drawingVersion": "t72-relocated-flow-spread-v2",
+  "baselineErrors": [],
+  "derivationMs": 3169.525377999991,
+  "checks": {
+    "attachment": [],
+    "water": [],
+    "traceability": [],
+    "preserved": []
+  },
+  "failures": [],
+  "network": {
+    "drawingVersion": "t72-relocated-flow-spread-v2",
+    "edges": 526,
+    "sharedEdges": 86,
+    "coastEdges": 440,
+    "spreadClusters": [
+      {
+        "c": [
+          361.2561848958333,
+          77.22395833333333
+        ],
+        "axis": [
+          0.9369793248110291,
+          -0.3493848091670103
+        ],
+        "radius": 28,
+        "width": 14,
+        "count": 3
+      },
+      {
+        "c": [
+          108.69384765625,
+          232.64485677083334
+        ],
+        "axis": [
+          -0.9756339264719462,
+          0.21940474360626944
+        ],
+        "radius": 28,
+        "width": 14,
+        "count": 3
+      },
+      {
+        "c": [
+          651.59462890625,
+          85.8072265625
+        ],
+        "axis": [
+          -0.9883729124050047,
+          0.15204928814055305
+        ],
+        "radius": 28,
+        "width": 14,
+        "count": 5
+      },
+      {
+        "c": [
+          657.6599609375,
+          380.4044921875
+        ],
+        "axis": [
+          -0.9645991501151174,
+          -0.26372045729748284
+        ],
+        "radius": 28,
+        "width": 14,
+        "count": 5
+      }
+    ]
+  },
+  "connectedCells": 46,
+  "hit40": 46,
+  "areaResiduals": [
+    {
+      "island": "island_0",
+      "residual": 0
+    },
+    {
+      "island": "island_1",
+      "residual": 0
+    },
+    {
+      "island": "island_2",
+      "residual": 0
+    },
+    {
+      "island": "island_3",
+      "residual": 0
+    },
+    {
+      "island": "island_4",
+      "residual": 0
+    },
+    {
+      "island": "island_5",
+      "residual": 0
+    },
+    {
+      "island": "island_6",
+      "residual": 0
+    },
+    {
+      "island": "island_7",
+      "residual": 0
+    },
+    {
+      "island": "island_8",
+      "residual": 0
+    }
+  ],
+  "sharedSegments": 2110,
+  "sharedDisagreements": 0,
+  "beforeInputUntouched": true,
+  "resultUntouched": true,
+  "replayedResultExact": true,
+  "saveExact": true,
+  "saveHash": "499507d176404901be578ab9b76e7368f242f992aa46baa94ffa0cbfd176d870",
+  "candidateHash": "1e47c209d6969422222bfa126eb8af280319327d0b59a73ae7e8babffcfadf13",
+  "accepted": true
+}

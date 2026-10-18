@@ -1,0 +1,24 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t74-work
+
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 1994
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 0
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 1
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 6
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 7
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 513
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 749
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 2
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 3
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 4
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 5
+ ↓ tests/ui/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 8
+ ✓ tests/ui/generated-geography-presentation.test.ts > retains all original398 refusal attempts and exact final RNG without deriving a replacement 5020ms
+ ↓ tests/ui/generated-geography-presentation.test.ts > normal cards1994 save replays its original state and geography
+ ↓ tests/ui/generated-geography-presentation.test.ts > explicitly rejects unsupported input rather than returning old polygons
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 14 skipped (15)
+   Start at  22:17:56
+   Duration  5.56s (tests 92%, transform 7%, import 1%)
+

@@ -1,0 +1,39 @@
+{
+  "records": [
+    {
+      "name": "one-sided-shared-boundary",
+      "exit": 1,
+      "signal": null,
+      "assertionFailure": true
+    },
+    {
+      "name": "omitted-route-endpoint",
+      "exit": 1,
+      "signal": null,
+      "assertionFailure": true
+    },
+    {
+      "name": "input-mutated-after-derivation",
+      "exit": 1,
+      "signal": null,
+      "assertionFailure": true
+    },
+    {
+      "name": "omitted-flow",
+      "exit": 1,
+      "signal": null,
+      "assertionFailure": true
+    },
+    {
+      "name": "omitted-engine-rng",
+      "exit": 1,
+      "signal": null,
+      "assertionFailure": true
+    }
+  ],
+  "sourceBefore": "ec0bdf8aad3b67b847be19926bf2470738a498f99f6aa762d7a28a944dbe548a",
+  "sourceAfter": "ec0bdf8aad3b67b847be19926bf2470738a498f99f6aa762d7a28a944dbe548a",
+  "modeBefore": 420,
+  "modeAfter": 420,
+  "restored": true
+}

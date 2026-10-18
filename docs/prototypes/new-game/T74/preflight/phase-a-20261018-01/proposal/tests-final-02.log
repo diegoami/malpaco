@@ -1,0 +1,31 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t74-work
+
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation-service.test.ts > returns before deferred work, deduplicates pending content, snapshots input and freezes shared cache results 25ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation-service.test.ts > separates same-seed different accepted geometry and versions and evicts least recently used results 2ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation-service.test.ts > rejects failure and retries the identical content without caching failure 2ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation-service.test.ts > cancels one subscriber without cancelling shared work, and rejects preaborted requests 2ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation-service.test.ts > drops fully cancelled/stale results and starts fresh work for a later subscriber 1ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation-service.test.ts > rejects mismatched version/content, permits retry, and rejects disposed work/stale events 1ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation-service.test.ts > explicitly rejects worker errors and synchronous transport failures 1ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 1994 5256ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 0 5548ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 1 7279ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 6 4146ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 7 4849ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 513 3661ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 749 4867ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 2 5032ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 3 9448ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 4 6645ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 5 3317ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > matches frozen drawing and retains actual engine/save/RNG bytes 8 4741ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > retains all original398 refusal attempts and exact final RNG without deriving a replacement 4763ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > normal cards1994 save replays its original state and geography 469ms
+ ✓ docs/prototypes/new-game/T74/preflight/phase-a-20261018-01/proposal/generated-geography-presentation.test.ts > explicitly rejects unsupported input rather than returning old polygons 2ms
+
+ Test Files  2 passed (2)
+      Tests  22 passed (22)
+   Start at  21:45:27
+   Duration  70.44s (tests 99%)
+
