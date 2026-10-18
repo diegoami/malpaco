@@ -1,3 +1,7 @@
+import time
+from datetime import datetime, timezone
+started_utc = datetime.now(timezone.utc).isoformat()
+started_monotonic = time.monotonic()
 """Run focused browser checks in the pinned image, retaining every output freshly."""
 from pathlib import Path
 import subprocess,tempfile,tarfile,hashlib,json,sys,io
@@ -36,7 +40,7 @@ with tarfile.open(out/'raw-outputs.tar.gz','w:gz') as a:
  for p in paths:a.add(p,arcname=str(p.relative_to(raw)))
 with tarfile.open(out/'raw-outputs.tar.gz') as a:assert all(a.extractfile(str(p.relative_to(raw))).read()==p.read_bytes() for p in paths)
 (out/'.gitignore').write_text('/raw/\n')
-report={'command':command,'exit':r.returncode,'sourceHashes':{p:sha(b) for p,b in inputs.items()},'sourcesUnchangedDuringRun':all((repo/p).read_bytes()==b for p,b in inputs.items()),'archiveSha256':sha((out/'raw-outputs.tar.gz').read_bytes()),'archiveMemberHashes':{str(p.relative_to(raw)):sha(p.read_bytes()) for p in paths},'outputTail':(raw/'output.txt').read_text()[-7000:]}
+report={'startedUtc':started_utc,'endedUtc':datetime.now(timezone.utc).isoformat(),'durationSeconds':time.monotonic()-started_monotonic,'command':command,'exit':r.returncode,'sourceHashes':{p:sha(b) for p,b in inputs.items()},'sourcesUnchangedDuringRun':all((repo/p).read_bytes()==b for p,b in inputs.items()),'archiveSha256':sha((out/'raw-outputs.tar.gz').read_bytes()),'archiveMemberHashes':{str(p.relative_to(raw)):sha(p.read_bytes()) for p in paths},'outputTail':(raw/'output.txt').read_text()[-7000:]}
 (out/'report.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({'output':str(relative),'exit':r.returncode,'outputTail':report['outputTail']},indent=2))
 sys.exit(r.returncode)

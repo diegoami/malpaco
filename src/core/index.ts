@@ -63,9 +63,14 @@ export {
   runAllFairnessChecks,
 } from "./board-fairness";
 
-export { MATCH_SAVE_VERSION, deserializeMatch, serializeMatch, REFERENCE_MATCH_IDENTITY, deserializeVersionedMatch, serializeVersionedMatch } from "./match-save";
+export { MATCH_SAVE_VERSION, deserializeMatch, serializeMatch, REFERENCE_MATCH_IDENTITY, GEOGRAPHIC_MATCH_IDENTITY, deserializeVersionedMatch, serializeVersionedMatch } from "./match-save";
 export type { MatchIdentity, LoadedVersionedMatch } from "./match-save";
 
 export { computerAction } from "./computer";
 
 export { createReferenceGame } from "./reference-game";
+
+export { generateGeographicBoard, generateGeographicBoardWithRng } from "./geographic-board";
+export type { GeographicBoardResult } from "./geographic-board";
+export { createGeographicGame } from "./geographic-game";
+export type { GeographicGameResult } from "./geographic-game";

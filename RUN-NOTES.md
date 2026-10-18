@@ -917,3 +917,8 @@ T35 acceptance PLAN: stack approved8fb51e5 whileT34correctedCIruns; no producer 
 
 
 T35 parent preflight END (2026-10-18 resume): preserved prior absent-producer failure and disposable mock-positive 12 focused/618 units+6 harness/build/100 seeds/24 pinned browser results. Mock driver reports allPositive and exact productionRestored; no producer exists. Frozen acceptance and hash-verified 897-member archive retained before dispatch; all loose originals preserved. Owner resumes T35 then T36 under standing native Sol Medium implementation and independent Claude Sonnet High review choices. Integrate current main without rewriting history before producer dispatch; no duplicate CI.
+
+
+T35 implementation PLAN (2026-10-18): native Sol Medium adopts parent-proven integer conversion, actual shared-RNG seam and explicit geographic/1 replay dispatch in existing PR160 worktree. Frozen acceptance unchanged; first rerun six current-parent feasibility seeds with original constraints before production edits. Preserve all originals, retain fresh focused/sweep/full/build/pinned browser outputs and exact source archives; no CI/review/merge.
+
+T35 implementation checkpoint: unchanged six-seed current-parent smoke6/6 precedes adoption; frozen acceptance12/12 and new exhaustion-message fail-before/pass-after13/13 pass. First sweep100/100/noinvalid stable inputs; final-source sweep running.636Vitest+sixharness/build pass. Initial pinned browsers23/24:1920route#generated-prototype absent at5000ms, identical1280casepasses; failure preserved and exact24 sequential rerun follows after other validation stops. No assertion/timeout/UI change. Verified105member initial evidence archive includes parent resume-absent check. NoCI/review/merge.
