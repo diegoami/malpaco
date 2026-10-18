@@ -1,0 +1,3 @@
+# T71 owner preview
+
+Package source52e38676276f74765022b5ac4700de9637978d72, same four runtime files as validateda67d09a. Package SHA256b261bfaca232272122047e65328ef1d3d456e2f00009a57e25884c7dfde94e34. All8 served files match package checksums; Windows30files verified, olderbundles/gallerybackup retained. Gallery screenshots copied byte-exact from fresh production28case capture path, already retained in implementation archive. Active localreview URL http://localhost:4177/; WindowsC:\Users\diego\malpaco-preview\OPEN-REVIEW.html points at versionedbundle. Compiledpackage/BUILD/checksums/scripts/receipts/gallery retained here. Owner must judge Compact/Detailed density and reservedspace beforemerge; this receipt is not that judgment or CI approval.
