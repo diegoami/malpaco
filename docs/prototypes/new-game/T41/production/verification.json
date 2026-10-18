@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "4af999a0fe19350a8ed4d5f0c1a66c21879cb4e4",
+  "command": [
+    "python3",
+    "docs/prototypes/new-game/T41/production/verify-adoption.py"
+  ],
+  "startedUtc": "2026-10-18T16:25:24.360275+00:00",
+  "seconds": 0.23438685400469694,
+  "exit": 0,
+  "stdout": "{\"exactSources\": 5, \"frozenFiles\": 68, \"validatedInputs\": 217, \"verifiedArchiveMembers\": 571, \"mismatches\": 0, \"heavyChecks\": \"reused independent parent evidence; no new test run\"}\n",
+  "stderr": "",
+  "freshChecks": "Read-only adoption/hash/archive verification only. Heavy test results below are inherited independent parent executions.",
+  "nativeTelemetry": "Aggregate native agent token/duration telemetry unavailable; no agent exit code claimed."
+}

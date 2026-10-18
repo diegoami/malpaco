@@ -1,0 +1,17 @@
+{
+  "R1": {
+    "severity": "nonblocking",
+    "finding": "discardTop is public in ComputerDecisionView; confirm design provenance.",
+    "assessment": "T40 approved Scope explicitly permits public discard-top/counts; T41 task uses public/own-hand inputs. Current decideComputerAction does not read discardTop, so there is no hidden access or changed policy outcome. Retain this provenance note and follow up after merge if clearer pinned-document trace is useful.",
+    "references": [
+      "docs/tasks/T40.md",
+      "docs/tasks/T41.md",
+      "src/core/computer-view.ts",
+      "src/core/computer.ts"
+    ]
+  },
+  "R2": {
+    "severity": "nonblocking",
+    "assessment": "Review confirms heavy checks are honestly described as reused. No action required."
+  }
+}

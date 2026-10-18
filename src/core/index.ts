@@ -88,3 +88,7 @@ export {REFERENCE_TRADE_CARD_MATCH_IDENTITY,GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY
 export {raidCardsRules} from './state';
 export {raidStackAfter} from './raid';
 export {REFERENCE_RAID_CARD_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY} from './match-save';
+
+export {computerView} from './computer-view';
+export type {ComputerDecisionView,ComputerCountry} from './computer-view';
+export {decideComputerAction} from './computer';

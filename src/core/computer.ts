@@ -1,44 +1,50 @@
-import { activePlayer, provincesOf } from "./state";
-import { friendlySources, friendlyTargets } from "./movement";
-import { legalAttacks } from "./rules";
-import type { Action, GameState } from "./types";
+import { activePlayer } from './state';
+import { classifyCardSet } from './cards';
+import { computerView } from './computer-view';
+import type { ComputerDecisionView } from './computer-view';
+import type { Action,GameState } from './types';
 
-/** [designed] Basic deterministic policy; priorities and finite budget in docs/prototypes/new-game/T32/README.md. */
-export function computerAction(state: GameState): Action | null {
-  const mover = activePlayer(state);
-  if (!mover || mover.kind !== "computer" || mover.eliminated || (state.phase === "finished" || state.phase === "human-loss")) return null;
-  if (state.phase === "capture") return { kind: "captureMove" };
-  if (state.phase === "reinforce") {
-    if (!state.reinforcementPool) return { kind: "endReinforcement" };
-    const held = provincesOf(state, mover.id);
-    const frontier = held.filter(id => {
-      const p = state.map.provinces.find(p => p.id === id)!;
-      return [...p.borders, ...p.seaLanes].some(n => state.ownerOf[n] !== mover.id);
-    });
-    const choices = frontier.length ? frontier : held;
-    choices.sort((a,b) => state.armies[b]! - state.armies[a]! || (a < b ? -1 : a > b ? 1 : 0));
-    return choices[0] ? { kind: "reinforce", province: choices[0], amount: state.reinforcementPool } : null;
+/** Host eligibility only; decision code receives no GameState or controller flags. */
+export function computerAction(state:GameState):Action|null {
+ const mover=activePlayer(state);
+ if(!mover||mover.kind!=='computer'||mover.eliminated||state.phase==='finished'||state.phase==='human-loss')return null;
+ return decideComputerAction(computerView(state));
+}
+/** Approved scripted baseline computer108/111/112, pinned ae298e37 computer.md.
+ * Army/Surge gain first, Raid last, oldest discard; no stream draws or strength
+ * timing/foresight. Designed stable ties: fewer Wilds, then indices/target IDs.
+ * Existing ordinary priorities and N-exchange budget are preserved.
+ */
+export function decideComputerAction(view:ComputerDecisionView):Action|null {
+ const p=view.playerId;if(!p||view.phase==='finished'||view.phase==='human-loss')return null;
+ const countries=new Map(view.countries.map(c=>[c.id,c])),owned=view.countries.filter(c=>c.owner===p),frontier=(id:string)=>countries.get(id)!.neighbours.some(n=>countries.get(n)?.owner!==p);
+ const enemies=view.countries.filter(c=>c.owner!==p),adjacent=enemies.filter(c=>c.neighbours.some(n=>countries.get(n)?.owner===p));
+ const raidTarget=()=>[...(adjacent.length?adjacent:enemies)].sort((a,b)=>b.armies-a.armies||(a.id<b.id?-1:a.id>b.id?1:0))[0];
+ if(view.pendingDiscard)return view.ownHand.length?{kind:'discardCard',handIndex:0}:null;
+ if(view.pendingRaid){const target=raidTarget();return target?{kind:'raidTarget',province:target.id}:null;}
+ if(view.phase==='cards'){
+  const sets:{indices:readonly[number,number,number];gain:number;wilds:number;raid:boolean}[]=[],h=view.ownHand;
+  for(let a=0;a<h.length;a++)for(let b=a+1;b<h.length;b++)for(let c=b+1;c<h.length;c++){
+   const indices=[a,b,c] as const,kind=classifyCardSet(indices.map(i=>h[i]!));if(!kind)continue;
+   if(kind==='Raid'&&(view.cardStage!=='raid-v1'||!adjacent.length))continue;
+   const gain=kind==='Surge'?view.reinforcementPool:kind==='Raid'?0:({Anchor:5,Compass:8,Lantern:15}as const)[kind];
+   sets.push({indices,gain,wilds:indices.filter(i=>h[i]==='Wild').length,raid:kind==='Raid'});
   }
-  let attacks = 0;
-  for (let i = state.history.length - 1; i >= 0; i--) {
-    const action = state.history[i]!;
-    if (action.kind === "endTurn" || action.kind === "friendlyMove" || action.kind === "watchComputers") break;
-    if (action.kind === "attack") attacks++;
-  }
-  if (state.phase === "attack" && attacks < state.map.provinces.length) {
-    const choices = legalAttacks(state).filter((a): a is Extract<Action,{kind:"attack"}> => a.kind === "attack" && state.armies[a.from]! > state.armies[a.to]!);
-    const key = (a: Extract<Action,{kind:"attack"}>) => a.from + "/" + a.to;
-    choices.sort((a,b) => state.armies[a.to]! - state.armies[b.to]! || state.armies[b.from]! - state.armies[a.from]! || (key(a) < key(b) ? -1 : key(a) > key(b) ? 1 : 0));
-    if (choices[0]) return choices[0];
-  }
-  // [designed] Move an interior reserve to a neighbouring frontier; no RNG draws.
-  const frontier = (id: string) => {
-    const p = state.map.provinces.find(p => p.id === id)!;
-    return [...p.borders, ...p.seaLanes].some(n => state.ownerOf[n] !== mover.id);
-  };
-  const moves = friendlySources(state).filter(id => !frontier(id)).flatMap(from =>
-    friendlyTargets(state, from).filter(frontier).map(to => ({ kind: "friendlyMove" as const, from, to })));
-  moves.sort((a,b) => state.armies[b.from]! - state.armies[a.from]! ||
-    (a.from < b.from ? -1 : a.from > b.from ? 1 : a.to < b.to ? -1 : a.to > b.to ? 1 : 0));
-  return moves[0] ?? { kind: "endTurn" };
+  sets.sort((a,b)=>Number(a.raid)-Number(b.raid)||b.gain-a.gain||a.wilds-b.wilds||a.indices[0]-b.indices[0]||a.indices[1]-b.indices[1]||a.indices[2]-b.indices[2]);
+  return sets[0]?{kind:'tradeCards',handIndices:sets[0].indices}:{kind:'skipCards'};
+ }
+ if(view.pendingCapture)return {kind:'captureMove'};
+ if(view.phase==='reinforce'){
+  if(!view.reinforcementPool)return {kind:'endReinforcement'};
+  const front=owned.filter(c=>frontier(c.id)),choices=[...(front.length?front:owned)];choices.sort((a,b)=>b.armies-a.armies||(a.id<b.id?-1:a.id>b.id?1:0));
+  return choices[0]?{kind:'reinforce',province:choices[0].id,amount:view.reinforcementPool}:null;
+ }
+ if(view.phase==='attack'&&view.attacksThisTurn<view.attackBudget){
+  const choices=view.attackPairs.filter(a=>countries.get(a.from)!.armies>countries.get(a.to)!.armies),key=(a:Extract<Action,{kind:'attack'}>)=>a.from+'/'+a.to;
+  choices.sort((a,b)=>countries.get(a.to)!.armies-countries.get(b.to)!.armies||countries.get(b.from)!.armies-countries.get(a.from)!.armies||(key(a)<key(b)?-1:key(a)>key(b)?1:0));
+  if(choices[0])return {...choices[0]};
+ }
+ const moves=view.movePairs.filter(a=>!frontier(a.from)&&frontier(a.to));
+ moves.sort((a,b)=>countries.get(b.from)!.armies-countries.get(a.from)!.armies||(a.from<b.from?-1:a.from>b.from?1:a.to<b.to?-1:a.to>b.to?1:0));
+ return moves[0]?{...moves[0]}:{kind:'endTurn'};
 }

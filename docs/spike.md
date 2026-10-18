@@ -900,3 +900,46 @@ therefore differs from the historical eight-file verifier's expected hash;
 `docs/prototypes/new-game/T40/result-layout-production.json` records the exact
 append and the frozen candidate equivalence. Neither adoption changed test
 assertions or configuration.
+
+
+### Baseline computer card decisions (T41)
+
+`computerView(state)` projects public countries, legal attack/movement pairs,
+public pile/hand counts and only the active player's own hand into
+`ComputerDecisionView`. `decideComputerAction(view)` is the deterministic policy;
+`computerAction(state)` first checks computer-seat eligibility. The decision
+receives no enemy hand contents, draw order or RNG state and consumes no RNG.
+All chosen trades, skips, Raid targets and pre-draw discards are ordinary engine
+actions, recorded for save/replay; replay uses those actions, never a newer policy.
+
+The approved scripted baseline maximizes current army-set/Surge gain, puts Raid
+last, then breaks ties by fewer Wilds and hand-index order. Raid selects the
+largest adjacent enemy stack, with target-ID ties; an imported mandatory Raid
+without an adjacent enemy completes against a legal remote enemy. Forced discard
+uses index zero, the oldest card. Shield remains an engine effect. Full hands and
+Squall continue through ordinary rules. Existing ordinary priorities and the
+map-size attack-exchange bound remain; this provides bounded turn completion,
+without strategic timing or foresight. The UI computer loop cancels queued steps
+while a human reward acknowledgement is pending and resumes through normal updates.
+Continue itself is presentation only and adds no saved action.
+
+Normal geographic creation with zero or one human now uses `raid-v1`, cards/3,
+action schema 5 through `geographicSetupIdentity`. Setup explicitly explains
+that two or more human seats use ordinary rules until T53 private handover.
+Manual geographic play and explicit reference compatibility retain their prior
+identities; loading preserves the file's historical identity and replay protocol.
+The earlier T40 paragraph describes its historical adoption: T41 now supplies
+the computer continuation and activates the supported normal-new-game boundary.
+
+Exactly five canonical sources are adopted without formatting or comment drift.
+`docs/prototypes/new-game/T41/production/adoption.json` records per-file reasons,
+source hashes and original command arrays/results. Run
+`python3 docs/prototypes/new-game/T41/production/verify-adoption.py` to verify the
+five source/candidate equalities, frozen 68 files, all 217 validated inputs and
+all archived evidence members. It reads committed archive parts in memory, so
+raw evidence paths inside the parent archive need no filesystem extraction.
+Independent parent positives (32 core, 54 browser, 784 Vitest plus 8 harness and
+build) are reused by exact input equivalence, not described as new producer runs.
+The original failures, five meaningful core mutants, restoration receipts and
+T40 layout counterexample remain preserved. Owner appearance judgment and final
+independent review/CI remain separate; this adoption makes no appearance claim.

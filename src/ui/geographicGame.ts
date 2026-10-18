@@ -1,9 +1,9 @@
-import {defaultOptions} from '../core';
+import {defaultOptions,raidCardsRules} from '../core';
 import type {GameOptions,GameState} from '../core';
 import {createGeographicGame} from '../core/geographic-game';
 import type {GeographicGameResult} from '../core/geographic-game';
-import {GEOGRAPHIC_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY} from '../core/match-save';
-import type {LoadedVersionedMatch} from '../core/match-save';
+import {GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY} from '../core/match-save';
+import type {LoadedVersionedMatch,MatchIdentity} from '../core/match-save';
 import {GeographicMapView} from './geographicMapView';
 import {ReferenceMapView} from './referenceMapView';
 import {ReferenceBattleGame} from './referenceBattleGame';
@@ -12,6 +12,14 @@ import {ReferenceMatchFiles} from './referenceMatchFiles';
 import type {MatchPresentation} from './matchPresentation';
 import {h} from './dom';
 
+/** Stage selection is shared by creation and its save/presentation identity.
+ * Card hands currently support a spectator or one human. Shared human hands
+ * keep the historical stage until the private handover workflow is available.
+ */
+export function geographicSetupIdentity(options:GameOptions,manual=false):MatchIdentity {
+ const humanCount=options.seats.filter(seat=>seat.kind==='human').length;
+ return !manual&&humanCount<=1?GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY;
+}
 type Accepted=Extract<GeographicGameResult,{ok:true}>;
 interface SetupDependencies {
  create:(options:GameOptions)=>GeographicGameResult;
@@ -61,8 +69,8 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
   const limit=h('select',{id:'geographic-round-limit'},h('option',{value:'off'},'Off'),...[20,30,40].map(n=>h('option',{value:String(n)},`${n} rounds`)));limit.value=String(roundLimit??'off');
   const victory=h('div',{class:'reference-victory-options'},h('div',{class:'reference-domination'},domination,h('label',{for:domination.id},'Domination win')),h('div',{},h('label',{for:limit.id},'Round limit'),limit));
   const alert=h('p',{role:'alert'});
-  const controller=createGeographicSetupController({create:dependencies.create??createGeographicGame,report:result=>{alert.textContent=`This seed could not produce a valid board after ${result.attempts} attempts. Choose another seed and start again.`;},mount:dependencies.mountAccepted??((options,result)=>mount(options,result.state,{identity:GEOGRAPHIC_MATCH_IDENTITY,label:'Generated islands',initialState:result.state,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers)}))});
-  const form=h('form',{class:'card setup-card victory-setup'},h('h1',{},'New geographic game'),h('p',{},manual?'Manual play on generated islands. Computer seats are driven manually.':'Play on generated islands against three Normal computers, or choose each seat’s controller. The seed fixes geography, deal and dice.'),h('label',{for:input.id},'Seed'),input,h('label',{for:count.id},'Seats'),count,fields,victory,h('button',{type:'submit',class:'primary'},'Start game'),alert);
+  const controller=createGeographicSetupController({create:dependencies.create??(options=>createGeographicGame(options,geographicSetupIdentity(options,manual).rules.id==='cards'?raidCardsRules(options):undefined)),report:result=>{alert.textContent=`This seed could not produce a valid board after ${result.attempts} attempts. Choose another seed and start again.`;},mount:dependencies.mountAccepted??((options,result)=>mount(options,result.state,{identity:geographicSetupIdentity(options,manual),label:'Generated islands',initialState:result.state,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers)}))});
+  const form=h('form',{class:'card setup-card victory-setup'},h('h1',{},'New geographic game'),h('p',{},manual?'Manual play on generated islands. Computer seats are driven manually.':'Play on generated islands against three Normal computers, or choose each seat’s controller. The seed fixes geography, deal and dice. Cards are enabled with zero or one human seat. Games with two or more human seats play without cards.'),h('label',{for:input.id},'Seed'),input,h('label',{for:count.id},'Seats'),count,fields,victory,h('button',{type:'submit',class:'primary'},'Start game'),alert);
   form.onsubmit=e=>{e.preventDefault();if(!form.reportValidity())return;
    try{seed=input.value;seats=count.value;dominationWin=domination.checked;roundLimit=limit.value==='off'?null:Number(limit.value) as 20|30|40;
     const kinds=Array.from({length:Number(seats)},(_,i)=>controllers[i]!);
