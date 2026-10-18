@@ -11,17 +11,22 @@ How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process
 For session continuity, read the latest decisions in [RUN-NOTES.md](RUN-NOTES.md)
 and query current GitHub issue labels; historical notes are not task status.
 
-## Play
+## Play Malpaco 0.1.0
 
 Run `npm ci` and `npm run dev`; open the root page to set up generated islands.
 It defaults to one human against three Normal computers. Choose a seed, adjust
 seat controllers if desired, and select **Start game**. `?seed=1994` fixes geography, deal and dice;
 `?view=reference-game&seed=1994` keeps the fixed Nine Isles compatibility game. **New game**
-returns to this setup. Unrecognized `view` values also open this setup.
+returns to this setup. The generated map prepares before play begins. Unrecognized `view` values also open this setup.
 
 During combat, select a source, then activate an adjacent enemy for one exchange.
 Shift-click selects without attacking for **Single exchange** or **Fight on**. After a capture, choose how many armies to move and confirm.
-**Save game** downloads a match; **Load game** restores one.
+**Save game** downloads a match; **Load game** restores one. A failed load leaves the current game available.
+
+Normal games with at most one human seat include cards. Capture a territory and
+finish the turn to earn a card, then use **View your hand** to see your choices.
+Games with multiple human seats use ordinary rules. **Pause**, **Game speed**,
+**Panel detail** and **Game event log** control pacing and information.
 
 Older generated setup/game and development routes remain available explicitly at
 `?view=game-setup`, `?view=generated-game`, `?view=generated-prototype` and
