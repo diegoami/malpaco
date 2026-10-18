@@ -1,0 +1,1644 @@
+{
+  "purpose": "Fixture discovery only; not browser acceptance or visual approval",
+  "results": [
+    {
+      "host": "reference",
+      "options": {
+        "seats": [
+          {
+            "kind": "human"
+          },
+          {
+            "kind": "computer"
+          },
+          {
+            "kind": "computer"
+          },
+          {
+            "kind": "computer"
+          }
+        ],
+        "board": "generated",
+        "startingArmiesRange": "1-3",
+        "humanShare": 0,
+        "computerStrengths": [
+          "Normal",
+          "Normal",
+          "Normal"
+        ],
+        "eventFrequency": "Normal",
+        "dominationWin": false,
+        "roundLimit": null,
+        "seed": 1994,
+        "animationSpeed": "normal",
+        "sound": true
+      },
+      "found": {
+        "reinforcement": {
+          "step": 0,
+          "historyBefore": 0,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_23",
+            "amount": 3
+          },
+          "phaseAfter": "reinforce",
+          "input": "reference-reinforcement.json"
+        },
+        "selection-ready": {
+          "step": 1,
+          "historyBefore": 1,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack",
+          "input": "reference-selection-ready.json"
+        },
+        "exchange": {
+          "step": 2,
+          "historyBefore": 2,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_25",
+            "to": "province_10"
+          },
+          "phaseAfter": "capture",
+          "input": "reference-exchange.json"
+        },
+        "capture-pending": {
+          "step": 2,
+          "historyBefore": 2,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_25",
+            "to": "province_10"
+          },
+          "phaseAfter": "capture",
+          "input": "reference-capture-pending.json"
+        },
+        "capture-movement": {
+          "step": 3,
+          "historyBefore": 3,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack",
+          "input": "reference-capture-movement.json"
+        },
+        "repeated-pair": {
+          "step": 9,
+          "historyBefore": 9,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_35",
+            "to": "province_7"
+          },
+          "phaseAfter": "capture",
+          "input": "reference-repeated-pair.json"
+        },
+        "friendly-movement": {
+          "step": 47,
+          "historyBefore": 47,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "friendlyMove",
+            "from": "province_13",
+            "to": "province_17"
+          },
+          "phaseAfter": "reinforce",
+          "input": "reference-friendly-movement.json"
+        }
+      },
+      "trace": [
+        {
+          "step": 0,
+          "historyBefore": 0,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_23",
+            "amount": 3
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 1,
+          "historyBefore": 1,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 2,
+          "historyBefore": 2,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_25",
+            "to": "province_10"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 3,
+          "historyBefore": 3,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 4,
+          "historyBefore": 4,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_35",
+            "to": "province_7"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 5,
+          "historyBefore": 5,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_10",
+            "to": "province_12"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 6,
+          "historyBefore": 6,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_24",
+            "to": "province_19"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 7,
+          "historyBefore": 7,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_3",
+            "to": "province_19"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 8,
+          "historyBefore": 8,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 9,
+          "historyBefore": 9,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_35",
+            "to": "province_7"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 10,
+          "historyBefore": 10,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 11,
+          "historyBefore": 11,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_42",
+            "to": "province_32"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 12,
+          "historyBefore": 12,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 13,
+          "historyBefore": 13,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_23",
+            "to": "province_15"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 14,
+          "historyBefore": 14,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_23",
+            "to": "province_15"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 15,
+          "historyBefore": 15,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_23",
+            "to": "province_15"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 16,
+          "historyBefore": 16,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_23",
+            "to": "province_15"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 17,
+          "historyBefore": 17,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_23",
+            "to": "province_15"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 18,
+          "historyBefore": 18,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 19,
+          "historyBefore": 19,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_15",
+            "to": "province_21"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 20,
+          "historyBefore": 20,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_15",
+            "to": "province_21"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 21,
+          "historyBefore": 21,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_15",
+            "to": "province_21"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 22,
+          "historyBefore": 22,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "endTurn"
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 23,
+          "historyBefore": 23,
+          "player": "seat1",
+          "control": "human",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_30",
+            "amount": 2
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 24,
+          "historyBefore": 24,
+          "player": "seat1",
+          "control": "human",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 25,
+          "historyBefore": 25,
+          "player": "seat1",
+          "control": "human",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "endTurn"
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 26,
+          "historyBefore": 26,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_1",
+            "amount": 3
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 27,
+          "historyBefore": 27,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 28,
+          "historyBefore": 28,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_1",
+            "to": "province_3"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 29,
+          "historyBefore": 29,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 30,
+          "historyBefore": 30,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_3",
+            "to": "province_19"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 31,
+          "historyBefore": 31,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_3",
+            "to": "province_19"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 32,
+          "historyBefore": 32,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_3",
+            "to": "province_19"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 33,
+          "historyBefore": 33,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_34",
+            "to": "province_12"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 34,
+          "historyBefore": 34,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_9",
+            "to": "province_19"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 35,
+          "historyBefore": 35,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 36,
+          "historyBefore": 36,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_17",
+            "to": "province_24"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 37,
+          "historyBefore": 37,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_19",
+            "to": "province_24"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 38,
+          "historyBefore": 38,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_3",
+            "to": "province_7"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 39,
+          "historyBefore": 39,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_33",
+            "to": "province_24"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 40,
+          "historyBefore": 40,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_34",
+            "to": "province_12"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 41,
+          "historyBefore": 41,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 42,
+          "historyBefore": 42,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_11",
+            "to": "province_22"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 43,
+          "historyBefore": 43,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_13",
+            "to": "province_31"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 44,
+          "historyBefore": 44,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_13",
+            "to": "province_31"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 45,
+          "historyBefore": 45,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_11",
+            "to": "province_31"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 46,
+          "historyBefore": 46,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 47,
+          "historyBefore": 47,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "friendlyMove",
+            "from": "province_13",
+            "to": "province_17"
+          },
+          "phaseAfter": "reinforce"
+        }
+      ],
+      "finalHistory": 48,
+      "finalPhase": "reinforce"
+    },
+    {
+      "host": "geographic",
+      "options": {
+        "seats": [
+          {
+            "kind": "human"
+          },
+          {
+            "kind": "computer"
+          },
+          {
+            "kind": "computer"
+          },
+          {
+            "kind": "computer"
+          }
+        ],
+        "board": "generated",
+        "startingArmiesRange": "1-3",
+        "humanShare": 0,
+        "computerStrengths": [
+          "Normal",
+          "Normal",
+          "Normal"
+        ],
+        "eventFrequency": "Normal",
+        "dominationWin": false,
+        "roundLimit": null,
+        "seed": 1994,
+        "animationSpeed": "normal",
+        "sound": true
+      },
+      "found": {
+        "reinforcement": {
+          "step": 0,
+          "historyBefore": 0,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_36",
+            "amount": 3
+          },
+          "phaseAfter": "reinforce",
+          "input": "geographic-reinforcement.json"
+        },
+        "selection-ready": {
+          "step": 1,
+          "historyBefore": 1,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack",
+          "input": "geographic-selection-ready.json"
+        },
+        "exchange": {
+          "step": 2,
+          "historyBefore": 2,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_36",
+            "to": "province_10"
+          },
+          "phaseAfter": "capture",
+          "input": "geographic-exchange.json"
+        },
+        "capture-pending": {
+          "step": 2,
+          "historyBefore": 2,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_36",
+            "to": "province_10"
+          },
+          "phaseAfter": "capture",
+          "input": "geographic-capture-pending.json"
+        },
+        "capture-movement": {
+          "step": 3,
+          "historyBefore": 3,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack",
+          "input": "geographic-capture-movement.json"
+        },
+        "repeated-pair": {
+          "step": 5,
+          "historyBefore": 5,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_10",
+            "to": "province_12"
+          },
+          "phaseAfter": "attack",
+          "input": "geographic-repeated-pair.json"
+        },
+        "friendly-movement": {
+          "step": 62,
+          "historyBefore": 62,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "friendlyMove",
+            "from": "province_18",
+            "to": "province_2"
+          },
+          "phaseAfter": "reinforce",
+          "input": "geographic-friendly-movement.json"
+        }
+      },
+      "trace": [
+        {
+          "step": 0,
+          "historyBefore": 0,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_36",
+            "amount": 3
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 1,
+          "historyBefore": 1,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 2,
+          "historyBefore": 2,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_36",
+            "to": "province_10"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 3,
+          "historyBefore": 3,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 4,
+          "historyBefore": 4,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_10",
+            "to": "province_12"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 5,
+          "historyBefore": 5,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_10",
+            "to": "province_12"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 6,
+          "historyBefore": 6,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_10",
+            "to": "province_12"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 7,
+          "historyBefore": 7,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 8,
+          "historyBefore": 8,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_8",
+            "to": "province_35"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 9,
+          "historyBefore": 9,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_12",
+            "to": "province_25"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 10,
+          "historyBefore": 10,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_15",
+            "to": "province_19"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 11,
+          "historyBefore": 11,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 12,
+          "historyBefore": 12,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_27",
+            "to": "province_6"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 13,
+          "historyBefore": 13,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 14,
+          "historyBefore": 14,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_33",
+            "to": "province_24"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 15,
+          "historyBefore": 15,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 16,
+          "historyBefore": 16,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_45",
+            "to": "province_28"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 17,
+          "historyBefore": 17,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 18,
+          "historyBefore": 18,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_8",
+            "to": "province_35"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 19,
+          "historyBefore": 19,
+          "player": "seat3",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "endTurn"
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 20,
+          "historyBefore": 20,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_13",
+            "amount": 3
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 21,
+          "historyBefore": 21,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 22,
+          "historyBefore": 22,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_13",
+            "to": "province_33"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 23,
+          "historyBefore": 23,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_13",
+            "to": "province_33"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 24,
+          "historyBefore": 24,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_13",
+            "to": "province_33"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 25,
+          "historyBefore": 25,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 26,
+          "historyBefore": 26,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_33",
+            "to": "province_24"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 27,
+          "historyBefore": 27,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_1",
+            "to": "province_12"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 28,
+          "historyBefore": 28,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_11",
+            "to": "province_40"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 29,
+          "historyBefore": 29,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_23",
+            "to": "province_15"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 30,
+          "historyBefore": 30,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 31,
+          "historyBefore": 31,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_33",
+            "to": "province_24"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 32,
+          "historyBefore": 32,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_39",
+            "to": "province_34"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 33,
+          "historyBefore": 33,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_39",
+            "to": "province_34"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 34,
+          "historyBefore": 34,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 35,
+          "historyBefore": 35,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_7",
+            "to": "province_21"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 36,
+          "historyBefore": 36,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_7",
+            "to": "province_21"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 37,
+          "historyBefore": 37,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_14",
+            "to": "province_21"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 38,
+          "historyBefore": 38,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_7",
+            "to": "province_21"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 39,
+          "historyBefore": 39,
+          "player": "seat4",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "endTurn"
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 40,
+          "historyBefore": 40,
+          "player": "seat1",
+          "control": "human",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_30",
+            "amount": 3
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 41,
+          "historyBefore": 41,
+          "player": "seat1",
+          "control": "human",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 42,
+          "historyBefore": 42,
+          "player": "seat1",
+          "control": "human",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "endTurn"
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 43,
+          "historyBefore": 43,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "reinforce",
+            "province": "province_2",
+            "amount": 3
+          },
+          "phaseAfter": "reinforce"
+        },
+        {
+          "step": 44,
+          "historyBefore": 44,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "reinforce",
+          "action": {
+            "kind": "endReinforcement"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 45,
+          "historyBefore": 45,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_2",
+            "to": "province_14"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 46,
+          "historyBefore": 46,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_2",
+            "to": "province_14"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 47,
+          "historyBefore": 47,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_2",
+            "to": "province_14"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 48,
+          "historyBefore": 48,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_2",
+            "to": "province_14"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 49,
+          "historyBefore": 49,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 50,
+          "historyBefore": 50,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_32",
+            "to": "province_18"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 51,
+          "historyBefore": 51,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 52,
+          "historyBefore": 52,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_14",
+            "to": "province_21"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 53,
+          "historyBefore": 53,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_29",
+            "to": "province_11"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 54,
+          "historyBefore": 54,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_38",
+            "to": "province_28"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 55,
+          "historyBefore": 55,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 56,
+          "historyBefore": 56,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_4",
+            "to": "province_8"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 57,
+          "historyBefore": 57,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 58,
+          "historyBefore": 58,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_43",
+            "to": "province_37"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 59,
+          "historyBefore": 59,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_43",
+            "to": "province_37"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 60,
+          "historyBefore": 60,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "attack",
+            "from": "province_43",
+            "to": "province_37"
+          },
+          "phaseAfter": "capture"
+        },
+        {
+          "step": 61,
+          "historyBefore": 61,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "capture",
+          "action": {
+            "kind": "captureMove"
+          },
+          "phaseAfter": "attack"
+        },
+        {
+          "step": 62,
+          "historyBefore": 62,
+          "player": "seat2",
+          "control": "computer",
+          "phaseBefore": "attack",
+          "action": {
+            "kind": "friendlyMove",
+            "from": "province_18",
+            "to": "province_2"
+          },
+          "phaseAfter": "reinforce"
+        }
+      ],
+      "finalHistory": 63,
+      "finalPhase": "reinforce"
+    }
+  ]
+}
