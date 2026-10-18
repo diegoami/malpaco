@@ -1,3 +1,4 @@
+import { initializeCards } from './cards';
 import { DeterministicRng } from "./rng";
 import { reinforcementIncome } from "./reinforcement";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
@@ -42,6 +43,11 @@ export function friendlyMoveRules(): RuleSet {
 export function victoryRules(options: Pick<GameOptions, "dominationWin" | "roundLimit"> = defaultOptions()): RuleSet {
   return { ...friendlyMoveRules(), id: "malpaco-victory",
     victoryOptions: { dominationWin: options.dominationWin, roundLimit: options.roundLimit } };
+}
+
+/** Frozen T37 deck-only stage; later stages must retain this factory's semantics. */
+export function cardsRules(options: Pick<GameOptions,"dominationWin"|"roundLimit"> = defaultOptions()):RuleSet {
+ return {...victoryRules(options),id:'malpaco-cards',cards:'deck-v1'};
 }
 
 /** Classic combat remains available to the legacy spike entry points. */
@@ -91,6 +97,7 @@ export function livingPlayers(state: GameState): Player[] {
 /** A deep copy, so applying an action never touches the state it was given. The map and rules are shared. */
 export function cloneState(state: GameState): GameState {
   return {
+    ...(state.cards ? {cards:{drawPile:[...state.cards.drawPile],discardPile:[...state.cards.discardPile],hands:Object.fromEntries(Object.entries(state.cards.hands).map(([p,h])=>[p,[...h]])),...(state.cards.pendingDiscard?{pendingDiscard:{...state.cards.pendingDiscard}}:{})}} : {}),
     map: state.map,
     rules: state.rules,
     players: state.players.map((p) => ({ ...p })),
@@ -207,6 +214,7 @@ function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly P
     winner: "",
     productionCentres: [],
   };
+  initializeCards(state,rng);
   if (rules.turnSequence === "reinforcement") {
     const active = state.players[state.currentPlayer]!;
     state.reinforcementPool = reinforcementIncome(state, active.id).total;
