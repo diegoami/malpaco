@@ -1,0 +1,38 @@
+{
+  "head": "64bbe6edaf121aad6e4d3cb8a132d9102e3ef695",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--cpus=2",
+    "--memory=6g",
+    "--shm-size=1g",
+    "--user",
+    "1000:1000",
+    "-v",
+    "/home/diego/projects/malpaco/.cache/t41-work:/work",
+    "-w",
+    "/work",
+    "mcr.microsoft.com/playwright:v1.63.0-noble",
+    "node_modules/.bin/playwright",
+    "test",
+    "--config",
+    "/work/docs/prototypes/new-game/T41/parent-acceptance/t40-loss-diagnostic-20261018T155522611379Z/playwright.config.ts"
+  ],
+  "exit": 1,
+  "seconds": 3.5404665259993635,
+  "outputSha256": "078f8665134c820053eb92e14b612821863fd3aa53b8e95db8f01c534bc6829e",
+  "stats": {
+    "startTime": "2026-10-18T15:55:53.490Z",
+    "duration": 2507.76,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  },
+  "sourceHashesUnchanged": true,
+  "sourceDiffEmpty": true,
+  "T41CandidateInstalled": false
+}
