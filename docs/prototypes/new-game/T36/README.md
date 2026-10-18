@@ -86,3 +86,35 @@ runtime `2ebb039741c275259420a294c2c1838be6b79810`; every extracted checksum ver
 proof and the verified251-member/four-part fresh-evidence archive. Prior release
 and dist outputs were saved and member-verified before packaging. Independent
 follow-up and greenCI are separate; neither is claimed by this native rework.
+
+## Claude review dependency isolation
+
+When the configured reviewer backend is Claude, `tools/harness/review.mjs` copies the
+launcher checkout's `node_modules` into the new retained review worktree before it
+starts Claude. The copy contains regular files and real directories, retains relative
+internal links such as npm's `.bin` entries, and gives Claude a worktree-local tree for
+cleanup and mutations. The launcher source is resolved through its real path and is
+never modified. An existing destination, a source/destination overlap, an escaping or
+broken source link, or a destination outside the retained review worktree is refused;
+if the launcher has no dependency directory, the harness reports that and follows its
+existing setup. OpenCode reviews do not use this path. CLI arguments, selected model,
+environment and permission gates are unchanged.
+
+The fix follows the retained PR162 probe: Claude Code2.1.292 on Sonnet5.5 Medium ran the
+requested tests and build before its final external-node_modules symlink cleanup was
+denied. The same cleanup remained denied with one exact Bash allowance, while a real
+dependency directory inside the owned worktree produced zero permission denials. No
+permission grant was widened. The helper's fixture tests exercise private-copy writes,
+relative `.bin` resolution, automatic preparation before the CLI starts, missing source,
+outside-worktree paths, overlaps, and existing directory/dangling-link preservation.
+The untested first wrapper draft is preserved byte-for-byte under
+`evidence/reviewer-dependencies-amendment-20261018/prior-draft/` as provenance only; the
+default review setup is the automatic harness integration above. The final harness run
+(`node --test tools/harness/test/*.test.mjs`) passed all eight tests, and
+`npm run build` passed; retained command logs and source archives are under
+`evidence/reviewer-dependencies-harness-release-gq2mfoga/`,
+`evidence/reviewer-dependencies-build-final-ucouzj7q/`, and
+`evidence/reviewer-dependencies-amendment-20261018/`. The source actual-CLI probe archive
+is retained unchanged at `review-permission-diagnostics/permission-diagnostics.tar.gz`
+(SHA256 `35cb5cca3fc957ddb5485a8569ab7b8176ebc38acdba182167c9c5a7c6435289`), with its
+member manifest beside it.
