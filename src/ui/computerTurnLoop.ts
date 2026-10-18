@@ -17,7 +17,7 @@ export class ComputerTurnLoop {
   constructor(private readonly controller: BattleController, private readonly scheduler: BattleScheduler) {}
   update(): void {
     if (this.disposed) return;
-    if (this.controller.playbackPaused) { this.cancel(); return; }
+    if (this.controller.playbackPaused || this.controller.cardAcknowledgmentPending) { this.cancel(); return; }
     const {state,speed} = this.controller.view;
     if (this.timer !== null && state === this.queuedState && speed === this.queuedSpeed) return;
     this.cancel();

@@ -1,0 +1,285 @@
+{
+  "task": "T41",
+  "frozenHead": "925f30cbae6aa8025fc246e560c229042c258b38",
+  "correctedT40Base": "5cc49c60648297aa0bfc69f28d51125d2ec753f4",
+  "implementationChoice": "https://github.com/diegoami/malpaco/pull/177#issuecomment-6252239516",
+  "implementer": "Owner-selected native Sol Medium; aggregate native token/duration telemetry unavailable. No invented token totals or agent exit code.",
+  "manifestSha256": {
+    "FROZEN-ACCEPTANCE.json": "cc71dab55053e37f076e15f107a426faf74a21bebbf27c0082c0d6af8a09c075",
+    "validated-inputs.json": "4780609d2a286a31e5c346585bcc4c65ca87e16afcfbf80e223436cfe443c864"
+  },
+  "sources": {
+    "src/core/computer-view.ts": {
+      "sha256": "61a761e927f05fc6bd71abed52008888205aa16624832a2195a4d0a577e6083b",
+      "reason": "Public facts and own-hand projection; exposes legal ordinary-action inputs without enemy contents, deck order or RNG state."
+    },
+    "src/core/computer.ts": {
+      "sha256": "eef8b04021357937208ef28003464bd088a70913187f5ef7ac64affbae55164f",
+      "reason": "Deterministic legal card decisions and existing ordinary-turn priorities, through the approved projection."
+    },
+    "src/core/index.ts": {
+      "sha256": "db5b2c49b8cd056462f8efbabe49303ddd9c6d26d5ec1585dca828f67bb65b5b",
+      "reason": "Export projection and decision API while preserving all existing T39 exports."
+    },
+    "src/ui/computerTurnLoop.ts": {
+      "sha256": "388c8b62666b026df089c28ed0eaff2cc384cb88f4b044a889e40ea1e57dd80f",
+      "reason": "Cancel queued computer steps during private human card reward acknowledgement; normal update resumes."
+    },
+    "src/ui/geographicGame.ts": {
+      "sha256": "f5b631869591cee78eeddd1dcb3765ed10ca403b5ef9d2d3939f7c49d5a452d6",
+      "reason": "Use cards3/schema5 for normal zero/one-human games and explain multiple-human ordinary-rules boundary; retain manual/reference/load semantics."
+    }
+  },
+  "evidenceAccess": "Raw parent evidence is preserved in committed archives/parent-preflight-complete.tar.gz.part-000 and part-001. verify-adoption.py concatenates parts in memory, verifies archive SHA and every member, and verifies any retained loose copy. Standalone checkout needs no extracted paths. reusedReceipts below embeds original actual argument arrays, outcomes and command durations; these are parent runs, not fresh producer executions.",
+  "reusedReceipts": {
+    "core": {
+      "cwd": "/home/diego/projects/malpaco/.cache/t41-work",
+      "steps": [
+        {
+          "name": "baseline",
+          "command": [
+            "node_modules/.bin/vitest",
+            "run",
+            "tests/core/computer-cards.test.ts"
+          ],
+          "exit": 1,
+          "seconds": 1.5397324049990857,
+          "outputSha256": "15c90d583151e41101a64f997a1b8982e3797db0509d160bff23b52ac1a67cf3"
+        },
+        {
+          "name": "positive",
+          "command": [
+            "node_modules/.bin/vitest",
+            "run",
+            "tests/core/computer-cards.test.ts"
+          ],
+          "exit": 0,
+          "seconds": 9.806411557998217,
+          "outputSha256": "3584f45bb9f0a6669d996185da9b82f46da5e7ebb1f252bd7dc8715688520f6d"
+        },
+        {
+          "name": "core-tsc",
+          "command": [
+            "node_modules/.bin/tsc",
+            "--noEmit",
+            "-p",
+            "src/core"
+          ],
+          "exit": 0,
+          "seconds": 0.1871774320024997,
+          "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "sources": [
+        {
+          "path": "src/core/computer.ts",
+          "originalSha256": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb",
+          "candidateSha256": "eef8b04021357937208ef28003464bd088a70913187f5ef7ac64affbae55164f"
+        },
+        {
+          "path": "src/core/computer-view.ts",
+          "originalSha256": null,
+          "candidateSha256": "61a761e927f05fc6bd71abed52008888205aa16624832a2195a4d0a577e6083b"
+        },
+        {
+          "path": "src/core/index.ts",
+          "originalSha256": "bad317dec8cf1fbf04d74f3bef5543ca7302cfa318987f7c1bb0c6740a25da32",
+          "candidateSha256": "db5b2c49b8cd056462f8efbabe49303ddd9c6d26d5ec1585dca828f67bb65b5b"
+        }
+      ],
+      "positiveComplete": true,
+      "restoration": [
+        {
+          "path": "src/core/computer.ts",
+          "exact": true
+        },
+        {
+          "path": "src/core/computer-view.ts",
+          "exact": true
+        },
+        {
+          "path": "src/core/index.ts",
+          "exact": true
+        }
+      ]
+    },
+    "browser": {
+      "baseHead": "64bbe6edaf121aad6e4d3cb8a132d9102e3ef695",
+      "steps": [
+        {
+          "phase": "baseline",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus=2",
+            "--memory=6g",
+            "--shm-size=1g",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t41-work:/work",
+            "-w",
+            "/work",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "node_modules/.bin/playwright",
+            "test",
+            "--config",
+            "/work/docs/prototypes/new-game/T41/parent-acceptance/adapted-browser-validation-20261018T160618980541Z/baseline/playwright.config.ts",
+            "--grep",
+            "root and unknown view retain"
+          ],
+          "exit": 1,
+          "seconds": 6.832331847996102,
+          "outputSha256": "118fa3f4c22be9a4da4acc194a32e059a099169861baac671126bd0f40c295f3",
+          "stats": {
+            "startTime": "2026-10-18T16:06:40.525Z",
+            "duration": 5792.789,
+            "expected": 0,
+            "skipped": 0,
+            "unexpected": 2,
+            "flaky": 0
+          }
+        },
+        {
+          "phase": "positive",
+          "command": [
+            "docker",
+            "run",
+            "--rm",
+            "--network",
+            "none",
+            "--cpus=2",
+            "--memory=6g",
+            "--shm-size=1g",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t41-work:/work",
+            "-w",
+            "/work",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "node_modules/.bin/playwright",
+            "test",
+            "--config",
+            "/work/docs/prototypes/new-game/T41/parent-acceptance/adapted-browser-validation-20261018T160618980541Z/positive/playwright.config.ts",
+            "--max-failures=1"
+          ],
+          "exit": 0,
+          "seconds": 172.52847775899863,
+          "outputSha256": "7d83c755f212f1ce88307fbb7f460e29751dec6b66b1e6a452ed732662dcc9f7",
+          "stats": {
+            "startTime": "2026-10-18T16:06:47.415Z",
+            "duration": 171279.327,
+            "expected": 54,
+            "skipped": 0,
+            "unexpected": 0,
+            "flaky": 0
+          }
+        }
+      ],
+      "positiveComplete": true,
+      "restoration": [
+        {
+          "path": "src/core/computer-view.ts",
+          "exact": true
+        },
+        {
+          "path": "src/core/computer.ts",
+          "exact": true
+        },
+        {
+          "path": "src/core/index.ts",
+          "exact": true
+        },
+        {
+          "path": "src/ui/computerTurnLoop.ts",
+          "exact": true
+        },
+        {
+          "path": "src/ui/geographicGame.ts",
+          "exact": true
+        },
+        {
+          "path": "src/styles.css",
+          "exact": true
+        }
+      ],
+      "allSourceHashesRestored": true
+    },
+    "dw3": {
+      "head": "5cc49c60648297aa0bfc69f28d51125d2ec753f4",
+      "steps": [
+        {
+          "name": "npm-test",
+          "command": [
+            "npm",
+            "test"
+          ],
+          "exit": 0,
+          "seconds": 66.94204088599508,
+          "stdoutSha256": "f9a08adef37d37ab60ef2b6ffac42bac99ea73f2d49b044d289651826efcb431",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "name": "npm-build",
+          "command": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "seconds": 1.8059511680039577,
+          "stdoutSha256": "311d05f66f924b4b45183797f50953c02ae9cadc2370a54ac6dc9bf44bffcba7",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "complete": true,
+      "restoration": [
+        {
+          "path": "src/core/computer-view.ts",
+          "exact": true
+        },
+        {
+          "path": "src/core/computer.ts",
+          "exact": true
+        },
+        {
+          "path": "src/core/index.ts",
+          "exact": true
+        },
+        {
+          "path": "src/ui/computerTurnLoop.ts",
+          "exact": true
+        },
+        {
+          "path": "src/ui/geographicGame.ts",
+          "exact": true
+        }
+      ],
+      "allSourceHashesRestored": true,
+      "testsDataConfigUnchanged": true
+    }
+  },
+  "rawMemberPrefixes": {
+    "core": "parent-acceptance/core-validation-20261018T151804335180Z",
+    "browser": "parent-acceptance/adapted-browser-validation-20261018T160618980541Z",
+    "dw3": "parent-acceptance/dw3-preflight-20261018T161322437534Z"
+  },
+  "positiveResults": {
+    "core": 32,
+    "browser": 54,
+    "vitest": 784,
+    "harness": 8,
+    "build": "pass"
+  },
+  "negativeProof": "Core baseline32 intended missing-export failures; five mutants each one intended failure: gain rank, Wild tie, adjacent/remote target, oldest discard, enemy-hand privacy. Browser normal-opening baseline2 intended identity failures. Original16/18 browser positives plus2 Compact loss failures retained; corrected T40 CSS then54/54 pass,0 skipped/flaky. Exact source restoration receipts retained. No producer mutations or heavy test reruns.",
+  "limits": [
+    "Baseline policy only; no strategic timing.",
+    "Owner appearance approval remains pending.",
+    "Main owns fresh key checks, independent Kimi review and final CI after actual T40 merge.",
+    "No producer CI/review/merge/package/preview/Windows/paid-provider operations."
+  ]
+}
