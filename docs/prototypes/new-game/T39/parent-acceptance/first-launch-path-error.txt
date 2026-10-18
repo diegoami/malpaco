@@ -1,0 +1,1 @@
+Parent first launch used .cache/t39-work relative to worktree cwd, so fixture/output directories were not created and no tests ran. Corrected to Path.cwd() before behavioral baseline.

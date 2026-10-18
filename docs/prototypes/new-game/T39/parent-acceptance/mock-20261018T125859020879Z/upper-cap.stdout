@@ -1,0 +1,13 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t39-work
+
+ ❯ tests/core/raid-shield.test.ts (20 tests | 2 failed) 84ms
+   ❯ Raid and automatic Shield defence (20)
+     × draws uniformly through the bounded RNG interface for stack 1000000007 5ms
+     × actual effects use the full odd/even/large interval rather than a capped or disconnected helper 2ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 28 passed (30)
+   Start at  14:59:07
+   Duration  1.48s (tests 72%, transform 24%, import 4%)
+

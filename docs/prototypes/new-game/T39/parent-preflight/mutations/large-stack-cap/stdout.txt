@@ -1,0 +1,12 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t39-work
+
+ ❯ docs/prototypes/new-game/T39/parent-preflight/probe.test.ts (5 tests | 1 failed | 4 skipped) 11ms
+   ❯ T39 disposable actual source mock (5)
+     × scripted bounds include odd/even/one/large with one bounded draw 9ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 4 skipped (5)
+   Start at  14:48:51
+   Duration  485ms (transform 86%, import 10%, tests 3%, worker 1%)
+

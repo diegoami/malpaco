@@ -1,0 +1,13 @@
+All Done-when lines pass, mutations are caught, and the diff is fully covered.
+
+T39 review (Kimi K3)
+approve
+Worktree: /home/diego/projects/malpaco/.cache/review-worktrees/171-review-84295a76; HEAD 5376705af65aa9b4330766806788ca7442f63239 verified; diff vs origin/main is the PR's (non-empty, includes src/core/raid.ts, rules.ts, match-save.ts, cards.ts, state.ts, setup.ts, types.ts, index.ts, src/ui/gameEventLog.ts, src/ui/panel.ts, tests/core/raid-shield*.ts, docs/spike.md, RUN-NOTES.md plus inherited approved T38/T71 evidence paths). Production delta reviewed via `git diff 0220af2..HEAD -- src tests docs/spike.md RUN-NOTES.md` (12 files, +109/−22).
+Commands run: git rev-parse/log/diff; npx vitest run (raid-shield, raid-shield-replay); npm test; npm run build; both pinned docker playwright commands; two in-place mutations of src/core/rules.ts (Shield-cancellation removal; pending-gate removal) with save/restore and sha256 verification (ed9711b3…868a before and after); grep for wall-clock/unseeded random in changed rule code.
+DW1: ran `npx vitest run tests/core/raid-shield.test.ts` → 20/20 passed (386 ms).
+DW2: ran `npx vitest run tests/core/raid-shield-replay.test.ts` → 10/10 passed (1.44 s).
+DW3: ran `npm test` → 733 Vitest + 8 harness passed; `npm run build` → built OK; docker playwright (versioned-match, reference-complete-game, game-event-log, geographic-review-guards) → 28 passed; docker playwright compact-panels with T71 config → 32 passed.
+Sweep evidence: mutation deleting the Shield cancellation → "automatically spends the first Shield only" fails (1 failed/19 passed); mutation deleting the pendingRaid gate → 1 failed/19 passed; both restored byte-exact (hash match). No Math.random/Date in changed rule code; raid RNG goes through DeterministicRng.fromSnapshot(state.rng) with one bounded nextInt(1, max(1, floor(stack/2))) draw, including the 1..1 degenerate case, matching docs/spike.md's pinned designed protocol. Codec strictness verified in source: versionedAction rejects non-string/empty province and extra keys (match-save.ts:161-164); schema-5-only raidTarget; trade-v1 (cards/2, schema 4) tuple and Raid refusal preserved, cards/4–schema/6 still refused (raid-shield-replay.test.ts:17). Raid log entry carries only player/province/defender/before/after/shielded/turn — no hidden hand fields (types.ts:143, rules.ts raidTarget); privacy asserted by test at raid-shield.test.ts:25. Pending gate blocks all non-raidTarget actions atomically before cloneState, so invalid targets leave state and RNG untouched (rules.ts:37).
+Findings: none blocking; no non-blocking findings in PR-changed code.
+Final pass done
+approve

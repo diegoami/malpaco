@@ -1,0 +1,70 @@
+[
+  {
+    "name": "pending-gate",
+    "path": "src/core/rules.ts",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "--config",
+      "docs/prototypes/new-game/T39/parent-preflight/vitest.config.ts",
+      "-t",
+      "synthetic remote choice"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 1.0724049349992129,
+    "restoredExactly": true,
+    "beforeSha256": "ed9711b35a69071b4c60cddb42f30c9041b212dd47c5839a6ffb2706898b868a",
+    "mutantSha256": "ff1b34f4bf9f8acd4477f6cd9fab050f4b27a63bf601b1aeb11e51772567f318"
+  },
+  {
+    "name": "friendly-target",
+    "path": "src/core/rules.ts",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "--config",
+      "docs/prototypes/new-game/T39/parent-preflight/vitest.config.ts",
+      "-t",
+      "synthetic remote choice"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 0.9407988700004353,
+    "restoredExactly": true,
+    "beforeSha256": "ed9711b35a69071b4c60cddb42f30c9041b212dd47c5839a6ffb2706898b868a",
+    "mutantSha256": "4053bfb8becf3cf8f8750431ab5b17810cc62f6588bd88ce14880bd538a5f807"
+  },
+  {
+    "name": "wrong-shield-card",
+    "path": "src/core/rules.ts",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "--config",
+      "docs/prototypes/new-game/T39/parent-preflight/vitest.config.ts",
+      "-t",
+      "synthetic Shield"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 0.8074512070015771,
+    "restoredExactly": true,
+    "beforeSha256": "ed9711b35a69071b4c60cddb42f30c9041b212dd47c5839a6ffb2706898b868a",
+    "mutantSha256": "fddf1b7e9a88cc1074fcec00ada80acd89224e26ec0fc062b355df4ea8878881"
+  },
+  {
+    "name": "large-stack-cap",
+    "path": "src/core/raid.ts",
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "--config",
+      "docs/prototypes/new-game/T39/parent-preflight/vitest.config.ts",
+      "-t",
+      "scripted bounds"
+    ],
+    "exitCode": 1,
+    "durationSeconds": 0.7668592080008239,
+    "restoredExactly": true,
+    "beforeSha256": "ccf7c5e88a0d1b7043e7a9df22c819264e1009032f8a7843ae6c89bb34549297",
+    "mutantSha256": "4bb0e884a26fc56d247b1717f725497baae5947e0d2ac0164649532b96ec9eca"
+  }
+]

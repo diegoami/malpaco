@@ -1,0 +1,18 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > gates every unrelated action while a target is pending; invalid targets leave the original state exact
+AssertionError: {"kind":"skipCards"}: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ reject tests/core/raid-shield-fixture.ts:18:134
+
+ ❯ tests/core/raid-shield.test.ts:13:424
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

@@ -97,7 +97,7 @@ export function livingPlayers(state: GameState): Player[] {
 /** A deep copy, so applying an action never touches the state it was given. The map and rules are shared. */
 export function cloneState(state: GameState): GameState {
   return {
-    ...(state.cards ? {cards:{drawPile:[...state.cards.drawPile],discardPile:[...state.cards.discardPile],hands:Object.fromEntries(Object.entries(state.cards.hands).map(([p,h])=>[p,[...h]])),...(state.cards.pendingDiscard?{pendingDiscard:{...state.cards.pendingDiscard}}:{})}} : {}),
+    ...(state.cards ? {cards:{drawPile:[...state.cards.drawPile],discardPile:[...state.cards.discardPile],hands:Object.fromEntries(Object.entries(state.cards.hands).map(([p,h])=>[p,[...h]])),...(state.cards.pendingDiscard?{pendingDiscard:{...state.cards.pendingDiscard}}:{}),...(state.cards.pendingRaid?{pendingRaid:{...state.cards.pendingRaid}}:{})}} : {}),
     map: state.map,
     rules: state.rules,
     players: state.players.map((p) => ({ ...p })),
@@ -202,7 +202,7 @@ function newGameWithPlayers(map: GameMap, rules: RuleSet, playerList: readonly P
     ownerOf: ownerOfMap,
     armies,
     currentPlayer: 0,
-    phase: rules.cards === "trade-v1" ? "cards" : rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
+    phase: (rules.cards === "trade-v1" || rules.cards === "raid-v1") ? "cards" : rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
     reinforcementPool: 0,
     turnNumber: 1,
     ...(rules.victoryOptions ? { roundOrigin: 0 } : {}),
@@ -258,4 +258,9 @@ export function newGameFromOptions(map: GameMap, rules: RuleSet, options: GameOp
 /** [designed] T38 stage; T23 variety-029..035. deck-v1 remains frozen. */
 export function tradeCardsRules(options:Pick<GameOptions,'dominationWin'|'roundLimit'>=defaultOptions()):RuleSet {
  return {...cardsRules(options),id:'malpaco-card-trades',cards:'trade-v1'};
+}
+
+/** Frozen raid-v1 stage: T23 variety-036/037; old deck/trade factories stay exact. */
+export function raidCardsRules(options:Pick<GameOptions,'dominationWin'|'roundLimit'>=defaultOptions()):RuleSet {
+ return {...tradeCardsRules(options),id:'malpaco-card-raids',cards:'raid-v1'};
 }

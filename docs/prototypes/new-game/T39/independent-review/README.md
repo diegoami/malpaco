@@ -1,0 +1,3 @@
+# Independent T39 Kimi review
+
+Full final retained unabridged with native export, streams, brief, invocation-only launcher/profile and generated browser/scratch artifacts. Actual Kimi K3 low, CLI0, zero tool errors/denials. Independent20+10/733Vitest+8harness/build/28affected+32compact browsers pass. Shield omission and pending-gate omission each fail one intended test; exact runtime restore verified. No findings, blocking or otherwise. The native CLI emitted an inotify watcher resource warning; all requested tool commands and checks completed successfully. Original evidence and reviewer worktree retained. No CI or source changes in this archival step.

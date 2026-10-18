@@ -1,0 +1,32 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/raid-shield-replay.test.ts > real Raid/Shield match codec > reconstructs legal-shielded-raid from options/actions only and continues exactly
+AssertionError: expected 'Raid' to be 'Shield' // Object.is equality
+
+Expected: "Shield"
+Received: "Raid"
+
+ ❯ tests/core/raid-shield-replay.test.ts:13:185
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/core/raid-shield.test.ts > Raid and automatic Shield defence > automatically spends the first Shield only, preserves the stack and draws no RNG
+AssertionError: expected [ 'Shield', 'Compass', 'Shield' ] to deeply equal [ 'Wild', 'Compass', 'Shield' ]
+
+- Expected
++ Received
+
+  [
+-   "Wild",
++   "Shield",
+    "Compass",
+    "Shield",
+  ]
+
+ ❯ tests/core/raid-shield.test.ts:21:227
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+

@@ -108,6 +108,7 @@ export interface RngSnapshot {
 }
 
 export type Action =
+  | { readonly kind: "raidTarget"; readonly province: string }
   | { readonly kind: "tradeCards"; readonly handIndices: readonly [number, number, number] }
   | { readonly kind: "skipCards" }
   | { readonly kind: "discardCard"; readonly handIndex: number }
@@ -139,6 +140,7 @@ export interface AttackOutcome {
 }
 
 export type LogEntry =
+  | { readonly event: "raid"; readonly player:string; readonly province:string; readonly defender:string; readonly before:number; readonly after:number; readonly shielded:boolean; readonly turn:number }
   | { readonly event: "game_started"; readonly seed: number; readonly players: number }
   | AttackOutcome
   | { readonly event: "eliminated"; readonly player: string; readonly turn: number }

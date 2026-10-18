@@ -1,0 +1,21 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/prototypes/new-game/T39/parent-preflight/probe.test.ts > T39 disposable actual source mock > synthetic Shield cancels with no RNG and discards first Shield only, public event has no hidden cards
+AssertionError: expected [ 'Shield', 'Compass', 'Shield' ] to deeply equal [ 'Wild', 'Compass', 'Shield' ]
+
+- Expected
++ Received
+
+  [
+-   "Wild",
++   "Shield",
+    "Compass",
+    "Shield",
+  ]
+
+ ❯ docs/prototypes/new-game/T39/parent-preflight/probe.test.ts:37:370
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

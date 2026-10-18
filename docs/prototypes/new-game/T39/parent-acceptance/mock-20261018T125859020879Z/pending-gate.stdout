@@ -1,0 +1,12 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t39-work
+
+ ❯ tests/core/raid-shield.test.ts (20 tests | 1 failed) 59ms
+   ❯ Raid and automatic Shield defence (20)
+     × gates every unrelated action while a target is pending; invalid targets leave the original state exact 7ms
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 29 passed (30)
+   Start at  14:59:02
+   Duration  1.47s (tests 73%, transform 23%, import 4%)
+
