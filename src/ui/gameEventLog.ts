@@ -1,6 +1,7 @@
 import { activePlayer, apply } from "../core";
 import type { Action, GameOptions, GameResult, GameState } from "../core";
 import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDENTITY } from "../core/match-save";
+import {publicCardNotes} from "./cardController";
 import { h } from "./dom";
 
 export interface EventRegion {
@@ -14,15 +15,14 @@ export interface GameEvent {
   readonly notes: readonly string[];
 }
 const ACTION_NAMES: Record<Action["kind"], string> = {
-  raidTarget: "Raid target",
-  tradeCards: "Trade cards", skipCards: "Skip cards",
+  tradeCards:"Trade cards",skipCards:"Skip cards",raidTarget:"Raid target",
   discardCard: "Card discard",
   reinforce: "Reinforcement placement", endReinforcement: "Start combat", attack: "Combat",
   captureMove: "Capture transfer", friendlyMove: "Friendly transfer", endTurn: "End turn",
   watchComputers: "Watch computers", stopGame: "Stop game",
 };
 const PHASE_NAMES: Record<GameState["phase"], string> = {
-  cards: "Cards",
+  cards:"Cards",
   reinforce: "Reinforcement", attack: "Attack", capture: "Capture move-in", redeploy: "Handoff",
   "human-loss": "Human seats eliminated", finished: "Finished",
 };
@@ -65,7 +65,7 @@ export class GameEventHistory {
       const action = state.history[this.count]!, result = apply(this.previous, action);
       if (!result.ok) throw Error(`Cannot project game event ${this.count + 1}: ${result.error}`);
       const before = this.previous, after = result.state, reason = ACTION_NAMES[action.kind];
-      const notes: string[] = [];
+      const notes: string[] = publicCardNotes(before,after,action);
       if (action.kind === "reinforce") notes.push(`Unplaced armies: ${before.reinforcementPool} → ${after.reinforcementPool}. ${action.amount} placed on ${regionName(before, action.province)}.`);
       if (result.outcome) {
         const outcome = result.outcome;

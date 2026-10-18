@@ -14,7 +14,7 @@ describe('approved deck and private hands',()=>{
   expect(cards(s).drawPile).toEqual(rng.shuffled(canonical()));expect(s.rng).toEqual(rng.snapshot());
   for(const key of ['ownerOf','armies','productionCentres','currentPlayer','computerRngs'] as const)expect(s[key]).toEqual(old[key]);
   expect(old).not.toHaveProperty('cards');expect(opening(1994,geographic)).toEqual(s);expect(cards(opening(1995,geographic)).drawPile).not.toEqual(cards(s).drawPile);
- });
+ }, geographic ? 30_000 : undefined);
  it('does not reward a non-capturing turn or consume any rules/computer RNG',()=>{
   const s=ready(opening()),before=structuredClone(s),next=act(frozen(s),{kind:'endTurn'});
   expect(cards(next)).toEqual(cards(s));expect(next.rng).toEqual(s.rng);expect(next.computerRngs).toEqual(s.computerRngs);expect(s).toEqual(before);

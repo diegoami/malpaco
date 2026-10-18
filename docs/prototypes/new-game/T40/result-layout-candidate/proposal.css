@@ -1,0 +1,5 @@
+
+/* Result choices stay fixed while optional standings use the remaining space. */
+.battle-reference[data-panel-detail] .action > .victory-result:not([hidden]) { display:flex; flex-direction:column; flex:1; min-height:0; }
+.battle-reference[data-panel-detail] .action > .victory-result:not([hidden]) > :not(#victory-standings) { flex-shrink:0; }
+.battle-reference[data-panel-detail] .action > .victory-result:not([hidden]) > #victory-standings { display:block; min-height:0; overflow:auto; }

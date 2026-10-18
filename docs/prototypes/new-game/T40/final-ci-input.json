@@ -1,0 +1,91 @@
+{
+  "reviewedHead": "5cc49c60648297aa0bfc69f28d51125d2ec753f4",
+  "actualMergedDependency": "69aa9262bc4d309cb1ef67f62b08549e0ae7be54",
+  "reviews": [
+    "https://github.com/diegoami/malpaco/pull/176#issuecomment-6251940458",
+    "https://github.com/diegoami/malpaco/pull/176#issuecomment-6252196932"
+  ],
+  "correctionReview": {
+    "session": "ses_eb039ef67ffejhjVT4YXDEsIsj",
+    "model": "kimi-code-plan-global/k3",
+    "variant": "low",
+    "seconds": 587.719,
+    "exit": 0,
+    "toolErrorsAndDenials": 0,
+    "findings": [],
+    "sourceRestored": true
+  },
+  "runtimeTestsDataToolsConfigEqualReviewed": true,
+  "originalFrozen": 39,
+  "supplementalFrozen": 2,
+  "preview": {
+    "head": "5cc49c60648297aa0bfc69f28d51125d2ec753f4",
+    "commands": [
+      {
+        "name": "package",
+        "argv": [
+          "node",
+          "tools/release/package-playable.mjs"
+        ],
+        "exit": 0,
+        "seconds": 1.717000756005291
+      },
+      {
+        "name": "extracted-cards",
+        "argv": [
+          "docker",
+          "run",
+          "--pull=never",
+          "--rm",
+          "--init",
+          "--ipc=host",
+          "--user",
+          "1000:1000",
+          "-v",
+          "/home/diego/projects/malpaco/.cache/t40-work:/work",
+          "-w",
+          "/work",
+          "-e",
+          "HOME=/tmp",
+          "-e",
+          "PLAYABLE_EXTRACTED_DIR=/work/docs/prototypes/new-game/T40/preview-20261018-160848/extracted",
+          "-e",
+          "PLAYABLE_EVIDENCE_DIR=/work/docs/prototypes/new-game/T40/preview-20261018-160848/extracted-evidence",
+          "mcr.microsoft.com/playwright:v1.63.0-noble",
+          "npx",
+          "playwright",
+          "test",
+          "tests/e2e/cards.spec.ts",
+          "tests/e2e/cards-result-layout.spec.ts",
+          "--config",
+          "playwright.release.config.ts",
+          "--workers=2"
+        ],
+        "exit": 0,
+        "seconds": 56.2853005500001
+      }
+    ],
+    "bundle": "/home/diego/projects/malpaco/.cache/t40-dispatch/preview-20261018-160848/T40-cards-5cc49c6-20261018-160848",
+    "archiveSha256": "36ca2fc6790572297538fffaf54699137cd226eff4586d7a4f0b224b34915d9c",
+    "screenshots": 44,
+    "verifiedPackage": true,
+    "files": 66
+  },
+  "windows": {
+    "sourceHead": "5cc49c60648297aa0bfc69f28d51125d2ec753f4",
+    "windowsPath": "/mnt/c/Users/diego/malpaco-preview/T40-cards-5cc49c6-20261018-160848",
+    "filesVerified": 67,
+    "httpVerified": {
+      "index.html": "c9acf0649010799f336212e42529a6ec2d325f91d9978a8042fe61dded38cde6",
+      "PLAY.md": "6181823ed1f99316ab581555afcc2e53fbad593eac4e43db075fdc5de59957a2",
+      "BUILD.json": "8499e985d4341e5bae08aff55551ba856522f16495c1be1b940c233edeed8a8e",
+      "assets/index-Bdu3PfAU.js": "ef452f0ed857c058abb68068f307695f75ff568101bf955909dcca6838e1aab5",
+      "assets/index-CAxo2Kls.css": "17257a1ce1d75bb06d0dc7c25dab53105f972a1e5a70623620532a0fce297aed",
+      "fonts/Inter-LICENSE.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "fonts/InterVariable.woff2": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+    },
+    "currentGameGalleryUnchanged": true
+  },
+  "ownerAppearanceApproval": "Pending explicit reply; required before merge.",
+  "ciPolicy": "This data/docs receipt triggers one final-head CI. No other T40 CI dispatched or rerun. Fresh main loss-key check is reserved for immediately before merge after green CI and owner approval."
+}
