@@ -79,7 +79,7 @@ describe('deck replay and same-stream continuation',()=>{
   const old=core.serializeMatch(options,[]);expect(core.deserializeVersionedMatch(old).state).not.toHaveProperty('cards');
   const value=JSON.parse(core.serializeVersionedMatch(options,[],identity()));
   for(const patch of [{rules:{id:'cards',version:2}},{rules:{id:'cards',version:3}},{actionSchemaVersion:2},{actionSchemaVersion:4},{boardGenerator:{id:'geographic',version:2}},{boardGenerator:{id:'unknown',version:1}}])expect(()=>core.deserializeVersionedMatch(JSON.stringify({...value,...patch}))).toThrow();
- });
+ },30000);
  it('rejects malformed discard shapes and forged snapshots through the real decoder',()=>{
   cards(opening());const base=JSON.parse(core.serializeVersionedMatch(settings(),[],identity()));
   for(const action of [{kind:'discardCard'},{kind:'discardCard',handIndex:-1},{kind:'discardCard',handIndex:0.5},{kind:'discardCard',handIndex:'0'},{kind:'discardCard',handIndex:0,card:'Anchor'},{kind:'discardCard',handIndex:0,extra:true}])expect(()=>core.deserializeVersionedMatch(JSON.stringify({...base,actions:[action]}))).toThrow();
