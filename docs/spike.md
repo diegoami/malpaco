@@ -734,3 +734,23 @@ under [T33](prototypes/new-game/T33/) support the owner's separate appearance an
 pacing judgment; automated completion is not that approval.
 
 The seeded island-geography constructor (`src/core/island-geography.ts`, T34) is a pure partial-data API. Its bounded witness-based family varies coast/cell geometry, four land topologies and three true placement plans using a shared global warp and joint label/entrance repair under unchanged T24/T62 limits. Distinct reserved entrance countries also preserve the existing fortress/concentration budget; all exported successes must independently validate. It exports no owners, armies, sea adjacency or bonuses and does not change the fixed-reference default. T35 converts these reservations into playable boards through `generateGeographicBoard` and `createGeographicGame`: sea adjacency follows the actual reserved routes, bonuses use size and distinct entrance countries, and one RNG object continues through geography, deal and centre selection. Generation shares the existing global 50-attempt budget and returns recoverable exhaustion with rejected candidates. The opt-in format-2 identity `geographic/1` + `victory/1` + action schema 2 replays this path; historical save identities retain their original generation. Coordinates remain integer Q2048. T36 integrates and measures the generated-map UI; see `docs/prototypes/new-game/T34/CONTRACT.md` for sampling and generality limits.
+
+
+## Geographic default integration (T36)
+
+The root and unknown-view fallback open generated-island setup. One human plus
+three Normal computers and all T70 playback/totals/log controls are preserved.
+The accepted geographic/1 map and sidecar supply country polygons, island coasts
+and sea routes directly. Rule legality and target paint use the map on the active
+state. No prototype layout replaces this geometry.
+
+The default host carries the explicit board identity, renderer and initial replay
+state together through loading and event reconstruction. Geographic v2 saves
+rebuild geographic sidecars; fixed-reference v2 saves select the fixed renderer.
+The explicit reference route retains its compatibility behavior, and the existing
+legacy generated route keeps its original files and projection.
+
+T36 acceptance and screenshots live under `docs/prototypes/new-game/T36/`; the
+wide-seed report supplies the committed corpus manifest. Browser checks establish
+operation and geometry; the owner judges actual appearance from both viewport
+captures. Historical sections above describe their named milestones.

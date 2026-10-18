@@ -1,3 +1,4 @@
+import {mountGeographicGame} from "./ui/geographicGame";
 import {mountReferenceGame} from "./ui/referenceGame";
 import "./styles.css";
 import { mountGameSetup, mountGeneratedGame } from "./ui/generatedGame";
@@ -42,5 +43,5 @@ if (view === "reference-game") {
 } else if (view === "game-setup") {
   mountGameSetup(root);
 } else {
-  mountReferenceGame(root);
+  mountGeographicGame(root);
 }

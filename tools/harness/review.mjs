@@ -43,6 +43,7 @@ import path from 'node:path';
 import { randomBytes, randomUUID } from 'node:crypto';
 import { runOpenCodeWatched, resolveOpenCode, OpenCodeInfraError, keyProblem } from './lib/opencode.mjs';
 import { resolveClaude, validateClaudeEnvironment, claudeSettings, runClaudeWatched, ClaudeInfraError, scopeProblems, hash } from './lib/claude.mjs';
+import { materializeReviewDependencies } from './lib/review-dependencies.mjs';
 import { credentialJail, OFF_WARNING } from './lib/jail.mjs';
 import { readReview, doneWhenCount, briefTargets } from './lib/chain.mjs';
 import { planPost, publish } from './lib/post.mjs';
@@ -203,6 +204,17 @@ OUTPUT RULES (from tools/harness/review.mjs; they override anything above that c
   git -C — and read a granted outside path only with the L59 recipe.
 `;
       newTree();
+      let reviewDependencies = null;
+      if (backend === 'claude') {
+        reviewDependencies = materializeReviewDependencies({
+          source: path.join(top, 'node_modules'),
+          destination: path.join(worktree, 'node_modules'),
+          ownedRoot: worktree,
+        });
+        say(reviewDependencies
+          ? `claude: private dependencies copied into retained worktree (${reviewDependencies.destination})`
+          : 'claude: launcher has no node_modules directory; continuing with the existing dependency setup');
+      }
       const watch = watchLine(m, model);
       if (watch) say(watch);
       let run;
@@ -226,6 +238,8 @@ OUTPUT RULES (from tools/harness/review.mjs; they override anything above that c
         for (let i = 0; i < lines.length; i += 240) fs.writeFileSync(path.join(parts, `${String(i / 240).padStart(5, '0')}.diff`), lines.slice(i, i+240).join('\n')+'\n');
         fs.writeFileSync(path.join(evidence, 'inventory.json'), JSON.stringify({ baseSha, headSha, diffSha256: hash(diff), files: scopeFiles }, null, 2)+'\n');
         const sessionId = randomUUID();
+        if (reviewDependencies) prompt += '\nThe launcher dependency tree was copied into a private node_modules directory in this retained review worktree.\n';
+        else prompt += '\nThe launcher has no node_modules directory; no dependency copy was made.\n';
         prompt += `\nCLAUDE BACKEND CONTRACT: The exact PR base is ${baseSha}, head ${headSha}. Do not use origin/main for a merged PR. Complete local diff: ${diffPath}; bounded parts: ${parts}; full changed-file inventory: ${evidence}/inventory.json. Read all executable changes. For generated evidence you may audit a group explicitly. Never claim a file you did not inspect. Before Final pass done, emit SCOPE: complete only if you covered all changes; otherwise SCOPE: incomplete plus UNCOVERED: paths/reasons. Emit FILE: <exact path> for each changed file inspected; EVIDENCE: <docs/prototypes/.../ prefix> may account for generated evidence only, never executable scripts. These are coverage claims, not independent proof. Every Done-when must be run; include exact DW lines. A missing scope acknowledgment prevents approval. No subagents or GitHub writes. Native Claude permission denials mirror OpenCode publishing restrictions; the trusted hook protects credential paths for Read/Grep/Glob. Bash is granted for tests and in-tree mutations. These are mistake safeguards, not an OS sandbox. Preserve scratch/evidence; do not clean up. Ignore obsolete OpenCode-only path restrictions above: your scratch is your retained worktree. No blanket permission bypass.\n`;
         if (/sonnet/i.test(model.id)) {
           const modelsDoc = fs.readFileSync(path.join(top, 'docs/models.md'), 'utf8');

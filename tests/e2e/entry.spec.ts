@@ -27,10 +27,11 @@ async function expectFits(page: import("@playwright/test").Page) {
   }
 }
 
-test("root and unrecognized views open the playable reference match with one human and three computers", async ({ page }, info) => {
+test("explicit reference entry retains the playable match with one human and three computers", async ({ page }, info) => {
   const seen = errors(page);
   for (const route of ["/", "/?seed=42", "/?view=unknown&seed=42"]) {
-    await page.goto(route);
+    const explicit=new URL(route,"http://localhost");explicit.searchParams.set("view","reference-game");
+    await page.goto(explicit.pathname+explicit.search);
     await expect(page.locator("#reference-setup")).toBeVisible();
     await expect(page.getByLabel("Seed", { exact: true })).toHaveValue(route === "/" ? "1994" : "42");
     await expect(page.getByLabel("Seats", { exact: true })).toHaveValue("4");
@@ -43,7 +44,7 @@ test("root and unrecognized views open the playable reference match with one hum
   // Pause timers so the computer opener cannot race the entry assertions.
   await page.clock.install();
   await page.clock.pauseAt(new Date());
-  await page.goto("/?seed=1994");
+  await page.goto("/?view=reference-game&seed=1994");
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   await expect(page.locator("#reference-game")).toBeVisible();
   await expect(page.locator("#reference-game")).toHaveAttribute("data-seats", "4");
