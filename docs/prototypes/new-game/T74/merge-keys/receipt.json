@@ -1,0 +1,82 @@
+{
+  "task": "T74",
+  "archiveSha256": "e5b04061a002ce0bc7e7024c83f8dbd2163ffc582acd4f6df2a194b11b508ad8",
+  "archiveBytes": 2418,
+  "parts": [
+    {
+      "path": "final-keys.tar.gz.part-000",
+      "sha256": "e5b04061a002ce0bc7e7024c83f8dbd2163ffc582acd4f6df2a194b11b508ad8",
+      "size": 2418
+    }
+  ],
+  "members": [
+    {
+      "path": "drawing-1994.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "mode": 420
+    },
+    {
+      "path": "drawing-1994.stdout",
+      "sha256": "cac244e6b46f8cb833d32fac8be205151b16a7874446fdc09e34db1f62d612d9",
+      "size": 135,
+      "mode": 420
+    },
+    {
+      "path": "drawing.json",
+      "sha256": "c0e192ef5b3def3e56146b84a0fb2c174732c53ead2804548d388bbf222cff6e",
+      "size": 4619,
+      "mode": 420
+    },
+    {
+      "path": "proof-after.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "mode": 420
+    },
+    {
+      "path": "proof-after.stdout",
+      "sha256": "1a07528245ceb7ba232b5ca6cafcd733ae69f656b499a28819b370a89d4b20ed",
+      "size": 585,
+      "mode": 420
+    },
+    {
+      "path": "proof-before.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "mode": 420
+    },
+    {
+      "path": "proof-before.stdout",
+      "sha256": "1a07528245ceb7ba232b5ca6cafcd733ae69f656b499a28819b370a89d4b20ed",
+      "size": 585,
+      "mode": 420
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "f5edc979b510cd3f403e18084cdd16755b7ce9fbf4fc597538aba09bfc1f3f4b",
+      "size": 1338,
+      "mode": 420
+    },
+    {
+      "path": "service.json",
+      "sha256": "311ca7987ddf2253936d8994ecb364c79684ef28a5f9d18060908745ac01fe04",
+      "size": 2968,
+      "mode": 420
+    },
+    {
+      "path": "service.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0,
+      "mode": 420
+    },
+    {
+      "path": "service.stdout",
+      "sha256": "575d2a2d44403c00aaaef63009c58ebcf7e7ff98e7ec0afbabb78ac98891e300",
+      "size": 135,
+      "mode": 420
+    }
+  ],
+  "originalsPreserved": true,
+  "scope": "Post-CI immediately-before-merge parent key evidence; archived only after successful merge to preserve the original CI head."
+}
