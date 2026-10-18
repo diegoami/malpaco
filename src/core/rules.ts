@@ -1,4 +1,4 @@
-import { drawReward, HAND_LIMIT } from './cards';
+import { classifyCardSet, drawReward, HAND_LIMIT } from './cards';
 import { attackTargets, resolve, whyNot } from "./combat";
 import { DeterministicRng } from "./rng";
 import { reinforcementIncome } from "./reinforcement";
@@ -41,6 +41,8 @@ export function apply(state: GameState, action: Action): ApplyResult {
 
 function dispatch(next: GameState, action: Action): ApplyResult {
   switch (action.kind) {
+    case 'tradeCards': return tradeCards(next,action.handIndices);
+    case 'skipCards': return skipCards(next);
     case 'discardCard': return discardCard(next,action.handIndex);
     case "reinforce":
       return reinforce(next, action.province, action.amount);
@@ -158,7 +160,7 @@ function endTurn(state: GameState): ApplyResult {
     if (!activePlayer(state)?.eliminated) break;
   }
   const next = activePlayer(state);
-  state.phase = state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
+  state.phase = state.rules.cards === "trade-v1" ? "cards" : state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
   state.capturedThisTurn = false;
   state.reinforcementPool = state.rules.turnSequence === "reinforcement" && next && !next.eliminated
     ? reinforcementIncome(state, next.id).total
@@ -168,7 +170,7 @@ function endTurn(state: GameState): ApplyResult {
 
 /** End-of-turn seam: later reward/effect work belongs before victory, never after handoff. */
 function completeTurn(state: GameState): ApplyResult {
-  if(state.rules.cards==='deck-v1' && state.cards && state.capturedThisTurn){
+  if((state.rules.cards==='deck-v1'||state.rules.cards==='trade-v1') && state.cards && state.capturedThisTurn){
     const player=activePlayer(state)!.id;
     if(state.cards.hands[player]!.length===HAND_LIMIT){state.cards.pendingDiscard={player};return {ok:true,state,outcome:null};}
     drawReward(state);
@@ -177,7 +179,7 @@ function completeTurn(state: GameState): ApplyResult {
 }
 function discardCard(state:GameState,index:number):ApplyResult {
   const c=state.cards,p=activePlayer(state)!.id;
-  if(state.rules.cards!=='deck-v1'||!c?.pendingDiscard||c.pendingDiscard.player!==p)return {ok:false,error:'no card discard is pending'};
+  if((state.rules.cards!=='deck-v1'&&state.rules.cards!=='trade-v1')||!c?.pendingDiscard||c.pendingDiscard.player!==p)return {ok:false,error:'no card discard is pending'};
   if(!Number.isSafeInteger(index)||index<0||index>=c.hands[p]!.length)return {ok:false,error:'choose a card in your hand'};
   c.discardPile.push(c.hands[p]!.splice(index,1)[0]!);delete c.pendingDiscard;
   drawReward(state);return finalizeTurn(state);
@@ -192,7 +194,7 @@ function finalizeTurn(state: GameState): ApplyResult {
 function beginNextTurn(state: GameState, handoff = nextLivingTurn(state)): void {
   state.currentPlayer = handoff.seat;
   if (handoff.completedRound) state.turnNumber += 1;
-  state.phase = state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
+  state.phase = state.rules.cards === "trade-v1" ? "cards" : state.rules.turnSequence === "reinforcement" ? "reinforce" : "attack";
   state.capturedThisTurn = false;
   state.reinforcementPool = state.rules.turnSequence === "reinforcement"
     ? reinforcementIncome(state, activePlayer(state)!.id).total : 0;
@@ -230,4 +232,29 @@ function checkVictory(state: GameState): boolean {
   state.winner = alive[0]?.id ?? "";
   state.log.push({ event: "victory", player: state.winner, turn: state.turnNumber });
   return true;
+}
+
+/** [designed] T38 protocol: a trade or skip consumes the cards phase itself.
+ * Searched variety-029..035 and existing turn seams: no extra per-turn counter
+ * is needed because placement cannot start until the cards phase is closed.
+ */
+function skipCards(state:GameState):ApplyResult {
+ if(state.rules.cards!=='trade-v1'||state.phase!=='cards'||!state.cards)return {ok:false,error:'not in the cards phase'};
+ state.phase='reinforce';return {ok:true,state,outcome:null};
+}
+function tradeCards(state:GameState,indices:readonly number[]):ApplyResult {
+ if(state.rules.cards!=='trade-v1'||state.phase!=='cards'||!state.cards)return {ok:false,error:'not in the cards phase'};
+ const c=state.cards,p=activePlayer(state)!.id,hand=c.hands[p]!;
+ if(!Array.isArray(indices)||indices.length!==3||new Set(indices).size!==3||indices.some(i=>!Number.isSafeInteger(i)||i<0||i>=hand.length))return {ok:false,error:'choose three distinct cards in your hand'};
+ const kind=classifyCardSet(indices.map(i=>hand[i]!));
+ if(!kind)return {ok:false,error:'those cards are not a set'};
+ // T38 explicitly defers target/effect to T39's separately versioned Raid stage.
+ if(kind==='Raid')return {ok:false,error:'Raid sets require the later targeted Raid rules'};
+ const chosen=new Set(indices);
+ c.discardPile.push(...hand.filter((_,i)=>chosen.has(i)));
+ c.hands[p]=hand.filter((_,i)=>!chosen.has(i));
+ // T23 variety-032/043: income was computed once on entry; no placement yet.
+ if(kind==='Surge')state.reinforcementPool*=2;
+ else state.reinforcementPool+=({Anchor:5,Compass:8,Lantern:15} as const)[kind];
+ state.phase='reinforce';return {ok:true,state,outcome:null};
 }

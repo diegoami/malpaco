@@ -10,7 +10,7 @@ import { referenceMap } from "./reference-map";
 import { createReferenceGame } from "./reference-game";
 import { createGeographicGame } from "./geographic-game";
 import type {IslandGeography} from "./island-geography";
-import { cardsRules, victoryRules } from "./state";
+import { cardsRules, tradeCardsRules, victoryRules } from "./state";
 
 export const MATCH_SAVE_VERSION = 1;
 function actionFrom(value: unknown, index: number): Action {
@@ -103,11 +103,19 @@ export const GEOGRAPHIC_MATCH_IDENTITY: MatchIdentity = Object.freeze({
  */
 export const REFERENCE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'fixed-reference',version:1}),rules:Object.freeze({id:'cards',version:1}),actionSchemaVersion:3});
 export const GEOGRAPHIC_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:1}),rules:Object.freeze({id:'cards',version:1}),actionSchemaVersion:3});
+/** [designed] T38 storage stage, after searching the pinned variety inventory
+ * and existing match codec: cards/2 + schema4 permanently selects trade-v1.
+ * Selection indices name the pre-action hand; discard order follows that hand.
+ * Future Raid targets/effects require a separate tuple, never a widened stage.
+ */
+export const REFERENCE_TRADE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'fixed-reference',version:1}),rules:Object.freeze({id:'cards',version:2}),actionSchemaVersion:4});
+export const GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:1}),rules:Object.freeze({id:'cards',version:2}),actionSchemaVersion:4});
 function supportedIdentity(value: Record<string, unknown>): MatchIdentity {
   const generator = value.boardGenerator;
   const cardStage=record(value.rules)&&value.rules.id==='cards';
+  const tradeStage=cardStage&&record(value.rules)&&value.rules.version===2;
   const expected = record(generator) && generator.id === "geographic"
-    ? (cardStage?GEOGRAPHIC_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY) : (cardStage?REFERENCE_CARD_MATCH_IDENTITY:REFERENCE_MATCH_IDENTITY);
+    ? (tradeStage?GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY:cardStage?GEOGRAPHIC_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY) : (tradeStage?REFERENCE_TRADE_CARD_MATCH_IDENTITY:cardStage?REFERENCE_CARD_MATCH_IDENTITY:REFERENCE_MATCH_IDENTITY);
   // Each supported generator keeps its exact rules/action tuple for replay.
   for (const field of ["boardGenerator", "rules"] as const) {
     const part = value[field], required = expected[field];
@@ -126,8 +134,13 @@ function versionedAction(value: unknown, index: number, schema: number): Action 
   if (!record(value)) return fail();
   let keys: string[];
   switch (value.kind) {
+    case 'tradeCards':
+      if(schema!==4||!Array.isArray(value.handIndices)||value.handIndices.length!==3||new Set(value.handIndices).size!==3||value.handIndices.some(i=>typeof i!=='number'||!Number.isSafeInteger(i)||i<0))return fail();
+      keys=['kind','handIndices'];break;
+    case 'skipCards':
+      if(schema!==4)return fail();keys=['kind'];break;
     case 'discardCard':
-      if(schema!==3||typeof value.handIndex!=='number'||!Number.isSafeInteger(value.handIndex)||value.handIndex<0)return fail();
+      if((schema!==3&&schema!==4)||typeof value.handIndex!=='number'||!Number.isSafeInteger(value.handIndex)||value.handIndex<0)return fail();
       keys=['kind','handIndex'];break;
     case "reinforce": keys = ["kind", "province", "amount"]; break;
     case "attack":
@@ -171,7 +184,7 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
     throw new SaveFormatError(`Invalid game options: ${error instanceof Error ? error.message : String(error)}`, "options");
   }
   const actions = value.actions.map((action,index)=>versionedAction(action,index,identity.actionSchemaVersion));
-  const rules=identity.rules.id==='cards'?cardsRules(options):victoryRules(options);
+  const rules=identity.rules.id==='cards'?(identity.rules.version===2?tradeCardsRules(options):cardsRules(options)):victoryRules(options);
   const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules):null;
   const created=geographic??createReferenceGame(referenceMap,options,rules);
   if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
