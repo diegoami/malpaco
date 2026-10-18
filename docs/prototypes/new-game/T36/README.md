@@ -1,0 +1,131 @@
+# Geographic integration parent acceptance
+
+Run the task's fixed commands from the repository root:
+
+```sh
+node docs/prototypes/new-game/T36/sweep.mjs
+npx playwright test tests/e2e/geographic-board.spec.ts
+npm test
+npm run build
+```
+
+The retained unchanged-algorithm measurement accepted 999/1000 seeds, with seed 398
+refusing after 50 attempts; accepted seeds used at most 44 attempts. All successful
+complete games replay identically. Extra seed 1994 succeeds in 6 attempts and is
+excluded from the denominator. Approved T24 targets are unchanged. Exact raw
+boards, rejected candidates, graph/geometry metrics, RNG/deal/source hashes and
+commands are in `evidence/sweep-ZIcS6O` and `evidence/parent-wide-itutk8p2`.
+
+`corpus-selection.json` is the exact five-extrema measured manifest. The separately
+derived `corpus-supplement.json` adds retained seed 6 to cover the bottom placement
+family; the original report and selection remain byte-identical. All six seeds use
+the same exact geometry, real 40 px hit-square, army label containment/contrast,
+visible ownership paint and route checks at both desktop viewports. Ordinary CI
+and extracted-artifact test runners require no geographic corpus environment flag.
+
+The geographic count baseline is source labelAt plus five units. Badge center and
+40 px input probes use source labelAt. The mounted setup uses the tested typed
+refusal controller. Product feedback is actionable; complete rejection diagnostics
+stay in typed results and measured evidence. No test-only browser route/state hook
+or generator relaxation is used.
+
+See `PREFLIGHT.md` and `preflight-summary.json` for concrete parent proof, exact
+adoption packet, source hashes, restoration and the deferred extracted-artifact
+execution. This is disposable parent proof, not formal producer adoption or owner
+appearance approval. Historical proposals and all initial/new dependency baselines
+are retained under `parent-preflight`; do not apply those snapshots indiscriminately.
+
+The complete parent archive preserves all 2,856 original paths, including candidate source copies and patches; concatenate the receipt-listed parts and extract from the repository root to recover the original layout. Loose originals remain in the preparation worktree. Tracked metadata and packet archives provide provenance without treating archived source copies as current executable code.
+
+## Formal producer adoption
+
+The producer adopted exactly the thirteen authorized production/documentation files
+from the verified candidate packet. All 52 runtime files equal the passing wide,
+new/old browser, unit and build source snapshots; all five frozen acceptance hashes
+remain unchanged. The six explicit-reference navigation updates were already committed
+and were not reapplied. `production-adoption.json` records exact hashes and lineage.
+
+The reused proof is 999/1000 plus separate 1994, 30 new and 222 old browser cases,
+645 Vitest plus six harness checks, successful builds and seven detected source
+omissions. Wide captured an earlier UI-test draft; final UI acceptance is separately
+proven by the 30-case snapshot. No unchanged heavy check was repeated for adoption.
+The earlier parent restoration statement remains historical: current runtime is now
+the adopted candidate. Fresh extracted-package execution, independent review, CI and
+owner appearance judgment remain separate checks; none is claimed here.
+
+## First review and bounded rework
+
+The first independent Sonnet High review approved after named fixes and found no
+blocking defect. A separate `geographic-review-guards.spec.ts` now exercises actual
+unpaused Enter and Space placement, rejection of a valid geographic-v2 save on the
+explicit reference route with usable-match preservation, and computed four-seat
+responsive parity at both viewports. Geographic-v2 guidance points to the main game
+screen; older generated-save guidance still points to its legacy generated view.
+Geographic CSS shares the existing reference compact/wrapping/large-panel selectors,
+with no new layout constants; measured reference computed styles are unchanged.
+
+`rework-source-proof.json` records the valid58-case source positive, actual omission
+failures/restoration and retained fixture/build/wrapper development mistakes. The
+original five frozen files are unchanged. Their UNEXECUTED headers and earlier
+corpus source fingerprint are historical freeze provenance (R4/R5), not a claim
+that later measured execution did not occur. Defensive identity/origin/sidecar
+branches remain (R6). All measured accepted routes have zero bends, so seed0 is a
+tie-break rather than bent-route coverage (R7). No constraints were relaxed.
+
+R8 original delivery screenshots are loose under `delivery-preview-20261018/screenshots`
+with a byte-exact copy receipt; the preexisting package/preview archive is preserved.
+The owner approved appearance and pacing of18f46af subject to review and greenCI;
+that exact-head provenance is retained in `parent-review-round1`. The later panel
+redesign request is issue163 and is outside this bounded rework. Fresh rework package
+proof and independent follow-up are recorded separately.
+
+The bounded rework subsequently passed a fresh36-case extracted-artifact run
+(frozen geographic30 plus six review guards). Its BUILD identifies committed
+runtime `2ebb039741c275259420a294c2c1838be6b79810`; every extracted checksum verified.
+`rework-final-proof.json` links that package,12 fresh captures, source58/unit/build
+proof and the verified251-member/four-part fresh-evidence archive. Prior release
+and dist outputs were saved and member-verified before packaging. Independent
+follow-up and greenCI are separate; neither is claimed by this native rework.
+
+## Claude review dependency isolation
+
+When the configured reviewer backend is Claude, `tools/harness/review.mjs` copies the
+launcher checkout's `node_modules` into the new retained review worktree before it
+starts Claude. The copy contains regular files and real directories, retains relative
+internal links such as npm's `.bin` entries, and gives Claude a worktree-local tree for
+cleanup and mutations. The launcher source is resolved through its real path and is
+never modified. An existing destination, a source/destination overlap, an escaping or
+broken source link, or a destination outside the retained review worktree is refused;
+if the launcher has no dependency directory, the harness reports that and follows its
+existing setup. OpenCode reviews do not use this path. CLI arguments, selected model,
+environment and permission gates are unchanged.
+
+The fix follows the retained PR162 probe: Claude Code2.1.292 on Sonnet5.5 Medium ran the
+requested tests and build before its final external-node_modules symlink cleanup was
+denied. The same cleanup remained denied with one exact Bash allowance, while a real
+dependency directory inside the owned worktree produced zero permission denials. No
+permission grant was widened. The helper's fixture tests exercise private-copy writes,
+relative `.bin` resolution, automatic preparation before the CLI starts, missing source,
+outside-worktree paths, overlaps, and existing directory/dangling-link preservation.
+The untested first wrapper draft is preserved byte-for-byte under
+`evidence/reviewer-dependencies-amendment-20261018/prior-draft/` as provenance only; the
+default review setup is the automatic harness integration above. The final harness run
+(`node --test tools/harness/test/*.test.mjs`) passed all eight tests, and
+`npm run build` passed; retained command logs and source archives are under
+`evidence/reviewer-dependencies-harness-release-gq2mfoga/`,
+`evidence/reviewer-dependencies-build-final-ucouzj7q/`, and
+`evidence/reviewer-dependencies-amendment-20261018/`. The source actual-CLI probe archive
+is retained unchanged at `review-permission-diagnostics/permission-diagnostics.tar.gz`
+(SHA256 `35cb5cca3fc957ddb5485a8569ab7b8176ebc38acdba182167c9c5a7c6435289`), with its
+member manifest beside it. A no-Claude real-source copy probe retained under
+`evidence/reviewer-dependencies-real-copy-20261018/` copied all 1,454 regular files and
+8 symlinks from the launcher source; source/copy content tree hashes matched, no regular
+file inode was shared, and a write/byte-exact restore in the copy left the source hash
+unchanged. The copy remained in `/tmp/t36-private-dependency-copy-URaDXV/` for parent
+validation.
+
+## Clean review after dependency isolation
+
+The actual Sonnet Medium follow-up at `feefffb451de8574d5e3da5b032378760da9130d` completed in1038.531s with exact model `claude-sonnet-5-5`, CLI0 and zero permission denials. All8 harness tests/645 Vitest/build,36 source geographic/guard,36 fresh extracted-package and48 affected reference tests pass. Eight helper/integration omissions plus keyboard/gate/guidance/live responsive omissions are caught with exact source restoration. Full final and raw native evidence are retained in `claude-review-round3/`; parent verified all2741 members and3 archive parts. The scoped follow-up inherits the unchanged original independent wide sweep and old222 evidence honestly. `parent-review-round3/` explains combined coverage and historical source-snapshot limits.
+
+Main separately verified1451 nontransient actual review dependencies have private file inodes and unchanged source bytes. Omitting automatic preparation fails the real-entry fake-CLI test for missing private dependencies; exact restoration passes (`evidence/parent-helper-omission-5vg5timd/`). Final parent extracted-package six guards pass with stable source inputs (`evidence/parent-final-key-23g6e6pj/`). No model/permission/denial gate was relaxed. Nonblocking reviewer findings remain follow-ups; no game code changed for this setup repair.

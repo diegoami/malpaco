@@ -1,0 +1,37 @@
+{
+  "reviewedCodeHead": "feefffb451de8574d5e3da5b032378760da9130d",
+  "preparedFrom": "d7c9bee00254dbd2d985aa061d096f61980755a0",
+  "sourceTreesAndConfigsEqualReviewedHead": {
+    "src": "e9334e7ce1db679ae098fb9f97305a8c0ea7c496",
+    "tests": "dc42b72f35232371ebc86706e2d008e68583a165",
+    "data": "b38ddcf8fc9fdefd5a834026f5acda8e9e58207c",
+    "tools/harness": "a64fefa5816d81b2366cabaee82ec43e7d5ce2fa",
+    "tools/release": "6a3e374126d7d633bf3ebc0cb765af93e0ade785",
+    "package.json": "73a8cdfc1357c7d38e9defa7c05103096c9fc9cb",
+    "package-lock.json": "24e0c08ae38e877f8226c172d7e3508ae62041b4",
+    "playwright.config.ts": "bb2380dfa0d44375e78a65e6ffe6b0fc2e66d250",
+    "playwright.release.config.ts": "605ec74035222c308f8b320cc09ee926fabc0c08",
+    "tsconfig.json": "df9870791f8a869bec9b6d5d0659def459fa8481"
+  },
+  "actualReview": "https://github.com/diegoami/malpaco/pull/162#issuecomment-6248031589",
+  "scopeAssessment": "https://github.com/diegoami/malpaco/pull/162#issuecomment-6248059091",
+  "actualModel": "claude-sonnet-5-5",
+  "effort": "medium",
+  "actualCliExit": 0,
+  "permissionDenials": 0,
+  "reviewSeconds": 1038.531,
+  "parentFinalExtractedGuards": 6,
+  "parentKeySourcesStable": true,
+  "originalIndependentSweep": {
+    "successes": 999,
+    "total": 1000,
+    "soleRefusal": 398,
+    "diagnostic1994Attempts": 6,
+    "unchangedGenerator": true
+  },
+  "eightAdoptionReportsPublished": true,
+  "privateReportsNotDisclosedInPublicReceipt": true,
+  "nonblockingFollowup": "https://github.com/diegoami/malpaco/issues/165",
+  "ciPolicy": "This evidence/docs-only normal commit triggers one PR CI. No manual rerun or duplicate main CI; merge only on its exact green head.",
+  "sevenInheritedDirtyEntriesUnchanged": true
+}

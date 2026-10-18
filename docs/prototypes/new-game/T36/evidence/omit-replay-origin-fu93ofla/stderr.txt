@@ -1,0 +1,16 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/geographic-game.test.ts > geographic file metadata and event history share the original accepted map and replay origin
+Error: Cannot project game event 1: you may reinforce only your own provinces
+ ❯ GameEventHistory.append src/ui/gameEventLog.ts:62:29
+     60|     while (this.count < state.history.length) {
+     61|       const action = state.history[this.count]!, result = apply(this.p…
+     62|       if (!result.ok) throw Error(`Cannot project game event ${this.co…
+       |                             ^
+     63|       const before = this.previous, after = result.state, reason = ACT…
+     64|       const notes: string[] = [];
+ ❯ tests/ui/geographic-game.test.ts:77:85
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

@@ -1,0 +1,24 @@
+{
+  "name": "replay-origin",
+  "file": "src/ui/gameEventLog.ts",
+  "beforeSha256": "38e9011c502b62039f76897555932520fc2e3e43617edf0a28639d56e2cb8616",
+  "omittedSha256": "015441739c30b8c25b3be71535c602f9514543e5e8eaf7023fc953c5b4790e6c",
+  "command": [
+    "/usr/bin/python3",
+    "/home/diego/projects/malpaco/.cache/t36-work/docs/prototypes/new-game/T36/run-command.py",
+    "omit-replay-origin",
+    "npx",
+    "vitest",
+    "run",
+    "tests/ui/geographic-game.test.ts",
+    "-t",
+    "geographic file metadata and event history"
+  ],
+  "startedUtc": "2026-10-18T06:47:22.569493+00:00",
+  "exit": 1,
+  "run": "docs/prototypes/new-game/T36/evidence/omit-replay-origin-fu93ofla",
+  "actualBehaviorAssertionFailed": true,
+  "restored": true,
+  "afterSha256": "38e9011c502b62039f76897555932520fc2e3e43617edf0a28639d56e2cb8616",
+  "endedUtc": "2026-10-18T06:47:24.848108+00:00"
+}

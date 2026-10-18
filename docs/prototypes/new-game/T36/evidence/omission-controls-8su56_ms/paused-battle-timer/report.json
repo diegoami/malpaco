@@ -1,0 +1,22 @@
+{
+  "name": "paused-battle-timer",
+  "file": "src/ui/battleController.ts",
+  "beforeSha256": "6e58be9a0c5084ff1b60c68f14930ba7289b487ac5c91be95ef0cbf6891ca247",
+  "omittedSha256": "a9969d0b6a9da8a3144866930c67e08adcc03444826cb5a3ee3f3285e26f93aa",
+  "command": [
+    "/usr/bin/python3",
+    "/home/diego/projects/malpaco/.cache/t36-work/docs/prototypes/new-game/T36/run-browser.py",
+    "omit-paused-battle-timer",
+    "--project=1280x800",
+    "--grep",
+    "geographic continuous battle pauses/resumes",
+    "--max-failures=1"
+  ],
+  "startedUtc": "2026-10-18T06:47:26.270727+00:00",
+  "exit": 1,
+  "run": "docs/prototypes/new-game/T36/evidence/omit-paused-battle-timer-j7a6kvmb",
+  "actualBehaviorAssertionFailed": true,
+  "restored": true,
+  "afterSha256": "6e58be9a0c5084ff1b60c68f14930ba7289b487ac5c91be95ef0cbf6891ca247",
+  "endedUtc": "2026-10-18T06:47:33.143582+00:00"
+}

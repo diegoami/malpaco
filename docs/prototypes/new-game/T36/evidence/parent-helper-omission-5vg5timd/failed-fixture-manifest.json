@@ -1,0 +1,21 @@
+{
+  "archive": "failed-fixture-evidence.tar.gz",
+  "sha256": "e1bfe4d7acf7771d4806487a696c1b7a5b2b0c8e024fb901e138469282dbfdb2",
+  "members": {
+    "evidence/prompt.md": "9d6ee456bacf98ada38adcea484649f6c09a547bdaf5ba6ebcd841c22d81aa55",
+    "evidence/receipt.json": "ac45e7f3500246df263a90c1baf0401a676335df74439c903e91f7972dd9ba07",
+    "evidence/inventory.json": "64fa52bc81cd107324896ce59fe9621ffe5483aa7226332ad6dcb4561a119b27",
+    "evidence/stderr.txt": "02d423fcff695187bebea0f8551c38713999134d04b763935733cb4f73b72302",
+    "evidence/stdout.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/settings.json": "c42dbaf4162081ff374d86c63f4b09b119f3e9117357049301afe648ee9371a1",
+    "evidence/final.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/full.diff": "0256923b481ce063ce6aef69edde087adfa9b0f5ca4e6d7221662855aa46059d",
+    "evidence/diff-parts/00000.diff": "bc8764b75079956a2e5fb3289c470797cb201194d08a12ebd0e86a8c1f1f8a88",
+    "fixture/claude.mjs": "4ce563aa44bf7396cdfb1ae826047680df3b7ce4c53d000f914e1b28fb157d67",
+    "fixture/gh.mjs": "a32089fc3704ef24642468a2028b02b669a2ce9a5b06f7393f97483184cee4cc",
+    "fixture/brief.md": "b74afe7bee17d462a4fdff04b084cafa104ed2cb59ba238e159f7377465fd832",
+    "fixture/gh-trace": "a474c9820ce0c243e71e9c6eb33955914ac9cc9260a685f919d93834501597d1"
+  },
+  "fixtureCliFailureVerified": "private dependencies not prepared before Claude launch",
+  "originalsPreservedAt": "/tmp/claude-entry-ylJjO0/repo/.cache/review-evidence/pr1-8b1b0e40a067"
+}

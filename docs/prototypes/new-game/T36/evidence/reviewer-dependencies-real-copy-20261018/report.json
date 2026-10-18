@@ -1,0 +1,34 @@
+{
+  "startedUtc": "2026-10-18T08:47:33.508Z",
+  "endedUtc": "2026-10-18T08:47:34.158Z",
+  "durationSeconds": 0.649454472,
+  "source": "/home/diego/projects/malpaco/node_modules",
+  "destination": "/tmp/t36-private-dependency-copy-URaDXV/review-worktree/node_modules",
+  "retainedProbeDirectory": "/tmp/t36-private-dependency-copy-URaDXV",
+  "sourceEntries": 1636,
+  "copiedEntries": 1636,
+  "sourceRegularFiles": 1454,
+  "copiedRegularFiles": 1454,
+  "sourceSymlinks": 8,
+  "copiedSymlinks": 8,
+  "contentTreesEqual": true,
+  "sourceTreeSha256": "be20ef5199025277866e951bff26c778f65ac49df5be0b4ba0e94cb4a23aa435",
+  "copiedTreeSha256": "be20ef5199025277866e951bff26c778f65ac49df5be0b4ba0e94cb4a23aa435",
+  "sharedRegularFileInodes": [],
+  "mutationTarget": "typescript/package.json",
+  "sourceSha256Before": "3722b30210616a13a3213ded11575ba6b2dbab10c32a5ef67afca8513e27017e",
+  "sourceSha256AfterMutation": "3722b30210616a13a3213ded11575ba6b2dbab10c32a5ef67afca8513e27017e",
+  "sourceSha256AfterRestore": "3722b30210616a13a3213ded11575ba6b2dbab10c32a5ef67afca8513e27017e",
+  "copiedFileRestored": true,
+  "sourceUnchanged": true,
+  "capturedInventories": {
+    "source-tree.json.gz": {
+      "bytes": 76451,
+      "sha256": "2be29bedc808c8bb6a9383331e21ebea3399ba5fdaaee82a483a835b7c5515da"
+    },
+    "copy-tree.json.gz": {
+      "bytes": 76330,
+      "sha256": "b92e92995fb0dd767987173f770b1d468d7c2a79a9aa40357cc3c5151230d74e"
+    }
+  }
+}

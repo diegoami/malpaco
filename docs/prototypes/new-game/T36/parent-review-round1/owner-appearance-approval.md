@@ -1,0 +1,3 @@
+Owner explicit appearance/pacing approval received for T36 preview at localhost4176 / C:\Users\diego\malpaco-preview\OPEN-REVIEW.html, source18f46afde1518ff0780a8a7b71b65574a0fc796e, packageSHA87cee2b72bac60a6775d8de1d57960a2ba6c432c6cd6f29078a0ed11adcac74b: **“Approve appearance and pacing”**, subject to independent review and green CI.
+
+First independent review's bounded named fixes remain underway: activekeyboard/load-rejection guards, correct loadguidance, sharing existingresponsive shell rules, loose screenshots. No generator/identity/constraints/palette/geometry redesign. Approval does not claim final independent approval or CI; neither has yet been obtained for the rework.

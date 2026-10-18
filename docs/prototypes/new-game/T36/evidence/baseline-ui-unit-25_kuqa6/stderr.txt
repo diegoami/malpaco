@@ -1,0 +1,15 @@
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/geographic-game.test.ts [ tests/ui/geographic-game.test.ts ]
+Error: Cannot find module '../../src/ui/geographicGame' imported from /home/diego/projects/malpaco/.cache/t36-work/tests/ui/geographic-game.test.ts
+ ❯ tests/ui/geographic-game.test.ts:5:1
+      3| // preflight before freezing this draft. No DOM dependency or producti…
+      4| import {expect,it,vi} from 'vitest';
+      5| import {createGeographicSetupController} from '../../src/ui/geographic…
+       | ^
+      6| import {createGeographicGame} from '../../src/core/geographic-game';
+      7| import type {GeographicGameResult} from '../../src/core/geographic-gam…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

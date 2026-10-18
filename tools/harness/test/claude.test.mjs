@@ -7,6 +7,7 @@ import { validateClaudeEnvironment, readClaudeEvents, scopeProblems, runClaudeWa
 import { readReview } from '../lib/chain.mjs';
 import { planPost } from '../lib/post.mjs';
 import { planSwitch } from '../lib/switch.mjs';
+import { materializeReviewDependencies } from '../lib/review-dependencies.mjs';
 import { reviewRefusal, namedModel } from '../lib/common.mjs';
 const id = 'claude-sonnet-5-5';
 const init = { type: 'system', subtype: 'init', model: id, session_id: 'ours' };
@@ -67,11 +68,12 @@ test('real review entry selects Claude without OpenCode, publishes once, refuses
  fs.writeFileSync(path.join(repo,'a.txt'),'head\n');git('add','.');git('commit','-qm','head');const head=git('rev-parse','HEAD');
  git('update-ref','refs/pull/1/head',head);git('remote','add','origin',repo);
  fs.cpSync(new URL('../',import.meta.url),path.join(repo,'tools/harness'),{recursive:true});fs.mkdirSync(path.join(repo,'docs'));fs.copyFileSync(path.resolve('docs/models.md'),path.join(repo,'docs/models.md'));
+ fs.mkdirSync(path.join(repo,'node_modules','fake-dependency'),{recursive:true});fs.writeFileSync(path.join(repo,'node_modules','fake-dependency','index.js'),'launcher dependency\n');fs.writeFileSync(path.join(repo,'node_modules','fake-dependency','cli.mjs'),'export {};\n');fs.mkdirSync(path.join(repo,'node_modules','.bin'));fs.symlinkSync('../fake-dependency/cli.mjs',path.join(repo,'node_modules','.bin','fake-dependency'));
  fs.writeFileSync(path.join(repo,'harness.json'),JSON.stringify({worktreeRoot:'work',models:{claude:{id:'anthropic/'+id,family:'claude',backend:'claude',variant:'medium'}},blocked:[],reviewer:{default:'claude',startupTimeoutSec:2,idleTimeoutSec:2,totalTimeoutSec:5}}));
  const brief=path.join(root,'brief.md');fs.writeFileSync(brief,`T69 review (Claude)\nYou review PR #1 at ${head}.\n# T69 fixture\n- **Done when**:\n  1. git diff --check BASE HEAD passes.\n- **Hazards**: none.\n`);
  const gh=path.join(root,'gh.mjs'),cli=path.join(root,'claude.mjs'),trace=path.join(root,'gh-trace');
  fs.writeFileSync(gh,`import fs from 'node:fs'; const a=process.argv.slice(2);if(a.includes('--version')){console.log('gh fake');}else if(a[0]==='pr'&&a[1]==='view'){console.log(a.includes('headRefOid,baseRefOid')?JSON.stringify({headRefOid:process.env.HEAD_SHA,baseRefOid:process.env.BASE_SHA}):'');}else{fs.appendFileSync(process.env.TRACE,JSON.stringify(a)+'\\n');if(a.includes('--body-file'))fs.writeFileSync(process.env.TRACE+'.body',fs.readFileSync(a[a.indexOf('--body-file')+1]));}`);
- fs.writeFileSync(cli,`import fs from 'node:fs';import path from 'node:path';const a=process.argv.slice(2);if(a.includes('--version')){console.log('2.1.292 (Claude Code)');process.exit(0);}const v=k=>a[a.indexOf(k)+1];if(v('--setting-sources')!=='')throw Error('settings not isolated');const dir=path.dirname(v('--settings'));const s=JSON.parse(fs.readFileSync(v('--settings')));if(!s.hooks.PreToolUse.length)throw Error('no guard');const inv=JSON.parse(fs.readFileSync(path.join(dir,'inventory.json')));if(!fs.readFileSync(path.join(dir,'full.diff'),'utf8').includes('+head'))throw Error('no local diff');const mode=process.env.CASE;console.log(JSON.stringify({type:'system',subtype:'init',session_id:v('--session-id'),model:mode==='wrong'?'glm-5.3':v('--model')}));if(mode==='missing')process.exit(0);const r=['T69 review (Claude)','approve',mode==='dw'?'DW1: not run — fixture':'DW1: ran git diff --check → passed',...(mode==='scope'?[]:inv.files.map(f=>'FILE: '+f)),'SCOPE: complete','R1: test full findings survive flags','Final pass done','approve'].join('\\n');console.log(JSON.stringify({type:'result',subtype:'success',is_error:false,session_id:v('--session-id'),permission_denials:mode==='denied'?[{tool_name:'Bash'}]:[],result:r}));if(mode==='exit')process.exitCode=7;`);
+ fs.writeFileSync(cli,`import fs from 'node:fs';import path from 'node:path';const a=process.argv.slice(2);if(a.includes('--version')){console.log('2.1.292 (Claude Code)');process.exit(0);}const copied=path.join(process.cwd(),'node_modules','fake-dependency','index.js');if(!fs.existsSync(copied))throw Error('private dependencies not prepared before Claude launch');const bin=path.join(process.cwd(),'node_modules','.bin','fake-dependency');if(fs.readlinkSync(bin)!=='../fake-dependency/cli.mjs'||!fs.realpathSync(bin).startsWith(path.join(process.cwd(),'node_modules')+path.sep))throw Error('relative .bin link not preserved');fs.writeFileSync(copied,'review-owned mutation');const v=k=>a[a.indexOf(k)+1];if(v('--setting-sources')!=='')throw Error('settings not isolated');const dir=path.dirname(v('--settings'));const s=JSON.parse(fs.readFileSync(v('--settings')));if(!s.hooks.PreToolUse.length)throw Error('no guard');const inv=JSON.parse(fs.readFileSync(path.join(dir,'inventory.json')));if(!fs.readFileSync(path.join(dir,'full.diff'),'utf8').includes('+head'))throw Error('no local diff');const mode=process.env.CASE;console.log(JSON.stringify({type:'system',subtype:'init',session_id:v('--session-id'),model:mode==='wrong'?'glm-5.3':v('--model')}));if(mode==='missing')process.exit(0);const r=['T69 review (Claude)','approve',mode==='dw'?'DW1: not run — fixture':'DW1: ran git diff --check → passed',...(mode==='scope'?[]:inv.files.map(f=>'FILE: '+f)),'SCOPE: complete','R1: test full findings survive flags','Final pass done','approve'].join('\\n');console.log(JSON.stringify({type:'result',subtype:'success',is_error:false,session_id:v('--session-id'),permission_denials:mode==='denied'?[{tool_name:'Bash'}]:[],result:r}));if(mode==='exit')process.exitCode=7;`);
  const seenEvidence=new Set();
  for(const mode of ['ok','scope','dw','wrong','missing','denied','exit','jail']){
   fs.writeFileSync(trace,'');
@@ -87,7 +89,48 @@ test('real review entry selects Claude without OpenCode, publishes once, refuses
   assert.equal(writes.some(a=>a.includes('--add-label')),mode==='ok',mode);
   if(['scope','dw'].includes(mode))assert.match(fs.readFileSync(trace+'.body','utf8'),/R1: test full findings survive flags/);
  }
+ assert.equal(fs.readFileSync(path.join(repo,'node_modules','fake-dependency','index.js'),'utf8'),'launcher dependency\n');
  assert.equal(git('rev-parse','HEAD'),head);assert.equal(JSON.parse(fs.readFileSync(path.join(repo,'harness.json'))).reviewer.default,'claude');
+});
+
+test('Claude dependency materialization makes an independent real copy and preserves relative .bin links', (t) => {
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'review-dependencies-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
+ const source=path.join(root,'launcher','node_modules'),worktree=path.join(root,'review-worktree');
+ fs.mkdirSync(path.join(source,'sample-package'),{recursive:true});fs.mkdirSync(path.join(source,'.bin'));
+ fs.writeFileSync(path.join(source,'sample-package','cli.mjs'),'export const value = 1;\n');
+ fs.writeFileSync(path.join(source,'sample-package','data.txt'),'unchanged source bytes\n');
+ fs.symlinkSync('../sample-package/cli.mjs',path.join(source,'.bin','sample'));
+ fs.mkdirSync(worktree);
+ const prepared=materializeReviewDependencies({source,destination:path.join(worktree,'node_modules'),ownedRoot:worktree});
+ const copied=path.join(worktree,'node_modules');
+ assert.equal(prepared.source,fs.realpathSync(source));assert.equal(prepared.destination,copied);
+ assert.ok(fs.statSync(copied).isDirectory());
+ assert.equal(fs.readlinkSync(path.join(copied,'.bin','sample')),'../sample-package/cli.mjs');
+ assert.equal(fs.readFileSync(path.join(copied,'.bin','sample'),'utf8'),'export const value = 1;\n');
+ fs.writeFileSync(path.join(copied,'sample-package','data.txt'),'review-owned mutation\n');
+ assert.equal(fs.readFileSync(path.join(source,'sample-package','data.txt'),'utf8'),'unchanged source bytes\n');
+});
+
+test('Claude dependency materialization skips absent installs and refuses outside, overlapping, or existing destinations', (t) => {
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'review-dependency-boundaries-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));
+ const source=path.join(root,'launcher','node_modules'),worktree=path.join(root,'review-worktree');
+ fs.mkdirSync(source,{recursive:true});fs.writeFileSync(path.join(source,'dep.txt'),'source');fs.mkdirSync(worktree);
+ fs.mkdirSync(path.join(root,'outside'));
+ assert.equal(materializeReviewDependencies({source:path.join(root,'missing'),destination:path.join(worktree,'node_modules'),ownedRoot:worktree}),null);
+ const danglingSource=path.join(root,'broken-node-modules');fs.symlinkSync(path.join(root,'missing-target'),danglingSource);
+ assert.throws(()=>materializeReviewDependencies({source:danglingSource,destination:path.join(worktree,'node_modules'),ownedRoot:worktree}),/does not resolve to a directory/);
+ assert.equal(fs.readlinkSync(danglingSource),path.join(root,'missing-target'));
+ const escaped=path.join(root,'outside','target');fs.writeFileSync(escaped,'outside');fs.symlinkSync(path.relative(source,escaped),path.join(source,'escaping-link'));
+ assert.throws(()=>materializeReviewDependencies({source,destination:path.join(worktree,'node_modules'),ownedRoot:worktree}),/escapes its source tree/);
+ assert.equal(fs.existsSync(path.join(worktree,'node_modules')),false);fs.unlinkSync(path.join(source,'escaping-link'));
+ assert.throws(()=>materializeReviewDependencies({source,destination:path.join(root,'outside','node_modules'),ownedRoot:worktree}),/outside the owned review root/);
+ assert.throws(()=>materializeReviewDependencies({source,destination:path.join(source,'copy'),ownedRoot:root}),/overlap/);
+ const existing=path.join(worktree,'node_modules');fs.mkdirSync(existing);fs.writeFileSync(path.join(existing,'sentinel'),'keep');
+ assert.throws(()=>materializeReviewDependencies({source,destination:existing,ownedRoot:worktree}),/already exists/);
+ assert.equal(fs.readFileSync(path.join(existing,'sentinel'),'utf8'),'keep');fs.rmSync(existing,{recursive:true});
+ const dangling=path.join(worktree,'node_modules');fs.symlinkSync(path.join(root,'absent-target'),dangling);
+ assert.throws(()=>materializeReviewDependencies({source,destination:dangling,ownedRoot:worktree}),/already exists/);
+ assert.equal(fs.readlinkSync(dangling),path.join(root,'absent-target'));
 });
 
 test('native Claude command denials cover OpenCode publishing policy without a second Bash parser',()=>{

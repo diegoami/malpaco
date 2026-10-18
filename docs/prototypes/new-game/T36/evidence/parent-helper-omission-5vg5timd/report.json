@@ -1,0 +1,28 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-name-pattern",
+    "real review entry selects Claude",
+    "tools/harness/test/claude.test.mjs"
+  ],
+  "source": "tools/harness/review.mjs",
+  "sourceSha256": "f240d0a0ce985ed39b64a4758af3239a0843ab91b83b6b70f9c72a5e95cdde45",
+  "mutantSha256": "cf7dc2ea054cf7231029f899482287827445842fc50d5cc69277ef028580fa5c",
+  "exactSourceRestored": true,
+  "runs": [
+    {
+      "phase": "omitted automatic materialization",
+      "exit": 1,
+      "seconds": 0.6752478779999365,
+      "intendedAssertionFailure": true
+    },
+    {
+      "phase": "exactly restored integration",
+      "exit": 0,
+      "seconds": 3.344203746000858
+    }
+  ],
+  "fakeCliOnly": true,
+  "actualModelsCalled": false
+}

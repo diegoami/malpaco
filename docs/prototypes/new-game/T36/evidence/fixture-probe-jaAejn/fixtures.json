@@ -1,0 +1,505 @@
+{
+  "seed": 1994,
+  "attempts": 6,
+  "edges": {
+    "borders": {
+      "from": "province_8",
+      "to": "province_30",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_8",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "legal": [
+        "province_30",
+        "province_4",
+        "province_38"
+      ]
+    },
+    "seaLanes": {
+      "from": "province_8",
+      "to": "province_38",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_8",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "legal": [
+        "province_30",
+        "province_4",
+        "province_38"
+      ]
+    }
+  },
+  "queued": [
+    {
+      "from": "province_8",
+      "to": "province_30",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_8",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 8,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_8",
+      "to": "province_38",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_8",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 8,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_28",
+      "to": "province_38",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_28",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 10,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_45",
+      "to": "province_38",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_45",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_45",
+      "to": "province_24",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_45",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_41",
+      "to": "province_16",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_41",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_41",
+      "to": "province_2",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_41",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_11",
+      "to": "province_22",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_11",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_11",
+      "to": "province_40",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_11",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_11",
+      "to": "province_29",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_11",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_31",
+      "to": "province_22",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_31",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_9",
+      "to": "province_19",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_9",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 10,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_1",
+      "to": "province_12",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_1",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_33",
+      "to": "province_24",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_33",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 10,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_33",
+      "to": "province_29",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_33",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 10,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_0",
+      "to": "province_10",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_0",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 10,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_36",
+      "to": "province_10",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_36",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 10,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_27",
+      "to": "province_42",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_27",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_27",
+      "to": "province_6",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_27",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_37",
+      "to": "province_32",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_37",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 8,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_37",
+      "to": "province_42",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_37",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 8,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_18",
+      "to": "province_32",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_18",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_18",
+      "to": "province_2",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_18",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_39",
+      "to": "province_34",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_39",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 8,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_14",
+      "to": "province_2",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_14",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 8,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_21",
+      "to": "province_19",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_21",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    },
+    {
+      "from": "province_15",
+      "to": "province_19",
+      "actions": [
+        {
+          "kind": "reinforce",
+          "province": "province_15",
+          "amount": 7
+        },
+        {
+          "kind": "endReinforcement"
+        }
+      ],
+      "firstPhase": "attack",
+      "firstSourceArmies": 9,
+      "secondPhase": "attack"
+    }
+  ]
+}

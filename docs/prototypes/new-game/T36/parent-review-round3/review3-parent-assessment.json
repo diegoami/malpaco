@@ -1,0 +1,29 @@
+{
+  "reviewedHead": "feefffb451de8574d5e3da5b032378760da9130d",
+  "actualModel": "claude-sonnet-5-5",
+  "seconds": 1038.531,
+  "cliExit": 0,
+  "permissionDenials": 0,
+  "trackedReviewAndProducerSourceClean": true,
+  "launcherRegularFilesUnchanged": 1451,
+  "protectedFilesUnchanged": 7,
+  "currentCodeChangesSinceInitialReview": [
+    "src/styles.css",
+    "src/ui/referenceMatchFiles.ts",
+    "tests/e2e/geographic-review-guards.spec.ts",
+    "tools/harness/lib/review-dependencies.mjs",
+    "tools/harness/review.mjs",
+    "tools/harness/test/claude.test.mjs"
+  ],
+  "coverageDecision": "Accept combined initial full-review and scoped follow-up coverage under rule6.2; all six current code/test/harness delta paths inspected; unchanged original executable paths covered by first full review. Original and rework archives fully parent verified; all2741 new third-review archive members and3parts now fully parent verified. Qualified scope, untouched historical data and inherited unchanged DW1 do not require another paid model run. No model/permission/denial gate weakened.",
+  "nonblockingFindings": [
+    "Overridden plain stage media selector; live specific rule guarded",
+    "Explicit existing-destination pre-check redundant with mkdir no-overwrite rejection",
+    "Partial-copy error retains worktree but is not typed ClaudeInfraError",
+    "Historical final source snapshot predates final source; commit-named snapshot matches; fresh independent harness passes8",
+    "Frozen historical provenance/defensive branches/straight-route family remain honest limitations"
+  ],
+  "thirdArchiveMembersVerified": 2741,
+  "thirdArchivePartsVerified": 3,
+  "thirdArchiveSha256": "e1311cb4622fba7a8aae5a357bf223423a7a9889d948b3693ca310f6330151d8"
+}

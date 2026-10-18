@@ -9,6 +9,7 @@ import type { Action, GameState } from "./types";
 import { referenceMap } from "./reference-map";
 import { createReferenceGame } from "./reference-game";
 import { createGeographicGame } from "./geographic-game";
+import type {IslandGeography} from "./island-geography";
 import { victoryRules } from "./state";
 
 export const MATCH_SAVE_VERSION = 1;
@@ -80,6 +81,9 @@ export interface LoadedVersionedMatch {
   readonly identity: MatchIdentity;
   readonly options: GameOptions;
   readonly state: GameState;
+  /** Rebuilt metadata for the matching UI; never serialized as trusted state. */
+  readonly geography?: IslandGeography;
+  readonly initialState?: GameState;
 }
 
 function record(value: unknown): value is Record<string, unknown> {
@@ -156,7 +160,8 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
     throw new SaveFormatError(`Invalid game options: ${error instanceof Error ? error.message : String(error)}`, "options");
   }
   const actions = value.actions.map(versionedAction);
-  const created = identity.boardGenerator.id==='geographic' ? createGeographicGame(options,victoryRules(options)) : createReferenceGame(referenceMap, options, victoryRules(options));
+  const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,victoryRules(options)):null;
+  const created=geographic??createReferenceGame(referenceMap,options,victoryRules(options));
   if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
   let state = created.state;
   for (let index = 0; index < actions.length; index++) {
@@ -164,7 +169,7 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
     if (!result.ok) throw new SaveFormatError(`Cannot replay action ${index + 1}: ${result.error}. Choose an intact game file.`, `actions[${index}]`);
     state = result.state;
   }
-  return { formatVersion: 2, identity, options, state };
+  return { formatVersion: 2, identity, options, state, initialState:created.state, ...(geographic?.ok ? {geography:geographic.geography} : {}) };
 }
 
 /** Validate through the same replay path before emitting a readable v2 file. */

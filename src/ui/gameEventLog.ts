@@ -48,8 +48,8 @@ export class GameEventHistory {
   private count = 0;
   readonly events: GameEvent[];
 
-  constructor(options: GameOptions) {
-    this.previous = deserializeVersionedMatch(serializeVersionedMatch(options, [], REFERENCE_MATCH_IDENTITY)).state;
+  constructor(options: GameOptions, initialState?: GameState) {
+    this.previous = initialState ?? deserializeVersionedMatch(serializeVersionedMatch(options, [], REFERENCE_MATCH_IDENTITY)).state;
     this.events = [{ index: 0, heading: `Initial deal · Round ${this.previous.turnNumber}`,
       regions: regionChanges(null, this.previous, "Initial deal"),
       notes: [`${activePlayer(this.previous)!.name} unplaced reinforcement income: ${this.previous.reinforcementPool}. These armies enter the map only when placed.`] }];
@@ -106,8 +106,8 @@ export class GameEventLog {
   private readonly history: GameEventHistory;
   get isOpen(): boolean { return this.dialog.open; }
 
-  constructor(options: GameOptions) {
-    this.history = new GameEventHistory(options);
+  constructor(options: GameOptions, initialState?: GameState) {
+    this.history = new GameEventHistory(options,initialState);
     const close = h("button", { type: "button" }, "Close game event log");
     close.onclick = () => this.dialog.close();
     this.button.onclick = () => {

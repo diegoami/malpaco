@@ -1,0 +1,22 @@
+{
+  "name": "visible-owner-fill",
+  "file": "src/ui/geographicMapView.ts",
+  "beforeSha256": "2b5af73da63af4b8ae10eeeb26588a35654cb0057c24f0a5c36d9bfb676c330a",
+  "omittedSha256": "d787488fb82cc0ce60e5a13d7155c2ed4e50787bea9e7fedabefbc4e9a01acec",
+  "command": [
+    "/usr/bin/python3",
+    "/home/diego/projects/malpaco/.cache/t36-work/docs/prototypes/new-game/T36/run-browser.py",
+    "omit-visible-owner-fill",
+    "--project=1280x800",
+    "--grep",
+    "seed 1994 paints actual",
+    "--max-failures=1"
+  ],
+  "startedUtc": "2026-10-18T06:46:38.270224+00:00",
+  "exit": 1,
+  "run": "docs/prototypes/new-game/T36/evidence/omit-visible-owner-fill-xtxt373i",
+  "actualBehaviorAssertionFailed": true,
+  "restored": true,
+  "afterSha256": "2b5af73da63af4b8ae10eeeb26588a35654cb0057c24f0a5c36d9bfb676c330a",
+  "endedUtc": "2026-10-18T06:46:43.640664+00:00"
+}
