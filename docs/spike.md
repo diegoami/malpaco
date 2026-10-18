@@ -1025,3 +1025,76 @@ runtime CSS, and all other historical 18/222 acceptance inputs. Both named hash
 replacements are explicit; older manifests and the archive verifier are preserved.
 The previously verified 28-part/1,689-member archive is not recomputed for this
 narrow helper correction.
+
+#### T74 versioned generated-geography presentation provider
+
+The UI layer now contains a pure presentation derivation, dedicated worker and
+bounded immutable result service. These three modules exactly adopt the
+parent-frozen typed port of approved T72 shared-boundary deformation, version
+`t72-relocated-flow-spread-v2`. They return native SVG coast/country polygons,
+display anchors and routes with original logical ids. Logical gameplay geometry,
+save identity, accepted attempts/refusals and RNG remain untouched. The current
+geographic renderer/host does not consume this sidecar yet; T75 owns activation.
+
+`derivePresentation` owns/freeze-protects its output without mutating or freezing
+caller arrays. `PresentationService.request(geometry,signal?)` deduplicates pending
+content and caches eight immutable completed drawings [designed]. Its exact key
+includes complete accepted geometry plus drawing version/constants, never seed
+alone. The dedicated worker keeps expensive flow off the UI thread. Cancellation
+rejects subscribers and drops stale results; it cannot preempt synchronous CPU
+work already executing. Disposal terminates the worker. Derivation failure is
+retryable; terminal worker error fails future requests immediately until the host
+recreates the service. There is no old-polygon fallback or per-render derivation.
+
+Parent-frozen acceptance covers twelve accepted maps/552countries plus398's
+complete50-attempt refusal. Approved-five outputs match T72 exactly; unchanged
+T62/T24 checks protect contacts, gaps/overlap, full40-unit hits and route margins.
+The exact typed output matches those independently validated complete oracles.
+Actual production overlay checks retain35,328primary/1,472three-digit cases and
+52PNGs with existing14pxcounts/fourbadges/conditional12pxnames. Existing star/name
+polish and owner appearance judgment remain explicit limits. This bounded corpus
+is not an arbitrary-seed success-rate or cross-platform font/performance claim;
+observed derivation3.119–3.720s explains the worker boundary.
+
+The actual new test paths first fail import-level without provider modules, not
+assertion-level. Exact temporary adoption then passes one full806Vitest/59file
+plus8harness run (91.520s) and build (1.205s); the standalone proof authenticates
+reuse. The sole declared later input change is corrected T73's Playwright
+native-download helper, outside npm/Vite executed tests. Formal adoption repeats
+only the small read-only proof, not those heavy commands. Final five meaningful
+controls and exact restoration, real-worker responsiveness, all earlier failures
+and complete parent restoration remain in the committed T74 archives.
+
+`docs/prototypes/new-game/T74/production/README.md` documents API, evidence and
+limits; `production/adoption.json` pins immutable manifests. Run
+`python3 docs/prototypes/new-game/T74/production/verify-adoption.py` to verify
+99frozen/226validated committed+working inputs, three exact provider equalities
+and all349members of three committed archive parts in memory, without loose
+helpers. Older T73 whole-tree proofs remain historical rather than being rewritten
+for this new provider. Main owns independent review, dependency approval and final
+greenCI; no playable integration or release packaging is implied by this layer.
+
+T74's standalone proof is portable across normal Git checkouts: tracked files
+must match committed bytes and Git executable semantics. Git100644 does not retain
+original0664 group-write bits. Exact original POSIX-mode preservation remains an
+original-transaction claim authenticated by its restoration receipt and the full
+archive-member/inner-inventory mode checks; it is not claimed for a fresh export.
+The before-review portability correction preserves all old proof/report/manifest
+receipts separately and changes no runtime, tests, frozen inputs or archive modes.
+
+T74's50-attempt refusal398 corpus test now has the same explicit120-second test
+budget as its twelve accepted-map cases. The parent-owned change followed an
+integrated817/818result whose only failure exceeded Vitest's implicit5seconds at
+5170ms, without an assertion mismatch. Contract and test replacements are separately
+frozen; the proof permits exactly those two before/after hashes and reconstructs
+the original test by reversing only the new argument. No engine/RNG assertion,
+UI5second readiness check or runtime deadline changed. The targeted refusal passes
+5020msbody/5.56stotal; historical806+8/build and the817/818failure remain distinct.
+No corrected integrated-suite green or paid review is claimed by this evidence.
+### Prepared generated-map drawing (T75)
+
+The playable geographic view reads the versioned presentation sidecar for country/coast paths, display anchors and routes. Its interactive country paths use that same drawing and retain the rules map ids, names and handlers. The rules map, accepted state, RNG and replay origin remain unchanged. Existing typography, ownership badges and hover/focus hierarchy are retained.
+
+The root requests worker preparation before constructing a new battle host. One service belongs to the root lifetime, including setup/match swaps; terminal failures cause a fresh service on the next request. File reads carry a cancellation signal and a current-request check through their existing callback, including decode failures. Starting again, choosing a newer file, New game or root disposal invalidates older asynchronous work. A failed load retains the old live match; its existing pacing preference continues. Successful source file-widget disposal occurs after the replacement commits. There is no fallback to the raw drawing.
+
+Package metadata identifies the early playable release as 0.1.0, with the existing dependencies. The play instructions describe the supported card, save, panel and desktop behavior. The source, frozen drawing oracle and exact worker asset must be retained with acceptance evidence before an artifact is published.
