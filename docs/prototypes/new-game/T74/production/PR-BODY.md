@@ -38,3 +38,14 @@ Earlier retained evidence: twelve accepted maps/552countries/full40hits plus398'
 The production README and docs/spike document full-geometry keys, terminal-worker-error recreation, cancellation's CPU-preemption limit, observed derivation cost, bounded-corpus/font assumptions and the absence of playable activation. Older T73 whole-tree proofs remain historical.
 
 Keep draft. Main owns fresh independent keychecks, independent approving review, actual T73 approval/green dependency and final greenCI before merge. No producer CI/review, packaging, preview/Windows transfer or UI activation was performed.
+
+
+Before-review portability correction: the original proof passed only in the
+original directory because it required original0664 bits on fresh Git0644
+exports. Current tracked-file checks now use committed/working bytes and Git
+executable semantics. Every original archive member's exact POSIX mode and inner
+inventory checks remain intact; exact original-worktree mode preservation is
+attributed to the archived restoration receipt. Runtime/frozen inputs are not
+chmodded or edited. Original proof/adoption/README/report/manifest and root failure
+receipt are retained separately, with a new correction report/manifest. Only the
+two small committed-directory/fresh-export proof positives are rerun.

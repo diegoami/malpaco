@@ -19,7 +19,9 @@ def exact(path,expected=None,mode=None):
     gm=int(tree[0],8)&0o777;wm=(ROOT/path).stat().st_mode&0o777
     # Git stores the executable bit, not POSIX group-write permission.
     check(bool(gm&0o111)==bool(wm&0o111),'working/committed executable mode '+path)
-    if mode is not None:check(wm==int(mode,8),'expected mode '+path)
+    if mode is not None:
+        expected_exec=bool(int(mode,8)&0o111)
+        check(bool(wm&0o111)==expected_exec and bool(gm&0o111)==expected_exec,'expected Git executable semantics '+path)
     return data
 self_path=BASE+'production/verify-adoption.py'
 exact(self_path)
@@ -29,23 +31,10 @@ for path,h in adoption['manifestSha256'].items():exact(path,h)
 frozen=json.loads(committed(BASE+'acceptance/FROZEN-ACCEPTANCE.json'))
 validated=json.loads(committed(BASE+'acceptance/validated-inputs.json'))
 check(len(frozen['inputs'])==99,'frozen count99')
-# Exact working modes come from original archived copies or validated inputs;
-# Git's100644 alone cannot distinguish0644 from0664.
-phase_receipt=json.loads(committed(BASE+'archives/phase-a-receipt.json'))
-for p,h in frozen['inputs'].items():
-    if p.startswith(BASE+'acceptance/measurements/'):
-        origin=BASE+'preflight/phase-a-20261018-01/measurements/'+p.rsplit('/',1)[1]
-        mode=oct(phase_receipt['members'][origin]['mode'])
-    elif p.startswith(BASE+'production-candidate/src/ui/'):
-        origin=BASE+'preflight/phase-a-20261018-01/proposal/'+p.rsplit('/',1)[1]
-        mode=oct(phase_receipt['members'][origin]['mode'])
-    elif p in [BASE+'acceptance/API.md',BASE+'acceptance/frozen-oracles.json']:
-        origin=BASE+'preflight/phase-a-20261018-01/proposal/'+p.rsplit('/',1)[1]
-        mode=oct(phase_receipt['members'][origin]['mode'])
-    else:
-        check(p in validated['expectedAfterAdoption'],'frozen mode authority '+p)
-        mode=validated['expectedAfterAdoption'][p]['mode']
-    exact(p,h,mode)
+# Tracked checkouts preserve Git bytes/executable semantics, not original POSIX
+# group-write bits. Exact original modes remain authenticated in tar members,
+# inner manifests and the archived original-transaction restoration receipt below.
+for p,h in frozen['inputs'].items():exact(p,h)
 check(len(validated['expectedAfterAdoption'])==226,'validated count226')
 for p,e in validated['expectedAfterAdoption'].items():exact(p,e['sha256'],e['mode'])
 check(len(adoption['sources'])==3,'three provider sources')

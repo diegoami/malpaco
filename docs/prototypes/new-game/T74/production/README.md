@@ -35,8 +35,24 @@ All original failures are readable from committed archives: initial snapshot/mod
 python3 docs/prototypes/new-game/T74/production/verify-adoption.py
 ```
 
-This verifies committed AND working byte/mode identity for all99frozen inputs,226validated inputs, the three provider/candidate equalities, pinned manifests and its own committed source. It reads only three T74 archive parts from Git HEAD, concatenates in memory, and validates compressed hashes/bytes plus every uncompressed member hash/size/mode/inventory:330PhaseA members and19parent-validation members. It authenticates embedded inventories, original command/restoration receipts, corpus/overlay/control/worker outcomes and current frozen oracles. It requires no loose prototype outputs, extracts nothing and does not revisit T73's older giant archive.
+This verifies committed AND working byte identity and expected Git executable semantics for all99frozen inputs,226validated inputs, the three provider/candidate equalities, pinned manifests and its own committed source. It reads only three T74 archive parts from Git HEAD, concatenates in memory, and validates compressed hashes/bytes plus every uncompressed member hash/size/mode/inventory:330PhaseA members and19parent-validation members. It authenticates embedded inventories, original command/restoration receipts, corpus/overlay/control/worker outcomes and current frozen oracles. It requires no loose prototype outputs, extracts nothing and does not revisit T73's older giant archive.
 
 Archive inventories are archives/phase-a-receipt.json and archives/parent-validation-receipt.json; the sibling .bin parts are gzip tar streams. Python tarfile can read them in memory; their member paths retain original report/log names. Existing committed main evidence paths also retain the human reports, phase-a manifest/SHA256SUMS, final control/test logs and parent baseline/npm/build/restoration receipts. All loose originals, saved rollback copies and worktrees remain preserved.
 
 Draft PR186 stays draft. Main owns fresh keychecks, independent approving review, actual T73 approval/green dependency and final greenCI before merge. No formal-producer heavy tests, browser/mutation repeats, packaging, previews, Windows transfer, paid review, CI dispatch or merge occurred.
+
+## Fresh checkout mode boundary
+
+The portable proof checks tracked file bytes and Git executable semantics in both
+the original worktree and a fresh committed Git export. Git100644 normalizes
+original0664 files to0644; it cannot preserve group-write permission bits. A fresh
+checkout therefore does not prove preservation of original fullPOSIX modes.
+Exact original POSIX modes remain checked for every archived tar member and its
+inner inventory, and original-worktree transaction preservation remains tied to
+the authenticated parent restoration receipt. No canonical file is chmodded.
+
+The original7ab54604 verifier/adoption/README and old report/manifest are preserved
+under portability-correction-20261018-01/original-7ab54604/. Old proof01–03 and the
+production REPORT/manifest remain unchanged historical evidence. The correction
+REPORT/manifest record the parent's deterministic fresh-export failure and the
+two corrected committed positives; no heavy validation was repeated.
