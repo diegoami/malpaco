@@ -17,7 +17,7 @@ export function createGeographicGame(options:GameOptions,rules:RuleSet=victoryRu
   const validated=validateGameOptions(options),rng=new DeterministicRng(validated.seed);
   const board=generateGeographicBoardWithRng(rng,generationOptions);
   if(!board.ok)return {...board,errors:[
-    `Geographic board generation exhausted its ${board.attempts}-attempt budget. Retry with another seed or a larger budget.`,
+    `Geographic board generation exhausted its ${board.attempts}-attempt budget. Retry with another seed.`,
     ...board.failures.flatMap(f=>f.constraints),
   ]};
   const created=createGameWithRng(validated,rng,()=>({ok:true,map:board.map}),rules);
