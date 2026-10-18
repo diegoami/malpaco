@@ -1,0 +1,23 @@
+{
+  "source_url": "https://raw.githubusercontent.com/chromium/chromium/main/third_party/blink/renderer/core/frame/local_frame.cc",
+  "source_read_live": true,
+  "download_url_guard": "if (ShouldThrottleDownload()) { return; }",
+  "meaning": "Chromium permits ten burst downloads, then gates requests until more than one real second since burst start. CI shows completed clicks with missing events at burst ordinals.",
+  "copies": [
+    {
+      "original_path": "/home/diego/projects/malpaco/.cache/issue180-dispatch/failed-ci-39157702142/download-step-analysis.json",
+      "owned_copy": "docs/prototypes/new-game/issue180/download-rate-correction/source/download-step-analysis.json",
+      "sha256": "17bf6da57f4394399bce7eb6238496246f7d7599c2a6a05040390b2092e7cbd6"
+    },
+    {
+      "original_path": "/home/diego/projects/malpaco/.cache/issue180-dispatch/download-rate-source/local_frame.cc.excerpt.txt",
+      "owned_copy": "docs/prototypes/new-game/issue180/download-rate-correction/source/local_frame.cc.excerpt.txt",
+      "sha256": "7e6f5b099946ccff76f1d4789083cccca8572c09286156be4e2fb6aad316b876"
+    },
+    {
+      "original_path": "/home/diego/projects/malpaco/.cache/issue180-dispatch/download-rate-source/local_frame.h.excerpt.txt",
+      "owned_copy": "docs/prototypes/new-game/issue180/download-rate-correction/source/local_frame.h.excerpt.txt",
+      "sha256": "df803301408ebf2d2a454c5f158a36f83b127fd2b4d73c307e48b52d6e767313"
+    }
+  ]
+}
