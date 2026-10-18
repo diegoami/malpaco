@@ -1416,3 +1416,19 @@ dialog h2 {
 .battle-reference[data-panel-detail] .action > .victory-result:not([hidden]) { display:flex; flex-direction:column; flex:1; min-height:0; }
 .battle-reference[data-panel-detail] .action > .victory-result:not([hidden]) > :not(#victory-standings) { flex-shrink:0; }
 .battle-reference[data-panel-detail] .action > .victory-result:not([hidden]) > #victory-standings { display:block; min-height:0; overflow:auto; }
+
+/* Issue180 proposal: reserve the sidebar for live controls; history scrolls locally. */
+.battle-reference[data-panel-detail] .panel { grid-template-rows:64px minmax(0,410px) minmax(88px,1fr); }
+.battle-reference[data-panel-detail] .action:has(.card-interactions[data-choice="false"]:not([hidden])) > .battle-controls:not([hidden]) { flex:0 0 auto; overflow:visible; }
+.battle-reference[data-panel-detail] .action[data-battle="true"] > .buttons { grid-template-columns:1fr 1fr; gap:6px; }
+.battle-reference[data-panel-detail] .action[data-battle="true"] #end-turn-button { grid-column:auto; width:auto; }
+.battle-reference[data-panel-detail] .action > .buttons button,
+.battle-reference[data-panel-detail] .card-interactions[data-choice="false"] button { min-height:32px; padding:6px 8px; }
+.battle-reference[data-panel-detail] .battle-settings { margin-top:4px; gap:6px; }
+.battle-reference[data-panel-detail] .battle-context { gap:3px; }
+.battle-reference[data-panel-detail] .battle-controls > .battle-title { display:none; }
+.battle-reference[data-panel-detail] .battle-help { margin:1px 0; }
+.battle-reference[data-panel-detail] .battle-feedback { margin-top:4px; }
+.battle-reference[data-panel-detail] .battle-tally { margin:4px 0; }
+.battle-reference[data-panel-detail] .battle-rolls { max-height:36px; }
+.battle-reference[data-panel-detail] .battle-controls button { min-height:32px; padding:4px 8px; }

@@ -894,9 +894,10 @@ The subsequent result-layout correction appends three scoped CSS selectors to
 that stylesheet. A visible result uses the remaining action space as a column;
 optional standings scroll inside it while mandatory loss choices remain visible.
 The following hand inspector also fits. Hidden results during private reward
-Continue and normal card layouts keep their existing styling. The fixed 320/380
-action tracks and the other seven adopted UI files are unchanged. Current CSS
-therefore differs from the historical eight-file verifier's expected hash;
+Continue and normal card layouts kept their styling in that correction. Its fixed
+320/380 action tracks are historical: T73 below replaces their allocation. The
+other seven adopted UI files are unchanged. Current CSS therefore differs from
+the historical eight-file verifier's expected hash;
 `docs/prototypes/new-game/T40/result-layout-production.json` records the exact
 append and the frozen candidate equivalence. Neither adoption changed test
 assertions or configuration.
@@ -943,3 +944,39 @@ build) are reused by exact input equivalence, not described as new producer runs
 The original failures, five meaningful core mutants, restoration receipts and
 T40 layout counterexample remain preserved. Owner appearance judgment and final
 independent review/CI remain separate; this adoption makes no appearance claim.
+
+
+### Battle controls alongside cards (T73)
+
+The card-enabled sidebar reserves a 64-CSS-pixel turn row, caps the action row
+at 410 CSS pixels and gives battle history at least 88 CSS pixels plus remaining
+space. The action cap keeps its height stable across three- and four-seat header
+layouts. Full active attack and capture controls remain together without a
+shared battle scroller. End turn and Move armies share a row; optional heading
+space and margins are reduced. Detailed mode retains help and a bounded dice
+list. The history keeps every row in its own scroller, preserving older-reader
+position and bottom-follow. Card choices, totals, pause/speed and event-log access
+retain their existing behavior. No gameplay, controller, RNG or replay changes.
+
+`docs/prototypes/new-game/issue180/production/adoption.json` records the exact
+frozen stylesheet and reused inputs. Run the standalone read-only proof:
+
+```text
+python3 docs/prototypes/new-game/issue180/production/verify-adoption.py
+```
+
+It verifies the source/candidate equality, 18 frozen acceptance paths, all 222
+validated production inputs, and all 28 committed archive parts and 1,689 member
+hashes in memory. `--committed-only` verifies archived evidence without consulting
+loose originals. Acceptance tests were frozen by the parent; this adoption does
+not change them. The retained overflowing baseline fails the new layout regression.
+
+The capped candidate's combined browser run passed 108/110; two native-save
+downloads timed out, and an exact retake passed 0/2. A later unchanged selection
+using the same acceptance configuration passed 2/2. These are separate results,
+not a single green combined run; the intermittent download cause is unresolved
+and no workaround was adopted. Candidate build and prior 784 Vitest plus eight
+harness tests are reused only after exact input verification. Independent regular
+affected-suite validation, owner layout judgment and final green CI remain
+required. Full failures, positive controls, screenshots, metrics and restoration
+receipts remain in the committed evidence archive and retained loose originals.
