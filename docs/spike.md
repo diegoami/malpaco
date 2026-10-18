@@ -754,3 +754,41 @@ T36 acceptance and screenshots live under `docs/prototypes/new-game/T36/`; the
 wide-seed report supplies the committed corpus manifest. Browser checks establish
 operation and geometry; the owner judges actual appearance from both viewport
 captures. Historical sections above describe their named milestones.
+
+
+## Opt-in card deck core (T37)
+
+`cardsRules(options?)` extends the victory preset with the frozen `deck-v1`
+capability. Existing setup constructors initialize forty cards after the deal
+and centres on the same game RNG. The core exports `CardKind`, `CardState`,
+`CardView`, `CARD_COMPOSITION`, `HAND_LIMIT` and `cardView(state, viewer)`.
+The projection returns public pile/hand counts and only the viewer's own hand;
+full engine state and local replay files remain trusted omniscient data.
+The approved designed constants and wire-order provenance are documented in
+`src/core/cards.ts`, citing the pinned T23 variety inventory.
+
+An actual capturing turn earns one card at its end, before victory, regardless
+of the number of captured countries or later failed attacks. With five cards,
+`GameState.cards.pendingDiscard` holds the turn open. The ordinary
+`{kind:"discardCard", handIndex}` action chooses an existing hand card before
+any draw or reshuffle; unrelated actions are refused. Friendly movement is
+already committed once before that choice. Squall discards the current hand
+and itself without a replacement, and elimination discards the victim's hand.
+No normal card kind or hidden discard index is published in game log events.
+
+Versioned match saves opt in through `REFERENCE_CARD_MATCH_IDENTITY` or
+`GEOGRAPHIC_CARD_MATCH_IDENTITY`: the existing board generator version 1,
+`cards/1`, action schema 3. The actual strict codec reconstructs cards, pending
+choices and RNG from options/actions, rejects malformed discards and rejects
+card actions in old schemas. `cards/1` permanently means deck-only rules;
+later trade and raid behavior needs distinct exact identities while preserving
+this replay path. Existing legacy and victory identities and their RNG draws
+remain unchanged. Current T36 setup/UI defaults continue using victory rules;
+T40 adds card controls and explicitly enables the appropriate stage, and T41
+owns computer card policy. This core addition supplies no trade/raid effects.
+
+The sole adjacent UI edit adds the `discardCard` name to the event log's typed
+action-label record, as authorized by the amended T37 scope. No layout or
+interactive card flow changes. Frozen acceptance, legal action histories,
+negative controls and implementation evidence are retained under
+`docs/prototypes/new-game/T37/`.

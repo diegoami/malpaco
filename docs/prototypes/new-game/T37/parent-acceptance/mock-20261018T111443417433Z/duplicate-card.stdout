@@ -1,0 +1,23 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+ ❯ tests/core/card-deck.test.ts (13 tests | 5 failed) 2145ms
+   ❯ approved deck and private hands (13)
+     × awards one top card for multiple real captures and never at capture confirmation 9ms
+     × a captured turn still earns after a later failed attack exhausts its source 2ms
+     × waits for a chosen discard before drawing, victory or handoff; refuses every other action atomically 32ms
+     × does a friendly transfer once even when its end-turn reward requires discard 2ms
+     × returns only the viewer hand and public counts, without mutable aliases or hidden kinds in logs 4ms
+ ❯ tests/core/card-deck-replay.test.ts (7 tests | 5 failed) 8071ms
+   ❯ deck replay and same-stream continuation (7)
+     × reshuffles the actual discard pile deterministically, preserving pending input and computer streams 19ms
+     × real production codec reconstructs card rules and legal action/RNG continuation (false) 32ms
+     × real production codec reconstructs card rules and legal action/RNG continuation (true) 5023ms
+     × reconstructs a reached full-hand choice and actual reshuffle from options and ordinary actions 5ms
+     × the real decisive capturing turn waits for discard and rewards before replayed victory 3ms
+
+ Test Files  2 failed (2)
+      Tests  10 failed | 10 passed (20)
+   Start at  13:14:56
+   Duration  8.57s (tests 93%, transform 6%, import 1%)
+

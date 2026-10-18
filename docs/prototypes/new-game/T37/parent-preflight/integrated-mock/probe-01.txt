@@ -1,0 +1,27 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+ ❯ docs/prototypes/new-game/T37/parent-preflight/integrated-mock/probe.test.ts (0 test)
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/integrated-mock/probe.test.ts [ docs/prototypes/new-game/T37/parent-preflight/integrated-mock/probe.test.ts ]
+Error: Transform failed with 1 error:
+
+[31m[TSCONFIG_ERROR] [0mFailed to load tsconfig 'docs/prototypes/new-game/T37/parent-preflight/integrated-mock/runtime/tsconfig.json': Tsconfig not found
+
+  Plugin: vite:oxc
+  File: /home/diego/projects/malpaco/.cache/t37-work/docs/prototypes/new-game/T37/parent-preflight/integrated-mock/runtime/src/core/index.ts
+ ❯ transformWithOxc node_modules/vite/dist/node/chunks/node.js:7581:19
+ ❯ TransformPluginContext.transform node_modules/vite/dist/node/chunks/node.js:7653:26
+ ❯ EnvironmentPluginContainer.transform node_modules/vite/dist/node/chunks/node.js:8545:51
+ ❯ loadAndTransform node_modules/vite/dist/node/chunks/node.js:19988:26
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  no tests
+   Start at  13:08:29
+   Duration  163ms (worker 96%, environment 4%)
+

@@ -1,0 +1,110 @@
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > reshuffles the actual discard pile deterministically, preserving pending input and computer streams
+AssertionError: expected { seed: +0, state: 1511859828 } to deeply equal { seed: +0, state: 3663131626 }
+
+- Expected
++ Received
+
+  {
+    "seed": 0,
+-   "state": 3663131626,
++   "state": 1511859828,
+  }
+
+ ❯ tests/core/card-deck-replay.test.ts:31:69
+     29|   const x=example();arrange(x.s,['Anchor','Compass','Lantern','Raid','…
+     30|   c.discardPile=c.drawPile;c.drawPile=[];const input=structuredClone(s…
+     31|   const pending=act(frozen(s),{kind:'endTurn'});expect(pending.rng).to…
+       |                                                                     ^
+     32|   const chosen=cards(pending).hands[me]![2]!,shuffled=rng.shuffled([..…
+     33|   const next=act(frozen(pending),{kind:'discardCard',handIndex:2});
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > reconstructs a reached full-hand choice and actual reshuffle from options and ordinary actions
+SaveFormatError: Cannot replay action 126: no card discard is pending. Choose an intact game file.
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:177:27
+    175|   for (let index = 0; index < actions.length; index++) {
+    176|     const result = apply(state, actions[index]!);
+    177|     if (!result.ok) throw new SaveFormatError(`Cannot replay action ${…
+       |                           ^
+    178|     state = result.state;
+    179|   }
+ ❯ tests/core/card-deck-replay.test.ts:51:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > the real decisive capturing turn waits for discard and rewards before replayed victory
+SaveFormatError: Cannot replay action 137: no card discard is pending. Choose an intact game file.
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:177:27
+    175|   for (let index = 0; index < actions.length; index++) {
+    176|     const result = apply(state, actions[index]!);
+    177|     if (!result.ok) throw new SaveFormatError(`Cannot replay action ${…
+       |                           ^
+    178|     state = result.state;
+    179|   }
+ ❯ tests/core/card-deck-replay.test.ts:66:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > waits for a chosen discard before drawing, victory or handoff; refuses every other action atomically
+AssertionError: expected undefined to deeply equal { player: 'seat1' }
+
+- Expected:
+{
+  "player": "seat1",
+}
+
++ Received:
+undefined
+
+ ❯ tests/core/card-deck.test.ts:39:28
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > does a friendly transfer once even when its end-turn reward requires discard
+AssertionError: expected undefined to deeply equal { player: 'seat1' }
+
+- Expected:
+{
+  "player": "seat1",
+}
+
++ Received:
+undefined
+
+ ❯ tests/core/card-deck.test.ts:47:95
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > Squall discards itself and all 5 held cards without replacement
+Error: {"kind":"discardCard","handIndex":1}: no card discard is pending
+ ❯ act tests/core/card-deck-fixture.ts:23:99
+     21| }
+     22| export function cards(s:State):Deck {expect(s.cards,'opt-in rules init…
+     23| export function act(s:State,a:CardAction):State {const r=core.apply(s,…
+       |                                                                                                   ^
+     24| export function ready(s:State):State {
+     25|  if(s.phase!=='reinforce')return s;
+ ❯ tests/core/card-deck.test.ts:52:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > deep clones card arrays and pending metadata; out-of-phase discard is atomic
+AssertionError: expected [ 'Anchor', 'Anchor', 'Anchor', …(31) ] to have a length of 35 but got 34
+
+- Expected
++ Received
+
+- 35
++ 34
+
+ ❯ tests/core/card-deck.test.ts:69:35
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+

@@ -1,0 +1,170 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-bypass-discard.test.ts (8 tests | 2 failed) 33ms
+   ❯ disposable T37 feasibility only (8)
+     × full hand waits before peeking, changing piles/RNG, handing off or victory; chosen discard then draw 7ms
+     × pending discard and reshuffle continuation replay exactly from frozen fixture 9ms
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts (8 tests | 5 failed) 45ms
+   ❯ disposable T37 feasibility only (8)
+     × takes exactly top one on capturing turn and nothing for ordinary noncapture turn 8ms
+     × full hand waits before peeking, changing piles/RNG, handing off or victory; chosen discard then draw 7ms
+     × reshuffles only discard and resumes same game RNG 2ms
+     × pending discard and reshuffle continuation replay exactly from frozen fixture 17ms
+     × decisive turn still rewards before final conquest 2ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/candidate-bypass-discard.test.ts > disposable T37 feasibility only > full hand waits before peeking, changing piles/RNG, handing off or victory; chosen discard then draw
+AssertionError: expected undefined to deeply equal { player: 'seat2' }
+
+- Expected:
+{
+  "player": "seat2",
+}
+
++ Received:
+undefined
+
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-bypass-discard.test.ts:32:78
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/candidate-bypass-discard.test.ts > disposable T37 feasibility only > pending discard and reshuffle continuation replay exactly from frozen fixture
+Error: no discard pending
+ ❯ act docs/prototypes/new-game/T37/parent-preflight/candidate-bypass-discard.test.ts:10:80
+      8| const options={...defaultOptions(),seed:37,seats:[{kind:'human' as con…
+      9| const initial=()=>c.create(options);
+     10| function act(s:c.CardState,a:c.CardAction){const r=c.apply(s,a);if(!r.…
+       |                                                                                ^
+     11| function all(s:c.CardState){return [...s.cards.drawPile,...s.cards.dis…
+     12| function conserve(s:c.CardState){expect(all(s)).toEqual(c.canonical().…
+ ❯ replay docs/prototypes/new-game/T37/parent-preflight/candidate-bypass-discard.test.ts:19:70
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-bypass-discard.test.ts:48:178
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts > disposable T37 feasibility only > takes exactly top one on capturing turn and nothing for ordinary noncapture turn
+AssertionError: expected [ 'Shield', 'Shield' ] to deeply equal [ 'Shield' ]
+
+- Expected
++ Received
+
+  [
+    "Shield",
++   "Shield",
+  ]
+
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts:27:111
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts > disposable T37 feasibility only > full hand waits before peeking, changing piles/RNG, handing off or victory; chosen discard then draw
+AssertionError: expected [ 'Anchor', 'Compass', 'Surge', …(3) ] to deeply equal [ 'Anchor', 'Compass', 'Surge', …(2) ]
+
+- Expected
++ Received
+
+@@ -2,6 +2,7 @@
+    "Anchor",
+    "Compass",
+    "Surge",
+    "Wild",
+    "Shield",
++   "Shield",
+  ]
+
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts:33:88
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts > disposable T37 feasibility only > reshuffles only discard and resumes same game RNG
+AssertionError: expected [ 'Anchor', 'Anchor', 'Anchor', …(38) ] to deeply equal [ 'Anchor', 'Anchor', 'Anchor', …(37) ]
+
+- Expected
++ Received
+
+@@ -8,10 +8,11 @@
+    "Anchor",
+    "Anchor",
+    "Anchor",
+    "Anchor",
+    "Anchor",
++   "Anchor",
+    "Compass",
+    "Compass",
+    "Compass",
+    "Compass",
+    "Compass",
+
+ ❯ conserve docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts:12:49
+     10| function act(s:c.CardState,a:c.CardAction){const r=c.apply(s,a);if(!r.…
+     11| function all(s:c.CardState){return [...s.cards.drawPile,...s.cards.dis…
+     12| function conserve(s:c.CardState){expect(all(s)).toEqual(c.canonical().…
+       |                                                 ^
+     13| function fixture(hand:c.CardKind[]=[],top:c.CardKind='Shield'){
+     14|  const s=initial(),p=s.players[s.currentPlayer]!.id;
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts:40:210
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts > disposable T37 feasibility only > pending discard and reshuffle continuation replay exactly from frozen fixture
+AssertionError: expected [ 'Anchor', 'Anchor', 'Anchor', …(38) ] to deeply equal [ 'Anchor', 'Anchor', 'Anchor', …(37) ]
+
+- Expected
++ Received
+
+@@ -23,10 +23,11 @@
+    "Lantern",
+    "Raid",
+    "Raid",
+    "Raid",
+    "Raid",
++   "Raid",
+    "Shield",
+    "Shield",
+    "Shield",
+    "Shield",
+    "Squall",
+
+ ❯ conserve docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts:12:49
+     10| function act(s:c.CardState,a:c.CardAction){const r=c.apply(s,a);if(!r.…
+     11| function all(s:c.CardState){return [...s.cards.drawPile,...s.cards.dis…
+     12| function conserve(s:c.CardState){expect(all(s)).toEqual(c.canonical().…
+       |                                                 ^
+     13| function fixture(hand:c.CardKind[]=[],top:c.CardKind='Shield'){
+     14|  const s=initial(),p=s.players[s.currentPlayer]!.id;
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts:48:231
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts > disposable T37 feasibility only > decisive turn still rewards before final conquest
+AssertionError: expected [ 'Shield', 'Shield' ] to deeply equal [ 'Shield' ]
+
+- Expected
++ Received
+
+  [
+    "Shield",
++   "Shield",
+  ]
+
+ ❯ docs/prototypes/new-game/T37/parent-preflight/candidate-duplicate-card.test.ts:53:94
+     51|   const s=fixture(),p=s.players[s.currentPlayer]!.id;
+     52|   for(const id of Object.keys(s.ownerOf))s.ownerOf[id]=p;for(const pla…
+     53|   const done=act(s,{kind:'endTurn'});expect(done.winner).toBe(p);expec…
+       |                                                                                              ^
+     54|  });
+     55| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  7 failed | 9 passed (16)
+   Start at  12:59:04
+   Duration  389ms (transform 73%, tests 15%, import 10%, worker 2%)
+

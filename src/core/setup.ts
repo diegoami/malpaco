@@ -1,3 +1,4 @@
+import { initializeCards } from './cards';
 import { generateBoardWithRng } from "./board-gen";
 import type { BoardGenResult } from "./board-gen";
 import { DeterministicRng } from "./rng";
@@ -86,6 +87,7 @@ function createGameValidated(
       log: [{ event: "game_started", seed: validated.seed, players: players.length }],
       history: [], winner: "", productionCentres,
   };
+  initializeCards(state,rng);
   if (rules.turnSequence === "reinforcement") {
     state.reinforcementPool = reinforcementIncome(state, players[firstSeat]!.id).total;
   }

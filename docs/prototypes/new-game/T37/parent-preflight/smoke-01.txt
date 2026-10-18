@@ -1,0 +1,9 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/t37-work
+
+No test files found, exiting with code 1
+
+filter: docs/prototypes/new-game/T37/parent-preflight/candidate.test.ts
+include: tests/core/**/*.test.ts, tests/ui/**/*.test.ts
+exclude:  **/node_modules/**, **/.git/**
+

@@ -1,3 +1,4 @@
+import { drawReward, HAND_LIMIT } from './cards';
 import { attackTargets, resolve, whyNot } from "./combat";
 import { DeterministicRng } from "./rng";
 import { reinforcementIncome } from "./reinforcement";
@@ -31,6 +32,7 @@ export function apply(state: GameState, action: Action): ApplyResult {
     return { ok: false, error: "choose the capture move-in before another action" };
   }
 
+  if (state.cards?.pendingDiscard && action.kind !== 'discardCard') return {ok:false,error:'choose a discard before drawing'};
   const next = cloneState(state);
   const result = dispatch(next, action);
   if (result.ok) result.state.history.push(action);
@@ -39,6 +41,7 @@ export function apply(state: GameState, action: Action): ApplyResult {
 
 function dispatch(next: GameState, action: Action): ApplyResult {
   switch (action.kind) {
+    case 'discardCard': return discardCard(next,action.handIndex);
     case "reinforce":
       return reinforce(next, action.province, action.amount);
     case "endReinforcement":
@@ -165,6 +168,21 @@ function endTurn(state: GameState): ApplyResult {
 
 /** End-of-turn seam: later reward/effect work belongs before victory, never after handoff. */
 function completeTurn(state: GameState): ApplyResult {
+  if(state.rules.cards==='deck-v1' && state.cards && state.capturedThisTurn){
+    const player=activePlayer(state)!.id;
+    if(state.cards.hands[player]!.length===HAND_LIMIT){state.cards.pendingDiscard={player};return {ok:true,state,outcome:null};}
+    drawReward(state);
+  }
+  return finalizeTurn(state);
+}
+function discardCard(state:GameState,index:number):ApplyResult {
+  const c=state.cards,p=activePlayer(state)!.id;
+  if(state.rules.cards!=='deck-v1'||!c?.pendingDiscard||c.pendingDiscard.player!==p)return {ok:false,error:'no card discard is pending'};
+  if(!Number.isSafeInteger(index)||index<0||index>=c.hands[p]!.length)return {ok:false,error:'choose a card in your hand'};
+  c.discardPile.push(c.hands[p]!.splice(index,1)[0]!);delete c.pendingDiscard;
+  drawReward(state);return finalizeTurn(state);
+}
+function finalizeTurn(state: GameState): ApplyResult {
   state.log.push({ event: "turn_ended", player: activePlayer(state)!.id, turn: state.turnNumber });
   const handoff = nextLivingTurn(state);
   if (!resolveTurnVictory(state, handoff.completedRound)) beginNextTurn(state, handoff);
@@ -197,6 +215,7 @@ function checkElimination(state: GameState): void {
   for (const candidate of state.players) {
     if (!candidate.eliminated && provincesOf(state, candidate.id).length === 0) {
       candidate.eliminated = true;
+      if(state.cards){state.cards.discardPile.push(...state.cards.hands[candidate.id]!);state.cards.hands[candidate.id]=[];}
       state.log.push({ event: "eliminated", player: candidate.id, turn: state.turnNumber });
     }
   }

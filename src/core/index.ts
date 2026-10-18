@@ -74,3 +74,8 @@ export { generateGeographicBoard, generateGeographicBoardWithRng } from "./geogr
 export type { GeographicBoardResult } from "./geographic-board";
 export { createGeographicGame } from "./geographic-game";
 export type { GeographicGameResult } from "./geographic-game";
+
+export { cardsRules } from './state';
+export {CARD_COMPOSITION,HAND_LIMIT,cardView} from './cards';
+export type {CardKind,CardState,CardView} from './cards';
+export {REFERENCE_CARD_MATCH_IDENTITY,GEOGRAPHIC_CARD_MATCH_IDENTITY} from './match-save';

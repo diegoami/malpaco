@@ -1,0 +1,184 @@
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > reshuffles the actual discard pile deterministically, preserving pending input and computer streams
+AssertionError: expected [ 'Anchor', 'Compass', 'Raid', …(3) ] to deeply equal [ 'Anchor', 'Compass', 'Raid', …(2) ]
+
+- Expected
++ Received
+
+@@ -2,6 +2,7 @@
+    "Anchor",
+    "Compass",
+    "Raid",
+    "Shield",
+    "Anchor",
++   "Anchor",
+  ]
+
+ ❯ tests/core/card-deck-replay.test.ts:35:255
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > real production codec reconstructs card rules and legal action/RNG continuation (false)
+AssertionError: expected 56 to be 40 // Object.is equality
+
+- Expected
++ Received
+
+- 40
++ 56
+
+ ❯ conserved tests/core/card-deck-fixture.ts:32:142
+
+ ❯ replay tests/core/card-deck-replay.test.ts:24:138
+ ❯ tests/core/card-deck-replay.test.ts:42:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > real production codec reconstructs card rules and legal action/RNG continuation (true)
+AssertionError: expected 53 to be 40 // Object.is equality
+
+- Expected
++ Received
+
+- 40
++ 53
+
+ ❯ conserved tests/core/card-deck-fixture.ts:32:142
+
+ ❯ replay tests/core/card-deck-replay.test.ts:24:138
+ ❯ tests/core/card-deck-replay.test.ts:42:14
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > reconstructs a reached full-hand choice and actual reshuffle from options and ordinary actions
+SaveFormatError: Cannot replay action 126: no card discard is pending. Choose an intact game file.
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:177:27
+    175|   for (let index = 0; index < actions.length; index++) {
+    176|     const result = apply(state, actions[index]!);
+    177|     if (!result.ok) throw new SaveFormatError(`Cannot replay action ${…
+       |                           ^
+    178|     state = result.state;
+    179|   }
+ ❯ tests/core/card-deck-replay.test.ts:51:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  tests/core/card-deck-replay.test.ts > deck replay and same-stream continuation > the real decisive capturing turn waits for discard and rewards before replayed victory
+SaveFormatError: Cannot replay action 137: no card discard is pending. Choose an intact game file.
+ ❯ Module.deserializeVersionedMatch src/core/match-save.ts:177:27
+    175|   for (let index = 0; index < actions.length; index++) {
+    176|     const result = apply(state, actions[index]!);
+    177|     if (!result.ok) throw new SaveFormatError(`Cannot replay action ${…
+       |                           ^
+    178|     state = result.state;
+    179|   }
+ ❯ tests/core/card-deck-replay.test.ts:66:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > awards one top card for multiple real captures and never at capture confirmation
+AssertionError: expected [ 'Compass', 'Compass' ] to deeply equal [ 'Compass' ]
+
+- Expected
++ Received
+
+  [
+    "Compass",
++   "Compass",
+  ]
+
+ ❯ tests/core/card-deck.test.ts:27:33
+     25|   s.rng=new core.DeterministicRng(0).snapshot();s=capture(s,x.from,x.o…
+     26|   expect(cards(s).drawPile).toHaveLength(n);const done=act(s,{kind:'en…
+     27|   expect(cards(done).hands[me]).toEqual(['Compass']);expect(cards(done…
+       |                                 ^
+     28|  });
+     29|  it('a captured turn still earns after a later failed attack exhausts …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > a captured turn still earns after a later failed attack exhausts its source
+AssertionError: expected [ 'Lantern', 'Lantern' ] to deeply equal [ 'Lantern' ]
+
+- Expected
++ Received
+
+  [
+    "Lantern",
++   "Lantern",
+  ]
+
+ ❯ tests/core/card-deck.test.ts:34:56
+     32|   for(let n=0;n<128&&s.armies[x.from]!>1;n++)s=act(s,{kind:'attack',fr…
+     33|   expect(s.armies[x.from]).toBe(1);expect(s.ownerOf[x.from]).toBe(me);…
+     34|   s=act(s,{kind:'endTurn'});expect(cards(s).hands[me]).toEqual(['Lante…
+       |                                                        ^
+     35|  });
+     36|  it('waits for a chosen discard before drawing, victory or handoff; re…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > waits for a chosen discard before drawing, victory or handoff; refuses every other action atomically
+AssertionError: expected [ 'Anchor', 'Compass', 'Raid', …(3) ] to deeply equal [ 'Anchor', 'Compass', 'Raid', …(2) ]
+
+- Expected
++ Received
+
+@@ -2,6 +2,7 @@
+    "Anchor",
+    "Compass",
+    "Raid",
+    "Shield",
+    "Wild",
++   "Wild",
+  ]
+
+ ❯ tests/core/card-deck.test.ts:43:84
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > does a friendly transfer once even when its end-turn reward requires discard
+AssertionError: expected 41 to be 40 // Object.is equality
+
+- Expected
++ Received
+
+- 40
++ 41
+
+ ❯ conserved tests/core/card-deck-fixture.ts:32:142
+
+ ❯ tests/core/card-deck.test.ts:48:248
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  tests/core/card-deck.test.ts > approved deck and private hands > returns only the viewer hand and public counts, without mutable aliases or hidden kinds in logs
+AssertionError: expected { drawCount: 39, …(3) } to deeply equal { drawCount: 39, …(3) }
+
+- Expected
++ Received
+
+  {
+    "discardCount": 0,
+    "drawCount": 39,
+    "hand": [
+      "Raid",
++     "Raid",
+    ],
+    "handCounts": {
+-     "seat1": 1,
++     "seat1": 2,
+      "seat2": 0,
+      "seat3": 0,
+    },
+  }
+
+ ❯ tests/core/card-deck.test.ts:63:15
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+

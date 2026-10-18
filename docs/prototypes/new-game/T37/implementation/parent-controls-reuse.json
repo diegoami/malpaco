@@ -1,0 +1,129 @@
+{
+  "basis": "All eight production code token streams equal preflighted mock after removing only comments and whitespace; frozen acceptance hashes unchanged. No production mutations in formal run.",
+  "parentReceipts": [
+    {
+      "path": "docs/prototypes/new-game/T37/parent-acceptance/mock-20261018T111214273139Z/receipt.json",
+      "restoredExactly": true,
+      "commands": [
+        {
+          "name": "focused",
+          "argv": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/core/card-deck.test.ts",
+            "tests/core/card-deck-replay.test.ts"
+          ],
+          "exit": 1,
+          "durationSeconds": 10.295900578999863
+        }
+      ]
+    },
+    {
+      "path": "docs/prototypes/new-game/T37/parent-acceptance/mock-20261018T111302486444Z/receipt.json",
+      "restoredExactly": true,
+      "commands": [
+        {
+          "name": "focused",
+          "argv": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/core/card-deck.test.ts",
+            "tests/core/card-deck-replay.test.ts"
+          ],
+          "exit": 0,
+          "durationSeconds": 10.948832144000335
+        },
+        {
+          "name": "units",
+          "argv": [
+            "npm",
+            "test"
+          ],
+          "exit": 0,
+          "durationSeconds": 46.90853970999888
+        },
+        {
+          "name": "build",
+          "argv": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 1,
+          "durationSeconds": 0.6138746769975114
+        }
+      ]
+    },
+    {
+      "path": "docs/prototypes/new-game/T37/parent-acceptance/mock-20261018T111443417433Z/receipt.json",
+      "restoredExactly": true,
+      "commands": [
+        {
+          "name": "build",
+          "argv": [
+            "npm",
+            "run",
+            "build"
+          ],
+          "exit": 0,
+          "durationSeconds": 1.1659789530021953
+        },
+        {
+          "name": "bypass-discard",
+          "argv": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/core/card-deck.test.ts",
+            "tests/core/card-deck-replay.test.ts"
+          ],
+          "exit": 1,
+          "durationSeconds": 11.133631263997813
+        },
+        {
+          "name": "duplicate-card",
+          "argv": [
+            "npx",
+            "vitest",
+            "run",
+            "tests/core/card-deck.test.ts",
+            "tests/core/card-deck-replay.test.ts"
+          ],
+          "exit": 1,
+          "durationSeconds": 9.130059909999545
+        },
+        {
+          "name": "browsers",
+          "argv": [
+            "docker",
+            "run",
+            "--rm",
+            "--init",
+            "--ipc=host",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t37-work:/work",
+            "-w",
+            "/work",
+            "-e",
+            "HOME=/tmp",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "npx",
+            "playwright",
+            "test",
+            "tests/e2e/versioned-match.spec.ts",
+            "tests/e2e/reference-complete-game.spec.ts",
+            "tests/e2e/game-event-log.spec.ts",
+            "tests/e2e/geographic-review-guards.spec.ts",
+            "--workers=2"
+          ],
+          "exit": 0,
+          "durationSeconds": 66.74313684600202
+        }
+      ]
+    }
+  ]
+}
