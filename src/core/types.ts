@@ -1,3 +1,4 @@
+import type { CardState } from './cards';
 // Plain data types for the rules core. Everything here is JSON-serialisable
 // except the map, which is shared and never mutated once loaded.
 
@@ -65,6 +66,7 @@ export interface SetupRules {
 }
 
 export interface RuleSet {
+  readonly cards?: "deck-v1" | "trade-v1" | "raid-v1";
   readonly id: string;
   /** Opt-in C-MOV-01..03; omitted by the stable legacy presets. */
   readonly movement?: "adjacent";
@@ -106,6 +108,7 @@ export interface RngSnapshot {
 }
 
 export type Action =
+  | { readonly kind: "discardCard"; readonly handIndex: number }
   | { readonly kind: "reinforce"; readonly province: string; readonly amount: number }
   | { readonly kind: "endReinforcement" }
   | { readonly kind: "attack"; readonly from: string; readonly to: string }
@@ -141,6 +144,7 @@ export type LogEntry =
   | { readonly event: "turn_ended"; readonly player: string; readonly turn: number };
 
 export interface GameState {
+  cards?: CardState;
   readonly map: GameMap;
   readonly rules: RuleSet;
   readonly players: Player[];

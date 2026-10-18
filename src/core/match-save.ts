@@ -10,7 +10,7 @@ import { referenceMap } from "./reference-map";
 import { createReferenceGame } from "./reference-game";
 import { createGeographicGame } from "./geographic-game";
 import type {IslandGeography} from "./island-geography";
-import { victoryRules } from "./state";
+import { cardsRules, victoryRules } from "./state";
 
 export const MATCH_SAVE_VERSION = 1;
 function actionFrom(value: unknown, index: number): Action {
@@ -96,10 +96,18 @@ export const GEOGRAPHIC_MATCH_IDENTITY: MatchIdentity = Object.freeze({
   actionSchemaVersion: 2,
 });
 
+/** [designed] T37 storage protocol, following the existing T31 identities.
+ * Searched match codecs and pinned variety: no card wire format is prescribed.
+ * cards/1 + schema 3 permanently selects deck-v1. Later trade/raid stages must
+ * add exact tuples and preserve this factory, grammar and RNG timing.
+ */
+export const REFERENCE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'fixed-reference',version:1}),rules:Object.freeze({id:'cards',version:1}),actionSchemaVersion:3});
+export const GEOGRAPHIC_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:1}),rules:Object.freeze({id:'cards',version:1}),actionSchemaVersion:3});
 function supportedIdentity(value: Record<string, unknown>): MatchIdentity {
   const generator = value.boardGenerator;
+  const cardStage=record(value.rules)&&value.rules.id==='cards';
   const expected = record(generator) && generator.id === "geographic"
-    ? GEOGRAPHIC_MATCH_IDENTITY : REFERENCE_MATCH_IDENTITY;
+    ? (cardStage?GEOGRAPHIC_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY) : (cardStage?REFERENCE_CARD_MATCH_IDENTITY:REFERENCE_MATCH_IDENTITY);
   // Each supported generator keeps its exact rules/action tuple for replay.
   for (const field of ["boardGenerator", "rules"] as const) {
     const part = value[field], required = expected[field];
@@ -108,16 +116,19 @@ function supportedIdentity(value: Record<string, unknown>): MatchIdentity {
     }
   }
   if (value.actionSchemaVersion !== expected.actionSchemaVersion) {
-    throw new SaveFormatError("Unsupported action schema version; expected 2.", "actionSchemaVersion");
+    throw new SaveFormatError(`Unsupported action schema version; expected ${expected.actionSchemaVersion}.`, "actionSchemaVersion");
   }
   return expected;
 }
 
-function versionedAction(value: unknown, index: number): Action {
+function versionedAction(value: unknown, index: number, schema: number): Action {
   const fail = (): never => { throw new SaveFormatError(`Action ${index + 1} has an invalid shape.`, `actions[${index}]`); };
   if (!record(value)) return fail();
   let keys: string[];
   switch (value.kind) {
+    case 'discardCard':
+      if(schema!==3||typeof value.handIndex!=='number'||!Number.isSafeInteger(value.handIndex)||value.handIndex<0)return fail();
+      keys=['kind','handIndex'];break;
     case "reinforce": keys = ["kind", "province", "amount"]; break;
     case "attack":
     case "friendlyMove": keys = ["kind", "from", "to"]; break;
@@ -159,9 +170,10 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
   try { options = validateGameOptions(value.options); } catch (error) {
     throw new SaveFormatError(`Invalid game options: ${error instanceof Error ? error.message : String(error)}`, "options");
   }
-  const actions = value.actions.map(versionedAction);
-  const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,victoryRules(options)):null;
-  const created=geographic??createReferenceGame(referenceMap,options,victoryRules(options));
+  const actions = value.actions.map((action,index)=>versionedAction(action,index,identity.actionSchemaVersion));
+  const rules=identity.rules.id==='cards'?cardsRules(options):victoryRules(options);
+  const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules):null;
+  const created=geographic??createReferenceGame(referenceMap,options,rules);
   if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
   let state = created.state;
   for (let index = 0; index < actions.length; index++) {
