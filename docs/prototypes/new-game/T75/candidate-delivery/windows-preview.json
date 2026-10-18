@@ -1,0 +1,75 @@
+{
+  "head": "fc8a078e9871d722761938a88778a5fa751250dd",
+  "commands": [
+    {
+      "name": "production-proof",
+      "argv": [
+        "python3",
+        "docs/prototypes/new-game/T75/production/verify-adoption.py"
+      ],
+      "exit": 0,
+      "seconds": 1.378773053002078
+    },
+    {
+      "name": "static-package",
+      "argv": [
+        "node",
+        "docs/prototypes/playable/acceptance.mjs",
+        "/tmp/malpaco-t75-committed-candidate-_6wxs1ia"
+      ],
+      "exit": 0,
+      "seconds": 4.41692549000436
+    },
+    {
+      "name": "extracted-worker-and-layout-key",
+      "argv": [
+        "node_modules/.bin/playwright",
+        "test",
+        "tests/e2e/geographic-presentation.spec.ts",
+        "tests/e2e/battle-panel-fit.spec.ts",
+        "--config",
+        "playwright.release.config.ts",
+        "--workers=2",
+        "--grep",
+        "real worker preparation|frozen changed boundaries|complete human battle controls",
+        "--reporter=list,json"
+      ],
+      "exit": 0,
+      "seconds": 40.210940480996214
+    },
+    {
+      "name": "proof-after",
+      "argv": [
+        "python3",
+        "docs/prototypes/new-game/T75/production/verify-adoption.py"
+      ],
+      "exit": 0,
+      "seconds": 1.3814534859993728
+    }
+  ],
+  "kind": "committed0.1.0candidate; not published release",
+  "ownedTmp": "/tmp/malpaco-t75-committed-candidate-_6wxs1ia",
+  "runtimeEquals166CasePreflight": true,
+  "bundle": "/home/diego/projects/malpaco/.cache/t75-dispatch/preview-20261018-205505/T75-v0.1.0-borders-fc8a078e-20261018-205505",
+  "archiveSha256": "047119e583a6f8af8cea0ad852f31ed7a4a78fbeb0f1606d1e7ff74e20966078",
+  "screenshots": 60,
+  "verifiedPackage": true,
+  "files": 73,
+  "originalOutputsRestored": true,
+  "windowsPath": "/mnt/c/Users/diego/malpaco-preview/T75-v0.1.0-borders-fc8a078e-20261018-205505",
+  "filesVerified": 74,
+  "httpVerified": {
+    "BUILD.json": "81659b75922c74157b1c7a3af443828f7b7a23edf65e54fb4cd3ebac071593c2",
+    "PLAY.md": "7fb011104538eccbf9f1bea3805d9e47fc4f6ba117a50e6a09b95f9f8e2a888d",
+    "SHA256SUMS": "d33922de5e894d6c88f4c47c3d51d98a87ef94c345e9eff86ddb1bf6d1f0739f",
+    "assets/generatedGeographyPresentation.worker-9RSuSC1x.js": "31ec2b83bc75618f758d3357e156faceff73c27446d2d4b82b453fb884deb7a2",
+    "assets/index-B8lxC96R.css": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+    "assets/index-XhZZPwNr.js": "ad1b3dd03d918c51a683f07d1486fec43ff86b1457bef80822ebfdb5dade9a2d",
+    "fonts/Inter-LICENSE.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+    "fonts/InterVariable.woff2": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+    "index.html": "233805370b9e3fa501dbbfec7f2dbc7255e65605adbd869b032371f4fae6f241",
+    "serve.mjs": "1d5210ae1d1af06b58fddf239c2c2771d72e2ca9b9f7b74e9a122ce667f3e5e7"
+  },
+  "currentGlobalGalleryUnchanged": true,
+  "currentGlobalGallerySha256": "3d7f8c8207d12ea0cf75e22cea3a900d306bf48c55897dddc22c88d0d4dfbabb"
+}
