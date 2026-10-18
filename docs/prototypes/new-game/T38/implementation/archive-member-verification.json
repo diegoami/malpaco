@@ -1,0 +1,1905 @@
+{
+  "docs/prototypes/new-game/T38/implementation/inherited-browser-artifacts.tar.gz": {
+    "sha256": "0ac6ec6e3ab188b4d8f0f1f686a6f6fff553540d3225d51cbeefbef4c44244ee",
+    "bytes": 11660099,
+    "members": [
+      {
+        "path": "screenshots/game-event-log-1280x800.png",
+        "bytes": 147943,
+        "sha256": "fb56259aa898e65f24fe8384a1d1eb69f56f43c1f7a0253e9d9ff26270a3d38e"
+      },
+      {
+        "path": "screenshots/game-event-log-1920x1080.png",
+        "bytes": 267057,
+        "sha256": "bd994391261163138cea3a2085fd1f07c48b98a90b1056e316633e743da80c88"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/battle.png",
+        "bytes": 260483,
+        "sha256": "45a5422ac1d1a6daf95032ed2c9e9ed2ef32b902c03adcc3a4a4ed70ca97792d"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/computer-turn.png",
+        "bytes": 245420,
+        "sha256": "f7788b512bd8d6f1210ebcfefc837959781e1885159e97170df14a7eca46e7bb"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/elimination.png",
+        "bytes": 255319,
+        "sha256": "6e308bcdea9a47d1c2181fca17badf755b5e25b6702aaffed3f32be38742cbed"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/friendly-move.png",
+        "bytes": 247089,
+        "sha256": "d25a81b2499ae5c8bca8045867a2d705e961262e520efea07de08c72ab805d3c"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-134.json",
+        "bytes": 11284,
+        "sha256": "e623f211723e5e69947d230cc00db8037a3fc3766503187c983c7afddbf6a3e4"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-188.json",
+        "bytes": 15632,
+        "sha256": "9cd2408fe057b566fdc195cdd8bc70ffd8549f2f2600613e9abc57eef337f288"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-266.json",
+        "bytes": 21986,
+        "sha256": "b4f78387d5314c02183fae660a8e0bf6f9251f1a101aa528ef5f2c7ceb1b1a77"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-27.json",
+        "bytes": 2835,
+        "sha256": "90d54fbc1e0853ece9a2201a6ef000b441279e27bebe7f9e227a3ab1c6a026b8"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-321.json",
+        "bytes": 26345,
+        "sha256": "405702889f6519ea74a176f8a9a68a6a69c88204027c372a5de31d7998b7dcdd"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-397.json",
+        "bytes": 32484,
+        "sha256": "ffe0bede73da1e5611a1e557ad97b45f47550cba88c2674185d0685c02c816f0"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-455.json",
+        "bytes": 37023,
+        "sha256": "4255cafa484e24e9d60bcf8710478fda99be0ff16a1d3ae31ef8cd36f1965105"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-513.json",
+        "bytes": 41719,
+        "sha256": "7cee0b12cfa5d8002283b2898b00f5793ac3cd262ccc0ba3f1bbe4ca098cd60e"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-574.json",
+        "bytes": 46775,
+        "sha256": "d114206ce0d2e5f3a786af4b18480d5240d90ab88cfb5fef281ab017a9ca7e89"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-629.json",
+        "bytes": 51472,
+        "sha256": "94f5496e4bdeb5c70f961fb89618c6c046192ee0203889ec64f50686208a27d3"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-679.json",
+        "bytes": 55748,
+        "sha256": "398f2d8f81f55076e899889e22a77a3539f4633e4e122906aaa3ebfec92b0f8b"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-754.json",
+        "bytes": 62112,
+        "sha256": "9be950fba25bb33d18e8e0dc03a783fc955d26d432ce043feb7ab619140d5267"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-96.json",
+        "bytes": 8241,
+        "sha256": "4fda32dcb24cfe78178943dacda39e1c0fb2022d2a9410dc2fced1bffadd7522"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/opening.png",
+        "bytes": 239156,
+        "sha256": "e0494cd39485747ae29f3a394a0e2d9b3c6dde1d2adfe9d34dd2e2ad3e818270"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/pending-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/pending-capture.png",
+        "bytes": 260705,
+        "sha256": "058c2fda6414812250c3f762323fcc43ee19c7c2a53c0d7614baf32781980456"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/resumed-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/save-resume.png",
+        "bytes": 259135,
+        "sha256": "a8f073d9e501ddb789f7b215e84f8b1c921573576064ea3c62f6887401b71895"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/summary.json",
+        "bytes": 692,
+        "sha256": "225bad0081759ecf74f4152f7629bb6527d91a57342ba06017fe56847da6b84a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/winner.json",
+        "bytes": 66961,
+        "sha256": "2a79df9f21219bcb1f94a0c6336999e98ad94198d9eca4f8ad4d751810ba8e07"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/winner.png",
+        "bytes": 245224,
+        "sha256": "1a11a3c47bcd6368e256594203fbad911a7d63dba6d3d5a595bbb3ddb01aa7ae"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/battle.png",
+        "bytes": 457011,
+        "sha256": "35aeadbc527c1ff781b81c5e832d5f3c301b2518cbe5349771cdb0d50ca4cbf4"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/computer-turn.png",
+        "bytes": 422141,
+        "sha256": "8ecddf5c003fc2a63dbbb271b0b63e90948ecc1c2771e2c822f47215cea8ba93"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/elimination.png",
+        "bytes": 436710,
+        "sha256": "6181a3a1262a706c219de9bf025031840c044179f180cd29765cf2957a0e810a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/friendly-move.png",
+        "bytes": 425223,
+        "sha256": "6f6c0ab1f2fd4c2ac72c112500fcf920dc5f68e083570c873b44eccfac82787c"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-134.json",
+        "bytes": 11284,
+        "sha256": "e623f211723e5e69947d230cc00db8037a3fc3766503187c983c7afddbf6a3e4"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-188.json",
+        "bytes": 15632,
+        "sha256": "9cd2408fe057b566fdc195cdd8bc70ffd8549f2f2600613e9abc57eef337f288"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-266.json",
+        "bytes": 21986,
+        "sha256": "b4f78387d5314c02183fae660a8e0bf6f9251f1a101aa528ef5f2c7ceb1b1a77"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-27.json",
+        "bytes": 2835,
+        "sha256": "90d54fbc1e0853ece9a2201a6ef000b441279e27bebe7f9e227a3ab1c6a026b8"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-321.json",
+        "bytes": 26345,
+        "sha256": "405702889f6519ea74a176f8a9a68a6a69c88204027c372a5de31d7998b7dcdd"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-397.json",
+        "bytes": 32484,
+        "sha256": "ffe0bede73da1e5611a1e557ad97b45f47550cba88c2674185d0685c02c816f0"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-455.json",
+        "bytes": 37023,
+        "sha256": "4255cafa484e24e9d60bcf8710478fda99be0ff16a1d3ae31ef8cd36f1965105"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-513.json",
+        "bytes": 41719,
+        "sha256": "7cee0b12cfa5d8002283b2898b00f5793ac3cd262ccc0ba3f1bbe4ca098cd60e"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-574.json",
+        "bytes": 46775,
+        "sha256": "d114206ce0d2e5f3a786af4b18480d5240d90ab88cfb5fef281ab017a9ca7e89"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-629.json",
+        "bytes": 51472,
+        "sha256": "94f5496e4bdeb5c70f961fb89618c6c046192ee0203889ec64f50686208a27d3"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-679.json",
+        "bytes": 55748,
+        "sha256": "398f2d8f81f55076e899889e22a77a3539f4633e4e122906aaa3ebfec92b0f8b"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-754.json",
+        "bytes": 62112,
+        "sha256": "9be950fba25bb33d18e8e0dc03a783fc955d26d432ce043feb7ab619140d5267"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-96.json",
+        "bytes": 8241,
+        "sha256": "4fda32dcb24cfe78178943dacda39e1c0fb2022d2a9410dc2fced1bffadd7522"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/opening.png",
+        "bytes": 412835,
+        "sha256": "fe65b2f959eeecbb78654bb82c0337acb0de457cd99abe67453adc5bea4ded5c"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/pending-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/pending-capture.png",
+        "bytes": 444479,
+        "sha256": "01e7213c301037ca8665fbe3211ee758c883af37149056cb8e4e588c198019e3"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/resumed-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/save-resume.png",
+        "bytes": 446273,
+        "sha256": "629fa84122a9dc4bcc5c75776a87bfdf6c7e5130c2d259402b183b4da9eb96a2"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/summary.json",
+        "bytes": 692,
+        "sha256": "225bad0081759ecf74f4152f7629bb6527d91a57342ba06017fe56847da6b84a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/winner.json",
+        "bytes": 66961,
+        "sha256": "2a79df9f21219bcb1f94a0c6336999e98ad94198d9eca4f8ad4d751810ba8e07"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/winner.png",
+        "bytes": 422718,
+        "sha256": "e559c9556f03ecb2a2c9f50e3b1006495c15e816c234fcc31ddab731082c48f4"
+      },
+      {
+        "path": "screenshots/versioned-3hc6Th/placement-1920x1080.png",
+        "bytes": 416659,
+        "sha256": "15b14ce2b5da4d06dcf3f46614f51130d26870d442b071adfb486d32f1f529fb"
+      },
+      {
+        "path": "screenshots/versioned-8xwf4s/move-completed-1280x800.png",
+        "bytes": 241493,
+        "sha256": "b339a8452d27b3f6a11bb1891b14e3a23b56c0fc868c3c518c4f27ad16ca9761"
+      },
+      {
+        "path": "screenshots/versioned-9eLj2S/domination-1280x800.png",
+        "bytes": 255470,
+        "sha256": "97e84bc9bd5f378aed9f3245db50584c8e39cc016748b4a31e6d37f1c2d428ab"
+      },
+      {
+        "path": "screenshots/versioned-E8F8CP/stop-1280x800.png",
+        "bytes": 246685,
+        "sha256": "d59b8495187437f0711c900024a6b37037b401849b82e7dc80fe55199ba86654"
+      },
+      {
+        "path": "screenshots/versioned-INChUA/round-limit-1920x1080.png",
+        "bytes": 437203,
+        "sha256": "89364e5866e13f23374a2a7942ad642b55d1971f337b14d790bc3f6da662cdf1"
+      },
+      {
+        "path": "screenshots/versioned-Lfk8jZ/domination-1920x1080.png",
+        "bytes": 438251,
+        "sha256": "850c5bbc8e12af8565b81d1c2fb0b85cd59eac645bcb2a78d0557ec1f97ae91c"
+      },
+      {
+        "path": "screenshots/versioned-NB05dR/pending-capture-1920x1080.png",
+        "bytes": 449988,
+        "sha256": "0e068b1ee5d3f9a50eb5a23fd7ab32b8413601fa2448bd58af66dde89189ce12"
+      },
+      {
+        "path": "screenshots/versioned-Nvgdu1/stop-1920x1080.png",
+        "bytes": 418962,
+        "sha256": "e76a73932f0f6c51ae0e59a1196e06cf91015238558839c4782d180806a325e1"
+      },
+      {
+        "path": "screenshots/versioned-WseLzl/placement-1280x800.png",
+        "bytes": 240560,
+        "sha256": "07eed30ae831538f689228cae5480d456c8755734406049cb5bcfd347ee023e1"
+      },
+      {
+        "path": "screenshots/versioned-Zvxdf4/move-completed-1920x1080.png",
+        "bytes": 416132,
+        "sha256": "71184f5a2672d5609e4f0b4210ba86e229abc1fbffb1e51095a967cc800f5c14"
+      },
+      {
+        "path": "screenshots/versioned-b5GodB/pending-capture-1280x800.png",
+        "bytes": 258739,
+        "sha256": "a82fc691febbecf237b5cd934bb69f667e9d32783189353d42e8c8ba06940afd"
+      },
+      {
+        "path": "screenshots/versioned-diqyJB/round-limit-1280x800.png",
+        "bytes": 253516,
+        "sha256": "996e5382382ae49124527cd50c40b35f068a4e38b9582ea8fe7d84ad435a46b5"
+      },
+      {
+        "path": "screenshots/versioned-huB2kL/move-draft-1280x800.png",
+        "bytes": 247835,
+        "sha256": "966b6ab434f8f3eb36fc8e8d6e0290eb52a56686af29816146f7d8b1c751ab9b"
+      },
+      {
+        "path": "screenshots/versioned-iZnEGy/failed-load-1280x800.png",
+        "bytes": 250651,
+        "sha256": "408b5957a81993d1b8d0bcb9f2483ac4d53b7a1c39e2efe90ddcade65a05458a"
+      },
+      {
+        "path": "screenshots/versioned-n5Pj8g/failed-load-1920x1080.png",
+        "bytes": 427736,
+        "sha256": "3194d3bfeefa36d43f27e5e2cb323c17bd48cbb6d77ba4bd167aa1bebaf18b1a"
+      },
+      {
+        "path": "screenshots/versioned-yIGcCN/move-draft-1920x1080.png",
+        "bytes": 424097,
+        "sha256": "fa2108e86d6107b7eea0979d48c1a0bb319ce74083041d973e84b803d65cc696"
+      },
+      {
+        "path": "test-results/.last-run.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": "playwright-report/index.html",
+        "bytes": 813619,
+        "sha256": "036e4f21a71ea6e306f23fe00ea4175a471e0ded2ab6e5abb960d369a7a1f8e9"
+      }
+    ]
+  },
+  "docs/prototypes/new-game/T38/implementation/validation-20261018T124257123824Z/browser-artifacts.tar.gz": {
+    "sha256": "d7d1ddd0c1973f14867203203495c7a40a745c2f18184ff710383a41d5180a8f",
+    "bytes": 22515012,
+    "members": [
+      {
+        "path": "screenshots/game-event-log-1280x800.png",
+        "bytes": 147937,
+        "sha256": "04604a61e7b1d11dc8f41972295197b3872b5ff94f6d7f9952accf9634f72abc"
+      },
+      {
+        "path": "screenshots/game-event-log-1920x1080.png",
+        "bytes": 267204,
+        "sha256": "6138ee6ebcca124ac2433faa34fa40ac1aa763a358703e800c4ff50399db5988"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/battle.png",
+        "bytes": 260460,
+        "sha256": "fc7b196e32c1f3ef0a8152c68de850ef938867c8b2e3e883776f8fdfbbeb69f5"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/computer-turn.png",
+        "bytes": 245420,
+        "sha256": "f7788b512bd8d6f1210ebcfefc837959781e1885159e97170df14a7eca46e7bb"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/elimination.png",
+        "bytes": 255319,
+        "sha256": "6e308bcdea9a47d1c2181fca17badf755b5e25b6702aaffed3f32be38742cbed"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/friendly-move.png",
+        "bytes": 247022,
+        "sha256": "72ff1eecd4706bb92439b06097af765f5df4a9c669061d6d1432bc5e0193f262"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-134.json",
+        "bytes": 11284,
+        "sha256": "e623f211723e5e69947d230cc00db8037a3fc3766503187c983c7afddbf6a3e4"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-188.json",
+        "bytes": 15632,
+        "sha256": "9cd2408fe057b566fdc195cdd8bc70ffd8549f2f2600613e9abc57eef337f288"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-266.json",
+        "bytes": 21986,
+        "sha256": "b4f78387d5314c02183fae660a8e0bf6f9251f1a101aa528ef5f2c7ceb1b1a77"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-27.json",
+        "bytes": 2835,
+        "sha256": "90d54fbc1e0853ece9a2201a6ef000b441279e27bebe7f9e227a3ab1c6a026b8"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-321.json",
+        "bytes": 26345,
+        "sha256": "405702889f6519ea74a176f8a9a68a6a69c88204027c372a5de31d7998b7dcdd"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-397.json",
+        "bytes": 32484,
+        "sha256": "ffe0bede73da1e5611a1e557ad97b45f47550cba88c2674185d0685c02c816f0"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-455.json",
+        "bytes": 37023,
+        "sha256": "4255cafa484e24e9d60bcf8710478fda99be0ff16a1d3ae31ef8cd36f1965105"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-513.json",
+        "bytes": 41719,
+        "sha256": "7cee0b12cfa5d8002283b2898b00f5793ac3cd262ccc0ba3f1bbe4ca098cd60e"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-574.json",
+        "bytes": 46775,
+        "sha256": "d114206ce0d2e5f3a786af4b18480d5240d90ab88cfb5fef281ab017a9ca7e89"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-629.json",
+        "bytes": 51472,
+        "sha256": "94f5496e4bdeb5c70f961fb89618c6c046192ee0203889ec64f50686208a27d3"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-679.json",
+        "bytes": 55748,
+        "sha256": "398f2d8f81f55076e899889e22a77a3539f4633e4e122906aaa3ebfec92b0f8b"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-754.json",
+        "bytes": 62112,
+        "sha256": "9be950fba25bb33d18e8e0dc03a783fc955d26d432ce043feb7ab619140d5267"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/handoff-96.json",
+        "bytes": 8241,
+        "sha256": "4fda32dcb24cfe78178943dacda39e1c0fb2022d2a9410dc2fced1bffadd7522"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/opening.png",
+        "bytes": 239156,
+        "sha256": "e0494cd39485747ae29f3a394a0e2d9b3c6dde1d2adfe9d34dd2e2ad3e818270"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/pending-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/pending-capture.png",
+        "bytes": 260704,
+        "sha256": "d33c71617816ccdda4952e54eea55d28bbc43ce776e29a5f3e2700fb644be9ab"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/resumed-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/save-resume.png",
+        "bytes": 259135,
+        "sha256": "a8f073d9e501ddb789f7b215e84f8b1c921573576064ea3c62f6887401b71895"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/summary.json",
+        "bytes": 692,
+        "sha256": "225bad0081759ecf74f4152f7629bb6527d91a57342ba06017fe56847da6b84a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/winner.json",
+        "bytes": 66961,
+        "sha256": "2a79df9f21219bcb1f94a0c6336999e98ad94198d9eca4f8ad4d751810ba8e07"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-6pjGtS/winner.png",
+        "bytes": 245224,
+        "sha256": "1a11a3c47bcd6368e256594203fbad911a7d63dba6d3d5a595bbb3ddb01aa7ae"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/battle.png",
+        "bytes": 260483,
+        "sha256": "45a5422ac1d1a6daf95032ed2c9e9ed2ef32b902c03adcc3a4a4ed70ca97792d"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/computer-turn.png",
+        "bytes": 245420,
+        "sha256": "f7788b512bd8d6f1210ebcfefc837959781e1885159e97170df14a7eca46e7bb"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/elimination.png",
+        "bytes": 255319,
+        "sha256": "6e308bcdea9a47d1c2181fca17badf755b5e25b6702aaffed3f32be38742cbed"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/friendly-move.png",
+        "bytes": 247089,
+        "sha256": "d25a81b2499ae5c8bca8045867a2d705e961262e520efea07de08c72ab805d3c"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-134.json",
+        "bytes": 11284,
+        "sha256": "e623f211723e5e69947d230cc00db8037a3fc3766503187c983c7afddbf6a3e4"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-188.json",
+        "bytes": 15632,
+        "sha256": "9cd2408fe057b566fdc195cdd8bc70ffd8549f2f2600613e9abc57eef337f288"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-266.json",
+        "bytes": 21986,
+        "sha256": "b4f78387d5314c02183fae660a8e0bf6f9251f1a101aa528ef5f2c7ceb1b1a77"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-27.json",
+        "bytes": 2835,
+        "sha256": "90d54fbc1e0853ece9a2201a6ef000b441279e27bebe7f9e227a3ab1c6a026b8"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-321.json",
+        "bytes": 26345,
+        "sha256": "405702889f6519ea74a176f8a9a68a6a69c88204027c372a5de31d7998b7dcdd"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-397.json",
+        "bytes": 32484,
+        "sha256": "ffe0bede73da1e5611a1e557ad97b45f47550cba88c2674185d0685c02c816f0"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-455.json",
+        "bytes": 37023,
+        "sha256": "4255cafa484e24e9d60bcf8710478fda99be0ff16a1d3ae31ef8cd36f1965105"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-513.json",
+        "bytes": 41719,
+        "sha256": "7cee0b12cfa5d8002283b2898b00f5793ac3cd262ccc0ba3f1bbe4ca098cd60e"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-574.json",
+        "bytes": 46775,
+        "sha256": "d114206ce0d2e5f3a786af4b18480d5240d90ab88cfb5fef281ab017a9ca7e89"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-629.json",
+        "bytes": 51472,
+        "sha256": "94f5496e4bdeb5c70f961fb89618c6c046192ee0203889ec64f50686208a27d3"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-679.json",
+        "bytes": 55748,
+        "sha256": "398f2d8f81f55076e899889e22a77a3539f4633e4e122906aaa3ebfec92b0f8b"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-754.json",
+        "bytes": 62112,
+        "sha256": "9be950fba25bb33d18e8e0dc03a783fc955d26d432ce043feb7ab619140d5267"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/handoff-96.json",
+        "bytes": 8241,
+        "sha256": "4fda32dcb24cfe78178943dacda39e1c0fb2022d2a9410dc2fced1bffadd7522"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/opening.png",
+        "bytes": 239156,
+        "sha256": "e0494cd39485747ae29f3a394a0e2d9b3c6dde1d2adfe9d34dd2e2ad3e818270"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/pending-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/pending-capture.png",
+        "bytes": 260705,
+        "sha256": "058c2fda6414812250c3f762323fcc43ee19c7c2a53c0d7614baf32781980456"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/resumed-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/save-resume.png",
+        "bytes": 259135,
+        "sha256": "a8f073d9e501ddb789f7b215e84f8b1c921573576064ea3c62f6887401b71895"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/summary.json",
+        "bytes": 692,
+        "sha256": "225bad0081759ecf74f4152f7629bb6527d91a57342ba06017fe56847da6b84a"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/winner.json",
+        "bytes": 66961,
+        "sha256": "2a79df9f21219bcb1f94a0c6336999e98ad94198d9eca4f8ad4d751810ba8e07"
+      },
+      {
+        "path": "screenshots/reference-complete-1280x800-foW27l/winner.png",
+        "bytes": 245224,
+        "sha256": "1a11a3c47bcd6368e256594203fbad911a7d63dba6d3d5a595bbb3ddb01aa7ae"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/battle.png",
+        "bytes": 457011,
+        "sha256": "35aeadbc527c1ff781b81c5e832d5f3c301b2518cbe5349771cdb0d50ca4cbf4"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/computer-turn.png",
+        "bytes": 422141,
+        "sha256": "8ecddf5c003fc2a63dbbb271b0b63e90948ecc1c2771e2c822f47215cea8ba93"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/elimination.png",
+        "bytes": 436710,
+        "sha256": "6181a3a1262a706c219de9bf025031840c044179f180cd29765cf2957a0e810a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/friendly-move.png",
+        "bytes": 425223,
+        "sha256": "6f6c0ab1f2fd4c2ac72c112500fcf920dc5f68e083570c873b44eccfac82787c"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-134.json",
+        "bytes": 11284,
+        "sha256": "e623f211723e5e69947d230cc00db8037a3fc3766503187c983c7afddbf6a3e4"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-188.json",
+        "bytes": 15632,
+        "sha256": "9cd2408fe057b566fdc195cdd8bc70ffd8549f2f2600613e9abc57eef337f288"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-266.json",
+        "bytes": 21986,
+        "sha256": "b4f78387d5314c02183fae660a8e0bf6f9251f1a101aa528ef5f2c7ceb1b1a77"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-27.json",
+        "bytes": 2835,
+        "sha256": "90d54fbc1e0853ece9a2201a6ef000b441279e27bebe7f9e227a3ab1c6a026b8"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-321.json",
+        "bytes": 26345,
+        "sha256": "405702889f6519ea74a176f8a9a68a6a69c88204027c372a5de31d7998b7dcdd"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-397.json",
+        "bytes": 32484,
+        "sha256": "ffe0bede73da1e5611a1e557ad97b45f47550cba88c2674185d0685c02c816f0"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-455.json",
+        "bytes": 37023,
+        "sha256": "4255cafa484e24e9d60bcf8710478fda99be0ff16a1d3ae31ef8cd36f1965105"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-513.json",
+        "bytes": 41719,
+        "sha256": "7cee0b12cfa5d8002283b2898b00f5793ac3cd262ccc0ba3f1bbe4ca098cd60e"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-574.json",
+        "bytes": 46775,
+        "sha256": "d114206ce0d2e5f3a786af4b18480d5240d90ab88cfb5fef281ab017a9ca7e89"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-629.json",
+        "bytes": 51472,
+        "sha256": "94f5496e4bdeb5c70f961fb89618c6c046192ee0203889ec64f50686208a27d3"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-679.json",
+        "bytes": 55748,
+        "sha256": "398f2d8f81f55076e899889e22a77a3539f4633e4e122906aaa3ebfec92b0f8b"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-754.json",
+        "bytes": 62112,
+        "sha256": "9be950fba25bb33d18e8e0dc03a783fc955d26d432ce043feb7ab619140d5267"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/handoff-96.json",
+        "bytes": 8241,
+        "sha256": "4fda32dcb24cfe78178943dacda39e1c0fb2022d2a9410dc2fced1bffadd7522"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/opening.png",
+        "bytes": 412835,
+        "sha256": "fe65b2f959eeecbb78654bb82c0337acb0de457cd99abe67453adc5bea4ded5c"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/pending-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/pending-capture.png",
+        "bytes": 444479,
+        "sha256": "01e7213c301037ca8665fbe3211ee758c883af37149056cb8e4e588c198019e3"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/resumed-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/save-resume.png",
+        "bytes": 446273,
+        "sha256": "629fa84122a9dc4bcc5c75776a87bfdf6c7e5130c2d259402b183b4da9eb96a2"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/summary.json",
+        "bytes": 692,
+        "sha256": "225bad0081759ecf74f4152f7629bb6527d91a57342ba06017fe56847da6b84a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/winner.json",
+        "bytes": 66961,
+        "sha256": "2a79df9f21219bcb1f94a0c6336999e98ad94198d9eca4f8ad4d751810ba8e07"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-k9r33B/winner.png",
+        "bytes": 422718,
+        "sha256": "e559c9556f03ecb2a2c9f50e3b1006495c15e816c234fcc31ddab731082c48f4"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/battle.png",
+        "bytes": 457003,
+        "sha256": "864376097fdbe5ba3327038969000e67f9e3d564aa1dec1caf76762812389cb0"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/computer-turn.png",
+        "bytes": 422141,
+        "sha256": "8ecddf5c003fc2a63dbbb271b0b63e90948ecc1c2771e2c822f47215cea8ba93"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/elimination.png",
+        "bytes": 436667,
+        "sha256": "2f19501b99af579fa25525d5df182c0c3fe1b5140fefe64b165cf5f147b7f4c6"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/friendly-move.png",
+        "bytes": 425223,
+        "sha256": "6f6c0ab1f2fd4c2ac72c112500fcf920dc5f68e083570c873b44eccfac82787c"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-134.json",
+        "bytes": 11284,
+        "sha256": "e623f211723e5e69947d230cc00db8037a3fc3766503187c983c7afddbf6a3e4"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-188.json",
+        "bytes": 15632,
+        "sha256": "9cd2408fe057b566fdc195cdd8bc70ffd8549f2f2600613e9abc57eef337f288"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-266.json",
+        "bytes": 21986,
+        "sha256": "b4f78387d5314c02183fae660a8e0bf6f9251f1a101aa528ef5f2c7ceb1b1a77"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-27.json",
+        "bytes": 2835,
+        "sha256": "90d54fbc1e0853ece9a2201a6ef000b441279e27bebe7f9e227a3ab1c6a026b8"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-321.json",
+        "bytes": 26345,
+        "sha256": "405702889f6519ea74a176f8a9a68a6a69c88204027c372a5de31d7998b7dcdd"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-397.json",
+        "bytes": 32484,
+        "sha256": "ffe0bede73da1e5611a1e557ad97b45f47550cba88c2674185d0685c02c816f0"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-455.json",
+        "bytes": 37023,
+        "sha256": "4255cafa484e24e9d60bcf8710478fda99be0ff16a1d3ae31ef8cd36f1965105"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-513.json",
+        "bytes": 41719,
+        "sha256": "7cee0b12cfa5d8002283b2898b00f5793ac3cd262ccc0ba3f1bbe4ca098cd60e"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-574.json",
+        "bytes": 46775,
+        "sha256": "d114206ce0d2e5f3a786af4b18480d5240d90ab88cfb5fef281ab017a9ca7e89"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-629.json",
+        "bytes": 51472,
+        "sha256": "94f5496e4bdeb5c70f961fb89618c6c046192ee0203889ec64f50686208a27d3"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-679.json",
+        "bytes": 55748,
+        "sha256": "398f2d8f81f55076e899889e22a77a3539f4633e4e122906aaa3ebfec92b0f8b"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-754.json",
+        "bytes": 62112,
+        "sha256": "9be950fba25bb33d18e8e0dc03a783fc955d26d432ce043feb7ab619140d5267"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/handoff-96.json",
+        "bytes": 8241,
+        "sha256": "4fda32dcb24cfe78178943dacda39e1c0fb2022d2a9410dc2fced1bffadd7522"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/opening.png",
+        "bytes": 412835,
+        "sha256": "fe65b2f959eeecbb78654bb82c0337acb0de457cd99abe67453adc5bea4ded5c"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/pending-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/pending-capture.png",
+        "bytes": 444479,
+        "sha256": "01e7213c301037ca8665fbe3211ee758c883af37149056cb8e4e588c198019e3"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/resumed-capture.json",
+        "bytes": 3795,
+        "sha256": "28688728695af72c23a0faaab9b3e988abdd6c02c4f2ee8375d38d25810e326a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/save-resume.png",
+        "bytes": 446273,
+        "sha256": "629fa84122a9dc4bcc5c75776a87bfdf6c7e5130c2d259402b183b4da9eb96a2"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/summary.json",
+        "bytes": 692,
+        "sha256": "225bad0081759ecf74f4152f7629bb6527d91a57342ba06017fe56847da6b84a"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/winner.json",
+        "bytes": 66961,
+        "sha256": "2a79df9f21219bcb1f94a0c6336999e98ad94198d9eca4f8ad4d751810ba8e07"
+      },
+      {
+        "path": "screenshots/reference-complete-1920x1080-wUcZxV/winner.png",
+        "bytes": 422726,
+        "sha256": "0a82f75eab1baf7538dca1d7ba058261d994efee53eafaf6708d5f269b3bf20c"
+      },
+      {
+        "path": "screenshots/versioned-3hc6Th/placement-1920x1080.png",
+        "bytes": 416659,
+        "sha256": "15b14ce2b5da4d06dcf3f46614f51130d26870d442b071adfb486d32f1f529fb"
+      },
+      {
+        "path": "screenshots/versioned-5MGHCQ/round-limit-1280x800.png",
+        "bytes": 253516,
+        "sha256": "996e5382382ae49124527cd50c40b35f068a4e38b9582ea8fe7d84ad435a46b5"
+      },
+      {
+        "path": "screenshots/versioned-7BrNdP/round-limit-1920x1080.png",
+        "bytes": 437203,
+        "sha256": "89364e5866e13f23374a2a7942ad642b55d1971f337b14d790bc3f6da662cdf1"
+      },
+      {
+        "path": "screenshots/versioned-8xwf4s/move-completed-1280x800.png",
+        "bytes": 241493,
+        "sha256": "b339a8452d27b3f6a11bb1891b14e3a23b56c0fc868c3c518c4f27ad16ca9761"
+      },
+      {
+        "path": "screenshots/versioned-9eLj2S/domination-1280x800.png",
+        "bytes": 255470,
+        "sha256": "97e84bc9bd5f378aed9f3245db50584c8e39cc016748b4a31e6d37f1c2d428ab"
+      },
+      {
+        "path": "screenshots/versioned-E8F8CP/stop-1280x800.png",
+        "bytes": 246685,
+        "sha256": "d59b8495187437f0711c900024a6b37037b401849b82e7dc80fe55199ba86654"
+      },
+      {
+        "path": "screenshots/versioned-GCk7X6/move-completed-1280x800.png",
+        "bytes": 241475,
+        "sha256": "265ddb50abcb73005866fdc02e260803215cb6686cc1461905657b5f42ea056c"
+      },
+      {
+        "path": "screenshots/versioned-INChUA/round-limit-1920x1080.png",
+        "bytes": 437203,
+        "sha256": "89364e5866e13f23374a2a7942ad642b55d1971f337b14d790bc3f6da662cdf1"
+      },
+      {
+        "path": "screenshots/versioned-JHBu5Z/placement-1280x800.png",
+        "bytes": 240560,
+        "sha256": "07eed30ae831538f689228cae5480d456c8755734406049cb5bcfd347ee023e1"
+      },
+      {
+        "path": "screenshots/versioned-Lfk8jZ/domination-1920x1080.png",
+        "bytes": 438251,
+        "sha256": "850c5bbc8e12af8565b81d1c2fb0b85cd59eac645bcb2a78d0557ec1f97ae91c"
+      },
+      {
+        "path": "screenshots/versioned-NB05dR/pending-capture-1920x1080.png",
+        "bytes": 449988,
+        "sha256": "0e068b1ee5d3f9a50eb5a23fd7ab32b8413601fa2448bd58af66dde89189ce12"
+      },
+      {
+        "path": "screenshots/versioned-Nvgdu1/stop-1920x1080.png",
+        "bytes": 418962,
+        "sha256": "e76a73932f0f6c51ae0e59a1196e06cf91015238558839c4782d180806a325e1"
+      },
+      {
+        "path": "screenshots/versioned-QUjXh4/pending-capture-1920x1080.png",
+        "bytes": 449987,
+        "sha256": "09445d1e1bb0e85c521005d7e07832272aa325d1ccfb48b41d3d1c2e99a9fa54"
+      },
+      {
+        "path": "screenshots/versioned-T46jyB/move-draft-1920x1080.png",
+        "bytes": 424097,
+        "sha256": "fa2108e86d6107b7eea0979d48c1a0bb319ce74083041d973e84b803d65cc696"
+      },
+      {
+        "path": "screenshots/versioned-VuRjcN/move-completed-1920x1080.png",
+        "bytes": 416132,
+        "sha256": "71184f5a2672d5609e4f0b4210ba86e229abc1fbffb1e51095a967cc800f5c14"
+      },
+      {
+        "path": "screenshots/versioned-WFVnyU/move-draft-1280x800.png",
+        "bytes": 247881,
+        "sha256": "91b983cc24c3f01c01f7a5019d71f1ff99665748ac5b33c2e292b510c13eb587"
+      },
+      {
+        "path": "screenshots/versioned-WseLzl/placement-1280x800.png",
+        "bytes": 240560,
+        "sha256": "07eed30ae831538f689228cae5480d456c8755734406049cb5bcfd347ee023e1"
+      },
+      {
+        "path": "screenshots/versioned-Zvxdf4/move-completed-1920x1080.png",
+        "bytes": 416132,
+        "sha256": "71184f5a2672d5609e4f0b4210ba86e229abc1fbffb1e51095a967cc800f5c14"
+      },
+      {
+        "path": "screenshots/versioned-b5GodB/pending-capture-1280x800.png",
+        "bytes": 258739,
+        "sha256": "a82fc691febbecf237b5cd934bb69f667e9d32783189353d42e8c8ba06940afd"
+      },
+      {
+        "path": "screenshots/versioned-diqyJB/round-limit-1280x800.png",
+        "bytes": 253516,
+        "sha256": "996e5382382ae49124527cd50c40b35f068a4e38b9582ea8fe7d84ad435a46b5"
+      },
+      {
+        "path": "screenshots/versioned-djfgT3/pending-capture-1280x800.png",
+        "bytes": 258736,
+        "sha256": "a0c457e05d0a710ce70b261206cc0fea16e2e9a117c20128b70c037cdeb6e056"
+      },
+      {
+        "path": "screenshots/versioned-fztIqK/stop-1920x1080.png",
+        "bytes": 418979,
+        "sha256": "70e7a391084489c2230940c5b13d3b4bd00ef649a908505b9ca85276eaacc493"
+      },
+      {
+        "path": "screenshots/versioned-huB2kL/move-draft-1280x800.png",
+        "bytes": 247835,
+        "sha256": "966b6ab434f8f3eb36fc8e8d6e0290eb52a56686af29816146f7d8b1c751ab9b"
+      },
+      {
+        "path": "screenshots/versioned-iZnEGy/failed-load-1280x800.png",
+        "bytes": 250651,
+        "sha256": "408b5957a81993d1b8d0bcb9f2483ac4d53b7a1c39e2efe90ddcade65a05458a"
+      },
+      {
+        "path": "screenshots/versioned-n5Pj8g/failed-load-1920x1080.png",
+        "bytes": 427736,
+        "sha256": "3194d3bfeefa36d43f27e5e2cb323c17bd48cbb6d77ba4bd167aa1bebaf18b1a"
+      },
+      {
+        "path": "screenshots/versioned-ooClvG/domination-1280x800.png",
+        "bytes": 255470,
+        "sha256": "97e84bc9bd5f378aed9f3245db50584c8e39cc016748b4a31e6d37f1c2d428ab"
+      },
+      {
+        "path": "screenshots/versioned-pBLy3Q/failed-load-1920x1080.png",
+        "bytes": 427736,
+        "sha256": "3194d3bfeefa36d43f27e5e2cb323c17bd48cbb6d77ba4bd167aa1bebaf18b1a"
+      },
+      {
+        "path": "screenshots/versioned-qMNf1S/domination-1920x1080.png",
+        "bytes": 438251,
+        "sha256": "850c5bbc8e12af8565b81d1c2fb0b85cd59eac645bcb2a78d0557ec1f97ae91c"
+      },
+      {
+        "path": "screenshots/versioned-wOeyfw/failed-load-1280x800.png",
+        "bytes": 250651,
+        "sha256": "408b5957a81993d1b8d0bcb9f2483ac4d53b7a1c39e2efe90ddcade65a05458a"
+      },
+      {
+        "path": "screenshots/versioned-wTRhbu/placement-1920x1080.png",
+        "bytes": 416652,
+        "sha256": "a780466c40304e527ea3ebd679e7c1f62c7173922c1eeb432515d474140f7688"
+      },
+      {
+        "path": "screenshots/versioned-yBh2y4/stop-1280x800.png",
+        "bytes": 246685,
+        "sha256": "d59b8495187437f0711c900024a6b37037b401849b82e7dc80fe55199ba86654"
+      },
+      {
+        "path": "screenshots/versioned-yIGcCN/move-draft-1920x1080.png",
+        "bytes": 424097,
+        "sha256": "fa2108e86d6107b7eea0979d48c1a0bb319ce74083041d973e84b803d65cc696"
+      },
+      {
+        "path": "test-results/.last-run.json",
+        "bytes": 45,
+        "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903"
+      },
+      {
+        "path": "playwright-report/index.html",
+        "bytes": 813459,
+        "sha256": "3bf09b78d424399bc5b303ca00e10e4d60cec7cfbf9c0b3dc514b15c5f7f0a5a"
+      }
+    ]
+  },
+  "docs/prototypes/new-game/T38/implementation/validation-20261018T124257123824Z/source-inputs.tar.gz": {
+    "sha256": "d8c9d6d54393e4c1d8210a0b90ef8f35ec50020c15efc027770243f4d32c00eb",
+    "bytes": 3563931,
+    "members": [
+      {
+        "path": "data/maps/archipelago.json",
+        "bytes": 36578,
+        "sha256": "4ef6e0e68ad7e5943aea9d5ced7bc62a04706fc95eee07c2b653cb9e9be28bbf"
+      },
+      {
+        "path": "data/maps/small_sea.json",
+        "bytes": 12182,
+        "sha256": "74eeac049457d419c90f28a505f9f8d0aca8af68a30241e4660de13773ac1636"
+      },
+      {
+        "path": "package-lock.json",
+        "bytes": 49831,
+        "sha256": "c0e70a2a071d195b5fceab9ff85cf0a7c3de535ac6e0acce53c9cb89267fbbfd"
+      },
+      {
+        "path": "package.json",
+        "bytes": 732,
+        "sha256": "ac21fd11059518da12a65ea85d07e8333713e2b265d77e8c3e93dd88ea27332f"
+      },
+      {
+        "path": "playwright.config.ts",
+        "bytes": 899,
+        "sha256": "6742cfa1339f2f15b18de81544b19a26aebf7e17d7e5cbce3e8633e9a1db421f"
+      },
+      {
+        "path": "src/core/board-fairness.ts",
+        "bytes": 9723,
+        "sha256": "c1568cb7c84d2aa75d8cf80154c22bd446ce83f7d297e310c1f2e60a389d2717"
+      },
+      {
+        "path": "src/core/board-gen.ts",
+        "bytes": 41321,
+        "sha256": "716a518678414d469ad9c3b59658001a049ae9835668dcedbf86f88203652942"
+      },
+      {
+        "path": "src/core/bonuses.ts",
+        "bytes": 2084,
+        "sha256": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d"
+      },
+      {
+        "path": "src/core/cards.ts",
+        "bytes": 3548,
+        "sha256": "33dfbbb9c9457708599cd7792d16579b81e86d160afaad8d600c1f325a6c3177"
+      },
+      {
+        "path": "src/core/combat.ts",
+        "bytes": 6429,
+        "sha256": "617ea56bab2ea17f2eba2b1b17b167a6edcc19b32345c4381fcc57958fa26fc7"
+      },
+      {
+        "path": "src/core/computer.ts",
+        "bytes": 2713,
+        "sha256": "084b32d0c0e4ff94521d1670df2ef7be82766b7bae0e9b9429beae301b3ad9bb"
+      },
+      {
+        "path": "src/core/geographic-board.ts",
+        "bytes": 1714,
+        "sha256": "ba7cad309bc0fcded4b5a89ca14e22a6cecac7b809efd4537512e6d37fc62514"
+      },
+      {
+        "path": "src/core/geographic-game.ts",
+        "bytes": 1524,
+        "sha256": "24b557fec59571d89b4eb66924706978cd570ff70a635cf4ad033a6712533c79"
+      },
+      {
+        "path": "src/core/index.ts",
+        "bytes": 3006,
+        "sha256": "fff96f5683645f3039c57c81779cafedfd3b3ce19cb208994b348773828b3143"
+      },
+      {
+        "path": "src/core/island-geography.ts",
+        "bytes": 20184,
+        "sha256": "ab58ae1639288487cb8d102eee016e98b5059cf7c975c91ed6bfe1f5bc685f68"
+      },
+      {
+        "path": "src/core/map.ts",
+        "bytes": 8198,
+        "sha256": "3457bf4de33874cd78aa2a06a29819c8d7920e1c1eb36ce0500d326d5092cdaf"
+      },
+      {
+        "path": "src/core/match-save.ts",
+        "bytes": 12968,
+        "sha256": "1aa46b9d1e6f7ade3fc42fd7030fa89ddede65d98bbc73f9324f2d5cfea8d7e1"
+      },
+      {
+        "path": "src/core/movement.ts",
+        "bytes": 1425,
+        "sha256": "ef59529db0f70d17677af8d229c07a8cdb79bef5eac2d51f6790bd675cdfa323"
+      },
+      {
+        "path": "src/core/options.ts",
+        "bytes": 10117,
+        "sha256": "0103f21c5afe6a99d968079633a06f169f6941c129b94c212b9e93e547748513"
+      },
+      {
+        "path": "src/core/reference-game.ts",
+        "bytes": 887,
+        "sha256": "6eb447490de1fe550fc5e20a3981e96588d10344b1023ddefce1f07c9dd31a45"
+      },
+      {
+        "path": "src/core/reference-map.ts",
+        "bytes": 505,
+        "sha256": "cc920c2840843391f83bb9d1c393afc5342cfeb5625ecd2ca56f7252f85ec090"
+      },
+      {
+        "path": "src/core/reinforcement.ts",
+        "bytes": 1021,
+        "sha256": "b9a7fe2203bcff3aa06beebf5ec3ac8c2103641a0522a5e4805714b216452556"
+      },
+      {
+        "path": "src/core/rng.ts",
+        "bytes": 2832,
+        "sha256": "26da4d4214c19d021fb17cc0c6505cd54fe289ee82b57e8a30fa722fa3d9b498"
+      },
+      {
+        "path": "src/core/rules.ts",
+        "bytes": 12559,
+        "sha256": "2acc2403c816dbf3f9036acff609b2ac67056064270a2d4674413f4bf4fd0e77"
+      },
+      {
+        "path": "src/core/save.ts",
+        "bytes": 2228,
+        "sha256": "54eb5f98c7bc6ac90d39a3d2ddf53eef4fd37c5f53b609d847d20289433b9748"
+      },
+      {
+        "path": "src/core/seats.ts",
+        "bytes": 2520,
+        "sha256": "4e67c932ef1b420c7b4e07d646dfe423c249bd3dd90eed60549ea01b8ba06f67"
+      },
+      {
+        "path": "src/core/setup.ts",
+        "bytes": 8393,
+        "sha256": "2ce20b0a0b67ab53f2171d456acc66044c2ef084f640f5a0b01a082ab99178b0"
+      },
+      {
+        "path": "src/core/state.ts",
+        "bytes": 10540,
+        "sha256": "314bf2945975ec085dc1f45c771e22a4552aa47e2bd039329f9fb8f2cef94042"
+      },
+      {
+        "path": "src/core/tsconfig.json",
+        "bytes": 371,
+        "sha256": "0845dff0e382127412de693151d9b026e14a8b5070cb9f8a0036fc26e0997c8b"
+      },
+      {
+        "path": "src/core/types.ts",
+        "bytes": 6723,
+        "sha256": "8e39613cc00af38524d55620886db121efd3b934de715ed4519de42ceb474430"
+      },
+      {
+        "path": "src/core/victory.ts",
+        "bytes": 3135,
+        "sha256": "7d6306ac47080839cf6409ad6dba34a19bf69a4d6f829dba17ac7062e89890d9"
+      },
+      {
+        "path": "src/main.ts",
+        "bytes": 1686,
+        "sha256": "c0984c8a01d11ff9258cb8ba0618e1c331a3b7d8b1a859b7567d4d4aec634d44"
+      },
+      {
+        "path": "src/styles.css",
+        "bytes": 35597,
+        "sha256": "8afb525570b3180a0bfedb28d42d5ecee29115664f4d52bfbabe1a872ecd4155"
+      },
+      {
+        "path": "src/ui/app.ts",
+        "bytes": 11068,
+        "sha256": "e6c1835e5340d1d444f992e87fe46446eb2cd24f08136e4da8c1fd93e343c95b"
+      },
+      {
+        "path": "src/ui/battleController.ts",
+        "bytes": 14798,
+        "sha256": "6e58be9a0c5084ff1b60c68f14930ba7289b487ac5c91be95ef0cbf6891ca247"
+      },
+      {
+        "path": "src/ui/battleView.ts",
+        "bytes": 8018,
+        "sha256": "39658da08720e7ed6dc01fc047e88468a92df0290ba466f2d33bdba19eb85a51"
+      },
+      {
+        "path": "src/ui/computerTurnLoop.ts",
+        "bytes": 2065,
+        "sha256": "dd75ae15d78323e2a80f67ac577564dc5ff6a10470f7aa464b0eb529932fbbe9"
+      },
+      {
+        "path": "src/ui/dom.ts",
+        "bytes": 950,
+        "sha256": "98e4209555588e02eb0353e7a05f30edb4e9567be0973b6ad63bf66d90f60a77"
+      },
+      {
+        "path": "src/ui/friendlyMoveView.ts",
+        "bytes": 3475,
+        "sha256": "b4f085d1a0e3e209708b41ca14e8e1abe584b562e2ca9aba58671b578d53b8f2"
+      },
+      {
+        "path": "src/ui/gameEventLog.ts",
+        "bytes": 8853,
+        "sha256": "bab7ead955614bde6fcb4389171babf199699302c4d45b6b8530218fdc362a1b"
+      },
+      {
+        "path": "src/ui/generatedGame.ts",
+        "bytes": 10320,
+        "sha256": "a470ffece8b9c2f211cbb844c0b24615128f379ccd4da24adb7c13e6779da511"
+      },
+      {
+        "path": "src/ui/generatedMapView.ts",
+        "bytes": 2234,
+        "sha256": "56dc90f8f5686ba106956b3fe818bbdfa17d675aa90c512415cc0c7083f463cb"
+      },
+      {
+        "path": "src/ui/geographicGame.ts",
+        "bytes": 6678,
+        "sha256": "d314f588f6a56a7b2d15aab73b61e05f7432e795ceda49825a582d523317ae7e"
+      },
+      {
+        "path": "src/ui/geographicMapView.ts",
+        "bytes": 4078,
+        "sha256": "2b5af73da63af4b8ae10eeeb26588a35654cb0057c24f0a5c36d9bfb676c330a"
+      },
+      {
+        "path": "src/ui/help.ts",
+        "bytes": 2485,
+        "sha256": "d90bc88385eb345e0ff5fdcf7ad2cfa6d86f08f5dfdad1b3737d5bb1fdc3dfca"
+      },
+      {
+        "path": "src/ui/mapView.ts",
+        "bytes": 12102,
+        "sha256": "e8d1f61afb90cf2bb2115c00a851b7169359183029b4e7c07eb608ef8c8e07bc"
+      },
+      {
+        "path": "src/ui/matchPresentation.ts",
+        "bytes": 486,
+        "sha256": "5e8e788efee16cd22578b6700a0d8e75999d1ae6182502772856c27724567037"
+      },
+      {
+        "path": "src/ui/palette.ts",
+        "bytes": 1229,
+        "sha256": "a95c4345c8c6bda72b1ffc5dd440988e80bc9dae22d94eb632318d3b7038d499"
+      },
+      {
+        "path": "src/ui/panel.ts",
+        "bytes": 9115,
+        "sha256": "64cd3638ffc7182e1dfe2349a540cc889572f8ac92945f0d88cb83c4100b4756"
+      },
+      {
+        "path": "src/ui/prototype/layout.ts",
+        "bytes": 3710,
+        "sha256": "43ef9e6098fec0c42b8c4a42bb1b45aed981771eaec578c36e122fc4c0f98aca"
+      },
+      {
+        "path": "src/ui/prototype/preview.ts",
+        "bytes": 7998,
+        "sha256": "a814552e8e7a0235516a3d014b0c95faf24eb66efd8337196a146b4aefa9461e"
+      },
+      {
+        "path": "src/ui/referenceBattleGame.ts",
+        "bytes": 12268,
+        "sha256": "8780a555af2a114185005794d3084026f33c86aa852b2e020532f4709c0a76ec"
+      },
+      {
+        "path": "src/ui/referenceData.ts",
+        "bytes": 122,
+        "sha256": "3a87c0d8b84e431b89e8763da7d9bfe0a84234be8a2ef77e91b648e3d6797ee9"
+      },
+      {
+        "path": "src/ui/referenceGame.ts",
+        "bytes": 5152,
+        "sha256": "52cacb0cc5ce5c466b0f2eae0030a7020f582dba92ca4699a7ad5b22793873e9"
+      },
+      {
+        "path": "src/ui/referenceMapView.ts",
+        "bytes": 3639,
+        "sha256": "ab50db577a60151e27ac288b6b5d7d101587273566f3f14e14170988694ef205"
+      },
+      {
+        "path": "src/ui/referenceMatchFiles.ts",
+        "bytes": 3160,
+        "sha256": "8f4e70e17ec5261789cd607da37f7de383a69745a6aa100bb16114f61bc5570c"
+      },
+      {
+        "path": "src/ui/resultDialog.ts",
+        "bytes": 5022,
+        "sha256": "f96501e48c1733e853337ad067057a3d21c62c7f92b1b93c6ac81e8518c466ab"
+      },
+      {
+        "path": "src/ui/victoryView.ts",
+        "bytes": 2825,
+        "sha256": "543de7532e9694c84924fa289b0f1e19d42f641da242cc1a78723560f9157b77"
+      },
+      {
+        "path": "tests/core/archipelago.test.ts",
+        "bytes": 4469,
+        "sha256": "f6e4d733e4c55b759f61b08061965a7a37741f4046bd7b7e359188a182fce947"
+      },
+      {
+        "path": "tests/core/board-fairness.test.ts",
+        "bytes": 50182,
+        "sha256": "6a4b8620b7f9c1eff70ed15e007784b18613a03e353dd38ecf5122cacfb1d460"
+      },
+      {
+        "path": "tests/core/board-gen.sweep.test.ts",
+        "bytes": 2059,
+        "sha256": "5b8abde7448d439dba75842eb57362f33daa27c63cfbc4f2969d92bd2b43e5d5"
+      },
+      {
+        "path": "tests/core/board-gen.test.ts",
+        "bytes": 35596,
+        "sha256": "f86f26018bfb916f3a43ad01226517815537b312f30dee3508dd1ae0f5a18fea"
+      },
+      {
+        "path": "tests/core/bonuses.test.ts",
+        "bytes": 5402,
+        "sha256": "2716f3894ff73ab8a166c60ae24a7b3f3c848009174f37e90af6395261692657"
+      },
+      {
+        "path": "tests/core/capture-choice-compatibility.test.ts",
+        "bytes": 1887,
+        "sha256": "abc2aeaf91eaac155494fa02138dddd4ff162b88722993ee8337382e44d751ed"
+      },
+      {
+        "path": "tests/core/capture-choice-fixtures.ts",
+        "bytes": 1967,
+        "sha256": "6725e2bc9b8b6bb336233b74feed0c14d5108ad6d5bf18da0d19a46d0da3b1fd"
+      },
+      {
+        "path": "tests/core/capture-choice-replay.test.ts",
+        "bytes": 2560,
+        "sha256": "007cb887b846a1265b562ea19b0837cd2e5c33658b9830e48ece6557a3e605e4"
+      },
+      {
+        "path": "tests/core/capture-choice.test.ts",
+        "bytes": 4945,
+        "sha256": "c7430ad3dca1236ba87fb8bbbb6f5c50924fa62982f3821cb54d85f513aea3d1"
+      },
+      {
+        "path": "tests/core/card-deck-fixture.ts",
+        "bytes": 4481,
+        "sha256": "26550261239b923ffc70a9a12a0c4a1e61d298963acc8ba184f8748df4d55c43"
+      },
+      {
+        "path": "tests/core/card-deck-replay.test.ts",
+        "bytes": 8866,
+        "sha256": "0dfb42f543bff1d3e11d5e54babd5cc5b58afcab460674a876a591f5ca8b4482"
+      },
+      {
+        "path": "tests/core/card-deck.test.ts",
+        "bytes": 8127,
+        "sha256": "fe1ba39ee968bbcc6aff71009a25c1aae5911adb8f909aa3b6a46da9e0e27fa7"
+      },
+      {
+        "path": "tests/core/card-sets-fixture.ts",
+        "bytes": 3112,
+        "sha256": "56017a7466f71a27ed120ac9a82b65c7463d03b719815edf6534deda69050705"
+      },
+      {
+        "path": "tests/core/card-sets-replay.test.ts",
+        "bytes": 6614,
+        "sha256": "786ce1fe54d4d69d3b9934eb45a474ef0f5b4fa1832286e8b1df066fc1749a19"
+      },
+      {
+        "path": "tests/core/card-sets.test.ts",
+        "bytes": 6657,
+        "sha256": "5b69162a9eaa24a2e1d8c4453af4355654bece5564a432418d18d0b60deb96bb"
+      },
+      {
+        "path": "tests/core/combat.test.ts",
+        "bytes": 12249,
+        "sha256": "f3c17bfa8e0a44e61adb3eda96764ca0a32c1cbc59d33706e8b29dba87bbb224"
+      },
+      {
+        "path": "tests/core/complete-game.test.ts",
+        "bytes": 2947,
+        "sha256": "de33a8caa27c9309acf54f40d4b5c59c74dfe83c0c057314a46ac9635045a25f"
+      },
+      {
+        "path": "tests/core/computer-turn-flow.test.ts",
+        "bytes": 5783,
+        "sha256": "4c7b1e51ae4b99aab6727c98ede2c5f33f06274bccd17ee93e5a25da03dd9c8e"
+      },
+      {
+        "path": "tests/core/computer.test.ts",
+        "bytes": 2728,
+        "sha256": "78bc5881f01b7f8f866435dad38bd890fa0bde3569af11f2c3ae051c073841e6"
+      },
+      {
+        "path": "tests/core/determinism.test.ts",
+        "bytes": 3587,
+        "sha256": "4f04ca8454d7e5725d0cd5e3177a7c089baafbdfa68e03378fcc7b063c1a25ca"
+      },
+      {
+        "path": "tests/core/friendly-move-edges.test.ts",
+        "bytes": 2270,
+        "sha256": "ae18f53b1ef88f5ea9307efc85a567354bc7eec779f4582f1d804c016e1e0a17"
+      },
+      {
+        "path": "tests/core/friendly-move.test.ts",
+        "bytes": 6259,
+        "sha256": "426823f309f1d21a776e3910052ce8a9434701a75a7fc5cf5d876d857423b3fa"
+      },
+      {
+        "path": "tests/core/geographic-board.test.ts",
+        "bytes": 7712,
+        "sha256": "8bcf16370bc0807d0abb636bcec191b2018a630f20f46fc722855f05dabf5836"
+      },
+      {
+        "path": "tests/core/geographic-game.test.ts",
+        "bytes": 554,
+        "sha256": "daa176aebbcdf17b1e3d0e7fdc9c98b65065985910b16ee49a9f89182d4ec13a"
+      },
+      {
+        "path": "tests/core/geographic-match-identity.test.ts",
+        "bytes": 1509,
+        "sha256": "454281d89890e2ea1bf17be6720b72ff58df9946d227a334b7d7fabe1bc13d37"
+      },
+      {
+        "path": "tests/core/helpers.ts",
+        "bytes": 2340,
+        "sha256": "e7d286328b30641f561e80c44373a4dc3d0752ead8fc299fa2f30b63ab81351a"
+      },
+      {
+        "path": "tests/core/island-geography.test.ts",
+        "bytes": 13499,
+        "sha256": "825815e86c33421b45777926966432d3dbe369e070cfa883f34a1d1629de93be"
+      },
+      {
+        "path": "tests/core/malpaco-combat.test.ts",
+        "bytes": 8538,
+        "sha256": "810a995d071be0310263e0d27e411d3a7593bd20f25e910aa561f81ab0ccfce0"
+      },
+      {
+        "path": "tests/core/map.test.ts",
+        "bytes": 2500,
+        "sha256": "5fc35787f61edc198f87715744297b7822b69fb94a95dc3ad334d133d039a743"
+      },
+      {
+        "path": "tests/core/match-save.test.ts",
+        "bytes": 4703,
+        "sha256": "c4c4aea7340ca7fb4a6fbc60d5f914bb3b4d0d870b0461606894834c19743881"
+      },
+      {
+        "path": "tests/core/options.test.ts",
+        "bytes": 9748,
+        "sha256": "2f2f76711d2e344a80848e8ab65533d22552b7d97c491096abf2ccf06abfd152"
+      },
+      {
+        "path": "tests/core/purity.test.ts",
+        "bytes": 3404,
+        "sha256": "14784a57ec94db186f56355b2fef022dc7ae61e96e8151c68af388b1c2fd602c"
+      },
+      {
+        "path": "tests/core/reference-game.test.ts",
+        "bytes": 3598,
+        "sha256": "9089d3c4953013cd2499525f4ff884c63438126f2da45cbe2f0e03090df9fd73"
+      },
+      {
+        "path": "tests/core/reference-map-validation.test.ts",
+        "bytes": 926,
+        "sha256": "8545bc901dd76d3354b0f521cedfd98c78bc5dd35ac7fbe211ad2ba364e2cb81"
+      },
+      {
+        "path": "tests/core/reinforcement.test.ts",
+        "bytes": 3212,
+        "sha256": "1d5ac749b8ca70bbb876f04b17527e7ea2f70ed738399b08d2cfcebd98727cef"
+      },
+      {
+        "path": "tests/core/rng-streams.test.ts",
+        "bytes": 5999,
+        "sha256": "f8fe7044c643e001f12664fa44b1247b3eae806da163b96ec6bf27dd4ff35d14"
+      },
+      {
+        "path": "tests/core/save.test.ts",
+        "bytes": 6194,
+        "sha256": "891229f9ef0d8869d73bfb797e7cd5041ec6c92d57a278ea24f01121e2cd3b31"
+      },
+      {
+        "path": "tests/core/seats.test.ts",
+        "bytes": 4822,
+        "sha256": "c22a0d02475ffa95c5cd5a26772e92312d2859476b91930ed284b6c6c026e958"
+      },
+      {
+        "path": "tests/core/setup.test.ts",
+        "bytes": 11180,
+        "sha256": "612e3b9ed7a04ee450399895ef1232c16b15595558109ac63050cf51274051f0"
+      },
+      {
+        "path": "tests/core/turns.test.ts",
+        "bytes": 5785,
+        "sha256": "cc9b8f80f3b8a719a793ac80d828960045bca9288131f903e3c959e390b42216"
+      },
+      {
+        "path": "tests/core/versioned-match-fixture.ts",
+        "bytes": 2227,
+        "sha256": "2715bfe2797d63dda8fe7b573c4b5a14e3edbf11c18b7fc3bda2dda2a5f7012a"
+      },
+      {
+        "path": "tests/core/versioned-match-source.ts",
+        "bytes": 5858,
+        "sha256": "31392347a08ea9fde99c536b2ac4892bea6f2568fde41733e61dedb48cb327d7"
+      },
+      {
+        "path": "tests/core/versioned-match.test.ts",
+        "bytes": 6333,
+        "sha256": "d4c0d689d5bc44c1c62b7b0bef140f0b72004e94bc8b4aaf2342ba2afae6663d"
+      },
+      {
+        "path": "tests/core/victory-options-fixture.ts",
+        "bytes": 4431,
+        "sha256": "88f8024d316c7ca65eb2252a5ce574ac3107dda31b9eaf9ab73663e4f978dde8"
+      },
+      {
+        "path": "tests/core/victory-options.test.ts",
+        "bytes": 12516,
+        "sha256": "ca454c4acd0d254bdb195af8c73e8459c2856bfe7625587551deca3d64b74bd4"
+      },
+      {
+        "path": "tests/e2e/battle-accessibility.spec.ts",
+        "bytes": 4898,
+        "sha256": "8d932f9572ef6f034d5394cf5723878b0e17a8271b01c0f6f6cc73a84e137f9c"
+      },
+      {
+        "path": "tests/e2e/battle-controls.spec.ts",
+        "bytes": 8345,
+        "sha256": "bc4a8901fd2ecfad4dc338550d6238737bb1f8d873adfc9a31d7987ec7b82d23"
+      },
+      {
+        "path": "tests/e2e/battle-fixture.ts",
+        "bytes": 2753,
+        "sha256": "fcbad108f53592da5924cd8c3de292991e24d33073b4c8e9583dba6c9de86aa6"
+      },
+      {
+        "path": "tests/e2e/coast-postprocess.spec.ts",
+        "bytes": 8597,
+        "sha256": "0f066eb646da0a6f549d428e45d066e406b9c362cc12e8c2b6c548e58c00c0ca"
+      },
+      {
+        "path": "tests/e2e/complete-game.spec.ts",
+        "bytes": 6868,
+        "sha256": "a6ce4b0bf05e4140daed842ac45ee9e1227bec4993788596ac98dd88bba4c6e7"
+      },
+      {
+        "path": "tests/e2e/computer-turn-flow.spec.ts",
+        "bytes": 8034,
+        "sha256": "0f2bbc18ff5dcb949404cd30dc29bf82d710cce103ba7f795deeb5791b135160"
+      },
+      {
+        "path": "tests/e2e/computer.spec.ts",
+        "bytes": 7909,
+        "sha256": "1871d273b48c8b6cd5a725e9d681d4da1eca7d96abfd2ec74db6abeaf25a6d5c"
+      },
+      {
+        "path": "tests/e2e/direct-attack.spec.ts",
+        "bytes": 10156,
+        "sha256": "388d652c2fcec5ed8bd2857a3931caef15d8013a622cbad3b8c3748a7ef6d190"
+      },
+      {
+        "path": "tests/e2e/entry.spec.ts",
+        "bytes": 4950,
+        "sha256": "3f2689e2edf0e68a6a26b3086abc0c8d63cc11faf069ddcd69f9cb8b32276c65"
+      },
+      {
+        "path": "tests/e2e/finished-copy.spec.ts",
+        "bytes": 9162,
+        "sha256": "9b5b9cbec6c26cbf9df32c14fd627a0f4af7f07474735c7a8a4f7eb8f4521a8e"
+      },
+      {
+        "path": "tests/e2e/friendly-feedback.spec.ts",
+        "bytes": 2647,
+        "sha256": "93e9c8768c078c444f888e83b1ff5482f6e17a64315ded2f3eadf44c5d3220b0"
+      },
+      {
+        "path": "tests/e2e/friendly-fixture.ts",
+        "bytes": 2745,
+        "sha256": "846ff5b41de3bd24de1f60a6eb382e0e2fa4851c5eec1179f822bf473e76c8d3"
+      },
+      {
+        "path": "tests/e2e/friendly-move.spec.ts",
+        "bytes": 6942,
+        "sha256": "d40c6957ba8481ea60e089e5a089632a2cd25c56da385686927082e32f6cb827"
+      },
+      {
+        "path": "tests/e2e/game-event-log.spec.ts",
+        "bytes": 7652,
+        "sha256": "dc30a76c6118924ab9780e2b7b3598b51670def96f6fc5e6aaf38084e834b684"
+      },
+      {
+        "path": "tests/e2e/game-setup.spec.ts",
+        "bytes": 8429,
+        "sha256": "bfdcaaf3c95fb074abab9bd75e9a676fb4aa02c7533deb4246d3a60c9dc22e23"
+      },
+      {
+        "path": "tests/e2e/game-setup.spec.ts-snapshots/four-seat-1280x800-1280x800-linux.png",
+        "bytes": 275900,
+        "sha256": "871645814d843d6e6994896e340d292a5f9d4f1755334654caff988b594352dd"
+      },
+      {
+        "path": "tests/e2e/game-setup.spec.ts-snapshots/four-seat-1920x1080-1920x1080-linux.png",
+        "bytes": 431530,
+        "sha256": "8788d962bad178d3b294d190e827b5733fda7de7407e5408a1d50420abdae9f0"
+      },
+      {
+        "path": "tests/e2e/game-setup.spec.ts-snapshots/setup-1280x800-1280x800-linux.png",
+        "bytes": 36661,
+        "sha256": "194ad30b5c272bb12902b0355201f4cea066449f20e833a142e9fcaf320e9178"
+      },
+      {
+        "path": "tests/e2e/game-setup.spec.ts-snapshots/setup-1920x1080-1920x1080-linux.png",
+        "bytes": 41211,
+        "sha256": "3dce0b4bb725d794c299ae9a5844ac16be81f7359d716e0d2787210698aaca28"
+      },
+      {
+        "path": "tests/e2e/generated-board.spec.ts",
+        "bytes": 11416,
+        "sha256": "3392319d809a16018c28c88000e284c8a0ec8dc3c1f1d8682ceae595ee36c97a"
+      },
+      {
+        "path": "tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1280x800-linux.png",
+        "bytes": 226759,
+        "sha256": "2325d273b1eec0dc174e4546177252c94a03e1d00de8897c6d238751402ccb96"
+      },
+      {
+        "path": "tests/e2e/generated-board.spec.ts-snapshots/generated-preview-1920x1080-linux.png",
+        "bytes": 362926,
+        "sha256": "c938da0150150e9b7b0e5a210223e73637d630ad31e94ae309bdea45775e4550"
+      },
+      {
+        "path": "tests/e2e/generated-game.spec.ts",
+        "bytes": 12690,
+        "sha256": "7c69effa1625baf807f94aae54a9c87eb7c3aa0ee120fe6f29bb0ac8491039f5"
+      },
+      {
+        "path": "tests/e2e/generated-game.spec.ts-snapshots/generated-game-1280x800-linux.png",
+        "bytes": 263504,
+        "sha256": "a70d2da38158bf0034a1e084c64810be8e4b652940a9ac58997ea5cee3503510"
+      },
+      {
+        "path": "tests/e2e/generated-game.spec.ts-snapshots/generated-game-1920x1080-linux.png",
+        "bytes": 414211,
+        "sha256": "3d93466c122804074c1d3dfe2f82e93aa5220d26b3cd48f51da296502ccc290e"
+      },
+      {
+        "path": "tests/e2e/geographic-board.spec.ts",
+        "bytes": 25711,
+        "sha256": "79bb2e3fb85597a004510c0b7916d80c1f3e75e287961d92e575c5461323994c"
+      },
+      {
+        "path": "tests/e2e/geographic-review-guards.spec.ts",
+        "bytes": 5759,
+        "sha256": "8c7ec63a25fcc0ea0d02744730c8c5f82c3b244e0709a2c24b85483cdfa26951"
+      },
+      {
+        "path": "tests/e2e/help.spec.ts",
+        "bytes": 11893,
+        "sha256": "8fb03c619a3772535dc98c34b8f3b23f0d0adac194a75a49c2bfda01d4da7750"
+      },
+      {
+        "path": "tests/e2e/map-readability.spec.ts",
+        "bytes": 5304,
+        "sha256": "3661c35e602b3012ae1caa94cda287aa434176263cef201494361f5425e4da32"
+      },
+      {
+        "path": "tests/e2e/match-save.spec.ts",
+        "bytes": 9913,
+        "sha256": "51b310f1ab97e8b0be32995ba28c4292c00997c133e4e9d72ef9c921e13ee9db"
+      },
+      {
+        "path": "tests/e2e/playback-controls.spec.ts",
+        "bytes": 10796,
+        "sha256": "46feb0fd44d3e64c99de67a7ab40a908772ee749f5bef704c8152881a3fe5762"
+      },
+      {
+        "path": "tests/e2e/playback-edge-cases.spec.ts",
+        "bytes": 6665,
+        "sha256": "c97683e8a56b7990f50e6ea8f01a8eba5c21967ef0d0f5245359a01ef95241d5"
+      },
+      {
+        "path": "tests/e2e/reference-complete-game.spec.ts",
+        "bytes": 8022,
+        "sha256": "ca9349f72f2921404e0455fd9e71d9725a26a1a34ac4648360eec5a62fed2f07"
+      },
+      {
+        "path": "tests/e2e/reference-game.spec.ts",
+        "bytes": 9965,
+        "sha256": "5b7d3a3b466bae47ea52222a5670ee1dc03d9d658af8660e9eeefd368bca277d"
+      },
+      {
+        "path": "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1280x800-linux.png",
+        "bytes": 244403,
+        "sha256": "c49663eb1a80c9f6749e277643f29868ba08f4053366982a3e7aa20465867178"
+      },
+      {
+        "path": "tests/e2e/reference-game.spec.ts-snapshots/reference-game-1920x1080-linux.png",
+        "bytes": 408747,
+        "sha256": "6db7e79d01674f2419ce1442c93a99f53ef8db3f96392b2c621fed45838b64c3"
+      },
+      {
+        "path": "tests/e2e/region-border-postprocess.spec.ts",
+        "bytes": 8395,
+        "sha256": "78567d93b57f945931fd018e9941cb1744b6c44552238537672078a821282871"
+      },
+      {
+        "path": "tests/e2e/reinforcement.spec.ts",
+        "bytes": 6327,
+        "sha256": "dca8ff9b0bf14a33020d0a1f0ae8b6329872b9e696ed9223d24400a2c3b7d0e8"
+      },
+      {
+        "path": "tests/e2e/retry-validation.spec.ts",
+        "bytes": 6044,
+        "sha256": "62a0f90589351c21d350c1cd79337ab55f8fbeaceb370b6e718c1f535d5c1e27"
+      },
+      {
+        "path": "tests/e2e/slice.spec.ts",
+        "bytes": 44204,
+        "sha256": "4be59469b7badf518219601b767e989cf8bdbe53e9f86a11e3eb056a572838f3"
+      },
+      {
+        "path": "tests/e2e/slice.spec.ts-snapshots/board-1280x800-linux.png",
+        "bytes": 181024,
+        "sha256": "4e1516852e83946614bd22a81122eaa319edae4f8f5f0ed502d0f6db7c370955"
+      },
+      {
+        "path": "tests/e2e/slice.spec.ts-snapshots/board-1920x1080-linux.png",
+        "bytes": 308845,
+        "sha256": "8a19d1e0358fbcdad8fb2bf40198e2d9ed37e437aff1695556c50d857a4e9ee7"
+      },
+      {
+        "path": "tests/e2e/slice.spec.ts-snapshots/panel-1280x800-linux.png",
+        "bytes": 32676,
+        "sha256": "309307bab8cf1366c3383ac321eb0e43f58013c1ff829886364e1376415ec7a1"
+      },
+      {
+        "path": "tests/e2e/slice.spec.ts-snapshots/panel-1920x1080-linux.png",
+        "bytes": 43833,
+        "sha256": "456324f1527b1ffcced669ff74e26bf3bc65d7419f6bcfae0b013f41879ec003"
+      },
+      {
+        "path": "tests/e2e/slice.spec.ts-snapshots/result-dialog-1280x800-linux.png",
+        "bytes": 20434,
+        "sha256": "a233f777322bf79b03f6f41d1e902d13559c0f20ba67e7474683f980a42f9347"
+      },
+      {
+        "path": "tests/e2e/slice.spec.ts-snapshots/result-dialog-1920x1080-linux.png",
+        "bytes": 27604,
+        "sha256": "4e6f7b93fd9452a7dcdd7acd459dd9d8b72684c0baa06a3524ab49edaf7698cc"
+      },
+      {
+        "path": "tests/e2e/versioned-match.spec.ts",
+        "bytes": 13338,
+        "sha256": "6f717b4db03bb1996303ea6ecbf91e10adb7022dc5f5668623e9dd8615fa524e"
+      },
+      {
+        "path": "tests/e2e/victory-fixture.ts",
+        "bytes": 3392,
+        "sha256": "cbebcb768ff041213cd8b25588f231b5da92ed3ee963874d6de3db0da9a8f743"
+      },
+      {
+        "path": "tests/e2e/victory-options.spec.ts",
+        "bytes": 10608,
+        "sha256": "e495e7fb8b12d121a0ffee0df32613ee14cdef1677d23abbedc27d71b92cfd8a"
+      },
+      {
+        "path": "tests/helpers/complete-game.ts",
+        "bytes": 2851,
+        "sha256": "d52400c8d02e36f81bf7e017478c25f42340557da1ca55d07c67f173ff72f203"
+      },
+      {
+        "path": "tests/helpers/computer.ts",
+        "bytes": 1067,
+        "sha256": "5840535ca59dca31005a84bb4d02c2b1139eab919b846471961c8b6b1264bb25"
+      },
+      {
+        "path": "tests/ui/battle-controller-safety.test.ts",
+        "bytes": 2068,
+        "sha256": "e98c4fb8debe2dcb688c0c1a8f53657e22dc44e80b5cbc385fdd745356b71348"
+      },
+      {
+        "path": "tests/ui/battle-controller.test.ts",
+        "bytes": 6154,
+        "sha256": "b6a8f9630e7ef7ff0a9a27b11e8cfffe54879edcfc636798aba9a53ea8e155ff"
+      },
+      {
+        "path": "tests/ui/battle-fixtures.ts",
+        "bytes": 3845,
+        "sha256": "4538a5ed6e0fa7d4c59357782823310001df9c08f55e628e1f6af7357f1559ae"
+      },
+      {
+        "path": "tests/ui/coast-postprocess.test.ts",
+        "bytes": 3739,
+        "sha256": "709e9f02c3aac0e5994f5975a05569f2e425994dec62bbac5c915fc08a1b6e3b"
+      },
+      {
+        "path": "tests/ui/computer-input.test.ts",
+        "bytes": 2267,
+        "sha256": "d2385392879bc475b3c974f95137f679b2597a870c14dac2be054b5528baa725"
+      },
+      {
+        "path": "tests/ui/friendly-move-controller.test.ts",
+        "bytes": 4861,
+        "sha256": "cbeec542746bc5a2c664cd55a02a2624b45c7f77dc7b67509ee6f4045d560b71"
+      },
+      {
+        "path": "tests/ui/game-event-log.test.ts",
+        "bytes": 2836,
+        "sha256": "d114a859ae9a5604d204bd4013c20d4be07ea9787647a11400f78b7f9f7b942f"
+      },
+      {
+        "path": "tests/ui/game-setup.test.ts",
+        "bytes": 2394,
+        "sha256": "af32d57bbbcfed919857262563cbe806e1f323ebbc7faebe1b56c9d477f8d706"
+      },
+      {
+        "path": "tests/ui/generated-board-layout.test.ts",
+        "bytes": 3204,
+        "sha256": "cdd5c6c327a2ef434a8da01c2d1ff1aab362388cc5cffde604589255b4156878"
+      },
+      {
+        "path": "tests/ui/generated-game.test.ts",
+        "bytes": 1707,
+        "sha256": "29278623f2e5f06c3e187f100db1292ae554ca48783587a4e07484cfaf76756c"
+      },
+      {
+        "path": "tests/ui/geographic-game.test.ts",
+        "bytes": 6662,
+        "sha256": "b3f8eaf200ed559cf4834cbe3aa8fbcf0964cd315550335111aeffa8dfc1556f"
+      },
+      {
+        "path": "tests/ui/playback-controls.test.ts",
+        "bytes": 2893,
+        "sha256": "5d8f21178b28084666936225313324cec4e4fe7ed75204bca5fab9dc26e1d45e"
+      },
+      {
+        "path": "tests/ui/region-border-postprocess.test.ts",
+        "bytes": 3158,
+        "sha256": "c1e688a4d5591d5d2f48128ed11ea60c2ae3c3b990d27a5ec3ee4cf81b0b5cd7"
+      },
+      {
+        "path": "tests/ui/versioned-match-context.test.ts",
+        "bytes": 1059,
+        "sha256": "3ee2473405e5127e7a0d02631541c0d71328eb00e56f16d37745acdb21158c33"
+      },
+      {
+        "path": "tests/ui/victory-panel.test.ts",
+        "bytes": 2916,
+        "sha256": "7f128f1e59f87271e284badbf785afb684d62f8e2c55981e9ab7f965d62e4bee"
+      },
+      {
+        "path": "tsconfig.json",
+        "bytes": 580,
+        "sha256": "eae8564f45cca31453e342ea3f5fc11d7cfbe7866562fc3f62ee665206640049"
+      },
+      {
+        "path": "vite.config.ts",
+        "bytes": 382,
+        "sha256": "603ee167f8621daf3874af336f2443e12ba973f2bccf275ae7ff1a0e9e4200d7"
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+
+Running 28 tests using 2 workers
+
+  ✓   1 [1280x800] › tests/e2e/game-event-log.spec.ts:84:54 › complete move-completed replay includes ordered army accounting beyond seven entries (710ms)
+  ✓   2 [1280x800] › tests/e2e/game-event-log.spec.ts:70:1 › popup works by keyboard while paused, appends exactly once and resets for a new match (1.5s)
+  ✓   3 [1280x800] › tests/e2e/game-event-log.spec.ts:84:54 › complete domination replay includes ordered army accounting beyond seven entries (1.4s)
+  ✓   5 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match (2.2s)
+  ✓   4 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army (3.3s)
+{"kind":"responsive-shell","viewport":"1280x800","reference":{"panelWidth":350,"panelHeight":599.828125,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"},"geographic":{"panelWidth":350,"panelHeight":599.828125,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"}}
+  ✓   6 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:60:1 › default four-seat geographic shell shares reference responsive layout (3.3s)
+  ✓   8 [1280x800] › tests/e2e/versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement (525ms)
+  ✓   9 [1280x800] › tests/e2e/versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm (559ms)
+  ✓  10 [1280x800] › tests/e2e/versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn (1.1s)
+  ✓  11 [1280x800] › tests/e2e/versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable (1.5s)
+  ✓  12 [1280x800] › tests/e2e/versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls (875ms)
+  ✓  13 [1280x800] › tests/e2e/versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers (553ms)
+  ✓  14 [1280x800] › tests/e2e/versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match (626ms)
+  ✓  15 [1920x1080] › tests/e2e/game-event-log.spec.ts:70:1 › popup works by keyboard while paused, appends exactly once and resets for a new match (1.4s)
+  ✓  16 [1920x1080] › tests/e2e/game-event-log.spec.ts:84:54 › complete move-completed replay includes ordered army accounting beyond seven entries (538ms)
+  ✓  17 [1920x1080] › tests/e2e/game-event-log.spec.ts:84:54 › complete domination replay includes ordered army accounting beyond seven entries (1.3s)
+  ✓  18 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army (3.1s)
+  ✓  19 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match (2.0s)
+{"kind":"responsive-shell","viewport":"1920x1080","reference":{"panelWidth":440,"panelHeight":922.625,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"},"geographic":{"panelWidth":440,"panelHeight":922.625,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"}}
+  ✓  20 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:60:1 › default four-seat geographic shell shares reference responsive layout (3.2s)
+  ✓   7 [1280x800] › tests/e2e/reference-complete-game.spec.ts:26:1 › real human/computer setup, friendly move, pending save/resume, elimination and conquest (34.0s)
+  ✓  22 [1920x1080] › tests/e2e/versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement (702ms)
+  ✓  23 [1920x1080] › tests/e2e/versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm (793ms)
+  ✓  24 [1920x1080] › tests/e2e/versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn (1.5s)
+  ✓  25 [1920x1080] › tests/e2e/versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable (2.2s)
+  ✓  26 [1920x1080] › tests/e2e/versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls (1.0s)
+  ✓  27 [1920x1080] › tests/e2e/versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers (692ms)
+  ✓  28 [1920x1080] › tests/e2e/versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match (792ms)
+  ✓  21 [1920x1080] › tests/e2e/reference-complete-game.spec.ts:26:1 › real human/computer setup, friendly move, pending save/resume, elimination and conquest (34.3s)
+
+  28 passed (1.0m)

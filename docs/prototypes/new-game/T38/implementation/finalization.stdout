@@ -1,0 +1,96 @@
+{
+  "sourceCommit": "8f90366e8a030e5516ec6ea3b5da9f32b0026925",
+  "validationPath": "docs/prototypes/new-game/T38/implementation/validation-20261018T124257123824Z",
+  "allPassed": true,
+  "allMeasuredInputsUnchanged": true,
+  "frozenAcceptanceFiles": 11,
+  "frozenAcceptanceManifestSha256": "f5ebd0dfee5b33bf8f51ce7606010eecc385624bc6928a547f433db15ddf9916",
+  "commands": [
+    {
+      "name": "sets",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/card-sets.test.ts"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.8858052530013083,
+      "inputsUnchanged": true
+    },
+    {
+      "name": "replay",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/core/card-sets-replay.test.ts"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 11.885086238999065,
+      "inputsUnchanged": true
+    },
+    {
+      "name": "units",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 44.02200740400076,
+      "inputsUnchanged": true
+    },
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 1.058391678998305,
+      "inputsUnchanged": true
+    },
+    {
+      "name": "browsers",
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--init",
+        "--ipc=host",
+        "--user",
+        "1000:1000",
+        "-v",
+        "/home/diego/projects/malpaco/.cache/t38-work:/work",
+        "-w",
+        "/work",
+        "-e",
+        "HOME=/tmp",
+        "mcr.microsoft.com/playwright:v1.63.0-noble",
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/versioned-match.spec.ts",
+        "tests/e2e/reference-complete-game.spec.ts",
+        "tests/e2e/game-event-log.spec.ts",
+        "tests/e2e/geographic-review-guards.spec.ts",
+        "--workers=2"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 64.6721970059989,
+      "inputsUnchanged": true
+    }
+  ],
+  "startedUtc": "2026-10-18T12:42:57.166597+00:00",
+  "finishedUtc": "2026-10-18T12:45:00.491893+00:00",
+  "checkedSourceInputs": 171,
+  "archivesVerified": 3,
+  "archiveMembersVerified": 377,
+  "runtimeEquivalenceReceiptSha256": "b3e8179b92d7daa2befe8186bd9d0ddfc41b1f7c2e7760bf66f11c9c0b9b7466",
+  "negativeControls": "Reused exact parent-executed baseline and Anchor/Wild controls, permitted by eight-file token equivalence; no new mutations.",
+  "limitations": [
+    "Independent review, CI and merge remain parent-owned.",
+    "Native aggregate token telemetry unavailable."
+  ]
+}
