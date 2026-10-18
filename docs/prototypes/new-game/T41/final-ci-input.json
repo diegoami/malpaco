@@ -1,0 +1,110 @@
+{
+  "reviewedHead": "7a2486a79158575d891878b86f6f0f74ba190517",
+  "reviewUrl": "https://github.com/diegoami/malpaco/pull/177#issuecomment-6252422861",
+  "actualMergedDependency": "111b656c09833fc536b47e4ebc39116bcf3170b0",
+  "sourceTestsDataToolsConfigEqualReviewed": true,
+  "ownerCardControlsApproval": "Explicit owner message: looks great, continue; recorded https://github.com/diegoami/malpaco/pull/176#issuecomment-6252620402. Same card UI/CSS; T41 adds reviewed policy and normal setup activation.",
+  "findingsAssessment": "R1 public discardTop allowed by approved T40 Scope and unused by policy; nonblocking provenance note retained. R2 reused-evidence observation/no action.",
+  "model": {
+    "provider": "kimi-code-plan-global",
+    "id": "k3",
+    "variant": "low",
+    "seconds": 670.073,
+    "toolErrorsAndDenials": 0
+  },
+  "preview": {
+    "preview": {
+      "head": "4dc8ba6537a23d27fa96f53a24e979feab0b4e92",
+      "reviewedSource": "7a2486a79158575d891878b86f6f0f74ba190517",
+      "commands": [
+        {
+          "name": "package",
+          "argv": [
+            "node",
+            "tools/release/package-playable.mjs"
+          ],
+          "exit": 0,
+          "seconds": 1.834324324998306
+        },
+        {
+          "name": "extracted-cards-and-computers",
+          "argv": [
+            "docker",
+            "run",
+            "--pull=never",
+            "--rm",
+            "--init",
+            "--ipc=host",
+            "--user",
+            "1000:1000",
+            "-v",
+            "/home/diego/projects/malpaco/.cache/t41-work:/work",
+            "-w",
+            "/work",
+            "-e",
+            "HOME=/tmp",
+            "-e",
+            "PLAYABLE_EXTRACTED_DIR=/work/docs/prototypes/new-game/T41/preview-20261018-170614/extracted",
+            "-e",
+            "PLAYABLE_EVIDENCE_DIR=/work/docs/prototypes/new-game/T41/preview-20261018-170614/extracted-evidence",
+            "mcr.microsoft.com/playwright:v1.63.0-noble",
+            "npx",
+            "playwright",
+            "test",
+            "tests/e2e/cards.spec.ts",
+            "tests/e2e/cards-result-layout.spec.ts",
+            "tests/e2e/computer-cards.spec.ts",
+            "--config",
+            "playwright.release.config.ts",
+            "--workers=2"
+          ],
+          "exit": 0,
+          "seconds": 94.78579545600223
+        }
+      ],
+      "bundle": "/home/diego/projects/malpaco/.cache/t41-dispatch/preview-20261018-170614/T41-card-games-4dc8ba6-20261018-170614",
+      "archiveSha256": "e26847b437063279d3d8e8da32d9e53fdddc15997c890b17d959c5ba2431a895",
+      "screenshots": 64,
+      "files": 86,
+      "verifiedPackage": true,
+      "normalNewGameCardsEnabled": true
+    },
+    "windows": {
+      "sourceHead": "4dc8ba6537a23d27fa96f53a24e979feab0b4e92",
+      "windowsPath": "/mnt/c/Users/diego/malpaco-preview/T41-card-games-4dc8ba6-20261018-170614",
+      "filesVerified": 87,
+      "httpVerified": {
+        "index.html": "e9678941a6c6cc4c6d62fbe319aec6ff86fd0560d55fc19d8eeebbf1cd9f03a4",
+        "PLAY.md": "6181823ed1f99316ab581555afcc2e53fbad593eac4e43db075fdc5de59957a2",
+        "BUILD.json": "08e1e9a7dc0a7a1c0eab155b8dde0a28b6686c0afaa94406a397cdaa8c81f837",
+        "assets/index-Sysg6Hnc.js": "2a39107257db968aaa98b9c70e926eff3f705a9e5f2851c3c4c7a32780308902",
+        "assets/index-CAxo2Kls.css": "17257a1ce1d75bb06d0dc7c25dab53105f972a1e5a70623620532a0fce297aed",
+        "fonts/Inter-LICENSE.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+        "fonts/InterVariable.woff2": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+      },
+      "globalGameGalleryUnchanged": true
+    },
+    "extractedCasesPassed": 44,
+    "archiveSha256": "20da94ddacfaf28756a168807f39ee15846e19635308541d72c333d606527e8a",
+    "archiveBytes": 44917224,
+    "parts": [
+      {
+        "file": "preview-complete.tar.gz.part-000",
+        "sha256": "e159853deea344a3ff99a059217956a9243abfb1f2b2bf5b1b046f44dc584da4",
+        "bytes": 16777216
+      },
+      {
+        "file": "preview-complete.tar.gz.part-001",
+        "sha256": "09e8b22b8c4170d5461eb2b3f6357a6ff3d3b5420656155a2f119c80b321cf27",
+        "bytes": 16777216
+      },
+      {
+        "file": "preview-complete.tar.gz.part-002",
+        "sha256": "942483f788fad4a85bc87b131117fc7c9ad8db5b36b4b7c70256c52a946a5bd1",
+        "bytes": 11362792
+      }
+    ],
+    "originalsPreserved": true
+  },
+  "ciPolicy": "This data/docs receipt launches ONE final-head T41 CI after actual T40 merge. No other T41 CI dispatched or rerun. Main fresh key check immediately before merge."
+}
