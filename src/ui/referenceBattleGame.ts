@@ -10,6 +10,8 @@ import { h } from "./dom";
 import { Panel } from "./panel";
 import { ReferenceMapView } from "./referenceMapView";
 import { VictoryView } from "./victoryView";
+import type {MatchPresentation} from "./matchPresentation";
+import type {LoadedVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
 
 /** Session-only preferences. Full presentation persistence is T56. */
@@ -24,7 +26,7 @@ export class ReferenceBattleGame {
     ...["very-slow", "slow", "normal", "fast"].map(value => h("option", { value }, value === "very-slow" ? "Very slow (2 s)" : value[0]!.toUpperCase() + value.slice(1))));
   private readonly eventLog: GameEventLog;
   private readonly controller: BattleController;
-  private readonly mapView: ReferenceMapView;
+  private readonly mapView: Pick<ReferenceMapView,"el"|"render">;
   private readonly panel: Panel;
   private readonly battle: BattleView;
   private readonly friendly: FriendlyMoveView;
@@ -40,8 +42,8 @@ export class ReferenceBattleGame {
     if (!this.controller.stop()) this.controller.select(null, null);
   };
 
-  constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState) => void, private readonly automatic = false) {
-    this.eventLog = new GameEventLog(options);
+  constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState, loaded?:LoadedVersionedMatch) => void, private readonly automatic = false, private readonly presentation?:MatchPresentation) {
+    this.eventLog = new GameEventLog(options,presentation?.initialState);
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
     }, view => {
@@ -53,7 +55,7 @@ export class ReferenceBattleGame {
     const threshold = preferences.threshold, speed = preferences.speed;
     this.controller.setThreshold(threshold);
     this.controller.setSpeed(speed);
-    this.mapView = new ReferenceMapView(map, {
+    this.mapView = (presentation?.createMap ?? ((m,handlers)=>new ReferenceMapView(m,handlers)))(map, {
       onProvince: (id, activation) => { if (!activation?.repeat) this.clickProvince(id, activation?.inspect ?? false); },
       onBackground: () => { this.controller.select(null, null); },
       onHover: id => { this.hover = id; if (this.mounted && !this.disposed) this.renderMap(); },
@@ -71,7 +73,7 @@ export class ReferenceBattleGame {
     this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el, this.computerStatus);
     this.playbackPause.onclick = () => this.controller.setPlaybackPaused(!this.controller.playbackPaused);
     this.playbackSpeed.onchange = () => this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed);
-    this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state);
+    this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation));
   }
 
   mount(root: HTMLElement): void {
@@ -80,9 +82,10 @@ export class ReferenceBattleGame {
     const footer = this.panel.el.querySelector<HTMLElement>(".panel-foot")!;
     const humans = this.options.seats.filter(seat => seat.kind === "human").length;
     const computers = this.options.seats.length - humans;
+    const name=this.presentation?.label??"Nine Isles";
     const subtitle = computers
-      ? `Nine Isles · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
-      : `Nine Isles · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
+      ? `${name} · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
+      : `${name} · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     root.replaceChildren(
       h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, h("div", { class: "game-playback" }, this.eventLog.button, this.eventLog.dialog, this.playbackPause, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed), footer, this.files.el),
       h("main", { class: "stage" }, h("section", { class: "board" }, this.mapView.el), this.panel.el));

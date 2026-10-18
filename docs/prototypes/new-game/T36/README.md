@@ -36,3 +36,19 @@ appearance approval. Historical proposals and all initial/new dependency baselin
 are retained under `parent-preflight`; do not apply those snapshots indiscriminately.
 
 The complete parent archive preserves all 2,856 original paths, including candidate source copies and patches; concatenate the receipt-listed parts and extract from the repository root to recover the original layout. Loose originals remain in the preparation worktree. Tracked metadata and packet archives provide provenance without treating archived source copies as current executable code.
+
+## Formal producer adoption
+
+The producer adopted exactly the thirteen authorized production/documentation files
+from the verified candidate packet. All 52 runtime files equal the passing wide,
+new/old browser, unit and build source snapshots; all five frozen acceptance hashes
+remain unchanged. The six explicit-reference navigation updates were already committed
+and were not reapplied. `production-adoption.json` records exact hashes and lineage.
+
+The reused proof is 999/1000 plus separate 1994, 30 new and 222 old browser cases,
+645 Vitest plus six harness checks, successful builds and seven detected source
+omissions. Wide captured an earlier UI-test draft; final UI acceptance is separately
+proven by the 30-case snapshot. No unchanged heavy check was repeated for adoption.
+The earlier parent restoration statement remains historical: current runtime is now
+the adopted candidate. Fresh extracted-package execution, independent review, CI and
+owner appearance judgment remain separate checks; none is claimed here.

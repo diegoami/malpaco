@@ -13,14 +13,14 @@ and query current GitHub issue labels; historical notes are not task status.
 
 ## Play
 
-Run `npm ci` and `npm run dev`; open the root page to set up the Nine Isles game.
+Run `npm ci` and `npm run dev`; open the root page to set up generated islands.
 It defaults to one human against three Normal computers. Choose a seed, adjust
-seat controllers if desired, and select **Start game**. `?seed=1994` fixes the deal;
-`?view=reference-game&seed=1994` opens the same interface explicitly. **New game**
+seat controllers if desired, and select **Start game**. `?seed=1994` fixes geography, deal and dice;
+`?view=reference-game&seed=1994` keeps the fixed Nine Isles compatibility game. **New game**
 returns to this setup. Unrecognized `view` values also open this setup.
 
-During combat, select a source and an adjacent enemy, then use **Single exchange**
-or **Fight on**. After a capture, choose how many armies to move and confirm.
+During combat, select a source, then activate an adjacent enemy for one exchange.
+Shift-click selects without attacking for **Single exchange** or **Fight on**. After a capture, choose how many armies to move and confirm.
 **Save game** downloads a match; **Load game** restores one.
 
 Older generated setup/game and development routes remain available explicitly at

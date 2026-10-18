@@ -2,11 +2,12 @@
 
 Run `node serve.mjs` from this folder, then open <http://127.0.0.1:4175> in a desktop browser.
 
-This development milestone uses the fixed Nine Isles reference board: nine islands
-and 46 territories. Changing the seed changes the deal and dice sequence, not the
-geography. Generated boards remain part of the final-game development scope.
+New games use versioned generated geography: nine islands and 46 territories.
+The seed fixes the geography, deal and dice sequence. The explicit
+`?view=reference-game` route retains the fixed Nine Isles board, and
+`?view=generated-game` retains the legacy generated-game and save path.
 
-The root page opens Nine Isles setup, defaulting to one human against three
+The root page opens generated-island setup, defaulting to one human against three
 Normal computers. Choose a seed and 2–4 seats; each seat can be Human or Computer.
 Select **Start game**. During your turn, place reinforcements on your territories,
 then choose **Start combat**. Select one of your territories, then click an adjacent
