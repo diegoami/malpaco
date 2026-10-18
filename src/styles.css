@@ -1372,3 +1372,7 @@ dialog h2 {
 
 .battle-reference[data-panel-detail] #victory-reason { margin-bottom:6px; }
 .battle-reference[data-panel-detail] .victory-guidance { margin-top:6px; }
+
+/* Full shared sidebar history uses one bounded list scroller in every host. */
+.log-card { display:flex; flex-direction:column; overflow:hidden; }
+.log { min-height:0; overflow-y:auto; }
