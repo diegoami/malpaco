@@ -884,9 +884,19 @@ private reward acknowledgement also defers a decisive result's display.
 Public feedback contains hand/pile counts, discard top and spent-card effects,
 including Shield and Squall. An ordinary drawn card's kind is private to its
 viewer and never enters public log text; other seats' hands and draw-pile order
-are not rendered. The eight production files are exact adoptions of the final
-parent-validated runtime, including named Raid targets and decisive Continue
-geometry. Historical prototype comments remain provenance. Per-file reasons,
-full input equivalence and retained positive/negative checks are recorded in
-`docs/prototypes/new-game/T40/production/production-adoption.json`; no assertion
-or test configuration was changed by adoption.
+are not rendered. At `64bbe6e`, eight production files were exact adoptions of
+the final parent-validated runtime, including named Raid targets and decisive
+Continue geometry. Historical prototype comments remain provenance. Per-file
+reasons and that historical input-equivalence proof are recorded in
+`docs/prototypes/new-game/T40/production/production-adoption.json`.
+
+The subsequent result-layout correction appends three scoped CSS selectors to
+that stylesheet. A visible result uses the remaining action space as a column;
+optional standings scroll inside it while mandatory loss choices remain visible.
+The following hand inspector also fits. Hidden results during private reward
+Continue and normal card layouts keep their existing styling. The fixed 320/380
+action tracks and the other seven adopted UI files are unchanged. Current CSS
+therefore differs from the historical eight-file verifier's expected hash;
+`docs/prototypes/new-game/T40/result-layout-production.json` records the exact
+append and the frozen candidate equivalence. Neither adoption changed test
+assertions or configuration.
