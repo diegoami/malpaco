@@ -959,7 +959,9 @@ position and bottom-follow. Card choices, totals, pause/speed and event-log acce
 retain their existing behavior. No gameplay, controller, RNG or replay changes.
 
 `docs/prototypes/new-game/issue180/production/adoption.json` records the exact
-frozen stylesheet and reused inputs. Run the standalone read-only proof:
+frozen stylesheet and reused inputs. The original standalone read-only proof
+records that pre-correction checkpoint; it is historical after the scoped
+contract/helper correction below:
 
 ```text
 python3 docs/prototypes/new-game/issue180/production/verify-adoption.py
@@ -974,9 +976,52 @@ not change them. The retained overflowing baseline fails the new layout regressi
 The capped candidate's combined browser run passed 108/110; two native-save
 downloads timed out, and an exact retake passed 0/2. A later unchanged selection
 using the same acceptance configuration passed 2/2. These are separate results,
-not a single green combined run; the intermittent download cause is unresolved
-and no workaround was adopted. Candidate build and prior 784 Vitest plus eight
-harness tests are reused only after exact input verification. Independent regular
-affected-suite validation, owner layout judgment and final green CI remain
-required. Full failures, positive controls, screenshots, metrics and restoration
+not a single green combined run. At that checkpoint the intermittent download
+cause was unresolved and no workaround was adopted. Candidate build and prior 784 Vitest plus eight
+harness tests were reused only after exact input verification. Independent regular
+affected-suite validation and owner layout judgment subsequently approved the
+unchanged CSS; final CI exposed the burst gate described below. Full failures,
+positive controls, screenshots, metrics and restoration
 receipts remain in the committed evidence archive and retained loose originals.
+
+
+#### T73 native-save pacing correction
+
+CI39157702142 completed the failing Save clicks but requested eleven native
+downloads within 969/972ms. Chromium's LocalFrame burst gate permits ten
+downloads, then silently refuses another until more than one real second has
+elapsed. This primary-source behavior explains the timing-sensitive failure
+that earlier controlled runs could not isolate; those original reports and
+failed CI artifacts remain unchanged.
+
+The computer-card browser tests now pace only native Save calls using Node
+monotonic time and promise timers. A per-Page WeakMap records completed saves;
+the next Save waits until 120ms after the previous completion. Real clicks,
+download events, file reads, every oracle assertion, deadlines and page.clock
+calls remain intact. Node waiting cannot advance the paused browser game clock.
+The 120ms margin is designed to stay below Chromium's burst budget. Product
+code and the owner-approved CSS allocation are unchanged.
+
+The parent-frozen proposal passed all four targeted cases under the regular
+root Playwright config, both sizes, without retries (23.233s command elapsed).
+This is separate from the failed CI and earlier 108/110, 0/2 and 2/2 results; no
+claim is made that a corrected full CI run has passed. Existing independent Kimi
+approval and owner appearance acceptance cover the unchanged production CSS.
+Parent mechanical scope judgment, fresh keycases and a new final green CI remain
+required for this test-only correction.
+
+The earlier issue180/production/verify-adoption.py is unchanged historical proof
+for the pre-correction T73 contract and computer-card spec; its two old hashes
+are intentionally superseded and it is not a current-head verifier. Use the
+strict scoped replacement proof, without override flags:
+
+```text
+python3 docs/prototypes/new-game/issue180/download-rate-correction/production/verify-correction.py
+```
+
+It checks all 226 expected inputs and 28 frozen evidence files against committed
+HEAD and working bytes, modes, the exact proposal/original boundary, unchanged
+runtime CSS, and all other historical 18/222 acceptance inputs. Both named hash
+replacements are explicit; older manifests and the archive verifier are preserved.
+The previously verified 28-part/1,689-member archive is not recomputed for this
+narrow helper correction.
