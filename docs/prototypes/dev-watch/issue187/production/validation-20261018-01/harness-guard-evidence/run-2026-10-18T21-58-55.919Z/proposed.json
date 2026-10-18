@@ -1,0 +1,55 @@
+{
+  "name": "proposed",
+  "initial": {
+    "kernelWatches": 10,
+    "directories": [
+      "",
+      "..",
+      "data",
+      "data/maps",
+      "public",
+      "src",
+      "tests"
+    ],
+    "files": 10
+  },
+  "afterAdded": {
+    "kernelWatches": 10,
+    "directories": [
+      "",
+      "..",
+      "data",
+      "data/maps",
+      "public",
+      "src",
+      "tests"
+    ],
+    "files": 10
+  },
+  "http": {
+    "/src/main.ts": 200,
+    "/data/maps/probe.json": 200,
+    "/probe.txt": 200
+  },
+  "changes": [
+    "src/main.ts",
+    "data/maps/probe.json",
+    "public/probe.txt",
+    "tests/probe.test.ts"
+  ],
+  "messages": [
+    {
+      "type": "update",
+      "updates": [
+        {
+          "type": "js-update",
+          "timestamp": 1792360738407,
+          "path": "/src/main.ts",
+          "acceptedPath": "/src/main.ts",
+          "explicitImportRequired": false,
+          "isWithinCircularImport": false
+        }
+      ]
+    }
+  ]
+}

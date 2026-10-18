@@ -34,6 +34,14 @@ Older generated setup/game and development routes remain available explicitly at
 rules differ from the default game. The older generated setup retains its own
 seed, seat and opponent query parameters and in-game help.
 
+## Development watching
+
+`npm run dev` uses the committed Vite configuration to exclude this checkout’s
+`.cache` directory, where retained worktrees and evidence can otherwise consume
+large numbers of filesystem watches. The exclusion is anchored to this checkout,
+so source, data, public assets and tests still update when the checkout itself
+lives under another `.cache` directory. Vitest watch mode retains test reruns.
+
 ## Shareable build
 
 Run `npm run package:playable` to rebuild and package the game as
