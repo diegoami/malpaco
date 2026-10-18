@@ -75,3 +75,10 @@ validation. Its affected aggregate includes the original ten suites plus slice,
 including unchanged board/panel/dialog goldens. The earlier independent Kimi
 approval covers the four-source mode/layout implementation; the history addition
 requires its own focused independent review before final CI and delivery.
+
+The fresh full-history source checkpoint is `3a19364`. Its retained validation
+passes 6 focused units, 32 compact browsers, 671 Vitest cases plus 8 harness cases,
+build and 134 affected browsers, including all 6 unchanged legacy slice goldens.
+Every frozen acceptance and runtime/test/data input remains exact. New raw
+inputs/results/screenshots/videos are retained losslessly in verified archive
+parts alongside their original loose files. Earlier evidence remains historical.
