@@ -10,6 +10,7 @@ const run = path.join(evidence, `run-${new Date().toISOString().replaceAll(':', 
 await mkdir(run, {recursive:true});
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 const results = [];
+const relative = (root, file) => path.relative(root, file).split(path.sep).join('/');
 async function tree(root, name) {
   for (let i=0; i<8; i++) {
     const dir = path.join(root, name, `dir-${i}`);
@@ -18,6 +19,7 @@ async function tree(root, name) {
   }
 }
 async function watches() {
+  if (process.platform !== 'linux') return null;
   let count=0;
   for (const fd of await readdir('/proc/self/fdinfo')) {
     try {count += ((await readFile(`/proc/self/fdinfo/${fd}`, 'utf8')).match(/^inotify wd:/gm)||[]).length;} catch {}
@@ -42,12 +44,12 @@ for (const [name, watch] of [['baseline', {}], ['proposed', proposed.config.serv
   await writeFile(path.join(root,'tests/probe.test.ts'),'export const test = 1;\n');
   const server = await createServer({configFile:false,root,logLevel:'error',server:{host:'127.0.0.1',port:0,hmr:{port:0},watch:boundedWatch},optimizeDeps:{noDiscovery:true,include:[]}});
   const events=[]; const messages=[];
-  server.watcher.on('all',(event,file)=>events.push({event,file:path.relative(root,file)}));
+  server.watcher.on('all',(event,file)=>events.push({event,file:relative(root,file)}));
   const send=server.ws.send.bind(server.ws);
   server.ws.send=(...args)=>{messages.push(args[0]);return send(...args);};
   const snapshot = async () => {
     const watched=server.watcher.getWatched();
-    return {kernelWatches:await watches(), directories:Object.keys(watched).map(p=>path.relative(root,p)).sort(), files:Object.values(watched).reduce((n,a)=>n+a.length,0)};
+    return {kernelWatches:await watches(), directories:Object.keys(watched).map(p=>relative(root,p)).sort(), files:Object.values(watched).reduce((n,a)=>n+a.length,0)};
   };
   try {
     await server.listen();
@@ -80,8 +82,14 @@ const [baseline,fixed]=results;
 assert(baseline.initial.directories.some(p=>p.startsWith('.cache/retained-existing/src/')));
 assert(baseline.afterAdded.directories.some(p=>p.startsWith('.cache/retained-added/src/')));
 assert(!fixed.afterAdded.directories.some(p=>p==='.cache'||p.startsWith('.cache/')));
-assert(fixed.afterAdded.kernelWatches===fixed.initial.kernelWatches);
-assert(baseline.afterAdded.kernelWatches>baseline.initial.kernelWatches);
+assert.deepEqual(fixed.afterAdded.directories,fixed.initial.directories);
+assert.equal(fixed.afterAdded.files,fixed.initial.files);
+assert(baseline.afterAdded.directories.length>baseline.initial.directories.length);
+assert(baseline.afterAdded.files>baseline.initial.files);
+if (process.platform === 'linux') {
+  assert.equal(fixed.afterAdded.kernelWatches,fixed.initial.kernelWatches);
+  assert(baseline.afterAdded.kernelWatches>baseline.initial.kernelWatches);
+}
 await writeFile(path.join(run,'summary.json'),JSON.stringify(results.map(({name,initial,afterAdded,http,changes})=>({name,initialWatches:initial.kernelWatches,afterAddedWatches:afterAdded.kernelWatches,initialDirectories:initial.directories.length,afterAddedDirectories:afterAdded.directories.length,http,changes})),null,2)+'\n');
 console.log(run);
 console.log(JSON.stringify(results.map(({name,initial,afterAdded})=>({name,initial:initial.kernelWatches,afterAdded:afterAdded.kernelWatches}))));

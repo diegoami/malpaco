@@ -1,6 +1,6 @@
 from pathlib import Path
 import subprocess,json,hashlib,time,shutil,stat
-r=Path.cwd();base=r/'docs/prototypes/dev-watch/issue187';acc=base/'acceptance';out=acc/'parent-preflight';out.mkdir();original=(acc/'vite.config.original.ts').read_bytes();candidate=(base/'production-candidate/vite.config.ts').read_bytes();cfg=r/'vite.config.ts';mode=stat.S_IMODE(cfg.stat().st_mode);h=lambda b:hashlib.sha256(b).hexdigest()
+r=Path.cwd();base=r/'docs/prototypes/dev-watch/issue187';acc=base/'acceptance';out=acc/'parent-preflight-v2';out.mkdir();original=(acc/'vite.config.original.ts').read_bytes();candidate=(base/'production-candidate/vite.config.ts').read_bytes();cfg=r/'vite.config.ts';mode=stat.S_IMODE(cfg.stat().st_mode);h=lambda b:hashlib.sha256(b).hexdigest()
 paths=subprocess.check_output(['git','ls-files','src','tests','data','package.json','package-lock.json','README.md','tools/harness'],text=True).splitlines()+['tools/harness/test/dev-watch.test.mjs',str((acc/'probe.mjs').relative_to(r)),str((acc/'vitest-probe.mjs').relative_to(r))]
 protected={n:{'sha256':h((r/n).read_bytes()),'mode':stat.S_IMODE((r/n).stat().st_mode)} for n in paths};(out/'protected-before.json').write_text(json.dumps(protected,indent=2)+'\n');results=[]
 needle=b'fileURLToPath(new URL("./.cache", import.meta.url))';assert candidate.count(needle)==1

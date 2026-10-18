@@ -18,11 +18,11 @@ assert.deepEqual(proposed.config.server.watch.ignored,[path.resolve('.cache')]);
 const records=[];
 let ctx;
 try {
-  ctx=await startVitest([], {root,config:false,watch:true,include:['tests/**/*.test.ts'],maxWorkers:1,reporters:[{onTestRunEnd(modules,errors,reason){records.push({reason,errors:errors.length,modules:modules.map(m=>({file:path.relative(root,m.moduleId),state:m.state()}))});}}]}, {server:{watch:{ignored:[path.join(root,'.cache')]}}});
+  ctx=await startVitest([], {root,config:false,watch:true,include:['tests/**/*.test.ts'],maxWorkers:1,reporters:[{onTestRunEnd(modules,errors,reason){records.push({reason,errors:errors.length,modules:modules.map(m=>({file:path.relative(root,m.moduleId).split(path.sep).join('/'),state:m.state()}))});}}]}, {server:{watch:{ignored:[path.join(root,'.cache')]}}});
   await writeFile(testFile,body(2));
   const deadline=Date.now()+10000;
   while(records.length<2&&Date.now()<deadline) await new Promise(r=>setTimeout(r,100));
-  const watched=Object.keys(ctx.vite.watcher.getWatched()).map(p=>path.relative(root,p));
+  const watched=Object.keys(ctx.vite.watcher.getWatched()).map(p=>path.relative(root,p).split(path.sep).join('/'));
   const output={root,records,watched};
   await writeFile(path.join(evidence,`vitest-${stamp}.json`),JSON.stringify(output,null,2)+'\n');
   assert(records.length>=2,'test edit must trigger a second test run');

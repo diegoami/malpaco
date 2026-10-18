@@ -1,0 +1,16 @@
+{
+  "parentOwnedGuardInputs": {
+    "tools/harness/test/dev-watch.test.mjs": "a53e750412baf01e918eab558031f574933918949e6215ec63e8348173c56aaf",
+    "docs/prototypes/dev-watch/issue187/acceptance/probe.mjs": "ef79c97f0416226853c568add1476b1c7d1dca59030982ead8b87d22eafe3941",
+    "docs/prototypes/dev-watch/issue187/acceptance/vitest-probe.mjs": "6d1d8480d87d3d51633d6f418a3be30d221e1dc9d31fcf9b8a609eb8d491088d"
+  },
+  "configCandidate": {
+    "path": "docs/prototypes/dev-watch/issue187/production-candidate/vite.config.ts",
+    "sha256": "4cae5bff592c0ddf81b0ab12ec4d0778ec153d90bb34a07d8d7cfbfb95a7d6c5"
+  },
+  "originalConfigSha256": "603ee167f8621daf3874af336f2443e12ba973f2bccf275ae7ff1a0e9e4200d7",
+  "preflightResultsSha256": "b84a5bad2daacfdf58b957bda652ab5b2d979e1605f2cdddff565c1a229a8de6",
+  "restorationSha256": "aeb670845a7da04733276556e8d0ad5c5fe90898c3bc92ca890cf7ad159b390a",
+  "sourceContext": "Parent guard probe at8e016fd5; later declared T75 candidate prerequisite changes game UI/version/docs only, Vite config/dependency versions/guard scripts unchanged; formal validation repeats guard/harness/build on merged candidate.",
+  "measuredOutcomes": "old config fails, exact candidate passes, ancestor-cache glob fails, removed test watching fails;218original inputs unchanged; baseline config restored before formal adoption."
+}

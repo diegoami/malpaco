@@ -1,0 +1,96 @@
+import assert from 'node:assert/strict';
+import {mkdir, writeFile, readFile, readdir} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createServer, loadConfigFromFile} from 'vite';
+
+// All recursive watching stays inside new tiny fixtures; never use the checkout root.
+const evidence=process.env['MALPACO_DEV_WATCH_EVIDENCE'] || path.dirname(fileURLToPath(import.meta.url));
+const run = path.join(evidence, `run-${new Date().toISOString().replaceAll(':', '-')}`);
+await mkdir(run, {recursive:true});
+const relativePath = (root, file) => path.relative(root, file).split(path.sep).join('/');
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+const results = [];
+async function tree(root, name) {
+  for (let i=0; i<8; i++) {
+    const dir = path.join(root, name, `dir-${i}`);
+    await mkdir(dir, {recursive:true});
+    for (let j=0;j<3;j++) await writeFile(path.join(dir, `file-${j}.ts`), 'export const n = 1;\n');
+  }
+}
+async function watches() {
+  if (process.platform !== 'linux') return null;
+  let count=0;
+  for (const fd of await readdir('/proc/self/fdinfo')) {
+    try {count += ((await readFile(`/proc/self/fdinfo/${fd}`, 'utf8')).match(/^inotify wd:/gm)||[]).length;} catch {}
+  }
+  return count;
+}
+const proposed = await loadConfigFromFile({command:'serve',mode:'development'}, path.resolve('vite.config.ts'));
+for (const [name, watch] of [['baseline', {}], ['proposed', proposed.config.server.watch || {}]]) {
+  const root = path.resolve('.cache/issue187-probe', path.basename(run), name);
+  const boundedWatch = {...watch, ignored:(watch.ignored || []).map(pattern => {
+    assert.equal(pattern, path.resolve('.cache'), 'configuration must ignore only this checkout cache');
+    return path.join(root, '.cache');
+  })};
+  await tree(root, '.cache/retained-existing/src');
+  await tree(root, '.cache/retained-existing/node_modules/private-package');
+  await tree(root, 'node_modules/root-package');
+  await tree(root, '.git/objects');
+  for (const dir of ['src', 'data/maps', 'public', 'tests']) await mkdir(path.join(root, dir), {recursive:true});
+  await writeFile(path.join(root,'src/main.ts'),'export const n = 1; if (import.meta.hot) import.meta.hot.accept();\n');
+  await writeFile(path.join(root,'data/maps/probe.json'),'{"n":1}\n');
+  await writeFile(path.join(root,'public/probe.txt'),'public 1\n');
+  await writeFile(path.join(root,'tests/probe.test.ts'),'export const test = 1;\n');
+  const server = await createServer({configFile:false,root,logLevel:'error',server:{host:'127.0.0.1',port:0,hmr:{port:0},watch:boundedWatch},optimizeDeps:{noDiscovery:true,include:[]}});
+  const events=[]; const messages=[];
+  server.watcher.on('all',(event,file)=>events.push({event,file:relativePath(root,file)}));
+  const send=server.ws.send.bind(server.ws);
+  server.ws.send=(...args)=>{messages.push(args[0]);return send(...args);};
+  const snapshot = async () => {
+    const watched=server.watcher.getWatched();
+    return {kernelWatches:await watches(), directories:Object.keys(watched).map(p=>relativePath(root,p)).sort(), files:Object.values(watched).reduce((n,a)=>n+a.length,0)};
+  };
+  try {
+    await server.listen();
+    await pause(400);
+    const initial=await snapshot();
+    await tree(root,'.cache/retained-added/src');
+    await tree(root,'.cache/retained-added/node_modules/private-package');
+    await pause(400);
+    const afterAdded=await snapshot();
+    const base=`http://127.0.0.1:${server.httpServer.address().port}`;
+    const http={};
+    for (const url of ['/src/main.ts','/data/maps/probe.json','/probe.txt']) {
+      const response=await fetch(base+url); http[url]=response.status; await response.text();
+    }
+    for (const file of ['src/main.ts','data/maps/probe.json','public/probe.txt','tests/probe.test.ts']) {
+      await writeFile(path.join(root,file), (await readFile(path.join(root,file),'utf8'))+'\n');
+    }
+    await pause(500);
+    const observed=events.filter(x=>x.event==='change').map(x=>x.file);
+    for (const file of ['src/main.ts','data/maps/probe.json','public/probe.txt','tests/probe.test.ts']) assert(observed.includes(file), `${name}: missing ${file} change`);
+    assert(Object.values(http).every(status=>status===200));
+    assert(!initial.directories.some(p=>p.includes('private-package')||p.includes('root-package')||p.startsWith('.git/objects')));
+    assert(messages.some(m=>m.type==='update'&&m.updates.some(u=>u.path==='/src/main.ts')), `${name}: missing source HMR update`);
+    const result={name,initial,afterAdded,http,changes:observed,messages};
+    results.push(result);
+    await writeFile(path.join(run,`${name}.json`),JSON.stringify(result,null,2)+'\n');
+  } finally {await server.close();}
+}
+const [baseline,fixed]=results;
+assert(baseline.initial.directories.some(p=>p.startsWith('.cache/retained-existing/src/')));
+assert(baseline.afterAdded.directories.some(p=>p.startsWith('.cache/retained-added/src/')));
+assert(!fixed.afterAdded.directories.some(p=>p==='.cache'||p.startsWith('.cache/')));
+// The behavioral guard always runs, including platforms without inotify.
+assert.deepEqual(fixed.afterAdded.directories, fixed.initial.directories);
+assert.equal(fixed.afterAdded.files, fixed.initial.files);
+assert(baseline.afterAdded.directories.length > baseline.initial.directories.length);
+assert(baseline.afterAdded.files > baseline.initial.files);
+if (process.platform === 'linux') {
+  assert(fixed.afterAdded.kernelWatches===fixed.initial.kernelWatches);
+  assert(baseline.afterAdded.kernelWatches>baseline.initial.kernelWatches);
+}
+await writeFile(path.join(run,'summary.json'),JSON.stringify(results.map(({name,initial,afterAdded,http,changes})=>({name,initialWatches:initial.kernelWatches,afterAddedWatches:afterAdded.kernelWatches,initialDirectories:initial.directories.length,afterAddedDirectories:afterAdded.directories.length,http,changes})),null,2)+'\n');
+console.log(run);
+console.log(JSON.stringify(results.map(({name,initial,afterAdded})=>({name,initial:initial.kernelWatches,afterAdded:afterAdded.kernelWatches}))));
