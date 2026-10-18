@@ -13,9 +13,11 @@ import { VictoryView } from "./victoryView";
 import type {MatchPresentation} from "./matchPresentation";
 import type {LoadedVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
+import { createPanelDetailControl } from "./panelDetail";
 
 /** Session-only preferences. Full presentation persistence is T56. */
-export interface BattlePreferences { threshold: number; speed: BattleSpeed }
+export type PanelDetail = "compact" | "detailed";
+export interface BattlePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
 
 /** Reference-route host: the controller owns every selection and ordinary action. */
 export class ReferenceBattleGame {
@@ -24,6 +26,7 @@ export class ReferenceBattleGame {
   private readonly playbackPause = h("button", { id: "game-pause-button", type: "button" }, "Pause");
   private readonly playbackSpeed = h("select", { id: "game-speed", "aria-label": "Game speed" },
     ...["very-slow", "slow", "normal", "fast"].map(value => h("option", { value }, value === "very-slow" ? "Very slow (2 s)" : value[0]!.toUpperCase() + value.slice(1))));
+  private readonly panelDetail: HTMLSelectElement;
   private readonly eventLog: GameEventLog;
   private readonly controller: BattleController;
   private readonly mapView: Pick<ReferenceMapView,"el"|"render">;
@@ -42,7 +45,10 @@ export class ReferenceBattleGame {
     if (!this.controller.stop()) this.controller.select(null, null);
   };
 
-  constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState, loaded?:LoadedVersionedMatch) => void, private readonly automatic = false, private readonly presentation?:MatchPresentation) {
+  constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, private readonly preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState, loaded?:LoadedVersionedMatch) => void, private readonly automatic = false, private readonly presentation?:MatchPresentation) {
+    this.panelDetail = createPanelDetailControl(preferences, detail => {
+      this.panel.el.closest<HTMLElement>(".battle-reference")?.setAttribute("data-panel-detail", detail);
+    });
     this.eventLog = new GameEventLog(options,presentation?.initialState);
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
@@ -78,6 +84,7 @@ export class ReferenceBattleGame {
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
+    root.dataset["panelDetail"] = this.preferences.detail ?? "compact";
     const score = this.panel.el.querySelector<HTMLElement>(".score")!;
     const footer = this.panel.el.querySelector<HTMLElement>(".panel-foot")!;
     const humans = this.options.seats.filter(seat => seat.kind === "human").length;
@@ -87,7 +94,7 @@ export class ReferenceBattleGame {
       ? `${name} · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `${name} · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     root.replaceChildren(
-      h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, h("div", { class: "game-playback" }, this.eventLog.button, this.eventLog.dialog, this.playbackPause, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed), footer, this.files.el),
+      h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, h("div", { class: "game-playback" }, this.eventLog.button, this.eventLog.dialog, this.playbackPause, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el),
       h("main", { class: "stage" }, h("section", { class: "board" }, this.mapView.el), this.panel.el));
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
@@ -178,6 +185,7 @@ export class ReferenceBattleGame {
     this.friendly.render(this.controller.view);
     this.victory.render(state, revision);
     const computer = this.computerActive();
+    this.panel.el.dataset["computerActive"] = String(computer);
     this.computerStatus.hidden = !computer;
     this.computerStatus.textContent = computer ? this.controller.playbackPaused ? `${activePlayer(state)!.name} · Paused` : `${activePlayer(state)!.name} is playing…` : "";
     if (computer || this.controller.playbackPaused) {

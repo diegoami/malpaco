@@ -1,0 +1,195 @@
+{
+  "sourceCommit": "a67d09a1e38242b66c1d5e56e39ddbcb8928468e",
+  "frozenBase": "87510442c6e0491ff22a8becc857527521eee1e9",
+  "branch": "task/T71-stable-compact-panels",
+  "finishedUTC": "2026-10-18T11:39:06.941819+00:00",
+  "preparationThroughReceiptSeconds": 392.554547,
+  "nativeTokenTelemetry": null,
+  "nativeTokenTelemetryReason": "Native agent token totals are not exposed to this agent.",
+  "validationSeconds": 303.863811418003,
+  "counts": {
+    "focused": 3,
+    "compactBrowsers": 28,
+    "vitest": 648,
+    "harness": 8,
+    "affectedBrowsers": 98
+  },
+  "allInputsUnchanged": true,
+  "frozenUnchanged": true,
+  "sources": {
+    "src/ui/referenceBattleGame.ts": {
+      "baseline": "8780a555af2a114185005794d3084026f33c86aa852b2e020532f4709c0a76ec",
+      "candidate": "5b19d8b07233be5d7c9982aabf946f8bfddce282111ea8c8d045c9faf0e7fffb",
+      "production": "5b19d8b07233be5d7c9982aabf946f8bfddce282111ea8c8d045c9faf0e7fffb",
+      "commentOnlyDifference": true
+    },
+    "src/ui/panelDetail.ts": {
+      "baseline": null,
+      "candidate": "bedbbfa613696f03d92d047bff1e49bc9f76133c9a0ea8008def2e48df46b632",
+      "production": "bedbbfa613696f03d92d047bff1e49bc9f76133c9a0ea8008def2e48df46b632",
+      "commentOnlyDifference": true
+    },
+    "src/ui/battleView.ts": {
+      "baseline": "39658da08720e7ed6dc01fc047e88468a92df0290ba466f2d33bdba19eb85a51",
+      "candidate": "b1778ba732c5cf03c3c400dd036ee0a26b8b1af01f8e0a9a8056434cbb27105b",
+      "production": "b1778ba732c5cf03c3c400dd036ee0a26b8b1af01f8e0a9a8056434cbb27105b",
+      "commentOnlyDifference": true
+    },
+    "src/styles.css": {
+      "baseline": "8afb525570b3180a0bfedb28d42d5ecee29115664f4d52bfbabe1a872ecd4155",
+      "candidate": "ffbce78fde32d880104d57e1e602279be47f0712d81a144dfa9a07867e7d174c",
+      "production": "43ff360413fcd319a7e884fef85432693b5544a5e5966bef9a5fe9619a63d2ad",
+      "commentOnlyDifference": true
+    }
+  },
+  "reusedControls": {
+    "receipt": "docs/prototypes/new-game/T71/parent-acceptance/PRE-DISPATCH.md",
+    "reason": "Exact four-source bytes except CSS provenance comment; adoption.json proves reversible normalization to parent candidate.",
+    "negative": "3 unit /24 initial +4 human-loss browser behavioral failures",
+    "omissions": [
+      "compact dice hiding",
+      "stable card bounds"
+    ]
+  },
+  "commands": [
+    {
+      "name": "focused",
+      "argv": [
+        "npx",
+        "vitest",
+        "run",
+        "tests/ui/compact-panels.test.ts"
+      ],
+      "exit": 0,
+      "seconds": 0.689145845000894,
+      "inputsUnchanged": true
+    },
+    {
+      "name": "compact-panels",
+      "argv": [
+        "docker",
+        "run",
+        "--pull=never",
+        "--rm",
+        "--init",
+        "--ipc=host",
+        "--user",
+        "1000:1000",
+        "-v",
+        "/home/diego/projects/malpaco/.cache/t71-work:/work",
+        "-w",
+        "/work",
+        "-e",
+        "COMPACT_PANEL_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/compact-panels-screenshots",
+        "-e",
+        "GEOGRAPHIC_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/compact-panels-screenshots",
+        "-e",
+        "PLAYBACK_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/compact-panels-screenshots",
+        "-e",
+        "REFERENCE_COMPLETE_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/compact-panels-screenshots",
+        "-e",
+        "VERSIONED_MATCH_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/compact-panels-screenshots",
+        "-e",
+        "FRIENDLY_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/compact-panels-screenshots",
+        "-e",
+        "BATTLE_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/compact-panels-screenshots",
+        "-e",
+        "COMPUTER_FLOW_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/compact-panels-screenshots",
+        "mcr.microsoft.com/playwright:v1.63.0-noble",
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/compact-panels.spec.ts",
+        "--config",
+        "docs/prototypes/new-game/T71/implementation-20261018/playwright.config.ts",
+        "--output",
+        "/work/docs/prototypes/new-game/T71/implementation-20261018/compact-panels-results",
+        "--workers=2"
+      ],
+      "exit": 0,
+      "seconds": 73.74345992400049,
+      "inputsUnchanged": true
+    },
+    {
+      "name": "full-tests",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 45.928027685000416,
+      "inputsUnchanged": true
+    },
+    {
+      "name": "build",
+      "argv": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0,
+      "seconds": 0.9320329129986931,
+      "inputsUnchanged": true
+    },
+    {
+      "name": "affected",
+      "argv": [
+        "docker",
+        "run",
+        "--pull=never",
+        "--rm",
+        "--init",
+        "--ipc=host",
+        "--user",
+        "1000:1000",
+        "-v",
+        "/home/diego/projects/malpaco/.cache/t71-work:/work",
+        "-w",
+        "/work",
+        "-e",
+        "COMPACT_PANEL_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/affected-screenshots",
+        "-e",
+        "GEOGRAPHIC_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/affected-screenshots",
+        "-e",
+        "PLAYBACK_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/affected-screenshots",
+        "-e",
+        "REFERENCE_COMPLETE_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/affected-screenshots",
+        "-e",
+        "VERSIONED_MATCH_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/affected-screenshots",
+        "-e",
+        "FRIENDLY_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/affected-screenshots",
+        "-e",
+        "BATTLE_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/affected-screenshots",
+        "-e",
+        "COMPUTER_FLOW_EVIDENCE_DIR=docs/prototypes/new-game/T71/implementation-20261018/affected-screenshots",
+        "mcr.microsoft.com/playwright:v1.63.0-noble",
+        "npx",
+        "playwright",
+        "test",
+        "tests/e2e/battle-controls.spec.ts",
+        "tests/e2e/friendly-move.spec.ts",
+        "tests/e2e/versioned-match.spec.ts",
+        "tests/e2e/playback-controls.spec.ts",
+        "tests/e2e/playback-edge-cases.spec.ts",
+        "tests/e2e/game-event-log.spec.ts",
+        "tests/e2e/computer-turn-flow.spec.ts",
+        "tests/e2e/reference-complete-game.spec.ts",
+        "tests/e2e/geographic-review-guards.spec.ts",
+        "tests/e2e/geographic-board.spec.ts",
+        "--config",
+        "docs/prototypes/new-game/T71/implementation-20261018/playwright.config.ts",
+        "--output",
+        "/work/docs/prototypes/new-game/T71/implementation-20261018/affected-results",
+        "--workers=2"
+      ],
+      "exit": 0,
+      "seconds": 182.49948996199964,
+      "inputsUnchanged": true
+    }
+  ],
+  "limitations": [
+    "Owner appearance and reserved-area density judgment pending",
+    "Independent Kimi review and one final green CI pending",
+    "Main owns package/preview/Windows; none performed in this run"
+  ]
+}
