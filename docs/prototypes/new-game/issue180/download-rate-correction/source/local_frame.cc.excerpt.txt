@@ -1,0 +1,45 @@
+https://raw.githubusercontent.com/chromium/chromium/main/third_party/blink/renderer/core/frame/local_frame.cc
+289: 
+290: // Maximum number of burst download requests allowed.
+291: const int kBurstDownloadLimit = 10;
+292: 
+293: inline float ParentLayoutZoomFactor(LocalFrame* frame) {
+294:   auto* parent_local_frame = DynamicTo<LocalFrame>(frame->Tree().Parent());
+295:   return parent_local_frame ? parent_local_frame->LayoutZoomFactor() : 1;
+296: }
+297: 
+298: inline float ParentTextZoomFactor(LocalFrame* frame) {
+299:   auto* parent_local_frame = DynamicTo<LocalFrame>(frame->Tree().Parent());
+300:   return parent_local_frame ? parent_local_frame->TextZoomFactor() : 1;
+301: }
+302: 
+303: inline float ParentCssZoomFactor(LocalFrame* frame) {
+304:   auto* parent_local_frame = DynamicTo<LocalFrame>(frame->Tree().Parent());
+305:   return parent_local_frame ? parent_local_frame->CssZoomFactor() : 1;
+306: }
+307: 
+4153: }
+4154: 
+4155: bool LocalFrame::ShouldThrottleDownload() {
+4156:   const auto now = base::TimeTicks::Now();
+4157:   if (num_burst_download_requests_ == 0) {
+4158:     burst_download_start_time_ = now;
+4159:   } else if (num_burst_download_requests_ >= kBurstDownloadLimit) {
+4160:     static constexpr auto kBurstDownloadLimitResetInterval = base::Seconds(1);
+4161:     if (now - burst_download_start_time_ > kBurstDownloadLimitResetInterval) {
+4162:       num_burst_download_requests_ = 1;
+4163:       burst_download_start_time_ = now;
+4164:       return false;
+4165:     }
+4166:     return true;
+4167:   }
+4168: 
+4169:   num_burst_download_requests_++;
+4170:   return false;
+4171: }
+4172: 
+4173: Frame* LocalFrame::GetProvisionalOwnerFrame() {
+4174:   DCHECK(IsProvisional());
+4175:   if (Owner()) {
+4176:     // Since `this` is a provisional frame, its owner's `ContentFrame()` will
+4177:     // be the old LocalFrame.

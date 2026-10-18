@@ -1,0 +1,161 @@
+{
+  "task": "T73 native-save pacing correction",
+  "dispatch": "https://github.com/diegoami/malpaco/pull/183#issuecomment-6254329087",
+  "frozenCheckpoint": "e8997af17b050df594cf74ead2f0ca7267363d44",
+  "contractMerge": "7603d5c010d29e92f1f8e7763bbddbebc87053c5",
+  "manifest": "docs/prototypes/new-game/issue180/download-rate-correction/FROZEN-CORRECTION.json",
+  "manifestSha256": "8c138c21ec8b85cfeeb7d79cab812629a1a28c932b269cb2282333b0f02080bc",
+  "expectedInputCount": 226,
+  "frozenEvidenceCount": 28,
+  "evidenceModes": {
+    "docs/prototypes/new-game/issue180/download-rate-correction/REPORT.md": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/artifacts-sha256.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/html-report/index.html": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/original-ci-evidence-references.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/primary-evidence.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/proposal-proof.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/protected-inputs.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/receipt.json": "0o664",
+    "docs/prototypes/new-game/issue180/download-rate-correction/results.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/run-preflight.py": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/source/T73-amended-contract.md": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/source/computer-cards.original.ts": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/source/computer-cards.proposed.ts": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/source/download-step-analysis.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/source/local_frame.cc.excerpt.txt": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/source/local_frame.h.excerpt.txt": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/source/pacing.diff": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/stderr.log": "0o664",
+    "docs/prototypes/new-game/issue180/download-rate-correction/stdout.log": "0o664",
+    "docs/prototypes/new-game/issue180/download-rate-correction/test-results/.last-run.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/test-results/computer-cards-three-conse-4f1b9--correct-human-loss-choices-1280x800/computer-raid-human-loss-compact.png": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/test-results/computer-cards-three-conse-4f1b9--correct-human-loss-choices-1280x800/computer-raid-human-loss-detailed.png": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/test-results/computer-cards-three-conse-4f1b9--correct-human-loss-choices-1920x1080/computer-raid-human-loss-compact.png": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/test-results/computer-cards-three-conse-4f1b9--correct-human-loss-choices-1920x1080/computer-raid-human-loss-detailed.png": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/test-results/computer-cards-three-conse-80a66-n-to-actual-board-placement-1280x800/computer-discard-living-human-return.png": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/test-results/computer-cards-three-conse-80a66-n-to-actual-board-placement-1920x1080/computer-discard-living-human-return.png": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/test-summary.json": "0o644",
+    "docs/prototypes/new-game/issue180/download-rate-correction/unit.log": "0o664"
+  },
+  "explicitReplacements": {
+    "tests/e2e/computer-cards.spec.ts": {
+      "beforeSha256": "eee85a8514a13de3c4e1580fda10740283c9bfb4da28c6559c9b80bbe838c69a",
+      "afterSha256": "c29e6902face86cdbaaaaae99ca310c54705a881625699c3240a830408c689f0"
+    },
+    "docs/tasks/T73.md": {
+      "beforeSha256": "d7decb5f53b4f2ceeb3c0c83f0556b7072b08a9cfdc237b74673bc5836ab5c22",
+      "afterSha256": "8dbfc7b96cd05147074cb80b56a1d591a42d61a1946a84677d968861cfb726da"
+    }
+  },
+  "historicalUnchanged": {
+    "docs/prototypes/new-game/issue180/parent-final/FROZEN-ACCEPTANCE.json": "d3867de70b8c27f0f5eb49be042e5fd21efecda5c3f3548f5f5dafba3d965092",
+    "docs/prototypes/new-game/issue180/parent-final/validated-inputs.json": "b92b5cde8bec811a4e4862cb4f24476be6698b9ca8a227425da46c670da67712",
+    "docs/prototypes/new-game/issue180/production/verify-adoption.py": "c82fbe72cf19056c30b4b51ff252551a9d11964127b60148c40435f557e04bae",
+    "docs/prototypes/new-game/issue180/archives/parent-preflight-final-receipt.json": "9cea5a5e6f24ffeabdc3c003157624c512ac4394ccd30dc19033c966cb41835f"
+  },
+  "source": {
+    "path": "tests/e2e/computer-cards.spec.ts",
+    "proposal": "docs/prototypes/new-game/issue180/download-rate-correction/source/computer-cards.proposed.ts",
+    "original": "docs/prototypes/new-game/issue180/download-rate-correction/source/computer-cards.original.ts",
+    "sha256": "c29e6902face86cdbaaaaae99ca310c54705a881625699c3240a830408c689f0"
+  },
+  "runtimeCssSha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64",
+  "reusedPreflightReceipt": {
+    "original_sha256": "eee85a8514a13de3c4e1580fda10740283c9bfb4da28c6559c9b80bbe838c69a",
+    "original_mode": "0o644",
+    "proposal_sha256": "c29e6902face86cdbaaaaae99ca310c54705a881625699c3240a830408c689f0",
+    "argv": [
+      "docker",
+      "run",
+      "--pull=never",
+      "--rm",
+      "--init",
+      "--ipc=host",
+      "--user",
+      "1000:1000",
+      "-v",
+      "/home/diego/projects/malpaco/.cache/issue180-work:/work",
+      "-w",
+      "/work",
+      "-e",
+      "HOME=/tmp",
+      "-e",
+      "PLAYWRIGHT_JSON_OUTPUT_NAME=/work/docs/prototypes/new-game/issue180/download-rate-correction/results.json",
+      "-e",
+      "PLAYWRIGHT_HTML_OUTPUT_DIR=/work/docs/prototypes/new-game/issue180/download-rate-correction/html-report",
+      "mcr.microsoft.com/playwright:v1.63.0-noble",
+      "node_modules/.bin/playwright",
+      "test",
+      "tests/e2e/computer-cards.spec.ts",
+      "-c",
+      "playwright.config.ts",
+      "--grep",
+      "three consecutive computers",
+      "--workers",
+      "2",
+      "--output",
+      "docs/prototypes/new-game/issue180/download-rate-correction/test-results",
+      "--reporter",
+      "list,json,html"
+    ],
+    "exit": 0,
+    "seconds": 23.233093251001264,
+    "restored_sha256": "eee85a8514a13de3c4e1580fda10740283c9bfb4da28c6559c9b80bbe838c69a",
+    "restored_mode": "0o644",
+    "exact_restoration": true,
+    "protected_input_mismatches": [],
+    "runtime_css_sha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64"
+  },
+  "reusedTestSummary": {
+    "cases": [
+      {
+        "title": "three consecutive computers perform literal Raid decisions and reach the correct human-loss choices",
+        "project": "1280x800",
+        "status": "passed",
+        "duration_ms": 7799,
+        "retry": 0,
+        "errors": []
+      },
+      {
+        "title": "three consecutive computers discard oldest cards and return a living human to actual board placement",
+        "project": "1280x800",
+        "status": "passed",
+        "duration_ms": 7973,
+        "retry": 0,
+        "errors": []
+      },
+      {
+        "title": "three consecutive computers perform literal Raid decisions and reach the correct human-loss choices",
+        "project": "1920x1080",
+        "status": "passed",
+        "duration_ms": 7684,
+        "retry": 0,
+        "errors": []
+      },
+      {
+        "title": "three consecutive computers discard oldest cards and return a living human to actual board placement",
+        "project": "1920x1080",
+        "status": "passed",
+        "duration_ms": 7900,
+        "retry": 0,
+        "errors": []
+      }
+    ],
+    "passed": 4,
+    "total": 4,
+    "stats": {
+      "startTime": "2026-10-18T19:42:10.861Z",
+      "duration": 21184.652000000002,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "remainingGates": [
+    "parent mechanical correction scope judgment",
+    "fresh parent keycases",
+    "new final-head green CI"
+  ],
+  "nativeAggregateTelemetry": "unavailable; no aggregate token count or agent exit code invented"
+}

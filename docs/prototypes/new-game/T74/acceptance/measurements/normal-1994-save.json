@@ -1,0 +1,44 @@
+{
+  "format": "malpaco-match",
+  "version": 2,
+  "boardGenerator": {
+    "id": "geographic",
+    "version": 1
+  },
+  "rules": {
+    "id": "cards",
+    "version": 3
+  },
+  "actionSchemaVersion": 5,
+  "options": {
+    "seats": [
+      {
+        "kind": "human"
+      },
+      {
+        "kind": "computer"
+      },
+      {
+        "kind": "computer"
+      },
+      {
+        "kind": "computer"
+      }
+    ],
+    "board": "generated",
+    "startingArmiesRange": "1-3",
+    "humanShare": 0,
+    "computerStrengths": [
+      "Normal",
+      "Normal",
+      "Normal"
+    ],
+    "eventFrequency": "Normal",
+    "dominationWin": true,
+    "roundLimit": null,
+    "seed": 1994,
+    "animationSpeed": "normal",
+    "sound": true
+  },
+  "actions": []
+}

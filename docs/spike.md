@@ -959,7 +959,9 @@ position and bottom-follow. Card choices, totals, pause/speed and event-log acce
 retain their existing behavior. No gameplay, controller, RNG or replay changes.
 
 `docs/prototypes/new-game/issue180/production/adoption.json` records the exact
-frozen stylesheet and reused inputs. Run the standalone read-only proof:
+frozen stylesheet and reused inputs. The original standalone read-only proof
+records that pre-correction checkpoint; it is historical after the scoped
+contract/helper correction below:
 
 ```text
 python3 docs/prototypes/new-game/issue180/production/verify-adoption.py
@@ -974,9 +976,100 @@ not change them. The retained overflowing baseline fails the new layout regressi
 The capped candidate's combined browser run passed 108/110; two native-save
 downloads timed out, and an exact retake passed 0/2. A later unchanged selection
 using the same acceptance configuration passed 2/2. These are separate results,
-not a single green combined run; the intermittent download cause is unresolved
-and no workaround was adopted. Candidate build and prior 784 Vitest plus eight
-harness tests are reused only after exact input verification. Independent regular
-affected-suite validation, owner layout judgment and final green CI remain
-required. Full failures, positive controls, screenshots, metrics and restoration
+not a single green combined run. At that checkpoint the intermittent download
+cause was unresolved and no workaround was adopted. Candidate build and prior 784 Vitest plus eight
+harness tests were reused only after exact input verification. Independent regular
+affected-suite validation and owner layout judgment subsequently approved the
+unchanged CSS; final CI exposed the burst gate described below. Full failures,
+positive controls, screenshots, metrics and restoration
 receipts remain in the committed evidence archive and retained loose originals.
+
+
+#### T73 native-save pacing correction
+
+CI39157702142 completed the failing Save clicks but requested eleven native
+downloads within 969/972ms. Chromium's LocalFrame burst gate permits ten
+downloads, then silently refuses another until more than one real second has
+elapsed. This primary-source behavior explains the timing-sensitive failure
+that earlier controlled runs could not isolate; those original reports and
+failed CI artifacts remain unchanged.
+
+The computer-card browser tests now pace only native Save calls using Node
+monotonic time and promise timers. A per-Page WeakMap records completed saves;
+the next Save waits until 120ms after the previous completion. Real clicks,
+download events, file reads, every oracle assertion, deadlines and page.clock
+calls remain intact. Node waiting cannot advance the paused browser game clock.
+The 120ms margin is designed to stay below Chromium's burst budget. Product
+code and the owner-approved CSS allocation are unchanged.
+
+The parent-frozen proposal passed all four targeted cases under the regular
+root Playwright config, both sizes, without retries (23.233s command elapsed).
+This is separate from the failed CI and earlier 108/110, 0/2 and 2/2 results; no
+claim is made that a corrected full CI run has passed. Existing independent Kimi
+approval and owner appearance acceptance cover the unchanged production CSS.
+Parent mechanical scope judgment, fresh keycases and a new final green CI remain
+required for this test-only correction.
+
+The earlier issue180/production/verify-adoption.py is unchanged historical proof
+for the pre-correction T73 contract and computer-card spec; its two old hashes
+are intentionally superseded and it is not a current-head verifier. Use the
+strict scoped replacement proof, without override flags:
+
+```text
+python3 docs/prototypes/new-game/issue180/download-rate-correction/production/verify-correction.py
+```
+
+It checks all 226 expected inputs and 28 frozen evidence files against committed
+HEAD and working bytes, modes, the exact proposal/original boundary, unchanged
+runtime CSS, and all other historical 18/222 acceptance inputs. Both named hash
+replacements are explicit; older manifests and the archive verifier are preserved.
+The previously verified 28-part/1,689-member archive is not recomputed for this
+narrow helper correction.
+
+#### T74 versioned generated-geography presentation provider
+
+The UI layer now contains a pure presentation derivation, dedicated worker and
+bounded immutable result service. These three modules exactly adopt the
+parent-frozen typed port of approved T72 shared-boundary deformation, version
+`t72-relocated-flow-spread-v2`. They return native SVG coast/country polygons,
+display anchors and routes with original logical ids. Logical gameplay geometry,
+save identity, accepted attempts/refusals and RNG remain untouched. The current
+geographic renderer/host does not consume this sidecar yet; T75 owns activation.
+
+`derivePresentation` owns/freeze-protects its output without mutating or freezing
+caller arrays. `PresentationService.request(geometry,signal?)` deduplicates pending
+content and caches eight immutable completed drawings [designed]. Its exact key
+includes complete accepted geometry plus drawing version/constants, never seed
+alone. The dedicated worker keeps expensive flow off the UI thread. Cancellation
+rejects subscribers and drops stale results; it cannot preempt synchronous CPU
+work already executing. Disposal terminates the worker. Derivation failure is
+retryable; terminal worker error fails future requests immediately until the host
+recreates the service. There is no old-polygon fallback or per-render derivation.
+
+Parent-frozen acceptance covers twelve accepted maps/552countries plus398's
+complete50-attempt refusal. Approved-five outputs match T72 exactly; unchanged
+T62/T24 checks protect contacts, gaps/overlap, full40-unit hits and route margins.
+The exact typed output matches those independently validated complete oracles.
+Actual production overlay checks retain35,328primary/1,472three-digit cases and
+52PNGs with existing14pxcounts/fourbadges/conditional12pxnames. Existing star/name
+polish and owner appearance judgment remain explicit limits. This bounded corpus
+is not an arbitrary-seed success-rate or cross-platform font/performance claim;
+observed derivation3.119–3.720s explains the worker boundary.
+
+The actual new test paths first fail import-level without provider modules, not
+assertion-level. Exact temporary adoption then passes one full806Vitest/59file
+plus8harness run (91.520s) and build (1.205s); the standalone proof authenticates
+reuse. The sole declared later input change is corrected T73's Playwright
+native-download helper, outside npm/Vite executed tests. Formal adoption repeats
+only the small read-only proof, not those heavy commands. Final five meaningful
+controls and exact restoration, real-worker responsiveness, all earlier failures
+and complete parent restoration remain in the committed T74 archives.
+
+`docs/prototypes/new-game/T74/production/README.md` documents API, evidence and
+limits; `production/adoption.json` pins immutable manifests. Run
+`python3 docs/prototypes/new-game/T74/production/verify-adoption.py` to verify
+99frozen/226validated committed+working inputs, three exact provider equalities
+and all349members of three committed archive parts in memory, without loose
+helpers. Older T73 whole-tree proofs remain historical rather than being rewritten
+for this new provider. Main owns independent review, dependency approval and final
+greenCI; no playable integration or release packaging is implied by this layer.
