@@ -1,0 +1,48 @@
+{
+  "pr": 159,
+  "merge": {
+    "headRefOid": "b8a431d07e4506b308216f0a810da5c4149540c9",
+    "mergeCommit": {
+      "oid": "1f699774f3d2582c2a38d17788bdd9dc14957e3a"
+    },
+    "mergedAt": "2026-10-17T21:56:39Z",
+    "number": 159,
+    "state": "MERGED",
+    "url": "https://github.com/diegoami/malpaco/pull/159"
+  },
+  "ci": {
+    "ciRun": 39071738291,
+    "ciHead": "b8a431d07e4506b308216f0a810da5c4149540c9",
+    "conclusion": "success",
+    "packageSource": "37d076ac03ca172203fb1c17a13e8bc6b7c5b391",
+    "packageTreeEqualsApprovedHead": true,
+    "archive": "/home/diego/projects/malpaco/.cache/t70-dispatch/ci-39071738291/playable/malpaco-playable.tar.gz",
+    "archiveSha256": "efb6b3eb551cc8cdf9c309585938c488bc15debbcc12809d4865a078ade6a3e0"
+  },
+  "windows": {
+    "destination": "/mnt/c/Users/diego/malpaco-preview/T70-playback-37d076a-20261017-215657",
+    "windowsPath": "C:/Users/diego/malpaco-preview/T70-playback-37d076a-20261017-215657",
+    "filesVerified": 34,
+    "previousPointerBackup": "/mnt/c/Users/diego/malpaco-preview/OPEN-REVIEW-before-T70-20261017-215712.html",
+    "previousPointerSha256": "8afacc2b43307323668389525e6fb9557929b1cd6141e497bdea18eb1dbd3904",
+    "pointerSha256": "6239b710fdb3368eacd398bda78f2d5577486557529eb8a5efd85a9ca42cccf4",
+    "oldBundlesPreserved": true
+  },
+  "live": {
+    "url": "http://127.0.0.1:5173/",
+    "totals": [
+      "Total armies: 22",
+      "Total armies: 24",
+      "Total armies: 24",
+      "Total armies: 22"
+    ],
+    "speed": "very-slow",
+    "logCharacters": 160,
+    "pauseResume": true,
+    "keyboardClose": true
+  },
+  "ownerScope": "T70 complete; no T35 producer or new task dispatched this session",
+  "originalDisappearanceReport": "unconfirmed; observability added, no core rule fix claimed",
+  "archiveSha256": "a250330c14aa64bb0895186ae4f9ba6dbf693151422cbd09c04034b309e055bc",
+  "runtimeSourceUnchangedAfterApproval": true
+}

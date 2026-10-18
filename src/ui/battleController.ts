@@ -1,7 +1,7 @@
 import { activePlayer, apply, armyCount, cloneState, DeterministicRng, diceCount, friendlySources, friendlyTargets, ownerOf, pairResults, province, resolve, whyNot } from "../core";
 import type { Action, AttackOutcome, GameState } from "../core";
 
-export type BattleSpeed = "slow" | "normal" | "fast";
+export type BattleSpeed = "very-slow" | "slow" | "normal" | "fast";
 export interface BattleScheduler {
   schedule(callback: () => void, delayMs: number): number;
   cancel(handle: number): void;
@@ -35,7 +35,8 @@ export interface BattleView {
 export const DEFAULT_STOP_THRESHOLD = 2;
 export const EXCHANGE_TIME = 400;
 export const HUMAN_BATTLE_WATCH = 5000;
-export const SPEED_SCALE: Readonly<Record<BattleSpeed, number>> = { slow: 1.5, normal: 1, fast: 0.5 };
+// [designed] T70 Very slow gives human exchanges 6 × 400 ms; computers use their explicit 2 s pace.
+export const SPEED_SCALE: Readonly<Record<BattleSpeed, number>> = { "very-slow": 6, slow: 1.5, normal: 1, fast: 0.5 };
 
 /** Trace only the exchange the player just chose, with an independent RNG copy.
  * The existing resolver decides every tie; only ordinary apply changes the game.
@@ -59,6 +60,17 @@ function exchangeRolls(before: GameState, from: string, to: string): BattleRoll[
 
 /** One authoritative state, one cancellable continuation, no DOM or wall clock. */
 export class BattleController {
+  private globallyPaused = false;
+  get playbackPaused(): boolean { return this.globallyPaused; }
+
+  /** Session presentation state: retain the pending battle without choosing an exchange. */
+  setPlaybackPaused(value: boolean): void {
+    if (this.disposed || value === this.globallyPaused) return;
+    this.globallyPaused = value;
+    this.cancel();
+    if (!value && this.current.running) this.schedule();
+    this.publish({});
+  }
   private current: BattleView;
   private timer: number | null = null;
   private generation = 0;
@@ -78,7 +90,7 @@ export class BattleController {
   get view(): BattleView { return this.current; }
 
   private accepts(revision?: number, humanInput = true): boolean {
-    return !this.disposed && (!humanInput || this.allowInput(this.state)) && (revision === undefined || revision === this.current.revision);
+    return !this.disposed && (!humanInput || (!this.playbackPaused && this.allowInput(this.state))) && (revision === undefined || revision === this.current.revision);
   }
 
   private pending(): boolean { return this.state.phase === "capture" || this.state.pendingCapture !== undefined; }
@@ -124,6 +136,8 @@ export class BattleController {
 
   setSpeed(speed: BattleSpeed, revision?: number): boolean {
     if (!this.accepts(revision, false) || !Object.hasOwn(SPEED_SCALE, speed)) return false;
+    this.current = { ...this.current, speed };
+    if (this.current.running && !this.playbackPaused) { this.cancel(); this.schedule(); }
     this.publish({ speed });
     return true;
   }
@@ -244,7 +258,7 @@ export class BattleController {
 
   /** Automatic seats still use ordinary engine actions, without human selections. */
   dispatchComputer(action: Action, revision?: number): boolean {
-    if (!this.accepts(revision, false) || activePlayer(this.state)?.kind !== "computer" || this.state.phase === "human-loss" || this.state.phase === "finished") return false;
+    if (this.playbackPaused || !this.accepts(revision, false) || activePlayer(this.state)?.kind !== "computer" || this.state.phase === "human-loss" || this.state.phase === "finished") return false;
     const before = this.state, result = apply(before, action);
     if (!result.ok) return false;
     this.cancel(); this.beforeMove = null;
@@ -263,6 +277,7 @@ export class BattleController {
     if (!this.accepts(undefined, false)) return false;
     this.cancel();
     this.watchExchanges = 0;
+    this.globallyPaused = false;
     this.beforeMove = null;
     this.publish({ mode: "battle", state: next, from: next.pendingCapture?.from ?? null, to: next.pendingCapture?.to ?? null, running: false, paused: false, effectiveThreshold: 1,
       lastOutcome: null, rolls: [], ties: 0, attackerWins: 0, defenderWins: 0, message: "",
