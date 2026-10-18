@@ -1,0 +1,13 @@
+
+Running 6 tests using 2 workers
+
+  ✓  1 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match (4.8s)
+  ✓  2 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army (7.0s)
+{"kind":"responsive-shell","viewport":"1280x800","reference":{"panelWidth":350,"panelHeight":599.828125,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"},"geographic":{"panelWidth":350,"panelHeight":599.828125,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"}}
+  ✓  3 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:60:1 › default four-seat geographic shell shares reference responsive layout (7.5s)
+  ✓  4 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army (6.8s)
+  ✓  5 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match (4.6s)
+{"kind":"responsive-shell","viewport":"1920x1080","reference":{"panelWidth":440,"panelHeight":922.625,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"},"geographic":{"panelWidth":440,"panelHeight":922.625,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"}}
+  ✓  6 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:60:1 › default four-seat geographic shell shares reference responsive layout (5.6s)
+
+  6 passed (22.3s)

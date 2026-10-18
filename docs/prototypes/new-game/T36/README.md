@@ -123,3 +123,9 @@ member manifest beside it. A no-Claude real-source copy probe retained under
 file inode was shared, and a write/byte-exact restore in the copy left the source hash
 unchanged. The copy remained in `/tmp/t36-private-dependency-copy-URaDXV/` for parent
 validation.
+
+## Clean review after dependency isolation
+
+The actual Sonnet Medium follow-up at `feefffb451de8574d5e3da5b032378760da9130d` completed in1038.531s with exact model `claude-sonnet-5-5`, CLI0 and zero permission denials. All8 harness tests/645 Vitest/build,36 source geographic/guard,36 fresh extracted-package and48 affected reference tests pass. Eight helper/integration omissions plus keyboard/gate/guidance/live responsive omissions are caught with exact source restoration. Full final and raw native evidence are retained in `claude-review-round3/`; parent verified all2741 members and3 archive parts. The scoped follow-up inherits the unchanged original independent wide sweep and old222 evidence honestly. `parent-review-round3/` explains combined coverage and historical source-snapshot limits.
+
+Main separately verified1451 nontransient actual review dependencies have private file inodes and unchanged source bytes. Omitting automatic preparation fails the real-entry fake-CLI test for missing private dependencies; exact restoration passes (`evidence/parent-helper-omission-5vg5timd/`). Final parent extracted-package six guards pass with stable source inputs (`evidence/parent-final-key-23g6e6pj/`). No model/permission/denial gate was relaxed. Nonblocking reviewer findings remain follow-ups; no game code changed for this setup repair.
