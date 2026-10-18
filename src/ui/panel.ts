@@ -93,6 +93,9 @@ export class Panel {
 
   render(m: PanelModel): void {
     const { state } = m;
+    const readingTop = this.log.scrollTop;
+    this.log.scrollTop = this.log.scrollHeight;
+    const followingNewest = this.log.scrollTop - readingTop <= 1;
     const mover = state.players[state.currentPlayer];
     const seat = state.currentPlayer;
     const computer = mover?.kind === "computer";
@@ -166,7 +169,8 @@ export class Panel {
     this.endTurn.toggleAttribute("disabled", finished || computer || state.phase === "reinforce");
 
     const entries = state.log.map((e) => describeLog(state, e)).filter((e): e is string => e !== null);
-    this.log.replaceChildren(...entries.slice(-7).reverse().map((e) => h("li", {}, e)));
+    this.log.replaceChildren(...entries.map((e) => h("li", {}, e)));
+    this.log.scrollTop = followingNewest ? this.log.scrollHeight : readingTop;
     this.seed.textContent = `seed ${m.seed}`;
   }
 }

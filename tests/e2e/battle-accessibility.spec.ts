@@ -40,7 +40,14 @@ test("capture confirmation, quantities and context fit together with an accurate
   let state = step(f.ready, { kind: "attack", from: f.from, to: f.to });
   while (state.phase === "attack") { await page.clock.runFor(200); state = step(state, { kind: "attack", from: f.from, to: f.to }); }
   await expect(page.locator("#turn-phase")).toHaveText("Capture move-in");
-  await fits(page, ["#battle-source-name", "#battle-target-name", "#battle-status", "#fight-on-button", "#single-exchange-button", "#stop-battle-button", "#capture-amount", "#capture-minimum-button", "#capture-maximum-button", "#capture-less-button", "#capture-more-button", "#confirm-capture-button", "#new-game-button"]);
+  // T71's focused capture presentation hides inactive combat controls in both modes.
+  // Required move-in controls and source/target context must still fit together.
+  for (const detail of ["compact", "detailed"]) {
+    await page.getByLabel("Panel detail", { exact: true }).selectOption(detail);
+    await fits(page, ["#battle-source-name", "#battle-target-name", "#capture-amount", "#capture-minimum-button", "#capture-maximum-button", "#capture-less-button", "#capture-more-button", "#confirm-capture-button", "#new-game-button"]);
+    for (const id of ["battle-status", "fight-on-button", "single-exchange-button", "stop-battle-button"])
+      await expect(page.locator("#" + id)).toBeHidden();
+  }
   await expect(page.getByLabel("Armies to move", { exact: true })).toHaveAttribute("min", "1");
   await expect(page.getByRole("button", { name: "Move one more army", exact: true })).toBeVisible();
   await capture(page, "capture-controls-fit", info.project.name);

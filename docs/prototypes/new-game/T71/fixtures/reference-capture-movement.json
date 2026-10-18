@@ -1,0 +1,58 @@
+{
+  "format": "malpaco-match",
+  "version": 2,
+  "boardGenerator": {
+    "id": "fixed-reference",
+    "version": 1
+  },
+  "rules": {
+    "id": "victory",
+    "version": 1
+  },
+  "actionSchemaVersion": 2,
+  "options": {
+    "seats": [
+      {
+        "kind": "human"
+      },
+      {
+        "kind": "computer"
+      },
+      {
+        "kind": "computer"
+      },
+      {
+        "kind": "computer"
+      }
+    ],
+    "board": "generated",
+    "startingArmiesRange": "1-3",
+    "humanShare": 0,
+    "computerStrengths": [
+      "Normal",
+      "Normal",
+      "Normal"
+    ],
+    "eventFrequency": "Normal",
+    "dominationWin": false,
+    "roundLimit": null,
+    "seed": 1994,
+    "animationSpeed": "normal",
+    "sound": true
+  },
+  "actions": [
+    {
+      "kind": "reinforce",
+      "province": "province_23",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_25",
+      "to": "province_10"
+    }
+  ]
+}
