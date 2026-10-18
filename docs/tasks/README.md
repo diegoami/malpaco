@@ -65,6 +65,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T39](T39.md) | Raid targeting and automatic Shield defence | Medium | #84 | T38 |
 | [T40](T40.md) | Playable human card interactions | Hard | #85 | T39 |
 | [T41](T41.md) | Baseline computer card decisions | Medium | #86 | T40 |
+| [T73](T73.md) | Fully visible battle controls alongside cards | Medium | #180 | T41 |
 | [T42](T42.md) | Deterministic events and production-centre effects | Hard | #87 | T41 |
 | [T43](T43.md) | Readable events and centre changes | Medium | #88 | T42 |
 | [T44](T44.md) | Complete setup options and seat mixtures | Medium | #89 | T43 |
