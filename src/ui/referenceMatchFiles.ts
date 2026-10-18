@@ -37,9 +37,11 @@ export class ReferenceMatchFiles {
         if (this.disposed || own !== this.request) return;
         const loaded = deserializeVersionedMatch(text);
         // This renderer uses fixed T63 SVG paths. A valid generated save still
-        // belongs in its generated view; it must never replace this board.
+        // belongs in its matching view; it must never replace this board.
         if (loaded.formatVersion !== 2 || (!allowVersionedMaps && loaded.identity.boardGenerator.id !== "fixed-reference")) {
-          throw new Error("This game uses a generated map; load it in the generated game view.");
+          throw new Error(loaded.identity.boardGenerator.id === "geographic"
+            ? "This game uses a generated map; load it in the main game screen."
+            : "This game uses a generated map; load it in the generated game view.");
         }
         onLoad(loaded.options, loaded.state,loaded);
       } catch (error) {

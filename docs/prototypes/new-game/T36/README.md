@@ -52,3 +52,29 @@ proven by the 30-case snapshot. No unchanged heavy check was repeated for adopti
 The earlier parent restoration statement remains historical: current runtime is now
 the adopted candidate. Fresh extracted-package execution, independent review, CI and
 owner appearance judgment remain separate checks; none is claimed here.
+
+## First review and bounded rework
+
+The first independent Sonnet High review approved after named fixes and found no
+blocking defect. A separate `geographic-review-guards.spec.ts` now exercises actual
+unpaused Enter and Space placement, rejection of a valid geographic-v2 save on the
+explicit reference route with usable-match preservation, and computed four-seat
+responsive parity at both viewports. Geographic-v2 guidance points to the main game
+screen; older generated-save guidance still points to its legacy generated view.
+Geographic CSS shares the existing reference compact/wrapping/large-panel selectors,
+with no new layout constants; measured reference computed styles are unchanged.
+
+`rework-source-proof.json` records the valid58-case source positive, actual omission
+failures/restoration and retained fixture/build/wrapper development mistakes. The
+original five frozen files are unchanged. Their UNEXECUTED headers and earlier
+corpus source fingerprint are historical freeze provenance (R4/R5), not a claim
+that later measured execution did not occur. Defensive identity/origin/sidecar
+branches remain (R6). All measured accepted routes have zero bends, so seed0 is a
+tie-break rather than bent-route coverage (R7). No constraints were relaxed.
+
+R8 original delivery screenshots are loose under `delivery-preview-20261018/screenshots`
+with a byte-exact copy receipt; the preexisting package/preview archive is preserved.
+The owner approved appearance and pacing of18f46af subject to review and greenCI;
+that exact-head provenance is retained in `parent-review-round1`. The later panel
+redesign request is issue163 and is outside this bounded rework. Fresh rework package
+proof and independent follow-up are recorded separately.
