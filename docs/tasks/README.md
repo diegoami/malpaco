@@ -98,3 +98,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T70](T70.md) | Visible army totals, playback controls and popup event log | Medium | #158 | T32, T33 |
 
 | [T71](T71.md) | Stable compact computer-turn panels | Medium | #163 | T36; coordinate T40 UI ownership |
+
+| [T72](T72.md) | Natural generated islands and region borders: visual prototype | Hard | #173 | T36 |
