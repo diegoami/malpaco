@@ -1,0 +1,14 @@
+{
+  "proposal_input_path": "docs/prototypes/new-game/issue180/anchor-correction/source/styles.proposed.css",
+  "proposal_sha256": "9be45373a26450ff17ebac7990ab11e841eb877cea903eaceeb3936bd323ae64",
+  "build_receipt": "build-receipt.json",
+  "wrapper": "run-build.py",
+  "note": "Wrapper writes this proposal before npm run build; output CSS retained below corroborates the bounded allocation. Actual source is restored afterward.",
+  "built_css": [
+    {
+      "path": "dist/assets/index-B8lxC96R.css",
+      "sha256": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+      "contains_final_allocation": true
+    }
+  ]
+}

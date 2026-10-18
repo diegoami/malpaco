@@ -1,0 +1,7 @@
+{
+  "reason": "ordinary baseline fixture has zero actions/history rows; empty UL may have zero content height while its bounded log card remains visible; populated rows still require positive list height",
+  "priorInput": "docs/prototypes/new-game/issue180/parent-acceptance/cards-empty-list-original-20261018-182243.ts",
+  "replacement": "(el.clientHeight>0||el.children.length===0)&&el.closest('.log-card')!.getBoundingClientRect().height>0&&getComputedStyle(el).overflowY==='auto'",
+  "oldExpression": "el.clientHeight>0&&getComputedStyle(el).overflowY==='auto'",
+  "allOriginalBehaviorAndRelativeStabilityAssertionsPreserved": true
+}
