@@ -188,7 +188,20 @@
       "priorFailureCommit": "1601d867494aac39e13b2f5fd3f8ac33993ea434",
       "priorFailureReport": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption/REPORT.md",
       "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/validation.json",
-      "stage": "checkpoint, no corrected proof or heavy validation run yet",
+      "stage": {
+        "checkpoint": "8d669a275e9130134a3052239aa8abaefbf0c50c",
+        "proofExit": 0,
+        "npmExit": 0,
+        "vitestPassed": 818,
+        "harnessPassed": 9,
+        "packageExit": 0,
+        "controlsExit": 1,
+        "controlsFailure": "first native New game click actionability timeout30000ms after passing cold/warm readiness",
+        "pausedControl": "not run",
+        "throttledControl": "not run",
+        "extracted": "not run",
+        "releaseReady": false
+      },
       "rawBaselinePair": [
         1959.5,
         1883.89990234375

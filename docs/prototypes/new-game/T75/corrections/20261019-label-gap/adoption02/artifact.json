@@ -1,0 +1,113 @@
+{
+  "archiveSha256": "70592c4cc41ab5aa0b4b3d1baf5d191252c6204f7d6d14176f694d2ab13b163d",
+  "archiveBytes": 450121,
+  "extractionParent": "/tmp/malpaco-t75-label-gap-bmsp3ozd",
+  "packageHashes": {
+    "index.html": "1aa455df5bdc8d902fe1a3beec019df1ad0e15894c75dc439d2e7d34dc5db01c",
+    "serve.mjs": "1d5210ae1d1af06b58fddf239c2c2771d72e2ca9b9f7b74e9a122ce667f3e5e7",
+    "PLAY.md": "7fb011104538eccbf9f1bea3805d9e47fc4f6ba117a50e6a09b95f9f8e2a888d",
+    "SHA256SUMS": "e8c3f69c21d02478d7591d3ca087346abbe56ec9ed226d76433ce6507ee00e7b",
+    "BUILD.json": "1fc7a335f3911db3435f95a4074a9d299741657a7a531a7e4514d8d273ef641d",
+    "assets/generatedGeographyPresentation.worker-DbrcvUpT.js": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+    "assets/index-B8lxC96R.css": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+    "assets/index-CEOCdw5Z.js": "3754747094f8e0caa59ed39c4996128ab3c37a73a6ee55d4404efabbb31681ab",
+    "fonts/Inter-LICENSE.txt": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+    "fonts/InterVariable.woff2": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+  },
+  "BUILD": {
+    "schemaVersion": 1,
+    "sourceCommit": "8d669a275e9130134a3052239aa8abaefbf0c50c",
+    "minimumNode": 22
+  },
+  "members": [
+    {
+      "path": "malpaco-playable",
+      "bytes": 0,
+      "mode": 509,
+      "directory": true
+    },
+    {
+      "path": "malpaco-playable/index.html",
+      "bytes": 641,
+      "mode": 436,
+      "directory": false,
+      "sha256": "1aa455df5bdc8d902fe1a3beec019df1ad0e15894c75dc439d2e7d34dc5db01c"
+    },
+    {
+      "path": "malpaco-playable/serve.mjs",
+      "bytes": 2285,
+      "mode": 420,
+      "directory": false,
+      "sha256": "1d5210ae1d1af06b58fddf239c2c2771d72e2ca9b9f7b74e9a122ce667f3e5e7"
+    },
+    {
+      "path": "malpaco-playable/PLAY.md",
+      "bytes": 2166,
+      "mode": 420,
+      "directory": false,
+      "sha256": "7fb011104538eccbf9f1bea3805d9e47fc4f6ba117a50e6a09b95f9f8e2a888d"
+    },
+    {
+      "path": "malpaco-playable/assets",
+      "bytes": 0,
+      "mode": 509,
+      "directory": true
+    },
+    {
+      "path": "malpaco-playable/assets/generatedGeographyPresentation.worker-DbrcvUpT.js",
+      "bytes": 6139,
+      "mode": 436,
+      "directory": false,
+      "sha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac"
+    },
+    {
+      "path": "malpaco-playable/assets/index-B8lxC96R.css",
+      "bytes": 33727,
+      "mode": 436,
+      "directory": false,
+      "sha256": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849"
+    },
+    {
+      "path": "malpaco-playable/assets/index-CEOCdw5Z.js",
+      "bytes": 310354,
+      "mode": 436,
+      "directory": false,
+      "sha256": "3754747094f8e0caa59ed39c4996128ab3c37a73a6ee55d4404efabbb31681ab"
+    },
+    {
+      "path": "malpaco-playable/SHA256SUMS",
+      "bytes": 792,
+      "mode": 436,
+      "directory": false,
+      "sha256": "e8c3f69c21d02478d7591d3ca087346abbe56ec9ed226d76433ce6507ee00e7b"
+    },
+    {
+      "path": "malpaco-playable/fonts",
+      "bytes": 0,
+      "mode": 509,
+      "directory": true
+    },
+    {
+      "path": "malpaco-playable/fonts/Inter-LICENSE.txt",
+      "bytes": 4380,
+      "mode": 420,
+      "directory": false,
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    },
+    {
+      "path": "malpaco-playable/fonts/InterVariable.woff2",
+      "bytes": 352240,
+      "mode": 420,
+      "directory": false,
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+    },
+    {
+      "path": "malpaco-playable/BUILD.json",
+      "bytes": 108,
+      "mode": 436,
+      "directory": false,
+      "sha256": "1fc7a335f3911db3435f95a4074a9d299741657a7a531a7e4514d8d273ef641d"
+    }
+  ],
+  "officialRelease": false
+}

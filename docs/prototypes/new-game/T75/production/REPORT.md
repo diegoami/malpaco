@@ -92,3 +92,8 @@ Checkpointc0f4435d's single proof exited1 in4.136s on a new baseline precision g
 ### Exact baseline precision continuation checkpoint
 
 The failedc0proof/adoption result remains immutable. The mechanical guard now authenticates exact raw pair[1959.5,1883.89990234375] and median1921.699951171875, separately checks its one-decimal display1921.7, and retains1921.7 as the original useful-benefit denominator with unchanged>=10% gate. No tolerance widening/runtime change occurred. Four prior active files and failed driver/report/receipts are copied and strictly pinned through existing manifestHashes. New adoption02 outputs will record the one corrected proof and previously unstarted validation; nothing has run at this checkpoint.
+
+
+### Precision-continuation current result
+
+Checkpoint8d669a27 corrected proof passed4.136s, npm passed818Vitest/60files+9harness, static package passed10files/9checksums/4HTTP with truthful8d BUILD. The first native representative control passed cold/warm original5000ms checks, then New game click timed out30000ms on actionability. Paused/throttled controls and166-case suite did not run; no retry/source edit followed. Full actual failure/PNG/package/restoration and missing-trace limitation are in ../corrections/20261019-label-gap/adoption02/REPORT.md. Prior failed proof/165of166/screenshot limitations remain historical and explicit; release gates remain incomplete.
