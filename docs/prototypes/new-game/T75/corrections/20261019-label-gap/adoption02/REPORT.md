@@ -56,3 +56,8 @@ The diagnostic top-level finally awaited browser closure; runner finally termina
 Historical screenshot limitation remains: earlier ignored compact originals may already have been overwritten when older routing omitted COMPACT_PANEL_EVIDENCE_DIR/VERSIONED_MATCH_EVIDENCE_DIR; new current backups prove only current bytes. Old mislabeled-clock, candidate console collision, allocation failed gate, old165/166 result and rounding proof failure remain explicit. Aggregate native agent telemetry is unavailable; none is invented.
 
 Fresh representative controls/extracted acceptance, independent correction review, owner playable appearance/pacing acceptance, exact-head greenCI and publication remain incomplete parent-owned gates. No release-ready/approval claim is made.
+
+
+### Explicit retention of synthetic Git fixture paths
+
+Final commit audit found48 fresh issue187 probe synthetic fixture files beneath nested `.git/objects` directories, which Git cannot directly track. Their loose bytes remain untouched. `synthetic-git-fixtures.tar.gz` commits exactly those48files, and its receipt authenticates every path/byte/size/fullpermission against the prior inventory. The preliminary640-file manifest is preserved verbatim as evidence-hashes-pre-archive.json. The active evidence-hashes.json lists all directly committed files and the exact archive/receipt; its sole48 loose-member omissions are enumerated by that receipt, not a generic ignored-path rule. All other evidence is directly tracked. No test/runtime/output restoration claim changes.

@@ -1,7 +1,7 @@
 {
   "REPORT.md": {
-    "sha256": "2bdc36582faa68a0064996dc479cf8191bdb4079ce2565092a89b56fcd1e7eb3",
-    "bytes": 9505,
+    "sha256": "74a710d591b7d5c748f6febb5644df1cf96725a58b8797c79643b2de839cdfff",
+    "bytes": 10282,
     "mode": 420
   },
   "artifact.json": {
@@ -53,6 +53,11 @@
     "sha256": "0245ee255f98a89518768345c5ed061b9dcfd8604abd89291fae89022bf16930",
     "bytes": 776,
     "mode": 436
+  },
+  "evidence-hashes-pre-archive.json": {
+    "sha256": "fa9878ac6d709e197fed0d2e3fd05010c1b373e6d467528f7b815a05ac4bc58f",
+    "bytes": 143303,
+    "mode": 420
   },
   "executed-spec-hashes.json": {
     "sha256": "8bbb7ec24dcb7c95a396503ff2b68ac07734a68c75cd3439df82aae91c752a01",
@@ -645,126 +650,6 @@
     "mode": 436
   },
   "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.cache/retained-existing/src/dir-7/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-0/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-0/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-0/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-1/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-1/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-1/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-2/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-2/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-2/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-3/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-3/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-3/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-4/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-4/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-4/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-5/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-5/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-5/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-6/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-6/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-6/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-7/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-7/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/baseline/.git/objects/dir-7/file-2.ts": {
     "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
     "bytes": 20,
     "mode": 436
@@ -1385,126 +1270,6 @@
     "mode": 436
   },
   "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.cache/retained-existing/src/dir-7/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-0/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-0/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-0/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-1/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-1/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-1/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-2/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-2/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-2/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-3/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-3/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-3/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-4/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-4/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-4/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-5/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-5/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-5/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-6/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-6/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-6/file-2.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-7/file-0.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-7/file-1.ts": {
-    "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
-    "bytes": 20,
-    "mode": 436
-  },
-  "fresh-outputs/.cache/issue187-probe/run-2026-10-19T07-39-22.522Z/proposed/.git/objects/dir-7/file-2.ts": {
     "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
     "bytes": 20,
     "mode": 436
@@ -3193,6 +2958,16 @@
     "sha256": "da7c7da25f2b76afdfb82c1e31c05259075f64f35398983a41b65020f2296f9c",
     "bytes": 169,
     "mode": 436
+  },
+  "synthetic-git-fixtures-receipt.json": {
+    "sha256": "18ab5f8843e3348364ca0b4fa2570c822bd5cbc1849778d5e8c73ecc6ee171fc",
+    "bytes": 12567,
+    "mode": 420
+  },
+  "synthetic-git-fixtures.tar.gz": {
+    "sha256": "0bb00416c9cd1f02879a2eae7645c9276714088ef5ce263b627b74f60f2ada78",
+    "bytes": 1160,
+    "mode": 420
   },
   "validation.json": {
     "sha256": "0957184370988d6e67bd307d7189fb27c788dcaae456538206c6a33397769ed5",
