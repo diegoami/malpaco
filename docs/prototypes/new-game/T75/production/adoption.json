@@ -209,6 +209,13 @@
       "rawMedian": 1921.699951171875,
       "declaredBenefitDenominator": 1921.7,
       "gatePercent": 10
+    },
+    "remainingValidation03": {
+      "receipt": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/validation.json",
+      "stage": "checkpoint; one proof then setup-corrected diagnostic controls/first166run not yet executed",
+      "reusesActualNpmAndPackageCommit": "8d669a275e9130134a3052239aa8abaefbf0c50c",
+      "runtimeUnchanged": true,
+      "diagnosticSetupOnly": "one initial viewportPNG+bounded native twoRAF before file/clock/Worker; no acceptance test warmup"
     }
   }
 }

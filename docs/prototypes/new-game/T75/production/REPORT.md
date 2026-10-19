@@ -97,3 +97,8 @@ The failedc0proof/adoption result remains immutable. The mechanical guard now au
 ### Precision-continuation current result
 
 Checkpoint8d669a27 corrected proof passed4.136s, npm passed818Vitest/60files+9harness, static package passed10files/9checksums/4HTTP with truthful8d BUILD. The first native representative control passed cold/warm original5000ms checks, then New game click timed out30000ms on actionability. Paused/throttled controls and166-case suite did not run; no retry/source edit followed. Full actual failure/PNG/package/restoration and missing-trace limitation are in ../corrections/20261019-label-gap/adoption02/REPORT.md. Prior failed proof/165of166/screenshot limitations remain historical and explicit; release gates remain incomplete.
+
+
+### Remaining validation03 checkpoint
+
+Source80 stays exact. Prior Newgame action failure is retained with RAFdelivery36.694s; screenshot resumed frames beforeactivation, so nofocus-only cause is established. New standalone controls add only initial setup PNG/twoRAF before gameplay/clock/Worker work. Canonical166tests receive NO warmup or assertion change. Actual8d npm818+9/staticpackage results will be reused only under exact Gitblob/mode/working input and wholepackage identity; no rebuild/npm repeat. New adoption03 will record one proof, one3control invocation and first166run only after controls pass.
