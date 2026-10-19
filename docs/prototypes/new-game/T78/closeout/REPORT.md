@@ -1,0 +1,5 @@
+# T78 merge evidence
+
+PR210 merged as72e43ef0 on2026-10-19 after independent Opus rework and authorized Sonnet correction approval. Exact reviewed finalheadc3872645 completed its single CI39309506243 successfully:838Vitest+9harness,384sourcebrowser and384extractedbrowser,build/package/HTTP/checksums. Job52m10s; no failed or duplicate run retried, no redundant main CI (squash subject skipsCI). Main reran20focusedchecks afterCI; allpass. CI JSON and focusedraw outputs retained here; originalcache/worktree evidence remains untouched.
+
+R1missing unconfirmed-pair assertion resolved before correctionapproval. NonblockingR2genericpatchownership is routed to T82/#201 and R3explicitundefined is excluded from typedcallers byexactOptionalPropertyTypes; futuredefensiveJS behavior is a lowpriority followup. Neither is a proved currentruntime defect. Workspace module remains an unmounted UI foundation; no live-game appearance or new input gesture is claimed. T79 dependency nowmerged, but its own finalbase/preflight/ownerjudgment stillapply.
