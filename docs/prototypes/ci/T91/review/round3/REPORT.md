@@ -1,0 +1,9 @@
+# T91 ownership correction review
+
+Owner set a session roster: Sol Medium/High/Max implements; Sonnet Medium/High or Opus Medium reviews, selected by difficulty. Main selected Sonnet Medium for the focused ownership fix and recorded it before dispatch. This does not change global harness defaults.
+
+Exact expected/actual claude-sonnet-5-5 Medium, native exit0,160.1seconds; session dc3a172d-f949-47f3-b8f5-3861e2761bdc. Main read the complete FINAL.md. Verdict approve, harness posted/labelled approval without a scope hold. Review at5c5bfb68 independently passes20guards/838Vitest61files+9harness/type/build/packageHEAD/384equalinventory and135/135historical hashes. Five ownership controls fail and restore exactly; no tracked mutation remains in reviewer worktree. Native raw stream, prompt, full diff, receipt and verifier outputs are archived with member hashes and verified extraction; originals/worktree retained.
+
+Nonblocking findings in full remain in FINAL.md: R1 packaging and CI helpers duplicate scoped safe.directory logic; R2 repeatable provenance mutation controls remain non-automated. The five reviewer ownership mutations were manual controls against committed automated ownership tests. Default artifact retention remains deliberately documented. No scope expansion. Reviewer read relevant executable paths while reusing prior approved unchanged scope; full checkout does not independently prove sparse omission. Browser listing is not execution. Main's separate actual sparse pinned-container proof remains in ownership-correction-20261019.
+
+The original failed CI39322938082 is retained. After all review evidence and notes are staged and verified, this evidence-only normal checkpoint starts one corrected-head CI, then no intervening pushes or reruns. Merge requires this approval, green exact-head CI and a fresh local run of the key guard tests. No product deployment or Goal2 change.
