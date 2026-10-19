@@ -1,0 +1,28 @@
+{
+  "reason": "Owner authorized finishing 0.1.0 after CI39229251394 found a URL-versus-document readiness race; no game behavior or assertion weakening.",
+  "historicalInputCount": 204,
+  "previousCorrectionFrozenSha256": "477c6b6e7893c8d649026e90120d0ad13b6e4ff62e1e74f63eeed8b69a585ecf",
+  "replacement": {
+    "path": "tests/e2e/generated-board.spec.ts",
+    "before": "3392319d809a16018c28c88000e284c8a0ec8dc3c1f1d8682ceae595ee36c97a",
+    "after": "a53a9769bb6479c27ba08799cbe005c6437ca25d6a348455b935853fda7e92f4",
+    "canonical": "docs/prototypes/new-game/T75/corrections/20261019-seed-readiness/generated-board.spec.ts"
+  },
+  "contract": {
+    "path": "docs/tasks/T75.md",
+    "before": "7d1d7ab95ef8701372268232a102a1df300653b355f4bbf07b880535df400a2c",
+    "after": "6b911788522718f95f590425b0a0a3def13bd35b6015cf4c73eb42d2d50ddf89",
+    "canonical": "docs/prototypes/new-game/T75/corrections/20261019-seed-readiness/contract.md"
+  },
+  "priorProofHashes": {
+    "verify-adoption.py": "9fb94de46c9591050374ff9a398079261f0e819c5fd5644cac8c5f4aed88336b",
+    "adoption.json": "c61ac430bfeaf7101e5cec877324bf024e1c25602f085cec102fb402f804b561",
+    "README.md": "02b9d3bacc2009d59cfa324ebb09c78f941e2a0c71e69f0c856b6be9d85da5aa",
+    "REPORT.md": "d4b02b3766b5cbbbabec6a882b7f4861645e51651433b77756abe296895baf0d"
+  },
+  "unchanged": [
+    "all original204 validated inputs except the explicit generated-board test overlay and existing provider/vite overlays",
+    "all historical manifests, canonical contracts and archives",
+    "all runtime, geometry, core, RNG, package, assertions, retries and existing timeouts"
+  ]
+}
