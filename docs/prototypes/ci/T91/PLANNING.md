@@ -1,0 +1,5 @@
+# T91 parent planning checkpoint
+
+T91 CI simplification PLAN (2026-10-19): owner explicitly authorizes a subagent to simplify development CI and document reusable Goal2 adoption. Main consolidates existing unscheduledT66/#108 andT67/#118 into independentT91/#211 rather than duplicate their delivery. NativeSolHigh read-only feasibility completed; frozen main-authored guard preflight precedes implementation in a new isolated worktree, independentOpusMedium follows standing settings. Keep stableci, fail-closed narrowproseclassification, completeunit/harness/type/package and onefull extracted-browser pass, manualextra source-server mode, scopedPRcancellation and sparsefixtureclosure. T78CI39309506243 untouched; no Goal2 modification, evidence/worktree deletion or required-task weakening.
+
+This parent planning entry is retained here to avoid conflicting with the already reviewed T78 RUN-NOTES append while its single CI is running. The T91 branch also retains the original entry and will append its implementation handoff; no historical implementation evidence is removed.
