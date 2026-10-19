@@ -29,7 +29,7 @@ files={root/p for p in subprocess.check_output(['git','ls-files','-z']).decode()
 gitdir=Path(subprocess.check_output(['git','rev-parse','--absolute-git-dir'],text=True).strip());common=Path(subprocess.check_output(['git','rev-parse','--path-format=absolute','--git-common-dir'],text=True).strip());files.update([gitdir/'HEAD',gitdir/'index',common/'refs/heads/task/T75-playable-border-release'])
 files={p for p in files if p.is_file() and not p.is_relative_to(base)}
 before={str(p):{'sha256':sha(p),'mode':stat.S_IMODE(p.stat().st_mode)} for p in sorted(files)};write('before-manifest.json',before)
-beforeOutputs={};tickall=time.monotonic();extract=Path('/tmp/malpaco-t75-label-gap-bmsp3ozd');write('extraction.json',{'ownedOutsideParent':str(extract),'sourceCommit':head})
+beforeOutputs={};tickall=time.monotonic();extract=Path('/tmp/malpaco-t75-label-gap-bmsp3ozd');write('extraction.json',{'ownedOutsideParent':str(extract),'sourceCommit':'8d669a275e9130134a3052239aa8abaefbf0c50c','currentDocumentationCheckpoint':head,'reusedExistingPackage':True})
 specnames=['geographic-presentation','geographic-board','geographic-review-guards','battle-panel-fit','cards','computer-cards','cards-result-layout','match-save','versioned-match','playback-controls','playback-edge-cases','compact-panels','game-event-log'];specs=[Path('tests/e2e')/(s+'.spec.ts') for s in specnames]
 try:
  for rel in outputs:
@@ -60,7 +60,7 @@ try:
  write('executed-spec-hashes.json',{str(p):sha(root/p) for p in specs})
  run('01-committed-proof',['python3','docs/prototypes/new-game/T75/production/verify-adoption.py'])
  run('00-verify-reused-inputs',['python3',str(base/'verify-reuse.py')])
- package=extract/'malpaco-playable';copy(package,base/'extracted-package');build=json.loads((package/'BUILD.json').read_text());assert build['sourceCommit']==head
+ package=extract/'malpaco-playable';copy(package,base/'extracted-package');build=json.loads((package/'BUILD.json').read_text());assert build['sourceCommit']=='8d669a275e9130134a3052239aa8abaefbf0c50c'
  packageHashes={str(p.relative_to(package)):sha(p) for p in package.rglob('*') if p.is_file()};archive=root/'docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/fresh-outputs/release/malpaco-playable.tar.gz';members=[]
  with tarfile.open(archive,'r:gz') as tar:
   for member in tar:
