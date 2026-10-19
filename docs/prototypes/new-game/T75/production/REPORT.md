@@ -87,3 +87,8 @@ The latest corrections/20261019-label-gap/FROZEN.json separately authorizes exac
 ### Saturated-label validation stop
 
 Checkpointc0f4435d's single proof exited1 in4.136s on a new baseline precision guard: exact raw median1921.699951171875 differs from displayed1921.7 by0.000048828125ms, exceeding the mistaken1e-6 identity tolerance. No retry or npm/package/controls/browser run followed. Source80 remains committed, with16,082protected inputs/output inventories unchanged. Full current failed result is ../corrections/20261019-label-gap/adoption/REPORT.md; formal validation/review/CI/release remain incomplete. No historical report or manifest was edited.
+
+
+### Exact baseline precision continuation checkpoint
+
+The failedc0proof/adoption result remains immutable. The mechanical guard now authenticates exact raw pair[1959.5,1883.89990234375] and median1921.699951171875, separately checks its one-decimal display1921.7, and retains1921.7 as the original useful-benefit denominator with unchanged>=10% gate. No tolerance widening/runtime change occurred. Four prior active files and failed driver/report/receipts are copied and strictly pinned through existing manifestHashes. New adoption02 outputs will record the one corrected proof and previously unstarted validation; nothing has run at this checkpoint.

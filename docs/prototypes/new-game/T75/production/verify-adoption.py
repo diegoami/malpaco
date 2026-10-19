@@ -260,13 +260,15 @@ def worker_times(result):
         events=row['trace']['events'];post=next(e for e in events if e['event']=='worker-post');reply=next(e for e in events if e['event']=='worker-reply');values.append(reply['nativeTime']-post['nativeTime'])
     return values
 def median(values):return sum(sorted(values))/2
-baseline_times=worker_times(baseline);check(abs(median(baseline_times)-1921.7)<0.000001,'immutable actual baseline median')
+baseline_times=worker_times(baseline);check(baseline_times==[1959.5,1883.89990234375] and median(baseline_times)==1921.699951171875,'immutable exact raw baseline pair/median')
+declared_benefit_denominator=1921.7
+check(round(median(baseline_times),1)==declared_benefit_denominator,'raw median rounds to frozen declared benefit denominator')
 reductions={}
 for name,passed in [('allocation-proposal-20261019-01',False),('saturated-label-proposal-20261019-01',True)]:
-    result=phase_record(name,'results.json');values=worker_times(result);reduction=(median(baseline_times)-median(values))/median(baseline_times)*100;reductions[name]=reduction
+    result=phase_record(name,'results.json');values=worker_times(result);reduction=(declared_benefit_denominator-median(values))/declared_benefit_denominator*100;reductions[name]=reduction
     check((reduction>=10) is passed,'recomputed useful-benefit gate '+name)
     for row,old in zip(result['results'],baseline['results']):check(row['trace']['input']==old['trace']['input'] and row['trace']['output']==old['trace']['output'],'full actual591 pair equality '+name)
     check(digest(exact(phase_bases[name]+'/original.ts'))==latest_row['before'],'temporary original591 copy '+name)
 check(exact(phase_bases['saturated-label-proposal-20261019-01']+'/candidate.ts')==exact(provider),'exact measured80 candidate copy')
 check(digest(exact(phase_bases['allocation-proposal-20261019-01']+'/candidate.ts'))=='c314fe91cdd974e155e4ac9d7739a7d724c2e9b48331c4fc7e4fc7644753bf38','failed allocation candidate unchanged')
-print(json.dumps({'latestReplacementPaths':1,'latestProviderSha256':latest_row['after'],'original204ChangedInputs':2,'newEvidenceManifests':3,'baselineWorkerMedianMs':median(baseline_times),'recomputedReductionPercent':reductions,'taskAbsentOriginal204':True,'historicalTaskHashFailureClaimCorrected':True,'mismatches':0},sort_keys=True))
+print(json.dumps({'latestReplacementPaths':1,'latestProviderSha256':latest_row['after'],'original204ChangedInputs':2,'newEvidenceManifests':3,'baselineWorkerMedianMs':median(baseline_times),'rawBaselineWorkerTimesMs':baseline_times,'declaredBenefitDenominatorMs':declared_benefit_denominator,'recomputedReductionPercent':reductions,'taskAbsentOriginal204':True,'historicalTaskHashFailureClaimCorrected':True,'mismatches':0},sort_keys=True))
