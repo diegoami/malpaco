@@ -1,0 +1,35 @@
+Closes #184. Includes independently reviewed #187 development-watch fix; PR #190 has no separate final CI run.
+
+The geographic game prepares the approved coastline/region drawing in a Worker before mounting. Paint and hit testing share that drawing; cancelled/failed loads preserve the prior match. Source80 adds exact-output scratch allocation and parent-proved saturated-label optimizations, retaining drawing constants/version, gameplay, saves, RNG and original five-second assertions.
+
+**Current local functional validation passes in the pinned Playwright container: 166/166 extracted cases.** The corrected provider still requires the separately authorized independent Kimi correction review and green combined final-head CI. This PR remains draft; no0.1.0 tag/release exists.
+
+Scope: geographic host/map/file-load activation;0.1.0 metadata/play instructions; exact-output pure provider performance correction; reviewed Vite cache exclusion/harness guard; immutable original provenance and complete success/failure evidence. No test/helper/deadline or CI-policy relaxation.
+
+Current runtime provider SHA256:80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d. Actual npm/package runtime input authority and truthful package BUILD:8d669a275e9130134a3052239aa8abaefbf0c50c. Container validation checkpoint:efbe7d389c6af59f58d9c54f7219a3337457b4d3. Complete results checkpoint:893069e40e789a5bce4fd613b1ced871b572dfbc.
+
+```
+Exact current-vs8d working/Gitblob/mode reuse verification
+  exit0;968runtime/test/tool/config/frozen inputs;all10package hashes/modes unchanged
+npm test (actual8d run, reused by those equalities; not repeated)
+  exit0;818/818Vitest across60files +9/9harness
+Static package acceptance (actual8d run, unchanged package reused)
+  exit0;typecheck/build/package;10files/9checksums/4HTTPpaths
+Three real-Worker controls in pinned container
+  exit0;native/genuinepaused/pageCPU2x, original5000ms cold/warm checks +Newgame
+  full Worker input/output/cache identity exact;12.363s
+13 affected extracted specs, both desktops, workers2/retries0
+  exit0;166passed/0failed/0retry;341.730s
+Small committed production provenance proof at893069e4
+  exit0;3.188s;zero mismatches
+```
+
+Pinned environment:installed mcr.microsoft.com/playwright:v1.63.0-noble,image sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27; nonroot/networknone, read-only source/artifact, only new evidence writable, private1GiBshm. The standalone diagnostic's initial setup PNG/twoRAF is not injected into canonical acceptance tests. Host-native minimal static probes still fail, while unchanged container smoke passes; no remote-only cause or host/Windows portability success is claimed.
+
+Package archive SHA256:70592c4cc41ab5aa0b4b3d1baf5d191252c6204f7d6d14176f694d2ab13b163d. Actual canonical Worker HTTP200 matches6139-byte DbrcvUpT asset/c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac. No rebuild/install/npm repeat during container acceptance. All17,530protected inputs and inventoried ignored outputs remain exact; container/servers/browsers/unit/monitor closed.
+
+[Full current report and raw result tree](https://github.com/diegoami/malpaco/blob/893069e40e789a5bce4fd613b1ced871b572dfbc/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/REPORT.md).
+
+Historical results remain separate:cb8/source591's165/166 failure, original finalCI39168930877's289/344 browser result, failed rounding proof, nativeNewgame/initial-PNG/static environment failures and allocation-only9.208% failed benefit gate are not relabeled. Earlier provider review does not approve source80. Evidence limitation#189 remains: prior ignored compact screenshot originals may have been overwritten; new backups do not recover them. Fresh host-resumption DEBUG was not persisted; container rawDEBUG/results/PNG are retained.
+
+Owner approved the unchanged drawing appearance/pacing in comment6255060460. Main still owns current main-note reconciliation, new independent Kimi correction review, final playable judgment, one combined exact-head greenCI/fresh merge key, exact tested artifact audit and publication after acceptance. Broader generation#181 stays after0.1.x. No paid review/CI/merge/tag/publication was run by this implementer.

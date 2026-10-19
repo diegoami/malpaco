@@ -54,3 +54,7 @@ Historical screenshot fallback originals remain UNPROVEN from the old omitted en
 ## Handoff
 
 Current functional evidence is positive in the pinned Linux container; host-native environment still fails the tiny unchanged static probe. No Windows/host portability success is claimed. Parent owns maina1da82bc notes/relocation reconciliation, separately authorized independent Kimi correction review, owner final look/pacing judgment, one combined exact-head greenCI/fresh merge key, exact tested artifact audit and publication. PR stays draft/notrelease-ready. Production proof result and final result-commit handoff are recorded in the stage proof receipt/final message; no additional heavy rerun is requested.
+
+### Small committed production proof result
+
+After complete positive result checkpoint893069e40e789a5bce4fd613b1ced871b572dfbc was committed/pushed, the one small production proof exited0 in3.188254s with zero mismatches. proof/result.json and raw stdout retain exact argv/head/verifierSHA9fb94de46c9591050374ff9a398079261f0e819c5fd5644cac8c5f4aed88336b and active-adoptionSHAc61ac430bfeaf7101e5cec877324bf024e1c25602f085cec102fb402f804b561. Active production verifier/metadata/docs are unchanged after that proof; the final evidence handoff adds only owned receipts/report/manifest/PRbody and append-notes. No repeated heavy check or proof attempt followed.
