@@ -11,6 +11,7 @@ function button(id: string, label: string, disabled: boolean, click: () => void,
 /** Disposable controls capture a revision. Detached controls cannot act on a later state. */
 export class BattleView {
   readonly el = h("section", { class: "battle-controls", role: "region", "aria-label": "Battle controls" });
+  private captureDraftKey: string | null = null;
 
   constructor(private readonly controller: BattleController) {}
 
@@ -18,6 +19,9 @@ export class BattleView {
     const { state, from, to, revision } = view;
     const focused = this.el.contains(document.activeElement) ? document.activeElement?.id : undefined;
     const pending = state.pendingCapture;
+    const captureKey = pending ? `${state.history.length}:${pending.from}:${pending.to}` : null;
+    const captureDraft = captureKey === this.captureDraftKey ? this.el.querySelector<HTMLInputElement>("#capture-amount")?.value : undefined;
+    this.captureDraftKey = captureKey;
     const inBattlePhase = state.phase === "attack" || state.phase === "capture";
     this.el.hidden = !inBattlePhase && view.lastOutcome === null;
     this.el.dataset["historyCount"] = String(state.history.length);
@@ -68,7 +72,7 @@ export class BattleView {
     const children: HTMLElement[] = [h("h2", { class: "battle-title" }, "Battle"), context, settings, help, controls, result, tally];
     if (view.rolls.length) children.push(rolls);
     if (pending) {
-      const amount = h("input", { id: "capture-amount", type: "number", min: pending.min, max: pending.max, step: 1, value: String(pending.defaultAmount), "aria-describedby": "capture-help" });
+      const amount = h("input", { id: "capture-amount", type: "number", min: pending.min, max: pending.max, step: 1, value: captureDraft ?? String(pending.defaultAmount), "aria-describedby": "capture-help" });
       const choose = (value: number) => { amount.value = String(Math.max(pending.min, Math.min(pending.max, value))); };
       const capture = h("section", { class: "capture-choice", "aria-label": "Capture move-in" },
         h("h3", {}, "Move armies into the capture"),
