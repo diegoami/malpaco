@@ -1,0 +1,28 @@
+✔ gate CLI exits from actual classification, mode and verification conclusions (175.313947ms)
+✔ Git CLI uses NUL paths without executing shell syntax and refuses control characters (137.018347ms)
+✔ Git CLI treats source-to-prose renames, deletions and malformed events conservatively (199.069973ms)
+✔ verifier Git reads an ownership-mismatched checkout without trusting another checkout (71.632398ms)
+✔ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (225.48324ms)
+ℹ retained temporary Git fixture /tmp/malpaco-t91-git-zSg9nd
+✔ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (201.881951ms)
+✔ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (149.105201ms)
+✔ allowlist: known prose additions/modifications alone take lightweight validation (1.164786ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (1.22488ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.247154ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.183574ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.161871ms)
+✔ uncertain: deletion and unsupported statuses reject without relying on a previous filename (0.133081ms)
+✔ review R1: all mandatory validation steps run unconditionally and cannot hide failures (1.025406ms)
+✔ review R2: browser commands equal the complete asserted suites without any extra flags (0.591493ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.983119ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.55604ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.27196ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (4.03367ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 646.795338

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {scopedGit} from './git.mjs';
 import {spawnSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {appendFileSync, existsSync, lstatSync, readFileSync, readlinkSync, writeFileSync, mkdirSync, mkdtempSync} from 'node:fs';
@@ -15,9 +16,10 @@ const receipt = {schemaVersion:1, evidence:relative(root,evidence), commands:[],
 function save(name, value) { writeFileSync(join(evidence,name), typeof value === 'string' ? value : JSON.stringify(value,null,2)+'\n', {flag:'wx'}); }
 function run(name, executable, args, env=process.env) {
   const start = Date.now();
-  const result = spawnSync(executable,args,{cwd:root,encoding:'utf8',env,maxBuffer:64*1024*1024});
+  const options = {cwd:root,encoding:'utf8',env,maxBuffer:64*1024*1024};
+  const result = executable==='git' ? scopedGit(root,args,options) : spawnSync(executable,args,options);
   save(name+'.stdout.txt',result.stdout??''); save(name+'.stderr.txt',result.stderr??'');
-  receipt.commands.push({name,command:[executable,...args],exit:result.status,signal:result.signal,elapsedMs:Date.now()-start});
+  receipt.commands.push({name,command:executable==='git' ? ['git','-c',`safe.directory=${root}`,...args] : [executable,...args],exit:result.status,signal:result.signal,elapsedMs:Date.now()-start});
   assert.equal(result.status,0,`${name} failed; retained ${relative(root,evidence)}: ${result.error?.message??result.stderr}`);
   return result.stdout;
 }
@@ -37,7 +39,7 @@ try {
   assert.match(workflow,/CI_MODE: \$\{\{ needs\.plan\.outputs\.mode \}\}/);
   assert.match(workflow,/VERIFICATION_RESULT: \$\{\{ needs\.verify\.result \}\}/);
 
-  const head = run('head','git',['-c',`safe.directory=${root}`,'rev-parse','HEAD']).trim();
+  const head = run('head','git',['rev-parse','HEAD']).trim();
   if (process.env.GITHUB_SHA) assert.equal(head,process.env.GITHUB_SHA,'Checkout must match the workflow event SHA');
   receipt.head = head;
   const format = run('object-format','git',['rev-parse','--show-object-format']).trim();
@@ -123,7 +125,7 @@ try {
   receipt.passed=false;receipt.error=error.stack;console.error(error.stack);process.exitCode=1;
 } finally {
   save('receipt.json',receipt);
-  const names=spawnSync('git',['status','--short'],{encoding:'utf8',cwd:root}).stdout;
+  const names=scopedGit(root,['status','--short'],{encoding:'utf8'}).stdout;
   save('working-tree.txt',names??'');
   console.log(`Verification evidence: ${relative(root,evidence)}`);
 }

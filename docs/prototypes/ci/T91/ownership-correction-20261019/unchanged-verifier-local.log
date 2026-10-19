@@ -1,0 +1,11 @@
+AssertionError [ERR_ASSERTION]: Retained input differs from Git HEAD: RUN-NOTES.md; commit source changes before verification
++ actual - expected
+
++ 'dc382d9bbef5d19147426983f8064539024633af'
+- '33e34699ad19370b2686020561a65e28520a8b86'
+
+    at file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tools/ci/verify.mjs:56:12
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+Verification evidence: docs/prototypes/ci/T91/runs/verify-SOZXso

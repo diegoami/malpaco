@@ -45,6 +45,12 @@ workflow wiring, audits sparse inputs, then calls the existing
 `package:playable`, whose normal build includes both type checks and Vite.
 There is no stale-dist shortcut or separate routine build.
 
+All verifier Git invocations pass `-c safe.directory=<checkout root>` through
+`tools/ci/git.mjs`. This handles the pinned container running as another user
+without changing global Git configuration or trusting unrelated checkouts.
+The regression checks real Git ownership rejection, every verifier read and
+its final status capture.
+
 Acceptance extracts into a fresh directory outside the checkout, verifies archive
 paths, SHA-256 inventory and HTTP assets, and checks the bundled launcher. The
 verifier checks `BUILD.json.sourceCommit` against actual Git HEAD and, in Actions,
