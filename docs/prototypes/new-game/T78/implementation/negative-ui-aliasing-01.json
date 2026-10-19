@@ -1,0 +1,15 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/ui/workspace-state.test.ts"
+  ],
+  "started_utc": "2026-10-19T18:56:12.169488+00:00",
+  "elapsed_seconds": 1.419,
+  "native_exit": 1,
+  "output": "negative-ui-aliasing-01.txt",
+  "output_sha256": "0fb71a350818b27f74db91003d9b01bcba45423e9a791c536ec250d380559b85",
+  "source_sha256": "f0433767f0f03f328c590bdfad1f409b546d88628157c75e7d736e3d2ad8ed74",
+  "tests_sha256": "ad193088539ff97ec2d46c9c3e37a549484151092a922a766392ecaeaa18d5cf"
+}

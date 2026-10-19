@@ -1,0 +1,19 @@
+[
+  {
+    "label": "mock-npm-test-01",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "mock-build-01",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "exit": 0
+  }
+]

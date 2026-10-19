@@ -1,0 +1,15 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/ui/workspace-state.test.ts"
+  ],
+  "started_utc": "2026-10-19T18:56:09.213709+00:00",
+  "elapsed_seconds": 1.444,
+  "native_exit": 1,
+  "output": "negative-confirmation-01.txt",
+  "output_sha256": "37338e456044777e551f4533373b2281755a2874630862f4fc1791af537ddca7",
+  "source_sha256": "2f2c579cecb965b773a50d0db682fa92fd681113bd66ab113cad3d8fdb030482",
+  "tests_sha256": "ad193088539ff97ec2d46c9c3e37a549484151092a922a766392ecaeaa18d5cf"
+}

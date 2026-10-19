@@ -1,0 +1,158 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (19 tests | 6 failed) 64ms
+   ❯ T78 workspace state boundary (17)
+     × invalidates confirmation when source changes without disturbing other same-match UI 6ms
+     × invalidates confirmation when target changes without disturbing other same-match UI 1ms
+     × invalidates confirmation when cleared source changes without disturbing other same-match UI 1ms
+     × invalidates confirmation when cleared target changes without disturbing other same-match UI 1ms
+     × does not retain confirmation for an incomplete unchanged pair 1ms
+     × clears stale match drafts and confirmation even when a replacement has the same pair 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when source changes without disturbing other same-match UI
+AssertionError: expected { from: 'province_3', …(2) } to deeply equal { from: 'province_3', …(2) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
++   "confirmed": true,
+    "from": "province_3",
+    "to": "province_2",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:23
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                       ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when target changes without disturbing other same-match UI
+AssertionError: expected { from: 'province_1', …(2) } to deeply equal { from: 'province_1', …(2) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
++   "confirmed": true,
+    "from": "province_1",
+    "to": "province_4",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:23
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                       ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when cleared source changes without disturbing other same-match UI
+AssertionError: expected { from: null, to: 'province_2', …(1) } to deeply equal { from: null, to: 'province_2', …(1) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
++   "confirmed": true,
+    "from": null,
+    "to": "province_2",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:23
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                       ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when cleared target changes without disturbing other same-match UI
+AssertionError: expected { from: 'province_1', to: null, …(1) } to deeply equal { from: 'province_1', to: null, …(1) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
++   "confirmed": true,
+    "from": "province_1",
+    "to": null,
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:23
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                       ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > does not retain confirmation for an incomplete unchanged pair
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/ui/workspace-state.test.ts:72:81
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+     71|   const s={...customized(),attack:{from:'province_1',to:null,confirmed…
+     72|   expect(api.reconcileWorkspace(s,context('province_1',null)).attack.c…
+       |                                                                                 ^
+     73|  });
+     74|  it('clears stale match drafts and confirmation even when a replacemen…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > clears stale match drafts and confirmation even when a replacement has the same pair
+AssertionError: expected { …(7) } to deeply equal { …(7) }
+
+- Expected
++ Received
+
+@@ -1,8 +1,8 @@
+  {
+    "attack": {
+-     "confirmed": false,
++     "confirmed": true,
+      "from": "province_1",
+      "to": "province_2",
+    },
+    "camera": {
+      "x": 0,
+
+ ❯ tests/ui/workspace-state.test.ts:76:16
+     74|  it('clears stale match drafts and confirmation even when a replacemen…
+     75|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,conte…
+     76|   expect(next).toEqual({...defaults(),matchGeneration:1,attack:{from:'…
+       |                ^
+     77|  });
+     78|  for(const fixture of legalFixtures())it(`round-trips ${fixture.name} …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 13 passed (19)
+   Start at  20:56:09
+   Duration  1.01s (import 66%, transform 27%, tests 7%)
+

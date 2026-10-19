@@ -1,0 +1,73 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (19 tests | 1 failed) 82ms
+   ❯ T78 workspace state boundary (17)
+     × clears stale match drafts and confirmation even when a replacement has the same pair 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > clears stale match drafts and confirmation even when a replacement has the same pair
+AssertionError: expected { …(7) } to deeply equal { …(7) }
+
+- Expected
++ Received
+
+@@ -3,28 +3,28 @@
+      "confirmed": false,
+      "from": "province_1",
+      "to": "province_2",
+    },
+    "camera": {
+-     "x": 0,
+-     "y": 0,
+-     "zoom": 1,
++     "x": 42,
++     "y": -18,
++     "zoom": 2.5,
+    },
+    "drafts": {
+-     "capture": "",
+-     "move": "",
+-     "threshold": "",
++     "capture": "-",
++     "move": "3e",
++     "threshold": "999999999999999999999",
+    },
+-   "focus": null,
++   "focus": "attack-button",
+    "histories": {
+      "battle": {
+-       "followLatest": true,
+-       "scrollTop": 0,
++       "followLatest": false,
++       "scrollTop": 120,
+      },
+      "events": {
+-       "followLatest": true,
+-       "scrollTop": 0,
++       "followLatest": false,
++       "scrollTop": 70,
+      },
+    },
+    "matchGeneration": 1,
+-   "surface": null,
++   "surface": "cards",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:76:16
+     74|  it('clears stale match drafts and confirmation even when a replacemen…
+     75|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,conte…
+     76|   expect(next).toEqual({...defaults(),matchGeneration:1,attack:{from:'…
+       |                ^
+     77|  });
+     78|  for(const fixture of legalFixtures())it(`round-trips ${fixture.name} …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 passed (19)
+   Start at  20:56:11
+   Duration  1.01s (import 65%, transform 26%, tests 9%)
+

@@ -1,0 +1,38 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (20 tests | 1 failed) 92ms
+   ❯ T78 confirmation prerequisite (1)
+     × keeps an unchanged complete staged pair unconfirmed 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 confirmation prerequisite > keeps an unchanged complete staged pair unconfirmed
+AssertionError: expected { from: 'province_1', …(2) } to deeply equal { from: 'province_1', …(2) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
++   "confirmed": true,
+    "from": "province_1",
+    "to": "province_2",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:144:58
+    142|  it('keeps an unchanged complete staged pair unconfirmed',()=>{
+    143|   const state=deepFreeze({...customized(),attack:{from:'province_1',to…
+    144|   expect(api.reconcileWorkspace(state,context()).attack).toEqual({from…
+       |                                                          ^
+    145|  });
+    146| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 19 passed (20)
+   Start at  21:07:12
+   Duration  1.89s (import 59%, transform 35%, tests 5%)
+
