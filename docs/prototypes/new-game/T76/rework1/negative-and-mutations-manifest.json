@@ -1,0 +1,701 @@
+{
+  "archiveSha256": "afd820b2edd52f89ab5eb2f9ddbee21953b62e478d7634541637223eefdc4601",
+  "files": [
+    {
+      "path": "rework1/check.py",
+      "sha256": "44bcca04a665823d53e89e9eb44950e9301a8f1da94db8f5e5bf763895a949f5",
+      "bytes": 2545,
+      "mode": 420
+    },
+    {
+      "path": "rework1/check02.py",
+      "sha256": "0c47676f2fe7adae5e52f1e787c638c9574dd4872317ba511f5ca9eec15bcfc5",
+      "bytes": 2547,
+      "mode": 420
+    },
+    {
+      "path": "rework1/checks-unit.log",
+      "sha256": "9ff29fcc39e31358b5901efb4ff509bc465caa28a06c7b2937ff6f60b03e9b9a",
+      "bytes": 705,
+      "mode": 436
+    },
+    {
+      "path": "rework1/checks02-unit.log",
+      "sha256": "7daada41aa779cf4b2c245a4074434737af3bead60fb2ace7d3507c4ae2dd40c",
+      "bytes": 320,
+      "mode": 436
+    },
+    {
+      "path": "rework1/full.py",
+      "sha256": "29695287d12f219dd9e5cbacb8435a2ed5c879aa6a459d589c9b2db3dc3549e7",
+      "bytes": 1065,
+      "mode": 420
+    },
+    {
+      "path": "rework1/mutation-originals/capture.source",
+      "sha256": "c53592df8465e4f1264392a6a8dbd6621d24d2cbebee7c3cacd1402f3230f7de",
+      "bytes": 8420,
+      "mode": 436
+    },
+    {
+      "path": "rework1/mutation-originals/friendly-draft.source",
+      "sha256": "1c27b8bfc4c3d9952b6690fd80d5dfd33e864d9c323f72bf65945bbfb65b951a",
+      "bytes": 3995,
+      "mode": 436
+    },
+    {
+      "path": "rework1/mutation-originals/friendly-focus.source",
+      "sha256": "1c27b8bfc4c3d9952b6690fd80d5dfd33e864d9c323f72bf65945bbfb65b951a",
+      "bytes": 3995,
+      "mode": 436
+    },
+    {
+      "path": "rework1/mutation-originals/history.source",
+      "sha256": "170eaa7dde040dfa625f88cbbe997dd569ddc9c8cf767c2010685a99e49bca42",
+      "bytes": 11989,
+      "mode": 436
+    },
+    {
+      "path": "rework1/mutation-results.json",
+      "sha256": "3fdf480565afee2cd9002a3574b7568ea77eebde8415b30d10e53f605a24902d",
+      "bytes": 2243,
+      "mode": 436
+    },
+    {
+      "path": "rework1/r1-negative-unit.log",
+      "sha256": "24501d2ffae7049ce3ff8271ec8bf8de9bdb1771840c3f9940dd3d9684b3724f",
+      "bytes": 21,
+      "mode": 436
+    },
+    {
+      "path": "rework1/r1-negative02-unit.log",
+      "sha256": "c3b8f8e3d9bb590c460c915132c0a1fdf84e034d8bc9a4d56a9c715b39659796",
+      "bytes": 23,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-capture/browser/.last-run.json",
+      "sha256": "be36049d5c1305b2b8ea17c5f05d201478fe2dd6e09d0499fdd3f642220b6f93",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-capture/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/error-context.md",
+      "sha256": "9dfcbdb5c7b0cb1e28f311664306b23542adabac7bd3344980bd5d7eb738f65a",
+      "bytes": 20770,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-capture/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/error-context.md",
+      "sha256": "9dfcbdb5c7b0cb1e28f311664306b23542adabac7bd3344980bd5d7eb738f65a",
+      "bytes": 20770,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-capture/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/error-context.md",
+      "sha256": "fe4565cf8c01ca7be82057cb89c77b65d2936ced125ab582294faa4d9df26d8d",
+      "bytes": 20764,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-capture/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/error-context.md",
+      "sha256": "fe4565cf8c01ca7be82057cb89c77b65d2936ced125ab582294faa4d9df26d8d",
+      "bytes": 20764,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-capture/command.json",
+      "sha256": "429cfd63f9595c7da24fbe4269ca5140b6becb4456d6670336382a76f2519fd5",
+      "bytes": 2547,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-capture/raw.log",
+      "sha256": "4f4ab364924daf2437648b061639eae8ea9915a077c3284a4ca3242154ca34a0",
+      "bytes": 11857,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-capture/receipt.json",
+      "sha256": "cc0c5d88ca3544c2d1320edc59dd7110c102137b8947cdced2407b166a9f6deb",
+      "bytes": 958,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-capture/results.json",
+      "sha256": "6e4f28792044ba32d07b2f641457cd0bd7f9318035028d784cfb0d501048f055",
+      "bytes": 36078,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/browser/.last-run.json",
+      "sha256": "0678e91e04bde790f907656a2ae528f0a6709b405e498a60b73c4e80109bb980",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/error-context.md",
+      "sha256": "8b6caffb9723c9fc9a211be22638e90defef8e3fe02a309ce43f0e1c1b9cf359",
+      "bytes": 20201,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/error-context.md",
+      "sha256": "8b6caffb9723c9fc9a211be22638e90defef8e3fe02a309ce43f0e1c1b9cf359",
+      "bytes": 20201,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/error-context.md",
+      "sha256": "62f9c9fbb043328d6faf23c40f1ae64dcd35359a42713760188d7734f01c3afb",
+      "bytes": 20200,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/error-context.md",
+      "sha256": "62f9c9fbb043328d6faf23c40f1ae64dcd35359a42713760188d7734f01c3afb",
+      "bytes": 20200,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/command.json",
+      "sha256": "c747bbc04bbcea97cb7fe236c9f2d9f43a3c7c87ae71259bcb7245c2c972c360",
+      "bytes": 2598,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/raw.log",
+      "sha256": "19229abe92a1e504c80cf6297be09127fd96873be55220cc924b172581fc8c7b",
+      "bytes": 7253,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/receipt.json",
+      "sha256": "c8ff222aff2963b1f10b0862194e12e3ec2c496275ee2a9cae86f8feb8da229a",
+      "bytes": 959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-friendly-draft/results.json",
+      "sha256": "3120ec531001e2752dbf21da0ade68d2ee2273407cc7ef0ff117885e4dd5a55a",
+      "bytes": 26832,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/browser/.last-run.json",
+      "sha256": "0678e91e04bde790f907656a2ae528f0a6709b405e498a60b73c4e80109bb980",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/error-context.md",
+      "sha256": "91eea76df7e48b2021ceef7ca1a16b5e3901102cdb68532f7983dc2419642570",
+      "bytes": 20252,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/error-context.md",
+      "sha256": "91eea76df7e48b2021ceef7ca1a16b5e3901102cdb68532f7983dc2419642570",
+      "bytes": 20252,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/error-context.md",
+      "sha256": "cc881232f14531511623003b4641de941d81e8ea49f3822d1e7a5c41d933bb06",
+      "bytes": 20251,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/error-context.md",
+      "sha256": "cc881232f14531511623003b4641de941d81e8ea49f3822d1e7a5c41d933bb06",
+      "bytes": 20251,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/command.json",
+      "sha256": "c9ed037765bb20fba7258d0d728e549d8c9258064313538d9d82d5863a3cf6c1",
+      "bytes": 2598,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/raw.log",
+      "sha256": "a5b511d4a46f6ddb099339fd974bba9fdbfae7c95ef68150239e37d818e20ea0",
+      "bytes": 7489,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/receipt.json",
+      "sha256": "f3671b1651442bf4ff6ec6603a210ddda1c04588baa3b036e75a44b70d623b33",
+      "bytes": 959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-friendly-focus/results.json",
+      "sha256": "83fff825c5eceb730deb470a29bc4a997e289c2de4bc55ac47ee312abeeaedca",
+      "bytes": 26559,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-history/browser/.last-run.json",
+      "sha256": "ad5845cee5db9ab441445c5d2781fab162c41fbb3eeb101ba2ae8f754a4cd835",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-history/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1280x800/error-context.md",
+      "sha256": "0000351594d7d1706ce3dade4755b96eb2793ba3bee3dbc89bbc98a5ad00765b",
+      "bytes": 41718,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-history/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1920x1080/error-context.md",
+      "sha256": "0000351594d7d1706ce3dade4755b96eb2793ba3bee3dbc89bbc98a5ad00765b",
+      "bytes": 41718,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-history/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1280x800/error-context.md",
+      "sha256": "4f3936b63e12329b6b72c79dd7cd3d44f62e57b3342d17a195e7d992802728c9",
+      "bytes": 42272,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-history/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1920x1080/error-context.md",
+      "sha256": "4f3936b63e12329b6b72c79dd7cd3d44f62e57b3342d17a195e7d992802728c9",
+      "bytes": 42272,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-mutant-history/command.json",
+      "sha256": "86ec1a708596b5655bb16b7a9ff6aaa726a475cd219d101019016cf1ccbdee47",
+      "bytes": 2547,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-history/raw.log",
+      "sha256": "72fc834732dd842175ac28319ecc4aea4328f3adcb4b96bd00700b6079e0c239",
+      "bytes": 6959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-history/receipt.json",
+      "sha256": "684882608a43ec5483a7c2168792806d86dde055e88957d4162efd5a764daed5",
+      "bytes": 958,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-mutant-history/results.json",
+      "sha256": "223c9aeb19e00188a321f152c8dfdbb1a3e49ef5b8f214d58006aee6360ec4ce",
+      "bytes": 23929,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/.last-run.json",
+      "sha256": "fe93fabd44941124e7661e1dc73f0862c947456e3d463f8aa8a7651019724338",
+      "bytes": 145,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "30820b5490daeeb0540425fea1d6d2890e36280b082c157095c214eaa579846e",
+      "bytes": 225820,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "150c7b62b39a4105e3461c0a7030be48e057890dd7da0c67185c38ce215d9c66",
+      "bytes": 390278,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/geographic-friendly-redraw.png",
+      "sha256": "5040660f20d905cbac96f75b1c77033945238f3496ee0b658dafc881ec90a0f6",
+      "bytes": 226221,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/geographic-friendly-redraw.png",
+      "sha256": "6fe5921dad84a6eef0f2deb0ddccbd9aa006b247d2667868ba45f1fb7b91822f",
+      "bytes": 361923,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1280x800/geographic-visible-sidebar-history.png",
+      "sha256": "c1714091ab60d85d8ab5c98b6c64cc38595bd5559d1487facb3a03227bf7e2ea",
+      "bytes": 223893,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1920x1080/error-context.md",
+      "sha256": "2f9deb2089a9bb4474f5559b45cd55771e52146ebb03efb1851ede7d3fa6f016",
+      "bytes": 39970,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "14372ac273189b60818bca832cdf0ca612e7bd81c43cf863a8339b433381a56e",
+      "bytes": 270733,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "64f542f3c567d4c81683c3bfdaae7a453a12379864d0a40577677d6f6e2214d2",
+      "bytes": 479554,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/reference-friendly-redraw.png",
+      "sha256": "4855e7a704e9b423e2c981d7437c03b3cc18f62acd91a62031b4ea92891738d3",
+      "bytes": 268884,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/reference-friendly-redraw.png",
+      "sha256": "fb08b4d4518b7a8debcf56e2713148e6c73c8bd1d035220a5141dbfc09e47033",
+      "bytes": 439934,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1280x800/reference-visible-sidebar-history.png",
+      "sha256": "d4ab877176c2dba1939e31de3926cd2d164286fbe31e3296daf70954f09805ee",
+      "bytes": 259726,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1920x1080/error-context.md",
+      "sha256": "0a7b722f912883ef5a4c7041323f0c66a8e21ecef013c7a632654018bfaff7b5",
+      "bytes": 40605,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive/command.json",
+      "sha256": "8237eea9acc0d74e3165512b6e3ac3223e990ba5ff9b23b4deaf4ece71f6721b",
+      "bytes": 2533,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-positive/raw.log",
+      "sha256": "94042a0ab2b4b02532161f4258cef8e40750dcdbfeea15d437b5377b44d82b00",
+      "bytes": 4404,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-positive/receipt.json",
+      "sha256": "78dce81a6e1c98f47f05d893596b6837f5f6aa1bab39c377954b129fe520aca0",
+      "bytes": 959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-positive/results.json",
+      "sha256": "3152d07759aae7c97aec94fc19ee1298107fcb792258d2c3fd04225254860210",
+      "bytes": 22876,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "30820b5490daeeb0540425fea1d6d2890e36280b082c157095c214eaa579846e",
+      "bytes": 225820,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "150c7b62b39a4105e3461c0a7030be48e057890dd7da0c67185c38ce215d9c66",
+      "bytes": 390278,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/geographic-friendly-redraw.png",
+      "sha256": "5040660f20d905cbac96f75b1c77033945238f3496ee0b658dafc881ec90a0f6",
+      "bytes": 226221,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/geographic-friendly-redraw.png",
+      "sha256": "6fe5921dad84a6eef0f2deb0ddccbd9aa006b247d2667868ba45f1fb7b91822f",
+      "bytes": 361923,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1280x800/geographic-visible-sidebar-history.png",
+      "sha256": "c1714091ab60d85d8ab5c98b6c64cc38595bd5559d1487facb3a03227bf7e2ea",
+      "bytes": 223893,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1920x1080/geographic-visible-sidebar-history.png",
+      "sha256": "c5fa998ee03a2095314317269eebd4ae3b26162856a552a6ee10851a7c6e38e0",
+      "bytes": 375208,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "14372ac273189b60818bca832cdf0ca612e7bd81c43cf863a8339b433381a56e",
+      "bytes": 270733,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "64f542f3c567d4c81683c3bfdaae7a453a12379864d0a40577677d6f6e2214d2",
+      "bytes": 479554,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/reference-friendly-redraw.png",
+      "sha256": "4855e7a704e9b423e2c981d7437c03b3cc18f62acd91a62031b4ea92891738d3",
+      "bytes": 268884,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/reference-friendly-redraw.png",
+      "sha256": "fb08b4d4518b7a8debcf56e2713148e6c73c8bd1d035220a5141dbfc09e47033",
+      "bytes": 439934,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1280x800/reference-visible-sidebar-history.png",
+      "sha256": "d4ab877176c2dba1939e31de3926cd2d164286fbe31e3296daf70954f09805ee",
+      "bytes": 259726,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1920x1080/reference-visible-sidebar-history.png",
+      "sha256": "1a8c0b0657244d1469a5993b7f3697a9a9a8c4ef2e04faeae5f5bc4e179f90a6",
+      "bytes": 450055,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-positive02/command.json",
+      "sha256": "23f3c1697a22b4e226858ddde8004f7d142fb56233191bc2bb8e5fd6fca171d9",
+      "bytes": 2547,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-positive02/raw.log",
+      "sha256": "c98671f24e38c457e37afb1a710547569b527143c64dbb49a8bf87db52c8d509",
+      "bytes": 1917,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-positive02/receipt.json",
+      "sha256": "3b73a74f68989c9f5c4a484228afac9fd03f302c46fd30b849b02767bb16cd74",
+      "bytes": 959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-positive02/results.json",
+      "sha256": "795d7a02cc42e601ad7dacf092af2f50a7f235f4e943f56ddf13bab1c0491757",
+      "bytes": 15955,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/.last-run.json",
+      "sha256": "bf4aaecc3cc6cc34d647c46307ab39e6eba2ce4a206d2ec37e83a1e4bad9c2f0",
+      "bytes": 341,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "30820b5490daeeb0540425fea1d6d2890e36280b082c157095c214eaa579846e",
+      "bytes": 225820,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "150c7b62b39a4105e3461c0a7030be48e057890dd7da0c67185c38ce215d9c66",
+      "bytes": 390278,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/geographic-friendly-redraw.png",
+      "sha256": "5b8cb888377c5c2dac777d367599225aeeca9b011031d2352722f7e294dacf78",
+      "bytes": 223783,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/geographic-friendly-redraw.png",
+      "sha256": "634810f822a200ffe22025549392434c1df731333503029c079c1d6e22a22645",
+      "bytes": 353694,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1280x800/error-context.md",
+      "sha256": "8a7efa84484430b74ff2278c11334b98513120957cfa442b07861c3adc3db49a",
+      "bytes": 40624,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1920x1080/error-context.md",
+      "sha256": "2ad305cf2a7f27e0dc2bcec5071ce25a430237bca00d952c9ce98a45f30fced2",
+      "bytes": 39105,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "14372ac273189b60818bca832cdf0ca612e7bd81c43cf863a8339b433381a56e",
+      "bytes": 270733,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "64f542f3c567d4c81683c3bfdaae7a453a12379864d0a40577677d6f6e2214d2",
+      "bytes": 479554,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/error-context.md",
+      "sha256": "7884491212a99faafb7d2514be06afd4dbc164f6d5eac952f1e779fcd6ab47bf",
+      "bytes": 20896,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/error-context.md",
+      "sha256": "7884491212a99faafb7d2514be06afd4dbc164f6d5eac952f1e779fcd6ab47bf",
+      "bytes": 20896,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1280x800/error-context.md",
+      "sha256": "6e0780fdad48f356f0e2d9d0045ae0ac64cd4595ceb8e0017b9c6aec3e765ada",
+      "bytes": 41178,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1920x1080/error-context.md",
+      "sha256": "64b38a63c6bea8d2359eb4b3084a81f39b3c445d7b97c3f20833263c407bb7ff",
+      "bytes": 39740,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative/command.json",
+      "sha256": "30a3702346b476592dda044b17b92ee8d62ebbaf6d028704ccd718f88e5bfed1",
+      "bytes": 2554,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-r1-negative/raw.log",
+      "sha256": "cac97b5b34a50627c9bc984075d28a18f622deac7c8e5b93cd91631cae1761f6",
+      "bytes": 10411,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-r1-negative/receipt.json",
+      "sha256": "1368e062875533a6bd5b299dd5d9dde273cd28dd1bf28324ef4d0fd9c8dbe4e9",
+      "bytes": 958,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-r1-negative/results.json",
+      "sha256": "a9384c4649ebb2c15d66603f89d7a9265c6f3a1e5659ed693c308c8cdd612ba1",
+      "bytes": 39008,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/.last-run.json",
+      "sha256": "ad5845cee5db9ab441445c5d2781fab162c41fbb3eeb101ba2ae8f754a4cd835",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "30820b5490daeeb0540425fea1d6d2890e36280b082c157095c214eaa579846e",
+      "bytes": 225820,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "150c7b62b39a4105e3461c0a7030be48e057890dd7da0c67185c38ce215d9c66",
+      "bytes": 390278,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/geographic-friendly-redraw.png",
+      "sha256": "d74a47d39e10b460cc55980672f73e27c882be94684495df916e1e1641a26ab3",
+      "bytes": 226227,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/geographic-friendly-redraw.png",
+      "sha256": "6fe5921dad84a6eef0f2deb0ddccbd9aa006b247d2667868ba45f1fb7b91822f",
+      "bytes": 361923,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1280x800/error-context.md",
+      "sha256": "314dd05e1867ac46345d980a02a5b6a67201401b6251f2bae2c80f64e24aa17f",
+      "bytes": 41487,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1920x1080/error-context.md",
+      "sha256": "314dd05e1867ac46345d980a02a5b6a67201401b6251f2bae2c80f64e24aa17f",
+      "bytes": 41487,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "14372ac273189b60818bca832cdf0ca612e7bd81c43cf863a8339b433381a56e",
+      "bytes": 270733,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "64f542f3c567d4c81683c3bfdaae7a453a12379864d0a40577677d6f6e2214d2",
+      "bytes": 479554,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/reference-friendly-redraw.png",
+      "sha256": "4855e7a704e9b423e2c981d7437c03b3cc18f62acd91a62031b4ea92891738d3",
+      "bytes": 268884,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/reference-friendly-redraw.png",
+      "sha256": "fb08b4d4518b7a8debcf56e2713148e6c73c8bd1d035220a5141dbfc09e47033",
+      "bytes": 439934,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1280x800/error-context.md",
+      "sha256": "5d945fead402c2dd461b0efa6d45d567ac5b6035da287ceecb10ab7a78b038af",
+      "bytes": 42041,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1920x1080/error-context.md",
+      "sha256": "5d945fead402c2dd461b0efa6d45d567ac5b6035da287ceecb10ab7a78b038af",
+      "bytes": 42041,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-r1-negative02/command.json",
+      "sha256": "4206292b9796214f3747236cbf769aee8d7e1cbee81f59da684275c88cb5d9b7",
+      "bytes": 2568,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-r1-negative02/raw.log",
+      "sha256": "046acf5898556ea65a8cd4e2f4a9386999ae74fc52d306ca1740cd3a0242f66a",
+      "bytes": 7750,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-r1-negative02/receipt.json",
+      "sha256": "3ae555beca138ceccab877375b1c610ca593973f042102d773ba193c5ed599a3",
+      "bytes": 959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-r1-negative02/results.json",
+      "sha256": "feecd1d4716fbc512f15fe04ede1d4f823cd8be0a3582abf10fbdf238de222d0",
+      "bytes": 31749,
+      "mode": 420
+    }
+  ]
+}

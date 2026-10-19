@@ -1,0 +1,4179 @@
+{
+  "sourceHead": "eca9e271130da0f6d00618e9ab9d1014f619004a",
+  "review": "https://github.com/diegoami/malpaco/pull/193#issuecomment-6268161946",
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "seconds": 873.099,
+  "cliExit": 0,
+  "harnessExit": 4,
+  "verdict": "rework",
+  "scopeFormatHeld": true,
+  "toolCalls": 41,
+  "permissionDenials": 0,
+  "archiveSha256": "0ddbe32055c41c39bfa11d706436dd5b7d3b16a5ee96b998c2899b58170dc81c",
+  "archiveBytes": 165762373,
+  "parts": [
+    {
+      "file": "review-r1.tar.gz.part-000",
+      "bytes": 16777216,
+      "sha256": "dd19ab240819f8bf4f6194f2f08e04004593289011d11856d66445fa28868346"
+    },
+    {
+      "file": "review-r1.tar.gz.part-001",
+      "bytes": 16777216,
+      "sha256": "c1aeb27e92ee9b37052c3a8a4187e353d69c40a1fdab3d026b49311c0faff854"
+    },
+    {
+      "file": "review-r1.tar.gz.part-002",
+      "bytes": 16777216,
+      "sha256": "39bdfcf983ebf0c06be31e50ddb0b6d519257a647ff32ad1bbb31670777cfbcf"
+    },
+    {
+      "file": "review-r1.tar.gz.part-003",
+      "bytes": 16777216,
+      "sha256": "5e8a1c54304f7783f10208bd5c19500d1d267837c4360e1f6c939b98d76b317b"
+    },
+    {
+      "file": "review-r1.tar.gz.part-004",
+      "bytes": 16777216,
+      "sha256": "a117e64189e0f0582d022cc2860963d3143dd13e92d99eb8ab8fb8abdb509383"
+    },
+    {
+      "file": "review-r1.tar.gz.part-005",
+      "bytes": 16777216,
+      "sha256": "a933880fda11ff31ba656399fe8e3d00424290ecccb657e570f823076f1a740f"
+    },
+    {
+      "file": "review-r1.tar.gz.part-006",
+      "bytes": 16777216,
+      "sha256": "5db2a5849ddda7bc8a4b8ed888b6b14299bd58d1ea34550f7f82a8e55572e984"
+    },
+    {
+      "file": "review-r1.tar.gz.part-007",
+      "bytes": 16777216,
+      "sha256": "8916b800fa916fcab21108b03841afb9803741cdfcf0be47f15750414411a201"
+    },
+    {
+      "file": "review-r1.tar.gz.part-008",
+      "bytes": 16777216,
+      "sha256": "b509460cbe3d0ebf54857dc75bf8ccd9da5a6626c21ce50d1fd361cc3a3d9768"
+    },
+    {
+      "file": "review-r1.tar.gz.part-009",
+      "bytes": 14767429,
+      "sha256": "98cafbdaab5232d262848655b97a3e71d61b8fa0e0666fad9a7af420efe2f7fe"
+    }
+  ],
+  "members": [
+    {
+      "path": "launcher/diff-parts/00000.diff",
+      "sha256": "ac4ac491e95a19827b4f1a241364d545a0af52f667143e839a11e3d82835f327",
+      "bytes": 15320,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00001.diff",
+      "sha256": "589c62792398b3f0ef3b95bef8bad2b7466fa8d979fca8f219b16333365b82eb",
+      "bytes": 15023,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00002.diff",
+      "sha256": "cce059771c99252aabb351a719e0c5195debd7b64351d4f55a6610c75405d587",
+      "bytes": 11354,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00003.diff",
+      "sha256": "d3b2293bdeef2324b2dca00c7875c020550bc0ec1286539bc4ad15232c63694a",
+      "bytes": 11390,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00004.diff",
+      "sha256": "89514f5c4b30eaa6391a8147a9e6716e04aaad0d3f67661015a6bc8be0cc1204",
+      "bytes": 11512,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00005.diff",
+      "sha256": "dfad0306fb9996c944b776c76cff33e685bd7bc1ae037ea85dc990332d7facbf",
+      "bytes": 10039,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00006.diff",
+      "sha256": "a22390a5f73e1e955b508c8e0d8f48178899ddd0f57611b231e66e1b6f1f46db",
+      "bytes": 11004,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00007.diff",
+      "sha256": "023fee719708a9a81d637a65ccdc1edbb5e5b725b6883f2f977adbf229b77829",
+      "bytes": 9914,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00008.diff",
+      "sha256": "57e4ce0e32f79e42c2cf890e1c862c010ad3f599a9111e3745f435951b0900fa",
+      "bytes": 9384,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00009.diff",
+      "sha256": "8667d5005a9b20b4489f6c40aa2d753375261fe0fcde0f5df6af062bca1a7229",
+      "bytes": 11931,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00010.diff",
+      "sha256": "331bcec71f5dbb6fdded2c8eef8bc6802ee0b70a4fe6656d38888852ea911f9f",
+      "bytes": 11649,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00011.diff",
+      "sha256": "918549f9d11cc0597a35f1f3dc97f1776a6aab82630158b90aefc89774503f01",
+      "bytes": 11113,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00012.diff",
+      "sha256": "1b41fbc52f1f8450edce8f98e4004c810e997517b968b5f2e90543bc8deb54b7",
+      "bytes": 11056,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00013.diff",
+      "sha256": "f582a046d0f57513f6555ddb92a04cd747bbfaca68986759bd70193b4ad7252c",
+      "bytes": 9397,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00014.diff",
+      "sha256": "abb1e36cfaeb355856aa6d9f7fa5b88521b26bec9b076e9fbca0d6b076a29571",
+      "bytes": 9294,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00015.diff",
+      "sha256": "0a2f04d5c969db06582d62ddbf93153011f5aa86d04f54182dc6c61da9e531b8",
+      "bytes": 8961,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00016.diff",
+      "sha256": "3b12220213f403f5f4be6e301d8e729795e359fe887677772f65b99e0fcfd47c",
+      "bytes": 11548,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00017.diff",
+      "sha256": "9abe383d0dd3df54b2fb08c95fc00e115f19bc58c6c9f3c35f4f6cf6bcc41bcf",
+      "bytes": 11585,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00018.diff",
+      "sha256": "a17dd315efebd5534eb93dfe05f3e45b08938d40a9dfc629eb122b6617927d36",
+      "bytes": 10980,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00019.diff",
+      "sha256": "25981ed62cf2f04a676bf97b2e968f780f8eb1bc543f0a82a3b95792c5bc2a62",
+      "bytes": 10868,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00020.diff",
+      "sha256": "63c3715b2903f68643feb5fc507d14aac700f870fdabaa6ba088000db6e966dc",
+      "bytes": 9361,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00021.diff",
+      "sha256": "366267308bc2727bc4c5a5fdf2d3e395e4add9357d968b5f9efa61951150c7d1",
+      "bytes": 9142,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00022.diff",
+      "sha256": "6143fe1142d12335974fe9d7597058cdbca99f96a83d9e30d07f077c475bca75",
+      "bytes": 8470,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00023.diff",
+      "sha256": "6bfdf644e6cc7878d664e1158d8ab20147a031ae4d7c35e1a2b85c10dbba7645",
+      "bytes": 13868,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00024.diff",
+      "sha256": "a62ee9451eaf83ac8a8ca42b4603373001a249b78f0043f1ca95ef9cfa0ca49b",
+      "bytes": 15735,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00025.diff",
+      "sha256": "2c281c51dab982f1945d84fdc707f1b6583a26dac21129a299f761a209ffc581",
+      "bytes": 9045,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00026.diff",
+      "sha256": "300323644a50102ee069043aeba0ad4f272d785ece6b4229864956d4a0610207",
+      "bytes": 8031,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00027.diff",
+      "sha256": "130638a3f957e06cf5ed4f259a2b23e6a944862810f645a759d427aa44f72841",
+      "bytes": 7785,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00028.diff",
+      "sha256": "c5797b484b1f083430b9fa50d2a6c7b85d5d4b26b9b6ad4469950edba55cb471",
+      "bytes": 8136,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00029.diff",
+      "sha256": "242198cca86ac4b863cf5c49ed4c22d8e2acdeefc92a4688f8f922c936017ecb",
+      "bytes": 7634,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00030.diff",
+      "sha256": "6cb0f185edae1349e650ba781fe2a0a00d18a0437052ce2ff9eb3dff85735dc7",
+      "bytes": 8703,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00031.diff",
+      "sha256": "d64bf6d498912f3789c3c9460fe626e83d3bb442032ba2020cb44889e97a580c",
+      "bytes": 11782,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00032.diff",
+      "sha256": "e14a8f668060e13640fa56f9f24af3139b08996f5572e266b85869e45104291d",
+      "bytes": 23589,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00033.diff",
+      "sha256": "4662b51b822c8def77eca4663074a321290113d18b0b6e3cfb27ffd2176d846f",
+      "bytes": 16300,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00034.diff",
+      "sha256": "80073049f366085e717b6b6cc685c90406bb05bd027ce9d81d436bf3e196ac47",
+      "bytes": 19465,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00035.diff",
+      "sha256": "885c7da6ee2cca33319ced0ea6bef93ddc818ace6c9fb29e258bb7457382a6a0",
+      "bytes": 15089,
+      "mode": 436
+    },
+    {
+      "path": "launcher/final.md",
+      "sha256": "daa90319e55222186fcda54c1c19b05aacb47f5f042595017235969a3debb879",
+      "bytes": 8345,
+      "mode": 436
+    },
+    {
+      "path": "launcher/full.diff",
+      "sha256": "e5c6e6f229075880a2dc5cfeab319f17dd786d3185fdeea5e51c9accd312d049",
+      "bytes": 415456,
+      "mode": 436
+    },
+    {
+      "path": "launcher/inventory.json",
+      "sha256": "f4cf88d2debbdeb1a8a2c97b4f31e2cd33123c39906a6332a73f5664f786a786",
+      "bytes": 2675,
+      "mode": 436
+    },
+    {
+      "path": "launcher/prompt.md",
+      "sha256": "8b83bf92893e603862a631d6cf5c67727b41b1955046684f7c8a4726206e885d",
+      "bytes": 14519,
+      "mode": 436
+    },
+    {
+      "path": "launcher/receipt.json",
+      "sha256": "2b2aef3cd41252e2c38cd15c4d8546e9acca478506f5ffe32a41f6c7889dc639",
+      "bytes": 1898,
+      "mode": 436
+    },
+    {
+      "path": "launcher/settings.json",
+      "sha256": "e0d01fbc6932b85ded3af93117cdb6997d5e9bdf8e6589e28bdff901bbc63723",
+      "bytes": 1944,
+      "mode": 436
+    },
+    {
+      "path": "launcher/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 436
+    },
+    {
+      "path": "launcher/stdout.jsonl",
+      "sha256": "e70d57d38ef6a2894190b6f37ca0e353bb37b9ec958b3cb832bd5a31418c94ad",
+      "bytes": 714948,
+      "mode": 436
+    },
+    {
+      "path": "launcher/tmp/claude-1000/-home-diego-projects-malpaco--cache-review-worktrees-193-review-b157c705/a62e00b5-7adc-4686-b789-1f8e7121f53f/tasks/btt10n27g.output",
+      "sha256": "0ee91eb90f6ab8fb57d975dad3b0771923ca901de46da0f7e2cbde843170be1d",
+      "bytes": 2400,
+      "mode": 436
+    },
+    {
+      "path": "launcher/tmp/claude-1000/-home-diego-projects-malpaco--cache-review-worktrees-193-review-b157c705/a62e00b5-7adc-4686-b789-1f8e7121f53f/tasks/bvh0vqf9q.output",
+      "sha256": "ed7e624de30827db54957d675210de38ef8b5cb783499eb5386180a549e87ba0",
+      "bytes": 10853,
+      "mode": 436
+    },
+    {
+      "path": "checks/audit.py",
+      "sha256": "dfe00120ef57d8e5d94eb6ee9d434e6c79703f5f6be3208a4ce455c838f98f7f",
+      "bytes": 1975,
+      "mode": 436
+    },
+    {
+      "path": "checks/audit2.py",
+      "sha256": "02befc08f3a11e2f2aec30045ff6c735f186cc327eb3f0f5b83fb4cb67824be9",
+      "bytes": 1054,
+      "mode": 436
+    },
+    {
+      "path": "checks/dw1-a1/browser/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1280x800/cards-drawer.png",
+      "sha256": "b825da5a73a0c6807d3442f44e788d232ff6b2d0996d5067ee47328741e47c8c",
+      "bytes": 227675,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "sha256": "f24392310c3a7022a99f7c938148ad1b9bde08d6f5fd87804e399007841719f2",
+      "bytes": 388399,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "sha256": "336320f2d167faea5e71fcb59c0df26ac345a7f55777aac47a2a9fe86a89edbf",
+      "bytes": 224836,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "sha256": "600cb80f2a43a7862a7a8e916a32242efc37a6853103e88dfb3018bcb531e588",
+      "bytes": 206354,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "sha256": "ddb38ed88af50a4e2d695160487d905a8a3cf26ad4f36027bdf541651c086e79",
+      "bytes": 386000,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "sha256": "47e4bb931b36cbee3d7f1374d3cd96a0ffc32933a4eff1dde4eda9ed2a15e00e",
+      "bytes": 341822,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "sha256": "cfc8fa6d48de0714024b8fba8ce564a7f6bf77492f4aa046d50b6570c8e9f04c",
+      "bytes": 282707,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "sha256": "7cb1daa5eeae714bfe219621f22850cef3fee72eeaf63e89823c46a174b1069c",
+      "bytes": 244139,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "sha256": "69b9e75dd0ec7ccdf4c623d71490f34bfbf00b98f68056abee8222fb61431b77",
+      "bytes": 485415,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "sha256": "a1c875c311caa99025c0ade6c719a5cc07947c4ad85ce4dd3f0e363f406910ea",
+      "bytes": 415870,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-reference--99a05--focus-without-game-actions-1280x800/cards-drawer.png",
+      "sha256": "47ed70154f46e6c38fc8c3e843fe08278463409d69ea0f4e8cce67dd6316ff3c",
+      "bytes": 267192,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/browser/hideable-panels-reference--99a05--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "sha256": "5fa2a61e88d544d5148fbfd52be689725ece9b4d2f9545affd047b19c494d244",
+      "bytes": 467604,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw1-a1/command.txt",
+      "sha256": "c2bc032f94273e7b5c7c41b339b21850e4def579dcaee1e2fd9f291fd856e58f",
+      "bytes": 238,
+      "mode": 436
+    },
+    {
+      "path": "checks/dw1-a1/log.txt",
+      "sha256": "bfa57deee335deffa9f3399216ce76e76f2ff31d04c5f2e499ae472b151a4301",
+      "bytes": 1314,
+      "mode": 436
+    },
+    {
+      "path": "checks/dw1-a1/results.json",
+      "sha256": "4a597ab0fdc30cae96f87e17a75bad0cb58e01b8172642ca84d556c4e63f73af",
+      "bytes": 16002,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-empty.png",
+      "sha256": "328bc3ee369c23bf3f9ba29d02ca6487b921176d687cff01be4484ce55c75c48",
+      "bytes": 267822,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-hand.png",
+      "sha256": "e05dbf794890bfce60f80d6ca6ad9937e49dd5567b678d1e5fd466aa57964fd5",
+      "bytes": 268967,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running-running.png",
+      "sha256": "7fb3839d4d6b585045803e4e86962e9b9fb3cabbb47248ee2315e604d74fc5af",
+      "bytes": 262736,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running.png",
+      "sha256": "3115fc295fe0d06e2dca9a9782db681d5eb24c1e125b9464734181b7ae52a71a",
+      "bytes": 269234,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-capture.png",
+      "sha256": "2b9a7024169e61640d80834a1368de9bba99754798c7de2df99203e2c3d4bc0c",
+      "bytes": 264461,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-empty.png",
+      "sha256": "3113c4fbbfa8d8bcd8c746225293bb5b0f8e5709bc5270043ec6b789d16cec42",
+      "bytes": 269802,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-hand.png",
+      "sha256": "521e7313897427d0bf16e554cdb73911ded39c0b9a4d024c1a5120168b0193ec",
+      "bytes": 270964,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "sha256": "581daf007875e76e6c457bce12f2aea6a1ebcc5cef58c1148a4154247ba0fee7",
+      "bytes": 266691,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running.png",
+      "sha256": "4feba6a945dd68bc6e840674c674a45cd20264d95f329e7ec488e1edb4b4d1b2",
+      "bytes": 271230,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-capture.png",
+      "sha256": "8c45daccf136cb4af2e46cbf6437293f6698f5ea6594e3078c6f951c0590221f",
+      "bytes": 264255,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-compact-card-choice.png",
+      "sha256": "f9f7820d8d1178cb33eeb961de15fa326f6d0dd73164f6adcc63710229bd1dd5",
+      "bytes": 263395,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "sha256": "6773aec782a0e152e1f75e7d6fa169406921462b2aa826a907cae6b83d0a80b8",
+      "bytes": 263188,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "sha256": "a94ef76a86e181e41e663acc01cf18fe680c1a752c900e27b708fe53acae247c",
+      "bytes": 233877,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "sha256": "6532cb12f217a0a94aa6e75f39f7830e75d5ed573d0662a454cfdf800b022cda",
+      "bytes": 232145,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "sha256": "d4d5b2525fb0e82d1b2138991ac04e03eccafc2bdcac4ffdd72aa937daa4044d",
+      "bytes": 229033,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running.png",
+      "sha256": "36113f1e7fedb1bef7fc3221db9cd0afe584199e2ce01e0ab1de6caf5b20473f",
+      "bytes": 232818,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-capture.png",
+      "sha256": "ba07d201d57ccfbd32f9c8ec20405266d41757f2f39ebc551e2f3bb03fe0a9a2",
+      "bytes": 227739,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "sha256": "c56044a055b672aca4afcd29cd08a7140e93f74014af23567dad43a6fb5b0abb",
+      "bytes": 236441,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "sha256": "3b042f354f146f4360dc31eb71c16c3011c264a39b01034aa698ea76b88b7e87",
+      "bytes": 234435,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "sha256": "3238363b1a210da5c39686637ce9170376704fc7e6143b2b70d78795fdd0b628",
+      "bytes": 233553,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "sha256": "7c4667423d68401eef0416a0646d6edbb7db93427e5f8af3a148e4a8dd2a6883",
+      "bytes": 235097,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-capture.png",
+      "sha256": "2e4ee4a1b6d43c78d06cd82b3c6df3e093ea0160cdf92e4afc09f5b67b6b78c3",
+      "bytes": 227536,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "sha256": "7e3b2b0bb97dc6a1d0ec5a59555a03930cb147ff6de28ef45a63f781cd987272",
+      "bytes": 221691,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "sha256": "5d8ca09b089287d0610dc5a0f57985fffe7c3b1c46896b31d15e47c91e26cb43",
+      "bytes": 221488,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/metrics.json",
+      "sha256": "f0ca7b72cc6139426336168a4e89502b2dfe1a2030906799ef61b19c062368f0",
+      "bytes": 423474,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-empty.png",
+      "sha256": "2a59cbb345ccbc42b6ca467568048305d2e079553fb56d18834017af663c65b1",
+      "bytes": 451083,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-hand.png",
+      "sha256": "f13b79ed6aaed14d89fbde9df191253fc61a92b54f9e7c704e076a850c97fdb5",
+      "bytes": 465815,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running-running.png",
+      "sha256": "669a99dd96a86e35c9ca910b0d878c9112e19cde3b4b64ab73d22c86dac38c68",
+      "bytes": 456023,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running.png",
+      "sha256": "3faef7c459ee10f4b1a41a0f65c240fa46e27ab7c50a365de8e953f80b4cdec3",
+      "bytes": 464864,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-capture.png",
+      "sha256": "657c71eb4b07f2462b3ed3ec166f92cb97b2c54691e51ad2c0a42ce5c10182f6",
+      "bytes": 461064,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-empty.png",
+      "sha256": "bed7e304af8ad7ea1ddb39cc12bad10cc0e1f7e761ae3db3609db53535ff9546",
+      "bytes": 454139,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-hand.png",
+      "sha256": "e86fc368ebaff816158ce12cb1c9573b70ae95ec62e1366fd5daf14e02b5f1f2",
+      "bytes": 468719,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "sha256": "671c868fa8503bdd147368ebcca47dfaaf73e8e4bc82f97dc6f753e539da9703",
+      "bytes": 461378,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running.png",
+      "sha256": "f482e9c6ab1484800b276c6fa4b4d9867ac218d44255afac87dde79f81edd2ed",
+      "bytes": 467752,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-capture.png",
+      "sha256": "564ba417c35f2d0eb131a80e4f63ab2a27f3256ea46c07ac74f017682b36d047",
+      "bytes": 460852,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-compact-card-choice.png",
+      "sha256": "e4e6b4d2dadbb9c656026e89c1d9abc8f94beef8ac71f4cb391d6cacc0fde35e",
+      "bytes": 456728,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "sha256": "2e789d9a2987d5fc9d96a5496988002078780b56d30baa645d22af1c1850e95b",
+      "bytes": 456510,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "sha256": "12c134f750912b50206fc1a2fff5b672e6f0da4d972c69bc5682c5102a33b549",
+      "bytes": 395263,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "sha256": "6ef15616b02eee48576344b8c786f5c4478a5a3925cf2da5f28a06cc8a9298d4",
+      "bytes": 389040,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "sha256": "d7f1f1bfa128a4f6e8e636256f6a0827cb3e5f24fc9daf09598cd936b8bf0138",
+      "bytes": 388194,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running.png",
+      "sha256": "abb67b19b031c969f0de23bc443b87b32056c779ebe00dccce7982b94a03da56",
+      "bytes": 392171,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-capture.png",
+      "sha256": "784e49479108719754d65b0bd146bc7f7c4c6afa937353c233284d67f253465a",
+      "bytes": 382796,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "sha256": "c5347dbdadec9de7fafff942e3fafea9b9f9d0740446fa75a5a08163be4ed6e9",
+      "bytes": 397968,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "sha256": "70c961e67a537ae2f04dccd2aa2d2d7f0eb4a63f4d15d992d2effc62d318f6cc",
+      "bytes": 392090,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "sha256": "885dcc534a3366d5b3e58f670956c08f10b2bef18d8d1b18d5935c21d5c83253",
+      "bytes": 394021,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "sha256": "71561a873891844f015d9e5b91176cb8b6ae2b52688feade7230c3690af963f1",
+      "bytes": 395227,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-capture.png",
+      "sha256": "95e87251bf24d330e778781b108eb3f7417632d445bdf0fc9d8aed2e68735fd7",
+      "bytes": 382591,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "sha256": "cdb838a7828feb265de16009c37e34ef241f1017f8c5c0f6567fb99e5998e72a",
+      "bytes": 377534,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "sha256": "6caf92cad1a4c12b8ff48b031cdfeb3eff010283229d35d4d2566d24f02ebbb0",
+      "bytes": 377330,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/metrics.json",
+      "sha256": "ffa0b1a8f7cb670767be868263c48d64fd3376f3c95d0ea2d01aaeb49beb5724",
+      "bytes": 434304,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-compact.png",
+      "sha256": "d953d5f55ce8244abc6221ad83629f769be9d7823132739e5abeeed1591937be",
+      "bytes": 249103,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-detailed.png",
+      "sha256": "6e718672dfe36d1379331531be90517566da250887831d20f48f77421b016060",
+      "bytes": 250075,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-compact.png",
+      "sha256": "438966df6c78379931f41d5c65a45aa2be76a88f3e7d18fe033464e1b081be77",
+      "bytes": 435431,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-detailed.png",
+      "sha256": "33302192dc621081879f3cc2652a0f81547398d1da2d4143d7c17c68b29f9859",
+      "bytes": 436416,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-compact.png",
+      "sha256": "f55ae232923823edaf39cfddf582bc4f917ca8b10f4dc530b4a5fd5b47b2e449",
+      "bytes": 252766,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-detailed.png",
+      "sha256": "9931c5d83bfb835eb4c20a15eb24b77891ee17da098cf53743637264836d3055",
+      "bytes": 253744,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-compact.png",
+      "sha256": "6c36e4ac90a70ffb6ddae5db456bcf5de9d86524af9eb80c45415a7a13fddaf5",
+      "bytes": 442400,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-detailed.png",
+      "sha256": "d77046ada2852461cddb7bec438b05a0380fb073790abc6e544e8d7aa2ec957b",
+      "bytes": 443396,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-compact.png",
+      "sha256": "b311e79e9b51cf058c86ce837d20bddb795fd33d79855380ddf06b83b9546f36",
+      "bytes": 251510,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-detailed.png",
+      "sha256": "d9bbbe4ec03d8a96434e327216a2bfbebccac3e6adba363cbbc1bba7385b4754",
+      "bytes": 252487,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-compact.png",
+      "sha256": "279983e6c7f617ab4a21b5ac72e2c7e3b0edcfbf4ee11a078ee1ce5dd08b2c59",
+      "bytes": 442578,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-detailed.png",
+      "sha256": "46a60c91d3994a765cb04588e0370b814d2b04b6aab1143ca6bef4effe7b6cde",
+      "bytes": 443600,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-compact.png",
+      "sha256": "3b6c5c6865ff2e6c94307a4b55b15f8ca70312814d3131c694e14ecd981edbd6",
+      "bytes": 246061,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-detailed.png",
+      "sha256": "2d346528bf9bc5602914967ef7727d9d9b1c2c0380ed7a8af655b7bb0090590e",
+      "bytes": 245846,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-compact.png",
+      "sha256": "6ad2a18ce3fa49520345148fa150ef2dee787924e4951279006d7ac5b49b6322",
+      "bytes": 247276,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-detailed.png",
+      "sha256": "829a9c87d2f00d46a7f8d84da38f66ebb84a90a62151818a56a3a23a1ff22da3",
+      "bytes": 247056,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-compact.png",
+      "sha256": "9ce8e08a2002a422d368bc81e3f5769ed4fc2d34025ac622642858b623bf2933",
+      "bytes": 430095,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-detailed.png",
+      "sha256": "74d75a791598dbfc1783688f39fc10b92d12ae915e1eb43956334fbf37382aa6",
+      "bytes": 429935,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-compact.png",
+      "sha256": "4e85e68a5be3e1e22119f997b94babb7c06ca25949e3beaa06509754c3cb7064",
+      "bytes": 439149,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-detailed.png",
+      "sha256": "5f624b2c4d56ad4d3a0fb028a4c970cf7b2be4ea624d8834980b6ba35fc69cbf",
+      "bytes": 438995,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-compact.png",
+      "sha256": "278c13bf07ba2bcf6b2b5d8df181e9ec9df5a02b86cf0f0cb077a32a057c5236",
+      "bytes": 262195,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-detailed.png",
+      "sha256": "a357a44e0311f0b0be6e1967a22c89992336b7e2a4a6603a140db479dd96dad5",
+      "bytes": 263193,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-compact.png",
+      "sha256": "671aad6de7697eb8cef9c55d75e04170b5d9b88990ab92de5dbcf527d33fa8b2",
+      "bytes": 455507,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-detailed.png",
+      "sha256": "d1f9997ec4f159bf571ddc000811dc7d08290e75570ceae9aeb8a7365c34a0eb",
+      "bytes": 456519,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-compact.png",
+      "sha256": "fe840a92ce72c3950979807347c0150bf1f4ff34a56cfaeedeab8b995461a577",
+      "bytes": 264484,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-detailed.png",
+      "sha256": "4c6e288760df4e2b71a9971254bee4e2fd97bf3f3062f752e02981031a28047d",
+      "bytes": 265456,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-compact.png",
+      "sha256": "9a1f1707608aee2ae5565a1ac754b90125ea6e3aa564f32fea76e02c3317788b",
+      "bytes": 256819,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-detailed.png",
+      "sha256": "51a0cc6074c6db8649475f8d83d0c03281e70c28aa1ef428d629dd04cd9a9f8c",
+      "bytes": 256612,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-compact.png",
+      "sha256": "b4facc917c2497b8e9a4725f582dc09085f7816ba42e8ff677725f2c8643187a",
+      "bytes": 459573,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-detailed.png",
+      "sha256": "05f3bd0426fafb607781f2baa678e0d3a6b107a48a69a4432b9aa066aeef05b4",
+      "bytes": 460591,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-compact.png",
+      "sha256": "69ed2705d4510cb38f5d703d1bda3158512d311605d4b15c6e43d1fd49b0403b",
+      "bytes": 448084,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-detailed.png",
+      "sha256": "0ebc87ce68b1cf4a5254fcc86fd9472dc99b5b558e58b99c1cb9b0bcf3987f87",
+      "bytes": 447867,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-compact.png",
+      "sha256": "c287ce13e8b2a5cccc543a53c45bf54dc2eff8500ae54fcc54f05bfe6bd9e73b",
+      "bytes": 263886,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-detailed.png",
+      "sha256": "968711c05e3222ca5d05db3df7e0d43e650f95d4f8e61c6ad1fad1b19db12702",
+      "bytes": 263683,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-compact.png",
+      "sha256": "bf791089f562afe7f1d0c4d2b5ad489490fa08c951881882027a95619e423c49",
+      "bytes": 450131,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-detailed.png",
+      "sha256": "556e997fa16332be6545e17164c747addd2a247f9a0bde9348d4dc7f5cf05444",
+      "bytes": 449921,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/attachments/geometry-2afa3a891e39929a6fe00028d35f14d5ebe99c40.json",
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "bytes": 6791,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/geometry.json",
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "bytes": 6791,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-compact.png",
+      "sha256": "c6574a11631e1b7e097830ffd4fa6f0554fce5b0211094b804a91a16cb170e40",
+      "bytes": 276717,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-detailed.png",
+      "sha256": "9e9caaaffaab7202326741c7d1928a36e8e8bf406b336800a7c84895cfdc2093",
+      "bytes": 276520,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/attachments/geometry-fb7fddbf298de4486a6972eda43a558bd79994cf.json",
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "bytes": 7090,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/geometry.json",
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "bytes": 7090,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-compact.png",
+      "sha256": "f79fee516c67118c6c6f3f683c5c2bdb9f052a337022197e7aabe0e7b0faefd6",
+      "bytes": 481176,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-detailed.png",
+      "sha256": "ecdd4b6a949232cae7eb7237f1bf1f7f0acabd178a5c97e211f67af859de1996",
+      "bytes": 480972,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-compact.png",
+      "sha256": "32ada2b8a468143ad77132372bc96d3a7264ebfe6c3b58cbd30cdde94f808120",
+      "bytes": 227079,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-detailed.png",
+      "sha256": "02cd664d5906f9c0736a402f409234cb5a6a473c8caad8cea6df514f8a1815a6",
+      "bytes": 226863,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-compact.png",
+      "sha256": "19f0733f5a031e7b6eca050d68fd729e23a668a79866ab6bc46392e903cf5e1f",
+      "bytes": 370167,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-detailed.png",
+      "sha256": "fd8acf08d188dc9faa17d3095621a3146328aae5da4474e321e26a95821d930c",
+      "bytes": 369993,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--04741-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "680338167e52e21aa3f8aedd1e17bea1c76a46682b93484fbaf7e36344642cb6",
+      "bytes": 537912,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--04741-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "bb0280fb007623a6ae105fe4682e838c30c741c7b1c079194483920c797c2a13",
+      "bytes": 412281,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--33b2d--log-load-and-next-callback-1280x800/video.webm",
+      "sha256": "e44d27b96a41d231f48644cba9d3604f207e570d589cb1fd8edba538235986d4",
+      "bytes": 400328,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--33b2d--log-load-and-next-callback-1920x1080/video.webm",
+      "sha256": "3a9a4f2c5fa9a9a7d568f6e6490e65f1565b6abd044b6aadf225fd276238fcee",
+      "bytes": 311041,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1280x800/video.webm",
+      "sha256": "20c4d8198de0d852c827222ba06fb623cb2525c9c5f5294989ae12248d81b5bb",
+      "bytes": 446538,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "sha256": "a46623dfa473bf7a801597fc670530ad59832a798afe5430b32b307aaa719c27",
+      "bytes": 395859,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1280x800/video.webm",
+      "sha256": "ed96f1b7fcaca4c48fe1fd41cfb6167c814f85c09f0b2d80dbfcaaba45120f8a",
+      "bytes": 460196,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "sha256": "98cc0df67f81db623a67d16c580520f15e1b163ef5c71d4e24fc70a4cbf8767e",
+      "bytes": 358619,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--a3300--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "bcedb85a9e004740e2573f6e3bc20124a51e0899ab9b6f25ba743f716714ffd0",
+      "bytes": 1036827,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--a3300--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "97b48321d628516aeb1fb687fd24c0c8098166d8e973237d15e1b45294f4896a",
+      "bytes": 874449,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--bd335-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "2a42307e9d4d303f548786ebe0d04491e6cf453a14d01bf416156b870ea94f94",
+      "bytes": 477477,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--bd335-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "8fb71ff370737b89a04036c66fafd913e5a6878581cd7a01606ea3dc16517cc7",
+      "bytes": 391269,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--c209e--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "cda15c451e08ba3d8361da56952fd024d2810456858fbed3f5039eefb1d47565",
+      "bytes": 923929,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-geographic--c209e--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "d7a42f70f1bb78b05e674ab7f3651a14fbeced1d6582213abe750c7b65afffda",
+      "bytes": 723497,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1280x800/video.webm",
+      "sha256": "710b2e46f09e4f96ea03531b1c0e4eb8439efb9adcca5dc7a7b0c7b4d8710288",
+      "bytes": 186541,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "sha256": "d9bb8b81db50244e457d39f07834ffb6cf3d984416bcc246287fc8de1471e8f9",
+      "bytes": 206180,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1280x800/video.webm",
+      "sha256": "b136697892bb671d027561f067df44b329a7b6a80e5bbe58549c9532d41e33ba",
+      "bytes": 155629,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "sha256": "de90f4364f0c1bca9525645ac31fea4c20b2db0dbe75258f55b76179cf7df85e",
+      "bytes": 152464,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "c3f23c6a9d1ef8c5b98f494f0238cea94df1c6d8dcce90ee07b569ea14c7513b",
+      "bytes": 377844,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "0ac197855c1d0686bbf0c3522bd58eb779f9e18cea58bcf275e82d9096bd5b9a",
+      "bytes": 374776,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1280x800/video.webm",
+      "sha256": "713b28454f492fa70aa238092a1f2caff615166afeeb3ec9723ddced04695930",
+      "bytes": 163797,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "sha256": "8e744e438e664a496206d854f6ebf836b3f497155b5a41568e149cf97a26cf63",
+      "bytes": 154867,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-eb280-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "e9d607614400ad327479339dd46860fe4344275f1ed2cc433868ecd20380ab9e",
+      "bytes": 179843,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-c-eb280-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "c7eb060dc80aaf0dd63436ec2592871c3571839daf85baa0c14415c4b93b18fa",
+      "bytes": 176394,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-d-301c5--log-load-and-next-callback-1280x800/video.webm",
+      "sha256": "e392e1bb3284b0d1925e9f993241dea0e03db24141b0e4524bdbe51583550cf2",
+      "bytes": 174757,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-d-301c5--log-load-and-next-callback-1920x1080/video.webm",
+      "sha256": "9b8e8d4993bece225d7812e76c7e4c1ba9419e02f83e2fcf3c9133cc1ec22fa8",
+      "bytes": 145886,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-d-78c88-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "9a0c43051684743000831080030a866d956606d6985a618d9279f7d31d99adc4",
+      "bytes": 183848,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-d-78c88-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "bda0fe48eb805b8efccac658eab030458020da4d77e5cafea67e58707e757e16",
+      "bytes": 179687,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1280x800/video.webm",
+      "sha256": "aefb95b684bc060dee9b49edf166c7466939f32acec4519bfea09771edb307f6",
+      "bytes": 152805,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "sha256": "cfd69650655394e4c42cb96c6fd852e5828029dc741980f5ec7c41a3ce4aa58f",
+      "bytes": 154512,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "c025da00f14335d71a5731c94c029746ae7e5427b8aae80f649cce85c862df12",
+      "bytes": 351149,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "96be614b9f694d1e018c65ead5adba7f287906ad5937f397c9fa728f639e05ec",
+      "bytes": 387852,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "bytes": 279554,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "bytes": 473182,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "bytes": 283058,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "bytes": 500076,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1280x800/geographic-friendly.png",
+      "sha256": "8c974462380dda203935e9ca1a8feac9e2ee7420f3797b83188a0b8ae1f2eeaf",
+      "bytes": 228718,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1920x1080/geographic-friendly.png",
+      "sha256": "84b91f8b0172a5b904263d1719a4e8c8d389a9312aa0b7232948d062c04234ba",
+      "bytes": 382431,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-details.png",
+      "sha256": "63a9c0ed701e36c5d514fd25488bdc924eeb61c71d4e770bb5bd591f4a1e372c",
+      "bytes": 241748,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-sidebar-only-battle-rail.png",
+      "sha256": "2d98b9a6e94b7f97ee6aaec109e22a43a9170c82425a28c2aed8d2db40de1320",
+      "bytes": 214718,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-details.png",
+      "sha256": "74d2eedad8f51c1c148d2ac816da2df01af12133302db485c7f275193f60bc9d",
+      "bytes": 392369,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-sidebar-only-battle-rail.png",
+      "sha256": "6aa84ff912a4b6c07b4221b27c0827ed1cc1f89cfc4046b131a8e452268dcc3b",
+      "bytes": 346725,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "e76759c3dbeec9797b9b7780bc270817331518f973c15db05e6c69daf9795c7c",
+      "bytes": 225988,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "178f8cd3368c20762ae3fbe148ab338bb2985c8d13bd45bff4a2df8519bbfa9b",
+      "bytes": 390474,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "bytes": 235512,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "bytes": 369911,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/geographic-sidebar-only-rail.png",
+      "sha256": "be61f2a84e2b5731257493ffbb8be2f54a8110140599fb7c271dc845b19a329f",
+      "bytes": 225344,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/geographic-sidebar-only-rail.png",
+      "sha256": "54d309fbf3da5901dafa04beed8495c72cda51ab323dbe7ba070fe47e52b0cc8",
+      "bytes": 354467,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-details.png",
+      "sha256": "369a78f65d1091a946d76d8c40a8023193cad182926401f52eb9025a21323e6e",
+      "bytes": 284903,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-sidebar-only-battle-rail.png",
+      "sha256": "e7390c4210cca6f3fb4c4c793ff71c1d9fdecba5811d5a622120d5c7d3258bf2",
+      "bytes": 254875,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-details.png",
+      "sha256": "e68cd27c32409345bb3ceb2ff380b206ff17cd1d368abb5ba0e19ddd83dcea90",
+      "bytes": 470495,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-sidebar-only-battle-rail.png",
+      "sha256": "34059f9d8428ea8c97e3579aee3038b722d622a3887291ad48c89a37dc2b962f",
+      "bytes": 424695,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "578c9ec5b55313b75eed4bcd05728e1889a5c232731cfd3d7dfb6aaa6ed8bfe1",
+      "bytes": 270974,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "605fb99ba3b5c2fa8ce494b5273560cdfccee732a1c1397fc83d4fbdc7b9ac99",
+      "bytes": 479697,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "bytes": 286326,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "bytes": 467272,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1280x800/reference-friendly.png",
+      "sha256": "57b234d2fe132a118a32a52b053b14f9dc83a110e1324129661a386624dded72",
+      "bytes": 280989,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1920x1080/reference-friendly.png",
+      "sha256": "5088a94402da62f3e0e9ec19236d6a97d3c2a1b4d6f97a7c33d8d0bbb8904080",
+      "bytes": 476306,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/reference-sidebar-only-rail.png",
+      "sha256": "9bc08372b12eb7ac21a508470c58202de2a1fa5a94feddd6bdaa3c4cf0b37bbd",
+      "bytes": 276012,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/reference-sidebar-only-rail.png",
+      "sha256": "7b09162fc2bca477bfd56b01462c06f169b17ecc0249e3226b3e7e6273517e02",
+      "bytes": 440682,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/command.txt",
+      "sha256": "2d17b2bb4fc590b265bfde2c713ec043938c1aed60a11525d669838de1b3cdaa",
+      "bytes": 508,
+      "mode": 436
+    },
+    {
+      "path": "checks/dw2-a1/log.txt",
+      "sha256": "7ae4d7ebfa3c2ccae26f06affd383e2be8fbac3beaf79b8f217a5f3346018fc2",
+      "bytes": 17945,
+      "mode": 436
+    },
+    {
+      "path": "checks/dw2-a1/results.json",
+      "sha256": "254f3b9881b1bcce0a2c41ada6afc5bacd8f9d8db7007fbf119cee8e169d09d0",
+      "bytes": 139272,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/accessibility-6i54np/keyboard-stop-1280x800.png",
+      "sha256": "6ad1e554f9a272c23231d84eb74fd59bf900fee5e450d81b42e6d71221340e3a",
+      "bytes": 257256,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/accessibility-CW2Tdz/keyboard-stop-1920x1080.png",
+      "sha256": "aa5ee7cf6bd9de0e1dbcec17b087dab221f1d74955f749bf9bdd5e96bc9c65c4",
+      "bytes": 436539,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/accessibility-JpXO8t/capture-controls-fit-1920x1080.png",
+      "sha256": "3e9a6cdb3b777dadd14449dd4e18d038a96d602e41982b9a23f7f1fd591975ce",
+      "bytes": 445164,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/accessibility-fLlFTt/capture-controls-fit-1280x800.png",
+      "sha256": "3251661eff845c2b083fdb83e106d68cb2bdd10b5009bc4f0297a8669ff4862e",
+      "bytes": 259678,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-7pqTHx/capture-maximum-done-1280x800.png",
+      "sha256": "c553b1da658448a6b33b58410b2b120b562184e2d07eeb33525a67bb3cd6fb4b",
+      "bytes": 262943,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-E271Ot/single-tie-1280x800.png",
+      "sha256": "279333b8c56e10e6e37f765036d2b26ce6dbc65cd5c635c6f1aac8edc88bcae8",
+      "bytes": 259302,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-ELK3LA/capture-maximum-pending-1280x800.png",
+      "sha256": "a36022104a880f05a5d5a62aea9a007a84788510a25a5c004ab9197b6d914b3d",
+      "bytes": 259650,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-EWsPxs/capture-minimum-done-1280x800.png",
+      "sha256": "56549b19e07bb939feebf1390053f1a8927fa96aa810ad4ad543b6d2548d99ab",
+      "bytes": 263326,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-ILhPk1/capture-minimum-pending-1280x800.png",
+      "sha256": "4f28422a79cc4bbe60f6a026f1f200ff225eaa1b537461018a345a395a5c7cec",
+      "bytes": 259516,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-QTMoSE/capture-minimum-done-1920x1080.png",
+      "sha256": "e2533ab983520e5af57851cfaf17bdc3367312266b05c5c9f782ade79e62a666",
+      "bytes": 448981,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-SYaCsA/capture-minimum-pending-1920x1080.png",
+      "sha256": "de276a8298b7dd7fe13d878e027af8f38f7699791b9952d576c170eb984222fa",
+      "bytes": 444956,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-Ti6NqH/capture-maximum-pending-1920x1080.png",
+      "sha256": "392175ae354b419ec7c1c4fa908edfe28a8a66dd13d3d8f6854e68f5541dfe67",
+      "bytes": 445197,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-TkRg5F/manual-stop-1920x1080.png",
+      "sha256": "7133b7404ab3867505cdcb21f58f399d084bc6f277a97485316f0c719d1f40f3",
+      "bytes": 439420,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-UY3LIp/capture-maximum-done-1920x1080.png",
+      "sha256": "e607e0cf0d8660296b6a1d887e0be8efb4075d7e526f659be89d4b0c9fa8f440",
+      "bytes": 448893,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-VvyskA/single-tie-1920x1080.png",
+      "sha256": "e6dbd9f3906ba047bae1bea61833b2aefeb855a12c1e8ae5f91a10369aa6f472",
+      "bytes": 439705,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-feONLJ/threshold-stop-1920x1080.png",
+      "sha256": "7aabfefaf8f4082e8418a9ea538d55a612ac3b59d8de9b5adc43df20aadee6ca",
+      "bytes": 438799,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-gdlMCQ/threshold-stop-1280x800.png",
+      "sha256": "1a8421e5a201e1e2eaa7bdd159f0e0ff1f929ca4ff3f486c8f0a8196d01ad069",
+      "bytes": 258391,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/battle/battle-ifZ7LS/manual-stop-1280x800.png",
+      "sha256": "e106a9246be4283efabcf42a16bd1ee585ae178d01906374d8dd223c5d1c52f6",
+      "bytes": 259089,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-bounds.json",
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-capture-movement.png",
+      "sha256": "8448dafebf0e72f8d17b16b42fe2aae16f78fbc8dbc752bb4f6ada73498dfba5",
+      "bytes": 217134,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-complete-history-scrolled.png",
+      "sha256": "11beaaa31ea402dce84a416190de5c57c9afb6c5d8be381dcc323e29e9a4b8a5",
+      "bytes": 217180,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-exchange.png",
+      "sha256": "cbd8062d8f17be8c6923b0b63fd25919e5bb79194a7659d8c005a4daa612e7da",
+      "bytes": 214376,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-friendly-movement.png",
+      "sha256": "dc6077151028991821eb3c175e07ef655665d6f2fc0d32c90af3f77c2ede0838",
+      "bytes": 207646,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-human-capture.png",
+      "sha256": "98ef06136b524ba4bcb5609fd64253cba8c75013b63dcbc3b07e80d84458b726",
+      "bytes": 218959,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-human-move.png",
+      "sha256": "b0026758b726366dc8a56c2b84e274a8be3856992ff78e37ebc0edb16ae0837e",
+      "bytes": 218917,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-reinforcement.png",
+      "sha256": "4ad47f4053cd661712f3c133a126f41c707ef7979b6c915a9023a758caa59b67",
+      "bytes": 206800,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-repeated-pair.png",
+      "sha256": "097fb131c9dec7b46e3740d23286e9bc9fc304cec1330785c1e9a5f806de264b",
+      "bytes": 219370,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-compact-selection-ready.png",
+      "sha256": "913379a1fa17f11f973c534fcf9303d1d0cec096390f9b212082d6e75896c243",
+      "bytes": 212992,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-bounds.json",
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-capture-movement.png",
+      "sha256": "ff1ae7f8128f8d9ec4b9020eaf53d2c07d06c078fa65ac81db24b4dc523b05f1",
+      "bytes": 216920,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-complete-history-scrolled.png",
+      "sha256": "0ad3d9377f854e200a193fea7e2ca1cf1f6df6b706b35132a15c74c00502d820",
+      "bytes": 219263,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-exchange.png",
+      "sha256": "fd78d20b6e971f8d6bb4c11bbba186592f04f343a606f1d1f370f10ee08b5c1d",
+      "bytes": 216864,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-friendly-movement.png",
+      "sha256": "1c8a6d3686d8692eb30343e993d984f661d6a3a3b3dea5da8376af1b1cce930e",
+      "bytes": 207435,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-human-capture.png",
+      "sha256": "a4649f65df7b11c4b6459b8fa0ec570467fc1a724aacff361f30e80af69fa7d4",
+      "bytes": 218736,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-human-move.png",
+      "sha256": "6bb0e9c617fce68c4acf863ce2894e04a321053236edb3f56dcff4d9ae5f16ac",
+      "bytes": 222066,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-reinforcement.png",
+      "sha256": "eceda7fc003288ff11458c8dd0ee493c53dfaa875cb0efb6106f420e68a499f7",
+      "bytes": 206588,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-repeated-pair.png",
+      "sha256": "6c92005976f586ac7d684b435633c5d75c0502101b4cd48ed693d1bfc05b9eff",
+      "bytes": 220743,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-detailed-selection-ready.png",
+      "sha256": "a41bb10f41a3629691d0f5b55083324a847adee2a1682ef8156a50b2be5e4c7f",
+      "bytes": 212789,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-geographic-geometry.json",
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "bytes": 4704,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-bounds.json",
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-capture-movement.png",
+      "sha256": "9e676c841866c32bf3c182b5f163ef3400962d07c43d7aeb2188d87868e05fb5",
+      "bytes": 255574,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-complete-history-scrolled.png",
+      "sha256": "85253bde4d5514e62dc9ba523d7fa59309927f428741a6cdacee9777ee3200d0",
+      "bytes": 255957,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-exchange.png",
+      "sha256": "c5fb8982e04da985be6481ffcbc8831e8e4275383c77cb8fcdc78c3ac7fb1296",
+      "bytes": 251551,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-friendly-movement.png",
+      "sha256": "892c5d0ebe5ca1499b880235750d89104172c23cf62004a74b69778a5d2e7a6c",
+      "bytes": 248905,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-human-capture.png",
+      "sha256": "381ea32ef52b8dccf5ae4f4ff7f96f6781b461521bddb747104fad05a5591660",
+      "bytes": 256574,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-human-loss.png",
+      "sha256": "6ddf72b50c065b5d8e18557d0243eaaab6678b64b7de33f124f466bcd00825d4",
+      "bytes": 251845,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-human-move.png",
+      "sha256": "615c21e8848fb435df92a614e80a607989d2b19e53275deaf38be57987034411",
+      "bytes": 259351,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-reinforcement.png",
+      "sha256": "7bcd621f2dfd29bfe668eb4727a17e7caa479459bcd7c2d60e0043186e196970",
+      "bytes": 244725,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-repeated-pair.png",
+      "sha256": "bbdb2d2193834d77274a6ba12885610f6825b7bf66cdd9069afbb627851eae07",
+      "bytes": 252792,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-compact-selection-ready.png",
+      "sha256": "5c7726beabc95aecf9eba39b6aa4993e6561d1d81e16268fc79c9080676cc246",
+      "bytes": 250890,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-bounds.json",
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-capture-movement.png",
+      "sha256": "dcc2c6b78a57ce2ac65073ddc75c8375e10cd2ff338d8e1268b98c9494ef8e25",
+      "bytes": 255362,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-complete-history-scrolled.png",
+      "sha256": "dac4718848cc131915f1d9d9a3c81a409303f600fd274f38f1a1511d717de598",
+      "bytes": 258511,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-exchange.png",
+      "sha256": "67cf3afbc624017ed34f86919b6b2c67d4005c8d9e7566d84613f66cb2d61306",
+      "bytes": 254023,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-friendly-movement.png",
+      "sha256": "eed5599436f89f046393290421d894261df4b35b1f75f4cc3a9f9a98b9de0037",
+      "bytes": 248691,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-human-capture.png",
+      "sha256": "0499444d614fef7a742b31d7756626acfe2c28323b342b358b1712cdc1d5a518",
+      "bytes": 256354,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-human-loss.png",
+      "sha256": "a8798af41812f956683df35e075487a3e85d1dbf2f39e6664d45b0b5e5721bc7",
+      "bytes": 251632,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-human-move.png",
+      "sha256": "89eee01011f21b144f7a5641aeab43cfa27ad43fddec94210ed41ec581a1d8f1",
+      "bytes": 262669,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-reinforcement.png",
+      "sha256": "05c8651c9f0581177ca1e361b349e84b9f2c358e114200aa146d29841e4fdea2",
+      "bytes": 244509,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-repeated-pair.png",
+      "sha256": "95deffc33a35b423342dfc8f800459e0ee609130315ede31c2def53afa3dd252",
+      "bytes": 255567,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-detailed-selection-ready.png",
+      "sha256": "d68ef6bcd665d71311b72b0e55e6a3a325791cea2ddf86b6884bd3ceb8866032",
+      "bytes": 250677,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1280x800-reference-geometry.json",
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "bytes": 4704,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-bounds.json",
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-capture-movement.png",
+      "sha256": "d110124a7027b3dc69af57e79d6df0ceafd680f06b70a155075a7e11279e7e54",
+      "bytes": 356755,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-complete-history-scrolled.png",
+      "sha256": "b5d7a18a93c7ee3c56219c6161d75ee55c0685d5bbd63d64771196f4c568871d",
+      "bytes": 370508,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-exchange.png",
+      "sha256": "7336abd9607ebe26238e013182b05a7ab568eecec604f3ab17323d6ba0f04ecf",
+      "bytes": 353591,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-friendly-movement.png",
+      "sha256": "6efed03dd02808c7abebe9e4de3c2490ef1650987f64062e972d2f8a254a8154",
+      "bytes": 354463,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-human-capture.png",
+      "sha256": "529db02fe691de77c36e5d1b1d213e41e306b2d821a6ba5b44713d1af8de27a5",
+      "bytes": 360936,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-human-move.png",
+      "sha256": "82241855aac8b4c1efe3c6c7ee06ab4ac583b9095dd3ea104dff3d15481c9dd3",
+      "bytes": 365189,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-reinforcement.png",
+      "sha256": "cd07647b70ccc83910a4862eaf3bcdcdec0aefce513659f8e3a85d878079a050",
+      "bytes": 342271,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-repeated-pair.png",
+      "sha256": "cb43935d9e9bdb84e1db062c1306d492c315023dc17a4d02b829479c46d4ae6f",
+      "bytes": 366212,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-compact-selection-ready.png",
+      "sha256": "28f9515c5c93306f94b5f1353a79c590efb6859e36212c20ec7e867fbf5cdb24",
+      "bytes": 351453,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-bounds.json",
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-capture-movement.png",
+      "sha256": "da063d5aec074a240691fa57f0bff619a7803d23d4faeb2155874f665c0e373d",
+      "bytes": 356545,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-complete-history-scrolled.png",
+      "sha256": "18b70481d1162127b80cbc85ea519e6963224be514c0b435613d6b66eec901cb",
+      "bytes": 373515,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-exchange.png",
+      "sha256": "dc8d4b3231a9ed2dd963a989ebd36ff157b20c00d34d291c849e785c07b182f5",
+      "bytes": 357133,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-friendly-movement.png",
+      "sha256": "9485bbc1a736730a7e1f9ea07cf7f7933be273531bfe283ae4ef6a767e8a2811",
+      "bytes": 354246,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-human-capture.png",
+      "sha256": "ae16e08fc5bcf2632e1a6b7868db9451dcebc42de0d78a4b66edd7c8858468cb",
+      "bytes": 360704,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-human-move.png",
+      "sha256": "f19e79aecf725aa6aa40ce7a2ce3ed6a399cad565d31f21f4bf1181200f6bd2b",
+      "bytes": 368882,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-reinforcement.png",
+      "sha256": "2f3fae51d4dafc3ce9b4a1a31a86fe76687be1bb4a39b4589bcf8e876cafefef",
+      "bytes": 342060,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-repeated-pair.png",
+      "sha256": "9d19bc9d8167b21b63a9db0eb1a0f4a7e53f97bf44e8ae0e9a3c2cb8f41b85ab",
+      "bytes": 368172,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-detailed-selection-ready.png",
+      "sha256": "a34791f747eebddac315ab287ee8c0a359056d992a93b602baf07ca360692ec8",
+      "bytes": 351246,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-geographic-geometry.json",
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "bytes": 4860,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-bounds.json",
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-capture-movement.png",
+      "sha256": "aeca16da6562f79e2d4ec14a2b6c11bdae309cc08096269341fb35e1a86dffb9",
+      "bytes": 430943,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-complete-history-scrolled.png",
+      "sha256": "ac7fe6e3e22f3595ba1110a43bd6224e450b457e89c5cbf08cf4a046292c2224",
+      "bytes": 446175,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-exchange.png",
+      "sha256": "bf41d4267aef8431e2a9e3c42e0cbaa30b3112007f844d59fe496aa2d4c9000d",
+      "bytes": 426800,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-friendly-movement.png",
+      "sha256": "def5f7178ecb3fb6a1ec9dabf17b0726e75747043bfa5c0f363a91d56fba1f69",
+      "bytes": 437222,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-human-capture.png",
+      "sha256": "6eca638dfeadf2c096c63a4654629f772bab9db5607191ed9efd87911894cb6f",
+      "bytes": 435326,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-human-loss.png",
+      "sha256": "9fdf1e9495ee50b5cab125dc2ffcff72b44d7995bbd3740abc771c0f1b10c6c3",
+      "bytes": 434207,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-human-move.png",
+      "sha256": "0b3e9b2d0766bfa13104cf0def1f7d6fa226585332b91408909b9651b17c83d6",
+      "bytes": 446552,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-reinforcement.png",
+      "sha256": "5c627eaee730322e5fc5c07f84fa924559ee7448d294a9020513798ebd82d4a8",
+      "bytes": 416657,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-repeated-pair.png",
+      "sha256": "ac6e30b2fc09674f8532a07f2a6dd5df8270b801f8e6613b18ad61bade4c7887",
+      "bytes": 446219,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-compact-selection-ready.png",
+      "sha256": "b41d716e85d70e1b1cd3d9244753a3316d7a419ea270c32096dbe260cbefa367",
+      "bytes": 425340,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-bounds.json",
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-capture-movement.png",
+      "sha256": "327684d317ddbdb7a325a6833a8ac97c7ce5a9a018d18d66006c34277a4dd7fc",
+      "bytes": 430727,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-complete-history-scrolled.png",
+      "sha256": "4f3ef40f9bff20dec3ac236b90e825e3f5cbe030e7ff287599a865b98278529e",
+      "bytes": 449736,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-exchange.png",
+      "sha256": "413307040056eb4a0d08cd3bdd2fc402b561d6c45f7fa038d1f03b2505c9387a",
+      "bytes": 430034,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-friendly-movement.png",
+      "sha256": "c073101ba90dbbc88162fa28f53ef8ac3a7cb241192a2f02f3c83b1434c98bdb",
+      "bytes": 437018,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-human-capture.png",
+      "sha256": "1fe353f2a61be7af9c77719ca744a53690c91598ef29f76848bea38630efcfac",
+      "bytes": 435074,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-human-loss.png",
+      "sha256": "226291e3ef0d944d1ee5b3501d6d9ff2f33a7a631471571f52747d4159b4c641",
+      "bytes": 434005,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-human-move.png",
+      "sha256": "21944623a95335366935af013465b7e608ca751c668d835a9843b2fd9427cf54",
+      "bytes": 449758,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-reinforcement.png",
+      "sha256": "7393ed57f5eac7ca4ec2d12c91b3610b22971b857108b84dd863d08bc70c7032",
+      "bytes": 416452,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-repeated-pair.png",
+      "sha256": "fc90300f6bea8fac440cb3f0d3d1c0613677a82b6ce9e4f22057b639e5c487f2",
+      "bytes": 450033,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-detailed-selection-ready.png",
+      "sha256": "1caed21fda691ad14bfa00d0f1237b51b51da07c370d57755255982f01137232",
+      "bytes": 425169,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/compact/1920x1080-reference-geometry.json",
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "bytes": 4860,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/game-event-log-1280x800.png",
+      "sha256": "7e779fdcd7851d0c833cb885bb042a84301ce2c22814db3832f1fef9da78d549",
+      "bytes": 150350,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/game-event-log-1920x1080.png",
+      "sha256": "a2d7f147fb87858fff45cc90fe1abe67b3191a5fbb67f73053c15cbd934e6542",
+      "bytes": 272353,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-default-four-seats-1280x800.png",
+      "sha256": "dfd431918df4c9da8a14e1ae2a9aa38e4bb1719b42887430863339e8c4865a5a",
+      "bytes": 244074,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-default-four-seats-1920x1080.png",
+      "sha256": "9aa53d9cc96ed015cf722a494ca60bb3e73b1a583bde71e9c748d6f8110cc713",
+      "bytes": 415749,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-eliminated-1280x800.png",
+      "sha256": "648d139ffd9364f89d693d8f09c4c43c300e91e5d643190a411ffc3af2f83081",
+      "bytes": 252820,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-eliminated-1920x1080.png",
+      "sha256": "ee5d0dc0b69297b3c32631a4a3b803db6d43b7fe55c63091a944d431e79127d8",
+      "bytes": 434035,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-paused-battle-1280x800.png",
+      "sha256": "4464c6db65c4bbd3088f80687e9e9596cad76e95d534431a9b7d4a4e517760e8",
+      "bytes": 256277,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-paused-battle-1920x1080.png",
+      "sha256": "486d26ebfe71b72976ec3508de67912266d013cbc6722cfc0327ee08e3f02530",
+      "bytes": 433981,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-paused-computer-1280x800.png",
+      "sha256": "74d5ac3c15acd67d8418dc2eb5680d252377d1347582e94fd855ed8d9bcc076f",
+      "bytes": 243261,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-paused-computer-1920x1080.png",
+      "sha256": "62b03ac52ffa5439b45e36808249680b0de3b736dece991399c5f9390af4a689",
+      "bytes": 414364,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-totals-1280x800.png",
+      "sha256": "3b77b96e5df60cefa068f5174422d772ffaa6fdd4fd823381cd92d49102760d7",
+      "bytes": 245453,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-totals-1920x1080.png",
+      "sha256": "d11b3658afd46088ce88f8c23c68792d0ebaeb86ae7ac2914101ddb03431f2e3",
+      "bytes": 420530,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-very-slow-1280x800.png",
+      "sha256": "4f1bb5ebc892b7e738458dc00488c2faee045b23997edc740a1c21f426564167",
+      "bytes": 253926,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw2-a1/shots/playback/playback-very-slow-1920x1080.png",
+      "sha256": "885ea57fc707a1089b9e58c2b2cf9d24cbda32fcb6ef4adfb18bcde12d0199db",
+      "bytes": 429604,
+      "mode": 420
+    },
+    {
+      "path": "checks/dw3build-a1/command.txt",
+      "sha256": "cc31c288f61d69dc83ca7fa946e2a51c573c6c591c8ff46fc277540e0d2395aa",
+      "bytes": 41,
+      "mode": 436
+    },
+    {
+      "path": "checks/dw3build-a1/log.txt",
+      "sha256": "327cb198fa03ef5c9b5d61e7ba120841d00ad36a739333ab3f18c440b6609c9a",
+      "bytes": 604,
+      "mode": 436
+    },
+    {
+      "path": "checks/dw3test-a1/command.txt",
+      "sha256": "fa18432af62f140901167570acb6287a933dd04d70d244a91324e78c28e1ca81",
+      "bytes": 37,
+      "mode": 436
+    },
+    {
+      "path": "checks/dw3test-a1/log.txt",
+      "sha256": "7d72a7021464b501f137744475c46137758cc722907ce0c4015bc1d237638f16",
+      "bytes": 22889,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-capture-draft/battleView.ts.saved",
+      "sha256": "c53592df8465e4f1264392a6a8dbd6621d24d2cbebee7c3cacd1402f3230f7de",
+      "bytes": 8420,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "bytes": 279554,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "bytes": 473182,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "bytes": 283058,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "bytes": 500076,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1280x800/geographic-friendly.png",
+      "sha256": "8c974462380dda203935e9ca1a8feac9e2ee7420f3797b83188a0b8ae1f2eeaf",
+      "bytes": 228718,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1920x1080/geographic-friendly.png",
+      "sha256": "84b91f8b0172a5b904263d1719a4e8c8d389a9312aa0b7232948d062c04234ba",
+      "bytes": 382431,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-details.png",
+      "sha256": "63a9c0ed701e36c5d514fd25488bdc924eeb61c71d4e770bb5bd591f4a1e372c",
+      "bytes": 241748,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-sidebar-only-battle-rail.png",
+      "sha256": "2d98b9a6e94b7f97ee6aaec109e22a43a9170c82425a28c2aed8d2db40de1320",
+      "bytes": 214718,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-details.png",
+      "sha256": "74d2eedad8f51c1c148d2ac816da2df01af12133302db485c7f275193f60bc9d",
+      "bytes": 392369,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-sidebar-only-battle-rail.png",
+      "sha256": "6aa84ff912a4b6c07b4221b27c0827ed1cc1f89cfc4046b131a8e452268dcc3b",
+      "bytes": 346725,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "e76759c3dbeec9797b9b7780bc270817331518f973c15db05e6c69daf9795c7c",
+      "bytes": 225988,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "178f8cd3368c20762ae3fbe148ab338bb2985c8d13bd45bff4a2df8519bbfa9b",
+      "bytes": 390474,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "bytes": 235512,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "bytes": 369911,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/geographic-sidebar-only-rail.png",
+      "sha256": "be61f2a84e2b5731257493ffbb8be2f54a8110140599fb7c271dc845b19a329f",
+      "bytes": 225344,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/geographic-sidebar-only-rail.png",
+      "sha256": "54d309fbf3da5901dafa04beed8495c72cda51ab323dbe7ba070fe47e52b0cc8",
+      "bytes": 354467,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-details.png",
+      "sha256": "369a78f65d1091a946d76d8c40a8023193cad182926401f52eb9025a21323e6e",
+      "bytes": 284903,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-sidebar-only-battle-rail.png",
+      "sha256": "e7390c4210cca6f3fb4c4c793ff71c1d9fdecba5811d5a622120d5c7d3258bf2",
+      "bytes": 254875,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-details.png",
+      "sha256": "e68cd27c32409345bb3ceb2ff380b206ff17cd1d368abb5ba0e19ddd83dcea90",
+      "bytes": 470495,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-sidebar-only-battle-rail.png",
+      "sha256": "34059f9d8428ea8c97e3579aee3038b722d622a3887291ad48c89a37dc2b962f",
+      "bytes": 424695,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "578c9ec5b55313b75eed4bcd05728e1889a5c232731cfd3d7dfb6aaa6ed8bfe1",
+      "bytes": 270974,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "605fb99ba3b5c2fa8ce494b5273560cdfccee732a1c1397fc83d4fbdc7b9ac99",
+      "bytes": 479697,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "bytes": 286326,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "bytes": 467272,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1280x800/reference-friendly.png",
+      "sha256": "57b234d2fe132a118a32a52b053b14f9dc83a110e1324129661a386624dded72",
+      "bytes": 280989,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1920x1080/reference-friendly.png",
+      "sha256": "5088a94402da62f3e0e9ec19236d6a97d3c2a1b4d6f97a7c33d8d0bbb8904080",
+      "bytes": 476306,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/reference-sidebar-only-rail.png",
+      "sha256": "9bc08372b12eb7ac21a508470c58202de2a1fa5a94feddd6bdaa3c4cf0b37bbd",
+      "bytes": 276012,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/reference-sidebar-only-rail.png",
+      "sha256": "7b09162fc2bca477bfd56b01462c06f169b17ecc0249e3226b3e7e6273517e02",
+      "bytes": 440682,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-capture-draft/command.txt",
+      "sha256": "a0399b1803fcfca8695c0b5bad1bf32df4b6a54021598d244c1d1ab77ab537d6",
+      "bytes": 246,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-capture-draft/log.txt",
+      "sha256": "831364606c7d4a1a95d19f277c4894ed1ff609f53a2b997024191a7952e1139e",
+      "bytes": 3873,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-capture-draft/mutation.diff",
+      "sha256": "f9e73d25f4ffa09032c82ece889a837fa8254a66ee355eaced9327fc2a0e5ea1",
+      "bytes": 1072,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-capture-draft/restoration.json",
+      "sha256": "71245c93c2f4c924fe9daf5c395bf67ac9fcdfb33aa645dcc007885a68f79cc8",
+      "bytes": 148,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-capture-draft/results.json",
+      "sha256": "97fbe3cf9cbbda39ff8fac0d01f2bf92c5868ed00a0bdc748c85fb2696d8d995",
+      "bytes": 29146,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-drafts-probe/battleView.ts.saved",
+      "sha256": "c53592df8465e4f1264392a6a8dbd6621d24d2cbebee7c3cacd1402f3230f7de",
+      "bytes": 8420,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-drafts-probe/friendlyMoveView.ts.saved",
+      "sha256": "1c27b8bfc4c3d9952b6690fd80d5dfd33e864d9c323f72bf65945bbfb65b951a",
+      "bytes": 3995,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-drafts-probe/go",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-escape/browser/.last-run.json",
+      "sha256": "dc98054dcdacc917fe37c1da7d12de0763de53ba7bf67823d6aaa8da710dc561",
+      "bytes": 733,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1280x800/cards-drawer.png",
+      "sha256": "b825da5a73a0c6807d3442f44e788d232ff6b2d0996d5067ee47328741e47c8c",
+      "bytes": 227675,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1280x800/error-context.md",
+      "sha256": "b3eb0fab5a897e87f10b0d108b7e23a6426714bb7cc1e9245f04dfe64e4cb258",
+      "bytes": 7179,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "sha256": "f24392310c3a7022a99f7c938148ad1b9bde08d6f5fd87804e399007841719f2",
+      "bytes": 388399,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1920x1080/error-context.md",
+      "sha256": "b3eb0fab5a897e87f10b0d108b7e23a6426714bb7cc1e9245f04dfe64e4cb258",
+      "bytes": 7179,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "sha256": "336320f2d167faea5e71fcb59c0df26ac345a7f55777aac47a2a9fe86a89edbf",
+      "bytes": 224836,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "sha256": "246f73e617c7a289e3e325d15b870e64ee5f9c4ab8f4926dd313377bbb3c5892",
+      "bytes": 206334,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "sha256": "ddb38ed88af50a4e2d695160487d905a8a3cf26ad4f36027bdf541651c086e79",
+      "bytes": 386000,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "sha256": "47e4bb931b36cbee3d7f1374d3cd96a0ffc32933a4eff1dde4eda9ed2a15e00e",
+      "bytes": 341822,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "sha256": "cfc8fa6d48de0714024b8fba8ce564a7f6bf77492f4aa046d50b6570c8e9f04c",
+      "bytes": 282707,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "sha256": "7cb1daa5eeae714bfe219621f22850cef3fee72eeaf63e89823c46a174b1069c",
+      "bytes": 244139,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "sha256": "69b9e75dd0ec7ccdf4c623d71490f34bfbf00b98f68056abee8222fb61431b77",
+      "bytes": 485415,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "sha256": "a1c875c311caa99025c0ade6c719a5cc07947c4ad85ce4dd3f0e363f406910ea",
+      "bytes": 415870,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-reference--99a05--focus-without-game-actions-1280x800/cards-drawer.png",
+      "sha256": "47ed70154f46e6c38fc8c3e843fe08278463409d69ea0f4e8cce67dd6316ff3c",
+      "bytes": 267192,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-reference--99a05--focus-without-game-actions-1280x800/error-context.md",
+      "sha256": "229c2debdf22c1daece89054041adf5e61d680aae15a030e764e17e9c768d882",
+      "bytes": 7178,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-reference--99a05--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "sha256": "5fa2a61e88d544d5148fbfd52be689725ece9b4d2f9545affd047b19c494d244",
+      "bytes": 467604,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/hideable-panels-reference--99a05--focus-without-game-actions-1920x1080/error-context.md",
+      "sha256": "229c2debdf22c1daece89054041adf5e61d680aae15a030e764e17e9c768d882",
+      "bytes": 7178,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "bytes": 279554,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/error-context.md",
+      "sha256": "a9c11c4bf808edf7bda5a2d15603f5080c41eba709e28c9193a79cf094785123",
+      "bytes": 17011,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "bytes": 473182,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/error-context.md",
+      "sha256": "a9c11c4bf808edf7bda5a2d15603f5080c41eba709e28c9193a79cf094785123",
+      "bytes": 17011,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "bytes": 283058,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "bytes": 500076,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1280x800/error-context.md",
+      "sha256": "bc1bf933d3ce9be623ab68fc12b305298817a5b338b07c6c01bcd4dbbbbf5aad",
+      "bytes": 16614,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1920x1080/error-context.md",
+      "sha256": "bc1bf933d3ce9be623ab68fc12b305298817a5b338b07c6c01bcd4dbbbbf5aad",
+      "bytes": 16614,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/error-context.md",
+      "sha256": "49e32a2fbe686e286efe308c42c11c6b4d310c6421d519f3c28b7a89d3476071",
+      "bytes": 16323,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/error-context.md",
+      "sha256": "49e32a2fbe686e286efe308c42c11c6b4d310c6421d519f3c28b7a89d3476071",
+      "bytes": 16323,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "e76759c3dbeec9797b9b7780bc270817331518f973c15db05e6c69daf9795c7c",
+      "bytes": 225988,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "178f8cd3368c20762ae3fbe148ab338bb2985c8d13bd45bff4a2df8519bbfa9b",
+      "bytes": 390474,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "bytes": 235512,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "bytes": 369911,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/geographic-sidebar-only-rail.png",
+      "sha256": "be61f2a84e2b5731257493ffbb8be2f54a8110140599fb7c271dc845b19a329f",
+      "bytes": 225344,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/geographic-sidebar-only-rail.png",
+      "sha256": "54d309fbf3da5901dafa04beed8495c72cda51ab323dbe7ba070fe47e52b0cc8",
+      "bytes": 354467,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/error-context.md",
+      "sha256": "24e456f2e4b30a749c1969ccf5ffd9e2332e832ab152695be75bc180b7a5ae82",
+      "bytes": 16322,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/error-context.md",
+      "sha256": "24e456f2e4b30a749c1969ccf5ffd9e2332e832ab152695be75bc180b7a5ae82",
+      "bytes": 16322,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "578c9ec5b55313b75eed4bcd05728e1889a5c232731cfd3d7dfb6aaa6ed8bfe1",
+      "bytes": 270974,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "605fb99ba3b5c2fa8ce494b5273560cdfccee732a1c1397fc83d4fbdc7b9ac99",
+      "bytes": 479697,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "bytes": 286326,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "bytes": 467272,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1280x800/error-context.md",
+      "sha256": "94dfb60bdee3d67f2b5744300313bd7b0484b05fa64c046189dca4d062658bd5",
+      "bytes": 16613,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1920x1080/error-context.md",
+      "sha256": "94dfb60bdee3d67f2b5744300313bd7b0484b05fa64c046189dca4d062658bd5",
+      "bytes": 16613,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/reference-sidebar-only-rail.png",
+      "sha256": "9bc08372b12eb7ac21a508470c58202de2a1fa5a94feddd6bdaa3c4cf0b37bbd",
+      "bytes": 276012,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/reference-sidebar-only-rail.png",
+      "sha256": "7b09162fc2bca477bfd56b01462c06f169b17ecc0249e3226b3e7e6273517e02",
+      "bytes": 440682,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-escape/command.txt",
+      "sha256": "fb87727e55565dc9c8b2f8251f22d159941c7776d68dbe2146741bb4812017a6",
+      "bytes": 273,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-escape/log.txt",
+      "sha256": "c841cc9b93e5879d87034c83f784693b2490a04841268377b7c0fd4f629a8f34",
+      "bytes": 44684,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-escape/mutation.diff",
+      "sha256": "054d9273d6a9c785e01aa0e02bccd36fcb56fb5cb1b197e0dffc50605a3b2b27",
+      "bytes": 651,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-escape/referenceBattleGame.ts.saved",
+      "sha256": "2b67faeef93fb95f2a2ba286a956b827126a0178457c85ff1610c3da4767c7f1",
+      "bytes": 16072,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-escape/restoration.json",
+      "sha256": "6c2f25bae5dffa86fd9041188f4b7ca9e90747a47c7b0ed2b2cae85d34ae0842",
+      "bytes": 157,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-escape/results.json",
+      "sha256": "c4773a162893eb964f230c8b51353f07a26435a8623cd190b5544adf34244de9",
+      "bytes": 142568,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "bytes": 279554,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "bytes": 473182,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "bytes": 283058,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "bytes": 500076,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1280x800/geographic-friendly.png",
+      "sha256": "8c974462380dda203935e9ca1a8feac9e2ee7420f3797b83188a0b8ae1f2eeaf",
+      "bytes": 228718,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1920x1080/geographic-friendly.png",
+      "sha256": "84b91f8b0172a5b904263d1719a4e8c8d389a9312aa0b7232948d062c04234ba",
+      "bytes": 382431,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-details.png",
+      "sha256": "63a9c0ed701e36c5d514fd25488bdc924eeb61c71d4e770bb5bd591f4a1e372c",
+      "bytes": 241748,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-sidebar-only-battle-rail.png",
+      "sha256": "2d98b9a6e94b7f97ee6aaec109e22a43a9170c82425a28c2aed8d2db40de1320",
+      "bytes": 214718,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-details.png",
+      "sha256": "74d2eedad8f51c1c148d2ac816da2df01af12133302db485c7f275193f60bc9d",
+      "bytes": 392369,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-sidebar-only-battle-rail.png",
+      "sha256": "6aa84ff912a4b6c07b4221b27c0827ed1cc1f89cfc4046b131a8e452268dcc3b",
+      "bytes": 346725,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "e76759c3dbeec9797b9b7780bc270817331518f973c15db05e6c69daf9795c7c",
+      "bytes": 225988,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "178f8cd3368c20762ae3fbe148ab338bb2985c8d13bd45bff4a2df8519bbfa9b",
+      "bytes": 390474,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "bytes": 235512,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "bytes": 369911,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/geographic-sidebar-only-rail.png",
+      "sha256": "be61f2a84e2b5731257493ffbb8be2f54a8110140599fb7c271dc845b19a329f",
+      "bytes": 225344,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/geographic-sidebar-only-rail.png",
+      "sha256": "54d309fbf3da5901dafa04beed8495c72cda51ab323dbe7ba070fe47e52b0cc8",
+      "bytes": 354467,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-details.png",
+      "sha256": "369a78f65d1091a946d76d8c40a8023193cad182926401f52eb9025a21323e6e",
+      "bytes": 284903,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-sidebar-only-battle-rail.png",
+      "sha256": "e7390c4210cca6f3fb4c4c793ff71c1d9fdecba5811d5a622120d5c7d3258bf2",
+      "bytes": 254875,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-details.png",
+      "sha256": "e68cd27c32409345bb3ceb2ff380b206ff17cd1d368abb5ba0e19ddd83dcea90",
+      "bytes": 470495,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-sidebar-only-battle-rail.png",
+      "sha256": "34059f9d8428ea8c97e3579aee3038b722d622a3887291ad48c89a37dc2b962f",
+      "bytes": 424695,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "578c9ec5b55313b75eed4bcd05728e1889a5c232731cfd3d7dfb6aaa6ed8bfe1",
+      "bytes": 270974,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "605fb99ba3b5c2fa8ce494b5273560cdfccee732a1c1397fc83d4fbdc7b9ac99",
+      "bytes": 479697,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "bytes": 286326,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "bytes": 467272,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1280x800/reference-friendly.png",
+      "sha256": "57b234d2fe132a118a32a52b053b14f9dc83a110e1324129661a386624dded72",
+      "bytes": 280989,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1920x1080/reference-friendly.png",
+      "sha256": "5088a94402da62f3e0e9ec19236d6a97d3c2a1b4d6f97a7c33d8d0bbb8904080",
+      "bytes": 476306,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/reference-sidebar-only-rail.png",
+      "sha256": "9bc08372b12eb7ac21a508470c58202de2a1fa5a94feddd6bdaa3c4cf0b37bbd",
+      "bytes": 276012,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/reference-sidebar-only-rail.png",
+      "sha256": "7b09162fc2bca477bfd56b01462c06f169b17ecc0249e3226b3e7e6273517e02",
+      "bytes": 440682,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-friendly-draft/command.txt",
+      "sha256": "920f8b660cb97584e66c795cce9ae9ffd397db8205eb9f883f4f8aa31be248db",
+      "bytes": 247,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-friendly-draft/friendlyMoveView.ts.saved",
+      "sha256": "1c27b8bfc4c3d9952b6690fd80d5dfd33e864d9c323f72bf65945bbfb65b951a",
+      "bytes": 3995,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-friendly-draft/log.txt",
+      "sha256": "dc18a49ad457ef575cbf06d4d0b08c79c55c375516d83281d67faa0cb78d5db6",
+      "bytes": 3872,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-friendly-draft/mutation.diff",
+      "sha256": "8e8da0ced80ed760e6610bf96807b4f1b786c9e2538b4b219f8f9e622f3714bf",
+      "bytes": 1014,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-friendly-draft/restoration.json",
+      "sha256": "0b92b5b363b1fe6a88073344472c0f6d792eb9f4c7a696d8200656e705da8699",
+      "bytes": 154,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-friendly-draft/results.json",
+      "sha256": "0f0890063a354b70418b851684df3d1e3a2284c4adf476fa73a6358aeb5e34a8",
+      "bytes": 29141,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/battleChrome.ts.saved",
+      "sha256": "1d364faca30171d7147e95df085e5e0ba67e49a09a2a1ad81a254c9611ba33b9",
+      "bytes": 11961,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-history/browser/.last-run.json",
+      "sha256": "623744ab6c6ba4f14232e070ddf2f182ba10c4040f97af79a58904316adde606",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--04741-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "0015d2837438318cec5a1142c0f2b18b4b45d729f19d573a4b98fa0b59ba7ceb",
+      "bytes": 420291,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--04741-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "0b1928315781a3f2f8d4de1ceda586a46bb07d3dd3e7e006fbf807ebe7631b1f",
+      "bytes": 400959,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--33b2d--log-load-and-next-callback-1280x800/video.webm",
+      "sha256": "eb7c081570e31fbf363a39a82cf942ac572ddff0e770f5c92c8254df95b86fe1",
+      "bytes": 384016,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--33b2d--log-load-and-next-callback-1920x1080/video.webm",
+      "sha256": "261ed2ea23781fc0f9b7eac930e5cd1073099ae3a735a3b6d85ceaa3e3680bce",
+      "bytes": 303054,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1280x800/video.webm",
+      "sha256": "560e84acf76c798415339ae2242ca9987030ddb56a14432255f7e1dacd432966",
+      "bytes": 490923,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "sha256": "4a26a25510a1fafc918a8973619ffc9005565a6f20b6e032a937e519cde6f0c2",
+      "bytes": 422664,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1280x800/video.webm",
+      "sha256": "e6739637e9d73e47d47e504616cff5c5fe91a4c204848915bc49d331bdb7d2c8",
+      "bytes": 393678,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "sha256": "a19c5a759bf53150aabc4964de3dbe2c13cd7237947f4a7c30b212afb41b035e",
+      "bytes": 343950,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--a3300--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "cb7e7efa36902921598848bb375ebeb6c09fe6dbd724135a7bd5229b18980597",
+      "bytes": 777594,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--a3300--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "793caab3fb1e4945be18fc56535e201201111d3b63a0cb4a8da5c6770473f61d",
+      "bytes": 811656,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--bd335-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "378f0324c4cf68d2547a766a32a9eb2a23847daef3c616bf452e3a7e028efa20",
+      "bytes": 446410,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--bd335-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "b1388c585f885db704c051e21bc48e3166c7a30301972b0b5ffe9bfcf8bcdbe7",
+      "bytes": 404662,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--c209e--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "c7590215d531e2f1c95a37f94e90127cf2399dbf74a71b3bc0a69ee0d18afdad",
+      "bytes": 875436,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-geographic--c209e--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "9ea5d2659df334f8b578412314777db35aa623d3c78d7aac48b2fab53b14ab7d",
+      "bytes": 737029,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1280x800/video.webm",
+      "sha256": "f23b5765e16539d36684f0e91d60614d675fb42a818145c1a9c984f6d20ed2e1",
+      "bytes": 179377,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "sha256": "19d538726a1d4c317ccc6c93d71dc54c8ff25aa5074f69fd7488ce43f8967f52",
+      "bytes": 175323,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1280x800/video.webm",
+      "sha256": "2bc2760dcdf1f8ae5c4c2c9851f59270be6cbdabfe833e97cc865083b7deb6c5",
+      "bytes": 141286,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "sha256": "4a509552d2f88512a16cf8e3ac8c0f3b1662d407ce581ab289e9356da62a81b6",
+      "bytes": 149871,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "ecfc09b86cd3adbd4a11d6d5ae52b9aece5276edbd1dc9abebe14cb66dcb9b45",
+      "bytes": 327091,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "ff28bb5c9ff09f043301923ebfbd0045a0978eb37be0aa8c0949a2db64767606",
+      "bytes": 321418,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1280x800/video.webm",
+      "sha256": "3717d0ea09dadc0cd0d5bdda93cb8a2552360169ba71cfb9e00b31010454ae98",
+      "bytes": 158749,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "sha256": "598eccd18145d7322c25c3fd38b0888a21a8a31f97512011e8600c97f9861a15",
+      "bytes": 161153,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-eb280-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "4528583f44e7c234f40fa1f2a9d9130596eebff0272cb26fc1efd41a26d343ab",
+      "bytes": 182099,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-c-eb280-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "d9758ef2ad45152bdceaf2ec7c2d56f7b94a8e5ca95fd9f1f7748041ee49aa5d",
+      "bytes": 169149,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-d-301c5--log-load-and-next-callback-1280x800/video.webm",
+      "sha256": "bf03a3f8706989011b7703e432d68a01e801363b070dc9bb5bed7845129ae0d4",
+      "bytes": 150565,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-d-301c5--log-load-and-next-callback-1920x1080/video.webm",
+      "sha256": "5cae5e495e0c7a3a588752ad2c18a57356cec3f398be7fccf3b59a13386d516d",
+      "bytes": 150673,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-d-78c88-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "12b4e8f6bdb0ff7ed51fc0ef2e73cf711b19f5d9e7aea179422ba34641878986",
+      "bytes": 173988,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-d-78c88-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "775c548dd92066a1b8659dda490c3be1b4d72e28f9dbb60178dcaa44c8b288a5",
+      "bytes": 167993,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1280x800/video.webm",
+      "sha256": "837a6cbcac854ecbdcad320d97aa8dc6a88671e1c688c70fa957caede137c916",
+      "bytes": 149623,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "sha256": "32702826f1ef76f022f1e73464a6d3e89806cead91455ed80012bf7145d4f4b7",
+      "bytes": 145189,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "acfde8827c41a7bc03ab1018684c91c180b4afa38289d13f72cb3c11ccdf241b",
+      "bytes": 352721,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "fcfaa8654bcbd22bab3c6eaa13e95ec5df4d2465b8b17d573aef7631c1bb3fe8",
+      "bytes": 357110,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "bytes": 279554,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "bytes": 473182,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "bytes": 283058,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "bytes": 500076,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1280x800/geographic-friendly.png",
+      "sha256": "8c974462380dda203935e9ca1a8feac9e2ee7420f3797b83188a0b8ae1f2eeaf",
+      "bytes": 228718,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1920x1080/geographic-friendly.png",
+      "sha256": "84b91f8b0172a5b904263d1719a4e8c8d389a9312aa0b7232948d062c04234ba",
+      "bytes": 382431,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/error-context.md",
+      "sha256": "3486b2775e0d59d616fd79fc1029d808e5cbe94c39c24c2032b67bb2d3889954",
+      "bytes": 37721,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-sidebar-only-battle-rail.png",
+      "sha256": "2d98b9a6e94b7f97ee6aaec109e22a43a9170c82425a28c2aed8d2db40de1320",
+      "bytes": 214718,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/error-context.md",
+      "sha256": "3486b2775e0d59d616fd79fc1029d808e5cbe94c39c24c2032b67bb2d3889954",
+      "bytes": 37721,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-sidebar-only-battle-rail.png",
+      "sha256": "6aa84ff912a4b6c07b4221b27c0827ed1cc1f89cfc4046b131a8e452268dcc3b",
+      "bytes": 346725,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "e76759c3dbeec9797b9b7780bc270817331518f973c15db05e6c69daf9795c7c",
+      "bytes": 225988,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "178f8cd3368c20762ae3fbe148ab338bb2985c8d13bd45bff4a2df8519bbfa9b",
+      "bytes": 390474,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "bytes": 235512,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "bytes": 369911,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/geographic-sidebar-only-rail.png",
+      "sha256": "be61f2a84e2b5731257493ffbb8be2f54a8110140599fb7c271dc845b19a329f",
+      "bytes": 225344,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/geographic-sidebar-only-rail.png",
+      "sha256": "54d309fbf3da5901dafa04beed8495c72cda51ab323dbe7ba070fe47e52b0cc8",
+      "bytes": 354467,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/error-context.md",
+      "sha256": "4fd9da2c3bd9ed28898a9f0f0467cf4388d9be157a19cebc7265fd4092d07aa3",
+      "bytes": 38418,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-sidebar-only-battle-rail.png",
+      "sha256": "e7390c4210cca6f3fb4c4c793ff71c1d9fdecba5811d5a622120d5c7d3258bf2",
+      "bytes": 254875,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/error-context.md",
+      "sha256": "4fd9da2c3bd9ed28898a9f0f0467cf4388d9be157a19cebc7265fd4092d07aa3",
+      "bytes": 38418,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-sidebar-only-battle-rail.png",
+      "sha256": "34059f9d8428ea8c97e3579aee3038b722d622a3887291ad48c89a37dc2b962f",
+      "bytes": 424695,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "578c9ec5b55313b75eed4bcd05728e1889a5c232731cfd3d7dfb6aaa6ed8bfe1",
+      "bytes": 270974,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "605fb99ba3b5c2fa8ce494b5273560cdfccee732a1c1397fc83d4fbdc7b9ac99",
+      "bytes": 479697,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "bytes": 286326,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "bytes": 467272,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1280x800/reference-friendly.png",
+      "sha256": "57b234d2fe132a118a32a52b053b14f9dc83a110e1324129661a386624dded72",
+      "bytes": 280989,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1920x1080/reference-friendly.png",
+      "sha256": "5088a94402da62f3e0e9ec19236d6a97d3c2a1b4d6f97a7c33d8d0bbb8904080",
+      "bytes": 476306,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/reference-sidebar-only-rail.png",
+      "sha256": "ebced551f3da0a2244fb772d00218a938ded14e9c88bab941f281e6b16711714",
+      "bytes": 276012,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/reference-sidebar-only-rail.png",
+      "sha256": "7b09162fc2bca477bfd56b01462c06f169b17ecc0249e3226b3e7e6273517e02",
+      "bytes": 440682,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/command.txt",
+      "sha256": "1ed5b53316474e197f69daf8af4e8ad1f71e397c913307c09f369b9b38d8e4f1",
+      "bytes": 274,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-history/log.txt",
+      "sha256": "d5092753b2f9a9f7cb6b0808b2fc841c07519223251f537dde767ec17d51a232",
+      "bytes": 19972,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-history/mutation.diff",
+      "sha256": "99787f72ef45bc6c93ec901ce15c548f2c1e8427e96318af9aa9f19fbbaa0482",
+      "bytes": 693,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-history/restoration.json",
+      "sha256": "124ec18e48ef43fb62c9bc44afbc847ab500743bbfbda3f3a09071929afae3ed",
+      "bytes": 150,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-history/results.json",
+      "sha256": "ae232bb1b3e44d12e83de1419b816e06e484f73df103e6fb95c65320e51fd82f",
+      "bytes": 102209,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-bounds.json",
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-capture-movement.png",
+      "sha256": "8448dafebf0e72f8d17b16b42fe2aae16f78fbc8dbc752bb4f6ada73498dfba5",
+      "bytes": 217134,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-complete-history-scrolled.png",
+      "sha256": "11beaaa31ea402dce84a416190de5c57c9afb6c5d8be381dcc323e29e9a4b8a5",
+      "bytes": 217180,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-exchange.png",
+      "sha256": "cbd8062d8f17be8c6923b0b63fd25919e5bb79194a7659d8c005a4daa612e7da",
+      "bytes": 214376,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-friendly-movement.png",
+      "sha256": "dc6077151028991821eb3c175e07ef655665d6f2fc0d32c90af3f77c2ede0838",
+      "bytes": 207646,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-human-capture.png",
+      "sha256": "98ef06136b524ba4bcb5609fd64253cba8c75013b63dcbc3b07e80d84458b726",
+      "bytes": 218959,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-human-move.png",
+      "sha256": "b0026758b726366dc8a56c2b84e274a8be3856992ff78e37ebc0edb16ae0837e",
+      "bytes": 218917,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-reinforcement.png",
+      "sha256": "8303dd6679b8b2b3f540b380b963c185d1def33c0d4afa4794d3b8240a40a343",
+      "bytes": 206800,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-repeated-pair.png",
+      "sha256": "097fb131c9dec7b46e3740d23286e9bc9fc304cec1330785c1e9a5f806de264b",
+      "bytes": 219370,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-compact-selection-ready.png",
+      "sha256": "913379a1fa17f11f973c534fcf9303d1d0cec096390f9b212082d6e75896c243",
+      "bytes": 212992,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-bounds.json",
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-capture-movement.png",
+      "sha256": "ff1ae7f8128f8d9ec4b9020eaf53d2c07d06c078fa65ac81db24b4dc523b05f1",
+      "bytes": 216920,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-complete-history-scrolled.png",
+      "sha256": "0ad3d9377f854e200a193fea7e2ca1cf1f6df6b706b35132a15c74c00502d820",
+      "bytes": 219263,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-exchange.png",
+      "sha256": "fd78d20b6e971f8d6bb4c11bbba186592f04f343a606f1d1f370f10ee08b5c1d",
+      "bytes": 216864,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-friendly-movement.png",
+      "sha256": "1c8a6d3686d8692eb30343e993d984f661d6a3a3b3dea5da8376af1b1cce930e",
+      "bytes": 207435,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-human-capture.png",
+      "sha256": "a4649f65df7b11c4b6459b8fa0ec570467fc1a724aacff361f30e80af69fa7d4",
+      "bytes": 218736,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-human-move.png",
+      "sha256": "6bb0e9c617fce68c4acf863ce2894e04a321053236edb3f56dcff4d9ae5f16ac",
+      "bytes": 222066,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-reinforcement.png",
+      "sha256": "eceda7fc003288ff11458c8dd0ee493c53dfaa875cb0efb6106f420e68a499f7",
+      "bytes": 206588,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-repeated-pair.png",
+      "sha256": "6c92005976f586ac7d684b435633c5d75c0502101b4cd48ed693d1bfc05b9eff",
+      "bytes": 220743,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-detailed-selection-ready.png",
+      "sha256": "a41bb10f41a3629691d0f5b55083324a847adee2a1682ef8156a50b2be5e4c7f",
+      "bytes": 212789,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-geographic-geometry.json",
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "bytes": 4704,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-bounds.json",
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-capture-movement.png",
+      "sha256": "9e676c841866c32bf3c182b5f163ef3400962d07c43d7aeb2188d87868e05fb5",
+      "bytes": 255574,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-complete-history-scrolled.png",
+      "sha256": "85253bde4d5514e62dc9ba523d7fa59309927f428741a6cdacee9777ee3200d0",
+      "bytes": 255957,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-exchange.png",
+      "sha256": "c5fb8982e04da985be6481ffcbc8831e8e4275383c77cb8fcdc78c3ac7fb1296",
+      "bytes": 251551,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-friendly-movement.png",
+      "sha256": "892c5d0ebe5ca1499b880235750d89104172c23cf62004a74b69778a5d2e7a6c",
+      "bytes": 248905,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-human-capture.png",
+      "sha256": "c23d50c3cf4aebfb23f330a37c5034771da34b9a3f15aa27d8f98d84d2df1c05",
+      "bytes": 256577,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-human-loss.png",
+      "sha256": "6ddf72b50c065b5d8e18557d0243eaaab6678b64b7de33f124f466bcd00825d4",
+      "bytes": 251845,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-human-move.png",
+      "sha256": "615c21e8848fb435df92a614e80a607989d2b19e53275deaf38be57987034411",
+      "bytes": 259351,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-reinforcement.png",
+      "sha256": "7bcd621f2dfd29bfe668eb4727a17e7caa479459bcd7c2d60e0043186e196970",
+      "bytes": 244725,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-repeated-pair.png",
+      "sha256": "bbdb2d2193834d77274a6ba12885610f6825b7bf66cdd9069afbb627851eae07",
+      "bytes": 252792,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-compact-selection-ready.png",
+      "sha256": "5c7726beabc95aecf9eba39b6aa4993e6561d1d81e16268fc79c9080676cc246",
+      "bytes": 250890,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-bounds.json",
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-capture-movement.png",
+      "sha256": "dcc2c6b78a57ce2ac65073ddc75c8375e10cd2ff338d8e1268b98c9494ef8e25",
+      "bytes": 255362,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-complete-history-scrolled.png",
+      "sha256": "faa5777c4b860e9e5484081c88a42e848e097c097aa7947c32d0cf4a1e4d1481",
+      "bytes": 258454,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-exchange.png",
+      "sha256": "67cf3afbc624017ed34f86919b6b2c67d4005c8d9e7566d84613f66cb2d61306",
+      "bytes": 254023,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-friendly-movement.png",
+      "sha256": "eed5599436f89f046393290421d894261df4b35b1f75f4cc3a9f9a98b9de0037",
+      "bytes": 248691,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-human-capture.png",
+      "sha256": "9d41dce398333701da769bd9e7d33952bffef4e0043b19c84ebff9e0bb6b89a1",
+      "bytes": 256355,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-human-loss.png",
+      "sha256": "a8798af41812f956683df35e075487a3e85d1dbf2f39e6664d45b0b5e5721bc7",
+      "bytes": 251632,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-human-move.png",
+      "sha256": "89eee01011f21b144f7a5641aeab43cfa27ad43fddec94210ed41ec581a1d8f1",
+      "bytes": 262669,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-reinforcement.png",
+      "sha256": "05c8651c9f0581177ca1e361b349e84b9f2c358e114200aa146d29841e4fdea2",
+      "bytes": 244509,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-repeated-pair.png",
+      "sha256": "95deffc33a35b423342dfc8f800459e0ee609130315ede31c2def53afa3dd252",
+      "bytes": 255567,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-detailed-selection-ready.png",
+      "sha256": "d68ef6bcd665d71311b72b0e55e6a3a325791cea2ddf86b6884bd3ceb8866032",
+      "bytes": 250677,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1280x800-reference-geometry.json",
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "bytes": 4704,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-bounds.json",
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-capture-movement.png",
+      "sha256": "d110124a7027b3dc69af57e79d6df0ceafd680f06b70a155075a7e11279e7e54",
+      "bytes": 356755,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-complete-history-scrolled.png",
+      "sha256": "b5d7a18a93c7ee3c56219c6161d75ee55c0685d5bbd63d64771196f4c568871d",
+      "bytes": 370508,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-exchange.png",
+      "sha256": "7336abd9607ebe26238e013182b05a7ab568eecec604f3ab17323d6ba0f04ecf",
+      "bytes": 353591,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-friendly-movement.png",
+      "sha256": "6efed03dd02808c7abebe9e4de3c2490ef1650987f64062e972d2f8a254a8154",
+      "bytes": 354463,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-human-capture.png",
+      "sha256": "529db02fe691de77c36e5d1b1d213e41e306b2d821a6ba5b44713d1af8de27a5",
+      "bytes": 360936,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-human-move.png",
+      "sha256": "82241855aac8b4c1efe3c6c7ee06ab4ac583b9095dd3ea104dff3d15481c9dd3",
+      "bytes": 365189,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-reinforcement.png",
+      "sha256": "cd07647b70ccc83910a4862eaf3bcdcdec0aefce513659f8e3a85d878079a050",
+      "bytes": 342271,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-repeated-pair.png",
+      "sha256": "cb43935d9e9bdb84e1db062c1306d492c315023dc17a4d02b829479c46d4ae6f",
+      "bytes": 366212,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-compact-selection-ready.png",
+      "sha256": "28f9515c5c93306f94b5f1353a79c590efb6859e36212c20ec7e867fbf5cdb24",
+      "bytes": 351453,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-bounds.json",
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-capture-movement.png",
+      "sha256": "da063d5aec074a240691fa57f0bff619a7803d23d4faeb2155874f665c0e373d",
+      "bytes": 356545,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-complete-history-scrolled.png",
+      "sha256": "18b70481d1162127b80cbc85ea519e6963224be514c0b435613d6b66eec901cb",
+      "bytes": 373515,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-exchange.png",
+      "sha256": "dc8d4b3231a9ed2dd963a989ebd36ff157b20c00d34d291c849e785c07b182f5",
+      "bytes": 357133,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-friendly-movement.png",
+      "sha256": "9485bbc1a736730a7e1f9ea07cf7f7933be273531bfe283ae4ef6a767e8a2811",
+      "bytes": 354246,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-human-capture.png",
+      "sha256": "ae16e08fc5bcf2632e1a6b7868db9451dcebc42de0d78a4b66edd7c8858468cb",
+      "bytes": 360704,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-human-move.png",
+      "sha256": "f19e79aecf725aa6aa40ce7a2ce3ed6a399cad565d31f21f4bf1181200f6bd2b",
+      "bytes": 368882,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-reinforcement.png",
+      "sha256": "2f3fae51d4dafc3ce9b4a1a31a86fe76687be1bb4a39b4589bcf8e876cafefef",
+      "bytes": 342060,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-repeated-pair.png",
+      "sha256": "9d19bc9d8167b21b63a9db0eb1a0f4a7e53f97bf44e8ae0e9a3c2cb8f41b85ab",
+      "bytes": 368172,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-detailed-selection-ready.png",
+      "sha256": "a34791f747eebddac315ab287ee8c0a359056d992a93b602baf07ca360692ec8",
+      "bytes": 351246,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-geographic-geometry.json",
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "bytes": 4860,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-bounds.json",
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-capture-movement.png",
+      "sha256": "aeca16da6562f79e2d4ec14a2b6c11bdae309cc08096269341fb35e1a86dffb9",
+      "bytes": 430943,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-complete-history-scrolled.png",
+      "sha256": "ac7fe6e3e22f3595ba1110a43bd6224e450b457e89c5cbf08cf4a046292c2224",
+      "bytes": 446175,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-exchange.png",
+      "sha256": "bf41d4267aef8431e2a9e3c42e0cbaa30b3112007f844d59fe496aa2d4c9000d",
+      "bytes": 426800,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-friendly-movement.png",
+      "sha256": "def5f7178ecb3fb6a1ec9dabf17b0726e75747043bfa5c0f363a91d56fba1f69",
+      "bytes": 437222,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-human-capture.png",
+      "sha256": "4cf4a25fa06377be4d3497b91a7c7e5c74f86abf07ed5f1a3b79ba945002bfef",
+      "bytes": 435321,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-human-loss.png",
+      "sha256": "9fdf1e9495ee50b5cab125dc2ffcff72b44d7995bbd3740abc771c0f1b10c6c3",
+      "bytes": 434207,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-human-move.png",
+      "sha256": "0b3e9b2d0766bfa13104cf0def1f7d6fa226585332b91408909b9651b17c83d6",
+      "bytes": 446552,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-reinforcement.png",
+      "sha256": "5c627eaee730322e5fc5c07f84fa924559ee7448d294a9020513798ebd82d4a8",
+      "bytes": 416657,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-repeated-pair.png",
+      "sha256": "ac6e30b2fc09674f8532a07f2a6dd5df8270b801f8e6613b18ad61bade4c7887",
+      "bytes": 446219,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-compact-selection-ready.png",
+      "sha256": "b41d716e85d70e1b1cd3d9244753a3316d7a419ea270c32096dbe260cbefa367",
+      "bytes": 425340,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-bounds.json",
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-capture-movement.png",
+      "sha256": "327684d317ddbdb7a325a6833a8ac97c7ce5a9a018d18d66006c34277a4dd7fc",
+      "bytes": 430727,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-complete-history-scrolled.png",
+      "sha256": "00a5203f233e62ffa9d40b93ddd64159128db99aafd959f8591f03cd798cc094",
+      "bytes": 449722,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-exchange.png",
+      "sha256": "413307040056eb4a0d08cd3bdd2fc402b561d6c45f7fa038d1f03b2505c9387a",
+      "bytes": 430034,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-friendly-movement.png",
+      "sha256": "c073101ba90dbbc88162fa28f53ef8ac3a7cb241192a2f02f3c83b1434c98bdb",
+      "bytes": 437018,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-human-capture.png",
+      "sha256": "f75de28fbb81fe16da03d87ae23e2e57fbd995b45a87f16a771df4d44a63a81c",
+      "bytes": 435077,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-human-loss.png",
+      "sha256": "226291e3ef0d944d1ee5b3501d6d9ff2f33a7a631471571f52747d4159b4c641",
+      "bytes": 434005,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-human-move.png",
+      "sha256": "21944623a95335366935af013465b7e608ca751c668d835a9843b2fd9427cf54",
+      "bytes": 449758,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-reinforcement.png",
+      "sha256": "7393ed57f5eac7ca4ec2d12c91b3610b22971b857108b84dd863d08bc70c7032",
+      "bytes": 416452,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-repeated-pair.png",
+      "sha256": "fc90300f6bea8fac440cb3f0d3d1c0613677a82b6ce9e4f22057b639e5c487f2",
+      "bytes": 450033,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-detailed-selection-ready.png",
+      "sha256": "1caed21fda691ad14bfa00d0f1237b51b51da07c370d57755255982f01137232",
+      "bytes": 425169,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-history/shots/compact/1920x1080-reference-geometry.json",
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "bytes": 4860,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/.last-run.json",
+      "sha256": "e23b53f4ac16a3c1758fa8e73f66096d0bdb954d3158880e0915e79aed137aef",
+      "bytes": 635,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "bytes": 279554,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "bytes": 473182,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "bytes": 283058,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "bytes": 500076,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1280x800/geographic-friendly.png",
+      "sha256": "8c974462380dda203935e9ca1a8feac9e2ee7420f3797b83188a0b8ae1f2eeaf",
+      "bytes": 228718,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-co-2b577-switches-until-confirmation-1920x1080/geographic-friendly.png",
+      "sha256": "84b91f8b0172a5b904263d1719a4e8c8d389a9312aa0b7232948d062c04234ba",
+      "bytes": 382431,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/error-context.md",
+      "sha256": "e2020625302f480bef38df61fb83a0ca7df880ed618da5021bee6c54ad375b13",
+      "bytes": 16293,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/error-context.md",
+      "sha256": "e2020625302f480bef38df61fb83a0ca7df880ed618da5021bee6c54ad375b13",
+      "bytes": 16293,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/error-context.md",
+      "sha256": "303cc4b8555e63ef6f41b54ec113fdb39dfa3a95457921977daed2d515733fe8",
+      "bytes": 16414,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/error-context.md",
+      "sha256": "303cc4b8555e63ef6f41b54ec113fdb39dfa3a95457921977daed2d515733fe8",
+      "bytes": 16414,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "bytes": 235512,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "bytes": 369911,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/error-context.md",
+      "sha256": "31f69b8505b2faf21c5ab87349d355c967ac4c6d6bfcff1ee853d892831d6495",
+      "bytes": 17348,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/error-context.md",
+      "sha256": "31f69b8505b2faf21c5ab87349d355c967ac4c6d6bfcff1ee853d892831d6495",
+      "bytes": 17348,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/error-context.md",
+      "sha256": "9aa3e515ade424693e57e87a28dcb7c36a17acea842668b20b8f1731384d13bd",
+      "bytes": 16292,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/error-context.md",
+      "sha256": "9aa3e515ade424693e57e87a28dcb7c36a17acea842668b20b8f1731384d13bd",
+      "bytes": 16292,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/error-context.md",
+      "sha256": "c3c6994db053290a646d9846c1dd6aeafa1b9fe1bce31f70e90a590d50dbe753",
+      "bytes": 16413,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/error-context.md",
+      "sha256": "c3c6994db053290a646d9846c1dd6aeafa1b9fe1bce31f70e90a590d50dbe753",
+      "bytes": 16413,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "bytes": 286326,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "bytes": 467272,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1280x800/reference-friendly.png",
+      "sha256": "57b234d2fe132a118a32a52b053b14f9dc83a110e1324129661a386624dded72",
+      "bytes": 280989,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-col-f325e-switches-until-confirmation-1920x1080/reference-friendly.png",
+      "sha256": "5088a94402da62f3e0e9ec19236d6a97d3c2a1b4d6f97a7c33d8d0bbb8904080",
+      "bytes": 476306,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/error-context.md",
+      "sha256": "985acf6a6e61dab6a84156cd95e59d4d52150e56237df36fe71cacd27ce250bd",
+      "bytes": 17347,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/error-context.md",
+      "sha256": "985acf6a6e61dab6a84156cd95e59d4d52150e56237df36fe71cacd27ce250bd",
+      "bytes": 17347,
+      "mode": 420
+    },
+    {
+      "path": "checks/mut-pause-gating/command.txt",
+      "sha256": "a159ccc701f222d2d8d4c3d9951af5021f0874ba4d5b22a27928da0336b85d7f",
+      "bytes": 245,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-pause-gating/log.txt",
+      "sha256": "dbc8c334c57a4695365eed807b5d531595a80c7ddc6c0b81892eae8267220350",
+      "bytes": 45413,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-pause-gating/mutation.diff",
+      "sha256": "8a9912bd3e502be8c62260ec20de28fa1fb5b5bca12f014dc45e54394ab0a642",
+      "bytes": 1574,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-pause-gating/referenceBattleGame.ts.saved",
+      "sha256": "2b67faeef93fb95f2a2ba286a956b827126a0178457c85ff1610c3da4767c7f1",
+      "bytes": 16072,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-pause-gating/restoration.json",
+      "sha256": "6c2f25bae5dffa86fd9041188f4b7ca9e90747a47c7b0ed2b2cae85d34ae0842",
+      "bytes": 157,
+      "mode": 436
+    },
+    {
+      "path": "checks/mut-pause-gating/results.json",
+      "sha256": "ea532e90a7d53000c723e4d9ccd9b98b01e03ed9d0b79c52cbd92e83082eb028",
+      "bytes": 129944,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutate.py",
+      "sha256": "aa5393f7ac658288e0ce49303b41be677be2993f4d0b8cb787cfc60b1433d2f7",
+      "bytes": 1019,
+      "mode": 436
+    },
+    {
+      "path": "checks/probe/browser-a1/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/browser-draft-head/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/browser-draft-mut/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/draft-probe.spec.ts",
+      "sha256": "6ec434808963b9e8205963496e46ff90de0b6ec130825dce7b3d5daa8d33da30",
+      "bytes": 3176,
+      "mode": 436
+    },
+    {
+      "path": "checks/probe/log-a1.txt",
+      "sha256": "8b1ae95766c07ffb07c1d68b9ac0547b1ee2fb5f1b5df167b3d055dba4aaf067",
+      "bytes": 1107,
+      "mode": 436
+    },
+    {
+      "path": "checks/probe/log-draft-head.txt",
+      "sha256": "757cc7e14b95edc93db99123e7ac44d942dbf700907fba2b8734370fb316e4ed",
+      "bytes": 581,
+      "mode": 436
+    },
+    {
+      "path": "checks/probe/log-draft-mut.txt",
+      "sha256": "4b7fd7befd19df3cedcd83d4a39a418cd31a38945a7f8d33966f655a6a5b746d",
+      "bytes": 581,
+      "mode": 436
+    },
+    {
+      "path": "checks/probe/out-a1/1280x800-A.json",
+      "sha256": "c0e2879c61ae11236198ffeb1c8248ffff7c0b7988aac5fb9cd53b176c87464d",
+      "bytes": 131,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-a1/1280x800-B.json",
+      "sha256": "c3aaecb35aa85cd1d3c91652c145b6427db3b4e7695c2b343fdd282bb55909fb",
+      "bytes": 186,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-a1/1280x800-C.json",
+      "sha256": "8d8976befe8bad3d1820429d693e225be8f21bbd79152ccb68bcc5eb78c2b154",
+      "bytes": 162,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-a1/1280x800-D.json",
+      "sha256": "2c08709435b68b44461471d7531f617c9dc18f467847c6facc608b7ceb5f2845",
+      "bytes": 84,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-a1/1920x1080-A.json",
+      "sha256": "c5b7f0356058ba40c60229951010ebd2d1ee870a49055e704e2e5654b966391d",
+      "bytes": 143,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-a1/1920x1080-B.json",
+      "sha256": "c3aaecb35aa85cd1d3c91652c145b6427db3b4e7695c2b343fdd282bb55909fb",
+      "bytes": 186,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-a1/1920x1080-C.json",
+      "sha256": "8d8976befe8bad3d1820429d693e225be8f21bbd79152ccb68bcc5eb78c2b154",
+      "bytes": 162,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-a1/1920x1080-D.json",
+      "sha256": "2c08709435b68b44461471d7531f617c9dc18f467847c6facc608b7ceb5f2845",
+      "bytes": 84,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-draft-head/1280x800-E.json",
+      "sha256": "494db6232251fe443691c67913e6742770327235ac1872e98fc9ca9bfb0d0659",
+      "bytes": 91,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-draft-head/1280x800-F.json",
+      "sha256": "b237f77080dbf0b557cdf6c0ef75d76bf98921d858ca62dccbb96f60eb28fc04",
+      "bytes": 77,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-draft-head/1920x1080-E.json",
+      "sha256": "494db6232251fe443691c67913e6742770327235ac1872e98fc9ca9bfb0d0659",
+      "bytes": 91,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-draft-head/1920x1080-F.json",
+      "sha256": "b237f77080dbf0b557cdf6c0ef75d76bf98921d858ca62dccbb96f60eb28fc04",
+      "bytes": 77,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-draft-mut/1280x800-E.json",
+      "sha256": "004485740ea3b4203211f8b6c3b1efd7ef4c62cfdce1594704f7a63876548552",
+      "bytes": 91,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-draft-mut/1280x800-F.json",
+      "sha256": "b237f77080dbf0b557cdf6c0ef75d76bf98921d858ca62dccbb96f60eb28fc04",
+      "bytes": 77,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-draft-mut/1920x1080-E.json",
+      "sha256": "004485740ea3b4203211f8b6c3b1efd7ef4c62cfdce1594704f7a63876548552",
+      "bytes": 91,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/out-draft-mut/1920x1080-F.json",
+      "sha256": "b237f77080dbf0b557cdf6c0ef75d76bf98921d858ca62dccbb96f60eb28fc04",
+      "bytes": 77,
+      "mode": 420
+    },
+    {
+      "path": "checks/probe/ran-a1.spec.ts",
+      "sha256": "90d13fcf4b5c5f6a0efc8a9017af790d8ba5c4aee55ccdff5c6dfc6b8472457c",
+      "bytes": 4935,
+      "mode": 436
+    },
+    {
+      "path": "checks/probe/review-probe.spec.ts",
+      "sha256": "90d13fcf4b5c5f6a0efc8a9017af790d8ba5c4aee55ccdff5c6dfc6b8472457c",
+      "bytes": 4935,
+      "mode": 436
+    },
+    {
+      "path": "checks/run.sh",
+      "sha256": "1d39998b6acceda9e28c08c383f5c0a05125e273df9d81ded2c74d8c2b026943",
+      "bytes": 833,
+      "mode": 509
+    }
+  ]
+}

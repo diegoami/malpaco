@@ -1,7 +1,7 @@
 import {expect,test} from '@playwright/test';
 import type {Page,TestInfo} from '@playwright/test';
 import {readFileSync} from 'node:fs';
-import {apply,deserializeVersionedMatch} from '../../src/core';
+import {apply,deserializeVersionedMatch,friendlySources,friendlyTargets} from '../../src/core';
 import type {Action,GameState} from '../../src/core';
 const fixtureRoot='docs/prototypes/new-game/';
 const input=(name:string)=>readFileSync(fixtureRoot+name,'utf8');
@@ -33,6 +33,31 @@ async function railFits(p:Page){const rail=p.locator('#battle-action-rail');expe
 async function shot(p:Page,info:TestInfo,name:string){await p.screenshot({path:info.outputPath(name+'.png')});}
 function row(host:string,kind:string){return discoveries.find((r:any)=>r.source===(host==='reference'?'T39-legal-pending-raid.json':'geographic-raid-pending-one-human.json')&&r.kind===kind);}
 for(const host of ['reference','geographic']){
+ test(`${host}: visible sidebar keeps an older history reader across focused surfaces`,async({page},info)=>{
+  await begin(page);
+  const f=row(host,'attack-running'),text=input('issue180/preflight/fixtures/'+f.fixture),before=deserializeVersionedMatch(text);
+  await load(page,text);await hit(page,'toggle-topbar');
+  const history=page.getByRole('list',{name:'Battle log',exact:true});
+  await expect(page.locator('.panel')).toBeVisible();
+  const rows=await history.locator('li').allTextContents();
+  expect(rows.length).toBe(before.state.log.filter(e=>e.event!=='game_started').length);
+  expect(await history.evaluate(e=>e.scrollHeight-e.clientHeight)).toBeGreaterThan(180);
+  for(const requested of [80,120]){
+   await history.evaluate((e,top)=>{e.scrollTop=top;},requested);
+   const reading=await history.evaluate(e=>e.scrollTop);
+   expect(Math.abs(reading-requested),'native zoom may quantize scroll offsets by less than half a CSS pixel').toBeLessThan(0.5);
+   await open(page,'details');
+   expect(Math.abs(await history.evaluate(e=>e.scrollTop)-reading),'moving visible history must keep the latest reading position').toBeLessThan(0.5);
+   await page.keyboard.press('Escape');await expect(page.locator('#open-game-details')).toBeFocused();
+   await expect(page.locator('.panel > .log-card')).toBeVisible();
+   expect(Math.abs(await history.evaluate(e=>e.scrollTop)-reading),'returning history to the sidebar must keep the reading position').toBeLessThan(0.5);
+   await open(page,'settings');await close(page);
+   expect(Math.abs(await history.evaluate(e=>e.scrollTop)-reading),'other focused surfaces must not reset the visible history').toBeLessThan(0.5);
+  }
+  expect(await history.locator('li').allTextContents()).toEqual(rows);
+  await exact(page,before.state);expect(Math.abs(await history.evaluate(e=>e.scrollTop)-120)).toBeLessThan(0.5);
+  await shot(page,info,host+'-visible-sidebar-history');
+ });
  test(`${host}: sidebar-only rail places armies and starts combat directly without scrolling`,async({page},info)=>{
   await begin(page);const envelope=JSON.parse(input(`T71/fixtures/${host}-reinforcement.json`));envelope.options.seats=envelope.options.seats.map(()=>({kind:'human'}));envelope.options.computerStrengths=[];const text=JSON.stringify(envelope),before=deserializeVersionedMatch(text);await load(page,text);await hit(page,'toggle-sidebar');await railFits(page);await page.locator('#toggle-sidebar').focus();await page.keyboard.press('ArrowDown');await expect(page.locator('#open-game-actions')).toBeFocused();await page.keyboard.press('Home');await expect(page.locator('#toggle-topbar')).toBeFocused();await page.keyboard.press('End');await expect(page.locator('#battle-action-rail button:visible').last()).toBeFocused();let state=before.state;const owned=state.map.provinces.find(p=>state.ownerOf[p.id]===state.players[state.currentPlayer]!.id)!.id;while(state.reinforcementPool){await country(page,owned).click();state=next(state,{kind:'reinforce',province:owned,amount:1});}await expect(page.locator('#battle-action-rail #start-combat-button')).toBeVisible();await railFits(page);await hit(page,'game-pause-button');await expect(page.locator('#start-combat-button')).toBeDisabled();await exact(page,state);await hit(page,'game-pause-button');await hit(page,'start-combat-button');state=next(state,{kind:'endReinforcement'});await exact(page,state);await shot(page,info,host+'-sidebar-only-rail');
  });
@@ -49,12 +74,37 @@ for(const host of ['reference','geographic']){
  });
  test(`${host}: collapsed capture retains quantity across surfaces, toggles and pause`,async({page},info)=>{
   await begin(page);const f=row(host,'capture'),text=input('issue180/preflight/fixtures/'+f.fixture),before=deserializeVersionedMatch(text);await load(page,text);await collapse(page);await hit(page,'open-required-action');
-  const amount=before.state.pendingCapture!.max;await page.locator('#capture-amount').fill(String(amount));await close(page);await open(page,'cards');await close(page);await open(page,'actions');await expect(page.locator('#capture-amount')).toHaveValue(String(amount));
+  const pending=before.state.pendingCapture!,amount=pending.min===pending.defaultAmount?pending.max:pending.min;expect(pending.max).toBeGreaterThan(pending.min);expect(amount).not.toBe(pending.defaultAmount);await page.locator('#capture-amount').fill(String(amount));await close(page);await open(page,'cards');await close(page);await open(page,'actions');await expect(page.locator('#capture-amount')).toHaveValue(String(amount));
   await hit(page,'toggle-sidebar');await hit(page,'toggle-sidebar');await open(page,'actions');await expect(page.locator('#capture-amount')).toHaveValue(String(amount));await hit(page,'game-pause-button');await expect(page.locator('#confirm-capture-button')).toBeDisabled();await hit(page,'game-pause-button');await expect(page.locator('#capture-amount')).toHaveValue(String(amount));await shot(page,info,host+'-capture');await hit(page,'confirm-capture-button');await exact(page,next(before.state,{kind:'captureMove',amount}));
  });
- test(`${host}: collapsed friendly draft survives Escape and surface switches until confirmation`,async({page},info)=>{
-  await begin(page);const envelope=JSON.parse(input(`T71/fixtures/${host}-friendly-movement.json`));envelope.options.seats=envelope.options.seats.map(()=>({kind:'human'}));envelope.options.computerStrengths=[];const text=JSON.stringify(envelope),before=deserializeVersionedMatch(text),discovery=JSON.parse(input('T71/fixtures/fixture-discovery.json')).results.find((r:any)=>r.host===host),action=discovery.found['friendly-movement'].action;
-  await load(page,text);await collapse(page);await open(page,'actions');await hit(page,'start-friendly-move-button');await close(page);await country(page,action.from).click();await country(page,action.to).click();await open(page,'actions');await page.locator('#friendly-move-amount').fill('1');await page.keyboard.press('Escape');await expect(page.locator('#open-game-actions')).toBeFocused();await open(page,'settings');await close(page);await open(page,'actions');await expect(page.locator('#friendly-move-amount')).toHaveValue('1');await shot(page,info,host+'-friendly');await hit(page,'confirm-friendly-move-button');await exact(page,next(before.state,{...action,amount:1}));
+ test(`${host}: collapsed friendly non-default draft survives a redraw with input focus`,async({page},info)=>{
+  await begin(page);
+  const envelope=JSON.parse(input(`T71/fixtures/${host}-reinforcement.json`));
+  envelope.options.seats=envelope.options.seats.map(()=>({kind:'human'}));envelope.options.computerStrengths=[];
+  let prepared=deserializeVersionedMatch(JSON.stringify(envelope)).state;
+  const owner=prepared.players[prepared.currentPlayer]!.id;
+  const staging=prepared.map.provinces.filter(p=>prepared.ownerOf[p.id]===owner&&[...p.borders,...p.seaLanes].some(id=>prepared.ownerOf[id]===owner)).sort((a,b)=>prepared.armies[b.id]!-prepared.armies[a.id]!)[0];
+  expect(staging,'reinforcement fixture must contain an owned adjacent pair').toBeDefined();
+  expect(prepared.reinforcementPool).toBeGreaterThan(0);
+  while(prepared.reinforcementPool){const action:Action={kind:'reinforce',province:staging!.id,amount:1};prepared=next(prepared,action);envelope.actions.push(action);}
+  const start:Action={kind:'endReinforcement'};prepared=next(prepared,start);envelope.actions.push(start);
+  const text=JSON.stringify(envelope),before=deserializeVersionedMatch(text);expect(before.state).toEqual(prepared);
+  const sources=friendlySources(before.state).filter(id=>before.state.armies[id]!>=3);
+  expect(sources.length,'fixture needs a legal source with at least two movable armies').toBeGreaterThan(0);
+  const from=sources[0]!,to=friendlyTargets(before.state,from)[0]!,maximum=before.state.armies[from]!-1,amount=maximum-1;
+  expect(maximum).toBeGreaterThanOrEqual(2);expect(amount).toBeGreaterThanOrEqual(1);expect(amount).toBeLessThan(maximum);
+  await load(page,text);await collapse(page);await open(page,'actions');await hit(page,'start-friendly-move-button');await close(page);
+  await country(page,from).click();await country(page,to).click();await open(page,'actions');
+  const quantity=page.locator('#friendly-move-amount');await expect(quantity).toHaveAttribute('max',String(maximum));await expect(quantity).toHaveValue(String(maximum));
+  await quantity.fill(String(amount));await page.keyboard.press('Escape');await expect(page.locator('#open-game-actions')).toBeFocused();
+  await open(page,'settings');await close(page);await hit(page,'toggle-topbar');await open(page,'actions');
+  await expect(quantity).toHaveValue(String(amount));await quantity.focus();await expect(quantity).toBeFocused();
+  const retired=await quantity.elementHandle();
+  await page.locator('#game-speed').selectOption('slow');
+  expect(await retired!.evaluate(e=>e.isConnected),'speed change must actually replace the friendly controls').toBe(false);
+  await expect(quantity).toHaveValue(String(amount));await expect(quantity).toBeFocused();
+  await shot(page,info,host+'-friendly-redraw');await hit(page,'confirm-friendly-move-button');
+  await exact(page,next(before.state,{kind:'friendlyMove',from,to,amount}));
  });
  test(`${host}: collapsed card trade and nonmodal Raid use ordinary core actions`,async({page},info)=>{
   await begin(page);const trade=host==='reference'?'T38-legal-Surge-before.json':'geographic-income-before-one-human.json',before=deserializeVersionedMatch(input('T40/fixtures/'+trade));await load(page,input('T40/fixtures/'+trade));await collapse(page);await hit(page,'open-required-action');await page.getByRole('button',{name:/^Surge:/}).click();await exact(page,next(before.state,{kind:'tradeCards',handIndices:[0,1,4]}));

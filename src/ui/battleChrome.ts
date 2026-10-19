@@ -145,6 +145,7 @@ export class BattleChrome {
   }
 
   open(surface: Surface, opener: HTMLElement): void {
+    this.rememberHistory();
     if (this.surface === surface) {this.close(); return;}
     this.close(false);
     this.surface = surface; this.opener = opener;

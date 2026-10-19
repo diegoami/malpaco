@@ -1,0 +1,70 @@
+[
+  {
+    "name": "history",
+    "file": "src/ui/battleChrome.ts",
+    "beforeSha256": "170eaa7dde040dfa625f88cbbe997dd569ddc9c8cf767c2010685a99e49bca42",
+    "mutantSha256": "1d364faca30171d7147e95df085e5e0ba67e49a09a2a1ad81a254c9611ba33b9",
+    "exit": 1,
+    "stats": {
+      "startTime": "2026-10-19T13:27:36.638Z",
+      "duration": 6192.627,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 4,
+      "flaky": 0
+    },
+    "restoredExact": true,
+    "afterSha256": "170eaa7dde040dfa625f88cbbe997dd569ddc9c8cf767c2010685a99e49bca42"
+  },
+  {
+    "name": "capture",
+    "file": "src/ui/battleView.ts",
+    "beforeSha256": "c53592df8465e4f1264392a6a8dbd6621d24d2cbebee7c3cacd1402f3230f7de",
+    "mutantSha256": "37b67143800c1300ff75ae91cc0f2da26c2322f0dcfb9f2b3d7ee72a826785f5",
+    "exit": 1,
+    "stats": {
+      "startTime": "2026-10-19T13:27:44.076Z",
+      "duration": 18857.119,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 4,
+      "flaky": 0
+    },
+    "restoredExact": true,
+    "afterSha256": "c53592df8465e4f1264392a6a8dbd6621d24d2cbebee7c3cacd1402f3230f7de"
+  },
+  {
+    "name": "friendly-draft",
+    "file": "src/ui/friendlyMoveView.ts",
+    "beforeSha256": "1c27b8bfc4c3d9952b6690fd80d5dfd33e864d9c323f72bf65945bbfb65b951a",
+    "mutantSha256": "cac97fbec35bd5efbedb22dc5b5c5c9b017c4b36b7e64e50ee80a3b6cf290d86",
+    "exit": 1,
+    "stats": {
+      "startTime": "2026-10-19T13:28:03.948Z",
+      "duration": 19540.050000000003,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 4,
+      "flaky": 0
+    },
+    "restoredExact": true,
+    "afterSha256": "1c27b8bfc4c3d9952b6690fd80d5dfd33e864d9c323f72bf65945bbfb65b951a"
+  },
+  {
+    "name": "friendly-focus",
+    "file": "src/ui/friendlyMoveView.ts",
+    "beforeSha256": "1c27b8bfc4c3d9952b6690fd80d5dfd33e864d9c323f72bf65945bbfb65b951a",
+    "mutantSha256": "183052f6e11ced35d82a2c3f0d57c74ea6857ffeae148d5493cd7748823b0cd0",
+    "exit": 1,
+    "stats": {
+      "startTime": "2026-10-19T13:28:24.779Z",
+      "duration": 20522.214,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 4,
+      "flaky": 0
+    },
+    "restoredExact": true,
+    "afterSha256": "1c27b8bfc4c3d9952b6690fd80d5dfd33e864d9c323f72bf65945bbfb65b951a"
+  }
+]
