@@ -1,0 +1,78 @@
+[
+  {
+    "name": "goto",
+    "start": 1792396135963.9685,
+    "status": "passed",
+    "end": 1792396136016.3633
+  },
+  {
+    "name": "cold-file-setInput",
+    "start": 1792396136047.5378,
+    "status": "passed",
+    "end": 1792396136064.1128
+  },
+  {
+    "name": "cold-file-old-input-detached",
+    "start": 1792396136064.671,
+    "status": "passed",
+    "end": 1792396138413.27
+  },
+  {
+    "name": "cold-file-map-visible",
+    "start": 1792396136066.036,
+    "status": "passed",
+    "end": 1792396138364.3674
+  },
+  {
+    "name": "warm-file-setInput",
+    "start": 1792396138635.5886,
+    "status": "passed",
+    "end": 1792396138643.2615
+  },
+  {
+    "name": "warm-file-old-input-detached",
+    "start": 1792396138643.712,
+    "status": "passed",
+    "end": 1792396139011.5535
+  },
+  {
+    "name": "warm-file-map-visible",
+    "start": 1792396138643.948,
+    "status": "passed",
+    "end": 1792396139011.185
+  },
+  {
+    "name": "original-Newgame-click",
+    "start": 1792396139350.834,
+    "status": "FAILED",
+    "error": {
+      "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'New game', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"quiet\" id=\"new-game-button\">New game</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+      "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'New game', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"quiet\" id=\"new-game-button\">New game</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/native-actionability-20261019-01/diagnostic.mjs:33:101\n    at timed (/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/native-actionability-20261019-01/diagnostic.mjs:8:101)\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/native-actionability-20261019-01/diagnostic.mjs:33:12"
+    },
+    "end": 1792396169351.571
+  },
+  {
+    "name": "DIAGNOSTIC-bringToFront",
+    "start": 1792396176101.346,
+    "status": "passed",
+    "end": 1792396176102.1091
+  },
+  {
+    "name": "DIAGNOSTIC-postactivation-Newgame-click",
+    "start": 1792396176258.3293,
+    "status": "passed",
+    "end": 1792396176305.1482
+  },
+  {
+    "name": "DIAGNOSTIC-Startgame-click",
+    "start": 1792396176305.5364,
+    "status": "passed",
+    "end": 1792396176719.8276
+  },
+  {
+    "name": "DIAGNOSTIC-new-map-visible",
+    "start": 1792396176720.4966,
+    "status": "passed",
+    "end": 1792396176728.1064
+  }
+]

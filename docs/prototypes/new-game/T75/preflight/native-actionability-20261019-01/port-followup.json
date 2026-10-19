@@ -1,0 +1,33 @@
+{
+  "connectEx": 111,
+  "rows": [
+    {
+      "file": "/proc/net/tcp",
+      "row": [
+        "45:",
+        "0100007F:10DC",
+        "0100007F:AB4A",
+        "06"
+      ]
+    },
+    {
+      "file": "/proc/net/tcp",
+      "row": [
+        "59:",
+        "0100007F:10DC",
+        "0100007F:AB3A",
+        "06"
+      ]
+    },
+    {
+      "file": "/proc/net/tcp",
+      "row": [
+        "63:",
+        "0100007F:B27C",
+        "0100007F:10DC",
+        "06"
+      ]
+    }
+  ],
+  "meaning": "Preserves immediate rebind-false receipt; this read-only follow-up distinguishes listening from lingering TCP states."
+}
