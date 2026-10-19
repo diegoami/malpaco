@@ -212,7 +212,19 @@
     },
     "remainingValidation03": {
       "receipt": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/validation.json",
-      "stage": "checkpoint; one proof then setup-corrected diagnostic controls/first166run not yet executed",
+      "stage": {
+        "checkpoint": "40cf366dfc20fdd55138cc47339ff83c18656467",
+        "proofExit": 0,
+        "reuseInputCount": 968,
+        "reusePackageFiles": 10,
+        "reuseExit": 0,
+        "controlsExit": 1,
+        "failure": "first native initial setup PNG30000ms timeout before file/Worker/twoRAF/gameplay",
+        "paused": "not run",
+        "throttled": "not run",
+        "first166": "not run",
+        "releaseReady": false
+      },
       "reusesActualNpmAndPackageCommit": "8d669a275e9130134a3052239aa8abaefbf0c50c",
       "runtimeUnchanged": true,
       "diagnosticSetupOnly": "one initial viewportPNG+bounded native twoRAF before file/clock/Worker; no acceptance test warmup"

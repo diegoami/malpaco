@@ -1,0 +1,57 @@
+[
+  {
+    "name": "normal-unprofiled",
+    "clock": false,
+    "rate": 1,
+    "profile": false,
+    "operations": [],
+    "pollSamples": [],
+    "snapshots": [
+      {
+        "label": "before-setup-paint",
+        "nodeTime": 1792396695951.6267,
+        "date": 1792396695950,
+        "performance": 59.6999999997206,
+        "visibility": "visible",
+        "focus": true,
+        "paints": [],
+        "trace": {
+          "events": [],
+          "keys": [],
+          "input": null,
+          "output": null
+        }
+      },
+      {
+        "label": "finally-before-close",
+        "nodeTime": 1792396755962.893,
+        "date": 1792396755962,
+        "performance": 60071.5,
+        "visibility": "visible",
+        "focus": true,
+        "paints": [],
+        "trace": {
+          "events": [],
+          "keys": [],
+          "input": null,
+          "output": null
+        }
+      }
+    ],
+    "start": 1792396695885.5503,
+    "setupPngStart": 1792396695952.2004,
+    "error": {
+      "message": "page.screenshot: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n",
+      "stack": "page.screenshot: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n    at run (/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/controls/profile.mjs:10:145)\n    at async file:///home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/controls/profile.mjs:27:5"
+    },
+    "screenshotError": "page.screenshot: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n",
+    "trace": {
+      "events": [],
+      "keyCount": 0,
+      "allKeysEqual": true,
+      "input": null,
+      "output": null
+    },
+    "end": 1792396755963.7188
+  }
+]

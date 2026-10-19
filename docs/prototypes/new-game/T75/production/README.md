@@ -50,3 +50,8 @@ Checkpoint8d669a27 corrected proof passed4.136s, npm passed818Vitest/60files+9ha
 ### Remaining validation03 checkpoint
 
 Source80 stays exact. Prior Newgame action failure is retained with RAFdelivery36.694s; screenshot resumed frames beforeactivation, so nofocus-only cause is established. New standalone controls add only initial setup PNG/twoRAF before gameplay/clock/Worker work. Canonical166tests receive NO warmup or assertion change. Actual8d npm818+9/staticpackage results will be reused only under exact Gitblob/mode/working input and wholepackage identity; no rebuild/npm repeat. New adoption03 will record one proof, one3control invocation and first166run only after controls pass.
+
+
+### Remaining validation03 stop
+
+Checkpoint40cf366d proofpassed4.105s; explicit968runtime/test/tool/config/frozen Gitblob/mode+working and10package equalities reuse actual8d npm818+9/staticpackage (no repeat). First native initialsetupPNG timed out30000ms afterfontsloaded; failure-evidencecapture also timed out. No twoRAF/file/Worker/game action orpaused/throttle/166case was reached. Partialfinallytrace/errors/restoration are retained in ../corrections/20261019-label-gap/adoption03/REPORT.md. Source80/tests/configs unchanged; all earlier failures remain historical and release gates incomplete.
