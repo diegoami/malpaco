@@ -1,0 +1,20 @@
+[
+  {
+    "name": "dw1",
+    "command": "node --test tests/tools/ci-*.test.mjs",
+    "exit": 0,
+    "elapsedSeconds": 0.527
+  },
+  {
+    "name": "dw2",
+    "command": "npm test && npm run build",
+    "exit": 0,
+    "elapsedSeconds": 57.762
+  },
+  {
+    "name": "dw3",
+    "command": "node tools/ci/verify.mjs",
+    "exit": 0,
+    "elapsedSeconds": 16.178
+  }
+]
