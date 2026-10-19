@@ -1,0 +1,502 @@
+[
+  {
+    "label": "reinforcement",
+    "action": {
+      "kind": "reinforce",
+      "province": "province_23",
+      "amount": 3
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    }
+  },
+  {
+    "label": "selection-ready",
+    "action": {
+      "kind": "endReinforcement"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    }
+  },
+  {
+    "label": "exchange",
+    "action": {
+      "kind": "attack",
+      "from": "province_25",
+      "to": "province_10"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    }
+  },
+  {
+    "label": "repeated-pair",
+    "action": {
+      "kind": "attack",
+      "from": "province_35",
+      "to": "province_7"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    }
+  },
+  {
+    "label": "capture-movement",
+    "action": {
+      "kind": "captureMove"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    }
+  },
+  {
+    "label": "friendly-movement",
+    "action": {
+      "kind": "friendlyMove",
+      "from": "province_13",
+      "to": "province_17"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 157.375
+      },
+      ".board": {
+        "x": 0,
+        "y": 157.375,
+        "width": 1480,
+        "height": 922.625
+      },
+      ".panel": {
+        "x": 1480,
+        "y": 157.375,
+        "width": 440,
+        "height": 922.625
+      },
+      ".panel>.turn": {
+        "x": 1485.1875,
+        "y": 172.96875,
+        "width": 414.015625,
+        "height": 83.1875
+      },
+      ".panel>.action": {
+        "x": 1485.1875,
+        "y": 263.953125,
+        "width": 414.015625,
+        "height": 533
+      },
+      ".panel>.log-card": {
+        "x": 1485.1875,
+        "y": 804.75,
+        "width": 414.015625,
+        "height": 259.65625
+      }
+    }
+  }
+]

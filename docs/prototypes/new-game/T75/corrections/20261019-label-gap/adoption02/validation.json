@@ -1,0 +1,58 @@
+{
+  "sourceCommit": "8d669a275e9130134a3052239aa8abaefbf0c50c",
+  "commands": [
+    {
+      "name": "01-committed-proof",
+      "argv": [
+        "python3",
+        "docs/prototypes/new-game/T75/production/verify-adoption.py"
+      ],
+      "exit": 0,
+      "seconds": 4.1356335059999765,
+      "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/logs/01-committed-proof-stdout-stderr.txt"
+    },
+    {
+      "name": "02-integrated-npm-test",
+      "argv": [
+        "npm",
+        "test"
+      ],
+      "exit": 0,
+      "seconds": 56.187146968000434,
+      "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/logs/02-integrated-npm-test-stdout-stderr.txt"
+    },
+    {
+      "name": "03-static-package",
+      "argv": [
+        "node",
+        "docs/prototypes/playable/acceptance.mjs",
+        "/tmp/malpaco-t75-label-gap-bmsp3ozd"
+      ],
+      "exit": 0,
+      "seconds": 4.552308528999674,
+      "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/logs/03-static-package-stdout-stderr.txt"
+    },
+    {
+      "name": "04-three-controls",
+      "argv": [
+        "node",
+        "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/controls/profile.mjs"
+      ],
+      "exit": 1,
+      "seconds": 44.25113565399988,
+      "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/logs/04-three-controls-stdout-stderr.txt"
+    }
+  ],
+  "error": "RuntimeError('04-three-controls failed; no retry')",
+  "protectedFiles": 16361,
+  "changedProtectedInputs": [],
+  "outputTreesExact": true,
+  "serversClosed": {
+    "4175": true,
+    "4315": true
+  },
+  "sourceProviderSha256": "80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d",
+  "officialRelease": false,
+  "transactionSeconds": 116.62892930099997,
+  "remaining": "Independent correction review, owner acceptance and green final CI remain main-owned."
+}

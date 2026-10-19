@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "node",
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "--config",
+    "playwright.release.config.ts",
+    "tests/e2e/generated-board.spec.ts",
+    "--workers=2",
+    "--reporter=list,html,json"
+  ],
+  "exit": 0,
+  "seconds": 5.384969524,
+  "uid": 1000,
+  "gid": 1000,
+  "shmBytes": 1073741824
+}

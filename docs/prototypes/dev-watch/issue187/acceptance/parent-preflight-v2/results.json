@@ -1,0 +1,46 @@
+[
+  {
+    "name": "before",
+    "argv": [
+      "node",
+      "--test",
+      "tools/harness/test/dev-watch.test.mjs"
+    ],
+    "exit": 1,
+    "seconds": 3.277342953995685,
+    "configSha256": "603ee167f8621daf3874af336f2443e12ba973f2bccf275ae7ff1a0e9e4200d7"
+  },
+  {
+    "name": "proposed",
+    "argv": [
+      "node",
+      "--test",
+      "tools/harness/test/dev-watch.test.mjs"
+    ],
+    "exit": 0,
+    "seconds": 3.9479483570030425,
+    "configSha256": "4cae5bff592c0ddf81b0ab12ec4d0778ec153d90bb34a07d8d7cfbfb95a7d6c5"
+  },
+  {
+    "name": "ancestor-glob",
+    "argv": [
+      "node",
+      "--test",
+      "tools/harness/test/dev-watch.test.mjs"
+    ],
+    "exit": 1,
+    "seconds": 1.8166553119954187,
+    "configSha256": "eaecaba05764e2a6fd74612808fbb7af6e8ce02a2e54730e1348d0895c232032"
+  },
+  {
+    "name": "test-watch-removed",
+    "argv": [
+      "node",
+      "--test",
+      "tools/harness/test/dev-watch.test.mjs"
+    ],
+    "exit": 1,
+    "seconds": 1.7943957520037657,
+    "configSha256": "0e8f618deb421d4404252b09a828b1222902335c4465e8a64e2612ba92abd9d4"
+  }
+]

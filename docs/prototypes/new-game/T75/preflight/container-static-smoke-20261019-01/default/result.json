@@ -1,0 +1,93 @@
+{
+  "variant": "default",
+  "legacyValue": null,
+  "launchOptions": {
+    "headless": true,
+    "timeout": 10000
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "start": 1792398329344.9016,
+  "operations": [
+    {
+      "name": "goto",
+      "start": 1792398329703.2615,
+      "value": null,
+      "status": "passed",
+      "end": 1792398329710.7168
+    },
+    {
+      "name": "ordinary-click-5000ms",
+      "start": 1792398329717.3455,
+      "status": "passed",
+      "end": 1792398329760.7183
+    },
+    {
+      "name": "two-native-RAF-5000ms",
+      "start": 1792398329761.1394,
+      "value": {
+        "first": 66.5,
+        "second": 83.1
+      },
+      "status": "passed",
+      "end": 1792398329788.4255
+    },
+    {
+      "name": "screenshot-5000ms",
+      "start": 1792398329788.7878,
+      "value": "static-page.png",
+      "status": "passed",
+      "end": 1792398329821.373
+    }
+  ],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "HeadlessChrome/153.0.8010.12",
+    "revision": "@971a7443b0c9b0a9b2860529b33331b76077ec62",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+    "jsVersion": "15.3.76.4"
+  },
+  "commandlineError": "cdpSession.send: Protocol error (Browser.getBrowserCommandLine): Command line not returned because --enable-automation not set.",
+  "html": "<!doctype html><meta charset=\"utf-8\"><title>Minimal native paint probe</title><style>body{margin:32px;font-family:sans-serif}button{width:180px;height:48px;font-size:18px}</style><button onclick=\"document.body.dataset.clicks=String(Number(document.body.dataset.clicks||0)+1)\">Static button</button>",
+  "before": {
+    "visibility": "visible",
+    "focus": true,
+    "date": 1792398329714,
+    "performance": 10.099999999627471,
+    "paint": [],
+    "clicks": "0",
+    "rect": {
+      "x": 32,
+      "y": 32,
+      "width": 180,
+      "height": 48
+    }
+  },
+  "after": {
+    "visibility": "visible",
+    "focus": true,
+    "date": 1792398329822,
+    "performance": 117.79999999981374,
+    "paint": [
+      {
+        "name": "first-paint",
+        "startTime": 20
+      },
+      {
+        "name": "first-contentful-paint",
+        "startTime": 20
+      }
+    ],
+    "clicks": "1",
+    "rect": {
+      "x": 32,
+      "y": 32,
+      "width": 180,
+      "height": 48
+    }
+  },
+  "closed": true,
+  "end": 1792398329855.6265
+}

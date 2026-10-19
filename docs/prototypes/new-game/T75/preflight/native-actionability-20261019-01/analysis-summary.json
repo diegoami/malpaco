@@ -1,0 +1,127 @@
+{
+  "requestAnimationFrameEvents": 8,
+  "fireAnimationFrameEvents": 8,
+  "firstRequest": {
+    "args": {
+      "data": {
+        "frame": "B5099B31894E9851571DEBC04F822B61",
+        "id": 1
+      }
+    },
+    "cat": "devtools.timeline",
+    "name": "RequestAnimationFrame",
+    "ph": "I",
+    "pid": 219918,
+    "s": "t",
+    "tid": 219918,
+    "ts": 2831719647,
+    "tts": 1075245
+  },
+  "firstMatchingFire": {
+    "args": {
+      "data": {
+        "frame": "B5099B31894E9851571DEBC04F822B61",
+        "id": 1
+      }
+    },
+    "cat": "devtools.timeline",
+    "dur": 555,
+    "name": "FireAnimationFrame",
+    "ph": "X",
+    "pid": 219918,
+    "tdur": 550,
+    "tid": 219918,
+    "ts": 2868414126,
+    "tts": 1130916
+  },
+  "requestToFireMs": 36694.479,
+  "firstBeginFrameTs": 2868401926,
+  "rendererRunTasksBetweenRequestAndFire": 78,
+  "maxRendererRunTaskMs": 38.624,
+  "sumRendererRunTaskMs": 62.791,
+  "originalClick": {
+    "name": "original-Newgame-click",
+    "start": 1792396139350.834,
+    "status": "FAILED",
+    "error": {
+      "message": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'New game', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"quiet\" id=\"new-game-button\">New game</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+      "stack": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'New game', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"quiet\" id=\"new-game-button\">New game</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/native-actionability-20261019-01/diagnostic.mjs:33:101\n    at timed (/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/native-actionability-20261019-01/diagnostic.mjs:8:101)\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/native-actionability-20261019-01/diagnostic.mjs:33:12"
+    },
+    "end": 1792396169351.571
+  },
+  "screenshotInterval": [
+    1792396169503.3765,
+    1792396176101.332
+  ],
+  "activation": {
+    "name": "DIAGNOSTIC-bringToFront",
+    "start": 1792396176101.346,
+    "status": "passed",
+    "end": 1792396176102.1091
+  },
+  "visibilityFocusSnapshots": [
+    {
+      "label": "before-goto",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396135962.3
+    },
+    {
+      "label": "after-goto",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396136018.3
+    },
+    {
+      "label": "cold-file",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396138414.6
+    },
+    {
+      "label": "warm-file",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396139013.4001
+    },
+    {
+      "label": "before-original-click",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396139165.3
+    },
+    {
+      "label": "original-click-failed",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396169352.7
+    },
+    {
+      "label": "after-activation",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396176102.9001
+    },
+    {
+      "label": "rescue-flow-complete",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396176729.3
+    },
+    {
+      "label": "finally-before-close",
+      "visibility": "visible",
+      "hasFocus": true,
+      "native": 1792396176881.9001
+    }
+  ],
+  "workerPostCount": 1,
+  "workerReplyCount": 1,
+  "workerMs": 1344.10009765625,
+  "fullInputEqualsArchivedOriginal": true,
+  "fullOutputEqualsArchivedOriginal": true,
+  "keyMatches": true,
+  "actualWorkerHttpSha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+  "packageBeforeAllHashesMatchArtifact": true,
+  "noFocusOnlyCausalClaim": "Frame/first-paint resumed during post-failure screenshot before bringToFront; combined rescue is confounded."
+}

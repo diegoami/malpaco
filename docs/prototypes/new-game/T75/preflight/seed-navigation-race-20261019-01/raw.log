@@ -1,0 +1,12 @@
+ReferenceError: __dirname is not defined in ES module scope
+    at file:///work/docs/prototypes/new-game/T75/preflight/seed-navigation-race-20261019-01/playwright.diagnostic.config.ts:2:38
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at node:internal/modules/esm/loader:647:26
+    at requireOrImport (/work/node_modules/playwright/lib/common/index.js:1081:12)
+    at loadUserConfig (/work/node_modules/playwright/lib/common/index.js:1268:46)
+    at loadConfig (/work/node_modules/playwright/lib/common/index.js:1275:22)
+    at Object.loadConfigFromFile (/work/node_modules/playwright/lib/common/index.js:1490:10)
+    at runTests (/work/node_modules/playwright/lib/cli/testActions.js:46:18)
+    at _Command.<anonymous> (/work/node_modules/playwright/lib/program.js:55:7)
+owned server closed

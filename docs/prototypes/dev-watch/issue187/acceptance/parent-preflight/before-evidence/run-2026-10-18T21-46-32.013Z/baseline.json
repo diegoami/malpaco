@@ -1,0 +1,87 @@
+{
+  "name": "baseline",
+  "initial": {
+    "kernelWatches": 45,
+    "directories": [
+      "",
+      "..",
+      ".cache",
+      ".cache/retained-existing",
+      ".cache/retained-existing/src",
+      ".cache/retained-existing/src/dir-0",
+      ".cache/retained-existing/src/dir-1",
+      ".cache/retained-existing/src/dir-2",
+      ".cache/retained-existing/src/dir-3",
+      ".cache/retained-existing/src/dir-4",
+      ".cache/retained-existing/src/dir-5",
+      ".cache/retained-existing/src/dir-6",
+      ".cache/retained-existing/src/dir-7",
+      "data",
+      "data/maps",
+      "public",
+      "src",
+      "tests"
+    ],
+    "files": 45
+  },
+  "afterAdded": {
+    "kernelWatches": 79,
+    "directories": [
+      "",
+      "..",
+      ".cache",
+      ".cache/retained-added",
+      ".cache/retained-added/src",
+      ".cache/retained-added/src/dir-0",
+      ".cache/retained-added/src/dir-1",
+      ".cache/retained-added/src/dir-2",
+      ".cache/retained-added/src/dir-3",
+      ".cache/retained-added/src/dir-4",
+      ".cache/retained-added/src/dir-5",
+      ".cache/retained-added/src/dir-6",
+      ".cache/retained-added/src/dir-7",
+      ".cache/retained-existing",
+      ".cache/retained-existing/src",
+      ".cache/retained-existing/src/dir-0",
+      ".cache/retained-existing/src/dir-1",
+      ".cache/retained-existing/src/dir-2",
+      ".cache/retained-existing/src/dir-3",
+      ".cache/retained-existing/src/dir-4",
+      ".cache/retained-existing/src/dir-5",
+      ".cache/retained-existing/src/dir-6",
+      ".cache/retained-existing/src/dir-7",
+      "data",
+      "data/maps",
+      "public",
+      "src",
+      "tests"
+    ],
+    "files": 79
+  },
+  "http": {
+    "/src/main.ts": 200,
+    "/data/maps/probe.json": 200,
+    "/probe.txt": 200
+  },
+  "changes": [
+    "src/main.ts",
+    "data/maps/probe.json",
+    "public/probe.txt",
+    "tests/probe.test.ts"
+  ],
+  "messages": [
+    {
+      "type": "update",
+      "updates": [
+        {
+          "type": "js-update",
+          "timestamp": 1792359992973,
+          "path": "/src/main.ts",
+          "acceptedPath": "/src/main.ts",
+          "explicitImportRequired": false,
+          "isWithinCircularImport": false
+        }
+      ]
+    }
+  ]
+}

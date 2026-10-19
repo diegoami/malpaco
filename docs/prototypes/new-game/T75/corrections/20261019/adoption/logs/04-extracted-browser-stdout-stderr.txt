@@ -1,0 +1,222 @@
+[WebServer] (node:3228598) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 166 tests using 2 workers
+
+(node:3228654) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3228660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    1 [1280x800] › tests/e2e/cards-result-layout.spec.ts:4:1 › final T40 loss choices fit both modes; retain all geometry before assertions (883ms)
+  ✓    3 [1280x800] › tests/e2e/cards.spec.ts:49:30 › Anchor: literal effect, ordinary trade, own hand and public piles fit both modes (6.9s)
+  ✓    4 [1280x800] › tests/e2e/cards.spec.ts:49:30 › Compass: literal effect, ordinary trade, own hand and public piles fit both modes (6.8s)
+  ✓    5 [1280x800] › tests/e2e/cards.spec.ts:49:30 › Lantern: literal effect, ordinary trade, own hand and public piles fit both modes (7.2s)
+  ✓    6 [1280x800] › tests/e2e/cards.spec.ts:49:30 › Surge: literal effect, ordinary trade, own hand and public piles fit both modes (6.8s)
+  ✓    7 [1280x800] › tests/e2e/cards.spec.ts:54:1 › geographic no-set passes once without RNG; an available set can be skipped without loss (11.2s)
+  ✓    2 [1280x800] › tests/e2e/battle-panel-fit.spec.ts:20:1 › complete human battle controls stay simultaneously visible without outer scrolling (41.8s)
+  ✓    9 [1280x800] › tests/e2e/cards.spec.ts:67:1 › Shield feedback reveals only cancellation; spent set and exactly one Shield are conserved without RNG (1.4s)
+  ✓    8 [1280x800] › tests/e2e/cards.spec.ts:60:1 › reference Raid has a private-safe named preview; friendly/background clicks refuse; confirmation is ordinary (7.2s)
+  ✓   11 [1280x800] › tests/e2e/cards.spec.ts:78:1 › all five pre-draw choices and normal reward fit; Continue changes neither history nor RNG (8.6s)
+  ✓   10 [1280x800] › tests/e2e/cards.spec.ts:72:1 › true geographic income and remote Country7 Raid preserve map metadata and exact saved stages (20.2s)
+  ✓   12 [1280x800] › tests/e2e/cards.spec.ts:85:1 › Squall loss and decisive reward remain acknowledgeable in both modes without extra engine actions (8.8s)
+  ✓   14 [1280x800] › tests/e2e/cards.spec.ts:101:1 › spectator card files expose no private hand/choices; unsupported shared-human card files preserve live play (1.3s)
+  ✓   13 [1280x800] › tests/e2e/cards.spec.ts:92:1 › replacement and pause invalidate card drafts/rewards; complete history keeps an older reading offset (2.5s)
+  ✓   16 [1280x800] › tests/e2e/computer-cards.spec.ts:51:1 › explicit manual geography and reference compatibility keep their historical identities (8.2s)
+  ✓   17 [1280x800] › tests/e2e/computer-cards.spec.ts:56:1 › three consecutive computers perform literal Raid decisions and reach the correct human-loss choices (8.5s)
+  ✓   18 [1280x800] › tests/e2e/computer-cards.spec.ts:75:1 › three consecutive computers discard oldest cards and return a living human to actual board placement (8.7s)
+  ✓   19 [1280x800] › tests/e2e/computer-cards.spec.ts:85:1 › real computer pending discard chooses oldest index zero before drawing and needs no human reward (1.0s)
+  ✓   20 [1280x800] › tests/e2e/computer-cards.spec.ts:90:1 › human acknowledgement blocks computers through pause/speed changes and resumes at exactly two seconds (1.7s)
+  ✓   15 [1280x800] › tests/e2e/computer-cards.spec.ts:39:1 › geographic setup enables cards only for zero/one human with explicit wording and exact identity (29.4s)
+  ✓   21 [1280x800] › tests/e2e/computer-cards.spec.ts:96:1 › native pending Raid/discard saves reload exactly, pause holds, and spectator cards progress privately (3.8s)
+  ✓   23 [1280x800] › tests/e2e/computer-cards.spec.ts:112:1 › automatic card actions preserve complete chronological log, upward reading, totals and public event history (1.8s)
+  ✓   24 [1280x800] › tests/e2e/game-event-log.spec.ts:70:1 › popup works by keyboard while paused, appends exactly once and resets for a new match (2.0s)
+  ✓   25 [1280x800] › tests/e2e/game-event-log.spec.ts:84:54 › complete move-completed replay includes ordered army accounting beyond seven entries (959ms)
+  ✓   26 [1280x800] › tests/e2e/game-event-log.spec.ts:84:54 › complete domination replay includes ordered army accounting beyond seven entries (2.6s)
+  ✓   22 [1280x800] › tests/e2e/computer-cards.spec.ts:105:1 › load/new game cancel old computer timers and detached human reward callbacks (12.7s)
+  ✓   27 [1280x800] › tests/e2e/geographic-board.spec.ts:63:1 › measured corpus fixture is frozen and reproducible (6.1s)
+  ✓   29 [1280x800] › tests/e2e/geographic-board.spec.ts:81:35 › seed 1994 paints actual geography and contained legible army labels (10.5s)
+  ✓   28 [1280x800] › tests/e2e/geographic-board.spec.ts:71:1 › root and unknown view retain the established setup and playback controls (14.5s)
+  ✓   30 [1280x800] › tests/e2e/geographic-board.spec.ts:81:35 › seed 513 paints actual geography and contained legible army labels (10.1s)
+  ✓   31 [1280x800] › tests/e2e/geographic-board.spec.ts:81:35 › seed 749 paints actual geography and contained legible army labels (12.1s)
+  ✓   33 [1280x800] › tests/e2e/geographic-board.spec.ts:81:35 › seed 0 paints actual geography and contained legible army labels (11.9s)
+  ✓   32 [1280x800] › tests/e2e/geographic-board.spec.ts:81:35 › seed 1 paints actual geography and contained legible army labels (14.7s)
+  ✓   34 [1280x800] › tests/e2e/geographic-board.spec.ts:81:35 › seed 6 paints actual geography and contained legible army labels (9.5s)
+  ✓   35 [1280x800] › tests/e2e/geographic-board.spec.ts:100:51 › painted borders use the core's exact legal targets and exchange (17.4s)
+  ✓   36 [1280x800] › tests/e2e/geographic-board.spec.ts:100:51 › painted seaLanes use the core's exact legal targets and exchange (17.8s)
+  ✓   38 [1280x800] › tests/e2e/geographic-board.spec.ts:123:1 › invalid seed stays in setup and recovers (5.0s)
+  ✓   37 [1280x800] › tests/e2e/geographic-board.spec.ts:113:1 › geographic replay and reference identity dispatch preserve state, history and pause (21.3s)
+  ✓   39 [1280x800] › tests/e2e/geographic-board.spec.ts:128:53 › real measured refusal 398 recovers (11.4s)
+  ✓   40 [1280x800] › tests/e2e/geographic-board.spec.ts:132:1 › geographic computer playback pauses and cancels stale work on load (18.9s)
+  ✓   42 [1280x800] › tests/e2e/geographic-presentation.spec.ts:45:1 › real worker preparation is responsive and precedes playable construction (5.6s)
+  ✓   41 [1280x800] › tests/e2e/geographic-board.spec.ts:169:1 › geographic continuous battle pauses/resumes and cancels stale work on load/new game (23.8s)
+  ✓   43 [1280x800] › tests/e2e/geographic-presentation.spec.ts:54:1 › actual geographic load preserves exact replay while painting the frozen presentation (5.5s)
+  ✓   44 [1280x800] › tests/e2e/geographic-presentation.spec.ts:70:1 › frozen changed boundaries receive pointer hits and a repeated load reuses the root drawing cache (6.8s)
+  ✓   46 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army (7.6s)
+  ✓   45 [1280x800] › tests/e2e/geographic-presentation.spec.ts:80:1 › invalid newer file and New game reject held real-worker load completions without replacing a live match (13.6s)
+  ✓   47 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match (3.3s)
+{"kind":"responsive-shell","viewport":"1280x800","reference":{"panelWidth":350,"panelHeight":599.828125,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"},"geographic":{"panelWidth":350,"panelHeight":599.828125,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"}}
+  ✓   48 [1280x800] › tests/e2e/geographic-review-guards.spec.ts:64:1 › default four-seat geographic shell shares reference responsive layout (8.4s)
+  ✓   49 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (8.1s)
+  ✓   50 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (8.0s)
+  ✓   51 [1280x800] › tests/e2e/match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (7.8s)
+  ✓   52 [1280x800] › tests/e2e/match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again (2.0s)
+  ✓   54 [1280x800] › tests/e2e/playback-controls.spec.ts:105:1 › very slow spaces automatic actions by two seconds and changes no replay outcome (1.7s)
+  ✓   53 [1280x800] › tests/e2e/playback-controls.spec.ts:90:1 › labelled army totals follow ordinary actions and include eliminated players (2.1s)
+  ✓   55 [1280x800] › tests/e2e/playback-controls.spec.ts:118:1 › Pause freezes computer play, rejects stale callbacks and replacement cancels the old match (1.5s)
+  ✓   57 [1280x800] › tests/e2e/playback-edge-cases.spec.ts:7:1 › modal Escape preserves continuous combat; local/global very-slow controls stay synchronized (1.4s)
+  ✓   56 [1280x800] › tests/e2e/playback-controls.spec.ts:134:1 › global pause freezes continuous human battle and gates manual reinforcement and capture (2.9s)
+  ✓   59 [1280x800] › tests/e2e/playback-edge-cases.spec.ts:38:1 › closing the event log does not steal focus from the next keyboard action (515ms)
+  ✓   58 [1280x800] › tests/e2e/playback-edge-cases.spec.ts:29:1 › default four-seat controls fit and a paused computer is labelled paused (741ms)
+  ✓   60 [1280x800] › tests/e2e/playback-edge-cases.spec.ts:47:1 › failed load feedback stays readable without covering capture or playback controls (652ms)
+  ✓   61 [1280x800] › tests/e2e/versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement (841ms)
+  ✓   62 [1280x800] › tests/e2e/versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm (927ms)
+  ✓   63 [1280x800] › tests/e2e/versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn (1.7s)
+  ✓   65 [1280x800] › tests/e2e/versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls (1.4s)
+  ✓   64 [1280x800] › tests/e2e/versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable (2.9s)
+  ✓   66 [1280x800] › tests/e2e/versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers (926ms)
+(node:3240978) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   67 [1280x800] › tests/e2e/versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match (1.0s)
+(node:3241004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   68 [1280x800] › tests/e2e/compact-panels.spec.ts:40:2 › reference: computer phase changes keep actual card bounds stable (1.7s)
+  ✓   69 [1280x800] › tests/e2e/compact-panels.spec.ts:48:45 › reference compact: real computer actions retain fixed panel areas and essentials (5.6s)
+  ✓   70 [1280x800] › tests/e2e/compact-panels.spec.ts:48:45 › reference detailed: real computer actions retain fixed panel areas and essentials (5.4s)
+  ✓   71 [1280x800] › tests/e2e/compact-panels.spec.ts:61:2 › reference: default/reversible keyboard mode preserves pause, speed, log, load and next callback (1.7s)
+  ✓   72 [1280x800] › tests/e2e/compact-panels.spec.ts:72:45 › reference compact: mandatory human capture and friendly movement remain visible and operable (2.1s)
+  ✓   73 [1280x800] › tests/e2e/compact-panels.spec.ts:72:45 › reference detailed: mandatory human capture and friendly movement remain visible and operable (2.1s)
+  ✘   74 [1280x800] › tests/e2e/compact-panels.spec.ts:40:2 › geographic: computer phase changes keep actual card bounds stable (4.7s)
+(node:3241918) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   75 [1280x800] › tests/e2e/compact-panels.spec.ts:48:45 › geographic compact: real computer actions retain fixed panel areas and essentials (27.2s)
+  ✓   76 [1280x800] › tests/e2e/compact-panels.spec.ts:48:45 › geographic detailed: real computer actions retain fixed panel areas and essentials (26.8s)
+  ✓   77 [1280x800] › tests/e2e/compact-panels.spec.ts:61:2 › geographic: default/reversible keyboard mode preserves pause, speed, log, load and next callback (10.3s)
+  ✓   78 [1280x800] › tests/e2e/compact-panels.spec.ts:72:45 › geographic compact: mandatory human capture and friendly movement remain visible and operable (12.9s)
+  ✓   80 [1280x800] › tests/e2e/compact-panels.spec.ts:86:44 › reference compact: human-loss choices fit and remain usable (1.3s)
+  ✓   81 [1280x800] › tests/e2e/compact-panels.spec.ts:86:44 › reference detailed: human-loss choices fit and remain usable (1.4s)
+  ✓   82 [1280x800] › tests/e2e/compact-panels.spec.ts:94:46 › reference: complete battle history scrolls without deleting entries or moving an older reader (1.8s)
+  ✓   79 [1280x800] › tests/e2e/compact-panels.spec.ts:72:45 › geographic detailed: mandatory human capture and friendly movement remain visible and operable (13.5s)
+(node:3245060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   83 [1280x800] › tests/e2e/compact-panels.spec.ts:94:46 › geographic: complete battle history scrolls without deleting entries or moving an older reader (10.0s)
+(node:3246078) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   85 [1920x1080] › tests/e2e/cards-result-layout.spec.ts:4:1 › final T40 loss choices fit both modes; retain all geometry before assertions (816ms)
+  ✓   86 [1920x1080] › tests/e2e/cards.spec.ts:49:30 › Anchor: literal effect, ordinary trade, own hand and public piles fit both modes (6.8s)
+  ✓   87 [1920x1080] › tests/e2e/cards.spec.ts:49:30 › Compass: literal effect, ordinary trade, own hand and public piles fit both modes (7.6s)
+  ✓   88 [1920x1080] › tests/e2e/cards.spec.ts:49:30 › Lantern: literal effect, ordinary trade, own hand and public piles fit both modes (6.9s)
+  ✓   89 [1920x1080] › tests/e2e/cards.spec.ts:49:30 › Surge: literal effect, ordinary trade, own hand and public piles fit both modes (6.8s)
+  ✓   84 [1920x1080] › tests/e2e/battle-panel-fit.spec.ts:20:1 › complete human battle controls stay simultaneously visible without outer scrolling (42.7s)
+  ✓   90 [1920x1080] › tests/e2e/cards.spec.ts:54:1 › geographic no-set passes once without RNG; an available set can be skipped without loss (10.9s)
+  ✓   92 [1920x1080] › tests/e2e/cards.spec.ts:67:1 › Shield feedback reveals only cancellation; spent set and exactly one Shield are conserved without RNG (1.3s)
+  ✓   91 [1920x1080] › tests/e2e/cards.spec.ts:60:1 › reference Raid has a private-safe named preview; friendly/background clicks refuse; confirmation is ordinary (6.9s)
+  ✓   94 [1920x1080] › tests/e2e/cards.spec.ts:78:1 › all five pre-draw choices and normal reward fit; Continue changes neither history nor RNG (7.3s)
+  ✓   95 [1920x1080] › tests/e2e/cards.spec.ts:85:1 › Squall loss and decisive reward remain acknowledgeable in both modes without extra engine actions (7.5s)
+  ✓   96 [1920x1080] › tests/e2e/cards.spec.ts:92:1 › replacement and pause invalidate card drafts/rewards; complete history keeps an older reading offset (2.3s)
+  ✓   93 [1920x1080] › tests/e2e/cards.spec.ts:72:1 › true geographic income and remote Country7 Raid preserve map metadata and exact saved stages (18.3s)
+  ✓   97 [1920x1080] › tests/e2e/cards.spec.ts:101:1 › spectator card files expose no private hand/choices; unsupported shared-human card files preserve live play (1.0s)
+  ✓   99 [1920x1080] › tests/e2e/computer-cards.spec.ts:51:1 › explicit manual geography and reference compatibility keep their historical identities (7.3s)
+  ✓  100 [1920x1080] › tests/e2e/computer-cards.spec.ts:56:1 › three consecutive computers perform literal Raid decisions and reach the correct human-loss choices (8.1s)
+  ✓  101 [1920x1080] › tests/e2e/computer-cards.spec.ts:75:1 › three consecutive computers discard oldest cards and return a living human to actual board placement (8.7s)
+  ✓  102 [1920x1080] › tests/e2e/computer-cards.spec.ts:85:1 › real computer pending discard chooses oldest index zero before drawing and needs no human reward (1.1s)
+  ✓   98 [1920x1080] › tests/e2e/computer-cards.spec.ts:39:1 › geographic setup enables cards only for zero/one human with explicit wording and exact identity (26.5s)
+  ✓  103 [1920x1080] › tests/e2e/computer-cards.spec.ts:90:1 › human acknowledgement blocks computers through pause/speed changes and resumes at exactly two seconds (1.8s)
+  ✓  104 [1920x1080] › tests/e2e/computer-cards.spec.ts:96:1 › native pending Raid/discard saves reload exactly, pause holds, and spectator cards progress privately (3.6s)
+  ✓  106 [1920x1080] › tests/e2e/computer-cards.spec.ts:112:1 › automatic card actions preserve complete chronological log, upward reading, totals and public event history (1.6s)
+  ✓  107 [1920x1080] › tests/e2e/game-event-log.spec.ts:70:1 › popup works by keyboard while paused, appends exactly once and resets for a new match (1.9s)
+  ✓  108 [1920x1080] › tests/e2e/game-event-log.spec.ts:84:54 › complete move-completed replay includes ordered army accounting beyond seven entries (829ms)
+  ✓  109 [1920x1080] › tests/e2e/game-event-log.spec.ts:84:54 › complete domination replay includes ordered army accounting beyond seven entries (2.3s)
+  ✓  105 [1920x1080] › tests/e2e/computer-cards.spec.ts:105:1 › load/new game cancel old computer timers and detached human reward callbacks (10.6s)
+  ✓  110 [1920x1080] › tests/e2e/geographic-board.spec.ts:63:1 › measured corpus fixture is frozen and reproducible (6.1s)
+  ✓  111 [1920x1080] › tests/e2e/geographic-board.spec.ts:71:1 › root and unknown view retain the established setup and playback controls (12.0s)
+  ✓  112 [1920x1080] › tests/e2e/geographic-board.spec.ts:81:35 › seed 1994 paints actual geography and contained legible army labels (10.2s)
+  ✓  113 [1920x1080] › tests/e2e/geographic-board.spec.ts:81:35 › seed 513 paints actual geography and contained legible army labels (8.8s)
+  ✓  114 [1920x1080] › tests/e2e/geographic-board.spec.ts:81:35 › seed 749 paints actual geography and contained legible army labels (10.7s)
+  ✓  115 [1920x1080] › tests/e2e/geographic-board.spec.ts:81:35 › seed 1 paints actual geography and contained legible army labels (13.2s)
+  ✓  116 [1920x1080] › tests/e2e/geographic-board.spec.ts:81:35 › seed 0 paints actual geography and contained legible army labels (10.8s)
+  ✓  117 [1920x1080] › tests/e2e/geographic-board.spec.ts:81:35 › seed 6 paints actual geography and contained legible army labels (9.0s)
+  ✓  118 [1920x1080] › tests/e2e/geographic-board.spec.ts:100:51 › painted borders use the core's exact legal targets and exchange (16.0s)
+  ✓  119 [1920x1080] › tests/e2e/geographic-board.spec.ts:100:51 › painted seaLanes use the core's exact legal targets and exchange (15.5s)
+  ✓  121 [1920x1080] › tests/e2e/geographic-board.spec.ts:123:1 › invalid seed stays in setup and recovers (4.1s)
+  ✓  120 [1920x1080] › tests/e2e/geographic-board.spec.ts:113:1 › geographic replay and reference identity dispatch preserve state, history and pause (18.2s)
+  ✓  122 [1920x1080] › tests/e2e/geographic-board.spec.ts:128:53 › real measured refusal 398 recovers (10.0s)
+  ✓  123 [1920x1080] › tests/e2e/geographic-board.spec.ts:132:1 › geographic computer playback pauses and cancels stale work on load (18.0s)
+  ✓  124 [1920x1080] › tests/e2e/geographic-board.spec.ts:169:1 › geographic continuous battle pauses/resumes and cancels stale work on load/new game (21.1s)
+  ✓  125 [1920x1080] › tests/e2e/geographic-presentation.spec.ts:45:1 › real worker preparation is responsive and precedes playable construction (5.5s)
+  ✓  126 [1920x1080] › tests/e2e/geographic-presentation.spec.ts:54:1 › actual geographic load preserves exact replay while painting the frozen presentation (5.2s)
+  ✓  127 [1920x1080] › tests/e2e/geographic-presentation.spec.ts:70:1 › frozen changed boundaries receive pointer hits and a repeated load reuses the root drawing cache (6.9s)
+  ✓  129 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army (7.3s)
+  ✓  130 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match (3.1s)
+  ✓  128 [1920x1080] › tests/e2e/geographic-presentation.spec.ts:80:1 › invalid newer file and New game reject held real-worker load completions without replacing a live match (13.3s)
+{"kind":"responsive-shell","viewport":"1920x1080","reference":{"panelWidth":440,"panelHeight":922.625,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"},"geographic":{"panelWidth":440,"panelHeight":922.625,"panelGap":"6px","scoreGap":"2px","scorePadding":"8px","rowPadding":"3px 4px","rowGap":"6px","cardPadding":"8px","logMinHeight":"50px","legendMargin":"6px","legendFont":"11px","stepColumns":"24px 44px minmax(0px, 1fr)","stepGap":"6px","valueWhiteSpace":"normal","valueOverflow":"visible","valueWrap":"anywhere"}}
+  ✓  131 [1920x1080] › tests/e2e/geographic-review-guards.spec.ts:64:1 › default four-seat geographic shell shares reference responsive layout (8.3s)
+  ✓  132 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (7.8s)
+  ✓  134 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (7.5s)
+  ✓  133 [1920x1080] › tests/e2e/match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff (7.7s)
+  ✓  135 [1920x1080] › tests/e2e/match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again (1.9s)
+  ✓  136 [1920x1080] › tests/e2e/playback-controls.spec.ts:90:1 › labelled army totals follow ordinary actions and include eliminated players (2.1s)
+  ✓  138 [1920x1080] › tests/e2e/playback-controls.spec.ts:118:1 › Pause freezes computer play, rejects stale callbacks and replacement cancels the old match (1.4s)
+  ✓  137 [1920x1080] › tests/e2e/playback-controls.spec.ts:105:1 › very slow spaces automatic actions by two seconds and changes no replay outcome (1.7s)
+  ✓  140 [1920x1080] › tests/e2e/playback-edge-cases.spec.ts:7:1 › modal Escape preserves continuous combat; local/global very-slow controls stay synchronized (1.3s)
+  ✓  141 [1920x1080] › tests/e2e/playback-edge-cases.spec.ts:29:1 › default four-seat controls fit and a paused computer is labelled paused (637ms)
+  ✓  142 [1920x1080] › tests/e2e/playback-edge-cases.spec.ts:38:1 › closing the event log does not steal focus from the next keyboard action (449ms)
+  ✓  139 [1920x1080] › tests/e2e/playback-controls.spec.ts:134:1 › global pause freezes continuous human battle and gates manual reinforcement and capture (2.7s)
+  ✓  143 [1920x1080] › tests/e2e/playback-edge-cases.spec.ts:47:1 › failed load feedback stays readable without covering capture or playback controls (610ms)
+  ✓  144 [1920x1080] › tests/e2e/versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement (755ms)
+  ✓  145 [1920x1080] › tests/e2e/versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm (842ms)
+  ✓  146 [1920x1080] › tests/e2e/versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn (1.6s)
+  ✓  148 [1920x1080] › tests/e2e/versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls (1.3s)
+  ✓  147 [1920x1080] › tests/e2e/versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable (2.9s)
+  ✓  149 [1920x1080] › tests/e2e/versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers (879ms)
+  ✓  150 [1920x1080] › tests/e2e/versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match (915ms)
+(node:3257699) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3257719) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  151 [1920x1080] › tests/e2e/compact-panels.spec.ts:40:2 › reference: computer phase changes keep actual card bounds stable (1.5s)
+  ✓  152 [1920x1080] › tests/e2e/compact-panels.spec.ts:48:45 › reference compact: real computer actions retain fixed panel areas and essentials (5.5s)
+  ✓  153 [1920x1080] › tests/e2e/compact-panels.spec.ts:48:45 › reference detailed: real computer actions retain fixed panel areas and essentials (5.3s)
+  ✓  154 [1920x1080] › tests/e2e/compact-panels.spec.ts:61:2 › reference: default/reversible keyboard mode preserves pause, speed, log, load and next callback (1.5s)
+  ✓  155 [1920x1080] › tests/e2e/compact-panels.spec.ts:72:45 › reference compact: mandatory human capture and friendly movement remain visible and operable (1.9s)
+  ✓  156 [1920x1080] › tests/e2e/compact-panels.spec.ts:72:45 › reference detailed: mandatory human capture and friendly movement remain visible and operable (1.9s)
+  ✓  157 [1920x1080] › tests/e2e/compact-panels.spec.ts:40:2 › geographic: computer phase changes keep actual card bounds stable (7.3s)
+  ✓  158 [1920x1080] › tests/e2e/compact-panels.spec.ts:48:45 › geographic compact: real computer actions retain fixed panel areas and essentials (25.7s)
+  ✓  159 [1920x1080] › tests/e2e/compact-panels.spec.ts:48:45 › geographic detailed: real computer actions retain fixed panel areas and essentials (25.8s)
+  ✓  160 [1920x1080] › tests/e2e/compact-panels.spec.ts:61:2 › geographic: default/reversible keyboard mode preserves pause, speed, log, load and next callback (9.5s)
+  ✓  161 [1920x1080] › tests/e2e/compact-panels.spec.ts:72:45 › geographic compact: mandatory human capture and friendly movement remain visible and operable (12.3s)
+  ✓  163 [1920x1080] › tests/e2e/compact-panels.spec.ts:86:44 › reference compact: human-loss choices fit and remain usable (1.3s)
+  ✓  164 [1920x1080] › tests/e2e/compact-panels.spec.ts:86:44 › reference detailed: human-loss choices fit and remain usable (1.2s)
+  ✓  162 [1920x1080] › tests/e2e/compact-panels.spec.ts:72:45 › geographic detailed: mandatory human capture and friendly movement remain visible and operable (12.4s)
+  ✓  165 [1920x1080] › tests/e2e/compact-panels.spec.ts:94:46 › reference: complete battle history scrolls without deleting entries or moving an older reader (1.9s)
+  ✓  166 [1920x1080] › tests/e2e/compact-panels.spec.ts:94:46 › geographic: complete battle history scrolls without deleting entries or moving an older reader (8.8s)
+
+
+  1) [1280x800] › tests/e2e/compact-panels.spec.ts:40:2 › geographic: computer phase changes keep actual card bounds stable 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      19 |  const previous=await p.getByLabel('Load game',{exact:true}).elementHandle();
+      20 |  await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'panels.json',mimeType:'application/json',buffer:Buffer.from(text)});
+    > 21 |  await expect.poll(()=>previous!.evaluate(el=>el.isConnected)).toBe(false);await expect(p.locator('[data-country]')).toHaveCount(46);
+         |                                                                ^
+      22 | }
+      23 | async function bounds(p:Page){return p.locator('.battle-reference').evaluate(root=>{
+      24 |  const selectors=['.topbar','.board','.panel','.panel>.turn','.panel>.action','.panel>.log-card'];
+        at load (/home/diego/projects/malpaco/.cache/t75-work/tests/e2e/compact-panels.spec.ts:21:64)
+        at /home/diego/projects/malpaco/.cache/t75-work/tests/e2e/compact-panels.spec.ts:43:4
+
+    attachment #1: video (video/webm) ──────────────────────────────────────────────────────────────
+    docs/prototypes/new-game/T75/corrections/20261019/adoption/test-results/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1280x800/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: docs/prototypes/new-game/T75/corrections/20261019/adoption/test-results/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1280x800/error-context.md
+
+  1 failed
+    [1280x800] › tests/e2e/compact-panels.spec.ts:40:2 › geographic: computer phase changes keep actual card bounds stable 
+  165 passed (10.6m)

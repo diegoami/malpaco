@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: proposed: missing src/main.ts change
+    at file:///home/diego/projects/malpaco/.cache/issue187-work/docs/prototypes/dev-watch/issue187/probe.mjs:66:105 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.21.0

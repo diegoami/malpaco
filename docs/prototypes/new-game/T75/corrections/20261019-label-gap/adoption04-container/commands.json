@@ -1,0 +1,42 @@
+[
+  {
+    "name": "00-verify-reused-inputs",
+    "argv": [
+      "python3",
+      "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/verify-reuse.py"
+    ],
+    "exit": 0,
+    "seconds": 5.142612120999729,
+    "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/logs/00-verify-reused-inputs-stdout-stderr.txt"
+  },
+  {
+    "name": "01-container-controls-and-FIRST166",
+    "argv": [
+      "docker",
+      "run",
+      "--rm",
+      "--pull=never",
+      "--name",
+      "malpaco-t75-accept-container-20261019-01",
+      "--network",
+      "none",
+      "--shm-size=1g",
+      "--user",
+      "1000:1000",
+      "--mount",
+      "type=bind,src=/home/diego/projects/malpaco/.cache/t75-work,dst=/work,readonly",
+      "--mount",
+      "type=bind,src=/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container,dst=/work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container",
+      "--mount",
+      "type=bind,src=/home/diego/projects/malpaco/.cache/runtime/tmp/malpaco-t75-label-gap-bmsp3ozd,dst=/artifact,readonly",
+      "--workdir",
+      "/work",
+      "sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27",
+      "node",
+      "/work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/container-run.mjs"
+    ],
+    "exit": 0,
+    "seconds": 355.19674646899966,
+    "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/logs/01-container-controls-and-FIRST166-stdout-stderr.txt"
+  }
+]

@@ -1,0 +1,104 @@
+{
+  "sameChildSha256": "d4567bb85f8ab95be69232c1a819cf07648a3276511340b2723aeafbe08fdec0",
+  "hostOperations": [
+    {
+      "name": "goto",
+      "start": 1792398282808.7402,
+      "value": null,
+      "status": "passed",
+      "end": 1792398282814.5867
+    },
+    {
+      "name": "ordinary-click-5000ms",
+      "start": 1792398282821.9473,
+      "status": "FAILED",
+      "error": {
+        "message": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Static button', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button onclick=\"document.body.dataset.clicks=String(Number(document.body.dataset.clicks||0)+1)\">Static button</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+        "stack": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Static button', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button onclick=\"document.body.dataset.clicks=String(Number(document.body.dataset.clicks||0)+1)\">Static button</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:11:98\n    at op (/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:6:99)\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:11:8"
+      },
+      "end": 1792398287823.4878
+    },
+    {
+      "name": "two-native-RAF-5000ms",
+      "start": 1792398287823.9192,
+      "status": "FAILED",
+      "error": {
+        "message": "Node deadline twoRAF5000ms",
+        "stack": "Error: Node deadline twoRAF5000ms\n    at Timeout.<anonymous> (file:///home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:12:260)\n    at listOnTimeout (node:internal/timers:685:17)\n    at process.processTimers (node:internal/timers:618:7)"
+      },
+      "end": 1792398292824.2441
+    },
+    {
+      "name": "screenshot-5000ms",
+      "start": 1792398292824.681,
+      "status": "FAILED",
+      "error": {
+        "message": "page.screenshot: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n",
+        "stack": "page.screenshot: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:13:52\n    at op (/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:6:99)\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:13:8"
+      },
+      "end": 1792398297826.3315
+    }
+  ],
+  "containerOperations": [
+    {
+      "name": "goto",
+      "start": 1792398329703.2615,
+      "value": null,
+      "status": "passed",
+      "end": 1792398329710.7168
+    },
+    {
+      "name": "ordinary-click-5000ms",
+      "start": 1792398329717.3455,
+      "status": "passed",
+      "end": 1792398329760.7183
+    },
+    {
+      "name": "two-native-RAF-5000ms",
+      "start": 1792398329761.1394,
+      "value": {
+        "first": 66.5,
+        "second": 83.1
+      },
+      "status": "passed",
+      "end": 1792398329788.4255
+    },
+    {
+      "name": "screenshot-5000ms",
+      "start": 1792398329788.7878,
+      "value": "static-page.png",
+      "status": "passed",
+      "end": 1792398329821.373
+    }
+  ],
+  "hostFreshDEBUGPersisted": false,
+  "hostFreshRawLogLimitation": "Parent tool DEBUG not persisted; do not fabricate. Earlier host DEBUG available separately.",
+  "containerReceipt": {
+    "exit": 0,
+    "seconds": 1.2665984730001583
+  },
+  "containerCommand": [
+    "docker",
+    "run",
+    "--rm",
+    "--name",
+    "malpaco-t75-container-smoke-20261019-01",
+    "--network",
+    "none",
+    "--user",
+    "1000:1000",
+    "--mount",
+    "type=bind,src=/home/diego/projects/malpaco/.cache/t75-work,dst=/work,readonly",
+    "--mount",
+    "type=bind,src=/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/container-static-smoke-20261019-01,dst=/work/docs/prototypes/new-game/T75/preflight/container-static-smoke-20261019-01",
+    "--workdir",
+    "/work",
+    "--env",
+    "DEBUG=pw:browser",
+    "mcr.microsoft.com/playwright:v1.63.0-noble",
+    "node",
+    "docs/prototypes/new-game/T75/preflight/container-static-smoke-20261019-01/child.mjs",
+    "default"
+  ],
+  "environmentCauseNotEstablished": true
+}

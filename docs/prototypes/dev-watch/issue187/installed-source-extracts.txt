@@ -1,0 +1,146 @@
+/home/diego/projects/malpaco/node_modules/vite/dist/node/chunks/node.js:16668-16688
+16668: function resolveChokidarOptions(options, resolvedOutDirs, emptyOutDir, cacheDir) {
+16669: 	const { ignored: ignoredList, pollInterval, useDebounce, debounceDuration, debounceTickRate, compareContentsForPolling, include, exclude, ...otherOptions } = options ?? {};
+16670: 	const ignored = [
+16671: 		"**/.git/**",
+16672: 		"**/node_modules/**",
+16673: 		"**/test-results/**",
+16674: 		escapePath(cacheDir) + "/**",
+16675: 		...arraify(ignoredList || [])
+16676: 	];
+16677: 	if (emptyOutDir) ignored.push(...[...resolvedOutDirs].map((outDir) => escapePath(outDir) + "/**"));
+16678: 	return {
+16679: 		ignored,
+16680: 		ignoreInitial: true,
+16681: 		ignorePermissionErrors: true,
+16682: 		...otherOptions
+16683: 	};
+16684: }
+16685: function convertToWatcherOptions(options) {
+16686: 	if (!options) return;
+16687: 	return {
+16688: 		usePolling: options.usePolling,
+
+/home/diego/projects/malpaco/node_modules/vite/dist/node/chunks/node.js:24634-24656
+24634: 	const httpsOptions = await resolveHttpsConfig(config.server.https);
+24635: 	const { middlewareMode } = serverConfig;
+24636: 	const resolvedOutDirs = getResolvedOutDirs(config.root, config.build.outDir, config.build.rolldownOptions.output);
+24637: 	const emptyOutDir = resolveEmptyOutDir(config.build.emptyOutDir, config.root, resolvedOutDirs);
+24638: 	const resolvedWatchOptions = resolveChokidarOptions({
+24639: 		disableGlobbing: true,
+24640: 		...serverConfig.watch
+24641: 	}, resolvedOutDirs, emptyOutDir, config.cacheDir);
+24642: 	const middlewares = (0, import_connect.default)();
+24643: 	const httpServer = middlewareMode ? null : await resolveHttpServer(middlewares, httpsOptions);
+24644: 	const ws = createWebSocketServer(httpServer, config, httpsOptions);
+24645: 	const publicFiles = await initPublicFilesPromise;
+24646: 	const { publicDir } = config;
+24647: 	if (httpServer) setClientErrorHandler(httpServer, config.logger);
+24648: 	const watcher = serverConfig.watch !== null ? makeWatcherCloseFinal(import_chokidar.watch([
+24649: 		...config.experimental.bundledDev ? [] : [root],
+24650: 		...config.configFileDependencies,
+24651: 		...getEnvFilesForMode(config.mode, config.envDir),
+24652: 		...publicDir && publicFiles ? [publicDir] : []
+24653: 	], resolvedWatchOptions)) : createNoopWatcher(resolvedWatchOptions);
+24654: 	watcher.on("error", (error) => {
+24655: 		config.logger.error(import_picocolors.default.red(`file watcher error: ${error.message}`));
+24656: 	});
+
+/home/diego/projects/malpaco/node_modules/vite/dist/node/chunks/node.js:12374-12385
+12374: 		_isIgnored(path, stats) {
+12375: 			if (this.options.atomic && DOT_RE.test(path)) return true;
+12376: 			if (!this._userIgnored) {
+12377: 				const { cwd } = this.options;
+12378: 				const ign = this.options.ignored;
+12379: 				const ignored = ign && ign.map(normalizeIgnored(cwd));
+12380: 				const paths = arrify(ignored).filter((path) => typeof path === STRING_TYPE && !isGlob(path)).map((path) => path + SLASH_GLOBSTAR);
+12381: 				const list = this._getGlobIgnored().map(normalizeIgnored(cwd)).concat(ignored, paths);
+12382: 				this._userIgnored = anymatch(list, void 0, ANYMATCH_OPTS);
+12383: 			}
+12384: 			return this._userIgnored([path, stats]);
+12385: 		}
+
+/home/diego/projects/malpaco/node_modules/vite/dist/node/chunks/node.js:35414-35436
+35414: async function preview(inlineConfig = {}) {
+35415: 	disableCache();
+35416: 	const config = await resolveConfig(inlineConfig, "serve", "production", "production", true);
+35417: 	const clientOutDir = config.environments.client.build.outDir;
+35418: 	const distDir = path.resolve(config.root, clientOutDir);
+35419: 	if (!fs.existsSync(distDir) && config.plugins.every((plugin) => !plugin.configurePreviewServer) && process.argv[1]?.endsWith(path.normalize("bin/vite.js")) && process.argv[2] === "preview") throw new Error(`The directory "${clientOutDir}" does not exist. Did you build your project?`);
+35420: 	const httpsOptions = await resolveHttpsConfig(config.preview.https);
+35421: 	const app = (0, import_connect.default)();
+35422: 	const httpServer = await resolveHttpServer(app, httpsOptions);
+35423: 	setClientErrorHandler(httpServer, config.logger);
+35424: 	const options = config.preview;
+35425: 	const logger = config.logger;
+35426: 	const closeHttpServer = createServerCloseFn(httpServer);
+35427: 	let closeServerPromise;
+35428: 	const closeServer = async () => {
+35429: 		teardownSIGTERMListener(closeServerAndExit);
+35430: 		await closeHttpServer();
+35431: 		server.resolvedUrls = null;
+35432: 		const closePreviewServerContext = new BasicMinimalPluginContext({
+35433: 			...basePluginContextMeta,
+35434: 			watchMode: false
+35435: 		}, config.logger);
+35436: 		await Promise.all(config.getSortedPluginHooks("closePreviewServer").map((hook) => hook.call(closePreviewServerContext)));
+
+/home/diego/projects/malpaco/node_modules/vitest/dist/chunks/index.DpLw24bj.js:20624-20651
+20624: 		this.vcs = await loadVCSProvider(this.runner, resolved.experimental.vcsProvider);
+20625: 		if (resolved.watch) {
+20626: 			this.watcher.registerWatcher();
+20627: 			// hijack server restart — re-run the full pipeline rather than letting
+20628: 			// Vite recreate the server in isolation, so Vitest's own resolution
+20629: 			// re-runs too.
+20630: 			server.restart = async () => {
+20631: 				await this._restart();
+20632: 			};
+20633: 			// container configs have no Vite server (and might be outside the root),
+20634: 			// so their files are watched explicitly
+20635: 			if (resolved._containerConfigFiles?.length) server.watcher.add(resolved._containerConfigFiles);
+20636: 			// since we set `server.hmr: false`, Vite does not auto restart itself
+20637: 			server.watcher.on("change", async (file) => {
+20638: 				file = normalize(file);
+20639: 				if (file === server.config.configFile || this.projects.some((p) => p.vite.config.configFile === file) || this.config._containerConfigFiles?.includes(file))
+20640:  // a floating rejection in an event handler would crash the process
+20641: 				await this._restart("config").catch((error) => {
+20642: 					this.logger.printError(error, {
+20643: 						fullStack: true,
+20644: 						type: "Restart Error"
+20645: 					});
+20646: 				});
+20647: 			});
+20648: 		}
+20649: 		// In run mode we don't need the watcher; closing it improves performance (#415).
+20650: 		if (!resolved.watch) await server.watcher.close();
+20651: 		this.cache.results.setConfig(resolved.root, resolved.cache);
+
+/home/diego/projects/malpaco/node_modules/vitest/dist/chunks/index.DpLw24bj.js:9710-9737
+9710: 				this.meta.watchMode = false;
+9711: 			},
+9712: 			config(viteConfig) {
+9713: 				const testConfig = viteConfig.test || {};
+9714: 				const root = testConfig.root || viteConfig.root;
+9715: 				return {
+9716: 					base: "/",
+9717: 					root,
+9718: 					cacheDir: resolveTestCacheDir(resolve(root || process.cwd()), testConfig, viteConfig.cacheDir),
+9719: 					server: {
+9720: 						open: false,
+9721: 						fs: {
+9722: 							allow: globalViteConfig.server.fs.allow,
+9723: 							deny: [API_TOKEN_FILE]
+9724: 						}
+9725: 					}
+9726: 				};
+9727: 			},
+9728: 			configResolved(config) {
+9729: 				// project servers never watch; the top-level server owns the watcher
+9730: 				config.server.watch = null;
+9731: 			}
+9732: 		},
+9733: 		SsrRunnerFixerPlugin(harness),
+9734: 		MetaEnvReplacerPlugin(),
+9735: 		...CSSEnablerPlugin(),
+9736: 		CoverageTransform(harness),
+9737: 		...ViteConfigPlugin(harness),

@@ -1,0 +1,24 @@
+{
+  "validatedManifestUnchanged": true,
+  "currentRepositoryInputs": 204,
+  "historicalGitMetadataInputs": {
+    "/home/diego/projects/malpaco/.git/refs/heads/task/T75-playable-border-release": "02a8879ca326d66f7799ee0737fd7c837d96a254aac9ed0d415b61622b1503ab",
+    "/home/diego/projects/malpaco/.git/worktrees/t75-work/HEAD": "3b4fac30d0cc3275b19d12bc4f8f11d12bf886397bdb696e595eccba8b00787c",
+    "/home/diego/projects/malpaco/.git/worktrees/t75-work/index": "39868512adef2d72f2366d1b31add6d0220d66ae9606e9afa1df4e290291697d"
+  },
+  "historicalReceiptHashes": {
+    "docs/prototypes/new-game/T75/preflight/phase-e-20261018-01/before-manifest.json": {
+      "sha256": "335dacbae8c258929032e7c0357f9363cbe0ed55fb330764f84c5e4c87f1e6a2"
+    },
+    "docs/prototypes/new-game/T75/preflight/phase-e-20261018-01/all-integrated-input-hashes.json": {
+      "sha256": "2f2a4bb04f16806a3fb2ec4f83e3b6f03eff76c42088e5d30855a55e89269ec0"
+    },
+    "docs/prototypes/new-game/T75/preflight/phase-e-20261018-01/finally-restore-manifest.json": {
+      "sha256": "9ec991f4ac0d8c50e40fdb0d00c2c8ac62618189c31ecbd5cdc7f468c5b8cff8"
+    },
+    "docs/prototypes/new-game/T75/preflight/phase-e-20261018-01/final-integrity.json": {
+      "sha256": "577b0d3873f33321d938b09b125af63acd1ff577cdc57d18856c9f9a27d8f84a"
+    }
+  },
+  "authority": "Exactly these3original-transaction Git HEAD/index/ref hashes are authenticated through committed archive members and original restoration receipts, not compared to later commit metadata or absolute paths in fresh checkouts. All204repo-relative validated inputs still require exact committed+working bytes; no generic skip/override. Original207manifest/archive untouched. Parent clarification before formal source/proof commit; no runtime/test/task assertion changes."
+}

@@ -108,7 +108,12 @@ test("all island bonuses and exact border/sea connections, click and keyboard se
 
 test("editable seeds, reload stability, actual generation failure and retry",async({page})=>{
   for(const seed of [1,2,3,7,42,1994]) {
-    await page.getByLabel("Seed",{exact:true}).fill(String(seed)); await page.getByRole("button",{name:"Generate",exact:true}).click(); await expect(page).toHaveURL(new RegExp(`seed=${seed}(?:&|$)`));
+    await page.getByLabel("Seed",{exact:true}).fill(String(seed));
+    await Promise.all([
+      page.waitForURL(new RegExp(`seed=${seed}(?:&|$)`),{waitUntil:"domcontentloaded",timeout:5000}),
+      page.getByRole("button",{name:"Generate",exact:true}).click(),
+    ]);
+    await expect(page).toHaveURL(new RegExp(`seed=${seed}(?:&|$)`));
     expect(await page.locator(".country-name").allTextContents()).toEqual(board(seed).provinces.map(p=>p.name));
   }
   await expect(page.locator('#prototype-route-mask rect[fill="black"]')).toHaveCount(map.provinces.length + map.islands.length);

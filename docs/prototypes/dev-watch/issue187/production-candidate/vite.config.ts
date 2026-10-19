@@ -1,0 +1,17 @@
+import { defineConfig } from "vitest/config";
+import { fileURLToPath } from "node:url";
+
+// The map under data/maps is read as data, unchanged; the dev server serves it
+// from the repository root.
+export default defineConfig({
+  server: {
+    fs: { allow: ["."] },
+    // Retained worktrees and evidence must not become dev-server inputs.
+    watch: { ignored: [fileURLToPath(new URL("./.cache", import.meta.url))] },
+  },
+  build: { target: "es2022", sourcemap: false },
+  test: {
+    include: ["tests/core/**/*.test.ts", "tests/ui/**/*.test.ts"],
+    environment: "node",
+  },
+});

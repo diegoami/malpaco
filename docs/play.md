@@ -1,4 +1,4 @@
-# Playable build
+# Malpaco 0.1.0 playable build
 
 Create a self-contained release archive from the source checkout with:
 
@@ -27,7 +27,7 @@ The seed fixes the geography, deal and dice sequence. The explicit
 
 The root page opens generated-island setup, defaulting to one human against three
 Normal computers. Choose a seed and 2–4 seats; each seat can be Human or Computer.
-Select **Start game**. During your turn, place reinforcements on your territories,
+Select **Start game**. The map prepares before play begins. During your turn, place reinforcements on your territories,
 then choose **Start combat**. Select one of your territories, then click an adjacent
 enemy for one exchange. Click that enemy again to repeat; Enter/Space and touch work
 the same way. **Fight on** continues automatically; **Stop** pauses it. Shift-click
@@ -35,7 +35,17 @@ the same way. **Fight on** continues automatically; **Stop** pauses it. Shift-cl
 After capturing a territory, choose the army amount and **Confirm move-in**.
 You can make one adjacent friendly move per turn. Computer turns run automatically.
 **Save game** downloads a match file; **Load game** restores one, including an
-unresolved capture choice. **New game** returns to setup.
+unresolved capture choice. **New game** returns to setup. If a load fails, the current game remains available.
+
+Cards are enabled in normal games with zero or one human seat. Hands start empty.
+Capture a territory and finish your turn to earn a card; use **View your hand**
+to see available choices. Resolve any required card choice before continuing.
+Games with two or more human seats currently play without cards.
+
+Player totals show armies on the board. **Pause** stops play, and **Game speed**
+slows computer turns. **Panel detail** switches Compact/Detailed information.
+The smaller battle log scrolls while retaining its history; **Game event log**
+opens the full action history, including army gains, losses and unplaced armies.
 
 The supported desktop layouts are 1280×800 and 1920×1080. Mobile layouts,
 online multiplayer, and cross-device save synchronization are not supported.

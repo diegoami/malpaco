@@ -1,0 +1,71 @@
+--- a/docs/prototypes/dev-watch/issue187/acceptance/probe.mjs
++++ b/docs/prototypes/dev-watch/issue187/acceptance/probe.mjs
+@@ -8,6 +8,7 @@
+ const evidence=process.env['MALPACO_DEV_WATCH_EVIDENCE'] || path.dirname(fileURLToPath(import.meta.url));
+ const run = path.join(evidence, `run-${new Date().toISOString().replaceAll(':', '-')}`);
+ await mkdir(run, {recursive:true});
++const relativePath = (root, file) => path.relative(root, file).split(path.sep).join('/');
+ const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+ const results = [];
+ async function tree(root, name) {
+@@ -18,6 +19,7 @@
+   }
+ }
+ async function watches() {
++  if (process.platform !== 'linux') return null;
+   let count=0;
+   for (const fd of await readdir('/proc/self/fdinfo')) {
+     try {count += ((await readFile(`/proc/self/fdinfo/${fd}`, 'utf8')).match(/^inotify wd:/gm)||[]).length;} catch {}
+@@ -42,12 +44,12 @@
+   await writeFile(path.join(root,'tests/probe.test.ts'),'export const test = 1;\n');
+   const server = await createServer({configFile:false,root,logLevel:'error',server:{host:'127.0.0.1',port:0,hmr:{port:0},watch:boundedWatch},optimizeDeps:{noDiscovery:true,include:[]}});
+   const events=[]; const messages=[];
+-  server.watcher.on('all',(event,file)=>events.push({event,file:path.relative(root,file)}));
++  server.watcher.on('all',(event,file)=>events.push({event,file:relativePath(root,file)}));
+   const send=server.ws.send.bind(server.ws);
+   server.ws.send=(...args)=>{messages.push(args[0]);return send(...args);};
+   const snapshot = async () => {
+     const watched=server.watcher.getWatched();
+-    return {kernelWatches:await watches(), directories:Object.keys(watched).map(p=>path.relative(root,p)).sort(), files:Object.values(watched).reduce((n,a)=>n+a.length,0)};
++    return {kernelWatches:await watches(), directories:Object.keys(watched).map(p=>relativePath(root,p)).sort(), files:Object.values(watched).reduce((n,a)=>n+a.length,0)};
+   };
+   try {
+     await server.listen();
+@@ -80,8 +82,15 @@
+ assert(baseline.initial.directories.some(p=>p.startsWith('.cache/retained-existing/src/')));
+ assert(baseline.afterAdded.directories.some(p=>p.startsWith('.cache/retained-added/src/')));
+ assert(!fixed.afterAdded.directories.some(p=>p==='.cache'||p.startsWith('.cache/')));
+-assert(fixed.afterAdded.kernelWatches===fixed.initial.kernelWatches);
+-assert(baseline.afterAdded.kernelWatches>baseline.initial.kernelWatches);
++// The behavioral guard always runs, including platforms without inotify.
++assert.deepEqual(fixed.afterAdded.directories, fixed.initial.directories);
++assert.equal(fixed.afterAdded.files, fixed.initial.files);
++assert(baseline.afterAdded.directories.length > baseline.initial.directories.length);
++assert(baseline.afterAdded.files > baseline.initial.files);
++if (process.platform === 'linux') {
++  assert(fixed.afterAdded.kernelWatches===fixed.initial.kernelWatches);
++  assert(baseline.afterAdded.kernelWatches>baseline.initial.kernelWatches);
++}
+ await writeFile(path.join(run,'summary.json'),JSON.stringify(results.map(({name,initial,afterAdded,http,changes})=>({name,initialWatches:initial.kernelWatches,afterAddedWatches:afterAdded.kernelWatches,initialDirectories:initial.directories.length,afterAddedDirectories:afterAdded.directories.length,http,changes})),null,2)+'\n');
+ console.log(run);
+ console.log(JSON.stringify(results.map(({name,initial,afterAdded})=>({name,initial:initial.kernelWatches,afterAdded:afterAdded.kernelWatches}))));
+--- a/docs/prototypes/dev-watch/issue187/acceptance/vitest-probe.mjs
++++ b/docs/prototypes/dev-watch/issue187/acceptance/vitest-probe.mjs
+@@ -15,14 +15,15 @@
+ await writeFile(testFile,body(1));
+ const proposed=await loadConfigFromFile({command:'serve',mode:'test'},path.resolve('vite.config.ts'));
+ assert.deepEqual(proposed.config.server.watch.ignored,[path.resolve('.cache')]);
++const relativePath = (root, file) => path.relative(root, file).split(path.sep).join('/');
+ const records=[];
+ let ctx;
+ try {
+-  ctx=await startVitest([], {root,config:false,watch:true,include:['tests/**/*.test.ts'],maxWorkers:1,reporters:[{onTestRunEnd(modules,errors,reason){records.push({reason,errors:errors.length,modules:modules.map(m=>({file:path.relative(root,m.moduleId),state:m.state()}))});}}]}, {server:{watch:{ignored:[path.join(root,'.cache')]}}});
++  ctx=await startVitest([], {root,config:false,watch:true,include:['tests/**/*.test.ts'],maxWorkers:1,reporters:[{onTestRunEnd(modules,errors,reason){records.push({reason,errors:errors.length,modules:modules.map(m=>({file:relativePath(root,m.moduleId),state:m.state()}))});}}]}, {server:{watch:{ignored:[path.join(root,'.cache')]}}});
+   await writeFile(testFile,body(2));
+   const deadline=Date.now()+10000;
+   while(records.length<2&&Date.now()<deadline) await new Promise(r=>setTimeout(r,100));
+-  const watched=Object.keys(ctx.vite.watcher.getWatched()).map(p=>path.relative(root,p));
++  const watched=Object.keys(ctx.vite.watcher.getWatched()).map(p=>relativePath(root,p));
+   const output={root,records,watched};
+   await writeFile(path.join(evidence,`vitest-${stamp}.json`),JSON.stringify(output,null,2)+'\n');
+   assert(records.length>=2,'test edit must trigger a second test run');

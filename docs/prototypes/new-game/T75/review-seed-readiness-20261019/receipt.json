@@ -1,0 +1,2625 @@
+{
+  "reviewHead": "63e9dd48e47da9c490455fa83bc00434e67f473a",
+  "reviewUrl": "https://github.com/diegoami/malpaco/pull/188#issuecomment-6265094713",
+  "session": "ses_eac56a204ffeiY80rstkYPi47y",
+  "actualModel": {
+    "id": "k3",
+    "providerID": "kimi-code-plan-global",
+    "variant": "low"
+  },
+  "model": "kimi-code-plan-global/k3",
+  "variant": "low",
+  "ownerAuthorizedAdditionalReview": true,
+  "parentReadFullReview": true,
+  "verdict": "approve",
+  "nativeCliExit": 0,
+  "infrastructureToolErrors": 0,
+  "toolCount": 34,
+  "sessionSeconds": 653.904,
+  "trackedReviewSourceRestored": true,
+  "originalWorktreeAndOutputsPreserved": true,
+  "archiveSha256": "182aba43c8bd7925b1a4c13085f55e3213d813be098caf8bc8631a803960a33a",
+  "archiveBytes": 23118912,
+  "parts": [
+    {
+      "path": "complete-review-evidence.tar.gz.part-000",
+      "sha256": "924401cdfdade4bf5bc5c7b53d2479a9240802470d16277a32f35561c8fc656b",
+      "bytes": 16777216
+    },
+    {
+      "path": "complete-review-evidence.tar.gz.part-001",
+      "sha256": "4f126208e35b36b18d61720d992586277ba51bad74a0d14b78647acdaa4d7d84",
+      "bytes": 6341696
+    }
+  ],
+  "members": [
+    {
+      "path": "native-tool-output/tool_153a9f9c8001s5zievgP6eg5Yc",
+      "sha256": "1f7579f251bfd8fb58b30ef93668537e76a43473fdd9494284942927f0c31e01",
+      "bytes": 500954,
+      "mode": 436
+    },
+    {
+      "path": "native/pr188-kimi-k3-fa54a52c3a17.brief.md",
+      "sha256": "ec01848b57b68d661a3c8e3a46bb9eb58fb309ea410d16d9ac1bcbe136a6e046",
+      "bytes": 20725,
+      "mode": 436
+    },
+    {
+      "path": "native/pr188-kimi-k3-fa54a52c3a17.err.txt",
+      "sha256": "46207a46499b185cd5779995df729cd353046513fb125df4d10ab5029b26b45a",
+      "bytes": 117549,
+      "mode": 436
+    },
+    {
+      "path": "native/pr188-kimi-k3-fa54a52c3a17.export.json",
+      "sha256": "102a4baee03dc564826b31e3a376a15ab24fedfdc3a4e030abcc5eb57d914b62",
+      "bytes": 892522,
+      "mode": 436
+    },
+    {
+      "path": "native/pr188-kimi-k3-fa54a52c3a17.out.txt",
+      "sha256": "f97a3e9cfff3bed1b9059db4e1f1fefa32a4dd7982d0c3b40ae7d054f6e2044b",
+      "bytes": 3225,
+      "mode": 436
+    },
+    {
+      "path": "parent/.cache/t75-dispatch/resume-20261019/review-container-metadata-check.json",
+      "sha256": "a9a173cb9b26c934a52b16ee578c515857d6c7164224c3ff32d1bd0701d7bee3",
+      "bytes": 1077,
+      "mode": 420
+    },
+    {
+      "path": "parent/.cache/t75-dispatch/resume-20261019/seed-readiness-review-brief.md",
+      "sha256": "71e98f412487db1fc56de68bcb82c1073ee338a3d7cc310f3435c1e7bea8a2c9",
+      "bytes": 17933,
+      "mode": 420
+    },
+    {
+      "path": "parent/.cache/t75-dispatch/resume-20261019/seed-review-run.json",
+      "sha256": "ff7d20ae7fe1c15b87c191787387069bc83302608ace35e349599608d9e00f23",
+      "bytes": 811,
+      "mode": 420
+    },
+    {
+      "path": "parent/.cache/t75-dispatch/resume-20261019/seed-review.log",
+      "sha256": "32968739c524bfb226dfe4c4a0a8ec48708f0c9d2aaa619ce926c458a1ab3f54",
+      "bytes": 1567,
+      "mode": 436
+    },
+    {
+      "path": "parent/.opencode/agents/reviewer-t75-container-retained.md",
+      "sha256": "e082ca3ba34bbdb4cf1887a01a396b419b36381fc894690561a4d6f1d2149b29",
+      "bytes": 7261,
+      "mode": 420
+    },
+    {
+      "path": "parent/tools/harness/.review-t75-container-retained-local.mjs",
+      "sha256": "97f8d26e9a01edeff6d708c1b9f7b35c6c637442638c94de2d946d07f05550b0",
+      "bytes": 22436,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/probe.mjs.receipt.json",
+      "sha256": "855b553625f7afbdc68de575e3db9a1410d4384b30ac705ef14b249fb6093bef",
+      "bytes": 139,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/probe.mjs.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/probe.mjs.stdout",
+      "sha256": "9a8c0cf98968f62d54c6cfeac116a4904588a4b94f651ec313f68025cdb97ce9",
+      "bytes": 232,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/run-2026-10-19T10-18-37.427Z/baseline.json",
+      "sha256": "3d12aca1402ff68e3fca2b330cd9da74dad71c72d75d4f0dd7092656cda428c4",
+      "bytes": 2225,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/run-2026-10-19T10-18-37.427Z/proposed.json",
+      "sha256": "ad99f3971506f2d512708e89de199bc647b28810c8f019aba7b55f5692a3f7d4",
+      "bytes": 951,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/run-2026-10-19T10-18-37.427Z/summary.json",
+      "sha256": "cf7f04aa9e4d39854122a86d6b1d290ae11b22c5e7bf96c704d1e435c5ea343e",
+      "bytes": 775,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/vitest-2026-10-19T10-18-40.555Z.json",
+      "sha256": "d3a3894ce524975d0a1c085f0599158caa1efa80349bb621342b8cccd3f31916",
+      "bytes": 570,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/vitest-probe.mjs.receipt.json",
+      "sha256": "a5287d9c7d0f58ee515f7a47cd66fc7107a37aa744e01b9181ffeeade0242844",
+      "bytes": 146,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/vitest-probe.mjs.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/dev-watch-check-5QDCre/vitest-probe.mjs.stdout",
+      "sha256": "1fc3c064cedfab91423aca3df9ad131ee5facaae5af3931554e520d54b53af6d",
+      "bytes": 365,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/node_modules/private-package/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-added/src/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/node_modules/private-package/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.cache/retained-existing/src/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/.git/objects/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/data/maps/probe.json",
+      "sha256": "8b4eb613687cfe65bc8dd19bbe34a0503b48e121b5b566e9a2216d5830902bec",
+      "bytes": 9,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/node_modules/root-package/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/public/probe.txt",
+      "sha256": "3279be5995ddda79787d0698597a4e701feddee118bb24c07a0b6c44fd1ba394",
+      "bytes": 10,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/src/main.ts",
+      "sha256": "98cda659b8ab9f6e80639336b6fdeba47f24da14db07b7b5f4af632e44fadc8f",
+      "bytes": 68,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/baseline/tests/probe.test.ts",
+      "sha256": "b4363bb49cda54237dc12089b2d7edba1725bf5c8716a83f683570a70dd8ad1b",
+      "bytes": 24,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/node_modules/private-package/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-added/src/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/node_modules/private-package/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.cache/retained-existing/src/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/.git/objects/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/data/maps/probe.json",
+      "sha256": "8b4eb613687cfe65bc8dd19bbe34a0503b48e121b5b566e9a2216d5830902bec",
+      "bytes": 9,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-0/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-0/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-0/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-1/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-1/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-1/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-2/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-2/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-2/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-3/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-3/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-3/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-4/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-4/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-4/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-5/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-5/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-5/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-6/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-6/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-6/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-7/file-0.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-7/file-1.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/node_modules/root-package/dir-7/file-2.ts",
+      "sha256": "e22445c7c5ef7b19b64996dfd7c78b39a0f9436fb265185ae056d4f7b93f51a2",
+      "bytes": 20,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/public/probe.txt",
+      "sha256": "3279be5995ddda79787d0698597a4e701feddee118bb24c07a0b6c44fd1ba394",
+      "bytes": 10,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/src/main.ts",
+      "sha256": "98cda659b8ab9f6e80639336b6fdeba47f24da14db07b7b5f4af632e44fadc8f",
+      "bytes": 68,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-probe/run-2026-10-19T10-18-37.427Z/proposed/tests/probe.test.ts",
+      "sha256": "b4363bb49cda54237dc12089b2d7edba1725bf5c8716a83f683570a70dd8ad1b",
+      "bytes": 24,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-vitest/2026-10-19T10-18-40.555Z/.cache/retained/noise.ts",
+      "sha256": "d11dc49d246cebcd0096ae4d6bce7202a622a3c389dcef837ec623a2189d5120",
+      "bytes": 21,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-vitest/2026-10-19T10-18-40.555Z/node_modules/.vite/vitest/da39a3ee5e6b4b0d3255bfef95601890afd80709/results.json",
+      "sha256": "f8e5a6b866f8184b54ccd3cdf91025f87ddcc0b46060aa1294f8e027e36ef343",
+      "bytes": 102,
+      "mode": 420
+    },
+    {
+      "path": "scratch/.cache/issue187-vitest/2026-10-19T10-18-40.555Z/tests/watch.test.ts",
+      "sha256": "a6745b6dc3a99e6493ce2149d427b0031c6f8a28b9f142c1b3c4ea985d8e1d9a",
+      "bytes": 75,
+      "mode": 420
+    },
+    {
+      "path": "scratch/dist/assets/generatedGeographyPresentation.worker-DbrcvUpT.js",
+      "sha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+      "bytes": 6139,
+      "mode": 420
+    },
+    {
+      "path": "scratch/dist/assets/index-B8lxC96R.css",
+      "sha256": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+      "bytes": 33727,
+      "mode": 420
+    },
+    {
+      "path": "scratch/dist/assets/index-CEOCdw5Z.js",
+      "sha256": "3754747094f8e0caa59ed39c4996128ab3c37a73a6ee55d4404efabbb31681ab",
+      "bytes": 310354,
+      "mode": 420
+    },
+    {
+      "path": "scratch/dist/fonts/Inter-LICENSE.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "bytes": 4380,
+      "mode": 436
+    },
+    {
+      "path": "scratch/dist/fonts/InterVariable.woff2",
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "bytes": 352240,
+      "mode": 436
+    },
+    {
+      "path": "scratch/dist/index.html",
+      "sha256": "1aa455df5bdc8d902fe1a3beec019df1ad0e15894c75dc439d2e7d34dc5db01c",
+      "bytes": 641,
+      "mode": 420
+    },
+    {
+      "path": "scratch/playwright-report/index.html",
+      "sha256": "adb636db86d96fe29e35f277febc0c6b784edd648cfa98d97a0350a2452cfac5",
+      "bytes": 1184979,
+      "mode": 420
+    },
+    {
+      "path": "scratch/release/malpaco-playable.tar.gz",
+      "sha256": "d68688d4ea57df1602348cebac17725195a4fa47f2a341c25a584b107bced666",
+      "bytes": 450129,
+      "mode": 420
+    },
+    {
+      "path": "scratch/release/malpaco-playable/BUILD.json",
+      "sha256": "b0a7a3d330726c859b8b6f299cb356f228925aca025fc53473b808507fe97670",
+      "bytes": 108,
+      "mode": 420
+    },
+    {
+      "path": "scratch/release/malpaco-playable/PLAY.md",
+      "sha256": "7fb011104538eccbf9f1bea3805d9e47fc4f6ba117a50e6a09b95f9f8e2a888d",
+      "bytes": 2166,
+      "mode": 436
+    },
+    {
+      "path": "scratch/release/malpaco-playable/SHA256SUMS",
+      "sha256": "ff87e465a3b0e6ada08fadc4b8826a8e124c32e3dd201998047c5a669a45dbfc",
+      "bytes": 792,
+      "mode": 420
+    },
+    {
+      "path": "scratch/release/malpaco-playable/assets/generatedGeographyPresentation.worker-DbrcvUpT.js",
+      "sha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+      "bytes": 6139,
+      "mode": 420
+    },
+    {
+      "path": "scratch/release/malpaco-playable/assets/index-B8lxC96R.css",
+      "sha256": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+      "bytes": 33727,
+      "mode": 420
+    },
+    {
+      "path": "scratch/release/malpaco-playable/assets/index-CEOCdw5Z.js",
+      "sha256": "3754747094f8e0caa59ed39c4996128ab3c37a73a6ee55d4404efabbb31681ab",
+      "bytes": 310354,
+      "mode": 420
+    },
+    {
+      "path": "scratch/release/malpaco-playable/fonts/Inter-LICENSE.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "bytes": 4380,
+      "mode": 436
+    },
+    {
+      "path": "scratch/release/malpaco-playable/fonts/InterVariable.woff2",
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "bytes": 352240,
+      "mode": 436
+    },
+    {
+      "path": "scratch/release/malpaco-playable/index.html",
+      "sha256": "1aa455df5bdc8d902fe1a3beec019df1ad0e15894c75dc439d2e7d34dc5db01c",
+      "bytes": 641,
+      "mode": 420
+    },
+    {
+      "path": "scratch/release/malpaco-playable/serve.mjs",
+      "sha256": "1d5210ae1d1af06b58fddf239c2c2771d72e2ca9b9f7b74e9a122ce667f3e5e7",
+      "bytes": 2285,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/diagnostic/browser-report.json",
+      "sha256": "c7b3959e3939a65608efab36498283d040d2075c1105431ad45f1c55830f607e",
+      "bytes": 3411,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/diagnostic/container-run.mjs",
+      "sha256": "11339f6165c10afe7b418919d910cca281819850477b4e316d7293166e3b5f0f",
+      "bytes": 1178,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/diagnostic/events.json",
+      "sha256": "e347448fd480aafd5a7487337987281dc9ef5dbd1cf6263409df651a6bbef6b9",
+      "bytes": 14370,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/diagnostic/navigation.spec.ts",
+      "sha256": "d5593a61607d126894378d15e748ef6208fb77303a1359ff70b31a0b37c43bb7",
+      "bytes": 3925,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/diagnostic/playwright.diagnostic.config.ts",
+      "sha256": "849716c0d996dbbcf9c72ac722e4ac3f8151cb7fc976088f06554e4af7a96e3b",
+      "bytes": 477,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/diagnostic/test-results/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/BUILD.json",
+      "sha256": "b0a7a3d330726c859b8b6f299cb356f228925aca025fc53473b808507fe97670",
+      "bytes": 108,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/PLAY.md",
+      "sha256": "7fb011104538eccbf9f1bea3805d9e47fc4f6ba117a50e6a09b95f9f8e2a888d",
+      "bytes": 2166,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/SHA256SUMS",
+      "sha256": "ff87e465a3b0e6ada08fadc4b8826a8e124c32e3dd201998047c5a669a45dbfc",
+      "bytes": 792,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/assets/generatedGeographyPresentation.worker-DbrcvUpT.js",
+      "sha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+      "bytes": 6139,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/assets/index-B8lxC96R.css",
+      "sha256": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+      "bytes": 33727,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/assets/index-CEOCdw5Z.js",
+      "sha256": "3754747094f8e0caa59ed39c4996128ab3c37a73a6ee55d4404efabbb31681ab",
+      "bytes": 310354,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/fonts/Inter-LICENSE.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "bytes": 4380,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/fonts/InterVariable.woff2",
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "bytes": 352240,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/index.html",
+      "sha256": "1aa455df5bdc8d902fe1a3beec019df1ad0e15894c75dc439d2e7d34dc5db01c",
+      "bytes": 641,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/extracted/malpaco-playable/serve.mjs",
+      "sha256": "1d5210ae1d1af06b58fddf239c2c2771d72e2ca9b9f7b74e9a122ce667f3e5e7",
+      "bytes": 2285,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-0-1280x800.png",
+      "sha256": "346070e481883badff7196003bf61b6ca090867e63a51105402b26b45ad1eb2f",
+      "bytes": 200974,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-0-1920x1080.png",
+      "sha256": "ea764e6d6a85eb1b19f6b70fb32e17b9aedab43672cbf06250102e49b75a284d",
+      "bytes": 334997,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-1-1280x800.png",
+      "sha256": "de014002986eb515d5e6bec57f9c5965c0e9fdd16175da3198d69a41d3710488",
+      "bytes": 200129,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-1-1920x1080.png",
+      "sha256": "cbc1e8679932058ff733acbfffed4991f789574fcb98b85969626a0a1d7afa57",
+      "bytes": 334804,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-1994-1280x800.png",
+      "sha256": "470dbdfc7536ccb5dfabe2a06830e60adff93a84b93e912c9cc57a577472f88e",
+      "bytes": 202644,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-1994-1920x1080.png",
+      "sha256": "be05803538a225c8b62052866e177a3e32966b92dd39fdd40880935f97f7851b",
+      "bytes": 337885,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-513-1280x800.png",
+      "sha256": "2e2324f208ecd842804ab5c5d3c3f292db14c944863d4f69841233348714f4c8",
+      "bytes": 201312,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-513-1920x1080.png",
+      "sha256": "ecf6be77ec00e5ee573abb99a76302914bc0cc74a6f3921c870115f8401e9dd6",
+      "bytes": 336412,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-6-1280x800.png",
+      "sha256": "8d6916df33ed677ab17e707998999f39b3d989fd6d7b7f184f7edba77d2b4563",
+      "bytes": 200697,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-6-1920x1080.png",
+      "sha256": "67251fe222629715a1d74c4d9373bcff7962c04ac5d644128d0c8a36bbf91359",
+      "bytes": 335541,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-749-1280x800.png",
+      "sha256": "633cb06dd8fe69624aca060dd546c46ee8309668673ebc79f9b01b91507f988e",
+      "bytes": 199689,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/geographic/geographic-749-1920x1080.png",
+      "sha256": "e22f296434dbddbcd564d5b868b20dccdcf4682628530802d4acdbd956245192",
+      "bytes": 333358,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/logs/diagnostic-rerun.log",
+      "sha256": "113e09f5e3669b331c8379d412c9b1358ea91f7ca4cab6b216f061a7066416c5",
+      "bytes": 189,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/logs/e2e-extracted-generated-board.log",
+      "sha256": "c0fa143f0fa9ed48d816db649d33fab38ed27c30b4992c4fa5457703ce7d909d",
+      "bytes": 1201,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/logs/e2e-source5.log",
+      "sha256": "e32e514f0996aabcfed071b17414bb57ebc6d1ed261ecfb69b6994c81f576b29",
+      "bytes": 9685,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/logs/npm-test.log",
+      "sha256": "9003591dc4c822f36f501d0ec90e077e125823bef0925b83f52b84c5c1e5a4cf",
+      "bytes": 23563,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/logs/package.log",
+      "sha256": "5b0f26ba4b10a82f90d3958bfd41ffd11982f70c8f5703862ade00925df428f7",
+      "bytes": 749,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/logs/verify-adoption-mutation.log",
+      "sha256": "1e844abec3529b84eca48ac6675a1672abab300fbe55c2bdf28cfd572c4d79b5",
+      "bytes": 68,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/logs/verify-adoption.log",
+      "sha256": "10c1894950b12de1c2b510baaddcb7d9c9fe0d4f4969a0ac43ff47d998a6d277",
+      "bytes": 1640,
+      "mode": 436
+    },
+    {
+      "path": "scratch/review-evidence/playable/playwright-report/index.html",
+      "sha256": "5a82b518af8227397bb12ce55855d3ed955096b09f3e303d0417cebdbb5b9ad0",
+      "bytes": 626867,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/playable/test-results/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/screenshots/playable-1994-1280x800.png",
+      "sha256": "0523ac049d502035ffb1109119f59f0e8dbc25aa762daa5ad41c8d87484c93aa",
+      "bytes": 202660,
+      "mode": 420
+    },
+    {
+      "path": "scratch/review-evidence/screenshots/playable-1994-1920x1080.png",
+      "sha256": "8ccb1a9a603dff0e11ef36de12f94729b6675790112bfdb0be7d6032a6cd7fc1",
+      "bytes": 337794,
+      "mode": 420
+    },
+    {
+      "path": "scratch/screenshots/painted-1280x800.png",
+      "sha256": "2325d273b1eec0dc174e4546177252c94a03e1d00de8897c6d238751402ccb96",
+      "bytes": 226759,
+      "mode": 420
+    },
+    {
+      "path": "scratch/screenshots/painted-1920x1080.png",
+      "sha256": "c938da0150150e9b7b0e5a210223e73637d630ad31e94ae309bdea45775e4550",
+      "bytes": 362926,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-empty.png",
+      "sha256": "e1ce80475528ed6e71f3d52ea196214683af7ed04a9b43c6f7bdd9d02db8dbc1",
+      "bytes": 264412,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-hand.png",
+      "sha256": "628428c8c4334423b69565f51985b46a4d8ab42a62101e3496758bca09d2d252",
+      "bytes": 265707,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running-running.png",
+      "sha256": "9f695213fba00a716932ad5f35c134f2b3a425767542ca5a44ffef967c8c3c33",
+      "bytes": 259423,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running.png",
+      "sha256": "253ded30fdc4fb20e73138170844a08f669ec173dd51e1e68dce3090e242f737",
+      "bytes": 265878,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-capture.png",
+      "sha256": "51c7689eb22443c0370e3ddb7cf45169dbbacf671e973f824404d90c507bb861",
+      "bytes": 261061,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-empty.png",
+      "sha256": "97e533d737f7790e686defd72edc0fa9b6e7f9c968d818d24469574e2970a359",
+      "bytes": 266524,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-hand.png",
+      "sha256": "4ccad781fb73da4ebb50ec464d474808e943f895dc75e3b3ec87958f370aca22",
+      "bytes": 267764,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "sha256": "24c30924cc19282753a0e1fbeecced06a3c2c668ae373777f1255f3b8133495b",
+      "bytes": 263379,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running.png",
+      "sha256": "65631dc85b5ea6da9e3ff6c64f24a659cfee0a3103ad21e7b082a4606d3c5311",
+      "bytes": 267923,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-capture.png",
+      "sha256": "08634330f9461bbc928104826d5b626efcb009f6381e7722854fcd7e186b81d2",
+      "bytes": 260852,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-compact-card-choice.png",
+      "sha256": "c5d121bee1767fde0b8ed4f422f305c58748bf3fd6e2f6b9c0c7a562d41bb7cd",
+      "bytes": 259782,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "sha256": "b935725b6f52b04a828633e5f08aa446e1baca299fba5a224213934e43951724",
+      "bytes": 259572,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "sha256": "5380fa095d09c91d2adc18818d7db7ce5e49cecea156b7fb56deb14667e0cbe8",
+      "bytes": 230578,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "sha256": "6853788c3715b3757cefd018f116b8b5d482a416706e8acd433c3d81f9b80afa",
+      "bytes": 228868,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "sha256": "c38be6d099079b89703ddd4f891cfaf1724fa1179e789d13269fc0c0a8c3fa29",
+      "bytes": 225849,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running.png",
+      "sha256": "a8c012ad63babce2330002fa5a2ae27b2862a7e28666f24e18d86404e45c0968",
+      "bytes": 229644,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-capture.png",
+      "sha256": "6f95f68c6a1372420712ee755d5d4506cea9f9494ba29f6e729a666c9b25e03a",
+      "bytes": 223788,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "sha256": "1232f1f65172b412d4721270a5160eb2b64cfbfbb64277583c3576068345d4a1",
+      "bytes": 233061,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "sha256": "82ae97f5cf1182361486d0b9c16f6ab471402289550c73f53dd58ae63a6c1690",
+      "bytes": 231019,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "sha256": "f5f12bf4c2ca4a15bcecf728afe0244ff4afb5796f43a67f24928e339c86f9c3",
+      "bytes": 230329,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "sha256": "b47145948f60005f1e33850c1b4fd1b68df920f06555aec7c854959fd2b75d4b",
+      "bytes": 231792,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-capture.png",
+      "sha256": "6685e4998863d917a70950fc3b467755f7b64f910fbd34c51ab9b4239c23591e",
+      "bytes": 223583,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "sha256": "cf7f0b5f8f30b2bf2acbf3aecf8a2cc69f1645c81bb36630c435ef04efd650be",
+      "bytes": 218191,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "sha256": "9f29147e3e7306cc944cce3e96ddd5bfb7b7cf7f0479dbc6f637f3b21c1f3c11",
+      "bytes": 217975,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/metrics.json",
+      "sha256": "3fe6348dff45f3f0f418ce400b5bc64dddb5fedd80fbcc219ec0f68d7b064ec2",
+      "bytes": 423258,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-empty.png",
+      "sha256": "a2f4583dec25289442c51bfe5a9c54f588471b5c15bb120eb2d14c43346cfb01",
+      "bytes": 447865,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-hand.png",
+      "sha256": "3a74ab63f49a4b66b42c394949bd19ca3fdaeb484718d49286bb8ca9e83e3165",
+      "bytes": 462530,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running-running.png",
+      "sha256": "3afcaa239fd7cb68b227f84564880eb754c4f1373e8096c3a27a63f32e22159e",
+      "bytes": 452670,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running.png",
+      "sha256": "7b779010e5ad35fbfc3cab22e01008cdb0f40838ac0ed0c72df65fbc98d7bfdd",
+      "bytes": 461350,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-capture.png",
+      "sha256": "7bba5c41d13a581db394872c7cd639f17e1e19cd11d471b43919d57eb99b4695",
+      "bytes": 456378,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-empty.png",
+      "sha256": "7078bc6afc1ca99a061250b4510d211b753167b5f63e14dbe8c16802efcfdd40",
+      "bytes": 450856,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-hand.png",
+      "sha256": "f68c2477c80368eeef3459a58905d8cdcf59dee006f3d01102f678d3592fd3c8",
+      "bytes": 465357,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "sha256": "2c91ea6926b9114cca9efd53e3537c63323bf3a5f5b12d6a317825aecf1c0c34",
+      "bytes": 457992,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running.png",
+      "sha256": "1ca59bd9f75dfb0e1146d55e4836d9ba8a1771ca1244b383579691515e7f8773",
+      "bytes": 464233,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-capture.png",
+      "sha256": "18c5e664033a80ea93df0bfece6d24d80dba29d896717d2967474396095aba53",
+      "bytes": 456172,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-compact-card-choice.png",
+      "sha256": "0d4392a91e9337340c7a786d39b2d8801fbe2cda958de143ee837887094c55f8",
+      "bytes": 452154,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "sha256": "744866bb551f921b723fb90e0e39abe23dbf9356cdf485c91b82bf6b87ad4037",
+      "bytes": 451923,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "sha256": "add3eb0ff7c721e1a629f6e4336196106183ff95fa0e473147aaa2e12bbe1fcf",
+      "bytes": 391656,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "sha256": "29d3508d29ecd916d4c4ee83c4c58d16a9818d0bead6d53206ef960d95f4eda9",
+      "bytes": 384870,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "sha256": "b582c6d5044c7d9e041b5de9cc1774d6cd362c9b65c592fa4b4c26d7a2212b56",
+      "bytes": 384884,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running.png",
+      "sha256": "6f3c877a3cba1f92a1818f8500e145d77cce7d224d66dcd1e8d0a9e720d2d377",
+      "bytes": 388927,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-capture.png",
+      "sha256": "3ed7cc6d5f81efe960ba4c4ba53a9914301a89c7248d4244a59e8a3536ef27a9",
+      "bytes": 378428,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "sha256": "97d5c181fd7a6f6bf720409a8eb20318240fcea503964d191646083fb88f03f0",
+      "bytes": 394621,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "sha256": "673eff9a431d4a3a89a1fa59b7c10de7a8857f6e356691c98675ba1905cf090d",
+      "bytes": 388782,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "sha256": "7dea67314dc7d7f19cd80e82debb05e8adc9eb26bd1824921996e5c10dcb9c29",
+      "bytes": 390747,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "sha256": "44578371158f5d5f1d2d3990525eba8cceece5d085f89848c6cc3da07da078c4",
+      "bytes": 391857,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-capture.png",
+      "sha256": "12dcaf93662cebd14258a9d91f3b17a5b2e4c25cb27988f6fb2668b4ec156751",
+      "bytes": 378215,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "sha256": "798605a18da97725358f91bfc10eb70365d7a578e3db8e21715ace5c6f452e1a",
+      "bytes": 373153,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "sha256": "764e888ade8caa0db99c2b9588174450868fc3a6afaff9a4edd68b242f93a3f1",
+      "bytes": 372942,
+      "mode": 420
+    },
+    {
+      "path": "scratch/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/metrics.json",
+      "sha256": "13851a9e730400195d09afc0105588cb689e747072754cb31ea2610a8627e6be",
+      "bytes": 434088,
+      "mode": 420
+    }
+  ],
+  "priorFullReview": "https://github.com/diegoami/malpaco/pull/188#issuecomment-6263770093",
+  "focusedCorrectionReview": true,
+  "harnessExit": 4,
+  "harnessFormattingFlag": "DW3 missing literal ran",
+  "parentAcceptedFlaggedApproval": true,
+  "standaloneStaticAcceptanceRepeatedByReviewer": false,
+  "parentReadFullCommandInventory": true,
+  "reviewCoverageLimits": "See REPORT.md; focused correction approval plus unchanged-runtime prior approval; finalCI static CLI required."
+}

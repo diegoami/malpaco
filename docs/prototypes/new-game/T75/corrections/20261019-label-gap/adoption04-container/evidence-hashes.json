@@ -1,0 +1,3562 @@
+{
+  "PLAN.md": {
+    "sha256": "ee2731aa993cfb8fccb94d22771dd6a1c40861198699aa1d2bdedf578d1397e3",
+    "bytes": 538,
+    "mode": 420
+  },
+  "PR188-before.json": {
+    "sha256": "fbcd02913e5161320d6f183622528db5d4de79ca93aceb0dd1a622d671e3e859",
+    "bytes": 3761,
+    "mode": 420
+  },
+  "PR188-current-body.md": {
+    "sha256": "60bc5f46ab154f6dbe938ae03cfc9a573b310b7aadd9ab90bd8bb2649f5277d2",
+    "bytes": 4279,
+    "mode": 420
+  },
+  "REPORT.md": {
+    "sha256": "491befbcfaf73f5334e86016a2dedaf04f2ee4618a4d894560247127411d3f88",
+    "bytes": 9664,
+    "mode": 420
+  },
+  "before-manifest.json": {
+    "sha256": "a9d4e930fad100358849980a8a7d8a161fdb98b2a9b48df0b5c5eaf61d2d757e",
+    "bytes": 4458113,
+    "mode": 436
+  },
+  "browser/browser-report.json": {
+    "sha256": "009184b5175df21984ad6d39ccdc6bda3af471e4b5eb19aecdab7bf9b3eebd2d",
+    "bytes": 202920,
+    "mode": 420
+  },
+  "browser/effective-env.json": {
+    "sha256": "6f674b6d0685c2d50ca35e09fcecf08f3fc5dcd97fd9030acdfb68631383c9b1",
+    "bytes": 1525,
+    "mode": 420
+  },
+  "browser/failures.json": {
+    "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "bytes": 3,
+    "mode": 420
+  },
+  "browser/individual-results.json": {
+    "sha256": "22f3c1e185b207ddf017b51625aeda14abafde452973704d62adab2b84f56124",
+    "bytes": 47350,
+    "mode": 420
+  },
+  "browser/playwright-report/data/0497aa7846e108abb7804c8e493bc75946295b56.webm": {
+    "sha256": "bba446bc6ca6efcaaa416cfac5f44e06f22ddf4094f5bd35e89d229709e40365",
+    "bytes": 146511,
+    "mode": 420
+  },
+  "browser/playwright-report/data/09cf5db663b797518c6c0edae5f8f4f5c13a3cb4.webm": {
+    "sha256": "5795ced6247fc4f009b1c112fc19fa4df6215fb44f6404ff9f426d2ab4044eb5",
+    "bytes": 729541,
+    "mode": 420
+  },
+  "browser/playwright-report/data/115cee0884c8c9d97481e2a01a4472fac60cba2c.webm": {
+    "sha256": "b3691c5abfc05e03d073518980e7674f5e4f3a0257e1fefaa46bc9873c65d337",
+    "bytes": 136233,
+    "mode": 420
+  },
+  "browser/playwright-report/data/1a3e6100995fdd1fd0cd54bf0357b2bb193f11b0.webm": {
+    "sha256": "88f412dbc5654235a5dfb6e3564599183e9e0732788e1c548737a3f9be70a171",
+    "bytes": 171470,
+    "mode": 420
+  },
+  "browser/playwright-report/data/1b6f706c3bdeaae5b5a065e7bfcaea4c06208d6f.webm": {
+    "sha256": "d74b4c2bd4369fc9c172d3e7469c723a5611895ab82f6a074281566c4635f0db",
+    "bytes": 807530,
+    "mode": 420
+  },
+  "browser/playwright-report/data/2a2e031f743cac7dea30bf1157fd1fb7ee53d73f.webm": {
+    "sha256": "eea39711b065bc29f73000209cfae8677b2628f46ebc58007cbcf08c44608f6d",
+    "bytes": 332885,
+    "mode": 420
+  },
+  "browser/playwright-report/data/34ddc203c724a5382b0f448558026a1e9b72f6e5.json": {
+    "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+    "bytes": 6791,
+    "mode": 420
+  },
+  "browser/playwright-report/data/59860fe906b8f12681b5f76b64a5bd4ba0bcaa0d.webm": {
+    "sha256": "f3981852293d5f8b4338b011c0862c4737212983926d104208b3fa03f56a879e",
+    "bytes": 395493,
+    "mode": 420
+  },
+  "browser/playwright-report/data/5de3457b373b67c66fbb6309342fb4e3c266c48a.webm": {
+    "sha256": "5782624b7129260f1ee9e1e7052b694f656a68f9f9cbc3eccc92e9815cad4ad7",
+    "bytes": 299811,
+    "mode": 420
+  },
+  "browser/playwright-report/data/6620cba0f897981d6a02efb7ee9641f6c87e865b.webm": {
+    "sha256": "e8110834da6bf311815bb48000192ce90c95e1e0dea5b5b1c4d530ed1a919e4f",
+    "bytes": 175573,
+    "mode": 420
+  },
+  "browser/playwright-report/data/6e1497687f9deaf0ecb6c42aefaad69ec2b5c73b.webm": {
+    "sha256": "dfb6d860978c4cc8ac4e41c3be4cb0bdc1f6bf090451302a6ae5f5893e2e8b87",
+    "bytes": 357727,
+    "mode": 420
+  },
+  "browser/playwright-report/data/71a0c95d33d0dd824aba0017a3678f27b0b30c15.webm": {
+    "sha256": "cc0c900e38dad3165baf44f4c39ff4b63b82fbfb8cb1d0d9b80838a2ee2d5c62",
+    "bytes": 147176,
+    "mode": 420
+  },
+  "browser/playwright-report/data/72566da824878f3ba2914d5e5f79ece2ae8d4a16.webm": {
+    "sha256": "2e41ca78e5b8b18ba8d0f81a6c25f4ac4b6b838bdfcc5b5192feb3ef4f009b56",
+    "bytes": 464676,
+    "mode": 420
+  },
+  "browser/playwright-report/data/78cc8a45414de9db5bd2cc9e360ec21e2ebf2a0d.webm": {
+    "sha256": "7ad70475c0f65b11253b1ca17ce7d0df0ce2d736b65abaa70ccce0a3739a466e",
+    "bytes": 153682,
+    "mode": 420
+  },
+  "browser/playwright-report/data/80e5589d6fc35b8dbc1d756facaf6c89226e6cbe.webm": {
+    "sha256": "a16daf8ebda6e85e346eac783ef09daf9bf919593b661f97d236d2fd346c582d",
+    "bytes": 361719,
+    "mode": 420
+  },
+  "browser/playwright-report/data/95ff3c7eefce63760eaac04084f5f7dc5d6d0e79.webm": {
+    "sha256": "99a78d3607b4da613c29c77c8ee34966890680705aaa7d7f025788fd58412009",
+    "bytes": 672225,
+    "mode": 420
+  },
+  "browser/playwright-report/data/9d5b860530c212d1f80ae7f62f93f9b86312d353.webm": {
+    "sha256": "2e05d3cf3f8b7221dc907ac656f754f9f8257ec57b7d33f222219b940ba7407a",
+    "bytes": 470253,
+    "mode": 420
+  },
+  "browser/playwright-report/data/9e56f88ccad57ce978269aa7ed0496db130d947e.json": {
+    "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+    "bytes": 7090,
+    "mode": 420
+  },
+  "browser/playwright-report/data/a1c0ffd3ad34fc5cb9facba7d1cb94143b815b0d.webm": {
+    "sha256": "1cb69d41162ea400f6dad2aa4ac61b8b0c260fc416e16d68a1729355425c43c5",
+    "bytes": 146102,
+    "mode": 420
+  },
+  "browser/playwright-report/data/b15c29924e347a42587ae77f44c73610249cb26c.webm": {
+    "sha256": "5523442dde660836b2ce41b83e272c30f815a89e542edcde5b7bc17420141720",
+    "bytes": 455662,
+    "mode": 420
+  },
+  "browser/playwright-report/data/b551b0e2d4a3cbed9bfa225c37f9671247460629.webm": {
+    "sha256": "9f982a4fcb0d6ac2ab730655d52fa2df61616620f5fc6e5285b34f3c71a32050",
+    "bytes": 174708,
+    "mode": 420
+  },
+  "browser/playwright-report/data/b6fa474e856a9e93ad04129ceb219c9f54291df5.webm": {
+    "sha256": "b0326b17c5bc6b9a3af7facefbdcfea8e13de800ff3e6aa101b14ec4626fccba",
+    "bytes": 151144,
+    "mode": 420
+  },
+  "browser/playwright-report/data/bc6c67c8d9439ec3828225a1af04370ee261d813.webm": {
+    "sha256": "b57cbca86b54a5255ee37cb1680987d3c8bc97af2c0757c85c345a947053730d",
+    "bytes": 389330,
+    "mode": 420
+  },
+  "browser/playwright-report/data/ca614e022834589d7f5d989f10347807c3d0681d.webm": {
+    "sha256": "4a1e69d4440dded58cecb0fd510597ab91af7f8eced571e52d25d22101345174",
+    "bytes": 145796,
+    "mode": 420
+  },
+  "browser/playwright-report/data/cd71a2b552cdede822b2f27319ca286ab92e72cc.webm": {
+    "sha256": "a4980886faae8719ea0ba4cacfb805c2b536585fd2379f4c07e02e0b7e510ab9",
+    "bytes": 414549,
+    "mode": 420
+  },
+  "browser/playwright-report/data/d167cb2cfbbdca9760d0cd0f169d045a8a382675.webm": {
+    "sha256": "c1b924b5be1200e201e941c2414ac7e16e2f22b09c12b233320e85188bf67d81",
+    "bytes": 764007,
+    "mode": 420
+  },
+  "browser/playwright-report/data/d2a51f73c553596b563ff432c2a372a50e2b8530.webm": {
+    "sha256": "cd856a2b2da6d9f81e11a02377ca529aed1f68b985763452f42410cb92d1d277",
+    "bytes": 145018,
+    "mode": 420
+  },
+  "browser/playwright-report/data/e331e64b158f3d6c88c618afbb8da26f27d041df.webm": {
+    "sha256": "1151425dbadcb183316f0758a05401e9876defdb3b59cd0b522259afa53a24e8",
+    "bytes": 352328,
+    "mode": 420
+  },
+  "browser/playwright-report/data/e51258f57445b17401df008719b11abae14a13cf.webm": {
+    "sha256": "0eea5d102375db37550a7245646a403667ed313cb1920ce87353a023b7597365",
+    "bytes": 177231,
+    "mode": 420
+  },
+  "browser/playwright-report/data/e60fc3748dde9ba6418f075c83090031d54fb7f1.webm": {
+    "sha256": "dd1cd8fb933beb5bf3dc39665f885856314aeed112d258bec8f595d98fe62aa2",
+    "bytes": 362972,
+    "mode": 420
+  },
+  "browser/playwright-report/data/e86c3360b89fc85dfc6e51705715a97fe85fddb0.webm": {
+    "sha256": "5bd22bbeaba6acbbd0502d4a7054c9e07b6b8b4b516c6e22e9c5f648f5ba004d",
+    "bytes": 232796,
+    "mode": 420
+  },
+  "browser/playwright-report/data/eb87acaf7348be3b33c3436e818834dc5a7735d2.webm": {
+    "sha256": "db40ba18d9d95c4ba259497334fcd59121a3bf13508b42071776ce105e63f9f2",
+    "bytes": 260364,
+    "mode": 420
+  },
+  "browser/playwright-report/data/f928259dfebb7c27e7a227e8d0a3b5a3deb1e9b9.webm": {
+    "sha256": "1bfab67d99e4e11ad7c76170141bbe1f494fa0b3f7ce73f90da454d55cf17e4e",
+    "bytes": 179599,
+    "mode": 420
+  },
+  "browser/playwright-report/data/fed73f517961bdba1146673bea7f71a7d2b5543b.webm": {
+    "sha256": "8898dafc513406d27710364202c4e3d452bcfa4463b1972d23dd64f46f1e0bd4",
+    "bytes": 172455,
+    "mode": 420
+  },
+  "browser/playwright-report/index.html": {
+    "sha256": "0255142bc1e5ef437f091ac46447ec89d891af059f7ab15d32e4fc7494edb563",
+    "bytes": 2542027,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-bounds.json": {
+    "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+    "bytes": 9687,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-capture-movement.png": {
+    "sha256": "48b5d54c4b50f2332fda5b97d1c7749cdfad2e6fb057b5982d63542f9266023b",
+    "bytes": 214105,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-complete-history-scrolled.png": {
+    "sha256": "035ab1eede90ae20c517f3ca69342bcf5c23d930d54eb1d6746f54125efb0950",
+    "bytes": 214106,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-exchange.png": {
+    "sha256": "1b2ffe78f7f179d1791d8d17eb47646433bbf14d8f1b5e22c4dfa7119838c0a2",
+    "bytes": 211050,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-friendly-movement.png": {
+    "sha256": "dd07f2c2e8c1a2323cdc49aa57523dd95ec90d93f23e9724f157f2346ce8ffea",
+    "bytes": 204384,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-human-capture.png": {
+    "sha256": "879c6ce01856e88e4a9efdf46816c83f255c03d6a42337e310f35219914abfcd",
+    "bytes": 215347,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-human-move.png": {
+    "sha256": "2e6f6640f8aceb6abdbf508879864711d50c38bef93bbf8e81897394df9eb719",
+    "bytes": 215146,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-reinforcement.png": {
+    "sha256": "4ac2d1a5917a6d784097f971899649ae13f34b6d2e21b6e8c2ca6d5f7b814b76",
+    "bytes": 203623,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-repeated-pair.png": {
+    "sha256": "7b7f361a22422164414f06c015fdb8ffb83250828ec0e8cf6afe64bc41ef94f4",
+    "bytes": 216363,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-compact-selection-ready.png": {
+    "sha256": "28fd0debfd2c2a70b967d971db1f8b000fe2c2f3d489aeeba71e240b3daf6555",
+    "bytes": 209840,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-bounds.json": {
+    "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+    "bytes": 9687,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-capture-movement.png": {
+    "sha256": "c4adf8314d5bb3999d55406fdd7ab65fbea8a300729a82a945f33180a3633339",
+    "bytes": 213935,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-complete-history-scrolled.png": {
+    "sha256": "5bcc9d7a3e7c6089c7884a78671acddf8e63e6cbc7211502b1e39df7079bae4b",
+    "bytes": 216136,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-exchange.png": {
+    "sha256": "36abdcb45cd6e60ea50036e24e8954037605825ab4cd4492786e0aa79cfcf9cf",
+    "bytes": 213592,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-friendly-movement.png": {
+    "sha256": "e36f936a3607bac5416e9d08ecd4deb9042b409a1eccdff184474d93b9cace5e",
+    "bytes": 204177,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-human-capture.png": {
+    "sha256": "df3e5b3fff5c74795c5bb7d07a56f4ccefade76094387d36aacd92de44aa15d5",
+    "bytes": 215157,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-human-move.png": {
+    "sha256": "ee4d97ad865a520b5734dc4d68e4241814bcdd1c6c6ea37605b12b10739d328c",
+    "bytes": 218143,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-reinforcement.png": {
+    "sha256": "a13d23d47481b6269253bb3de65fded39a5f7baf206d828178f90e28cb54c21e",
+    "bytes": 203414,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-repeated-pair.png": {
+    "sha256": "d98c2ac1ab524bacddfa21987137c2cb5dd54d1e1317b3e1512866841a1d0317",
+    "bytes": 217636,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-detailed-selection-ready.png": {
+    "sha256": "fc1d4c56e435b16902f0707c676b70d8d5b4069381acdd3c4cd61f9af911a6f5",
+    "bytes": 209623,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-geographic-geometry.json": {
+    "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+    "bytes": 4704,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-bounds.json": {
+    "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+    "bytes": 9687,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-capture-movement.png": {
+    "sha256": "b02b12be56d920252cffcf228adae695620de4638e3c1955e073e995a1b6c82f",
+    "bytes": 252705,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-complete-history-scrolled.png": {
+    "sha256": "3cfde81790659d03381a8e922a76449a97c66c41032418a7222075022c4c41e7",
+    "bytes": 252887,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-exchange.png": {
+    "sha256": "2d323a8ce621e8843dada46fe213426042852f84333cbc6b2140578d39903eb4",
+    "bytes": 248227,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-friendly-movement.png": {
+    "sha256": "f0d6a086647a3085d5a7807496cf1a961c3cb086fef4db60a8f7fde989b78678",
+    "bytes": 245824,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-human-capture.png": {
+    "sha256": "c281e8d8735ee849f50ac3d80dfee2dbf7e479ff85e2c11c86bdccf4618868f3",
+    "bytes": 253031,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-human-loss.png": {
+    "sha256": "221e57f8af2d2fd76cbe68ac43f5cbc4808d72f70c8d2144fb56fc503f8f6043",
+    "bytes": 248718,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-human-move.png": {
+    "sha256": "e8b9e9e4b9af9acbd6e649032ecf5ddfa01a608854db489f6fa0908f14a89cb5",
+    "bytes": 255782,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-reinforcement.png": {
+    "sha256": "f4c92781d5b60310719cb0146e01ebbe241d1b0b10213240234681dd5ce1de10",
+    "bytes": 241627,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-repeated-pair.png": {
+    "sha256": "a416ba7fcd4a5d456339308024dac2a4dd3dda636983f35a684590f0209f3a7b",
+    "bytes": 249400,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-compact-selection-ready.png": {
+    "sha256": "42bf01f64f03871e60afaa5213e79962f6d4af109decb9ec0d50e68f53b350d2",
+    "bytes": 248010,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-bounds.json": {
+    "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+    "bytes": 9687,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-capture-movement.png": {
+    "sha256": "7b05394476605b75142178db0c4006b870c5bc41d4049d1ffb574d3b6e722daa",
+    "bytes": 252488,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-complete-history-scrolled.png": {
+    "sha256": "a8ce1c64a8255c250048e8d3b9c012bf9b641ee6812b03de19891a6f7efce362",
+    "bytes": 255252,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-exchange.png": {
+    "sha256": "54805e1c33344408a4049e34d3d19be11bc7475f1a33c4ea251f8df0606031e5",
+    "bytes": 250810,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-friendly-movement.png": {
+    "sha256": "5ea5a4b863d90257d4467758ae10ecf5b6f4f077c7106c47c04cebe187f67057",
+    "bytes": 245609,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-human-capture.png": {
+    "sha256": "2801131e9207e18e3346ae73bed5e134e26d051974909f7a0dcd19f5b5d5d263",
+    "bytes": 252813,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-human-loss.png": {
+    "sha256": "f829be4ec04cf86ffcf689b11b8baf0095b4ecbf6d3c3378b9194b877b25fbcc",
+    "bytes": 248509,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-human-move.png": {
+    "sha256": "072cd4e972cb8849e99ead36efa5b9c35b2715c8a9caa9305d1e74bee1d6ad1e",
+    "bytes": 259250,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-reinforcement.png": {
+    "sha256": "c7aac61432bd0da65d9dd2b249573f89bdd5e78f10f77916eba66920e1f3ad80",
+    "bytes": 241410,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-repeated-pair.png": {
+    "sha256": "d78182a4f5d0269db7d98512d7815390ec8a5f3337a2c83f813f32b0780e8f48",
+    "bytes": 252109,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-detailed-selection-ready.png": {
+    "sha256": "3673c6279d7484de23dab70308e2dc29dd360e067310ada60107c13e2cb378fd",
+    "bytes": 247800,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1280x800-reference-geometry.json": {
+    "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+    "bytes": 4704,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-bounds.json": {
+    "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+    "bytes": 9999,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-capture-movement.png": {
+    "sha256": "5e0b58eb808c577a94a1ad7fe24971d9e9d3977e93e7ec4dd2c8178e5ae20033",
+    "bytes": 353412,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-complete-history-scrolled.png": {
+    "sha256": "35934cfc4ed132eab7890dbe2b3c60e1eb37eac47a8c2c0e88755be42cc5fee6",
+    "bytes": 367403,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-exchange.png": {
+    "sha256": "2fb9197543888f5140ba5bf27a161afd33665e465db592942c431743ae6e883b",
+    "bytes": 349021,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-friendly-movement.png": {
+    "sha256": "c7ddd30dfa21218dceec44eec36d512085fe9c7c1f0801318eb7792e0551b8ee",
+    "bytes": 351333,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-human-capture.png": {
+    "sha256": "e56db197af2e66d01e3a6cb02337349381024d4ff09704fc2b17581afc64eafd",
+    "bytes": 356310,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-human-move.png": {
+    "sha256": "9da1e38c8d497420bf8266d02e8cd990e95648a43b2a1132c94ccef8ccb327c5",
+    "bytes": 361895,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-reinforcement.png": {
+    "sha256": "7aecf6bb79f24b3ffa0aca0118111babc7d73506b3e334a5694101cd0fdd070a",
+    "bytes": 338956,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-repeated-pair.png": {
+    "sha256": "db206319cbefc0d269172a4009adcf3de0019a1c6a0d3c6f04fcc783ff5146f5",
+    "bytes": 362812,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-compact-selection-ready.png": {
+    "sha256": "d799e036712dbdd009804552b1679523fda6e41ecc356d425e9d23851e4d9097",
+    "bytes": 348084,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-bounds.json": {
+    "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+    "bytes": 9999,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-capture-movement.png": {
+    "sha256": "b000d2079bc4906a56e1ff791073ea11417a0168de5dcf54582b47fcc7c0f018",
+    "bytes": 353193,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-complete-history-scrolled.png": {
+    "sha256": "05e792e61c9d1ccfc84bc290fc2ca262f0daf9ee08c139fd7bf499712d2c6b84",
+    "bytes": 370274,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-exchange.png": {
+    "sha256": "f92061741671447249301776ec1bcdaa01df6f35b56401645be3277f2b8f1f52",
+    "bytes": 352791,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-friendly-movement.png": {
+    "sha256": "3046c1dd830c5552a00d29323274273a4aa4e1fd925236e1f038a82cdcf6e1b0",
+    "bytes": 351122,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-human-capture.png": {
+    "sha256": "e6266b09e4a994930798a39dc003c4d9cd82d2856a88e96318cce2ea0eaefb3f",
+    "bytes": 356084,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-human-move.png": {
+    "sha256": "40a744873bc6594578215f1d058a0b95740cd283b8e4c6110fdefb6ec3e0d068",
+    "bytes": 365789,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-reinforcement.png": {
+    "sha256": "cd260063318a203f32d19a26bcca04ba4efe69f561d214f3582b179f65419727",
+    "bytes": 338749,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-repeated-pair.png": {
+    "sha256": "afd5fe0a1b11fedc29f683ee5fc4cf6a0ec0054a3c2af8b6f6f8b994d8796c85",
+    "bytes": 364954,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-detailed-selection-ready.png": {
+    "sha256": "20add94f6b80605e74e65f663fa8adea2bf61001dd55773bd9489583adee3a98",
+    "bytes": 347878,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-geographic-geometry.json": {
+    "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+    "bytes": 4860,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-bounds.json": {
+    "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+    "bytes": 9999,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-capture-movement.png": {
+    "sha256": "11011e01241eec1d136c0c75662508eb941343b3e036bf75f78877cba2dd0a90",
+    "bytes": 427282,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-complete-history-scrolled.png": {
+    "sha256": "7aa27819461e069a5506312cbb6d8cccf43f7f494f07d16684001c037ea12f04",
+    "bytes": 442578,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-exchange.png": {
+    "sha256": "15259ca667d6e6a5b09d04c34692e479f4ce07106cbd15686f89bbb5130f37a7",
+    "bytes": 422590,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-friendly-movement.png": {
+    "sha256": "7809c21c332952a70328931a960de05324c3541e2a5c172ee0dc9f799720494e",
+    "bytes": 433815,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-human-capture.png": {
+    "sha256": "28d94ed8145eea71f8da571dc3df9ffe0be18cd271b73462a097246f0a4c5099",
+    "bytes": 430690,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-human-loss.png": {
+    "sha256": "a7226ce5cb75ecb403336bcd1ce47461cc34e6cbad2538d84a85abde92e272d9",
+    "bytes": 429911,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-human-move.png": {
+    "sha256": "f09d09741d756cc25e2d0da8845d7201d279197bcb211580cd296755bc8ab3b4",
+    "bytes": 443207,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-reinforcement.png": {
+    "sha256": "be8d91a574469e3f9cb283ee81d0e0d1221159203a71af458a603a5681ca1057",
+    "bytes": 413116,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-repeated-pair.png": {
+    "sha256": "cdf80c07cfe3e790ce8fb1ea8384c0a94cf8e98e983a88fbe1ec88fae92a454e",
+    "bytes": 441567,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-compact-selection-ready.png": {
+    "sha256": "34044d0380168764537332d2c2961c9e89ca346faeb85132ba7c76f3e4d7fe7d",
+    "bytes": 421573,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-bounds.json": {
+    "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+    "bytes": 9999,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-capture-movement.png": {
+    "sha256": "c54e3cc165f72892e614c1e6f394f2e463915015f0050adf8a850a7d20222b6a",
+    "bytes": 427130,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-complete-history-scrolled.png": {
+    "sha256": "2f5a85204480a34f76dbf63ab24a1e244e09b79c34f474463e088ab8e1ae2254",
+    "bytes": 446103,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-exchange.png": {
+    "sha256": "d7e0be3e8ed20133752af55ea3fc73ef61a1479c1b30308db17852c50c4b50d3",
+    "bytes": 425591,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-friendly-movement.png": {
+    "sha256": "7611b9935df34f315e26d504696330e9be6fb13a23dabd548af1b1b6e3185ee2",
+    "bytes": 433616,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-human-capture.png": {
+    "sha256": "033b6336d6ad65a3324ef94d6fc2329acd9ddbbe1268d24644c35e0747f2d22b",
+    "bytes": 430453,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-human-loss.png": {
+    "sha256": "c3ca8e953669a1f616cda92715143e8f67e529126809f45d65cc8cdd70cfce56",
+    "bytes": 429691,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-human-move.png": {
+    "sha256": "e1fd2bc3e526204d0d7f272ff530a78525941dc7128d8319398abec90e3fe021",
+    "bytes": 446309,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-reinforcement.png": {
+    "sha256": "d93bd521279481bd8b52378ae2d39f2bafb94106d555628a1c933175ce97ca0b",
+    "bytes": 412912,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-repeated-pair.png": {
+    "sha256": "bd14f9ed587c2c0719cbbeda5c7112276cbb0fd08ef2bf71303cb99b69265c4f",
+    "bytes": 445102,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-detailed-selection-ready.png": {
+    "sha256": "8bf7623875661a6e1b9edf280514e979d03f8f8af3155ed5178692957dab6b71",
+    "bytes": 421364,
+    "mode": 420
+  },
+  "browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR/1920x1080-reference-geometry.json": {
+    "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+    "bytes": 4860,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-0-1280x800.png": {
+    "sha256": "346070e481883badff7196003bf61b6ca090867e63a51105402b26b45ad1eb2f",
+    "bytes": 200974,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-0-1920x1080.png": {
+    "sha256": "ea764e6d6a85eb1b19f6b70fb32e17b9aedab43672cbf06250102e49b75a284d",
+    "bytes": 334997,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-1-1280x800.png": {
+    "sha256": "de014002986eb515d5e6bec57f9c5965c0e9fdd16175da3198d69a41d3710488",
+    "bytes": 200129,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-1-1920x1080.png": {
+    "sha256": "cbc1e8679932058ff733acbfffed4991f789574fcb98b85969626a0a1d7afa57",
+    "bytes": 334804,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-1994-1280x800.png": {
+    "sha256": "470dbdfc7536ccb5dfabe2a06830e60adff93a84b93e912c9cc57a577472f88e",
+    "bytes": 202644,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-1994-1920x1080.png": {
+    "sha256": "be05803538a225c8b62052866e177a3e32966b92dd39fdd40880935f97f7851b",
+    "bytes": 337885,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-513-1280x800.png": {
+    "sha256": "2e2324f208ecd842804ab5c5d3c3f292db14c944863d4f69841233348714f4c8",
+    "bytes": 201312,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-513-1920x1080.png": {
+    "sha256": "ecf6be77ec00e5ee573abb99a76302914bc0cc74a6f3921c870115f8401e9dd6",
+    "bytes": 336412,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-6-1280x800.png": {
+    "sha256": "8d6916df33ed677ab17e707998999f39b3d989fd6d7b7f184f7edba77d2b4563",
+    "bytes": 200697,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-6-1920x1080.png": {
+    "sha256": "67251fe222629715a1d74c4d9373bcff7962c04ac5d644128d0c8a36bbf91359",
+    "bytes": 335541,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-749-1280x800.png": {
+    "sha256": "633cb06dd8fe69624aca060dd546c46ee8309668673ebc79f9b01b91507f988e",
+    "bytes": 199689,
+    "mode": 420
+  },
+  "browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR/geographic-749-1920x1080.png": {
+    "sha256": "e22f296434dbddbcd564d5b868b20dccdcf4682628530802d4acdbd956245192",
+    "bytes": 333358,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-2eU7Q6/load-error-4-1280x800.png": {
+    "sha256": "da440531695b4236941eb55ffcd51edb25b7ea1d4436c2d31077382cc60450b4",
+    "bytes": 289252,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-BQMBsm/partial-3-1920x1080.png": {
+    "sha256": "087aa7fce91bf94df8a9fdd1c42c43b34abda360d1526610e6b37677c831a891",
+    "bytes": 423166,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-BRT1yA/restored-combat-3-1920x1080.png": {
+    "sha256": "8c5602bb34713e410034beb6d8a11bb9518b8117fd64cba50aa0a4c178065a6a",
+    "bytes": 434517,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-CF4fqg/restored-combat-4-1280x800.png": {
+    "sha256": "8c57bf651aba94c445f5107a5fada9d5cbb2facd1e8ecdbee111a9c5fd10c8d4",
+    "bytes": 285601,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-CuGNZq/load-error-4-1920x1080.png": {
+    "sha256": "5fff011f92e9c288db5d3ec3074fbad483c731dfdd2ab88f9e15085640fccb75",
+    "bytes": 447947,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-EvzXJI/load-error-3-1280x800.png": {
+    "sha256": "91029095985ed162af3f616fd760dcdfbd9db4c0b0e0bb9c0b9a7edbcf6e48d2",
+    "bytes": 283252,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-HaxE2b/partial-2-1280x800.png": {
+    "sha256": "38605be890a4d79f96f205efe789d53ac53faa6285a77c738561947c95133adc",
+    "bytes": 263262,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-K6VPUZ/partial-4-1920x1080.png": {
+    "sha256": "48e1903e9f0958f8d83ca88c530f39a6ab95074b2ea38973e393e0a273d4b2f4",
+    "bytes": 431209,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-KmXqi7/load-error-4-1920x1080.png": {
+    "sha256": "f38d75ebe1c92b32b4c57d30bb4ed2477c5aa179880fee55807dc4f39c45c71b",
+    "bytes": 447671,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-NpZOPa/restored-combat-2-1920x1080.png": {
+    "sha256": "705f9db38e82bb3435a6be74ad6ffc5f0a4d5a934deef962f2dcef176eb40660",
+    "bytes": 426219,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-OJWGCz/load-error-4-1920x1080.png": {
+    "sha256": "85d8b9e8ae7c57660ac10ca0ab1583e48421636717d0338799e030dd2dab5bdf",
+    "bytes": 448817,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-TL7q8U/load-error-2-1920x1080.png": {
+    "sha256": "8ab6f5b3b062a8d6cdd1cacac4cc83b19a79b350e18f04bb7207d38db1099ea0",
+    "bytes": 429826,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-Vd1QcQ/load-error-3-1920x1080.png": {
+    "sha256": "7b5c6418ed9b17778c087cdf77cede093199a76c4af601c0741fbcdb066bbdaf",
+    "bytes": 439519,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-WsgW5m/load-error-4-1280x800.png": {
+    "sha256": "ca970fb79a4d1450cd8a0e8d1ca7bfb1bbe82a040b98bcabc81f07b02c6159dd",
+    "bytes": 289347,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-XzFEpm/load-error-2-1280x800.png": {
+    "sha256": "c88827b92b9958e84f805b5c72a539c16129f340b7238f75e5610907394f153e",
+    "bytes": 275676,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-aHiKqw/restored-combat-4-1920x1080.png": {
+    "sha256": "4d15645cf68ddb5a0bbf2f66d499006d703bab8b6986992e14a44a17312fdafc",
+    "bytes": 443874,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-aS2gh4/load-error-3-1280x800.png": {
+    "sha256": "8b4151921e0453644a1e4289c224b6303002d70b9b23ea1586c9958f374bc9bf",
+    "bytes": 284332,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-aUX5yK/partial-3-1280x800.png": {
+    "sha256": "59c66c5cee218c173f7021bcad20741c457f1706db3a68b6f4e58c7a7c0c3395",
+    "bytes": 269588,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-avg9In/partial-2-1920x1080.png": {
+    "sha256": "6844291087166df926793d7f1a38b400ed38d73f236bfea672618241b4fd1920",
+    "bytes": 413430,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-bbMZ4I/load-error-3-1280x800.png": {
+    "sha256": "fbed9715f8a94104d92b57a9801d3161187822ef5d04f8dae2e4dac12ed1e4c4",
+    "bytes": 283542,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-c6eljo/load-error-4-1280x800.png": {
+    "sha256": "60078d44e14b6e98dfee9f62f4bccbf303079c5088396bd93129c5010f7bf34c",
+    "bytes": 289629,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-d53cUS/load-error-2-1280x800.png": {
+    "sha256": "b3c1a79e22ddd247f9061e3c01d7d33c10c9717028ff253d19b962686bbcd9e1",
+    "bytes": 275765,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-dfa40r/load-error-2-1280x800.png": {
+    "sha256": "8dc07634a61c6b6ba320470353ec8d85352a2395ddfc7c03c7666c640f810891",
+    "bytes": 275392,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-dgrVwU/load-error-4-1920x1080.png": {
+    "sha256": "0ef66d79c7b8b6aae2c2d3351183b971910ea37c539bca1839170123a2e7a594",
+    "bytes": 447592,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-e7zicP/load-error-3-1920x1080.png": {
+    "sha256": "840aeaa84632588ef22ac4744754b78de0f76d59a58dbafbffd8fdf5a8542280",
+    "bytes": 438651,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-fPqbl6/restored-winner-1280x800.png": {
+    "sha256": "5073035d29814d188dd74b146a4426b688a075f882726ba7c469a970a6e33156",
+    "bytes": 273136,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-ga2XRj/load-error-4-1920x1080.png": {
+    "sha256": "3a25416c9f53f8fa81c0c48aea6a9f648ba18a82dd53bf2248780b7136b7c63a",
+    "bytes": 448082,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-kya7cv/load-error-2-1920x1080.png": {
+    "sha256": "6c8a7016e9797ee6c2d1e46ec62e1154edadae7de86529871ee89aeac5fa2886",
+    "bytes": 430166,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-mrR81d/load-error-3-1280x800.png": {
+    "sha256": "7951edca3ebfe043ed9e3823b4a91afd1b9b74d456f7d3ce15c63892e97b89b5",
+    "bytes": 283162,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-mzWdcO/load-error-3-1920x1080.png": {
+    "sha256": "0718c87bdc20986500b06f5e49b3fb1bd3976428f6593eb6b55b8709bf4d64fb",
+    "bytes": 438372,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-n0JoWT/load-error-2-1920x1080.png": {
+    "sha256": "332bb87a5bc00e96cbd1fb145b45cf491b65fcb92191a000d8e86c8b1b8fea3e",
+    "bytes": 430303,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-nPGxX6/partial-4-1280x800.png": {
+    "sha256": "edd962ee8f0a145b7b053b3d170af1afc3368a7e427c16fa732b9d8b8b5e7b66",
+    "bytes": 275692,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-oNKBK6/load-error-3-1920x1080.png": {
+    "sha256": "41bdb84c7648fc82fdcb0f3f908d2065d2b4289d41f511dc725069b4a284f4be",
+    "bytes": 438284,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-obOD7U/restored-winner-1920x1080.png": {
+    "sha256": "6c800e68e2150f34164c72865e473fa989ef9d8709664393405ea3ebcb6400a9",
+    "bytes": 441959,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-qM2hfH/load-error-4-1280x800.png": {
+    "sha256": "46ae10331a1b44171ca6da7a7bc44458c48a315e363f66903e1d314a1ec0274b",
+    "bytes": 289740,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-rL31Ru/load-error-4-1280x800.png": {
+    "sha256": "bdcf2a6ab14296d4658e3f750f3bd02f1a3f9220257e6c611b238995dadd003f",
+    "bytes": 290411,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-ucFJ6S/load-error-2-1920x1080.png": {
+    "sha256": "c645c223d824a91f0f4c7fc6f13654923ff21e4e39463dae16dbc6ca2244e9c3",
+    "bytes": 430989,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-vwrIdV/load-error-3-1920x1080.png": {
+    "sha256": "d1269f887ccff69ddb366ba485e510e08f3c234cd2aee014f8e479f969a3e5d4",
+    "bytes": 438786,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-wYIcs3/load-error-3-1280x800.png": {
+    "sha256": "24564ba68e1eec38e762021e16123b628d7fc06e1dec64d955e4f2f03fd2d619",
+    "bytes": 283649,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-x0OXiL/load-error-2-1280x800.png": {
+    "sha256": "988ae6a1a119f061d425d84444191cf5d718103ab952afdee31d6b6f03223f48",
+    "bytes": 275316,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-xSaGlp/load-error-2-1280x800.png": {
+    "sha256": "44a17a2bbc66f5b0600ed7b349936dd6debc98e41be7cee0fde2274dd5d5e523",
+    "bytes": 276449,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-xZXMrW/load-error-2-1920x1080.png": {
+    "sha256": "5565d6830748361bfd04a535c06501ba72678294b2265339e7a963b82f884647",
+    "bytes": 429905,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-y3EmbJ/restored-combat-3-1280x800.png": {
+    "sha256": "349597b44836ad0e56e71d1d90ce8829c81a1c2f62c00384beb5cd08d31eb1e7",
+    "bytes": 279558,
+    "mode": 420
+  },
+  "browser/screenshots/MATCH_SAVE_EVIDENCE_DIR/save-yHMC2Q/restored-combat-2-1280x800.png": {
+    "sha256": "6ad45035713d7c02bd0a31dec5950f7595f4924df51837aba926820e465a3620",
+    "bytes": 271803,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/game-event-log-1280x800.png": {
+    "sha256": "bf3b0ded89939a1266b44bd7d9b7882638aff19138d971e1731d5410fae0b822",
+    "bytes": 150389,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/game-event-log-1920x1080.png": {
+    "sha256": "16fbfd7d36ba82a157d306dab9155eb714f342690d372bfd834bf6963cd71ea2",
+    "bytes": 271726,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-default-four-seats-1280x800.png": {
+    "sha256": "8c8f09d22e76eb5bac39e2c3af25ec80a7513adfd7083f29b92fb6730751a47a",
+    "bytes": 240920,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-default-four-seats-1920x1080.png": {
+    "sha256": "b1b2bcf0d79362d97a6629eee2df4a2422575f8ba3d351c5f180837899187e35",
+    "bytes": 412240,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-eliminated-1280x800.png": {
+    "sha256": "2ac48795abccae7f417e369a5253b8f8dae5781584997f91c2847d525411ba67",
+    "bytes": 249715,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-eliminated-1920x1080.png": {
+    "sha256": "1addd941c549ad9aa3cd62e26e6cdf698d1e8560faa6d235531f8f82ba38024f",
+    "bytes": 429727,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-paused-battle-1280x800.png": {
+    "sha256": "4fcc07d23f110ef5b3f080db3a912b4245996bfdccfcc86098752a3fc1de873c",
+    "bytes": 252951,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-paused-battle-1920x1080.png": {
+    "sha256": "0185edc04e0cc779d35bd0dea1a13a0b28972af77d10b7c7cc47863b28d365a3",
+    "bytes": 430350,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-paused-computer-1280x800.png": {
+    "sha256": "698cd237518d9a8ede75a11f07d6f33bc692c694426483807bd4e52ecef44a8d",
+    "bytes": 239679,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-paused-computer-1920x1080.png": {
+    "sha256": "9024269b6c0ffcea854da7b18fa75245e2c30495bd30b4b5c8e08577ecda5721",
+    "bytes": 409811,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-totals-1280x800.png": {
+    "sha256": "0d6894a3e55c4195a2053cea0e178ec35e8b702423068cb93f4730c4e8eb832d",
+    "bytes": 241896,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-totals-1920x1080.png": {
+    "sha256": "41b4a23d594559428cf93608fb115125980b08b3b4d5c9f07093362738defc95",
+    "bytes": 416786,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-very-slow-1280x800.png": {
+    "sha256": "9f82fbfeed0f74ecd9351c24838a25086b56061593d6f3f2b83c62e6c9e58e9c",
+    "bytes": 250446,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/playback-very-slow-1920x1080.png": {
+    "sha256": "35e37673ad0df0cb81866cb165553752b48d3a85f21ae634d91b1663e7dce506",
+    "bytes": 426457,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/production-invalid-load-1280x800.png": {
+    "sha256": "46c8dec1072ae46ee1a7de8f4b0fb6f0b4eb94c66a149f6a20bb60a6d6319e56",
+    "bytes": 253463,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/production-invalid-load-1920x1080.png": {
+    "sha256": "4eb399c68f7565a55949ce580b2ebc119b6fcbedffaf9fb49c771cc3f57199f7",
+    "bytes": 441275,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/production-modal-1280x800.png": {
+    "sha256": "364b75a3bc15079ebf2aaf686f23d4e9c80dfaa33a0974c35db6a02945002ecc",
+    "bytes": 150230,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/production-modal-1920x1080.png": {
+    "sha256": "df215659a22e47f855302c2af7949fb7c8d660883ffd4ed8c6cb5739241cae0e",
+    "bytes": 281822,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/production-paused-computer-1280x800.png": {
+    "sha256": "b8918010d4cfd445be00edcdad0f095e7d97f66bee0f8f9a1fda4a7034c489aa",
+    "bytes": 235871,
+    "mode": 420
+  },
+  "browser/screenshots/PLAYBACK_EVIDENCE_DIR/production-paused-computer-1920x1080.png": {
+    "sha256": "d1171dc63bee84c13b2ed1d93489acbf37ca0bf72b732c624f48dab45d3b6b0e",
+    "bytes": 413101,
+    "mode": 420
+  },
+  "browser/screenshots/T75_SCREENSHOTS/playable-1994-1280x800.png": {
+    "sha256": "0523ac049d502035ffb1109119f59f0e8dbc25aa762daa5ad41c8d87484c93aa",
+    "bytes": 202660,
+    "mode": 420
+  },
+  "browser/screenshots/T75_SCREENSHOTS/playable-1994-1920x1080.png": {
+    "sha256": "8ccb1a9a603dff0e11ef36de12f94729b6675790112bfdb0be7d6032a6cd7fc1",
+    "bytes": 337794,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-1aIr89/move-completed-1920x1080.png": {
+    "sha256": "a4868456e5b4886272b5a67c577857aa0348a831131ba93807226f6cd8ef6256",
+    "bytes": 416848,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-2ErZv6/pending-capture-1280x800.png": {
+    "sha256": "f8e31e06533da671bd53aaf6cfb65ad08c0d14d37f55f5e5decde0479c23704b",
+    "bytes": 255527,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-4HHraL/stop-1280x800.png": {
+    "sha256": "0f6f09147497956183b7835f15d644add785af3549ffb2866bf5bf4c4cbb94d8",
+    "bytes": 239688,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-77ZNmn/failed-load-1920x1080.png": {
+    "sha256": "19220c4e7907cf1ba4d88908d9894cb1e0466c770861fb1d5104ced7289628b9",
+    "bytes": 423036,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-AlQaPx/move-draft-1920x1080.png": {
+    "sha256": "ff967fc6fddfce19aa330a68087463e3d8a3427822a1d40c421d5919658f3f0a",
+    "bytes": 419034,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-EukAFv/move-completed-1280x800.png": {
+    "sha256": "0d183c7bd3da3ec7ff4f6441d161cfafa714d0f81f4cd92d0179071a46c9bc67",
+    "bytes": 242528,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-HoxB6G/failed-load-1280x800.png": {
+    "sha256": "0aee1e612483c1c7c2ba3bfcd81c75207fba0096a1ccf4b287858cfaa9bd6752",
+    "bytes": 247131,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-N1ap07/domination-1280x800.png": {
+    "sha256": "3640fbe2da2aa0071b774fb5722db0a240e45bd0820aa1db13611e866afc43c8",
+    "bytes": 245888,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-SUz0ve/placement-1280x800.png": {
+    "sha256": "ca23ec9a65b2c56b63cd6e6c24dc7de4dab06066b4d7615506ae94a72fc3c224",
+    "bytes": 242147,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-THMJS6/move-draft-1280x800.png": {
+    "sha256": "1fbb31d03af581b2bd93c8ca26017ea11c0f5d887917e4d98984e57153e858ba",
+    "bytes": 244212,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-dRBm4D/placement-1920x1080.png": {
+    "sha256": "ead3484cc1b70c4799eae0b17a49e5e436d81453ab5812cd23a996a4b2751410",
+    "bytes": 416989,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-e8WZyF/round-limit-1280x800.png": {
+    "sha256": "46f5a3833526c0578ce4cf4b82bff68b5eb9264fee22d1742c8731cd48b38a20",
+    "bytes": 249913,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-nSTVJZ/round-limit-1920x1080.png": {
+    "sha256": "6a2fe5ac1f00199a61a3e83eaf7f49fb468a94f0c4517e431daf2c7383f68a82",
+    "bytes": 440567,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-vSaBAe/pending-capture-1920x1080.png": {
+    "sha256": "81b399c43673ca5b524c9b2dd1a71a4b2d86398bf53d35705a6c523ce00d3f05",
+    "bytes": 438605,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-wnQd1n/stop-1920x1080.png": {
+    "sha256": "3f8dc7a220eb0309ecb6b1c5785d5089c283ae4da4c576fa0896c7f2769dabca",
+    "bytes": 418069,
+    "mode": 420
+  },
+  "browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR/versioned-yRf88L/domination-1920x1080.png": {
+    "sha256": "d5e033b561bb51074a2069ceb69ffd0755fdb90c575bd1571cd6fe9a28183c3a",
+    "bytes": 439578,
+    "mode": 420
+  },
+  "browser/test-results/.last-run.json": {
+    "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+    "bytes": 45,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-empty.png": {
+    "sha256": "9134583d92d8bb68f8def403f879300ccd466c881076c29997799bcf87408eea",
+    "bytes": 264450,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-hand.png": {
+    "sha256": "05667b22b36a68db36db95300f584598fdc0a1d5235a614a112387be91018cb1",
+    "bytes": 265810,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running-running.png": {
+    "sha256": "81b6e01cff47473f470c5fc149f3e5c2caa5bbcc8c67c60d2c4b24466bb7d47f",
+    "bytes": 259424,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running.png": {
+    "sha256": "22724e22908a9d2aba5bca28cb4e92def7d5648646b389ba9381294e217a2986",
+    "bytes": 266124,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-capture.png": {
+    "sha256": "c3423308a481edd8cb6e0479d52715dd2ce5dac03bdbbdbf5c10c248dad1eacf",
+    "bytes": 261071,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-empty.png": {
+    "sha256": "962df9fbaaa659a50df91408c7f4528edfc9df4e2f4c25827f9778a916865f21",
+    "bytes": 266562,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-hand.png": {
+    "sha256": "a35be8db7ecd82d6cbb97d382f646b692e5fefaa0b088c9e9c60858d6fa6ce5c",
+    "bytes": 267868,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running-running.png": {
+    "sha256": "e969d1401de20d0f76d9e79cf5d7d22a3721ba2ef7c3da27579a259791a4d36e",
+    "bytes": 263379,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running.png": {
+    "sha256": "049f72fc416d0a711fe5b2c17e173dd51a429a57359f6716f800b4bb278c0d44",
+    "bytes": 268171,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-capture.png": {
+    "sha256": "e8617825664ce635e36d9dc035c3e1c3521c23a9c980595545b0c11fc6f41e54",
+    "bytes": 260861,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-compact-card-choice.png": {
+    "sha256": "dc627293e4d7c5ed85583289d60e9728836a31eba2f809ca239cd684450f8a0d",
+    "bytes": 259803,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-detailed-card-choice.png": {
+    "sha256": "4a6e0421500da85464805f0e7c514f78b1fce07aa2c13cdf4520f3968e5babda",
+    "bytes": 259575,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-empty.png": {
+    "sha256": "e16b64c76c3825e58111ac04bb9109cf73ea2e351f0dc96c902e486f94b1bc68",
+    "bytes": 230661,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-hand.png": {
+    "sha256": "6fd83c67384a421e363e36825cf46f12e21f0d9974639e3efb1dd3f172c7cc1e",
+    "bytes": 228914,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running-running.png": {
+    "sha256": "c38be6d099079b89703ddd4f891cfaf1724fa1179e789d13269fc0c0a8c3fa29",
+    "bytes": 225849,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running.png": {
+    "sha256": "424989a5807b13ef7ed14b56ff93527474c44058cc9b226f1cedd277853ed1fe",
+    "bytes": 229688,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-capture.png": {
+    "sha256": "6f95f68c6a1372420712ee755d5d4506cea9f9494ba29f6e729a666c9b25e03a",
+    "bytes": 223788,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-empty.png": {
+    "sha256": "d6622c2b3db1a576c9d6e487a85dea76fa10d7f9cf6b708eef07bb3366dbd04f",
+    "bytes": 233102,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-hand.png": {
+    "sha256": "2763f0d3796b449fff6aad1e536d097761c36176805f6739f9edca1c447fe303",
+    "bytes": 231067,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running-running.png": {
+    "sha256": "54cc8896a82caf0727ff5e788035677caec6251b27ae8c70658c5db998a4f7bd",
+    "bytes": 230324,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running.png": {
+    "sha256": "03afd28c0e9579ea6f3dbe64360d51e7682cdad0500f778382ea9720272faafe",
+    "bytes": 231883,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-capture.png": {
+    "sha256": "6685e4998863d917a70950fc3b467755f7b64f910fbd34c51ab9b4239c23591e",
+    "bytes": 223583,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-compact-card-choice.png": {
+    "sha256": "cf7f0b5f8f30b2bf2acbf3aecf8a2cc69f1645c81bb36630c435ef04efd650be",
+    "bytes": 218191,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-detailed-card-choice.png": {
+    "sha256": "9f29147e3e7306cc944cce3e96ddd5bfb7b7cf7f0479dbc6f637f3b21c1f3c11",
+    "bytes": 217975,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/metrics.json": {
+    "sha256": "3fe6348dff45f3f0f418ce400b5bc64dddb5fedd80fbcc219ec0f68d7b064ec2",
+    "bytes": 423258,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-empty.png": {
+    "sha256": "08aad2053853a6951fec57df021662e7c437b9d6a143b87ae90791060f6f51fa",
+    "bytes": 447863,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-hand.png": {
+    "sha256": "8e6936a4700b3a30120fc3929fd36f74979c36803794cea2bf6f6bcc70eb2611",
+    "bytes": 462707,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running-running.png": {
+    "sha256": "3afcaa239fd7cb68b227f84564880eb754c4f1373e8096c3a27a63f32e22159e",
+    "bytes": 452670,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running.png": {
+    "sha256": "be1848a5c8df64cfc07babe466001b1641b85589c50176aaa8a0eacebb410216",
+    "bytes": 461601,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-capture.png": {
+    "sha256": "7bba5c41d13a581db394872c7cd639f17e1e19cd11d471b43919d57eb99b4695",
+    "bytes": 456378,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-empty.png": {
+    "sha256": "3b4cab428d6033cd01a5b9a95d510ec39e91eb85adb0326f68353951b5b4b21e",
+    "bytes": 450863,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-hand.png": {
+    "sha256": "439d5f2910dffd5e8036bbe23ac00d41acefef70dfbf0a3a1077292ada4d772b",
+    "bytes": 465513,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running-running.png": {
+    "sha256": "2c91ea6926b9114cca9efd53e3537c63323bf3a5f5b12d6a317825aecf1c0c34",
+    "bytes": 457992,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running.png": {
+    "sha256": "7d99117a0ee653c89f7835bb8d71dbdf3c1393ae8c5ab60e0bdb15595e0ea430",
+    "bytes": 464405,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-capture.png": {
+    "sha256": "18c5e664033a80ea93df0bfece6d24d80dba29d896717d2967474396095aba53",
+    "bytes": 456172,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-compact-card-choice.png": {
+    "sha256": "61af1390f7d4674c780d3b4e9fadda244bf5d29f9208470f46bffd70760ea983",
+    "bytes": 452142,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-detailed-card-choice.png": {
+    "sha256": "744866bb551f921b723fb90e0e39abe23dbf9356cdf485c91b82bf6b87ad4037",
+    "bytes": 451923,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-empty.png": {
+    "sha256": "b2637589b157c3d979eb5ab1fd4c9db93793d51362cc6f6d79488da01726bf59",
+    "bytes": 391820,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-hand.png": {
+    "sha256": "5d5f56e92255bc1dd4b8b258e7e53416d5e3a4e7113f69d4ba8dd06a48f1fbe1",
+    "bytes": 385577,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running-running.png": {
+    "sha256": "b582c6d5044c7d9e041b5de9cc1774d6cd362c9b65c592fa4b4c26d7a2212b56",
+    "bytes": 384884,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running.png": {
+    "sha256": "3e7ca322eb337fb16862bc6758be5695695e66d2ea79e47595e6f2916966fd46",
+    "bytes": 388973,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-capture.png": {
+    "sha256": "3ed7cc6d5f81efe960ba4c4ba53a9914301a89c7248d4244a59e8a3536ef27a9",
+    "bytes": 378428,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-empty.png": {
+    "sha256": "e5c05df8c9fc0d28080ff0f932034ce3daa3cac85db62fa702c9ec1d776badd0",
+    "bytes": 394662,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-hand.png": {
+    "sha256": "673eff9a431d4a3a89a1fa59b7c10de7a8857f6e356691c98675ba1905cf090d",
+    "bytes": 388782,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running-running.png": {
+    "sha256": "7dea67314dc7d7f19cd80e82debb05e8adc9eb26bd1824921996e5c10dcb9c29",
+    "bytes": 390747,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running.png": {
+    "sha256": "73857bff728975668fb1b661d55a5d28bc00287a1a676505863258c7153c1fd8",
+    "bytes": 391947,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-capture.png": {
+    "sha256": "12dcaf93662cebd14258a9d91f3b17a5b2e4c25cb27988f6fb2668b4ec156751",
+    "bytes": 378215,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-compact-card-choice.png": {
+    "sha256": "798605a18da97725358f91bfc10eb70365d7a578e3db8e21715ace5c6f452e1a",
+    "bytes": 373153,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-detailed-card-choice.png": {
+    "sha256": "764e888ade8caa0db99c2b9588174450868fc3a6afaff9a4edd68b242f93a3f1",
+    "bytes": 372942,
+    "mode": 420
+  },
+  "browser/test-results/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/metrics.json": {
+    "sha256": "13851a9e730400195d09afc0105588cb689e747072754cb31ea2610a8627e6be",
+    "bytes": 434088,
+    "mode": 420
+  },
+  "browser/test-results/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-compact.png": {
+    "sha256": "80d7fbbe216f85b1dc5b501343c4cf090e901e8d84eb5a4cf1761cb06423166c",
+    "bytes": 245631,
+    "mode": 420
+  },
+  "browser/test-results/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-detailed.png": {
+    "sha256": "1d5ff36f259b9f36388819336b081ae10f73e88bbfd376adc327d173066429e0",
+    "bytes": 246622,
+    "mode": 420
+  },
+  "browser/test-results/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-compact.png": {
+    "sha256": "b680a3dd5077f695828624cb046150433d3d6432f8387433031ee8e664f43c1e",
+    "bytes": 431111,
+    "mode": 420
+  },
+  "browser/test-results/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-detailed.png": {
+    "sha256": "ab210cce87a4dc27dabcb234b8ec5349bb29d07fa08f029374eefb66d3d3f664",
+    "bytes": 432109,
+    "mode": 420
+  },
+  "browser/test-results/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-compact.png": {
+    "sha256": "1911db68e4f4ce85585c455eb6ada9052850c3a5ccc9d29d81ec9cdee38b95a8",
+    "bytes": 249049,
+    "mode": 420
+  },
+  "browser/test-results/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-detailed.png": {
+    "sha256": "2fb37562414d36789f7d128d6a7bcad86933ff4812ed41181f76eafc3ea35529",
+    "bytes": 250031,
+    "mode": 420
+  },
+  "browser/test-results/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-compact.png": {
+    "sha256": "1b2e4add816e2e425401f62eda9d6f9a5925ae249d147791571d16695825dd76",
+    "bytes": 437851,
+    "mode": 420
+  },
+  "browser/test-results/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-detailed.png": {
+    "sha256": "ef359d8f1ae9a1197bb4b5e54fdeab63b2fbbb06145bb9e5a9fe1f1e6aa2c69c",
+    "bytes": 438839,
+    "mode": 420
+  },
+  "browser/test-results/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-compact.png": {
+    "sha256": "802f68401b28b4318d53815b702ac18fe7b8265fceb39f61dae4720593f4044c",
+    "bytes": 248073,
+    "mode": 420
+  },
+  "browser/test-results/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-detailed.png": {
+    "sha256": "db1f800ae927c19a3a0c6d37a74f58f051dd100520f14679dcab73abeb1baeeb",
+    "bytes": 249037,
+    "mode": 420
+  },
+  "browser/test-results/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-compact.png": {
+    "sha256": "2f981eac8f740a052d15b4ee773441077680a978f309916124dba85829aacf5e",
+    "bytes": 438022,
+    "mode": 420
+  },
+  "browser/test-results/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-detailed.png": {
+    "sha256": "55c3b59c40735af73be189f9ec30d49db2288ca08b1a6d3a525ff1d34e1bdac5",
+    "bytes": 439014,
+    "mode": 420
+  },
+  "browser/test-results/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-compact.png": {
+    "sha256": "3809e95e84fb52c80179a28eeeb34fcfda95aaed3d16580f93945ae7e4ba95f8",
+    "bytes": 242489,
+    "mode": 420
+  },
+  "browser/test-results/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-detailed.png": {
+    "sha256": "3d7b2ec60e6554319805e684fbe5eaf95757de9822e3a02483e8275512a56469",
+    "bytes": 242266,
+    "mode": 420
+  },
+  "browser/test-results/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-compact.png": {
+    "sha256": "fbebbe5da09f3899c1bb581b675938bf062f2ddb8a396652bbcec0cd296a1cc9",
+    "bytes": 243719,
+    "mode": 420
+  },
+  "browser/test-results/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-detailed.png": {
+    "sha256": "08fdabf62712c46907a7b01757814cb454e5d0568d86ea48d277056aad51eae2",
+    "bytes": 243508,
+    "mode": 420
+  },
+  "browser/test-results/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-compact.png": {
+    "sha256": "bd01062563a3c0bc78656188312de4c2d596a1ba46f504796a0b412d3dc4e26d",
+    "bytes": 425842,
+    "mode": 420
+  },
+  "browser/test-results/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-detailed.png": {
+    "sha256": "42822e586845d45ece70a26d36de7d016269a247e0c2bd740e69969d51294a40",
+    "bytes": 425594,
+    "mode": 420
+  },
+  "browser/test-results/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-compact.png": {
+    "sha256": "4ecc22f2cd6b4e9af30ecfe8a6e762140eea67f1564c74e09081d39b187c65cc",
+    "bytes": 434501,
+    "mode": 420
+  },
+  "browser/test-results/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-detailed.png": {
+    "sha256": "cd0921fccc7de1e1c0ab244fb5e2528faeb597a232c46b64d4e03dd665b7f515",
+    "bytes": 434338,
+    "mode": 420
+  },
+  "browser/test-results/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-compact.png": {
+    "sha256": "fc584bb6708388d2c8deda1968d8140346c50b204916e8e87fcbd5ec3db95b6e",
+    "bytes": 258569,
+    "mode": 420
+  },
+  "browser/test-results/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-detailed.png": {
+    "sha256": "6a354b66aa7f771aaad4e16fff84b57d55b455eb0285e5d91e0c0cac594e35c4",
+    "bytes": 259588,
+    "mode": 420
+  },
+  "browser/test-results/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-compact.png": {
+    "sha256": "b94608a6e7c11726a5dbe7fd74bdcb07ff1ff0583e0d124d43d8d197655102aa",
+    "bytes": 450946,
+    "mode": 420
+  },
+  "browser/test-results/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-detailed.png": {
+    "sha256": "77b2d76aac4ab65273ab22e1985fe198ff446359e7841f66e9d4ccaef413da62",
+    "bytes": 451925,
+    "mode": 420
+  },
+  "browser/test-results/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-compact.png": {
+    "sha256": "b1da3ca9f0eb822c74008ce384f8c901c2b4ed3abc61c4a2bd4a95d0db64b633",
+    "bytes": 261039,
+    "mode": 420
+  },
+  "browser/test-results/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-detailed.png": {
+    "sha256": "147d0c17d0fa69c2147cd85faebd66d940628a98dc8921c099e44d9c2629e771",
+    "bytes": 262016,
+    "mode": 420
+  },
+  "browser/test-results/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-compact.png": {
+    "sha256": "76f3c621dea353731115e169511dd6268a16db3b0fe58de26f8e739d49288b09",
+    "bytes": 252999,
+    "mode": 420
+  },
+  "browser/test-results/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-detailed.png": {
+    "sha256": "d4cd600155458fed7e19bd50852c6dab46cc50d3697d805bb4ef6be208c5963e",
+    "bytes": 252790,
+    "mode": 420
+  },
+  "browser/test-results/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-compact.png": {
+    "sha256": "cd7525963c9c27522668d1619a23831594246f85f44643bc307f83c43a8236f0",
+    "bytes": 454960,
+    "mode": 420
+  },
+  "browser/test-results/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-detailed.png": {
+    "sha256": "770e15f9cf28a8de001202b21e7fddbb5e884c00a7a4264be53a11dd5082e2ad",
+    "bytes": 455948,
+    "mode": 420
+  },
+  "browser/test-results/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-compact.png": {
+    "sha256": "88bff5cf6a8d7942a821f1935472b0bc1aed366b775126ddb536849c2c3abe1a",
+    "bytes": 443689,
+    "mode": 420
+  },
+  "browser/test-results/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-detailed.png": {
+    "sha256": "30aeb0068f2d343bc1ae68886674f19ed7f420ac4832ba477e7666f06150ed34",
+    "bytes": 443470,
+    "mode": 420
+  },
+  "browser/test-results/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-compact.png": {
+    "sha256": "8c440072e3eeabdc692ce19017379afe7c686ea37b2d0b283f90ac11b005accf",
+    "bytes": 260635,
+    "mode": 420
+  },
+  "browser/test-results/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-detailed.png": {
+    "sha256": "79afcb66be327c011333521e46106200cfe8308b55fe0c9235eb088cc62a9487",
+    "bytes": 260434,
+    "mode": 420
+  },
+  "browser/test-results/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-compact.png": {
+    "sha256": "b4930eb08e3d8741a65afdd20d8d05db159ef3633d84908d2be4c11b76f3ea39",
+    "bytes": 445240,
+    "mode": 420
+  },
+  "browser/test-results/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-detailed.png": {
+    "sha256": "0a972843de622865b541d8be5f58b3ecdf8134b2ceb9f7e8276d2f388cad51a9",
+    "bytes": 445037,
+    "mode": 420
+  },
+  "browser/test-results/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/attachments/geometry-eb802b0b578bd08f5ac948af289553da0f2fb4af.json": {
+    "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+    "bytes": 6791,
+    "mode": 420
+  },
+  "browser/test-results/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/geometry.json": {
+    "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+    "bytes": 6791,
+    "mode": 420
+  },
+  "browser/test-results/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-compact.png": {
+    "sha256": "e57f00cb1a5bb505e3591c065fc23c081cc198017b017c8b82efc62da166904f",
+    "bytes": 273311,
+    "mode": 420
+  },
+  "browser/test-results/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-detailed.png": {
+    "sha256": "a8fdfb82fbe25c4cfc7f7c6dd4336937d356e13f8960a59921d7e7aa7fa8f8b9",
+    "bytes": 273112,
+    "mode": 420
+  },
+  "browser/test-results/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/attachments/geometry-40ae361c85e800387235de6f5d6248154e9327ff.json": {
+    "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+    "bytes": 7090,
+    "mode": 420
+  },
+  "browser/test-results/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/geometry.json": {
+    "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+    "bytes": 7090,
+    "mode": 420
+  },
+  "browser/test-results/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-compact.png": {
+    "sha256": "e69fcf33afa5a8a0236f827295fbee93b1b13097d3d1f77947b51adb62a322fc",
+    "bytes": 477001,
+    "mode": 420
+  },
+  "browser/test-results/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-detailed.png": {
+    "sha256": "a60df374da8ed18a25a8affb46c9f64a4f84f512ef3aef9840d27cf64b70d9c7",
+    "bytes": 476803,
+    "mode": 420
+  },
+  "browser/test-results/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-compact.png": {
+    "sha256": "93112786f51e2c1cc5bf05ce34d33eaf44df6a4786fbee621ca8318c8c2c4a24",
+    "bytes": 223392,
+    "mode": 420
+  },
+  "browser/test-results/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-detailed.png": {
+    "sha256": "aa1da891f88805081a5a33a5d0acee4cfd0f73e6fc57bfde84fb78f3bf105f78",
+    "bytes": 223125,
+    "mode": 420
+  },
+  "browser/test-results/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-compact.png": {
+    "sha256": "fd156bb3b85b93adb73c799ecba12049d00fc6b5b752d5b4569151b213aec0a2",
+    "bytes": 365951,
+    "mode": 420
+  },
+  "browser/test-results/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-detailed.png": {
+    "sha256": "b65c116aff45b15a101ff251312d0e7cafcfa9e7cea59e81054f46d3ccffcecd",
+    "bytes": 365746,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--04741-remain-visible-and-operable-1280x800/video.webm": {
+    "sha256": "5523442dde660836b2ce41b83e272c30f815a89e542edcde5b7bc17420141720",
+    "bytes": 455662,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--04741-remain-visible-and-operable-1920x1080/video.webm": {
+    "sha256": "f3981852293d5f8b4338b011c0862c4737212983926d104208b3fa03f56a879e",
+    "bytes": 395493,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--33b2d--log-load-and-next-callback-1280x800/video.webm": {
+    "sha256": "a16daf8ebda6e85e346eac783ef09daf9bf919593b661f97d236d2fd346c582d",
+    "bytes": 361719,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--33b2d--log-load-and-next-callback-1920x1080/video.webm": {
+    "sha256": "5782624b7129260f1ee9e1e7052b694f656a68f9f9cbc3eccc92e9815cad4ad7",
+    "bytes": 299811,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1280x800/video.webm": {
+    "sha256": "2e05d3cf3f8b7221dc907ac656f754f9f8257ec57b7d33f222219b940ba7407a",
+    "bytes": 470253,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1920x1080/video.webm": {
+    "sha256": "a4980886faae8719ea0ba4cacfb805c2b536585fd2379f4c07e02e0b7e510ab9",
+    "bytes": 414549,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1280x800/video.webm": {
+    "sha256": "dd1cd8fb933beb5bf3dc39665f885856314aeed112d258bec8f595d98fe62aa2",
+    "bytes": 362972,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1920x1080/video.webm": {
+    "sha256": "1151425dbadcb183316f0758a05401e9876defdb3b59cd0b522259afa53a24e8",
+    "bytes": 352328,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--a3300--panel-areas-and-essentials-1280x800/video.webm": {
+    "sha256": "c1b924b5be1200e201e941c2414ac7e16e2f22b09c12b233320e85188bf67d81",
+    "bytes": 764007,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--a3300--panel-areas-and-essentials-1920x1080/video.webm": {
+    "sha256": "5795ced6247fc4f009b1c112fc19fa4df6215fb44f6404ff9f426d2ab4044eb5",
+    "bytes": 729541,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--bd335-remain-visible-and-operable-1280x800/video.webm": {
+    "sha256": "2e41ca78e5b8b18ba8d0f81a6c25f4ac4b6b838bdfcc5b5192feb3ef4f009b56",
+    "bytes": 464676,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--bd335-remain-visible-and-operable-1920x1080/video.webm": {
+    "sha256": "b57cbca86b54a5255ee37cb1680987d3c8bc97af2c0757c85c345a947053730d",
+    "bytes": 389330,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--c209e--panel-areas-and-essentials-1280x800/video.webm": {
+    "sha256": "d74b4c2bd4369fc9c172d3e7469c723a5611895ab82f6a074281566c4635f0db",
+    "bytes": 807530,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-geographic--c209e--panel-areas-and-essentials-1920x1080/video.webm": {
+    "sha256": "99a78d3607b4da613c29c77c8ee34966890680705aaa7d7f025788fd58412009",
+    "bytes": 672225,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1280x800/video.webm": {
+    "sha256": "1bfab67d99e4e11ad7c76170141bbe1f494fa0b3f7ce73f90da454d55cf17e4e",
+    "bytes": 179599,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1920x1080/video.webm": {
+    "sha256": "0eea5d102375db37550a7245646a403667ed313cb1920ce87353a023b7597365",
+    "bytes": 177231,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1280x800/video.webm": {
+    "sha256": "b3691c5abfc05e03d073518980e7674f5e4f3a0257e1fefaa46bc9873c65d337",
+    "bytes": 136233,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1920x1080/video.webm": {
+    "sha256": "cd856a2b2da6d9f81e11a02377ca529aed1f68b985763452f42410cb92d1d277",
+    "bytes": 145018,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1280x800/video.webm": {
+    "sha256": "db40ba18d9d95c4ba259497334fcd59121a3bf13508b42071776ce105e63f9f2",
+    "bytes": 260364,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1920x1080/video.webm": {
+    "sha256": "eea39711b065bc29f73000209cfae8677b2628f46ebc58007cbcf08c44608f6d",
+    "bytes": 332885,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1280x800/video.webm": {
+    "sha256": "7ad70475c0f65b11253b1ca17ce7d0df0ce2d736b65abaa70ccce0a3739a466e",
+    "bytes": 153682,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1920x1080/video.webm": {
+    "sha256": "b0326b17c5bc6b9a3af7facefbdcfea8e13de800ff3e6aa101b14ec4626fccba",
+    "bytes": 151144,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-eb280-remain-visible-and-operable-1280x800/video.webm": {
+    "sha256": "e8110834da6bf311815bb48000192ce90c95e1e0dea5b5b1c4d530ed1a919e4f",
+    "bytes": 175573,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-c-eb280-remain-visible-and-operable-1920x1080/video.webm": {
+    "sha256": "8898dafc513406d27710364202c4e3d452bcfa4463b1972d23dd64f46f1e0bd4",
+    "bytes": 172455,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-d-301c5--log-load-and-next-callback-1280x800/video.webm": {
+    "sha256": "cc0c900e38dad3165baf44f4c39ff4b63b82fbfb8cb1d0d9b80838a2ee2d5c62",
+    "bytes": 147176,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-d-301c5--log-load-and-next-callback-1920x1080/video.webm": {
+    "sha256": "4a1e69d4440dded58cecb0fd510597ab91af7f8eced571e52d25d22101345174",
+    "bytes": 145796,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-d-78c88-remain-visible-and-operable-1280x800/video.webm": {
+    "sha256": "9f982a4fcb0d6ac2ab730655d52fa2df61616620f5fc6e5285b34f3c71a32050",
+    "bytes": 174708,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-d-78c88-remain-visible-and-operable-1920x1080/video.webm": {
+    "sha256": "88f412dbc5654235a5dfb6e3564599183e9e0732788e1c548737a3f9be70a171",
+    "bytes": 171470,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1280x800/video.webm": {
+    "sha256": "bba446bc6ca6efcaaa416cfac5f44e06f22ddf4094f5bd35e89d229709e40365",
+    "bytes": 146511,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1920x1080/video.webm": {
+    "sha256": "1cb69d41162ea400f6dad2aa4ac61b8b0c260fc416e16d68a1729355425c43c5",
+    "bytes": 146102,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1280x800/video.webm": {
+    "sha256": "5bd22bbeaba6acbbd0502d4a7054c9e07b6b8b4b516c6e22e9c5f648f5ba004d",
+    "bytes": 232796,
+    "mode": 420
+  },
+  "browser/test-results/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1920x1080/video.webm": {
+    "sha256": "dfb6d860978c4cc8ac4e41c3be4cb0bdc1f6bf090451302a6ae5f5893e2e8b87",
+    "bytes": 357727,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-automatic-c-672f3-ls-and-public-event-history-1280x800/automatic-public-log.png": {
+    "sha256": "c06e53955a02e226a26e89b0ec6d1ebc3fcf8cc4118f09d43293060290cb1a8a",
+    "bytes": 160908,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-automatic-c-672f3-ls-and-public-event-history-1920x1080/automatic-public-log.png": {
+    "sha256": "9c48e144d1bf2d23c613c174a8b0e0c9d13b37762c946367b83d46ece6a1f3a5",
+    "bytes": 316867,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-geographic--35a69--wording-and-exact-identity-1280x800/setup-0-human.png": {
+    "sha256": "d551d9fb55fee2e5016623b96f055c306256e68b02fd82d0c84fa966b632ebcc",
+    "bytes": 203852,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-geographic--35a69--wording-and-exact-identity-1280x800/setup-1-human.png": {
+    "sha256": "4439da2b7312397c83661e19401fb8c0c18c7a619afa44353c76fe31e2ee74c5",
+    "bytes": 203867,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-geographic--35a69--wording-and-exact-identity-1280x800/setup-2-human.png": {
+    "sha256": "f5c208f9be0f6df78156356d95c626b302232c6b8ef6e0dcdd5b62f962950d1c",
+    "bytes": 203133,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-geographic--35a69--wording-and-exact-identity-1280x800/setup-4-human.png": {
+    "sha256": "9399a4ae84ee6bd77686d64355f470ab25fb6452296d12b579c4c67b243973f7",
+    "bytes": 204980,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-geographic--35a69--wording-and-exact-identity-1920x1080/setup-0-human.png": {
+    "sha256": "acc934be7a535d0fec56b6434e69567639a3ed760a275510df34365b4c488c03",
+    "bytes": 338848,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-geographic--35a69--wording-and-exact-identity-1920x1080/setup-1-human.png": {
+    "sha256": "441c0ddb8509542849064c677d1d7906a355007c92d5aec80b70c341748c5cc9",
+    "bytes": 338856,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-geographic--35a69--wording-and-exact-identity-1920x1080/setup-2-human.png": {
+    "sha256": "c87ff1869519ce59b130ce8ff0a08ad0b22649cbf499ce9659fef34fa42381f8",
+    "bytes": 338477,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-geographic--35a69--wording-and-exact-identity-1920x1080/setup-4-human.png": {
+    "sha256": "d61b5b62bd6d2b38bad321f14fcb91aac773068f266d1535388ce4d12092fe0c",
+    "bytes": 341159,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-human-ackno-d2aa1-umes-at-exactly-two-seconds-1280x800/human-reward-barrier.png": {
+    "sha256": "052e544b6c101ec7367ef9d34cedf4d05fec6b44b8416bd516f95ea9f432b35c",
+    "bytes": 254384,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-human-ackno-d2aa1-umes-at-exactly-two-seconds-1920x1080/human-reward-barrier.png": {
+    "sha256": "79f9f640eadf0071bf9562a9971b3dbc7212981e38088d65ac58de5f82a29b6f",
+    "bytes": 445068,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-real-comput-8ff11-g-and-needs-no-human-reward-1280x800/computer-oldest-discard.png": {
+    "sha256": "a0432d6be9e253487046b1ca70441fe15ca9f32762c618f8c581d3c5aaa882ee",
+    "bytes": 238044,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-real-comput-8ff11-g-and-needs-no-human-reward-1920x1080/computer-oldest-discard.png": {
+    "sha256": "f5652b47cb6094b1888291537a749b449ed19771ee88b07c71694e50fca78eb6",
+    "bytes": 418527,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-three-conse-4f1b9--correct-human-loss-choices-1280x800/computer-raid-human-loss-compact.png": {
+    "sha256": "d9eff14301b1c1d6d402bc92e3c1b03d504d867a75342875b97a496a1485f2ad",
+    "bytes": 276086,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-three-conse-4f1b9--correct-human-loss-choices-1280x800/computer-raid-human-loss-detailed.png": {
+    "sha256": "af76dfe87e97a85967427118a36c18448537d0b99b3baed2516b823b7f0c4878",
+    "bytes": 275846,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-three-conse-4f1b9--correct-human-loss-choices-1920x1080/computer-raid-human-loss-compact.png": {
+    "sha256": "ba9249abbefafb4ca7c71c9bcd9cb28217d296c38ca7dd3c81fc6c914aa0ee52",
+    "bytes": 480726,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-three-conse-4f1b9--correct-human-loss-choices-1920x1080/computer-raid-human-loss-detailed.png": {
+    "sha256": "b5e2c22c37e1063736522f12236ad3fddd68b4381c6ca7068ffecabe57031bb6",
+    "bytes": 480464,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-three-conse-80a66-n-to-actual-board-placement-1280x800/computer-discard-living-human-return.png": {
+    "sha256": "7ee0f23b04bf8a217093624d0101ccc85a09e3a1c9be7abe2f95cb450ad7ea55",
+    "bytes": 244990,
+    "mode": 420
+  },
+  "browser/test-results/computer-cards-three-conse-80a66-n-to-actual-board-placement-1920x1080/computer-discard-living-human-return.png": {
+    "sha256": "cab8249c64ba792a1d15f5f284585c577815e2abad2ec8efcdf4a3bf0629b60e",
+    "bytes": 426994,
+    "mode": 420
+  },
+  "browser/worker-http-body.js": {
+    "sha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+    "bytes": 6139,
+    "mode": 420
+  },
+  "browser/worker-http.json": {
+    "sha256": "f55f4f64d173a4f01da290a6d70c0a273660f6fe9ad7bac3df07b16b60f99d47",
+    "bytes": 144,
+    "mode": 420
+  },
+  "commands.json": {
+    "sha256": "b5bac9587867059d3477c6db72e16ffb23346ce64e5fcb964bf67d4ddb92cd41",
+    "bytes": 1678,
+    "mode": 436
+  },
+  "container-closed.json": {
+    "sha256": "390da83b5a2443cbc30be00682a78eecdc1dc2bc3f13bd1115fc9c276d383e16",
+    "bytes": 108,
+    "mode": 436
+  },
+  "container-commands.json": {
+    "sha256": "7448c6f2074896e5d5ccfe8958b9d8f3e5e9f648bf341460711e1258074e997e",
+    "bytes": 1105,
+    "mode": 420
+  },
+  "container-environment.json": {
+    "sha256": "3e780162b9ff8df8f80cff60e6f7f8e7e67000c61c7b8518a4b14f1781ea6f2e",
+    "bytes": 166,
+    "mode": 420
+  },
+  "container-finished.json": {
+    "sha256": "5329895ba75cbb5508e890e01295e6243dc8f4641de3959e60cf5d962dd8cdf2",
+    "bytes": 58,
+    "mode": 420
+  },
+  "container-run.mjs": {
+    "sha256": "68fa8d0e3aa442c5e705a33edede444978d0d1a324d26b546529bc56d7251e7c",
+    "bytes": 7083,
+    "mode": 420
+  },
+  "controls/browser-closed.json": {
+    "sha256": "94b2f2a2086da482adefa60c92324c87256b8faeea6f4d47caa08634e538746a",
+    "bytes": 51,
+    "mode": 420
+  },
+  "controls/comparison.json": {
+    "sha256": "4b287fb24bf739e5e1309a1fc5ebd6c8bdd4ed7663cdda9f8b0fd72bd984220c",
+    "bytes": 889,
+    "mode": 420
+  },
+  "controls/mock-clock-polls-initial-setup.png": {
+    "sha256": "2edcd0a525c5ed43fdee41345acad4f9221aa20eac28ac440b5a2b9300be5278",
+    "bytes": 32018,
+    "mode": 420
+  },
+  "controls/mock-clock-polls-snapshot-before-setup-paint.json": {
+    "sha256": "7298c8294a378de7151e6b382d930209d8b9cc49db26034e05a446cfa45e512a",
+    "bytes": 215,
+    "mode": 420
+  },
+  "controls/mock-clock-polls-snapshot-cold-file.json": {
+    "sha256": "45c40c522b3999d9d814f34ce10e0cea64151ddb6c3ddad7ed9e54d8526f46f8",
+    "bytes": 1084614,
+    "mode": 420
+  },
+  "controls/mock-clock-polls-snapshot-finally-before-close.json": {
+    "sha256": "47f322147b2568c208c53d6e16632e08fdffd5f8e1e65a1e803bf328ebfb90ba",
+    "bytes": 1085048,
+    "mode": 420
+  },
+  "controls/mock-clock-polls-snapshot-new-game.json": {
+    "sha256": "47f322147b2568c208c53d6e16632e08fdffd5f8e1e65a1e803bf328ebfb90ba",
+    "bytes": 1085048,
+    "mode": 420
+  },
+  "controls/mock-clock-polls-snapshot-paint-ready-before-file-clock.json": {
+    "sha256": "78ce43d73686dc79c632bf7b4f6b09e3dbf023844644fd4d7624e45ebae5c8d9",
+    "bytes": 356,
+    "mode": 420
+  },
+  "controls/mock-clock-polls-snapshot-warm-file.json": {
+    "sha256": "6c52098b42a69223f6d8db73f3a58d3bc33b62894effe0075db844dba50ff44a",
+    "bytes": 1084883,
+    "mode": 420
+  },
+  "controls/normal-unprofiled-initial-setup.png": {
+    "sha256": "2edcd0a525c5ed43fdee41345acad4f9221aa20eac28ac440b5a2b9300be5278",
+    "bytes": 32018,
+    "mode": 420
+  },
+  "controls/normal-unprofiled-snapshot-before-setup-paint.json": {
+    "sha256": "aad9f48d09a908d484ba0fd0ae18ae0e7528f76ac42d82f28c2a60aa4824bdaa",
+    "bytes": 340,
+    "mode": 420
+  },
+  "controls/normal-unprofiled-snapshot-cold-file.json": {
+    "sha256": "075fe33af076033858a75f154fbf388a232a3d3bf54d717af7fb7a388a212447",
+    "bytes": 1084786,
+    "mode": 420
+  },
+  "controls/normal-unprofiled-snapshot-finally-before-close.json": {
+    "sha256": "d287cfc6a7799b2183e2213de5ff1997bee50499976c6ffa7400a8ff9aed70d3",
+    "bytes": 1085218,
+    "mode": 420
+  },
+  "controls/normal-unprofiled-snapshot-new-game.json": {
+    "sha256": "3cae1ee98a225a6129a5c7b8b0d06d6c05706e055c03bd08bf863129305fbe7b",
+    "bytes": 1085232,
+    "mode": 420
+  },
+  "controls/normal-unprofiled-snapshot-paint-ready-before-file-clock.json": {
+    "sha256": "2af5e0c0f927c6a51c9aeba7586e31e24ce84c7c529846e8b0614c99501d4ba9",
+    "bytes": 356,
+    "mode": 420
+  },
+  "controls/normal-unprofiled-snapshot-warm-file.json": {
+    "sha256": "243f70c9680e4e573f5c00a1e73599321c3372e12f06a198350e3f0b69935e2b",
+    "bytes": 1085063,
+    "mode": 420
+  },
+  "controls/payload.json": {
+    "sha256": "89514379370039724482cf9e78b9b366e9fcb980030026b4086af2a1e9c3da14",
+    "bytes": 462,
+    "mode": 420
+  },
+  "controls/poll-results.json": {
+    "sha256": "e311bbf593c6a44ff3f955b95251e5b9026ac3478cc9cedfa1d1e306405dd70e",
+    "bytes": 19766612,
+    "mode": 420
+  },
+  "controls/profile.mjs": {
+    "sha256": "18ab5cf2f45117ca75a261c9a70e143cf6d5217ea5b6377265628181bc991f4b",
+    "bytes": 6292,
+    "mode": 420
+  },
+  "controls/result-mock-clock-polls.json": {
+    "sha256": "5518f2ae1f003a05eccef73a43e18a2d88fae7b678ab43709f0bf5d289cec044",
+    "bytes": 6131802,
+    "mode": 420
+  },
+  "controls/result-normal-unprofiled.json": {
+    "sha256": "3317e2816837638ed40e3341c5725c283fd11e6f928408556dffa0c92b20a047",
+    "bytes": 6132744,
+    "mode": 420
+  },
+  "controls/result-throttle2.json": {
+    "sha256": "a52afe5523d3be0715c4e211e773392edc5a3a77b7f356f1a0b4a5ccb90461cd",
+    "bytes": 6132742,
+    "mode": 420
+  },
+  "controls/server-closed.json": {
+    "sha256": "a54ac5bb1f80f63e97d0fdea2ed11b5d547130e28378703d643019b310611f98",
+    "bytes": 21,
+    "mode": 420
+  },
+  "controls/throttle2-initial-setup.png": {
+    "sha256": "2edcd0a525c5ed43fdee41345acad4f9221aa20eac28ac440b5a2b9300be5278",
+    "bytes": 32018,
+    "mode": 420
+  },
+  "controls/throttle2-snapshot-before-setup-paint.json": {
+    "sha256": "58aab7be67949c8fa324da4bbf62f30923c07ba88312feca62016e6d88879943",
+    "bytes": 280,
+    "mode": 420
+  },
+  "controls/throttle2-snapshot-cold-file.json": {
+    "sha256": "1d391e681891eb789e1a51c692afe544c1c1df0dbbebc02dc720d38fb714b19d",
+    "bytes": 1084779,
+    "mode": 420
+  },
+  "controls/throttle2-snapshot-finally-before-close.json": {
+    "sha256": "773201e4d13a8620e01b1ba84ce68ff6de071f3319c5ef9de11412f389c71b75",
+    "bytes": 1085201,
+    "mode": 420
+  },
+  "controls/throttle2-snapshot-new-game.json": {
+    "sha256": "1be4a1ae0d5600958bb9e39b3c0fdb5a60838dd2487b154fee3717c58719649b",
+    "bytes": 1085215,
+    "mode": 420
+  },
+  "controls/throttle2-snapshot-paint-ready-before-file-clock.json": {
+    "sha256": "16d0b3b3cf77a660adad35346a77712cc9dea0f708c8382f7d25b3daf57eedc1",
+    "bytes": 356,
+    "mode": 420
+  },
+  "controls/throttle2-snapshot-warm-file.json": {
+    "sha256": "65df7703303005fe02143ea20241df267106579ac0129e04548ecc22e416491d",
+    "bytes": 1085050,
+    "mode": 420
+  },
+  "controls/trace-mock-clock-polls.json": {
+    "sha256": "1eecaf9c0a01b26cb006a2af5f6192bc4e434f40d099f2495ce573ec9af82785",
+    "bytes": 967839,
+    "mode": 420
+  },
+  "controls/trace-normal-unprofiled.json": {
+    "sha256": "8c1458a385a9ff4c3919d22b20a0e0d95576a93e2b3a0b32d70976f386d642dd",
+    "bytes": 967865,
+    "mode": 420
+  },
+  "controls/trace-throttle2.json": {
+    "sha256": "9ca0c482ff287d2885a905a7f36d3329c9e80529cc6cabb638a734e57b6f88c9",
+    "bytes": 967848,
+    "mode": 420
+  },
+  "controls/worker-http-mock-clock-polls.json": {
+    "sha256": "30182cc90dbddf61272f1b11d5ae87cfd0df4fad817c8d1dced96054852b16f5",
+    "bytes": 413,
+    "mode": 420
+  },
+  "controls/worker-http-normal-unprofiled.json": {
+    "sha256": "1150aa2962d63342773e6571f29bc859e2cd60185a9cd76fb4273ace216bf1fd",
+    "bytes": 413,
+    "mode": 420
+  },
+  "controls/worker-http-throttle2.json": {
+    "sha256": "79623baef0938663bc35b19f09bd708638cbfef0a85000ffe1c5d81000f4469b",
+    "bytes": 413,
+    "mode": 420
+  },
+  "controls/worker-mock-clock-polls.js": {
+    "sha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+    "bytes": 6139,
+    "mode": 420
+  },
+  "controls/worker-normal-unprofiled.js": {
+    "sha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+    "bytes": 6139,
+    "mode": 420
+  },
+  "controls/worker-throttle2.js": {
+    "sha256": "c98fd9efb3ba2c9e0a2ab29c416f1105b6d7247b9e4410d824e2906cb5c947ac",
+    "bytes": 6139,
+    "mode": 420
+  },
+  "docker-command.json": {
+    "sha256": "95b68b1599860e46870c76d58d8735699449c74a7865c6b0d3509052a03e7708",
+    "bytes": 1181,
+    "mode": 436
+  },
+  "executed-spec-hashes.json": {
+    "sha256": "8bbb7ec24dcb7c95a396503ff2b68ac07734a68c75cd3439df82aae91c752a01",
+    "bytes": 1405,
+    "mode": 436
+  },
+  "extraction.json": {
+    "sha256": "315113a38f8dc79c8de6c48a238aab3ec7f7389a190c7ccb535fc91ff8530cc1",
+    "bytes": 280,
+    "mode": 436
+  },
+  "fresh-outputs/dist/assets/generatedGeographyPresentation.worker-9RSuSC1x.js": {
+    "sha256": "31ec2b83bc75618f758d3357e156faceff73c27446d2d4b82b453fb884deb7a2",
+    "bytes": 5976,
+    "mode": 436
+  },
+  "fresh-outputs/dist/assets/index-B8lxC96R.css": {
+    "sha256": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+    "bytes": 33727,
+    "mode": 436
+  },
+  "fresh-outputs/dist/assets/index-XhZZPwNr.js": {
+    "sha256": "ad1b3dd03d918c51a683f07d1486fec43ff86b1457bef80822ebfdb5dade9a2d",
+    "bytes": 310354,
+    "mode": 436
+  },
+  "fresh-outputs/dist/fonts/Inter-LICENSE.txt": {
+    "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+    "bytes": 4380,
+    "mode": 420
+  },
+  "fresh-outputs/dist/fonts/InterVariable.woff2": {
+    "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+    "bytes": 352240,
+    "mode": 420
+  },
+  "fresh-outputs/dist/index.html": {
+    "sha256": "233805370b9e3fa501dbbfec7f2dbc7255e65605adbd869b032371f4fae6f241",
+    "bytes": 641,
+    "mode": 436
+  },
+  "fresh-outputs/node_modules/.vite/deps/_metadata.json": {
+    "sha256": "8c33306d0946919dd37778f5dd50ceff5cda4a12a66d89312ab93dbe5f5939a6",
+    "bytes": 146,
+    "mode": 436
+  },
+  "fresh-outputs/node_modules/.vite/deps/package.json": {
+    "sha256": "3ca9d4afd21425087cf31893b8f9f63c81b0b8408db5e343ca76e5f8aa26ab9a",
+    "bytes": 23,
+    "mode": 436
+  },
+  "fresh-outputs/node_modules/.vite/vitest/da39a3ee5e6b4b0d3255bfef95601890afd80709/results.json": {
+    "sha256": "7ce069ccf38f0048d65c96a3c402667e9fb95e515458d419c2be2394b4b2146e",
+    "bytes": 10567,
+    "mode": 420
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-bounds.json": {
+    "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+    "bytes": 9687,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-capture-movement.png": {
+    "sha256": "89d385628c83ee493fb306259f656df7def4f271b40936fdd3ed132ec17a5d29",
+    "bytes": 211892,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-complete-history-scrolled.png": {
+    "sha256": "3529ccd97190787b661d89dfeb290a9afb4b9859666e26fd69fd2f24d2de27d9",
+    "bytes": 211829,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-exchange.png": {
+    "sha256": "ce15f961758261ab9c474f8a73c8b954a4094a1f0058bdb24ceeaf98d0364071",
+    "bytes": 208888,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-friendly-movement.png": {
+    "sha256": "176ba83416a6d6e34bb01525981cd5b0f917e7f6e96eb078dc927d25060759fc",
+    "bytes": 201487,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-human-capture.png": {
+    "sha256": "e7616348928661e1bde04c8579c36476911c5a8cc34b2162e6df5928bc857428",
+    "bytes": 212971,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-human-move.png": {
+    "sha256": "cba95bc645b6fafa9996de498b10ba6c54026883838ebfbe950d750f13200d4a",
+    "bytes": 212476,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-reinforcement.png": {
+    "sha256": "1a416b8ebafe14aab893d058bd1d6c615517238cfdeb2a538944afae048d0626",
+    "bytes": 201473,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-repeated-pair.png": {
+    "sha256": "9df3c44e60c39c97570e596bf8dd86252aa7d319a0b8ca68c3220d91d176a3ff",
+    "bytes": 214389,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-compact-selection-ready.png": {
+    "sha256": "a78d4f83d2e4dd6de72f91d1aa23219fc5ab4badf32bccace60bd024c9a475b1",
+    "bytes": 207690,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-bounds.json": {
+    "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+    "bytes": 9687,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-capture-movement.png": {
+    "sha256": "7d9751c52f3b657eb1baad1b95235ecc83801915c708c54d484d57c89c2099eb",
+    "bytes": 211663,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-complete-history-scrolled.png": {
+    "sha256": "bbb2d0d938391eb7cba0d62321b1ba799d5f890ab6778a125b7531bd11550a51",
+    "bytes": 213862,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-exchange.png": {
+    "sha256": "09300ff1669f7c67fffe07709572d8da6bc2736e5dc06efeb4d791cde27d76b1",
+    "bytes": 211426,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-friendly-movement.png": {
+    "sha256": "c658dd5f9121c9922503185e69eb7984636cffe42727d39ba83ce468dca74b9b",
+    "bytes": 201245,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-human-capture.png": {
+    "sha256": "7a629e30a99d355a3503cc9170fa39085b1c5aeb81c6a06526547153ab28ef6e",
+    "bytes": 212750,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-human-move.png": {
+    "sha256": "90a7d627d2df1c17ad621e750ef878b0c2b142949c4d8ea461976a2af893189b",
+    "bytes": 215169,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-reinforcement.png": {
+    "sha256": "667907e65c3612d3aad31167bc6e9da1cb4bbe6c509065951c493610493886c1",
+    "bytes": 201237,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-repeated-pair.png": {
+    "sha256": "60f5b9e0727be01ea7da537df4efaf79ab5c3b84d63c80c5a97cd748f6cde642",
+    "bytes": 215775,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-detailed-selection-ready.png": {
+    "sha256": "b86885efe26a3406b0598415dd6b2aaebf2c4bf6dc1a5e79b9fa3e7f47474e9f",
+    "bytes": 207465,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-geographic-geometry.json": {
+    "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+    "bytes": 4704,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-bounds.json": {
+    "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+    "bytes": 9687,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-capture-movement.png": {
+    "sha256": "8c032c3bf10dc99d4d246440d8095293d1c3e426b7863cb8d292ec055f134e35",
+    "bytes": 256650,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-complete-history-scrolled.png": {
+    "sha256": "75a0b9d3ac12a0812dd4a476d1230858e06084f4d9852f595cb5d006ea53217f",
+    "bytes": 256353,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-exchange.png": {
+    "sha256": "108c147c110cac42c2f3c37c5fb9e10301f38eda5964a56c7df5262fdae7b778",
+    "bytes": 252634,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-friendly-movement.png": {
+    "sha256": "bd779d6af419d6063dcb0d63fd713813e8d5cd47d50ca4f2e6c71970ffeb6b9d",
+    "bytes": 249200,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-human-capture.png": {
+    "sha256": "6ec72719860b03a4cd35ec50ed0c69bc70695a193ad9fc3417c8268821d4b325",
+    "bytes": 257351,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-human-loss.png": {
+    "sha256": "d77dd70ae16a2190113944612b0ba38c272508ea5f08a31d7ecbde68e8ffa139",
+    "bytes": 250466,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-human-move.png": {
+    "sha256": "372e84eef826794001eef05403551d430da257280d08c6490a90550d8ee67ce9",
+    "bytes": 259778,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-reinforcement.png": {
+    "sha256": "9ddd8910359aaa50153325b072a6fa8326dfe8e217e74f609001cea0345ebbec",
+    "bytes": 245756,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-repeated-pair.png": {
+    "sha256": "82052424a51d83a67c493f6444fdf997ed68900b61c5f239e270eaa4a5339a82",
+    "bytes": 254073,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-compact-selection-ready.png": {
+    "sha256": "94adb670fc2e9af29c080d156147f1c6932112c8a44b06482785dc1efbfa9878",
+    "bytes": 252214,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-bounds.json": {
+    "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+    "bytes": 9687,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-capture-movement.png": {
+    "sha256": "e50ab9cf8885bb2cb70b66de50c2cbe6afd3087d838844ea566670b990388fb0",
+    "bytes": 256422,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-complete-history-scrolled.png": {
+    "sha256": "fd2505352d89737bda590c9361d39d535352de5f888c49e9886d209659a0890a",
+    "bytes": 258925,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-exchange.png": {
+    "sha256": "eb57119a0dcbfdd312fd576ab136746056e4d726173befc92db1fa0159695fd8",
+    "bytes": 255200,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-friendly-movement.png": {
+    "sha256": "4d52a8f7d5727e8414da9375f5cec3c05bb20f89a97cc84a2832d02a6b65bb0b",
+    "bytes": 248969,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-human-capture.png": {
+    "sha256": "4e491a115ac0e63b842efea2cba7f4723d5a7f265d56aee8851c5e3607e68e96",
+    "bytes": 257121,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-human-loss.png": {
+    "sha256": "ced37222c42737e2c746d5b79e8edf283e40f251ee6041fb76a37530c10353b2",
+    "bytes": 250230,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-human-move.png": {
+    "sha256": "776263e5a2d2063b0f1a1391cbc0da7f367483d9ff221cf01c31b27e3fa12869",
+    "bytes": 263153,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-reinforcement.png": {
+    "sha256": "bc95073a5837a84e61572d665502f7fae072eb1625daf615f7382e8639b9e636",
+    "bytes": 245524,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-repeated-pair.png": {
+    "sha256": "2664264c8debdae8aa736216864028363780da1c2ff48e619773090cc76a86ad",
+    "bytes": 256703,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-detailed-selection-ready.png": {
+    "sha256": "5c931ac6c3da61d682c78387cd2dce2d7dabcb9453af689d2df17ec9591280f3",
+    "bytes": 251985,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1280x800-reference-geometry.json": {
+    "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+    "bytes": 4704,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-bounds.json": {
+    "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+    "bytes": 9999,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-capture-movement.png": {
+    "sha256": "65274a86c9c3f7c8e727a5f64baddc6fa534bf3a925061acc1c9a9d55f93c091",
+    "bytes": 347150,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-complete-history-scrolled.png": {
+    "sha256": "54c414becc39a3cb46c832fe07a8e259258bf9628e0ef5eac956eb658c7b53ed",
+    "bytes": 363689,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-exchange.png": {
+    "sha256": "96ed9d94df29fc9395774048dfd2b600127f591006486ea2abdc1c270fffdcdd",
+    "bytes": 342579,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-friendly-movement.png": {
+    "sha256": "f4cc91d930b57e4e02686be61c325278a84082c266b44f2ee64a0c0954504790",
+    "bytes": 347235,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-human-capture.png": {
+    "sha256": "03e75e9d657673c682207e41957d7e8f0cef53c3cb9127bd276cd541731a0162",
+    "bytes": 350181,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-human-move.png": {
+    "sha256": "d149a8efe381f559150bec84e6c191cb46303d586c3ba74ccafca302de3d024e",
+    "bytes": 356224,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-reinforcement.png": {
+    "sha256": "091d3d6c925a4bd80d129a315e5a868bf64440046c49a3bdd5cf765f97fd1dae",
+    "bytes": 332916,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-repeated-pair.png": {
+    "sha256": "2f71d2fa0d946c8c0834ee9480f82dc7980cc73003a8299db4037008357181ed",
+    "bytes": 356401,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-compact-selection-ready.png": {
+    "sha256": "72e389282a93853d58be588eba5e9446aa41544d6282ab947b16c125b1cc80e1",
+    "bytes": 341977,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-bounds.json": {
+    "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+    "bytes": 9999,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-capture-movement.png": {
+    "sha256": "1982ffdcd11f28145506e7039fe3598d2bf988ec0d7ebf6147166b70c5695500",
+    "bytes": 346919,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-complete-history-scrolled.png": {
+    "sha256": "1cb29ecd3f3b7807d5431be6e1e9a977ba23bbe5e0f10944aadfce4bece835c8",
+    "bytes": 366794,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-exchange.png": {
+    "sha256": "79d6c322e414ad770de6bf7bd9c88351a6fbf11c05e1629f7f0fd62deb2e26fb",
+    "bytes": 346405,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-friendly-movement.png": {
+    "sha256": "68c67af75dc2261ebae5643657196ebfeadfff43fb2324e743cb238085f03b06",
+    "bytes": 346994,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-human-capture.png": {
+    "sha256": "351731c8e93391f2ef871748d284d501d1458a03bbda299736d69901d8a65e59",
+    "bytes": 349948,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-human-move.png": {
+    "sha256": "92cfe4a9da2916298c913ddbe2bacd704b635a8ecac4438a0c68722bb9a8e2c8",
+    "bytes": 360226,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-reinforcement.png": {
+    "sha256": "f430932c81c2013dfef76d20104b1ac2822b633702ec78caa4930395a7dd1cb5",
+    "bytes": 332680,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-repeated-pair.png": {
+    "sha256": "feeb740e8f36e6497638aea65e0bc29c014428892ec6a5936143c4867bcb3742",
+    "bytes": 358565,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-detailed-selection-ready.png": {
+    "sha256": "c612409c4fc3eb709f2fa1ae1c311b8a428fa7ecd142443e318c0636a69544ad",
+    "bytes": 341744,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-geographic-geometry.json": {
+    "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+    "bytes": 4860,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-bounds.json": {
+    "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+    "bytes": 9999,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-capture-movement.png": {
+    "sha256": "8178537b8094d55bc1649bc5310f9615696c86467ea690289fea2cb148b40e3e",
+    "bytes": 426805,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-complete-history-scrolled.png": {
+    "sha256": "287e77ac752527c9b45e1a983cc4e8f01d1fb5a77a88a2413a7d8ee4ad1debca",
+    "bytes": 442635,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-exchange.png": {
+    "sha256": "d5d2b562d8b4f23039ecbee5bafc17440953f9e060e65fc5f6e3beea4d2a48ae",
+    "bytes": 422207,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-friendly-movement.png": {
+    "sha256": "447c7ff20292978ecf4bb3efa8157b5bda6b621622438c8770fa5d9297109d7c",
+    "bytes": 433649,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-human-capture.png": {
+    "sha256": "4fbd0e0b2fcca9a417b15628d764720acd690000c495aabb704c02440084a616",
+    "bytes": 429829,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-human-loss.png": {
+    "sha256": "0a43985b0e60c65aa9540760534c7fa73f61a95ab1fde47ed0d3541d0c4a6ec1",
+    "bytes": 429952,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-human-move.png": {
+    "sha256": "7b721aff1a0342140642d7c5f9f205b4d2f7d9599966fd93190ab28313b008d9",
+    "bytes": 442024,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-reinforcement.png": {
+    "sha256": "d5fb38640fdd06e84d1278cec463f2fdb53f0122d10da2d074986ebcdf451fb3",
+    "bytes": 412159,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-repeated-pair.png": {
+    "sha256": "6113bfe56f17cd629030b1704d5667ed9160787abdffe67ce834dc62312bbcc1",
+    "bytes": 440939,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-compact-selection-ready.png": {
+    "sha256": "4b5e7a16b2cae4a1cb81e05240584e30d8b0f7804d8423b131689ae355414c0f",
+    "bytes": 420756,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-bounds.json": {
+    "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+    "bytes": 9999,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-capture-movement.png": {
+    "sha256": "4de7a219ad7b4220eb9b5203c5c4aaca06b8321a154b9bac2e0072d263086774",
+    "bytes": 426620,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-complete-history-scrolled.png": {
+    "sha256": "1454e19c46b72d8efd460d5491798bdde18e4fca14d475160d0aa29d15c62b03",
+    "bytes": 446083,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-exchange.png": {
+    "sha256": "aa77161a9a5d8f52f3fdcc36225348cbc022aa3e82f168ace89327d6afca8e3a",
+    "bytes": 425409,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-friendly-movement.png": {
+    "sha256": "02fad0e75e529423292d17bca4039a4982743c92d107f350c818451920ae7452",
+    "bytes": 433435,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-human-capture.png": {
+    "sha256": "8c98f69815e558921ceaaefa2bca3eda7066be82a1af24532c4c61523377b3c3",
+    "bytes": 429579,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-human-loss.png": {
+    "sha256": "e681cb25ae1b44195224f79fa16b5681eec14b2c1ddfe597f778470fe816d716",
+    "bytes": 429726,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-human-move.png": {
+    "sha256": "95ed1b97a9d6c0f4778af0472403b3e902a077cffc5d92fac4e530f188ba6319",
+    "bytes": 445599,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-reinforcement.png": {
+    "sha256": "fe550c6433e3d9fbdd0d7556a33ec09f04c18cd3ebbae467db3785d043287b05",
+    "bytes": 411939,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-repeated-pair.png": {
+    "sha256": "0d0dc751cfcdb96d547c2b13fe0634f4273b98ceec9fca5c2589ecbb89f3cad7",
+    "bytes": 444499,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-detailed-selection-ready.png": {
+    "sha256": "1b3f5858b430ace610f2c5892bf87747bef45c2c5d908f60556fbd4b95006f19",
+    "bytes": 420541,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/compact-panels/1920x1080-reference-geometry.json": {
+    "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+    "bytes": 4860,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/playable-1994-1280x800.png": {
+    "sha256": "0ffa2bac6b74376554c0077dd84e7ddcf5465de0051624298aae302cab379089",
+    "bytes": 200313,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/playable-1994-1920x1080.png": {
+    "sha256": "4b41e30d645079e098b457b6d87ddb7a894fb9b14fd6b830d154af0e93e7e252",
+    "bytes": 332951,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-2UEbZe/move-completed-1280x800.png": {
+    "sha256": "cb78b50193b6ab50be20400c9cd1543eaba3da52e34a0d0d9041bb60744a6dcf",
+    "bytes": 246353,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-2eA1uo/stop-1920x1080.png": {
+    "sha256": "be2654ca4cf1dbe9cdf266a244bba910d79529b09077d769987b243c56fcee5c",
+    "bytes": 418148,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-2mSIea/round-limit-1920x1080.png": {
+    "sha256": "4b3c48c664f40ed3f1a2d9b333002d9df470e48250f486982a70d61c770958ff",
+    "bytes": 440963,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-46ewCL/failed-load-1920x1080.png": {
+    "sha256": "3a0e5399ca564ecfadecce375c43acd2304d4aac91b536097f0b8ea7f044b8b9",
+    "bytes": 422701,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-5pyEDp/placement-1280x800.png": {
+    "sha256": "da1e74379e43ffec36f92e82f7ca19772e7ede9121f235ec44f2403e2f2750be",
+    "bytes": 246192,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-6taYIJ/round-limit-1920x1080.png": {
+    "sha256": "2fcb160adef958035af52239d81891d2f2222d806deb4284fffd0d01938870fe",
+    "bytes": 440985,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-7a7kTU/move-draft-1920x1080.png": {
+    "sha256": "834ba92f19688663a53ae44ba2bebde7f07fb85d9098fdf20d74936626fce2cf",
+    "bytes": 418321,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-D0UZCC/pending-capture-1280x800.png": {
+    "sha256": "1849114edeb76359e2026151f15192274b7bd8ad08f8b739dd67d80e667b8d0a",
+    "bytes": 258691,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-Db2owO/domination-1280x800.png": {
+    "sha256": "f3d8477f07e7983416f0e15e54583656519ba683eeddb5a9b147a162b4f3b60f",
+    "bytes": 247873,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-HJKpEr/failed-load-1280x800.png": {
+    "sha256": "86593185f157f6688ee6650f9f246ec2756f16ab420745595f730121f728469a",
+    "bytes": 250149,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-Hl9Crb/move-draft-1920x1080.png": {
+    "sha256": "71810d8fb0f63a3b3c5ce681c2e649ffc004ce169824b10121e0d260ffd51efb",
+    "bytes": 418149,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-I7Xmyn/stop-1280x800.png": {
+    "sha256": "c1a4a356e6597d8c842f4d449ea494d9d4d1e71fd6b3c0775e95ca77f97c178e",
+    "bytes": 241481,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-IY6wNI/move-completed-1920x1080.png": {
+    "sha256": "2adc0394f27a7a96c81dc6b27b6d6a50e43c934e7b66757095df60b1877b9edb",
+    "bytes": 416235,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-InYB3I/stop-1280x800.png": {
+    "sha256": "97a739e51a55ab23b5a437811d6938e98e5feba8643156541dfdc08e8d66c569",
+    "bytes": 241508,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-PoDdfP/move-completed-1920x1080.png": {
+    "sha256": "0673e6572733ac570861d8c1e870e93e3fb942ac7852b51c0381fd9cc5e5b0bc",
+    "bytes": 416395,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-RYmxzk/placement-1920x1080.png": {
+    "sha256": "e40cb79b27bf0bc178fddb98080a0a618801b847612db404c3ba5eeea7a4dade",
+    "bytes": 416756,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-T4kija/pending-capture-1920x1080.png": {
+    "sha256": "7c81321959eabfc8839353517a6eb09ea2748021461a92e3c9b1509b447a9976",
+    "bytes": 438159,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-Xhja1h/round-limit-1280x800.png": {
+    "sha256": "ce15e2cb25cd1271cafdedfc351561b789b40b4317690ee30d2792d3d1258fb7",
+    "bytes": 253619,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-Yb38Of/failed-load-1280x800.png": {
+    "sha256": "bc2df47b6e754a9b9ca313bbd797741048d184ef566448d03ba407828d00b558",
+    "bytes": 250151,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-aREkzT/move-completed-1280x800.png": {
+    "sha256": "e5c395d4299d44070aa67d4c767c18637397c25bc553d8367065503e6082a57a",
+    "bytes": 246187,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-cmA3HC/domination-1920x1080.png": {
+    "sha256": "3f7157ff007643231ec4032ae94b9d55729ed399a11967f970e354fc93f1e60e",
+    "bytes": 439847,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-dCwgOe/move-draft-1280x800.png": {
+    "sha256": "1a1092155ea9c6eeaacc73c5c2510677b57308158477cbe65e46c68281bc6a66",
+    "bytes": 247477,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-dz0clT/domination-1280x800.png": {
+    "sha256": "2af2b45e74dcddd757c31c963f021a28666466ae102c58ac31df637548731535",
+    "bytes": 247852,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-eFYs0j/domination-1920x1080.png": {
+    "sha256": "e1670e48861814483596c80e37ee179ab198fb955c28d8e5d27bbc10711588a4",
+    "bytes": 439822,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-gS8Qjy/placement-1280x800.png": {
+    "sha256": "bbc3db94e2e94919c50be3fe2650c5ae15751fe983f85cda619e4c531e820f6a",
+    "bytes": 246356,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-gzbOqe/stop-1920x1080.png": {
+    "sha256": "2360cb55a6f81106cda503e159b06c197e9ab2462f7a21022c1789552511bd17",
+    "bytes": 418144,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-k3VV6S/placement-1920x1080.png": {
+    "sha256": "bfd97002efaf8f61aa62face0f086588c7290068d3c0c08172056df6f188fac3",
+    "bytes": 416756,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-m94jSy/round-limit-1280x800.png": {
+    "sha256": "5d99bc5bcf2fbb72d28747fa1bd27a98927137334452ca4de9a706df94c15fa6",
+    "bytes": 253446,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-mu37nW/failed-load-1920x1080.png": {
+    "sha256": "933107e39e368af4aec1c2710e4b13e3945c9d348f0315dcf154dab7c21bd5c5",
+    "bytes": 422700,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-pRCYSq/pending-capture-1920x1080.png": {
+    "sha256": "9a7eda84eb6b0eab4843e68f0b9119a5377444569bd52db47c40613ff125a07b",
+    "bytes": 438160,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-u77R7y/move-draft-1280x800.png": {
+    "sha256": "90c81ec2cef6960446bf86a629b117a878b6a49eb070aa45b8062595e7a6f2db",
+    "bytes": 247503,
+    "mode": 436
+  },
+  "fresh-outputs/screenshots/versioned-wG4Uem/pending-capture-1280x800.png": {
+    "sha256": "80eaf23042a3f8799c614dde2b21e84eecb6900822cd5bd1f4bc365783316349",
+    "bytes": 258698,
+    "mode": 436
+  },
+  "logs/00-verify-reused-inputs-stdout-stderr.txt": {
+    "sha256": "09c0db45a926a269aa3376e55d1ce8b1f0cac2b472c94ef901b835dad9e0c591",
+    "bytes": 97,
+    "mode": 436
+  },
+  "logs/01-container-controls-and-FIRST166-stdout-stderr.txt": {
+    "sha256": "ba56732a3b3fcf8f62cfea664dd1dedb7d6547fcb159310a0bbf626b431da52f",
+    "bytes": 930,
+    "mode": 436
+  },
+  "logs/controls-server.txt": {
+    "sha256": "47acb3a03e288b7312acbe3423ef7fb3d6101318a70cee41b8eb2c4f653dc221",
+    "bytes": 42,
+    "mode": 420
+  },
+  "logs/extracted-browser.txt": {
+    "sha256": "9bdeefbdbab5b898ab4f4aa3eb83550934fdbd271608c1362e8f87a901cb5f20",
+    "bytes": 27913,
+    "mode": 420
+  },
+  "logs/three-controls.txt": {
+    "sha256": "e499409c95a9b55b4604b125dc2ad6a1db5cf5614efd0788681400f7dff3793b",
+    "bytes": 1427,
+    "mode": 420
+  },
+  "output-after.json": {
+    "sha256": "b32e53af0a3d67c51cf2d45760956d724f44953722606c9b033e04c2352dd857",
+    "bytes": 34468,
+    "mode": 436
+  },
+  "output-backups/dist/assets/generatedGeographyPresentation.worker-9RSuSC1x.js": {
+    "sha256": "31ec2b83bc75618f758d3357e156faceff73c27446d2d4b82b453fb884deb7a2",
+    "bytes": 5976,
+    "mode": 436
+  },
+  "output-backups/dist/assets/index-B8lxC96R.css": {
+    "sha256": "418e4ab731935933ece801453591da6222ffb1ddf55658e74c1bed6156a95849",
+    "bytes": 33727,
+    "mode": 436
+  },
+  "output-backups/dist/assets/index-XhZZPwNr.js": {
+    "sha256": "ad1b3dd03d918c51a683f07d1486fec43ff86b1457bef80822ebfdb5dade9a2d",
+    "bytes": 310354,
+    "mode": 436
+  },
+  "output-backups/dist/fonts/Inter-LICENSE.txt": {
+    "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+    "bytes": 4380,
+    "mode": 420
+  },
+  "output-backups/dist/fonts/InterVariable.woff2": {
+    "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+    "bytes": 352240,
+    "mode": 420
+  },
+  "output-backups/dist/index.html": {
+    "sha256": "233805370b9e3fa501dbbfec7f2dbc7255e65605adbd869b032371f4fae6f241",
+    "bytes": 641,
+    "mode": 436
+  },
+  "output-backups/node_modules/.vite/deps/_metadata.json": {
+    "sha256": "8c33306d0946919dd37778f5dd50ceff5cda4a12a66d89312ab93dbe5f5939a6",
+    "bytes": 146,
+    "mode": 436
+  },
+  "output-backups/node_modules/.vite/deps/package.json": {
+    "sha256": "3ca9d4afd21425087cf31893b8f9f63c81b0b8408db5e343ca76e5f8aa26ab9a",
+    "bytes": 23,
+    "mode": 436
+  },
+  "output-backups/node_modules/.vite/vitest/da39a3ee5e6b4b0d3255bfef95601890afd80709/results.json": {
+    "sha256": "7ce069ccf38f0048d65c96a3c402667e9fb95e515458d419c2be2394b4b2146e",
+    "bytes": 10567,
+    "mode": 420
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-bounds.json": {
+    "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+    "bytes": 9687,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-capture-movement.png": {
+    "sha256": "89d385628c83ee493fb306259f656df7def4f271b40936fdd3ed132ec17a5d29",
+    "bytes": 211892,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-complete-history-scrolled.png": {
+    "sha256": "3529ccd97190787b661d89dfeb290a9afb4b9859666e26fd69fd2f24d2de27d9",
+    "bytes": 211829,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-exchange.png": {
+    "sha256": "ce15f961758261ab9c474f8a73c8b954a4094a1f0058bdb24ceeaf98d0364071",
+    "bytes": 208888,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-friendly-movement.png": {
+    "sha256": "176ba83416a6d6e34bb01525981cd5b0f917e7f6e96eb078dc927d25060759fc",
+    "bytes": 201487,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-human-capture.png": {
+    "sha256": "e7616348928661e1bde04c8579c36476911c5a8cc34b2162e6df5928bc857428",
+    "bytes": 212971,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-human-move.png": {
+    "sha256": "cba95bc645b6fafa9996de498b10ba6c54026883838ebfbe950d750f13200d4a",
+    "bytes": 212476,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-reinforcement.png": {
+    "sha256": "1a416b8ebafe14aab893d058bd1d6c615517238cfdeb2a538944afae048d0626",
+    "bytes": 201473,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-repeated-pair.png": {
+    "sha256": "9df3c44e60c39c97570e596bf8dd86252aa7d319a0b8ca68c3220d91d176a3ff",
+    "bytes": 214389,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-compact-selection-ready.png": {
+    "sha256": "a78d4f83d2e4dd6de72f91d1aa23219fc5ab4badf32bccace60bd024c9a475b1",
+    "bytes": 207690,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-bounds.json": {
+    "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+    "bytes": 9687,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-capture-movement.png": {
+    "sha256": "7d9751c52f3b657eb1baad1b95235ecc83801915c708c54d484d57c89c2099eb",
+    "bytes": 211663,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-complete-history-scrolled.png": {
+    "sha256": "bbb2d0d938391eb7cba0d62321b1ba799d5f890ab6778a125b7531bd11550a51",
+    "bytes": 213862,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-exchange.png": {
+    "sha256": "09300ff1669f7c67fffe07709572d8da6bc2736e5dc06efeb4d791cde27d76b1",
+    "bytes": 211426,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-friendly-movement.png": {
+    "sha256": "c658dd5f9121c9922503185e69eb7984636cffe42727d39ba83ce468dca74b9b",
+    "bytes": 201245,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-human-capture.png": {
+    "sha256": "7a629e30a99d355a3503cc9170fa39085b1c5aeb81c6a06526547153ab28ef6e",
+    "bytes": 212750,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-human-move.png": {
+    "sha256": "90a7d627d2df1c17ad621e750ef878b0c2b142949c4d8ea461976a2af893189b",
+    "bytes": 215169,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-reinforcement.png": {
+    "sha256": "667907e65c3612d3aad31167bc6e9da1cb4bbe6c509065951c493610493886c1",
+    "bytes": 201237,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-repeated-pair.png": {
+    "sha256": "60f5b9e0727be01ea7da537df4efaf79ab5c3b84d63c80c5a97cd748f6cde642",
+    "bytes": 215775,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-detailed-selection-ready.png": {
+    "sha256": "b86885efe26a3406b0598415dd6b2aaebf2c4bf6dc1a5e79b9fa3e7f47474e9f",
+    "bytes": 207465,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-geographic-geometry.json": {
+    "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+    "bytes": 4704,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-bounds.json": {
+    "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+    "bytes": 9687,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-capture-movement.png": {
+    "sha256": "8c032c3bf10dc99d4d246440d8095293d1c3e426b7863cb8d292ec055f134e35",
+    "bytes": 256650,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-complete-history-scrolled.png": {
+    "sha256": "75a0b9d3ac12a0812dd4a476d1230858e06084f4d9852f595cb5d006ea53217f",
+    "bytes": 256353,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-exchange.png": {
+    "sha256": "108c147c110cac42c2f3c37c5fb9e10301f38eda5964a56c7df5262fdae7b778",
+    "bytes": 252634,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-friendly-movement.png": {
+    "sha256": "bd779d6af419d6063dcb0d63fd713813e8d5cd47d50ca4f2e6c71970ffeb6b9d",
+    "bytes": 249200,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-human-capture.png": {
+    "sha256": "6ec72719860b03a4cd35ec50ed0c69bc70695a193ad9fc3417c8268821d4b325",
+    "bytes": 257351,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-human-loss.png": {
+    "sha256": "d77dd70ae16a2190113944612b0ba38c272508ea5f08a31d7ecbde68e8ffa139",
+    "bytes": 250466,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-human-move.png": {
+    "sha256": "372e84eef826794001eef05403551d430da257280d08c6490a90550d8ee67ce9",
+    "bytes": 259778,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-reinforcement.png": {
+    "sha256": "9ddd8910359aaa50153325b072a6fa8326dfe8e217e74f609001cea0345ebbec",
+    "bytes": 245756,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-repeated-pair.png": {
+    "sha256": "82052424a51d83a67c493f6444fdf997ed68900b61c5f239e270eaa4a5339a82",
+    "bytes": 254073,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-compact-selection-ready.png": {
+    "sha256": "94adb670fc2e9af29c080d156147f1c6932112c8a44b06482785dc1efbfa9878",
+    "bytes": 252214,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-bounds.json": {
+    "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+    "bytes": 9687,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-capture-movement.png": {
+    "sha256": "e50ab9cf8885bb2cb70b66de50c2cbe6afd3087d838844ea566670b990388fb0",
+    "bytes": 256422,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-complete-history-scrolled.png": {
+    "sha256": "fd2505352d89737bda590c9361d39d535352de5f888c49e9886d209659a0890a",
+    "bytes": 258925,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-exchange.png": {
+    "sha256": "eb57119a0dcbfdd312fd576ab136746056e4d726173befc92db1fa0159695fd8",
+    "bytes": 255200,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-friendly-movement.png": {
+    "sha256": "4d52a8f7d5727e8414da9375f5cec3c05bb20f89a97cc84a2832d02a6b65bb0b",
+    "bytes": 248969,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-human-capture.png": {
+    "sha256": "4e491a115ac0e63b842efea2cba7f4723d5a7f265d56aee8851c5e3607e68e96",
+    "bytes": 257121,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-human-loss.png": {
+    "sha256": "ced37222c42737e2c746d5b79e8edf283e40f251ee6041fb76a37530c10353b2",
+    "bytes": 250230,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-human-move.png": {
+    "sha256": "776263e5a2d2063b0f1a1391cbc0da7f367483d9ff221cf01c31b27e3fa12869",
+    "bytes": 263153,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-reinforcement.png": {
+    "sha256": "bc95073a5837a84e61572d665502f7fae072eb1625daf615f7382e8639b9e636",
+    "bytes": 245524,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-repeated-pair.png": {
+    "sha256": "2664264c8debdae8aa736216864028363780da1c2ff48e619773090cc76a86ad",
+    "bytes": 256703,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-detailed-selection-ready.png": {
+    "sha256": "5c931ac6c3da61d682c78387cd2dce2d7dabcb9453af689d2df17ec9591280f3",
+    "bytes": 251985,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1280x800-reference-geometry.json": {
+    "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+    "bytes": 4704,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-bounds.json": {
+    "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+    "bytes": 9999,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-capture-movement.png": {
+    "sha256": "65274a86c9c3f7c8e727a5f64baddc6fa534bf3a925061acc1c9a9d55f93c091",
+    "bytes": 347150,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-complete-history-scrolled.png": {
+    "sha256": "54c414becc39a3cb46c832fe07a8e259258bf9628e0ef5eac956eb658c7b53ed",
+    "bytes": 363689,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-exchange.png": {
+    "sha256": "96ed9d94df29fc9395774048dfd2b600127f591006486ea2abdc1c270fffdcdd",
+    "bytes": 342579,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-friendly-movement.png": {
+    "sha256": "f4cc91d930b57e4e02686be61c325278a84082c266b44f2ee64a0c0954504790",
+    "bytes": 347235,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-human-capture.png": {
+    "sha256": "03e75e9d657673c682207e41957d7e8f0cef53c3cb9127bd276cd541731a0162",
+    "bytes": 350181,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-human-move.png": {
+    "sha256": "d149a8efe381f559150bec84e6c191cb46303d586c3ba74ccafca302de3d024e",
+    "bytes": 356224,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-reinforcement.png": {
+    "sha256": "091d3d6c925a4bd80d129a315e5a868bf64440046c49a3bdd5cf765f97fd1dae",
+    "bytes": 332916,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-repeated-pair.png": {
+    "sha256": "2f71d2fa0d946c8c0834ee9480f82dc7980cc73003a8299db4037008357181ed",
+    "bytes": 356401,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-compact-selection-ready.png": {
+    "sha256": "72e389282a93853d58be588eba5e9446aa41544d6282ab947b16c125b1cc80e1",
+    "bytes": 341977,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-bounds.json": {
+    "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+    "bytes": 9999,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-capture-movement.png": {
+    "sha256": "1982ffdcd11f28145506e7039fe3598d2bf988ec0d7ebf6147166b70c5695500",
+    "bytes": 346919,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-complete-history-scrolled.png": {
+    "sha256": "1cb29ecd3f3b7807d5431be6e1e9a977ba23bbe5e0f10944aadfce4bece835c8",
+    "bytes": 366794,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-exchange.png": {
+    "sha256": "79d6c322e414ad770de6bf7bd9c88351a6fbf11c05e1629f7f0fd62deb2e26fb",
+    "bytes": 346405,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-friendly-movement.png": {
+    "sha256": "68c67af75dc2261ebae5643657196ebfeadfff43fb2324e743cb238085f03b06",
+    "bytes": 346994,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-human-capture.png": {
+    "sha256": "351731c8e93391f2ef871748d284d501d1458a03bbda299736d69901d8a65e59",
+    "bytes": 349948,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-human-move.png": {
+    "sha256": "92cfe4a9da2916298c913ddbe2bacd704b635a8ecac4438a0c68722bb9a8e2c8",
+    "bytes": 360226,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-reinforcement.png": {
+    "sha256": "f430932c81c2013dfef76d20104b1ac2822b633702ec78caa4930395a7dd1cb5",
+    "bytes": 332680,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-repeated-pair.png": {
+    "sha256": "feeb740e8f36e6497638aea65e0bc29c014428892ec6a5936143c4867bcb3742",
+    "bytes": 358565,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-detailed-selection-ready.png": {
+    "sha256": "c612409c4fc3eb709f2fa1ae1c311b8a428fa7ecd142443e318c0636a69544ad",
+    "bytes": 341744,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-geographic-geometry.json": {
+    "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+    "bytes": 4860,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-bounds.json": {
+    "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+    "bytes": 9999,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-capture-movement.png": {
+    "sha256": "8178537b8094d55bc1649bc5310f9615696c86467ea690289fea2cb148b40e3e",
+    "bytes": 426805,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-complete-history-scrolled.png": {
+    "sha256": "287e77ac752527c9b45e1a983cc4e8f01d1fb5a77a88a2413a7d8ee4ad1debca",
+    "bytes": 442635,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-exchange.png": {
+    "sha256": "d5d2b562d8b4f23039ecbee5bafc17440953f9e060e65fc5f6e3beea4d2a48ae",
+    "bytes": 422207,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-friendly-movement.png": {
+    "sha256": "447c7ff20292978ecf4bb3efa8157b5bda6b621622438c8770fa5d9297109d7c",
+    "bytes": 433649,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-human-capture.png": {
+    "sha256": "4fbd0e0b2fcca9a417b15628d764720acd690000c495aabb704c02440084a616",
+    "bytes": 429829,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-human-loss.png": {
+    "sha256": "0a43985b0e60c65aa9540760534c7fa73f61a95ab1fde47ed0d3541d0c4a6ec1",
+    "bytes": 429952,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-human-move.png": {
+    "sha256": "7b721aff1a0342140642d7c5f9f205b4d2f7d9599966fd93190ab28313b008d9",
+    "bytes": 442024,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-reinforcement.png": {
+    "sha256": "d5fb38640fdd06e84d1278cec463f2fdb53f0122d10da2d074986ebcdf451fb3",
+    "bytes": 412159,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-repeated-pair.png": {
+    "sha256": "6113bfe56f17cd629030b1704d5667ed9160787abdffe67ce834dc62312bbcc1",
+    "bytes": 440939,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-compact-selection-ready.png": {
+    "sha256": "4b5e7a16b2cae4a1cb81e05240584e30d8b0f7804d8423b131689ae355414c0f",
+    "bytes": 420756,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-bounds.json": {
+    "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+    "bytes": 9999,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-capture-movement.png": {
+    "sha256": "4de7a219ad7b4220eb9b5203c5c4aaca06b8321a154b9bac2e0072d263086774",
+    "bytes": 426620,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-complete-history-scrolled.png": {
+    "sha256": "1454e19c46b72d8efd460d5491798bdde18e4fca14d475160d0aa29d15c62b03",
+    "bytes": 446083,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-exchange.png": {
+    "sha256": "aa77161a9a5d8f52f3fdcc36225348cbc022aa3e82f168ace89327d6afca8e3a",
+    "bytes": 425409,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-friendly-movement.png": {
+    "sha256": "02fad0e75e529423292d17bca4039a4982743c92d107f350c818451920ae7452",
+    "bytes": 433435,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-human-capture.png": {
+    "sha256": "8c98f69815e558921ceaaefa2bca3eda7066be82a1af24532c4c61523377b3c3",
+    "bytes": 429579,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-human-loss.png": {
+    "sha256": "e681cb25ae1b44195224f79fa16b5681eec14b2c1ddfe597f778470fe816d716",
+    "bytes": 429726,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-human-move.png": {
+    "sha256": "95ed1b97a9d6c0f4778af0472403b3e902a077cffc5d92fac4e530f188ba6319",
+    "bytes": 445599,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-reinforcement.png": {
+    "sha256": "fe550c6433e3d9fbdd0d7556a33ec09f04c18cd3ebbae467db3785d043287b05",
+    "bytes": 411939,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-repeated-pair.png": {
+    "sha256": "0d0dc751cfcdb96d547c2b13fe0634f4273b98ceec9fca5c2589ecbb89f3cad7",
+    "bytes": 444499,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-detailed-selection-ready.png": {
+    "sha256": "1b3f5858b430ace610f2c5892bf87747bef45c2c5d908f60556fbd4b95006f19",
+    "bytes": 420541,
+    "mode": 436
+  },
+  "output-backups/screenshots/compact-panels/1920x1080-reference-geometry.json": {
+    "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+    "bytes": 4860,
+    "mode": 436
+  },
+  "output-backups/screenshots/playable-1994-1280x800.png": {
+    "sha256": "0ffa2bac6b74376554c0077dd84e7ddcf5465de0051624298aae302cab379089",
+    "bytes": 200313,
+    "mode": 436
+  },
+  "output-backups/screenshots/playable-1994-1920x1080.png": {
+    "sha256": "4b41e30d645079e098b457b6d87ddb7a894fb9b14fd6b830d154af0e93e7e252",
+    "bytes": 332951,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-2UEbZe/move-completed-1280x800.png": {
+    "sha256": "cb78b50193b6ab50be20400c9cd1543eaba3da52e34a0d0d9041bb60744a6dcf",
+    "bytes": 246353,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-2eA1uo/stop-1920x1080.png": {
+    "sha256": "be2654ca4cf1dbe9cdf266a244bba910d79529b09077d769987b243c56fcee5c",
+    "bytes": 418148,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-2mSIea/round-limit-1920x1080.png": {
+    "sha256": "4b3c48c664f40ed3f1a2d9b333002d9df470e48250f486982a70d61c770958ff",
+    "bytes": 440963,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-46ewCL/failed-load-1920x1080.png": {
+    "sha256": "3a0e5399ca564ecfadecce375c43acd2304d4aac91b536097f0b8ea7f044b8b9",
+    "bytes": 422701,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-5pyEDp/placement-1280x800.png": {
+    "sha256": "da1e74379e43ffec36f92e82f7ca19772e7ede9121f235ec44f2403e2f2750be",
+    "bytes": 246192,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-6taYIJ/round-limit-1920x1080.png": {
+    "sha256": "2fcb160adef958035af52239d81891d2f2222d806deb4284fffd0d01938870fe",
+    "bytes": 440985,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-7a7kTU/move-draft-1920x1080.png": {
+    "sha256": "834ba92f19688663a53ae44ba2bebde7f07fb85d9098fdf20d74936626fce2cf",
+    "bytes": 418321,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-D0UZCC/pending-capture-1280x800.png": {
+    "sha256": "1849114edeb76359e2026151f15192274b7bd8ad08f8b739dd67d80e667b8d0a",
+    "bytes": 258691,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-Db2owO/domination-1280x800.png": {
+    "sha256": "f3d8477f07e7983416f0e15e54583656519ba683eeddb5a9b147a162b4f3b60f",
+    "bytes": 247873,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-HJKpEr/failed-load-1280x800.png": {
+    "sha256": "86593185f157f6688ee6650f9f246ec2756f16ab420745595f730121f728469a",
+    "bytes": 250149,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-Hl9Crb/move-draft-1920x1080.png": {
+    "sha256": "71810d8fb0f63a3b3c5ce681c2e649ffc004ce169824b10121e0d260ffd51efb",
+    "bytes": 418149,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-I7Xmyn/stop-1280x800.png": {
+    "sha256": "c1a4a356e6597d8c842f4d449ea494d9d4d1e71fd6b3c0775e95ca77f97c178e",
+    "bytes": 241481,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-IY6wNI/move-completed-1920x1080.png": {
+    "sha256": "2adc0394f27a7a96c81dc6b27b6d6a50e43c934e7b66757095df60b1877b9edb",
+    "bytes": 416235,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-InYB3I/stop-1280x800.png": {
+    "sha256": "97a739e51a55ab23b5a437811d6938e98e5feba8643156541dfdc08e8d66c569",
+    "bytes": 241508,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-PoDdfP/move-completed-1920x1080.png": {
+    "sha256": "0673e6572733ac570861d8c1e870e93e3fb942ac7852b51c0381fd9cc5e5b0bc",
+    "bytes": 416395,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-RYmxzk/placement-1920x1080.png": {
+    "sha256": "e40cb79b27bf0bc178fddb98080a0a618801b847612db404c3ba5eeea7a4dade",
+    "bytes": 416756,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-T4kija/pending-capture-1920x1080.png": {
+    "sha256": "7c81321959eabfc8839353517a6eb09ea2748021461a92e3c9b1509b447a9976",
+    "bytes": 438159,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-Xhja1h/round-limit-1280x800.png": {
+    "sha256": "ce15e2cb25cd1271cafdedfc351561b789b40b4317690ee30d2792d3d1258fb7",
+    "bytes": 253619,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-Yb38Of/failed-load-1280x800.png": {
+    "sha256": "bc2df47b6e754a9b9ca313bbd797741048d184ef566448d03ba407828d00b558",
+    "bytes": 250151,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-aREkzT/move-completed-1280x800.png": {
+    "sha256": "e5c395d4299d44070aa67d4c767c18637397c25bc553d8367065503e6082a57a",
+    "bytes": 246187,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-cmA3HC/domination-1920x1080.png": {
+    "sha256": "3f7157ff007643231ec4032ae94b9d55729ed399a11967f970e354fc93f1e60e",
+    "bytes": 439847,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-dCwgOe/move-draft-1280x800.png": {
+    "sha256": "1a1092155ea9c6eeaacc73c5c2510677b57308158477cbe65e46c68281bc6a66",
+    "bytes": 247477,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-dz0clT/domination-1280x800.png": {
+    "sha256": "2af2b45e74dcddd757c31c963f021a28666466ae102c58ac31df637548731535",
+    "bytes": 247852,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-eFYs0j/domination-1920x1080.png": {
+    "sha256": "e1670e48861814483596c80e37ee179ab198fb955c28d8e5d27bbc10711588a4",
+    "bytes": 439822,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-gS8Qjy/placement-1280x800.png": {
+    "sha256": "bbc3db94e2e94919c50be3fe2650c5ae15751fe983f85cda619e4c531e820f6a",
+    "bytes": 246356,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-gzbOqe/stop-1920x1080.png": {
+    "sha256": "2360cb55a6f81106cda503e159b06c197e9ab2462f7a21022c1789552511bd17",
+    "bytes": 418144,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-k3VV6S/placement-1920x1080.png": {
+    "sha256": "bfd97002efaf8f61aa62face0f086588c7290068d3c0c08172056df6f188fac3",
+    "bytes": 416756,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-m94jSy/round-limit-1280x800.png": {
+    "sha256": "5d99bc5bcf2fbb72d28747fa1bd27a98927137334452ca4de9a706df94c15fa6",
+    "bytes": 253446,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-mu37nW/failed-load-1920x1080.png": {
+    "sha256": "933107e39e368af4aec1c2710e4b13e3945c9d348f0315dcf154dab7c21bd5c5",
+    "bytes": 422700,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-pRCYSq/pending-capture-1920x1080.png": {
+    "sha256": "9a7eda84eb6b0eab4843e68f0b9119a5377444569bd52db47c40613ff125a07b",
+    "bytes": 438160,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-u77R7y/move-draft-1280x800.png": {
+    "sha256": "90c81ec2cef6960446bf86a629b117a878b6a49eb070aa45b8062595e7a6f2db",
+    "bytes": 247503,
+    "mode": 436
+  },
+  "output-backups/screenshots/versioned-wG4Uem/pending-capture-1280x800.png": {
+    "sha256": "80eaf23042a3f8799c614dde2b21e84eecb6900822cd5bd1f4bc365783316349",
+    "bytes": 258698,
+    "mode": 436
+  },
+  "output-before.json": {
+    "sha256": "b32e53af0a3d67c51cf2d45760956d724f44953722606c9b033e04c2352dd857",
+    "bytes": 34468,
+    "mode": 436
+  },
+  "overall-unit.txt": {
+    "sha256": "e5a7760363b852a1377fe0c24aee0eefc213268bdd139963b15343a9c9745764",
+    "bytes": 3365,
+    "mode": 436
+  },
+  "package-after.json": {
+    "sha256": "f1db0295c92f505b1bd4ac5c7a97e226571db600e1996a84d75659bf2eb2bc23",
+    "bytes": 1475,
+    "mode": 420
+  },
+  "parent-smoke-comparison.json": {
+    "sha256": "9531dbef757d7f8419b9a2b0de60fc8872ec4a672baca72749dbed52d642bfb4",
+    "bytes": 5174,
+    "mode": 420
+  },
+  "prior-production/README.md": {
+    "sha256": "fa6bd6b117d00a3c085eaeb18f35bbdce43a95873e5b57270e5a4e10811b9839",
+    "bytes": 8606,
+    "mode": 420
+  },
+  "prior-production/REPORT.md": {
+    "sha256": "e99f6b703d04e9c8a277a29f8aae53d04789635b907c95bf0a35bcb01ee99f83",
+    "bytes": 14141,
+    "mode": 420
+  },
+  "prior-production/adoption.json": {
+    "sha256": "e069824878e6f678cf61ba1ef1c4497de669fe488e087863f3c85069fa89173f",
+    "bytes": 14179,
+    "mode": 420
+  },
+  "prior-production/hashes.json": {
+    "sha256": "f5767d1eeeee2104145f3382015f36227e32004513f7cf2bda7a0f124273a02d",
+    "bytes": 899,
+    "mode": 420
+  },
+  "prior-production/verify-adoption.py": {
+    "sha256": "9fb94de46c9591050374ff9a398079261f0e819c5fd5644cac8c5f4aed88336b",
+    "bytes": 30141,
+    "mode": 420
+  },
+  "proof/result.json": {
+    "sha256": "bb6c382bf3a48bf5d795e4f83d9c432c8348f5029bc5cbc1b564a9847697867c",
+    "bytes": 527,
+    "mode": 420
+  },
+  "proof/stdout-stderr.txt": {
+    "sha256": "13866b80ee63a1c7996c905aeb83692d7fcb9cf5a2b86046fa601fc80284acd7",
+    "bytes": 1604,
+    "mode": 420
+  },
+  "reuse-receipt.json": {
+    "sha256": "dfea4d1972bca4d020d722f64265f44a605286f8a83279828b98c235c078e62f",
+    "bytes": 247159,
+    "mode": 436
+  },
+  "route-audit.json": {
+    "sha256": "ae0a71f2671bc22dadb6593e827303078b55c686fb4bfe69f7e7257fa9bb512b",
+    "bytes": 15553,
+    "mode": 436
+  },
+  "run-validation.py": {
+    "sha256": "dfdf424c234b66f98688325b9c66e29e1ccf7bdca7d78d72b4e6518e37f3621e",
+    "bytes": 8951,
+    "mode": 420
+  },
+  "start.json": {
+    "sha256": "98d4ec7ccbe0f5966fff59db9c59d9e63fbeecf4ae3d96bb98202c38853b00d4",
+    "bytes": 169,
+    "mode": 436
+  },
+  "validation.json": {
+    "sha256": "8b29b089181175fb92903cf5d061d82af6339de20298ef51d535a7c2a4debd48",
+    "bytes": 2137,
+    "mode": 436
+  },
+  "verify-reuse.py": {
+    "sha256": "a2ebf7358fadf8b16e74766e6f73d30c051a2c7bc0519a605bbeb2ac097e156c",
+    "bytes": 3037,
+    "mode": 420
+  }
+}

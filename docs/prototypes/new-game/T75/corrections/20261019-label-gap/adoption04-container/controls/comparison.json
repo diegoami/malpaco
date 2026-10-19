@@ -1,0 +1,44 @@
+[
+  {
+    "name": "normal-unprofiled",
+    "equalInput": true,
+    "equalOutput": true,
+    "clock": false,
+    "rate": 1,
+    "pausedOK": true,
+    "deriveCount": 1,
+    "replyCount": 1,
+    "keyCount": 1,
+    "warmIdentity": true,
+    "workerMs": 1105.699951171875,
+    "coldMountMs": 1532.60009765625
+  },
+  {
+    "name": "mock-clock-polls",
+    "equalInput": true,
+    "equalOutput": true,
+    "clock": true,
+    "rate": 1,
+    "pausedOK": true,
+    "deriveCount": 1,
+    "replyCount": 1,
+    "keyCount": 1,
+    "warmIdentity": true,
+    "workerMs": 1109,
+    "coldMountMs": 1539
+  },
+  {
+    "name": "throttle2",
+    "equalInput": true,
+    "equalOutput": true,
+    "clock": false,
+    "rate": 2,
+    "pausedOK": true,
+    "deriveCount": 1,
+    "replyCount": 1,
+    "keyCount": 1,
+    "warmIdentity": true,
+    "workerMs": 1133.60009765625,
+    "coldMountMs": 1918.699951171875
+  }
+]

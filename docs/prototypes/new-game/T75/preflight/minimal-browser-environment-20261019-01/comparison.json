@@ -1,0 +1,106 @@
+{
+  "playwrightCoreVersion": "1.63.0",
+  "pinnedChromiumDescriptors": [
+    {
+      "name": "chromium",
+      "revision": "1243",
+      "installByDefault": true,
+      "browserVersion": "153.0.8010.12",
+      "title": "Chrome for Testing"
+    },
+    {
+      "name": "chromium-headless-shell",
+      "revision": "1243",
+      "installByDefault": true,
+      "browserVersion": "153.0.8010.12",
+      "title": "Chrome Headless Shell"
+    }
+  ],
+  "variants": [
+    {
+      "variant": "default",
+      "launchCommand": "/home/diego/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-s9N3SZ --remote-debugging-pipe --no-startup-window",
+      "actualExecutable": "/home/diego/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell",
+      "CDPScreenshotNewSurface": true,
+      "unsafeSwiftshader": true,
+      "operations": [
+        {
+          "name": "goto",
+          "status": "passed",
+          "start": 1792397204512.6865,
+          "end": 1792397204524.1597
+        },
+        {
+          "name": "ordinary-click-5000ms",
+          "status": "FAILED",
+          "start": 1792397204532.7827,
+          "end": 1792397209535.591
+        },
+        {
+          "name": "two-native-RAF-5000ms",
+          "status": "FAILED",
+          "start": 1792397209536.0542,
+          "end": 1792397214538.176
+        },
+        {
+          "name": "screenshot-5000ms",
+          "status": "FAILED",
+          "start": 1792397214538.7175,
+          "end": 1792397219539.2947
+        }
+      ],
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "HeadlessChrome/153.0.8010.12",
+        "revision": "@971a7443b0c9b0a9b2860529b33331b76077ec62",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "jsVersion": "15.3.76.4"
+      },
+      "closed": true,
+      "PNGExists": false
+    },
+    {
+      "variant": "legacy",
+      "launchCommand": "/home/diego/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/tmp/playwright_chromiumdev_profile-E0XCY1 --remote-debugging-pipe --no-startup-window",
+      "actualExecutable": "/home/diego/.cache/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-linux64/chrome-headless-shell",
+      "CDPScreenshotNewSurface": false,
+      "unsafeSwiftshader": true,
+      "operations": [
+        {
+          "name": "goto",
+          "status": "passed",
+          "start": 1792397219931.2634,
+          "end": 1792397219938.7422
+        },
+        {
+          "name": "ordinary-click-5000ms",
+          "status": "FAILED",
+          "start": 1792397219949.4885,
+          "end": 1792397224954.3242
+        },
+        {
+          "name": "two-native-RAF-5000ms",
+          "status": "FAILED",
+          "start": 1792397224954.7961,
+          "end": 1792397229954.9644
+        },
+        {
+          "name": "screenshot-5000ms",
+          "status": "FAILED",
+          "start": 1792397229955.591,
+          "end": 1792397234957.4524
+        }
+      ],
+      "browser": {
+        "protocolVersion": "1.3",
+        "product": "HeadlessChrome/153.0.8010.12",
+        "revision": "@971a7443b0c9b0a9b2860529b33331b76077ec62",
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+        "jsVersion": "15.3.76.4"
+      },
+      "closed": true,
+      "PNGExists": false
+    }
+  ],
+  "note": "Launch path is actual DEBUG evidence. chromium.executablePath is APIdefault, not actual headless executable identity."
+}

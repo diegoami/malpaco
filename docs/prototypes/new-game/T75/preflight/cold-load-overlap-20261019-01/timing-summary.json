@@ -1,0 +1,61 @@
+{
+  "rows": [
+    {
+      "name": "A",
+      "fileReadMs": 1.0,
+      "readEndToWorkerPostMs": 577.5,
+      "workerRoundTripMs": 1959.5,
+      "replyToMountMs": 37.5,
+      "fileToMountMs": 2575.5,
+      "loadToDetachCheckMs": 3461.31640625,
+      "checks": [
+        {
+          "check": "old-input-detached",
+          "status": "passed",
+          "end": 1792394054982.7522
+        },
+        {
+          "check": "map-visible",
+          "status": "passed",
+          "end": 1792394054442.7722
+        },
+        {
+          "check": "country-count-46",
+          "status": "passed",
+          "end": 1792394054986.1418
+        }
+      ],
+      "clockStayedPaused": true
+    },
+    {
+      "name": "B",
+      "fileReadMs": 1.5,
+      "readEndToWorkerPostMs": 652.60009765625,
+      "workerRoundTripMs": 1883.89990234375,
+      "replyToMountMs": 36.5,
+      "fileToMountMs": 2574.5,
+      "loadToDetachCheckMs": 3534.579345703125,
+      "checks": [
+        {
+          "check": "old-input-detached",
+          "status": "passed",
+          "end": 1792394055810.262
+        },
+        {
+          "check": "map-visible",
+          "status": "passed",
+          "end": 1792394055276.134
+        },
+        {
+          "check": "country-count-46",
+          "status": "passed",
+          "end": 1792394055813.476
+        }
+      ],
+      "clockStayedPaused": true
+    }
+  ],
+  "actualLoadStartDifferenceMs": 754.246826171875,
+  "currentScreenshotBackupExact": true,
+  "backupFiles": 122
+}

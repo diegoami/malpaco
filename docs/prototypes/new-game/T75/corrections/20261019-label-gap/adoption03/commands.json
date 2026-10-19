@@ -1,0 +1,32 @@
+[
+  {
+    "name": "01-committed-proof",
+    "argv": [
+      "python3",
+      "docs/prototypes/new-game/T75/production/verify-adoption.py"
+    ],
+    "exit": 0,
+    "seconds": 4.105409153999972,
+    "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/logs/01-committed-proof-stdout-stderr.txt"
+  },
+  {
+    "name": "00-verify-reused-inputs",
+    "argv": [
+      "python3",
+      "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/verify-reuse.py"
+    ],
+    "exit": 0,
+    "seconds": 5.787159832999805,
+    "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/logs/00-verify-reused-inputs-stdout-stderr.txt"
+  },
+  {
+    "name": "04-three-controls",
+    "argv": [
+      "node",
+      "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/controls/profile.mjs"
+    ],
+    "exit": 1,
+    "seconds": 60.45974951900007,
+    "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption03/logs/04-three-controls-stdout-stderr.txt"
+  }
+]

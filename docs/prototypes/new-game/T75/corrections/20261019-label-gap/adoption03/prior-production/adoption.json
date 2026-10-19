@@ -1,0 +1,214 @@
+{
+  "task": "T75",
+  "freezeCommit": "dd704cef4c5325e98a3f245d213c891b226787d0",
+  "metadataAuthorityCommit": "d0511f7283408897cdc8073d690f10a949e2b2f7",
+  "manifestHashes": {
+    "docs/prototypes/new-game/T75/acceptance/FROZEN-ACCEPTANCE.json": "2dec64d8234bbd0601407fdeeec4325b883c4ed5e68c4abbd583f4cbf15a7210",
+    "docs/prototypes/new-game/T75/acceptance/validated-inputs.json": "2f2a4bb04f16806a3fb2ec4f83e3b6f03eff76c42088e5d30855a55e89269ec0",
+    "docs/prototypes/new-game/T75/acceptance/HISTORICAL-GIT-AUTHORITY.json": "f7b8c478d4f9a0ca44374c8b59e74fa1e21b012b9660d41db58895aae291b844",
+    "docs/prototypes/new-game/T75/acceptance/freeze-attempt-01.json": "d0fac804858e9c76c4175936025cbcafacada35a89f05b0cf4e52f50eb82c3c2",
+    "docs/prototypes/new-game/T75/archives/preflight-receipt.json": "498be51560d376ecf9fff7cb51f78244e2f01b401525c983417858ed3568c25e",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/production/verify-adoption.py": "f17698e5fbdfe0083a9a88d31b48dcf9cd66e5139075e17f8423e1f541f1eba5",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/production/adoption.json": "3b5d76cdee89025107d952ca6394a993a1dbd3e25fdcacc127355242ff8fc4e6",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/production/README.md": "5d99a178b5a2623f479a8e9be487c0c73ee206096e1bdaf9050ca93ec7242a37",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/production/REPORT.md": "64a6d3ed0f100ece7fb3a3607f4173a447c5a462c60f2eb8624304dd780f32d6",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/REPORT.md": "a78c81f486e4abf449528fb54222979ee1a520f2a51fefa7055821a5915ceea2",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/run-validation.py": "eceea69c37a2cfeaa3de632594f2cbeaab195487184e90cea07806591470dcdd",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/validation.json": "14ddcad26501870147a6a0be6df8e0a30127ff38820b51825f5e23e051457a2f",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/route-audit.json": "e9cf36a5820975d13825c18b0c1c4fc0a047c6d1854b9cd82af101e2e74f208d",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/commands.json": "79fa97fe0cc294de08ad4ea16f533162b6b052b98624c138677feaec7a23bc2f",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/start.json": "e435e6e69e82e87b698c41916b9270961923d5b6c4b19f6d78967497caf4f863",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/extraction.json": "a3be478e3f87ebb58a02373b6482b5fd3693b17c019b8e0e1cb3fdf911382b3b",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/error.json": "048c112e12bc2ba1fac163084257539ff6f3e485d4a282b30f5c9da3ae55fad7",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/output-before.json": "b32e53af0a3d67c51cf2d45760956d724f44953722606c9b033e04c2352dd857",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/output-after.json": "b32e53af0a3d67c51cf2d45760956d724f44953722606c9b033e04c2352dd857",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/before-manifest.json": "e733ec39cbc06265442db5e19b1e40888329bfa63d459f76283413b18e97cf6a",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/evidence-hashes.json": "c17508133d9894cea66ac8fc21fd2c35d2ef8a508f8b6e1404ab36454c56244d",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/overall-unit.txt": "a8ee34efb584136b5c2143799a7821644af296f00fe73afa112facf84de37bd4",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/logs/01-committed-proof-stdout-stderr.txt": "9cbbb4d8170f3f1db42e709eb93c02ebd411b14ee54c816cdf8e940210da7c1d",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/controls/profile.mjs": "4b4fec544cebfb177b202dd9d46bfd6d8378bcab6770827257f72a239fc133c8",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/controls/payload.json": "89514379370039724482cf9e78b9b366e9fcb980030026b4086af2a1e9c3da14",
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/copies.json": "7b72fd3d89a7760c5e78c99891bc5d88960487c5a622cbba1fd54d6f1ec34876"
+  },
+  "verifierSha256": "9fb94de46c9591050374ff9a398079261f0e819c5fd5644cac8c5f4aed88336b",
+  "spikePrefixSha256": "a512127a140278f80c5d7e758a8f370d3f67fbf78b2f33fa3d8662340987da3d",
+  "spikePrefixBytes": 78385,
+  "sources": {
+    "src/ui/geographicGame.ts": {
+      "candidate": "docs/prototypes/new-game/T75/production-candidate/src/ui/geographicGame.ts",
+      "sha256": "c4e10b281d1a1abf14ba6a3261fd30a896ca56ffa98f22e7d0c14e11f2de9129",
+      "reason": "Await prepared drawings before constructing a host; root lifetime, supersession, cancellation and friendly failures."
+    },
+    "src/ui/geographicMapView.ts": {
+      "candidate": "docs/prototypes/new-game/T75/production-candidate/src/ui/geographicMapView.ts",
+      "sha256": "43efed85269a5dda500d520c62f8a89e37db63d6966f438dd9f34ae88bff3c02",
+      "reason": "Use the same frozen sidecar paths for paint/hits and display anchors while retaining rules ids/names/handlers."
+    },
+    "src/ui/referenceMatchFiles.ts": {
+      "candidate": "docs/prototypes/new-game/T75/production-candidate/src/ui/referenceMatchFiles.ts",
+      "sha256": "b86aae8f3560f2d84c114916abeb64bdd077a369b4208fd8571af0569f197eb9",
+      "reason": "Await typed load context and invalidate superseded file reads before decode, preserving prior matches."
+    },
+    "package.json": {
+      "candidate": "docs/prototypes/new-game/T75/production-candidate/package.json",
+      "sha256": "7fc0e7691e00b9940f7180b569cc9362863ecbfe43ebe0e59fa368b5653be739",
+      "reason": "Set0.1.0 and replace obsolete spike description; dependencies unchanged."
+    },
+    "package-lock.json": {
+      "candidate": "docs/prototypes/new-game/T75/production-candidate/package-lock.json",
+      "sha256": "576217ccfbe5370c20a3ceb12ea3c5d8cc132489644375042b034b6459237489",
+      "reason": "Match0.1.0 root package metadata; dependencies unchanged."
+    },
+    "README.md": {
+      "candidate": "docs/prototypes/new-game/T75/production-candidate/README.md",
+      "sha256": "af11fbd08aeb743cf7b1db9f24e50a1b6f67734c7f49be8b30485b40d3ad5c88",
+      "reason": "Describe supported early playable setup/cards/pacing/load behavior."
+    },
+    "docs/play.md": {
+      "candidate": "docs/prototypes/new-game/T75/production-candidate/docs/play.md",
+      "sha256": "b9f0c5d0072a47d5e82f942bd5963171399166e8b752b85b444c2df1be7403e4",
+      "reason": "Describe0.1.0 offline/card/play controls and supported desktop scope."
+    },
+    "tools/release/PLAY.md": {
+      "candidate": "docs/prototypes/new-game/T75/production-candidate/tools/release/PLAY.md",
+      "sha256": "7fb011104538eccbf9f1bea3805d9e47fc4f6ba117a50e6a09b95f9f8e2a888d",
+      "reason": "Ship matching0.1.0 offline play instructions."
+    },
+    "docs/spike.md": {
+      "sha256": "942e87b0990dde3b061fbf78900387bbe9442ab16abada05f7eec42bcdaba30b",
+      "reason": "Append the exact frozen T75 presentation/release note after the exact prerequisite prefix; preserve every T74 paragraph."
+    }
+  },
+  "originalBeforeAdoption": {
+    "src/ui/geographicGame.ts": {
+      "sha256": "f5b631869591cee78eeddd1dcb3765ed10ca403b5ef9d2d3939f7c49d5a452d6",
+      "mode": 420
+    },
+    "src/ui/geographicMapView.ts": {
+      "sha256": "2b5af73da63af4b8ae10eeeb26588a35654cb0057c24f0a5c36d9bfb676c330a",
+      "mode": 420
+    },
+    "src/ui/referenceMatchFiles.ts": {
+      "sha256": "46ede4bb28eb2578205e1076ad1e3a1db2e359b13fe792e5a9b15796b6655439",
+      "mode": 420
+    },
+    "package.json": {
+      "sha256": "ac21fd11059518da12a65ea85d07e8333713e2b265d77e8c3e93dd88ea27332f",
+      "mode": 420
+    },
+    "package-lock.json": {
+      "sha256": "c0e70a2a071d195b5fceab9ff85cf0a7c3de535ac6e0acce53c9cb89267fbbfd",
+      "mode": 420
+    },
+    "README.md": {
+      "sha256": "9251ccc2b98d7a5e9987a53a786e99da87c9ef77c02f8769120d821a05d87527",
+      "mode": 420
+    },
+    "docs/play.md": {
+      "sha256": "14a9f8d853164715df7f89bf66ec0681590bb16586db8ba814adec4e8bd30796",
+      "mode": 420
+    },
+    "tools/release/PLAY.md": {
+      "sha256": "6181823ed1f99316ab581555afcc2e53fbad593eac4e43db075fdc5de59957a2",
+      "mode": 420
+    },
+    "docs/spike.md": {
+      "sha256": "a512127a140278f80c5d7e758a8f370d3f67fbf78b2f33fa3d8662340987da3d",
+      "mode": 420
+    }
+  },
+  "parentOwnedAcceptanceUnchanged": [
+    "tests/ui/geographic-presentation-mount.test.ts",
+    "tests/e2e/geographic-presentation.spec.ts",
+    "tests/e2e/geographic-board.spec.ts"
+  ],
+  "currentValidatedInputs": 204,
+  "historicalGitMetadataInputs": 3,
+  "totalValidatedInputs": 207,
+  "freshHeavyRuns": 0,
+  "temporaryPackageOfficial": false,
+  "preflightPackage": {
+    "sha256": "2fd6dad3abdc2896725288d0b82bd11d1177cd2fbae8f37cd07fe3fb6ecd1ef3",
+    "sourceCommit": "75c8e5eba9ca48ab24ce82c264cd51a4f0f082b7",
+    "limitation": "BUILD names the prerequisite while temporary T75 bytes were installed; this is not an adopted-head official release or owner preview."
+  },
+  "remainingMainOwnedGates": [
+    "committed-head candidate packaging/preview",
+    "owner playable appearance and pacing acceptance",
+    "one independent Kimi review",
+    "one final-head green CI",
+    "exact tested artifact/tag publication after acceptance"
+  ],
+  "freshHeavyRunsMeaning": "Historical original adoption only; current correction validation is recorded separately.",
+  "correction": {
+    "frozenSha256": "aab9d8472aefc646662af0f51f8e636b210470d45d8e4863b5095699c26b8f03",
+    "parentFreeze": "8acb2a694f8e371286130c4ae037a68634fbe0ce",
+    "replacements": [
+      "src/ui/generatedGeographyPresentation.ts",
+      "vite.config.ts",
+      "README.md"
+    ],
+    "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019/adoption/validation.json",
+    "priorCandidateUnitConsoleRetained": false,
+    "priorCandidateUnitExit": 0,
+    "priorCandidateUnitSeconds": 77.1,
+    "validatedSourceCommit": "cb8e320b73b0f134ac8c73ba210b554211b0a0ad",
+    "currentResult": {
+      "proofExit": 0,
+      "integratedVitestPassed": 818,
+      "harnessPassed": 9,
+      "staticPackageExit": 0,
+      "extractedPassed": 165,
+      "extractedFailed": 1,
+      "releaseReady": false,
+      "outputRoutingLimitation": "See correction adoption REPORT.md/output-routing-limitation.json; ignored fallback screenshots were not inventoried before the run."
+    }
+  },
+  "saturatedLabelCorrection": {
+    "frozenSha256": "477c6b6e7893c8d649026e90120d0ad13b6e4ff62e1e74f63eeed8b69a585ecf",
+    "replacementPaths": [
+      "src/ui/generatedGeographyPresentation.ts"
+    ],
+    "before": "59137044a36f65ae303d80e4d5e90861cdbfdb66aa7ef04621152d71b89e1883",
+    "after": "80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d",
+    "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption/validation.json",
+    "currentValidation": {
+      "checkpoint": "c0f4435dcc9d2fdfa1b00bca2ebe50982a0bc88e",
+      "proofExit": 1,
+      "proofSeconds": 4.135838380999985,
+      "error": "immutable actual baseline median: precision comparison to rounded display",
+      "npm": "not run",
+      "package": "not run",
+      "controls": "not run",
+      "extracted": "not run",
+      "releaseReady": false
+    },
+    "factCorrection": "T75.md is absent original204 validated inputs. Previous saturated candidate report incorrectly assumed an old task-hash verifier failure; no such run occurred. Old report/manifests remain immutable; latest freeze separately pins current contract.",
+    "precisionContinuation": {
+      "priorFailureCommit": "1601d867494aac39e13b2f5fd3f8ac33993ea434",
+      "priorFailureReport": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption/REPORT.md",
+      "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/validation.json",
+      "stage": {
+        "checkpoint": "8d669a275e9130134a3052239aa8abaefbf0c50c",
+        "proofExit": 0,
+        "npmExit": 0,
+        "vitestPassed": 818,
+        "harnessPassed": 9,
+        "packageExit": 0,
+        "controlsExit": 1,
+        "controlsFailure": "first native New game click actionability timeout30000ms after passing cold/warm readiness",
+        "pausedControl": "not run",
+        "throttledControl": "not run",
+        "extracted": "not run",
+        "releaseReady": false
+      },
+      "rawBaselinePair": [
+        1959.5,
+        1883.89990234375
+      ],
+      "rawMedian": 1921.699951171875,
+      "declaredBenefitDenominator": 1921.7,
+      "gatePercent": 10
+    }
+  }
+}

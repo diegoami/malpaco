@@ -1,0 +1,43 @@
+[
+  {
+    "argv": [
+      "node_modules/.bin/vitest",
+      "run",
+      "tests/ui/generated-geography-presentation.test.ts"
+    ],
+    "exit": 0,
+    "durationSeconds": 48.609915840999975,
+    "log": "unit-stdout-stderr.txt"
+  },
+  {
+    "argv": [
+      "node_modules/.bin/vite",
+      "build",
+      "--outDir",
+      "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/allocation-proposal-20261019-01/build"
+    ],
+    "exit": 0,
+    "durationSeconds": 0.4625381139999263,
+    "log": "build-stdout-stderr.txt"
+  },
+  {
+    "argv": [
+      "node",
+      "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/allocation-proposal-20261019-01/build/serve.mjs",
+      "--port",
+      "4313"
+    ],
+    "pid": 108873,
+    "start": 1792394395.943096,
+    "exit": -15,
+    "closed": true
+  },
+  {
+    "argv": [
+      "node",
+      "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/allocation-proposal-20261019-01/diagnostic.mjs"
+    ],
+    "exit": 0,
+    "durationSeconds": 4.22614415399994
+  }
+]

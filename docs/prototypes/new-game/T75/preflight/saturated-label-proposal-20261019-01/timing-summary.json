@@ -1,0 +1,69 @@
+{
+  "rows": [
+    {
+      "name": "A",
+      "fileReadMs": 0.39990234375,
+      "readEndToWorkerPostMs": 472.5,
+      "workerRoundTripMs": 1409.5,
+      "replyToMountMs": 30.300048828125,
+      "fileToMountMs": 1912.699951171875,
+      "loadToDetachCheckMs": 2342.25341796875,
+      "checks": [
+        {
+          "check": "old-input-detached",
+          "status": "passed",
+          "end": 1792394776135.4907
+        },
+        {
+          "check": "map-visible",
+          "status": "passed",
+          "end": 1792394776083.7214
+        },
+        {
+          "check": "country-count-46",
+          "status": "passed",
+          "end": 1792394776138.418
+        }
+      ],
+      "clockStayedPaused": true
+    },
+    {
+      "name": "B",
+      "fileReadMs": 0.800048828125,
+      "readEndToWorkerPostMs": 500.39990234375,
+      "workerRoundTripMs": 1377.300048828125,
+      "replyToMountMs": 26.89990234375,
+      "fileToMountMs": 1905.39990234375,
+      "loadToDetachCheckMs": 2371.115966796875,
+      "checks": [
+        {
+          "check": "old-input-detached",
+          "status": "passed",
+          "end": 1792394776911.7825
+        },
+        {
+          "check": "map-visible",
+          "status": "passed",
+          "end": 1792394776896.1477
+        },
+        {
+          "check": "country-count-46",
+          "status": "passed",
+          "end": 1792394776915.661
+        }
+      ],
+      "clockStayedPaused": true
+    }
+  ],
+  "actualLoadStartDifferenceMs": 747.42919921875,
+  "baselineWorkerMs": [
+    1959.5,
+    1883.9
+  ],
+  "baselineMedianMs": 1921.7,
+  "candidateMedianMs": 1393.4000244140625,
+  "medianReductionPercent": 27.491282488730683,
+  "usefulBenefitAtLeast10Percent": true,
+  "singleHostSinglePairNotCausalProof": true,
+  "allReadinessChecksPass": true
+}

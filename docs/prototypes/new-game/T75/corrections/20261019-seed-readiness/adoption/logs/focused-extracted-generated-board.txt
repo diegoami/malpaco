@@ -1,0 +1,13 @@
+
+Running 8 tests using 2 workers
+
+  ✓  2 [1280x800] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (818ms)
+  ✓  1 [1280x800] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.5s)
+  ✓  4 [1280x800] › tests/e2e/generated-board.spec.ts:126:1 › golden: settled opt-in generated preview (248ms)
+  ✓  3 [1280x800] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (995ms)
+  ✓  5 [1920x1080] › tests/e2e/generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport (999ms)
+  ✓  6 [1920x1080] › tests/e2e/generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection (1.5s)
+  ✓  8 [1920x1080] › tests/e2e/generated-board.spec.ts:126:1 › golden: settled opt-in generated preview (333ms)
+  ✓  7 [1920x1080] › tests/e2e/generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry (977ms)
+
+  8 passed (5.0s)
