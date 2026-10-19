@@ -1,0 +1,170 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (17 tests | 6 failed) 185ms
+   ❯ T78 workspace state boundary (17)
+     × round-trips placement from real versioned replay without changing core/history/RNG 35ms
+     × round-trips combat from real versioned replay without changing core/history/RNG 16ms
+     × round-trips capture from real versioned replay without changing core/history/RNG 19ms
+     × round-trips friendly movement from real versioned replay without changing core/history/RNG 19ms
+     × round-trips cards from real versioned replay without changing core/history/RNG 41ms
+     × round-trips result from real versioned replay without changing core/history/RNG 39ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips placement from real versioned replay without changing core/history/RNG
+AssertionError: expected { cards: { …(3) }, …(17) } to deeply equal { cards: { …(3) }, …(17) }
+
+- Expected
++ Received
+
+@@ -32,11 +32,11 @@
+      "province_35": 1,
+      "province_36": 3,
+      "province_37": 1,
+      "province_38": 1,
+      "province_39": 3,
+-     "province_4": 1,
++     "province_4": 2,
+      "province_40": 1,
+      "province_41": 4,
+      "province_42": 2,
+      "province_43": 13,
+      "province_44": 1,
+
+ ❯ tests/ui/workspace-state.test.ts:89:50
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips combat from real versioned replay without changing core/history/RNG
+AssertionError: expected { cards: { …(3) }, …(17) } to deeply equal { cards: { …(3) }, …(17) }
+
+- Expected
++ Received
+
+@@ -32,11 +32,11 @@
+      "province_35": 3,
+      "province_36": 1,
+      "province_37": 2,
+      "province_38": 3,
+      "province_39": 3,
+-     "province_4": 1,
++     "province_4": 2,
+      "province_40": 2,
+      "province_41": 2,
+      "province_42": 1,
+      "province_43": 1,
+      "province_44": 3,
+
+ ❯ tests/ui/workspace-state.test.ts:89:50
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips capture from real versioned replay without changing core/history/RNG
+AssertionError: expected { cards: { …(3) }, …(18) } to deeply equal { cards: { …(3) }, …(18) }
+
+- Expected
++ Received
+
+@@ -32,11 +32,11 @@
+      "province_35": 3,
+      "province_36": 1,
+      "province_37": 2,
+      "province_38": 1,
+      "province_39": 3,
+-     "province_4": 1,
++     "province_4": 2,
+      "province_40": 2,
+      "province_41": 2,
+      "province_42": 1,
+      "province_43": 1,
+      "province_44": 3,
+
+ ❯ tests/ui/workspace-state.test.ts:89:50
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips friendly movement from real versioned replay without changing core/history/RNG
+AssertionError: expected { cards: { …(3) }, …(17) } to deeply equal { cards: { …(3) }, …(17) }
+
+- Expected
++ Received
+
+@@ -32,11 +32,11 @@
+      "province_35": 3,
+      "province_36": 1,
+      "province_37": 2,
+      "province_38": 4,
+      "province_39": 3,
+-     "province_4": 1,
++     "province_4": 2,
+      "province_40": 2,
+      "province_41": 2,
+      "province_42": 1,
+      "province_43": 1,
+      "province_44": 3,
+
+ ❯ tests/ui/workspace-state.test.ts:89:50
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips cards from real versioned replay without changing core/history/RNG
+AssertionError: expected { cards: { …(3) }, …(17) } to deeply equal { cards: { …(3) }, …(17) }
+
+- Expected
++ Received
+
+@@ -32,11 +32,11 @@
+      "province_35": 1,
+      "province_36": 1,
+      "province_37": 2,
+      "province_38": 1,
+      "province_39": 1,
+-     "province_4": 5,
++     "province_4": 6,
+      "province_40": 1,
+      "province_41": 1,
+      "province_42": 1,
+      "province_43": 2,
+      "province_44": 2,
+
+ ❯ tests/ui/workspace-state.test.ts:89:50
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips result from real versioned replay without changing core/history/RNG
+AssertionError: expected { cards: { …(3) }, …(18) } to deeply equal { cards: { …(3) }, …(18) }
+
+- Expected
++ Received
+
+@@ -32,11 +32,11 @@
+      "province_35": 1,
+      "province_36": 1,
+      "province_37": 2,
+      "province_38": 1,
+      "province_39": 3,
+-     "province_4": 5,
++     "province_4": 6,
+      "province_40": 12,
+      "province_41": 4,
+      "province_42": 3,
+      "province_43": 4,
+      "province_44": 1,
+
+ ❯ tests/ui/workspace-state.test.ts:89:50
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 11 passed (17)
+   Start at  20:50:45
+   Duration  1.23s (import 55%, transform 28%, tests 17%)
+

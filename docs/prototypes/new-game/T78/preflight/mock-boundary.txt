@@ -1,0 +1,12 @@
+// Main's disposable preflight mock. This is not the dispatched implementation.
+export function createWorkspaceState(){return {camera:{x:0,y:0,zoom:1},surface:null,histories:{battle:{scrollTop:0,followLatest:true},events:{scrollTop:0,followLatest:true}},drafts:{capture:'',move:'',threshold:''},focus:null,matchGeneration:0,attack:{from:null,to:null,confirmed:false}};}
+export function updateWorkspaceState(state:any,patch:any){return structuredClone({...state,...patch});}
+export function reconcileWorkspace(state:any,context:any){
+ const base=context.matchGeneration===state.matchGeneration?state:createWorkspaceState();
+ const confirmed=context.matchGeneration===state.matchGeneration&&context.from!==null&&context.to!==null&&context.from===state.attack.from&&context.to===state.attack.to&&state.attack.confirmed;
+ return structuredClone({...base,matchGeneration:context.matchGeneration,attack:{from:context.from,to:context.to,confirmed}});
+}
+export function projectWorkspace(battle:any,c:any){
+ const v=battle.view;
+ return {matchGeneration:battle.gameGeneration,revision:v.revision,from:v.from,to:v.to,mode:v.mode,phase:battle.state.phase,paused:battle.playbackPaused,speed:v.speed,cards:{revision:c.revision,phase:c.phase,hand:[...c.hand],handCounts:{...c.handCounts},drawCount:c.drawCount,discardCount:c.discardCount,discardTop:c.discardTop,sets:c.sets.map((set:any)=>({indices:[...set.indices],kind:set.kind,effect:set.effect})),selectedTarget:c.selectedTarget,preview:c.preview,notice:c.notice,blocked:c.blocked}};
+}

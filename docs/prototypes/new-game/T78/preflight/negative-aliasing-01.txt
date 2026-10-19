@@ -1,0 +1,57 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (17 tests | 1 failed) 60ms
+   ❯ T78 workspace state boundary (17)
+     × projects only public card fields and detaches nested offered sets and hand counts 11ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > projects only public card fields and detaches nested offered sets and hand counts
+AssertionError: expected { revision: +0, phase: 'sets', …(10) } to deeply equal { revision: +0, phase: 'sets', …(10) }
+
+- Expected
++ Received
+
+@@ -7,10 +7,11 @@
+      "Raid",
+      "Wild",
+      "Shield",
+      "Anchor",
+      "Wild",
++     "Squall",
+    ],
+    "handCounts": {
+      "seat1": 5,
+      "seat2": 5,
+      "seat3": 5,
+@@ -23,11 +24,11 @@
+    "selectedTarget": null,
+    "sets": [
+      {
+        "effect": "Raid any enemy country",
+        "indices": [
+-         0,
++         999,
+          1,
+          4,
+        ],
+        "kind": "Raid",
+      },
+
+ ❯ tests/ui/workspace-state.test.ts:113:22
+    111|   (p.cards.hand as core.CardKind[]).push('Squall');(p.cards.handCounts…
+    112|   (p.cards.sets[0]!.indices as [number,number,number])[0]=999;
+    113|   expect(publicView).toEqual(before);expect(cards.view).toEqual(before…
+       |                      ^
+    114|  });
+    115| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 16 passed (17)
+   Start at  20:50:47
+   Duration  1.06s (import 65%, transform 29%, tests 6%)
+

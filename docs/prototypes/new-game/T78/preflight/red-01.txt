@@ -1,0 +1,604 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (17 tests | 16 failed) 36ms
+   ❯ T78 workspace state boundary (17)
+     × preserves invalid drafts, camera, histories and focus through surface/layout round trips 4ms
+     × detaches patches and returned nested state instead of sharing mutable ownership 2ms
+     × invalidates confirmation when source changes without disturbing other same-match UI 1ms
+     × invalidates confirmation when target changes without disturbing other same-match UI 1ms
+     × invalidates confirmation when cleared source changes without disturbing other same-match UI 1ms
+     × invalidates confirmation when cleared target changes without disturbing other same-match UI 1ms
+     × does not retain confirmation for an incomplete unchanged pair 1ms
+     × clears stale match drafts and confirmation even when a replacement has the same pair 1ms
+     × round-trips placement from real versioned replay without changing core/history/RNG 3ms
+     × round-trips combat from real versioned replay without changing core/history/RNG 1ms
+     × round-trips capture from real versioned replay without changing core/history/RNG 1ms
+     × round-trips friendly movement from real versioned replay without changing core/history/RNG 5ms
+     × round-trips cards from real versioned replay without changing core/history/RNG 2ms
+     × round-trips result from real versioned replay without changing core/history/RNG 1ms
+     × adapts selection, global pause, speed and generation without retaining the live core 2ms
+     × projects only public card fields and detaches nested offered sets and hand counts 5ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > preserves invalid drafts, camera, histories and focus through surface/layout round trips
+AssertionError: expected 'cards' to be null
+
+- Expected:
+null
+
++ Received:
+"cards"
+
+ ❯ tests/ui/workspace-state.test.ts:55:86
+     53|  it('preserves invalid drafts, camera, histories and focus through sur…
+     54|   const input=deepFreeze(customized()),before=structuredClone(input);
+     55|   const hidden=api.updateWorkspaceState(input,{surface:null});expect(h…
+       |                                                                                      ^
+     56|   const restored=api.updateWorkspaceState(hidden,{surface:'cards'});ex…
+     57|   expect(api.reconcileWorkspace(restored,context())).toEqual(before);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > detaches patches and returned nested state instead of sharing mutable ownership
+AssertionError: expected { x: 42, y: -18, zoom: 2.5 } to deeply equal { x: 7, y: 8, zoom: 3 }
+
+- Expected
++ Received
+
+  {
+-   "x": 7,
+-   "y": 8,
+-   "zoom": 3,
++   "x": 42,
++   "y": -18,
++   "zoom": 2.5,
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:61:75
+     59|  it('detaches patches and returned nested state instead of sharing mut…
+     60|   const original=customized(),patch={camera:{x:7,y:8,zoom:3},drafts:{c…
+     61|   const next=api.updateWorkspaceState(original,patch);expect(next.came…
+       |                                                                           ^
+     62|   next.camera.x=900;next.histories.events.scrollTop=999;next.drafts.mo…
+     63|   expect(patch.camera.x).toBe(7);expect(patch.drafts.move).toBe('');ex…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when source changes without disturbing other same-match UI
+AssertionError: expected { from: 'province_1', …(2) } to deeply equal { from: 'province_3', …(2) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
+-   "from": "province_3",
++   "confirmed": true,
++   "from": "province_1",
+    "to": "province_2",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:23
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                       ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when target changes without disturbing other same-match UI
+AssertionError: expected { from: 'province_1', …(2) } to deeply equal { from: 'province_1', …(2) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
++   "confirmed": true,
+    "from": "province_1",
+-   "to": "province_4",
++   "to": "province_2",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:23
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                       ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when cleared source changes without disturbing other same-match UI
+AssertionError: expected { from: 'province_1', …(2) } to deeply equal { from: null, to: 'province_2', …(1) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
+-   "from": null,
++   "confirmed": true,
++   "from": "province_1",
+    "to": "province_2",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:23
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                       ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when cleared target changes without disturbing other same-match UI
+AssertionError: expected { from: 'province_1', …(2) } to deeply equal { from: 'province_1', to: null, …(1) }
+
+- Expected
++ Received
+
+  {
+-   "confirmed": false,
++   "confirmed": true,
+    "from": "province_1",
+-   "to": null,
++   "to": "province_2",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:23
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                       ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > does not retain confirmation for an incomplete unchanged pair
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/ui/workspace-state.test.ts:72:81
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+     71|   const s={...customized(),attack:{from:'province_1',to:null,confirmed…
+     72|   expect(api.reconcileWorkspace(s,context('province_1',null)).attack.c…
+       |                                                                                 ^
+     73|  });
+     74|  it('clears stale match drafts and confirmation even when a replacemen…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > clears stale match drafts and confirmation even when a replacement has the same pair
+AssertionError: expected { …(7) } to deeply equal { …(7) }
+
+- Expected
++ Received
+
+  {
+    "attack": {
+-     "confirmed": false,
++     "confirmed": true,
+      "from": "province_1",
+      "to": "province_2",
+    },
+    "camera": {
+-     "x": 0,
+-     "y": 0,
+-     "zoom": 1,
++     "x": 42,
++     "y": -18,
++     "zoom": 2.5,
+    },
+    "drafts": {
+-     "capture": "",
+-     "move": "",
+-     "threshold": "",
++     "capture": "-",
++     "move": "3e",
++     "threshold": "999999999999999999999",
+    },
+-   "focus": null,
++   "focus": "attack-button",
+    "histories": {
+      "battle": {
+-       "followLatest": true,
+-       "scrollTop": 0,
++       "followLatest": false,
++       "scrollTop": 120,
+      },
+      "events": {
+-       "followLatest": true,
+-       "scrollTop": 0,
++       "followLatest": false,
++       "scrollTop": 70,
+      },
+    },
+-   "matchGeneration": 1,
+-   "surface": null,
++   "matchGeneration": 0,
++   "surface": "cards",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:76:16
+     74|  it('clears stale match drafts and confirmation even when a replacemen…
+     75|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,conte…
+     76|   expect(next).toEqual({...defaults(),matchGeneration:1,attack:{from:'…
+       |                ^
+     77|  });
+     78|  for(const fixture of legalFixtures())it(`round-trips ${fixture.name} …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips placement from real versioned replay without changing core/history/RNG
+AssertionError: expected { matchGeneration: -1, …(8) } to deeply equal { matchGeneration: +0, …(8) }
+
+- Expected
++ Received
+
+  {
+-   "cards": {
+-     "blocked": false,
+-     "discardCount": 4,
+-     "discardTop": "Wild",
+-     "drawCount": 20,
+-     "hand": [
+-       "Compass",
+-       "Anchor",
+-     ],
+-     "handCounts": {
+-       "seat1": 2,
+-       "seat2": 5,
+-       "seat3": 5,
+-       "seat4": 4,
+-     },
+-     "notice": "",
+-     "phase": "hand",
+-     "preview": "Choose any enemy country.",
+-     "revision": 0,
+-     "selectedTarget": null,
+-     "sets": [],
+-   },
++   "cards": {},
+    "from": null,
+-   "matchGeneration": 0,
+-   "mode": "battle",
++   "matchGeneration": -1,
++   "mode": "",
+    "paused": false,
+-   "phase": "reinforce",
+-   "revision": 0,
+-   "speed": "normal",
++   "phase": "",
++   "revision": -1,
++   "speed": "",
+    "to": null,
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:84:22
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips combat from real versioned replay without changing core/history/RNG
+AssertionError: expected { matchGeneration: -1, …(8) } to deeply equal { matchGeneration: +0, …(8) }
+
+- Expected
++ Received
+
+  {
+-   "cards": {
+-     "blocked": false,
+-     "discardCount": 0,
+-     "discardTop": null,
+-     "drawCount": 40,
+-     "hand": [],
+-     "handCounts": {
+-       "seat1": 0,
+-       "seat2": 0,
+-       "seat3": 0,
+-     },
+-     "notice": "",
+-     "phase": "hand",
+-     "preview": "Choose any enemy country.",
+-     "revision": 0,
+-     "selectedTarget": null,
+-     "sets": [],
+-   },
++   "cards": {},
+    "from": null,
+-   "matchGeneration": 0,
+-   "mode": "battle",
++   "matchGeneration": -1,
++   "mode": "",
+    "paused": false,
+-   "phase": "attack",
+-   "revision": 0,
+-   "speed": "normal",
++   "phase": "",
++   "revision": -1,
++   "speed": "",
+    "to": null,
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:84:22
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips capture from real versioned replay without changing core/history/RNG
+AssertionError: expected { matchGeneration: -1, …(8) } to deeply equal { matchGeneration: +0, …(8) }
+
+- Expected
++ Received
+
+  {
+-   "cards": {
+-     "blocked": false,
+-     "discardCount": 0,
+-     "discardTop": null,
+-     "drawCount": 40,
+-     "hand": [],
+-     "handCounts": {
+-       "seat1": 0,
+-       "seat2": 0,
+-       "seat3": 0,
+-     },
+-     "notice": "",
+-     "phase": "hand",
+-     "preview": "Choose any enemy country.",
+-     "revision": 0,
+-     "selectedTarget": null,
+-     "sets": [],
+-   },
+-   "from": "province_45",
+-   "matchGeneration": 0,
+-   "mode": "battle",
++   "cards": {},
++   "from": null,
++   "matchGeneration": -1,
++   "mode": "",
+    "paused": false,
+-   "phase": "capture",
+-   "revision": 0,
+-   "speed": "normal",
+-   "to": "province_38",
++   "phase": "",
++   "revision": -1,
++   "speed": "",
++   "to": null,
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:84:22
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips friendly movement from real versioned replay without changing core/history/RNG
+AssertionError: expected { matchGeneration: -1, …(8) } to deeply equal { matchGeneration: +0, …(8) }
+
+- Expected
++ Received
+
+  {
+-   "cards": {
+-     "blocked": false,
+-     "discardCount": 0,
+-     "discardTop": null,
+-     "drawCount": 40,
+-     "hand": [],
+-     "handCounts": {
+-       "seat1": 0,
+-       "seat2": 0,
+-       "seat3": 0,
+-     },
+-     "notice": "",
+-     "phase": "hand",
+-     "preview": "Choose any enemy country.",
+-     "revision": 1,
+-     "selectedTarget": null,
+-     "sets": [],
+-   },
++   "cards": {},
+    "from": null,
+-   "matchGeneration": 0,
+-   "mode": "move",
++   "matchGeneration": -1,
++   "mode": "",
+    "paused": false,
+-   "phase": "attack",
+-   "revision": 1,
+-   "speed": "normal",
++   "phase": "",
++   "revision": -1,
++   "speed": "",
+    "to": null,
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:84:22
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips cards from real versioned replay without changing core/history/RNG
+AssertionError: expected { matchGeneration: -1, …(8) } to deeply equal { matchGeneration: +0, …(8) }
+
+- Expected
++ Received
+
+  {
+-   "cards": {
+-     "blocked": false,
+-     "discardCount": 9,
+-     "discardTop": "Anchor",
+-     "drawCount": 11,
+-     "hand": [
+-       "Raid",
+-       "Wild",
+-       "Shield",
+-       "Anchor",
+-       "Wild",
+-     ],
+-     "handCounts": {
+-       "seat1": 5,
+-       "seat2": 5,
+-       "seat3": 5,
+-       "seat4": 5,
+-     },
+-     "notice": "",
+-     "phase": "sets",
+-     "preview": "Choose any enemy country.",
+-     "revision": 0,
+-     "selectedTarget": null,
+-     "sets": [
+-       {
+-         "effect": "Raid any enemy country",
+-         "indices": [
+-           0,
+-           1,
+-           4,
+-         ],
+-         "kind": "Raid",
+-       },
+-       {
+-         "effect": "Add 5 armies",
+-         "indices": [
+-           1,
+-           3,
+-           4,
+-         ],
+-         "kind": "Anchor",
+-       },
+-     ],
+-   },
++   "cards": {},
+    "from": null,
+-   "matchGeneration": 0,
+-   "mode": "battle",
++   "matchGeneration": -1,
++   "mode": "",
+    "paused": false,
+-   "phase": "cards",
+-   "revision": 0,
+-   "speed": "normal",
++   "phase": "",
++   "revision": -1,
++   "speed": "",
+    "to": null,
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:84:22
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips result from real versioned replay without changing core/history/RNG
+AssertionError: expected 'finished' to be 'gameOver' // Object.is equality
+
+Expected: "gameOver"
+Received: "finished"
+
+ ❯ tests/ui/workspace-state.test.ts:79:45
+     77|  });
+     78|  for(const fixture of legalFixtures())it(`round-trips ${fixture.name} …
+     79|   const {state}=fixture;expect(state.phase).toBe(fixture.phase);if(fix…
+       |                                             ^
+     80|   const clock=new Clock(),battle=new BattleController(state,clock),vie…
+     81|   if(fixture.move)expect(battle.startFriendlyMove()).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > adapts selection, global pause, speed and generation without retaining the live core
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/ui/workspace-state.test.ts:96:68
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/16]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > projects only public card fields and detaches nested offered sets and hand counts
+AssertionError: expected {} to deeply equal { revision: +0, phase: 'sets', …(10) }
+
+- Expected
++ Received
+
+- {
+-   "blocked": false,
+-   "discardCount": 9,
+-   "discardTop": "Anchor",
+-   "drawCount": 11,
+-   "hand": [
+-     "Raid",
+-     "Wild",
+-     "Shield",
+-     "Anchor",
+-     "Wild",
+-   ],
+-   "handCounts": {
+-     "seat1": 5,
+-     "seat2": 5,
+-     "seat3": 5,
+-     "seat4": 5,
+-   },
+-   "notice": "",
+-   "phase": "sets",
+-   "preview": "Choose any enemy country.",
+-   "revision": 0,
+-   "selectedTarget": null,
+-   "sets": [
+-     {
+-       "effect": "Raid any enemy country",
+-       "indices": [
+-         0,
+-         1,
+-         4,
+-       ],
+-       "kind": "Raid",
+-     },
+-     {
+-       "effect": "Add 5 armies",
+-       "indices": [
+-         1,
+-         3,
+-         4,
+-       ],
+-       "kind": "Anchor",
+-     },
+-   ],
+- }
++ {}
+
+ ❯ tests/ui/workspace-state.test.ts:110:65
+    108|   // Accessor is installed after assign so merely building the test va…
+    109|   Object.defineProperty(poisoned,'hidden',{enumerable:true,get(){throw…
+    110|   const p=api.projectWorkspace(battle,poisoned);expect(p.cards).toEqua…
+       |                                                                 ^
+    111|   (p.cards.hand as core.CardKind[]).push('Squall');(p.cards.handCounts…
+    112|   (p.cards.sets[0]!.indices as [number,number,number])[0]=999;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/16]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  16 failed | 1 passed (17)
+   Start at  20:50:10
+   Duration  1.06s (import 63%, transform 32%, tests 4%)
+
