@@ -1,4 +1,4 @@
-# Play Malpaco 0.1.0
+# Play Malpaco 0.1.1
 
 Run `node serve.mjs` from this folder, then open <http://127.0.0.1:4175> in a desktop browser.
 
@@ -28,5 +28,7 @@ Player totals show armies on the board. **Pause** stops play, and **Game speed**
 slows computer turns. **Panel detail** switches Compact/Detailed information.
 The smaller battle log scrolls while retaining its history; **Game event log**
 opens the full action history, including army gains, losses and unplaced armies.
+
+Use **Hide top panel** and **Hide side panel** to reclaim map space, and their **Show** icons to restore them. The rail keeps essential play actions, **Pause** and **Game event log** available. **Cards**, **Game details** and **Game settings** open focused panels; speed, save and load are available in Settings. Press Escape to close a focused panel.
 
 The supported desktop layouts are 1280×800 and 1920×1080. Mobile layouts, online play, and cross-device save synchronization are not supported.

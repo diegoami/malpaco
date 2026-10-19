@@ -11,7 +11,9 @@ How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process
 For session continuity, read the latest decisions in [RUN-NOTES.md](RUN-NOTES.md)
 and query current GitHub issue labels; historical notes are not task status.
 
-## Play Malpaco 0.1.0
+## Play Malpaco 0.1.1
+
+[Play in your browser](https://malpaco.netlify.app).
 
 Run `npm ci` and `npm run dev`; open the root page to set up generated islands.
 It defaults to one human against three Normal computers. Choose a seed, adjust
@@ -27,6 +29,8 @@ Normal games with at most one human seat include cards. Capture a territory and
 finish the turn to earn a card, then use **View your hand** to see your choices.
 Games with multiple human seats use ordinary rules. **Pause**, **Game speed**,
 **Panel detail** and **Game event log** control pacing and information.
+
+Use **Hide top panel** and **Hide side panel** to reclaim map space, and their **Show** icons to restore them. The rail keeps essential play actions, **Pause** and **Game event log** available. **Cards**, **Game details** and **Game settings** open focused panels; speed, save and load are available in Settings. Press Escape to close a focused panel.
 
 Older generated setup/game and development routes remain available explicitly at
 `?view=game-setup`, `?view=generated-game`, `?view=generated-prototype` and

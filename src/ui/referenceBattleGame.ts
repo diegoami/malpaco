@@ -16,10 +16,12 @@ import type {MatchPresentation} from "./matchPresentation";
 import type {LoadedVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
 import { createPanelDetailControl } from "./panelDetail";
+import {BattleChrome} from "./battleChrome";
+import type {ChromePreferences} from "./battleChrome";
 
 /** Session-only preferences. Full presentation persistence is T56. */
 export type PanelDetail = "compact" | "detailed";
-export interface BattlePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
+export interface BattlePreferences extends ChromePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
 
 /** Reference-route host: the controller owns every selection and ordinary action. */
 export class ReferenceBattleGame {
@@ -39,12 +41,15 @@ export class ReferenceBattleGame {
   private readonly friendly: FriendlyMoveView;
   private readonly victory: VictoryView;
   private readonly phaseActions: HTMLElement;
+  private readonly action: HTMLElement;
+  private chrome: BattleChrome | null = null;
   private readonly files: ReferenceMatchFiles;
   private hover: string | null = null;
   private mounted = false;
   private disposed = false;
   private readonly onKeyDown = (event: KeyboardEvent) => {
-    if (event.key !== "Escape" || this.eventLog.isOpen) return;
+    if (event.key !== "Escape" || event.defaultPrevented || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
+    if (this.chrome?.escape()) {event.preventDefault(); return;}
     if (this.controller.cancelFriendlyMove()) return;
     if (!this.controller.stop()) this.controller.select(null, null);
   };
@@ -54,6 +59,7 @@ export class ReferenceBattleGame {
       this.panel.el.closest<HTMLElement>(".battle-reference")?.setAttribute("data-panel-detail", detail);
     });
     this.eventLog = new GameEventLog(options,presentation?.initialState);
+    document.body.append(this.eventLog.dialog);
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
     }, view => {
@@ -83,7 +89,8 @@ export class ReferenceBattleGame {
     this.battle = new BattleView(this.controller);
     this.friendly = new FriendlyMoveView(this.controller);
     this.victory = new VictoryView(this.controller);
-    this.panel.el.querySelector(".action")!.append(this.battle.el, this.friendly.el, this.victory.el, this.cardControls.el, this.computerStatus);
+    this.action = this.panel.el.querySelector<HTMLElement>(".action")!;
+    this.action.append(this.battle.el, this.friendly.el, this.victory.el, this.cardControls.el, this.computerStatus);
     this.playbackPause.onclick = () => this.controller.setPlaybackPaused(!this.controller.playbackPaused);
     this.playbackSpeed.onchange = () => this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed);
     this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation));
@@ -100,9 +107,12 @@ export class ReferenceBattleGame {
     const subtitle = computers
       ? `${name} · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `${name} · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
-    root.replaceChildren(
-      h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, h("div", { class: "game-playback" }, this.eventLog.button, this.eventLog.dialog, this.playbackPause, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el),
+    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, h("div", { class: "game-playback" }, this.eventLog.button, this.playbackPause, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
+    const topbar = h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, settings);
+    root.replaceChildren(topbar,
       h("main", { class: "stage" }, h("section", { class: "board" }, this.mapView.el), this.panel.el));
+    this.chrome = new BattleChrome(root, this.preferences, {topbar, panel: this.panel.el, action: this.action, cards: this.cardControls.el,
+      history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings, phaseActions: this.phaseActions, battle: this.battle.el, pause: this.playbackPause, log: this.eventLog.button});
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
     this.mounted = true;
@@ -112,6 +122,7 @@ export class ReferenceBattleGame {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    this.chrome?.dispose();
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
@@ -181,7 +192,7 @@ export class ReferenceBattleGame {
     });
     if (state.phase === "capture") this.panel.el.querySelector("#turn-phase")!.textContent = "Capture move-in";
     if (mode === "move") this.panel.el.querySelector("#turn-phase")!.textContent = "Friendly move";
-    const action = this.panel.el.querySelector<HTMLElement>(".action")!;
+    const action = this.action;
     action.dataset["cardChoice"]=String(["sets","raid-target","discard","reward"].includes(this.cards.view.phase));
     action.dataset["battle"] = String(state.phase !== "reinforce");
     // Phase controls also capture a revision; an old End turn cannot become a
@@ -208,9 +219,11 @@ export class ReferenceBattleGame {
     this.computerStatus.hidden = !computer;
     this.computerStatus.textContent = computer ? this.controller.playbackPaused ? `${activePlayer(state)!.name} · Paused` : `${activePlayer(state)!.name} is playing…` : "";
     if (computer || this.controller.playbackPaused) {
-      for (const el of this.panel.el.querySelectorAll<HTMLButtonElement | HTMLInputElement>(".action button,.action input")) el.disabled = true;
-      this.panel.el.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; save, load and new game remain available." : "Computer turn. Save, load or start a new game at any time."));
+      for (const el of [this.action, this.cardControls.el, this.phaseActions].flatMap(node => [...node.querySelectorAll<HTMLButtonElement | HTMLInputElement>("button,input")])) el.disabled = true;
+      this.action.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; save, load and new game remain available." : "Computer turn. Save, load or start a new game at any time."));
     }
+    const required = this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? "Choose a Raid target" : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
+    this.chrome?.update(`${activePlayer(state)?.name ?? ""} · ${this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase}${state.phase === "reinforce" ? ` · ${state.reinforcementPool} to place` : ""}`, required, this.controller.playbackPaused);
     this.computer?.update();
   }
 }
