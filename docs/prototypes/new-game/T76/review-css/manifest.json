@@ -1,0 +1,3590 @@
+{
+  "sourceHead": "6e6193f3d6c4b7f39a3c1e37df7e1941b2aec631",
+  "review": "https://github.com/diegoami/malpaco/pull/193#issuecomment-6270140668",
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "seconds": 832.008,
+  "cliExit": 0,
+  "harnessExit": 0,
+  "verdict": "approve",
+  "permissionDenials": 0,
+  "archiveSha256": "e60b65f3dcb3bd1b5b9153c2d511032ab4cd9aded3e063461815226e058889a5",
+  "archiveBytes": 136650024,
+  "parts": [
+    {
+      "file": "review-css.tar.gz.part-000",
+      "bytes": 16777216,
+      "sha256": "73008529318eef9b8dcc3dad16d9319477b3ac051299885bf3da26bb9f064a94"
+    },
+    {
+      "file": "review-css.tar.gz.part-001",
+      "bytes": 16777216,
+      "sha256": "1f6450552f72ab926c511ad92537349f873c27a746543002dad3fd48ba57c323"
+    },
+    {
+      "file": "review-css.tar.gz.part-002",
+      "bytes": 16777216,
+      "sha256": "35b602435b3f830950dfac8231cdf79aba48cd9fb1e58e779cdcf028fad8d2f3"
+    },
+    {
+      "file": "review-css.tar.gz.part-003",
+      "bytes": 16777216,
+      "sha256": "5924476f31789a26bdc5940137dd8420119e2b33ec5b727a7e316ed1ddf57f09"
+    },
+    {
+      "file": "review-css.tar.gz.part-004",
+      "bytes": 16777216,
+      "sha256": "dbeb639dcf059e2e079b0dd46cfb743405357ab1b4590d38174cd4a1fe09d6e1"
+    },
+    {
+      "file": "review-css.tar.gz.part-005",
+      "bytes": 16777216,
+      "sha256": "484f035a7cb2308e9d5b3b5dc115b92453e25d36b586f5ff0b8043c01b756141"
+    },
+    {
+      "file": "review-css.tar.gz.part-006",
+      "bytes": 16777216,
+      "sha256": "e3c2d0b4121ddd2a9f29f2081e9437887f2be6ad85f8a6eb6f391d87ac1ff4fc"
+    },
+    {
+      "file": "review-css.tar.gz.part-007",
+      "bytes": 16777216,
+      "sha256": "87c72ebc0ffbf731dce0416c2851d95c06d16b755a8785904437eaee52fc3b70"
+    },
+    {
+      "file": "review-css.tar.gz.part-008",
+      "bytes": 2432296,
+      "sha256": "30472dc33301b9037dc7a5b409b6112eb35d872ed7ad7e4c472a6ebdd94b4323"
+    }
+  ],
+  "members": [
+    {
+      "path": "launcher/diff-parts/00000.diff",
+      "sha256": "bd52eb7a1d511810d1c99f6b668ea4d5f87f5ce2d71e935a4ddfda8f5e01aa28",
+      "bytes": 21856,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00001.diff",
+      "sha256": "e2ad34b6a33e23da49aa5b65816d97797d32c44da87535a926d8438cc84f6a1d",
+      "bytes": 9162,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00002.diff",
+      "sha256": "aaab12aa4903d796cfd53ed84260ff0c8fb5d3fc1f32f64ab676ebc00605c2df",
+      "bytes": 10513,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00003.diff",
+      "sha256": "1962aa5ff80c7f004437d45964ee0abb22d36a3ca8666e14d9ec318e0467f894",
+      "bytes": 8982,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00004.diff",
+      "sha256": "6b094c9840a0fdaff87b642bb45c47a07f634cf2fcf2474abee7a85b0fa2346c",
+      "bytes": 10613,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00005.diff",
+      "sha256": "d5cceff2b268079cffaea3f84cb1e1aba4fdb8e4e30b1cb3803c923207ebefe2",
+      "bytes": 10806,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00006.diff",
+      "sha256": "96ab9903bc129721927141afb2fca0afe3b9b91c90aecf10f5e6e636a4e12733",
+      "bytes": 23558,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00007.diff",
+      "sha256": "02c68a00430f451c11d809729ce4098f0220b1df2c7ef6f59b6fe8f2c6d6e02c",
+      "bytes": 22173,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00008.diff",
+      "sha256": "92b9956e42709fe2b393953ab0e3ef147b7ba737a8ff0047139e2879e2277297",
+      "bytes": 23098,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00009.diff",
+      "sha256": "d293ccb3ab1f7b8ce82014d4509ad01eb4642c685d39e4dec84d75bddb8c0b21",
+      "bytes": 21694,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00010.diff",
+      "sha256": "43f0a0370bbb22e8bff77d9bf5d2e910b2b70bfc6791decdce5936bc23464389",
+      "bytes": 8788,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00011.diff",
+      "sha256": "feaff3255bf0679fc3827e4b07b426fd3af7761db4d8ca26952be6c77bc3d697",
+      "bytes": 10625,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00012.diff",
+      "sha256": "2112ff254e0b4cd5d4e9303ea9fdf028b3c5ac37872d3b23d9e1d25e4642fd58",
+      "bytes": 12125,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00013.diff",
+      "sha256": "e11fb626a13bb0f74138a936372f351520aeb4e90f3385aa932bd0d9f41d0e22",
+      "bytes": 11287,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00014.diff",
+      "sha256": "86e026dcd3612c556677b379412dffb20f63015cd455981a3086062c5ad6c895",
+      "bytes": 10830,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00015.diff",
+      "sha256": "10cea0af46fd86ba243374872fc6687582e9eb6a19c9132317e028e78e3f41cc",
+      "bytes": 11555,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00016.diff",
+      "sha256": "88f85c39a77bfae4e0cb45da2d8ac21754e08044fdebf7c89ecd97e19d4f298b",
+      "bytes": 9277,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00017.diff",
+      "sha256": "b7d5881a49d2065891d70f2be2e0e7cb26e508cbaf535410c8761cdf899e27e6",
+      "bytes": 9302,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00018.diff",
+      "sha256": "286a32fd929b7906d70e59192adeefa0b516829619774a4a6979bc715e69dbdd",
+      "bytes": 11052,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00019.diff",
+      "sha256": "0f66620166cc994a2c26180b28d64ab076593c39b9f30cf98462241acdf4a747",
+      "bytes": 14104,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00020.diff",
+      "sha256": "e99715e628d00052e4a97aa27414f93528e8e3ea2dcfabf8a942534bbdebef07",
+      "bytes": 15504,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00021.diff",
+      "sha256": "ab9536905a5dca8bd5a7c60523434b139f445975137295e1f8048362213a124e",
+      "bytes": 8698,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00022.diff",
+      "sha256": "27c1931471c66fac3ca3c0ddb290bebf27c800658531fddb82fb19e6dbec09af",
+      "bytes": 8689,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00023.diff",
+      "sha256": "758a3c16b41831f51b6cf0b624301027e1a11b5dae3eeeb8abd6f996f7218693",
+      "bytes": 12016,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00024.diff",
+      "sha256": "91a21c4f8e6fed81ddfe9e9b7caf9908f6dc9f6a4626e348082e7a91fdb649cf",
+      "bytes": 11438,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00025.diff",
+      "sha256": "308f3216f799f098c40c2ca0d306d1edb6422c429a6c285179f1ccfc095840ba",
+      "bytes": 10953,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00026.diff",
+      "sha256": "72b4b4719427fd74c542bcc1113e0b0ece1d3e7baacce71282d05d4daa59ed00",
+      "bytes": 10990,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00027.diff",
+      "sha256": "87917cbbb285abe76fef7674bb94a13d8e345a8bcc5cbe4fb04d791fb453e8fb",
+      "bytes": 9269,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00028.diff",
+      "sha256": "d6aab23159ce7c5a51220972ba7cd4dd8b0570d0325cb7a38de9e23f45c6db2c",
+      "bytes": 9398,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00029.diff",
+      "sha256": "9445dcda468c3d32579436c465f5a664a4ea70f32b2072fcf59ba1b225752511",
+      "bytes": 9288,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00030.diff",
+      "sha256": "e0f67c73bd168f5d11483cdef5ea22c89159a2e01484bd69dd7dd38f857927bc",
+      "bytes": 10531,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00031.diff",
+      "sha256": "3f1a07215f07bd9558b637aa4ca71501a196dcfd7867c190688e19ccfcd4b064",
+      "bytes": 10548,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00032.diff",
+      "sha256": "99e29f77ad1f934cd84f683e5b6c46a592990309133b6236b6c0c7242131cfef",
+      "bytes": 10867,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00033.diff",
+      "sha256": "43eee8961b195a7508f8c8312feca3aab5707d621982ef90b2925f63e4f3b0ef",
+      "bytes": 10299,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00034.diff",
+      "sha256": "4f4e0e352668ae4e3b9a79bc48fa4174fb0b0f475d590ae8151272ba3e9b74ba",
+      "bytes": 10655,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00035.diff",
+      "sha256": "1eff2b42bbe80dfe06bd6088cab6fbae62afa4dcf29d97ddbbc7af088a620d46",
+      "bytes": 9584,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00036.diff",
+      "sha256": "3579a45027b93ff22374ead30053b6d47407d701f8d904e31f7c0316e63e16ca",
+      "bytes": 9635,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00037.diff",
+      "sha256": "4cfcf5671276565f17689499164e5fd00b6e786a38f9767a81093e1aa9a810b5",
+      "bytes": 10088,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00038.diff",
+      "sha256": "0eb2bdc7581adea01cc8f8bb401538056983864690cb09eabd54c046919ee1b4",
+      "bytes": 9701,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00039.diff",
+      "sha256": "29cface3ce1be129c557d51f78128e1b5afec3418cd2586d178dcbe3838b11d7",
+      "bytes": 13804,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00040.diff",
+      "sha256": "13c75a6c03bc5569ddc4e6953eef2986690785029747c06f88e4996c498e80c6",
+      "bytes": 7630,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00041.diff",
+      "sha256": "41f45bceb8bc66dd57122e52a738449b4ac445f6795faf631522f9f70f1270be",
+      "bytes": 8529,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00042.diff",
+      "sha256": "d4b67478d85b9a4e7da16f9cc3845de1d87a08647309b3190c4575668ebc8d0c",
+      "bytes": 10275,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00043.diff",
+      "sha256": "ffb1aff0dbe8edbd7af633590c724cfe0186452bc14e5cf2c744013094b56a39",
+      "bytes": 11924,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00044.diff",
+      "sha256": "b774b697855eaa7904fca7d84350bde41d00d28dc8236ede091d819a9f27bd3c",
+      "bytes": 11056,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00045.diff",
+      "sha256": "c8f3d8786b292a253d2f247f71baf0999a29eaf40d550e587e0eaf88da3f7c9c",
+      "bytes": 10576,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00046.diff",
+      "sha256": "bc33b16853c8ea16965231e8093ea93d46c6242f7f294bdf0db733ff485de5f4",
+      "bytes": 10341,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00047.diff",
+      "sha256": "590c9bcde6fdebdb509b6a1db071685d2cd38c861ceb038041ea0764af5fe907",
+      "bytes": 9021,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00048.diff",
+      "sha256": "c648f6b387db696756d0945fe828c8a49370aa2cfd02ed014f7eaccc4f396ac9",
+      "bytes": 8928,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00049.diff",
+      "sha256": "4edf89746c45b61beb111512ddce3830d440d732851499076eaa70ca5b77ed2c",
+      "bytes": 8004,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00050.diff",
+      "sha256": "90b509cf3e86553a4fa1992c8d0d486d8f3a6112c3e5403af5433bad7982fbde",
+      "bytes": 8792,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00051.diff",
+      "sha256": "f8ada4c54dea6e3c2758cd7b2660aeefe61c83cbab60c5c9d91249cee5aefe27",
+      "bytes": 19019,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00052.diff",
+      "sha256": "236e1ae87b8b068dc51bc7b7ec41cec34053957bfc1e51a282e56279aa9e3887",
+      "bytes": 12016,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00053.diff",
+      "sha256": "1bae3d8a0a6ad20aec4eb59c423e2715c71999514622f09736de0e9396d801f7",
+      "bytes": 10227,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00054.diff",
+      "sha256": "a19bf1947e8498e353591e10137523bc32b90e1d33eb43a89ea4bb6ba54349ee",
+      "bytes": 12913,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00055.diff",
+      "sha256": "3b9d677f9c978736cfe81cbb577cab697f5aefaa66ce3b5dd8dd485c1d07c7e0",
+      "bytes": 11721,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00056.diff",
+      "sha256": "ac188c397c5b587ba0396b1eb81c30498970ea47b2bdea69e9b35222d790cc5c",
+      "bytes": 11307,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00057.diff",
+      "sha256": "e9e826fad3ab52dc43d427fae39e02cca00bdb9eb1666468a727f1d479235979",
+      "bytes": 11361,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00058.diff",
+      "sha256": "0d04ce775d16bd188ac5597615876480362c90f7fb62bbd5cda2ddf68d319e45",
+      "bytes": 9747,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00059.diff",
+      "sha256": "45228630f6fb15754054260ec5cf76740dd06778a182f1cea4c89f33ab4721ad",
+      "bytes": 9784,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00060.diff",
+      "sha256": "e24f633f618e836ceed0e2739e98ce446526bca7bc86fca0a8fb66231b633252",
+      "bytes": 12018,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00061.diff",
+      "sha256": "66c3657953146a608357fa6a44d6f31635fdde8b3039325e5e973b47c7bcfdef",
+      "bytes": 9252,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00062.diff",
+      "sha256": "383cf6cd9bebf92f3419d953861f9d62aadb07adc3e8becc1b6831ecf3cd5c18",
+      "bytes": 10516,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00063.diff",
+      "sha256": "acce0d456dae4fccf91e4ea2af8477c9e2df7ce397a282050d26704358be11d8",
+      "bytes": 10466,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00064.diff",
+      "sha256": "d1a6aa1d1549facfd8bfcaa195769cf5e62933e4f0405fa955cb3a85d62c83eb",
+      "bytes": 15954,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00065.diff",
+      "sha256": "7486594c70ece2ab5708e31c29fc940f190ef2209c64ccd3d65f227927457e5d",
+      "bytes": 11176,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00066.diff",
+      "sha256": "d0d6139fd316b400bf2c4bb270bc82700579cde7e5309e5a2b8f4829871b23dc",
+      "bytes": 11384,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00067.diff",
+      "sha256": "ca69690049908a874653d778ac6cf8653269928e38bb27786e2bb0837dcb2299",
+      "bytes": 11489,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00068.diff",
+      "sha256": "b29b4a81371e761367097118f00ffbb7b4350a91a10a00efc7b3f9f4ad5fac6f",
+      "bytes": 10565,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00069.diff",
+      "sha256": "8336c85c313755195c77d19fd80ee47ab8660d40dac1c402737e62e6a0bbfa2a",
+      "bytes": 10617,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00070.diff",
+      "sha256": "907ce1c3ed8052348d42a5f901069fbfdfdcb9759c23f1f07383b9aa5ad7100e",
+      "bytes": 9922,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00071.diff",
+      "sha256": "e3270908fda38418b25fa764af939ab7c19a417b69ac095bd06b52e050f30ba1",
+      "bytes": 9570,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00072.diff",
+      "sha256": "854b6d2b410e3e32e7351b8fb94d89981cf67b8aaaa6452a3c2d032f08ca649f",
+      "bytes": 11621,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00073.diff",
+      "sha256": "45586f21c39ece5a7b90569da76a07bc5029f72e18afd2e5561b1d150b00310e",
+      "bytes": 11775,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00074.diff",
+      "sha256": "e166b12160b2c28578739364b934942592f06efe18434b606e6fd7230baf6249",
+      "bytes": 11147,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00075.diff",
+      "sha256": "45618e805fe776dba62955677cf4958da3bd33697ada296c26822ba4b08420ca",
+      "bytes": 11017,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00076.diff",
+      "sha256": "436aff9df482e2b243f1279f457765819efb5b2462634fe9d9db181b9e0524dc",
+      "bytes": 9576,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00077.diff",
+      "sha256": "e8414e479fb11e14792c15a838addaaf17a7002044f85d0aa69f89b1405427f4",
+      "bytes": 9297,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00078.diff",
+      "sha256": "ee6d719e4070319fb18682ae35ec18df6f289f34bfd4182b729f09957d4f8249",
+      "bytes": 8977,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00079.diff",
+      "sha256": "a667be3d3249f98e693e643b5d4d5084108ae72990076ca161605f80b81d1e18",
+      "bytes": 11257,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00080.diff",
+      "sha256": "fa59cf89b4c6527dae31e3c74febb6d7afb8dfd256e84bf748df934f18daf3ae",
+      "bytes": 11701,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00081.diff",
+      "sha256": "32c666409cdbaacc06b6bdf37fe3ca986ef1f1c482c9f60030f9ffe1cc465cb8",
+      "bytes": 11012,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00082.diff",
+      "sha256": "ff46f1083bd4dabb4ab291acc66cc632e6ef51dcad37601ea8e439dc03fe001e",
+      "bytes": 10806,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00083.diff",
+      "sha256": "2fba642b7634d3ae3c1b873b6b44cfd6bf62e855486d5c2c019923b76834cef0",
+      "bytes": 9574,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00084.diff",
+      "sha256": "90fa1aa88a286db731eab72baf8eb5be6a02cdda2ecce5360abf1406b025fc92",
+      "bytes": 9135,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00085.diff",
+      "sha256": "249cf5bb5b5b97d36d3c5b9d3328ad605b1c5a50e04b52cb6a46e3bf7c1a5b8e",
+      "bytes": 8656,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00086.diff",
+      "sha256": "3a46b03d4680fe51b891d0269422604b13d5182e91cbdb9ec187f28bba708e1b",
+      "bytes": 12889,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00087.diff",
+      "sha256": "b76f7f8776829d2b21e731fd909cbc91afac9b2d957ed921ef3e9b384fe10139",
+      "bytes": 14641,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00088.diff",
+      "sha256": "60ee7d4eb5edcffe62b0c099a287b8907a44e585147edf74881ecdb1a6058cc4",
+      "bytes": 11070,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00089.diff",
+      "sha256": "ce3775c66393cb2d4be50ae0d46aacb464226b4383db1193b4f8d6c9c8c205f8",
+      "bytes": 7879,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00090.diff",
+      "sha256": "291ee2c6253e247d43a61e0ac2509d95a7e6f67a156a9455c7c71b8aaa341fa2",
+      "bytes": 7806,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00091.diff",
+      "sha256": "cbe6535a2ccfcd3383aec452ca694417152b70f6ecc5425c4372c42e95b5642f",
+      "bytes": 8334,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00092.diff",
+      "sha256": "4644ac68945b6bd4695e084959bc634c1d58c71b3326fbd2d8550df0c93dea31",
+      "bytes": 7296,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00093.diff",
+      "sha256": "2e5cb71b7ea63647019ec2c6ccabfc11d2428829dd7dd83db7852bf1d1a3d9b0",
+      "bytes": 9038,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00094.diff",
+      "sha256": "55c414e780497778ad5d989ed63bd016e8aaf3129846feb0476698f401cbf9a4",
+      "bytes": 9853,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00095.diff",
+      "sha256": "2107c184cf37b7cb6be0a8805ad97b6d651026b7e5ce82680ec2fa4b94ddb4c4",
+      "bytes": 25361,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00096.diff",
+      "sha256": "4cf64223d82f0c48a9a38682c205a5d226ab58169e57aa13804df212d734a1b3",
+      "bytes": 16587,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00097.diff",
+      "sha256": "c43953c2ad46b027befa3042956abe6139dd7df4dd1e4f1bab6e7f92ea1f8444",
+      "bytes": 16849,
+      "mode": 436
+    },
+    {
+      "path": "launcher/diff-parts/00098.diff",
+      "sha256": "7ffe0923375f1689ffbdd072bd3bbcda37688d45f24a363ac5574472185d3972",
+      "bytes": 26077,
+      "mode": 436
+    },
+    {
+      "path": "launcher/final.md",
+      "sha256": "9d608e9ddde5f7593412b513925c8ce4a3f55664db49f9cf7cc3448fe303f451",
+      "bytes": 11240,
+      "mode": 436
+    },
+    {
+      "path": "launcher/full.diff",
+      "sha256": "19aec29423a891b2e6c9e3f3796021123da01cdf380a5d9d01842753a018d90d",
+      "bytes": 1148685,
+      "mode": 436
+    },
+    {
+      "path": "launcher/inventory.json",
+      "sha256": "5b010666d35b5da737ac0503b9407cd04430ec6f39b412df1d51d6e333e6c4d0",
+      "bytes": 7593,
+      "mode": 436
+    },
+    {
+      "path": "launcher/prompt.md",
+      "sha256": "7c8f406e2b589768efc701ea89c2f4f6418a0c926c6bf53cd67cc95361f2fdf7",
+      "bytes": 20769,
+      "mode": 436
+    },
+    {
+      "path": "launcher/receipt.json",
+      "sha256": "9195f1fc5ae329ee0b8126cade864843a86b14acc1db4ed1d921707d8229a3ba",
+      "bytes": 1897,
+      "mode": 436
+    },
+    {
+      "path": "launcher/settings.json",
+      "sha256": "e0d01fbc6932b85ded3af93117cdb6997d5e9bdf8e6589e28bdff901bbc63723",
+      "bytes": 1944,
+      "mode": 436
+    },
+    {
+      "path": "launcher/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "mode": 436
+    },
+    {
+      "path": "launcher/stdout.jsonl",
+      "sha256": "7526f12ac86143b4052839f11194bc3b83956148bfbf89876b176eef5f5360b4",
+      "bytes": 2376073,
+      "mode": 436
+    },
+    {
+      "path": "launcher/tmp/claude-1000/-home-diego-projects-malpaco--cache-review-worktrees-193-review-5692d5db/7599f511-d11d-4562-8c28-dbc52d79845e/tasks/b5um218r3.output",
+      "sha256": "13bc75f44e17114fdc087c042c39e219ef8dd4a4db1937e1c7a264eae37c11f2",
+      "bytes": 968,
+      "mode": 436
+    },
+    {
+      "path": "checks/attempt-1/build.log",
+      "sha256": "408ae1d061de5e1f9539e3619926a8d9aef99c4007445eac2ac2cce04279387d",
+      "bytes": 634,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/commands.txt",
+      "sha256": "6afbe081f529312534814528e07a6ae2c2d81e26dc431371b06b4c9f85500868",
+      "bytes": 946,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/dw1.log",
+      "sha256": "33dc02bd3bdebe9eec0eb116f7f32726c0d9810b25aaf12d705373e80fd2d45f",
+      "bytes": 1314,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/dw2.log",
+      "sha256": "34727e38f7f1122bc62002026490a1c4bd0b4aa28180d30d39df060733bbe0ef",
+      "bytes": 19153,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/geo.log",
+      "sha256": "c30af8e0beddb7f49d76cd50719b4e19949f3ef1cda1c1ed1897c470efee4f08",
+      "bytes": 4314,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw1/index.html",
+      "sha256": "6189547ae178df89cc4950f3d63db2bbd239a39bc9cc9f87aed0c21be9baf8cc",
+      "bytes": 574623,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/0b75b0b267d692f381c8fefb5c5fa2ac7092b699.webm",
+      "sha256": "e2788bdf4e4534fff9e2178a959000e81d348903c7aed9045b2b87ce2302797b",
+      "bytes": 167226,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/1ea6c96cd6535d4e0e36e5516c07526dbaae6612.webm",
+      "sha256": "6a88cedd1f1cccd203575019ef6beb98b7d13b77be93c97b1a64b579bc19dc62",
+      "bytes": 163694,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/2564cf680ac175f5fa58ef3fbdc5a7accf832397.webm",
+      "sha256": "53919c64c3f015c26724d0dc5da0e139ab9a51c7532f51ca02854cab88bb18b0",
+      "bytes": 172127,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/27c511eabbe5f9b7cb85da4b63d9c2310060004d.webm",
+      "sha256": "a1ee224ac09c7ad4549537cfd0268847e0e959f04b322d09c76052937cef6462",
+      "bytes": 186542,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/27cc7aec97fd8c29c1192f197f534c18d362fd24.webm",
+      "sha256": "77373ffa0d535bf9b51a6291ea03175ca0707350d34654cf54a589cf7de4155d",
+      "bytes": 919552,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/2912728df813c98479c920b86be8df6f7fc3755f.webm",
+      "sha256": "0c4e0c3cbe3a1d4349eeb36ad3e8bd85c7f64b519c101658837001c02b2077c4",
+      "bytes": 342030,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/2a597674365489e41587c6bc5c301610997b19d8.webm",
+      "sha256": "163f1746374bb69bcb8bcb1753edc5f12c6809e7537172a09085177664a982a3",
+      "bytes": 381310,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/2ae278eb244b74d0f0f4e19c003eb3608bf74118.webm",
+      "sha256": "2082259e7d01d532d7a79231ea6314d8409b514695908cc459d23f499c7267e2",
+      "bytes": 510293,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/2b6933649db4460b20b7983e26a3698a37ecb9db.webm",
+      "sha256": "5d4f2d45b37a7c30f75b8e9b01fba19d8c3d2be93113536002d26c6ebbd1e445",
+      "bytes": 457338,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/34ddc203c724a5382b0f448558026a1e9b72f6e5.json",
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "bytes": 6791,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/4c78c9e1ccbe64add399170480c17b0ff52454e4.webm",
+      "sha256": "80bef483b5a2106a5126a8b5cb40ee60cf4fdbb43f3dbac85b6621bdadcb46ee",
+      "bytes": 195462,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/56634c983148246b9d0f7f4ac59fbec732af445a.webm",
+      "sha256": "8b0a5e84ba15f13f4b79613698f97c74bb983d6deb82f408ce406d9a3391f857",
+      "bytes": 193744,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/5918429a48500197d9bc26088339df4c22e88b8b.webm",
+      "sha256": "bdd5fc5f3a716b30341effb118b344897c8aa492d36db8c21a9aaaf4afbcba83",
+      "bytes": 385382,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/652dc9280bfac740d3decc85767717c12d66f402.webm",
+      "sha256": "8e1046203d0d580c69b2d5551299426d1d4ab9b6e1facafdf4e413f1024f285a",
+      "bytes": 487648,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/6f480c88f00413dd4c060e057f74e8c2f55d44d2.webm",
+      "sha256": "dd393162cb8f938ac7ca7b34a33105e4124610a2b8c122bb72a7f9da359b846c",
+      "bytes": 153138,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/73ec256e2f0e7dc4494c2b0d101e37bc805eb7b1.webm",
+      "sha256": "500ae81bfc8566de1a725910636b160d1f00d2523ace8d4da182b4afcdeb1847",
+      "bytes": 558090,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/7b4f7f126d824d0beb6cd60c17bf9077f884c2e8.webm",
+      "sha256": "6cb24f5f1c756f6892a670033493cbfccb4cf821746a030642540b3f7b0f3141",
+      "bytes": 314469,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/7d70d0b252e7d526639b794f0070e5432e4795c6.webm",
+      "sha256": "1b31fb30f2c0b977b141b4fd6b7d861b8b10ece9383dd083aa7c262075ad0575",
+      "bytes": 453918,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/810432de02dc0bafc8cb9ec13def4d37df578d7b.webm",
+      "sha256": "c96d39345401f63118110b12b02079552682f9009c3b81096932236fe2f2eb5c",
+      "bytes": 153581,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/8a7badd2cd0d0528dc2f3672e6fa3fb6937ffa6a.webm",
+      "sha256": "4636c809783b731358342477a252ab7e1a7d18fd18a96c8833588293e7630c64",
+      "bytes": 206009,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/922c5af1d44c8b1ca2c2961f64d2381ed0031e09.webm",
+      "sha256": "7ec60bd9ccb0035ecb652d4639b5d2e9315180b73860bfddabf3a80af1ae431c",
+      "bytes": 1005953,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/99069bfc5e66eb1a6fdcd28084d58dc187212652.webm",
+      "sha256": "a700d44c7b91dcfdcff7f8b6c9ddd7a6f8923b800585b84804b47a078e5054c6",
+      "bytes": 172812,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/9e4751e410a946b131549c6b15f3967bc10a8044.webm",
+      "sha256": "38c397b8e46e9a3ba15145147bf66c8b5dd002869a0a52bdd65cb84acc9d9039",
+      "bytes": 195768,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/9e56f88ccad57ce978269aa7ed0496db130d947e.json",
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "bytes": 7090,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/b4b8a639f2b78d15d44fb7a1435b09738633912f.webm",
+      "sha256": "77969cd724e86915471dd8fc137b7c1951aeda7aed2cb958b09bf9792fd3b54d",
+      "bytes": 388766,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/c14efaacfe12a3f28f83ef763875f9a8c69f43d8.webm",
+      "sha256": "494ca5c3539793561e840e4043c0f395354cdd5d94fe34775b6f39a3824a282d",
+      "bytes": 460310,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/c3c9a21aefa48e53b09b5953aa113b60ded22752.webm",
+      "sha256": "155218a529e46c9cf19cfdfe424175d97e2e98d7c793cb01a7eb314aba508f9a",
+      "bytes": 1034421,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/d0789ba6423c96e1564448793dbe91b3f180aa94.webm",
+      "sha256": "28b68bb259788133e08d5ebc78f8ce9df9ef0b4228b326bb4358c961e733cab1",
+      "bytes": 902706,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/db37110686f11e2863bbd84552ac409b9a67c177.webm",
+      "sha256": "2db4c8c53fcd64099735ffe184838239d855d9c6db41550c12c99032d8ebb910",
+      "bytes": 390148,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/de0a7db23eda538c81ecfc68d24ce7e97e20daa6.webm",
+      "sha256": "c00717abebf8a2c201a434422b0bc1fc96f07d860ddda403bc4ea2ae101ad4f6",
+      "bytes": 426971,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/e5d5b2ed6529b11969c327ee547e2bff036069af.webm",
+      "sha256": "cb26d7bbc2abf8c43208c4f00bffdda604d445a47e7607064dee4f75746f48d5",
+      "bytes": 206186,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/e6be9f6f555e8e0845d24241155c9f7feeb4ccd0.webm",
+      "sha256": "7e6ce6027eac52b695f0ca7f7d58770c80b8337d96e0f5b1f5849dfb44cea02f",
+      "bytes": 199719,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/f04bb4218f511926ceeccb1390222c3dd1f530b4.webm",
+      "sha256": "326d8f2d3bb14ac7dc01ea1bf5dd4e0899a88dfb1cf400be7108b47613ba335d",
+      "bytes": 534765,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/data/f7cdfbca2764007647a07d7722b3bfe8d6547a9f.webm",
+      "sha256": "787ea0437485c31e1f9f1a45ab86ebf11498b4dc9de04d937547962b457e519e",
+      "bytes": 172614,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-dw2/index.html",
+      "sha256": "d28975d7f9f9a89cd77c1f734b5cb735b826ad1adbdfaa9ca6fe845e7435c4d1",
+      "bytes": 3259315,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/html-geo/index.html",
+      "sha256": "9a473e6247ad7faea9562de1beccd9bea3d1164a952bdca62f803aa5e66858ac",
+      "bytes": 1891791,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/accessibility-4CylED/keyboard-stop-1280x800.png",
+      "sha256": "2df9d184064573f09052faac740c618a34e552dde808ebadc289776e2a1d3386",
+      "bytes": 254597,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/accessibility-9ZqfcQ/capture-controls-fit-1280x800.png",
+      "sha256": "411c63607bcfd5d1ef76d8ad1508ece5dc9ef43b43b9f1283a41dd863d4e7044",
+      "bytes": 257333,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/accessibility-dxrOLl/capture-controls-fit-1920x1080.png",
+      "sha256": "1762aba89d3c3af8e212b580b0510634dcc3e11eec068e1716797bfcb3014e56",
+      "bytes": 441833,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/accessibility-niXmlz/keyboard-stop-1920x1080.png",
+      "sha256": "e47e4190cfbff8de774e711433a730b29688af5ca3927ca22199e66759cd3aeb",
+      "bytes": 433577,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-05bdlm/manual-stop-1920x1080.png",
+      "sha256": "cef25791a47bc67982ff0ee8457ba9610951fe567043452e3bb95b8def4c7639",
+      "bytes": 436427,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-0Tlkbj/capture-minimum-done-1280x800.png",
+      "sha256": "58d3adc2774908af639dbe544991c124c2f9bb14bff45cda6564df7eaa78245c",
+      "bytes": 260442,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-36PanK/capture-maximum-done-1280x800.png",
+      "sha256": "be0236b503326bfda0ef10931b6ab5b11a18168103ec6979d50f8e552149bfc9",
+      "bytes": 260204,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-61azgP/single-tie-1920x1080.png",
+      "sha256": "6160bd5508526fc9cc40cd64c53896345507f8c162f2dbad2548ffd45adde71b",
+      "bytes": 436671,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-7cxA2X/capture-maximum-pending-1280x800.png",
+      "sha256": "bbe074d20d1bea0a2df37f03ae8a4e7472156fc2a5d23b1f9967672eb57073eb",
+      "bytes": 257189,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-DyrIic/capture-maximum-done-1920x1080.png",
+      "sha256": "3aa681dfb9aecd88b9f20cdd3cf298e58e8360fb01b2c260ee003f101224201d",
+      "bytes": 445864,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-HN87MK/capture-minimum-pending-1920x1080.png",
+      "sha256": "4a6bdf95c39ba3f778bab663f344713a27a70ec8f0c97542eb96d54ceeacb7ee",
+      "bytes": 442117,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-blOBG7/single-tie-1280x800.png",
+      "sha256": "871bf280cb19b19a04a7609ab01d3e6cc8b4737fc63925ffff37039ddb1b94a6",
+      "bytes": 256491,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-dzsvgw/capture-maximum-pending-1920x1080.png",
+      "sha256": "62b3d99640f59c69cbfb11cada58a2ad909806d42b600aea1e766b01572566ad",
+      "bytes": 441870,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-eqjuhU/threshold-stop-1280x800.png",
+      "sha256": "224c25dcffde8253fe8af00798ac45f7ccb10973546988185e698a63709f7e59",
+      "bytes": 255657,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-ievcIq/capture-minimum-pending-1280x800.png",
+      "sha256": "9f0930a2e14122564189f3fe57fedbe9a9597d7c86e2e28c32a9db714ef2c98c",
+      "bytes": 257102,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-n2LmWP/capture-minimum-done-1920x1080.png",
+      "sha256": "98f0c3cf031bdd4c2a31dee41dc867b67caaa84d28efabca6b9324d6d8f8d922",
+      "bytes": 445839,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-oQAdNU/threshold-stop-1920x1080.png",
+      "sha256": "f262f21a1ca22343c1319728de017fb885941ce135b6b5aa66f83ad125d66456",
+      "bytes": 435836,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/battle-uOHaLP/manual-stop-1280x800.png",
+      "sha256": "5ad9b9d53cc90bb3ea2b2127d7f02957ab555ea9953fefbbdd7ed756d3d71cba",
+      "bytes": 256353,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-bounds.json",
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-capture-movement.png",
+      "sha256": "c245a5d315df574cd678437b6d0fb47e38ce38a2b02364a13d1483d1c6df4605",
+      "bytes": 214412,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-complete-history-scrolled.png",
+      "sha256": "5b2f5f6f75f90b69bc72db8424c6d6a808903f517e707aa6734b60bcff073981",
+      "bytes": 214331,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-exchange.png",
+      "sha256": "d667f636b479bdfbf394b4ce7cf72f289dae6a37449d2759736455e7bf76b26c",
+      "bytes": 211548,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-friendly-movement.png",
+      "sha256": "ed021ba9c7a4ca53556c1e7a50a2e1d136306c64c422b73892a15d891d2bf7e9",
+      "bytes": 204863,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-human-capture.png",
+      "sha256": "d41b6e779b648891a250d1006dd9c1cf138a8af69b291d24d5f54944e49f5b2f",
+      "bytes": 215919,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-human-move.png",
+      "sha256": "e55a87962850dbadfca76b4dfcd56df9f53359100c03f984f05083669f2091a0",
+      "bytes": 215831,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-reinforcement.png",
+      "sha256": "4756eaa29a96d0857406e10b0f2ae1eb4115eb2dab5c7638d91bef7a4ccef711",
+      "bytes": 204220,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-repeated-pair.png",
+      "sha256": "c2add789b4aebd251fef0c0e497f999d485ad8ca3962f6b75701de437f248041",
+      "bytes": 216696,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-compact-selection-ready.png",
+      "sha256": "3c29bb8ffa6be2f5086407a2d8d46c7381038093f923e4ea8a6cfea075a2f31d",
+      "bytes": 210183,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-bounds.json",
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-capture-movement.png",
+      "sha256": "abbc89a581d7b2fccdb307a9756ab2a2e469baa0ca2f59a2462f56d1c6c20925",
+      "bytes": 214216,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-complete-history-scrolled.png",
+      "sha256": "f8ca169f0bb083cb0765f3b8a8f8e980d7af143f127ebf30b98772cd15854b4f",
+      "bytes": 216365,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-exchange.png",
+      "sha256": "ac030c07ca44913ef4ecb2c7f076a434cd1a0995a7c957874326c350a35af921",
+      "bytes": 214047,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-friendly-movement.png",
+      "sha256": "7f584e16f8623620ee054768c92c484fde0232c67204b944a0460d8bbabf2055",
+      "bytes": 204654,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-human-capture.png",
+      "sha256": "1fff009e145d72f14d8d34c686930153805e42e45cb9910073c4f272aa8dd953",
+      "bytes": 215743,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-human-move.png",
+      "sha256": "5b8a43abed5733f8f1429b81e69a222bb7e572146c4c668bc2d773d38c1fe94d",
+      "bytes": 218877,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-reinforcement.png",
+      "sha256": "ed4e92ad69af0cc4917354eaaff1b0bb7eadb93009d2e71deacec52fed6c690d",
+      "bytes": 204012,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-repeated-pair.png",
+      "sha256": "7605d2bf2e3ccc8a7201e5d532c7684ea5526f07f91d7745ea7f38bbd322bef3",
+      "bytes": 217975,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-detailed-selection-ready.png",
+      "sha256": "66614462304234c4e9cade000fd4c504ed66e577aeeec8b4b54ec7bffac6714b",
+      "bytes": 209970,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-geographic-geometry.json",
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "bytes": 4704,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-bounds.json",
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-capture-movement.png",
+      "sha256": "22ac6f757fc062f345b8f4c4f340bd58c88af2be5bcd0ff01744c86d2908c2ff",
+      "bytes": 253053,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-complete-history-scrolled.png",
+      "sha256": "fd45c9233976ee2f8e897e4a7421b2ecaf54f69584b4043070b1b2b1a7731c63",
+      "bytes": 253229,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-exchange.png",
+      "sha256": "619e5c1424f1b3c3305739dd3eed111f9c1ee5569206cb0ed5d977e18ecff943",
+      "bytes": 248752,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-friendly-movement.png",
+      "sha256": "1df51c7a59ea115a2d0ae9cb9febd9f72ce3864030ec93d7f6db78c5eebfb163",
+      "bytes": 246442,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-human-capture.png",
+      "sha256": "e114eb6c19e10f01e4d2e77ae54bbac2c592871d408cf4010831fcc32666c066",
+      "bytes": 253717,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-human-loss.png",
+      "sha256": "f5ce7744bcc3320513d89582c40b67cb0abb91e07d869e493d6171ed97f4ddf7",
+      "bytes": 249007,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-human-move.png",
+      "sha256": "4067462832e641d029cf5bbd6a901745aad833aae220b9f685b78c39903da7f5",
+      "bytes": 256526,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-reinforcement.png",
+      "sha256": "2562f21a124f62a439f2a5611ec10105398d2c171c786006622223723c4ed126",
+      "bytes": 242250,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-repeated-pair.png",
+      "sha256": "4b0790496541ba31b7620e2c7bd0db7666c2e645076c5511bd9b9cce36901560",
+      "bytes": 249930,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-compact-selection-ready.png",
+      "sha256": "98161ba7a0550d349326e95657c83e5553dffaaaca8e8e5ce9d60aa6f8d6fd51",
+      "bytes": 248357,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-bounds.json",
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-capture-movement.png",
+      "sha256": "252735c06e485c0adf337d54a36cfd89966f1fe200e8a69012caf519bae0e455",
+      "bytes": 252839,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-complete-history-scrolled.png",
+      "sha256": "a01a11508d3ae6a00dcfde803112100c02f6429f436b31b42eb64158f24b7195",
+      "bytes": 255590,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-exchange.png",
+      "sha256": "4a2f949924f8a3474c592b00e80b66e06a5de36d0735cbc6c4a6b2a59e6f8c0d",
+      "bytes": 251333,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-friendly-movement.png",
+      "sha256": "fcf16ec4fb5141053499a93916596deaf597f527bec6522ad00cd4847410addd",
+      "bytes": 246224,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-human-capture.png",
+      "sha256": "84f6fc61ef2fc08270a450b60e74c8608417a1fb97b7f1a3a1ee0e76ac36ae10",
+      "bytes": 253504,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-human-loss.png",
+      "sha256": "969f5e3c57bc71cddb2c2c2dc81b5d314c489241823510e764bed8b24836ed24",
+      "bytes": 248799,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-human-move.png",
+      "sha256": "da8cbd30aeec8305d60d9a0e0c3b8e8cfcdfeea8a5795ab0cf4d57d5d66d1467",
+      "bytes": 260006,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-reinforcement.png",
+      "sha256": "690f8b86de605ec0c4459b9438bee4c453f2a43969bc95264533c3aaa8cecde3",
+      "bytes": 242036,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-repeated-pair.png",
+      "sha256": "c4120bf43d90cc81581fdb297310b54a90ed38692302126f2367867eb1da3f11",
+      "bytes": 252627,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-detailed-selection-ready.png",
+      "sha256": "0f34872cd322f1291d1979284654c035137b4bcd15ba3f822543e2eaf15b7b5e",
+      "bytes": 248142,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1280x800-reference-geometry.json",
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "bytes": 4704,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-bounds.json",
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-capture-movement.png",
+      "sha256": "3ed09432f8cb718e0685bfa84ed2e157dd657b53b08cee930ddc5a2c7a10f622",
+      "bytes": 354077,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-complete-history-scrolled.png",
+      "sha256": "e16ece726435d3923aae9ac8262fe954ffdbbd9c71c94a2fcf2ba2e8ea7f6bd0",
+      "bytes": 367943,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-exchange.png",
+      "sha256": "304b017612d88129973afd7bf6215f7d580c8e4068d0ea150c49989a9480b362",
+      "bytes": 349916,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-friendly-movement.png",
+      "sha256": "86c07b86a370feb87016e4fbb7c76976a874bda1664f952601afaca25f931b21",
+      "bytes": 352120,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-human-capture.png",
+      "sha256": "3196ed26c3fef451423625a174b7ab7d77b063e796dc526798744f350777066c",
+      "bytes": 356974,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-human-move.png",
+      "sha256": "0209ad16a71e443a4dbc9c1ba0d8ec880af9ae6c0995e184a192abf600bdcb02",
+      "bytes": 362627,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-reinforcement.png",
+      "sha256": "c9eb3b0fe46af65431f4daae057c125fe8e4f5ba539bcda2937e1c161e9cadb0",
+      "bytes": 339747,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-repeated-pair.png",
+      "sha256": "4b279bc892c9afdb5682a29b6662d8753f27ceeb368e4a602be9c1dcdcce8daa",
+      "bytes": 363479,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-compact-selection-ready.png",
+      "sha256": "2e7da5273990696c5c16cd8a2895f6241acc3239951a1214471f32cb49f145c3",
+      "bytes": 348757,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-bounds.json",
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-capture-movement.png",
+      "sha256": "3a408d9f5d4e963a2c0a1ea0fc7869354d0304f743d527c489e5079f29a55549",
+      "bytes": 353871,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-complete-history-scrolled.png",
+      "sha256": "7aeb3f190ab38ec6b1908378ed49f95221d93878d5c51d1e70ccd5e597060912",
+      "bytes": 370932,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-exchange.png",
+      "sha256": "51da461e2336db6806963e0e68b409e296babd1855d8f550dd4477f4eb529e2f",
+      "bytes": 353690,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-friendly-movement.png",
+      "sha256": "f285ddc9a0a436f526b77880eeebb464c57da774d875172f3b1b47c7d8b5ac71",
+      "bytes": 351905,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-human-capture.png",
+      "sha256": "f098f2b9e5cba94ece40df3bf0f29664ce32fa80923617dc67189a9e7d9aaf77",
+      "bytes": 356743,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-human-move.png",
+      "sha256": "c5628112649f92d35f556264bf48cd89e1567de8c6761ed3890a088a2d585f4e",
+      "bytes": 366507,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-reinforcement.png",
+      "sha256": "a9b28f5b37e8d92dfcbdc9d8b3900780148924e1ac33e5d4625d709971f0818c",
+      "bytes": 339534,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-repeated-pair.png",
+      "sha256": "9b4cbbbe6e04d4ff47d92c36943415d32d3792ee640b7fa55df3ae1f40d524e7",
+      "bytes": 365612,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-detailed-selection-ready.png",
+      "sha256": "64c4dffada84b0890fd28e3143d93924677682c22dab6d106b6491794227a6a0",
+      "bytes": 348541,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-geographic-geometry.json",
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "bytes": 4860,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-bounds.json",
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-capture-movement.png",
+      "sha256": "2b17caddf3cad393e2e368599c89066810b941009913e803025231c34f58dd4e",
+      "bytes": 427808,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-complete-history-scrolled.png",
+      "sha256": "2e070a069f685c0fe90e834b064a1732aa506d61ec33402e36a79a77fffb0adf",
+      "bytes": 443239,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-exchange.png",
+      "sha256": "3d562dc983c0a129b5a999fa03d55c7a3c3472a310370409262d3db5def55b78",
+      "bytes": 423471,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-friendly-movement.png",
+      "sha256": "30e4be054218d035cd5ee763cf5f45ccd176d0a49429ed2b7c65fdbef29fab81",
+      "bytes": 434573,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-human-capture.png",
+      "sha256": "0ab70b2250395885fb77f8a23e5dfa807a59eecf994297bb7285aaefca12abb9",
+      "bytes": 431360,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-human-loss.png",
+      "sha256": "9e59dc0cf453a4d9b8a3a89a0473cf0bd2ef8290343d864604d2e1e3de843d2a",
+      "bytes": 430436,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-human-move.png",
+      "sha256": "c24b3af8d4629227e6f30cb83a72f11f32e4e6942f03c6e3a3cbadc1a5af0ad6",
+      "bytes": 443869,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-reinforcement.png",
+      "sha256": "a4768a88cbf3b083ba70b98976397fabe12bf75270793775360eeccc86166810",
+      "bytes": 413875,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-repeated-pair.png",
+      "sha256": "926f5071f9f77dcddba70aeaf8dcd076b504fa655893cb44487f2a2bd181c0cf",
+      "bytes": 442433,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-compact-selection-ready.png",
+      "sha256": "f25daa2fa91836c1ce48f9dfec011eb93ce7ac24de5bf04d980b3a0b74bb07a8",
+      "bytes": 422231,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-bounds.json",
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-capture-movement.png",
+      "sha256": "7cd836c587c3e4732ad0558dd0af6170c1ef0db8c2448367342c6d6a41bb418b",
+      "bytes": 427639,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-complete-history-scrolled.png",
+      "sha256": "455e8f42cefde59c950ee46dcff8f885004d8b38081fadd2fff8c027edd040b1",
+      "bytes": 446782,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-exchange.png",
+      "sha256": "dba85436e92cff2c78401183319921e7d3a3c0dfe008dc48c0435911fc390637",
+      "bytes": 426361,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-friendly-movement.png",
+      "sha256": "bfc97462d43475e8ce05832789b88e2b859a5e636dfbba8fb18683684ae070a6",
+      "bytes": 434363,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-human-capture.png",
+      "sha256": "5a77187330963e8642d0799fbbaff91c8f0284baa8b923cac4056eae72c9bc37",
+      "bytes": 431116,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-human-loss.png",
+      "sha256": "7f1c4069f63e13c604a32c894943661d0ad9251557cc274216bb6a14ced7c8c8",
+      "bytes": 430219,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-human-move.png",
+      "sha256": "4aacb536b52c572c8b65c3ce0a7481cea48882b9e54f028396a7fc58a9febf7c",
+      "bytes": 446975,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-reinforcement.png",
+      "sha256": "b8daca3abcddca574d7f40afcac635e56efc8e6d6f8485620c00dc79bb254722",
+      "bytes": 413666,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-repeated-pair.png",
+      "sha256": "d338c922e268ae8c38dd2973c8ab299a5419fdfd6f0d68437243acbbefa634d5",
+      "bytes": 445977,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-detailed-selection-ready.png",
+      "sha256": "0f793229c1cbc1d9f65eb174f3a90af4c29699c34b2f02ff77cdc0831c66be6e",
+      "bytes": 422020,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/compact/1920x1080-reference-geometry.json",
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "bytes": 4860,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/game-event-log-1280x800.png",
+      "sha256": "d8ed91ee8e13cd51db77273af98f7289cf20b65df6dd1d3f74b8e6f061ed5e60",
+      "bytes": 151115,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/game-event-log-1920x1080.png",
+      "sha256": "9700f3e661026da4c254ba18c3b571967934b1a6122a02b416ddb2d7dd969b7e",
+      "bytes": 272277,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-0-1280x800.png",
+      "sha256": "9050b728ca3d0dd020700194f56bb1d329bedaf267456aaf1ed63a99fc4b913a",
+      "bytes": 201721,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-0-1920x1080.png",
+      "sha256": "f342a3c56c82d4ca093942d2eba2dd6929ab26fe3deba980a80f6c9d87c52591",
+      "bytes": 336342,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-1-1280x800.png",
+      "sha256": "df9bdcd9d2bd8519d0463d333eeb32dfb9b8d3ba704439e72838f0a9c8497551",
+      "bytes": 200857,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-1-1920x1080.png",
+      "sha256": "3fd615a1985bef9f5348cd09d5e45ac1c4daa835271f9907d7a7214f90665176",
+      "bytes": 336156,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-1994-1280x800.png",
+      "sha256": "30ea0ecbd7c37b5b40244abeab82a36acc38f853691ec69ef2bfae1d2fb2f23a",
+      "bytes": 203352,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-1994-1920x1080.png",
+      "sha256": "5658be1d97968885f8e35da2a4f708c00836f32984a1d6dc9c20054181fcc3d3",
+      "bytes": 339193,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-513-1280x800.png",
+      "sha256": "2c94d35cc5e0e40532b5d9dab43930730600c9f2671e7498e0168ed0c1a26725",
+      "bytes": 202042,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-513-1920x1080.png",
+      "sha256": "0071b9d3b506363b44ef463023ed1f8a01196a2188e6e7afadcc361cf9f38c8c",
+      "bytes": 337491,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-6-1280x800.png",
+      "sha256": "618fa5728bf1bccfee0fcb50446aeaea4413df90a78447b105cd4e9356390ab3",
+      "bytes": 201411,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-6-1920x1080.png",
+      "sha256": "f5f6a7f1fc18913584ee37de7c620fe7b1083469bc13ecd509ca772c703c95f4",
+      "bytes": 336932,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-749-1280x800.png",
+      "sha256": "a604f5c6ef360644e1f22960575065dca30a3e51328632b0a0dbc24830d44bb4",
+      "bytes": 200387,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/geographic-749-1920x1080.png",
+      "sha256": "142beae0a2316b715884eccb3d82f8c6014302f5134c6e0503f697c394660a29",
+      "bytes": 334707,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-default-four-seats-1280x800.png",
+      "sha256": "9815d74daf05e260f780a958d71ac8ddae559127efc0f4a74c93dc7cceda663f",
+      "bytes": 241614,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-default-four-seats-1920x1080.png",
+      "sha256": "8a8403c22ab610735843324b68766720e7f7b2d737c67b66457ab7707da48f7b",
+      "bytes": 412991,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-eliminated-1280x800.png",
+      "sha256": "0460d889ab25da3f6c12eb558e7c02f432034c261ab1d07d383ae0d4cd0632ea",
+      "bytes": 250001,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-eliminated-1920x1080.png",
+      "sha256": "1a47d87a91d17b60a082c769e42bc2b9a1f5dc723e5b30ff6bc20033fd0d56b6",
+      "bytes": 430305,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-paused-battle-1280x800.png",
+      "sha256": "caef6c65835bf90c325ad9043cc123d3af81f09c6e24ba0b3f976589ec409bb1",
+      "bytes": 253670,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-paused-battle-1920x1080.png",
+      "sha256": "625ecc3886d9070762fcf428781fece8d27a9a549a8f53be8dfafd327122fc1c",
+      "bytes": 431040,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-paused-computer-1280x800.png",
+      "sha256": "64f42cd2144d6ded351178dcced2f9044cb9039e7ea1b1922ffa4ce233a50329",
+      "bytes": 240212,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-paused-computer-1920x1080.png",
+      "sha256": "37c465809a9b6cc7616b39833df61a75ecab2cc73e81121b1c4633f0e08ba5c8",
+      "bytes": 410654,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-totals-1280x800.png",
+      "sha256": "de964dc408ac59aac9b29df1b871372b0820e07f5be4baf4c44aa82b824f7e4e",
+      "bytes": 242649,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-totals-1920x1080.png",
+      "sha256": "1f7ad19db5cab4042218c6c7eafdcffd5456b5c2613f7416a8fd58b87180f84e",
+      "bytes": 418013,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-very-slow-1280x800.png",
+      "sha256": "56149dc5c1ec018869edc3b6005560bcd719cf9bb514fbf6ca205ad34fda3d47",
+      "bytes": 250840,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/shots/playback-very-slow-1920x1080.png",
+      "sha256": "6d7c470f4c6c2fff86eb51b7896d5ac7999ce3016f855c0b26e851cc8987364c",
+      "bytes": 426948,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/source-hashes-before.txt",
+      "sha256": "d5c5847cede33e64ada9a1d85c0ce75a1fb89632193b5430760f550445e9228a",
+      "bytes": 3865,
+      "mode": 436
+    },
+    {
+      "path": "checks/attempt-1/test.log",
+      "sha256": "92ac69350bf7f6bfc079ec993b4b1e89cbef5d080db926d006a1019247e52e44",
+      "bytes": 23441,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-geographic-021f3--focus-without-game-actions-1280x800/cards-drawer.png",
+      "sha256": "b825da5a73a0c6807d3442f44e788d232ff6b2d0996d5067ee47328741e47c8c",
+      "bytes": 227675,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-geographic-021f3--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "sha256": "f24392310c3a7022a99f7c938148ad1b9bde08d6f5fd87804e399007841719f2",
+      "bytes": 388399,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "sha256": "336320f2d167faea5e71fcb59c0df26ac345a7f55777aac47a2a9fe86a89edbf",
+      "bytes": 224836,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "sha256": "ca61275a521219647ac2b51ea1840706c0be55ecce17b0dd777f9d9ed91d88b7",
+      "bytes": 203766,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "sha256": "ddb38ed88af50a4e2d695160487d905a8a3cf26ad4f36027bdf541651c086e79",
+      "bytes": 386000,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "sha256": "3bcbc13abd3b285c9ad1ca845537eade819503c27316c0e2741f25ab794f0cb5",
+      "bytes": 339296,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "sha256": "cfc8fa6d48de0714024b8fba8ce564a7f6bf77492f4aa046d50b6570c8e9f04c",
+      "bytes": 282707,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "sha256": "09b7c0c4c229a700bc803fe53845c9b82e211820907f2f4e81e2907228b18bfa",
+      "bytes": 241674,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "sha256": "69b9e75dd0ec7ccdf4c623d71490f34bfbf00b98f68056abee8222fb61431b77",
+      "bytes": 485415,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "sha256": "3dc0f77614bc70731542f1bf115db62f395bfbc179c6132a42ff1a85cbcf3410",
+      "bytes": 413091,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-reference--99a05--focus-without-game-actions-1280x800/cards-drawer.png",
+      "sha256": "47ed70154f46e6c38fc8c3e843fe08278463409d69ea0f4e8cce67dd6316ff3c",
+      "bytes": 267192,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw1/hideable-panels-reference--99a05--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "sha256": "5fa2a61e88d544d5148fbfd52be689725ece9b4d2f9545affd047b19c494d244",
+      "bytes": 467604,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-empty.png",
+      "sha256": "d0c6aec572ad010209eb1d897edd8ded9fbfc09a257ffea7aa7bcb6222b77e01",
+      "bytes": 264953,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-hand.png",
+      "sha256": "e18bf8df4a8f83720693945c383bc90b17314831cfc823ae6d0a5f8fbc289569",
+      "bytes": 266256,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running-running.png",
+      "sha256": "acabebe90d2bf890ef4d05bf17b05f40ce4fdc8240892a113815ca5d033509a8",
+      "bytes": 260117,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running.png",
+      "sha256": "3fb53873fb8eebabe0a2715bc54b86b18d9c277b1a004f6ac06fa002b717a45d",
+      "bytes": 266571,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-capture.png",
+      "sha256": "e00b9fd007d0ce9df66275620d513e66dc24e4ee8025ad7cf5a5520a4f3f978f",
+      "bytes": 261762,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-empty.png",
+      "sha256": "2cb5e9e4e431f2d983c14cbc30dc98228ca4e980ea074212783fd85e8232df37",
+      "bytes": 267271,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-hand.png",
+      "sha256": "382c8782f0fa11f352a2d6f7bad7f9c33ac24ca48a8dd89c76fcdff1f8e2ef28",
+      "bytes": 268307,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "sha256": "61ab825b336c6342e49fd1f341d61f28db50f7f3a803ed6a7f774b0cac55654b",
+      "bytes": 264066,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running.png",
+      "sha256": "cbea7a2a2a39cfab3f2cbcf576134edefbae15060294655c91fc9cc4e55312bf",
+      "bytes": 268683,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-capture.png",
+      "sha256": "78b0966541c69af1032e124adc0472bc2213af6f9862bd2c9a80d59163fe77dd",
+      "bytes": 261554,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-compact-card-choice.png",
+      "sha256": "e41b4a6b345ef0cf38e86382dfde609d97955b32c83fd16071060bdb4b9c3d62",
+      "bytes": 260513,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "sha256": "2b31c3d444526e5d11460ffbb30ffac631e23025cb754a44e63e8c6a1a748f31",
+      "bytes": 260283,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "sha256": "227f1bd23dadfcbb360dbc07189999a1139830317c676002e7ae5be4f75f952f",
+      "bytes": 231136,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "sha256": "9dff303f4582a727e84ea9f98f36f5db8b9b947dc442e09b184a8ee32ba39711",
+      "bytes": 228686,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "sha256": "6cb7f2ec7e8bfecb7f1ff11ea84b01b32f72e6186ee44f7d9208085e56a893a7",
+      "bytes": 226571,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running.png",
+      "sha256": "e6b010ed5536a303ef2568ffcac9940604e17fe9b2183dd28f18320cdf6fa816",
+      "bytes": 230351,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-capture.png",
+      "sha256": "c232452cbe1f806e71f5f52503797e7f0eb73958d22d2dac7043966cb332f177",
+      "bytes": 224523,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "sha256": "9c451390bd86c5649a427cce347b0f53aeb20b3594e53b441685aae5edf2149f",
+      "bytes": 233772,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "sha256": "e28d67db365265435a11a6f12294890397840bb53e21311799e696cce82202f3",
+      "bytes": 231717,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "sha256": "216e44eb264f072fb37f80e5df98532cdc1b1b4ea7ab95e50aa5770f0dd4ebf7",
+      "bytes": 231020,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "sha256": "b680412162be793f4aa510434ce67803702a1188ec2367a651b5f935a9c53f1e",
+      "bytes": 232494,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-capture.png",
+      "sha256": "c89762aaa18fe5a22bc2356a3129b15f5cc0a65addaece1b0bca44d8912d41d2",
+      "bytes": 224299,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "sha256": "2b0b2d2f139838141cf7107e4869e8eabe4e2fc6c70d3a742cdd29317d1ded27",
+      "bytes": 218911,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "sha256": "972308e8b0c5b17a79d3c738dd2d17ba5c5e4ec2414c0ef1dc47ff095d405931",
+      "bytes": 218702,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/metrics.json",
+      "sha256": "f0ca7b72cc6139426336168a4e89502b2dfe1a2030906799ef61b19c062368f0",
+      "bytes": 423474,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-empty.png",
+      "sha256": "4d87284e931efc59f35acb70248ffa3cba484f1a92a2f23d90f01afe8b8670b9",
+      "bytes": 448465,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-hand.png",
+      "sha256": "cf3ad6404ab3b1ddba265654710daa49fc2d5387d3fd4d241209179f4de0bd56",
+      "bytes": 462862,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running-running.png",
+      "sha256": "c8ae582e7529fdc314ff70db751800702d0c4ed46a23c1672284e64e9f6598aa",
+      "bytes": 453327,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running.png",
+      "sha256": "130069e59c95e45be05e9bc23764aa261ce0fd00bdd294f93a5e28e7bcf80489",
+      "bytes": 461313,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-capture.png",
+      "sha256": "10d7981657bfbcb46a784712e0a37b67f7c727583f30fc8797cb1385ed3381a0",
+      "bytes": 457039,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-empty.png",
+      "sha256": "1dbd7747c40f78ae4479c595b4e6344961bbc035d06703d9abd39d0e9c9502d6",
+      "bytes": 451467,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-hand.png",
+      "sha256": "fecc3d12bde9b852e3fcfda08f8b050791f707748e8051e06dd1a56e4e0fc8b1",
+      "bytes": 465334,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "sha256": "393c1b7491818139bbab6c790bed7079809976d1f0928a2f6a027a7d84f0dc06",
+      "bytes": 458654,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running.png",
+      "sha256": "4269243e77bb6f783bb190c2895d0492a5cfc31e90ccc963cc23e1f047fb0064",
+      "bytes": 464222,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-capture.png",
+      "sha256": "757f1357c827dc13c91ccd7add197d5f272d2c88a8a7e60e6ea1cbe914dd51be",
+      "bytes": 456829,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-compact-card-choice.png",
+      "sha256": "63c36520fb7b7e38c392a89e0bd2a0ab40c2605dc2bfe71156d6976a15ae35dd",
+      "bytes": 452810,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "sha256": "15d3840da92e9aeb08b8bd5f2ac1d5b1b5d98403703acea2ba5594b53e5b3e2c",
+      "bytes": 452588,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "sha256": "989fd980b65031fa6f46f6ec3dab703e9c43127407ee842c8fc5901c61f55896",
+      "bytes": 392637,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "sha256": "a48418e3dfc8158b48f1d8570fe4f7286d95389bf9b70ce49739cf565f895a85",
+      "bytes": 386207,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "sha256": "9d88d3316c955a0d5fc5c4f090e2246fa6051b26e946e21766652ee6d6b3c1d6",
+      "bytes": 385559,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running.png",
+      "sha256": "3ac4b9cffd4056ad3f6d5ac8bf169e4bf6a331538d285465f03586c0f41b031b",
+      "bytes": 389405,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-capture.png",
+      "sha256": "5812bf488d6007384c7e7e4dd8170345a65b326f08122adde4ad13271511b516",
+      "bytes": 379077,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "sha256": "58fbc1092a68b5d5aab0a390075d06c06a2c1cecd71fab86740aaa0dc0b98bd7",
+      "bytes": 395260,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "sha256": "b9d6cc85933f7459612cff7c0ae7e0b62d3f5a7de6b477f0a2e3ef333d0f641e",
+      "bytes": 389212,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "sha256": "01353eb0de14a2917f5e4bec78f0731ca6c604ccb8e6a87540ea409b19b90e06",
+      "bytes": 391412,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "sha256": "cdf17b0a676e57747b98bd240b7f9d0def74bb1e81e749265a460284c4223324",
+      "bytes": 392343,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-capture.png",
+      "sha256": "364fd2d5d7af4c180bd5221ea320852946a2134b3f091a63787af6afc2babfad",
+      "bytes": 378871,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "sha256": "89ec3782d70f2e11f0be2b619d86df6e52d9548faee718b76f968d0805da13be",
+      "bytes": 373834,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "sha256": "038c2baf614e281ff79103d2507a054aae2e22b6950cac88523fa3f2a0d7aec9",
+      "bytes": 373623,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/metrics.json",
+      "sha256": "ffa0b1a8f7cb670767be868263c48d64fd3376f3c95d0ea2d01aaeb49beb5724",
+      "bytes": 434304,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-compact.png",
+      "sha256": "233eb8882a2ae1ee6a879d78324083c0bdd2656f03014c5609df7c5869091d82",
+      "bytes": 246357,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-detailed.png",
+      "sha256": "fc103b997c884a5af1977c7cd9017acc6046a88c176f1d4f8d6493140a858aa5",
+      "bytes": 247340,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-compact.png",
+      "sha256": "74bd987feb437234ce4e5e75ff84bd37248d679031ab0895fb60c564fb2db754",
+      "bytes": 431775,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-detailed.png",
+      "sha256": "aac4eeab6cabe3448fb93ebed8c58e587efcfdfb6e2d94eb10d51679acd07d89",
+      "bytes": 432763,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-compact.png",
+      "sha256": "191b16b6241f8f4b567036a632ca4e7ab485c7b2cee0c2757960f2c45938288b",
+      "bytes": 249750,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-detailed.png",
+      "sha256": "f82471d79879f7e773e33180bdd416ba4345d9724ad1c561e09cb9acf981bf21",
+      "bytes": 250761,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-compact.png",
+      "sha256": "3836a760dc6abe25e85207359228068fc0ccfa0a3e9785a8ec09c2076d2cc58c",
+      "bytes": 438502,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-detailed.png",
+      "sha256": "1c5ccc3b96cf22a2a4c02f41ba2f399083e54e6cc2ef0e8a61c6e0b873917fa3",
+      "bytes": 439492,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-compact.png",
+      "sha256": "99e2f2c99666048acd4ab210cb765858bb7d6b95f5501cb582fcb88f8a1dfe50",
+      "bytes": 248783,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-detailed.png",
+      "sha256": "50fce72f04e2629b758499d5fd6ea0cda1ca0c215d0deedd1c7f4bcac6aa75f7",
+      "bytes": 249752,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-compact.png",
+      "sha256": "e4ff4bad26aa47a9cd90d9e78eb5bd3477edc5fdf5eb95d95edab7355b30c34e",
+      "bytes": 438693,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-detailed.png",
+      "sha256": "f6448231bb26970c9ffd8d0a2ab2982d0f3287d6addfe3f6263bc408ef1c1ff3",
+      "bytes": 439674,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-compact.png",
+      "sha256": "1ed6a120cf37c32137a689b3177cea60102d1957553056bd99b2120968891f2d",
+      "bytes": 242636,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-detailed.png",
+      "sha256": "c2383fa9e46231c2c6a6118deafe31f9931c78b7ee8bbcdd4e98c0e712fd0e13",
+      "bytes": 242403,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-compact.png",
+      "sha256": "07375c2a66cea3201ce0c15d5148c7e07716bd81839142be8bff752852901079",
+      "bytes": 244124,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-detailed.png",
+      "sha256": "c3d252c4276c1ad3105237f33673a14baace5fd4ecbc82615dbb6f6206eb4104",
+      "bytes": 243913,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-compact.png",
+      "sha256": "fac5c7a1267cd36f5ac766076e346b3250f229968b79d68692932ffb328f3f23",
+      "bytes": 426572,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-detailed.png",
+      "sha256": "b59f13b5f7daea941950c4266c0e9f76280120f9ad4a46eb0201ded4c06dd2e0",
+      "bytes": 426383,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-compact.png",
+      "sha256": "3ef96ff72a3bddab93493adfc13da5ec2c7dd81940b385b73f6620756966ef17",
+      "bytes": 435128,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-detailed.png",
+      "sha256": "534a57236df421fc6ad6cf10c8619b210db603b0607bb631c3caff6c0b627a07",
+      "bytes": 434927,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-compact.png",
+      "sha256": "7b692d518c66d703d5e1a7e6d407bb772d669debbfd8938da676038b7460e13a",
+      "bytes": 259318,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-detailed.png",
+      "sha256": "4943ebbd18932665b58be2ea94f31b9010e127e3ab93d70894bc865ffb3d8ac3",
+      "bytes": 260284,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-compact.png",
+      "sha256": "cde0b0a01ddc412fcbf661a672da172b7d87dabd280ef451cc349b629995f2ca",
+      "bytes": 451607,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-detailed.png",
+      "sha256": "13837547963a49ba6bedc0303a6e2f3f97534adad635e494e0858c1876297dcf",
+      "bytes": 452597,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-compact.png",
+      "sha256": "18390dff15e9a2a9b40351d01c72ca9afc2e8ebfe1cf8eb50f7e1715eb4dbbc7",
+      "bytes": 261751,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-detailed.png",
+      "sha256": "675ed6b48b1c193d83f5ecde5abf5c837391130e878fc996fff172a9afb89afd",
+      "bytes": 262724,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-compact.png",
+      "sha256": "9d7a011485f35d601df7af85efaa01d86e2ed51d22096efabc52ebe7f09e17aa",
+      "bytes": 253391,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-detailed.png",
+      "sha256": "cea4b823bbe234981793c3582857c28ef4562aba2bde116984ca4dcc9015072b",
+      "bytes": 253192,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-compact.png",
+      "sha256": "7bfecdec2f4fa0800f5415f560014a6731c5c2f0b0bdf882ac68da5740bcfb19",
+      "bytes": 455622,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-detailed.png",
+      "sha256": "a709d0a63e65cf351be6ddfc85b1e51b479c07f45da64f99b236d58c1c8bdf5f",
+      "bytes": 456630,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-compact.png",
+      "sha256": "59138b72d1fd1aff81f0ef10085d12b6560b851640e93b68392aa64ed2572a5c",
+      "bytes": 444500,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-detailed.png",
+      "sha256": "c1bffd53b54b20614393f9ea0e6cffaf985dc800e820786d25786f9f891758e5",
+      "bytes": 444287,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-compact.png",
+      "sha256": "93487be92899175510d3ae084564c0c8ec15731a759dfaddd32991ff15755b44",
+      "bytes": 261356,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-detailed.png",
+      "sha256": "676f59688301eb0733918d3029141c1e0863efd4f6af5e8b7d192bcb0c148dd8",
+      "bytes": 261149,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-compact.png",
+      "sha256": "cc45cf24147f4b60ac4d06df538ac4ab7580c1c94aa65f108804421d446f0001",
+      "bytes": 445924,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-detailed.png",
+      "sha256": "3175f1cb346b5af49fdf2f694a401386385e9ff987d1c3ada5c4354102a01f0d",
+      "bytes": 445716,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/attachments/geometry-e908ac9fc1535dda7dd2bcbf311c1d0dbc136675.json",
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "bytes": 6791,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/geometry.json",
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "bytes": 6791,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-compact.png",
+      "sha256": "d7972eedbbe4c357c7ba6858ec8ee5aacd96c09af13835813251f2c721f44cea",
+      "bytes": 273506,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-detailed.png",
+      "sha256": "74d59b34cecf648506d8b89e01dc9ff9358225b5a9df75af692654f36a5cbb95",
+      "bytes": 273358,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/attachments/geometry-b4f6b436c4fa5c99c556adf46e1d9d001ad1e945.json",
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "bytes": 7090,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/geometry.json",
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "bytes": 7090,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-compact.png",
+      "sha256": "4f931349b7901f619c35f2e48b910f0258e5658676d358b8dad8a65a2a3a9a8e",
+      "bytes": 477484,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-detailed.png",
+      "sha256": "f70b437e91727f0ff9f812f3de2a8509f4647cebea38de71e86c1a94acf54b38",
+      "bytes": 477283,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-compact.png",
+      "sha256": "9fbe179d3a6d203e8b2d5cf54a9c81105ddc855fd8ac4b61fcf03ab9b8ff48f9",
+      "bytes": 224082,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-detailed.png",
+      "sha256": "803ff20e25a8df1e16a26c9f65ae0bfe21fd02da296623062bfb0d2edc031404",
+      "bytes": 223880,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-compact.png",
+      "sha256": "49ba69061d864c236f68da236ab1043ef3817255a934f1750571d84a94fd227a",
+      "bytes": 366629,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-detailed.png",
+      "sha256": "3cb7a2da71c284a357f9245ce3d47ec6f39c015e1031238a8751f31fa451f32d",
+      "bytes": 366425,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--04741-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "8e1046203d0d580c69b2d5551299426d1d4ab9b6e1facafdf4e413f1024f285a",
+      "bytes": 487648,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--04741-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "500ae81bfc8566de1a725910636b160d1f00d2523ace8d4da182b4afcdeb1847",
+      "bytes": 558090,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--33b2d--log-load-and-next-callback-1280x800/video.webm",
+      "sha256": "5d4f2d45b37a7c30f75b8e9b01fba19d8c3d2be93113536002d26c6ebbd1e445",
+      "bytes": 457338,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--33b2d--log-load-and-next-callback-1920x1080/video.webm",
+      "sha256": "bdd5fc5f3a716b30341effb118b344897c8aa492d36db8c21a9aaaf4afbcba83",
+      "bytes": 385382,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1280x800/video.webm",
+      "sha256": "77969cd724e86915471dd8fc137b7c1951aeda7aed2cb958b09bf9792fd3b54d",
+      "bytes": 388766,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "sha256": "c00717abebf8a2c201a434422b0bc1fc96f07d860ddda403bc4ea2ae101ad4f6",
+      "bytes": 426971,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1280x800/video.webm",
+      "sha256": "163f1746374bb69bcb8bcb1753edc5f12c6809e7537172a09085177664a982a3",
+      "bytes": 381310,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "sha256": "0c4e0c3cbe3a1d4349eeb36ad3e8bd85c7f64b519c101658837001c02b2077c4",
+      "bytes": 342030,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--a3300--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "28b68bb259788133e08d5ebc78f8ce9df9ef0b4228b326bb4358c961e733cab1",
+      "bytes": 902706,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--a3300--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "155218a529e46c9cf19cfdfe424175d97e2e98d7c793cb01a7eb314aba508f9a",
+      "bytes": 1034421,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--bd335-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "326d8f2d3bb14ac7dc01ea1bf5dd4e0899a88dfb1cf400be7108b47613ba335d",
+      "bytes": 534765,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--bd335-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "2082259e7d01d532d7a79231ea6314d8409b514695908cc459d23f499c7267e2",
+      "bytes": 510293,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--c209e--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "77373ffa0d535bf9b51a6291ea03175ca0707350d34654cf54a589cf7de4155d",
+      "bytes": 919552,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-geographic--c209e--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "7ec60bd9ccb0035ecb652d4639b5d2e9315180b73860bfddabf3a80af1ae431c",
+      "bytes": 1005953,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1280x800/video.webm",
+      "sha256": "7e6ce6027eac52b695f0ca7f7d58770c80b8337d96e0f5b1f5849dfb44cea02f",
+      "bytes": 199719,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "sha256": "4636c809783b731358342477a252ab7e1a7d18fd18a96c8833588293e7630c64",
+      "bytes": 206009,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1280x800/video.webm",
+      "sha256": "6a88cedd1f1cccd203575019ef6beb98b7d13b77be93c97b1a64b579bc19dc62",
+      "bytes": 163694,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "sha256": "dd393162cb8f938ac7ca7b34a33105e4124610a2b8c122bb72a7f9da359b846c",
+      "bytes": 153138,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "6cb24f5f1c756f6892a670033493cbfccb4cf821746a030642540b3f7b0f3141",
+      "bytes": 314469,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "1b31fb30f2c0b977b141b4fd6b7d861b8b10ece9383dd083aa7c262075ad0575",
+      "bytes": 453918,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1280x800/video.webm",
+      "sha256": "53919c64c3f015c26724d0dc5da0e139ab9a51c7532f51ca02854cab88bb18b0",
+      "bytes": 172127,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "sha256": "a700d44c7b91dcfdcff7f8b6c9ddd7a6f8923b800585b84804b47a078e5054c6",
+      "bytes": 172812,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-eb280-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "80bef483b5a2106a5126a8b5cb40ee60cf4fdbb43f3dbac85b6621bdadcb46ee",
+      "bytes": 195462,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-c-eb280-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "a1ee224ac09c7ad4549537cfd0268847e0e959f04b322d09c76052937cef6462",
+      "bytes": 186542,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-d-301c5--log-load-and-next-callback-1280x800/video.webm",
+      "sha256": "8b0a5e84ba15f13f4b79613698f97c74bb983d6deb82f408ce406d9a3391f857",
+      "bytes": 193744,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-d-301c5--log-load-and-next-callback-1920x1080/video.webm",
+      "sha256": "c96d39345401f63118110b12b02079552682f9009c3b81096932236fe2f2eb5c",
+      "bytes": 153581,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-d-78c88-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "38c397b8e46e9a3ba15145147bf66c8b5dd002869a0a52bdd65cb84acc9d9039",
+      "bytes": 195768,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-d-78c88-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "cb26d7bbc2abf8c43208c4f00bffdda604d445a47e7607064dee4f75746f48d5",
+      "bytes": 206186,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1280x800/video.webm",
+      "sha256": "e2788bdf4e4534fff9e2178a959000e81d348903c7aed9045b2b87ce2302797b",
+      "bytes": 167226,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "sha256": "787ea0437485c31e1f9f1a45ab86ebf11498b4dc9de04d937547962b457e519e",
+      "bytes": 172614,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "2db4c8c53fcd64099735ffe184838239d855d9c6db41550c12c99032d8ebb910",
+      "bytes": 390148,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "494ca5c3539793561e840e4043c0f395354cdd5d94fe34775b6f39a3824a282d",
+      "bytes": 460310,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "bytes": 279554,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "bytes": 473182,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "bytes": 283058,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "bytes": 500076,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-details.png",
+      "sha256": "63a9c0ed701e36c5d514fd25488bdc924eeb61c71d4e770bb5bd591f4a1e372c",
+      "bytes": 241748,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-sidebar-only-battle-rail.png",
+      "sha256": "2d98b9a6e94b7f97ee6aaec109e22a43a9170c82425a28c2aed8d2db40de1320",
+      "bytes": 214718,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-details.png",
+      "sha256": "74d2eedad8f51c1c148d2ac816da2df01af12133302db485c7f275193f60bc9d",
+      "bytes": 392369,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-sidebar-only-battle-rail.png",
+      "sha256": "6aa84ff912a4b6c07b4221b27c0827ed1cc1f89cfc4046b131a8e452268dcc3b",
+      "bytes": 346725,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "30820b5490daeeb0540425fea1d6d2890e36280b082c157095c214eaa579846e",
+      "bytes": 225820,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "95ed4e46aab443d4cc3f3b82224744a658dbf352d4e9ba7a61e0a925941085d1",
+      "bytes": 390282,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "bytes": 235512,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "bytes": 369911,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/geographic-friendly-redraw.png",
+      "sha256": "d74a47d39e10b460cc55980672f73e27c882be94684495df916e1e1641a26ab3",
+      "bytes": 226227,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/geographic-friendly-redraw.png",
+      "sha256": "6fe5921dad84a6eef0f2deb0ddccbd9aa006b247d2667868ba45f1fb7b91822f",
+      "bytes": 361923,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/geographic-sidebar-only-rail.png",
+      "sha256": "a19e71c4d94a641d5e4314d24b565fd80d9983cfaef0807af465c0f187038ef6",
+      "bytes": 225544,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/geographic-sidebar-only-rail.png",
+      "sha256": "50731796f8badc5059e1cae148a7cab11d5ffb136b72eeb06d1fc2a1a2d2c86e",
+      "bytes": 354518,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-false.png",
+      "sha256": "66a7bc0d7fa0ff0cbfc886a1278853fad4b5d1f0246c97c60cbced11bbc5809a",
+      "bytes": 209957,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-true.png",
+      "sha256": "d0d3927d6cf6104fe22c65828baa8c1d90aef7b094f1c018691ad605e50a3652",
+      "bytes": 224522,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "580edfa6adbd21cbdfa4b9fc168a4c7de66d984e3c598e83d40bfb120ac23ba1",
+      "bytes": 174713,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "58a99fde72ed098050553d26475b4b527a8a769559f1c4cddfcb8bac661a67ca",
+      "bytes": 203770,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-false.png",
+      "sha256": "80d083454b45b8ef378c57af4d001be085f1875446a9500c06698a7ce8dd63b2",
+      "bytes": 357826,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-true.png",
+      "sha256": "5812bf488d6007384c7e7e4dd8170345a65b326f08122adde4ad13271511b516",
+      "bytes": 379077,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "9af1c407f182387398b951a75b371357ffa69f7bc08a49434bc6d6aebedef8fe",
+      "bytes": 309212,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "ab0bdfbb17de1f86359d4ae7d5a5ce499561684bba9a864b8ce62ceae1ee46ce",
+      "bytes": 339292,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1280x800/geographic-visible-sidebar-history.png",
+      "sha256": "027f6c76fd2424e08595ebbed967cbacb816dd35744e8c2bd4262800914e1f66",
+      "bytes": 217104,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1920x1080/geographic-visible-sidebar-history.png",
+      "sha256": "08f68b4c61a8e4cefa5f46e4fcab388099ea43a03905ca6dfe00672cfe7ec64d",
+      "bytes": 366799,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-details.png",
+      "sha256": "369a78f65d1091a946d76d8c40a8023193cad182926401f52eb9025a21323e6e",
+      "bytes": 284903,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-sidebar-only-battle-rail.png",
+      "sha256": "e7390c4210cca6f3fb4c4c793ff71c1d9fdecba5811d5a622120d5c7d3258bf2",
+      "bytes": 254875,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-details.png",
+      "sha256": "e68cd27c32409345bb3ceb2ff380b206ff17cd1d368abb5ba0e19ddd83dcea90",
+      "bytes": 470495,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-sidebar-only-battle-rail.png",
+      "sha256": "34059f9d8428ea8c97e3579aee3038b722d622a3887291ad48c89a37dc2b962f",
+      "bytes": 424695,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "14372ac273189b60818bca832cdf0ca612e7bd81c43cf863a8339b433381a56e",
+      "bytes": 270733,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "64f542f3c567d4c81683c3bfdaae7a453a12379864d0a40577677d6f6e2214d2",
+      "bytes": 479554,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/reference-friendly-redraw.png",
+      "sha256": "4855e7a704e9b423e2c981d7437c03b3cc18f62acd91a62031b4ea92891738d3",
+      "bytes": 268884,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/reference-friendly-redraw.png",
+      "sha256": "fb08b4d4518b7a8debcf56e2713148e6c73c8bd1d035220a5141dbfc09e47033",
+      "bytes": 439934,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "bytes": 286326,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "bytes": 467272,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/reference-sidebar-only-rail.png",
+      "sha256": "d85b0f730721853700f7c80a3f174b9ce71ed518b8331a9852fa398ebb15bc40",
+      "bytes": 275985,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/reference-sidebar-only-rail.png",
+      "sha256": "9561045944a6e5667f6f021ec609ff94d55bceec2be327f232cf92ef3007a2db",
+      "bytes": 440752,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1280x800/reference-visible-sidebar-history.png",
+      "sha256": "ee5936a416dde3b0598cbcc95a3e480c8dc3e4507f55374c4ba14a4f0b2d8caf",
+      "bytes": 253093,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1920x1080/reference-visible-sidebar-history.png",
+      "sha256": "ae6981da4955caae09045c41b87c908e18e0308b13b604da5e115ee214a871e1",
+      "bytes": 442721,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-false.png",
+      "sha256": "5b103ea4d0f6d52bb36bb500c313c0fd80cf91ed0f2fe5b20ced90a1a87d256e",
+      "bytes": 249480,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-true.png",
+      "sha256": "fbdc477b30e468e2b25f21be57aa1d645c98adca7752706f2a26880460d78ca0",
+      "bytes": 261755,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "23f9e2de170f04576fa3d29bb2b5dc76724df042a71eeb33b04108d2b7d6457f",
+      "bytes": 213574,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "eb2d4e1f9f1193f431bd7691a8d1ad87c07d9f6ca7da8be6505e93f5d146f126",
+      "bytes": 241703,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-false.png",
+      "sha256": "71bed9652c7bded3408716537551b8b9da4ba24085aa62cecd11b2673ae94db3",
+      "bytes": 436328,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-true.png",
+      "sha256": "df29b65acc2a8c32286463eb2c2850343c86b2014e83d228dfff2211b839c158",
+      "bytes": 457043,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "39baf43d8d66ad7e4fb12c98cd8a1aa7281afb5476738276c9b9d6d552ed1bbd",
+      "bytes": 383581,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-dw2/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "122ee69c10bbe3617ff596681886ccd9d6ab9484d39ba8b356590042bbc4cf15",
+      "bytes": 413102,
+      "mode": 420
+    },
+    {
+      "path": "checks/attempt-1/tr-geo/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutate.py",
+      "sha256": "60cf6f88445e24781c8f4f3c63881cbf79fa5567bc847c606ed543142672e601",
+      "bytes": 2777,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/geo1280.json",
+      "sha256": "54e3764a89a886474b5f1800e8d2e5edc772b7e7ce879612d29b65cc88e7dc12",
+      "bytes": 57278,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/geo1280.log",
+      "sha256": "9bf7d863b6a4b0ab42d48744bfe8c2f7318de9edec3ee382f1d0252d8b076ca2",
+      "bytes": 21346,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/guard.json",
+      "sha256": "30bcc3e79d00b42bf6bad1d00955a8820da8e32dd1aa18a99aa104b0e76b7c68",
+      "bytes": 62793,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/guard.log",
+      "sha256": "d204091019b81634e6a6ccb965496abf6450cefe47ad26f68a86ae62e86ba999",
+      "bytes": 31885,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-geo1280/.last-run.json",
+      "sha256": "d7ab40ce94ecc2f9fba311d1457f08f564f00d3d35559463829ad2b65d39f2c9",
+      "bytes": 341,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-geo1280/geographic-board-seed-0-pa-15ab2-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "88c2f7d5c9d39b6f9ff0f96b0fa165ebe1b6d57f564299571ba17f1f86ffa348",
+      "bytes": 38111,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-geo1280/geographic-board-seed-1-pa-db46f-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "03db471f5ae762aeb04a6fd1bdd088c22d9f0a3aef3643f0463a66dc0b3df1bb",
+      "bytes": 38110,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-geo1280/geographic-board-seed-1994-6f8a3-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "b07e491ab52f1e2bcdc545ec4931a994649b409f034c562bf5fff89c1d77ce57",
+      "bytes": 38119,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-geo1280/geographic-board-seed-513--07dfa-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "8178169128f211d6dbe0f0ec48f4db19a4f9ca78befb4c929b956bb40d6fb77e",
+      "bytes": 38115,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-geo1280/geographic-board-seed-6-pa-ed4dc-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "331e89825feae9b066efcd611f50453bd7fa96cf5b0a058c7718da342f02c315",
+      "bytes": 38111,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-geo1280/geographic-board-seed-749--cd868-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "8fd6189162bbb3ac1226991d6392aad9ae0a298ce6b5846f2068a6516beaec97",
+      "bytes": 38116,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/.last-run.json",
+      "sha256": "3293574b9e76c105b0ef28bb80db495940f815d08fdcf194df12b2fb33c62ae5",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/error-context.md",
+      "sha256": "937e82716e46fa16f3dda9973362b2b950117ef9659ab8b93b42e6c967d4facf",
+      "bytes": 46297,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-false.png",
+      "sha256": "d88d30064e566e67d81759bd7d1810df7c27999c14e19d7c45101f10e1cd8d73",
+      "bytes": 214974,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-true.png",
+      "sha256": "97661f0346e85078c88812b73d163cb2c69c84817cdd846d532f151c778414a9",
+      "bytes": 227743,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "cfb8e2b05aeb552d159766f207cb500cb95b7e7ee9322258334178506d436ebf",
+      "bytes": 177301,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "3820030c69ed91dcc6624ee890007ec3f486132899b141e6e5d1347f3d92e913",
+      "bytes": 206343,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/error-context.md",
+      "sha256": "937e82716e46fa16f3dda9973362b2b950117ef9659ab8b93b42e6c967d4facf",
+      "bytes": 46297,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-false.png",
+      "sha256": "5c1c595d603f6f90ce758b5de86f97d8f42fe3d56b21ab22bb104c08bfc920c3",
+      "bytes": 366862,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-true.png",
+      "sha256": "784e49479108719754d65b0bd146bc7f7c4c6afa937353c233284d67f253465a",
+      "bytes": 382796,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "94a08fb2aac5267dfdac933121aa8055eb0a9c0fa4a9bec3760efd07575782dd",
+      "bytes": 310990,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "764beb4c1dfa3346e13fa9821ff4e79140ba46a19f11c0a3f4b94630d9083d0b",
+      "bytes": 341803,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/error-context.md",
+      "sha256": "3963a681d84a26a1e3125a2e2c53e0017b87159cb95c0fc83943d48a5f28b266",
+      "bytes": 46482,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-false.png",
+      "sha256": "5270385156175bc2ccc4003b489aabd1e26fb842fed417a3be7da963aa7e8d00",
+      "bytes": 255128,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-true.png",
+      "sha256": "81efe457321433e6d74782651c5d23c1f5af1baf6453431265188b5f7a4f4761",
+      "bytes": 264453,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "7f57475cc69b8b0574d7e6f3239e3c810e5e0b77635410bbfa049f11f9e78106",
+      "bytes": 215277,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "be0956a447a65f032a40f979ad446bf4bc7bbac39184f39164285e6735bf7051",
+      "bytes": 244156,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/error-context.md",
+      "sha256": "3963a681d84a26a1e3125a2e2c53e0017b87159cb95c0fc83943d48a5f28b266",
+      "bytes": 46482,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-false.png",
+      "sha256": "0042f7bf161436cea9ddea5ea782a202b03eaab631093d271c6893c7ec3cb023",
+      "bytes": 446709,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-true.png",
+      "sha256": "b02965798e113c28a0bcb33a46d4aa2e334674ec1d224d79fec3d296d73673d3",
+      "bytes": 461055,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "3f10da40a28f3e3f6f80001b9d3c9932a16c67af1aa905f02878e87cc56cab57",
+      "bytes": 386116,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M1-revert-to-d8d2bbcd/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "3fc58e6fe1f9e67185717200e2892c891aa1d6cc0f91a1ad653a7192ac44bea0",
+      "bytes": 415881,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/guard.json",
+      "sha256": "14832a267a450d4744973dfece7c9f43999d6795f59f7881bfe91e8917595ce1",
+      "bytes": 20960,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/guard.log",
+      "sha256": "f9cc6892d7e96b52d950ffa34dcaf1da7625e93e4f4c66ff8eb8cbc97adf8030",
+      "bytes": 6376,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/.last-run.json",
+      "sha256": "43dab1eadc1b89cb847e8a6b7f6a2678c4f330b7043b0da64f4775e0e76923e9",
+      "bytes": 145,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/error-context.md",
+      "sha256": "9498ab8b17a30e698775d0429eaa9bfa78894f9f7a144dd6780f06ae6a64310c",
+      "bytes": 40576,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-true.png",
+      "sha256": "c232452cbe1f806e71f5f52503797e7f0eb73958d22d2dac7043966cb332f177",
+      "bytes": 224523,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "19f1223066b679e5f17f2d3a160b9eee9c889acbdc68fea81b5dce8399f20efc",
+      "bytes": 174653,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "4ba68cb32eabcfa1cd49493b10c66ac0fb638f729721e45d92f9588ec31ce342",
+      "bytes": 203768,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-false.png",
+      "sha256": "4ae4393f1c40fa5616c3bed166ba753197ee91e7e017e57fee61841574e08d8b",
+      "bytes": 357836,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-true.png",
+      "sha256": "5812bf488d6007384c7e7e4dd8170345a65b326f08122adde4ad13271511b516",
+      "bytes": 379077,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "3c60a7081f4e106cd81ed5c53e036cc6c0f8aa69f9b170eeb9108b78787740e9",
+      "bytes": 309185,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "ab0bdfbb17de1f86359d4ae7d5a5ce499561684bba9a864b8ce62ceae1ee46ce",
+      "bytes": 339292,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/error-context.md",
+      "sha256": "8072643b0ee0bf80200c278de4c4417a69df6ed5e545ad1631b88564d21068e8",
+      "bytes": 40585,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-true.png",
+      "sha256": "0cec93a7c63c656d570f4c4b01875b608a1d8bd837e1f1126b9998ba109c7687",
+      "bytes": 261752,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "5dd407c8fb5fbfc1cdba47c50bf7e43ef88351ca04fe5dc70aae40afb025721b",
+      "bytes": 213534,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "c5a5fa5dee22299dce5d5f970db074b4848cf545881a20d255fda06066d613bb",
+      "bytes": 241691,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-false.png",
+      "sha256": "221b14262d4de41b8e65e01fc26bdadd7f87ecead1083083eae5a4e231b2ec80",
+      "bytes": 436334,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-true.png",
+      "sha256": "df29b65acc2a8c32286463eb2c2850343c86b2014e83d228dfff2211b839c158",
+      "bytes": 457043,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "5652fb7bae807f9c51ad9dd2d4504f6a5fd733e1e8a2cf19a663589a4046522e",
+      "bytes": 383559,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M2-gap-4px/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "dc0323f43b2232ddcbb67c060ebacd4b44fa62e77e7f8b38a8b65d0874fd4a6b",
+      "bytes": 413096,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/geo1280.json",
+      "sha256": "7f455b971ec0b2c414d2e602c19e112fb9c222edd7d789b15a596178a6615608",
+      "bytes": 9560,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/geo1280.log",
+      "sha256": "a7a260245c4200258e76691482746f72eb1a1590ef18d7499aca3db1ec9d0dad",
+      "bytes": 907,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/guard.json",
+      "sha256": "20a8f0e3b4dd79af009651cc436b8e4915b595b118384129b2e69f56fbf3e33e",
+      "bytes": 40301,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/guard.log",
+      "sha256": "9bc9b886da7f45900f2753e7004eb10bfee5e4dc1cec77d1e28c06dca718f826",
+      "bytes": 17639,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/shots/geographic-0-1280x800.png",
+      "sha256": "6758a4c211dbb12861c678d0a362cc9ac64908bc539e18c39e93002b7bc1d1af",
+      "bytes": 201387,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/shots/geographic-1-1280x800.png",
+      "sha256": "64dfcff55eba6b65bced91687460a7b19cb8580789319d83e4afc77bd488e1ad",
+      "bytes": 200519,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/shots/geographic-1994-1280x800.png",
+      "sha256": "253e7529dd7a1c71709331c7d14896f3b31851f433649dbb6814cb25e466310e",
+      "bytes": 203054,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/shots/geographic-513-1280x800.png",
+      "sha256": "14606c7a4d8ae7b889fe774a9a642d069e4b29336ef47f25f61df9763d5cc8b0",
+      "bytes": 201704,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/shots/geographic-6-1280x800.png",
+      "sha256": "7f5d199bb81a583953ce1f9a4aedd5d75d0245e1142f82df30402cdb4ddb13dd",
+      "bytes": 201108,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/shots/geographic-749-1280x800.png",
+      "sha256": "1e8d3f39ef6636af7c94c293e77072b638f7c639c8da3b309a552f63dce9d33e",
+      "bytes": 200097,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/tr-geo1280/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/tr-guard/.last-run.json",
+      "sha256": "3293574b9e76c105b0ef28bb80db495940f815d08fdcf194df12b2fb33c62ae5",
+      "bytes": 243,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/error-context.md",
+      "sha256": "ea5402be9022f6be05dcf571d797e536d4a4bfd0fbdc528ba20e17c103bc0b6b",
+      "bytes": 28215,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/error-context.md",
+      "sha256": "ea5402be9022f6be05dcf571d797e536d4a4bfd0fbdc528ba20e17c103bc0b6b",
+      "bytes": 28215,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/error-context.md",
+      "sha256": "843a96592fdf6fbd20dc895c4442e26731bc357e4b6d05a3414f0c12b0bc08ae",
+      "bytes": 31926,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M3-drop-specificity-fix/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/error-context.md",
+      "sha256": "843a96592fdf6fbd20dc895c4442e26731bc357e4b6d05a3414f0c12b0bc08ae",
+      "bytes": 31926,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/guard.json",
+      "sha256": "80833e89dd49cd58587c73741c2c71ae052812335378a6a286e9bab413ba16bd",
+      "bytes": 7403,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/guard.log",
+      "sha256": "b0ab1bbfa9dcbe3e95171a0f882652f79cecbc0839ad7e6dd86194062ac96f49",
+      "bytes": 670,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-false.png",
+      "sha256": "1e45f62cc8b77495081a7a09fa45537bddd423e72c27bffd1174c829ae5c7295",
+      "bytes": 209957,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-true.png",
+      "sha256": "d0d3927d6cf6104fe22c65828baa8c1d90aef7b094f1c018691ad605e50a3652",
+      "bytes": 224522,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "580edfa6adbd21cbdfa4b9fc168a4c7de66d984e3c598e83d40bfb120ac23ba1",
+      "bytes": 174713,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "ebc583c4d18610090269c466c60778b5aa62e0d1bf2ea8c8b962cf56fcbc3179",
+      "bytes": 203763,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-false.png",
+      "sha256": "80d083454b45b8ef378c57af4d001be085f1875446a9500c06698a7ce8dd63b2",
+      "bytes": 357826,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-true.png",
+      "sha256": "5812bf488d6007384c7e7e4dd8170345a65b326f08122adde4ad13271511b516",
+      "bytes": 379077,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "9af1c407f182387398b951a75b371357ffa69f7bc08a49434bc6d6aebedef8fe",
+      "bytes": 309212,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "ab0bdfbb17de1f86359d4ae7d5a5ce499561684bba9a864b8ce62ceae1ee46ce",
+      "bytes": 339292,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-false.png",
+      "sha256": "5b103ea4d0f6d52bb36bb500c313c0fd80cf91ed0f2fe5b20ced90a1a87d256e",
+      "bytes": 249480,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-true.png",
+      "sha256": "fbdc477b30e468e2b25f21be57aa1d645c98adca7752706f2a26880460d78ca0",
+      "bytes": 261755,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "23f9e2de170f04576fa3d29bb2b5dc76724df042a71eeb33b04108d2b7d6457f",
+      "bytes": 213574,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "c5a5fa5dee22299dce5d5f970db074b4848cf545881a20d255fda06066d613bb",
+      "bytes": 241691,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-false.png",
+      "sha256": "71bed9652c7bded3408716537551b8b9da4ba24085aa62cecd11b2673ae94db3",
+      "bytes": 436328,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-true.png",
+      "sha256": "df29b65acc2a8c32286463eb2c2850343c86b2014e83d228dfff2211b839c158",
+      "bytes": 457043,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "39baf43d8d66ad7e4fb12c98cd8a1aa7281afb5476738276c9b9d6d552ed1bbd",
+      "bytes": 383581,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M4-drop-turn-padding/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "1d748a8dea35065cae39a923b227e7060ad5bc9c46448c9bed9334534b9c1bff",
+      "bytes": 413105,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/guard.json",
+      "sha256": "7b0192bdf91a0fa4177fc72bb687f81e344481e9611dc38c0e4cdd6aa96680a1",
+      "bytes": 7419,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/guard.log",
+      "sha256": "e3a85ffdff45307db1cec7ec7890b8aeaa1ae7f1702c79cfde396666123cba6d",
+      "bytes": 670,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-false.png",
+      "sha256": "85571ec9819065dc671150bf66ead015c662f0e876c91f07259b66311e7788f2",
+      "bytes": 210760,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-true.png",
+      "sha256": "d0d3927d6cf6104fe22c65828baa8c1d90aef7b094f1c018691ad605e50a3652",
+      "bytes": 224522,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "5c533a6b34ba22dc70897f287f47bdd9311c1a4c0d9218d904b152feb656b31b",
+      "bytes": 172868,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "fe794deb3d0751861526efd5a9d03348b9bafe538d99d31bcb139f9130085f57",
+      "bytes": 203770,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-false.png",
+      "sha256": "525869af39210507183fbf5da8f5921f58d4933d6ad14b88d133021fe2f1990b",
+      "bytes": 362918,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-true.png",
+      "sha256": "5812bf488d6007384c7e7e4dd8170345a65b326f08122adde4ad13271511b516",
+      "bytes": 379077,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-false.png",
+      "sha256": "fee392c8c636f4815544a2b49145661ab2488cc305867aac99cf60b8b720fe13",
+      "bytes": 307317,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-true.png",
+      "sha256": "242703db21b3ed76f83c61b5546831704d16cdc7c03cd2f77962d8ccff4bde97",
+      "bytes": 339286,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-false.png",
+      "sha256": "247db74cdcf1faae09ea8572fe7518d15b86222a0429085d9005ec714059a191",
+      "bytes": 251173,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-true.png",
+      "sha256": "0cec93a7c63c656d570f4c4b01875b608a1d8bd837e1f1126b9998ba109c7687",
+      "bytes": 261752,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "25e087de4b7b39c6543fb92f93dd658e308211813f8eb700e96b1f9521ea08f2",
+      "bytes": 211631,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "c5a5fa5dee22299dce5d5f970db074b4848cf545881a20d255fda06066d613bb",
+      "bytes": 241691,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-false.png",
+      "sha256": "6ca1a56252dfde3995d3514066b48b83bd90536d4c533d9adffbfc547df2de58",
+      "bytes": 442889,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-true.png",
+      "sha256": "df29b65acc2a8c32286463eb2c2850343c86b2014e83d228dfff2211b839c158",
+      "bytes": 457043,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-false.png",
+      "sha256": "3fbfd1ef2500cb97c13170118308b7ba269a01d58839f4b883d384516d43c762",
+      "bytes": 381942,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/M5-drop-panel-padding-top/tr-guard/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-true.png",
+      "sha256": "1d748a8dea35065cae39a923b227e7060ad5bc9c46448c9bed9334534b9c1bff",
+      "bytes": 413105,
+      "mode": 420
+    },
+    {
+      "path": "checks/mutations-1/restoration.json",
+      "sha256": "1fbb2cd20b0d7bcbf011d7df3015520b61ac5a4a85723fbf546d8655f5a37bb4",
+      "bytes": 1649,
+      "mode": 436
+    },
+    {
+      "path": "checks/mutations-1/styles.css.saved",
+      "sha256": "f0a7a07651c472bdc1b40a2b3069b76df8ee82495704825d986159ff307ff99d",
+      "bytes": 49539,
+      "mode": 436
+    },
+    {
+      "path": "checks/run.sh",
+      "sha256": "0787b5b5b34b6dcaa6924623c8751ad41b3d8769f3c892580f063473ae5fe9c9",
+      "bytes": 974,
+      "mode": 509
+    },
+    {
+      "path": "checks/verify_members.py",
+      "sha256": "0a33a46fd8cb54b0673f5abb4dc166d8d85205562e5c762fb45e26ce864c5533",
+      "bytes": 757,
+      "mode": 436
+    },
+    {
+      "path": "checks/verify_parts.py",
+      "sha256": "64776d73cbde95646e8fb305f38fe2f5335bab812f92910affa1b5858ac49069",
+      "bytes": 1226,
+      "mode": 436
+    }
+  ]
+}
