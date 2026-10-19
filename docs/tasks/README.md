@@ -105,3 +105,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T74](T74.md) | Versioned generated-map presentation and worker cache | Hard | #185 | T73 |
 
 | [T75](T75.md) | Playable border redraw and 0.1.0 release candidate | Hard | #184 | T73, T74 |
+
+| [T76](T76.md) | Hideable game panels and essential icon actions (0.1.1) | Hard | #192 | T75 |
