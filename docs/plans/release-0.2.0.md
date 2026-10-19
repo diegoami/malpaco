@@ -41,8 +41,8 @@ main must run acceptance preflight and record dispatch decisions first.
 | [T90](../tasks/T90.md) / [#209](https://github.com/diegoami/malpaco/issues/209) | Publish the exact accepted 0.2.0 artifact | High | Medium | T89 |
 
 Suggested sequence: **T78 → T79 → T80 → T81 → T82 → T83 → T84 → T85 →
-T86 → T87 → T88 → T89 → T90**. T79/T80 may overlap only after concrete file
-ownership is checked; shared UI/CSS integration is otherwise serialized.
+T86 → T87 → T88 → T89 → T90**. T80 follows T79 because its phone acceptance needs the responsive shell. Shared
+UI/CSS integration is serialized unless task dependencies and ownership explicitly permit overlap.
 
 Original plan mapping: P1→T78; P2→T79/T85; P3→T80/T81; P4→T82/T83/T85;
 P5→T84/T85/T88; P7→T86; P8→T87; P6→T89/T90. The release acceptance gate
@@ -81,8 +81,10 @@ CI repetition or rebuild after artifact approval.
 
 ## Dispatch and publication
 
-Standing owner choice for this UI work: native **Sol Max** implementer and
-independent **Opus High** reviewer. No models or CI are launched by backlog
+Owner update, 2026-10-19: native **Sol Low/Medium/High** subagent implements
+according to difficulty; independent **Sonnet Medium/High or Opus Medium** reviews.
+Dispatch mapping: Easy → Sol Low / Sonnet Medium; Medium → Sol Medium / Sonnet High;
+Hard → Sol High / Opus Medium. Choose by the actual change and record before each run. No models or CI are launched by backlog
 allocation. Each new PR gets its own recorded decision, preflighted contract,
 independent review and green CI; prior T77 review does not approve new source.
 No tag, production deployment, due date or implementation run is created here.
