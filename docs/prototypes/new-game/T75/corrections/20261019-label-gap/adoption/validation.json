@@ -1,5 +1,27 @@
 {
-  "stage": "checkpoint; no validation run yet",
-  "sourceSha256": "80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d",
-  "releaseReady": false
+  "sourceCommit": "c0f4435dcc9d2fdfa1b00bca2ebe50982a0bc88e",
+  "commands": [
+    {
+      "name": "01-committed-proof",
+      "argv": [
+        "python3",
+        "docs/prototypes/new-game/T75/production/verify-adoption.py"
+      ],
+      "exit": 1,
+      "seconds": 4.135838380999985,
+      "log": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption/logs/01-committed-proof-stdout-stderr.txt"
+    }
+  ],
+  "error": "RuntimeError('01-committed-proof failed; no retry')",
+  "protectedFiles": 16082,
+  "changedProtectedInputs": [],
+  "outputTreesExact": true,
+  "serversClosed": {
+    "4175": true,
+    "4315": true
+  },
+  "sourceProviderSha256": "80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d",
+  "officialRelease": false,
+  "transactionSeconds": 10.907657802999893,
+  "remaining": "Independent correction review, owner acceptance and green final CI remain main-owned."
 }

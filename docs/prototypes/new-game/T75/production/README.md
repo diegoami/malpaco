@@ -30,3 +30,8 @@ Checkpoint cb8e320b: small proof passed; fresh npm test818Vitest/60files+9harnes
 ## Saturated-label correction checkpoint
 
 The latest corrections/20261019-label-gap/FROZEN.json separately authorizes exactly provider80a79b8, preserving the original204/15 authorities, historical591 canonical, both complete archives and all prior proof copies. The verifier authenticates every file in three pinned phase manifests and recomputes actual27.491% successful/9.208% failed gates from raw events. Current contract and parent saturation proof are pinned explicitly. Fact correction: T75.md is NOT in original204; the prior saturated candidate report's task-hash verifier-failure assumption was inaccurate, and no such verifier run occurred. That old report and manifest remain immutable. Current validation has not run at this checkpoint; results will be recorded separately. Prior165/166 failure, historical screenshot gap and release/review/CI limitations remain binding.
+
+
+### Saturated-label validation stop
+
+Checkpointc0f4435d's single proof exited1 in4.136s on a new baseline precision guard: exact raw median1921.699951171875 differs from displayed1921.7 by0.000048828125ms, exceeding the mistaken1e-6 identity tolerance. No retry or npm/package/controls/browser run followed. Source80 remains committed, with16,082protected inputs/output inventories unchanged. Full current failed result is ../corrections/20261019-label-gap/adoption/REPORT.md; formal validation/review/CI/release remain incomplete. No historical report or manifest was edited.

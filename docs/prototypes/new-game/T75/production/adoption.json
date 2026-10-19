@@ -151,7 +151,17 @@
     "before": "59137044a36f65ae303d80e4d5e90861cdbfdb66aa7ef04621152d71b89e1883",
     "after": "80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d",
     "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption/validation.json",
-    "currentValidation": "Not run; checkpoint precedes the one authorized validation sequence.",
+    "currentValidation": {
+      "checkpoint": "c0f4435dcc9d2fdfa1b00bca2ebe50982a0bc88e",
+      "proofExit": 1,
+      "proofSeconds": 4.135838380999985,
+      "error": "immutable actual baseline median: precision comparison to rounded display",
+      "npm": "not run",
+      "package": "not run",
+      "controls": "not run",
+      "extracted": "not run",
+      "releaseReady": false
+    },
     "factCorrection": "T75.md is absent original204 validated inputs. Previous saturated candidate report incorrectly assumed an old task-hash verifier failure; no such run occurred. Old report/manifests remain immutable; latest freeze separately pins current contract."
   }
 }
