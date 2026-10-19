@@ -129,3 +129,9 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T88](T88.md) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | #207 | T83, T84, T85, T86, T87 |
 | [T89](T89.md) | Full-device 0.2.0 release candidate and artifact acceptance | High | Hard | #208 | T88 |
 | [T90](T90.md) | Publish the exact accepted 0.2.0 artifact | High | Medium | #209 | T89 |
+
+## Development infrastructure
+
+| Task | Title | Priority | Difficulty | Issue | Merge after |
+| --- | --- | --- | --- | --- | --- |
+| [T91](T91.md) | Simplify development CI and document reusable adoption | High | Hard | #211 (consolidates #108/#118) | — |
