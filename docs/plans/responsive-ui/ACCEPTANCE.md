@@ -19,8 +19,9 @@ help, game and result surface must be considered, not only an idle board.
 | 320×568 | Minimum ordinary portrait | All actions and four navigation destinations fit/reflow; map focus/list enables each legal choice |
 | 360×640, 390×844, 430×932 | Representative portrait | Full human turn, Raid, required amounts, logs/totals, setup/files/help |
 | 568×320 | Minimum ordinary landscape | Compact full-width map + explicit choice view; no forced rotation |
-| 667×375, 844×390, 932×430 | Representative landscape | Narrow/side-action transition, safe cutouts, canvas input and visible confirmation |
-| 768×1024, 1024×768 | Tablet orientations | Side panel, focused map, intact drafts and history through rotation |
+| 640×360, 667×375 | Narrow short landscape | 48px header + 64px strip, focused map and scrollable Current choice with all six attack commands |
+| 844×390, 932×430 | Wider phone landscape | Side-action layout, safe cutouts, canvas input and visible confirmation |
+| 768×1024, 1024×768 | Tablet orientations | Broader design: side panel and focused map; bounded release: explicit D2 phone-shell coverage or existing-sidebar support limit; check drafts/history through rotation for the chosen scope |
 | 1280×800, 1920×1080 | Existing desktop regression sizes | Current protected flows, panel hiding/reclaim, source state and graph unchanged |
 | 680px and 1100px width boundaries ±1px; 320/500/600px height boundaries ±1px | Layout seams | No duplicated controls, stale handlers, focus loss or unexpected action at a transition |
 | Available height 240px (e.g. keyboard/browser UI) | Reduced-height fallback, not ordinary simultaneous-map minimum | Scrollable Current choice + Map return; confirm, Pause/Resume and errors reachable |
@@ -59,8 +60,11 @@ not a clipped-button release.
   Required choices remain pending. A closed/removed opener uses a visible phase
   prompt fallback, including after load. Coordinate this with existing #195 work.
 - **Touch and camera:** drag/pinch never dispatch a region action on release;
-  explicit buttons cover zoom/pan/focus without multi-touch. Fit/focus preserve
-  engine selection. Reject accidental click-through when closing a surface.
+  Zoom/Fit/Focus work by button/keyboard without multi-touch. For non-drag spatial
+  navigation, Countries → Inspect → Focus selection, or keyboard country focus
+  followed by Focus, reveals the intended region; this does not promise free pan
+  buttons. Fit/focus preserve engine selection. Reject accidental click-through
+  when closing a surface.
   The accessible list can choose every region even at a small/ambiguous polygon.
 - **Zoom:** browser zoom stays enabled; game-camera zoom is separate. At 200%
   browser zoom retain all functions and visible focus; at 400% verify reflowing
@@ -140,8 +144,9 @@ checks; synthetic viewport resizing alone cannot establish them.
 
 Owner D1–D4 in PROPOSAL remain decisions, not silently approved defaults. Ask the
 owner to assess whether a focused map explains geography, counts and crossings;
-whether the dock leaves enough map; whether required choices feel unavoidable
-without blocking inspection; whether immediate attack taps are sufficiently clear;
+whether the dock leaves enough map with the **attack** dock's 160px/212px context
+budgets as well as placement; whether required choices feel unavoidable without
+blocking inspection; whether immediate attack taps are sufficiently clear;
 and whether tablet/desktop density and original visual character are acceptable.
 Low-fidelity approval cannot approve final typography, colours or gesture feel.
 

@@ -21,9 +21,10 @@ inspected 0.1.1 source and pinned Pro evidence. Original sketches are in
 
 Pro's useful lesson is the separation of country identity, army strength, active
 seat and phase-dependent decisions. Its recorded placement sequence distinguishes
-an allocation draft from a committed change; the sampled battle distinguishes a
-casualty from capture. Its three lower panels are a desktop arrangement, not a
-phone template. [Pro guide](https://github.com/diegoami/isle-wars-archaeology/blob/084c1087119fcf45f0d0d2774eea7121487f1cb4/manual/pro/guide.md#a-sampled-placement-to-pass-turn),
+an allocation draft from a committed change. The manual limits the sampled battle
+to one defender decrement and explicitly says it does not establish capture;
+that evidence distinction informs separate outcome labels here. Pro's three
+lower panels are a desktop arrangement, not a phone template. [Pro guide](https://github.com/diegoami/isle-wars-archaeology/blob/084c1087119fcf45f0d0d2774eea7121487f1cb4/manual/pro/guide.md#a-sampled-placement-to-pass-turn),
 [atlas](https://github.com/diegoami/isle-wars-archaeology/blob/084c1087119fcf45f0d0d2774eea7121487f1cb4/manual/pro/atlas.md#interaction-states).
 
 The current game already exceeds that reference in some capabilities: versioned
@@ -106,14 +107,19 @@ controls and falls back to the low-height reading arrangement before clipping.
 
 | Available space | Arrangement | Map policy |
 | --- | --- | --- |
-| Width below 680px, ordinary portrait height | Header + flexible canvas + bottom action dock/navigation | Fit overview initially; region/group focus for decisions |
+| Width below 680px, except short landscape below | Header + flexible canvas + bottom action dock/navigation; attack dock grows to fit all six commands | Fit overview initially; region/group focus for decisions |
+| Width below 680px, landscape, height 320–500px | 48px header + full-width canvas + 64px context/More strip; Current choice opens full action controls | Use a focused map; all six attack commands live in the scrollable choice view |
 | Width at least 680px and height at most 500px | 48px header + canvas + 256px side action area | No bottom sheet across the canvas; panel body scrolls |
 | Width at least 680px, height above 500px | 56px header + canvas + 320px tablet side panel | Four totals and current action visible; history below |
 | Width at least 1100px, height at least 600px | 56px header + canvas + 360px desktop side panel | Spacious map, current action and history; hide panel on request |
 | Available height below 320px, or ordinary controls cannot fit | Header + explicit Map / Current choice views with independent scrolling | One focused map or choice at a time; Pause and return control persist |
 
-Width 568px landscape uses the narrow arrangement with a compact action strip,
-not an impossibly narrow side panel. Browsers with toolbars/keyboard shown can
+The short-landscape rule covers 568×320, 640×360 and 667×375, not only the minimum
+size. At 667×375 with zero insets it leaves a 667×263 stage, about 651×203 uncovered
+after canvas padding and one tool row. The low-height fallback overrides every
+row; the desktop row overrides the general wider-screen row. These are target
+arrangements for the broader design; bounded-release tablet behaviour is an open
+D2 decision below. Browsers with toolbars/keyboard shown can
 reach the last row by scrolling the choice view. Orientation never restarts a
 match, commits an action, changes playback state or discards a draft.
 
@@ -127,9 +133,14 @@ name, owner/shape, army count, group/bonus and centre meaning. The logical graph
 remains the authority for adjacency. A group outline/legend explains bonus
 membership without equating a visible land cluster with a logical island.
 
-Provide visible Zoom in, Zoom out, Fit board and Focus selection controls; allow
-pinch and drag in the canvas, with button/keyboard equivalents. Camera bounds
-derive from the actual presentation, not regenerated geography. Start with a
+Provide visible Zoom in, Zoom out, Fit board and Focus selection controls, usable
+by button/keyboard; also allow pinch and drag in the canvas. The non-drag way to
+navigate spatially is Countries → Inspect → Focus selection, or keyboard country
+focus followed by Focus selection. Focus reveals the inspected/keyboard-focused
+region when present, otherwise the current selection, without dispatching a game
+action or replacing the chosen battle pair. This is region navigation, not a
+claim of four-direction pan buttons. Camera bounds derive from the actual
+presentation, not regenerated geography. Start with a
 bounded 1–4× fit-scale range [designed]; the list remains a complete fallback if
 4× is insufficient. Fit is explicit and does not clear selection. Zoom around the
 gesture centre; retain a normalized world-space centre and scale on resize,
@@ -239,11 +250,18 @@ and every existing required-choice/playback/history path. It can reuse the curre
 desktop appearance and T76 panel behaviour. It cannot honestly claim phone play
 if zoom/list selection or mandatory cards/capture are deferred. The broader work
 adds the recommended tablet/desktop panel composition, map-label polish and wider
-visual hierarchy. No rule, generated-map or flavour-name work is a dependency.
+visual hierarchy. For the bounded option, **tablet behaviour is still open under
+D2**: the owner must choose either reuse of the functional phone shell at tablet
+widths below 1100px, with tablet flow/rotation checks, or retention of 0.1.1's
+350px sidebar with no claim of improved responsive tablet support. The latter is
+an explicit coverage limit, not tablet work silently postponed to P7. P7 owns the
+broader tablet composition in either sequence. No rule, generated-map or
+flavour-name work is a dependency.
 
 The owner decides: **D1** workspace versus separate pages; **D2** bounded portrait
-release versus one cross-device redesign, and its version; **D3** whether to retain
-current direct attack/one-army taps as recommended or separately design staged
+release versus one cross-device redesign, tablet behaviour/support and its
+version; **D3** whether to retain current direct attack/one-army taps as recommended
+or separately design staged
 confirmation/amount placement; **D4** acceptable map density, colour/shape contrast,
 dock size and amount of persistent desktop history. Static sketches can settle
 direction, not final appearance or touch quality. Later click-driven browser

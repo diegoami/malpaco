@@ -14,7 +14,8 @@ low-height arrangement rather than clipped controls.
 
 ## Phone portrait: 390×844 CSS px
 
-Example safe areas: 24px top, 34px bottom. Available area: 390×786. Header 56px,
+**Placement view below.** Example safe areas: 24px top, 34px bottom. Available
+area: 390×786. Header 56px,
 dock 144px (88px context/actions, 56px navigation), leaving a **390×586 map stage**
 and about **374×570 canvas**. This is available canvas, not land coverage or a
 claim that the fitted board's labels are readable. At 320×568 with zero insets,
@@ -51,9 +52,34 @@ at the minimum with two tool rows.
 The map toolbar may use two compact rows at 320px; it occupies reserved canvas
 edge space and must not steal a region hit. It does not float over confirmations.
 Dock text wraps; no essential label is ellipsized. At pool zero the context area
-shows “All placed” and Start combat. During battle it shows source/target counts
-and existing single-exchange/Fight on/Stop actions. If these cannot fit, expand
-Current choice into a reading view; do not shrink controls below the target.
+shows “All placed” and Start combat. **Attack uses a taller dock**, including
+Move armies and End turn alongside the four battle/inspection commands:
+
+```text
+390px attack dock — replaces the 88px placement context:
+│ A 8 → B 3 · Tap enemy: one exchange  │ ← counts/prompt: 48px
+│ [Once]      [Fight on]      [Stop]   │ ← three 44px-high buttons
+│ [Inspect]   [Move armies] [End turn] │ ← three 44px-high buttons
+│ Cards       Totals       History Menu│ ← navigation: 56px
+
+320px attack dock — wider labels get two columns:
+│ A 8 → B 3 · one-exchange tap prompt  │ ← counts/prompt: 48px
+│ [Once]                 [Fight on]   │
+│ [Stop]                 [Inspect]    │ ← three 44px-high rows
+│ [Move armies]           [End turn]  │
+│ Cards       Totals       History Menu│ ← navigation: 56px
+```
+
+At 390px the attack context is **160px**: 48px text + two 44px rows + 8px
+between rows + 16px combined outer padding. With navigation the dock is 216px,
+leaving a **390×514 stage**, **374×498 canvas**, about **374×454 uncovered map**
+after one tool row and the same safe areas. The 586px stage above is placement
+only. At 320px the attack context is **212px**: 48 + three × 44 + two × 8 + 16.
+Dock 268px plus header 56px leaves a **320×244 stage** at 320×568 with zero
+insets, **304×228 canvas**, about **304×140 uncovered map** with two tool rows.
+This is a constrained focused view, not full-board readability. Longer text or
+larger type opens the scrollable Current choice view; never shrink touch targets
+or omit Move armies/End turn to recover map area. Owner D4 must judge this tradeoff.
 
 ## Phone landscape: 844×390 CSS px
 
@@ -71,7 +97,9 @@ content scrolls vertically; Pause and navigation do not.
 │       │                              │ Tap enemy: 1 exchange │       │
 │       │ A▱ 8 ───── B◇ 3              │ [Once] [Fight on]      │       │
 │       │     \                        │ [Stop]   [Inspect]     │       │
-│       │      C○ 2      D⬡ 12         │ action body scrolls ↕  │       │
+│       │      C○ 2      D⬡ 12         │ [Move armies]          │       │
+│       │                              │ [End turn]             │       │
+│       │                              │ action body scrolls ↕  │       │
 │       │                              ├────────────────────────┤       │
 │       │ map can pan/zoom             │ [Cards] [Totals]       │       │
 │       │                              │ [History] [Menu]       │       │
@@ -80,10 +108,20 @@ content scrolls vertically; Pause and navigation do not.
 └───────┴───────────────────────────────────────────────────────┴───────┘
 ```
 
-At 568×320 there is insufficient width for this panel: retain a full-width map,
+All six attack commands are in the side action body; Move armies and End turn
+use full-width rows. The map stage stays 492×321 because this panel scrolls
+instead of growing across the map. Reserve about 104px for two navigation rows;
+the remaining 217px action viewport scrolls the roughly 264px counts/command
+content (48px text + four 44px rows + three 8px gaps + 16px padding).
+
+At every landscape width below 680px and height 320–500px there is insufficient
+width for this panel: retain a full-width map,
 48px header and 64px compact context/More strip, leaving a **568×208 stage** before
 insets. More exposes the four named destinations; “Current choice” exposes full
-controls. In target-selection mode keep the named selection and Confirm in the
+controls, including Once/Fight on/Stop/Inspect and Move armies/End turn in one
+scrollable view. The same 48+64 rule leaves stages of 640×248 at 640×360 and
+667×263 at 667×375, with about 624×188 / 651×203 uncovered after padding and one
+tool row. In target-selection mode keep the named selection and Confirm in the
 strip; long copy belongs in the choice view. The map is a focused view, not a
 tiny fitted board promised to be readable. With zero insets, an 8px canvas inset
 and one tool row leave about 552×148 uncovered map space in this short layout.
