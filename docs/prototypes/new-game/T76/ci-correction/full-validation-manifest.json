@@ -1,0 +1,2126 @@
+{
+  "archiveBytes": 99621316,
+  "archiveSha256": "1c2219101ff395a7876cf782e77021055a3c50a1b881daf81c01e141bbf1273e",
+  "parts": [
+    {
+      "path": "full-validation.tar.gz.part-000",
+      "bytes": 16777216,
+      "sha256": "23bf08af85811f52748e2744bc6ba17ae91f44bd110ea877a35386bae226a9d5"
+    },
+    {
+      "path": "full-validation.tar.gz.part-001",
+      "bytes": 16777216,
+      "sha256": "c95b93822f167fa1bd8720ecd034485482cc177b5d14ba30ebaac69ab9a895ce"
+    },
+    {
+      "path": "full-validation.tar.gz.part-002",
+      "bytes": 16777216,
+      "sha256": "e9c6f134253ba3c4468be1fea5fd4ee1f30304ff6fe3c598df3c8184c758feac"
+    },
+    {
+      "path": "full-validation.tar.gz.part-003",
+      "bytes": 16777216,
+      "sha256": "90e09ac83737ddd27516581ffaf57a8fd39a23815e33592a08b3475b58ac24aa"
+    },
+    {
+      "path": "full-validation.tar.gz.part-004",
+      "bytes": 16777216,
+      "sha256": "8bb574cf70ab6fc6534613c2361aa671953adbf68e55c83afb476a537fce3f56"
+    },
+    {
+      "path": "full-validation.tar.gz.part-005",
+      "bytes": 15735236,
+      "sha256": "d7e27f515d4ce96f3bcbd53a6c2ab079a99c8583c3914f5ca792a8ee856c7f6f"
+    }
+  ],
+  "members": [
+    {
+      "path": "final-build/command.json",
+      "bytes": 12116,
+      "sha256": "95e11f56ba32bd3bb70170804ffa84557940fa03a0787c50664f250a20027688",
+      "mode": 436
+    },
+    {
+      "path": "final-build/raw.log",
+      "bytes": 604,
+      "sha256": "998e9e7f736b80b945afaa671e00ff51bda29e884065f117da3e1a14ceb8da76",
+      "mode": 436
+    },
+    {
+      "path": "final-build/receipt.json",
+      "bytes": 10487,
+      "sha256": "caa73f38f2a804328e2901b982d6afb6338345e52c99114ab7c26ac32771f55a",
+      "mode": 436
+    },
+    {
+      "path": "final-geography/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/command.json",
+      "bytes": 12383,
+      "sha256": "5f1e9a7b481cd801188de998a107d5920496759b19ac0c23d26e8f3b1dbb8b2f",
+      "mode": 436
+    },
+    {
+      "path": "final-geography/geographic/geographic-0-1280x800.png",
+      "bytes": 201721,
+      "sha256": "9050b728ca3d0dd020700194f56bb1d329bedaf267456aaf1ed63a99fc4b913a",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-0-1920x1080.png",
+      "bytes": 336342,
+      "sha256": "f342a3c56c82d4ca093942d2eba2dd6929ab26fe3deba980a80f6c9d87c52591",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-1-1280x800.png",
+      "bytes": 200857,
+      "sha256": "df9bdcd9d2bd8519d0463d333eeb32dfb9b8d3ba704439e72838f0a9c8497551",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-1-1920x1080.png",
+      "bytes": 336156,
+      "sha256": "3fd615a1985bef9f5348cd09d5e45ac1c4daa835271f9907d7a7214f90665176",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-1994-1280x800.png",
+      "bytes": 203352,
+      "sha256": "30ea0ecbd7c37b5b40244abeab82a36acc38f853691ec69ef2bfae1d2fb2f23a",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-1994-1920x1080.png",
+      "bytes": 339193,
+      "sha256": "5658be1d97968885f8e35da2a4f708c00836f32984a1d6dc9c20054181fcc3d3",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-513-1280x800.png",
+      "bytes": 202042,
+      "sha256": "2c94d35cc5e0e40532b5d9dab43930730600c9f2671e7498e0168ed0c1a26725",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-513-1920x1080.png",
+      "bytes": 337491,
+      "sha256": "0071b9d3b506363b44ef463023ed1f8a01196a2188e6e7afadcc361cf9f38c8c",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-6-1280x800.png",
+      "bytes": 201411,
+      "sha256": "618fa5728bf1bccfee0fcb50446aeaea4413df90a78447b105cd4e9356390ab3",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-6-1920x1080.png",
+      "bytes": 336932,
+      "sha256": "f5f6a7f1fc18913584ee37de7c620fe7b1083469bc13ecd509ca772c703c95f4",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-749-1280x800.png",
+      "bytes": 200387,
+      "sha256": "a604f5c6ef360644e1f22960575065dca30a3e51328632b0a0dbc24830d44bb4",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/geographic/geographic-749-1920x1080.png",
+      "bytes": 334707,
+      "sha256": "142beae0a2316b715884eccb3d82f8c6014302f5134c6e0503f697c394660a29",
+      "mode": 420
+    },
+    {
+      "path": "final-geography/raw.log",
+      "bytes": 4310,
+      "sha256": "eed1de1e9887ab7cecad90e0ec198c2e1f635468bceeeb387132b735ba7500b3",
+      "mode": 436
+    },
+    {
+      "path": "final-geography/receipt.json",
+      "bytes": 10487,
+      "sha256": "2de806f8c7289a0b2b481f433d6139fcd05a29762e5fea71ce5914ed88022acf",
+      "mode": 436
+    },
+    {
+      "path": "final-geography/results.json",
+      "bytes": 36147,
+      "sha256": "83694899c2469cfd692d7ff0646309cacb0369f5b072dbf7a559950d07822cd8",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1280x800/cards-drawer.png",
+      "bytes": 227675,
+      "sha256": "b825da5a73a0c6807d3442f44e788d232ff6b2d0996d5067ee47328741e47c8c",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "bytes": 388399,
+      "sha256": "f24392310c3a7022a99f7c938148ad1b9bde08d6f5fd87804e399007841719f2",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "bytes": 224836,
+      "sha256": "336320f2d167faea5e71fcb59c0df26ac345a7f55777aac47a2a9fe86a89edbf",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "bytes": 203766,
+      "sha256": "ca61275a521219647ac2b51ea1840706c0be55ecce17b0dd777f9d9ed91d88b7",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "bytes": 386000,
+      "sha256": "ddb38ed88af50a4e2d695160487d905a8a3cf26ad4f36027bdf541651c086e79",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "bytes": 339299,
+      "sha256": "82491d5115f08e9a241287e50d76c98a95a168907fb6b5ae5f6395d49379f1a1",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "bytes": 282707,
+      "sha256": "cfc8fa6d48de0714024b8fba8ce564a7f6bf77492f4aa046d50b6570c8e9f04c",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "bytes": 241674,
+      "sha256": "09b7c0c4c229a700bc803fe53845c9b82e211820907f2f4e81e2907228b18bfa",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "bytes": 485415,
+      "sha256": "69b9e75dd0ec7ccdf4c623d71490f34bfbf00b98f68056abee8222fb61431b77",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "bytes": 413091,
+      "sha256": "3dc0f77614bc70731542f1bf115db62f395bfbc179c6132a42ff1a85cbcf3410",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-reference--99a05--focus-without-game-actions-1280x800/cards-drawer.png",
+      "bytes": 267192,
+      "sha256": "47ed70154f46e6c38fc8c3e843fe08278463409d69ea0f4e8cce67dd6316ff3c",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/browser/hideable-panels-reference--99a05--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "bytes": 467604,
+      "sha256": "5fa2a61e88d544d5148fbfd52be689725ece9b4d2f9545affd047b19c494d244",
+      "mode": 420
+    },
+    {
+      "path": "final-layout/command.json",
+      "bytes": 12355,
+      "sha256": "6ce4eaf9415bd9c7fbb82808b9825a3298f6a42e057d1e2293d19a4e332ef2ae",
+      "mode": 436
+    },
+    {
+      "path": "final-layout/raw.log",
+      "bytes": 1314,
+      "sha256": "dc10d7b889be8534332d359d3c57744079748b26b7878c15b21d893d8a873790",
+      "mode": 436
+    },
+    {
+      "path": "final-layout/receipt.json",
+      "bytes": 10487,
+      "sha256": "3333450ed3cac92bc320f85d0b62b1cd9907ce416d2a38d12492816eb31697b4",
+      "mode": 436
+    },
+    {
+      "path": "final-layout/results.json",
+      "bytes": 15967,
+      "sha256": "1c4a78d8f6458d664f1796f25701617094a6870d7fa63f29a813cfc44dd45d10",
+      "mode": 420
+    },
+    {
+      "path": "final-list/command.json",
+      "bytes": 12128,
+      "sha256": "5ac052b8a64bbeede164f8a8b1934c70794a8f7bdea3ba64ac8f8dae51060090",
+      "mode": 436
+    },
+    {
+      "path": "final-list/html/index.html",
+      "bytes": 574223,
+      "sha256": "d7a1cf8f2a3232de52c218a4b9dc2afbdb4c99436988224370ba320bc5e0dd25",
+      "mode": 420
+    },
+    {
+      "path": "final-list/raw.log",
+      "bytes": 49264,
+      "sha256": "aa77ad0bb9f5146f75359afad954264d50db84f224fd934a56dd1c2b0fa96f9b",
+      "mode": 436
+    },
+    {
+      "path": "final-list/receipt.json",
+      "bytes": 10487,
+      "sha256": "e35dde0af73b783ca98322b496ee2dc0a83763f6ed28530ea7c6dbdc2477abba",
+      "mode": 436
+    },
+    {
+      "path": "final-regression/battle/accessibility-2mvk4r/capture-controls-fit-1920x1080.png",
+      "bytes": 441819,
+      "sha256": "c2fce0c92c5355e0bf4abed36738cd013585bbb9e2dd50d3573ccb0b5b54bff5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/accessibility-8H53BB/capture-controls-fit-1280x800.png",
+      "bytes": 257333,
+      "sha256": "411c63607bcfd5d1ef76d8ad1508ece5dc9ef43b43b9f1283a41dd863d4e7044",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/accessibility-CIhWeC/keyboard-stop-1920x1080.png",
+      "bytes": 433579,
+      "sha256": "eb26eb7f8bb456f0ce7fa93e14050b3b7c034d24af08aa75f073fe7d07636981",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/accessibility-Wh8mF1/keyboard-stop-1280x800.png",
+      "bytes": 254597,
+      "sha256": "2df9d184064573f09052faac740c618a34e552dde808ebadc289776e2a1d3386",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-424ye2/capture-minimum-done-1280x800.png",
+      "bytes": 260442,
+      "sha256": "58d3adc2774908af639dbe544991c124c2f9bb14bff45cda6564df7eaa78245c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-BYJQYB/capture-maximum-done-1280x800.png",
+      "bytes": 260204,
+      "sha256": "be0236b503326bfda0ef10931b6ab5b11a18168103ec6979d50f8e552149bfc9",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-R2zXON/capture-maximum-done-1920x1080.png",
+      "bytes": 445868,
+      "sha256": "db358bfdab18793f92db82dbf94b5c5502a600ae8a7e6beec0a745a03d3d77c2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-Spu28d/manual-stop-1280x800.png",
+      "bytes": 256353,
+      "sha256": "5ad9b9d53cc90bb3ea2b2127d7f02957ab555ea9953fefbbdd7ed756d3d71cba",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-dWqhz1/capture-minimum-pending-1280x800.png",
+      "bytes": 257102,
+      "sha256": "9f0930a2e14122564189f3fe57fedbe9a9597d7c86e2e28c32a9db714ef2c98c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-ee43ka/single-tie-1920x1080.png",
+      "bytes": 436671,
+      "sha256": "6160bd5508526fc9cc40cd64c53896345507f8c162f2dbad2548ffd45adde71b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-jPpBct/capture-maximum-pending-1280x800.png",
+      "bytes": 257189,
+      "sha256": "bbe074d20d1bea0a2df37f03ae8a4e7472156fc2a5d23b1f9967672eb57073eb",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-mcxqVO/single-tie-1280x800.png",
+      "bytes": 256491,
+      "sha256": "871bf280cb19b19a04a7609ab01d3e6cc8b4737fc63925ffff37039ddb1b94a6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-o4asHN/capture-minimum-pending-1920x1080.png",
+      "bytes": 442199,
+      "sha256": "6203a17acca554801f973365b153a35851ad7de508832d4685cc9e5430c985de",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-sg5mIz/capture-maximum-pending-1920x1080.png",
+      "bytes": 441819,
+      "sha256": "14f78cf0360e87fc2a9a9d2d945c53e555e3c8cd636b377fcb3e030052bdbbb5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-vabTXm/threshold-stop-1920x1080.png",
+      "bytes": 435832,
+      "sha256": "7cd7d7b870f5dd921c147f76985475152d212917b05a08941f11f3457b75c73f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-wcNel5/capture-minimum-done-1920x1080.png",
+      "bytes": 445839,
+      "sha256": "98f0c3cf031bdd4c2a31dee41dc867b67caaa84d28efabca6b9324d6d8f8d922",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-xa2c43/threshold-stop-1280x800.png",
+      "bytes": 255665,
+      "sha256": "0cb8323a5f3962a447b7ae294924aefce6703fdea8befeed1c73f8c4c90ab479",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/battle/battle-yThLEV/manual-stop-1920x1080.png",
+      "bytes": 436430,
+      "sha256": "e483cc26a8685136ddb2244b4c4760f961dc613c197238d38c5f7e6e2625d37a",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/.last-run.json",
+      "bytes": 45,
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-empty.png",
+      "bytes": 265106,
+      "sha256": "29cc3b99e45dfcc22849b1e4e33b524cf17eeec408487967a95c415ebfcb6e4d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-hand.png",
+      "bytes": 266256,
+      "sha256": "e18bf8df4a8f83720693945c383bc90b17314831cfc823ae6d0a5f8fbc289569",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running-running.png",
+      "bytes": 260117,
+      "sha256": "acabebe90d2bf890ef4d05bf17b05f40ce4fdc8240892a113815ca5d033509a8",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running.png",
+      "bytes": 266709,
+      "sha256": "4679b5102a6bb4e88aba9cf439c801441fcf358cdeed61dda25c522ffa95a953",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-capture.png",
+      "bytes": 261762,
+      "sha256": "6db30204de02ce610943adc60e0d7cd1153762050bc3c7319960c8308ed45353",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-empty.png",
+      "bytes": 267270,
+      "sha256": "4078c2d8b6686af94c1bb338edc5e0183d050c0a9b69c834102ac84a4c20a08e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-hand.png",
+      "bytes": 268457,
+      "sha256": "5902ce99218da8ab8457bbba292ad33a2674f0f56316e0d79f7b9e2d41045fd2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "bytes": 264066,
+      "sha256": "bbcf6790ababd9282b5edd5237528e2800972b86b9f79d3e7e29ad53199af274",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running.png",
+      "bytes": 268763,
+      "sha256": "fee2da3856bf61ead7db81ae15b599c1da23734329d4a41512334e696eee6bac",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-capture.png",
+      "bytes": 261552,
+      "sha256": "3fdd1b397e276c91225783629807f6ff76452808acf74de3a8d0c792bec13052",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-compact-card-choice.png",
+      "bytes": 260489,
+      "sha256": "3c8f86cfd33f394528530e8115abc70452bc8dd3eab155b05ad2ef55fdad4019",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "bytes": 260285,
+      "sha256": "b7704f6f56ee948adb983e8e5e367e6b332ff6d303d3f6589b0d7a318efe97a0",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "bytes": 231335,
+      "sha256": "975436519adca7fbada1db4ee7f74c5f9ff711e2799ff2e3d0965886f7223f3a",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "bytes": 229573,
+      "sha256": "30f82d66fa4418c2bc9b50c68a0a9aec07d61ace2a2507cfff1a05c8bad532f9",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "bytes": 226571,
+      "sha256": "6cb7f2ec7e8bfecb7f1ff11ea84b01b32f72e6186ee44f7d9208085e56a893a7",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running.png",
+      "bytes": 230399,
+      "sha256": "389f7fa5c7d9944d7a60911502fcb45eb8a252f7d66670c12d03a76c802b976c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-capture.png",
+      "bytes": 224523,
+      "sha256": "c232452cbe1f806e71f5f52503797e7f0eb73958d22d2dac7043966cb332f177",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "bytes": 233772,
+      "sha256": "9c451390bd86c5649a427cce347b0f53aeb20b3594e53b441685aae5edf2149f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "bytes": 231717,
+      "sha256": "e28d67db365265435a11a6f12294890397840bb53e21311799e696cce82202f3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "bytes": 231015,
+      "sha256": "5e24290cb6ef20eff5c8ae91272e6f67f4349154509db83aedde56af3c0355fc",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "bytes": 232494,
+      "sha256": "b680412162be793f4aa510434ce67803702a1188ec2367a651b5f935a9c53f1e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-capture.png",
+      "bytes": 224299,
+      "sha256": "c89762aaa18fe5a22bc2356a3129b15f5cc0a65addaece1b0bca44d8912d41d2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "bytes": 218911,
+      "sha256": "2b0b2d2f139838141cf7107e4869e8eabe4e2fc6c70d3a742cdd29317d1ded27",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "bytes": 218702,
+      "sha256": "972308e8b0c5b17a79d3c738dd2d17ba5c5e4ec2414c0ef1dc47ff095d405931",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/metrics.json",
+      "bytes": 423474,
+      "sha256": "f0ca7b72cc6139426336168a4e89502b2dfe1a2030906799ef61b19c062368f0",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-empty.png",
+      "bytes": 448509,
+      "sha256": "58e19705f1cc3abe2b93ecac8a11d867b66403b7277544701f7e4cf150b149e6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-hand.png",
+      "bytes": 463132,
+      "sha256": "fdb3b167c918f961e1c2a3cd18c3afe6629575e82e404a4ebc4d160ff8c89d74",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running-running.png",
+      "bytes": 453327,
+      "sha256": "c8ae582e7529fdc314ff70db751800702d0c4ed46a23c1672284e64e9f6598aa",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running.png",
+      "bytes": 462168,
+      "sha256": "0baa9fcf9defc3df8d48983f401be26beea372b3871b599122abb2e0219a3752",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-capture.png",
+      "bytes": 457046,
+      "sha256": "3a3a21f981c6e9d028743fcab404a301b00482a1d53c48836c2bb9ee200c60b7",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-empty.png",
+      "bytes": 451472,
+      "sha256": "fefcc58a918deb6fccb749586d5b39961564f0bde8e8c2cfc3eb517b8593532d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-hand.png",
+      "bytes": 466164,
+      "sha256": "5ee691e7d6a15effe812da8956a76038796035a4d709241ed3d178c54674d0fa",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "bytes": 458654,
+      "sha256": "393c1b7491818139bbab6c790bed7079809976d1f0928a2f6a027a7d84f0dc06",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running.png",
+      "bytes": 464911,
+      "sha256": "d4987a9d550e6dbe99cb39d26348792a452c8a5324c58385bdfddc6b2dfbf6c7",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-capture.png",
+      "bytes": 456834,
+      "sha256": "91b0e4fc06370bdb312fbb93c64c8caf5df706e39b38f4118cf446d51d624ef3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-compact-card-choice.png",
+      "bytes": 452796,
+      "sha256": "57686984bb0a9786bde3bcc4bb387922502b195948753fa2fb336601cd7baeb1",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "bytes": 452588,
+      "sha256": "15d3840da92e9aeb08b8bd5f2ac1d5b1b5d98403703acea2ba5594b53e5b3e2c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "bytes": 392482,
+      "sha256": "30e6c090f6c7de123c9fd8088cb637f95975392305f0ec200894b09873e74d0e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "bytes": 385505,
+      "sha256": "683c47e59a498dd6555fd36c49cbf666a093a5a768cfce23ce66d96e34884255",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "bytes": 385559,
+      "sha256": "9d88d3316c955a0d5fc5c4f090e2246fa6051b26e946e21766652ee6d6b3c1d6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running.png",
+      "bytes": 389570,
+      "sha256": "3ac5f407e78e91f3e7ac612389e7b5173e0d4ab1501fbe4fad4e3119104de466",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-capture.png",
+      "bytes": 379077,
+      "sha256": "5812bf488d6007384c7e7e4dd8170345a65b326f08122adde4ad13271511b516",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "bytes": 395305,
+      "sha256": "c3bb921abc0505d93bfb0b20fef473a955d3cb38ea311c68c1c450945ccea268",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "bytes": 389392,
+      "sha256": "46b3506cea29a0a45f4baf1cd24ed40057f8f5305f65b9de362392340f84697e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "bytes": 391412,
+      "sha256": "01353eb0de14a2917f5e4bec78f0731ca6c604ccb8e6a87540ea409b19b90e06",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "bytes": 392512,
+      "sha256": "fe45e9cec82e042e3dcde425aaa1b1bb6f8fdb04f67eca23e54f5de37bf4cd23",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-capture.png",
+      "bytes": 378867,
+      "sha256": "79bfecb0e8820ac0f3b5a1b12b08e5bea682c88c5127f4c98c228055f39e9e40",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "bytes": 373834,
+      "sha256": "89ec3782d70f2e11f0be2b619d86df6e52d9548faee718b76f968d0805da13be",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "bytes": 373623,
+      "sha256": "038c2baf614e281ff79103d2507a054aae2e22b6950cac88523fa3f2a0d7aec9",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/metrics.json",
+      "bytes": 434304,
+      "sha256": "ffa0b1a8f7cb670767be868263c48d64fd3376f3c95d0ea2d01aaeb49beb5724",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-compact.png",
+      "bytes": 246357,
+      "sha256": "233eb8882a2ae1ee6a879d78324083c0bdd2656f03014c5609df7c5869091d82",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-detailed.png",
+      "bytes": 247351,
+      "sha256": "fc386724bffdad25be5d79c76e1a31067082c62e87cb4eb5aefd51f04927d7b5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-compact.png",
+      "bytes": 431775,
+      "sha256": "74bd987feb437234ce4e5e75ff84bd37248d679031ab0895fb60c564fb2db754",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-detailed.png",
+      "bytes": 432763,
+      "sha256": "aac4eeab6cabe3448fb93ebed8c58e587efcfdfb6e2d94eb10d51679acd07d89",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-compact.png",
+      "bytes": 249750,
+      "sha256": "191b16b6241f8f4b567036a632ca4e7ab485c7b2cee0c2757960f2c45938288b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-detailed.png",
+      "bytes": 250761,
+      "sha256": "f82471d79879f7e773e33180bdd416ba4345d9724ad1c561e09cb9acf981bf21",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-compact.png",
+      "bytes": 438502,
+      "sha256": "3836a760dc6abe25e85207359228068fc0ccfa0a3e9785a8ec09c2076d2cc58c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-detailed.png",
+      "bytes": 439492,
+      "sha256": "1c5ccc3b96cf22a2a4c02f41ba2f399083e54e6cc2ef0e8a61c6e0b873917fa3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-compact.png",
+      "bytes": 248783,
+      "sha256": "99e2f2c99666048acd4ab210cb765858bb7d6b95f5501cb582fcb88f8a1dfe50",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-detailed.png",
+      "bytes": 249747,
+      "sha256": "906eea568aa17b7b8b894ffba2777d6bc5ce023ec7179f8a7431240af1e88c02",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-compact.png",
+      "bytes": 438693,
+      "sha256": "e4ff4bad26aa47a9cd90d9e78eb5bd3477edc5fdf5eb95d95edab7355b30c34e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-detailed.png",
+      "bytes": 439674,
+      "sha256": "f6448231bb26970c9ffd8d0a2ab2982d0f3287d6addfe3f6263bc408ef1c1ff3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-compact.png",
+      "bytes": 242652,
+      "sha256": "5678d76720ac27f74cd1a2d84aef48895be06bd063db11b7504f7de572829350",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-detailed.png",
+      "bytes": 242417,
+      "sha256": "57b4336af651bf0ce09c8e5653321c361ff3dc6aa04e040360b55d47a418d4c3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-compact.png",
+      "bytes": 244124,
+      "sha256": "b0aeb206b380701b54b9f4c843b15e45627d718e1b1051a831df23c0b7eb1c04",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-detailed.png",
+      "bytes": 243925,
+      "sha256": "3b77090fd4239ef315e3c5437d5ccba41a6afbeff3a98deed136459c0058a62c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-compact.png",
+      "bytes": 426575,
+      "sha256": "79e5b0db2525520acbfc4bad9105fbc032ed7358206188066adb976d554f28cc",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-detailed.png",
+      "bytes": 426343,
+      "sha256": "ba1b014ee8cf68605d0aa35bd8f0f1c35b30efd71ddc07ffd59781ef3c842204",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-compact.png",
+      "bytes": 435130,
+      "sha256": "26d5650b69215a0d5d5e96d1307c67d71aa664a21d7a223b4cf0d7459d6f3ab8",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-detailed.png",
+      "bytes": 434989,
+      "sha256": "8102e59f4e7d91461086cdccc8371558b3d70023e65088dc4781698da98f36a4",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-compact.png",
+      "bytes": 259309,
+      "sha256": "2f24eb09bab6591dd7c561813a0a82586e4a8bfc7e3d8422596dedb88c7cddd3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-detailed.png",
+      "bytes": 260293,
+      "sha256": "8e6c5a522c68bbab8d9d07ecaf29c7a1231b9c3224d933637073e352b251e288",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-compact.png",
+      "bytes": 451607,
+      "sha256": "cde0b0a01ddc412fcbf661a672da172b7d87dabd280ef451cc349b629995f2ca",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-detailed.png",
+      "bytes": 452597,
+      "sha256": "13837547963a49ba6bedc0303a6e2f3f97534adad635e494e0858c1876297dcf",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-compact.png",
+      "bytes": 261763,
+      "sha256": "6b2545b82120e5a661e0643f4e338ac5d0bd1c70f51d796d3a17d993c7efc06e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-detailed.png",
+      "bytes": 262724,
+      "sha256": "675ed6b48b1c193d83f5ecde5abf5c837391130e878fc996fff172a9afb89afd",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-compact.png",
+      "bytes": 253396,
+      "sha256": "81b42e17793890a37b31c8a522f5c228726d281366028fff4667d76ad9e52d6c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-detailed.png",
+      "bytes": 253181,
+      "sha256": "b7b136d7bd2b00b71aa8926c77fd090f3abb04531ba0768cee31817891843c00",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-compact.png",
+      "bytes": 455622,
+      "sha256": "7bfecdec2f4fa0800f5415f560014a6731c5c2f0b0bdf882ac68da5740bcfb19",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-detailed.png",
+      "bytes": 456630,
+      "sha256": "a709d0a63e65cf351be6ddfc85b1e51b479c07f45da64f99b236d58c1c8bdf5f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-compact.png",
+      "bytes": 444498,
+      "sha256": "d5e5da56f2ff8e1f61621c34717b32c43ef5a4a7d271cfa2cebd92c70f7a6d5a",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-detailed.png",
+      "bytes": 444287,
+      "sha256": "c1bffd53b54b20614393f9ea0e6cffaf985dc800e820786d25786f9f891758e5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-compact.png",
+      "bytes": 261355,
+      "sha256": "2957b72779bc13b7a2d915b2a71259159f9c676ca49911b54bad78ebaf4afc03",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-detailed.png",
+      "bytes": 261148,
+      "sha256": "de5d1201141803393e758784a4a7ced1947f568f6014cba3c045cdb9f6706016",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-compact.png",
+      "bytes": 445924,
+      "sha256": "5bec33ae3b08841a151742c028c20d81e9fc7b234c6c2e759d61fe9a53ba4d0f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-detailed.png",
+      "bytes": 445716,
+      "sha256": "a1e8e6dd2ba14703eefbb65e291aabf339feb838d7a2ebaaf1d220d90facdb51",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/attachments/geometry-64b7b28114a42c0a7d88bbf8a11dbeac66c8a588.json",
+      "bytes": 6791,
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/geometry.json",
+      "bytes": 6791,
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-compact.png",
+      "bytes": 273506,
+      "sha256": "d7972eedbbe4c357c7ba6858ec8ee5aacd96c09af13835813251f2c721f44cea",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-detailed.png",
+      "bytes": 273358,
+      "sha256": "74d59b34cecf648506d8b89e01dc9ff9358225b5a9df75af692654f36a5cbb95",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/attachments/geometry-dfa20ea4068d8aa2477049f62c1c32c5c5264d94.json",
+      "bytes": 7090,
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/geometry.json",
+      "bytes": 7090,
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-compact.png",
+      "bytes": 477484,
+      "sha256": "4f931349b7901f619c35f2e48b910f0258e5658676d358b8dad8a65a2a3a9a8e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-detailed.png",
+      "bytes": 477283,
+      "sha256": "f70b437e91727f0ff9f812f3de2a8509f4647cebea38de71e86c1a94acf54b38",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-compact.png",
+      "bytes": 224023,
+      "sha256": "34a1ab2beaec66de2b5a43e04c6cb6ac22f85517ef1ba7a516f1f22d957fc633",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-detailed.png",
+      "bytes": 223882,
+      "sha256": "5cdbc333199bbbb2fde25f7962f6aa78f3cf0ca9d23b2d4bc1f55d9887d1a3a0",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-compact.png",
+      "bytes": 366629,
+      "sha256": "49ba69061d864c236f68da236ab1043ef3817255a934f1750571d84a94fd227a",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-detailed.png",
+      "bytes": 366425,
+      "sha256": "3cb7a2da71c284a357f9245ce3d47ec6f39c015e1031238a8751f31fa451f32d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--04741-remain-visible-and-operable-1280x800/video.webm",
+      "bytes": 507679,
+      "sha256": "bc0402c4e00c0d87be98919db71fa3378f59257a4760ced0b75b4b2f0f9ddacc",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--04741-remain-visible-and-operable-1920x1080/video.webm",
+      "bytes": 381243,
+      "sha256": "f8576db79f00c5f27f52f0f7a3b8e5fc014913b642a31254a377b8c9d18bebb5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--33b2d--log-load-and-next-callback-1280x800/video.webm",
+      "bytes": 455987,
+      "sha256": "315773998f54ec6c377d979e6f6cec44d6e15547dee7345601fcb5f638442956",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--33b2d--log-load-and-next-callback-1920x1080/video.webm",
+      "bytes": 311233,
+      "sha256": "b7b89a90292b92bf01ccca9a887456996cd6724e2e8bdbef61c9cd48014c32eb",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1280x800/video.webm",
+      "bytes": 417868,
+      "sha256": "87e5e077854018dc44f41f9519cfc03f77e7080f77fdee362ce6d4d60ed5b8c6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "bytes": 378625,
+      "sha256": "7a1d7ee2cf6ae2aa91f3dd12a6c2e3140312fa1e8000161118fc536658dd21a6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1280x800/video.webm",
+      "bytes": 456838,
+      "sha256": "08ccacf8ec310c9dfbfa5bf1a756c232e3a06d98a7779c2252a809e048075f0a",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "bytes": 424258,
+      "sha256": "bc2cba6a23b70e7ce0efcdb3cca77b1414f078be5bcc73cadca24782fd30b3e9",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--a3300--panel-areas-and-essentials-1280x800/video.webm",
+      "bytes": 1052675,
+      "sha256": "2dc14fb37298b89313832e21c70e848ccadde1b486800aff67cece21f70c3e76",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--a3300--panel-areas-and-essentials-1920x1080/video.webm",
+      "bytes": 945719,
+      "sha256": "81f293648f62b32579043d504517c7d9852a2c749e2b8cd111db86729afaad72",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--bd335-remain-visible-and-operable-1280x800/video.webm",
+      "bytes": 448001,
+      "sha256": "cd5b097a9f7a7f2fcf93a39b1c8697769ab5d34acd3ceca6a954b3a19895b85e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--bd335-remain-visible-and-operable-1920x1080/video.webm",
+      "bytes": 449823,
+      "sha256": "54e935855f54bb17185244e756fb42b6ccfd34cdcdf3312b3271878630ad25e3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--c209e--panel-areas-and-essentials-1280x800/video.webm",
+      "bytes": 995800,
+      "sha256": "a479c6e47a3d0a3b049bf82e97b4886eb171005011860a08489278ca6ea3d681",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-geographic--c209e--panel-areas-and-essentials-1920x1080/video.webm",
+      "bytes": 1003799,
+      "sha256": "c5ddb821adfde1a458c25b7dcdecc6e7e43d3ba2d3a29d3f403937288f8101a8",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1280x800/video.webm",
+      "bytes": 180243,
+      "sha256": "aa8adccfa0d3ff11b57a43fb9743c5fec028faa8ff6cf5cc6156fd91a485bea9",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "bytes": 213187,
+      "sha256": "323f838b6cec7eac3c4302ba17e93288364b348da4db45fd84b45abde2210935",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1280x800/video.webm",
+      "bytes": 151500,
+      "sha256": "d354ae5864a15ea33585dbc939928271170964008b24d509c614e874f9fd61d2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "bytes": 157715,
+      "sha256": "eb0d839d21b9b95f11b0527ea10a81f3d77dd88df538ad966d77ca6acbf7759f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1280x800/video.webm",
+      "bytes": 329476,
+      "sha256": "443691649d8421c94d512a79420f31a5eba3329e806903ddbcb5174e7d2e6bd8",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1920x1080/video.webm",
+      "bytes": 424415,
+      "sha256": "162ce5e3ff3ece37344944dfff04c3294c646829431b98487f0f31b2434bd431",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1280x800/video.webm",
+      "bytes": 156404,
+      "sha256": "b1abf53f11f54f0fb05252d270a05f6972818ecd5c4f479214ca4e083b7ec68d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "bytes": 160118,
+      "sha256": "b1c59a8be0be5503bc814f8cdd5bab38b9f60340c056b658503b20079c4bacc8",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-eb280-remain-visible-and-operable-1280x800/video.webm",
+      "bytes": 178836,
+      "sha256": "560d6af289a7408921cbb918b172bc42cd8fc4ef5bb9b429ffd55fff694f3a7f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-c-eb280-remain-visible-and-operable-1920x1080/video.webm",
+      "bytes": 179842,
+      "sha256": "c481df628127d8fd9adb2038f817ec066e37560798dbba4ad203829a15590836",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-d-301c5--log-load-and-next-callback-1280x800/video.webm",
+      "bytes": 183171,
+      "sha256": "70e957a2434e55352a9c036a1f40a00eb47d74fe8fccac1dda6ef132eb22df69",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-d-301c5--log-load-and-next-callback-1920x1080/video.webm",
+      "bytes": 181757,
+      "sha256": "37ac3303255b37c2c0df91583fee0fbf2db7136163e95504a32e61597a521e1c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-d-78c88-remain-visible-and-operable-1280x800/video.webm",
+      "bytes": 193248,
+      "sha256": "9bc4d21993dfbf15d17efc8694fec0c1b9ef39f6747cb9bc953b1ccb8edc691c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-d-78c88-remain-visible-and-operable-1920x1080/video.webm",
+      "bytes": 196078,
+      "sha256": "5b426334e1b195b28dc58be95ca87771ce05e0ac9da23b95c438a6b9345697fd",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1280x800/video.webm",
+      "bytes": 157345,
+      "sha256": "cfa40a866c476fb4c196500a3e1752b47feb1e810a04bc025fa8cf8adb8231ca",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "bytes": 153305,
+      "sha256": "fc1a4b994c0c4a43cb971ad5be04503ef428791d7a422ef0562f6c774da12fa2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1280x800/video.webm",
+      "bytes": 389083,
+      "sha256": "69845f4c58402a9abe2fa2429c49f8c47d62ce7fe2e30ffea9af04009beff4f5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1920x1080/video.webm",
+      "bytes": 375734,
+      "sha256": "4672c083487fdeac039ca9245d8828b9b94b7283a348ae9b5084874da6e80403",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "bytes": 279554,
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "bytes": 473182,
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "bytes": 283058,
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "bytes": 500076,
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-details.png",
+      "bytes": 241748,
+      "sha256": "63a9c0ed701e36c5d514fd25488bdc924eeb61c71d4e770bb5bd591f4a1e372c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-sidebar-only-battle-rail.png",
+      "bytes": 214718,
+      "sha256": "2d98b9a6e94b7f97ee6aaec109e22a43a9170c82425a28c2aed8d2db40de1320",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-details.png",
+      "bytes": 392369,
+      "sha256": "74d2eedad8f51c1c148d2ac816da2df01af12133302db485c7f275193f60bc9d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-sidebar-only-battle-rail.png",
+      "bytes": 346725,
+      "sha256": "6aa84ff912a4b6c07b4221b27c0827ed1cc1f89cfc4046b131a8e452268dcc3b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "bytes": 225820,
+      "sha256": "30820b5490daeeb0540425fea1d6d2890e36280b082c157095c214eaa579846e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "bytes": 390278,
+      "sha256": "150c7b62b39a4105e3461c0a7030be48e057890dd7da0c67185c38ce215d9c66",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "bytes": 235512,
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "bytes": 369911,
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/geographic-friendly-redraw.png",
+      "bytes": 226227,
+      "sha256": "d74a47d39e10b460cc55980672f73e27c882be94684495df916e1e1641a26ab3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/geographic-friendly-redraw.png",
+      "bytes": 361923,
+      "sha256": "dd78ed2e70e32101a3991c74a3986ea369c958fff08dd4e554d1e0fe6a84bfea",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/geographic-sidebar-only-rail.png",
+      "bytes": 225544,
+      "sha256": "a19e71c4d94a641d5e4314d24b565fd80d9983cfaef0807af465c0f187038ef6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/geographic-sidebar-only-rail.png",
+      "bytes": 354518,
+      "sha256": "50731796f8badc5059e1cae148a7cab11d5ffb136b72eeb06d1fc2a1a2d2c86e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-false.png",
+      "bytes": 209960,
+      "sha256": "298db84952c9ef8e66d55c3efb5a001cd1fac65eaf1b0e5db25cfe3129b6cec7",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-capture-toolbar-top-true.png",
+      "bytes": 224522,
+      "sha256": "d0d3927d6cf6104fe22c65828baa8c1d90aef7b094f1c018691ad605e50a3652",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-false.png",
+      "bytes": 174713,
+      "sha256": "580edfa6adbd21cbdfa4b9fc168a4c7de66d984e3c598e83d40bfb120ac23ba1",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1280x800/geographic-reinforcement-toolbar-top-true.png",
+      "bytes": 203761,
+      "sha256": "d2a89d20b1986aadd090a9f093ee965ba9c871564923c987d82d4594f66491e4",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-false.png",
+      "bytes": 357826,
+      "sha256": "80d083454b45b8ef378c57af4d001be085f1875446a9500c06698a7ce8dd63b2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-capture-toolbar-top-true.png",
+      "bytes": 379077,
+      "sha256": "5812bf488d6007384c7e7e4dd8170345a65b326f08122adde4ad13271511b516",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-false.png",
+      "bytes": 309212,
+      "sha256": "9af1c407f182387398b951a75b371357ffa69f7bc08a49434bc6d6aebedef8fe",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-1a8e4-ap-in-both-top-panel-states-1920x1080/geographic-reinforcement-toolbar-top-true.png",
+      "bytes": 339293,
+      "sha256": "5873a41624f67975e8ce7b6c63028e5a6e265bb1d9dd368a73d8503f3664a5c4",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1280x800/geographic-visible-sidebar-history.png",
+      "bytes": 217104,
+      "sha256": "027f6c76fd2424e08595ebbed967cbacb816dd35744e8c2bd4262800914e1f66",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1920x1080/geographic-visible-sidebar-history.png",
+      "bytes": 366799,
+      "sha256": "08f68b4c61a8e4cefa5f46e4fcab388099ea43a03905ca6dfe00672cfe7ec64d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-details.png",
+      "bytes": 284903,
+      "sha256": "369a78f65d1091a946d76d8c40a8023193cad182926401f52eb9025a21323e6e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-sidebar-only-battle-rail.png",
+      "bytes": 254875,
+      "sha256": "e7390c4210cca6f3fb4c4c793ff71c1d9fdecba5811d5a622120d5c7d3258bf2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-details.png",
+      "bytes": 470495,
+      "sha256": "e68cd27c32409345bb3ceb2ff380b206ff17cd1d368abb5ba0e19ddd83dcea90",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-sidebar-only-battle-rail.png",
+      "bytes": 424695,
+      "sha256": "34059f9d8428ea8c97e3579aee3038b722d622a3887291ad48c89a37dc2b962f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "bytes": 270733,
+      "sha256": "14372ac273189b60818bca832cdf0ca612e7bd81c43cf863a8339b433381a56e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "bytes": 479554,
+      "sha256": "64f542f3c567d4c81683c3bfdaae7a453a12379864d0a40577677d6f6e2214d2",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/reference-friendly-redraw.png",
+      "bytes": 268884,
+      "sha256": "4855e7a704e9b423e2c981d7437c03b3cc18f62acd91a62031b4ea92891738d3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/reference-friendly-redraw.png",
+      "bytes": 439935,
+      "sha256": "2758fb592e87b1a109f3e56830fd4fff5021c19a5f2c4a20f833a6ea1b8bb970",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "bytes": 286326,
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "bytes": 467272,
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/reference-sidebar-only-rail.png",
+      "bytes": 276175,
+      "sha256": "3a49eb99663e82a366a0975b022056f28bc0fb66b28810ef5fb204781375981f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/reference-sidebar-only-rail.png",
+      "bytes": 440752,
+      "sha256": "9561045944a6e5667f6f021ec609ff94d55bceec2be327f232cf92ef3007a2db",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1280x800/reference-visible-sidebar-history.png",
+      "bytes": 253093,
+      "sha256": "ee5936a416dde3b0598cbcc95a3e480c8dc3e4507f55374c4ba14a4f0b2d8caf",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1920x1080/reference-visible-sidebar-history.png",
+      "bytes": 442721,
+      "sha256": "ae6981da4955caae09045c41b87c908e18e0308b13b604da5e115ee214a871e1",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-false.png",
+      "bytes": 249480,
+      "sha256": "5b103ea4d0f6d52bb36bb500c313c0fd80cf91ed0f2fe5b20ced90a1a87d256e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-capture-toolbar-top-true.png",
+      "bytes": 261747,
+      "sha256": "a60185d5d7b944b9d27cf13d08fa8ced0388cb02cf26ec9ff6743127bbf4322b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-false.png",
+      "bytes": 213574,
+      "sha256": "23f9e2de170f04576fa3d29bb2b5dc76724df042a71eeb33b04108d2b7d6457f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1280x800/reference-reinforcement-toolbar-top-true.png",
+      "bytes": 241703,
+      "sha256": "eb2d4e1f9f1193f431bd7691a8d1ad87c07d9f6ca7da8be6505e93f5d146f126",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-false.png",
+      "bytes": 436328,
+      "sha256": "71bed9652c7bded3408716537551b8b9da4ba24085aa62cecd11b2673ae94db3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-capture-toolbar-top-true.png",
+      "bytes": 457039,
+      "sha256": "c1ca81718148fb69029207a90626ddec34d4e1a0b89ee5d499be56bae84e902d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-false.png",
+      "bytes": 383581,
+      "sha256": "39baf43d8d66ad7e4fb12c98cd8a1aa7281afb5476738276c9b9d6d552ed1bbd",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/browser/icon-actions-reference-vis-baaf0-ap-in-both-top-panel-states-1920x1080/reference-reinforcement-toolbar-top-true.png",
+      "bytes": 413115,
+      "sha256": "b9809ef87992085205addb9400740f833152a7e0ac753bb3cd1b76918c4c3c4b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/command.json",
+      "bytes": 12716,
+      "sha256": "2951d344764accb71ddf61b8605eedd403f59b26d18bc761554c15ef92397b5c",
+      "mode": 436
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-bounds.json",
+      "bytes": 9687,
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-capture-movement.png",
+      "bytes": 214412,
+      "sha256": "c245a5d315df574cd678437b6d0fb47e38ce38a2b02364a13d1483d1c6df4605",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-complete-history-scrolled.png",
+      "bytes": 214331,
+      "sha256": "5b2f5f6f75f90b69bc72db8424c6d6a808903f517e707aa6734b60bcff073981",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-exchange.png",
+      "bytes": 211548,
+      "sha256": "d667f636b479bdfbf394b4ce7cf72f289dae6a37449d2759736455e7bf76b26c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-friendly-movement.png",
+      "bytes": 204863,
+      "sha256": "ed021ba9c7a4ca53556c1e7a50a2e1d136306c64c422b73892a15d891d2bf7e9",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-human-capture.png",
+      "bytes": 215919,
+      "sha256": "d41b6e779b648891a250d1006dd9c1cf138a8af69b291d24d5f54944e49f5b2f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-human-move.png",
+      "bytes": 215831,
+      "sha256": "e55a87962850dbadfca76b4dfcd56df9f53359100c03f984f05083669f2091a0",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-reinforcement.png",
+      "bytes": 204220,
+      "sha256": "4756eaa29a96d0857406e10b0f2ae1eb4115eb2dab5c7638d91bef7a4ccef711",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-repeated-pair.png",
+      "bytes": 216696,
+      "sha256": "c2add789b4aebd251fef0c0e497f999d485ad8ca3962f6b75701de437f248041",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-compact-selection-ready.png",
+      "bytes": 210183,
+      "sha256": "3c29bb8ffa6be2f5086407a2d8d46c7381038093f923e4ea8a6cfea075a2f31d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-bounds.json",
+      "bytes": 9687,
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-capture-movement.png",
+      "bytes": 214216,
+      "sha256": "abbc89a581d7b2fccdb307a9756ab2a2e469baa0ca2f59a2462f56d1c6c20925",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-complete-history-scrolled.png",
+      "bytes": 216365,
+      "sha256": "f8ca169f0bb083cb0765f3b8a8f8e980d7af143f127ebf30b98772cd15854b4f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-exchange.png",
+      "bytes": 214047,
+      "sha256": "ac030c07ca44913ef4ecb2c7f076a434cd1a0995a7c957874326c350a35af921",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-friendly-movement.png",
+      "bytes": 204654,
+      "sha256": "7f584e16f8623620ee054768c92c484fde0232c67204b944a0460d8bbabf2055",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-human-capture.png",
+      "bytes": 215743,
+      "sha256": "1fff009e145d72f14d8d34c686930153805e42e45cb9910073c4f272aa8dd953",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-human-move.png",
+      "bytes": 218877,
+      "sha256": "5b8a43abed5733f8f1429b81e69a222bb7e572146c4c668bc2d773d38c1fe94d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-reinforcement.png",
+      "bytes": 204012,
+      "sha256": "ed4e92ad69af0cc4917354eaaff1b0bb7eadb93009d2e71deacec52fed6c690d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-repeated-pair.png",
+      "bytes": 217975,
+      "sha256": "7605d2bf2e3ccc8a7201e5d532c7684ea5526f07f91d7745ea7f38bbd322bef3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-detailed-selection-ready.png",
+      "bytes": 209970,
+      "sha256": "66614462304234c4e9cade000fd4c504ed66e577aeeec8b4b54ec7bffac6714b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-geographic-geometry.json",
+      "bytes": 4704,
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-bounds.json",
+      "bytes": 9687,
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-capture-movement.png",
+      "bytes": 253053,
+      "sha256": "22ac6f757fc062f345b8f4c4f340bd58c88af2be5bcd0ff01744c86d2908c2ff",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-complete-history-scrolled.png",
+      "bytes": 253229,
+      "sha256": "fd45c9233976ee2f8e897e4a7421b2ecaf54f69584b4043070b1b2b1a7731c63",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-exchange.png",
+      "bytes": 248752,
+      "sha256": "619e5c1424f1b3c3305739dd3eed111f9c1ee5569206cb0ed5d977e18ecff943",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-friendly-movement.png",
+      "bytes": 246442,
+      "sha256": "1df51c7a59ea115a2d0ae9cb9febd9f72ce3864030ec93d7f6db78c5eebfb163",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-human-capture.png",
+      "bytes": 253717,
+      "sha256": "e114eb6c19e10f01e4d2e77ae54bbac2c592871d408cf4010831fcc32666c066",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-human-loss.png",
+      "bytes": 249007,
+      "sha256": "f5ce7744bcc3320513d89582c40b67cb0abb91e07d869e493d6171ed97f4ddf7",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-human-move.png",
+      "bytes": 256526,
+      "sha256": "4067462832e641d029cf5bbd6a901745aad833aae220b9f685b78c39903da7f5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-reinforcement.png",
+      "bytes": 242250,
+      "sha256": "2562f21a124f62a439f2a5611ec10105398d2c171c786006622223723c4ed126",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-repeated-pair.png",
+      "bytes": 249930,
+      "sha256": "4b0790496541ba31b7620e2c7bd0db7666c2e645076c5511bd9b9cce36901560",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-compact-selection-ready.png",
+      "bytes": 248357,
+      "sha256": "98161ba7a0550d349326e95657c83e5553dffaaaca8e8e5ce9d60aa6f8d6fd51",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-bounds.json",
+      "bytes": 9687,
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-capture-movement.png",
+      "bytes": 252839,
+      "sha256": "252735c06e485c0adf337d54a36cfd89966f1fe200e8a69012caf519bae0e455",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-complete-history-scrolled.png",
+      "bytes": 255590,
+      "sha256": "a01a11508d3ae6a00dcfde803112100c02f6429f436b31b42eb64158f24b7195",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-exchange.png",
+      "bytes": 251333,
+      "sha256": "4a2f949924f8a3474c592b00e80b66e06a5de36d0735cbc6c4a6b2a59e6f8c0d",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-friendly-movement.png",
+      "bytes": 246224,
+      "sha256": "fcf16ec4fb5141053499a93916596deaf597f527bec6522ad00cd4847410addd",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-human-capture.png",
+      "bytes": 253501,
+      "sha256": "a0e2902b65fe27b66d9ec170958e87107ed31687d6dffd025e920ef0efafc2f6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-human-loss.png",
+      "bytes": 248799,
+      "sha256": "969f5e3c57bc71cddb2c2c2dc81b5d314c489241823510e764bed8b24836ed24",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-human-move.png",
+      "bytes": 260006,
+      "sha256": "da8cbd30aeec8305d60d9a0e0c3b8e8cfcdfeea8a5795ab0cf4d57d5d66d1467",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-reinforcement.png",
+      "bytes": 242036,
+      "sha256": "690f8b86de605ec0c4459b9438bee4c453f2a43969bc95264533c3aaa8cecde3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-repeated-pair.png",
+      "bytes": 252627,
+      "sha256": "c4120bf43d90cc81581fdb297310b54a90ed38692302126f2367867eb1da3f11",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-detailed-selection-ready.png",
+      "bytes": 248142,
+      "sha256": "0f34872cd322f1291d1979284654c035137b4bcd15ba3f822543e2eaf15b7b5e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1280x800-reference-geometry.json",
+      "bytes": 4704,
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-bounds.json",
+      "bytes": 9999,
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-capture-movement.png",
+      "bytes": 354077,
+      "sha256": "3ed09432f8cb718e0685bfa84ed2e157dd657b53b08cee930ddc5a2c7a10f622",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-complete-history-scrolled.png",
+      "bytes": 367943,
+      "sha256": "e16ece726435d3923aae9ac8262fe954ffdbbd9c71c94a2fcf2ba2e8ea7f6bd0",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-exchange.png",
+      "bytes": 349916,
+      "sha256": "304b017612d88129973afd7bf6215f7d580c8e4068d0ea150c49989a9480b362",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-friendly-movement.png",
+      "bytes": 352120,
+      "sha256": "86c07b86a370feb87016e4fbb7c76976a874bda1664f952601afaca25f931b21",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-human-capture.png",
+      "bytes": 356974,
+      "sha256": "3196ed26c3fef451423625a174b7ab7d77b063e796dc526798744f350777066c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-human-move.png",
+      "bytes": 362627,
+      "sha256": "0209ad16a71e443a4dbc9c1ba0d8ec880af9ae6c0995e184a192abf600bdcb02",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-reinforcement.png",
+      "bytes": 339747,
+      "sha256": "c9eb3b0fe46af65431f4daae057c125fe8e4f5ba539bcda2937e1c161e9cadb0",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-repeated-pair.png",
+      "bytes": 363479,
+      "sha256": "4b279bc892c9afdb5682a29b6662d8753f27ceeb368e4a602be9c1dcdcce8daa",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-compact-selection-ready.png",
+      "bytes": 348757,
+      "sha256": "2e7da5273990696c5c16cd8a2895f6241acc3239951a1214471f32cb49f145c3",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-bounds.json",
+      "bytes": 9999,
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-capture-movement.png",
+      "bytes": 353871,
+      "sha256": "3a408d9f5d4e963a2c0a1ea0fc7869354d0304f743d527c489e5079f29a55549",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-complete-history-scrolled.png",
+      "bytes": 370932,
+      "sha256": "7aeb3f190ab38ec6b1908378ed49f95221d93878d5c51d1e70ccd5e597060912",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-exchange.png",
+      "bytes": 353690,
+      "sha256": "51da461e2336db6806963e0e68b409e296babd1855d8f550dd4477f4eb529e2f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-friendly-movement.png",
+      "bytes": 351905,
+      "sha256": "f285ddc9a0a436f526b77880eeebb464c57da774d875172f3b1b47c7d8b5ac71",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-human-capture.png",
+      "bytes": 356743,
+      "sha256": "f098f2b9e5cba94ece40df3bf0f29664ce32fa80923617dc67189a9e7d9aaf77",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-human-move.png",
+      "bytes": 366507,
+      "sha256": "c5628112649f92d35f556264bf48cd89e1567de8c6761ed3890a088a2d585f4e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-reinforcement.png",
+      "bytes": 339534,
+      "sha256": "a9b28f5b37e8d92dfcbdc9d8b3900780148924e1ac33e5d4625d709971f0818c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-repeated-pair.png",
+      "bytes": 365612,
+      "sha256": "9b4cbbbe6e04d4ff47d92c36943415d32d3792ee640b7fa55df3ae1f40d524e7",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-detailed-selection-ready.png",
+      "bytes": 348541,
+      "sha256": "64c4dffada84b0890fd28e3143d93924677682c22dab6d106b6491794227a6a0",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-geographic-geometry.json",
+      "bytes": 4860,
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-bounds.json",
+      "bytes": 9999,
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-capture-movement.png",
+      "bytes": 427808,
+      "sha256": "2b17caddf3cad393e2e368599c89066810b941009913e803025231c34f58dd4e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-complete-history-scrolled.png",
+      "bytes": 443239,
+      "sha256": "2e070a069f685c0fe90e834b064a1732aa506d61ec33402e36a79a77fffb0adf",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-exchange.png",
+      "bytes": 423471,
+      "sha256": "3d562dc983c0a129b5a999fa03d55c7a3c3472a310370409262d3db5def55b78",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-friendly-movement.png",
+      "bytes": 434573,
+      "sha256": "30e4be054218d035cd5ee763cf5f45ccd176d0a49429ed2b7c65fdbef29fab81",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-human-capture.png",
+      "bytes": 431360,
+      "sha256": "0ab70b2250395885fb77f8a23e5dfa807a59eecf994297bb7285aaefca12abb9",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-human-loss.png",
+      "bytes": 430436,
+      "sha256": "9e59dc0cf453a4d9b8a3a89a0473cf0bd2ef8290343d864604d2e1e3de843d2a",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-human-move.png",
+      "bytes": 443869,
+      "sha256": "c24b3af8d4629227e6f30cb83a72f11f32e4e6942f03c6e3a3cbadc1a5af0ad6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-reinforcement.png",
+      "bytes": 413875,
+      "sha256": "a4768a88cbf3b083ba70b98976397fabe12bf75270793775360eeccc86166810",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-repeated-pair.png",
+      "bytes": 442433,
+      "sha256": "926f5071f9f77dcddba70aeaf8dcd076b504fa655893cb44487f2a2bd181c0cf",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-compact-selection-ready.png",
+      "bytes": 422231,
+      "sha256": "f25daa2fa91836c1ce48f9dfec011eb93ce7ac24de5bf04d980b3a0b74bb07a8",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-bounds.json",
+      "bytes": 9999,
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-capture-movement.png",
+      "bytes": 427639,
+      "sha256": "7cd836c587c3e4732ad0558dd0af6170c1ef0db8c2448367342c6d6a41bb418b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-complete-history-scrolled.png",
+      "bytes": 446762,
+      "sha256": "54f6d218bc0462b8b5a04d123953bf6b6d5eafd7596dc0e96a4fae96b8bed539",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-exchange.png",
+      "bytes": 426361,
+      "sha256": "dba85436e92cff2c78401183319921e7d3a3c0dfe008dc48c0435911fc390637",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-friendly-movement.png",
+      "bytes": 434363,
+      "sha256": "bfc97462d43475e8ce05832789b88e2b859a5e636dfbba8fb18683684ae070a6",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-human-capture.png",
+      "bytes": 431116,
+      "sha256": "5a77187330963e8642d0799fbbaff91c8f0284baa8b923cac4056eae72c9bc37",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-human-loss.png",
+      "bytes": 430219,
+      "sha256": "7f1c4069f63e13c604a32c894943661d0ad9251557cc274216bb6a14ced7c8c8",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-human-move.png",
+      "bytes": 446975,
+      "sha256": "4aacb536b52c572c8b65c3ce0a7481cea48882b9e54f028396a7fc58a9febf7c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-reinforcement.png",
+      "bytes": 413666,
+      "sha256": "b8daca3abcddca574d7f40afcac635e56efc8e6d6f8485620c00dc79bb254722",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-repeated-pair.png",
+      "bytes": 445977,
+      "sha256": "d338c922e268ae8c38dd2973c8ab299a5419fdfd6f0d68437243acbbefa634d5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-detailed-selection-ready.png",
+      "bytes": 422020,
+      "sha256": "0f793229c1cbc1d9f65eb174f3a90af4c29699c34b2f02ff77cdc0831c66be6e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/compact/1920x1080-reference-geometry.json",
+      "bytes": 4860,
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/game-event-log-1280x800.png",
+      "bytes": 151150,
+      "sha256": "6564e6abacc013a53e65dd1e06266dcd456dba96ea606c7f29d1d22666994a43",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/game-event-log-1920x1080.png",
+      "bytes": 272160,
+      "sha256": "6f37c1dae8da4dd88fa12e6b0dffb8be7cd74be5ce8860a4f8fb957d4dfd5be5",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-default-four-seats-1280x800.png",
+      "bytes": 241614,
+      "sha256": "9815d74daf05e260f780a958d71ac8ddae559127efc0f4a74c93dc7cceda663f",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-default-four-seats-1920x1080.png",
+      "bytes": 412991,
+      "sha256": "8a8403c22ab610735843324b68766720e7f7b2d737c67b66457ab7707da48f7b",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-eliminated-1280x800.png",
+      "bytes": 250001,
+      "sha256": "33cf897100a30b5aaa156cc79624add162717bcaeca4c6b274d180370f104d34",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-eliminated-1920x1080.png",
+      "bytes": 430301,
+      "sha256": "60a88707b968307a9e405716710573708efc6ff208b11e9122e5be082946cf48",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-paused-battle-1280x800.png",
+      "bytes": 253670,
+      "sha256": "caef6c65835bf90c325ad9043cc123d3af81f09c6e24ba0b3f976589ec409bb1",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-paused-battle-1920x1080.png",
+      "bytes": 431040,
+      "sha256": "625ecc3886d9070762fcf428781fece8d27a9a549a8f53be8dfafd327122fc1c",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-paused-computer-1280x800.png",
+      "bytes": 240209,
+      "sha256": "ec17c8168c5a41a6349de8d388211213ce6b324dfadbd36d0d36325d2bc4ad87",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-paused-computer-1920x1080.png",
+      "bytes": 410654,
+      "sha256": "37c465809a9b6cc7616b39833df61a75ecab2cc73e81121b1c4633f0e08ba5c8",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-totals-1280x800.png",
+      "bytes": 242649,
+      "sha256": "de964dc408ac59aac9b29df1b871372b0820e07f5be4baf4c44aa82b824f7e4e",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-totals-1920x1080.png",
+      "bytes": 418013,
+      "sha256": "268f82da21dfc2bc425564321e0de527c19a93a971a8373a6b771ab0f1c91d92",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-very-slow-1280x800.png",
+      "bytes": 250840,
+      "sha256": "56149dc5c1ec018869edc3b6005560bcd719cf9bb514fbf6ca205ad34fda3d47",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/playback/playback-very-slow-1920x1080.png",
+      "bytes": 426919,
+      "sha256": "59a306553f15d0d73fc4563824cbf6a836d16e686961e48ec5c3819398f18742",
+      "mode": 420
+    },
+    {
+      "path": "final-regression/raw.log",
+      "bytes": 19165,
+      "sha256": "82408cfad232edde6adc6f1cbe120fffff9da6a40f19e97268f8840ec58075ad",
+      "mode": 436
+    },
+    {
+      "path": "final-regression/receipt.json",
+      "bytes": 10482,
+      "sha256": "1c16b6a0de67be7603616258a11b84ab48f4b2ed114fbea38afca564d5ae0f75",
+      "mode": 436
+    },
+    {
+      "path": "final-regression/results.json",
+      "bytes": 148780,
+      "sha256": "f63e1e550d38a153050368eba4f93e7545244be71de4ab596fc46102765124de",
+      "mode": 420
+    },
+    {
+      "path": "final-unit/command.json",
+      "bytes": 12096,
+      "sha256": "420b349fbd312e66438ef55dd1943c79ccc48a2bd901f292ddaaadf5d3f951e4",
+      "mode": 436
+    },
+    {
+      "path": "final-unit/raw.log",
+      "bytes": 23065,
+      "sha256": "002a553cb96e26c3b115314a929e59d72208ba973848f3371298d1f7a704251f",
+      "mode": 436
+    },
+    {
+      "path": "final-unit/receipt.json",
+      "bytes": 10487,
+      "sha256": "a6a78a6ff3d15d2c0eaf903d2a297f82e71d6e6c29a7711f8954e588d68d20a8",
+      "mode": 436
+    },
+    {
+      "path": "full-unit.log",
+      "bytes": 113,
+      "sha256": "1d53b89c28c89ff76ca67554e48dcc3d01dedbb9671f7b8d8106f29070696ae0",
+      "mode": 436
+    }
+  ]
+}

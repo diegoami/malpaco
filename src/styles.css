@@ -1441,10 +1441,15 @@ dialog h2 {
 .battle-reference[data-topbar-visible="false"] > .topbar { display:none; }
 :is(#reference-game,#geographic-game).battle-reference[data-sidebar-visible="false"] .stage { grid-template-columns:minmax(0,1fr) 52px; }
 .battle-reference[data-sidebar-visible="false"] .panel { display:none; }
-#battle-action-rail { position:absolute; z-index:3; right:calc(var(--game-sidebar-width) + 16px); top:16px; display:flex; flex-direction:column; align-items:center; gap:6px; width:40px; }
-#battle-action-rail > :where(:not(#toggle-topbar):not(#toggle-sidebar)) { display:none; }
+#battle-action-rail { position:absolute; z-index:3; right:24px; top:25px; display:flex; flex-direction:row; align-items:center; justify-content:flex-end; gap:6px; width:82px; }
+.battle-reference #battle-action-rail > :where(:not(#toggle-topbar):not(#toggle-sidebar)) { display:none; }
 .battle-reference:is([data-sidebar-visible="false"],[data-topbar-visible="false"]) #battle-action-rail > :not([hidden]) { display:flex; }
-.battle-reference[data-sidebar-visible="false"] #battle-action-rail { position:relative; grid-column:2; grid-row:1; right:auto; top:auto; padding:12px 4px; width:52px; height:100%; background:var(--surface); border-left:1px solid var(--line); overflow-y:auto; }
+.battle-reference[data-sidebar-visible="false"] #battle-action-rail { position:relative; grid-column:2; grid-row:1; right:auto; top:auto; padding:12px 4px; width:52px; height:100%; flex-direction:column; justify-content:flex-start; background:var(--surface); border-left:1px solid var(--line); overflow-y:auto; }
+.battle-reference[data-sidebar-visible="true"] #battle-action-rail > .game-rail-summary { display:none; }
+.battle-reference[data-sidebar-visible="true"][data-topbar-visible="true"] .panel > .turn { padding-right:104px; }
+.battle-reference[data-sidebar-visible="true"][data-topbar-visible="false"] .panel { padding-top:56px; }
+.battle-reference[data-sidebar-visible="true"][data-topbar-visible="false"] #battle-action-rail { right:16px; top:12px; width:calc(var(--game-sidebar-width) - 20px); gap:3px; }
+.battle-reference[data-sidebar-visible="true"][data-topbar-visible="false"] #battle-action-rail button { width:34px; height:34px; min-height:34px; }
 .game-icon,#battle-action-rail > button { display:grid; place-items:center; flex-shrink:0; width:38px; height:38px; min-height:38px; padding:0; font-size:21px; line-height:1; border:1px solid #688497; background:var(--surface-2); border-radius:8px; }
 #battle-action-rail > button:is(#game-pause-button,#game-log-button) { font-size:0; }
 #battle-action-rail > #open-required-action { border-color:var(--accent); color:var(--accent); }

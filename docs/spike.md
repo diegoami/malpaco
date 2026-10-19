@@ -1101,7 +1101,7 @@ Package metadata identifies the playable release as 0.1.1, with the existing dep
 
 ### Hideable desktop panels (T76)
 
-The reference and geographic battle hosts start with both panels expanded. The two named icon buttons on the board independently hide or restore the top and side panels. Hiding the top gives its height to the map; hiding the side replaces the full sidebar with a 52px action rail. Visibility is a session preference carried through supported load and New game transitions, outside the match codec.
+The reference and geographic battle hosts start with both panels expanded. The two named icon buttons beside the sidebar turn heading independently hide or restore the top and side panels. Hiding the top gives its height to the map and exposes a compact toolbar above the sidebar turn card; hiding the side replaces the full sidebar with a 52px action rail. The visible-sidebar toolbar stays outside the board so map targets remain clickable. Visibility is a session preference carried through supported load and New game transitions, outside the match codec.
 
 In the rail, the available Start combat, End turn, Move armies, Fight on, Single exchange and Stop commands use their original buttons with icon styling. Game actions opens context, thresholds and required quantity choices; Cards opens the existing card controls; Game details opens the player totals and complete scrollable battle history; Game settings and files exposes speed, detail, save, load and New game. Pause and the full event log remain direct icons when either panel is hidden. A highlighted Required choice icon names a pending capture, card decision, reward or result. Buttons have accessible names and matching tooltips.
 

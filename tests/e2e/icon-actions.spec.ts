@@ -34,10 +34,12 @@ async function shot(p:Page,info:TestInfo,name:string){await p.screenshot({path:i
 function row(host:string,kind:string){return discoveries.find((r:any)=>r.source===(host==='reference'?'T39-legal-pending-raid.json':'geographic-raid-pending-one-human.json')&&r.kind===kind);}
 for(const host of ['reference','geographic']){
  test(`${host}: visible sidebar toolbar stays outside the map in both top panel states`,async({page},info)=>{
-  await begin(page);const text=input(`T71/fixtures/${host}-reinforcement.json`);await load(page,text);const before=await save(page);
+  await begin(page);
+  for(const kind of ['reinforcement','capture']){
+  const text=kind==='reinforcement'?input(`T71/fixtures/${host}-reinforcement.json`):input('issue180/preflight/fixtures/'+row(host,'capture').fixture);await load(page,text);const before=await save(page);
   for(const topVisible of [true,false]){
    const ids=await page.locator('#battle-action-rail button:visible').evaluateAll(ns=>ns.map(n=>n.id));
-   expect.soft(ids).toEqual(topVisible?['toggle-topbar','toggle-sidebar']:['toggle-topbar','toggle-sidebar','open-game-actions','open-game-cards','open-game-details','open-game-settings','game-pause-button','game-log-button']);
+   expect.soft(ids).toEqual(topVisible?['toggle-topbar','toggle-sidebar']:['toggle-topbar','toggle-sidebar','open-game-actions','open-game-cards','open-game-details','open-game-settings',...(kind==='capture'?['open-required-action']:[]),'game-pause-button','game-log-button']);
    expect.soft(await page.locator('#battle-action-rail').evaluate(rail=>{
     const r=rail.getBoundingClientRect(),board=rail.closest('.stage')!.querySelector('.board')!.getBoundingClientRect(),side=document.querySelector('#battle-sidebar')!.getBoundingClientRect();
     return r.left>=side.left&&r.right<=side.right&&r.top>=side.top&&r.bottom<=side.bottom&&(r.left>=board.right||r.right<=board.left||r.bottom<=board.top||r.top>=board.bottom);
@@ -46,9 +48,10 @@ for(const host of ['reference','geographic']){
    for(const control of await page.locator('.panel button:visible').all())expect.soft(await control.evaluate(n=>{
     const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return !!hit&&(n===hit||n.contains(hit));
    }),'sidebar commands remain uncovered').toBe(true);
-   await shot(page,info,host+'-toolbar-top-'+topVisible);await hit(page,'toggle-topbar');
+   await shot(page,info,host+'-'+kind+'-toolbar-top-'+topVisible);await hit(page,'toggle-topbar');
   }
   expect(await save(page)).toBe(before);
+  }
  });
  test(`${host}: visible sidebar keeps an older history reader across focused surfaces`,async({page},info)=>{
   await begin(page);
