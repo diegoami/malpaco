@@ -137,3 +137,10 @@ describe('T78 additional ownership controls',()=>{
   } finally {cards.dispose();battle.dispose();}
  });
 });
+
+describe('T78 confirmation prerequisite',()=>{
+ it('keeps an unchanged complete staged pair unconfirmed',()=>{
+  const state=deepFreeze({...customized(),attack:{from:'province_1',to:'province_2',confirmed:false}});
+  expect(api.reconcileWorkspace(state,context()).attack).toEqual({from:'province_1',to:'province_2',confirmed:false});
+ });
+});
