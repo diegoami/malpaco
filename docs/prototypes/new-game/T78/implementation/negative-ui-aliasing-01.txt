@@ -1,0 +1,59 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (19 tests | 2 failed) 59ms
+   ❯ T78 workspace state boundary (17)
+     × detaches patches and returned nested state instead of sharing mutable ownership 6ms
+   ❯ T78 additional ownership controls (2)
+     × detaches same-match reconciliation while retaining a complete confirmed pair 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > detaches patches and returned nested state instead of sharing mutable ownership
+AssertionError: expected { …(7) } to deeply equal { …(7) }
+
+- Expected
++ Received
+
+@@ -20,11 +20,11 @@
+        "followLatest": false,
+        "scrollTop": 120,
+      },
+      "events": {
+        "followLatest": false,
+-       "scrollTop": 70,
++       "scrollTop": 999,
+      },
+    },
+    "matchGeneration": 0,
+    "surface": "cards",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:63:86
+     61|   const next=api.updateWorkspaceState(original,patch);expect(next.came…
+     62|   next.camera.x=900;next.histories.events.scrollTop=999;next.drafts.mo…
+     63|   expect(patch.camera.x).toBe(7);expect(patch.drafts.move).toBe('');ex…
+       |                                                                                      ^
+     64|  });
+     65|  for(const [label,c] of [['source',context('province_3')],['target',co…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 additional ownership controls > detaches same-match reconciliation while retaining a complete confirmed pair
+TypeError: Cannot assign to read only property 'scrollTop' of object '#<Object>'
+ ❯ tests/ui/workspace-state.test.ts:121:43
+    119|   const original=deepFreeze(customized()),next=api.reconcileWorkspace(…
+    120|   expect(next).toEqual(original);expect(next).not.toBe(original);
+    121|   next.camera.x=999;next.histories.battle.scrollTop=999;next.histories…
+       |                                           ^
+    122|   next.drafts.capture='changed';next.attack.confirmed=false;
+    123|   expect(original).toEqual(customized());
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 17 passed (19)
+   Start at  20:56:12
+   Duration  996ms (import 68%, transform 26%, tests 6%)
+

@@ -1,0 +1,24 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (19 tests | 1 failed) 84ms
+   ❯ T78 workspace state boundary (17)
+     × projects only public card fields and detaches nested offered sets and hand counts 7ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > projects only public card fields and detaches nested offered sets and hand counts
+Error: private contents read
+ ❯ Object.get tests/ui/workspace-state.test.ts:103:159
+
+ ❯ Module.projectWorkspace src/ui/workspaceState.ts:81:13
+ ❯ tests/ui/workspace-state.test.ts:110:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 passed (19)
+   Start at  20:56:18
+   Duration  1.05s (import 64%, transform 27%, tests 9%)
+

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "npx",
+    "vitest",
+    "run",
+    "tests/ui/workspace-state.test.ts"
+  ],
+  "started_utc": "2026-10-19T18:56:15.248313+00:00",
+  "elapsed_seconds": 1.527,
+  "native_exit": 1,
+  "output": "negative-nested-set-allowlist-01.txt",
+  "output_sha256": "0e9deb52bc20003633927e9c3b0f90c2f815281ce1bdcfdcd3630104aa6e07d7",
+  "source_sha256": "174461d95b5036011243f07d794e6a4e9877f841574fbb0b222da48814d070b5",
+  "tests_sha256": "ad193088539ff97ec2d46c9c3e37a549484151092a922a766392ecaeaa18d5cf"
+}
