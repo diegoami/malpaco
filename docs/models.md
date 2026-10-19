@@ -316,3 +316,11 @@ The owner’s 2026-10-16 task sequence uses the main session for Easy/Medium tas
 native Sol High for Hard tasks and Sol Max for Very Hard tasks, overriding the older
 effort cap for those explicitly requested implementations. MiniMax M3 reviews through
 OpenCode at its live-listed `thinking` variant. Existing task role defaults yield to this choice.
+
+
+Owner update, 2026-10-19, for the 0.2.x UI queue: native Sol subagents implement at
+Low/Medium/High according to difficulty; direct independent Claude reviews use
+Sonnet Medium/High or Opus Medium. Initial mapping: Easy → Sol Low / Sonnet Medium;
+Medium → Sol Medium / Sonnet High; Hard → Sol High / Opus Medium. This supersedes
+the earlier Sol Max / Opus High UI selection; record each dispatch without changing
+global harness defaults.
