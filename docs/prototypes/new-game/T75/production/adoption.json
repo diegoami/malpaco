@@ -9,7 +9,7 @@
     "docs/prototypes/new-game/T75/acceptance/freeze-attempt-01.json": "d0fac804858e9c76c4175936025cbcafacada35a89f05b0cf4e52f50eb82c3c2",
     "docs/prototypes/new-game/T75/archives/preflight-receipt.json": "498be51560d376ecf9fff7cb51f78244e2f01b401525c983417858ed3568c25e"
   },
-  "verifierSha256": "4bbd3bf8447b0452a45637c8832fe2838db22d0839cc5ac03c88930bb65b0b34",
+  "verifierSha256": "f17698e5fbdfe0083a9a88d31b48dcf9cd66e5139075e17f8423e1f541f1eba5",
   "spikePrefixSha256": "a512127a140278f80c5d7e758a8f370d3f67fbf78b2f33fa3d8662340987da3d",
   "spikePrefixBytes": 78385,
   "sources": {
@@ -142,5 +142,16 @@
       "releaseReady": false,
       "outputRoutingLimitation": "See correction adoption REPORT.md/output-routing-limitation.json; ignored fallback screenshots were not inventoried before the run."
     }
+  },
+  "saturatedLabelCorrection": {
+    "frozenSha256": "477c6b6e7893c8d649026e90120d0ad13b6e4ff62e1e74f63eeed8b69a585ecf",
+    "replacementPaths": [
+      "src/ui/generatedGeographyPresentation.ts"
+    ],
+    "before": "59137044a36f65ae303d80e4d5e90861cdbfdb66aa7ef04621152d71b89e1883",
+    "after": "80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d",
+    "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption/validation.json",
+    "currentValidation": "Not run; checkpoint precedes the one authorized validation sequence.",
+    "factCorrection": "T75.md is absent original204 validated inputs. Previous saturated candidate report incorrectly assumed an old task-hash verifier failure; no such run occurred. Old report/manifests remain immutable; latest freeze separately pins current contract."
   }
 }

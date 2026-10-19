@@ -48,16 +48,31 @@ check(len(current)==204 and all(not PurePosixPath(p).is_absolute() and '..' not 
 correction_base=BASE+'corrections/20261019/'
 correction=json.loads(exact(correction_base+'FROZEN.json','aab9d8472aefc646662af0f51f8e636b210470d45d8e4863b5095699c26b8f03'))
 replacements=correction['replacements']
+latest_base=BASE+'corrections/20261019-label-gap/'
+latest=json.loads(exact(latest_base+'FROZEN.json','477c6b6e7893c8d649026e90120d0ad13b6e4ff62e1e74f63eeed8b69a585ecf'))
+provider='src/ui/generatedGeographyPresentation.ts';latest_row=latest['replacement']
+check(set(latest_row)=={'path','before','after','canonical'} and latest_row['path']==provider,'exact one latest replacement path')
+check(latest['previousCorrectionFrozenSha256']=='aab9d8472aefc646662af0f51f8e636b210470d45d8e4863b5095699c26b8f03','unchanged previous correction authority')
+check(latest_row['before']==replacements[provider]['after']=='59137044a36f65ae303d80e4d5e90861cdbfdb66aa7ef04621152d71b89e1883','latest before authenticated by historical591')
+check(latest_row['after']=='80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d','exact latest80 provider')
+check(exact(provider,latest_row['after'])==exact(latest_row['canonical'],latest_row['after']),'current provider equals latest canonical80')
+for name,sha in latest['priorProofHashes'].items():exact(latest_base+'prior-proof/'+name,sha)
+check(set(latest['priorProofHashes'])=={'verify-adoption.py','adoption.json','README.md','REPORT.md'},'four latest prior proof copies')
+check(exact(latest['contract']['path'],latest['contract']['sha256'])==exact(latest['contract']['canonical'],latest['contract']['sha256']),'explicit current contract pin')
+exact(latest['parentProof']['path'],latest['parentProof']['sha256'])
+check('docs/tasks/T75.md' not in current,'fact correction: task absent original204; no historical task-hash failure claimed')
 check(set(replacements)=={'src/ui/generatedGeographyPresentation.ts','vite.config.ts','README.md'},'exact three correction paths')
 check(len(set(replacements)&set(current))==2 and len(set(replacements)&set(frozen['candidateHashes']))==2,'exact two current and two canonical corrections')
 for path,row in replacements.items():
     original_sha=current[path] if path in current else frozen['candidateHashes'][path]
     check(row['before']==original_sha,'authenticated original replacement '+path)
-    check(exact(path,row['after'])==exact(row['canonical'],row['after']),'exact frozen correction '+path)
+    historical_candidate=exact(row['canonical'],row['after'])
+    if path==provider:check(latest_row['before']==digest(historical_candidate),'explicit historical591 canonical')
+    else:check(exact(path,row['after'])==historical_candidate,'exact frozen correction '+path)
 for name,sha in correction['priorProofHashes'].items():exact(correction_base+'prior-proof/'+name,sha)
 for path,sha in correction['watchGuardHashes'].items():exact(path,sha)
 check(replacements['vite.config.ts']['after']=='4cae5bff592c0ddf81b0ab12ec4d0778ec153d90bb34a07d8d7cfbfb95a7d6c5','reviewed watch candidate')
-for path,sha in current.items():exact(path,replacements[path]['after'] if path in replacements else sha)
+for path,sha in current.items():exact(path,latest_row['after'] if path==provider else replacements[path]['after'] if path in replacements else sha)
 for path,sha in frozen['candidateHashes'].items():
     candidate=exact(BASE+'production-candidate/'+path,sha)
     if path!='docs/spike-addition.md':
@@ -188,7 +203,7 @@ with tarfile.open(fileobj=payload,mode='r:gz') as archive:
         check(h.hexdigest()==row['sha256'],'correction member bytes '+member.name)
         if member.name in correction_needed:retained_correction[member.name]=b''.join(chunks)
 check(seen==set(expected) and correction_needed<=set(retained_correction),'complete correction archive')
-check(retained_correction['performance/candidate.ts']==exact('src/ui/generatedGeographyPresentation.ts'),'adopted exact archived candidate')
+check(retained_correction['performance/candidate.ts']==exact(replacements[provider]['canonical'],replacements[provider]['after']),'historical archived591 equals historical canonical591')
 check(digest(retained_correction['performance/original.ts'])==replacements['src/ui/generatedGeographyPresentation.ts']['before'],'archived original provider')
 def correction_record(path):return json.loads(retained_correction[path])
 commands=correction_record('performance/commands.json')
@@ -206,3 +221,52 @@ for name,clock,rate in [('normal-unprofiled',False,1),('mock-clock-polls',True,1
     check(trace['input']==original_trace['input'] and trace['output']==original_trace['output'],'complete Worker input/output equality '+name)
     check(trace['keyCount']==1 and trace['allKeysEqual'] and [e['kind'] for e in trace['events'] if e['event']=='worker-post']==['derive'] and [e['kind'] for e in trace['events'] if e['event']=='worker-reply']==['success'],'real Worker success/cache identity '+name)
 print(json.dumps({'explicitCorrectionPaths':3,'changedCurrentInputs':2,'changedCanonicalRuntimeEqualities':2,'correctionArchiveParts':9,'correctionArchiveMembers':834,'candidateOriginal5000msCases':3,'completeWorkerInputOutputEqualities':3,'candidateUnitExit':0,'candidateUnitSeconds':77.1,'candidateUnitConsoleRetained':False,'historicalFreshHeavyRuns':0,'currentValidationSeparate':True,'mismatches':0},sort_keys=True))
+
+# Authenticate every committed file listed by the three new parent-pinned phase manifests.
+phase_bases={}
+check(len(latest['evidenceManifests'])==3,'exact three new phase evidence manifests')
+for manifest_path,sha in latest['evidenceManifests'].items():
+    manifest=json.loads(exact(manifest_path,sha));base=str(PurePosixPath(manifest_path).parent)+'/'
+    check(base in {BASE+'preflight/'+n+'/' for n in ['cold-load-overlap-20261019-01','allocation-proposal-20261019-01','saturated-label-proposal-20261019-01']},'exact new phase path')
+    phase_bases[PurePosixPath(base).name]=base.rstrip('/')
+    for rel,row in manifest.items():
+        check(not PurePosixPath(rel).is_absolute() and '..' not in PurePosixPath(rel).parts,'safe phase manifest path')
+        path=base+rel;data=exact(path,row['sha256'])
+        check(len(data)==row['bytes'],'phase manifest size '+path)
+        check(bool(row['mode']&0o111)==(modes[path]=='100755'),'phase recorded Git executable semantics '+path)
+    check(json.loads(exact(base+'preservation.json'))['protectedUnchanged'],'phase protected unchanged '+base)
+    receipt=json.loads(exact(base+'preservation.json'))
+    check(receipt['outputsUnchanged'] and receipt['packageUnchanged'] and receipt['serverClosed'] and receipt['portFreeAfter'] and receipt['driverExit']==0,'phase restoration and actual exit '+base)
+    result=json.loads(exact(base+'results.json'))
+    check(result['invocations']==1 and result['contexts']==2 and len(result['results'])==2,'one browser pair '+base)
+    commands=json.loads(exact(base+'commands.json'))
+    expected_exits=[-15,0] if 'cold-load-overlap' in base else [0,0,-15,0]
+    check([r['exit'] for r in commands]==expected_exits,'phase actual command exits '+base)
+    for row in result['results']:
+        check(not row['errors'] and row['clockPausedBeforeGoto'] and row['clockBefore']==row['clockAfter'],'phase errors/paused clock '+base)
+        check(len(row['checks'])==3 and [c['check'] for c in row['checks']]==['old-input-detached','map-visible','country-count-46'] and all(c['status']=='passed' for c in row['checks']),'original phase readiness checks '+base)
+        trace=row['trace'];posts=[e for e in trace['events'] if e['event']=='worker-post'];replies=[e for e in trace['events'] if e['event']=='worker-reply']
+        check(len(posts)==len(replies)==1 and posts[0]['message']['kind']=='derive' and replies[0]['message']['kind']=='success','one real derive/success '+base)
+        check(posts[0]['message']['key']==replies[0]['message']['key']==trace['output']['contentKey'],'complete phase key identity '+base)
+        check(trace['input']==original_trace['input'] and trace['output']==original_trace['output'],'complete phase equality archived original '+base)
+    if 'cold-load-overlap' not in base:
+        check(receipt['sourceRestored'],'temporary candidate source restoration '+base)
+        unit=exact(base+'unit-stdout-stderr.txt').decode();check('15 passed (15)' in unit and '1 passed (1)' in unit,'actual frozen unit console '+base)
+def phase_record(name,file):return json.loads(exact(phase_bases[name]+'/'+file))
+baseline=phase_record('cold-load-overlap-20261019-01','results.json')
+def worker_times(result):
+    values=[]
+    for row in result['results']:
+        events=row['trace']['events'];post=next(e for e in events if e['event']=='worker-post');reply=next(e for e in events if e['event']=='worker-reply');values.append(reply['nativeTime']-post['nativeTime'])
+    return values
+def median(values):return sum(sorted(values))/2
+baseline_times=worker_times(baseline);check(abs(median(baseline_times)-1921.7)<0.000001,'immutable actual baseline median')
+reductions={}
+for name,passed in [('allocation-proposal-20261019-01',False),('saturated-label-proposal-20261019-01',True)]:
+    result=phase_record(name,'results.json');values=worker_times(result);reduction=(median(baseline_times)-median(values))/median(baseline_times)*100;reductions[name]=reduction
+    check((reduction>=10) is passed,'recomputed useful-benefit gate '+name)
+    for row,old in zip(result['results'],baseline['results']):check(row['trace']['input']==old['trace']['input'] and row['trace']['output']==old['trace']['output'],'full actual591 pair equality '+name)
+    check(digest(exact(phase_bases[name]+'/original.ts'))==latest_row['before'],'temporary original591 copy '+name)
+check(exact(phase_bases['saturated-label-proposal-20261019-01']+'/candidate.ts')==exact(provider),'exact measured80 candidate copy')
+check(digest(exact(phase_bases['allocation-proposal-20261019-01']+'/candidate.ts'))=='c314fe91cdd974e155e4ac9d7739a7d724c2e9b48331c4fc7e4fc7644753bf38','failed allocation candidate unchanged')
+print(json.dumps({'latestReplacementPaths':1,'latestProviderSha256':latest_row['after'],'original204ChangedInputs':2,'newEvidenceManifests':3,'baselineWorkerMedianMs':median(baseline_times),'recomputedReductionPercent':reductions,'taskAbsentOriginal204':True,'historicalTaskHashFailureClaimCorrected':True,'mismatches':0},sort_keys=True))

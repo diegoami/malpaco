@@ -77,3 +77,8 @@ The original adoption results above are historical. Parent corrections/20261019/
 ### Current adopted-source validation
 
 Checkpoint cb8e320b: small proof passed; fresh npm test818Vitest/60files+9harness and static package10files/9checksums/4HTTP passed. The one extracted166-case run at two workers ended165passed/1failed (compact-panels geographic computer-phase1280x800: original5000ms old Load-widget detach poll). No rerun/fix occurred;0.1.0 is not ready. Full report, all statuses/raw logs/failure video/context, truthful cb8e BUILD/package hashes, strict15,071-input/inventoried-output restoration and disclosed ignored fallback screenshot-routing limitation are in ../corrections/20261019/adoption/REPORT.md and validation.json. Earlier results remain historical. Review, owner acceptance and finalCI/release are deferred main-owned gates.
+
+
+## Saturated-label correction checkpoint
+
+The latest corrections/20261019-label-gap/FROZEN.json separately authorizes exactly provider80a79b8, preserving the original204/15 authorities, historical591 canonical, both complete archives and all prior proof copies. The verifier authenticates every file in three pinned phase manifests and recomputes actual27.491% successful/9.208% failed gates from raw events. Current contract and parent saturation proof are pinned explicitly. Fact correction: T75.md is NOT in original204; the prior saturated candidate report's task-hash verifier-failure assumption was inaccurate, and no such verifier run occurred. That old report and manifest remain immutable. Current validation has not run at this checkpoint; results will be recorded separately. Prior165/166 failure, historical screenshot gap and release/review/CI limitations remain binding.
