@@ -1,12 +1,35 @@
-import {h} from "./dom";
+import {h,s} from "./dom";
 
 export interface ChromePreferences { topbarVisible?: boolean; sidebarVisible?: boolean }
 type Surface = "actions" | "cards" | "details" | "settings";
 
-function icon(id: string, label: string, symbol: string): HTMLButtonElement {
-  return h("button", {id, type: "button", class: "game-icon", "aria-label": label, title: label},
-    h("span", {"aria-hidden": "true"}, symbol));
+function symbol(shape: string): SVGSVGElement {
+  const paths: Record<string,string> = {
+    "▤": "M3 5H21V19H3ZM3 10H21", "◧": "M3 5H21V19H3ZM16 5V19",
+    "⚔": "M4 3L20 19M3 4L4 8 16 20M3 16L8 21M20 3L4 19M21 4L20 8 8 20M16 21L21 16",
+    "▱": "M7 5H20V21H7ZM3 17V2H16", "ⓘ": "M12 11V17M12 7V7.1",
+    "⚙": "M9 3H15L16 6 19 7 21 12 19 17 16 18 15 21H9L8 18 5 17 3 12 5 7 8 6ZM12 8A4 4 0 1 0 12 16A4 4 0 1 0 12 8",
+    "!": "M12 6V13M12 17V17.1", "×": "M5 5L19 19M19 5L5 19",
+    "▶": "M6 3L21 12 6 21Z", "↦": "M3 12H17M12 6L18 12 12 18M21 4V20",
+    "⇄": "M3 7H21M16 2L21 7 16 12M21 17H3M8 12L3 17 8 22",
+    "■": "M5 5H19V19H5Z", "⚀": "M4 4H20V20H4ZM12 11.5V12.5",
+    "Ⅱ": "M8 4V20M16 4V20", "≡": "M8 6H21M8 12H21M8 18H21M3 6H3.1M3 12H3.1M3 18H3.1",
+  };
+  const svg = s("svg", {class:"game-action-symbol", viewBox:"0 0 24 24", width:20, height:20, fill:"none", stroke:"currentColor", "stroke-width":1.8, "stroke-linecap":"round", "stroke-linejoin":"round", "aria-hidden":"true"}, s("path", {d:paths[shape] ?? paths["ⓘ"]!}));
+  if (shape === "ⓘ" || shape === "!") svg.prepend(s("circle", {cx:12, cy:12, r:10}));
+  return svg;
 }
+
+function commandSymbol(button: HTMLButtonElement, shape: string): void {
+  button.querySelector(".rail-command-icon")?.remove();
+  const svg = symbol(shape); svg.classList.add("rail-command-icon"); button.append(svg);
+}
+
+function icon(id: string, label: string, shape: string): HTMLButtonElement {
+  return h("button", {id, type: "button", class: "game-icon", "aria-label": label, title: label},
+    symbol(shape));
+}
+
 
 /** Presentation-only: original live controls travel with their existing listeners. */
 export class BattleChrome {
@@ -43,7 +66,7 @@ export class BattleChrome {
     this.side.onclick = () => {this.close(false); preferences.sidebarVisible = preferences.sidebarVisible === false; this.layout();};
     const actions = icon("open-game-actions", "Game actions", "⚔");
     const cards = icon("open-game-cards", "Cards", "▱");
-    const details = icon("open-game-details", "Game details and history", "≡");
+    const details = icon("open-game-details", "Game details and history", "ⓘ");
     const settings = icon("open-game-settings", "Game settings and files", "⚙");
     for (const [button, surface] of [[actions, "actions"], [cards, "cards"], [details, "details"], [settings, "settings"]] as const) {
       button.setAttribute("aria-controls", this.drawer.id);
@@ -105,10 +128,10 @@ export class BattleChrome {
     for (const group of [this.nodes.phaseActions, this.battleCommands?.node]) {
       for (const button of group?.querySelectorAll<HTMLButtonElement>("button") ?? []) {
         button.setAttribute("aria-label", button.textContent ?? ""); button.title = button.textContent ?? "";
-        button.dataset["icon"] = symbols[button.id] ?? "•";
+        commandSymbol(button, symbols[button.id] ?? "ⓘ");
       }
     }
-    if (focused) this.rail.querySelector<HTMLElement>(`#${focused}`)?.focus({preventScroll:true});
+    if (focused) this.focus(this.rail.querySelector<HTMLElement>(`#${focused}`), this.rail.querySelector<HTMLElement>("#open-game-actions")!);
   }
 
   private rememberHistory(): void {
@@ -143,8 +166,12 @@ export class BattleChrome {
     for (const {node, marker} of this.moved) {marker.replaceWith(node);}
     this.moved = []; this.drawer.hidden = true; this.surface = null;
     this.restoreHistory();
-    if (restoreFocus) (this.opener?.isConnected ? this.opener : this.side).focus({preventScroll: true});
+    if (restoreFocus) this.focus(this.opener, this.side);
     this.opener = null;
+  }
+
+  private focus(control: HTMLElement | null, fallback: HTMLElement): void {
+    (control?.isConnected && control.getClientRects().length && !control.hasAttribute("disabled") ? control : fallback).focus({preventScroll:true});
   }
 
   escape(): boolean {
@@ -153,15 +180,20 @@ export class BattleChrome {
   }
 
   update(summary: string, required: string | null, paused: boolean): void {
-    this.summary.textContent = summary;
+    const parts = summary.split(" · ");
+    this.summary.textContent = `${parts[0]}\n${parts[2] ?? parts[1] ?? ""}`;
     this.summary.title = summary;
+    this.summary.setAttribute("aria-label", summary);
     this.required.hidden = !required;
     this.required.title = required ?? "Required choice";
     this.required.setAttribute("aria-label", required ?? "Required choice");
     this.nodes.pause.title = paused ? "Resume game" : "Pause game";
-    this.nodes.pause.dataset["icon"] = paused ? "▶" : "Ⅱ";
+    commandSymbol(this.nodes.pause, paused ? "▶" : "Ⅱ");
     this.nodes.log.title = "Game event log";
-    this.nodes.log.dataset["icon"] = "≡";
+    commandSymbol(this.nodes.log, "≡");
+    const cardsButton = this.rail.querySelector<HTMLButtonElement>("#open-game-cards")!;
+    cardsButton.disabled = !!this.nodes.cards.hidden;
+    cardsButton.title = this.nodes.cards.hidden ? "Cards are not used in this match" : "Cards";
     this.commands();
   }
 
