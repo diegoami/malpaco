@@ -1,0 +1,29 @@
+{
+  "file": "src/styles.css",
+  "correctedSha256": "5607c377248a31b93a2d3ff9f22f480e6493c260ea7b28232a8c4f087ee3f7d8",
+  "originalSha256": "e8503bbfbf29f22b41793458bf28d891b4752eb04ec0694affb7fbaede5e622c",
+  "geography-reverted": {
+    "exit": 1,
+    "stats": {
+      "startTime": "2026-10-19T14:20:52.145Z",
+      "duration": 15943.318000000001,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 6,
+      "flaky": 0
+    }
+  },
+  "toolbar-reverted": {
+    "exit": 1,
+    "stats": {
+      "startTime": "2026-10-19T14:21:09.587Z",
+      "duration": 9207.814,
+      "expected": 0,
+      "skipped": 0,
+      "unexpected": 4,
+      "flaky": 0
+    }
+  },
+  "restoredExact": true,
+  "restoredSha256": "5607c377248a31b93a2d3ff9f22f480e6493c260ea7b28232a8c4f087ee3f7d8"
+}

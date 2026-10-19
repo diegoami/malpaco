@@ -1,0 +1,22 @@
+[
+  {
+    "mutation": "history",
+    "executedFailures": 4,
+    "firstFailure": "Error: moving visible history must keep the latest reading position\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThan\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: < \u001b[32m0.5\u001b[39m\nReceived:   \u001b[31m2606\u001b[39m"
+  },
+  {
+    "mutation": "capture",
+    "executedFailures": 4,
+    "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#capture-amount')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"6\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" locator('#capture-amount') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#capture-amount')\u001b[22m\n\u001b[2m    14 \u00d7 locator resolved to <input min=\"1\" max=\"6\" step=\"1\" value=\"6\" type=\"number\" id=\"capture-amount\" aria-describedby=\"capture-help\"/>\u001b[22m\n\u001b[2m       - unexpected value \"6\"\u001b[22m\n"
+  },
+  {
+    "mutation": "friendly-draft",
+    "executedFailures": 4,
+    "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveValue\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#friendly-move-amount')\nExpected: \u001b[32m\"4\"\u001b[39m\nReceived: \u001b[31m\"5\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveValue\" locator('#friendly-move-amount') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#friendly-move-amount')\u001b[22m\n\u001b[2m    14 \u00d7 locator resolved to <input min=\"1\" max=\"5\" step=\"1\" value=\"5\" type=\"number\" id=\"friendly-move-amount\" aria-describedby=\"friendly-move-help\"/>\u001b[22m\n\u001b[2m       - unexpected value \"5\"\u001b[22m\n"
+  },
+  {
+    "mutation": "friendly-focus",
+    "executedFailures": 4,
+    "firstFailure": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeFocused\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('#friendly-move-amount')\nExpected: focused\nReceived: inactive\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeFocused\" locator('#friendly-move-amount') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('#friendly-move-amount')\u001b[22m\n\u001b[2m    14 \u00d7 locator resolved to <input min=\"1\" max=\"5\" step=\"1\" value=\"4\" type=\"number\" id=\"friendly-move-amount\" aria-describedby=\"friendly-move-help\"/>\u001b[22m\n\u001b[2m       - unexpected value \"inactive\"\u001b[22m\n"
+  }
+]

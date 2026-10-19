@@ -5,16 +5,21 @@ import type {BattleController, BattleView} from "./battleController";
 /** Only the confirmed action enters history; every control captures its revision. */
 export class FriendlyMoveView {
   readonly el = h("section", {class:"battle-controls friendly-move-controls", role:"region", "aria-label":"Friendly move"});
+  private draftKey: string | null = null;
   constructor(private readonly controller: BattleController) {}
 
   render(view: BattleView): void {
+    const draftKey = view.mode === "move" ? `${view.state.history.length}:${view.from}:${view.to}` : null;
+    const draft = draftKey === this.draftKey ? this.el.querySelector<HTMLInputElement>("#friendly-move-amount")?.value : undefined;
+    const focused = this.el.contains(document.activeElement) ? document.activeElement?.id : undefined;
+    this.draftKey = draftKey;
     this.el.hidden = view.mode !== "move";
     this.el.replaceChildren();
     if (view.mode !== "move") return;
     const {state, from, to, revision} = view;
     const selected = from !== null && to !== null;
     const maximum = from ? armyCount(state, from) - 1 : 1;
-    const amount = h("input", {id:"friendly-move-amount", type:"number", min:1, max:maximum, step:1, value:String(maximum), disabled:!selected, "aria-describedby":"friendly-move-help"});
+    const amount = h("input", {id:"friendly-move-amount", type:"number", min:1, max:maximum, step:1, value:draft ?? String(maximum), disabled:!selected, "aria-describedby":"friendly-move-help"});
     const button = (id: string, label: string, disabled: boolean, action: () => void, primary = false) => {
       const b = h("button", {id, type:"button", disabled, class:primary ? "primary" : ""}, label);
       b.addEventListener("click", action);
@@ -45,5 +50,6 @@ export class FriendlyMoveView {
     );
     this.el.querySelector("#friendly-move-less-button")!.setAttribute("aria-label", "Move one fewer army");
     this.el.querySelector("#friendly-move-more-button")!.setAttribute("aria-label", "Move one more army");
+    if (focused) this.el.querySelector<HTMLElement>(`#${focused}`)?.focus({preventScroll:true});
   }
 }
