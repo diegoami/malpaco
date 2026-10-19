@@ -3,14 +3,22 @@ import type {MatchIdentity,LoadedVersionedMatch} from "../core/match-save";
 import type { GameOptions, GameState } from "../core";
 import { h } from "./dom";
 
+export interface MatchLoadContext {
+  readonly signal: AbortSignal;
+  isCurrent(): boolean;
+}
+export type MatchLoadHandler = (options: GameOptions, state: GameState, loaded?: LoadedVersionedMatch, context?: MatchLoadContext) => void | Promise<void>;
+
 /** One set of local file controls belongs to one setup screen or live match. */
 export class ReferenceMatchFiles {
   readonly el: HTMLElement;
   private disposed = false;
   private request = 0;
+  private pending: AbortController | null = null;
+  private readonly status = h("p", { role: "status", class: "match-error" });
   private readonly error = h("p", { role: "alert", class: "match-error" });
 
-  constructor(onLoad: (options: GameOptions, state: GameState, loaded?:LoadedVersionedMatch) => void, options?: GameOptions, getState?: () => GameState, identity:MatchIdentity=REFERENCE_MATCH_IDENTITY, allowVersionedMaps=false) {
+  constructor(onLoad: MatchLoadHandler, options?: GameOptions, getState?: () => GameState, identity:MatchIdentity=REFERENCE_MATCH_IDENTITY, allowVersionedMaps=false, onRequest?: () => void) {
     const input = h("input", { id: "reference-load-game-file", type: "file", accept: ".json,application/json" });
     const load = h("div", { class: "match-load" }, h("label", { for: input.id }, "Load game"), input);
     this.el = h("div", { class: "match-files reference-match-files" });
@@ -27,11 +35,18 @@ export class ReferenceMatchFiles {
       });
       this.el.append(save);
     } else this.el.classList.add("reference-match-files-setup");
-    this.el.append(load, this.error);
+    this.el.append(load, this.status, this.error);
     input.addEventListener("change", async () => {
       const file = input.files?.[0];
       if (this.disposed || !file) return;
+      onRequest?.();
+      this.pending?.abort();
+      const pending = new AbortController();
+      this.pending = pending;
       const own = ++this.request;
+      const context: MatchLoadContext = {signal: pending.signal, isCurrent: () => !this.disposed && own === this.request && !pending.signal.aborted};
+      this.error.textContent = "";
+      this.status.textContent = "Loading game…";
       try {
         const text = await file.text();
         if (this.disposed || own !== this.request) return;
@@ -44,16 +59,29 @@ export class ReferenceMatchFiles {
             : "This game uses a generated map; load it in the generated game view.");
         }
         if(loaded.state.cards&&loaded.options.seats.filter(seat=>seat.kind==='human').length>1)throw new Error('Card play currently supports at most one human seat. Shared-screen handover is not available yet.');
-        onLoad(loaded.options, loaded.state,loaded);
+        await onLoad(loaded.options, loaded.state, loaded, context);
       } catch (error) {
-        if (!this.disposed && own === this.request) this.error.textContent = "Load failed: " + this.message(error);
-      } finally { if (own === this.request) input.value = ""; }
+        if (context.isCurrent() && !(error instanceof Error && error.name === "AbortError")) this.error.textContent = "Load failed: " + this.message(error);
+      } finally {
+        if (own === this.request) {
+          input.value = "";
+          this.status.textContent = "";
+          this.pending = null;
+        }
+      }
     });
+  }
+
+  cancelPending(): void {
+    this.request += 1;
+    this.pending?.abort();
+    this.pending = null;
+    this.status.textContent = "";
   }
 
   dispose(): void {
     this.disposed = true;
-    this.request += 1;
+    this.cancelPending();
   }
 
   private message(error: unknown): string {
