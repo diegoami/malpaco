@@ -1,21 +1,23 @@
 from pathlib import Path
 import hashlib,json,stat,tarfile
 w=Path(__file__).resolve().parents[5];base=w/'docs/prototypes/new-game/T76/validation'
-labels=['icons-baseline-final','regression01','focus-edge-red','layout-final','regression-final','unit-final','build-final']
+labels=['icons-baseline-final','regression01','focus-edge-red','layout-final','regression-final','unit-final','build-final','corrected-focused','release-build']
 receipts={label:json.loads((base/label/'receipt.json').read_text()) for label in labels}
-for label in ['regression01','layout-final','regression-final','unit-final','build-final']:
+for label in ['regression01','layout-final','regression-final','unit-final','corrected-focused','release-build']:
  assert receipts[label]['exit']==0,(label,receipts[label])
 for label in labels:
  command=json.loads((base/label/'command.json').read_text());assert command['sourceBefore']==receipts[label]['sourceAfter'],label
 stats={label:json.loads((base/label/'results.json').read_text())['stats'] for label in labels if (base/label/'results.json').exists()}
-assert stats['layout-final']['expected']==8 and stats['regression-final']['expected']==112
+assert stats['layout-final']['expected']==8 and stats['regression-final']['expected']==112 and stats['corrected-focused']['expected']==32
+assert receipts['build-final']['exit']==1
 assert stats['icons-baseline-final']['unexpected']==24 and stats['focus-edge-red']['unexpected']==2
 assert json.loads((base/'icons-baseline-final/restoration.json').read_text())['restoredExact']
 frozen=hashlib.sha256((w/'tests/e2e/hideable-panels.spec.ts').read_bytes()).hexdigest()
 assert frozen==json.loads((base.parent/'preflight/restoration.json').read_text())['testsSha256']
 files=[]
 for label in labels:files.extend(p for p in (base/label).rglob('*') if p.is_file())
-files.extend(base/name for name in ['icons-baseline-final-unit.log','regression01-unit.log','focus-edge-red-unit.log','final-checks-unit.log'])
+files.extend(base/name for name in ['icons-baseline-final-unit.log','regression01-unit.log','focus-edge-red-unit.log','final-checks-unit.log','corrected-focused-unit.log','release-build-unit.log'])
+files.extend(p for p in (base/'version-metadata').rglob('*') if p.is_file())
 files=sorted(set(files));archive=base/'attempts-02.tar.gz'
 with tarfile.open(archive,'w:gz') as t:
  for p in files:t.add(p,arcname=str(p.relative_to(base)),recursive=False)
