@@ -1,0 +1,25 @@
+✔ gate CLI exits from actual classification, mode and verification conclusions (154.30214ms)
+✔ Git CLI uses NUL paths without executing shell syntax and refuses control characters (131.973367ms)
+✔ Git CLI treats source-to-prose renames, deletions and malformed events conservatively (236.24056ms)
+✔ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (204.862754ms)
+ℹ retained temporary Git fixture /tmp/malpaco-t91-git-X9LvOi
+✔ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (184.440079ms)
+✔ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (159.742792ms)
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.994039ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (4.809098ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.735425ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.462376ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.439774ms)
+✔ uncertain: deletion and unsupported statuses reject without relying on a previous filename (0.162605ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.882205ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.463802ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.227642ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (1.333771ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 604.600812

@@ -31,8 +31,10 @@ are deliberately absent, so the required result always exists.
 `gate.mjs` accepts successful plan + `docs` + intentionally skipped verification,
 or successful plan + `full` + successful verification. Failure, cancellation,
 unknown modes and unexpected skips fail. Checkout failures also fail the job.
-Branch protection must continue requiring the existing `ci` check; changing a job
-name or required context is a separate, reviewed repository setting change.
+If branch protection or rulesets require CI, preserve the existing `ci` context.
+Main's read-only API check returned “Branch not protected”; this task changes no
+repository settings. Repository process still requires independent review and
+green CI before merge.
 
 ## One package and the complete browser inventory
 
@@ -131,8 +133,13 @@ it does not authorize cancelling a run already being used as evidence.
 took approximately 48 minutes: checkout 9m25s, source browsers 17m34s and extracted
 browsers 17m33s. Removing one equivalent pass removes approximately 17.5 minutes
 of that baseline's work; it is an estimate, not a measured final workflow time.
-Sparse input byte counts and full case identities are recorded in verifier
-receipts. Git object compression, runner image start, queueing, network and
+The local production audit at `9407b827` retained 9,558 files / 548,318,531 bytes
+and omitted 7,904 historical evidence files / 10,844,804,137 bytes (95.19% of
+tracked bytes), with zero excluded files physically present. It verified five
+referenced self-contained HTML/SVG prototypes and 384 identical case/project
+identities across both browser configurations. See the
+[receipt](prototypes/ci/T91/runs/verify-euS0zA/receipt.json). These are local input
+and discovery measurements, not hosted transfer or browser execution timings. Git object compression, runner image start, queueing, network and
 artifact upload costs prevent converting byte savings directly into minutes.
 The final ordinary Actions run is the measurement of actual hosted behavior;
 local discovery and package checks do not claim a hosted or browser pass.

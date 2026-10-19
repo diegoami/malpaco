@@ -1,0 +1,45 @@
+
+> malpaco-spike-ts@0.1.1 test
+> node --test tools/harness/test/*.test.mjs && vitest run
+
+✔ actual selected model and real final required, not exit0 or quoted content (1.800942ms)
+✔ provider/remapped model cannot reach Claude billing; credentials not in errors (1.19125ms)
+✔ coverage is explicit per changed file; generated evidence grouping cannot hide code (2.392673ms)
+✔ watched subprocess retains success, failure and timeout evidence, kills its own group (668.9268ms)
+✔ real review entry selects Claude without OpenCode, publishes once, refuses failed gates (2266.847915ms)
+✔ Claude dependency materialization makes an independent real copy and preserves relative .bin links (3.214356ms)
+✔ Claude dependency materialization skips absent installs and refuses outside, overlapping, or existing destinations (2.830174ms)
+✔ native Claude command denials cover OpenCode publishing policy without a second Bash parser (0.422539ms)
+✔ Vite ignores only its own retained cache and preserves application and test watching (3958.627166ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4010.385255
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T91-ci
+
+
+ Test Files  60 passed (60)
+      Tests  818 passed (818)
+   Start at  21:57:49
+   Duration  54.90s (tests 90%, transform 7%, import 3%)
+
+
+> malpaco-spike-ts@0.1.1 build
+> tsc --noEmit -p src/core && tsc --noEmit && vite build
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 66 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                  0.64 kB │ gzip:  0.42 kB
+dist/assets/generatedGeographyPresentation.worker-DbrcvUpT.js    6.13 kB
+dist/assets/index-DEbt5Y0R.css                                  38.96 kB │ gzip:  8.27 kB
+dist/assets/index-D3fDmbKu.js                                  319.94 kB │ gzip: 85.70 kB
+
+✓ built in 317ms
