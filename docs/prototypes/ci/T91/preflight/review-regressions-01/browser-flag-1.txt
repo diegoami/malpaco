@@ -1,0 +1,57 @@
+✖ review R1: all mandatory validation steps run unconditionally and cannot hide failures (1.47556ms)
+✖ review R2: browser commands equal the complete asserted suites without any extra flags (1.550038ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60.095159
+
+✖ failing tests:
+
+test at tests/tools/ci-review-regressions.test.mjs:9:1
+✖ review R1: all mandatory validation steps run unconditionally and cannot hide failures (1.47556ms)
+  AssertionError [ERR_ASSERTION]: npx playwright test --config playwright.release.config.ts --workers=2
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-review-regressions.test.mjs:11:67)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-review-regressions.test.mjs:16:1
+✖ review R2: browser commands equal the complete asserted suites without any extra flags (1.550038ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    [
+  +   'npx playwright test --config playwright.release.config.ts --workers=2 --update-snapshots',
+  -   'npx playwright test --config playwright.release.config.ts --workers=2',
+      'npx playwright test --workers=2'
+    ]
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-review-regressions.test.mjs:18:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'npx playwright test --config playwright.release.config.ts --workers=2 --update-snapshots', 'npx playwright test --workers=2' ],
+    expected: [ 'npx playwright test --config playwright.release.config.ts --workers=2', 'npx playwright test --workers=2' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
