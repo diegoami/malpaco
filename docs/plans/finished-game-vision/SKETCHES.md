@@ -1,67 +1,84 @@
-# Original finished-game concepts
+# Revision 2: the map is the screen
 
-These twenty **[designed] static SVG drawings** were authored for #215. No game
-assets, original-game screenshots, production map or product code were imported.
-The geometry, colours, letters, counts, seed labels and outcomes are illustrative.
-The pictures are not a working prototype, implementation screenshots, a legal
-46-country graph, measured AI play or accessibility evidence.
+The owner approved V1–V5, required nice organic maps, deferred flavour names and
+rejected the first sketches' text density. [Exact response](DECISIONS.md).
 
-Click any image to inspect the native-sized drawing. Phone landscape shows a
-scrollable action body with fixed navigation; controls below the viewport remain
-in that body. The drawings use zero safe-area insets. Native targets are drawn
-44px high; sketches do not prove target fit in real browsers. All headings and
-labels are illustrative original text, not copied help.
+**The map fills every viewport.** There is no permanent header, sidebar, dock,
+legend, instruction block or history stream. Actions use original icons. Open
+any image at native size; the quiet-map row shows the default after contextual
+information clears. The remaining rows show information only for the interaction
+or request depicted.
+
+All twenty-four drawings are original static **[designed] concepts**, not
+implementation screenshots or game assets. The hand-authored coasts and schematic
+territories explore the organic direction; they do not prove a valid graph,
+route/label constraints, fairness or production generation across seeds. Cameras
+are different views of the same illustrative geography, not different device maps.
+No predecessor pixels, artwork, code or help text were reused.
 
 | Scene | Phone portrait · 390×844 | Phone landscape · 844×390 | Tablet · 768×1024 | Desktop · 1280×800 |
 | --- | --- | --- | --- | --- |
-| S1 Setup | [![Setup portrait](sketches/setup-phone-portrait.svg)](sketches/setup-phone-portrait.svg) | [![Setup landscape](sketches/setup-phone-landscape.svg)](sketches/setup-phone-landscape.svg) | [![Setup tablet](sketches/setup-tablet.svg)](sketches/setup-tablet.svg) | [![Setup desktop](sketches/setup-desktop.svg)](sketches/setup-desktop.svg) |
-| S2 Ordinary turn | [![Turn portrait](sketches/ordinary-turn-phone-portrait.svg)](sketches/ordinary-turn-phone-portrait.svg) | [![Turn landscape](sketches/ordinary-turn-phone-landscape.svg)](sketches/ordinary-turn-phone-landscape.svg) | [![Turn tablet](sketches/ordinary-turn-tablet.svg)](sketches/ordinary-turn-tablet.svg) | [![Turn desktop](sketches/ordinary-turn-desktop.svg)](sketches/ordinary-turn-desktop.svg) |
-| S3 Capture choice | [![Capture portrait](sketches/capture-phone-portrait.svg)](sketches/capture-phone-portrait.svg) | [![Capture landscape](sketches/capture-phone-landscape.svg)](sketches/capture-phone-landscape.svg) | [![Capture tablet](sketches/capture-tablet.svg)](sketches/capture-tablet.svg) | [![Capture desktop](sketches/capture-desktop.svg)](sketches/capture-desktop.svg) |
-| S4 Late game | [![Late game portrait](sketches/late-game-phone-portrait.svg)](sketches/late-game-phone-portrait.svg) | [![Late game landscape](sketches/late-game-phone-landscape.svg)](sketches/late-game-phone-landscape.svg) | [![Late game tablet](sketches/late-game-tablet.svg)](sketches/late-game-tablet.svg) | [![Late game desktop](sketches/late-game-desktop.svg)](sketches/late-game-desktop.svg) |
-| S5 Result | [![Result portrait](sketches/result-phone-portrait.svg)](sketches/result-phone-portrait.svg) | [![Result landscape](sketches/result-phone-landscape.svg)](sketches/result-phone-landscape.svg) | [![Result tablet](sketches/result-tablet.svg)](sketches/result-tablet.svg) | [![Result desktop](sketches/result-desktop.svg)](sketches/result-desktop.svg) |
+| Quiet map | [![Quiet map, phone-portrait](sketches/quiet-map-phone-portrait.svg)](sketches/quiet-map-phone-portrait.svg) | [![Quiet map, phone-landscape](sketches/quiet-map-phone-landscape.svg)](sketches/quiet-map-phone-landscape.svg) | [![Quiet map, tablet](sketches/quiet-map-tablet.svg)](sketches/quiet-map-tablet.svg) | [![Quiet map, desktop](sketches/quiet-map-desktop.svg)](sketches/quiet-map-desktop.svg) |
+| S1 Setup | [![S1 Setup, phone-portrait](sketches/setup-phone-portrait.svg)](sketches/setup-phone-portrait.svg) | [![S1 Setup, phone-landscape](sketches/setup-phone-landscape.svg)](sketches/setup-phone-landscape.svg) | [![S1 Setup, tablet](sketches/setup-tablet.svg)](sketches/setup-tablet.svg) | [![S1 Setup, desktop](sketches/setup-desktop.svg)](sketches/setup-desktop.svg) |
+| S2 Ordinary turn | [![S2 Ordinary turn, phone-portrait](sketches/ordinary-turn-phone-portrait.svg)](sketches/ordinary-turn-phone-portrait.svg) | [![S2 Ordinary turn, phone-landscape](sketches/ordinary-turn-phone-landscape.svg)](sketches/ordinary-turn-phone-landscape.svg) | [![S2 Ordinary turn, tablet](sketches/ordinary-turn-tablet.svg)](sketches/ordinary-turn-tablet.svg) | [![S2 Ordinary turn, desktop](sketches/ordinary-turn-desktop.svg)](sketches/ordinary-turn-desktop.svg) |
+| S3 Capture | [![S3 Capture, phone-portrait](sketches/capture-phone-portrait.svg)](sketches/capture-phone-portrait.svg) | [![S3 Capture, phone-landscape](sketches/capture-phone-landscape.svg)](sketches/capture-phone-landscape.svg) | [![S3 Capture, tablet](sketches/capture-tablet.svg)](sketches/capture-tablet.svg) | [![S3 Capture, desktop](sketches/capture-desktop.svg)](sketches/capture-desktop.svg) |
+| S4 Late game | [![S4 Late game, phone-portrait](sketches/late-game-phone-portrait.svg)](sketches/late-game-phone-portrait.svg) | [![S4 Late game, phone-landscape](sketches/late-game-phone-landscape.svg)](sketches/late-game-phone-landscape.svg) | [![S4 Late game, tablet](sketches/late-game-tablet.svg)](sketches/late-game-tablet.svg) | [![S4 Late game, desktop](sketches/late-game-desktop.svg)](sketches/late-game-desktop.svg) |
+| S5 Result | [![S5 Result, phone-portrait](sketches/result-phone-portrait.svg)](sketches/result-phone-portrait.svg) | [![S5 Result, phone-landscape](sketches/result-phone-landscape.svg)](sketches/result-phone-landscape.svg) | [![S5 Result, tablet](sketches/result-tablet.svg)](sketches/result-tablet.svg) | [![S5 Result, desktop](sketches/result-desktop.svg)](sketches/result-desktop.svg) |
 
-## What the images show and leave to later validation
+## Text follows the interaction
 
-- Setup keeps the useful default and Start game prominent. The advanced option
-  inventory is governed by T44 and the existing responsive proposal; these
-  drawings do not replace that inventory or authorize new options.
-- The ordinary-turn map is an overview on wide screens and a focused subset on
-  narrow screens. Text labels stay in screen space; ownership uses symbols and
-  colour, sea routes are dashed, a small warm square denotes a production centre.
-  Geography needs much more detail than these schematic islands before visual
-  acceptance. No contrast, spacing, hitbox or map-validity result is claimed.
-- The battle pair is staged, with an explicit Attack. Fight on and Stop are
-  inactive in the illustrated pre-attack state. Real controls must revalidate
-  phase/legality/pause; the drawing does not implement that protection.
-- Capture replaces the current action area. Confirmation is explicit; Fold and
-  inspection preserve the amount. Legal bounds and count previews must come
-  from the controller, not the illustrative number 3. Long text, invalid numeric
-  input, keyboard, reward/discard/Raid and short-height alternatives still need
-  the full existing responsive acceptance flows.
-- Late game shows public remaining opposition/objective, with four-seat totals
-  available. It does not invent finish assistance or prove pacing. The wide
-  summary and focused phone are views of an illustrative situation, not replay
-  snapshots of the same valid engine state.
-- The result example is a conquest win. Actual loss/elimination, watch/stop,
-  resignation, round-limit/tie and takeover paths are specified by the existing
-  contracts and the vision; this sample does not substitute for those outcomes.
+| Frame | What brings the text up | What clears it |
+| --- | --- | --- |
+| Quiet map | Nothing selected; no visible text | This is the resting state |
+| Setup | New-game choice: title and one default-opponent line | Start/load, or dismissal back to the map; options explain themselves only when opened |
+| Ordinary turn | Selected source/target: their army counts | Clear/change inspection or complete the interaction; selection never rolls combat |
+| Capture | Required move-in: amount and resulting selected counts | Confirmation resolves it; folding keeps the draft and a return badge, with other illegal actions blocked |
+| Late game | Player requests objective/progress information | Close that request; the victory condition does not become a permanent banner |
+| Result | The completed match: winner and reason | Dismiss to inspect the final board; a result icon reopens it; records remain exactly-once |
 
-## Layout constraints retained
+Confirmation, illegal-action errors, required rewards/discards/targets and private
+handover stay available until resolved or deliberately folded. No timer makes a
+critical choice vanish. Brief noncritical feedback may clear after its interaction;
+complete history remains available on request. Reduced motion must preserve the
+same information. Flavour text/names add no background labels.
 
-These are four representative compositions, not the whole supported size matrix.
-The selected direction also covers 320×568 portrait, 568×320 landscape, narrow
-640/667-wide landscape, short available-height fallback, safe areas, browser
-zoom/reflow, larger text and tablet/desktop seams. Use the pinned
-[responsive sketches](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/WIREFRAMES.md)
-and [acceptance](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ACCEPTANCE.md)
-and existing T78–T89 contracts for their full obligations.
+## Icons and discovery
 
-On a minimum phone or with enlarged text, the Current choice reading view and
-country list are essential alternatives to a dense map. Wider devices give
-totals/current choice/history more space rather than changing the rules. On
-rotation, camera, source/target and required drafts persist without dispatching
-an action. Private handover, keyboard reachability and reduced-motion/audio
-controls remain obligations even where a sketch does not draw every surface.
+The default board has four compact icons: menu, pause, fit/focus, and the legal
+phase action (End turn in these ordinary-turn examples). An explicit crossed-swords
+Attack icon appears for a selected legal enemy pair. Capture supplies −, amount,
++, confirm and fold in a temporary floating group. Fight on/Stop and friendly
+movement appear in their valid contexts; they are not removed from the game.
 
-Regenerate the original drawings with `python3 draw-sketches.py` in this directory.
-The generator is documentation tooling only and imports no application code.
+The menu opens requested cards, complete four-seat totals, histories, country
+picker, files, settings and help. Results offer New game, standings/context,
+history and files. These are reachable capabilities, not permanent panels.
+Accessible names identify every action. Focus, deliberate touch inspection or
+requested help reveals an icon's explanation; touch cannot depend on hover.
+Explanations clear after dismissal/focus departure. No tool-tip appearance commits
+an action. A screen reader can identify an icon without first revealing text.
+
+Only the current selection/request exposes relevant country identity, armies,
+legal targets and consequences; complete information is accessible on request.
+Colours plus distinct ownership shapes remain, with readable counts on selection.
+The tiny marks here are schematic; actual ownership/contrast/input acceptance
+remains required. No test of real touch targets is claimed from these drawings.
+
+## Device and acceptance boundaries
+
+Native action icons are drawn 48×48. Drawings use zero safe-area insets. Actual
+controls must respect safe areas, enlarged text and browser zoom, avoid covering
+the selected target/confirmation, and permit camera/list access to obscured map
+locations. Temporary requested views may scroll at short heights, then close to
+the same full-size map; a permanent reading column is superseded.
+
+The existing full size matrix remains, including 320×568 portrait, 568×320 and
+640/667-wide landscape, 240px available height, tablet rotation and desktop seams.
+Camera, staged pair, pending drafts and focus persist without an action on rotation,
+pause or closing information. The old fixed-dock/panel budgets are superseded by
+[U3–U5](DECISIONS.md); associated contracts require explicit reconciliation before
+dispatch, while complete behaviour and accessibility obligations remain.
+
+D4 needs actual playable icon discovery, geography across seeds, touch feel and
+full-match judgment. Review these revised concepts before final backlog approval.
+Regenerate with `python3 docs/plans/finished-game-vision/draw-sketches.py`.

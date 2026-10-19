@@ -1,61 +1,31 @@
-# Owner review: agree, change or defer
+# Review the revised map experience
 
-Read the [journey](README.md) and [sketch gallery](SKETCHES.md) first. These are
-concrete proposals for #215. No default answer or elapsed time counts as owner
-approval. The owner can answer in a comment or conversation; the main session
-then records the exact decision link and updates the proposal without rewriting
-older review evidence.
+**V1–V5 are approved** with the owner's organic-map requirement, flavour deferral
+and full-screen/icon/contextual-text amendments. The [decision record](DECISIONS.md)
+contains the exact response. No further V1–V5 vote is needed.
 
-## Product decisions
+The first sketches were too overwhelming and are superseded. Open the
+[revision-2 gallery](SKETCHES.md), especially the quiet-map row: there is no
+persistent on-screen text, header, dock or side panel. Controls are icons.
+The other scenes show only text needed for that interaction or a player-requested
+piece of information, returning to the quiet map when finished.
 
-| ID | Proposal to agree/change/defer | If changing or deferring, decide what follows |
-| --- | --- | --- |
-| V1 · audience and promise | Approachable tactical island conquest; depth through geography, opponents and supported options; a complete match against computers or shared-device players. | State the preferred audience/promise. Owner decision before scope reconciliation. |
-| V2 · match shape and late game | Keep the approved rules as the baseline. Make remaining opposition/objective clear and assess stronger late-game computers and pacing before proposing finish assistance. | Owner: preferred ordinary session length, complexity and acceptable cleanup effort. If unknown, name a full-match play session; use T50 strength/length evidence. Any surrender/automation/victory change needs a separate explicit amendment. |
-| V3 · visual and sensory finish | Calm nautical map-first presentation, clear ownership symbols, restrained original illustration, controllable feedback. Preserve existing coastline, sound and accessibility obligations. | Owner: whether #181-style geography variety, flavour naming #170, further animation or terrain are indispensable to the first edition or later candidates. Sound deferral must explicitly amend T55. Sketch approval cannot certify generated variety or touch feel. |
-| V4 · opponents and modes | Preserve the complete contracted setup/levels, including supported all-human, mixed and computer-watching cases. Exclude online accounts/multiplayer, campaigns, editor, ports and monetization from the initial edition. | Owner: desired AI challenge/behaviour and exact required combinations; confirm exclusions. Resolve any existing card/privacy mode conflict explicitly. T50’s pinned targets remain binding; owner play and measurements inform the desired experience. |
-| V5 · completion bar | Retain the capability baseline and full-match/device/artifact acceptance journey in the vision. Use actual play to judge clarity, map quality, interaction and fun. | Owner: indispensable capabilities, explicit amendments for later improvements, and the representative seeds/modes/devices/full-match previews to approve. Resulting release slices/backlog still need a second approval. |
+| Scene | What the revised illustration asks the owner to judge |
+| --- | --- |
+| Quiet map | Does the map feel like the whole experience, with enough visual character and sufficiently little interface? |
+| S1 Setup | Does a compact temporary start choice give enough guidance, with seed/options/load on request? |
+| S2 Turn | Are selected counts and the explicit Attack icon understandable without a permanent instruction panel? |
+| S3 Capture | Does the temporary amount/confirm choice stay clear without claiming a permanent strip of the screen? |
+| S4 Late game | Can requested objective/progress information answer the immediate question and then disappear? |
+| S5 Result | Does the concise result leave full standings/history/files accessible through icons without displaying everything at once? |
 
-Suggested response format (free text is equally useful):
+All four form factors follow the same full-screen direction. Give corrections
+by scene/device if needed. These are original static visual references: organic
+map generation, icon discovery, touch feel, accessibility and full-match fun must
+still be judged in real builds under D4. A sketch is not evidence of a valid map.
 
-```text
-V1 agree/change/defer — correction or evidence needed:
-V2 agree/change/defer — normal session length / late-game preference:
-V3 agree/change/defer — first-edition visual/audio priorities:
-V4 agree/change/defer — modes / challenge / exclusions:
-V5 agree/change/defer — must-have capabilities / playable previews:
-```
-
-## Sketch decisions
-
-Each S row has four original static screens. Review each device, not only desktop.
-Say which scene/device needs revision. The drawings illustrate hierarchy and
-visual direction, not a working map, rules fixture or validated interaction.
-
-| ID | Scene | What the owner should judge |
-| --- | --- | --- |
-| S1 | Setup | Is Start game obvious? Do seed, explained options and Load feel approachable rather than administrative? |
-| S2 | Ordinary turn | Is geography primary? Are the staged pair and Attack obvious, with movement, End turn and inspection reachable? Does the phone dock leave enough useful map? |
-| S3 | Mandatory capture choice | Is the required choice unmistakable? Is the amount/confirmation understandable while inspection and a preserved draft remain possible? |
-| S4 | Late game | Are objective and remaining opposition understandable? Does this give enough context to judge the endgame direction, with the admitted need to play a full match? |
-| S5 | Result | Are victory reason, standings and match context readable, with history/files and another match easy to find? The documented loss/watch/resign branches also require later playable review. |
-
-Reply `S1–S5 agree/change/defer`, naming affected layouts. D1 map-first, D2 all
-devices and D3 explicit Attack are already selected; they are not re-asked here.
-If a response changes them, record that as an explicit amendment. D4 remains
-actual playable appearance/touch acceptance after implementation is separately
-authorized.
-
-## Completion order for #215
-
-1. Owner reviews/revises V1–V5, the complete journey and S1–S5 across layouts.
-2. Main session records required capabilities, deliberate exclusions and named
-   follow-up decisions, including unresolved evidence needs. Apply any explicit
-   amendments to existing authority before dependent work.
-3. Only then reconcile existing issues as retain/revise/defer/drop/already
-   satisfied, with reasons and evidence, reusing the current issue set.
-4. Owner approves the resulting release slices/backlog. Only separately
-   authorized feature dispatch can resume. No vision approval implies publication.
-
-This package prepares the owner review. It does not mark the issue's owner
-decisions, sketch approvals, backlog reconciliation or release approval as done.
+After revised sketch review, reconcile existing tasks, including dock/sidebar
+assumptions, organic geography and deferred #170, and seek approval of the
+resulting release slices/backlog. Existing behavioural contracts remain binding
+until explicitly amended; implementation and publication require their separate
+authorization. No backlog approval is inferred from the V1–V5 response.

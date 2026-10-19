@@ -1,213 +1,175 @@
-"""Original static review drawings for #215; no game code or assets are imported.
-
-Run from this directory: python3 draw-sketches.py
-Coordinates, colours, geography and sample values are [designed] illustrations.
+"""Original static concepts, revision 2: full-viewport maps, contextual icons.
+Run: python3 docs/plans/finished-game-vision/draw-sketches.py
+No application imports, assets, randomness or production generator changes.
 """
-from pathlib import Path
 from html import escape
+from pathlib import Path
+from math import sin, cos, pi, hypot
 
-ROOT = Path(__file__).parent / "sketches"
+ROOT = Path(__file__).parent / 'sketches'
 ROOT.mkdir(exist_ok=True)
-BG, PANEL, LINE = "#0c202b", "#142e3a", "#42606b"
-INK, MUTED, ACCENT = "#eef3ee", "#b6cbc9", "#f0cb7d"
-COLOURS = ["#557c8c", "#8a665f", "#6e7959", "#786586"]
-
+SEA, INK, MUTED = '#102b36', '#f0f1de', '#c0d3cb'
+PANEL, LINE, GOLD = '#173d47', '#517580', '#edcf89'
+OWNERS = ['#729b94', '#a37d67', '#8e9c69', '#8d819f']
+ICONS = {
+    'menu': 'M15 18H33 M15 24H33 M15 30H33',
+    'pause': 'M19 16V32 M29 16V32',
+    'fit': 'M18 14H14V18 M30 14H34V18 M34 30V34H30 M18 34H14V30 M20 24H28 M24 20V28',
+    'end': 'M15 24H30 M25 18L31 24L25 30 M35 16V32',
+    'attack': 'M15 14L32 31 M14 20L20 14 M26 32L32 26 M33 14L16 31 M28 14L34 20 M16 26L22 32',
+    'play': 'M19 14L34 24L19 34Z',
+    'options': 'M14 17H34 M14 24H34 M14 31H34 M19 14V20 M29 21V27 M22 28V34',
+    'load': 'M13 19V34H35V19H26L23 15H13Z M24 20V29 M20 25L24 29L28 25',
+    'details': 'M15 32V25 M24 32V17 M33 32V22 M13 36H35',
+    'history': 'M14 20A12 12 0 1 1 14 29 M14 14V21H21 M24 18V25L29 28',
+    'check': 'M14 24L21 31L35 16', 'minus': 'M16 24H32',
+    'plus': 'M16 24H32 M24 16V32', 'fold': 'M16 28L24 20L32 28',
+    'info': 'M24 22V32 M24 15V16', 'close': 'M17 17L31 31 M31 17L17 31',
+}
 
 class Drawing:
     def __init__(self, w, h, title, description):
         self.w, self.h = w, h
-        self.p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="title desc">',
-                  f'<title id="title">{escape(title)}</title>', f'<desc id="desc">{escape(description)}</desc>',
-                  '<style>text{font-family:Arial,sans-serif} .btn{font-weight:700}</style>']
-        self.rect(0, 0, w, h, BG)
-
-    def rect(self, x, y, w, h, fill=PANEL, stroke=None, radius=0):
-        self.p.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{radius}" fill="{fill}"' + (f' stroke="{stroke}"' if stroke else '') + '/>')
-
-    def text(self, x, y, s, size=16, colour=INK, weight=400):
-        self.p.append(f'<text x="{x}" y="{y}" fill="{colour}" font-size="{size}" font-weight="{weight}">{escape(s)}</text>')
-
-    def lines(self, x, y, lines, size=16, step=24, colour=INK):
-        for i, s in enumerate(lines):
-            self.text(x, y + i * step, s, size, colour)
-
-    def button(self, x, y, w, s, primary=False, disabled=False, h=44):
-        self.rect(x, y, w, h, ACCENT if primary else BG, LINE, 6)
-        self.text(x+10, y+27, s, 15, BG if primary else (MUTED if disabled else INK), 700)
-
-    def path(self, path, fill="none", stroke=LINE, width=2, dash=False):
-        self.p.append(f'<path d="{path}" fill="{fill}" stroke="{stroke}" stroke-width="{width}"' + (' stroke-dasharray="6 5"' if dash else '') + '/>')
-
+        self.p = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-labelledby="title desc">', f'<title id="title">{escape(title)}</title>', f'<desc id="desc">{escape(description)}</desc>', '<style>text{font-family:Arial,sans-serif}path{stroke-linecap:round;stroke-linejoin:round}</style>']
+        self.rect(0, 0, w, h, SEA, extra='data-layer="full-viewport-map"')
+    def rect(self, x, y, w, h, fill=PANEL, radius=0, stroke=None, extra=''):
+        self.p.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{fill}" rx="{radius}" {extra}' + (f' stroke="{stroke}"' if stroke else '') + '/>')
+    def path(self, path, fill='none', stroke=LINE, width=1, extra=''):
+        self.p.append(f'<path d="{path}" fill="{fill}" stroke="{stroke}" stroke-width="{width}" {extra}/>')
+    def text(self, x, y, value, size=16, colour=INK, anchor='start', weight=400):
+        self.p.append(f'<text x="{x}" y="{y}" fill="{colour}" font-size="{size}" text-anchor="{anchor}" font-weight="{weight}">{escape(str(value))}</text>')
+    def icon(self, x, y, kind, label, primary=False, active=False):
+        self.p.append(f'<g role="img" aria-label="{escape(label)}" data-icon="{kind}" transform="translate({x} {y})"><title>{escape(label)}</title>')
+        self.rect(0, 0, 48, 48, GOLD if primary else PANEL, 14, GOLD if active else LINE)
+        self.path(ICONS[kind], stroke=SEA if primary else INK, width=2)
+        self.p.append('</g>')
     def save(self, name):
-        (ROOT / name).write_text('\n'.join(self.p + ['</svg>']) + '\n')
+        (ROOT / name).write_text('\n'.join(self.p + ['</svg>'])+'\n')
 
+def coast_path(points):
+    out=[f'M {points[0][0]:.2f} {points[0][1]:.2f}']
+    for i in range(len(points)):
+        a,b,c,e=[points[j % len(points)] for j in (i-1,i,i+1,i+2)]
+        out.append(f'C {b[0]+(c[0]-a[0])/6:.2f} {b[1]+(c[1]-a[1])/6:.2f} {c[0]-(e[0]-b[0])/6:.2f} {c[1]-(e[1]-b[1])/6:.2f} {c[0]:.2f} {c[1]:.2f}')
+    return ' '.join(out)+' Z'
 
-def map_view(d, x, y, w, h, late=False, captured=False, finished=False):
-    """A symbolic nine-island overview, deliberately not a legal generated board."""
-    d.rect(x, y, w, h, "#102b38", LINE)
-    d.text(x+14, y+24, "ARCHIPELAGO · illustrative geography", 13, MUTED)
-    # Use an aspect-preserving map: a phone focuses on a subset instead of tiny labels.
-    focus = w < 500
-    mw, mh = (440, 480) if focus else (800, 430)
-    scale = min((w-24)/mw, (h-110)/mh)
-    ox, oy = x+(w-mw*scale)/2, y+52+(h-110-mh*scale)/2
-    def pt(a, b):
-        return f'{ox+a*scale:.1f} {oy+b*scale:.1f}'
-    if focus:
-        locations = [(70,60),(265,180),(100,330)]
-        d.text(x+14,y+h-15,"Focused islands · Fit board available",13,MUTED)
-    else:
-        locations = [(60,65),(285,50),(540,40),(160,195),(420,190),(665,190),(50,340),(300,340),(570,340)]
-        d.text(x+14,y+h-15,"Overview · inspect dense areas with Focus",13,MUTED)
-    links=[(0,1),(1,2)] if focus else [(0,1),(1,2),(3,4),(4,5),(6,7),(7,8),(0,3),(3,6)]
-    for start,end in links:
-        a,b=locations[start],locations[end]
-        d.path(f'M {pt(a[0]+65,a[1]+30)} L {pt(b[0],b[1]+30)}',stroke="#91b3bd",dash=True)
-    for i,(a,b) in enumerate(locations):
-        points=[(a-12,b+12),(a+18,b-12),(a+65,b-5),(a+90,b+20),(a+74,b+63),(a+30,b+72),(a-8,b+45)]
-        owner=0 if finished or (captured and i==1) or (late and i%3) else i%4
-        d.path('M '+' L '.join(pt(*p) for p in points)+' Z',COLOURS[owner],"#c5d5ce",1.5)
-        d.path(f'M {pt(a+30,b-10)} L {pt(a+35,b+38)} L {pt(a-8,b+45)}',stroke="#d6e0d7",width=1)
-        armies=1 if captured and i==1 else [8,3,6,4][i%4]
-        label=f'{chr(65+i)} {["▱", "◇", "○", "⬡"][owner]} {armies}'
-        # Screen-space labels stay readable at every scale.
-        d.text(ox+(a-2)*scale,oy+(b+100)*scale,label,15,INK,700)
-        if i==0:
-            d.rect(ox+(a+51)*scale,oy+(b+23)*scale,9,9,ACCENT)
-    d.text(x+14, y+45, "▱ You   ◇ Seat 2   ○ Seat 3   ⬡ Seat 4", 13, MUTED)
+def cell_for(seed, seeds):
+    """Static territorial notation; these cells do not define game topology."""
+    poly=[(-180,-180),(180,-180),(180,180),(-180,180)]
+    for other in seeds:
+        if other==seed: continue
+        nx,ny=other[0]-seed[0],other[1]-seed[1]
+        limit=(other[0]**2+other[1]**2-seed[0]**2-seed[1]**2)/2
+        result=[]
+        for a,b in zip(poly,poly[1:]+poly[:1]):
+            fa,fb=a[0]*nx+a[1]*ny-limit,b[0]*nx+b[1]*ny-limit
+            if fa<=0: result.append(a)
+            if (fa<=0)!=(fb<=0):
+                f=fa/(fa-fb)
+                result.append((a[0]+f*(b[0]-a[0]),a[1]+f*(b[1]-a[1])))
+        poly=result
+    return poly
 
+def cell_path(points):
+    out=[f'M {points[0][0]:.2f} {points[0][1]:.2f}']
+    for a,b in zip(points,points[1:]+points[:1]):
+        lo,hi=sorted([a,b]); length=hypot(hi[0]-lo[0],hi[1]-lo[1]) or 1
+        bend=3.5*sin((lo[0]+hi[1])/29)
+        cx=(a[0]+b[0])/2-(hi[1]-lo[1])/length*bend
+        cy=(a[1]+b[1])/2+(hi[0]-lo[0])/length*bend
+        out.append(f'Q {cx:.2f} {cy:.2f} {b[0]:.2f} {b[1]:.2f}')
+    return ' '.join(out)+' Z'
 
-def totals(d,x,y,w,late=False,finished=False):
-    d.text(x,y,"SEATS · land / armies / cards",13,MUTED,700)
-    vals=["▱ You          32 / 74 / 2","◇ Seat 2      9 / 18 / 1","○ Seat 3      5 / 11 / 0","⬡ Seat 4      Eliminated"] if late else ["▱ You          12 / 29 / 2","◇ Seat 2      11 / 24 / 1","○ Seat 3      10 / 22 / 0","⬡ Seat 4      13 / 31 / 2"]
-    if finished:
-        vals=["▱ You          46 / 85 / 2","◇ Seat 2      Eliminated","○ Seat 3      Eliminated","⬡ Seat 4      Eliminated"]
-    d.lines(x,y+26,vals,15,24)
+# Original drawing sites: nine silhouettes, 46 illustrative cells; not a legal map.
+ISLANDS=[(145,112,74,54,3),(382,100,76,62,3),(682,116,100,59,3),
+         (180,313,78,78,3),(472,300,112,82,5),(808,315,93,73,5),
+         (140,556,87,74,7),(430,544,107,73,7),(766,563,135,90,10)]
+SEEDS=[(-47,-15),(10,-36),(55,4),(-26,27),(28,43),(-68,32),(68,-32),(-5,58),(76,36),(-47,-57)]
 
+def geography(d, device, scene):
+    scale,center={'phone-portrait':(1.65,(467,332)), 'tablet':(1.48,(475,352)), 'phone-landscape':(.83,(474,330)), 'desktop':(1.16,(475,344))}[device]
+    ox,oy=d.w/2-center[0]*scale,d.h/2-center[1]*scale
+    d.p.append(f'<g data-layer="geography" transform="translate({ox:.2f} {oy:.2f}) scale({scale})">')
+    coasts=[]
+    for i,(x,y,rx,ry,n) in enumerate(ISLANDS):
+        points=[]
+        for k in range(18):
+            angle=2*pi*k/18
+            r=1+.16*sin(3*angle+i*.8)+.12*cos(5*angle-i*.6)+.07*sin(7*angle+i)
+            points.append((rx*cos(angle)*r,ry*sin(angle)*r))
+        coast=coast_path(points); coasts.append(coast)
+        d.p.append(f'<g transform="translate({x} {y})">')
+        d.path(coast,stroke='#214c56',width=12); d.path(coast,stroke='#2b5b62',width=5)
+        d.p.append('</g>')
+    links=[(0,1),(1,2),(0,3),(1,4),(2,5),(3,4),(4,5),(3,6),(4,7),(5,8),(6,7),(7,8)]
+    for a,b in links:
+        ax,ay,rx,ry,_=ISLANDS[a]; bx,by,sx,sy,_=ISLANDS[b]
+        dx,dy=bx-ax,by-ay; length=hypot(dx,dy)
+        aa,bb=min(rx,ry)*.91,min(sx,sy)*.91
+        d.path(f'M {ax+dx/length*aa:.1f} {ay+dy/length*aa:.1f} L {bx-dx/length*bb:.1f} {by-dy/length*bb:.1f}',stroke='#729795',width=1.4,extra='stroke-dasharray="3 6"')
+    selected=[]
+    for i,(x,y,rx,ry,n) in enumerate(ISLANDS):
+        coast=coasts[i]; seeds=[(a*rx/110,b*ry/80) for a,b in SEEDS[:n]]
+        d.p.append(f'<g transform="translate({x} {y})"><defs><clipPath id="coast-{i}"><path d="{coast}"/></clipPath></defs><g clip-path="url(#coast-{i})">')
+        for j,(sx,sy) in enumerate(seeds):
+            owner=(i+j)%4
+            if scene in ('late-game','result'): owner=0 if scene=='result' or (i+j)%9 else 1
+            if i==4 and j==0: owner=0
+            if i==4 and j==1: owner=0 if scene in ('capture','late-game','result') else 1
+            d.path(cell_path(cell_for((sx,sy),seeds)),fill=OWNERS[owner],stroke='#bbceac',width=.8)
+            shapes=[f'M {sx-2} {sy-2}H {sx+2}V {sy+2}H {sx-2}Z', f'M {sx} {sy-3}L {sx+3} {sy}L {sx} {sy+3}L {sx-3} {sy}Z', f'M {sx-3} {sy}Q {sx} {sy-6} {sx+3} {sy}Q {sx} {sy+6} {sx-3} {sy}Z', f'M {sx-3} {sy-2}L {sx+2} {sy-3}L {sx+3} {sy+2}L {sx-2} {sy+3}Z']
+            d.path(shapes[owner],fill='#e3e7c5',stroke='none')
+            if i==4 and j in (0,1): selected.append((ox+(x+sx)*scale,oy+(y+sy)*scale))
+        d.p.append('</g>'); d.path(coast,stroke='#d4d8b4',width=1.3)
+        if i in (1,4,8): d.path('M -3 1L 0 -4L 3 1V 5H -3Z',fill='#f2d69a',stroke='#3c5a52',width=.7)
+        d.p.append('</g>')
+    d.p.append('</g>')
+    if scene in ('ordinary-turn','capture'):
+        for k,(sx,sy) in enumerate(selected):
+            value=[5,4][k] if scene=='capture' else [8,3][k]
+            d.rect(round(sx-17,1),round(sy-18,1),34,34,SEA,17,GOLD)
+            d.text(round(sx,1),round(sy+5,1),value,17,INK,'middle',700)
+    return selected
 
-def panel(d,x,y,w,h,scene,compact=False):
-    d.rect(x,y,w,h,PANEL,LINE)
-    px,py,bw=x+16,y+23,w-32
-    if scene=="setup":
-        d.text(px,py,"Your next campaign",19,INK,700)
-        d.lines(px,py+33,["You + 3 Normal computers","Generated archipelago","Seed: 1994 · change seed"],16,25)
-        d.button(px,py+108,bw,"Start game",True)
-        d.button(px,py+164,bw,"Match options")
-        d.button(px,py+220,bw,"Load game")
-        d.text(px,py+293,"Learn as you play · Help",15,MUTED)
-        if h>440:
-            d.lines(px,py+336,["Advanced options explain effects.","Seats, difficulty and rules remain", "available without crowding Start."],15,24, MUTED)
-    elif scene=="result":
-        d.text(px,py,"You won",28,INK,700)
-        d.lines(px,py+32,["Conquest · end-of-turn result","Seed 1994 · Normal opponents"],15,24)
-        totals(d,px,py+112,bw,True,True)
-        d.button(px,py+240,bw,"New game",True)
-        d.button(px,py+294,bw,"View match history")
-        d.button(px,py+348,bw,"Files / save match")
-    elif scene=="capture":
-        d.text(px,py,"Required · move into B",19,INK,700)
-        d.lines(px,py+32,["A → B · captured territory","Choose armies to move in.","Legal range supplied by rules"],15,24)
-        d.button(px,py+112,52,"Min")
-        d.button(px+60,py+112,44,"−")
-        d.button(px+112,py+112,44,"3")
-        d.button(px+164,py+112,44,"+")
-        d.button(px,py+166,bw,"Maximum")
-        d.text(px,py+207,"After: A 5 / B 4 · sample",14,MUTED)
-        d.button(px,py+220,bw,"Confirm move-in",True)
-        d.lines(px,py+296,["Inspect map or fold this choice.","Your amount stays selected.","End turn waits for confirmation."],14,23,MUTED)
-    else:
-        late=scene=="late-game"
-        # Compact landscape uses scrollable action body; this drawing shows its top.
-        if not compact:
-            totals(d,px,py,bw,late)
-            py+=138
-        d.text(px,py,"Late game · Conquest" if late else "Your turn · Attack",19,INK,700)
-        d.lines(px,py+30,["14 enemy territories remain" if late else "A 8 → B 3 · adjacent enemy","A 8 → D 4 · press Attack" if late else "Ready · press Attack"],15,24)
-        gap=8
-        b=(bw-gap)/2
-        d.button(px,py+72,b,"Attack",True)
-        d.button(px+b+gap,py+72,b,"Fight on",disabled=True)
-        d.button(px,py+124,b,"Stop",disabled=True)
-        d.button(px+b+gap,py+124,b,"Inspect")
-        d.button(px,py+176,bw,"Move armies")
-        d.button(px,py+228,bw,"End turn")
-        if h>650:
-            d.lines(px,py+306,["LAST EXCHANGE", "A lost 1 · B held", "Full history ↕"],15,24,MUTED)
+def card(d,w,h,y=None):
+    x=(d.w-w)/2; y=d.h/2-h/2 if y is None else y
+    d.rect(x,y,w,h,PANEL,18,LINE,extra='data-layer="context"')
+    return x,y
 
-
-def phone_dock(d,scene,y):
-    d.rect(0,y,390,844-y,PANEL,LINE)
-    if scene=="capture":
-        d.text(16,y+27,"Required: move A → B",18,INK,700)
-        d.text(16,y+52,"After: A 5 / B 4 · range from rules",15,MUTED)
-        for i,(label,width) in enumerate([("Min",66),("−",44),("3",50),("+",44),("Max",72)]):
-            xx=[16,90,142,200,252][i]
-            d.button(xx,y+68,width,label)
-        d.button(16,y+124,358,"Confirm move-in",True)
-        d.button(16,y+178,358,"Fold · keep 3 selected")
-        nav=y+244
-    else:
-        d.text(16,y+23,"14 enemy territories remain" if scene=="late-game" else "A 8 → B 3 · Ready: press Attack",16,INK,700)
-        if scene=="late-game":
-            d.text(16,y+44,"A 8 → D 4 · Conquest · press Attack",14,MUTED)
-        for i,label in enumerate(["Attack","Fight on","Stop","Inspect","Move armies","End turn"]):
-            d.button(16+(i%3)*122,y+56+(i//3)*52,114,label,i==0,i in [1,2])
-        nav=y+168
-    d.rect(0,nav,390,48,BG,LINE)
-    for i,s in enumerate(["Cards","Totals","History","Menu"]):
-        d.text(16+i*97,nav+29,s,15,INK,700)
-
-
-scenes={
-    "setup":"Setup: a useful default with explained match options",
-    "ordinary-turn":"Ordinary turn: a staged pair and explicit Attack",
-    "capture":"Mandatory choice: capture move-in with preserved draft",
-    "late-game":"Late game: remaining opposition, objective and deliberate turns",
-    "result":"Result: reason, standings, match history and another game",
-}
-devices={"phone-portrait":(390,844),"phone-landscape":(844,390),"tablet":(768,1024),"desktop":(1280,800)}
-for scene,meaning in scenes.items():
-    for device,(w,h) in devices.items():
-        desc=meaning+". Static original concept for owner review, not an implemented screen. Sample geography, counts and outcomes are illustrative. Scroll hints show content outside a short viewport. No safe-area insets are depicted."
-        d=Drawing(w,h,f'Malpaco · {meaning} · {device}',desc)
-        head=48 if device=="phone-landscape" else 56
-        d.rect(0,0,w,head,PANEL,LINE)
-        d.text(16,31,"MALPACO",18,INK,700)
-        subtitle="Finished-game concept" if scene=="setup" else ("Match finished" if scene=="result" else "Your turn")
-        if w>500:
-            d.text(165,31,subtitle,16,MUTED)
-            d.text(w-192,31,"Help" if scene in ["setup","result"] else "Pause · Speed",15)
-        else:
-            d.text(275,31,"Help" if scene in ["setup","result"] else "Pause",16)
-        if device=="phone-portrait":
-            if scene in ["setup","result"]:
-                map_view(d,0,head,w,270,finished=scene=="result")
-                panel(d,0,326,w,h-326,scene)
-            else:
-                dock=550 if scene=="capture" else 628
-                d.text(16,head+28,"+    −    Fit    Focus    Countries",16)
-                map_view(d,0,head+44,w,dock-head-44,scene=="late-game",scene=="capture")
-                phone_dock(d,scene,dock)
-        else:
-            pw=256 if device=="phone-landscape" else (320 if device=="tablet" else 360)
-            stage=w-pw-8
-            d.text(16,head+28,"+    −    Fit board    Focus    Countries",15)
-            map_view(d,0,head+44,stage,h-head-44,scene=="late-game",scene=="capture",scene=="result")
-            # Short landscape is a clipped view of a vertically scrollable panel,
-            # with a fixed footer; never compress 44px controls to fit everything.
-            if device=="phone-landscape":
-                d.p.append(f'<defs><clipPath id="body"><rect x="{stage+8}" y="{head}" width="{pw}" height="{h-head-56}"/></clipPath></defs><g clip-path="url(#body)">')
-                panel(d,stage+8,head,pw,600,scene,True)
-                d.p.append('</g>')
-                d.rect(stage+8,h-56,pw,56,BG,LINE)
-                d.text(stage+20,h-33,"Action body scrolls ↕",13,MUTED)
-                d.text(stage+20,h-12,"Cards · Totals · History · Menu",13)
-            else:
-                panel(d,stage+8,head,pw,h-head-56,scene)
-                d.rect(stage+8,h-56,pw,56,BG,LINE)
-                d.text(stage+24,h-23,"Cards · Totals · History · Menu",15)
-        # Every screen is visibly a proposal without resembling a game notice.
-        d.rect(0,h-3,w,3,ACCENT)
+SCENES={'quiet-map':'Quiet map: no selection or visible text', 'setup':'Setup: a compact start choice over the map', 'ordinary-turn':'Turn: selected counts and explicit Attack icon', 'capture':'Capture: a temporary mandatory move-in choice', 'late-game':'Late game: objective requested by the player', 'result':'Result: concise outcome, details on request'}
+DEVICES={'phone-portrait':(390,844),'phone-landscape':(844,390),'tablet':(768,1024),'desktop':(1280,800)}
+for scene,meaning in SCENES.items():
+    for device,(w,h) in DEVICES.items():
+        d=Drawing(w,h,f'Malpaco · {meaning} · {device}',meaning+'. Revision 2, original static concept, not implemented or playtested. Full-viewport map with original organic coasts and schematic cells, not generation evidence. Accessible icon descriptions are not permanent labels. Text belongs to this interaction and clears when it ends; required choices remain recoverable.')
+        pair=geography(d,device,scene)
+        d.icon(16,16,'menu','Menu: cards, totals, history, files, settings, help and country list')
+        kind,label=('options','Match options') if scene=='setup' else (('close','Dismiss result to inspect the final board') if scene=='result' else ('pause','Pause or resume'))
+        d.icon(w-64,16,kind,label)
+        d.icon(16,h-64,'fit','Fit board or focus selection')
+        if scene not in ('setup','result','capture'): d.icon(w-64,h-64,'end','End turn; only when phase permits')
+        if scene=='setup':
+            x,y=card(d,280,156)
+            d.text(w/2,y+34,'Malpaco',25,INK,'middle',700)
+            d.text(w/2,y+63,'1 human · 3 Normal',15,MUTED,'middle')
+            for j,(kind,label) in enumerate([('load','Load match'),('play','Start game'),('options','Change seed, seats and rules')]): d.icon(x+42+j*74,y+85,kind,label,primary=kind=='play')
+        elif scene=='ordinary-turn':
+            sx,sy=pair[1]
+            d.icon(min(w-72,max(76,sx+40)),min(h-132,max(76,sy-23)),'attack','Attack: commit one exchange on this pair',True)
+        elif scene=='capture':
+            x,y=card(d,296,102,min(h-158,max(82,pair[0][1]+80)))
+            d.text(x+20,y+29,'Move in',17,INK,weight=700)
+            d.icon(x+14,y+42,'minus','Move fewer; respect controller minimum')
+            d.rect(x+68,y+42,48,48,SEA,14,LINE); d.text(x+92,y+73,'3',20,INK,'middle',700)
+            d.icon(x+122,y+42,'plus','Move more; respect controller maximum')
+            d.icon(x+176,y+42,'check','Confirm capture move-in',True)
+            d.icon(x+230,y+42,'fold','Fold; preserve draft and return badge')
+        elif scene=='late-game':
+            x,y=card(d,256,52,22 if w>500 else 78)
+            d.text(w/2,y+32,'Conquest · 14 remaining',16,INK,'middle')
+            d.icon(w-64,h-124,'info','Objective details; close information',active=True)
+        elif scene=='result':
+            x,y=card(d,300,174)
+            d.text(w/2,y+43,'You won',28,INK,'middle',700); d.text(w/2,y+72,'Conquest',16,MUTED,'middle')
+            for j,(kind,label) in enumerate([('play','New game'),('details','Final standings, seed and options'),('history','Full history'),('load','Match files')]): d.icon(x+24+j*68,y+102,kind,label,primary=j==0)
         d.save(f'{scene}-{device}.svg')
-
-print(f'Wrote {len(scenes)*len(devices)} original SVG concepts to {ROOT}')
+print(f'Wrote {len(SCENES)*len(DEVICES)} original revision-2 SVG concepts to {ROOT}')

@@ -8,10 +8,27 @@ Design authority: [DECISIONS](https://github.com/diegoami/malpaco/blob/adf7f5ac0
 [sketches](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/WIREFRAMES.md) and [acceptance](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ACCEPTANCE.md). Publication,
 implementation dispatch and final playable appearance remain separate gates.
 
+## Owner presentation amendment under #215
+
+The owner approved V1–V5 with [new presentation requirements](finished-game-vision/DECISIONS.md):
+nice organic maps are required for the finished game; flavour naming can wait;
+the map fills the viewport, actions use icons, and text appears only for a
+current interaction or requested information, then clears. Permanent headers,
+phone docks and desktop side panels in the earlier sketches are superseded.
+D2 all devices and D3 explicit Attack remain.
+
+The table below records the existing allocation and contract names, not approval
+to dispatch those contracts unchanged. Reconcile and explicitly amend affected
+T79/T84–T88 composition/information assumptions before implementation; preserve
+complete reachable actions, histories/totals, accessibility and required-choice
+continuity. Organic geography's place relative to this UI slice must be decided
+in the post-sketch backlog reconciliation, then approved by the owner. It is no
+longer optional for the finished game. No generator rewrite is selected here.
+
 ## Selected scope
 
-Map-first workspace for mobile portrait/landscape, tablet and desktop in the same
-release. Source/target selection stages combat; explicit Attack performs one
+Full-viewport map with icon controls and temporary contextual information for
+mobile portrait/landscape, tablet and desktop in the same release. Source/target selection stages combat; explicit Attack performs one
 existing exchange. Fight on waits for the first confirmed Attack on that pair;
 pair/load changes clear confirmation. Place1, combat arithmetic, old maps/saves,
 RNG and replay rules remain unchanged. Preserve all current cards, required
@@ -73,10 +90,13 @@ CI repetition or rebuild after artifact approval.
   horizontal keyboard order, load focus and required-control visibility. Only
   reproduced defects are fixed; historical evidence gaps remain acknowledged.
 - **#181** remains a separate Medium/Hard post-0.1.x generation spike, linked
-  from the master backlog, outside this release's required delivery graph.
+  from the master backlog, outside the previously allocated UI delivery graph.
+  Reconcile that placement with the new finished-game organic-map requirement.
   [Assessment](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ASSESSMENT-181.md). No generation rewrite is bundled or started.
-- **#170** flavour naming and **#174** curved-label placement stay separate;
-  T87's label hierarchy neither duplicates them nor reverses their ordering.
+- **#170** flavour naming is deferred by the #215 owner decision. **#174**
+  curved-label placement must be reconciled with requested contextual information;
+  T87's annotation assumptions also need explicit reconciliation; no permanent
+  flavour labels are implied.
   New rules, AI roadmap, autosave, sound, themes and harness migration are excluded.
 
 ## Dispatch and publication

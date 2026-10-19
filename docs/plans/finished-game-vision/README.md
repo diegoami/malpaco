@@ -2,14 +2,15 @@
 
 Owner review package for [#215](https://github.com/diegoami/malpaco/issues/215).
 Prepared against source revision `e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d`
-on 2026-10-19. This is a proposed product vision, not approval of requirements, release slices,
-implementation or publication. GitHub labels carry task state. The review gate
-in #215 governs further feature dispatch; its CI-maintenance exception remains.
+on 2026-10-19. The owner has approved **V1–V5**, requiring nice organic maps,
+deferring flavour naming, and replacing the first sketches' text-heavy layout
+with a full-screen map, icon actions and temporary contextual information.
+[Exact decision and amendments](DECISIONS.md).
 
-Start with the journey below, then the [twenty original sketches](SKETCHES.md),
-then the five decisions in [OWNER-REVIEW.md](OWNER-REVIEW.md). The
-[authority crosswalk](AUTHORITY.md) explains which existing contracts each idea
-must preserve. No existing task or rule is amended by this package.
+Start with the [revised sketches](SKETCHES.md). The journey below incorporates
+that direction. The [authority crosswalk](AUTHORITY.md) identifies the existing
+contracts to reconcile. Revised sketch acceptance, backlog approval and product
+implementation remain separate gates under #215; GitHub labels carry task state.
 
 ## The promise
 
@@ -22,10 +23,16 @@ fronts that change as territories change hands. The interface makes the current
 decision easy to find. Depth comes from geography, opponents and supported
 options; learning the interface should not be the challenge.
 
-The recommended visual direction is calm and nautical: dark water, warm readable
-type, restrained original map illustration and clear ownership symbols. The
-sketches explore that direction. Their invented island silhouettes are visual
-notation, not a proposed production map or evidence that generation is solved.
+**Nice, organic maps are required for the finished game.** Geography occupies
+the full viewport on every device. Islands and territorial subdivisions should
+feel like a coherent place. The only standing controls are small action icons;
+text appears over the map when an interaction or requested information needs it,
+then clears. There is no permanent title bar, action dock, sidebar or log.
+
+The revised original illustrations explore organic coasts and varied territorial
+shapes. They do not prove production generation, topology, fairness or visual
+quality across seeds. Flavour names are deferred; extra prose is not the source
+of the game's identity.
 
 ## One complete player journey
 
@@ -33,7 +40,7 @@ notation, not a proposed production map or evidence that generation is solved.
 
 The opening screen offers a clear **Start game**: one human and three Normal
 computers, with a generated archipelago. A returning player can load a match.
-The seed is visible and reproducible. Match options explain what seats,
+The seed is reproducible and available in requested match options. Those options explain what seats,
 difficulty and rules change; advanced controls do not obscure the default.
 
 The intended complete setup supports the approved two-to-four-seat mixtures,
@@ -47,15 +54,16 @@ introduces the immediate decision, with complete help available throughout.
 
 ### 2. Read the place and find the first useful move
 
-The map shows land neighbours, sea crossings, ownership, armies and production
-centres together. Ownership has a symbol as well as colour. Selecting a country
+The map shows geography, land neighbours, sea crossings, ownership and production
+centres. Relevant army counts appear when inspecting or selecting countries; a
+requested information view can expose more detail without making it permanent. Ownership has a symbol as well as colour. Selecting a country
 reveals its full identity and legal choices. Focus, zoom and a country list make
 dense areas usable; a tiny phone overview cannot promise every label is legible.
 
 An island is understandable as both a place and a strategic unit. Income and
 island benefits explain why a front matters. Players should be able to answer
 “what do I own, what can I reach, and what happens next?” without opening a log.
-Complete totals and histories remain available for deeper inspection.
+Complete totals and histories open on request and close back to the unobstructed map.
 
 ### 3. Make a deliberate turn
 
@@ -75,7 +83,7 @@ coherently while keeping help accurate.
 
 The player can inspect, read history, pause, move the camera or rotate the device
 without committing a battle or losing a pending choice. Required choices always
-have a labelled return path; End turn cannot bypass them. Pause and speed explain
+have a discoverable return icon with an accessible name and explanation on request; End turn cannot bypass them. Pause and speed explain
 what is running. Feedback can be paced or reduced without changing outcomes.
 
 ### 4. Meet opposition worth thinking about
@@ -111,7 +119,8 @@ silently enable cards in a currently unsupported combination.
 
 ### 6. Play the late match with a clear purpose
 
-The selected victory condition stays visible. Remaining opposition, ownership,
+The selected victory condition and progress are available through the information icon
+and appear when requested, then clear when the player returns to the map. Remaining opposition, ownership,
 army totals and history make progress understandable as the board simplifies.
 Under conquest the player can see the territories still to win. Under an enabled
 domination or round-limit rule the game explains that selected condition and the
@@ -128,7 +137,8 @@ after seeing evidence; clarity alone is not claimed to solve it.
 ### 7. Understand the result and want another match
 
 A finished match freezes combat input and explains **who won and why**, with
-final standings, seed/options/opponent context and complete history. **New game**
+final standings, seed/options/opponent context and complete history available
+on request. The initial result is concise, and remains recoverable after dismissal. **New game**
 returns to setup, where the seed and options can be deliberately retained or
 changed. Files and history remain reachable; there is no forced jump that hides
 the last exchange or required result context.
@@ -145,14 +155,14 @@ ranking and unlock systems are not assumed.
 
 ## What belongs in the first finished edition
 
-Recommendation for owner review: retain the complete-game contracts as the
+Owner-approved baseline: retain the complete-game contracts as the
 capability baseline, integrate the selected cross-device interaction direction,
 and make the experience coherent before expanding modes. This is not a new
 task sequence or a finding that those contracts are already satisfied.
 
-| Proposed completion bar | Existing authority / review implication |
+| Approved completion bar | Existing authority / review implication |
 | --- | --- |
-| Generated, readable archipelagos with approved topology, fairness and rule behaviour | T23–T36, T60–T65; naturalness/variety beyond those contracts remains a separate decision |
+| Generated, readable archipelagos with approved topology, fairness and rule behaviour | T23–T36, T60–T65 and relevant #181 work; nice organic appearance is required, while technique and measurable acceptance still need reconciliation |
 | Complete ordinary turns, victory variants, cards/events and coherent disabled options | T26–T43; do not substitute the current partial default for the complete rules |
 | Complete supported setup, saves, recovery, resignation and local records | T44–T46 plus versioned replay T31; no silent lifecycle cuts |
 | Meaningfully different supported computer levels, including late game | T47–T50; measured play and owner judgment precede strength claims |
@@ -160,15 +170,15 @@ task sequence or a finding that those contracts are already satisfied.
 | Controllable feedback, original sound and complete settings/help | T54–T56; sound is already in a contract, so deferral requires an explicit amendment |
 | A full match and result in the exact accepted, independently extracted artifact | T57–T58 and relevant delivery gates; owner play acceptance and normal review/CI remain separate |
 
-Proposed deliberate exclusions from the initial edition: online accounts and
+Approved exclusions from the initial edition: online accounts and
 network multiplayer, campaigns, map editor, native-platform ports and
-monetization. These are scope recommendations for approval, not claims that the
-owner already excluded them. No new engine or framework is proposed.
+monetization. The V1–V5 approval confirms these boundaries. No new engine or framework is proposed.
 
-Flavour naming #170, curved labels #174, geography variety #181 and optional
-terrain #119 need individual decisions after vision review. Existing natural
-coastline/shared-border contracts must be distinguished from any larger generator
-rewrite. No candidate is silently added, dropped or marked complete here.
+Flavour naming #170 is deferred by owner decision. Organic geography is required,
+with #173/T64–T65 and #181 to be reconciled against the actual appearance bar.
+No specific generator rewrite is selected. Curved-label work #174 must serve
+requested essential information rather than add permanent flavour labels;
+optional terrain #119 remains a separate candidate.
 
 ## How the owner can judge “finished”
 
@@ -186,8 +196,8 @@ session is:
    unsupported one without losing the usable game. Inspect a required choice
    across pause, rotation and layout changes.
 4. Repeat representative interactions on phone portrait/landscape, tablet and
-   desktop, with touch, keyboard and enlarged text. Review short-height/list
-   fallback, private handover, reduced motion and audio control.
+   desktop, with touch, keyboard and enlarged text. Review icon discoverability, contextual text clearing, unobstructed map recovery,
+   short-height/list fallback, private handover, reduced motion and audio control.
 5. Inspect representative retained seeds, computer levels and victory/options
    cases. Use a declared coverage matrix and disclose omissions; one attractive
    seed or scripted win does not prove variety, strength or pacing.
@@ -201,14 +211,14 @@ desired player-facing AI challenge, acceptable late-game effort and the
 representative match/device sample await owner decisions. T50's pinned measurement
 protocol and existing numerical targets remain binding; no release date is proposed.
 
-## Next decision, then backlog reconciliation
+## Revised sketches, then backlog reconciliation
 
-Use [OWNER-REVIEW.md](OWNER-REVIEW.md) to agree, change or defer the vision and
-sketches. A defer response identifies the owner/evidence needed before a later
-decision. The authority crosswalk records possible conflicts without amending
-them. Only after vision review should the existing issues be classified
-**retain / revise / defer / drop / already satisfied**, each with a reason,
-evidence and any explicit contract amendment. Reuse the existing release map and
-issues; do not create a competing roadmap. Present the resulting release slices
-and backlog for owner approval before feature dispatch resumes. Vision approval
-alone authorizes neither implementation nor publication.
+V1–V5 are approved with the [recorded amendments](DECISIONS.md). Review the
+revised quiet map and five interaction scenes; the first text-heavy sketches
+are superseded. Only after that review reconcile existing issues as
+**retain / revise / defer / drop / already satisfied**, with reasons, evidence and
+explicit amendments for conflicting dock/panel/label assumptions. Carry organic
+geography as required and flavour naming as deferred. Reuse existing issues and
+the release map. Present the resulting release slices/backlog for owner approval
+before feature dispatch resumes. Vision approval alone authorizes neither
+implementation nor publication.
