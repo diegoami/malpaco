@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "evidence": "docs/prototypes/ci/T91/runs/verify-gMoxOb",
+  "commands": [
+    {
+      "name": "guard-files",
+      "command": [
+        "git",
+        "-c",
+        "safe.directory=/home/diego/projects/malpaco/.cache/worktrees/T91-ci",
+        "ls-files",
+        "tests/tools/ci-*.test.mjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "elapsedMs": 14
+    },
+    {
+      "name": "guards",
+      "command": [
+        "/usr/bin/node",
+        "--test",
+        "tests/tools/ci-cli.test.mjs",
+        "tests/tools/ci-git.test.mjs",
+        "tests/tools/ci-plan.test.mjs",
+        "tests/tools/ci-policy.test.mjs",
+        "tests/tools/ci-review-regressions.test.mjs",
+        "tests/tools/ci-workflow.test.mjs"
+      ],
+      "exit": 0,
+      "signal": null,
+      "elapsedMs": 870
+    },
+    {
+      "name": "head",
+      "command": [
+        "git",
+        "-c",
+        "safe.directory=/home/diego/projects/malpaco/.cache/worktrees/T91-ci",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "signal": null,
+      "elapsedMs": 4
+    },
+    {
+      "name": "object-format",
+      "command": [
+        "git",
+        "-c",
+        "safe.directory=/home/diego/projects/malpaco/.cache/worktrees/T91-ci",
+        "rev-parse",
+        "--show-object-format"
+      ],
+      "exit": 0,
+      "signal": null,
+      "elapsedMs": 3
+    },
+    {
+      "name": "tree",
+      "command": [
+        "git",
+        "-c",
+        "safe.directory=/home/diego/projects/malpaco/.cache/worktrees/T91-ci",
+        "ls-tree",
+        "-rlz",
+        "HEAD"
+      ],
+      "exit": 0,
+      "signal": null,
+      "elapsedMs": 107
+    },
+    {
+      "name": "package-acceptance",
+      "command": [
+        "/usr/bin/node",
+        "docs/prototypes/playable/acceptance.mjs",
+        "/tmp/malpaco-ci-package-RcS0PX"
+      ],
+      "exit": 0,
+      "signal": null,
+      "elapsedMs": 4958
+    },
+    {
+      "name": "browser-source-inventory",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--list",
+        "--reporter=json"
+      ],
+      "exit": 0,
+      "signal": null,
+      "elapsedMs": 4126
+    },
+    {
+      "name": "browser-release-inventory",
+      "command": [
+        "npx",
+        "playwright",
+        "test",
+        "--config",
+        "playwright.release.config.ts",
+        "--list",
+        "--reporter=json"
+      ],
+      "exit": 0,
+      "signal": null,
+      "elapsedMs": 2779
+    }
+  ],
+  "browserExecution": false,
+  "head": "19144e03e24d4cc34675e00ae3479c0581bea7a5",
+  "sparse": {
+    "presentExcludedFiles": 0,
+    "retainedFiles": 9757,
+    "retainedBytes": 566449181,
+    "omittedFiles": 7908,
+    "omittedBytes": 10852675275
+  },
+  "prototypeAssets": {
+    "prototypes": 5,
+    "localAssets": 0
+  },
+  "package": {
+    "sourceCommit": "19144e03e24d4cc34675e00ae3479c0581bea7a5",
+    "extracted": "/tmp/malpaco-ci-package-RcS0PX"
+  },
+  "browserInventory": {
+    "cases": 384,
+    "projects": [
+      "1280x800",
+      "1920x1080"
+    ],
+    "equal": true
+  },
+  "passed": true
+}
