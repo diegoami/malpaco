@@ -107,3 +107,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T75](T75.md) | Playable border redraw and 0.1.0 release candidate | Hard | #184 | T73, T74 |
 
 | [T76](T76.md) | Hideable game panels and essential icon actions (0.1.1) | Hard | #192 | T75 |
+
+| [T77](T77.md) | Combined Pro-informed responsive UI/UX plan (planning only) | Hard | #191, #194 | T76 |
