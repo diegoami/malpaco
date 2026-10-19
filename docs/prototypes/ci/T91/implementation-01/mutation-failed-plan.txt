@@ -1,0 +1,66 @@
+✔ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (180.074339ms)
+ℹ retained temporary Git fixture /tmp/malpaco-t91-git-YREXBj
+✔ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (160.563722ms)
+✔ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (130.096797ms)
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.946691ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.789856ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.262535ms)
+✖ required gate: docs requires successful classification and intentionally skipped verification (0.855482ms)
+✖ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.254592ms)
+✔ uncertain: deletion and unsupported statuses reject without relying on a previous filename (0.120037ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.856301ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.467622ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.22008ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (0.840385ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 11
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 520.039209
+
+✖ failing tests:
+
+test at tests/tools/ci-policy.test.mjs:25:1
+✖ required gate: docs requires successful classification and intentionally skipped verification (0.855482ms)
+  AssertionError [ERR_ASSERTION]: failure
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-policy.test.mjs:27:98)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-policy.test.mjs:30:1
+✖ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.254592ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-policy.test.mjs:32:175)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

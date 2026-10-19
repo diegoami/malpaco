@@ -48,7 +48,7 @@ try {
     const match = /^(\d+) blob ([0-9a-f]+) +(\d+)\t([\s\S]+)$/.exec(entry);
     assert.ok(match,`Unsupported Git entry: ${entry.slice(0,100)}`);
     const [,mode,oid,sizeText,path] = match, size=Number(sizeText);
-    if (omitted(path)) { exclusions.push({path,oid,size}); continue; }
+    if (omitted(path)) { exclusions.push({path,oid,size,present:existsSync(path)}); continue; }
     const stat = lstatSync(path);
     const bytes = mode==='120000' ? Buffer.from(readlinkSync(path)) : readFileSync(path);
     assert.ok(mode==='120000' ? stat.isSymbolicLink() : stat.isFile(),`Unexpected input kind: ${path}`);
@@ -58,7 +58,7 @@ try {
     retained.push({path,oid,size});
   }
   save('retained-inputs.json',retained); save('omitted-evidence.json',exclusions);
-  receipt.sparse = {retainedFiles:retained.length,retainedBytes:retained.reduce((s,f)=>s+f.size,0),omittedFiles:exclusions.length,omittedBytes:exclusions.reduce((s,f)=>s+f.size,0)};
+  receipt.sparse = {presentExcludedFiles:exclusions.filter(f=>f.present).length,retainedFiles:retained.length,retainedBytes:retained.reduce((s,f)=>s+f.size,0),omittedFiles:exclusions.length,omittedBytes:exclusions.reduce((s,f)=>s+f.size,0)};
   // Follow local assets in the prototype HTML/SVG actually referenced by source/tests.
   // Other nonbinary docs stay present, including dynamically named JSON fixtures/modules.
   const pending = new Set(); const visited = new Set(); const assets=[];

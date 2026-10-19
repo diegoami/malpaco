@@ -1,0 +1,57 @@
+✔ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (183.468ms)
+ℹ retained temporary Git fixture /tmp/malpaco-t91-git-RJbdat
+✔ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (170.765129ms)
+✔ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (131.022062ms)
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.97046ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.871286ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.220919ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.144898ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.141377ms)
+✔ uncertain: deletion and unsupported statuses reject without relying on a previous filename (0.104024ms)
+✖ workflow: stable ci gate always accounts for both classification and verification (1.224763ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.743316ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.23714ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (4.001766ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 534.13675
+
+✖ failing tests:
+
+test at tests/tools/ci-workflow.test.mjs:7:1
+✖ workflow: stable ci gate always accounts for both classification and verification (1.224763ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /if:.*always\(\)/. Input:
+  
+  '    needs: [plan, verify]\n' +
+    '    runs-on: ubuntu-latest\n' +
+    '    steps:\n' +
+    '      - uses: actions/checkout@v4\n' +
+    '        with:\n' +
+    '          sparse-checkout: tools/ci\n' +
+    '      - uses: actions/setup-node@v4\n' +
+    '        with:\n' +
+    '          node-version: 22\n' +
+    '      - name: Required CI result\n' +
+    '        env:\n' +
+    '          CLASSIFICATION_RESULT: ${{ needs.plan.result }}\n' +
+    '          CI_MODE: ${{ needs.plan.outputs.mode }}\n' +
+    '          VERIFICATION_RESULT: ${{ needs.verify.result }}\n' +
+    '        run: node tools/ci/gate.mjs\n'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:8:80)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '    needs: [plan, verify]\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          sparse-checkout: tools/ci\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 22\n      - name: Required CI result\n        env:\n          CLASSIFICATION_RESULT: ${{ needs.plan.result }}\n          CI_MODE: ${{ needs.plan.outputs.mode }}\n          VERIFICATION_RESULT: ${{ needs.verify.result }}\n        run: node tools/ci/gate.mjs\n',
+    expected: /if:.*always\(\)/,
+    operator: 'match',
+    diff: 'simple'
+  }

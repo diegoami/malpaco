@@ -1,0 +1,23 @@
+✖ gate CLI exits from actual classification, mode and verification conclusions (21.890813ms)
+✔ Git CLI uses NUL paths without executing shell syntax and refuses control characters (118.196789ms)
+✔ Git CLI treats source-to-prose renames, deletions and malformed events conservatively (167.2708ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 355.487385
+
+✖ failing tests:
+
+test at tests/tools/ci-cli.test.mjs:11:1
+✖ gate CLI exits from actual classification, mode and verification conclusions (21.890813ms)
+  SyntaxError: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-cli.test.mjs:17:58)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
