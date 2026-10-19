@@ -1,0 +1,33 @@
+{
+  "authority": "Main37003ae5 exact saturated-label proof, prerequisite88c73618, full candidate report/final b393f308 read by main",
+  "contextHead": "b393f3089055cbed8256850ea4ac68b0e838f9a3",
+  "previousCorrectionFrozenSha256": "aab9d8472aefc646662af0f51f8e636b210470d45d8e4863b5095699c26b8f03",
+  "replacement": {
+    "path": "src/ui/generatedGeographyPresentation.ts",
+    "before": "59137044a36f65ae303d80e4d5e90861cdbfdb66aa7ef04621152d71b89e1883",
+    "after": "80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea23846d745c1d",
+    "canonical": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/candidate.ts"
+  },
+  "contract": {
+    "path": "docs/tasks/T75.md",
+    "sha256": "7d1d7ab95ef8701372268232a102a1df300653b355f4bbf07b880535df400a2c",
+    "canonical": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/contract.md"
+  },
+  "parentProof": {
+    "path": "docs/prototypes/new-game/T75/corrections/saturated-label-gap-proof.md",
+    "sha256": "23f8c8604d04670446129a4cb0bdc5e3fe6373ae9b4593bf00c4d39c4fb8812c"
+  },
+  "priorProofHashes": {
+    "verify-adoption.py": "4bbd3bf8447b0452a45637c8832fe2838db22d0839cc5ac03c88930bb65b0b34",
+    "adoption.json": "0bb63c05b39667f198d140f27c7bf1886418b7fd1b4c4811d13bfc2491ea54c1",
+    "README.md": "98b9f14da4bf645fc12b8a07529f280faca01113aca379274b16537a3a943ca2",
+    "REPORT.md": "cfffd54eb20936000c59debab88139d34acd74b7e726ff54ec3faeba10025d46"
+  },
+  "evidenceManifests": {
+    "docs/prototypes/new-game/T75/preflight/cold-load-overlap-20261019-01/evidence-hashes.json": "be1e16d30f3c9313ede0df3deb1089dd96b66ba6cf4e28b8b86e15499a51270a",
+    "docs/prototypes/new-game/T75/preflight/allocation-proposal-20261019-01/evidence-hashes.json": "66ab3b502ff6471c7013af9f576f3cb1946200bec83ef19285ff5fc91aefd6ae",
+    "docs/prototypes/new-game/T75/preflight/saturated-label-proposal-20261019-01/evidence-hashes.json": "865707de940be0bd972319d338b5a96ac5436dec4cd1c8fc52c9743e5084aa46"
+  },
+  "sourceScope": "Private scratch-return allocation reduction plus both-finite far-label gap fastpath; no other runtime delta from591. Old source/canonical/archive/proof/evidence authority stays immutable and explicitly historical.",
+  "limits": "Current full extracted acceptance remains165/166 failed/unexplained until fresh changed-source validation. Allocation-only9.208% gate failed; saturated candidate27.491% gate passed. Singlehost timing not universal. Old fallback screenshot originals unproven. T75 task is NOT an input in original204 validated paths; earlier candidate report assumption of old task-hash verifier failure is inaccurate and must not be perpetuated. New freeze explicitly pins current contract without inventing a past failure."
+}
