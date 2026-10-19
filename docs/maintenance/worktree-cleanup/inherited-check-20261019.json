@@ -1,0 +1,79 @@
+{
+  "AGENTS.md": {
+    "expected": {
+      "sha256": "45764d4ed8aa58b72b59663907b6ec3b990b34b73c876670593bb47de076ec14",
+      "mode": 33188
+    },
+    "actual": {
+      "sha256": "45764d4ed8aa58b72b59663907b6ec3b990b34b73c876670593bb47de076ec14",
+      "mode": 33188
+    },
+    "exact": true
+  },
+  "CLAUDE.md": {
+    "expected": {
+      "sha256": "af6c7cc5709d99d61bcbc1d11ba7f41cf852fdd4956cdf462ae0fee7cb55bba3",
+      "mode": 33188
+    },
+    "actual": {
+      "sha256": "af6c7cc5709d99d61bcbc1d11ba7f41cf852fdd4956cdf462ae0fee7cb55bba3",
+      "mode": 33188
+    },
+    "exact": true
+  },
+  "docs/tasks/T09.md": {
+    "expected": {
+      "sha256": "2bb6a8fc92ad185cc45fd8d1f43c048e049a915dd35ca02ff8bc732e8d318122",
+      "mode": 33188
+    },
+    "actual": {
+      "sha256": "2bb6a8fc92ad185cc45fd8d1f43c048e049a915dd35ca02ff8bc732e8d318122",
+      "mode": 33188
+    },
+    "exact": true
+  },
+  "src/core/bonuses.ts": {
+    "expected": {
+      "sha256": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+      "mode": 33188
+    },
+    "actual": {
+      "sha256": "d9965a5b7d58aa6ddb6b435dd995774701e052b0a3d1f9d6745b69efcb6d229d",
+      "mode": 33188
+    },
+    "exact": true
+  },
+  "tests/core/bonuses.test.ts": {
+    "expected": {
+      "sha256": "2716f3894ff73ab8a166c60ae24a7b3f3c848009174f37e90af6395261692657",
+      "mode": 33188
+    },
+    "actual": {
+      "sha256": "2716f3894ff73ab8a166c60ae24a7b3f3c848009174f37e90af6395261692657",
+      "mode": 33188
+    },
+    "exact": true
+  },
+  ".claude/scheduled_tasks.lock.bak-2026-10-13-194941": {
+    "expected": {
+      "sha256": "76f713ef007bf58d801f05b7d8cfdcadc6f5ae76c237d29a1a8900d2aadfd64b",
+      "mode": 33188
+    },
+    "actual": {
+      "sha256": "76f713ef007bf58d801f05b7d8cfdcadc6f5ae76c237d29a1a8900d2aadfd64b",
+      "mode": 33188
+    },
+    "exact": true
+  },
+  ".opencode/package-lock.json.bak-2026-10-12-192740": {
+    "expected": {
+      "sha256": "5b83c2c6d14ad82efb1c8ea6821292d66efae8940be3d1337f81e71c6cdab1e1",
+      "mode": 33188
+    },
+    "actual": {
+      "sha256": "5b83c2c6d14ad82efb1c8ea6821292d66efae8940be3d1337f81e71c6cdab1e1",
+      "mode": 33188
+    },
+    "exact": true
+  }
+}

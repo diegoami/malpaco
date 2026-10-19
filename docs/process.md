@@ -234,3 +234,12 @@ Jev takes a decision only when it recurs over many items, its answers are known 
 trial against labels has set its cutoffs, recorded in `harness.json` with the numbers. It answers
 the confident ends and the main session the middle; a person's decision outranks both. Without its
 key it is off. `/jev` has the procedure. (L24)
+
+
+## 13. Worktree maintenance
+
+Owner decision, 2026-10-19 ([#214](https://github.com/diegoami/malpaco/issues/214), L72): use the shared `worktree-cleanup` skill at `/home/diego/.codex/skills/worktree-cleanup/SKILL.md` for requested cleanups and task/session-close sweeps. Check the latest sweep receipt first; inspect disk usage before another large checkout. This is an attended sweep, not a scheduled deletion job.
+
+Keep active tasks and unresolved, interrupted or unanswered reviews available for diagnosis/resumption. Read the complete final and confirm posting/disposition before retiring a resolved checkout; a failed launcher or closed PR alone is insufficient. Publish useful findings, decisions and continuation instructions on the relevant GitHub issue/PR. Preserve unique unpublished changes and supporting evidence in `/home/diego/projects/malpaco-keep`, with hashes, Git refs and tested restoration instructions. Committed source and reinstallable dependencies do not need repeated checkout archives.
+
+Immediately before removal, recheck readers and tree state and verify required preservation. Use `git worktree remove` for eligible registered trees under existing owner authorization. Leave inherited dirty files, active reviews and other projects untouched. Record removed/kept paths and reasons, publication links, preservation checks and before/after usage in a small local sweep receipt. The keep area is temporary recovery storage; reconcile useful contents with GitHub and remove disposable copies at later sweeps.
