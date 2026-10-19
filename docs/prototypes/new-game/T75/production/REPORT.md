@@ -107,3 +107,8 @@ Source80 stays exact. Prior Newgame action failure is retained with RAFdelivery3
 ### Remaining validation03 stop
 
 Checkpoint40cf366d proofpassed4.105s; explicit968runtime/test/tool/config/frozen Gitblob/mode+working and10package equalities reuse actual8d npm818+9/staticpackage (no repeat). First native initialsetupPNG timed out30000ms afterfontsloaded; failure-evidencecapture also timed out. No twoRAF/file/Worker/game action orpaused/throttle/166case was reached. Partialfinallytrace/errors/restoration are retained in ../corrections/20261019-label-gap/adoption03/REPORT.md. Source80/tests/configs unchanged; all earlier failures remain historical and release gates incomplete.
+
+
+### Pinned-container current functional validation
+
+Source80/test/config inputs stay exact. Explicit968Gitblob/mode/working+10package equalities reuse actual8d npm818+9/staticpackage without rerunning them. Installed pinned noble imageeff16c30 resolves staticbrowser smoke; three original-limit Worker controls pass and FIRSTsource80 extracted suite passes166/166,83perviewport/zero retries in341.730s, unchanged acceptance tests/no warmup. Full raw JSON/HTML/video/screenshots/WorkerHTTP, containeridentity,17,530protected-input/output restoration and environment limits are in ../corrections/20261019-label-gap/adoption04-container/REPORT.md. Host-native failures and old165/166 remain historical, not reclassified. No reviewer/CI/release approval is claimed.

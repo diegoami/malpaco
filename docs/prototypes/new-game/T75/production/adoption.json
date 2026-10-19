@@ -228,6 +228,23 @@
       "reusesActualNpmAndPackageCommit": "8d669a275e9130134a3052239aa8abaefbf0c50c",
       "runtimeUnchanged": true,
       "diagnosticSetupOnly": "one initial viewportPNG+bounded native twoRAF before file/clock/Worker; no acceptance test warmup"
+    },
+    "containerValidation04": {
+      "receipt": "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/validation.json",
+      "runtimeInputAuthority": "8d669a275e9130134a3052239aa8abaefbf0c50c",
+      "validatedDocumentationCheckpoint": "efbe7d389c6af59f58d9c54f7219a3337457b4d3",
+      "imageId": "sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27",
+      "reuseInputCount": 968,
+      "reusedNpmVitest": 818,
+      "reusedNpmHarness": 9,
+      "reusedStaticPackageFiles": 10,
+      "controlsExit": 0,
+      "extractedExit": 0,
+      "extractedPassed": 166,
+      "extractedFailed": 0,
+      "retries": 0,
+      "releaseReady": false,
+      "limits": "Pinned-container functionality; host native static paint failures remain. Independent correction review/owner final acceptance/green finalCI/publication remain parent-owned."
     }
   }
 }

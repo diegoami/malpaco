@@ -1,0 +1,502 @@
+[
+  {
+    "label": "reinforcement",
+    "action": {
+      "kind": "reinforce",
+      "province": "province_36",
+      "amount": 3
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    }
+  },
+  {
+    "label": "selection-ready",
+    "action": {
+      "kind": "endReinforcement"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    }
+  },
+  {
+    "label": "exchange",
+    "action": {
+      "kind": "attack",
+      "from": "province_36",
+      "to": "province_10"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    }
+  },
+  {
+    "label": "repeated-pair",
+    "action": {
+      "kind": "attack",
+      "from": "province_10",
+      "to": "province_12"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    }
+  },
+  {
+    "label": "capture-movement",
+    "action": {
+      "kind": "captureMove"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    }
+  },
+  {
+    "label": "friendly-movement",
+    "action": {
+      "kind": "friendlyMove",
+      "from": "province_18",
+      "to": "province_2"
+    },
+    "before": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    },
+    "after": {
+      ".topbar": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 200.171875
+      },
+      ".board": {
+        "x": 0,
+        "y": 200.171875,
+        "width": 930,
+        "height": 599.828125
+      },
+      ".panel": {
+        "x": 930,
+        "y": 200.171875,
+        "width": 350,
+        "height": 599.828125
+      },
+      ".panel>.turn": {
+        "x": 934,
+        "y": 212.171875,
+        "width": 330,
+        "height": 64
+      },
+      ".panel>.action": {
+        "x": 934,
+        "y": 282.171875,
+        "width": 330,
+        "height": 410
+      },
+      ".panel>.log-card": {
+        "x": 934,
+        "y": 698.171875,
+        "width": 330,
+        "height": 89.828125
+      }
+    }
+  }
+]

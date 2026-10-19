@@ -1,0 +1,366 @@
+{
+  "specs": [
+    "tests/e2e/geographic-presentation.spec.ts",
+    "tests/e2e/geographic-board.spec.ts",
+    "tests/e2e/geographic-review-guards.spec.ts",
+    "tests/e2e/battle-panel-fit.spec.ts",
+    "tests/e2e/cards.spec.ts",
+    "tests/e2e/computer-cards.spec.ts",
+    "tests/e2e/cards-result-layout.spec.ts",
+    "tests/e2e/match-save.spec.ts",
+    "tests/e2e/versioned-match.spec.ts",
+    "tests/e2e/playback-controls.spec.ts",
+    "tests/e2e/playback-edge-cases.spec.ts",
+    "tests/e2e/compact-panels.spec.ts",
+    "tests/e2e/game-event-log.spec.ts"
+  ],
+  "relativeImportClosure": [
+    "docs/prototypes/new-game/T34/witness.json",
+    "docs/prototypes/new-game/T36/corpus-selection.json",
+    "docs/prototypes/new-game/T36/corpus-supplement.json",
+    "docs/prototypes/new-game/T63/board.json",
+    "docs/prototypes/new-game/T75/preflight/phase-b-20261018-01/fixtures/changed-boundary-hits.json",
+    "docs/prototypes/new-game/T75/preflight/phase-b-20261018-01/fixtures/seed-1994-after.json",
+    "src/core/board-fairness.ts",
+    "src/core/board-gen.ts",
+    "src/core/bonuses.ts",
+    "src/core/cards.ts",
+    "src/core/combat.ts",
+    "src/core/computer-view.ts",
+    "src/core/computer.ts",
+    "src/core/geographic-board.ts",
+    "src/core/geographic-game.ts",
+    "src/core/index.ts",
+    "src/core/island-geography.ts",
+    "src/core/map.ts",
+    "src/core/match-save.ts",
+    "src/core/movement.ts",
+    "src/core/options.ts",
+    "src/core/raid.ts",
+    "src/core/reference-game.ts",
+    "src/core/reference-map.ts",
+    "src/core/reinforcement.ts",
+    "src/core/rng.ts",
+    "src/core/rules.ts",
+    "src/core/save.ts",
+    "src/core/seats.ts",
+    "src/core/setup.ts",
+    "src/core/state.ts",
+    "src/core/types.ts",
+    "src/core/victory.ts",
+    "src/ui/palette.ts",
+    "tests/core/versioned-match-fixture.ts",
+    "tests/e2e/battle-fixture.ts",
+    "tests/e2e/battle-panel-fit.spec.ts",
+    "tests/e2e/cards-fixtures.ts",
+    "tests/e2e/cards-result-layout.spec.ts",
+    "tests/e2e/cards.spec.ts",
+    "tests/e2e/compact-panels.spec.ts",
+    "tests/e2e/computer-cards-fixtures.ts",
+    "tests/e2e/computer-cards.spec.ts",
+    "tests/e2e/game-event-log.spec.ts",
+    "tests/e2e/geographic-board.spec.ts",
+    "tests/e2e/geographic-presentation.spec.ts",
+    "tests/e2e/geographic-review-guards.spec.ts",
+    "tests/e2e/match-save.spec.ts",
+    "tests/e2e/playback-controls.spec.ts",
+    "tests/e2e/playback-edge-cases.spec.ts",
+    "tests/e2e/versioned-match.spec.ts",
+    "tests/helpers/complete-game.ts"
+  ],
+  "writers": {
+    "tests/e2e/game-event-log.spec.ts": {
+      "sha256": "dc30a76c6118924ab9780e2b7b3598b51670def96f6fc5e6aaf38084e834b684",
+      "envKeys": [
+        "PLAYBACK_EVIDENCE_DIR"
+      ],
+      "writerAndEnvLines": [
+        {
+          "line": 3,
+          "text": "import { mkdirSync } from \"node:fs\";"
+        },
+        {
+          "line": 76,
+          "text": "  const root = process.env[\"PLAYBACK_EVIDENCE_DIR\"] ?? \"screenshots\"; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `game-event-log-${info.project.name}.png`) });"
+        }
+      ]
+    },
+    "tests/e2e/compact-panels.spec.ts": {
+      "sha256": "d61582025f1801d7abc6eee307e12d8a06036cdf4477212736bfb935778347c1",
+      "envKeys": [
+        "COMPACT_PANEL_EVIDENCE_DIR"
+      ],
+      "writerAndEnvLines": [
+        {
+          "line": 4,
+          "text": "import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';"
+        },
+        {
+          "line": 36,
+          "text": "function evidence(info:{project:{name:string}},host:string,label:string){const dir=process.env['COMPACT_PANEL_EVIDENCE_DIR']??'screenshots/compact-panels';mkdirSync(dir,{recursive:true});return join(dir,`${info.project.name}-${host}-${label}`);}"
+        },
+        {
+          "line": 46,
+          "text": "  writeFileSync(evidence(info,host,'geometry')+'.json',JSON.stringify(samples,null,2));"
+        },
+        {
+          "line": 57,
+          "text": "   samples.push({label,action,before:initial,after});await page.screenshot({path:evidence(info,host,detail+'-'+label)+'.png'});"
+        },
+        {
+          "line": 59,
+          "text": "  writeFileSync(evidence(info,host,detail+'-bounds')+'.json',JSON.stringify(samples,null,2));"
+        },
+        {
+          "line": 77,
+          "text": "  await essentials(page);await page.screenshot({path:evidence(info,host,detail+'-human-capture')+'.png'});await page.locator('#confirm-capture-button').click();expect(deserializeVersionedMatch(await save(page)).state.history.at(-1)!.kind).toBe('captureMove');"
+        },
+        {
+          "line": 81,
+          "text": "  await essentials(page);await page.screenshot({path:evidence(info,host,detail+'-human-move')+'.png'});await page.locator('#friendly-move-amount').fill('1');await page.locator('#confirm-friendly-move-button').click();"
+        },
+        {
+          "line": 89,
+          "text": " await essentials(page);await page.screenshot({path:evidence(info,'reference',detail+'-human-loss')+'.png'});const previous=deserializeVersionedMatch(await save(page)).state;"
+        },
+        {
+          "line": 112,
+          "text": "  await page.screenshot({path:evidence(info,host,detail+'-complete-history-scrolled')+'.png'});"
+        }
+      ]
+    },
+    "tests/e2e/playback-edge-cases.spec.ts": {
+      "sha256": "c97683e8a56b7990f50e6ea8f01a8eba5c21967ef0d0f5245359a01ef95241d5",
+      "envKeys": [
+        "PLAYBACK_EVIDENCE_DIR"
+      ],
+      "writerAndEnvLines": [
+        {
+          "line": 4,
+          "text": "import { mkdirSync } from \"node:fs\";"
+        },
+        {
+          "line": 26,
+          "text": "  const root = process.env[\"PLAYBACK_EVIDENCE_DIR\"] ?? \"screenshots\"; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-modal-${info.project.name}.png`) });"
+        },
+        {
+          "line": 35,
+          "text": "  const root = process.env[\"PLAYBACK_EVIDENCE_DIR\"] ?? \"screenshots\"; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-paused-computer-${info.project.name}.png`) });"
+        },
+        {
+          "line": 59,
+          "text": "  const root = process.env[\"PLAYBACK_EVIDENCE_DIR\"] ?? \"screenshots\"; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-invalid-load-${info.project.name}.png`) });"
+        }
+      ]
+    },
+    "tests/e2e/playback-controls.spec.ts": {
+      "sha256": "46feb0fd44d3e64c99de67a7ab40a908772ee749f5bef704c8152881a3fe5762",
+      "envKeys": [
+        "PLAYBACK_EVIDENCE_DIR"
+      ],
+      "writerAndEnvLines": [
+        {
+          "line": 3,
+          "text": "import { mkdirSync } from \"node:fs\";"
+        },
+        {
+          "line": 71,
+          "text": "async function screenshot(p: Page, name: string, project: string) {"
+        },
+        {
+          "line": 72,
+          "text": "  const root = process.env[\"PLAYBACK_EVIDENCE_DIR\"] ?? \"screenshots\";"
+        },
+        {
+          "line": 73,
+          "text": "  mkdirSync(root, { recursive: true });"
+        },
+        {
+          "line": 74,
+          "text": "  await p.screenshot({ path: join(root, `playback-${name}-${project}.png`) });"
+        },
+        {
+          "line": 92,
+          "text": "  expect((await totals(page)).players).toHaveLength(4); await visibleControls(page); await screenshot(page, \"default-four-seats\", info.project.name);"
+        },
+        {
+          "line": 99,
+          "text": "  await visibleControls(page); await screenshot(page, \"totals\", info.project.name);"
+        },
+        {
+          "line": 102,
+          "text": "  await screenshot(page, \"eliminated\", info.project.name);"
+        },
+        {
+          "line": 115,
+          "text": "  await screenshot(page, \"very-slow\", info.project.name);"
+        },
+        {
+          "line": 123,
+          "text": "  await screenshot(page, \"paused-computer\", info.project.name);"
+        },
+        {
+          "line": 148,
+          "text": "  expect(await save(page)).toBe(frozen); await totals(page); await screenshot(page, \"paused-battle\", info.project.name);"
+        }
+      ]
+    },
+    "tests/e2e/versioned-match.spec.ts": {
+      "sha256": "6f717b4db03bb1996303ea6ecbf91e10adb7022dc5f5668623e9dd8615fa524e",
+      "envKeys": [
+        "VERSIONED_MATCH_EVIDENCE_DIR"
+      ],
+      "writerAndEnvLines": [
+        {
+          "line": 3,
+          "text": "import { mkdirSync, mkdtempSync, readFileSync } from \"node:fs\";"
+        },
+        {
+          "line": 43,
+          "text": "  const root = process.env[\"VERSIONED_MATCH_EVIDENCE_DIR\"] ?? \"screenshots\";"
+        },
+        {
+          "line": 44,
+          "text": "  mkdirSync(root, { recursive: true });"
+        },
+        {
+          "line": 52,
+          "text": "  await page.screenshot({ path: join(mkdtempSync(join(root, \"versioned-\")), `${label}-${project}.png`) });"
+        }
+      ]
+    },
+    "tests/e2e/match-save.spec.ts": {
+      "sha256": "51b310f1ab97e8b0be32995ba28c4292c00997c133e4e9d72ef9c921e13ee9db",
+      "envKeys": [
+        "MATCH_SAVE_EVIDENCE_DIR"
+      ],
+      "writerAndEnvLines": [
+        {
+          "line": 3,
+          "text": "import { readFileSync, mkdirSync, mkdtempSync } from \"node:fs\";"
+        },
+        {
+          "line": 66,
+          "text": "  const root=process.env[\"MATCH_SAVE_EVIDENCE_DIR\"]??\"screenshots\";mkdirSync(root,{recursive:true});"
+        },
+        {
+          "line": 67,
+          "text": "  const dir=mkdtempSync(join(root,\"save-\"));await page.screenshot({path:join(dir,`${name}-${project}.png`)});"
+        }
+      ]
+    },
+    "tests/e2e/cards-result-layout.spec.ts": {
+      "sha256": "1efbe0c5fa5a3249f8f72fc65f76497dcf50d4952402884bc8901769f93037a5",
+      "envKeys": [],
+      "writerAndEnvLines": [
+        {
+          "line": 2,
+          "text": "import {readFileSync,writeFileSync} from 'node:fs';"
+        },
+        {
+          "line": 16,
+          "text": "  measurements.push({mode,...data});await page.screenshot({path:info.outputPath(`t40-loss-${mode}.png`),fullPage:true});"
+        },
+        {
+          "line": 18,
+          "text": " writeFileSync(info.outputPath('geometry.json'),JSON.stringify({project:info.project.name,measurements},null,2)+'\\n');await info.attach('geometry',{path:info.outputPath('geometry.json'),contentType:'application/json'});"
+        }
+      ]
+    },
+    "tests/e2e/computer-cards.spec.ts": {
+      "sha256": "c29e6902face86cdbaaaaae99ca310c54705a881625699c3240a830408c689f0",
+      "envKeys": [],
+      "writerAndEnvLines": [
+        {
+          "line": 23,
+          "text": "async function capture(p:Page,info:TestInfo,label:string){await p.screenshot({path:info.outputPath(`${label}.png`),fullPage:true});}"
+        }
+      ]
+    },
+    "tests/e2e/cards.spec.ts": {
+      "sha256": "a069c756ce382c131b62ebaa28360217b6b88fdb98f7ffb9254e84c931b60019",
+      "envKeys": [],
+      "writerAndEnvLines": [
+        {
+          "line": 33,
+          "text": "async function capture(page:Page,info:TestInfo,label:string,mode:Detail){await page.screenshot({path:info.outputPath(`${label}-${mode}.png`),fullPage:true});}"
+        }
+      ]
+    },
+    "tests/e2e/battle-panel-fit.spec.ts": {
+      "sha256": "dc171825897402f99790665cc8610b26d07820b87202d44d228e05cb93de4769",
+      "envKeys": [],
+      "writerAndEnvLines": [
+        {
+          "line": 3,
+          "text": "import {readFileSync,writeFileSync} from 'node:fs';"
+        },
+        {
+          "line": 18,
+          "text": " });await p.screenshot({path:info.outputPath(label+'.png'),fullPage:true});return {label,...data};}"
+        },
+        {
+          "line": 45,
+          "text": " writeFileSync(info.outputPath('metrics.json'),JSON.stringify({samples,checks},null,2)+'\\n');"
+        }
+      ]
+    },
+    "tests/e2e/geographic-board.spec.ts": {
+      "sha256": "27b043120fe1a698fbdd8a5f425403f77c6eea5326a6d2b52dd1da1be672030c",
+      "envKeys": [
+        "GEOGRAPHIC_CORPUS_FILE",
+        "GEOGRAPHIC_EVIDENCE_DIR"
+      ],
+      "writerAndEnvLines": [
+        {
+          "line": 5,
+          "text": "import {readFileSync,mkdirSync} from 'node:fs';"
+        },
+        {
+          "line": 20,
+          "text": "const corpus:Corpus=process.env['GEOGRAPHIC_CORPUS_FILE']?JSON.parse(readFileSync(process.env['GEOGRAPHIC_CORPUS_FILE'],'utf8')):frozenCorpus;"
+        },
+        {
+          "line": 96,
+          "text": "  const out=process.env['GEOGRAPHIC_EVIDENCE_DIR']??'screenshots';mkdirSync(out,{recursive:true});await page.screenshot({path:join(out,`geographic-${item.seed}-${info.project.name}.png`)});"
+        }
+      ]
+    },
+    "tests/e2e/geographic-presentation.spec.ts": {
+      "sha256": "e93b62748209d960946ae291f5d0b7422412887a94377bd64b386168459e26c0",
+      "envKeys": [
+        "T75_SCREENSHOTS"
+      ],
+      "writerAndEnvLines": [
+        {
+          "line": 77,
+          "text": " await page.mouse.move(0,0);await page.screenshot({path:(process.env['T75_SCREENSHOTS']??'screenshots')+'/playable-1994-'+info.project.name+'.png'});"
+        }
+      ]
+    }
+  },
+  "discoveredWriterEnvKeys": [
+    "COMPACT_PANEL_EVIDENCE_DIR",
+    "GEOGRAPHIC_EVIDENCE_DIR",
+    "MATCH_SAVE_EVIDENCE_DIR",
+    "PLAYBACK_EVIDENCE_DIR",
+    "T75_SCREENSHOTS",
+    "VERSIONED_MATCH_EVIDENCE_DIR"
+  ],
+  "routedEnv": {
+    "T75_SCREENSHOTS": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser/screenshots/T75_SCREENSHOTS",
+    "GEOGRAPHIC_EVIDENCE_DIR": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser/screenshots/GEOGRAPHIC_EVIDENCE_DIR",
+    "MATCH_SAVE_EVIDENCE_DIR": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser/screenshots/MATCH_SAVE_EVIDENCE_DIR",
+    "VERSIONED_MATCH_EVIDENCE_DIR": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser/screenshots/VERSIONED_MATCH_EVIDENCE_DIR",
+    "PLAYBACK_EVIDENCE_DIR": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser/screenshots/PLAYBACK_EVIDENCE_DIR",
+    "COMPACT_PANEL_EVIDENCE_DIR": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser/screenshots/COMPACT_PANEL_EVIDENCE_DIR",
+    "PLAYABLE_EXTRACTED_DIR": "/home/diego/projects/malpaco/.cache/runtime/tmp/malpaco-t75-label-gap-bmsp3ozd",
+    "PLAYABLE_EVIDENCE_DIR": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser",
+    "PLAYWRIGHT_JSON_OUTPUT_FILE": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser/browser-report.json",
+    "PLAYWRIGHT_HTML_OUTPUT_DIR": "/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption04-container/browser/playwright-report",
+    "PLAYWRIGHT_HTML_OPEN": "never"
+  },
+  "GEOGRAPHIC_CORPUS_FILE": "unset; unchanged default frozen corpus",
+  "outputPathRouting": "existing release config outputDir=PLAYABLE_EVIDENCE_DIR/test-results",
+  "oldScreenshotsBackedUp": true
+}
