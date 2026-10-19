@@ -1,0 +1,5 @@
+# T76 acceptance preflight
+
+Baseline: eight executed failures because the independent hide/restore controls are absent. Temporary minimal DOM/CSS mock: eight passes at both desktop sizes and both hosts. This validates selector, layout measurement, save-invariance and focused-card-surface checks; it is not the implementation or proof of all future interaction coverage. Mock source was restored byte-for-byte in finally. Raw commands/results/logs and screenshots retained alongside this report. Existing regression suites are release-proven baseline constraints; new collapsed-flow coverage remains implementation work under DW2. No CI/review run.
+
+The first mock attempt passed4/8; its hidden header incorrectly reserved grid row0 for the remaining stage. Only the mock grid-row declaration changed; original failures remain retained. Corrected mock passed8/8 in10.3s, baseline8 executed failures in13.7s. Canonical runtime restored exactly after both attempts. No acceptance assertion was weakened.
