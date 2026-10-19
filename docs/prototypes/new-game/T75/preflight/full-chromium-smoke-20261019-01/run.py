@@ -15,5 +15,5 @@ for variant in ['full-chromium']:
   try:row['exit']=p.wait(timeout=45)
   except subprocess.TimeoutExpired:row['timedOut45s']=True;os.killpg(p.pid,signal.SIGTERM);p.wait();row['exit']=p.returncode
  row['seconds']=time.monotonic()-tick;commands.append(row);write('commands.json',commands);print(json.dumps(row),flush=True)
-after=inventory();write('after.json',after);write('preservation.json',{'protectedFiles':len(before),'unchanged':before==after,'seconds':time.monotonic()-start,'source80':sha(root/'src/ui/generatedGeographyPresentation.ts'),'packageFiles':len(list(package.rglob('*'))),'bothChildProcessesWaited':True})
+after=inventory();write('after.json',after);write('preservation.json',{'protectedFiles':len(before),'unchanged':before==after,'seconds':time.monotonic()-start,'source80':sha(root/'src/ui/generatedGeographyPresentation.ts'),'packageFiles':len(list(package.rglob('*'))),'childProcessesWaited':len(commands)})
 if before!=after:raise SystemExit(2)
