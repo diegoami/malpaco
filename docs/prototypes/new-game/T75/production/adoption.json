@@ -28,9 +28,10 @@
     "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/logs/01-committed-proof-stdout-stderr.txt": "9cbbb4d8170f3f1db42e709eb93c02ebd411b14ee54c816cdf8e940210da7c1d",
     "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/controls/profile.mjs": "4b4fec544cebfb177b202dd9d46bfd6d8378bcab6770827257f72a239fc133c8",
     "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/failed-adoption/controls/payload.json": "89514379370039724482cf9e78b9b366e9fcb980030026b4086af2a1e9c3da14",
-    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/copies.json": "7b72fd3d89a7760c5e78c99891bc5d88960487c5a622cbba1fd54d6f1ec34876"
+    "docs/prototypes/new-game/T75/corrections/20261019-label-gap/adoption02/prior-proof/copies.json": "7b72fd3d89a7760c5e78c99891bc5d88960487c5a622cbba1fd54d6f1ec34876",
+    "docs/prototypes/new-game/T75/corrections/20261019-seed-readiness/FROZEN.json": "2fc161cba9d90e014eae664c24aa1e3b183af679741506327d8e072df5ce8277"
   },
-  "verifierSha256": "9fb94de46c9591050374ff9a398079261f0e819c5fd5644cac8c5f4aed88336b",
+  "verifierSha256": "cd12978f28a52f012e4eef77ee55885c3e5a7bc67f2e02d8a9496244474c706f",
   "spikePrefixSha256": "a512127a140278f80c5d7e758a8f370d3f67fbf78b2f33fa3d8662340987da3d",
   "spikePrefixBytes": 78385,
   "sources": {
@@ -246,5 +247,25 @@
       "releaseReady": false,
       "limits": "Pinned-container functionality; host native static paint failures remain. Independent correction review/owner final acceptance/green finalCI/publication remain parent-owned."
     }
+  },
+  "seedReadinessCorrection": {
+    "frozenSha256": "2fc161cba9d90e014eae664c24aa1e3b183af679741506327d8e072df5ce8277",
+    "replacement": {
+      "path": "tests/e2e/generated-board.spec.ts",
+      "before": "3392319d809a16018c28c88000e284c8a0ec8dc3c1f1d8682ceae595ee36c97a",
+      "after": "a53a9769bb6479c27ba08799cbe005c6437ca25d6a348455b935853fda7e92f4",
+      "canonical": "docs/prototypes/new-game/T75/corrections/20261019-seed-readiness/generated-board.spec.ts"
+    },
+    "contract": {
+      "path": "docs/tasks/T75.md",
+      "before": "7d1d7ab95ef8701372268232a102a1df300653b355f4bbf07b880535df400a2c",
+      "after": "6b911788522718f95f590425b0a0a3def13bd35b6015cf4c73eb42d2d50ddf89",
+      "canonical": "docs/prototypes/new-game/T75/corrections/20261019-seed-readiness/contract.md"
+    },
+    "original204ChangedInputs": 3,
+    "historicalCorrectionChangedInputs": 2,
+    "diagnosticReceipt": "docs/prototypes/new-game/T75/preflight/seed-navigation-race-20261019-02/result.json",
+    "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019-seed-readiness/adoption/validation.json",
+    "currentValidation": "not run at checkpoint; old CI39229251394 source344/extracted343+1 remain historical"
   }
 }

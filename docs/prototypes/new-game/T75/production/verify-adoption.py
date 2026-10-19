@@ -58,7 +58,21 @@ check(latest_row['after']=='80a79b8afac651479eb4eac4aa878f3a581a3c56ceab51a475ea
 check(exact(provider,latest_row['after'])==exact(latest_row['canonical'],latest_row['after']),'current provider equals latest canonical80')
 for name,sha in latest['priorProofHashes'].items():exact(latest_base+'prior-proof/'+name,sha)
 check(set(latest['priorProofHashes'])=={'verify-adoption.py','adoption.json','README.md','REPORT.md'},'four latest prior proof copies')
-check(exact(latest['contract']['path'],latest['contract']['sha256'])==exact(latest['contract']['canonical'],latest['contract']['sha256']),'explicit current contract pin')
+# One parent-frozen test readiness overlay; historical204 and contracts remain unchanged.
+seed_base=BASE+'corrections/20261019-seed-readiness/'
+seed=json.loads(exact(seed_base+'FROZEN.json','2fc161cba9d90e014eae664c24aa1e3b183af679741506327d8e072df5ce8277'))
+seed_row=seed['replacement'];seed_contract=seed['contract']
+check(seed['historicalInputCount']==204 and seed['previousCorrectionFrozenSha256']==digest(committed(latest_base+'FROZEN.json')),'exact seed overlay prior authority')
+check(set(seed_row)=={'path','before','after','canonical'} and seed_row['path']=='tests/e2e/generated-board.spec.ts','exact singleton seed test overlay')
+check(seed_row['before']==current[seed_row['path']]=='3392319d809a16018c28c88000e284c8a0ec8dc3c1f1d8682ceae595ee36c97a','seed test before equals original204')
+check(seed_row['after']=='a53a9769bb6479c27ba08799cbe005c6437ca25d6a348455b935853fda7e92f4','exact seed readiness test')
+check(exact(seed_row['path'],seed_row['after'])==exact(seed_row['canonical'],seed_row['after']),'current test equals seed canonical')
+check(set(seed_contract)=={'path','before','after','canonical'} and seed_contract['path']==latest['contract']['path']=='docs/tasks/T75.md','exact current contract path')
+check(seed_contract['before']==latest['contract']['sha256'],'new contract authenticated by prior contract')
+exact(latest['contract']['canonical'],latest['contract']['sha256'])
+check(exact(seed_contract['path'],seed_contract['after'])==exact(seed_contract['canonical'],seed_contract['after']),'exact seed current contract pin')
+check(set(seed['priorProofHashes'])=={'verify-adoption.py','adoption.json','README.md','REPORT.md'},'four seed prior proof copies')
+for name,sha in seed['priorProofHashes'].items():exact(seed_base+'prior-proof/'+name,sha)
 exact(latest['parentProof']['path'],latest['parentProof']['sha256'])
 check('docs/tasks/T75.md' not in current,'fact correction: task absent original204; no historical task-hash failure claimed')
 check(set(replacements)=={'src/ui/generatedGeographyPresentation.ts','vite.config.ts','README.md'},'exact three correction paths')
@@ -72,7 +86,7 @@ for path,row in replacements.items():
 for name,sha in correction['priorProofHashes'].items():exact(correction_base+'prior-proof/'+name,sha)
 for path,sha in correction['watchGuardHashes'].items():exact(path,sha)
 check(replacements['vite.config.ts']['after']=='4cae5bff592c0ddf81b0ab12ec4d0778ec153d90bb34a07d8d7cfbfb95a7d6c5','reviewed watch candidate')
-for path,sha in current.items():exact(path,latest_row['after'] if path==provider else replacements[path]['after'] if path in replacements else sha)
+for path,sha in current.items():exact(path,seed_row['after'] if path==seed_row['path'] else latest_row['after'] if path==provider else replacements[path]['after'] if path in replacements else sha)
 for path,sha in frozen['candidateHashes'].items():
     candidate=exact(BASE+'production-candidate/'+path,sha)
     if path!='docs/spike-addition.md':
@@ -271,4 +285,4 @@ for name,passed in [('allocation-proposal-20261019-01',False),('saturated-label-
     check(digest(exact(phase_bases[name]+'/original.ts'))==latest_row['before'],'temporary original591 copy '+name)
 check(exact(phase_bases['saturated-label-proposal-20261019-01']+'/candidate.ts')==exact(provider),'exact measured80 candidate copy')
 check(digest(exact(phase_bases['allocation-proposal-20261019-01']+'/candidate.ts'))=='c314fe91cdd974e155e4ac9d7739a7d724c2e9b48331c4fc7e4fc7644753bf38','failed allocation candidate unchanged')
-print(json.dumps({'latestReplacementPaths':1,'latestProviderSha256':latest_row['after'],'original204ChangedInputs':2,'newEvidenceManifests':3,'baselineWorkerMedianMs':median(baseline_times),'rawBaselineWorkerTimesMs':baseline_times,'declaredBenefitDenominatorMs':declared_benefit_denominator,'recomputedReductionPercent':reductions,'taskAbsentOriginal204':True,'historicalTaskHashFailureClaimCorrected':True,'mismatches':0},sort_keys=True))
+print(json.dumps({'latestReplacementPaths':1,'latestProviderSha256':latest_row['after'],'original204ChangedInputs':3,'seedReadinessReplacementPaths':1,'newEvidenceManifests':3,'baselineWorkerMedianMs':median(baseline_times),'rawBaselineWorkerTimesMs':baseline_times,'declaredBenefitDenominatorMs':declared_benefit_denominator,'recomputedReductionPercent':reductions,'taskAbsentOriginal204':True,'historicalTaskHashFailureClaimCorrected':True,'mismatches':0},sort_keys=True))
