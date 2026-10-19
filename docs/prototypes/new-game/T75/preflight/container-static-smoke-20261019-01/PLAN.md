@@ -1,0 +1,1 @@
+Run the unchanged minimal static-page probe once in the installed pinned Playwright 1.63.0 noble container. No game/server/network/config changes. Host repo mounted read-only except this new evidence directory; nonroot uid/gid. Original five-second diagnostic limits retained. Compare click, native twoRAF and PNG; container smoke is not game acceptance. Preserve prior failures.

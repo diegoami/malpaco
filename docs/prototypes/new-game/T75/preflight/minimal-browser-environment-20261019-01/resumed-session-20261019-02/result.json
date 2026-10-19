@@ -1,0 +1,91 @@
+{
+  "variant": "resumed-session-20261019-02",
+  "legacyValue": null,
+  "launchOptions": {
+    "headless": true,
+    "timeout": 10000
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "start": 1792398282742.3145,
+  "operations": [
+    {
+      "name": "goto",
+      "start": 1792398282808.7402,
+      "value": null,
+      "status": "passed",
+      "end": 1792398282814.5867
+    },
+    {
+      "name": "ordinary-click-5000ms",
+      "start": 1792398282821.9473,
+      "status": "FAILED",
+      "error": {
+        "message": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Static button', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button onclick=\"document.body.dataset.clicks=String(Number(document.body.dataset.clicks||0)+1)\">Static button</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n",
+        "stack": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Static button', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button onclick=\"document.body.dataset.clicks=String(Number(document.body.dataset.clicks||0)+1)\">Static button</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    - waiting for element to be visible, enabled and stable\u001b[22m\n\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:11:98\n    at op (/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:6:99)\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:11:8"
+      },
+      "end": 1792398287823.4878
+    },
+    {
+      "name": "two-native-RAF-5000ms",
+      "start": 1792398287823.9192,
+      "status": "FAILED",
+      "error": {
+        "message": "Node deadline twoRAF5000ms",
+        "stack": "Error: Node deadline twoRAF5000ms\n    at Timeout.<anonymous> (file:///home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:12:260)\n    at listOnTimeout (node:internal/timers:685:17)\n    at process.processTimers (node:internal/timers:618:7)"
+      },
+      "end": 1792398292824.2441
+    },
+    {
+      "name": "screenshot-5000ms",
+      "start": 1792398292824.681,
+      "status": "FAILED",
+      "error": {
+        "message": "page.screenshot: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n",
+        "stack": "page.screenshot: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - taking page screenshot\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:13:52\n    at op (/home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:6:99)\n    at /home/diego/projects/malpaco/.cache/t75-work/docs/prototypes/new-game/T75/preflight/minimal-browser-environment-20261019-01/child.mjs:13:8"
+      },
+      "end": 1792398297826.3315
+    }
+  ],
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "HeadlessChrome/153.0.8010.12",
+    "revision": "@971a7443b0c9b0a9b2860529b33331b76077ec62",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.12 Safari/537.36",
+    "jsVersion": "15.3.76.4"
+  },
+  "commandlineError": "cdpSession.send: Protocol error (Browser.getBrowserCommandLine): Command line not returned because --enable-automation not set.",
+  "html": "<!doctype html><meta charset=\"utf-8\"><title>Minimal native paint probe</title><style>body{margin:32px;font-family:sans-serif}button{width:180px;height:48px;font-size:18px}</style><button onclick=\"document.body.dataset.clicks=String(Number(document.body.dataset.clicks||0)+1)\">Static button</button>",
+  "before": {
+    "visibility": "visible",
+    "focus": true,
+    "date": 1792398282820,
+    "performance": 10.5,
+    "paint": [],
+    "clicks": "0",
+    "rect": {
+      "x": 32,
+      "y": 32,
+      "width": 180,
+      "height": 48
+    }
+  },
+  "after": {
+    "visibility": "visible",
+    "focus": true,
+    "date": 1792398297827,
+    "performance": 15017.600000000559,
+    "paint": [],
+    "clicks": "0",
+    "rect": {
+      "x": 32,
+      "y": 32,
+      "width": 180,
+      "height": 48
+    }
+  },
+  "closed": true,
+  "end": 1792398297848.2622
+}
