@@ -1,0 +1,22 @@
+✔ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (241.098206ms)
+ℹ retained temporary Git fixture /tmp/malpaco-t91-git-GFe7V5
+✔ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (209.965632ms)
+✔ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (172.502388ms)
+✔ allowlist: known prose additions/modifications alone take lightweight validation (2.274302ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (4.045906ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.305152ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.162571ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.148481ms)
+✔ uncertain: deletion and unsupported statuses reject without relying on a previous filename (0.099959ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (1.18393ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.47359ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.283882ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (5.160158ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 675.726299
