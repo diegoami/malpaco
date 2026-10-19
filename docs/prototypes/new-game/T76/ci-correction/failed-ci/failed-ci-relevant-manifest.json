@@ -1,0 +1,90 @@
+{
+  "run": 39262174494,
+  "head": "d8d2bbcdc4b34ebcc0d8c2750addd4bc9d19382d",
+  "sourcePassed": 374,
+  "sourceFailed": 6,
+  "archiveSha256": "3961192ba8245ce7d6ef64c52302e8e2bbee9f34b3125d12a5d460937d6c2eb3",
+  "bytes": 834596,
+  "members": [
+    {
+      "path": "full-ci.log",
+      "sha256": "1426145d97fef49df6ee2c0e251a1ead9d0ecb5a83cc319e4494b53f6434629a",
+      "bytes": 213180,
+      "mode": 420
+    },
+    {
+      "path": "geographic-details.json",
+      "sha256": "3aa796608986f8906c918f4c0f2f19be75fcdd43172f9f85fb08ed354b5f5a4c",
+      "bytes": 55299461,
+      "mode": 420
+    },
+    {
+      "path": "playwright-report-inventory.json",
+      "sha256": "5cf7359bc94f969ea4167e268cd02e5ed76e2c05cf0cae14f64162da127b6521",
+      "bytes": 41521,
+      "mode": 436
+    },
+    {
+      "path": "receipt.json",
+      "sha256": "0026ae14fd726163bb9ff423cac12ab3f6720212f02e872875b2c084f3bf4262",
+      "bytes": 1446,
+      "mode": 436
+    },
+    {
+      "path": "relevant-failures/test-results/geographic-board-seed-0-pa-15ab2-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "88c2f7d5c9d39b6f9ff0f96b0fa165ebe1b6d57f564299571ba17f1f86ffa348",
+      "bytes": 38111,
+      "mode": 436
+    },
+    {
+      "path": "relevant-failures/test-results/geographic-board-seed-1-pa-db46f-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "03db471f5ae762aeb04a6fd1bdd088c22d9f0a3aef3643f0463a66dc0b3df1bb",
+      "bytes": 38110,
+      "mode": 436
+    },
+    {
+      "path": "relevant-failures/test-results/geographic-board-seed-1994-6f8a3-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "b07e491ab52f1e2bcdc545ec4931a994649b409f034c562bf5fff89c1d77ce57",
+      "bytes": 38119,
+      "mode": 436
+    },
+    {
+      "path": "relevant-failures/test-results/geographic-board-seed-513--07dfa-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "8178169128f211d6dbe0f0ec48f4db19a4f9ca78befb4c929b956bb40d6fb77e",
+      "bytes": 38115,
+      "mode": 436
+    },
+    {
+      "path": "relevant-failures/test-results/geographic-board-seed-6-pa-ed4dc-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "331e89825feae9b066efcd611f50453bd7fa96cf5b0a058c7718da342f02c315",
+      "bytes": 38111,
+      "mode": 436
+    },
+    {
+      "path": "relevant-failures/test-results/geographic-board-seed-749--cd868-ntained-legible-army-labels-1280x800/error-context.md",
+      "sha256": "8fd6189162bbb3ac1226991d6392aad9ae0a298ce6b5846f2068a6516beaec97",
+      "bytes": 38116,
+      "mode": 436
+    },
+    {
+      "path": "report-summary.json",
+      "sha256": "7a5868283a8bdfbb526858d38e8d6e6433eced5cadfb335b16a7494dd4e954d5",
+      "bytes": 166543,
+      "mode": 420
+    },
+    {
+      "path": "run.json",
+      "sha256": "f44e4080f5855f1873f86235857ceb145112637f05697814b3f3846442553362",
+      "bytes": 12368,
+      "mode": 436
+    },
+    {
+      "path": "screenshots-inventory.json",
+      "sha256": "8577a174e232bc9de3857019c35a0501d337007ca37f56b94e3905ad4795ee46",
+      "bytes": 65901,
+      "mode": 436
+    }
+  ],
+  "originalZipFilesRetainedAt": "/home/diego/projects/malpaco/.cache/release-011/failed-ci-39262174494",
+  "selection": "Full CI log, original run metadata and artifact hashes/inventories, complete Playwright report summary and geographic details, and all six failed error contexts. Original full zip archives remain preserved locally; passed-test video attachments are not duplicated into this bounded failure pack. Geography failed before its success-only screenshots, so this is not a claim of CI failure PNGs."
+}

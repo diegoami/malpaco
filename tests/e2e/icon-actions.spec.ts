@@ -17,11 +17,11 @@ async function open(p:Page,surface:string){
 }
 async function close(p:Page){if(await p.locator('#game-focus-drawer').isVisible())await p.locator('#close-game-drawer').click();}
 async function load(p:Page,text:string){
- if(await p.locator('#battle-action-rail').count())await open(p,'settings');
+ if(await p.locator('#battle-action-rail').count()&&!await p.getByLabel('Load game',{exact:true}).isVisible())await open(p,'settings');
  const old=await p.getByLabel('Load game',{exact:true}).elementHandle();await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'icons.json',mimeType:'application/json',buffer:Buffer.from(text)});
  await expect.poll(()=>old!.evaluate(e=>e.isConnected)).toBe(false);await expect(p.locator('[data-country]')).toHaveCount(46);
 }
-async function save(p:Page){await open(p,'settings');await p.getByRole('button',{name:'Save game',exact:true}).click();const text=await p.evaluate(()=>(Reflect.get(window,'iconSave') as Blob).text());await close(p);return text;}
+async function save(p:Page){if(!await p.getByRole('button',{name:'Save game',exact:true}).isVisible())await open(p,'settings');await p.getByRole('button',{name:'Save game',exact:true}).click();const text=await p.evaluate(()=>(Reflect.get(window,'iconSave') as Blob).text());await close(p);return text;}
 async function exact(p:Page,state:GameState){expect(deserializeVersionedMatch(await save(p)).state).toEqual(state);}
 function next(state:GameState,action:Action){const r=apply(state,action);if(!r.ok)throw Error(r.error);return r.state;}
 async function collapse(p:Page){
@@ -33,6 +33,23 @@ async function railFits(p:Page){const rail=p.locator('#battle-action-rail');expe
 async function shot(p:Page,info:TestInfo,name:string){await p.screenshot({path:info.outputPath(name+'.png')});}
 function row(host:string,kind:string){return discoveries.find((r:any)=>r.source===(host==='reference'?'T39-legal-pending-raid.json':'geographic-raid-pending-one-human.json')&&r.kind===kind);}
 for(const host of ['reference','geographic']){
+ test(`${host}: visible sidebar toolbar stays outside the map in both top panel states`,async({page},info)=>{
+  await begin(page);const text=input(`T71/fixtures/${host}-reinforcement.json`);await load(page,text);const before=await save(page);
+  for(const topVisible of [true,false]){
+   const ids=await page.locator('#battle-action-rail button:visible').evaluateAll(ns=>ns.map(n=>n.id));
+   expect.soft(ids).toEqual(topVisible?['toggle-topbar','toggle-sidebar']:['toggle-topbar','toggle-sidebar','open-game-actions','open-game-cards','open-game-details','open-game-settings','game-pause-button','game-log-button']);
+   expect.soft(await page.locator('#battle-action-rail').evaluate(rail=>{
+    const r=rail.getBoundingClientRect(),board=rail.closest('.stage')!.querySelector('.board')!.getBoundingClientRect(),side=document.querySelector('#battle-sidebar')!.getBoundingClientRect();
+    return r.left>=side.left&&r.right<=side.right&&r.top>=side.top&&r.bottom<=side.bottom&&(r.left>=board.right||r.right<=board.left||r.bottom<=board.top||r.top>=board.bottom);
+   }),'sidebar toolbar must not intercept any map point').toBe(true);
+   await railFits(page);
+   for(const control of await page.locator('.panel button:visible').all())expect.soft(await control.evaluate(n=>{
+    const r=n.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return !!hit&&(n===hit||n.contains(hit));
+   }),'sidebar commands remain uncovered').toBe(true);
+   await shot(page,info,host+'-toolbar-top-'+topVisible);await hit(page,'toggle-topbar');
+  }
+  expect(await save(page)).toBe(before);
+ });
  test(`${host}: visible sidebar keeps an older history reader across focused surfaces`,async({page},info)=>{
   await begin(page);
   const f=row(host,'attack-running'),text=input('issue180/preflight/fixtures/'+f.fixture),before=deserializeVersionedMatch(text);
