@@ -84,6 +84,12 @@
       "variant": "high",
       "family": "claude",
       "note": "Direct Claude CLI, exact model verified against init. Live-discovered in owner-requested trials. No provider remapping; docs/harness-claude.md."
+    },
+    "claude-opus": {
+      "id": "anthropic/claude-opus-5-5",
+      "backend": "claude",
+      "variant": "medium",
+      "family": "claude"
     }
   },
   "jail": {
