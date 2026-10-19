@@ -1,0 +1,138 @@
+{
+  "base": "19f2565c",
+  "frozen_test_prefix_sha256": "e868afd90e7e4cd2347866983081e18b320a7b1a8d61adcf8a28d9d2eaadeeba",
+  "frozen_test_prefix_bytes": 10444,
+  "test_prefix_exact": true,
+  "notes_prefix_exact": true,
+  "runtime_diff": [
+    "src/ui/workspaceState.ts"
+  ],
+  "protected": [
+    {
+      "path": "docs/prototypes/new-game/T78/BOUNDARY.md",
+      "sha256": "d8222dc6b1bed2a274510d8239c741e8d289f887f43c739b4d2c7b30218d9e27"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/REPORT.md",
+      "sha256": "cb47b7daebb36ea47cc2f9957bc3aa607482d65e6f23d09ff6ef5e5adb639530"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/frozen-tests-01.json",
+      "sha256": "adbcd6ef998ad1de9d096372695ba0125c3bfae867988272be638d5bf253d983"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-01.txt",
+      "sha256": "c9e4393b45d72bd355d7d92d948f517191ad0012c961062707e54309b4a60d20"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-boundary.txt",
+      "sha256": "392c03c92f0c8cb707ed5b76256bbaa12f8f5ff1cb8c8f799236ae1b99997e06"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-build-01.txt",
+      "sha256": "b3a4a104b7c7a0b027e6e5e643ae2a8a6e2262f4e19e1b8cb70dc07a4ecd6e5d"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-npm-test-01.txt",
+      "sha256": "b9db50809cd9d3c4d22a2305b9cc8fcbc468781d1fda96d3919f48de10992434"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-restored-01.txt",
+      "sha256": "6b624a7031b1c5e321293b018df17f1b007c0d31d4f1bc761cd75a12df4379cb"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/negative-aliasing-01.txt",
+      "sha256": "c9436ef17e3e0bcfd908452e32610520ecfa4ddcdbe61aef834f7346a5658994"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/negative-confirmation-01.txt",
+      "sha256": "732cf750e0cfdc4e5fef0aa9c5247d0a9842b338ac99afa8bc9b1929eaceb1eb"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/negative-core-mutation-01.txt",
+      "sha256": "cb67e972c98854829744031f1539815b76051011fc89e0813495d1f92277f93f"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/red-01.txt",
+      "sha256": "ade41c0170a8b8d61fb50bdb1c2b688391bca5aed17ecfbd527ce4d2557db522"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/red-02.txt",
+      "sha256": "5e2b53305ed48c1a41c0674fed7d5b957b8e5f79f3f170b0aba10da29cff0c54"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/regression-results-01.json",
+      "sha256": "d9269ca0ac074132de987c7863f4133e2c4b2dc3ef5d05da8d5fe9ead10eec70"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/results-01.json",
+      "sha256": "07808d17dd73de88f0301de3f51463c1ca3118d75b15c41aa833b5c7cc1ea576"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/run-preflight.py",
+      "sha256": "1a9b042192acdaac8d70a2809f7a2159b55e4fa6fb08a1d4f8a54be7ebaf312e"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/run-regression-preflight.py",
+      "sha256": "338f3baa72bb04119cf0662f042bc36b1d0ac71ae952794012c1e69628d989b2"
+    },
+    {
+      "path": "docs/tasks/T78.md",
+      "sha256": "5abfaf4f61765ba12dd96b4de6634e60db7821789c20030e58241cd05f5ca888"
+    }
+  ],
+  "verified_outputs": [
+    {
+      "record": "done-when-full-01.json",
+      "output_sha256": "9bc2da714bd75fe16305902a7e586bcbc38116e2f0652a0b9e71cd36200c3fb6"
+    },
+    {
+      "record": "green-01.json",
+      "output_sha256": "21dd10189a7fb6113e1355a41aae2fdff455e6e83ff561291091c94956e58840"
+    },
+    {
+      "record": "negative-card-aliasing-01.json",
+      "output_sha256": "3a57895358ef26e51ffc70c731af188442d0913dc9d48fd48b76c3fd49644720"
+    },
+    {
+      "record": "negative-confirmation-01.json",
+      "output_sha256": "37338e456044777e551f4533373b2281755a2874630862f4fc1791af537ddca7"
+    },
+    {
+      "record": "negative-core-mutation-01.json",
+      "output_sha256": "7cc219885d756d45e66ff6da54f7c69124069df2066c0403ae4794d3ee82d865"
+    },
+    {
+      "record": "negative-match-reset-01.json",
+      "output_sha256": "719136f380177bffe2d6f133bff85ed0e1b2808b947cd1f8425a0f750b377a4e"
+    },
+    {
+      "record": "negative-nested-set-allowlist-01.json",
+      "output_sha256": "0e9deb52bc20003633927e9c3b0f90c2f815281ce1bdcfdcd3630104aa6e07d7"
+    },
+    {
+      "record": "negative-numeric-drafts-01.json",
+      "output_sha256": "d7774017853b087eaf41912b747a2335fee3bb6c31e9716f0a92b75c8e43ee1c"
+    },
+    {
+      "record": "negative-private-read-01.json",
+      "output_sha256": "de3d70349be71551d9a2a58341da598154b4175cc988e26ae6e8f385f9a250cd"
+    },
+    {
+      "record": "negative-ui-aliasing-01.json",
+      "output_sha256": "0fb71a350818b27f74db91003d9b01bcba45423e9a791c536ec250d380559b85"
+    },
+    {
+      "record": "red-01.json",
+      "output_sha256": "b41dedd270094d2905d50d3fd547e11c2fd25d04ecd849cb6c39fdcd12dc46ef"
+    },
+    {
+      "record": "red-02.json",
+      "output_sha256": "0f2da99920a30d6e2b8952e31302f18d0636c4daf558582184a28e97589bf0e3"
+    },
+    {
+      "record": "restored-green-01.json",
+      "output_sha256": "bf140883a3aea13057d51684c8e3fe6780534aa33cd184c9cdcf455ce506b1a8"
+    }
+  ]
+}

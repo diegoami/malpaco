@@ -1,0 +1,46 @@
+{
+  "baseline_source_sha256": "01e4f8829c05b761f5aa313764a4c19ccc5014d2f3930c7efca5ebd568c5db34",
+  "restored_exact_bytes": true,
+  "results": [
+    {
+      "mutation": "confirmation",
+      "native_exit": 1,
+      "record": "negative-confirmation-01.json"
+    },
+    {
+      "mutation": "match-reset",
+      "native_exit": 1,
+      "record": "negative-match-reset-01.json"
+    },
+    {
+      "mutation": "ui-aliasing",
+      "native_exit": 1,
+      "record": "negative-ui-aliasing-01.json"
+    },
+    {
+      "mutation": "card-aliasing",
+      "native_exit": 1,
+      "record": "negative-card-aliasing-01.json"
+    },
+    {
+      "mutation": "nested-set-allowlist",
+      "native_exit": 1,
+      "record": "negative-nested-set-allowlist-01.json"
+    },
+    {
+      "mutation": "core-mutation",
+      "native_exit": 1,
+      "record": "negative-core-mutation-01.json"
+    },
+    {
+      "mutation": "private-read",
+      "native_exit": 1,
+      "record": "negative-private-read-01.json"
+    },
+    {
+      "mutation": "numeric-drafts",
+      "native_exit": 1,
+      "record": "negative-numeric-drafts-01.json"
+    }
+  ]
+}

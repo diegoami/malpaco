@@ -1,0 +1,167 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (19 tests | 13 failed) 36ms
+   ❯ T78 workspace state boundary (17)
+     × preserves invalid drafts, camera, histories and focus through surface/layout round trips 6ms
+     × invalidates confirmation when source changes without disturbing other same-match UI 1ms
+     × invalidates confirmation when target changes without disturbing other same-match UI 1ms
+     × invalidates confirmation when cleared source changes without disturbing other same-match UI 1ms
+     × invalidates confirmation when cleared target changes without disturbing other same-match UI 1ms
+     × clears stale match drafts and confirmation even when a replacement has the same pair 1ms
+     × round-trips placement from real versioned replay without changing core/history/RNG 2ms
+     × round-trips combat from real versioned replay without changing core/history/RNG 1ms
+     × round-trips capture from real versioned replay without changing core/history/RNG 1ms
+     × round-trips friendly movement from real versioned replay without changing core/history/RNG 2ms
+     × round-trips cards from real versioned replay without changing core/history/RNG 2ms
+     × round-trips result from real versioned replay without changing core/history/RNG 2ms
+   ❯ T78 additional ownership controls (2)
+     × detaches same-match reconciliation while retaining a complete confirmed pair 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > preserves invalid drafts, camera, histories and focus through surface/layout round trips
+AssertionError: expected { …(7) } to deeply equal { …(7) }
+
+- Expected
++ Received
+
+@@ -8,11 +8,11 @@
+      "x": 42,
+      "y": -18,
+      "zoom": 2.5,
+    },
+    "drafts": {
+-     "capture": "-",
++     "capture": "NaN",
+      "move": "3e",
+      "threshold": "999999999999999999999",
+    },
+    "focus": "attack-button",
+    "histories": {
+
+ ❯ tests/ui/workspace-state.test.ts:56:86
+     54|   const input=deepFreeze(customized()),before=structuredClone(input);
+     55|   const hidden=api.updateWorkspaceState(input,{surface:null});expect(h…
+     56|   const restored=api.updateWorkspaceState(hidden,{surface:'cards'});ex…
+       |                                                                                      ^
+     57|   expect(api.reconcileWorkspace(restored,context())).toEqual(before);
+     58|  });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when source changes without disturbing other same-match UI
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when target changes without disturbing other same-match UI
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when cleared source changes without disturbing other same-match UI
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > invalidates confirmation when cleared target changes without disturbing other same-match UI
+AssertionError: expected { capture: 'NaN', move: '3e', …(1) } to deeply equal { capture: '-', move: '3e', …(1) }
+
+- Expected
++ Received
+
+  {
+-   "capture": "-",
++   "capture": "NaN",
+    "move": "3e",
+    "threshold": "999999999999999999999",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:68:128
+     66|  it(`invalidates confirmation when ${label} changes without disturbing…
+     67|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,c);
+     68|   expect(next.attack).toEqual({from:c.from,to:c.to,confirmed:false});e…
+       |                                                                                                                                ^
+     69|  });
+     70|  it('does not retain confirmation for an incomplete unchanged pair',()…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > clears stale match drafts and confirmation even when a replacement has the same pair
+AssertionError: expected { …(7) } to deeply equal { …(7) }
+
+- Expected
++ Received
+
+@@ -8,11 +8,11 @@
+      "x": 0,
+      "y": 0,
+      "zoom": 1,
+    },
+    "drafts": {
+-     "capture": "",
++     "capture": "0",
+      "move": "",
+      "threshold": "",
+    },
+    "focus": null,
+    "histories": {
+
+ ❯ tests/ui/workspace-state.test.ts:76:16
+     74|  it('clears stale match drafts and confirmation even when a replacemen…
+     75|   const s=deepFreeze(customized()),next=api.reconcileWorkspace(s,conte…
+     76|   expect(next).toEqual({...defaults(),matchGeneration:1,attack:{from:'…
+       |                ^
+     77|  });
+     78|  for(const fixture of legalFixtures())it(`round-trips ${fixture.name} …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips placement from real versioned replay without changing core/history/RNG
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips combat from real versioned replay without changing core/history/RNG
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips capture from real versioned replay without changing core/history/RNG
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips friendly movement from real versioned replay without changing core/history/RNG
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips cards from real versioned replay without changing core/history/RNG
+ FAIL  tests/ui/workspace-state.test.ts > T78 workspace state boundary > round-trips result from real versioned replay without changing core/history/RNG
+AssertionError: expected { capture: 'NaN', move: '3e', …(1) } to deeply equal { capture: '-', move: '3e', …(1) }
+
+- Expected
++ Received
+
+  {
+-   "capture": "-",
++   "capture": "NaN",
+    "move": "3e",
+    "threshold": "",
+  }
+
+ ❯ tests/ui/workspace-state.test.ts:88:21
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 additional ownership controls > detaches same-match reconciliation while retaining a complete confirmed pair
+AssertionError: expected { …(7) } to deeply equal { …(7) }
+
+- Expected
++ Received
+
+@@ -8,11 +8,11 @@
+      "x": 42,
+      "y": -18,
+      "zoom": 2.5,
+    },
+    "drafts": {
+-     "capture": "-",
++     "capture": "NaN",
+      "move": "3e",
+      "threshold": "999999999999999999999",
+    },
+    "focus": "attack-button",
+    "histories": {
+
+ ❯ tests/ui/workspace-state.test.ts:120:16
+    118|  it('detaches same-match reconciliation while retaining a complete con…
+    119|   const original=deepFreeze(customized()),next=api.reconcileWorkspace(…
+    120|   expect(next).toEqual(original);expect(next).not.toBe(original);
+       |                ^
+    121|   next.camera.x=999;next.histories.battle.scrollTop=999;next.histories…
+    122|   next.drafts.capture='changed';next.attack.confirmed=false;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  13 failed | 6 passed (19)
+   Start at  20:56:20
+   Duration  1.08s (import 67%, transform 29%, tests 4%)
+

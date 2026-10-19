@@ -1,0 +1,10 @@
+{
+  "mutation": "drop only && state.attack.confirmed from reconciliation",
+  "source_before_sha256": "01e4f8829c05b761f5aa313764a4c19ccc5014d2f3930c7efca5ebd568c5db34",
+  "source_restored_sha256": "01e4f8829c05b761f5aa313764a4c19ccc5014d2f3930c7efca5ebd568c5db34",
+  "restored_exact_bytes": true,
+  "mutation_native_exit": 1,
+  "failed_tests": 1,
+  "passed_tests": 19,
+  "mutant_receipt": "negative-drop-confirmed-01.json"
+}

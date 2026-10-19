@@ -1,0 +1,30 @@
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T78-workspace
+
+ ❯ tests/ui/workspace-state.test.ts (19 tests | 1 failed) 84ms
+   ❯ T78 additional ownership controls (2)
+     × allowlists projection keys and nested offered-set fields from real controllers 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/ui/workspace-state.test.ts > T78 additional ownership controls > allowlists projection keys and nested offered-set fields from real controllers
+Error: non-public set field read
+ ❯ Object.get [as hidden] tests/ui/workspace-state.test.ts:130:98
+    128|    const view=cards.view;expect(view.sets.length).toBeGreaterThan(0);
+    129|    const sets=view.sets.map(set=>{
+    130|     const poisoned={...set};Object.defineProperty(poisoned,'hidden',{e…
+       |                                                                                                  ^
+    131|    });
+    132|    const projection=api.projectWorkspace(battle,Object.freeze({...view…
+ ❯ src/ui/workspaceState.ts:98:40
+ ❯ Module.projectWorkspace src/ui/workspaceState.ts:98:28
+ ❯ tests/ui/workspace-state.test.ts:132:25
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 18 passed (19)
+   Start at  20:56:15
+   Duration  1.06s (import 62%, transform 29%, tests 9%)
+

@@ -1,0 +1,226 @@
+{
+  "base": "e010d533bc138a38a62ab7de698c139e3d94778c",
+  "source_unchanged_sha256": "01e4f8829c05b761f5aa313764a4c19ccc5014d2f3930c7efca5ebd568c5db34",
+  "existing_19_tests_exact_prefix_bytes": 11995,
+  "frozen_17_tests_exact_prefix_bytes": 10444,
+  "notes_prefix_exact": true,
+  "protected": [
+    {
+      "path": "docs/prototypes/new-game/T78/BOUNDARY.md",
+      "sha256": "d8222dc6b1bed2a274510d8239c741e8d289f887f43c739b4d2c7b30218d9e27"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/REPORT.md",
+      "sha256": "c4675269caf8ba32e0de3f9197c9613f3fe76abbd7e3d0ee5cdf62e1bf6af832"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/audit-preservation.py",
+      "sha256": "c8ed4f7523a0bc5d73369640fe5471bfa91628fce255e587f000371b45812b6a"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/done-when-full-01.json",
+      "sha256": "1b64db9db03514437ce06ee94823c639bb8d15dda72e4650db2db0e387f6ef3d"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/done-when-full-01.txt",
+      "sha256": "9bc2da714bd75fe16305902a7e586bcbc38116e2f0652a0b9e71cd36200c3fb6"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/green-01.json",
+      "sha256": "7f20e535bd1a003d4bdddf3240c7e97ee9f426c2993ce973f8d7498743df9432"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/green-01.txt",
+      "sha256": "21dd10189a7fb6113e1355a41aae2fdff455e6e83ff561291091c94956e58840"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/mutation-results-01.json",
+      "sha256": "ce8a91902f0e1af0e235fa575af5a15922cd1be59e87c980fcb7bc2cc5e53071"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-card-aliasing-01.json",
+      "sha256": "59abf2a8da99582c2ad067e7fb73e9d9619be1668dfb32d88b8f9be34293c9b5"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-card-aliasing-01.txt",
+      "sha256": "3a57895358ef26e51ffc70c731af188442d0913dc9d48fd48b76c3fd49644720"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-confirmation-01.json",
+      "sha256": "ad595591d3e2f7af204518a78cad005ac1f89f67a92861796d4358c7b9881812"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-confirmation-01.txt",
+      "sha256": "37338e456044777e551f4533373b2281755a2874630862f4fc1791af537ddca7"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-core-mutation-01.json",
+      "sha256": "6cdfc5655743018ac93a205a3d3dd36eaf99838b235a0deb1f1cb3f684942006"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-core-mutation-01.txt",
+      "sha256": "7cc219885d756d45e66ff6da54f7c69124069df2066c0403ae4794d3ee82d865"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-match-reset-01.json",
+      "sha256": "4f406ff085068bc329cd28e037ee0c89ff40597dc79c98cbe18848d9d8d8bba4"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-match-reset-01.txt",
+      "sha256": "719136f380177bffe2d6f133bff85ed0e1b2808b947cd1f8425a0f750b377a4e"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-nested-set-allowlist-01.json",
+      "sha256": "4d77667a01be4e3f2923b9d62650a6f07578dd9aa1c9376a9aa85dc0ebe35194"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-nested-set-allowlist-01.txt",
+      "sha256": "0e9deb52bc20003633927e9c3b0f90c2f815281ce1bdcfdcd3630104aa6e07d7"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-numeric-drafts-01.json",
+      "sha256": "5942fbbd983a09c194eecf4f7b5c9a05a24da3d4d3b524dd8849a4c65351d8f9"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-numeric-drafts-01.txt",
+      "sha256": "d7774017853b087eaf41912b747a2335fee3bb6c31e9716f0a92b75c8e43ee1c"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-private-read-01.json",
+      "sha256": "9c89aab504c170a27351627597f6be3483fb11c0b0c4f65af57be126ffe4683c"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-private-read-01.txt",
+      "sha256": "de3d70349be71551d9a2a58341da598154b4175cc988e26ae6e8f385f9a250cd"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-ui-aliasing-01.json",
+      "sha256": "3510f1280c81d17ae8ca68cb92576fbd11f655eaf83959fd045a4aa66dd562a4"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/negative-ui-aliasing-01.txt",
+      "sha256": "0fb71a350818b27f74db91003d9b01bcba45423e9a791c536ec250d380559b85"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/preservation-01.json",
+      "sha256": "334c42c1fbedf0d1c2e12f4c50fe95e85647ec774332b48c03bd1c6d5572f454"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/red-01.json",
+      "sha256": "e3ee0904fb4f69ae3c17b9f37620a0cc4a8eb47e148f3b6a73e055794b57126d"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/red-01.txt",
+      "sha256": "b41dedd270094d2905d50d3fd547e11c2fd25d04ecd849cb6c39fdcd12dc46ef"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/red-02.json",
+      "sha256": "17d737d79a56dab49d8f9c2e64eac9c28c5e4afcda8ca0dc95e6f65ec4d1fc77"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/red-02.txt",
+      "sha256": "0f2da99920a30d6e2b8952e31302f18d0636c4daf558582184a28e97589bf0e3"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/restored-green-01.json",
+      "sha256": "94578abdf7a92cb675524800190c51ed1417a35542f5b1109f0e98cee0bcc253"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/restored-green-01.txt",
+      "sha256": "bf140883a3aea13057d51684c8e3fe6780534aa33cd184c9cdcf455ce506b1a8"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/run-check.py",
+      "sha256": "310dc8c3286582507ed77fac288ca33f765e84846d99718de8e1a38aeb135fe7"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/implementation/run-mutations.py",
+      "sha256": "e9b691cfccfe277413757fc3ce62e1e9a5e00ddbf9948491fe6c3c010b66f629"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/REPORT.md",
+      "sha256": "cb47b7daebb36ea47cc2f9957bc3aa607482d65e6f23d09ff6ef5e5adb639530"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/frozen-tests-01.json",
+      "sha256": "adbcd6ef998ad1de9d096372695ba0125c3bfae867988272be638d5bf253d983"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-01.txt",
+      "sha256": "c9e4393b45d72bd355d7d92d948f517191ad0012c961062707e54309b4a60d20"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-boundary.txt",
+      "sha256": "392c03c92f0c8cb707ed5b76256bbaa12f8f5ff1cb8c8f799236ae1b99997e06"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-build-01.txt",
+      "sha256": "b3a4a104b7c7a0b027e6e5e643ae2a8a6e2262f4e19e1b8cb70dc07a4ecd6e5d"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-npm-test-01.txt",
+      "sha256": "b9db50809cd9d3c4d22a2305b9cc8fcbc468781d1fda96d3919f48de10992434"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/mock-restored-01.txt",
+      "sha256": "6b624a7031b1c5e321293b018df17f1b007c0d31d4f1bc761cd75a12df4379cb"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/negative-aliasing-01.txt",
+      "sha256": "c9436ef17e3e0bcfd908452e32610520ecfa4ddcdbe61aef834f7346a5658994"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/negative-confirmation-01.txt",
+      "sha256": "732cf750e0cfdc4e5fef0aa9c5247d0a9842b338ac99afa8bc9b1929eaceb1eb"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/negative-core-mutation-01.txt",
+      "sha256": "cb67e972c98854829744031f1539815b76051011fc89e0813495d1f92277f93f"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/red-01.txt",
+      "sha256": "ade41c0170a8b8d61fb50bdb1c2b688391bca5aed17ecfbd527ce4d2557db522"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/red-02.txt",
+      "sha256": "5e2b53305ed48c1a41c0674fed7d5b957b8e5f79f3f170b0aba10da29cff0c54"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/regression-results-01.json",
+      "sha256": "d9269ca0ac074132de987c7863f4133e2c4b2dc3ef5d05da8d5fe9ead10eec70"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/results-01.json",
+      "sha256": "07808d17dd73de88f0301de3f51463c1ca3118d75b15c41aa833b5c7cc1ea576"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/run-preflight.py",
+      "sha256": "1a9b042192acdaac8d70a2809f7a2159b55e4fa6fb08a1d4f8a54be7ebaf312e"
+    },
+    {
+      "path": "docs/prototypes/new-game/T78/preflight/run-regression-preflight.py",
+      "sha256": "338f3baa72bb04119cf0662f042bc36b1d0ac71ae952794012c1e69628d989b2"
+    },
+    {
+      "path": "docs/tasks/T78.md",
+      "sha256": "5abfaf4f61765ba12dd96b4de6634e60db7821789c20030e58241cd05f5ca888"
+    }
+  ],
+  "new_outputs": [
+    {
+      "record": "done-when-full-01.json",
+      "native_exit": 0,
+      "output_sha256": "15c86a4decd9992d378b8e3dcdf5cc6e84196603732eb0c6121c83fd60d87da8"
+    },
+    {
+      "record": "focused-green-01.json",
+      "native_exit": 0,
+      "output_sha256": "b10375b6374782beb19625fa71ffafbd8f64e7b02c502a6b80afea01d856c82f"
+    },
+    {
+      "record": "negative-drop-confirmed-01.json",
+      "native_exit": 1,
+      "output_sha256": "2aad3f20bf92ed95871163833c9f8316b3aff3b5dca38ece15cad074786383ae"
+    }
+  ]
+}
