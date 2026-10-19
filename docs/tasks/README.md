@@ -109,3 +109,23 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T76](T76.md) | Hideable game panels and essential icon actions (0.1.1) | Hard | #192 | T75 |
 
 | [T77](T77.md) | Combined Pro-informed responsive UI/UX plan (planning only) | Hard | #191, #194 | T76 |
+
+## Release 0.2.0: responsive UI redesign
+
+[Release scope and dependency map](../plans/release-0.2.0.md). Live status is in GitHub labels.
+
+| Task | Title | Priority | Difficulty | Issue | Merge after |
+| --- | --- | --- | --- | --- | --- |
+| [T78](T78.md) | Responsive workspace state and continuity | High | Hard | #197 | T76 |
+| [T79](T79.md) | Adaptive game shell and phone action dock | High | Hard | #198 | T78 |
+| [T80](T80.md) | Map camera, zoom and resize continuity | High | Hard | #199 | T79 |
+| [T81](T81.md) | Accessible country picker and safe touch inspection | High | Medium | #200 | T79, T80 |
+| [T82](T82.md) | Explicit Attack and capture or movement commitments | High | Hard | #201 | T79, T81 |
+| [T83](T83.md) | Responsive cards, Raid and mandatory reward choices | High | Hard | #202 | T82 |
+| [T84](T84.md) | Four-player totals, complete histories and playback continuity | High | Medium | #203 | T83 |
+| [T85](T85.md) | Responsive setup, settings, files, help and result views | High | Hard | #204 | T84 |
+| [T86](T86.md) | Tablet and desktop workspace composition | High | Hard | #205 | T85 |
+| [T87](T87.md) | Map annotation hierarchy, contrast and reduced motion | Medium | Medium | #206 | T81, T86 |
+| [T88](T88.md) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | #207 | T83, T84, T85, T86, T87 |
+| [T89](T89.md) | Full-device 0.2.0 release candidate and artifact acceptance | High | Hard | #208 | T88 |
+| [T90](T90.md) | Publish the exact accepted 0.2.0 artifact | High | Medium | #209 | T89 |
