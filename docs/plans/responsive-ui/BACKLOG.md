@@ -1,56 +1,68 @@
-# Proposed, unscheduled implementation sequence
+# Release 0.2.0 implementation backlog
 
-Every item below is **proposed / unscheduled**. These are planning units, not new
-issues, dispatched tasks, commitments or authorization. The owner has selected
-map-first, all-device scope and explicit Attack in [DECISIONS.md](DECISIONS.md).
-Separate implementation authorization still precedes any task contract, failing
-test, prototype, source change, release or deployment. Priorities describe player
-impact; difficulty describes likely engineering/review complexity, not an estimate.
+The owner selected map-first, all devices together and explicit Attack in
+[DECISIONS.md](DECISIONS.md), then allocated the resulting backlog to **0.2.0**.
+[Milestone](https://github.com/diegoami/malpaco/milestone/1) and delivery tracker
+[#194](https://github.com/diegoami/malpaco/issues/194) own live status; the
+[release map](../release-0.2.0.md) records scope/dependencies. This replaces the
+planning-unit-only P1–P8 list with concrete task contracts. No task is dispatched
+or made ready by backlog creation: main must freeze acceptance preflight first.
 
-| ID / state | Proposed work and purpose | Priority / difficulty | Dependencies | Measurable proposed acceptance |
+## Required delivery tasks
+
+All thirteen are required for the selected all-device release. Priority affects
+ordering/impact, not whether a selected device or required flow may be omitted.
+
+| Task / issue | Deliverable | Priority | Difficulty | Dependencies |
 | --- | --- | --- | --- | --- |
-| P1 · Proposed / unscheduled | Specify viewport-driven shell and state ownership; separate game/controller state, camera, drafts and optional surfaces | High / Hard | Recorded D1–D3; separate implementation authorization and host contract | Documented state keys and transition table cover every invariant in ACCEPTANCE, including staged pair/confirmation; no rule/save/generator change in scope; follow-up #195 interfaces reconciled |
-| P2 · Proposed / unscheduled | Phone portrait shell, safe areas and short-landscape/keyboard fallback; reflow current setup, files and help | High / Hard | P1 | Matrix minimums and A1/A9 pass; labelled Pause and required-choice return remain visible; no unreachable action or horizontal document overflow |
-| P3 · Proposed / unscheduled | Presentation camera, touch inspection, world-space resize continuity and accessible country/candidate list | High / Hard | P1; settled D3 commitment contract | A2/A8/A9 pass; every region reachable by list; source-first map/list/keyboard selection only stages combat; pan/zoom never dispatch; Fit recovers the map without clearing the pair |
-| P4 · Proposed / unscheduled | Host explicit Attack and all human action/required-choice paths in the adaptive dock/panel: battle, capture, move, sets, Raid, discard, reward, loss/result | High / Hard | P2/P3 | A2–A6/A10 pass with non-default drafts and exact core/RNG oracles; Attack performs one fresh legal exchange, Fight on waits for confirmed pair; map-target/confirm remains hittable; no missing choice, invented skip or duplicate dispatch |
-| P5 · Proposed / unscheduled | Totals, full history, playback/settings/files continuity and keyboard/screen-reader navigation | High / Hard | P2/P4 | A7/A10/A11 pass; all four seat totals plus both complete logs available; old reading position/latest flag retained; Pause accessible during automation and gates human choices; all five existing preferences retained and proposed label preference accounted for |
-| P6 · Proposed / unscheduled | Validate the selected all-device scope and decide release | High / Hard | P2–P5 **and P7/P8**; separate implementation/release authorization and later review under repository process | Full phone portrait/landscape, tablet and desktop matrix plus A1–A11 pass; explicit Attack oracles pass; device and D4 appearance acceptance recorded; release/version separately authorized |
-| P7 · Proposed / unscheduled | Tablet/desktop panel composition and original visual hierarchy | Medium / Hard | P1–P5; no dependency on P6 | 768×1024 through 1920×1080 and layout seams pass; four totals/current action/history balance accepted under D4; panel hiding reclaims space with no toolbar/region overlap |
-| P8 · Proposed / unscheduled | Map-label hierarchy and readability polish: overview/focus labels, group/centre explanation and system reduced motion | Medium / Medium | P3; owner D4; P7 for final wide appearance | Focused identity/count and group/route information readable via map/context/list; no geometry/graph edits; proposed contrast/text targets checked and owner appearance acceptance recorded |
-| P181 · Existing #181 / proposed / unscheduled sibling | Separate post-0.1.x generation-variety spike, not P3/P8 UI work | Medium / Hard | Separate owner spike authorization, retained T72 baseline and bounded corpus; no responsive dependency | Baseline plus 2–3 materially different candidates, matched seed 1994/retained valid/refusal cases, complete validity/cost/variety accounting, cross-device paired gallery and separate versioned integration recommendation per ASSESSMENT-181 |
+| [T78](../../tasks/T78.md) / [#197](https://github.com/diegoami/malpaco/issues/197) | Responsive workspace state and continuity | High | Hard | T76 baseline |
+| [T79](../../tasks/T79.md) / [#198](https://github.com/diegoami/malpaco/issues/198) | Adaptive game shell and phone action dock | High | Hard | T78 |
+| [T80](../../tasks/T80.md) / [#199](https://github.com/diegoami/malpaco/issues/199) | Map camera, zoom and resize continuity | High | Hard | T79 |
+| [T81](../../tasks/T81.md) / [#200](https://github.com/diegoami/malpaco/issues/200) | Accessible country picker and safe touch inspection | High | Medium | T79, T80 |
+| [T82](../../tasks/T82.md) / [#201](https://github.com/diegoami/malpaco/issues/201) | Explicit Attack and capture or movement commitments | High | Hard | T79, T81 |
+| [T83](../../tasks/T83.md) / [#202](https://github.com/diegoami/malpaco/issues/202) | Responsive cards, Raid and mandatory reward choices | High | Hard | T82 |
+| [T84](../../tasks/T84.md) / [#203](https://github.com/diegoami/malpaco/issues/203) | Four-player totals, complete histories and playback continuity | High | Medium | T83 |
+| [T85](../../tasks/T85.md) / [#204](https://github.com/diegoami/malpaco/issues/204) | Responsive setup, settings, files, help and result views | High | Hard | T84 |
+| [T86](../../tasks/T86.md) / [#205](https://github.com/diegoami/malpaco/issues/205) | Tablet and desktop workspace composition | High | Hard | T85 |
+| [T87](../../tasks/T87.md) / [#206](https://github.com/diegoami/malpaco/issues/206) | Map annotation hierarchy, contrast and reduced motion | Medium | Medium | T81, T86 |
+| [T88](../../tasks/T88.md) / [#207](https://github.com/diegoami/malpaco/issues/207) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | T83, T84, T85, T86, T87 |
+| [T89](../../tasks/T89.md) / [#208](https://github.com/diegoami/malpaco/issues/208) | Full-device 0.2.0 release candidate and artifact acceptance | High | Hard | T88 |
+| [T90](../../tasks/T90.md) / [#209](https://github.com/diegoami/malpaco/issues/209) | Publish the exact accepted 0.2.0 artifact | High | Medium | T89 |
 
-P2 and P3 can become separate implementation tasks after the ownership interface
-is agreed. That is a possible dependency sequence, not authorization to parallelize
-agents or dispatch work. The selected dependency sequence is
-**P1 → P2/P3 → P4 → P5 → P7 → P8 → P6**. P6 is the full-scope gate; it does not
-come before P7/P8 and no selected device falls between release slices. Essential
-focused readability/list access belongs to P3 as well; later polish cannot excuse
-unreadable phone actions. P181 is a sibling, never an input to P6.
+The dependency sequence is **T78 → T79 → T80 → T81 → T82 → T83 → T84 →
+T85 → T86 → T87 → T88 → T89 → T90**. Camera phone-browser acceptance follows
+the adaptive shell; shared UI/CSS integration is serialized until concrete
+ownership permits safe overlap. T78 is the next acceptance-preflight candidate,
+not an implementation running now. Each task names measurable future checks,
+owned paths and hazards; commands are not claimed implemented or executed yet.
 
-## Selected all-device scope versus the smaller alternative
+Design-unit mapping: P1→T78; P2→T79/T85; P3→T80/T81; P4→T82/T83/T85;
+P5→T84/T85/T88; P7→T86; P8→T87; P6→T89/T90. Tablet/desktop and readability
+therefore precede the full-device acceptance gate. The smaller portrait-first
+alternative is not selected. The target is0.2.0; dates, implementation and
+publication remain separately authorized.
 
-The owner selected phones in portrait/landscape, tablets and desktops together.
-That includes P7 composition and P8 readability before P6, plus current setup,
-settings/files/help, all four totals, complete histories, required choices and
-explicit Attack. Functional rotation, low-height fallback and camera/list access
-are required throughout the selected scope.
+## Separate generation sibling and existing overlaps
 
-The earlier smaller portrait/possible-0.1.2 slice would have retained desktop
-appearance and required a tablet support limit. It is not selected. Actual version
-and scheduling remain undecided; 0.1.2 is not a promised tag. No dependency runs
-through regional flavour naming, new map generation, #181, Pro's unresolved
-#259/#278 research or new gameplay rules. [ASSESSMENT-181.md](ASSESSMENT-181.md)
-links the existing generation issue and its separate spike/integration boundary.
+Existing [#181](https://github.com/diegoami/malpaco/issues/181) is **Medium / Hard**,
+a separate post-0.1.x generation spike, with no dependency into T89/T90. It is
+not part of camera or label polish and is not a required0.2.0 UI deliverable.
+[ASSESSMENT-181.md](ASSESSMENT-181.md) bounds its candidate/corpus/geometry/cost/
+gallery/integration outputs. It has no new issue, model assignment or dispatch.
 
-## Selected decisions and later authorization
+The release map records #96/#97's overlapping current-game requirements and
+residual historical/full-rules scope; do not launch competing implementations.
+#195 focus/toolbar/visibility cases are allocated to T79/T85/T86/T88 without
+claiming unproved defects or old evidence gaps repaired. #170 flavour naming and
+#174 curved labels retain their separate ordering; no generator, naming, rules,
+AI, autosave, sound or harness work is silently bundled.
 
-- D1 is settled: map-first workspace.
-- D2 is settled: all four form factors together, including both phone orientations.
-- D3 is settled: select source/target, then explicit Attack; Place 1 stays unchanged.
-- D4 remains later judgment of actual playable appearance and touch quality.
+## Dispatch and review
 
-After separate implementation authorization, write task contracts with owned
-files, red-before/green-after behaviour
-checks and independent review. The acceptance scenarios here are input to those
-contracts; they do not replace them or close #191/#194. Existing triage issues
-remain in their current owner-managed queue; T77 creates none.
+Standing owner UI selection: native **Sol Max** implementer and independent
+**Opus High** reviewer. Each new implementation needs a preflighted contract,
+recorded dispatch, independent review, green CI and applicable owner D4 judgment.
+No new model/review/CI run starts here. The retained T77 review predates the
+owner-selected Attack change; it is not approval of this backlog's future code.
+T89 freezes0.2.0 and the exact accepted artifact; T90 publishes only that artifact
+after separate authorization, with no rebuild or duplicate unchanged-head CI.

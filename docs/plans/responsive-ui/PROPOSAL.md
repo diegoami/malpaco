@@ -11,7 +11,7 @@ This is the combined planning response to [#191](https://github.com/diegoami/mal
 and [#194](https://github.com/diegoami/malpaco/issues/194), authorized together by
 the owner on 2026-10-19. It supersedes their earlier planning separation, not the
 need for a separate implementation decision. The owner also selected **one
-all-device redesign** and **explicit Attack after target selection**; see
+all-device redesign**, target release **0.2.0**, and **explicit Attack after target selection**; see
 [DECISIONS.md](DECISIONS.md). All mobile conventions, layout
 budgets and acceptance numbers below are **[designed] proposals**. None has been
 implemented, playtested or certified. [SOURCES.md](SOURCES.md) identifies the
@@ -263,9 +263,10 @@ four totals and complete history; tablets no longer sit between release slices.
 
 The smaller possible 0.1.2 portrait slice discussed earlier was an alternative:
 phone work with the existing desktop appearance and an explicit tablet limit.
-It is **not selected**. Version 0.1.2 remains an earlier candidate, not a promised
-tag or authorization to ship only the phone subset. Implementation scheduling,
-release version and publication remain separate decisions.
+It is **not selected**. The owner allocated the full redesign backlog to
+**0.2.0**; the earlier possible0.1.2 slice is superseded. The design units below
+now map to T78–T90 in [BACKLOG.md](BACKLOG.md). Implementation dispatch, dates
+and publication remain separate gates.
 
 Existing [#181](https://github.com/diegoami/malpaco/issues/181) concerns generation
 variety rather than UI composition. [ASSESSMENT-181.md](ASSESSMENT-181.md)
@@ -276,4 +277,4 @@ new map algorithm is a dependency of the responsive redesign.
 dock size, persistent history and touch feel. Static design selection does not
 accept final appearance. Later click-driven browser checks, real-device checks
 and owner visual judgment are required. The [decision record](DECISIONS.md) does
-not authorize implementation, schedule the backlog or extend the historical review.
+not itself dispatch implementation, authorize publication or extend the historical review.

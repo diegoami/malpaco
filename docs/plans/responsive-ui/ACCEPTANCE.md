@@ -8,6 +8,9 @@ exists or that any layout/accessibility target has passed.
 The owner selected D1 map-first, D2 all devices together and D3 explicit Attack;
 [DECISIONS.md](DECISIONS.md) records the authority and separates later D4 judgment.
 
+Target release: **0.2.0**, allocated through [BACKLOG.md](BACKLOG.md) and T78–T90.
+The named checks still require main-session acceptance preflight before dispatch.
+
 ## Viewports and minimums
 
 CSS pixels describe the actual content viewport, not a handset's physical screen.
@@ -24,6 +27,7 @@ help, game and result surface must be considered, not only an idle board.
 | 640×360, 667×375 | Narrow short landscape | 48px header + 64px strip, focused map and scrollable Current choice with all six attack commands |
 | 844×390, 932×430 | Wider phone landscape | Side-action layout, safe cutouts, canvas input and visible confirmation |
 | 768×1024, 1024×768 | Tablet orientations, included in the selected scope | Side panel, focused map, full flows, intact drafts and history through rotation |
+| 800×540 | Retained earlier landscape contract (#96/T51) | Current-game flows, focus/list and essential actions remain usable; no full-rules completion claim |
 | 1280×800, 1920×1080 | Existing desktop regression sizes | Current protected flows, panel hiding/reclaim, source state and graph unchanged |
 | 680px and 1100px width boundaries ±1px; 320/500/600px height boundaries ±1px | Layout seams | No duplicated controls, stale handlers, focus loss or unexpected action at a transition |
 | Available height 240px (e.g. keyboard/browser UI) | Reduced-height fallback, not ordinary simultaneous-map minimum | Scrollable Current choice + Map return; confirm, Pause/Resume and errors reachable |

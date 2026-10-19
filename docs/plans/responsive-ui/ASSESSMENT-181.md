@@ -4,7 +4,7 @@ Existing [#181: varied island and region generation beyond pie layouts](https://
 is **not included** in P3 camera/selection or P8 label/readability polish.
 Recommend retaining it as a **separate Medium priority / Hard difficulty spike, proposed and
 unscheduled**, after 0.1.x, linked as a sibling workstream in [BACKLOG.md](BACKLOG.md).
-It does not block the responsive redesign or determine a release such as 0.1.2.
+It does not block the responsive redesign or the selected0.2.0 delivery gate.
 No duplicate issue, new task dispatch, model assignment or generator experiment is
 authorized by this assessment.
 

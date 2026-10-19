@@ -79,6 +79,11 @@ or experiments were performed. Camera/label work does not establish generation
 variety. The historical [review](review/FINAL.md) predates the new D3 selection and
 is retained unchanged; no additional review is claimed for this alignment.
 
+The later [release-allocation record](https://github.com/diegoami/malpaco/pull/196#issuecomment-6274389754)
+sets the selected backlog target to0.2.0. Concrete task contracts are in the
+[release map](../release-0.2.0.md); creating them is not implementation or runtime
+validation and does not change the earlier review provenance.
+
 ## Evidence labels
 
 **Inspected** means read in source or the pinned manual. **Pro observed/static/**

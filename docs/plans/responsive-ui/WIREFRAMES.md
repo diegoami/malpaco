@@ -4,7 +4,8 @@ All diagrams and dimensions are **[designed]**, drawn for this proposal. They ar
 not Pro screenshots, product assets, executable prototypes or measured layouts.
 Lettered regions stand for arbitrary current map regions; their arrangement is
 not a new map. `[...]` denotes a control. Drawings omit decorative styling.
-The owner selected the map-first **all-device** scope and explicit Attack in
+The owner allocated the map-first **all-device** scope and explicit Attack to
+**0.2.0**, as recorded in
 [DECISIONS.md](DECISIONS.md); the sketches reflect those choices.
 
 The map stage is flexible. Budgets below subtract header/dock/panel and safe

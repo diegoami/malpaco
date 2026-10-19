@@ -12,10 +12,21 @@ and [T77 contract](../../tasks/T77.md) govern the living plan.
 | D3 · attack commitment | Select owned source, select enemy target, then press **Attack** | Source/target selection stages the pair without combat; Attack performs one existing exchange after fresh legality, pause and required-phase checks |
 
 These select a planning direction. They do not dispatch implementation, authorize
-a working prototype, schedule a release/version, or accept final playable
+a working prototype, set a publication date, or accept final playable
 appearance. D4 remains the later owner judgment of actual typography, counts,
 map/dock balance, touch feel, feedback and cross-device density. Do not ask D1–D3
 again unless new evidence requires an explicit amendment.
+
+## Release allocation
+
+The owner subsequently allocated this design and its generated backlog to
+**0.2.0** (the requested “0.2”); [allocation record](https://github.com/diegoami/malpaco/pull/196#issuecomment-6274389754).
+[Milestone](https://github.com/diegoami/malpaco/milestone/1), delivery tracker
+[#194](https://github.com/diegoami/malpaco/issues/194), and
+[BACKLOG.md](BACKLOG.md) map the design units to thirteen concrete T78–T90
+contracts/issues. This supersedes the earlier possible0.1.2 allocation. Readiness
+still requires preflight; no implementation/model/CI/publication run or due date
+is authorized by backlog creation.
 
 ## Attack contract [designed]
 
