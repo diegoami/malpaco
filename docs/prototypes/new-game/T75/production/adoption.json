@@ -266,6 +266,27 @@
     "historicalCorrectionChangedInputs": 2,
     "diagnosticReceipt": "docs/prototypes/new-game/T75/preflight/seed-navigation-race-20261019-02/result.json",
     "currentValidationReceipt": "docs/prototypes/new-game/T75/corrections/20261019-seed-readiness/adoption/validation.json",
-    "currentValidation": "not run at checkpoint; old CI39229251394 source344/extracted343+1 remain historical"
+    "currentValidation": {
+      "checkpoint": "f5d230fdcb90e8895d615e4e55e56ab23602805d",
+      "proofExit": 0,
+      "proofSeconds": 3.2498941400008334,
+      "reuseExit": 0,
+      "authenticatedInputs": 968,
+      "explicitTestOverlays": 1,
+      "unchangedRuntimeAndPackageAtReview": "87862df30874aaaed9cda268740b3c9121a33848",
+      "unchangedRuntimeAndPackageAtCi": "6391b169462431e958ff862f344436d73ef851c8",
+      "packageFiles": 10,
+      "focusedExtractedPassed": 8,
+      "focusedExtractedFailed": 0,
+      "viewports": [
+        "1280x800",
+        "1920x1080"
+      ],
+      "workers": 2,
+      "retries": 0,
+      "fullSuite": "not rerun; parent owns corrected-head CI",
+      "sourceMode": "not rerun; no independent changed app behavior",
+      "releaseReady": false
+    }
   }
 }
