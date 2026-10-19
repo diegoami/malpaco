@@ -113,3 +113,27 @@ describe('T78 workspace state boundary',()=>{
   expect(publicView).toEqual(before);expect(cards.view).toEqual(before);cards.dispose();battle.dispose();
  });
 });
+
+describe('T78 additional ownership controls',()=>{
+ it('detaches same-match reconciliation while retaining a complete confirmed pair',()=>{
+  const original=deepFreeze(customized()),next=api.reconcileWorkspace(original,context());
+  expect(next).toEqual(original);expect(next).not.toBe(original);
+  next.camera.x=999;next.histories.battle.scrollTop=999;next.histories.events.followLatest=true;
+  next.drafts.capture='changed';next.attack.confirmed=false;
+  expect(original).toEqual(customized());
+ });
+ it('allowlists projection keys and nested offered-set fields from real controllers',()=>{
+  const state=loaded('T39-legal-before-trade'),battle=new BattleController(state,new Clock()),cards=new CardController(battle,core.activePlayer(state)!.id);
+  try {
+   const view=cards.view;expect(view.sets.length).toBeGreaterThan(0);
+   const sets=view.sets.map(set=>{
+    const poisoned={...set};Object.defineProperty(poisoned,'hidden',{enumerable:true,get(){throw Error('non-public set field read');}});return poisoned;
+   });
+   const projection=api.projectWorkspace(battle,Object.freeze({...view,sets:Object.freeze(sets)}));
+   expect(Object.keys(projection).sort()).toEqual(['matchGeneration','revision','from','to','mode','phase','paused','speed','cards'].sort());
+   expect(Object.keys(projection.cards).sort()).toEqual(Object.keys(view).sort());
+   expect(projection.cards).toEqual(view);
+   expect(Object.keys(projection.cards.sets[0]!).sort()).toEqual(['indices','kind','effect'].sort());
+  } finally {cards.dispose();battle.dispose();}
+ });
+});
