@@ -28,7 +28,9 @@ implementation; the citation remains pinned even if main later changes.
 Pro evidence concerns the unregistered Windows release and preserved Wine/Xvfb
 records, not registered behaviour, DOS controls or native phone/accessibility
 testing. Pro attacks are target-first in the static guide; Malpaco's current host
-is source-first. This proposal retains Malpaco's order and current outcomes.
+is source-first. The selected plan retains that order and the combat rules, while
+changing UI commitment to explicit Attack after target selection. The immediate
+enemy-tap exchange below is a **0.1.1 source fact**, not the selected redesign.
 
 Two unresolved research questions remain unresolved here:
 
@@ -54,7 +56,7 @@ geographic route and shared reference-battle host are the design baseline.
 | [main.ts](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/main.ts), [geographicGame.ts](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/geographicGame.ts) | Default geographic setup/game, shared host; seed, seats/controllers, strengths and round-limit choices already exist | Reflow current setup; no generator or rule work needed |
 | [styles.css](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/styles.css#L1185), [T76 contract](../../tasks/T76.md) | Desktop 350/440px battle sidebar, viewport-height shells; T76 explicitly excludes tablet expansion/broad redesign | Portrait requires a new composition; do not call rail collapse a responsive design |
 | [BattleChrome](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/battleChrome.ts), [rail styles](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/styles.css#L1436) | Independent panel hiding, original-control relocation, nonmodal drawer, required-choice opener; 52px rail and 34/38px buttons | Preserve continuity and restoration; new phone targets/navigation need larger labelled affordances |
-| [ReferenceBattleGame](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/referenceBattleGame.ts#L135) | Placement tap dispatches 1; source then enemy tap selects and immediately exchanges unless inspecting; Raid chooses a target separately | State these consequences; preserve source-first order; add visible touch inspection and explicit list verbs |
+| [ReferenceBattleGame](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/referenceBattleGame.ts#L135) | In 0.1.1 placement tap dispatches 1; source then enemy tap selects and immediately exchanges unless inspecting; Raid chooses a target separately | Preserve source-first order/Place 1; selected D3 instead stages the target and requires Attack for one exchange; list verb becomes Select target |
 | [GeographicMapView](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/geographicMapView.ts), [ReferenceMapView](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/referenceMapView.ts) | SVG viewBox, ownership shapes, counts/names/centre mark, ARIA descriptions, Enter/Space and ordered arrow navigation; no camera gesture/buttons/list | Extend presentation access without changing graph, rules or geometry |
 | [BattleView](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/battleView.ts), [FriendlyMoveView](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/friendlyMoveView.ts) | Battle outcomes, single exchange/Fight on/Stop, amount drafts/min/max and distinct capture/friendly confirmations already exist | Host them accessibly; do not invent replacement rule bounds or auto-confirm on resize |
 | [CardView](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/cardView.ts), [CardController](https://github.com/diegoami/malpaco/blob/897a7a0b953d213a65628aa2f3617172a417791c/src/ui/cardController.ts) | Own-hand projection, valid sets/Skip, Raid preview/confirmation, discard-before-draw, reward acknowledgment and public counts | Five tiny horizontal cards should become readable rows on phone; preserve privacy and every blocking choice |
@@ -65,6 +67,17 @@ The open [T76 follow-up #195](https://github.com/diegoami/malpaco/issues/195)
 concerns toolbar overlap coverage, keyboard navigation and load focus. It is
 coordination context, not evidence that those defects have been fixed by T77.
 No outside-scope fix is included.
+
+## Later planning inputs
+
+The owner's [PR decision record](https://github.com/diegoami/malpaco/pull/196#issuecomment-6273841926)
+selects map-first, all-device scope and explicit Attack; [DECISIONS.md](DECISIONS.md)
+records these as design authority, not observed source behaviour. Existing
+[#181](https://github.com/diegoami/malpaco/issues/181) and the supplied owner/main
+assessment inform [ASSESSMENT-181.md](ASSESSMENT-181.md); no new generation research
+or experiments were performed. Camera/label work does not establish generation
+variety. The historical [review](review/FINAL.md) predates the new D3 selection and
+is retained unchanged; no additional review is claimed for this alignment.
 
 ## Evidence labels
 

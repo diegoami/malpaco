@@ -5,6 +5,8 @@ The numbers follow inspection of the pinned manual and 0.1.1 CSS/UI/test contrac
 in [SOURCES.md](SOURCES.md). No code, game build, browser test, gesture trial or
 implementation preflight was run for T77. This plan does not claim phone support
 exists or that any layout/accessibility target has passed.
+The owner selected D1 map-first, D2 all devices together and D3 explicit Attack;
+[DECISIONS.md](DECISIONS.md) records the authority and separates later D4 judgment.
 
 ## Viewports and minimums
 
@@ -21,7 +23,7 @@ help, game and result surface must be considered, not only an idle board.
 | 568×320 | Minimum ordinary landscape | Compact full-width map + explicit choice view; no forced rotation |
 | 640×360, 667×375 | Narrow short landscape | 48px header + 64px strip, focused map and scrollable Current choice with all six attack commands |
 | 844×390, 932×430 | Wider phone landscape | Side-action layout, safe cutouts, canvas input and visible confirmation |
-| 768×1024, 1024×768 | Tablet orientations | Broader design: side panel and focused map; bounded release: explicit D2 phone-shell coverage or existing-sidebar support limit; check drafts/history through rotation for the chosen scope |
+| 768×1024, 1024×768 | Tablet orientations, included in the selected scope | Side panel, focused map, full flows, intact drafts and history through rotation |
 | 1280×800, 1920×1080 | Existing desktop regression sizes | Current protected flows, panel hiding/reclaim, source state and graph unchanged |
 | 680px and 1100px width boundaries ±1px; 320/500/600px height boundaries ±1px | Layout seams | No duplicated controls, stale handlers, focus loss or unexpected action at a transition |
 | Available height 240px (e.g. keyboard/browser UI) | Reduced-height fallback, not ordinary simultaneous-map minimum | Scrollable Current choice + Map return; confirm, Pause/Resume and errors reachable |
@@ -53,8 +55,16 @@ not a clipped-button release.
   country activation by Tab/Enter/Space; retain ordered arrow country navigation.
   A horizontal toolbar uses Left/Right, a vertical one Up/Down, with Home/End.
   Focus follows the same logical control/region after layout change, scrolling it
-  into view without activating it. A deliberate key press can act; auto-repeat
-  cannot cause repeated game actions. No essential hover/long-press gesture.
+  into view without activating it. During attack, map Enter/Space only selects a
+  source/target; Enter/Space on Attack performs one exchange. Placement retains
+  Place 1. Auto-repeat cannot cause repeated game actions. No essential
+  hover/long-press gesture.
+- **Attack commitment:** selecting a target by map, candidate list or keyboard
+  changes only the staged UI pair. Attack freshly checks legality, pause and
+  required-phase gates before one existing exchange. Fight on is disabled until
+  the first explicit Attack on that pair; a changed pair or loaded match clears
+  its confirmation. Stale/illegal pairs cannot act. No pan, resize, modal close,
+  focus restoration or pause/resume commits combat or starts Fight on.
 - **Escape:** closes the top reading surface and restores a visible opener; only
   a subsequent explicit Escape may invoke the current controller's cancellation.
   Required choices remain pending. A closed/removed opener uses a visible phase
@@ -93,7 +103,8 @@ seat, pool, card state, pending capture/discard, result, full action history/log
 and all RNG streams are identical. Layout does not cause redeal, replay, resave
 migration, turn advance, random draw or action dispatch.
 
-Separately compare UI state: source/target and Raid selection, move mode, amount
+Separately compare UI state: staged source/target, same-pair Attack confirmation,
+Raid selection, move mode, amount
 drafts (including temporarily invalid text), selected set/viewer projection,
 reward acknowledgment status, running/paused battle state, playback pause/speed,
 threshold, optional surface, keyboard focus identity and both history reading
@@ -117,12 +128,14 @@ These are proposed tests to write under separately authorized implementation.
 Use legal deterministic fixtures, real clicks and the engine as an independent
 action oracle; do not bypass a required choice with DOM removal or direct state
 edits. Every new behavioural check must fail when its protected behaviour is
-removed; preserve current desktop assertions and relevant goldens.
+removed. Preserve unchanged rules/state assertions, layout guards and relevant
+goldens. Under the D3 implementation contract, replace obsolete immediate-enemy-
+tap expectations with unchanged pre-Attack snapshots and explicit commitment checks.
 
 | ID | Click-driven scenario | Observable pass condition |
 | --- | --- | --- |
 | A1 | Open current setup on portrait, change current seed/seat options, Start; open files/help then return | Correct game identity; every field/action reachable; no lost state or hidden confirmation |
-| A2 | Skip/Trade a legal set, Place 1 through canvas and list until pool zero, Start combat, source then legal target, Stop/continue | Current action sequence and exact exported core/RNG agree; prompt warns target tap immediately exchanges; inspect/pan do not act |
+| A2 | Skip/Trade a legal set, Place 1 through canvas/list until pool zero, Start combat, select source/target by map/list/keyboard, then press Attack; Stop/continue | Exact core/history/RNG snapshot unchanged by target selection; Attack adds exactly one existing exchange; fresh gates reject stale/illegal/paused choices; Fight on waits for that first explicit Attack and pair changes reset it; inspect/pan/resize/closure do not commit |
 | A3 | Reach a real capture, type a legal non-default amount, rotate, open Totals/History, pause/resume, return and Confirm | Exact draft, source/target and limits survive; no confirmation while paused; exactly one capture-move action afterward |
 | A4 | Enter friendly move, select a legal source with maximum at least 2 and adjacent owned destination, choose non-default amount, resize/cancel/re-enter/commit | Draft/focus continuity until explicit cancel; Cancel changes no core state; Move and end turn performs one legal move/handoff |
 | A5 | Trade Raid, close/fold cards, pick enemy by map and list, inspect preview, reopen card surface, Confirm | Actual map target is hittable; target persists; no modal intercept; exactly one raid action; Shield/result notice correct |
@@ -142,19 +155,22 @@ checks; synthetic viewport resizing alone cannot establish them.
 
 ## Owner appearance decisions and planning self-audit
 
-Owner D1–D4 in PROPOSAL remain decisions, not silently approved defaults. Ask the
-owner to assess whether a focused map explains geography, counts and crossings;
+Owner D1–D3 are settled in DECISIONS. D4 remains later owner judgment of whether
+a focused map explains geography, counts and crossings;
 whether the dock leaves enough map with the **attack** dock's 160px/212px context
 budgets as well as placement; whether required choices feel unavoidable without
-blocking inspection; whether immediate attack taps are sufficiently clear;
+blocking inspection; whether staged selection and explicit Attack are clear;
 and whether tablet/desktop density and original visual character are acceptable.
 Low-fidelity approval cannot approve final typography, colours or gesture feel.
 
 T77 semantic self-audit: **DW1** is addressed by the source-qualified assessment,
-retain/change/omit table, recommendation and meaningful alternative, pinned manual
-and preserved gaps. **DW2** is addressed by all four form-factor sketches plus
-capture, cards, target/list and keyboard views with explicit space/overflow.
-**DW3** is addressed by this viewport/interaction/state/scenario contract and the
-proposed unscheduled dependency sequence. File-presence and whitespace commands
+retain/change/omit table, selected D1–D3 direction, meaningful alternative, pinned
+manual, preserved gaps and separate #181 classification. **DW2** is addressed by
+all four form-factor sketches plus staged Attack, capture, cards, target/list and
+keyboard views with explicit space/overflow. **DW3** is addressed by this
+viewport/interaction/state/scenario contract, the full-scope dependency sequence
+and bounded unscheduled sibling spike. File-presence and whitespace commands
 are recorded in the author handoff; they do not prove design quality or runtime
-acceptance. Independent review and the owner's concrete design decision remain.
+acceptance. D1–D3 are recorded; implementation and D4 actual appearance acceptance
+remain separate. The historical independent review predates the selected D3
+change; this update claims no new review or runtime validation.

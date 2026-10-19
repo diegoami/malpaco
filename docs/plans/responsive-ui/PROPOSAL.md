@@ -1,6 +1,6 @@
 # A responsive turn workspace
 
-Recommend one map-led workspace: a persistent active-seat/phase prompt and Pause,
+The owner selected one map-led workspace: a persistent active-seat/phase prompt and Pause,
 a zoomable map, and controls that move between a bottom dock on phones and a side
 panel on larger screens. A required choice takes the action position; it never
 competes with an optional panel for attention. Keep the map's identity, ownership
@@ -10,7 +10,9 @@ explanations beside the action they explain.
 This is the combined planning response to [#191](https://github.com/diegoami/malpaco/issues/191)
 and [#194](https://github.com/diegoami/malpaco/issues/194), authorized together by
 the owner on 2026-10-19. It supersedes their earlier planning separation, not the
-need for a separate implementation decision. All mobile conventions, layout
+need for a separate implementation decision. The owner also selected **one
+all-device redesign** and **explicit Attack after target selection**; see
+[DECISIONS.md](DECISIONS.md). All mobile conventions, layout
 budgets and acceptance numbers below are **[designed] proposals**. None has been
 implemented, playtested or certified. [SOURCES.md](SOURCES.md) identifies the
 inspected 0.1.1 source and pinned Pro evidence. Original sketches are in
@@ -41,7 +43,7 @@ structural risks identified in source, not observed phone failures. See the
 | Retain | Change [designed] | Omit from this redesign |
 | --- | --- | --- |
 | Original map geometry, graph legality, ownership colours **and shapes**, army counts, centre marker | Scale labels by view purpose; add camera controls and a country/candidate list | Pro relief art, branding, exact panel arrangement and copied screen text |
-| Source-first attacks, one-army placement taps, battle controls and amount bounds | Make current tap consequences explicit in the prompt; offer touch inspection without Shift | Pro target-first input order and human-forfeit rules as new product behaviour |
+| Source-first selection, one-army placement taps, battle capabilities and amount bounds | Stage enemy selection, then use explicit Attack for one exchange; offer touch inspection without Shift | Immediate enemy-tap commitment, Pro target-first order and human-forfeit rules as new product behaviour |
 | Required card, capture, loss/result decisions and existing card privacy | Give each a stable action surface and visible return path | A conjectural recreation of Pro's unseen card/capture screens |
 | Four totals, full battle history, complete event history, Pause/speed, files/help/seed | Label navigation on phone; move secondary information into explicit surfaces | History truncation, icon-only essential navigation and hover-only explanations |
 | Existing setup/rules and session preferences | Reflow setup and settings; choose layout automatically | Map-generation changes, new game rules, naming/flavour dependencies, sound system, themes or a general customization editor |
@@ -67,7 +69,7 @@ may mark a changed region, suppressed by reduced motion. The primary action has
 the strongest surface contrast; destructive/new-game actions stay in Menu with
 their existing flow. Owner D4 covers the resulting hierarchy and visual character.
 
-## The recommended workspace
+## The selected workspace
 
 The header always identifies the active seat and phase, remaining placement pool
 when applicable, and an explicitly labelled Pause/Resume button. A paused state
@@ -118,8 +120,8 @@ The short-landscape rule covers 568×320, 640×360 and 667×375, not only the mi
 size. At 667×375 with zero insets it leaves a 667×263 stage, about 651×203 uncovered
 after canvas padding and one tool row. The low-height fallback overrides every
 row; the desktop row overrides the general wider-screen row. These are target
-arrangements for the broader design; bounded-release tablet behaviour is an open
-D2 decision below. Browsers with toolbars/keyboard shown can
+arrangements for the selected all-device scope, including both tablet orientations.
+Browsers with toolbars/keyboard shown can
 reach the last row by scrolling the choice view. Orientation never restarts a
 match, commits an action, changes playback state or discards a draft.
 
@@ -156,15 +158,22 @@ instead of assigning the nearest overlapping enlarged hitbox. The player then
 chooses the named region/action. This avoids promising 44px disjoint targets on
 all polygons. Invalid taps give a reason and leave state unchanged.
 
-Current interaction semantics are deliberate constraints: during placement, a
-direct owned-region tap places **one** army; during combat, selecting an owned
-source then tapping a legal enemy performs **one exchange immediately**. The
-prompt must say that before the tap. “Inspect” mode is a visible touch equivalent
-of today's Shift-assisted attack inspection and performs no exchange. The list
-uses “Place 1” / “Attack once” labels for the same actions. Drag/pinch completion,
-camera buttons, hover and keyboard auto-repeat must never become accidental
-placement or combat. A multi-army placement chooser or universal pre-attack
-confirmation is a separate future design decision, not required here.
+The selected attack commitment **changes 0.1.1's immediate enemy-tap exchange**:
+select an owned source, select an enemy target, read both stacks, then press
+**Attack** for one existing exchange. Enemy taps, list **Select target**, and
+Enter/Space on a country only stage the pair. Attack is the single-exchange
+control relabelled from Once. Fight on is a deliberate continuation enabled only
+after the first explicit Attack on that pair; changing the pair or loading a match
+invalidates that confirmation. Stop remains an explicit control.
+Each game-changing command must freshly check legality, pause and required-phase
+gates; a stale/illegal pair cannot fire. No target selection starts Fight on.
+Pan, resize, modal close, pause/resume or focus restoration never commits an attack.
+
+Placement is unchanged: a direct owned-region tap places **one** army and its list
+action remains **Place 1**. Inspect is read-only country inspection, available
+without Shift; the separate target-selection step already makes combat staging
+safe. Keyboard auto-repeat must not dispatch repeated game actions. This changes
+UI commitment only, not combat, RNG, save/replay rules or placement amounts.
 
 ### Complete representative flows
 
@@ -175,8 +184,9 @@ Numbers and legal candidates must come from the live controller, never UI guesse
    named set with its displayed effect or Skip. Place remaining armies through
    owned-region taps/list “Place 1”; show map count and pool after every action.
    Start combat becomes available at zero pool. Select an owned source, read
-   highlighted legal enemies and the immediate-exchange prompt, then attack once.
-   Use the existing single-exchange/Fight on/Stop controls; show both counts and
+   highlighted legal enemies, and select a target without exchanging. Read the
+   ready pair, then press Attack for one exchange. Retain single-exchange as
+   Attack and the explicit Fight on/Stop capabilities; show both counts and
    outcome without conflating a loss with capture. A pending capture replaces
    those controls with its legal amount, resulting stacks and Confirm move-in.
    After commitment, continue attacking or choose Move armies, select an owned
@@ -201,7 +211,7 @@ Numbers and legal candidates must come from the live controller, never UI guesse
 
 Keep normal playback speed, stop threshold 2, current game/setup defaults, and
 compact explanations. Layout follows space automatically; no “phone mode” switch.
-Keep existing desktop expanded defaults for a bounded portrait release. There are
+Keep desktop panels initially expanded within the redesigned wide layout. There are
 six in-match preference controls below; navigation/actions are not settings.
 
 | Preference | Default / scope [designed unless current] | Location |
@@ -222,7 +232,7 @@ choices, strengths and round limit under a collapsed “Game options”; do not 
 new difficulty, event or original-registration settings. Session UI preferences
 must not be advertised as part of a saved position without separate work.
 
-## Meaningful alternative: map and decision pages
+## Meaningful alternative, not selected: map and decision pages
 
 An alternative gives the full viewport to a map page and opens a separate decision
 page for each placement, battle, card and amount choice, with a persistent summary
@@ -230,7 +240,7 @@ and Return to map. It offers simpler scrolling and larger text, and avoids all
 sheet overlap. It costs repeated navigation between context and action; source,
 target and result must be remembered across pages, especially on landscape/tablet.
 
-| Decision | Recommended workspace | Separate pages |
+| Decision | Selected workspace | Separate pages |
 | --- | --- | --- |
 | Compare source, target and result | Map and action stay together in normal space | Requires summary plus repeated returns |
 | Long cards/history/help | Explicit reading surface | Naturally roomy |
@@ -238,32 +248,32 @@ target and result must be remembered across pages, especially on landscape/table
 | Desktop use | Uses existing side-panel idiom | Gives up useful simultaneous information |
 | Main risk | Dock/panel sizing and state continuity | Navigation burden and hidden map context |
 
-Recommend the workspace, with the alternative's explicit reading view only as the
-low-height/accessibility fallback. Do not ship both as a new global setting.
-Owner should judge map/context balance from the sketches before choosing.
+The owner selected the workspace, with the alternative's explicit reading view
+only as the low-height/accessibility fallback. Do not ship both as a new global
+setting. D4 still requires judgment of the actual map/context balance later.
 
 ## Release boundary and decisions
 
-A bounded **possible 0.1.2** comprises usable phone portrait, functional narrow
-landscape/reorientation, reachable current setup/files/help, map zoom/list access,
-and every existing required-choice/playback/history path. It can reuse the current
-desktop appearance and T76 panel behaviour. It cannot honestly claim phone play
-if zoom/list selection or mandatory cards/capture are deferred. The broader work
-adds the recommended tablet/desktop panel composition, map-label polish and wider
-visual hierarchy. For the bounded option, **tablet behaviour is still open under
-D2**: the owner must choose either reuse of the functional phone shell at tablet
-widths below 1100px, with tablet flow/rotation checks, or retention of 0.1.1's
-350px sidebar with no claim of improved responsive tablet support. The latter is
-an explicit coverage limit, not tablet work silently postponed to P7. P7 owns the
-broader tablet composition in either sequence. No rule, generated-map or
-flavour-name work is a dependency.
+**D1 is settled:** map-first workspace. **D2 is settled:** phones in portrait and
+landscape, tablet and desktop together. **D3 is settled:** source-first selection,
+then explicit Attack for one exchange. The selected sequence includes P7 wider
+composition and P8 label/readability work before P6 full-scope acceptance. Every
+device retains setup/files/help, map zoom/list access, required choices, playback,
+four totals and complete history; tablets no longer sit between release slices.
 
-The owner decides: **D1** workspace versus separate pages; **D2** bounded portrait
-release versus one cross-device redesign, tablet behaviour/support and its
-version; **D3** whether to retain current direct attack/one-army taps as recommended
-or separately design staged
-confirmation/amount placement; **D4** acceptable map density, colour/shape contrast,
-dock size and amount of persistent desktop history. Static sketches can settle
-direction, not final appearance or touch quality. Later click-driven browser
-checks, real-device gesture/keyboard checks and owner visual judgment are required.
-Approving this proposal does not authorize implementation or schedule the backlog.
+The smaller possible 0.1.2 portrait slice discussed earlier was an alternative:
+phone work with the existing desktop appearance and an explicit tablet limit.
+It is **not selected**. Version 0.1.2 remains an earlier candidate, not a promised
+tag or authorization to ship only the phone subset. Implementation scheduling,
+release version and publication remain separate decisions.
+
+Existing [#181](https://github.com/diegoami/malpaco/issues/181) concerns generation
+variety rather than UI composition. [ASSESSMENT-181.md](ASSESSMENT-181.md)
+recommends a separate post-0.1.x sibling spike; neither it nor flavour naming or a
+new map algorithm is a dependency of the responsive redesign.
+
+**D4 remains later:** owner judgment of actual map density, colour/shape contrast,
+dock size, persistent history and touch feel. Static design selection does not
+accept final appearance. Later click-driven browser checks, real-device checks
+and owner visual judgment are required. The [decision record](DECISIONS.md) does
+not authorize implementation, schedule the backlog or extend the historical review.

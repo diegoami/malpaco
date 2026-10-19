@@ -4,6 +4,8 @@ All diagrams and dimensions are **[designed]**, drawn for this proposal. They ar
 not Pro screenshots, product assets, executable prototypes or measured layouts.
 Lettered regions stand for arbitrary current map regions; their arrangement is
 not a new map. `[...]` denotes a control. Drawings omit decorative styling.
+The owner selected the map-first **all-device** scope and explicit Attack in
+[DECISIONS.md](DECISIONS.md); the sketches reflect those choices.
 
 The map stage is flexible. Budgets below subtract header/dock/panel and safe
 areas; an 8px canvas inset then reduces each map dimension by 16px. **Canvas
@@ -57,18 +59,24 @@ Move armies and End turn alongside the four battle/inspection commands:
 
 ```text
 390px attack dock — replaces the 88px placement context:
-│ A 8 → B 3 · Tap enemy: one exchange  │ ← counts/prompt: 48px
-│ [Once]      [Fight on]      [Stop]   │ ← three 44px-high buttons
+│ A 8 → B 3 · Ready: press Attack     │ ← counts/prompt: 48px
+│ [Attack]    [Fight on]      [Stop]   │ ← three 44px-high buttons
 │ [Inspect]   [Move armies] [End turn] │ ← three 44px-high buttons
 │ Cards       Totals       History Menu│ ← navigation: 56px
 
 320px attack dock — wider labels get two columns:
-│ A 8 → B 3 · one-exchange tap prompt  │ ← counts/prompt: 48px
-│ [Once]                 [Fight on]   │
+│ A 8 → B 3 · Ready: press Attack     │ ← counts/prompt: 48px
+│ [Attack]               [Fight on]   │
 │ [Stop]                 [Inspect]    │ ← three 44px-high rows
 │ [Move armies]           [End turn]  │
 │ Cards       Totals       History Menu│ ← navigation: 56px
 ```
+
+Enemy taps, list Select target and map Enter/Space stage only; Attack is the
+single-exchange control. Fight on is disabled until the first explicit Attack on
+this pair, then remains a deliberate continuation. A changed pair resets that
+confirmation. All commands recheck current legality/pause/required-choice gates.
+The six-command layout and area budgets therefore remain the same.
 
 At 390px the attack context is **160px**: 48px text + two 44px rows + 8px
 between rows + 16px combined outer padding. With navigation the dock is 216px,
@@ -94,8 +102,8 @@ content scrolls vertically; Pause and navigation do not.
 │ safe  │ Seat 1 · Attack                              [Pause] │ safe  │
 │ inset ├──────────────────────────────┬────────────────────────┤ inset │
 │       │ [+] [−] [Fit]    [Countries] │ A▱ 8 → B◇ 3            │       │
-│       │                              │ Tap enemy: 1 exchange │       │
-│       │ A▱ 8 ───── B◇ 3              │ [Once] [Fight on]      │       │
+│       │                              │ Ready: press Attack    │       │
+│       │ A▱ 8 ───── B◇ 3              │ [Attack] [Fight on]    │       │
 │       │     \                        │ [Stop]   [Inspect]     │       │
 │       │      C○ 2      D⬡ 12         │ [Move armies]          │       │
 │       │                              │ [End turn]             │       │
@@ -118,11 +126,12 @@ At every landscape width below 680px and height 320–500px there is insufficien
 width for this panel: retain a full-width map,
 48px header and 64px compact context/More strip, leaving a **568×208 stage** before
 insets. More exposes the four named destinations; “Current choice” exposes full
-controls, including Once/Fight on/Stop/Inspect and Move armies/End turn in one
+controls, including Attack/Fight on/Stop/Inspect and Move armies/End turn in one
 scrollable view. The same 48+64 rule leaves stages of 640×248 at 640×360 and
 667×263 at 667×375, with about 624×188 / 651×203 uncovered after padding and one
-tool row. In target-selection mode keep the named selection and Confirm in the
-strip; long copy belongs in the choice view. The map is a focused view, not a
+tool row. In Raid target-selection mode keep the named selection and Confirm in
+the strip; in combat keep the staged pair and explicit Attack. Long copy belongs
+in the choice view. The map is a focused view, not a
 tiny fitted board promised to be readable. With zero insets, an 8px canvas inset
 and one tool row leave about 552×148 uncovered map space in this short layout.
 
@@ -147,7 +156,7 @@ layout responding to space, with camera state preserved when rotating.
 │             \               ├──────────────────────────┤
 │              D⬡ 12          │ Current action           │
 │                             │ A → B / counts / outcome │
-│  focused group with          │ [Once] [Fight on] [Stop] │
+│  focused group with          │ [Attack] [Fight on] [Stop]│
 │  relevant route endpoints    │ [Move armies] [End turn]│
 │                             ├──────────────────────────┤
 │  selected-country full       │ History / event reading │
@@ -163,11 +172,11 @@ choice stays at its top. Totals expand to full names rather than hiding columns.
 
 ## Desktop: 1280×800 and 1920×1080
 
-For the broader design, a 56px header and 360px panel + gap 8px leave **912×744**
+For the selected all-device design, a 56px header and 360px panel + gap 8px leave **912×744**
 and **1552×1024** stages respectively; inset canvases are **896×728** and
 **1536×1008**, or about **896×684** / **1536×964** uncovered after a tool row.
-Existing 0.1.1 appearance can be retained for the bounded portrait
-slice. Do not rebuild the map merely to fill a differently proportioned pane.
+Desktop is included with tablet and phones in the same acceptance scope. Do not
+rebuild the map merely to fill a differently proportioned pane.
 
 ```text
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -178,7 +187,7 @@ slice. Do not rebuild the map merely to fill a differently proportioned pane.
 │       A▱ 8 ───── B◇ 3                           ├────────────────────┤
 │      /          |                              │ A → B               │
 │    C○ 2         D⬡ 12                          │ counts + last result│
-│                                                │ Once / Fight / Stop │
+│                                                │ Attack/Fight on/Stop│
 │       ORIGINAL GAME MAP / SAME GEOMETRY         │ Move / End turn     │
 │                                                ├────────────────────┤
 │  selection + legal borders + explicit crossings │ Full battle history│
@@ -281,6 +290,11 @@ Nearby/candidate picker (in choice area):
   D · Seat 4 · 12 armies    [Inspect] [Choose D]
   [Return to map]
 ```
+
+Those Choose controls belong to Raid targeting. Combat candidate rows instead
+say **Select target** and stage the pair; only the separate Attack commits one
+exchange. Pause/resume, surface closure, camera movement and orientation never
+press Attack on the player's behalf.
 
 Discard uses five named “Discard …” actions, no Skip and no preview of the new
 draw. Reward uses its existing notice and Continue. Loss uses Watch computers /
