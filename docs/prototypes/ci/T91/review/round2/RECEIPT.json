@@ -1,0 +1,53 @@
+{
+  "expectedModel": "claude-sonnet-5-5",
+  "actualModel": "claude-sonnet-5-5",
+  "observedSessionId": "d76dae58-cb6f-4c9e-bada-e8d3d7a6e2a8",
+  "assistantModels": [
+    "claude-sonnet-5-5"
+  ],
+  "sessionId": "d76dae58-cb6f-4c9e-bada-e8d3d7a6e2a8",
+  "pid": 1294052,
+  "exitCode": 0,
+  "seconds": 129.552,
+  "failure": null,
+  "temporaryDir": "/home/diego/projects/malpaco/.cache/review-evidence/pr212-1f6b78f13ae5/tmp",
+  "cliVersion": "2.1.292 (Claude Code)",
+  "command": [
+    "claude",
+    "-p",
+    "Read the full review brief at /home/diego/projects/malpaco/.cache/review-evidence/pr212-1f6b78f13ae5/prompt.md before any other action.",
+    "--model",
+    "claude-sonnet-5-5",
+    "--effort",
+    "medium",
+    "--setting-sources",
+    "",
+    "--settings",
+    "/home/diego/projects/malpaco/.cache/review-evidence/pr212-1f6b78f13ae5/settings.json",
+    "--permission-mode",
+    "dontAsk",
+    "--permission-prompts",
+    "none",
+    "--tools",
+    "Bash,Read,Grep,Glob",
+    "--strict-mcp-config",
+    "--disable-slash-commands",
+    "--no-chrome",
+    "--verbose",
+    "--output-format",
+    "stream-json",
+    "--session-id",
+    "d76dae58-cb6f-4c9e-bada-e8d3d7a6e2a8",
+    "--add-dir",
+    "/home/diego/projects/malpaco/.cache/review-evidence/pr212-1f6b78f13ae5"
+  ],
+  "sha256": {
+    "stdout.jsonl": "35aabb366cebdc3e089f86e9a544bff2eb99c646596701995bc99a35759b9407",
+    "stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "final.md": "2513a3f687bc6e67f90d4187e7395b735eb03b6b39b281a3e553fcef2efe44a6",
+    "prompt.md": "37d071e0c1a1f0feec156c332fb9020e39bd0fe1099e1b28e633f44b122e0fbf",
+    "settings.json": "e0d01fbc6932b85ded3af93117cdb6997d5e9bdf8e6589e28bdff901bbc63723",
+    "inventory.json": "33187c461817cd68e2c7b408cf5602ff1d4312edbbcbfc6009dfb044dd9468de",
+    "full.diff": "f8974447d3aa501efebfdfff4d940ad5e732abd265256431b92c225ce6acc3bb"
+  }
+}
