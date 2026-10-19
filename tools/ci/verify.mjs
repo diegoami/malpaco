@@ -21,7 +21,7 @@ function run(name, executable, args, env=process.env) {
   assert.equal(result.status,0,`${name} failed; retained ${relative(root,evidence)}: ${result.error?.message??result.stderr}`);
   return result.stdout;
 }
-const omitted = path => /^docs\/.*\.(?:png|tar\.gz|tgz|zip|webm|mp4|pdf)$/.test(path);
+const omitted = path => /^docs\/.*\.(?:png|tar\.gz|tgz|zip|webm|mp4|pdf)$/.test(path) || /^docs\/.*\.(?:tar\.gz|tgz|zip)\.part[^/]*$/.test(path);
 try {
   // Run the frozen semantic/wiring tests against the actual workflow, without a YAML dependency.
   const guards = run('guards',process.execPath,['--test',...run('guard-files','git',['ls-files','tests/tools/ci-*.test.mjs']).trim().split('\n')]);
@@ -30,7 +30,7 @@ try {
   const verifyJob = workflow.match(/^  verify:\n([\s\S]*?)(?=^  ci:)/m)?.[1];
   assert.ok(verifyJob,'Missing verify job');
   const sparse = verifyJob.match(/          sparse-checkout: \|\n((?:            .*\n)+)/)?.[1].split('\n').filter(Boolean).map(s=>s.slice(12));
-  assert.deepEqual(sparse,['/*','!/docs/**/*.png','!/docs/**/*.tar.gz','!/docs/**/*.tgz','!/docs/**/*.zip','!/docs/**/*.webm','!/docs/**/*.mp4','!/docs/**/*.pdf']);
+  assert.deepEqual(sparse,['/*','!/docs/**/*.png','!/docs/**/*.tar.gz','!/docs/**/*.tgz','!/docs/**/*.zip','!/docs/**/*.webm','!/docs/**/*.mp4','!/docs/**/*.pdf','!/docs/**/*.tar.gz.part*','!/docs/**/*.tgz.part*','!/docs/**/*.zip.part*']);
   assert.equal((verifyJob.match(/node tools\/ci\/verify\.mjs/g)||[]).length,1);
   assert.doesNotMatch(verifyJob,/npm run build|package:playable|acceptance\.mjs/,'Packaging belongs to this verifier and runs once');
   assert.match(workflow,/CLASSIFICATION_RESULT: \$\{\{ needs\.plan\.result \}\}/);
@@ -75,7 +75,7 @@ try {
     const path=[...pending][0];pending.delete(path);if(visited.has(path))continue;visited.add(path);
     assert.ok(existsSync(path),`Missing tested prototype: ${relative(root,path)}`);
     const text=readFileSync(path,'utf8');
-    for(const m of text.matchAll(/(?:\b(?:href|src)\s*=\s*["']([^"']+)["']|url\(\s*["']?([^)'"\s]+))/gi)) {
+    for(const m of text.matchAll(/(?:\b(?:href|src)\s*=\s*["']([^"']+)["']|(?<![\w])url\(\s*["']?([^)'"\s]+))/gi)) {
       const value=(m[1]??m[2]).trim();
       if(!value || /^(?:#|data:|blob:|https?:|\/\/)/i.test(value))continue;
       const clean=value.split(/[?#]/)[0];if(!clean)continue;

@@ -58,6 +58,9 @@ jobs:
             !/docs/**/*.webm
             !/docs/**/*.mp4
             !/docs/**/*.pdf
+            !/docs/**/*.tar.gz.part*
+            !/docs/**/*.tgz.part*
+            !/docs/**/*.zip.part*
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -79,7 +82,7 @@ jobs:
         with:
           name: screenshots
           path: screenshots/
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 14
       - name: Upload playable archive
         uses: actions/upload-artifact@v4
