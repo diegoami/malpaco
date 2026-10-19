@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {mkdtemp,readFile,writeFile} from 'node:fs/promises';
+const run=(cmd,args,env=process.env)=>{const r=spawnSync(cmd,args,{encoding:'utf8',env,maxBuffer:32*1024*1024});process.stdout.write(r.stdout??'');process.stderr.write(r.stderr??'');assert.equal(r.status,0,cmd+' '+args.join(' '));return r.stdout;};
+const fresh=await mkdtemp('/tmp/malpaco-t91-preflight-');
+run(process.execPath,['docs/prototypes/playable/acceptance.mjs',fresh]);
+const expected=run('git',['rev-parse','HEAD']).trim();
+const manifest=JSON.parse(await readFile(fresh+'/malpaco-playable/BUILD.json','utf8'));assert.equal(manifest.sourceCommit,expected);
+const source=run('npx',['playwright','test','--list']);
+const release=run('npx',['playwright','test','--config','playwright.release.config.ts','--list'],{...process.env,PLAYABLE_EXTRACTED_DIR:fresh});assert.equal(source,release,'full browser inventory matches exactly');
+const out={mock:true,gitHead:expected,packageSource:manifest.sourceCommit,extracted:fresh,inventoryEqual:true,inventorySummary:source.trim().split('\n').at(-1),limits:'Local sparse checkout only; no remote transfer timing, no browser execution, no workflow execution. Production verifier must expand actual sparse closure audit.'};
+await writeFile('docs/prototypes/ci/T91/preflight/verify-mock-01.json',JSON.stringify(out,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(out));

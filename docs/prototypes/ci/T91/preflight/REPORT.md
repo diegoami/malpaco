@@ -1,0 +1,9 @@
+# T91 main-authored preflight
+
+Baseline: original workflow retained byte-exact in workflow-original-01.yml. Policy, pinned-Git-plan and workflow-wiring guards fail before implementation (raw red files). Main-authored boundary and three specifications were frozen before dispatch; SHA256 in frozen-specs-01.json.
+
+Temporary mock: 13 guard tests pass (guards-mock-03.txt). Twelve policy/workflow mutation classes were tried. Initial status-deletion mutant survived because all status negatives also had previous_filename; main appended an independent no-previous-filename case, which kills that exact mutant (rename-deletion-mutation-02.txt). All other 11 mutants were killed. Three separate event/base/head SHA deletion mutants are killed by real temporary Git-history tests. Originals and every failed result are retained.
+
+Exact npm test && npm run build passes from provisional sparse inputs: 818 Vitest in 60 files and 9 harness tests; both TypeScript checks and Vite build. The mock verifier independently packages/extracts/verifies ten files, nine SHA256 entries and four HTTP paths; BUILD.json sourceCommit equals real6796b2a4 HEAD. Exact source/release Playwright --list outputs match:384 tests in38files, both existing viewports. Logs full-mock-01.txt and verify-mock-01.json retain results and temporary extraction path.
+
+Limits: no browsers executed in this preflight, no workflow execution, no remote checkout measurement, no speedup claimed. Main mock verifier audits package provenance/inventory but is not the production sparse dependency audit. The implementer must build that audit and run all final checks; final single actual CI must execute the entire extracted suite. Mock source copies are retained in this directory only. Actual workflow restored exactly; temporary policy/plan/verify files removed. No old evidence/worktree changed or deleted; no existing CI cancelled/retried.

@@ -1,0 +1,40 @@
+✔ allowlist: known prose additions/modifications alone take lightweight validation (1.198572ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.231905ms)
+✖ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.820361ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.162931ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.143107ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.79697ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.692392ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.226526ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (0.874571ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.717156
+
+✖ failing tests:
+
+test at tests/tools/ci-policy.test.mjs:19:1
+✖ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.820361ms)
+  AssertionError [ERR_ASSERTION]: {"eventName":"pull_request","files":[{"filename":"README.md","status":"modified"}],"changedFiles":2,"complete":true}
+  
+  'docs' !== 'full'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-policy.test.mjs:20:433)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'docs',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

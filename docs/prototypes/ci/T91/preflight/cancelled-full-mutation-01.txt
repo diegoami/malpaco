@@ -1,0 +1,40 @@
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.912647ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.236463ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.875268ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.703838ms)
+✖ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (1.71033ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.848771ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.440337ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.226107ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (1.126616ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51.464648
+
+✖ failing tests:
+
+test at tests/tools/ci-policy.test.mjs:30:1
+✖ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (1.71033ms)
+  AssertionError [ERR_ASSERTION]: cancelled
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-policy.test.mjs:33:96)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
