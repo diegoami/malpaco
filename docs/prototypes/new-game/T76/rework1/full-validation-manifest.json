@@ -1,0 +1,1919 @@
+{
+  "archiveSha256": "5c4844b2415ccbfa2e6b50ce8ecde38a616f82a8ba0d621dc9fdc0b88e5ac37e",
+  "bytes": 89686605,
+  "parts": [
+    {
+      "path": "full-validation.tar.gz.part-000",
+      "bytes": 31457280,
+      "sha256": "891a522cb1f79acfe57f29c97d21d928f7ad27f73c4618e42946bf8ed8e8126e"
+    },
+    {
+      "path": "full-validation.tar.gz.part-001",
+      "bytes": 31457280,
+      "sha256": "57cac020846f157c995b7a8bd06f347a6c9c21acb9a55e24f103c19ee026775d"
+    },
+    {
+      "path": "full-validation.tar.gz.part-002",
+      "bytes": 26772045,
+      "sha256": "1665ae1d3100b270d7720df6399e35c80fcbd0ace0fb9edf6be967f53232a26f"
+    }
+  ],
+  "files": [
+    {
+      "path": "rework1/full-unit.log",
+      "sha256": "af0a3c113e388b869093082024949552c0748a9c456603987d3b7a3e4f24ad1d",
+      "bytes": 79,
+      "mode": 436
+    },
+    {
+      "path": "rework1/mutation-assertions.json",
+      "sha256": "bd0619249196c85466eef7a90b1da95227baa550a322d8396f863c9fe61b8981",
+      "bytes": 2771,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-build/command.json",
+      "sha256": "b7dbef19c8ce7336d094fff552d89e802a52739b3f4f0d4743d07d14736cece9",
+      "bytes": 2279,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-build/raw.log",
+      "sha256": "eb40e351e3e6492b1817483053e1a5166f90e632750f08ae63544dda06176259",
+      "bytes": 604,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-build/receipt.json",
+      "sha256": "630c8d18cfdd5283ab9471e78070c3ab823bed01132998fae2c41e228a0a3750",
+      "bytes": 958,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-layout/browser/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1280x800/cards-drawer.png",
+      "sha256": "b825da5a73a0c6807d3442f44e788d232ff6b2d0996d5067ee47328741e47c8c",
+      "bytes": 227675,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-geographic-021f3--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "sha256": "f24392310c3a7022a99f7c938148ad1b9bde08d6f5fd87804e399007841719f2",
+      "bytes": 388399,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "sha256": "336320f2d167faea5e71fcb59c0df26ac345a7f55777aac47a2a9fe86a89edbf",
+      "bytes": 224836,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "sha256": "31be8271b7be859a78945a6b08ae051a36d446eac69a6a0ad61a861f1701da5e",
+      "bytes": 206351,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "sha256": "ddb38ed88af50a4e2d695160487d905a8a3cf26ad4f36027bdf541651c086e79",
+      "bytes": 386000,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-geographic-3d419-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "sha256": "d75ec109145feaf342d95e8ff4bf6b8dd7239d73801a42ce0a7dd5d587959da0",
+      "bytes": 341644,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/both-hidden.png",
+      "sha256": "cfc8fa6d48de0714024b8fba8ce564a7f6bf77492f4aa046d50b6570c8e9f04c",
+      "bytes": 282707,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1280x800/expanded.png",
+      "sha256": "3a168a52936811864bd23e04703af73492e0a65ddfd375dd7a6d9a3655612723",
+      "bytes": 243993,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/both-hidden.png",
+      "sha256": "69b9e75dd0ec7ccdf4c623d71490f34bfbf00b98f68056abee8222fb61431b77",
+      "bytes": 485415,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-reference--250b4-ap-area-and-restore-exactly-1920x1080/expanded.png",
+      "sha256": "a1c875c311caa99025c0ade6c719a5cc07947c4ad85ce4dd3f0e363f406910ea",
+      "bytes": 415870,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-reference--99a05--focus-without-game-actions-1280x800/cards-drawer.png",
+      "sha256": "47ed70154f46e6c38fc8c3e843fe08278463409d69ea0f4e8cce67dd6316ff3c",
+      "bytes": 267192,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/browser/hideable-panels-reference--99a05--focus-without-game-actions-1920x1080/cards-drawer.png",
+      "sha256": "5fa2a61e88d544d5148fbfd52be689725ece9b4d2f9545affd047b19c494d244",
+      "bytes": 467604,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-layout/command.json",
+      "sha256": "7f9c049cd51e04f44fe3dfd3bbb942f95df2fc554b3a7ec43970b11df8f11fb5",
+      "bytes": 2457,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-layout/raw.log",
+      "sha256": "0df050096551f5f552073efae3a510b9b3f469314e677a25e3a637266ea22619",
+      "bytes": 1313,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-layout/receipt.json",
+      "sha256": "421fb3b4cd6f10bbd100f4b6597aed5053806be6dfa41fc1504b58d184756076",
+      "bytes": 959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-layout/results.json",
+      "sha256": "413f704b2bb9f0cd2e5f82c48810a17ce706b2bdbdca912246bda726320a22e1",
+      "bytes": 15903,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-list/command.json",
+      "sha256": "89035feb142647a695dc594a425cacd63c9afa1f56a91134e7b31174d5c46da6",
+      "bytes": 2293,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-list/html/index.html",
+      "sha256": "21c5086c739a652fdd630eaf765cf5e7cb2da856e33ceb47fc3fd8819e035a2b",
+      "bytes": 573891,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-list/raw.log",
+      "sha256": "b991c7a9df71f285b03ad631c7ef9655bc48cdc0c3faa58507b499400497ccf4",
+      "bytes": 48740,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-list/receipt.json",
+      "sha256": "b0b2251046736f67caa039229290971c5d98242b6619775dbeea423f5c0e665f",
+      "bytes": 959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-regression/battle/accessibility-LqhltS/capture-controls-fit-1920x1080.png",
+      "sha256": "666c19953c2d08cf013cb8e417c161443951704924e9336cf50bfd98871cce00",
+      "bytes": 445167,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/accessibility-Mg3kOG/keyboard-stop-1280x800.png",
+      "sha256": "2ed8422f9c196f9833ef2780e9d950e19fa4507a2e73b22b0f878877db4abea3",
+      "bytes": 257250,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/accessibility-fdWP5b/capture-controls-fit-1280x800.png",
+      "sha256": "3251661eff845c2b083fdb83e106d68cb2bdd10b5009bc4f0297a8669ff4862e",
+      "bytes": 259678,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/accessibility-llfvtn/keyboard-stop-1920x1080.png",
+      "sha256": "1d38210c0e5ec7b906efaf038f4aae7f52367193a04759f653dff88ed4839e30",
+      "bytes": 436596,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-5ch4xg/capture-minimum-done-1920x1080.png",
+      "sha256": "e2533ab983520e5af57851cfaf17bdc3367312266b05c5c9f782ade79e62a666",
+      "bytes": 448981,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-7miYcK/capture-minimum-pending-1280x800.png",
+      "sha256": "c00f1b9e21862d5c8e901a4813d47395de4c93ef8cc211e91d1ece976f5187bb",
+      "bytes": 259526,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-AdzxKU/manual-stop-1280x800.png",
+      "sha256": "e106a9246be4283efabcf42a16bd1ee585ae178d01906374d8dd223c5d1c52f6",
+      "bytes": 259089,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-MyZM3w/capture-minimum-pending-1920x1080.png",
+      "sha256": "1ceab1ccd9ed323ec193258ee567bf60ad1eab42c96b9dcbacb37ba1549ad1ae",
+      "bytes": 445008,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-N7ZYub/capture-minimum-done-1280x800.png",
+      "sha256": "56549b19e07bb939feebf1390053f1a8927fa96aa810ad4ad543b6d2548d99ab",
+      "bytes": 263326,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-N9v6hf/threshold-stop-1920x1080.png",
+      "sha256": "17942482c147106557ab7336ed958b1585f93852e08dc07d5fa379765eb8148c",
+      "bytes": 438732,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-RRGF5k/capture-maximum-done-1280x800.png",
+      "sha256": "c553b1da658448a6b33b58410b2b120b562184e2d07eeb33525a67bb3cd6fb4b",
+      "bytes": 262943,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-UTI1Vq/single-tie-1920x1080.png",
+      "sha256": "a763f39a7c3776d75fab4281367703f8a30ee6d10e737a166d399caa82891f5f",
+      "bytes": 439708,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-XVQV6u/manual-stop-1920x1080.png",
+      "sha256": "7133b7404ab3867505cdcb21f58f399d084bc6f277a97485316f0c719d1f40f3",
+      "bytes": 439420,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-iCGB0Q/capture-maximum-done-1920x1080.png",
+      "sha256": "d68182289b285b8794783bb79896de8349d616a0fb6d979fc214b3238918bbd3",
+      "bytes": 448898,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-lBr2tq/capture-maximum-pending-1280x800.png",
+      "sha256": "a36022104a880f05a5d5a62aea9a007a84788510a25a5c004ab9197b6d914b3d",
+      "bytes": 259650,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-oNnhDx/capture-maximum-pending-1920x1080.png",
+      "sha256": "f6ad11218aacfbd31a798a50012739626c4511a2c1c7da20d6c2c5d8744c06c0",
+      "bytes": 445198,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-pu9D18/single-tie-1280x800.png",
+      "sha256": "9176669716690ef338da8cd9658dfe821888642165801fc3d21f279d240257c8",
+      "bytes": 259306,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/battle/battle-zFXnpA/threshold-stop-1280x800.png",
+      "sha256": "d2307c4966c0acf3e5ecf59da6590beef4cc1c114b3e166dab06f25b6e5eff68",
+      "bytes": 258386,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/.last-run.json",
+      "sha256": "91d1c43004802cd49950d78eb11c8fa7d05da8ffffe219a8b13b2f561bc00903",
+      "bytes": 45,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-empty.png",
+      "sha256": "6ba4ca032afec088f83cc009341c89b81029a85c85b08614397c65ee29575a4b",
+      "bytes": 267774,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-hand.png",
+      "sha256": "a2ba5bf58ef63a71d7d4e45cbb2c98f1f54ce3a483dbe74fe21afab256bba99c",
+      "bytes": 269069,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running-running.png",
+      "sha256": "7fb3839d4d6b585045803e4e86962e9b9fb3cabbb47248ee2315e604d74fc5af",
+      "bytes": 262736,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-attack-running.png",
+      "sha256": "527719ff43a66d3c4537384f497a841f386f82581fad2dd3c6dbe5659ed47c99",
+      "bytes": 269233,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-compact-capture.png",
+      "sha256": "2b9a7024169e61640d80834a1368de9bba99754798c7de2df99203e2c3d4bc0c",
+      "bytes": 264461,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-empty.png",
+      "sha256": "3113c4fbbfa8d8bcd8c746225293bb5b0f8e5709bc5270043ec6b789d16cec42",
+      "bytes": 269802,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-hand.png",
+      "sha256": "9850205ce13cb963f2d9e079081a46131e322a1f3106689a7eafc1a252e72a35",
+      "bytes": 271046,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "sha256": "581daf007875e76e6c457bce12f2aea6a1ebcc5cef58c1148a4154247ba0fee7",
+      "bytes": 266691,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-attack-running.png",
+      "sha256": "e38e7f59dc0cd302436d1b81e46fde555f02fa6f9e6acf781a051c4cca29f382",
+      "bytes": 271282,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid-detailed-capture.png",
+      "sha256": "f0aef450e62a623054857b5f07ee4a9792264e97471aa0e972d72ea4e89ba329",
+      "bytes": 264252,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-compact-card-choice.png",
+      "sha256": "464dc1619f2c8cb96aea95b12da2cdcbc8e818bbeea6b89c7ef5c3d5f3c8d6ab",
+      "bytes": 263391,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "sha256": "d9fde4cc44dd9ec545ebd2ed957e3fe0759e83a25c4d0d6a86d744fe8cfd3990",
+      "bytes": 263179,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "sha256": "4aa88b5333c5b31655ad5de691974f67eb5c96d43fb2517c9a0f61680cb23717",
+      "bytes": 233841,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "sha256": "12b9999c0bddfcf8117abfa5b463f75a294ed78a8af5f07e80003a8b28519ca8",
+      "bytes": 232187,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "sha256": "e5c111286bbbb62b09882394504b7aa9b66038a36c1dc6a96adca3d73eb91ff8",
+      "bytes": 229030,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-attack-running.png",
+      "sha256": "bd0fed623b8e0175c21245c7b761662f994fcfceccfc0a1bd35806ffadf45121",
+      "bytes": 232855,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-compact-capture.png",
+      "sha256": "ba07d201d57ccfbd32f9c8ec20405266d41757f2f39ebc551e2f3bb03fe0a9a2",
+      "bytes": 227739,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "sha256": "c56044a055b672aca4afcd29cd08a7140e93f74014af23567dad43a6fb5b0abb",
+      "bytes": 236441,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "sha256": "5766e957ffdbe6f8fd77098960137e853f77ee545e27aa1cd8a7f7407c2be2af",
+      "bytes": 234478,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "sha256": "d293080e31f5dec6265f47329471e0f711f5c237607d80ceab28f1c853323d1c",
+      "bytes": 233551,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "sha256": "0de8086b539b8e5d146496430c972832dbcfef45b9088b274d841014c9564f47",
+      "bytes": 235142,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human-detailed-capture.png",
+      "sha256": "49f227c90d75a6569c3957e5018e041db7ceab27c1c6dd6b07c24849eea2e744",
+      "bytes": 227526,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "sha256": "870722a876c403be0e7d6efac0376e416d81dd87f096b4616c8c7137d5079c69",
+      "bytes": 221543,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "sha256": "ed2ebbf039ae8e44fb82159239d6562a1938c7bc1f9abd299769246dd7fdb6bb",
+      "bytes": 221487,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1280x800/metrics.json",
+      "sha256": "f0ca7b72cc6139426336168a4e89502b2dfe1a2030906799ef61b19c062368f0",
+      "bytes": 423474,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-empty.png",
+      "sha256": "116f57917d55da9c4cefc222eb7e7ce91dbc8d2ea3c4074403f2fd69783b69fa",
+      "bytes": 451140,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-hand.png",
+      "sha256": "11bc6e00035648eda0af1bfdc770ba486648435f2589ceb10853eba6f5232222",
+      "bytes": 466039,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running-running.png",
+      "sha256": "669a99dd96a86e35c9ca910b0d878c9112e19cde3b4b64ab73d22c86dac38c68",
+      "bytes": 456023,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-attack-running.png",
+      "sha256": "2e185ed63211366ecbed7169fa15ea45507a6f256c3147a0a687005e15150d86",
+      "bytes": 464964,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-compact-capture.png",
+      "sha256": "0ba6661555e44bd6079ece25022916203f9372b68890d08c421947d39195f5cd",
+      "bytes": 461071,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-empty.png",
+      "sha256": "5828ec22e5f8712acf7ae26a22b7ee4b62aec85abb495eea9e23ff889b3415d1",
+      "bytes": 454147,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-hand.png",
+      "sha256": "10f81b65a190047b4ff8c7e4ded44b0370aa4eae58f493e831c827ac8af2c4c1",
+      "bytes": 468972,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running-running.png",
+      "sha256": "671c868fa8503bdd147368ebcca47dfaaf73e8e4bc82f97dc6f753e539da9703",
+      "bytes": 461378,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-attack-running.png",
+      "sha256": "f482e9c6ab1484800b276c6fa4b4d9867ac218d44255afac87dde79f81edd2ed",
+      "bytes": 467752,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid-detailed-capture.png",
+      "sha256": "2ddf69048372333b336f1b2dc6a06dd7e0115cf596baa718a1b7c9c290394c25",
+      "bytes": 460866,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-compact-card-choice.png",
+      "sha256": "632b5dcbcb30419e41ea966e93776000a36ca6304022b844a4ff4a36b552519a",
+      "bytes": 456713,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/T39-legal-pending-raid.json-detailed-card-choice.png",
+      "sha256": "2e789d9a2987d5fc9d96a5496988002078780b56d30baa645d22af1c1850e95b",
+      "bytes": 456510,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-empty.png",
+      "sha256": "a06764f65f0c58bed86b7fb521b84afd2acf0486122b5fc4f03910331c447899",
+      "bytes": 395313,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-hand.png",
+      "sha256": "5e8a1c12252621195a9730e526b0f7b3ad5f8457908d47599929fdab38878c6f",
+      "bytes": 389132,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running-running.png",
+      "sha256": "d7f1f1bfa128a4f6e8e636256f6a0827cb3e5f24fc9daf09598cd936b8bf0138",
+      "bytes": 388194,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-attack-running.png",
+      "sha256": "492fed4a6931db89f197076c3c004d7b00cf954ca4c4da218adb6cb4ec8bbc39",
+      "bytes": 392217,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-compact-capture.png",
+      "sha256": "784e49479108719754d65b0bd146bc7f7c4c6afa937353c233284d67f253465a",
+      "bytes": 382796,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-empty.png",
+      "sha256": "c5347dbdadec9de7fafff942e3fafea9b9f9d0740446fa75a5a08163be4ed6e9",
+      "bytes": 397968,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-hand.png",
+      "sha256": "4f7217878bc8e8be5eacbc8e8bcf4d4635b93b46e79db946c179888978a451ab",
+      "bytes": 392187,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running-running.png",
+      "sha256": "885dcc534a3366d5b3e58f670956c08f10b2bef18d8d1b18d5935c21d5c83253",
+      "bytes": 394021,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-attack-running.png",
+      "sha256": "88ba04b0d34b3ec1d6cb93c4ecb9afb7d1ba311e35be4fdcd5f1c6d8af84adcb",
+      "bytes": 395273,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human-detailed-capture.png",
+      "sha256": "95e87251bf24d330e778781b108eb3f7417632d445bdf0fc9d8aed2e68735fd7",
+      "bytes": 382591,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-compact-card-choice.png",
+      "sha256": "084e9aaf78786b43ca3f96c202e4204d220cd1c3f33c61ccc0768e60d14b6dc6",
+      "bytes": 377384,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/geographic-raid-pending-one-human.json-detailed-card-choice.png",
+      "sha256": "6caf92cad1a4c12b8ff48b031cdfeb3eff010283229d35d4d2566d24f02ebbb0",
+      "bytes": 377330,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/battle-panel-fit-complete--36c8a-ble-without-outer-scrolling-1920x1080/metrics.json",
+      "sha256": "ffa0b1a8f7cb670767be868263c48d64fd3376f3c95d0ea2d01aaeb49beb5724",
+      "bytes": 434304,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-compact.png",
+      "sha256": "d953d5f55ce8244abc6221ad83629f769be9d7823132739e5abeeed1591937be",
+      "bytes": 249103,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1280x800/Anchor-detailed.png",
+      "sha256": "495c5e015e12b929081c8b15a00f34d3c7263c08284e3bee8801b274d5d224f0",
+      "bytes": 250065,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-compact.png",
+      "sha256": "438966df6c78379931f41d5c65a45aa2be76a88f3e7d18fe033464e1b081be77",
+      "bytes": 435431,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Anchor-literal-effec-96103-public-piles-fit-both-modes-1920x1080/Anchor-detailed.png",
+      "sha256": "a211d40d1adc4a3a3932c54d5c29afa4296d6abbe5acb3c5f5f4ffcd0f626474",
+      "bytes": 436411,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-compact.png",
+      "sha256": "f55ae232923823edaf39cfddf582bc4f917ca8b10f4dc530b4a5fd5b47b2e449",
+      "bytes": 252766,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1280x800/Compass-detailed.png",
+      "sha256": "1bf54df9008fbd084f02a2ea0e2d3b2a739119bfea6973ac9a1a672f8fb59583",
+      "bytes": 253740,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-compact.png",
+      "sha256": "6c36e4ac90a70ffb6ddae5db456bcf5de9d86524af9eb80c45415a7a13fddaf5",
+      "bytes": 442400,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Compass-literal-effe-f75f1-public-piles-fit-both-modes-1920x1080/Compass-detailed.png",
+      "sha256": "a0755f1ed4a61982bf2fe18d8f2ba3d4719bbf252085217a661cafc5f19a2d35",
+      "bytes": 443395,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-compact.png",
+      "sha256": "b9e4bfa57ab46c611f95ab0ddbd2482dbe399a8575da654215939ba690083203",
+      "bytes": 251513,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1280x800/Lantern-detailed.png",
+      "sha256": "767ea5d6c870ff3e3c13484e90e1182e545419d71e075719acbdcd60b7b25c91",
+      "bytes": 252484,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-compact.png",
+      "sha256": "279983e6c7f617ab4a21b5ac72e2c7e3b0edcfbf4ee11a078ee1ce5dd08b2c59",
+      "bytes": 442578,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Lantern-literal-effe-e0ef6-public-piles-fit-both-modes-1920x1080/Lantern-detailed.png",
+      "sha256": "1a0d51bab7d58e34086b9fd545a58c1ccbc0506ac52267d359a84487bc0f4c40",
+      "bytes": 443597,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-compact.png",
+      "sha256": "e4a1e00f235a20390faad54128d4967f3302a2f7c3044f8ade94a599f14d366e",
+      "bytes": 246069,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/decisive-reward-detailed.png",
+      "sha256": "a01ba963d29750c7ac0b45aae829e4c0badfdccdc6511503a6d2f533f4a2b8c1",
+      "bytes": 245857,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-compact.png",
+      "sha256": "0e5f62041a4ea3f431aecc14338b8696b3f5d9b080311d6dea6089886bf275c4",
+      "bytes": 247279,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1280x800/squall-detailed.png",
+      "sha256": "aa010d9e5500697a92cd4bd01af07fe003d082f9e29bd79b558803399e4aadf0",
+      "bytes": 247062,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-compact.png",
+      "sha256": "7bd73be10b3b4c8fb5e0f39ace1d1aff4061c26e0f92da15ca62dd430f06d847",
+      "bytes": 430095,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/decisive-reward-detailed.png",
+      "sha256": "f66deaac40966dfbc99fd722479fabb1d0f9c028c832d26c786c79baec285752",
+      "bytes": 429899,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-compact.png",
+      "sha256": "255c5c159ccf5a2270f65f0a923f0d7d14156346879104165d5c2537f4f40920",
+      "bytes": 439148,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Squall-loss-and-deci-55de7-ithout-extra-engine-actions-1920x1080/squall-detailed.png",
+      "sha256": "9d0f3ae03722ce1de749df18987ff13c27fe3aa78cac2c8fb64f76f92cc7a1d2",
+      "bytes": 438997,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-compact.png",
+      "sha256": "2e1e9c8a35fca68d042c0334f3af45157baf380e395a4c1ba3ea1232888621a3",
+      "bytes": 262184,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1280x800/Surge-detailed.png",
+      "sha256": "77e28de216c5534ebf52f9cc361e5091493bf9465e9b527081a04d2c8d09aaa2",
+      "bytes": 263188,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-compact.png",
+      "sha256": "671aad6de7697eb8cef9c55d75e04170b5d9b88990ab92de5dbcf527d33fa8b2",
+      "bytes": 455507,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-Surge-literal-effect-b6be3-public-piles-fit-both-modes-1920x1080/Surge-detailed.png",
+      "sha256": "d1f9997ec4f159bf571ddc000811dc7d08290e75570ceae9aeb8a7365c34a0eb",
+      "bytes": 456519,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-compact.png",
+      "sha256": "1c19b829654fc378204ccefa6203c685dff5c591217c6411051007a12054b062",
+      "bytes": 264478,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/full-hand-detailed.png",
+      "sha256": "7b8b717babfa7d294c2251bc8a2dfd30a55b40d56ee1b812eca782b5f119c4d2",
+      "bytes": 265452,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-compact.png",
+      "sha256": "a5e7dae1a6949b532cfcc6b70d7f5472071182ac86c8cb1fb1ce6867e0527478",
+      "bytes": 256825,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1280x800/normal-reward-detailed.png",
+      "sha256": "e8a0bead98532f5558830ee20db574364eb3ca070b4a6ee954d59648f7e0ceef",
+      "bytes": 256615,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-compact.png",
+      "sha256": "b4facc917c2497b8e9a4725f582dc09085f7816ba42e8ff677725f2c8643187a",
+      "bytes": 459573,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/full-hand-detailed.png",
+      "sha256": "7d62f7371bf6e7eddd6b8ade4309c9d48baff466358f48534ccbddf3e217d212",
+      "bytes": 460588,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-compact.png",
+      "sha256": "6b51509c02bb3820c7ffd7805cc1d2c75026e42bc5c2215637889eb5cbd97313",
+      "bytes": 448092,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-all-five-pre-draw-ch-c8f2d-ges-neither-history-nor-RNG-1920x1080/normal-reward-detailed.png",
+      "sha256": "0ebc87ce68b1cf4a5254fcc86fd9472dc99b5b558e58b99c1cb9b0bcf3987f87",
+      "bytes": 447867,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-compact.png",
+      "sha256": "7d29599cba7c639c12ba9c2080ffe58e7ba7f41c5cecaf692d0dba40629d3151",
+      "bytes": 263887,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1280x800/reference-raid-detailed.png",
+      "sha256": "036d7d3988a033d5e3a64a86cd1ee26672b3a3a7f824a264b450403f26ee70dd",
+      "bytes": 263676,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-compact.png",
+      "sha256": "c0bd10a0796e1b41d5d363cdaead77e1b72189194d0d4ec9108d5ab0b9c99895",
+      "bytes": 450137,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-reference-Raid-has-a-f44cc-se-confirmation-is-ordinary-1920x1080/reference-raid-detailed.png",
+      "sha256": "8fdaa9258640fea733f33e6f1a70055c8701f5ce4329959efcc735d20c0fc8dd",
+      "bytes": 449924,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/attachments/geometry-a37183454115e106295a3c1cd4e1e29fcad978ef.json",
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "bytes": 6791,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/geometry.json",
+      "sha256": "1e2285cc7a682ddd24ddc127af399541d106c5aec05a2c6eb5558311aef0d251",
+      "bytes": 6791,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-compact.png",
+      "sha256": "c6574a11631e1b7e097830ffd4fa6f0554fce5b0211094b804a91a16cb170e40",
+      "bytes": 276717,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1280x800/t40-loss-detailed.png",
+      "sha256": "9e9caaaffaab7202326741c7d1928a36e8e8bf406b336800a7c84895cfdc2093",
+      "bytes": 276520,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/attachments/geometry-a6ad7b3cc298994cbcb192b0073ded63144a2fd6.json",
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "bytes": 7090,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/geometry.json",
+      "sha256": "71320b5a81cca3752118c90d01a2d7992ff80f6f5ba58a4ff74322b351f68968",
+      "bytes": 7090,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-compact.png",
+      "sha256": "f79fee516c67118c6c6f3f683c5c2bdb9f052a337022197e7aabe0e7b0faefd6",
+      "bytes": 481176,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-result-layout-final--d5964--geometry-before-assertions-1920x1080/t40-loss-detailed.png",
+      "sha256": "ecdd4b6a949232cae7eb7237f1bf1f7f0acabd178a5c97e211f67af859de1996",
+      "bytes": 480972,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-compact.png",
+      "sha256": "b73eea46bfffaa06fc5b5202b70b7a4ce4b51695b8f4ac8cd5f14ba9900dc0e4",
+      "bytes": 227135,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1280x800/geographic-remote-raid-detailed.png",
+      "sha256": "a67b6bc5b1acb8c919d34e003fce91234462d2dc808f91aeb0a4fa42c6f0cd97",
+      "bytes": 227074,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-compact.png",
+      "sha256": "0c1f074bea7976e6d677f3a6915c4bd29299fc2ec2c6c76f52ae1ae8cf077b98",
+      "bytes": 370117,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/cards-true-geographic-inco-388f8-data-and-exact-saved-stages-1920x1080/geographic-remote-raid-detailed.png",
+      "sha256": "fd8acf08d188dc9faa17d3095621a3146328aae5da4474e321e26a95821d930c",
+      "bytes": 369993,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--04741-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "1156d84c5ab92a8007f5a2ad45fc8649c71b134f3d8e036775030dbee1e0baf8",
+      "bytes": 418608,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--04741-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "eea9b2162438bbdb56074204a5afc6225a5f35cb6cbe54f8f43a7a9a6f4939d2",
+      "bytes": 375025,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--33b2d--log-load-and-next-callback-1280x800/video.webm",
+      "sha256": "ecc76ded523ec957e057abafe404a4fefb297ee348f0ecc23c595404aaa75c2c",
+      "bytes": 400489,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--33b2d--log-load-and-next-callback-1920x1080/video.webm",
+      "sha256": "b35f8acb3d3303aec97cdeaa770e573927fb71725c773a8847de29b92c7b9f07",
+      "bytes": 306132,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1280x800/video.webm",
+      "sha256": "824f2a925106aa32f22e2891a6b9861a99e56ec49fef7a833206bff0fbbfb62c",
+      "bytes": 473987,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--6f5ea-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "sha256": "55710b9279a50ae96d226516427371395f18457ba1d2c218355a1522a3195410",
+      "bytes": 305062,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1280x800/video.webm",
+      "sha256": "838df25ae3a84f63e68ce8ec9855a84e8eb2fc1889c95415326ff6c8127bdc99",
+      "bytes": 357069,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--73da9-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "sha256": "c596ccdc269764a08c07ff61ad77c03e40245daddbe95acc050dd94122fef318",
+      "bytes": 314714,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--a3300--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "c33072c8628810003901a0797cfb0f5868098c0f065de3ab8977ac4b731a6e42",
+      "bytes": 770927,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--a3300--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "2557e69b3b73433b94ca42fffbf3e55fa81671f6048b7f719b4c5505853aa95a",
+      "bytes": 568090,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--bd335-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "aa6dd5e6519fd96f1e2d7d74627dce5b96a54c12d0ea9f82edcf26346452e437",
+      "bytes": 410748,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--bd335-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "12289e4f9cd3eaef0c4cf8869eabff81a45dd7c08827faaf77064b35e93d70cf",
+      "bytes": 371110,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--c209e--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "76bb49ac6485a70541bef70769123e450d4689cb8486486c5611aa19ed08f420",
+      "bytes": 637597,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-geographic--c209e--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "b537bf351c8dbc3ae850962715566d003217193b03684e38845f816d570d45fc",
+      "bytes": 547673,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1280x800/video.webm",
+      "sha256": "5305e0827515fd93a14e76432a966b96a1c12d4cd857ccba2a88f16c5fc079c1",
+      "bytes": 167482,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-418c4-s-or-moving-an-older-reader-1920x1080/video.webm",
+      "sha256": "3ec2a9898918a02e014e15f8db9b1fee8d675522a089492339c1698fcd98c294",
+      "bytes": 172131,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1280x800/video.webm",
+      "sha256": "b34fa4bb2812b440f8831d8ed6bc33c682c00ac9050551db6321e5192975630c",
+      "bytes": 158067,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-80aa0-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "sha256": "54c668ddb69922e011a1f7e82870e249d0e0d9439dea062dd24d23fefa542706",
+      "bytes": 150579,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "cb6cc8ce379d51442f9e7ee0d3794840326bc59fad8b4f8f5bdb5916256db02e",
+      "bytes": 238307,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-b26a2--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "7597cc965790607e6c248f12a309bc9c5ec82baee10c0baaa1a1ad22fff9a3af",
+      "bytes": 224280,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1280x800/video.webm",
+      "sha256": "878d4c9a7cce78f2c16852732b8360613d3b9be26697a2b0117c57c0e3c717aa",
+      "bytes": 163645,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-e4e57-p-actual-card-bounds-stable-1920x1080/video.webm",
+      "sha256": "0b825caeb1e87ac5f196de55e698b8be63e211dda84c59734dc52c29d7e69e1d",
+      "bytes": 163997,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-eb280-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "92b0498569c7d83b867fd24b09a5a841543cd4b580813fbc375a0d15adeb9981",
+      "bytes": 173453,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-c-eb280-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "043b6bcd7b4092af48b9ba133adbb647544f93f07570f591ab909e2970aa8f42",
+      "bytes": 163572,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-d-301c5--log-load-and-next-callback-1280x800/video.webm",
+      "sha256": "c8b85b891470a976642ef0070a1832f31f43c2bddf4310fc862a3cd31d26becb",
+      "bytes": 146897,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-d-301c5--log-load-and-next-callback-1920x1080/video.webm",
+      "sha256": "89c5cf8db90c7a2ec79c68358064d2eb4abb4109e762273dea8ca67cda6d54c5",
+      "bytes": 147208,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-d-78c88-remain-visible-and-operable-1280x800/video.webm",
+      "sha256": "2128aecd83089b01d2b9ec40965e4b4e24a252f47a4b9a78c4fe223edd511f15",
+      "bytes": 173055,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-d-78c88-remain-visible-and-operable-1920x1080/video.webm",
+      "sha256": "67fb4b8866361a3d03f299dff3873f36b247e56ab4b37d0824933d33743d8048",
+      "bytes": 161821,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1280x800/video.webm",
+      "sha256": "2d6cd9eb093df3b1382ff3f16ee01810482cc49d7c8b986f47fb923de634b1ad",
+      "bytes": 165495,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-d-7bad1-oices-fit-and-remain-usable-1920x1080/video.webm",
+      "sha256": "26d1664a7635fa7b5a35f532d449406ecb6d99c03bb9b5a71d3c907be32dde46",
+      "bytes": 159137,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1280x800/video.webm",
+      "sha256": "b1a7b5ca252a5cf524ebdc299f2666992cb5eeeace18246e858f51737c2043fd",
+      "bytes": 275429,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/compact-panels-reference-d-7c0c7--panel-areas-and-essentials-1920x1080/video.webm",
+      "sha256": "54c6a8686c0ecb1c721a57286c7c40a499e2f9509e1b4ae775a0cf4c4f6f0f4f",
+      "bytes": 223184,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1280x800/discard-reward.png",
+      "sha256": "f52adc52c0f838d1991b7bbefcb9fcfa380b9c0038054e017f9cf1318cc08362",
+      "bytes": 279554,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-collapsed-ful-23d77--choices-and-clean-surfaces-1920x1080/discard-reward.png",
+      "sha256": "9e564afc1aaba29769a87cecd592d824aad419302c5d7d3769d9958063215fad",
+      "bytes": 473182,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1280x800/finished-result.png",
+      "sha256": "f2703ec524abaa783da736cbd116dcc9c4e5d28feb61304ba690ef55a3f18690",
+      "bytes": 283058,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-collapsed-hum-d7993-keep-core-results-reachable-1920x1080/finished-result.png",
+      "sha256": "a9c1c63afcb2de04c10f26e2af016e9858754b85518d8f17b155c8172378e183",
+      "bytes": 500076,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-details.png",
+      "sha256": "63a9c0ed701e36c5d514fd25488bdc924eeb61c71d4e770bb5bd591f4a1e372c",
+      "bytes": 241748,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1280x800/geographic-sidebar-only-battle-rail.png",
+      "sha256": "2d98b9a6e94b7f97ee6aaec109e22a43a9170c82425a28c2aed8d2db40de1320",
+      "bytes": 214718,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-details.png",
+      "sha256": "74d2eedad8f51c1c148d2ac816da2df01af12133302db485c7f275193f60bc9d",
+      "bytes": 392369,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-37b2d-exact-actions-and-selection-1920x1080/geographic-sidebar-only-battle-rail.png",
+      "sha256": "6aa84ff912a4b6c07b4221b27c0827ed1cc1f89cfc4046b131a8e452268dcc3b",
+      "bytes": 346725,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1280x800/geographic-capture.png",
+      "sha256": "30820b5490daeeb0540425fea1d6d2890e36280b082c157095c214eaa579846e",
+      "bytes": 225820,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-4fc43--surfaces-toggles-and-pause-1920x1080/geographic-capture.png",
+      "sha256": "150c7b62b39a4105e3461c0a7030be48e057890dd7da0c67185c38ce215d9c66",
+      "bytes": 390278,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1280x800/geographic-raid.png",
+      "sha256": "84c87dd6473452a8328826883858fac2f212f02c46b9c955410f74231466b5d0",
+      "bytes": 235512,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-5fbd3-d-use-ordinary-core-actions-1920x1080/geographic-raid.png",
+      "sha256": "60eaabe0ffa9b678d0f4f72ca3e6c741d0a54b03cc87837d270fa5a9911c43e2",
+      "bytes": 369911,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1280x800/geographic-friendly-redraw.png",
+      "sha256": "5040660f20d905cbac96f75b1c77033945238f3496ee0b658dafc881ec90a0f6",
+      "bytes": 226221,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-co-dd8f6-s-a-redraw-with-input-focus-1920x1080/geographic-friendly-redraw.png",
+      "sha256": "6fe5921dad84a6eef0f2deb0ddccbd9aa006b247d2667868ba45f1fb7b91822f",
+      "bytes": 361923,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1280x800/geographic-sidebar-only-rail.png",
+      "sha256": "be61f2a84e2b5731257493ffbb8be2f54a8110140599fb7c271dc845b19a329f",
+      "bytes": 225344,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-si-b8c4f--directly-without-scrolling-1920x1080/geographic-sidebar-only-rail.png",
+      "sha256": "54d309fbf3da5901dafa04beed8495c72cda51ab323dbe7ba070fe47e52b0cc8",
+      "bytes": 354467,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1280x800/geographic-visible-sidebar-history.png",
+      "sha256": "b3ac6377985947c2fae818569c7183a666c2038c244217a2e1c1cbfe804ecd08",
+      "bytes": 223898,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-geographic-vi-6cb81-der-across-focused-surfaces-1920x1080/geographic-visible-sidebar-history.png",
+      "sha256": "c5fa998ee03a2095314317269eebd4ae3b26162856a552a6ee10851a7c6e38e0",
+      "bytes": 375208,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-details.png",
+      "sha256": "369a78f65d1091a946d76d8c40a8023193cad182926401f52eb9025a21323e6e",
+      "bytes": 284903,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1280x800/reference-sidebar-only-battle-rail.png",
+      "sha256": "e7390c4210cca6f3fb4c4c793ff71c1d9fdecba5811d5a622120d5c7d3258bf2",
+      "bytes": 254875,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-details.png",
+      "sha256": "e68cd27c32409345bb3ceb2ff380b206ff17cd1d368abb5ba0e19ddd83dcea90",
+      "bytes": 470495,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-240d7-exact-actions-and-selection-1920x1080/reference-sidebar-only-battle-rail.png",
+      "sha256": "34059f9d8428ea8c97e3579aee3038b722d622a3887291ad48c89a37dc2b962f",
+      "bytes": 424695,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1280x800/reference-capture.png",
+      "sha256": "14372ac273189b60818bca832cdf0ca612e7bd81c43cf863a8339b433381a56e",
+      "bytes": 270733,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-2f880--surfaces-toggles-and-pause-1920x1080/reference-capture.png",
+      "sha256": "64f542f3c567d4c81683c3bfdaae7a453a12379864d0a40577677d6f6e2214d2",
+      "bytes": 479554,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1280x800/reference-friendly-redraw.png",
+      "sha256": "d275a9294c64b08325573100468eb3e47afd0c47207e043588005521f2e40911",
+      "bytes": 268880,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-45645-s-a-redraw-with-input-focus-1920x1080/reference-friendly-redraw.png",
+      "sha256": "ed08e0a0b8af484ca911af249c5f19a3a150e45f07443e5ed2e33566ce72f6cb",
+      "bytes": 439931,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1280x800/reference-raid.png",
+      "sha256": "d1a695aea45c33923564b26dd39ecdd17113704cb7e73be4293a39c189b0de0b",
+      "bytes": 286326,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-col-53618-d-use-ordinary-core-actions-1920x1080/reference-raid.png",
+      "sha256": "edd026fb0ff749c52d50ddd4ab1a97794cb5934b73077c3cdbdd043dd12bc093",
+      "bytes": 467272,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1280x800/reference-sidebar-only-rail.png",
+      "sha256": "9bc08372b12eb7ac21a508470c58202de2a1fa5a94feddd6bdaa3c4cf0b37bbd",
+      "bytes": 276012,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-sid-d4949--directly-without-scrolling-1920x1080/reference-sidebar-only-rail.png",
+      "sha256": "7b09162fc2bca477bfd56b01462c06f169b17ecc0249e3226b3e7e6273517e02",
+      "bytes": 440682,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1280x800/reference-visible-sidebar-history.png",
+      "sha256": "d4ab877176c2dba1939e31de3926cd2d164286fbe31e3296daf70954f09805ee",
+      "bytes": 259726,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/browser/icon-actions-reference-vis-5d5df-der-across-focused-surfaces-1920x1080/reference-visible-sidebar-history.png",
+      "sha256": "05924082e86c0981bc0ba9f141b770aeaa8ba79e12af1c2e09cceabf643056c3",
+      "bytes": 450059,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/command.json",
+      "sha256": "9c4477c899824a03389a25eac80a1d2a593044a7e0e9c74b34f73cc7333d5403",
+      "bytes": 2810,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-bounds.json",
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-capture-movement.png",
+      "sha256": "8448dafebf0e72f8d17b16b42fe2aae16f78fbc8dbc752bb4f6ada73498dfba5",
+      "bytes": 217134,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-complete-history-scrolled.png",
+      "sha256": "11beaaa31ea402dce84a416190de5c57c9afb6c5d8be381dcc323e29e9a4b8a5",
+      "bytes": 217180,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-exchange.png",
+      "sha256": "cbd8062d8f17be8c6923b0b63fd25919e5bb79194a7659d8c005a4daa612e7da",
+      "bytes": 214376,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-friendly-movement.png",
+      "sha256": "dc6077151028991821eb3c175e07ef655665d6f2fc0d32c90af3f77c2ede0838",
+      "bytes": 207646,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-human-capture.png",
+      "sha256": "98ef06136b524ba4bcb5609fd64253cba8c75013b63dcbc3b07e80d84458b726",
+      "bytes": 218959,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-human-move.png",
+      "sha256": "002c2d4982de842a4feaaeb2c992ee13912ed39597b26c54aec4c206e8fe7a60",
+      "bytes": 218898,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-reinforcement.png",
+      "sha256": "8303dd6679b8b2b3f540b380b963c185d1def33c0d4afa4794d3b8240a40a343",
+      "bytes": 206800,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-repeated-pair.png",
+      "sha256": "097fb131c9dec7b46e3740d23286e9bc9fc304cec1330785c1e9a5f806de264b",
+      "bytes": 219370,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-compact-selection-ready.png",
+      "sha256": "913379a1fa17f11f973c534fcf9303d1d0cec096390f9b212082d6e75896c243",
+      "bytes": 212992,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-bounds.json",
+      "sha256": "cb7bb41c7c6b3ad96ba360dcbdb165d57e6b07779832e6fe6a08dc2f3d453bee",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-capture-movement.png",
+      "sha256": "ff1ae7f8128f8d9ec4b9020eaf53d2c07d06c078fa65ac81db24b4dc523b05f1",
+      "bytes": 216920,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-complete-history-scrolled.png",
+      "sha256": "0ad3d9377f854e200a193fea7e2ca1cf1f6df6b706b35132a15c74c00502d820",
+      "bytes": 219263,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-exchange.png",
+      "sha256": "fd78d20b6e971f8d6bb4c11bbba186592f04f343a606f1d1f370f10ee08b5c1d",
+      "bytes": 216864,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-friendly-movement.png",
+      "sha256": "1c8a6d3686d8692eb30343e993d984f661d6a3a3b3dea5da8376af1b1cce930e",
+      "bytes": 207435,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-human-capture.png",
+      "sha256": "a4649f65df7b11c4b6459b8fa0ec570467fc1a724aacff361f30e80af69fa7d4",
+      "bytes": 218736,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-human-move.png",
+      "sha256": "35ac55c1f603b085c3ba31ec1b3350f40011ea0e551fbabc037ef633413bd20d",
+      "bytes": 222039,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-reinforcement.png",
+      "sha256": "eceda7fc003288ff11458c8dd0ee493c53dfaa875cb0efb6106f420e68a499f7",
+      "bytes": 206588,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-repeated-pair.png",
+      "sha256": "6c92005976f586ac7d684b435633c5d75c0502101b4cd48ed693d1bfc05b9eff",
+      "bytes": 220743,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-detailed-selection-ready.png",
+      "sha256": "a41bb10f41a3629691d0f5b55083324a847adee2a1682ef8156a50b2be5e4c7f",
+      "bytes": 212789,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-geographic-geometry.json",
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "bytes": 4704,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-bounds.json",
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-capture-movement.png",
+      "sha256": "9e676c841866c32bf3c182b5f163ef3400962d07c43d7aeb2188d87868e05fb5",
+      "bytes": 255574,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-complete-history-scrolled.png",
+      "sha256": "7a8d96a6f622b357f7f6c03a8e677721586c1e9774751e13d6d1ce23dadd445d",
+      "bytes": 255954,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-exchange.png",
+      "sha256": "c5fb8982e04da985be6481ffcbc8831e8e4275383c77cb8fcdc78c3ac7fb1296",
+      "bytes": 251551,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-friendly-movement.png",
+      "sha256": "2e1540180c8658b3bb5a52c78b6b193b5e2740446ae691259e04284f8adc8a5e",
+      "bytes": 248906,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-human-capture.png",
+      "sha256": "971c93d7f123bddd50b9c82834505ef2b78936c22c1746ab0baa7c6d0201a151",
+      "bytes": 256588,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-human-loss.png",
+      "sha256": "6ddf72b50c065b5d8e18557d0243eaaab6678b64b7de33f124f466bcd00825d4",
+      "bytes": 251845,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-human-move.png",
+      "sha256": "615c21e8848fb435df92a614e80a607989d2b19e53275deaf38be57987034411",
+      "bytes": 259351,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-reinforcement.png",
+      "sha256": "7bcd621f2dfd29bfe668eb4727a17e7caa479459bcd7c2d60e0043186e196970",
+      "bytes": 244725,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-repeated-pair.png",
+      "sha256": "196a688cb7989226c73babaec5f061d863e0a7bcd5e467955c285a7b3fedf6e0",
+      "bytes": 252794,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-compact-selection-ready.png",
+      "sha256": "5c7726beabc95aecf9eba39b6aa4993e6561d1d81e16268fc79c9080676cc246",
+      "bytes": 250890,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-bounds.json",
+      "sha256": "2bee0c726254eb2396ff380570b8b6c6bca185a5553b5397b0a137edb3c8b0dd",
+      "bytes": 9687,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-capture-movement.png",
+      "sha256": "796f0777dc354b365c1281fcf5f37d307b629404cdbcc09f7bafe804be6e70a1",
+      "bytes": 255363,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-complete-history-scrolled.png",
+      "sha256": "faa5777c4b860e9e5484081c88a42e848e097c097aa7947c32d0cf4a1e4d1481",
+      "bytes": 258454,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-exchange.png",
+      "sha256": "67cf3afbc624017ed34f86919b6b2c67d4005c8d9e7566d84613f66cb2d61306",
+      "bytes": 254023,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-friendly-movement.png",
+      "sha256": "eed5599436f89f046393290421d894261df4b35b1f75f4cc3a9f9a98b9de0037",
+      "bytes": 248691,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-human-capture.png",
+      "sha256": "db69cfc0c8b2bcddd2eb2bcd952e7f88cc74e20f16c2d7fb7110a6ef5b86e901",
+      "bytes": 256362,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-human-loss.png",
+      "sha256": "a8798af41812f956683df35e075487a3e85d1dbf2f39e6664d45b0b5e5721bc7",
+      "bytes": 251632,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-human-move.png",
+      "sha256": "89eee01011f21b144f7a5641aeab43cfa27ad43fddec94210ed41ec581a1d8f1",
+      "bytes": 262669,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-reinforcement.png",
+      "sha256": "05c8651c9f0581177ca1e361b349e84b9f2c358e114200aa146d29841e4fdea2",
+      "bytes": 244509,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-repeated-pair.png",
+      "sha256": "c35ad35b414b29a64644e7e65c31b6cb53ecd51893fd9b3770d5a65e8e460ae4",
+      "bytes": 255569,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-detailed-selection-ready.png",
+      "sha256": "d68ef6bcd665d71311b72b0e55e6a3a325791cea2ddf86b6884bd3ceb8866032",
+      "bytes": 250677,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1280x800-reference-geometry.json",
+      "sha256": "a04574ccfad37dcc29b47d1ae736ccadfd5183781a68cf5755bbde4715f35e5f",
+      "bytes": 4704,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-bounds.json",
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-capture-movement.png",
+      "sha256": "d110124a7027b3dc69af57e79d6df0ceafd680f06b70a155075a7e11279e7e54",
+      "bytes": 356755,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-complete-history-scrolled.png",
+      "sha256": "b5d7a18a93c7ee3c56219c6161d75ee55c0685d5bbd63d64771196f4c568871d",
+      "bytes": 370508,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-exchange.png",
+      "sha256": "7336abd9607ebe26238e013182b05a7ab568eecec604f3ab17323d6ba0f04ecf",
+      "bytes": 353591,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-friendly-movement.png",
+      "sha256": "6efed03dd02808c7abebe9e4de3c2490ef1650987f64062e972d2f8a254a8154",
+      "bytes": 354463,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-human-capture.png",
+      "sha256": "529db02fe691de77c36e5d1b1d213e41e306b2d821a6ba5b44713d1af8de27a5",
+      "bytes": 360936,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-human-move.png",
+      "sha256": "82241855aac8b4c1efe3c6c7ee06ab4ac583b9095dd3ea104dff3d15481c9dd3",
+      "bytes": 365189,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-reinforcement.png",
+      "sha256": "cd07647b70ccc83910a4862eaf3bcdcdec0aefce513659f8e3a85d878079a050",
+      "bytes": 342271,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-repeated-pair.png",
+      "sha256": "cb43935d9e9bdb84e1db062c1306d492c315023dc17a4d02b829479c46d4ae6f",
+      "bytes": 366212,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-compact-selection-ready.png",
+      "sha256": "28f9515c5c93306f94b5f1353a79c590efb6859e36212c20ec7e867fbf5cdb24",
+      "bytes": 351453,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-bounds.json",
+      "sha256": "3bc48b341abcaa770db62f377f9625e08a05c7fc03e3d3eb2de91ef20ab54aca",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-capture-movement.png",
+      "sha256": "da063d5aec074a240691fa57f0bff619a7803d23d4faeb2155874f665c0e373d",
+      "bytes": 356545,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-complete-history-scrolled.png",
+      "sha256": "18b70481d1162127b80cbc85ea519e6963224be514c0b435613d6b66eec901cb",
+      "bytes": 373515,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-exchange.png",
+      "sha256": "dc8d4b3231a9ed2dd963a989ebd36ff157b20c00d34d291c849e785c07b182f5",
+      "bytes": 357133,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-friendly-movement.png",
+      "sha256": "9485bbc1a736730a7e1f9ea07cf7f7933be273531bfe283ae4ef6a767e8a2811",
+      "bytes": 354246,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-human-capture.png",
+      "sha256": "ae16e08fc5bcf2632e1a6b7868db9451dcebc42de0d78a4b66edd7c8858468cb",
+      "bytes": 360704,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-human-move.png",
+      "sha256": "f19e79aecf725aa6aa40ce7a2ce3ed6a399cad565d31f21f4bf1181200f6bd2b",
+      "bytes": 368882,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-reinforcement.png",
+      "sha256": "2f3fae51d4dafc3ce9b4a1a31a86fe76687be1bb4a39b4589bcf8e876cafefef",
+      "bytes": 342060,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-repeated-pair.png",
+      "sha256": "9d19bc9d8167b21b63a9db0eb1a0f4a7e53f97bf44e8ae0e9a3c2cb8f41b85ab",
+      "bytes": 368172,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-detailed-selection-ready.png",
+      "sha256": "a34791f747eebddac315ab287ee8c0a359056d992a93b602baf07ca360692ec8",
+      "bytes": 351246,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-geographic-geometry.json",
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "bytes": 4860,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-bounds.json",
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-capture-movement.png",
+      "sha256": "aeca16da6562f79e2d4ec14a2b6c11bdae309cc08096269341fb35e1a86dffb9",
+      "bytes": 430943,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-complete-history-scrolled.png",
+      "sha256": "ac7fe6e3e22f3595ba1110a43bd6224e450b457e89c5cbf08cf4a046292c2224",
+      "bytes": 446175,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-exchange.png",
+      "sha256": "bf41d4267aef8431e2a9e3c42e0cbaa30b3112007f844d59fe496aa2d4c9000d",
+      "bytes": 426800,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-friendly-movement.png",
+      "sha256": "def5f7178ecb3fb6a1ec9dabf17b0726e75747043bfa5c0f363a91d56fba1f69",
+      "bytes": 437222,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-human-capture.png",
+      "sha256": "cfd4de37bdff6e0ab4ae554c7a4d12298ebb3db2c0db464df9eaf14a86d3d8ef",
+      "bytes": 435280,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-human-loss.png",
+      "sha256": "9fdf1e9495ee50b5cab125dc2ffcff72b44d7995bbd3740abc771c0f1b10c6c3",
+      "bytes": 434207,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-human-move.png",
+      "sha256": "0b3e9b2d0766bfa13104cf0def1f7d6fa226585332b91408909b9651b17c83d6",
+      "bytes": 446552,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-reinforcement.png",
+      "sha256": "5c627eaee730322e5fc5c07f84fa924559ee7448d294a9020513798ebd82d4a8",
+      "bytes": 416657,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-repeated-pair.png",
+      "sha256": "ac6e30b2fc09674f8532a07f2a6dd5df8270b801f8e6613b18ad61bade4c7887",
+      "bytes": 446219,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-compact-selection-ready.png",
+      "sha256": "b41d716e85d70e1b1cd3d9244753a3316d7a419ea270c32096dbe260cbefa367",
+      "bytes": 425340,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-bounds.json",
+      "sha256": "0f7542cdf08d17e4e47cec783007b267e0e21a52693a4be6ba3de272e3475563",
+      "bytes": 9999,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-capture-movement.png",
+      "sha256": "327684d317ddbdb7a325a6833a8ac97c7ce5a9a018d18d66006c34277a4dd7fc",
+      "bytes": 430727,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-complete-history-scrolled.png",
+      "sha256": "00a5203f233e62ffa9d40b93ddd64159128db99aafd959f8591f03cd798cc094",
+      "bytes": 449722,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-exchange.png",
+      "sha256": "413307040056eb4a0d08cd3bdd2fc402b561d6c45f7fa038d1f03b2505c9387a",
+      "bytes": 430034,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-friendly-movement.png",
+      "sha256": "c073101ba90dbbc88162fa28f53ef8ac3a7cb241192a2f02f3c83b1434c98bdb",
+      "bytes": 437018,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-human-capture.png",
+      "sha256": "abf71593c8f17dbc97afd24a4d67c5a8cf191e59e74ff3a5f9e08f4071d8a240",
+      "bytes": 435033,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-human-loss.png",
+      "sha256": "226291e3ef0d944d1ee5b3501d6d9ff2f33a7a631471571f52747d4159b4c641",
+      "bytes": 434005,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-human-move.png",
+      "sha256": "21944623a95335366935af013465b7e608ca751c668d835a9843b2fd9427cf54",
+      "bytes": 449758,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-reinforcement.png",
+      "sha256": "7393ed57f5eac7ca4ec2d12c91b3610b22971b857108b84dd863d08bc70c7032",
+      "bytes": 416452,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-repeated-pair.png",
+      "sha256": "fc90300f6bea8fac440cb3f0d3d1c0613677a82b6ce9e4f22057b639e5c487f2",
+      "bytes": 450033,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-detailed-selection-ready.png",
+      "sha256": "1caed21fda691ad14bfa00d0f1237b51b51da07c370d57755255982f01137232",
+      "bytes": 425169,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/compact/1920x1080-reference-geometry.json",
+      "sha256": "bda67b6d6ec0e911ed7acd50eedcbf1c7b5366d0eb924da2a20f2e3614193fea",
+      "bytes": 4860,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/game-event-log-1280x800.png",
+      "sha256": "6b5e78eccc8e56eaa616f821e2f05cb6e40f9f1d32835f00168ad803bbcba1ab",
+      "bytes": 150172,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/game-event-log-1920x1080.png",
+      "sha256": "6d255748d0e47bab332f0f0e750cb3ac4d626a43fca2236a080631ad5966785f",
+      "bytes": 272569,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-default-four-seats-1280x800.png",
+      "sha256": "8c3761e9a68ca7e732b69826bae8305b74bd3f709f1cd9c79418b43c6d7b4156",
+      "bytes": 244021,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-default-four-seats-1920x1080.png",
+      "sha256": "da52dbbe08e3d14465eb20db5706548f54551e2e8a606feeffa6312c8c39fb96",
+      "bytes": 415748,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-eliminated-1280x800.png",
+      "sha256": "c7e57273c0d859ae27d9e8f20d682410e1dbc29587b996f781b0605a3a96071f",
+      "bytes": 252833,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-eliminated-1920x1080.png",
+      "sha256": "ee5d0dc0b69297b3c32631a4a3b803db6d43b7fe55c63091a944d431e79127d8",
+      "bytes": 434035,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-paused-battle-1280x800.png",
+      "sha256": "4464c6db65c4bbd3088f80687e9e9596cad76e95d534431a9b7d4a4e517760e8",
+      "bytes": 256277,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-paused-battle-1920x1080.png",
+      "sha256": "271425444d2f710adddafdaebdafb8adfdeae6c279a0dd14307521224f834a5a",
+      "bytes": 433997,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-paused-computer-1280x800.png",
+      "sha256": "74d5ac3c15acd67d8418dc2eb5680d252377d1347582e94fd855ed8d9bcc076f",
+      "bytes": 243261,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-paused-computer-1920x1080.png",
+      "sha256": "62b03ac52ffa5439b45e36808249680b0de3b736dece991399c5f9390af4a689",
+      "bytes": 414364,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-totals-1280x800.png",
+      "sha256": "3b77b96e5df60cefa068f5174422d772ffaa6fdd4fd823381cd92d49102760d7",
+      "bytes": 245453,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-totals-1920x1080.png",
+      "sha256": "d11b3658afd46088ce88f8c23c68792d0ebaeb86ae7ac2914101ddb03431f2e3",
+      "bytes": 420530,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-very-slow-1280x800.png",
+      "sha256": "4f1bb5ebc892b7e738458dc00488c2faee045b23997edc740a1c21f426564167",
+      "bytes": 253926,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/playback/playback-very-slow-1920x1080.png",
+      "sha256": "885ea57fc707a1089b9e58c2b2cf9d24cbda32fcb6ef4adfb18bcde12d0199db",
+      "bytes": 429604,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-regression/raw.log",
+      "sha256": "419468f0911c2335579f2dcf2d9ac44fe2fce5b60d2b4aafec137b1c124faa4c",
+      "bytes": 18556,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-regression/receipt.json",
+      "sha256": "77491355159cab637ffb2f1da7009c42ffa3a0a71c73ba1051b900b672836c33",
+      "bytes": 959,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-regression/results.json",
+      "sha256": "dbdccf57189ff35ae928b251f58e61562fc915b8ad601b6f38f0979a89052234",
+      "bytes": 144280,
+      "mode": 420
+    },
+    {
+      "path": "validation/rework-unit/command.json",
+      "sha256": "24e0a039864d6ec3ac8ec2451eddde19d38320ed1d14fc2657fa2b3b4372ac03",
+      "bytes": 2261,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-unit/raw.log",
+      "sha256": "d4bb82479eddf6daa32ec70ceb468fd81beddc0235d7344af6a99a0d34d05a2d",
+      "bytes": 22173,
+      "mode": 436
+    },
+    {
+      "path": "validation/rework-unit/receipt.json",
+      "sha256": "f4564053bcb8685ec89c74524c164278d974a412c59f57dd084023692cb1602b",
+      "bytes": 957,
+      "mode": 436
+    }
+  ]
+}
