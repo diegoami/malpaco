@@ -31,7 +31,7 @@ const OWNER_EXPECTATION: Record<string, OwnerExpectation> = Object.fromEntries(
 /**
  * The gate thresholds. Basis: [measured] on the clean board over this map, both
  * viewports, pinned Chromium — the numbers and their margins are recorded in
- * docs/spike.md (now `git show local:docs/spike.md`), "The painted-board gate, measured". The per-pixel colour
+ * docs/spike.md (now `git show 6db45b728b:docs/spike.md`), "The painted-board gate, measured". The per-pixel colour
  * tolerance, 28, is a literal inside `paintedShares` (it runs in the page).
  */
 /** Fraction of a province's sampled pixels that must match its owner's colour. Clean minimum [measured] in the pinned image: 76.5% at 1280x800 (Hoko), 80.4% at 1920x1080 (Hoko) — a margin of at least 6.5 points. */
@@ -809,7 +809,7 @@ test("a province can be selected and a target chosen with the keyboard alone", a
 // changes when the look changes, with its reason in the PR. Goldens are made and
 // compared in the official image mcr.microsoft.com/playwright:v1.63.0-noble and
 // nowhere else (fonts and Chromium builds differ between hosts); see
-// docs/spike.md (now `git show local:docs/spike.md`), "Goldens", for the exact command.
+// docs/spike.md (now `git show 6db45b728b:docs/spike.md`), "Goldens", for the exact command.
 
 test("golden: the whole board as painted, hatched seat included", async ({ page }) => {
   await page.mouse.move(2, 400); // no hover outline over the board

@@ -94,8 +94,10 @@ Nothing generated goes into Git: write it under `artifacts/` (ignored). Then:
   `artifacts/` and say so.
 
 Test fixtures the suite reads (saved matches, frozen boards) are not artifacts: they live in
-`fixtures/` and stay small. Evidence removed on 2026-10-20 is in the history and on the `local`
-branch (`git show local:docs/prototypes/<path>`).
+`fixtures/` and stay small. Evidence removed on 2026-10-20 (`docs/prototypes`, 11 GB) was cut from
+the history too, so clones stay small. It is archived, with every old branch, as a Git bundle in
+the Drive folder's `archive/` (`python3 tools/artifacts.py pull archive`, then
+`git clone artifacts/archive/malpaco-full-2026-10-20.bundle`; its README says more).
 
 ## 7. Working autonomously, and what goes to the user
 

@@ -9,7 +9,8 @@ and Playwright.
 
 How a task runs: `docs/process.md`. Tasks: `docs/tasks/T<nn>.md`, indexed in `docs/tasks/README.md`.
 The harness was cut down on 2026-10-20 so it works in a cloud session (owner's request); the old
-process, lessons and run notes are on the `local` branch, as history only.
+process, lessons and run notes are in the history (`git show 6db45b728b:<path>`); the full pre-cut history,
+evidence included, is archived on Drive (`archive/` in the malpaco folder, `docs/process.md` §6).
 
 ## Rules
 1. **Everything needed is in the repository.** No rule depends on files outside it (home-directory
