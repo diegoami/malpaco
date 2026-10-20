@@ -35,6 +35,21 @@ recommendations unless the owner says otherwise.
 | R6 | Who owns "Help & icon names" | T85 (0.2.0); T56 later keeps complete rules content and persistence | The default geographic game currently mounts no Help at all. U4 makes icon names a precondition for icon-only actions. |
 | R7 | PR #196 (responsive-ui DECISIONS/ACCEPTANCE, unmerged) | Supersede it. Write the 0.2.0 acceptance on `main` (`docs/plans/release-0.2.0.md`) and close #196 unmerged, with a pointer. | T79–T89 cite a design authority that exists only on an unmerged branch, and it still carries the fixed-chrome A11 row and the "48px header + 64px strip" row. |
 
+### Owner answers, 2026-10-20
+
+In the Claude cloud session, the owner answered four questions, choosing the
+recommended option each time:
+
+| Question | Owner's answer |
+| --- | --- |
+| Slices | "Approve as proposed": R1 and R2, so 0.2.0 stays one all-device release with T86 folded in |
+| Geography | "In parallel with 0.2.0": R3, so #181 owns U1 and S2 runs alongside S1 |
+| Legacy routes | "Retire from published build": R4 |
+| Next step | "Open a PR for your review": the amendments wait for this PR to merge |
+
+R5–R7 have no separate answer yet. The owner decides them in the review of this PR.
+Merging the PR approves them as recommended.
+
 ## Proposed release slices
 
 Labels stay authoritative. Each task still needs parent preflight, and the rule-6
