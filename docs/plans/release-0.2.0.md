@@ -8,10 +8,75 @@ Design authority: [DECISIONS](https://github.com/diegoami/malpaco/blob/adf7f5ac0
 [sketches](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/WIREFRAMES.md) and [acceptance](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ACCEPTANCE.md). Publication,
 implementation dispatch and final playable appearance remain separate gates.
 
+## Owner presentation amendment under #215
+
+The owner approved V1–V5 with [new presentation requirements](finished-game-vision/DECISIONS.md):
+nice organic maps are required for the finished game; flavour naming can wait;
+the map fills the viewport, actions use icons, and text appears only for a
+current interaction or requested information, then clears. Permanent headers,
+phone docks and desktop side panels in the earlier sketches are superseded.
+D2 all devices and D3 explicit Attack remain. The subsequent portrait refinement
+fits the same geography with a quarter turn when useful, keeps text/icons upright,
+and preserves world-space focus/drafts across rotation. Reconcile T80/T88 camera
+and gesture acceptance with swipe-to-pan, pinch zoom and Fit/focus alternatives;
+a gesture must not dispatch a tap action.
+
+The table below records the existing allocation and contract names, not approval
+to dispatch those contracts unchanged. Reconcile and explicitly amend affected
+T79/T84–T88 composition/information assumptions before implementation; preserve
+complete reachable actions, histories/totals, accessibility and required-choice
+continuity. Organic geography's place relative to this UI slice must be decided
+in the post-sketch backlog reconciliation, then approved by the owner. It is no
+longer optional for the finished game. No generator rewrite is selected here.
+
+The subsequent colour/beginner proposal uses vivid stable ownership colours,
+more irregular geographic drawing and short first-use hints that name actions,
+explain consequences and clear afterward. See the
+[illustrated walkthrough](finished-game-vision/BEGINNER-WALKTHROUGH.md).
+This is a visual/teaching proposal, not tutorial implementation authorization.
+Reconcile relevant T85/T87/help assumptions with the eventual owner-selected
+execution; keep the resting board free of permanent prose; retain army counts per the later owner decision.
+
+The owner also confirms usability as part of their review and requires original
+islands and regions that feel like believable real geography, with broad
+structural variety within a match and across generated maps. Sicily, Cuba,
+Borneo and New Zealand are illustrative references, not a fixed catalogue of
+forms. The [geography reference brief](finished-game-vision/GEOGRAPHY-REFERENCES.md)
+and static studies refine the finished-game geography bar; the four studies do
+not establish the full variety required of generated maps. They select neither real
+map replicas nor a specific generator algorithm; preserve existing country/island,
+adjacency, fairness, route and save contracts. Carry this direction into the
+existing-issue reconciliation before implementation, not a parallel roadmap.
+
+The owner subsequently requests applying the changes directly, with review by
+someone else. The [concepts](finished-game-vision/SKETCHES.md) and
+[teaching sequence](finished-game-vision/BEGINNER-WALKTHROUGH.md) now shows legal
+source/target selection, contextual stacks/odds, fitted landscape, pending capture
+entry/fold/resume, outcome/Fight-on/Stop and opponent/return feedback, plus safe
+inspection and requested icon names. These are static planning changes, not a
+feature dispatch, task-contract amendment or usability approval.
+
+The independent revision-6 review requests changes. The owner explicitly chooses
+army counts on every territory, including at rest, with the remaining placement
+pool always visible. Revision 7 applies this, preserves ui-057/061/082(pool)/084,
+and corrects icons, selection, default domination state, open-sea contextual
+placement, friendly movement and elimination. Prose remains temporary; no task
+Done-when or rule is amended by these static planning corrections. Carry the
+explicit count decision into the existing-contract reconciliation.
+
+The [independent revision-7 recheck](finished-game-vision/reviews/claude-cloud-2026-10-20/recheck/REVIEW.md)
+approves the concepts at `82ae510` with nonblocking follow-ups and confirms all
+nine original findings resolved. Carry [A–E](finished-game-vision/reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md)
+into the existing-contract/acceptance reconciliation, especially count attribution
+at phone Fit with realistic stack sizes. ui-077 and ui-054 presentation amendments
+are now explicit in AUTHORITY. The owner accepted the revision-7 static sketches
+and authorized consolidation/merge on 2026-10-20. Backlog and playable approval
+remain separate; this record neither dispatches work nor changes the drawings.
+
 ## Selected scope
 
-Map-first workspace for mobile portrait/landscape, tablet and desktop in the same
-release. Source/target selection stages combat; explicit Attack performs one
+Full-viewport map with icon controls and temporary contextual information for
+mobile portrait/landscape, tablet and desktop in the same release. Source/target selection stages combat; explicit Attack performs one
 existing exchange. Fight on waits for the first confirmed Attack on that pair;
 pair/load changes clear confirmation. Place1, combat arithmetic, old maps/saves,
 RNG and replay rules remain unchanged. Preserve all current cards, required
@@ -73,10 +138,13 @@ CI repetition or rebuild after artifact approval.
   horizontal keyboard order, load focus and required-control visibility. Only
   reproduced defects are fixed; historical evidence gaps remain acknowledged.
 - **#181** remains a separate Medium/Hard post-0.1.x generation spike, linked
-  from the master backlog, outside this release's required delivery graph.
+  from the master backlog, outside the previously allocated UI delivery graph.
+  Reconcile that placement with the new finished-game organic-map requirement.
   [Assessment](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ASSESSMENT-181.md). No generation rewrite is bundled or started.
-- **#170** flavour naming and **#174** curved-label placement stay separate;
-  T87's label hierarchy neither duplicates them nor reverses their ordering.
+- **#170** flavour naming is deferred by the #215 owner decision. **#174**
+  curved-label placement must be reconciled with requested contextual information;
+  T87's annotation assumptions also need explicit reconciliation; no permanent
+  flavour labels are implied.
   New rules, AI roadmap, autosave, sound, themes and harness migration are excluded.
 
 ## Dispatch and publication
