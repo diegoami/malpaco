@@ -31,6 +31,10 @@ the issue's `status:*` label is the status (`gh issue list --label task --label 
 
 ## New-game implementation
 
+Release slices S0–S7, review tiers and the dispositions of every open issue are in the
+[#215 reconciliation](../plans/finished-game-vision/RECONCILIATION.md) (owner-approved 2026-10-20,
+PR #217); merge-after edges below follow it. Each task file names its **Tier** (process.md §5.1).
+
 See the [sequence and dispatch checkpoints](../plans/new-game/README.md). Difficulty is an estimate; GitHub labels carry status.
 
 The owner-selected A adoption chain is **T61 → T62 → T63 → T26**.
@@ -67,21 +71,21 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T41](T41.md) | Baseline computer card decisions | Medium | #86 | T40 |
 | [T73](T73.md) | Fully visible battle controls alongside cards | Medium | #180 | T41 |
 | [T42](T42.md) | Deterministic events and production-centre effects | Hard | #87 | T41 |
-| [T43](T43.md) | Readable events and centre changes | Medium | #88 | T42 |
-| [T44](T44.md) | Complete setup options and seat mixtures | Medium | #89 | T43 |
-| [T45](T45.md) | Persistent settings and end-turn autosave | Hard | #90 | T44, T31 |
+| [T43](T43.md) | Readable events and centre changes | Medium | #88 | T42, T87, T88 |
+| [T44](T44.md) | Complete setup options and seat mixtures | Medium | #89 | T85, T42 |
+| [T45](T45.md) | Persistent settings and end-turn autosave | Hard | #90 | T31, T85 |
 | [T46](T46.md) | Resignation and exactly-once game records | Hard | #91 | T45 |
-| [T47](T47.md) | Computer public view and position evaluation | Hard | #92 | T46 |
+| [T47](T47.md) | Computer public view and position evaluation | Hard | #92 | T41 |
 | [T48](T48.md) | Strategic Normal opponent | Very hard | #93 | T47 |
-| [T49](T49.md) | Easy and Hard decision policies | Hard | #94 | T48 |
+| [T49](T49.md) | Easy and Hard decision policies | Hard | #94 | T48; UI checkpoint T44, T85, T46 |
 | [T50](T50.md) | Opponent strength and game-length measurements | Hard | #95 | T49 |
-| [T51](T51.md) | Responsive map and compact panels | Hard | #96 | T50 |
-| [T52](T52.md) | Accessible ownership and complete keyboard/touch play | Hard | #97 | T51 |
-| [T53](T53.md) | Private hot-seat handover | Medium | #98 | T52, T40 |
-| [T54](T54.md) | Battle odds, phase feedback and pacing | Hard | #99 | T53 |
-| [T55](T55.md) | Original sound feedback and audio controls | Medium | #100 | T54 |
-| [T56](T56.md) | Complete help, options persistence and disabled-feature absence | Medium | #101 | T55 |
-| [T57](T57.md) | Complete-rules end-to-end acceptance | Hard | #102 | T56, T36 |
+| [T51](T51.md) | Responsive map and compact panels (superseded by 0.2.0 once its transfers land; not dispatched) | Hard | #96 | — |
+| [T52](T52.md) | Accessible ownership and complete keyboard/touch play (residual) | Hard | #97 | T88, T43, T46, T53 |
+| [T53](T53.md) | Private hot-seat handover | Medium | #98 | T40, T83 |
+| [T54](T54.md) | Battle odds, phase feedback and pacing (residual) | Hard | #99 | T84 |
+| [T55](T55.md) | Original sound feedback and audio controls | Medium | #100 | T45, T85 |
+| [T56](T56.md) | Complete help, options persistence and disabled-feature absence | Medium | #101 | T45, T85, T55, T54 |
+| [T57](T57.md) | Complete-rules end-to-end acceptance | Hard | #102 | T56, T36, S2 geography integration (#181) |
 | [T58](T58.md) | Complete-game release artifact and owner acceptance | Medium | #103 | T57 |
 
 ## Later polish and CI efficiency
@@ -112,21 +116,21 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 
 ## Release 0.2.0: responsive UI redesign
 
-[Release scope and dependency map](../plans/release-0.2.0.md). Live status is in GitHub labels.
+[Release scope and dependency map](../plans/release-0.2.0.md) and [acceptance](../plans/release-0.2.0-acceptance.md). Live status is in GitHub labels. Sequence: T80 → T79 → T81 → T82 → T83 → T84 → T85 → T87 → T88 → T89 → T90.
 
 | Task | Title | Priority | Difficulty | Issue | Merge after |
 | --- | --- | --- | --- | --- | --- |
 | [T78](T78.md) | Responsive workspace state and continuity | High | Hard | #197 | T76 |
-| [T79](T79.md) | Adaptive game shell and phone action dock | High | Hard | #198 | T78 |
-| [T80](T80.md) | Map camera, zoom and resize continuity | High | Hard | #199 | T79 |
+| [T79](T79.md) | Full-viewport map shell and overlay icon controls | High | Hard | #198 | T80 |
+| [T80](T80.md) | Map camera, zoom and resize continuity | High | Hard | #199 | T78 |
 | [T81](T81.md) | Accessible country picker and safe touch inspection | High | Medium | #200 | T79, T80 |
 | [T82](T82.md) | Explicit Attack and capture or movement commitments | High | Hard | #201 | T79, T81 |
 | [T83](T83.md) | Responsive cards, Raid and mandatory reward choices | High | Hard | #202 | T82 |
 | [T84](T84.md) | Four-player totals, complete histories and playback continuity | High | Medium | #203 | T83 |
 | [T85](T85.md) | Responsive setup, settings, files, help and result views | High | Hard | #204 | T84 |
-| [T86](T86.md) | Tablet and desktop workspace composition | High | Hard | #205 | T85 |
-| [T87](T87.md) | Map annotation hierarchy, contrast and reduced motion | Medium | Medium | #206 | T81, T86 |
-| [T88](T88.md) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | #207 | T83, T84, T85, T86, T87 |
+| [T86](T86.md) | Tablet and desktop workspace composition (retired into T79/T88) | High | Hard | #205 | — |
+| [T87](T87.md) | Map annotation hierarchy, contrast and reduced motion | Medium | Medium | #206 | T81, T79 |
+| [T88](T88.md) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | #207 | T83, T84, T85, T87 |
 | [T89](T89.md) | Full-device 0.2.0 release candidate and artifact acceptance | High | Hard | #208 | T88 |
 | [T90](T90.md) | Publish the exact accepted 0.2.0 artifact | High | Medium | #209 | T89 |
 

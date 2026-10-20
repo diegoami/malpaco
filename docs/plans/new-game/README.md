@@ -5,6 +5,13 @@ Owner-requested roadmap, 2026-10-15. This is the sequence and dependency rationa
 Done-when. GitHub labels alone carry task status. Creating these contracts does
 not dispatch implementation, approve a topology change, or merge T22.
 
+**Update, 2026-10-20.** The [#215 reconciliation](../finished-game-vision/RECONCILIATION.md)
+(owner-approved, PR #217) supersedes the single serial chain below with slices S0–S7:
+events (T42–T43), lifecycle (T44–T46), opponents (T47–T50, after T41 only) and finish
+presentation (T52–T56 residuals) run as separate tracks after the 0.2.0 UI slice they
+need; organic geography (#181, S2) runs in parallel; T51 is superseded by 0.2.0; T57/T58
+close the complete game. The task index carries the corrected merge-after edges.
+
 ## Design baseline
 
 Use the approved malpaco designs at archaeology revision
