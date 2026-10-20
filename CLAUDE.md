@@ -40,8 +40,9 @@ evidence included, is archived on Drive (`archive/` in the malpaco folder, `docs
     every owner question at once (`docs/process.md` §7), then work on whatever they do not block.
 11. A test proves behaviour only if it fails without that behaviour. A comment asserting behaviour
     at an edge arrives with the test that visits that edge.
-12. At session start: `gh issue list --label triage:needed --state open`, and any task in flight
-    (`gh pr list`).
+12. At session start: open issues labelled `triage:needed`, and any task in flight (open PRs). In a
+    cloud session only GitHub's REST API works: use `gh api` or the MCP tools, not `gh pr`/`gh issue`
+    (`docs/process.md` §1).
 
 ## Project rules
 13. [evidence-driven] Every rule constant (a reinforcement divisor, a cap, a probability) traces to

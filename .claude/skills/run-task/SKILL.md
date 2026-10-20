@@ -23,8 +23,10 @@ Argument: a task id (`T<nn>`) or a bug issue number. Follow `docs/process.md` §
    so the reviewer can run tests). Relay its findings in full. Rework once on the same branch;
    what remains becomes follow-up issues with `triage:needed`.
 5. **Merge** when CI is green. Locally: `gh pr merge <n> --squash --delete-branch`, then return
-   this checkout to `main` and pull. In a cloud session: `gh pr merge <n> --merge` (never squash,
-   never delete the session branch), then `git pull --ff-only origin main` on the session branch.
+   this checkout to `main` and pull. In a cloud session: merge with a merge commit (never squash,
+   never delete the session branch) through the GitHub MCP tools or
+   `gh api -X PUT repos/diegoami/malpaco/pulls/<n>/merge -f merge_method=merge`, since `gh pr`
+   does not work there (`docs/process.md` §1), then `git pull --ff-only origin main` on the session branch.
    Label the issue `status:merged`.
 6. **Report** to the user: what landed, what review ran (if any) and its outcome, follow-ups
    filed. Then stop; do not start the next task without being asked.

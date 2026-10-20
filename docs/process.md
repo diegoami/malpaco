@@ -13,6 +13,26 @@ environment's secrets:
 - `GH_TOKEN`: a fine-grained GitHub token for `diegoami/malpaco` with read and write access to
   contents, issues and pull requests. Without it `gh` cannot read labels, open or merge PRs, and
   autonomous work stops at the first PR.
+
+  **Only GitHub's REST API is reachable** from a cloud session: GraphQL is blocked ("GitHub
+  GraphQL is not available from Claude Code sessions"), so `gh auth status`, `gh pr …` and
+  `gh issue …` fail although the token works. Use the GitHub MCP tools, or `gh api`
+  (`R=repos/diegoami/malpaco`):
+
+  | Instead of | Use |
+  | --- | --- |
+  | `gh issue list --label L` | `gh api "$R/issues?labels=L&state=open" --jq '.[] \| "#\(.number) \(.title)"'` |
+  | `gh issue view N` | `gh api $R/issues/N` and `gh api $R/issues/N/comments` |
+  | `gh issue create` | `gh api $R/issues -f title=… -F body=@file -f 'labels[]=L'` |
+  | `gh issue edit N --add-label L` | `gh api $R/issues/N/labels -f 'labels[]=L'` |
+  | `gh pr list` | `gh api "$R/pulls?state=open"` |
+  | `gh pr create` | `gh api $R/pulls -f title=… -f head=<branch> -f base=main -F body=@file` |
+  | `gh pr checks N` | `gh api $R/commits/<head sha>/check-runs --jq '.check_runs[] \| "\(.name) \(.status) \(.conclusion)"'` |
+  | `gh pr merge N --merge` | `gh api -X PUT $R/pulls/N/merge -f merge_method=merge` |
+  | `gh pr comment N` | `gh api $R/issues/N/comments -F body=@file` |
+
+  `tools/review.mjs` and the milestone review use `gh pr`/`gh issue`; they run on the owner's
+  machine, not in a cloud session.
 - `MALPACO_RCLONE_TOKEN` (and, with the owner's own OAuth client, `RCLONE_DRIVE_CLIENT_ID` and
   `RCLONE_DRIVE_CLIENT_SECRET`): Drive artifacts, §6.
 
