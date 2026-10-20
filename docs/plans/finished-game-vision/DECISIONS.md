@@ -30,6 +30,24 @@ D1 map-first is strengthened to full-screen geography. D2 phone portrait,
 landscape, tablet and desktop remains. D3 explicit Attack and one-army placement
 remain. D4 is actual playable appearance and interaction acceptance.
 
+## Portrait follow-up
+
+On 2026-10-20 the owner responded in the same cloud-session conversation:
+
+> much better, but how to deal with portrait? Does he navigate by swiping? The
+> map shoud be turned to fit portrait, somehow
+
+This approves the simpler direction and asks for a portrait-fit correction, not
+a different match/map. Revision 3 illustrates the recommended presentation:
+turn the same board 90° for a fitted portrait overview, with upright counts and
+controls. When the player zooms in, one-finger dragging pans and pinching zooms;
+Fit returns to the overview. These gesture/camera details are the proposed answer
+to the owner's question, not a claim of implemented behaviour. Initial fit should
+choose 0°/90° according to actual board bounds and available space, rather than
+rotate a naturally tall board unnecessarily. Geography is never stretched,
+regenerated or rearranged. Rotation preserves world-space selection, pending
+choices and focused location; camera transforms may change to fit the new view.
+
 ## What still needs review or reconciliation
 
 The first sketches were rejected for text density; V1–V5 approval does not approve

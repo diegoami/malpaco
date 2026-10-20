@@ -58,7 +58,11 @@ The map shows geography, land neighbours, sea crossings, ownership and productio
 centres. Relevant army counts appear when inspecting or selecting countries; a
 requested information view can expose more detail without making it permanent. Ownership has a symbol as well as colour. Selecting a country
 reveals its full identity and legal choices. Focus, zoom and a country list make
-dense areas usable; a tiny phone overview cannot promise every label is legible.
+dense areas usable. Portrait fits the same board with a 90° turn when that uses
+space better; counts/icons stay upright. Swipe to pan when zoomed and pinch to
+zoom, with Fit returning to the overview. The focused world location and pending
+choice survive device rotation. A tiny overview cannot make every country a
+large precise target; focus/list access remains available.
 
 An island is understandable as both a place and a strategic unit. Income and
 island benefits explain why a front matters. Players should be able to answer

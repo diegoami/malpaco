@@ -15,7 +15,11 @@ nice organic maps are required for the finished game; flavour naming can wait;
 the map fills the viewport, actions use icons, and text appears only for a
 current interaction or requested information, then clears. Permanent headers,
 phone docks and desktop side panels in the earlier sketches are superseded.
-D2 all devices and D3 explicit Attack remain.
+D2 all devices and D3 explicit Attack remain. The subsequent portrait refinement
+fits the same geography with a quarter turn when useful, keeps text/icons upright,
+and preserves world-space focus/drafts across rotation. Reconcile T80/T88 camera
+and gesture acceptance with swipe-to-pan, pinch zoom and Fit/focus alternatives;
+a gesture must not dispatch a tap action.
 
 The table below records the existing allocation and contract names, not approval
 to dispatch those contracts unchanged. Reconcile and explicitly amend affected

@@ -1,7 +1,8 @@
-# Revision 2: the map is the screen
+# Revision 3: portrait fit and focused navigation
 
 The owner approved V1–V5, required nice organic maps, deferred flavour names and
-rejected the first sketches' text density. [Exact response](DECISIONS.md).
+rejected the first sketches' text density. After preferring the simpler drawings,
+the owner requested that the map turn to fit portrait. [Exact response](DECISIONS.md).
 
 **The map fills every viewport.** There is no permanent header, sidebar, dock,
 legend, instruction block or history stream. Actions use original icons. Open
@@ -24,6 +25,31 @@ No predecessor pixels, artwork, code or help text were reused.
 | S3 Capture | [![S3 Capture, phone-portrait](sketches/capture-phone-portrait.svg)](sketches/capture-phone-portrait.svg) | [![S3 Capture, phone-landscape](sketches/capture-phone-landscape.svg)](sketches/capture-phone-landscape.svg) | [![S3 Capture, tablet](sketches/capture-tablet.svg)](sketches/capture-tablet.svg) | [![S3 Capture, desktop](sketches/capture-desktop.svg)](sketches/capture-desktop.svg) |
 | S4 Late game | [![S4 Late game, phone-portrait](sketches/late-game-phone-portrait.svg)](sketches/late-game-phone-portrait.svg) | [![S4 Late game, phone-landscape](sketches/late-game-phone-landscape.svg)](sketches/late-game-phone-landscape.svg) | [![S4 Late game, tablet](sketches/late-game-tablet.svg)](sketches/late-game-tablet.svg) | [![S4 Late game, desktop](sketches/late-game-desktop.svg)](sketches/late-game-desktop.svg) |
 | S5 Result | [![S5 Result, phone-portrait](sketches/result-phone-portrait.svg)](sketches/result-phone-portrait.svg) | [![S5 Result, phone-landscape](sketches/result-phone-landscape.svg)](sketches/result-phone-landscape.svg) | [![S5 Result, tablet](sketches/result-tablet.svg)](sketches/result-tablet.svg) | [![S5 Result, desktop](sketches/result-desktop.svg)](sketches/result-desktop.svg) |
+
+## Portrait starts with the whole archipelago
+
+The quiet/setup portrait views show the same board turned **90° and fitted**;
+all nine islands are visible. Landscape uses the same geometry without that
+quarter turn. Text, action icons and production markers stay upright. There is
+no stretching, new seed, changed adjacency or rearrangement of islands.
+
+Phone turn/capture frames illustrate a zoomed focused view of that rotated map.
+A player swipes/drags to pan, pinches to zoom, and uses Fit to return to the whole
+board. Focus selection and the requested country list provide non-drag routes;
+keyboard and requested zoom controls remain available. Small overview territories
+need focus/zoom before precise interaction, rather than oversized invisible hits.
+
+A tap inspects/selects according to phase (owned-country placement remains Place 1).
+A drag/pinch must never become a placement or attack on release; selecting an enemy
+still requires the separate Attack icon. Camera movement does not advance a turn.
+Browser zoom and platform gesture/accessibility constraints remain part of T88.
+
+On first open or Fit, choose the 0°/90° orientation that uses available space best.
+Once zoomed, preserve the world-space focus, relative zoom, selected pair and draft
+on device rotation; do not snap the player to an unrelated overview or commit an
+action. Adapt an existing overview to fit the new orientation. Pan follows screen
+directions after the transform. Portrait fit and focus are two camera views,
+not different map layouts. Actual gesture feel still needs playable acceptance.
 
 ## Text follows the interaction
 

@@ -1,4 +1,4 @@
-"""Original static concepts, revision 2: full-viewport maps, contextual icons.
+"""Original static concepts, revision 3: portrait rotation, fit and focus views.
 Run: python3 docs/plans/finished-game-vision/draw-sketches.py
 No application imports, assets, randomness or production generator changes.
 """
@@ -87,9 +87,23 @@ ISLANDS=[(145,112,74,54,3),(382,100,76,62,3),(682,116,100,59,3),
 SEEDS=[(-47,-15),(10,-36),(55,4),(-26,27),(28,43),(-68,32),(68,-32),(-5,58),(76,36),(-47,-57)]
 
 def geography(d, device, scene):
-    scale,center={'phone-portrait':(1.65,(467,332)), 'tablet':(1.48,(475,352)), 'phone-landscape':(.83,(474,330)), 'desktop':(1.16,(475,344))}[device]
-    ox,oy=d.w/2-center[0]*scale,d.h/2-center[1]*scale
-    d.p.append(f'<g data-layer="geography" transform="translate({ox:.2f} {oy:.2f}) scale({scale})">')
+    portrait=device in ('phone-portrait','tablet')
+    focused=device=='phone-portrait' and scene in ('ordinary-turn','capture')
+    if portrait:
+        # The same world geometry turns as a whole. No reflow or regeneration.
+        scale=min((d.w-32)/655,(d.h-40)/895)
+        center=(477.5,347.5)
+        if focused: scale,center=1.5,(453,274)
+        def project(x,y):
+            return d.w/2-(y-center[1])*scale,d.h/2+(x-center[0])*scale
+        transform=f'translate({d.w/2} {d.h/2}) scale({scale}) rotate(90) translate({-center[0]} {-center[1]})'
+    else:
+        scale,center={'phone-landscape':(.83,(474,330)), 'desktop':(1.16,(475,344))}[device]
+        ox,oy=d.w/2-center[0]*scale,d.h/2-center[1]*scale
+        def project(x,y):
+            return ox+x*scale,oy+y*scale
+        transform=f'translate({ox:.2f} {oy:.2f}) scale({scale})'
+    d.p.append(f'<g data-layer="geography" data-rotation="{90 if portrait else 0}" data-camera="{"focus" if focused else "overview"}" transform="{transform}">')
     coasts=[]
     for i,(x,y,rx,ry,n) in enumerate(ISLANDS):
         points=[]
@@ -119,9 +133,9 @@ def geography(d, device, scene):
             d.path(cell_path(cell_for((sx,sy),seeds)),fill=OWNERS[owner],stroke='#bbceac',width=.8)
             shapes=[f'M {sx-2} {sy-2}H {sx+2}V {sy+2}H {sx-2}Z', f'M {sx} {sy-3}L {sx+3} {sy}L {sx} {sy+3}L {sx-3} {sy}Z', f'M {sx-3} {sy}Q {sx} {sy-6} {sx+3} {sy}Q {sx} {sy+6} {sx-3} {sy}Z', f'M {sx-3} {sy-2}L {sx+2} {sy-3}L {sx+3} {sy+2}L {sx-2} {sy+3}Z']
             d.path(shapes[owner],fill='#e3e7c5',stroke='none')
-            if i==4 and j in (0,1): selected.append((ox+(x+sx)*scale,oy+(y+sy)*scale))
-        d.p.append('</g>'); d.path(coast,stroke='#d4d8b4',width=1.3)
-        if i in (1,4,8): d.path('M -3 1L 0 -4L 3 1V 5H -3Z',fill='#f2d69a',stroke='#3c5a52',width=.7)
+            if i==4 and j in (0,1): selected.append(project(x+sx,y+sy))
+        d.p.append('</g>'); d.path(coast,stroke='#d4d8b4',width=1.3,extra='data-coast="outline"')
+        if i in (1,4,8): d.path('M -3 1L 0 -4L 3 1V 5H -3Z',fill='#f2d69a',stroke='#3c5a52',width=.7,extra='transform="rotate(-90)"' if portrait else '')
         d.p.append('</g>')
     d.p.append('</g>')
     if scene in ('ordinary-turn','capture'):
@@ -140,7 +154,7 @@ SCENES={'quiet-map':'Quiet map: no selection or visible text', 'setup':'Setup: a
 DEVICES={'phone-portrait':(390,844),'phone-landscape':(844,390),'tablet':(768,1024),'desktop':(1280,800)}
 for scene,meaning in SCENES.items():
     for device,(w,h) in DEVICES.items():
-        d=Drawing(w,h,f'Malpaco · {meaning} · {device}',meaning+'. Revision 2, original static concept, not implemented or playtested. Full-viewport map with original organic coasts and schematic cells, not generation evidence. Accessible icon descriptions are not permanent labels. Text belongs to this interaction and clears when it ends; required choices remain recoverable.')
+        d=Drawing(w,h,f'Malpaco · {meaning} · {device}',meaning+'. Revision 3, original static concept, not implemented or playtested. Portrait turns the same board 90 degrees. Quiet portrait is fitted; phone turn/capture show zoomed focus. Counts and action icons stay upright. Full-viewport original organic geography is schematic, not generation evidence. Text belongs to this interaction and clears when it ends; required choices remain recoverable.')
         pair=geography(d,device,scene)
         d.icon(16,16,'menu','Menu: cards, totals, history, files, settings, help and country list')
         kind,label=('options','Match options') if scene=='setup' else (('close','Dismiss result to inspect the final board') if scene=='result' else ('pause','Pause or resume'))
@@ -172,4 +186,4 @@ for scene,meaning in SCENES.items():
             d.text(w/2,y+43,'You won',28,INK,'middle',700); d.text(w/2,y+72,'Conquest',16,MUTED,'middle')
             for j,(kind,label) in enumerate([('play','New game'),('details','Final standings, seed and options'),('history','Full history'),('load','Match files')]): d.icon(x+24+j*68,y+102,kind,label,primary=j==0)
         d.save(f'{scene}-{device}.svg')
-print(f'Wrote {len(SCENES)*len(DEVICES)} original revision-2 SVG concepts to {ROOT}')
+print(f'Wrote {len(SCENES)*len(DEVICES)} original revision-3 SVG concepts to {ROOT}')

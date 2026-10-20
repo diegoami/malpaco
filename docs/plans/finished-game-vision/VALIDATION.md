@@ -1,7 +1,7 @@
 # Review-package checks
 
-Revision 2 records the owner's V1–V5 approval and visual amendments, and replaces
-the rejected first sketches. Source baseline remains
+Revision 3 retains the owner's V1–V5 approval and visual amendments, and adds a fitted quarter-turn portrait overview plus focused zoom/pan
+illustrations to the simpler sketches. Source baseline remains
 `e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d`.
 
 Scope is `docs/plans/finished-game-vision/**`, the owner-amendment section and
@@ -10,7 +10,7 @@ Product files, task Done-when, game rules, dependencies and model assignments
 are unchanged. The release map now explicitly flags the superseded dock/sidebar
 assumptions for reconciliation before dispatch.
 
-## Current drawings: revision 2
+## Current drawings: revision 3
 
 - Twenty-four SVGs: quiet map plus setup, ordinary turn, capture, late game and
   result, each across portrait, landscape, tablet and desktop.
@@ -19,10 +19,11 @@ assumptions for reconciliation before dispatch.
 - All twenty-four map backgrounds cover their exact viewport. All four quiet-map
   drawings contain zero visible text elements. Action controls are icons.
 - Chromium rendered all twenty-four at native size. The
-  [render receipt](validation/revision-2/render-report.json) records zero text/icon
-  overflows in either direction and twenty-four full-viewport maps. Representative
+  [render receipt](validation/revision-3/render-report.json) records zero text/icon
+  overflows in either direction, twenty-four full-viewport maps, twelve rotated
+  portrait views and no clipped coast outlines in fitted portrait overviews. Representative
   quiet, turn, capture, late-game, setup and result layouts were visually checked.
-- [Current SVG hashes](validation/revision-2/sketch-sha256.txt) match the checked
+- [Current SVG hashes](validation/revision-3/sketch-sha256.txt) match the checked
   drawings. Regeneration is byte-identical.
 - Relative Markdown targets resolve, run-note history is preserved as an exact
   prefix, and whitespace/scope checks pass.
@@ -37,11 +38,17 @@ With the existing Playwright dependency and Chromium installed, reproduce the
 static rendering/overflow/text checks with:
 
 ```sh
-CHROMIUM_PATH=/usr/bin/chromium node docs/plans/finished-game-vision/validation/revision-2/render-sketches.cjs /tmp/malpaco-sketch-check
+CHROMIUM_PATH=/usr/bin/chromium node docs/plans/finished-game-vision/validation/revision-3/render-sketches.cjs /tmp/malpaco-sketch-check
 ```
 
 This script reads static SVGs; it does not launch or import the game. Screenshots
 are temporary drawing previews, not gameplay evidence.
+
+The revision-2 script, render receipt and hash list remain unchanged under
+`validation/revision-2/`, identifying the drawings at `b45fb71`. They do not
+identify the current SVGs. Revision 3 changes presentation transforms, not the
+illustrated coasts, partitions, seed or rules; actual swipe/pinch behaviour is
+still a design proposal awaiting product implementation and acceptance.
 
 ## Historical first package
 
