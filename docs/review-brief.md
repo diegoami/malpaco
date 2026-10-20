@@ -11,13 +11,18 @@ task; paste the second section as it is. (L47, L49)
 Any one is enough; a blocking finding means rework, never approve.
 1. A Done-when line fails, or cannot be run as written.
 2. What this task protects can be got past: <name it: the guard, check, permission, invariant,
-   rule value or file this task exists to protect>. A bypass you proved is blocking, even when it
-   looks like an edge case. Never "follow-up hardening" or "outside the threat model" unless the
-   task says so; if it does, quote the line. (L47)
+   rule value or file this task exists to protect>, not its helper tooling (validators, receipts,
+   test scripts) unless the task delivers that tool as a protection. A bypass you proved through
+   normal use or honest editing is blocking; one that needs deliberately crafted input is a
+   follow-up, unless defeating crafted input is the task's own protected claim. On a docs or
+   planning PR, judge the content; its helper checks are never blocking. (L47; process.md §5.2, #218)
 3. Behaviour the task forbids, or behaviour nobody asked for, inside a file the task requires. (L44)
 4. <project-specific items: a constant with no evidence, a test that passes with the behaviour
    deleted, a status written into a document>
-Not blocking: wording, style, and defects in code the PR did not change: file those as follow-ups.
+Not blocking: wording, style, defects in code the PR did not change, and claim-hardening or
+tooling findings of a class already raised in an earlier round (the main session narrows the
+claim instead): file those as follow-ups. A real defect in what the task delivers stays
+blocking in every round, however often it was raised before.
 When unsure, say how likely the problem is. Rate it blocking only if it is likely and would get
 past what the task protects; otherwise it is a follow-up. (L53)
 

@@ -18,7 +18,8 @@ proposes `harness.json`'s default first; the roster changes through `/switch-mod
 No quota is checked. The implementer's family is the session's, read from the Anthropic
 environment (`switch-model.mjs --show` prints it); the reviewer is never of that family.
 
-0. **Check.** The issue is `status:ready` and every Merge-after task is merged. Run
+0. **Check.** Read the task's **Tier** (`docs/process.md` §5.1; a task file without one is tier 2
+   until the main session adds it on `main`). The issue is `status:ready` and every Merge-after task is merged. Run
    `gh issue list --label triage:needed --state open`; triage anything that names this task first.
    If `harness.json` has cutoffs for `breaks-play`, route those issues through Jev first (`/jev`
    step 4). Act on its confident ends and triage the middle yourself; exit 3 means triage it all.
@@ -52,7 +53,14 @@ environment (`switch-model.mjs --show` prints it); the reviewer is never of that
      block), pushing
      after every commit, and opening the PR with the template body.
 
-3. **Review.** A registered `backend: "claude"` model uses the same command below; see
+3. **Review.** **Tier 0:** no external review. Run every Done-when line and the repository's own
+   checks on the PR's exact head yourself, then go to step 4's `status:approved` path (green CI
+   where CI runs) and list the PR for the next milestone review. **Tier 1:** one round; after one
+   rework, what remains becomes follow-up issues unless it is a real defect in what the task
+   delivers. **Tier 2:** as below until accepted. Reviews are proportionate (`docs/process.md`
+   §5.2): the brief's "Blocking means" names the task's protected claim, never its tooling. A
+   review prompt for a reviewer outside the script ends with §5.2 rule 6's posting step.
+   A registered `backend: "claude"` model uses the same command below; see
    `docs/harness-claude.md` for exact identity checks, trusted grants, coverage and retained
    evidence. Existing defaults and family rules still apply. First ask the user ONE question (CLAUDE.md rule 6 rule 2): which OpenCode model
    reviews? Put `harness.json`'s `reviewer.default` first (`gpt-6.1-sol` for a guard, a gate or
@@ -108,6 +116,10 @@ environment (`switch-model.mjs --show` prints it); the reviewer is never of that
         something (rule 21).
      8. Report the merge, the findings, the follow-ups and what is ready next.
    - `status:rework`:
+     0. Same-class cap (§5.2 rule 3): a class of tooling or claim-hardening finding returning in
+        a second round is narrowed and filed as a follow-up, not sent to a third round; tier 1
+        stops after one rework. A real defect in what the task delivers is never demoted by its
+        round number: it stays blocking, or escalates (step 5).
      1. Check that every finding names a file in `gh pr diff <pr> --name-only`. A review that
         does not reviewed the wrong tree: discard it, say so, and re-review.
      2. At `review-round:2` (at `review-round:1` for a fix), go to step 5.
