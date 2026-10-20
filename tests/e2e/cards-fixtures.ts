@@ -3,7 +3,7 @@ import {readFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {apply,deserializeVersionedMatch} from '../../src/core';
 import type {Action,CardKind,GameState,LoadedVersionedMatch} from '../../src/core';
-export const FIXTURES='docs/prototypes/new-game/T40/fixtures';
+export const FIXTURES='fixtures/new-game/T40/fixtures';
 export const KINDS=['Anchor','Compass','Lantern','Surge','Raid','Wild','Shield','Squall'] as const;
 export const TRADE_CASES=[
  {kind:'Anchor',file:'T38-legal-reshuffle-match-Anchor-before.json',pool:2,after:7,indices:[0,1,3]},

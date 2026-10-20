@@ -1,11 +1,11 @@
 import {describe,it,expect} from "vitest";
-import input from "../../docs/prototypes/new-game/T63/board.json";
+import input from "../../fixtures/new-game/T63/board.json";
 import {createHash} from "node:crypto";
 import {readFileSync} from "node:fs";
-import target from "../../docs/prototypes/new-game/T64/acceptance/board.json";
+import target from "../../fixtures/new-game/T64/acceptance/board.json";
 type Board=typeof input;
-const implementation=new URL("../../docs/prototypes/new-game/T64/layout.mjs",import.meta.url).href;
-const contract=new URL("../../docs/prototypes/new-game/T62/contract.mjs",import.meta.url).href;
+const implementation=new URL("../../fixtures/new-game/T64/layout.mjs",import.meta.url).href;
+const contract=new URL("../../fixtures/new-game/T62/contract.mjs",import.meta.url).href;
 const {coastPostprocess}=await import(implementation) as {coastPostprocess:(b:Board)=>Board};
 const {inspect}=await import(contract) as {inspect:(b:Board)=>Record<string,string[]>};
 function freeze(value:unknown):void{if(value&&typeof value==="object"){Object.freeze(value);for(const child of Object.values(value))freeze(child);}}
@@ -38,8 +38,8 @@ describe("fixed-reference geographical coast contract",()=>{
  },30000);
  it("leaves approved T22 and canonical T63 reference files immutable",()=>{
   const sha=(relative:string)=>createHash("sha256").update(readFileSync(new URL(relative,import.meta.url))).digest("hex");
-  expect(sha("../../docs/prototypes/map-1994/preview.html")).toBe("94106c6c8797e8640934f51fcd582ec96b222aa70e4ac9302e74085394a58763");
-  expect(sha("../../docs/prototypes/new-game/T63/board.json")).toBe("ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9");
+  expect(sha("../../fixtures/map-1994/preview.html")).toBe("94106c6c8797e8640934f51fcd582ec96b222aa70e4ac9302e74085394a58763");
+  expect(sha("../../fixtures/new-game/T63/board.json")).toBe("ec8086a4a1f9fe37ecc7b8e834ca767a95745a5216f06c617a6cf66e8c23b8d9");
   expect(semantics(coastPostprocess(input))).toEqual(semantics(input));
  },20000);
 });

@@ -8,7 +8,7 @@ import { createReferenceGame } from "../../src/core/reference-game";
 import { referenceMap } from "../../src/core/reference-map";
 import { deserializeVersionedMatch } from "../../src/core/match-save";
 
-const fixture = JSON.parse(readFileSync(new URL("../../docs/prototypes/new-game/T33/fixtures/conquest.json", import.meta.url), "utf8")) as {
+const fixture = JSON.parse(readFileSync(new URL("../../fixtures/new-game/T33/fixtures/conquest.json", import.meta.url), "utf8")) as {
   options: GameOptions; actions: Action[]; expected: { actions: number; computerActions: number; humanActions: number; winner: string };
 };
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);

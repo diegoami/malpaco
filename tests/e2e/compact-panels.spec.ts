@@ -5,7 +5,7 @@ import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
 import {join} from 'node:path';
 import {apply,computerAction,deserializeVersionedMatch} from '../../src/core';
 import type {Action} from '../../src/core';
-const fixtures='docs/prototypes/new-game/T71/fixtures';
+const fixtures='fixtures/new-game/T71/fixtures';
 const input=(host:string,label:string)=>readFileSync(join(fixtures,`${host}-${label}.json`),'utf8');
 const categories=['reinforcement','selection-ready','exchange','repeated-pair','capture-movement','friendly-movement'];
 const mode=(p:Page)=>p.getByRole('combobox',{name:'Panel detail',exact:true});

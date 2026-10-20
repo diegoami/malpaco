@@ -11,8 +11,8 @@ import {defaultOptions} from '../../src/core/options';
 import {createGeographicGame} from '../../src/core/geographic-game';
 import {GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY,deserializeVersionedMatch} from '../../src/core/match-save';
 import {pinned} from '../core/versioned-match-fixture';
-import frozenCorpus from '../../docs/prototypes/new-game/T36/corpus-selection.json' with {type:'json'};
-import layoutSupplement from '../../docs/prototypes/new-game/T36/corpus-supplement.json' with {type:'json'};
+import frozenCorpus from '../../fixtures/new-game/T36/corpus-selection.json' with {type:'json'};
+import layoutSupplement from '../../fixtures/new-game/T36/corpus-supplement.json' with {type:'json'};
 import {seatLook} from '../../src/ui/palette';
 
 type Corpus={measured:boolean;targetMet:boolean;sourceHashes:Record<string,string>;selection:{seed:number;purpose:string;mapHash:string}[];refusalSeeds:{seed:number;refusalClasses:string[]}[]};
@@ -81,7 +81,7 @@ test('root and unknown view retain the established setup and playback controls',
 for(const item of visualSelection)test(`seed ${item.seed} paints actual geography and contained legible army labels`,async({page},info)=>{
  expect(corpus.measured).toBe(true);expect(layoutSupplement.measured).toBe(true);
   const game=expected(item.seed);expect(hash(game.state.map)).toBe(item.mapHash);await start(page,item.seed);await page.mouse.move(0,0);
-  const actual=await drawing(page),q=1,presentation=JSON.parse(readFileSync(new URL(`../../docs/prototypes/new-game/T75/preflight/phase-b-20261018-01/fixtures/seed-${item.seed}-after.json`,import.meta.url),'utf8'));expect(actual.countries).toHaveLength(46);
+  const actual=await drawing(page),q=1,presentation=JSON.parse(readFileSync(new URL(`../../fixtures/new-game/T75/preflight/phase-b-20261018-01/fixtures/seed-${item.seed}-after.json`,import.meta.url),'utf8'));expect(actual.countries).toHaveLength(46);
   for(const v of presentation.provinces as {id:string;polygon:number[][];labelAt:[number,number]}[]){const row=actual.countries.find(r=>r.id===v.id)!;expect(numbers(row.d!)).toEqual(v.polygon.flatMap(pt=>pt.map(n=>n/q)));expect(row.x).toBeCloseTo(v.labelAt[0]/q,5);expect(row.y-5).toBeCloseTo(v.labelAt[1]/q,5);}
   const paint=await page.locator('#geographic-map .lane,#geographic-map .coast').evaluateAll(ns=>ns.map(n=>{const style=getComputedStyle(n),r=n.getBoundingClientRect();return {visible:style.display!=='none'&&style.visibility!=='hidden'&&Number(style.opacity)>0,stroke:style.stroke,strokeOpacity:Number(style.strokeOpacity),length:(n as SVGGeometryElement).getTotalLength(),fits:r.left>=0&&r.top>=0&&r.right<=innerWidth&&r.bottom<=innerHeight};}));for(const row of paint){expect(row.visible).toBe(true);expect(row.stroke).not.toBe('none');expect(row.strokeOpacity).toBeGreaterThan(0);expect(row.length).toBeGreaterThan(0);expect(row.fits).toBe(true);}
   expect(actual.coasts.map(d=>numbers(d!))).toEqual(presentation.islands.map((i:{polygon:number[][]})=>i.polygon.flatMap(pt=>pt.map(n=>n/q))));

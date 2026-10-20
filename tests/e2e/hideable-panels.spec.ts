@@ -8,8 +8,8 @@ async function begin(page:Page,host:string,kind:'layout'|'cards') {
   const errors:string[]=[];page.on('pageerror',e=>errors.push(String(e)));
   await page.goto(host==='reference'?'/?view=reference-game':'/',{waitUntil:'domcontentloaded'});
   await page.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'t76Save',blob);return create(blob);};});
-  const path=kind==='layout'?`docs/prototypes/new-game/T71/fixtures/${host}-reinforcement.json`:
-    `docs/prototypes/new-game/T40/fixtures/${host==='reference'?'T38-legal-Surge-before.json':'geographic-income-before-one-human.json'}`;
+  const path=kind==='layout'?`fixtures/new-game/T71/fixtures/${host}-reinforcement.json`:
+    `fixtures/new-game/T40/fixtures/${host==='reference'?'T38-legal-Surge-before.json':'geographic-income-before-one-human.json'}`;
   const old=await page.getByLabel('Load game',{exact:true}).elementHandle();
   await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'panels.json',mimeType:'application/json',buffer:Buffer.from(readFileSync(path))});
   await expect.poll(()=>old!.evaluate(e=>e.isConnected)).toBe(false);

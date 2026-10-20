@@ -42,7 +42,7 @@ export function envelope(options: GameOptions, actions: readonly Action[], ident
   return { format: "malpaco-match", version: 2, ...identity, options, actions };
 }
 export function pinned(name: string): PinnedMatch {
-  const base = new URL("../../docs/prototypes/new-game/T31/fixtures/", import.meta.url);
+  const base = new URL("../../fixtures/new-game/T31/fixtures/", import.meta.url);
   const payload = JSON.parse(readFileSync(new URL(`${name}.json`, base), "utf8")) as PinnedMatch | { parts: string[] };
   return "parts" in payload ? JSON.parse(payload.parts.map(part => JSON.parse(readFileSync(new URL(part, base), "utf8")) as string).join("")) as PinnedMatch : payload;
 }

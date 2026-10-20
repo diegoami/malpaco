@@ -13,7 +13,7 @@ type Factory=new(battle:BattleController,viewer:string)=>Cards;
 type CardBattle=BattleController&{readonly cardAcknowledgmentPending?:boolean;readonly gameGeneration?:number};
 const cleanup:(()=>void)[]=[];
 afterEach(()=>{while(cleanup.length)cleanup.pop()!();});
-function load(name:string){return core.deserializeVersionedMatch(readFileSync(`docs/prototypes/new-game/T40/fixtures/${name}.json`,'utf8'));}
+function load(name:string){return core.deserializeVersionedMatch(readFileSync(`fixtures/new-game/T40/fixtures/${name}.json`,'utf8'));}
 function apply(s:GameState,a:Action){const r=core.apply(s,a);if(!r.ok)throw Error(r.error);return r.state;}
 async function module(){expect(existsSync(resolve('src/ui/cardController.ts')),'actual card controller must exist').toBe(true);return await import('../../src/ui/cardController') as unknown as {CardController:Factory;publicCardNotes:(a:GameState,b:GameState,c:Action)=>string[]};}
 async function mount(s:GameState,viewer=s.players.find(p=>p.kind==='human')?.id??'',computers=false){

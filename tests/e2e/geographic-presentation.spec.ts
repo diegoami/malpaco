@@ -5,8 +5,8 @@ import {readFileSync} from 'node:fs';
 import {createGeographicGame} from '../../src/core/geographic-game';
 import {defaultOptions} from '../../src/core/options';
 import {GEOGRAPHIC_MATCH_IDENTITY,deserializeVersionedMatch,serializeVersionedMatch} from '../../src/core/match-save';
-import frozen from '../../docs/prototypes/new-game/T75/preflight/phase-b-20261018-01/fixtures/seed-1994-after.json' with {type:'json'};
-import changed from '../../docs/prototypes/new-game/T75/preflight/phase-b-20261018-01/fixtures/changed-boundary-hits.json' with {type:'json'};
+import frozen from '../../fixtures/new-game/T75/preflight/phase-b-20261018-01/fixtures/seed-1994-after.json' with {type:'json'};
+import changed from '../../fixtures/new-game/T75/preflight/phase-b-20261018-01/fixtures/changed-boundary-hits.json' with {type:'json'};
 
 type Drawing={bounds:{x:number;y:number;width:number;height:number};islands:{polygon:number[][]}[];provinces:{id:string;polygon:number[][];labelAt:number[]}[];routes:{from:string;to:string;points:number[][]}[]};
 const oracles:Record<string,Drawing>={'1994':frozen as unknown as Drawing};

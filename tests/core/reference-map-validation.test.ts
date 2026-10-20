@@ -1,5 +1,5 @@
 import {it,expect} from "vitest";
-import raw from "../../docs/prototypes/new-game/T63/board.json";
+import raw from "../../fixtures/new-game/T63/board.json";
 import {createReferenceGame,defaultOptions} from "../../src/core";
 import type {GameMap} from "../../src/core";
 it("rejects a non-46 reference map before it can leave countries undealt",()=>{

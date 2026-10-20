@@ -1,7 +1,7 @@
 import {describe,it,expect,beforeAll} from "vitest";
 import {generateIslandGeography} from "../../src/core/island-geography";
 import type {IslandGeography} from "../../src/core/island-geography";
-const acceptance=new URL("../../docs/prototypes/new-game/T34/acceptance.mjs",import.meta.url).href;
+const acceptance=new URL("../../fixtures/new-game/T34/acceptance.mjs",import.meta.url).href;
 const {inspectGeography}=await import(acceptance) as {inspectGeography:(g:IslandGeography)=>string[]};
 function result(seed:number):IslandGeography {
  const r=generateIslandGeography(seed);
@@ -45,8 +45,8 @@ describe("seeded partial island geography",()=>{
 it('records every rejected candidate, replays exhaustion and clamps the attempt budget',async()=>{
  const {vi}=await import('vitest');
  vi.resetModules();
- vi.doMock('../../docs/prototypes/new-game/T34/witness.json',async()=>{
-  const actual=await vi.importActual<{default:{provinces:{labelAt:number[]}[]}}>('../../docs/prototypes/new-game/T34/witness.json');
+ vi.doMock('../../fixtures/new-game/T34/witness.json',async()=>{
+  const actual=await vi.importActual<{default:{provinces:{labelAt:number[]}[]}}>('../../fixtures/new-game/T34/witness.json');
   const bad=structuredClone(actual.default); for(const p of bad.provinces)p.labelAt=[0,0];
   return {default:bad};
  });
@@ -60,7 +60,7 @@ it('records every rejected candidate, replays exhaustion and clamps the attempt 
   for(const attempts of [NaN,Infinity,-Infinity]){
    const none=generate(42,{attempts});expect(none.ok).toBe(false);expect(none.attempts).toBe(0);expect(none.failures).toEqual([]);expect(none.rng).toEqual({seed:42,state:42});
   }
- }finally{vi.doUnmock('../../docs/prototypes/new-game/T34/witness.json');vi.resetModules();}
+ }finally{vi.doUnmock('../../fixtures/new-game/T34/witness.json');vi.resetModules();}
 },30000);
 
 // [designed] Owner's broader-layout requirement: fixed 32-seed corpus, reflection-invariant thirds and5%aspect variation.
@@ -82,8 +82,8 @@ describe("meaningful silhouette and layout diversity",()=>{
 // preserve the T24 fortress/concentration budget before T35 constructs playable data.
 it('rejects reservations that concentrate entrances and bonuses into fortress islands',async()=>{
  const {vi}=await import('vitest');vi.resetModules();
- vi.doMock('../../docs/prototypes/new-game/T34/witness.json',async()=>{
-  const actual=await vi.importActual<{default:IslandGeography}>('../../docs/prototypes/new-game/T34/witness.json');
+ vi.doMock('../../fixtures/new-game/T34/witness.json',async()=>{
+  const actual=await vi.importActual<{default:IslandGeography}>('../../fixtures/new-game/T34/witness.json');
   const bad=structuredClone(actual.default);
   // Four disjoint retained crossings leave eight islands with one entrance each.
   bad.entranceReservations=[0,2,4,10].map(i=>bad.entranceReservations[i]!);
@@ -97,19 +97,19 @@ it('rejects reservations that concentrate entrances and bonuses into fortress is
    expect(f.constraints).toContain('fortress: large single-entry island');
    expect(f.constraints).toContain('concentration: single-entry bonuses exceed quarter');
   }
- }finally{vi.doUnmock('../../docs/prototypes/new-game/T34/witness.json');vi.resetModules();}
+ }finally{vi.doUnmock('../../fixtures/new-game/T34/witness.json');vi.resetModules();}
 },30000);
 
 
 // Clone the retained witness, then exercise the real constructor including both repair passes.
 async function withMockedWitness(mutate:(g:IslandGeography)=>void,check:(generate:typeof generateIslandGeography)=>void):Promise<void>{
  const {vi}=await import('vitest');vi.resetModules();
- vi.doMock('../../docs/prototypes/new-game/T34/witness.json',async()=>{
-  const actual=await vi.importActual<{default:IslandGeography}>('../../docs/prototypes/new-game/T34/witness.json');
+ vi.doMock('../../fixtures/new-game/T34/witness.json',async()=>{
+  const actual=await vi.importActual<{default:IslandGeography}>('../../fixtures/new-game/T34/witness.json');
   const bad=structuredClone(actual.default);mutate(bad);return {default:bad};
  });
  try{const {generateIslandGeography:generate}=await import('../../src/core/island-geography');check(generate);}
- finally{vi.doUnmock('../../docs/prototypes/new-game/T34/witness.json');vi.resetModules();}
+ finally{vi.doUnmock('../../fixtures/new-game/T34/witness.json');vi.resetModules();}
 }
 const refusalCases:{name:string;constraint:string;mutate:(g:IslandGeography)=>void}[]=[
  {name:'non-simple cells',constraint:'cells: non-simple polygon',mutate:g=>{

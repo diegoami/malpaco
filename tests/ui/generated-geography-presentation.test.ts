@@ -8,8 +8,8 @@ import {deserializeVersionedMatch,serializeVersionedMatch,GEOGRAPHIC_MATCH_IDENT
 import type {GameOptions} from '../../src/core/options';
 // Parent-approved: once-validated PhaseA geometry is pinned completely here.
 // Exact typed-output equivalence protects every point/contact/route without rerunning the quadratic checker.
-import frozenOracles from '../../docs/prototypes/new-game/T74/acceptance/frozen-oracles.json' with {type:'json'};
-const read=(p:string)=>readFileSync(process.env['T74_FIXTURE_DIR']?process.env['T74_FIXTURE_DIR']+'/'+p:new URL('../../docs/prototypes/new-game/T74/acceptance/measurements/'+p,import.meta.url),'utf8');
+import frozenOracles from '../../fixtures/new-game/T74/acceptance/frozen-oracles.json' with {type:'json'};
+const read=(p:string)=>readFileSync(process.env['T74_FIXTURE_DIR']?process.env['T74_FIXTURE_DIR']+'/'+p:new URL('../../fixtures/new-game/T74/acceptance/measurements/'+p,import.meta.url),'utf8');
 const sha=(s:string)=>createHash('sha256').update(s).digest('hex');
 const geometry=(b:Presentation)=>({seed:b.seed,bounds:b.bounds,islands:b.islands.map(({id,polygon,provinces})=>({id,polygon,provinces})),provinces:b.provinces.map(({id,island,polygon,labelAt,borders})=>({id,island,polygon,labelAt,borders})),routes:b.routes.map(({from,to,points})=>({from,to,points}))});
 for(const seed of [1994,0,1,6,7,513,749,2,3,4,5,8])it(`matches frozen drawing and retains actual engine/save/RNG bytes ${seed}`,()=>{

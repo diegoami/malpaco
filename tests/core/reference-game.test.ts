@@ -1,5 +1,5 @@
 import {describe,it,expect} from "vitest";
-import raw from "../../docs/prototypes/new-game/T63/board.json";
+import raw from "../../fixtures/new-game/T63/board.json";
 import {createReferenceGame} from "../../src/core/reference-game";
 import {apply,defaultOptions,reinforcementIncome,neighbours} from "../../src/core";
 import type {GameMap,GameOptions,Province} from "../../src/core";

@@ -11,7 +11,7 @@ import {apply} from '../../src/core/rules';
 import {serializeVersionedMatch, deserializeVersionedMatch} from '../../src/core/match-save';
 import type {GameMap} from '../../src/core/types';
 
-const acceptance = new URL('../../docs/prototypes/new-game/T35/acceptance.mjs', import.meta.url).href;
+const acceptance = new URL('../../fixtures/new-game/T35/acceptance.mjs', import.meta.url).href;
 const {inspectBoard} = await import(acceptance) as {inspectBoard: (map: GameMap, geography: unknown) => string[]};
 const identity = {boardGenerator: {id:'geographic',version:1}, rules:{id:'victory',version:1}, actionSchemaVersion:2};
 const options = (seed: number) => ({...defaultOptions(), seed});

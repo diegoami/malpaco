@@ -12,7 +12,7 @@ export interface View {
  attacksThisTurn:number;attackBudget:number;
 }
 export interface Policy {computerView:(s:GameState)=>View;decideComputerAction:(v:View)=>Action|null;computerAction:(s:GameState)=>Action|null}
-export const fixtureRoot='docs/prototypes/new-game/T41/parent-acceptance/proposed-tests/fixtures';
+export const fixtureRoot='fixtures/new-game/T41/parent-acceptance/proposed-tests/fixtures';
 export function fixture(name:string){return c.deserializeVersionedMatch(readFileSync(`${fixtureRoot}/${name}.json`,'utf8'));}
 export function opening(seed=1){
  const envelope=JSON.parse(readFileSync(`${fixtureRoot}/mixed-tradeCards-232.json`,'utf8'));

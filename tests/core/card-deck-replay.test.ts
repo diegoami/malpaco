@@ -45,7 +45,7 @@ describe('deck replay and same-stream continuation',()=>{
  },30000);
  it('reconstructs a reached full-hand choice and actual reshuffle from options and ordinary actions',()=>{
   cards(opening());
-  const read=(name:string)=>readFileSync(new URL('../../docs/prototypes/new-game/T37/fixtures/'+name,import.meta.url),'utf8');
+  const read=(name:string)=>readFileSync(new URL('../../fixtures/new-game/T37/fixtures/'+name,import.meta.url),'utf8');
   const beforePayload=JSON.parse(read('reshuffle-before-match.json')),afterPayload=JSON.parse(read('reshuffle-match.json'));
   expect(beforePayload.actions).toHaveLength(328);expect(afterPayload.actions).toHaveLength(329);
   const before=core.deserializeVersionedMatch(JSON.stringify(beforePayload)).state as State;
@@ -60,7 +60,7 @@ describe('deck replay and same-stream continuation',()=>{
  },30000);
  it('the real decisive capturing turn waits for discard and rewards before replayed victory',()=>{
   cards(opening());
-  const read=(name:string)=>readFileSync(new URL('../../docs/prototypes/new-game/T37/fixtures/'+name,import.meta.url),'utf8');
+  const read=(name:string)=>readFileSync(new URL('../../fixtures/new-game/T37/fixtures/'+name,import.meta.url),'utf8');
   const beforePayload=JSON.parse(read('decisive-before-match.json')),afterPayload=JSON.parse(read('decisive-match.json'));
   expect(beforePayload.actions).toHaveLength(194);expect(afterPayload.actions).toHaveLength(195);
   const before=core.deserializeVersionedMatch(JSON.stringify(beforePayload)).state as State,me=player(before);

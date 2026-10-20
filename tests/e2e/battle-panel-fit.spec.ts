@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import type {Page,TestInfo} from '@playwright/test';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {apply,deserializeVersionedMatch} from '../../src/core';
-const owned='docs/prototypes/new-game/issue180/preflight';
+const owned='fixtures/new-game/issue180/preflight';
 const discoveries=JSON.parse(readFileSync(owned+'/discovery.json','utf8'));
 async function load(p:Page,text:string){const old=await p.getByLabel('Load game',{exact:true}).elementHandle();await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'legal.json',mimeType:'application/json',buffer:Buffer.from(text)});await expect.poll(()=>old!.evaluate(e=>e.isConnected)).toBe(false);}
 async function save(p:Page){await p.getByRole('button',{name:'Save game',exact:true}).click();return p.evaluate(()=>(Reflect.get(window,'preflightSave') as Blob).text());}
@@ -40,7 +40,7 @@ test('complete human battle controls stay simultaneously visible without outer s
    }
    if(kind==='capture'){const clicked=await physicalClick(page,'confirm-capture-button');checks.push({label:label+' capture clickable without scroll',ok:clicked});if(clicked){const amount=before.state.pendingCapture!.defaultAmount,r=apply(before.state,{kind:'captureMove',amount});if(!r.ok)throw Error(r.error);checks.push({label:label+' exact capture state/RNG',ok:JSON.stringify(deserializeVersionedMatch(await save(page)).state)===JSON.stringify(r.state)});}}
   }
-  const choiceFile=source.startsWith('geographic')?'geographic-income-before-one-human.json':'T38-legal-Surge-before.json';await load(page,readFileSync('docs/prototypes/new-game/T40/fixtures/'+choiceFile,'utf8'));await page.locator('#panel-detail').selectOption(mode);samples.push(await measure(page,info,source+'-'+mode+'-card-choice'));const choice=page.getByRole('button',{name:'Skip cards',exact:true});checks.push({label:source+mode+' mandatory card choice enabled',ok:await choice.isEnabled()});
+  const choiceFile=source.startsWith('geographic')?'geographic-income-before-one-human.json':'T38-legal-Surge-before.json';await load(page,readFileSync('fixtures/new-game/T40/fixtures/'+choiceFile,'utf8'));await page.locator('#panel-detail').selectOption(mode);samples.push(await measure(page,info,source+'-'+mode+'-card-choice'));const choice=page.getByRole('button',{name:'Skip cards',exact:true});checks.push({label:source+mode+' mandatory card choice enabled',ok:await choice.isEnabled()});
  }
  writeFileSync(info.outputPath('metrics.json'),JSON.stringify({samples,checks},null,2)+'\n');
  // ALL modes and phases have evidence before fit assertions are evaluated.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import raw from "../../docs/prototypes/new-game/T63/board.json";
+import raw from "../../fixtures/new-game/T63/board.json";
 import { captureChoiceRules, cloneState, createReferenceGame, defaultOptions, malpacoRules } from "../../src/core";
 import type { GameMap, Province } from "../../src/core";
 import { capture, frozen } from "./capture-choice-fixtures";

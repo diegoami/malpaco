@@ -1,0 +1,140 @@
+[
+  {
+    "source": "geographic-raid-pending-one-human.json",
+    "fixture": "geographic-raid-pending-one-human-attack-empty.json",
+    "kind": "attack-empty",
+    "index": 54,
+    "action": {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_21"
+    },
+    "hand": [],
+    "log": 33
+  },
+  {
+    "source": "geographic-raid-pending-one-human.json",
+    "fixture": "geographic-raid-pending-one-human-capture.json",
+    "kind": "capture",
+    "index": 420,
+    "action": {
+      "kind": "captureMove",
+      "amount": 1
+    },
+    "hand": [
+      "Wild",
+      "Shield",
+      "Raid",
+      "Compass",
+      "Anchor"
+    ],
+    "log": 182
+  },
+  {
+    "source": "geographic-raid-pending-one-human.json",
+    "fixture": "geographic-raid-pending-one-human-attack-hand.json",
+    "kind": "attack-hand",
+    "index": 419,
+    "action": {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_21"
+    },
+    "hand": [
+      "Wild",
+      "Shield",
+      "Raid",
+      "Compass",
+      "Anchor"
+    ],
+    "log": 181
+  },
+  {
+    "source": "geographic-raid-pending-one-human.json",
+    "fixture": "geographic-raid-pending-one-human-attack-running.json",
+    "kind": "attack-running",
+    "index": 391,
+    "action": {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_21"
+    },
+    "hand": [
+      "Wild",
+      "Shield",
+      "Compass",
+      "Raid",
+      "Compass"
+    ],
+    "log": 172
+  },
+  {
+    "source": "T39-legal-pending-raid.json",
+    "fixture": "T39-legal-pending-raid-attack-empty.json",
+    "kind": "attack-empty",
+    "index": 4,
+    "action": {
+      "kind": "attack",
+      "from": "province_20",
+      "to": "province_0"
+    },
+    "hand": [],
+    "log": 2
+  },
+  {
+    "source": "T39-legal-pending-raid.json",
+    "fixture": "T39-legal-pending-raid-capture.json",
+    "kind": "capture",
+    "index": 249,
+    "action": {
+      "kind": "captureMove",
+      "amount": 1
+    },
+    "hand": [
+      "Raid",
+      "Wild",
+      "Shield",
+      "Compass",
+      "Anchor"
+    ],
+    "log": 134
+  },
+  {
+    "source": "T39-legal-pending-raid.json",
+    "fixture": "T39-legal-pending-raid-attack-hand.json",
+    "kind": "attack-hand",
+    "index": 248,
+    "action": {
+      "kind": "attack",
+      "from": "province_29",
+      "to": "province_33"
+    },
+    "hand": [
+      "Raid",
+      "Wild",
+      "Shield",
+      "Compass",
+      "Anchor"
+    ],
+    "log": 133
+  },
+  {
+    "source": "T39-legal-pending-raid.json",
+    "fixture": "T39-legal-pending-raid-attack-running.json",
+    "kind": "attack-running",
+    "index": 247,
+    "action": {
+      "kind": "attack",
+      "from": "province_29",
+      "to": "province_33"
+    },
+    "hand": [
+      "Raid",
+      "Wild",
+      "Shield",
+      "Compass",
+      "Anchor"
+    ],
+    "log": 132
+  }
+]

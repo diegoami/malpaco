@@ -1,9 +1,9 @@
 import {describe,it,expect} from "vitest";
-import input from "../../docs/prototypes/new-game/T64/board.json";
-import target from "../../docs/prototypes/new-game/T65/acceptance/board.json";
+import input from "../../fixtures/new-game/T64/board.json";
+import target from "../../fixtures/new-game/T65/acceptance/board.json";
 type Board=typeof input;
-const {naturalizeBorders}=await import(new URL("../../docs/prototypes/new-game/T65/borders.mjs",import.meta.url).href) as {naturalizeBorders:(b:Board,s?:number)=>Board};
-const {inspect}=await import(new URL("../../docs/prototypes/new-game/T62/contract.mjs",import.meta.url).href) as {inspect:(b:Board)=>Record<string,string[]>};
+const {naturalizeBorders}=await import(new URL("../../fixtures/new-game/T65/borders.mjs",import.meta.url).href) as {naturalizeBorders:(b:Board,s?:number)=>Board};
+const {inspect}=await import(new URL("../../fixtures/new-game/T62/contract.mjs",import.meta.url).href) as {inspect:(b:Board)=>Record<string,string[]>};
 const semantics=(b:Board)=>({...b,provinces:b.provinces.map(({polygon:_p,...p})=>p)});
 function freeze(value:unknown):void{if(value&&typeof value==="object"){Object.freeze(value);for(const child of Object.values(value))freeze(child);}}
 const key=(a:number[],b:number[])=>[JSON.stringify(a),JSON.stringify(b)].sort().join("|");

@@ -3,7 +3,7 @@ import type {Page,TestInfo} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {apply,deserializeVersionedMatch,friendlySources,friendlyTargets} from '../../src/core';
 import type {Action,GameState} from '../../src/core';
-const fixtureRoot='docs/prototypes/new-game/';
+const fixtureRoot='fixtures/new-game/';
 const input=(name:string)=>readFileSync(fixtureRoot+name,'utf8');
 const discoveries=JSON.parse(input('issue180/preflight/discovery.json'));
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);

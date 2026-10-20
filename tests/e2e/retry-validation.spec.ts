@@ -45,7 +45,7 @@ async function fitAndCapture(page: Page, name: string, project: string) {
     .toEqual({ width: viewport.width, height: viewport.height });
   const directory = process.env["RETRY_VALIDATION_EVIDENCE_DIR"]
     ? join(process.env["RETRY_VALIDATION_EVIDENCE_DIR"]!, "captures")
-    : "docs/prototypes/retry-validation/captures";
+    : "artifacts/retry-validation/captures";
   mkdirSync(directory, { recursive: true });
   await page.screenshot({ path: join(directory, `${name}-${project}.png`) });
 }

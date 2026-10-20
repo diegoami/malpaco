@@ -29,7 +29,7 @@ const inherited:Boundary={createWorkspaceState:defaults,updateWorkspaceState:s=>
 const api=(modules['../../src/ui/workspaceState.ts']??inherited) as Boundary;
 const context=(from:string|null='province_1',to:string|null='province_2',matchGeneration=0):Context=>({from,to,matchGeneration});
 function customized():Workspace{return {...defaults(),camera:{x:42,y:-18,zoom:2.5},surface:'cards',histories:{battle:{scrollTop:120,followLatest:false},events:{scrollTop:70,followLatest:false}},drafts:{capture:'-',move:'3e',threshold:'999999999999999999999'},focus:'attack-button',attack:{from:'province_1',to:'province_2',confirmed:true}};}
-function raw(name:string){return JSON.parse(readFileSync(`docs/prototypes/new-game/T40/fixtures/${name}.json`,'utf8')) as {actions:core.Action[]};}
+function raw(name:string){return JSON.parse(readFileSync(`fixtures/new-game/T40/fixtures/${name}.json`,'utf8')) as {actions:core.Action[]};}
 function loaded(name:string){return core.deserializeVersionedMatch(JSON.stringify(raw(name))).state;}
 function prefix(name:string,kind:string,include=false):GameState {
  const file=raw(name),i=file.actions.findIndex(a=>a.kind===kind);if(i<0)throw Error(`fixture missing ${kind}`);

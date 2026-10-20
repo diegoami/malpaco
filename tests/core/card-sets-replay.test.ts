@@ -3,7 +3,7 @@ import {describe,it,expect} from 'vitest';
 import {api,core,opening,options,identity,act,cards,conserved,player,endPlacement} from './card-sets-fixture';
 import type {State,TradeAction} from './card-sets-fixture';
 import type {GameOptions,Action} from '../../src/core';
-const text=(name:string)=>readFileSync(new URL('../../docs/prototypes/new-game/T38/fixtures/'+name,import.meta.url),'utf8');
+const text=(name:string)=>readFileSync(new URL('../../fixtures/new-game/T38/fixtures/'+name,import.meta.url),'utf8');
 function load(name:string):State{return core.deserializeVersionedMatch(text(name)).state;}
 function replay(s:State,o:GameOptions,geographic=false):State{const wire=core.serializeVersionedMatch(o,s.history,identity(geographic)),value=JSON.parse(wire);expect(Object.keys(value).sort()).toEqual(['format','version','boardGenerator','rules','actionSchemaVersion','options','actions'].sort());const loaded=core.deserializeVersionedMatch(wire);expect(loaded.identity).toEqual(identity(geographic));expect(loaded.state).toEqual(s);return loaded.state;}
 
@@ -27,7 +27,7 @@ describe('real trade/skip histories with permanent stage identities',()=>{
   const next=act(endPlacement(replay(skipped,o,geographic)),{kind:'endTurn'});expect(next.phase).toBe('cards');replay(next,o,geographic);conserved(next);
  },30000);
  for(const [current,old,count] of [['legal-reshuffle-match-skips.json','reshuffle-match.json',392],['legal-decisive-match-skips.json','decisive-match.json',214]] as const)it(`ordinary skipped history keeps deck-v1 outcome/RNG exactly: ${current}`,()=>{
-  expect(api.tradeCardsRules).toBeTypeOf('function');const s=load(current),baseline=core.deserializeVersionedMatch(readFileSync(new URL('../../docs/prototypes/new-game/T37/fixtures/'+old,import.meta.url),'utf8')).state;
+  expect(api.tradeCardsRules).toBeTypeOf('function');const s=load(current),baseline=core.deserializeVersionedMatch(readFileSync(new URL('../../fixtures/new-game/T37/fixtures/'+old,import.meta.url),'utf8')).state;
   expect(s.history).toHaveLength(count);expect(s.history.some(a=>(a as TradeAction).kind==='skipCards')).toBe(true);
   const normalized={...s,rules:baseline.rules,phase:s.phase==='cards'?'reinforce':s.phase,history:s.history.filter(a=>(a as TradeAction).kind!=='skipCards')};expect(normalized).toEqual(baseline);conserved(s);
   const oldWire=core.serializeVersionedMatch(JSON.parse(text(current)).options,baseline.history,core.REFERENCE_CARD_MATCH_IDENTITY);expect(core.deserializeVersionedMatch(oldWire).state).toEqual(baseline);

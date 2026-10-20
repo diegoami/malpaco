@@ -25,6 +25,6 @@ export function setup(hand:Kind[]=['Raid','Wild','Raid','Compass'],defenderHand:
  return {s,own,target,defender};
 }
 export function conserved(s:State){const c=s.cards,all=[...c.drawPile,...c.discardPile,...Object.values(c.hands).flat()];expect(all).toHaveLength(40);expect(Object.fromEntries(Object.keys(COMPOSITION).map(k=>[k,all.filter(x=>x===k).length]))).toEqual(COMPOSITION);}
-export function saved(name:string){const text=readFileSync(`docs/prototypes/new-game/T39/fixtures/${name}.json`,'utf8');return {text,payload:JSON.parse(text),loaded:core.deserializeVersionedMatch(text)};}
+export function saved(name:string){const text=readFileSync(`fixtures/new-game/T39/fixtures/${name}.json`,'utf8');return {text,payload:JSON.parse(text),loaded:core.deserializeVersionedMatch(text)};}
 export function identity(geographic=false):MatchIdentity{return (geographic?api.GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:api.REFERENCE_RAID_CARD_MATCH_IDENTITY)??{boardGenerator:{id:geographic?'geographic':'fixed-reference',version:1},rules:{id:'cards',version:3},actionSchemaVersion:5};}
 export {core};

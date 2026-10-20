@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {readFileSync,writeFileSync} from 'node:fs';
-const envelope='docs/prototypes/new-game/T40/fixtures/T40-human-loss-450.json';
+const envelope='fixtures/new-game/T40/fixtures/T40-human-loss-450.json';
 test('final T40 loss choices fit both modes; retain all geometry before assertions',async({page},info)=>{
  await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await page.goto('/');const old=await page.getByLabel('Load game',{exact:true}).elementHandle();await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'human-loss-450.json',mimeType:'application/json',buffer:readFileSync(envelope)});await expect.poll(()=>old!.evaluate(el=>el.isConnected)).toBe(false);await expect(page.locator('[data-country]')).toHaveCount(46);
  const measurements=[];

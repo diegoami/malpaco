@@ -2,10 +2,10 @@ import {test,expect} from "@playwright/test";
 import type {Page} from "@playwright/test";
 import {readFileSync,mkdirSync,mkdtempSync,writeFileSync} from "node:fs";
 import {join} from "node:path";
-import type expectedType from "../../docs/prototypes/new-game/T65/acceptance/board.json";
-const expected:typeof expectedType=JSON.parse(readFileSync(new URL("../../docs/prototypes/new-game/T65/acceptance/board.json",import.meta.url),"utf8"));
-import type originalType from "../../docs/prototypes/new-game/T63/board.json";
-const original:typeof originalType=JSON.parse(readFileSync(new URL("../../docs/prototypes/new-game/T63/board.json",import.meta.url),"utf8"));
+import type expectedType from "../../fixtures/new-game/T65/acceptance/board.json";
+const expected:typeof expectedType=JSON.parse(readFileSync(new URL("../../fixtures/new-game/T65/acceptance/board.json",import.meta.url),"utf8"));
+import type originalType from "../../fixtures/new-game/T63/board.json";
+const original:typeof originalType=JSON.parse(readFileSync(new URL("../../fixtures/new-game/T63/board.json",import.meta.url),"utf8"));
 import {fixture,step} from "./battle-fixture";
 import {deserializeVersionedMatch} from "../../src/core/match-save";
 import {logicalState} from "../core/versioned-match-fixture";
@@ -48,9 +48,9 @@ async function painted(page:Page){
 }
 for(const viewport of [{width:800,height:540},{width:1280,height:800},{width:1920,height:1080}])test(`standalone shared borders is painted and all46countries selectable at ${viewport.width}x${viewport.height}`,async({page},info)=>{
  const dir=output(`standalone-${viewport.width}-${info.project.name}`),errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));await page.setViewportSize(viewport);
- await page.setContent(readFileSync(new URL("../../docs/prototypes/new-game/T64/preview.html",import.meta.url),"utf8"));await shot(page,dir,"before-T64");await closeups(page,dir,"before-border");
- await page.setContent(readFileSync(new URL("../../docs/prototypes/map-1994/preview.html",import.meta.url),"utf8"));await shot(page,dir,"approved-T22-reference");
- await page.setContent(readFileSync(new URL("../../docs/prototypes/new-game/T65/preview.html",import.meta.url),"utf8"));try{await painted(page);}finally{await shot(page,dir,"after-opening");await closeups(page,dir,"after-border");}
+ await page.setContent(readFileSync(new URL("../../fixtures/new-game/T64/preview.html",import.meta.url),"utf8"));await shot(page,dir,"before-T64");await closeups(page,dir,"before-border");
+ await page.setContent(readFileSync(new URL("../../fixtures/map-1994/preview.html",import.meta.url),"utf8"));await shot(page,dir,"approved-T22-reference");
+ await page.setContent(readFileSync(new URL("../../fixtures/new-game/T65/preview.html",import.meta.url),"utf8"));try{await painted(page);}finally{await shot(page,dir,"after-opening");await closeups(page,dir,"after-border");}
  for(const p of expected.provinces){await country(page,p.id).click();await expect(country(page,p.id)).toHaveAttribute("aria-pressed","true");expect(await page.locator(".country.neighbor").evaluateAll(nodes=>nodes.map(n=>(n as SVGGElement).dataset["id"]).sort())).toEqual([...p.borders,...p.seaLanes].sort());const collisions=await page.locator(".country-label").evaluateAll(nodes=>{const boxes=nodes.map(n=>n.getBoundingClientRect());return boxes.flatMap((a,j)=>boxes.slice(j+1).flatMap((b,k)=>a.right>b.left&&b.right>a.left&&a.bottom>b.top&&b.bottom>a.top?[[j,j+k+1]]:[]));});expect(collisions,`selected ${p.id}: labels overlap`).toEqual([]);}
  await country(page,expected.provinces[0]!.id).focus();await page.keyboard.press("Space");await expect(country(page,expected.provinces[0]!.id)).toHaveAttribute("aria-pressed","true");
  await shot(page,dir,"selected");expect(errors).toEqual([]);

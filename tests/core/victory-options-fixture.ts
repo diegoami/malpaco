@@ -3,9 +3,9 @@ import type { Action, GameOptions, GameState, RuleSet } from "../../src/core";
 import { createReferenceGame } from "../../src/core/reference-game";
 import { readFileSync } from "node:fs";
 import type { GameMap, Province } from "../../src/core";
-import type BoardData from "../../docs/prototypes/new-game/T63/board.json";
+import type BoardData from "../../fixtures/new-game/T63/board.json";
 
-const board: typeof BoardData = JSON.parse(readFileSync(new URL("../../docs/prototypes/new-game/T63/board.json", import.meta.url), "utf8"));
+const board: typeof BoardData = JSON.parse(readFileSync(new URL("../../fixtures/new-game/T63/board.json", import.meta.url), "utf8"));
 export const referenceMap: GameMap = { id: "reference-coast-first-a", name: "Nine Isles", bounds: board.bounds, provinces: board.provinces as unknown as readonly Province[], islands: board.islands };
 
 export interface Standing { player: string; countries: number; armies: number }

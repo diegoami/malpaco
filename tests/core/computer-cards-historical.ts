@@ -4,7 +4,7 @@ import { friendlySources, friendlyTargets } from "../../src/core/movement";
 import { legalAttacks } from "../../src/core/rules";
 import type { Action, GameState } from "../../src/core/types";
 
-/** [designed] Basic deterministic policy; priorities and finite budget in docs/prototypes/new-game/T32/README.md. */
+/** [designed] Basic deterministic policy; priorities and finite budget in fixtures/new-game/T32/README.md. */
 export function historicalComputerAction(state: GameState): Action | null {
   const mover = activePlayer(state);
   if (!mover || mover.kind !== "computer" || mover.eliminated || (state.phase === "finished" || state.phase === "human-loss")) return null;

@@ -19,7 +19,7 @@ export type GeographyResult =
   | { ok: false; attempts: number; failures: GeographyFailure[]; rng: RngSnapshot };
 
 import { DeterministicRng } from "./rng";
-import witness from "../../docs/prototypes/new-game/T34/witness.json" with { type: "json" };
+import witness from "../../fixtures/new-game/T34/witness.json" with { type: "json" };
 type Ring = readonly GeoPoint[];
 const Q = 2048; // [designed] Exact T64 coast/port precision; witness-provenance.json.
 const MAX_ATTEMPTS = 50; // Owner-approved T24 attempt budget, parameters.mjs.

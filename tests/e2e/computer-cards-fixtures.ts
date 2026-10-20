@@ -2,7 +2,7 @@ import {readFileSync} from 'node:fs';
 import {expect} from '@playwright/test';
 import * as c from '../../src/core';
 import type {Action,GameState,LoadedVersionedMatch} from '../../src/core';
-const root='docs/prototypes/new-game/T41/parent-acceptance/proposed-browser/fixtures';
+const root='fixtures/new-game/T41/parent-acceptance/proposed-browser/fixtures';
 export const input=(name:string)=>readFileSync(`${root}/${name}.json`,'utf8');
 export const fixture=(name:string)=>c.deserializeVersionedMatch(input(name));
 export function step(s:GameState,a:Action){const r=c.apply(s,a);if(!r.ok)throw Error(`Ordinary action rejected ${JSON.stringify(a)}: ${r.error}`);return r.state;}
