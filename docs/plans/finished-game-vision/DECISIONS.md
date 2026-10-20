@@ -67,6 +67,31 @@ explain consequences as needed, then clear. Skippable/replayable first-turn tips
 are a teaching proposal responding to the question; no tutorial implementation
 or new task is dispatched. The ordinary resting board remains text-free.
 
+## Real-world geography and usability review
+
+On 2026-10-20 the owner clarified:
+
+> Ok i will review for usability, that will be part of the review, still I would
+> like the islands and reigons look mormlike some ral counterparts, not cooy but
+> use as a generation example. say, sicily or cuba or borneo or new zeland and
+> their provinces
+
+Usability is explicitly part of the owner's review. No usability approval is
+claimed yet and no additional review model is dispatched. Actual controls,
+first-use guidance, gesture safety, map picking and information recovery remain
+in D4/playable review.
+
+Geography must take reference from the named islands and regional/provincial
+structure while remaining original. [Reference brief and studies](GEOGRAPHY-REFERENCES.md)
+make that direction concrete: newly drawn wedge, long-axis and broad-interior
+forms, with different regional structures. Review names are not flavour names.
+No real coordinates, coastlines, political boundaries, maps or assets are copied.
+Revision 5 integrates those forms into the map/teaching sketches. These are
+static illustrations, not generation output. Exact reference replicas, real
+province counts, a new generator algorithm or relaxed gameplay constraints are
+not selected by the request. Reconcile the refined bar through existing geography
+work before separately authorized implementation.
+
 ## What still needs review or reconciliation
 
 The first sketches were rejected for text density; V1–V5 approval does not approve

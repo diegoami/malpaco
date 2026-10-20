@@ -1,10 +1,13 @@
-"""Original static concepts, revision 4: vivid ownership and irregular geography.
+"""Original static concepts, revision 5: original forms informed by real island families.
 Run: python3 docs/plans/finished-game-vision/draw-sketches.py
 No application imports, assets, randomness or production generator changes.
 """
 from html import escape
 from pathlib import Path
-from math import sin, cos, pi, hypot
+from math import sin, cos, hypot
+import runpy
+
+REFERENCE = runpy.run_path(str(Path(__file__).with_name("geography-reference-forms.py")))
 
 ROOT = Path(__file__).parent / 'sketches'
 ROOT.mkdir(exist_ok=True)
@@ -53,23 +56,6 @@ def coast_path(points):
         out.append(f'C {b[0]+(c[0]-a[0])/6:.2f} {b[1]+(c[1]-a[1])/6:.2f} {c[0]-(e[0]-b[0])/6:.2f} {c[1]-(e[1]-b[1])/6:.2f} {c[0]:.2f} {c[1]:.2f}')
     return ' '.join(out)+' Z'
 
-def cell_for(seed, seeds):
-    """Static territorial notation; these cells do not define game topology."""
-    poly=[(-180,-180),(180,-180),(180,180),(-180,180)]
-    for other in seeds:
-        if other==seed: continue
-        nx,ny=other[0]-seed[0],other[1]-seed[1]
-        limit=(other[0]**2+other[1]**2-seed[0]**2-seed[1]**2)/2
-        result=[]
-        for a,b in zip(poly,poly[1:]+poly[:1]):
-            fa,fb=a[0]*nx+a[1]*ny-limit,b[0]*nx+b[1]*ny-limit
-            if fa<=0: result.append(a)
-            if (fa<=0)!=(fb<=0):
-                f=fa/(fa-fb)
-                result.append((a[0]+f*(b[0]-a[0]),a[1]+f*(b[1]-a[1])))
-        poly=result
-    return poly
-
 def cell_path(points):
     out=[f'M {points[0][0]:.2f} {points[0][1]:.2f}']
     for a,b in zip(points,points[1:]+points[:1]):
@@ -85,25 +71,17 @@ def cell_path(points):
     return ' '.join(out)+' Z'
 
 # Original drawing sites: nine silhouettes, 46 illustrative cells; not a legal map.
-ISLANDS=[(145,112,74,54,3),(382,100,76,62,3),(682,116,100,59,3),
-         (180,313,78,78,3),(472,300,112,82,5),(808,315,93,73,5),
-         (140,556,87,74,7),(430,544,107,73,7),(766,563,135,90,10)]
-SEEDS=[(-47,-15),(10,-36),(55,4),(-26,27),(28,43),(-68,32),(68,-32),(-5,58),(76,36),(-47,-57)]
+ISLANDS=[(145,112,85,63,3),(382,100,105,34,3),(682,116,94,70,3),
+         (180,313,108,44,3),(472,300,112,82,5),(808,315,108,42,5),
+         (140,556,90,72,7),(430,544,110,44,7),(766,563,135,90,10)]
+ISLAND_FAMILIES=["sicily","cuba","borneo","new-zealand","borneo","cuba","sicily","new-zealand","borneo"]
 OWNERSHIP=[[0,1,2],[3,1,0],[2,0,3],[1,3,0],[0,1,2,3,0],
            [1,2,0,3,1],[2,0,1,1,3,0,2],[3,2,0,1,0,3,2],
            [0,1,2,3,1,0,2,3,0,1]]
 
 def drawing_coasts():
-    paths=[]
-    # This is static drawing notation; no generator experiment or rule change.
-    for i,(x,y,rx,ry,n) in enumerate(ISLANDS):
-        points=[]
-        for k in range(36):
-            angle=2*pi*k/36
-            r=1+.14*sin(2*angle+i*.9)+.12*cos(3*angle-i*.7)+.075*sin(7*angle+i)+.045*cos(11*angle-i)
-            points.append((rx*r*(cos(angle)+.09*sin(2*angle+i)),ry*r*(sin(angle)+.08*cos(3*angle-i))))
-        paths.append(coast_path(points))
-    return paths
+    return [coast_path([(a*rx,b*ry) for a,b in REFERENCE['outline'](ISLAND_FAMILIES[i],i)])
+            for i,(x,y,rx,ry,n) in enumerate(ISLANDS)]
 
 def geography(d, device, scene, counts=None):
     portrait=device in ('phone-portrait','tablet')
@@ -112,7 +90,9 @@ def geography(d, device, scene, counts=None):
         # The same world geometry turns as a whole. No reflow or regeneration.
         scale=min((d.w-40)/680,(d.h-48)/925)
         center=(477.5,347.5)
-        if focused: scale,center=1.5,(453,274)
+        if focused:
+            _,sites=REFERENCE['regions'](ISLAND_FAMILIES[4],5,4)
+            scale,center=1.5,(472+112*(sites[0][0]+sites[1][0])/2,300+82*(sites[0][1]+sites[1][1])/2)
         def project(x,y):
             return d.w/2-(y-center[1])*scale,d.h/2+(x-center[0])*scale
         transform=f'translate({d.w/2} {d.h/2}) scale({scale}) rotate(90) translate({-center[0]} {-center[1]})'
@@ -138,18 +118,15 @@ def geography(d, device, scene, counts=None):
     selected=[]
     for i,(x,y,rx,ry,n) in enumerate(ISLANDS):
         coast=coasts[i]
-        sites=SEEDS[:n]
-        if i!=4:
-            angle=(i*37-51)*pi/180
-            sites=[((a*cos(angle)-b*sin(angle))*(.91+.12*sin(i+j)),(a*sin(angle)+b*cos(angle))*(.91+.12*cos(i-j))) for j,(a,b) in enumerate(sites)]
-        seeds=[(a*rx/110,b*ry/80) for a,b in sites]
+        polygons,sites=REFERENCE['regions'](ISLAND_FAMILIES[i],n,i)
+        seeds=[(a*rx,b*ry) for a,b in sites]
         d.p.append(f'<g transform="translate({x} {y})"><defs><clipPath id="coast-{i}"><path d="{coast}"/></clipPath></defs><g clip-path="url(#coast-{i})">')
         for j,(sx,sy) in enumerate(seeds):
             owner=OWNERSHIP[i][j]
             if scene in ('late-game','result'): owner=0 if scene=='result' or (i+j)%9 else 1
             if i==4 and j==0: owner=0
             if i==4 and j==1: owner=0 if scene in ('capture','late-game','result') else 1
-            d.path(cell_path(cell_for((sx,sy),seeds)),fill=OWNERS[owner],stroke='#bbceac',width=.8)
+            d.path(cell_path([(a*rx,b*ry) for a,b in polygons[j]]),fill=OWNERS[owner],stroke='#bbceac',width=.8)
             shapes=[f'M {sx-2} {sy-2}H {sx+2}V {sy+2}H {sx-2}Z', f'M {sx} {sy-3}L {sx+3} {sy}L {sx} {sy+3}L {sx-3} {sy}Z', f'M {sx-3} {sy}Q {sx} {sy-6} {sx+3} {sy}Q {sx} {sy+6} {sx-3} {sy}Z', f'M {sx-3} {sy-2}L {sx+2} {sy-3}L {sx+3} {sy+2}L {sx-2} {sy+3}Z']
             d.path(shapes[owner],fill='#123340',stroke='none')
             if i==4 and j in (0,1): selected.append(project(x+sx,y+sy))
@@ -176,7 +153,7 @@ DEVICES={'phone-portrait':(390,844),'phone-landscape':(844,390),'tablet':(768,10
 def draw_gallery():
  for scene,meaning in SCENES.items():
     for device,(w,h) in DEVICES.items():
-        d=Drawing(w,h,f'Malpaco · {meaning} · {device}',meaning+'. Revision 4, original static concept, not implemented or playtested. Vivid stable ownership colours and irregular schematic coasts/borders. Portrait turns the same board 90 degrees. Quiet portrait is fitted; phone turn/capture show zoomed focus. Counts and action icons stay upright. Geography is not generation evidence. Contextual text clears when its interaction ends; required choices remain recoverable.')
+        d=Drawing(w,h,f'Malpaco · {meaning} · {device}',meaning+'. Revision 5, original static concept, not implemented or playtested. Vivid ownership; original wedge, elongated and broad-interior island forms with newly drawn province-like regions, inspired by real-world references without tracing. Portrait turns the same board 90 degrees. Quiet portrait is fitted; phone turn/capture show zoomed focus. Counts and action icons stay upright. Geography is not generation evidence. Contextual text clears when its interaction ends; required choices remain recoverable.')
         pair=geography(d,device,scene)
         d.icon(16,16,'menu','Menu: cards, totals, history, files, settings, help and country list')
         kind,label=('options','Match options') if scene=='setup' else (('close','Dismiss result to inspect the final board') if scene=='result' else ('pause','Pause or resume'))
@@ -192,7 +169,7 @@ def draw_gallery():
             sx,sy=pair[1]
             d.icon(min(w-72,max(76,sx+40)),min(h-132,max(76,sy-23)),'attack','Attack: commit one exchange on this pair',True)
         elif scene=='capture':
-            x,y=card(d,296,102,min(h-158,max(82,pair[0][1]+80)))
+            x,y=card(d,296,102,min(h-158,max(82,max(p[1] for p in pair)+42)))
             d.text(x+20,y+29,'Move in',17,INK,weight=700)
             d.icon(x+14,y+42,'minus','Move fewer; respect controller minimum')
             d.rect(x+68,y+42,48,48,SEA,14,LINE); d.text(x+92,y+73,'3',20,INK,'middle',700)
@@ -210,4 +187,4 @@ def draw_gallery():
         d.save(f'{scene}-{device}.svg')
 if __name__=='__main__':
     draw_gallery()
-    print(f'Wrote {len(SCENES)*len(DEVICES)} original revision-4 SVG concepts to {ROOT}')
+    print(f'Wrote {len(SCENES)*len(DEVICES)} original revision-5 SVG concepts to {ROOT}')

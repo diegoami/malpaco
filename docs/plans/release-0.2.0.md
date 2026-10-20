@@ -37,6 +37,14 @@ This is a visual/teaching proposal, not tutorial implementation authorization.
 Reconcile relevant T85/T87/help assumptions with the eventual owner-selected
 execution; keep the resting board free of permanent text.
 
+The owner also confirms usability as part of their review and requests original
+island/province forms informed by Sicily, Cuba, Borneo and New Zealand. The
+[geography reference brief](finished-game-vision/GEOGRAPHY-REFERENCES.md) and
+static studies refine the finished-game geography bar. They select neither real
+map replicas nor a specific generator algorithm; preserve existing country/island,
+adjacency, fairness, route and save contracts. Carry this direction into the
+existing-issue reconciliation before implementation, not a parallel roadmap.
+
 ## Selected scope
 
 Full-viewport map with icon controls and temporary contextual information for

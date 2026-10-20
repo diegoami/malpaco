@@ -37,7 +37,7 @@ and release authorization are not changed by these planning edits.
 
 | Area | Existing authority | Consequence for this vision / later reconciliation |
 | --- | --- | --- |
-| Geography | New-game baseline; T24/T34–T36 and T60–T65 | Preserve 46 countries, nine island sizes 3/3/3/3/5/5/7/7/10, degree 2–5, 14–18 inter-island links, connected symmetric graph and all five fairness checks. Organic appearance is now required for the finished game. Sketches have no topology authority; no generator technique is preselected. Respect T62's amended exposed-coast route contract. |
+| Geography | New-game baseline; T24/T34–T36 and T60–T65 | Preserve 46 countries, nine island sizes 3/3/3/3/5/5/7/7/10, degree 2–5, 14–18 inter-island links, connected symmetric graph and all five fairness checks. Organic appearance informed by the named real-island/province references is required; see GEOGRAPHY-REFERENCES.md. Sketches have no topology authority; no generator technique is preselected. Respect T62's amended exposed-coast route contract. |
 | Current versus selected controls | README; pinned D3; T82 | Current documented enemy activation exchanges immediately. The selected direction stages source/target then uses explicit Attack. One-army placement and existing exchange arithmetic remain; no instant-attack default is reintroduced. |
 | Combat, movement and completion | T27–T30; T82/T83 | Complete capture transfer and required effects before victory at the approved point. Keep mandatory-choice gates; camera and reading do not commit or erase drafts. |
 | Victory and human loss | [T30](../../tasks/T30.md) / #75 | Conquest, last-seat, enabled domination and round-limit/ties remain as contracted. Human loss versus continued computer watching is distinct. Late-game convenience cannot alter a win condition silently. |
@@ -61,6 +61,9 @@ The release map now flags the superseded chrome assumptions explicitly. Before
 implementation, main must amend affected T79/T84–T88 contracts as needed, retaining
 reachable actions, complete information, input/privacy and continuity obligations.
 This amendment is about when information appears, not erasing those capabilities.
+The owner has explicitly included usability in their review. The newer geography
+brief studies real counterpart character without importing real map/border data;
+carry that bar into existing geography contracts without relaxing their limits.
 
 After revised sketch review, use one reconciliation entry per existing issue:
 

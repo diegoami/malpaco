@@ -46,7 +46,7 @@ STEPS=[
 ]
 for key,meaning,scene,counts in STEPS:
     d=Drawing(390,844,f'Malpaco beginner walkthrough · {meaning}',
-              meaning+'. Revision 4 original static first-use proposal. Short teaching text appears only for this step. Numbers, battle outcomes, chosen camera focus and progress are illustrative, not a played engine trace. Attack is explicit, capture transfer totals three, and one-army placement is preserved.')
+              meaning+'. Revision 5 original static first-use proposal. Short teaching text appears only for this step. Numbers, battle outcomes, chosen camera focus and progress are illustrative, not a played engine trace. Attack is explicit, capture transfer totals three, and one-army placement is preserved.')
     pair=geography(d,'phone-portrait',scene,counts)
     controls(d, 'play' if key=='03-combat' else ('end' if key in ('04-attack','05-outcome','07-end') else None),key in ('03-combat','07-end'),key=='01-start')
     if key=='01-start':
@@ -74,7 +74,7 @@ for key,meaning,scene,counts in STEPS:
         d.icon(min(318,max(76,sx+40)),min(712,max(180,sy-23)),'attack','Attack once again; outcome is not guaranteed',True)
     elif key=='06-capture':
         hint(d,'Captured! Choose armies to move.','Keep at least 1 behind.')
-        x,y=card(d,296,110,540)
+        x,y=card(d,296,110,min(658,max(p[1] for p in pair)+50))
         d.text(x+16,y+28,'Move in · 1–7',16,INK,weight=700)
         d.icon(x+14,y+48,'minus','Move one fewer army')
         d.rect(x+68,y+48,48,48,SEA,14,LINE)

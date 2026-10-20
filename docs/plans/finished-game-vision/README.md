@@ -31,7 +31,8 @@ text appears over the map when an interaction or requested information needs it,
 then clears. There is no permanent title bar, action dock, sidebar or log.
 
 The revised original illustrations use vivid ownership colours, more irregular
-coasts and varied territorial shapes. They do not prove production generation, topology, fairness or visual
+coasts and varied territorial shapes informed by
+[real island/province character](GEOGRAPHY-REFERENCES.md). They do not prove production generation, topology, fairness or visual
 quality across seeds. Flavour names are deferred; extra prose is not the source
 of the game's identity.
 
@@ -190,7 +191,9 @@ optional terrain #119 remains a separate candidate.
 
 ## How the owner can judge “finished”
 
-Sketch approval asks whether this is the right product and visual direction.
+The owner has explicitly included usability in their review. Sketch approval
+asks whether this is the right product and visual direction; actual first-use
+clarity, gesture safety and map interaction belong in playable D4 acceptance.
 It establishes no touch, accessibility, generation, AI or fun result. D4 requires
 actual playable appearance and interaction. The recommended later acceptance
 session is:

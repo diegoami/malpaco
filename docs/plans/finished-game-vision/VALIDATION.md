@@ -1,84 +1,92 @@
 # Review-package checks
 
-Revision 4 retains the approved full-screen, contextual-text and portrait-fit
-direction, adds vivid ownership colours and more irregular coast/border drawings,
-and illustrates a beginner's first-use experience. Source baseline remains
-`e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d`.
+Revision 5 records the owner's real-island/province reference direction and
+explicit inclusion of usability in their review. New original forms replace
+repeated generic island/cell construction in the static sketches. Source baseline
+remains `e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d`.
 
-Scope is `docs/plans/finished-game-vision/**`, owner-amendment wording in
-`docs/plans/release-0.2.0.md`, and append-only `RUN-NOTES.md`. Product files, task
-Done-when, rules, dependencies and model assignments are unchanged.
+Scope is `docs/plans/finished-game-vision/**`, related owner-amendment wording in
+`docs/plans/release-0.2.0.md`, and append-only `RUN-NOTES.md`. No product files,
+task Done-when, rules, dependencies, model assignments or dispatch change.
 
-## Current drawings: revision 4
+## Current drawings: revision 5
 
-- Twenty-four gallery SVGs: quiet map plus setup, ordinary turn, capture, late
-  game and result across portrait, landscape, tablet and desktop.
-- Eight additional portrait teaching frames: start, place, enter combat,
-  select/attack, outcome, capture, End turn and reward acknowledgment.
-- All thirty-two parse with title/description metadata and named action icons.
-  No scripts, external images or predecessor assets are present.
-- All thirty-two backgrounds cover the viewport. The four quiet-map drawings
-  contain no visible text. Twenty portrait views are rotated; fitted portrait
-  coast outlines remain entirely within their canvases.
-- Chromium rendered all thirty-two at native size. The
-  [render receipt](validation/revision-4/render-report.json) records zero text/icon
-  overflows. Gallery and teaching layouts were visually inspected, including
-  native-size paired frames. This does not measure touch targets or teachability.
-- [Current hashes](validation/revision-4/sketch-sha256.txt) identify all checked
-  SVGs. Regeneration is byte-identical. Local links, whitespace, notes-prefix and
+- Twenty-four UI compositions, eight teaching frames and five geography study
+  boards: thirty-seven original SVGs total. The study boards are design references,
+  not extra product screens.
+- Island forms use the owner's Sicily/Cuba/Borneo/New Zealand examples as
+  high-level references. Coast coordinates and internal boundaries are authored
+  here; no source map/data is traced or imported. The drawing helper supplies
+  fixed examples for documentation, not a production generator.
+- Regions include unequal coastal chains and interior/coastal configurations.
+  Study counts are original game-sized examples, not actual administrative counts.
+- All thirty-seven parse with title/description metadata; action icons have
+  names. No scripts, external images or predecessor assets are embedded.
+- Chromium rendered all thirty-seven at native size. The
+  [receipt](validation/revision-5/render-report.json) records zero text/icon
+  overflow, thirty-seven full-canvas backgrounds, twenty rotated portrait views
+  and no clipped fitted-portrait coast outlines. Four quiet maps contain no
+  visible text. Study, overview, portrait and teaching layouts were inspected.
+- Capture controls were repositioned below both selected counts following the
+  geographic change; selected count labels remain visible in the checked frames.
+- [Hashes](validation/revision-5/sketch-sha256.txt) identify the current SVGs.
+  Regeneration is byte-identical. Relative links, whitespace, notes-prefix and
   planning-only scope checks pass.
 
-Reproduce the drawings with:
+Regenerate original drawing sources with:
 
 ```sh
 python3 docs/plans/finished-game-vision/draw-sketches.py
 python3 docs/plans/finished-game-vision/draw-beginner-walkthrough.py
+python3 docs/plans/finished-game-vision/draw-geography-studies.py
 ```
 
 Using the existing Playwright dependency and Chromium:
 
 ```sh
-CHROMIUM_PATH=/usr/bin/chromium node docs/plans/finished-game-vision/validation/revision-4/render-sketches.cjs /tmp/malpaco-sketch-check
+CHROMIUM_PATH=/usr/bin/chromium node docs/plans/finished-game-vision/validation/revision-5/render-sketches.cjs /tmp/malpaco-sketch-check
 ```
 
-Optionally pair the native screenshots for inline review using Pillow (review
-workspace utility, not an application dependency):
+The unchanged optional Pillow pairing utility can arrange the new teaching
+screenshots for inline review:
 
 ```sh
 python3 docs/plans/finished-game-vision/validation/revision-4/compose-walkthrough.py /tmp/malpaco-sketch-check
 ```
 
-These scripts read static drawings; they never start/import the game. PNGs are
-review previews, not gameplay evidence. Screenshots used for the conversation
-are retained under `/workspace/shared/malpaco-previews/revision-4/` in the cloud
-workspace; the SVGs and reproduction helpers are the durable repository sources.
+Review PNGs are retained at `/workspace/shared/malpaco-previews/revision-5/` in
+the cloud workspace. Durable sources/helpers/receipts are in Git. These commands
+read static drawings and do not start or import the game.
 
 ## Historical evidence
 
-The first twenty drawings are retained at `33c0f90`; their original root
-`validation/render-report.json` and `validation/sketch-sha256.txt` are unchanged.
-Revision-2 receipts remain under `validation/revision-2/` for drawings at
-`b45fb71`; revision-3 receipts remain under `validation/revision-3/` for drawings
-at `3f5e23e`. Those receipts identify their historical SVGs, not the current ones.
-No independent review or earlier result is rewritten.
+Original root receipts identify first-package drawings at `33c0f90`.
+`validation/revision-2/` identifies `b45fb71`, `revision-3/` identifies `3f5e23e`,
+and `revision-4/` identifies `e2411a8`. All those original receipts and scripts
+remain unchanged. They identify historical SVGs, not the current ones. No earlier
+owner response or independent review is rewritten.
 
-## Semantic self-audit and limits
+## Semantic review and limits
 
-V1–V5 approval, organic geography, deferred flavour, full-screen map, contextual
-text, stable accessible ownership cues and explicit Attack remain. Brighter
-colours do not change ownership semantics. First-use hints are proposed, skippable
-and recoverable, clearing after their interaction. Required choices/errors stay
-available. The quiet resting board has no tutorial banner.
+Owner V1–V5, required original organic geography, deferred flavour, vivid stable
+ownership, full-screen/icon/contextual presentation and portrait fit remain.
+The user now explicitly includes usability in their review and refines geography
+with real island/province character. The source-cited reference brief distinguishes
+consulted context from newly authored forms and future generator requirements.
 
-The beginner sequence is a possible branch, not a valid played trace or scripted
-win. Its guide must adapt to real options, pool counts, legal targets, losses and
-card phases. The example shows one final placement, one successful exchange,
-then later capture. A total transfer of 3 from 8 previews 5/3; the older 5/4
-illustration is corrected. Existing combat source was inspected for this protocol;
-no rule change or runtime test is claimed.
+The 46-country/nine-island/count/adjacency/fairness/route/save contracts remain
+binding. The sketches have not been checked as valid graphs, connected province
+partitions, compliant sea routes or real generator output. Natural-looking shapes
+alone do not satisfy those contracts. No generator algorithm or constraints are
+changed by the drawing helper.
 
-No game build/tests, generation experiment, AI benchmark, independent model
-review, implementation, CI or publication is performed. Actual generation,
-readability, icon discovery, teachability, touch feel and full-match enjoyment
-still need real-build acceptance. Revised visual review precedes final existing
-backlog reconciliation and release-slice approval under #215.
+The teaching sequence remains a possible illustrated branch, not a played trace
+or forced win. Hints must adapt to real options, pools, legality, losses and cards;
+capture totals and required-choice gates remain. All information remains
+reachable on request; first-use explanations clear afterward.
+
+No game tests/build, generation experiment, AI benchmark, independent model
+review, CI, product implementation, publication or usability approval is claimed.
+The owner will review usability alongside appearance/interaction in actual builds.
+Reconcile existing issues/contracts and seek separate release-slice/backlog
+approval after the visual direction is accepted under #215.
