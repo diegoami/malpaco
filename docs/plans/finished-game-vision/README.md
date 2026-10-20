@@ -272,3 +272,7 @@ geography as required and flavour naming as deferred. Reuse existing issues and
 the release map. Present the resulting release slices/backlog for owner approval
 before feature dispatch resumes. Vision approval alone authorizes neither
 implementation nor publication.
+
+The [backlog reconciliation and proposed release slices](RECONCILIATION.md)
+is that proposal: one disposition per open issue, owner decisions R1–R7 and the
+contract amendments to apply on `main` after approval.

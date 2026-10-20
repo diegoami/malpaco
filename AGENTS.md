@@ -7,7 +7,8 @@ never restates a rule, so there is exactly one copy of each.
 
 - **Rules**: [`CLAUDE.md`](CLAUDE.md) — numbered, cited everywhere as "rule n".
 - **Process**: [`docs/process.md`](docs/process.md) — how a task runs. §4 is the implementer's
-  contract (it travels with every brief); §5 the reviewer's.
+  contract (it travels with every brief); §5 the reviewer's, with §5.1 review by risk tier
+  (each task file names its tier) and §5.2 proportionate reviews.
 - **Tasks**: [`docs/tasks/README.md`](docs/tasks/README.md) indexes `docs/tasks/T<nn>.md`.
   A task's issue (`status:ready`) points at its task file; the task file is the contract, and
   its Done-when is not negotiable (rule 5).

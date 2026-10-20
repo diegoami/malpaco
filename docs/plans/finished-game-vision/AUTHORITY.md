@@ -72,7 +72,8 @@ brief requires believable real counterpart character and broad structural variet
 using the named studies as non-exhaustive examples without importing real map/border
 data. Carry that bar into existing geography contracts without relaxing their limits.
 
-After revised sketch review, use one reconciliation entry per existing issue:
+After revised sketch review, use one reconciliation entry per existing issue
+([proposal for owner approval](RECONCILIATION.md)):
 
 ```text
 Existing issue / contract:
