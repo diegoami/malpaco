@@ -116,8 +116,10 @@ environment (`switch-model.mjs --show` prints it); the reviewer is never of that
         something (rule 21).
      8. Report the merge, the findings, the follow-ups and what is ready next.
    - `status:rework`:
-     0. Same-class cap (§5.2 rule 3): a class of finding returning in a second round is narrowed
-        and filed as a follow-up, not sent to a third round; tier 1 stops after one rework.
+     0. Same-class cap (§5.2 rule 3): a class of tooling or claim-hardening finding returning in
+        a second round is narrowed and filed as a follow-up, not sent to a third round; tier 1
+        stops after one rework. A real defect in what the task delivers is never demoted by its
+        round number: it stays blocking, or escalates (step 5).
      1. Check that every finding names a file in `gh pr diff <pr> --name-only`. A review that
         does not reviewed the wrong tree: discard it, say so, and re-review.
      2. At `review-round:2` (at `review-round:1` for a fix), go to step 5.

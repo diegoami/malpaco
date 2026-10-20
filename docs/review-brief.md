@@ -19,9 +19,10 @@ Any one is enough; a blocking finding means rework, never approve.
 3. Behaviour the task forbids, or behaviour nobody asked for, inside a file the task requires. (L44)
 4. <project-specific items: a constant with no evidence, a test that passes with the behaviour
    deleted, a status written into a document>
-Not blocking: wording, style, defects in code the PR did not change, and a class of finding
-already raised in an earlier round (the main session narrows the claim instead): file those as
-follow-ups.
+Not blocking: wording, style, defects in code the PR did not change, and claim-hardening or
+tooling findings of a class already raised in an earlier round (the main session narrows the
+claim instead): file those as follow-ups. A real defect in what the task delivers stays
+blocking in every round, however often it was raised before.
 When unsure, say how likely the problem is. Rate it blocking only if it is likely and would get
 past what the task protects; otherwise it is a follow-up. (L53)
 
