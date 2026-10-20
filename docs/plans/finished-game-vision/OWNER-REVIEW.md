@@ -4,24 +4,26 @@
 and full-screen/icon/contextual-text amendments. The [decision record](DECISIONS.md)
 contains the exact response. No further V1–V5 vote is needed.
 
-Revision 6 applies the requested changes directly to the concepts and teaching
-sequence. The separate reviewer should assess the resulting drawings; no
-main-session review report or independent approval is part of this package.
+Revision 7 applies the requested changes directly to the concepts and teaching
+sequence. The [independent review](reviews/claude-cloud-2026-10-20/REVIEW.md) requests changes
+to revision 6. The [response](reviews/claude-cloud-2026-10-20/RESPONSE.md) maps those
+findings to revision 7; the original review does not approve these corrections.
 
 The first sketches were too overwhelming and are superseded. Open the
-[revision-6 gallery](SKETCHES.md), especially the quiet-map row: there is no
-persistent on-screen text, header, dock or side panel. Controls are icons.
+[revision-7 gallery](SKETCHES.md), especially the quiet-map row: army numbers remain on every territory as explicitly chosen by the owner. There
+is no persistent prose, header, dock or side panel. Controls are icons.
 The other scenes show only text needed for that interaction or a player-requested
 piece of information, returning to the quiet map when finished.
 
 | Scene | What the revised illustration asks the owner to judge |
 | --- | --- |
-| Quiet map | Does the map feel like the whole experience, with enough visual character and sufficiently little interface? |
+| Resting map | Can all army counts and owner shapes be read without opening a menu, while the map remains the whole experience? |
 | S1 Setup | Does a compact temporary start choice give enough guidance, with seed/options/load on request? |
 | S2 Turn | Can the player choose a source, compare legal enemies, understand the capture odds and explicitly Attack? |
 | S3 Capture | Are preview, amount entry/range, Confirm and fold/resume distinct and understandable? |
 | Inspect / opponent / return | Can the player compare armies without spending them, follow opponents and recover what changed? |
 | S4 Late game | Can requested objective/progress information answer the immediate question and then disappear? |
+| Movement / elimination | Are Move-and-end-turn and Watch/Stop distinct, readable and deliberate? |
 | S5 Result | Does the concise result leave full standings/history/files accessible through icons without displaying everything at once? |
 
 Both orientations now fit the whole board on first open/Fit; portrait turns

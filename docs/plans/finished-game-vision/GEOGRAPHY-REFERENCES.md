@@ -13,7 +13,8 @@ islands should express varied geographic character without reproducing real maps
 Variety must extend beyond rotations, recolouring or small outline perturbations
 of a few repeated forms.
 
-The current UI drawings and four studies illustrate some of that character;
+The four studies illustrate some of that character. The fixed interaction board
+reuses those forms and explicitly does **not** demonstrate the required variety;
 they do not cover the full variety requirement. The beginner teaching sequence
 remains the same. Usability is part of the owner's review of actual builds;
 these drawings do not certify it.
@@ -50,6 +51,11 @@ physical watershed.
 - Treat terrain/spines/drainage as possible construction guidance, not automatic
   new combat rules or a requirement to draw mountains/rivers on the game screen.
 - Co-design legal topology, land borders, coasts, route attachment and labels.
+  Retain minimum region thickness, room for readable owner/count badges and
+  minimum country hit areas at a playable focus scale as co-constraints. Thin
+  slivers cannot be accepted merely because an outline looks natural; a moved
+  label alone does not prove a usable country. Fitted overviews may use leader
+  labels; focused picking/list alternatives still need actual acceptance.
   Do not wrap an attractive outline around an incompatible graph or quietly
   relax approved degree, fairness, route or minimum-size constraints.
 - Preserve the existing 46-country/nine-island/count/adjacency/fairness contract

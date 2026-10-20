@@ -25,8 +25,9 @@ and release authorization are not changed by these planning edits.
   [prior sketches](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/WIREFRAMES.md)
   and [owner decision](https://github.com/diegoami/malpaco/issues/191#issuecomment-6273842655).
   The responsive planning files are pinned because that directory is not on main.
-  The prior independent review predates the selected Attack change; this package
-  claims no new independent review of that change or of these drawings.
+  The older responsive review predates the selected Attack change. The separate
+  [revision-6 Claude cloud review](reviews/claude-cloud-2026-10-20/REVIEW.md)
+  requests changes; revision 7 is not covered by that review's approval.
 - [Release 0.2.0 scope](../release-0.2.0.md): the allocated responsive delivery
   slice; it does not cover the whole finished game and is subject to #215's gate.
 
@@ -38,6 +39,7 @@ and release authorization are not changed by these planning edits.
 | Area | Existing authority | Consequence for this vision / later reconciliation |
 | --- | --- | --- |
 | Geography | New-game baseline; T24/T34–T36 and T60–T65 | Preserve 46 countries, nine island sizes 3/3/3/3/5/5/7/7/10, degree 2–5, 14–18 inter-island links, connected symmetric graph and all five fairness checks. Believable real-world island and regional character with broad structural variety within and across maps is required; the named references are illustrative, not a closed catalogue. See GEOGRAPHY-REFERENCES.md. Sketches have no topology authority; no generator technique is preselected. Respect T62's amended exposed-coast route contract. |
+| Tactical state and counts | ui-057/061/082/084; T25/T26/T36/T43/T51/T52/T54 | The explicit owner count decision preserves permanent owner-shaped army numbers, including at rest; retain readable counts (14px minimum in these concepts), exact-count access and contrast. Keep the remaining placement pool visible independently of hints (ui-082 pool clause). Mark eligible sources and legal enemies, distinguish the selected source/target and dim other countries (ui-084). No old batch-placement/undo behaviour is reinstated; Place 1 remains. |
 | Current versus selected controls | README; pinned D3; T82 | Current documented enemy activation exchanges immediately. The selected direction stages source/target then uses explicit Attack. One-army placement and existing exchange arithmetic remain; no instant-attack default is reintroduced. |
 | Combat, movement and completion | T27–T30; T82/T83 | Complete capture transfer and required effects before victory at the approved point. Keep mandatory-choice gates; camera and reading do not commit or erase drafts. |
 | Victory and human loss | [T30](../../tasks/T30.md) / #75 | Conquest, last-seat, enabled domination and round-limit/ties remain as contracted. Human loss versus continued computer watching is distinct. Late-game convenience cannot alter a win condition silently. |
@@ -58,7 +60,8 @@ for review in their revised form; actual device feel and generated geography
 still require playable acceptance. No numeric goal is invented.
 
 The release map now flags the superseded chrome assumptions explicitly. Before
-implementation, main must amend affected T79/T84–T88 contracts as needed, retaining
+implementation, main must reconcile affected T25/T26/T36/T43/T51/T52/T54 and
+T79/T84–T88 contracts as needed, retaining
 reachable actions, complete information, input/privacy and continuity obligations.
 This amendment is about when information appears, not erasing those capabilities.
 The owner has explicitly included usability in their review. The newer geography

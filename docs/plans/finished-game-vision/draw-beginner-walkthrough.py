@@ -1,4 +1,4 @@
-"""Original revision-6 teaching scenes; no product imports or forced outcomes.
+"""Original revision-7 teaching scenes; no product imports or forced outcomes.
 
 Run: python3 docs/plans/finished-game-vision/draw-beginner-walkthrough.py
 """
@@ -33,6 +33,9 @@ STEPS=[
  ('18-fit','Return to the whole map','quiet-map',{},None),
  ('19-help','Request icon names','quiet-map',{},None),
  ('20-result','Start another match deliberately','result',{},None),
+ ('21-friendly-choice','Choose movement to a friendly neighbour','friendly-choice',None,'friendly'),
+ ('22-friendly-move','Commit movement and end the turn','friendly-move',{0:5,4:7},'friendly'),
+ ('23-elimination','Understand elimination and choose what follows','elimination',{},None),
 ]
 
 
@@ -58,7 +61,7 @@ def dice(d,blue,orange):
 
 for key,meaning,scene,counts,stage in STEPS:
     d=Drawing(390,844,f'Malpaco · {meaning}',
-              meaning+'. Revision 6 original static teaching concept, not a played trace or implemented tutorial. Contextual names and information clear after use. Possible exchanges include an enemy loss and a human loss. Capture illustrates seven surviving source armies, an edited total of three moving and a four/three preview. No guaranteed wins or generator evidence.')
+              meaning+'. Revision 7 original static teaching concept, not a played trace or implemented tutorial. Contextual names and information clear after use. Possible exchanges include an enemy loss and a human loss. Capture illustrates seven surviving source armies, an edited total of three moving and a four/three preview. No guaranteed wins or generator evidence.')
     pair=geography(d,'phone-portrait',scene,counts,stage)
     api['base_controls'](d,'capture' if key in ('02-place','03-combat','04-source','05-target','10-capture','11-fold','12-resume','13-end','14-reward','15-computer','16-return') else scene)
     if key=='01-start':
@@ -66,15 +69,17 @@ for key,meaning,scene,counts,stage in STEPS:
         d.text(195,y+38,'Malpaco',27,INK,'middle',700)
         d.text(195,y+72,'Hold 35 of 46 territories.',16,INK,'middle')
         d.text(195,y+101,'1 human · 3 Normal',15,MUTED,'middle')
-        for j,(kind,label) in enumerate([('load','Load'),('play','Start game'),('options','Options')]):
-            api['named_action'](d,x+24+j*90,y+124,kind,label,kind=='play')
+        for j,(kind,label) in enumerate([('load','Load'),('start','Start game'),('options','Options')]):
+            api['named_action'](d,x+24+j*90,y+124,kind,label,kind=='start')
     elif key=='02-place':
+        api['placement_pool'](d,1)
         hint(d,"You're blue. 1 army left.",'Tap a blue square to place it.')
         sx,sy=pair[0]
         d.path(f'M {sx-28} {sy}a 28 28 0 1 0 56 0a 28 28 0 1 0 -56 0',stroke=GOLD,width=2,extra='stroke-dasharray="4 5"')
     elif key=='03-combat':
+        api['placement_pool'](d,0)
         hint(d,'All armies placed.','Start combat when you are ready.')
-        named_phase(d,'play','Start combat')
+        named_phase(d,'combat','Start combat')
     elif key=='04-source':
         hint(d,'Choose your attacking army.','Tap an outlined blue country.')
     elif key=='05-target':
@@ -106,6 +111,7 @@ for key,meaning,scene,counts,stage in STEPS:
         hint(d,'The move-in is confirmed.','Keep attacking, or choose End turn.')
         named_phase(d,'end','End turn')
     elif key=='14-reward':
+        d.scene='reward'
         hint(d,'Capture earned you a card.','Tap the check to continue.')
         x,y=card(d,132,162,300)
         d.rect(x+13,y+13,106,136,SEA,12,GOLD)
@@ -117,15 +123,16 @@ for key,meaning,scene,counts,stage in STEPS:
         sx,sy=pair[3]
         d.text(sx+31,sy-27,'+3',19,GOLD,'middle',700)
         x,y=card(d,192,88,api['context_y'](d,88))
-        api['named_action'](d,x+72,y+8,'end','Fast-forward',True)
+        api['named_action'](d,x+72,y+8,'fast','Fast-forward',True)
     elif key=='16-return':
+        api['placement_pool'](d,4)
         hint(d,'Your turn · place armies','Purple reinforced nearby. Tap to inspect.')
         sx,sy=pair[3]
         d.path(f'M {sx-29} {sy}a 29 29 0 1 0 58 0a 29 29 0 1 0 -58 0',stroke=GOLD,width=2,extra='stroke-dasharray="4 5"')
         x,y=card(d,192,88,api['context_y'](d,88))
         api['named_action'](d,x+72,y+8,'history','Changes',True)
     elif key=='17-inspect':
-        hint(d,'Inspect · no armies spent','Compare fronts; close to place armies.')
+        hint(d,'Counts are always visible.','Inspect income or an island bonus.')
         x,y=card(d,286,88,api['context_y'](d,88))
         for j,name in enumerate(['Blue','Orange','Lime','Purple']):
             api['owner_mark'](d,x+20+j*70,y+24,j,6)
@@ -139,6 +146,7 @@ for key,meaning,scene,counts,stage in STEPS:
         d.text(40,765,'Fit',14,INK,'middle',700)
         d.icon(326,780,'focus','Focus the selected country on request')
     elif key=='19-help':
+        d.scene='help'
         hint(d,'Menu → Help & icon names','Tap an icon here to read what it does.')
         x,y=card(d,286,204,310)
         for row,(kind,label) in enumerate([('help','Help & icon names'),('info','Inspect armies'),('unfold','Current choice')]):
@@ -148,11 +156,19 @@ for key,meaning,scene,counts,stage in STEPS:
         d.text(350,87,'Pause',14,INK,'middle')
         d.text(40,765,'Fit map',14,INK,'middle')
         d.text(334,765,'End turn',14,INK,'middle')
+    elif key=='21-friendly-choice':
+        hint(d,'That neighbour is yours.','Choose Move, or Cancel to keep attacking.')
+        api['friendly_controls'](d,True)
+    elif key=='22-friendly-move':
+        hint(d,'Move armies to your neighbour.','Check moves the armies and ends the turn.')
+        api['friendly_controls'](d)
+    elif key=='23-elimination':
+        api['elimination_controls'](d)
     elif key=='20-result':
         x,y=card(d,300,198)
         d.text(195,y+40,'You won',28,INK,'middle',700)
-        d.text(195,y+68,'Conquest',16,MUTED,'middle')
-        for j,(kind,label) in enumerate([('play','New game'),('details','Standings'),('history','History'),('load','Files')]):
+        d.text(195,y+68,'Domination · 35 of 46',16,MUTED,'middle')
+        for j,(kind,label) in enumerate([('new','New game'),('details','Standings'),('history','History'),('load','Files')]):
             d.icon(x+24+j*68,y+96,kind,label,j==0)
         d.text(x+48,y+167,'New game',14,INK,'middle',700)
     d.save(key+'.svg',OUT)
@@ -160,4 +176,4 @@ for key,meaning,scene,counts,stage in STEPS:
 # Retire the replaced revision-5 scene names; their exact originals remain in Git.
 for name in ['04-attack','05-outcome','06-capture','07-end','08-reward']:
     (OUT/(name+'.svg')).unlink(missing_ok=True)
-print(f'Wrote {len(STEPS)} revision-6 teaching scenes')
+print(f'Wrote {len(STEPS)} revision-7 teaching scenes')

@@ -35,7 +35,7 @@ explain consequences and clear afterward. See the
 [illustrated walkthrough](finished-game-vision/BEGINNER-WALKTHROUGH.md).
 This is a visual/teaching proposal, not tutorial implementation authorization.
 Reconcile relevant T85/T87/help assumptions with the eventual owner-selected
-execution; keep the resting board free of permanent text.
+execution; keep the resting board free of permanent prose; retain army counts per the later owner decision.
 
 The owner also confirms usability as part of their review and requires original
 islands and regions that feel like believable real geography, with broad
@@ -49,12 +49,20 @@ adjacency, fairness, route and save contracts. Carry this direction into the
 existing-issue reconciliation before implementation, not a parallel roadmap.
 
 The owner subsequently requests applying the changes directly, with review by
-someone else. Revision 6 of the [concepts](finished-game-vision/SKETCHES.md) and
+someone else. The [concepts](finished-game-vision/SKETCHES.md) and
 [teaching sequence](finished-game-vision/BEGINNER-WALKTHROUGH.md) now shows legal
 source/target selection, contextual stacks/odds, fitted landscape, pending capture
 entry/fold/resume, outcome/Fight-on/Stop and opponent/return feedback, plus safe
 inspection and requested icon names. These are static planning changes, not a
 feature dispatch, task-contract amendment or usability approval.
+
+The independent revision-6 review requests changes. The owner explicitly chooses
+army counts on every territory, including at rest, with the remaining placement
+pool always visible. Revision 7 applies this, preserves ui-057/061/082(pool)/084,
+and corrects icons, selection, default domination state, open-sea contextual
+placement, friendly movement and elimination. Prose remains temporary; no task
+Done-when or rule is amended by these static planning corrections. Carry the
+explicit count decision into the existing-contract reconciliation.
 
 ## Selected scope
 

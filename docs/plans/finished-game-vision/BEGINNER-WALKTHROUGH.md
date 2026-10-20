@@ -1,10 +1,12 @@
 # Learn through the next useful action
 
-Revision 6 applies the requested changes in twenty focused illustration frames.
-These are proposed first-use moments, not twenty screens to read before playing:
+Revision 7 applies the requested changes in twenty-three focused illustration frames.
+These are proposed first-use moments, not twenty-three screens to read before playing:
 show only the hint for the current action, then clear it. Experienced players can
-skip tips and replay them through Help. The ordinary resting map remains free of
-text. No tutorial code or product implementation is dispatched by this package.
+skip tips and replay them through Help. Army numbers in owner-shaped badges
+remain visible at rest; prose stays temporary. The remaining placement pool stays
+visible independently of hints. No tutorial code or product implementation is
+dispatched by this package.
 
 ## Illustrated sequence
 
@@ -14,7 +16,7 @@ text. No tutorial code or product implementation is dispatched by this package.
 | ![2. Place one army](walkthrough/02-place.svg) | **2. Place one army.** Blue square identifies the player. This is the last reinforcement: tapping adds one, 7 → 8. Inspection is a separate safe mode. |
 | ![3. Start combat](walkthrough/03-combat.svg) | **3. Start combat.** The named phase action becomes available after placement. It does not roll a battle. |
 | ![4. Choose a source](walkthrough/04-source.svg) | **4. Choose a source.** Eligible own countries are outlined. The player chooses an army before selecting an enemy. |
-| ![5. Compare targets](walkthrough/05-target.svg) | **5. Compare targets.** The source has solid emphasis; legal enemy neighbours are dashed and their stacks are visible together. Other visible countries remain inspectable. |
+| ![5. Compare targets](walkthrough/05-target.svg) | **5. Compare targets.** The source immediately has a filled gold badge and thick solid emphasis; legal enemy neighbours are dashed and their stacks are visible together. Other countries dim but retain visible owner-shaped army numbers. |
 | ![6. Read odds and Attack](walkthrough/06-attack.svg) | **6. Read odds and Attack.** The selected 8-versus-3 pair shows 91% capture odds if fought to capture. Attack commits one exchange; Cancel clears the pair. Selection itself never rolls. |
 | ![7. See an enemy loss](walkthrough/07-outcome.svg) | **7. See an enemy loss.** Blue 5 against orange 2 removes an enemy army: 3 → 2. The 8-versus-2 capture chance is now 96%. Short feedback clears; the result remains recoverable in history. |
 | ![8. See a human loss](walkthrough/08-loss.svg) | **8. See a human loss.** Blue 1 against orange 6 removes a blue army: 8 → 7. The 7-versus-2 capture chance is now 94%. This teaches that another Attack can cost armies. |
@@ -25,11 +27,14 @@ text. No tutorial code or product implementation is dispatched by this package.
 | ![13. Choose End turn](walkthrough/13-end.svg) | **13. Choose End turn.** The capture allocation is committed. The player may continue legal actions or use the named End turn action. |
 | ![14. Acknowledge a reward](walkthrough/14-reward.svg) | **14. Acknowledge a reward.** With cards enabled and room in hand, a capturing turn shows its private reward and requires acknowledgment. Disabled/full-hand branches use their actual applicable choices. |
 | ![15. Follow an opponent](walkthrough/15-computer.svg) | **15. Follow an opponent.** An illustrative later opponent phase shows Purple reinforcing. Owner/phase identity, local +3, Pause and fast-forward explain what is happening without a fixed status bar. |
-| ![16. Recover what changed](walkthrough/16-return.svg) | **16. Recover what changed.** The next human turn offers Changes and local marks. The player can recover the relevant opponent actions, then return to placement. Hints and marks clear after interaction. |
-| ![17. Compare without spending](walkthrough/17-inspect.svg) | **17. Compare without spending.** Requested inspection shows nearby armies and a consistent owner-shape legend. It spends no reinforcement; Close restores Place 1. Other fronts can be focused/list-selected. |
+| ![16. Recover what changed](walkthrough/16-return.svg) | **16. Recover what changed.** The next human turn offers Changes and local marks. The remaining pool is visible independently of this hint. Changes recovers relevant opponent actions before returning to placement. Hints and marks clear after interaction. |
+| ![17. Compare without spending](walkthrough/17-inspect.svg) | **17. Compare without spending.** Army counts are already visible without inspection. Optional inspection adds identity, income/island detail and an owner-shape legend. It spends no reinforcement; Close restores Place 1. Other fronts can be focused/list-selected. |
 | ![18. Find the whole map](walkthrough/18-fit.svg) | **18. Find the whole map.** Fit always shows every island. Focus is separate; requested +/− controls and pinch zoom, while swiping pans only when zoomed. |
 | ![19. Find help and icon names](walkthrough/19-help.svg) | **19. Find help and icon names.** Menu → Help & icon names provides a tap-accessible route. The requested labels explain controls; they do not activate them and disappear when dismissed. |
-| ![20. Start another match deliberately](walkthrough/20-result.svg) | **20. Start another match deliberately.** A later completed-match example names New game. Standings/history/files remain requested details; dismissing preserves the final map and recoverable result. |
+| ![20. Start another match deliberately](walkthrough/20-result.svg) | **20. Start another match deliberately.** A default-domination result shows 35 blue countries, names the 35-of-46 win and New game. Standings/history/files remain requested details; dismissing preserves the final map and recoverable result. |
+| ![21. Friendly neighbour](walkthrough/21-friendly-choice.svg) | **21. Friendly neighbour.** Tapping an own neighbour offers Move armies or Cancel; it does not attack or move automatically. |
+| ![22. Move and end turn](walkthrough/22-friendly-move.svg) | **22. Move and end turn.** Source 8 and friendly destination 4 preview 5 / 7 for edited total 3. Check explicitly moves and ends the turn; Cancel returns to attacks without a change. |
+| ![23. Elimination](walkthrough/23-elimination.svg) | **23. Elimination.** No territories remain for the human. Watch computers and Stop game are distinct choices; neither invents another human loss. |
 
 ## Interaction rules
 
@@ -70,12 +75,13 @@ and [rule preset](https://github.com/diegoami/malpaco/blob/e8e3f908fbea8ed74e5cb
 Actual UI odds must derive from actual stacks/rules. Numbers, goal, phase,
 reinforcement pool, legal targets, reward, owner/changes and result must all adapt
 to the actual controller/options. The overview's schematic borders/routes do not
-prove legality. The final conquest result illustrates a different selected victory option, not
-the default domination goal. Navigation/help frames are additional
+prove legality. The final result illustrates the default domination goal, consistently with setup. Navigation/help frames are additional
 first-use examples, not assertions about the immediately preceding turn.
 
 The four geography studies remain illustrative, not a closed generator catalogue.
-These drawings do not establish touch safety, accessibility, enjoyment or
+Card trading/Raid, events and private handover remain text-only here; their full
+contract obligations remain in the journey and existing tasks. These drawings do
+not establish touch safety, accessibility, enjoyment or
 beginner success. Those belong to separate review and playable D4 acceptance;
 existing full-match/device/rule and artifact gates remain binding.
 

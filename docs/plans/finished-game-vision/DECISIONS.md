@@ -24,7 +24,7 @@ combat-rule change. No numeric session-length target is inferred from “V2”.
 | U2 · flavour | Flavour can wait because it adds text | Defer flavour naming #170 from the first finished edition; retain the existing issue. No permission to omit essential rules, effects, country identity on request or accessibility text. |
 | U3 · composition | Map occupies the full size of the screen | The map viewport fills each device. No permanent header, action dock, sidebar, totals/history panel or reserved text region. Controls and temporary information overlay the map. This supersedes the fixed-chrome assumptions in the earlier sketches and responsive composition. |
 | U4 · actions | Use icons for actions | Compact consistent icons, with accessible names and explanations on request/focus. Explicit Attack remains an intentional icon activation after source/target selection. Icon-only appearance does not authorize automatic attack on a country tap. |
-| U5 · information | Text appears only when interaction/information requires it, then goes away | Reveal relevant counts, brief consequences, choice prompts or requested details in context; clear them when that interaction ends. No persistent flavour, instructions or event stream on the board. Required choices, errors and results cannot silently time out or be lost. |
+| U5 · information | Text appears only when interaction/information requires it, then goes away | Keep every territory's army count visible per the later explicit count decision below. Brief prose, consequences, prompts and requested details remain contextual and clear when that interaction ends. No persistent flavour, instructions or event stream on the board. Required choices, errors and results cannot silently time out or be lost. |
 
 D1 map-first is strengthened to full-screen geography. D2 phone portrait,
 landscape, tablet and desktop remains. D3 explicit Attack and one-army placement
@@ -130,6 +130,35 @@ The main-session assessment report is removed from the current package; its
 historical commit is retained. No separate reviewer is dispatched and no review
 approval or actual-play usability/fun result is claimed. Product implementation
 and backlog reconciliation remain subject to the existing #215 gates.
+
+## Independent review and explicit count decision
+
+On 2026-10-20 the independent Claude cloud reviewer
+[requested changes](https://github.com/diegoami/malpaco/pull/216#pullrequestreview-5583483259)
+at `cb5c19a`. The complete review and provenance are retained in
+[reviews/claude-cloud-2026-10-20/](reviews/claude-cloud-2026-10-20/REVIEW.md).
+GitHub recorded COMMENT because the connected account authored the PR; its
+explicit intended verdict was REQUEST_CHANGES, not approval.
+
+Asked whether counts should appear throughout placement/combat or also at rest,
+the owner answered:
+
+> Keep army counts visible on every territory, including at rest
+
+This explicitly supersedes the earlier hidden-count/no-visible-text resting
+sketches. Resting maps have permanent **numbers in owner-shaped badges**, with no
+standing prose. Placement always retains an icon-plus-number pool independent of
+first-use hints. Names, explanations, histories and other prose remain temporary
+or requested. Fit exposes all 46 counts; zoomed views expose counts for the
+countries in view. No Menu → Inspect round trip is required to read armies.
+
+Revision 7 applies this decision and the drawing corrections. It preserves
+ui-057/061 owner-shaped readable counts, the ui-082 pool clause and ui-084 marked
+legal targets/dimmed alternatives; see [the crosswalk](AUTHORITY.md). No rule,
+task Done-when or former batch-placement/undo interaction is reinstated by this
+presentation decision. Original Place 1 and explicit Attack remain binding.
+The revised concepts are for separate correction review and owner acceptance;
+the original review does not approve the new drawings.
 
 ## What still needs review or reconciliation
 

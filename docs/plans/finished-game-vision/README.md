@@ -9,7 +9,7 @@ with a full-screen map, icon actions and temporary contextual information.
 
 Start with the [revised sketches](SKETCHES.md) and
 [illustrated beginner walkthrough](BEGINNER-WALKTHROUGH.md). The journey below incorporates
-that direction. Revision 6 applies the interaction changes in the drawings and
+that direction. Revision 7 applies the interaction changes in the drawings and
 expanded walkthrough. The [authority crosswalk](AUTHORITY.md) identifies the existing
 contracts to reconcile. Revised sketch acceptance, backlog approval and product
 implementation remain separate gates under #215; GitHub labels carry task state.
@@ -30,8 +30,9 @@ the full viewport on every device. Islands and territorial subdivisions should
 feel like believable real-world geography, with broad structural variety within
 each match and across generated maps. Named real islands are illustrative
 references, not a fixed catalogue of forms to repeat. The only standing controls
-are small action icons; text appears over the map when an interaction or requested
-information needs it, then clears. There is no permanent title bar, action dock, sidebar or log.
+are small action icons. Every territory retains its army number in an
+owner-shaped badge, including at rest. Prose appears when an interaction or
+requested information needs it, then clears. There is no permanent title bar, action dock, sidebar or log.
 
 The revised original illustrations use vivid ownership colours, more irregular
 coasts and varied territorial shapes informed by
@@ -64,10 +65,13 @@ Icons alone do not establish that a beginner understands the next step.
 ### 2. Read the place and find the first useful move
 
 The map shows geography, land neighbours, sea crossings, ownership and production
-centres. Relevant army counts appear when inspecting or selecting countries; a
-requested inspection view exposes nearby stacks together for comparison, with
-no placement or combat action. Closing inspection returns to Place 1. Owner-shaped
-badges distinguish all four seats as well as colour. Selecting a country
+centres. Every country shows its army count in an owner-shaped badge, including
+at rest, following the owner's explicit clarification. Fit exposes all 46 counts;
+zoomed views show counts for countries in view. Compact badges remain at least
+14px in these concepts; short leader lines associate displaced labels with their
+country. Reading armies does not require entering an inspection mode. Requested
+inspection adds identity, income and island detail without placing an army.
+Owner-shaped badges distinguish all four seats as well as colour. Selecting a country
 reveals its full identity and legal choices. Focus, zoom and a country list make
 dense areas usable. Portrait fits the same board with a 90° turn when that uses
 space better; counts/icons stay upright. Swipe to pan when zoomed and pinch to
@@ -84,7 +88,8 @@ Complete totals and histories open on request and close back to the unobstructed
 ### 3. Make a deliberate turn
 
 Placement shows the available reinforcement pool and why it exists. The existing
-one-army placement interaction remains. The player then selects an owned source
+one-army placement interaction remains. The remaining pool stays visible as an
+icon and number until placement ends, independently of first-use hints. The player then selects an owned source
 and an adjacent enemy; selection stages the pair. **Attack** explicitly commits
 one existing exchange. Selecting the source marks legal enemy neighbours and
 exposes their stacks together; selecting the target also shows the approved
@@ -246,7 +251,7 @@ protocol and existing numerical targets remain binding; no release date is propo
 ## Revised sketches, then backlog reconciliation
 
 V1–V5 are approved with the [recorded amendments](DECISIONS.md). Review the
-revised quiet map and five interaction scenes; the first text-heavy sketches
+revised count-bearing map and interaction scenes; the first text-heavy sketches
 are superseded. Only after that review reconcile existing issues as
 **retain / revise / defer / drop / already satisfied**, with reasons, evidence and
 explicit amendments for conflicting dock/panel/label assumptions. Carry organic

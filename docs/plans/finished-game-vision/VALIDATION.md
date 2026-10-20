@@ -1,89 +1,87 @@
-# Drawing checks: revision 6
+# Drawing checks: revision 7
 
-The owner requested applying the changes, with review by someone else. Revision 6
-updates the static concepts and expanded first-use sequence directly. This file
-records mechanical drawing checks, not a usability review or approval.
+Revision 7 applies the independent review's corrections and the owner's explicit
+choice to keep army counts visible on every territory, including at rest. Prose
+remains temporary; the placement pool remains visible independently of hints.
+These are mechanical drawing checks, not usability approval.
 
 Scope remains `docs/plans/finished-game-vision/**`, related owner wording in
-`docs/plans/release-0.2.0.md` and append-only `RUN-NOTES.md`. No product files,
-task Done-when, rules, dependencies, model assignments or dispatch change.
-The source baseline remains `e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d`.
+`docs/plans/release-0.2.0.md` and append-only `RUN-NOTES.md`. Product code, rules,
+task Done-when, dependencies and model assignments are unchanged. The source
+baseline remains `e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d`.
 
-## Current drawings
+## Current drawings and checks
 
-- Forty cross-device gallery compositions, twenty first-use frames and five
-  unchanged original geography studies: sixty-five SVGs. The expanded examples
-  illustrate one relevant hint/request at a time, not a twenty-screen prerequisite.
-- All parse with title/description metadata and named action icons, without
-  embedded scripts or external images. Four quiet maps contain no visible text.
-- The [native Chromium receipt](validation/revision-6/render-report.json) records
-  sixty-five full-viewport map backgrounds, forty quarter-turned portrait views,
-  no viewport text/icon overflow, no clipped coasts in **any** fitted overview
-  orientation, and no count-badge overlaps with another count or contextual
-  panel/action. Focused phone views deliberately crop the world.
-- Unlike revision 5's portrait-only coast check, the new renderer checks fitted
-  landscape and desktop/tablet overviews too. Layouts use coast bounds with
-  shoreline/spline margin; short landscape contexts sit beside the focused pair.
-- The new [hash manifest](validation/revision-6/sketch-sha256.txt) identifies every
-  current SVG. Regeneration is byte-identical; changed Markdown links, XML,
-  planning-only scope, whitespace and append-only notes were checked.
-- Selected native renders were inspected to position labels/choices. This is
-  drawing verification, not an independent design review or human usability test.
+There are **93 SVGs**: 65 gallery compositions (13 scenes across phone portrait,
+phone landscape, tablet portrait, tablet landscape and desktop), 23 focused
+teaching examples and five unchanged original geography studies.
 
-The static capture-odds annotations were checked by exact rational recurrence
-under the approved single-die/rerolled-ties model: capture probability is the
-average of the two next decisive states, with zero at source 1 and one when the
-defender reaches 0. This gives 233/256 for 8 against 3, 247/256 for 8 against 2,
-and 15/16 for 7 against 2; their rounded labels are 91%, 96% and 94%. This does
-not test a runtime odds implementation. Actual values must derive from the
-actual controller and rules. The illustrated losses leave seven surviving
-source armies before a possible capture: edited total 3 previews 4 / 3, range
-1–6. Existing defaults, conservation, dice and capture ordering are unchanged.
+- Every SVG parses with title/description metadata; action icons have names.
+  There are no embedded scripts or external image assets.
+- All fitted overviews have all 46 owner-shaped count badges, with at least 14px
+  text. Five resting maps have numbers and no prose. Requested overlays may cover
+  the map while open; counts remain on the underlying board.
+- The [native Chromium receipt](validation/revision-7/render-report.json) records
+  93 full-viewport map backgrounds and 49 quarter-turned portrait compositions,
+  with no viewport text/icon overflow, clipped fitted-overview coasts or count
+  overlaps with another count or nonmodal context/action.
+- The new panel-versus-land check samples at 4px intervals inside actual coast
+  paths. Active overview scenes protect all islands; phone close-ups protect the
+  focused island. Peripheral cropped geography remains accessible by Fit/pan/list.
+  Setup/result/elimination, requested help and private-reward acknowledgment are
+  intentional overlays and are exempt. This scoped drawing check does not prove
+  all possible runtime panel positions unobstructed.
+- No sampled protected land lies under an active contextual panel. No production
+  centre overlaps a count badge. Centred labels were inspected in native renders.
+- Semantic checks tie ownership to default domination progress (34 / 35), victory
+  (35 of 46), and human elimination (no blue countries). They also reject reused
+  Fast-forward/Start-combat/New-game icon families. All current cases pass.
+- [Hashes](validation/revision-7/sketch-sha256.txt), byte-identical regeneration,
+  changed Markdown links, planning scope, whitespace and append-only notes are
+  checked. Prior raw render receipts/hashes/scripts remain unchanged.
 
-Regenerate with:
+The independent review's complete body and provenance are preserved in
+[reviews/claude-cloud-2026-10-20/](reviews/claude-cloud-2026-10-20/REVIEW.md), with
+[a finding-by-finding response](reviews/claude-cloud-2026-10-20/RESPONSE.md).
+Its verdict is REQUEST_CHANGES at `cb5c19a`, recorded as COMMENT by GitHub because
+the connected account authored the PR. It does not approve revision 7. The actual
+Claude model was not supplied in the posted review and is not independently verified.
+
+## Reproduction
 
 ```sh
 python3 docs/plans/finished-game-vision/draw-sketches.py
 python3 docs/plans/finished-game-vision/draw-beginner-walkthrough.py
 python3 docs/plans/finished-game-vision/draw-geography-studies.py
-CHROMIUM_PATH=/usr/bin/chromium node docs/plans/finished-game-vision/validation/revision-6/render-sketches.cjs /tmp/malpaco-sketch-check
+CHROMIUM_PATH=/usr/bin/chromium node docs/plans/finished-game-vision/validation/revision-7/render-sketches.cjs /tmp/malpaco-sketch-check
 ```
 
-The optional Pillow utility groups native PNGs for conversation previews:
+Native PNGs are retained at `/workspace/shared/malpaco-previews/revision-7/` in
+the cloud workspace. SVG sources, helpers, hashes and receipts are durable in Git.
+These commands render static drawings and never start or import the game.
 
-```sh
-python3 docs/plans/finished-game-vision/validation/revision-6/compose-walkthrough.py /tmp/malpaco-sketch-check
-```
+## Historical evidence and limits
 
-Current PNGs are retained at `/workspace/shared/malpaco-previews/revision-6/` in
-the cloud workspace; durable SVGs, helpers, receipt and hashes are in Git.
+First-package receipts identify `33c0f90`; revisions 2–6 identify `b45fb71`,
+`3f5e23e`, `e2411a8`, `ce55f52` and `cb5c19a` respectively. Those raw receipts,
+hashes and scripts remain unchanged. Historical decisions such as hidden counts
+are superseded by the explicit count decision, not silently rewritten.
 
-## Historical material
+These are fixed original interaction illustrations, not an implemented tutorial,
+a deterministic played trace, a valid graph or production generator output. The
+four study forms and schematic slivers do not demonstrate required geographic
+variety or acceptable country geometry. Existing topology/count/fairness/route,
+input/contrast/picking and versioned-save requirements remain binding.
 
-Original root receipts identify the first drawings at `33c0f90`.
-`validation/revision-2/` identifies `b45fb71`, revision 3 `3f5e23e`, revision 4
-`e2411a8`, and revision 5 `ce55f52` (drawings unchanged through `a7d0f2e`). All
-prior raw receipts, hashes and render scripts remain unchanged. Replaced scene
-names and the removed main-session assessment remain available in Git history;
-they are not part of the current review package.
+The illustrative capture chances remain 233/256, 247/256 and 15/16 (91%, 96%,
+94%) under the approved single-die/rerolled-ties model. They describe fighting to
+capture, not the next exchange or a chosen Fight-on stopping condition. Capture
+uses seven surviving source armies, edited total 3 and pending 4 / 3, range 1–6;
+friendly movement shows 8/4 becoming 5/7 after total 3. Actual stacks, pools,
+legality, odds, effects and results must derive from the real controller/options.
+No rule, capture default, conservation, timing or RNG contract is changed.
 
-## Limits
-
-These are original schematic interaction concepts, not an implemented tutorial,
-played trace, valid generated graph or real match fixture. No actual-generation,
-topology, connectivity, fairness, route or save compatibility result is established.
-The broad real-island/regional variety requirement remains; the four studies
-are illustrative and do not define a closed generator catalogue.
-
-The 46-country/nine-island/count/adjacency/fairness/route/save contracts remain
-binding. No generator algorithm, engine or gameplay rule is selected or changed.
-Actual goals, pools, legality, opponents, odds, loss branches, rewards and result
-must follow the real controller/options; the illustrations never force a win.
-All information remains reachable; required choices and private handover remain
-recoverable and cannot timeout or be bypassed.
-
-No game tests/build, live-play session, generation experiment, AI benchmark,
-independent review, CI, product implementation, deployment or usability/fun
-approval is claimed. Separate review and playable D4 acceptance remain. Reconcile
-existing issues/contracts and seek release-slice/backlog approval under #215
-before feature dispatch; drawing checks do not authorize it.
+No game tests/build, live play, generator/AI experiment, correction review, CI,
+product implementation, deployment, merge or usability/fun approval is claimed.
+Separate correction review and playable D4 acceptance remain, followed by the
+existing #215 reconciliation and owner approval gates before feature dispatch.
