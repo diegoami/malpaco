@@ -27,7 +27,8 @@ and release authorization are not changed by these planning edits.
   The responsive planning files are pinned because that directory is not on main.
   The older responsive review predates the selected Attack change. The separate
   [revision-6 Claude cloud review](reviews/claude-cloud-2026-10-20/REVIEW.md)
-  requests changes; revision 7 is not covered by that review's approval.
+  requests changes to revision 6. The [separate recheck](reviews/claude-cloud-2026-10-20/recheck/REVIEW.md)
+  approves revision 7 at `82ae510`, with [nonblocking follow-ups](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md).
 - [Release 0.2.0 scope](../release-0.2.0.md): the allocated responsive delivery
   slice; it does not cover the whole finished game and is subject to #215's gate.
 
@@ -40,6 +41,8 @@ and release authorization are not changed by these planning edits.
 | --- | --- | --- |
 | Geography | New-game baseline; T24/T34–T36 and T60–T65 | Preserve 46 countries, nine island sizes 3/3/3/3/5/5/7/7/10, degree 2–5, 14–18 inter-island links, connected symmetric graph and all five fairness checks. Believable real-world island and regional character with broad structural variety within and across maps is required; the named references are illustrative, not a closed catalogue. See GEOGRAPHY-REFERENCES.md. Sketches have no topology authority; no generator technique is preselected. Respect T62's amended exposed-coast route contract. |
 | Tactical state and counts | ui-057/061/082/084; T25/T26/T36/T43/T51/T52/T54 | The explicit owner count decision preserves permanent owner-shaped army numbers, including at rest; retain readable counts (14px minimum in these concepts), exact-count access and contrast. Keep the remaining placement pool visible independently of hints (ui-082 pool clause). Mark eligible sources and legal enemies, distinguish the selected source/target and dim other countries (ui-084). No old batch-placement/undo behaviour is reinstated; Place 1 remains. |
+| Status and phase presentation | ui-077; U3/U5; T54/T79/T84/T88 | Explicitly amend the former always-visible active-seat/six-phase/remaining-action prose bar. Retain the placement pool icon/number, legal phase-action icon and accessible/requested name, relevant active-seat/phase notices, and requested phase/remaining-action explanations. Full state remains reachable; no permanent header returns. |
+| Result presentation and contents | ui-054; U3/U5; T30/T85/T88 | Explicitly amend the former full result contents on the initial screen. The concise winner/reason and New game action retain access to standings, seed/options/context and record change through requested details; all contents and exactly-once records remain required. |
 | Current versus selected controls | README; pinned D3; T82 | Current documented enemy activation exchanges immediately. The selected direction stages source/target then uses explicit Attack. One-army placement and existing exchange arithmetic remain; no instant-attack default is reintroduced. |
 | Combat, movement and completion | T27–T30; T82/T83 | Complete capture transfer and required effects before victory at the approved point. Keep mandatory-choice gates; camera and reading do not commit or erase drafts. |
 | Victory and human loss | [T30](../../tasks/T30.md) / #75 | Conquest, last-seat, enabled domination and round-limit/ties remain as contracted. Human loss versus continued computer watching is distinct. Late-game convenience cannot alter a win condition silently. |

@@ -43,9 +43,18 @@ teaching examples and five unchanged original geography studies.
 The independent review's complete body and provenance are preserved in
 [reviews/claude-cloud-2026-10-20/](reviews/claude-cloud-2026-10-20/REVIEW.md), with
 [a finding-by-finding response](reviews/claude-cloud-2026-10-20/RESPONSE.md).
-Its verdict is REQUEST_CHANGES at `cb5c19a`, recorded as COMMENT by GitHub because
-the connected account authored the PR. It does not approve revision 7. The actual
-Claude model was not supplied in the posted review and is not independently verified.
+Its verdict is REQUEST_CHANGES at `cb5c19a`. The [subsequent recheck](reviews/claude-cloud-2026-10-20/recheck/REVIEW.md)
+approves revision 7 at `82ae510` with nonblocking follow-ups and confirms all nine
+original findings resolved. Both are COMMENT records because the connected
+account authored the PR. Their explicit intended verdicts are preserved; the
+actual Claude model was not supplied and is not independently verified.
+
+The approving recheck independently reproduces all 93 hashes and the revision-7
+render receipt. It also identifies count attribution/leader crossings, lack of
+larger-stack fixtures and peripheral-label clutter that the rectangle checks do
+not detect. [Follow-ups and acceptance inputs](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md)
+retain those limits. This approval-record update changes no drawing source, SVG
+or rendering receipt; all 93 SVGs remain byte-identical to the reviewed commit.
 
 ## Reproduction
 
@@ -81,7 +90,8 @@ friendly movement shows 8/4 becoming 5/7 after total 3. Actual stacks, pools,
 legality, odds, effects and results must derive from the real controller/options.
 No rule, capture default, conservation, timing or RNG contract is changed.
 
-No game tests/build, live play, generator/AI experiment, correction review, CI,
-product implementation, deployment, merge or usability/fun approval is claimed.
-Separate correction review and playable D4 acceptance remain, followed by the
-existing #215 reconciliation and owner approval gates before feature dispatch.
+No game tests/build, live play, generator/AI experiment, additional review
+dispatch, CI, product implementation, deployment, merge or usability/fun approval
+is claimed by this approval-record update. Owner sketch/playable D4 acceptance,
+nonblocking follow-through and existing #215 reconciliation/approval gates remain
+before feature dispatch.

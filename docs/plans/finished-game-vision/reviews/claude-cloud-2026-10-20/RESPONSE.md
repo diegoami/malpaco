@@ -25,3 +25,9 @@ continuity still needs runtime acceptance.
 [Current drawing evidence](../../VALIDATION.md) records rendering and
 regeneration checks only. The owner-selected external reviewer must assess the
 corrections. Normal review/CI/owner gates remain before merge or implementation.
+
+The [independent recheck](recheck/REVIEW.md) subsequently approves revision 7 at
+`82ae510` with nonblocking follow-ups, confirming all nine rows above resolved.
+[Those follow-ups](recheck/FOLLOWUPS.md) remain explicit acceptance and existing-
+contract reconciliation inputs. No further drawing changes are included in this
+approval record.

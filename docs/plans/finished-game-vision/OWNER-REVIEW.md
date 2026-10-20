@@ -5,9 +5,12 @@ and full-screen/icon/contextual-text amendments. The [decision record](DECISIONS
 contains the exact response. No further V1–V5 vote is needed.
 
 Revision 7 applies the requested changes directly to the concepts and teaching
-sequence. The [independent review](reviews/claude-cloud-2026-10-20/REVIEW.md) requests changes
-to revision 6. The [response](reviews/claude-cloud-2026-10-20/RESPONSE.md) maps those
-findings to revision 7; the original review does not approve these corrections.
+sequence. The [independent recheck](reviews/claude-cloud-2026-10-20/recheck/REVIEW.md)
+approves the concepts at `82ae510` with nonblocking follow-ups and confirms all
+nine original findings resolved. [Acceptance/reconciliation inputs](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md)
+preserve the remaining badge-attribution, large-stack, contract, Stop-label and
+peripheral-label issues. This approval does not presume the owner's sketch or
+playable usability acceptance.
 
 The first sketches were too overwhelming and are superseded. Open the
 [revision-7 gallery](SKETCHES.md), especially the quiet-map row: army numbers remain on every territory as explicitly chosen by the owner. There
@@ -17,7 +20,7 @@ piece of information, returning to the quiet map when finished.
 
 | Scene | What the revised illustration asks the owner to judge |
 | --- | --- |
-| Resting map | Can all army counts and owner shapes be read without opening a menu, while the map remains the whole experience? |
+| Resting map | Can each count be attributed to the correct country at phone Fit, with readable owner shapes and no misleading placement on other countries? |
 | S1 Setup | Does a compact temporary start choice give enough guidance, with seed/options/load on request? |
 | S2 Turn | Can the player choose a source, compare legal enemies, understand the capture odds and explicitly Attack? |
 | S3 Capture | Are preview, amount entry/range, Confirm and fold/resume distinct and understandable? |

@@ -96,8 +96,11 @@ bias without copying artwork, code or wording. Existing count/topology/fairness,
 route, RNG, rule and save contracts remain unchanged.
 
 These 65 gallery drawings are original static concepts. The
-[independent revision-6 review](reviews/claude-cloud-2026-10-20/REVIEW.md) requests
-changes; [the response](reviews/claude-cloud-2026-10-20/RESPONSE.md) maps its findings
-to revision 7. No correction approval or playable usability/fun result is claimed.
+[independent revision-7 recheck](reviews/claude-cloud-2026-10-20/recheck/REVIEW.md)
+approves these concepts at `82ae510` with nonblocking follow-ups. The
+[remaining issues](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md) include
+misattributed/long-leader Fit badges and missing larger-stack examples; zero
+rectangle overlaps do not prove correct attribution. No playable usability/fun
+result or owner sketch acceptance is claimed.
 
 Regenerate with `python3 docs/plans/finished-game-vision/draw-sketches.py`.

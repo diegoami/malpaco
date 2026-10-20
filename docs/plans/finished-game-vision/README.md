@@ -235,6 +235,12 @@ session is:
 4. Repeat representative interactions on phone portrait/landscape, tablet and
    desktop, with touch, keyboard and enlarged text. Review icon discoverability, contextual text clearing, unobstructed map recovery,
    short-height/list fallback, private handover, reduced motion and audio control.
+   At phone Fit in both orientations, use realistic two-/three-digit and compact
+   stack values and ask the player to attribute counts for ten randomly selected
+   countries. Record errors/assistance. Require each badge centre on its own
+   country or in open sea with a leader, never on another country; leaders cannot
+   cross other badges or leaders. Verify count/land association beside temporary
+   capture/movement cards and retain the visible Stop game label until resolved.
 5. Inspect representative retained seeds, computer levels and victory/options
    cases. Use a declared coverage matrix and disclose omissions; one attractive
    seed or scripted win does not prove variety, strength or pacing.
@@ -247,6 +253,12 @@ correctness. They do not establish appearance or fun. Normal session length,
 desired player-facing AI challenge, acceptable late-game effort and the
 representative match/device sample await owner decisions. T50's pinned measurement
 protocol and existing numerical targets remain binding; no release date is proposed.
+
+The [independent revision-7 recheck](reviews/claude-cloud-2026-10-20/recheck/REVIEW.md)
+approves the concepts at `82ae510` with [nonblocking follow-ups](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md).
+It confirms all nine revision-6 findings resolved. Current examples still contain
+known badge-attribution and single-digit fixture limitations; drawing approval
+does not establish generated-map readability or playable acceptance.
 
 ## Revised sketches, then backlog reconciliation
 

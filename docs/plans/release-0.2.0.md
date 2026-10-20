@@ -64,6 +64,14 @@ placement, friendly movement and elimination. Prose remains temporary; no task
 Done-when or rule is amended by these static planning corrections. Carry the
 explicit count decision into the existing-contract reconciliation.
 
+The [independent revision-7 recheck](finished-game-vision/reviews/claude-cloud-2026-10-20/recheck/REVIEW.md)
+approves the concepts at `82ae510` with nonblocking follow-ups and confirms all
+nine original findings resolved. Carry [A–E](finished-game-vision/reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md)
+into the existing-contract/acceptance reconciliation, especially count attribution
+at phone Fit with realistic stack sizes. ui-077 and ui-054 presentation amendments
+are now explicit in AUTHORITY. Owner sketch/backlog/playable approval remains
+separate; this record neither dispatches work nor changes the drawings.
+
 ## Selected scope
 
 Full-viewport map with icon controls and temporary contextual information for
