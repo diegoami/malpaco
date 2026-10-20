@@ -9,7 +9,9 @@ with a full-screen map, icon actions and temporary contextual information.
 
 Start with the [revised sketches](SKETCHES.md) and
 [illustrated beginner walkthrough](BEGINNER-WALKTHROUGH.md). The journey below incorporates
-that direction. The [authority crosswalk](AUTHORITY.md) identifies the existing
+that direction. The [first experience review](EXPERIENCE-REVIEW.md) identifies
+usability and enjoyment risks and evaluates the Isle Wars Pro direction.
+The [authority crosswalk](AUTHORITY.md) identifies the existing
 contracts to reconcile. Revised sketch acceptance, backlog approval and product
 implementation remain separate gates under #215; GitHub labels carry task state.
 

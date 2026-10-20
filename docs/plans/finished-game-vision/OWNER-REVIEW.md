@@ -4,6 +4,11 @@
 and full-screen/icon/contextual-text amendments. The [decision record](DECISIONS.md)
 contains the exact response. No further V1–V5 vote is needed.
 
+The [first experience review](EXPERIENCE-REVIEW.md) records the main session's
+requested usability, enjoyment and Isle Wars Pro assessment of revision 5. It
+identifies visible gaps and proposed corrections; it is not independent approval
+or a completed playtest. Read its findings alongside these scenes.
+
 The first sketches were too overwhelming and are superseded. Open the
 [revision-5 gallery](SKETCHES.md), especially the quiet-map row: there is no
 persistent on-screen text, header, dock or side panel. Controls are icons.
