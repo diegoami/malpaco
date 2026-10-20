@@ -1,284 +1,91 @@
 # Process
 
-`CLAUDE.md` holds the rules, this file how they run, `/run-task` the procedure; each rule cites its lesson.
+`CLAUDE.md` holds the rules; this file says how a task runs.
 
-## 0. Order of work
+## 1. Setup (local or cloud)
 
-1. **Evidence first** (for a rebuild): decode, decompile, and write the design with every claim tagged `[confirmed]`, `[derived]` or `[designed]`.
-2. **A walking skeleton before the fan-out**: scaffolding, the seams the rules plug into, one rule end to end, a CLI, and a thin screen a person can use. (L1)
-3. **The fan-out**: rules behind the seams, best-evidenced first.
-4. **The first playable build**: once the skeleton exists, the UI chain goes before more rules. Until it ships, only a bug that breaks play is scheduled (crash, stall, unwinnable game, save that will not load, order that can never succeed). (L1)
-
-Tag capability jumps, not phases. Release notes come from GitHub when the tag is cut.
-
-## 1. Roles
-
-| Role | Who | Does |
-| --- | --- | --- |
-| Main session | Claude, the session the user talks to | Plans, writes task files, runs `/run-task`, triages, merges, reports |
-| Implementer | The **`implementer` subagent** spawned inside Claude Code (worktree isolation) on a model of its own, not the orchestrator's (Opus spawns Sonnet; under Z.AI `sonnet` is GLM-5.3 Flash), or **the main session** directly, in its own worktree, where the provider cannot spawn one; asked before each implementation (CLAUDE.md rule 6). *Superseded: OpenCode via `implement.mjs` (removed), the GLM/MiMo/Sonnet chains (L42), the user asked before each run.* | One task, one branch, one PR, in its own worktree |
-| Reviewer | **One OpenCode run, or explicitly selected Claude CLI backend** via `tools/harness/review.mjs`, on the model the user names at the question before the review, `harness.json`'s `reviewer.default` (GPT-5.6 Luna) proposed first; never the session's family (L27), never a blocked model. Exit 3: read the final message, fix the cause, run again; exit 4: the main session reads the flagged review and decides (L28). *Superseded: the reviewer chains, the Claude fallback, the user asked at every review.* | Re-runs the Done-when, audits scope and evidence, posts one PR comment, applies the label |
-| Decider | Jev via `tools/harness/jev.mjs` (the `/jev` skill) | Repeated yes/no decisions over many items, at the confident ends only (§12) |
-| Generator | Models on OpenRouter (images, other families) and ElevenLabs (speech, sound, music) | Assets, each committed with a sidecar naming provider, model, prompt, date and cost |
-
-Before each implementation and each review the main session asks the user one question, with
-`harness.json`'s default proposed first (CLAUDE.md rule 6); no quota, tier or chain picks a model, and the
-roster changes through `/switch-model`. The implementer's family is the session's, read from the
-Anthropic environment variables (`lib/common.mjs` `sessionFamily`; the orchestrator is Claude, or GLM
-through Z.AI, MiniMax or Kimi when Claude's tokens are out), and the reviewer is never of it. Model ids come
-from `harness.json`, `models.mjs` or `opencode models`, never memory (L25).
+`npm ci`, then `npx playwright install chromium` for the browser tests. Optional: `gh` (issues,
+PRs), `opencode` or `claude` (reviews), `rclone` (Drive artifacts). Nothing outside the
+repository is required. The checks: `npm run build`, `npm test`, `npx playwright test`.
 
 ## 2. Task files
 
-`docs/tasks/T<nn>.md`, 150–400 words, from `docs/tasks/TEMPLATE.md`: Kind, Evidence, Owns,
-Scope, Done when, Hazards, Implementer, Reviewer, Merge after. Rules:
-- **Owns** names directories or files. Go finer only when two tasks run at once in one file: function-level Owns made one project open 27 PRs that only widened a list. (L5)
-- **Done when**: each line is one check a command can run. The main session runs each line before dispatch: it fails on `main` and passes on a mock fix. (L45) For a guard (a gate, check or tool whose failure lets a protected rule be bypassed), each constraint it enforces is its own numbered line, and the main session pushes the guard's tests to the task branch before dispatch, one mutation test per bypass class the design predicts, failing until the guard lands. (L64)
-- **Milestones**: a task likely to outlast one implementer run (about an hour), or whose Done-when is
-  all or nothing (an exact match, a whole model), is split into tasks that each merge on their own:
-  the static reading, any tool that produces ground truth, then the deliverable piece by piece. A
-  milestone's Done-when measures progress as a number (records matched, first divergent minute),
-  committed with each push, so a resumed run starts from it; the boundary sits where the evidence
-  already has a number, not at an arbitrary half of the scope. (L58)
-- The main session edits task files directly on `main`, the reason in the commit; the reviewer sees it. (L6)
+`docs/tasks/T<nn>.md` from `docs/tasks/TEMPLATE.md`, 150–400 words. **Done when** lines are each
+one check a command can run; before dispatch each fails on `main`. **Owns** names directories or
+files. A task likely to outlast about an hour of implementation is split into tasks that each
+merge on their own. The main session edits task files directly on `main`, the reason in the commit.
 
 ## 3. The loop
 
-`ready → implement → review → approved + green CI → squash merge → follow-up → unblock → report`.
-The review step follows the task's risk tier (§5.1): tier 0 skips it, tier 1 has one round.
-Rework sends the full review back to the same branch, at most two rounds (one for a fix), then
-escalates. The implementer script resumes a pushed branch; it never starts over. Before a merge the
-main session re-runs the check the approval rests on most; a different result is rework. (L46)
+`status:ready → implement → PR → (optional review) → green CI → squash merge → follow-ups`.
 
-What the review script guarantees, and why:
-- OpenCode starts with stdin closed; without it a run hangs before it starts. (L10)
-- No session in 180 s, no progress in 600 s, or no exit in 1 h kills the run's process tree. (L10)
-- The agent is checked on OpenCode's session record (L11); a rejected tool call fails the run (L26),
-  and the fix is a wider grant in the agent file, not a re-brief (CLAUDE.md rule 6.4).
-- The model runs at the effort its `harness.json` entry names (a heavy model at medium or low, a
-  light one at high), in the scripts' own data directory (L27, L29). One model, one run; no chain.
-- Exit 0: posted and labelled. 3: no review, nothing posted: read the final message (rule 8), fix
-  the cause, run again. 4: posted under a note, no label: the main session reads it and decides.
-
-**Decisions visible on the PR** (L18, owner 2026-10-13): the implementer choice (rule 6.1) and the
-reviewer choice (rule 6.2) go on the PR as comments **at decision time** — *before* the dispatch
-lands — not as a post-hoc summary after the run finishes. The PR's timeline then reads in causal
-order: "implementer M3 dispatched at <ts> (family <x>, reason: <one line>)" → "shipped at <sha>"
-→ "reviewer Luna dispatched at <ts> (family openai, reason: <one line>)" → "review posted". The
-main session posts these comments; the implementer/reviewer runs do not. A PR whose timeline
-shows only the implementer's commits and a final review is missing the decision record.
-
-## 4. The implementer brief
-
-The brief is the task file pasted in full, then this block, then on a rework round the review's URL.
-The `implementer` agent file repeats the run mechanics; this block is the contract, for the main
-session implementing directly as much as for the subagent. A line that needs the user's machine outside the
-worktree, or a cloud session, is the main session's (L26).
-
-```text
-You implement <T<nn>>. The task file above is the contract.
-- Build only what the task asks for, even inside a file it requires; say why for each changed file. (L44)
-- A Done-when you cannot meet: stop and report. Never weaken an assertion, skip a test or edit the task file.
-- **Constraint-feasibility probe** (when the task names structural constraints and a target success
-  rate): before any algorithmic change, run a small smoke test that confirms the constraint
-  set alone is feasible at the target rate (often a wide-seed sweep of the existing generator
-  body, plus the new constraints, with no algorithmic rewrite). If the probe shows the target
-  is unreachable, STOP and report. Do not weaken a constraint to make the algorithm pass
-  (rule 5); the user prefers a design amendment (preferred) over a quieter relaxation, and
-  the probe surfaces the conflict one round earlier than a full implementation.
+The implementer (the main session, or the `implementer` subagent) works on `task/T<nn>-<slug>`
+in the current checkout, pushes after every commit and opens the PR. The PR body: `Closes #<issue>`;
+Scope (files and why); each Done-when command with the tail of its output; docs changed. The
+implementer's contract:
+- Build only what the task asks for. A Done-when you cannot meet: stop and report.
 - Every new test fails before your change and passes after it; say how you checked.
-- Undo a mutation or scratch edit by writing back the file's saved contents (read it first,
-  restore it in a `finally`), or commit first; never `git checkout`, `git restore` or `git reset`
-  a file with uncommitted work: they return the last commit and destroy the rest. Keep the saved
-  copy inside your worktree (`<file>.saved`, deleted afterwards) or in a `mktemp -d` folder under
-  `/tmp`, never as a loose file elsewhere.
-- If you measure: every output a finding or the PR may cite goes under a tracked path the task owns,
-  pushed per batch and every 30 min, never deleted or overwritten; originals out, hashes recorded. (L40)
-- A comment that asserts behaviour at an edge comes with the test that visits that edge.
-- A defect you find outside the task: report it. A one-file mechanical fix that blocks you may
-  ride this PR, declared under Scope in the PR body.
-- Update any document your change makes wrong, in this PR. Never write status into a document.
-- PR body: Closes #<issue>; Scope (files and why); a fenced block with each Done-when command and
-  the tail of its output; Docs changed.
-```
+- Undo a scratch edit by writing back the saved contents, or commit first; never `git checkout`,
+  `git restore` or `git reset` a file with uncommitted work.
+- A defect outside the task: report it. A one-file mechanical fix that blocks you may ride the PR,
+  declared under Scope.
+- Update any document your change makes wrong. Never write status into a document.
+- Outputs (screenshots, measurements, logs) go to `artifacts/`, never into Git (§6).
 
-## 5. The reviewer brief
+## 4. Reviews
 
-```text
-<T<nn>> review (<model>)
-You review PR #<n> at <sha>. You did not write it. The task file follows.
-0. Prove the tree: HEAD is <sha> and the diff against origin/main is the PR's; findings name its files.
-1. Re-run every Done-when line yourself, and account for each (L32). The PR's evidence is no proof.
-2. [evidence-driven] Every constant traces to a fixture, report or investigation; a [designed] one says what was searched.
-3. [seeded] No wall clock, unseeded random or order-dependent iteration in rule code.
-4. Every changed file and behaviour is one the task asks for (L44); docs it makes wrong are updated.
-5. Sweep the diff: tests that pass with the behaviour deleted (mutate, rebuild clean, re-take any
-   negative result), branches no input reaches, edge comments without a test, <project classes>.
-   Undo a mutation or scratch edit by writing back the file's saved contents (read it first,
-   restore it in a `finally`), or commit first; never `git checkout`, `git restore` or `git reset`
-   a file with uncommitted work: they return the last commit and destroy the rest. Keep the saved
-   copy inside your worktree (`<file>.saved`, deleted afterwards) or in a `mktemp -d` folder under
-   `/tmp`, never as a loose file elsewhere.
-6. <docs/review-brief.md in full: "Blocking means" for this task, then its one-pass section (L47, L49)>
-Prove each finding (run it, or delete the behaviour and name the test that fails) or label it
-unverified. Your final message is the review: the header; the verdict (approve | approve after
-named fixes | rework | user decision); per Done-when line `DW<k>: ran <command> → <result>` or
-`DW<k>: not run — <reason>`; the findings R1..Rn (file:line, blocking or not); the verdict again
-last. Never post it: the script posts it and applies the label.
-```
+**Per PR: optional.** The main session decides whether a PR deserves a review (rule-core changes,
+saves, anything risky) and runs `node tools/review.mjs --pr <n> [--brief docs/tasks/T<nn>.md]`.
+It uses `harness.json`'s `review.default`; `--model <key>` picks another registered model, of
+any family. It reviews in the current checkout: `--checkout` first checks out the PR (clean tree
+only); otherwise the reviewer reads the PR head through git. The instructions are
+`docs/review-pr.md`. Exit 3 means no review came back: read the error and fix the cause. One
+review round, then what remains becomes follow-up issues unless it is a real defect in what the
+task delivers. Blocking means a real player or developer would hit it through normal use.
 
-A further review, such as `/code-review <pr>` on an architecture task, runs only when the user asks
-for it and names the model (CLAUDE.md rule 6.2: one review unless the user asks for more); then
-always with the PR number, since a bare invocation from an agent reviews the wrong tree. (L8)
+**Per milestone: the big review.** `docs/milestone-review.md`: a milestone issue, then the owner
+calls a model's CLI directly (`opencode run --agent milestone-reviewer …`, `claude -p
+"/review-milestone <n>"`, or any other tool pointed at that file); the reviewer opens issues
+and posts AGREE/BLOCK on the milestone issue. PRs merged without a review are listed there.
 
-### 5.1 Review by risk tier (owner decision, #219, 2026-10-20)
+## 5. Bugs and triage
 
-Each task file names its tier; when unsure, use the higher one.
+Bugs and non-blocking findings are filed with `triage:needed`. Triage decides: **fix** (changes no
+outcome; the issue is the contract, its Done-when a failing-then-passing test), **correction
+task** (changes an outcome), **fold** into a task not yet ready, or **close** with the reason.
 
-| Tier | Covers | Review |
-| --- | --- | --- |
-| 0 | Docs, planning, task files, fixes that change no outcome | No external review. The main session runs the task's checks and exact-head pre-merge validation, merges, and lists the PR for the next milestone review. |
-| 1 | Features and UI slices | One external review round by another family. What remains after one rework becomes follow-up issues, unless it is a real defect in what the task delivers (§5.2 rules 3–4). |
-| 2 | Engine and rule core, generator and fairness, saves, replay and timing, artifacts and publication, guards and permissions, privacy | Per-PR review until accepted, as before (two rework rounds, then escalate). |
+Labels: `task`, `bug`, `fix`, `triage:needed`, `post-playable`, `milestone`, `review`,
+`status:{ready,in-progress,in-review,rework,blocked,merged}`.
 
-**Milestone review.** When a slice or queue milestone closes, one review by another family
-covers the integrated result, together with the owner's playtest; its findings become issues.
+## 6. Artifacts
 
-### 5.2 Proportionate reviews (owner decision, #218, 2026-10-20)
+Nothing generated goes into Git: write it under `artifacts/` (ignored). Then:
+- **Must last** (a release build, the screenshots a milestone was judged on): attach it to the
+  GitHub release, `node tools/artifacts.mjs release <tag> <file>...`. CI also keeps its
+  screenshots and playable archive as Actions artifacts for 14 days.
+- **Otherwise** (proof runs, measurements, diagnostics): Google Drive,
+  `node tools/artifacts.mjs drive <path>... [--to T<nn>]`, which copies into a subfolder of the
+  [shared malpaco folder](https://drive.google.com/drive/folders/1svRkGxtpasuTbwFuNU2NAHyU10Ac8KUU?usp=sharing)
+  (`harness.json` `artifacts`). Link the subfolder in the PR or issue.
+  One-time setup on a machine: install rclone, then `rclone config` → new remote named `gdrive`,
+  type `drive`, scope `drive`, signed in as the folder's owner. In a cloud session without rclone
+  or its login, attach to a release instead, or leave the file in `artifacts/` and say so.
 
-From goal2's PR #273, after its PR #271 spent four rounds hardening a docs linter while the
-plan's content was accepted each time.
-1. **Review the task, not its tooling.** Blocking findings concern the task's Done-when and the
-   claim its Scope protects. Crafted-input attacks on helper scripts, validators, receipts or
-   test tooling are out of scope, unless the task delivers that tool as a protection (a guard, a
-   permission, an engine seam).
-2. **Docs and planning PRs: content first.** The reviewer judges the content; their helper
-   checks are consistency checks for honest edits, and an adversarial bypass of one is never
-   blocking.
-3. **Same-class cap.** When the same class of finding returns in a second round, the main
-   session narrows the claim and files a follow-up instead of a third round on that class.
-   Only a real defect in what the task delivers keeps blocking.
-4. **Severity bar.** Blocking means a real user or implementer would hit it through normal use
-   or honest editing. A problem that needs deliberately crafted input is a follow-up, unless
-   defeating crafted input is the task's own protected claim.
-5. **Modest claims.** Implementers do not write guarantees their checks cannot back. A smaller
-   claim beats a bigger checker.
-6. **Reviews are posted on the PR.** A review run outside the review script (a cloud session, a
-   prompt the owner pastes) posts its complete review as one PR comment or PR review, exactly
-   once, changing no labels. Where gh's GraphQL commands are unavailable:
-   `gh api repos/<owner>/<repo>/issues/<pr>/comments -X POST -F body=@<file>`. The main session
-   then applies the label. Every review prompt ends with this posting step.
-
-### Claude CLI backend (owner request, T69)
-
-An explicitly selected `harness.json` model with `backend: "claude"` runs through the same
-`review.mjs --reviewer <name>` command and shared parser/poster/labels. See
-[Claude CLI reviews](harness-claude.md) for model verification, trusted settings, grants,
-retained evidence and coverage acknowledgments. The independent-family and blocked-list rules
-still apply; this adds a backend without changing the default. Claude failures never reroute
-through OpenCode. A rejected command, missing scope or incomplete Done-when cannot approve.
-
-## 6. Bugs, fixes, triage
-
-Bugs and non-blocking review findings are filed with `triage:needed`: one `T<nn> follow-up` issue
-per merge. Triage decides one of:
-- **fix**: no ruleset value, fixture value, seeded measurement or golden line changes outside the
-  bug's own reproduction. The bug issue is the contract; its Done-when is its reproduction as a
-  failing-then-passing test; one review round. (L4)
-- **correction task**: anything that changes an outcome.
-- **fold** into a task not yet ready, or **close**, with the reason.
-
-Once `breaks-play` is trialled (§12), Jev settles the gate's confident ends; the main session the middle.
+Test fixtures the suite reads (saved matches, frozen boards) are not artifacts: they live in
+`fixtures/` and stay small. Evidence removed on 2026-10-20 is in the history and on the `local`
+branch (`git show local:docs/prototypes/<path>`).
 
 ## 7. Escalate to the user when
 
-A design question; a Done-when would have to weaken; a third rework round; anything destructive
-(force-push, rewriting `main`, deleting an issue); a new external dependency.
+A design question; a Done-when would have to weaken; anything destructive (force-push, rewriting
+`main`, deleting an issue); a new external dependency.
 
-## 8. Labels
+## 8. Requesting an archaeology investigation
 
-`task`, `bug`, `fix`, `triage:needed`, `post-playable`,
-`status:{ready,in-progress,in-review,rework,approved,blocked,escalated,merged}`,
-`review-round:{1,2}`, and `model:<name>` on a PR whose implementer was not Claude (then `review.mjs`
-reads the family to exclude from it).
-
-## 9. Measure
-
-After each merge, one PR comment records the implementer (the main session or an agent, with the
-agent's token total from its completion notice), the review's model and duration, and the review
-rounds. After 10–20 tasks, compare the rework rate with the baseline in `docs/lessons.md` before
-changing the default reviewer. (L13)
-
-## 10. Adding a rule
-
-A rule enters `CLAUDE.md` or this file only with a lesson in `docs/lessons.md`: a failure in a real
-run, or the owner's decision with its basis. Plausible rules without either stay out. (L14) A rule may carry a **carve-out**: an addendum that loosens it under named conditions, its wording unchanged, with lettered preconditions (A, B, …) a reviewer checks one by one, a gate in `tools/` that enforces them, and what stays forbidden; a project's `CLAUDE.md` holds the instance. (L63)
-
-## 11. For a reverse-engineering project
-
-- Transcribe every number from the research into one fixtures corpus with provenance, and assert against it: each re-read of a report is another chance to misread it. (L15)
-- New evidence runs in two stages: findings to the research repository, then a check of every
-  document claim it touches. Each finding is a doc fix, a bug, a task-file edit, or a question for the user; research never decides design. (L16)
-- The original files never enter the repository. CI fetches them from a private fixtures
-  repository holding the whole corpus; tests find fixtures by name; local tests skip without them. (L17) A *model-driven run* of the original is a carve-out of this (§10): a known-good hash table in a finding, a gate that refuses any run record off that table, then a `model-driven` task (`docs/tasks/TEMPLATE.md`); it corroborates the owner's runs, never replaces them, and what it shows amends `spec/` and `findings/` one claim at a time, never in bulk. (L63)
-
-### 11.1 Requesting an archaeology investigation
-
-Owner-defined handoff, 2026-10-16 (L71): use an issue in
+When a question needs exploration of the original game, open an issue in
 [`diegoami/isle-wars-archaeology`](https://github.com/diegoami/isle-wars-archaeology/issues)
-when an implementation question needs exploration of the original game or static
-analysis/decompilation. Check existing findings and issues first; extend an existing
-request when it already covers the question. Research never decides malpaco's design.
-
-The main session files a request with these fields:
-
-- **Question:** bounded questions, separating observed behaviour from hypotheses.
-- **Consumer:** links to malpaco's issue/task and the implementation decision the
-  answer would inform; say whether work is blocked or can continue independently.
-- **Existing evidence:** reviewed finding/design links and gaps; do not ask another
-  session to repeat an answered investigation.
-- **Method:** inspect existing static/decompiled evidence first where useful;
-  request controlled exploration/recorded play for appearance, interaction or gaps
-  static evidence cannot resolve. A fixed table or bitmap is a possible answer;
-  do not assume a procedural algorithm exists.
-- **Expected result:** per-question answers with source identifiers, confidence,
-  reproducible commands or run provenance, measured results where applicable, and
-  explicit unknowns. Include bounded completion criteria and relevant negative cases.
-- **Boundaries:** no original code, assets, screenshots or decompiled excerpts enter
-  malpaco. Follow archaeology's own rules for local originals and published evidence.
-
-Use upstream `question` and `triage:needed` labels when available; the receiving
-session assigns any task contract, priority, models and worktree under its own
-process. Cross-link the request from the consuming malpaco issue. When the owner
-authorizes a handoff to a reachable archaeology session, send that session the
-issue URL and bounded request; keep the issue as the durable record and record
-any acknowledgment there. Filing an issue alone does not dispatch a session or
-start a model run. Track progress in issue labels
-and comments, not copied status tables; never claim a request is running without
-a receiving session's acknowledgment.
-
-For the return handoff, require reviewed findings in archaeology, with stable
-commit/section links and confidence (`confirmed`, `derived`, or still unknown).
-The main session checks affected malpaco claims and routes each result as a doc
-fix, bug, task-contract amendment or owner design question (§11). Import only
-permitted behavioural/design conclusions and citations, preserving original work
-(rule 19). Record what was adopted or deliberately differed from, with reasons.
-An unanswered request is never evidence, and unknown behaviour is never silently
-promoted to a confirmed rule. Readiness and blocking decisions remain explicit on
-the consuming issue.
-
-## 12. Delegating decisions to Jev
-
-Jev takes a decision only when it recurs over many items, its answers are known up front, and a
-trial against labels has set its cutoffs, recorded in `harness.json` with the numbers. It answers
-the confident ends and the main session the middle; a person's decision outranks both. Without its
-key it is off. `/jev` has the procedure. (L24)
-
-
-## 13. Worktree maintenance
-
-Owner decision, 2026-10-19 ([#214](https://github.com/diegoami/malpaco/issues/214), L72): use the shared `worktree-cleanup` skill at `/home/diego/.codex/skills/worktree-cleanup/SKILL.md` for requested cleanups and task/session-close sweeps. Check the latest sweep receipt first; inspect disk usage before another large checkout. This is an attended sweep, not a scheduled deletion job.
-
-Keep active tasks and unresolved, interrupted or unanswered reviews available for diagnosis/resumption. Read the complete final and confirm posting/disposition before retiring a resolved checkout; a failed launcher or closed PR alone is insufficient. Publish useful findings, decisions and continuation instructions on the relevant GitHub issue/PR. Preserve unique unpublished changes and supporting evidence in `/home/diego/projects/malpaco-keep`, with hashes, Git refs and tested restoration instructions. Committed source and reinstallable dependencies do not need repeated checkout archives.
-
-Immediately before removal, recheck readers and tree state and verify required preservation. Use `git worktree remove` for eligible registered trees under existing owner authorization. Leave inherited dirty files, active reviews and other projects untouched. Record removed/kept paths and reasons, publication links, preservation checks and before/after usage in a small local sweep receipt. The keep area is temporary recovery storage; reconcile useful contents with GitHub and remove disposable copies at later sweeps.
+(check existing findings first) with: the bounded **question**; the **consumer** (the malpaco
+issue and decision it informs, and whether work is blocked); **existing evidence**; the
+**expected result** (answers with sources, confidence and explicit unknowns). Cross-link it from
+the malpaco issue. Only behavioural and design conclusions come back, as citations (rule 15); an
+unanswered request is never evidence, and research never decides malpaco's design.

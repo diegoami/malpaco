@@ -1,150 +1,28 @@
 ---
 name: run-task
-description: Run tasks or fixes end to end. A subagent spawned on a model of its own (or the main session directly) implements and one OpenCode model of another family reviews, each after one question to the user; the main session merges and reports. Main session only.
+description: Run a task or fix end to end - implement on a branch (main session or the implementer subagent), open the PR, optionally review it, merge on green CI, file follow-ups. Main session only.
 ---
 
-# /run-task [T<nn> | #<issue> ...]
+# Run a task
 
-Read `docs/process.md` §3–§6 first. Given ids, run them in order; given none, take the first
-`status:ready` task in `docs/tasks/README.md`. Report after each task; stop at any escalation.
-For `#<issue>` of a bug labelled `fix`, the bug body replaces the task file, the branch is
-`fix/<issue>-<slug>`, and there is one review round.
+Argument: a task id (`T<nn>`) or a bug issue number. Follow `docs/process.md` §3–§5.
 
-Two questions per task, and no other choice of model (CLAUDE.md rule 6, the owner, 2026-10-12):
-before the implementation, which subagent implements (the `implementer` agent on a model of its
-own: an alias or a model id the session's provider serves) or whether the main session does it
-directly; before each review, which OpenCode model reviews. Each question
-proposes `harness.json`'s default first; the roster changes through `/switch-model`, never here.
-No quota is checked. The implementer's family is the session's, read from the Anthropic
-environment (`switch-model.mjs --show` prints it); the reviewer is never of that family.
+1. **Read** the task file (or the bug issue) and its issue. Check `gh pr list` for an open PR on the
+   task's branch: if there is one, continue it rather than starting over. Label the issue
+   `status:in-progress`.
+2. **Implement.** Either directly (create `task/T<nn>-<slug>` from `origin/main` in this checkout),
+   or spawn the subagent: `Agent(subagent_type: "implementer", model: <alias>, prompt: <brief>)`,
+   the brief being the task file pasted in full plus, on a rework round, the review's URL. Do not
+   do other work in this checkout while the subagent runs. Read its final report before acting.
+3. **PR.** Check that the PR body has every Done-when line with its output. Re-run the one the
+   task rests on most. Label `status:in-review`.
+4. **Review (optional).** Only when the task file asks for one or the change is risky:
+   `node tools/review.mjs --pr <n> --brief docs/tasks/T<nn>.md` (add `--checkout` on a clean tree
+   so the reviewer can run tests). Relay its findings in full. Rework once on the same branch;
+   what remains becomes follow-up issues with `triage:needed`.
+5. **Merge** when CI is green: `gh pr merge <n> --squash --delete-branch`. Label the issue
+   `status:merged`, then return this checkout to `main` and pull.
+6. **Report** to the user: what landed, what review ran (if any) and its outcome, follow-ups
+   filed. Then stop; do not start the next task without being asked.
 
-0. **Check.** Read the task's **Tier** (`docs/process.md` §5.1; a task file without one is tier 2
-   until the main session adds it on `main`). The issue is `status:ready` and every Merge-after task is merged. Run
-   `gh issue list --label triage:needed --state open`; triage anything that names this task first.
-   If `harness.json` has cutoffs for `breaks-play`, route those issues through Jev first (`/jev`
-   step 4). Act on its confident ends and triage the middle yourself; exit 3 means triage it all.
-
-   Run every Done-when line yourself: it must fail on `main` and pass on a mock fix (a scratch
-   change, then discarded). A line that cannot is amended on `main` before dispatch (L45).
-
-1. **Brief.** The task file **pasted in full**, then `docs/process.md` §4's block, then (on
-   rework) the review comment's URL. Never a pointer to the task file. The main session
-   implementing itself reads the same block as its contract.
-
-2. **Implement.** First ask the user ONE question with the question tool (CLAUDE.md rule 6
-   rule 1): which subagent implements (the `implementer` agent on `sonnet`, `opus`, `haiku`, `fable`
-   or a model id the session's provider serves), or does the main session implement directly (only
-   where the provider cannot spawn one)? Put `harness.json`'s `implementer.default` first. Record the answer on the
-   issue. Label `status:in-progress`. Then:
-   - **The `implementer` subagent**: `Agent(subagent_type: "implementer", model: <the answer>,
-     isolation: "worktree")` with the brief, on a model of its own, not the orchestrator's
-     (`sonnet` under Opus; under Z.AI the same alias is GLM-5.3 Flash; a model id names the
-     provider's model outright). A Sonnet brief carries the tripwire paragraph from
-     `docs/models.md`. Its agent file carries §4's block and the run mechanics; its hook refuses
-     `git stash`, `git worktree`, a force-push and `gh pr merge`. Watch it by its transcript
-     file's size and its worktree (CLAUDE.md rule 6.6); tell the user in plain language what it is
-     doing. Read its final report in full before acting (rule 8, L55), and post its `RUN-NOTES.md` on
-     the issue. A report that stops on a Done-when it cannot meet gets an answer (amend the task
-     on `main`, decide, or escalate), never a blind retry.
-   - **The main session, directly**, only where the provider cannot spawn a subagent (one model,
-     or the Agent tool's model not honoured) or the user says so: in its own worktree
-     (`git worktree add ../malpaco-work/T<nn> -b task/T<nn>-<slug> origin/main`,
-     never the main checkout), keeping `RUN-NOTES.md` there (the plan, a line per commit, an END
-     block), pushing
-     after every commit, and opening the PR with the template body.
-
-3. **Review.** **Tier 0:** no external review. Run every Done-when line and the repository's own
-   checks on the PR's exact head yourself, then go to step 4's `status:approved` path (green CI
-   where CI runs) and list the PR for the next milestone review. **Tier 1:** one round; after one
-   rework, what remains becomes follow-up issues unless it is a real defect in what the task
-   delivers. **Tier 2:** as below until accepted. Reviews are proportionate (`docs/process.md`
-   §5.2): the brief's "Blocking means" names the task's protected claim, never its tooling. A
-   review prompt for a reviewer outside the script ends with §5.2 rule 6's posting step.
-   A registered `backend: "claude"` model uses the same command below; see
-   `docs/harness-claude.md` for exact identity checks, trusted grants, coverage and retained
-   evidence. Existing defaults and family rules still apply. First ask the user ONE question (CLAUDE.md rule 6 rule 2): which OpenCode model
-   reviews? Put `harness.json`'s `reviewer.default` first (`gpt-6.1-sol` for a guard, a gate or
-   a hard task), then the registered models that are neither of the session's family nor
-   blocked (`switch-model.mjs --show`). Record the answer on the PR. Label `status:in-review`.
-   Name the PR's head in the brief only after the push has landed (`git rev-parse <branch>`); a
-   brief naming another commit exits 2 before anything runs (L33). Then, as a systemd unit,
-   watched (CLAUDE.md rule 6.6; `run-unit.sh` forwards the environment, so the script reads the
-   session's family from it):
-   ```bash
-   tools/harness/run-unit.sh review-<pr> <log> -- node tools/harness/review.mjs --pr <pr> --brief <file> --issue <n> --apply-label [--reviewer <the answer>]
-   ```
-   One review per PR unless the user asks for more. Relay its findings in full (rule 8).
-   - Exit 0: posted and labelled.
-   - Exit 3: no review came back (OpenCode, the login, the model, a rejected path, or a review
-     the script could not find). Nothing was posted. Read the run's final message first (rule 8,
-     the snippet below), fix the cause (a wider grant in `.opencode/agents/reviewer.md`, a login,
-     a brief line), and run again. Another model only when the provider does not answer, and the
-     user names it at the question.
-   - Exit 4: a review was posted whole under a note (cut off, verdict unreadable, verdicts differ,
-     a finding after the closing verdict, or an approve with a Done-when line unaccounted for or
-     not run, L32). No label was applied. Read it on the PR and decide: apply the label it
-     supports, ask for a supplementary review of the missing DW lines, or send it to rework.
-     Never pay for a second review just because the first was flagged: OpenCode's models do not
-     always follow the brief, and the script's reading is the safety net.
-   - **Read before you act (L55).** The final message, read-only (never `auth.json` there), with
-     the `session ses_…` id from the run's log:
-     ```bash
-     python3 - <<'PY'
-     import sqlite3, json, os
-     home = os.environ.get('HARNESS_OPENCODE_HOME') or os.path.expanduser('~/.local/share/harness-opencode')
-     db = 'file:' + os.path.join(home, 'data', 'opencode', 'opencode.db') + '?mode=ro'   # the scripts' data directory
-     c = sqlite3.connect(db, uri=True)
-     sid = 'ses_...'   # the "session ses_..." line in the run's log
-     parts = [json.loads(d) for (d,) in c.execute("select data from part where session_id=? order by time_created", (sid,))]
-     texts = [p for p in parts if p.get('type') == 'text']
-     print(texts[-1]['text'] if texts else 'no text part')
-     PY
-     ```
-   - A Claude review (`/code-review <pr>`, always with the number, or the `reviewer` agent posted
-     with `post-review.mjs`) only when the user asks: it is the implementer's family.
-
-4. **Decide** on the label the reviewer applied.
-   - `status:approved`:
-     1. Wait for green CI.
-     2. Re-run the check the approval rests on most (the Done-when line or the mutation that
-        proves the task) on the PR's head yourself. A different result is rework, not a merge (L46).
-     3. `gh pr merge <pr> --squash --delete-branch`, then label `status:merged`.
-     4. File one `T<nn> follow-up` issue (`triage:needed`) for the non-blocking findings.
-     5. Unblock the tasks whose Merge-after are now all merged.
-     6. Remove the task's worktrees.
-     7. Post §9's measurement comment on the PR, and a model-trials comment when the review taught
-        something (rule 21).
-     8. Report the merge, the findings, the follow-ups and what is ready next.
-   - `status:rework`:
-     0. Same-class cap (§5.2 rule 3): a class of tooling or claim-hardening finding returning in
-        a second round is narrowed and filed as a follow-up, not sent to a third round; tier 1
-        stops after one rework. A real defect in what the task delivers is never demoted by its
-        round number: it stays blocking, or escalates (step 5).
-     1. Check that every finding names a file in `gh pr diff <pr> --name-only`. A review that
-        does not reviewed the wrong tree: discard it, say so, and re-review.
-     2. At `review-round:2` (at `review-round:1` for a fix), go to step 5.
-        A reviewer that reports one blocking finding per round despite the brief's one-pass
-        section (L49): after the second such round, stop. Request no further review until you
-        have gone through the whole diff yourself for that class and fixed what you found, and
-        recorded the pattern in the model-trials issue. The review after that is the task's last
-        before escalation (step 5).
-     3. A heavy review (three or more blocking findings, or a repeated class) is fixed by class,
-        not by instance: the next round sweeps the implementer's own code for the same class and
-        lists the sweep in the PR body, and changes the approach when the class needs it, saying
-        so on the task file. The round count does not reset, and the Done-when is never weakened.
-     4. Set the next round and return to step 1, with the full review's URL in the brief. The
-        implementer resumes the pushed branch; it never starts over.
-
-5. **Escalate** (`docs/process.md` §7): label `status:escalated`, comment the evidence on the issue,
-   and bring the user the decision with options and a recommendation. Stop.
-   A defect found in merged code outside the task is filed as a bug (`triage:needed`). If it
-   blocks the task: a one-file mechanical fix may ride this PR, declared under Scope; otherwise
-   label the task `status:blocked` and stop.
-
-Never:
-- merge without an approving review and green CI;
-- weaken a Done-when;
-- let the implementer's model family review its PR;
-- relay part of a review;
-- dispatch a `model-driven` task before its carve-out's table and gate are merged (process.md §10, L63);
-- force-push or rewrite `main`.
+Escalate (`docs/process.md` §7) instead of weakening a Done-when.

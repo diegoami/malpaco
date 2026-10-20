@@ -1,26 +1,14 @@
 # T<nn> <Title>
 
-- **Kind**: feature | correction (of T<nn>, bug #<n>) | slice | infrastructure | model-driven
-  (runs the original under a gated carve-out, process.md §10; its lettered preconditions are
-  Done-when lines, its table and gate named in Scope)
+- **Kind**: feature | correction (of T<nn>, bug #<n>) | slice | infrastructure
 - **Issue**: #<n> · **Branch**: `task/T<nn>-<slug>` · **Merge after**: T<nn>, …
-- **Tier**: 0 | 1 | 2 (process.md §5.1, #219): 0 docs, planning, outcome-neutral fixes (no external
-  review); 1 features and UI (one review round); 2 engine, generator, saves, artifacts, guards,
-  permissions, privacy (review until accepted). When unsure, the higher one.
-- **Implementer**: the `implementer` subagent on the model chosen at the question, or the main session directly (CLAUDE.md rule 6); say which, and why, only when it matters (the user's machine needs the main session, L26).
-- **Reviewer**: `reviewer.default` (GPT-5.6 Luna), or a `harness.json` key with the reason: `gpt-6.1-sol` for a guard, a gate or a hard task; never the implementer's family (CLAUDE.md rule 6).
-- **Evidence**: the reports, fixtures or investigations this task rests on, with links.
-- **Owns**: directories or files, e.g. `src/Calendar/**`, `tests/Calendar/**`. A task that measures
-  owns a tracked path for its outputs, e.g. `runs/E<nnn>/**` or `spike/measurements/**`: they are
-  pushed after each batch and every 30 minutes, never deleted or overwritten; originals stay out,
-  their hashes recorded (L40).
-- **Scope**: what to build, in a few sentences. What is out of scope, if it is easy to confuse. A task
-  likely to outlast one implementer run (about an hour), or whose Done-when is all or nothing (an exact
-  match, a whole model), is split into milestone tasks first, each merging on its own with a Done-when
-  that measures a number (L58).
+- **Review**: none | PR review (say why: rule core, saves, risky) — reviews are optional
+  (`docs/process.md` §4); everything is covered by the next milestone review.
+- **Evidence**: the isle-wars-archaeology findings or investigations this task rests on, with links.
+- **Owns**: directories or files, e.g. `src/core/combat.ts`, `tests/core/**`.
+- **Scope**: what to build, in a few sentences. What is out of scope, if it is easy to confuse.
 - **Done when**:
-  1. One check a command can run, with the expected result. Before dispatch, each line fails on
-     `main` and passes on a mock fix (L45).
+  1. One check a command can run, with the expected result. Before dispatch, it fails on `main`.
   2. …
-  3. The build and the test suite are green.
+  3. `npm run build`, `npm test` and `npx playwright test` are green.
 - **Hazards**: the mistake an implementer is most likely to make here, and how to avoid it.

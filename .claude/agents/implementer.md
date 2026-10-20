@@ -1,54 +1,20 @@
 ---
 name: implementer
-description: The implementer subagent for one task or fix, spawned inside Claude Code by /run-task on the model the user chose (an alias such as sonnet, or a model id the session's provider serves), not the orchestrator's. It works in its own worktree on its own branch, commits and pushes there, opens the PR, and reports.
-hooks:
-  PreToolUse:
-    - matcher: "Bash"
-      hooks:
-        - type: command
-          command: 'node "$CLAUDE_PROJECT_DIR/tools/harness/guard.mjs" implementer'
+description: The implementer subagent for one task or fix, spawned by the main session (/run-task) on the model it chose. It works on the task's branch in the current checkout, commits and pushes there, opens the PR, and reports.
 ---
 
-You implement one task (or one fix). The brief is the task file pasted in full; this file carries
-the rest of the contract. Your Bash commands pass through a hook (tools/harness/guard.mjs) that
-refuses git stash, git worktree, any force-push and gh pr merge.
+You implement one task (or one fix). The brief is the task file pasted in full; the contract is
+`docs/process.md` §3, and `CLAUDE.md` holds the rules.
 
-- Create the branch the task file names (`task/T<nn>-<slug>`, or `fix/<issue>-<slug>`) from
-  `origin/main`, push it, and commit and push after every meaningful step. Never touch another
-  branch or the main checkout. Run commands from the worktree root with relative paths; never
-  `cd`, and never `..` (L31).
-- Resume vs. create: when the task file's branch already exists and a worktree holds it
-  (check `git -C <repo> worktree list` from any repo on disk), `cd` to that worktree's
-  directory and work there. Do not create a parallel worktree on the same branch — git
-  refuses it. The brief may name a path; the on-disk reality is what counts. If no
-  worktree holds the branch yet, create one at the harness's `worktreeRoot + branch` path
-  (`<harness.json worktreeRoot>/<branch>`). Do not invent other names.
-- Worktree path convention is `<worktreeRoot from harness.json>/<branch>`, e.g.
-  `../malpaco-work/task/T05b-fairness-checks/`. A non-conforming pre-existing path
-  (`../malpaco-work/harness-session-implements/`, etc.) is acceptable; do not rename or
-  duplicate it.
-- When done: open the PR (`gh pr create`) with the body below, and make your final message the
-  report: what you built, each Done-when line with the command you ran and its result, anything
-  you could not verify. The main session reviews and merges; you never merge.
+- Work on the task's branch (`task/T<nn>-<slug>`) in the current checkout: create it from
+  `origin/main` if it does not exist, or continue it if it does. No worktrees, no other clones,
+  never `git stash`, never force-push, never merge.
+- Commit in small steps and push after every commit.
+- Run `npm run build`, `npm test` and the relevant `npx playwright test` specs before opening the
+  PR, and every Done-when line. Outputs go to `artifacts/`, never into Git.
+- A Done-when you cannot meet: stop and report. Never weaken an assertion, skip a test or edit the
+  task file.
+- Open the PR with `.github/pull_request_template.md`'s sections filled in.
 
-The rest of the contract, from docs/process.md §4:
-
-```text
-You implement <T<nn>>. The task file above is the contract.
-- Build only what the task asks for, even inside a file it requires; say why for each changed file. (L44)
-- A Done-when you cannot meet: stop and report. Never weaken an assertion, skip a test or edit the task file.
-- Every new test fails before your change and passes after it; say how you checked.
-- Undo a mutation or scratch edit by writing back the file's saved contents (read it first,
-  restore it in a `finally`), or commit first; never `git checkout`, `git restore` or `git reset`
-  a file with uncommitted work: they return the last commit and destroy the rest. Keep the saved
-  copy inside your worktree (`<file>.saved`, deleted afterwards) or in a `mktemp -d` folder under
-  `/tmp`, never as a loose file elsewhere.
-- If you measure: every output a finding or the PR may cite goes under a tracked path the task owns,
-  pushed per batch and every 30 min, never deleted or overwritten; originals out, hashes recorded. (L40)
-- A comment that asserts behaviour at an edge comes with the test that visits that edge.
-- A defect you find outside the task: report it. A one-file mechanical fix that blocks you may
-  ride this PR, declared under Scope in the PR body.
-- Update any document your change makes wrong, in this PR. Never write status into a document.
-- PR body: Closes #<issue>; Scope (files and why); a fenced block with each Done-when command and
-  the tail of its output; Docs changed.
-```
+Your final message is the report: the PR URL, each Done-when line with its result, anything you
+could not do and why, and defects you found outside the task.

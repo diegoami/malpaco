@@ -9,7 +9,7 @@ test('Vite ignores only its own retained cache and preserves application and tes
   mkdirSync(path.join(root,'.cache'),{recursive:true});
   const evidence=mkdtempSync(path.join(root,'.cache','dev-watch-check-'));
   for (const name of ['probe.mjs','vitest-probe.mjs']) {
-    const command=['docs/prototypes/dev-watch/issue187/acceptance/'+name];
+    const command=['tests/dev-watch/'+name];
     const result=spawnSync(process.execPath,command,{cwd:root,encoding:'utf8',timeout:20_000,
       env:{...process.env,MALPACO_DEV_WATCH_EVIDENCE:evidence}});
     writeFileSync(path.join(evidence,name+'.stdout'),result.stdout||'');

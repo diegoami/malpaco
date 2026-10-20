@@ -1,16 +1,11 @@
-# AGENTS.md
+# Agents
 
-Claude Code reads `CLAUDE.md`; OpenCode and other harnesses read this file. The rules are
-binding for every agent working in this repository, and they live in
-[`CLAUDE.md`](CLAUDE.md) — read it before doing anything here. This file only points; it
-never restates a rule, so there is exactly one copy of each.
+For any agent or tool working in this repository (OpenCode, Codex, Claude Code, others):
 
-- **Rules**: [`CLAUDE.md`](CLAUDE.md) — numbered, cited everywhere as "rule n".
-- **Process**: [`docs/process.md`](docs/process.md) — how a task runs. §4 is the implementer's
-  contract (it travels with every brief); §5 the reviewer's, with §5.1 review by risk tier
-  (each task file names its tier) and §5.2 proportionate reviews.
-- **Tasks**: [`docs/tasks/README.md`](docs/tasks/README.md) indexes `docs/tasks/T<nn>.md`.
-  A task's issue (`status:ready`) points at its task file; the task file is the contract, and
-  its Done-when is not negotiable (rule 5).
-- **Models**: [`docs/models.md`](docs/models.md) — who implements, who reviews, each model's
-  record. Model ids come from live lists (`opencode models`), never memory.
+- **Rules**: [`CLAUDE.md`](CLAUDE.md), numbered and cited as "rule n".
+- **Process**: [`docs/process.md`](docs/process.md): setup, task files, the loop, reviews,
+  artifacts.
+- **Tasks**: [`docs/tasks/README.md`](docs/tasks/README.md) indexes `docs/tasks/T<nn>.md`; the
+  issue's `status:*` label is the status.
+- **Reviewing a PR**: [`docs/review-pr.md`](docs/review-pr.md). **Reviewing a milestone**:
+  [`docs/milestone-review.md`](docs/milestone-review.md).

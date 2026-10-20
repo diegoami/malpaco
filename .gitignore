@@ -6,9 +6,10 @@ test-results-release/
 playwright-report/
 playwright-report-release/
 screenshots/
-.claude/worktrees/
 .claude/settings.local.json
 .claude/settings.local.json.*.bak
 .claude/scheduled_tasks.lock
 *.log
 size
+artifacts/
+.cache/

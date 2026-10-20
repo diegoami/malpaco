@@ -8,8 +8,7 @@ the archived Godot proof of concept.
 
 How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process.md). Tasks:
 [docs/tasks/](docs/tasks/README.md).
-For session continuity, read the latest decisions in [RUN-NOTES.md](RUN-NOTES.md)
-and query current GitHub issue labels; historical notes are not task status.
+Task status lives in GitHub issue labels.
 
 ## Play Malpaco 0.1.1
 
@@ -41,8 +40,8 @@ seed, seat and opponent query parameters and in-game help.
 ## Development watching
 
 `npm run dev` uses the committed Vite configuration to exclude this checkout’s
-`.cache` directory, where retained worktrees and evidence can otherwise consume
-large numbers of filesystem watches. The exclusion is anchored to this checkout,
+`.cache` directory, which can otherwise consume large numbers of filesystem
+watches. The exclusion is anchored to this checkout,
 so source, data, public assets and tests still update when the checkout itself
 lives under another `.cache` directory. Vitest watch mode retains test reruns.
 

@@ -12,7 +12,7 @@
     "build": "tsc --noEmit -p src/core && tsc --noEmit && vite build",
     "package:playable": "node tools/release/package-playable.mjs",
     "preview": "vite preview --port 4173 --strictPort",
-    "test": "node --test tools/harness/test/*.test.mjs && vitest run",
+    "test": "node --test tests/dev-watch/*.test.mjs && vitest run",
     "e2e": "playwright test"
   },
   "devDependencies": {
