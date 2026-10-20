@@ -29,6 +29,14 @@ continuity. Organic geography's place relative to this UI slice must be decided
 in the post-sketch backlog reconciliation, then approved by the owner. It is no
 longer optional for the finished game. No generator rewrite is selected here.
 
+The subsequent colour/beginner proposal uses vivid stable ownership colours,
+more irregular geographic drawing and short first-use hints that name actions,
+explain consequences and clear afterward. See the
+[illustrated walkthrough](finished-game-vision/BEGINNER-WALKTHROUGH.md).
+This is a visual/teaching proposal, not tutorial implementation authorization.
+Reconcile relevant T85/T87/help assumptions with the eventual owner-selected
+execution; keep the resting board free of permanent text.
+
 ## Selected scope
 
 Full-viewport map with icon controls and temporary contextual information for

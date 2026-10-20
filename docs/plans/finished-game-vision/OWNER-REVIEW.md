@@ -5,7 +5,7 @@ and full-screen/icon/contextual-text amendments. The [decision record](DECISIONS
 contains the exact response. No further V1–V5 vote is needed.
 
 The first sketches were too overwhelming and are superseded. Open the
-[revision-3 gallery](SKETCHES.md), especially the quiet-map row: there is no
+[revision-4 gallery](SKETCHES.md), especially the quiet-map row: there is no
 persistent on-screen text, header, dock or side panel. Controls are icons.
 The other scenes show only text needed for that interaction or a player-requested
 piece of information, returning to the quiet map when finished.
@@ -21,7 +21,9 @@ piece of information, returning to the quiet map when finished.
 
 Portrait now turns and fits the whole board, with a zoomed view for detailed
 play. Swiping pans when zoomed; Fit returns to the overview. All four form factors
-follow the same full-screen direction. Give corrections
+follow the same full-screen direction. The latest colour/shape treatment and
+[eight-step beginner tour](BEGINNER-WALKTHROUGH.md) address the subsequent
+request for a vivid map and understandable first use. Give corrections
 by scene/device if needed. These are original static visual references: organic
 map generation, icon discovery, touch feel, accessibility and full-match fun must
 still be judged in real builds under D4. A sketch is not evidence of a valid map.

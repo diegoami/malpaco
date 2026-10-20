@@ -7,7 +7,8 @@ deferring flavour naming, and replacing the first sketches' text-heavy layout
 with a full-screen map, icon actions and temporary contextual information.
 [Exact decision and amendments](DECISIONS.md).
 
-Start with the [revised sketches](SKETCHES.md). The journey below incorporates
+Start with the [revised sketches](SKETCHES.md) and
+[illustrated beginner walkthrough](BEGINNER-WALKTHROUGH.md). The journey below incorporates
 that direction. The [authority crosswalk](AUTHORITY.md) identifies the existing
 contracts to reconcile. Revised sketch acceptance, backlog approval and product
 implementation remain separate gates under #215; GitHub labels carry task state.
@@ -29,8 +30,8 @@ feel like a coherent place. The only standing controls are small action icons;
 text appears over the map when an interaction or requested information needs it,
 then clears. There is no permanent title bar, action dock, sidebar or log.
 
-The revised original illustrations explore organic coasts and varied territorial
-shapes. They do not prove production generation, topology, fairness or visual
+The revised original illustrations use vivid ownership colours, more irregular
+coasts and varied territorial shapes. They do not prove production generation, topology, fairness or visual
 quality across seeds. Flavour names are deferred; extra prose is not the source
 of the game's identity.
 
@@ -51,6 +52,9 @@ real policies. An unfinished policy must never be advertised as functional.
 Starting, regenerating or loading communicates progress and any recoverable
 error. Invalid setup or load does not discard the usable match. First-turn help
 introduces the immediate decision, with complete help available throughout.
+The proposed first-use walkthrough names an action when first encountered,
+shows its consequence, then clears the hint after that interaction. Icons alone
+do not establish that a beginner understands the next step.
 
 ### 2. Read the place and find the first useful move
 

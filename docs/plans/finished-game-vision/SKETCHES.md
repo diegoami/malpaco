@@ -1,4 +1,4 @@
-# Revision 3: portrait fit and focused navigation
+# Revision 4: vivid maps and beginner guidance
 
 The owner approved V1–V5, required nice organic maps, deferred flavour names and
 rejected the first sketches' text density. After preferring the simpler drawings,
@@ -10,7 +10,12 @@ any image at native size; the quiet-map row shows the default after contextual
 information clears. The remaining rows show information only for the interaction
 or request depicted.
 
-All twenty-four drawings are original static **[designed] concepts**, not
+The palette is now brighter, with more irregular coasts, varied partitions and
+curved borders. Each player keeps a consistent ownership hue plus shape cue.
+See the [eight-step beginner walkthrough](BEGINNER-WALKTHROUGH.md) for short
+first-use hints; the quiet-map row still has no visible text.
+
+All twenty-four gallery drawings are original static **[designed] concepts**, not
 implementation screenshots or game assets. The hand-authored coasts and schematic
 territories explore the organic direction; they do not prove a valid graph,
 route/label constraints, fairness or production generation across seeds. Cameras

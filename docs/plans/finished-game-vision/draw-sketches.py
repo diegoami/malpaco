@@ -1,4 +1,4 @@
-"""Original static concepts, revision 3: portrait rotation, fit and focus views.
+"""Original static concepts, revision 4: vivid ownership and irregular geography.
 Run: python3 docs/plans/finished-game-vision/draw-sketches.py
 No application imports, assets, randomness or production generator changes.
 """
@@ -9,8 +9,8 @@ from math import sin, cos, pi, hypot
 ROOT = Path(__file__).parent / 'sketches'
 ROOT.mkdir(exist_ok=True)
 SEA, INK, MUTED = '#102b36', '#f0f1de', '#c0d3cb'
-PANEL, LINE, GOLD = '#173d47', '#517580', '#edcf89'
-OWNERS = ['#729b94', '#a37d67', '#8e9c69', '#8d819f']
+PANEL, LINE, GOLD = '#173d47', '#517580', '#ffd06b'
+OWNERS = ['#239cdb', '#f47745', '#92c83e', '#b86cdb']
 ICONS = {
     'menu': 'M15 18H33 M15 24H33 M15 30H33',
     'pause': 'M19 16V32 M29 16V32',
@@ -43,8 +43,8 @@ class Drawing:
         self.rect(0, 0, 48, 48, GOLD if primary else PANEL, 14, GOLD if active else LINE)
         self.path(ICONS[kind], stroke=SEA if primary else INK, width=2)
         self.p.append('</g>')
-    def save(self, name):
-        (ROOT / name).write_text('\n'.join(self.p + ['</svg>'])+'\n')
+    def save(self, name, folder=ROOT):
+        (folder / name).write_text('\n'.join(self.p + ['</svg>'])+'\n')
 
 def coast_path(points):
     out=[f'M {points[0][0]:.2f} {points[0][1]:.2f}']
@@ -74,10 +74,14 @@ def cell_path(points):
     out=[f'M {points[0][0]:.2f} {points[0][1]:.2f}']
     for a,b in zip(points,points[1:]+points[:1]):
         lo,hi=sorted([a,b]); length=hypot(hi[0]-lo[0],hi[1]-lo[1]) or 1
-        bend=3.5*sin((lo[0]+hi[1])/29)
-        cx=(a[0]+b[0])/2-(hi[1]-lo[1])/length*bend
-        cy=(a[1]+b[1])/2+(hi[0]-lo[0])/length*bend
-        out.append(f'Q {cx:.2f} {cy:.2f} {b[0]:.2f} {b[1]:.2f}')
+        normal=(-(hi[1]-lo[1])/length,(hi[0]-lo[0])/length)
+        amount=min(9,length*.13)
+        bend1=amount*sin((lo[0]+hi[1])/23)
+        bend2=amount*cos((lo[1]-hi[0])/31)
+        c1=(lo[0]+(hi[0]-lo[0])/3+normal[0]*bend1,lo[1]+(hi[1]-lo[1])/3+normal[1]*bend1)
+        c2=(lo[0]+2*(hi[0]-lo[0])/3+normal[0]*bend2,lo[1]+2*(hi[1]-lo[1])/3+normal[1]*bend2)
+        if a!=lo: c1,c2=c2,c1
+        out.append(f'C {c1[0]:.2f} {c1[1]:.2f} {c2[0]:.2f} {c2[1]:.2f} {b[0]:.2f} {b[1]:.2f}')
     return ' '.join(out)+' Z'
 
 # Original drawing sites: nine silhouettes, 46 illustrative cells; not a legal map.
@@ -85,13 +89,28 @@ ISLANDS=[(145,112,74,54,3),(382,100,76,62,3),(682,116,100,59,3),
          (180,313,78,78,3),(472,300,112,82,5),(808,315,93,73,5),
          (140,556,87,74,7),(430,544,107,73,7),(766,563,135,90,10)]
 SEEDS=[(-47,-15),(10,-36),(55,4),(-26,27),(28,43),(-68,32),(68,-32),(-5,58),(76,36),(-47,-57)]
+OWNERSHIP=[[0,1,2],[3,1,0],[2,0,3],[1,3,0],[0,1,2,3,0],
+           [1,2,0,3,1],[2,0,1,1,3,0,2],[3,2,0,1,0,3,2],
+           [0,1,2,3,1,0,2,3,0,1]]
 
-def geography(d, device, scene):
+def drawing_coasts():
+    paths=[]
+    # This is static drawing notation; no generator experiment or rule change.
+    for i,(x,y,rx,ry,n) in enumerate(ISLANDS):
+        points=[]
+        for k in range(36):
+            angle=2*pi*k/36
+            r=1+.14*sin(2*angle+i*.9)+.12*cos(3*angle-i*.7)+.075*sin(7*angle+i)+.045*cos(11*angle-i)
+            points.append((rx*r*(cos(angle)+.09*sin(2*angle+i)),ry*r*(sin(angle)+.08*cos(3*angle-i))))
+        paths.append(coast_path(points))
+    return paths
+
+def geography(d, device, scene, counts=None):
     portrait=device in ('phone-portrait','tablet')
     focused=device=='phone-portrait' and scene in ('ordinary-turn','capture')
     if portrait:
         # The same world geometry turns as a whole. No reflow or regeneration.
-        scale=min((d.w-32)/655,(d.h-40)/895)
+        scale=min((d.w-40)/680,(d.h-48)/925)
         center=(477.5,347.5)
         if focused: scale,center=1.5,(453,274)
         def project(x,y):
@@ -104,14 +123,9 @@ def geography(d, device, scene):
             return ox+x*scale,oy+y*scale
         transform=f'translate({ox:.2f} {oy:.2f}) scale({scale})'
     d.p.append(f'<g data-layer="geography" data-rotation="{90 if portrait else 0}" data-camera="{"focus" if focused else "overview"}" transform="{transform}">')
-    coasts=[]
+    coasts=drawing_coasts()
     for i,(x,y,rx,ry,n) in enumerate(ISLANDS):
-        points=[]
-        for k in range(18):
-            angle=2*pi*k/18
-            r=1+.16*sin(3*angle+i*.8)+.12*cos(5*angle-i*.6)+.07*sin(7*angle+i)
-            points.append((rx*cos(angle)*r,ry*sin(angle)*r))
-        coast=coast_path(points); coasts.append(coast)
+        coast=coasts[i]
         d.p.append(f'<g transform="translate({x} {y})">')
         d.path(coast,stroke='#214c56',width=12); d.path(coast,stroke='#2b5b62',width=5)
         d.p.append('</g>')
@@ -123,24 +137,31 @@ def geography(d, device, scene):
         d.path(f'M {ax+dx/length*aa:.1f} {ay+dy/length*aa:.1f} L {bx-dx/length*bb:.1f} {by-dy/length*bb:.1f}',stroke='#729795',width=1.4,extra='stroke-dasharray="3 6"')
     selected=[]
     for i,(x,y,rx,ry,n) in enumerate(ISLANDS):
-        coast=coasts[i]; seeds=[(a*rx/110,b*ry/80) for a,b in SEEDS[:n]]
+        coast=coasts[i]
+        sites=SEEDS[:n]
+        if i!=4:
+            angle=(i*37-51)*pi/180
+            sites=[((a*cos(angle)-b*sin(angle))*(.91+.12*sin(i+j)),(a*sin(angle)+b*cos(angle))*(.91+.12*cos(i-j))) for j,(a,b) in enumerate(sites)]
+        seeds=[(a*rx/110,b*ry/80) for a,b in sites]
         d.p.append(f'<g transform="translate({x} {y})"><defs><clipPath id="coast-{i}"><path d="{coast}"/></clipPath></defs><g clip-path="url(#coast-{i})">')
         for j,(sx,sy) in enumerate(seeds):
-            owner=(i+j)%4
+            owner=OWNERSHIP[i][j]
             if scene in ('late-game','result'): owner=0 if scene=='result' or (i+j)%9 else 1
             if i==4 and j==0: owner=0
             if i==4 and j==1: owner=0 if scene in ('capture','late-game','result') else 1
             d.path(cell_path(cell_for((sx,sy),seeds)),fill=OWNERS[owner],stroke='#bbceac',width=.8)
             shapes=[f'M {sx-2} {sy-2}H {sx+2}V {sy+2}H {sx-2}Z', f'M {sx} {sy-3}L {sx+3} {sy}L {sx} {sy+3}L {sx-3} {sy}Z', f'M {sx-3} {sy}Q {sx} {sy-6} {sx+3} {sy}Q {sx} {sy+6} {sx-3} {sy}Z', f'M {sx-3} {sy-2}L {sx+2} {sy-3}L {sx+3} {sy+2}L {sx-2} {sy+3}Z']
-            d.path(shapes[owner],fill='#e3e7c5',stroke='none')
+            d.path(shapes[owner],fill='#123340',stroke='none')
             if i==4 and j in (0,1): selected.append(project(x+sx,y+sy))
         d.p.append('</g>'); d.path(coast,stroke='#d4d8b4',width=1.3,extra='data-coast="outline"')
         if i in (1,4,8): d.path('M -3 1L 0 -4L 3 1V 5H -3Z',fill='#f2d69a',stroke='#3c5a52',width=.7,extra='transform="rotate(-90)"' if portrait else '')
         d.p.append('</g>')
     d.p.append('</g>')
-    if scene in ('ordinary-turn','capture'):
-        for k,(sx,sy) in enumerate(selected):
-            value=[5,4][k] if scene=='capture' else [8,3][k]
+    if counts is None and scene in ('ordinary-turn','capture'):
+        counts={0:5,1:3} if scene=='capture' else {0:8,1:3}
+    if counts:
+        for k,value in counts.items():
+            sx,sy=selected[k]
             d.rect(round(sx-17,1),round(sy-18,1),34,34,SEA,17,GOLD)
             d.text(round(sx,1),round(sy+5,1),value,17,INK,'middle',700)
     return selected
@@ -152,9 +173,10 @@ def card(d,w,h,y=None):
 
 SCENES={'quiet-map':'Quiet map: no selection or visible text', 'setup':'Setup: a compact start choice over the map', 'ordinary-turn':'Turn: selected counts and explicit Attack icon', 'capture':'Capture: a temporary mandatory move-in choice', 'late-game':'Late game: objective requested by the player', 'result':'Result: concise outcome, details on request'}
 DEVICES={'phone-portrait':(390,844),'phone-landscape':(844,390),'tablet':(768,1024),'desktop':(1280,800)}
-for scene,meaning in SCENES.items():
+def draw_gallery():
+ for scene,meaning in SCENES.items():
     for device,(w,h) in DEVICES.items():
-        d=Drawing(w,h,f'Malpaco · {meaning} · {device}',meaning+'. Revision 3, original static concept, not implemented or playtested. Portrait turns the same board 90 degrees. Quiet portrait is fitted; phone turn/capture show zoomed focus. Counts and action icons stay upright. Full-viewport original organic geography is schematic, not generation evidence. Text belongs to this interaction and clears when it ends; required choices remain recoverable.')
+        d=Drawing(w,h,f'Malpaco · {meaning} · {device}',meaning+'. Revision 4, original static concept, not implemented or playtested. Vivid stable ownership colours and irregular schematic coasts/borders. Portrait turns the same board 90 degrees. Quiet portrait is fitted; phone turn/capture show zoomed focus. Counts and action icons stay upright. Geography is not generation evidence. Contextual text clears when its interaction ends; required choices remain recoverable.')
         pair=geography(d,device,scene)
         d.icon(16,16,'menu','Menu: cards, totals, history, files, settings, help and country list')
         kind,label=('options','Match options') if scene=='setup' else (('close','Dismiss result to inspect the final board') if scene=='result' else ('pause','Pause or resume'))
@@ -186,4 +208,6 @@ for scene,meaning in SCENES.items():
             d.text(w/2,y+43,'You won',28,INK,'middle',700); d.text(w/2,y+72,'Conquest',16,MUTED,'middle')
             for j,(kind,label) in enumerate([('play','New game'),('details','Final standings, seed and options'),('history','Full history'),('load','Match files')]): d.icon(x+24+j*68,y+102,kind,label,primary=j==0)
         d.save(f'{scene}-{device}.svg')
-print(f'Wrote {len(SCENES)*len(DEVICES)} original revision-3 SVG concepts to {ROOT}')
+if __name__=='__main__':
+    draw_gallery()
+    print(f'Wrote {len(SCENES)*len(DEVICES)} original revision-4 SVG concepts to {ROOT}')

@@ -48,6 +48,25 @@ rotate a naturally tall board unnecessarily. Geography is never stretched,
 regenerated or rearranged. Rotation preserves world-space selection, pending
 choices and focused location; camera transforms may change to fit the new view.
 
+## Colour and beginner follow-up
+
+On 2026-10-20 the owner asked:
+
+> I think the colours shoule be more vivid and irregular, and also walk me
+> through the ui and show me how a beginner would understand it
+
+Revision 4 proposes brighter blue/orange/green/purple ownership, more varied
+coasts, differently arranged subdivisions and more irregular shared borders.
+Ownership hues remain consistent so a beginner can track who holds each region;
+colours are not arbitrary decoration. Specific palette and shape execution remain
+for visual review, not established production acceptance.
+
+The [beginner walkthrough](BEGINNER-WALKTHROUGH.md) shows eight first-use moments.
+Short contextual hints identify the player's colour, name phase actions and
+explain consequences as needed, then clear. Skippable/replayable first-turn tips
+are a teaching proposal responding to the question; no tutorial implementation
+or new task is dispatched. The ordinary resting board remains text-free.
+
 ## What still needs review or reconciliation
 
 The first sketches were rejected for text density; V1–V5 approval does not approve

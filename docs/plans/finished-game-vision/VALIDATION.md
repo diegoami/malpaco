@@ -1,77 +1,84 @@
 # Review-package checks
 
-Revision 3 retains the owner's V1–V5 approval and visual amendments, and adds a fitted quarter-turn portrait overview plus focused zoom/pan
-illustrations to the simpler sketches. Source baseline remains
+Revision 4 retains the approved full-screen, contextual-text and portrait-fit
+direction, adds vivid ownership colours and more irregular coast/border drawings,
+and illustrates a beginner's first-use experience. Source baseline remains
 `e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d`.
 
-Scope is `docs/plans/finished-game-vision/**`, the owner-amendment section and
-related wording in `docs/plans/release-0.2.0.md`, and append-only `RUN-NOTES.md`.
-Product files, task Done-when, game rules, dependencies and model assignments
-are unchanged. The release map now explicitly flags the superseded dock/sidebar
-assumptions for reconciliation before dispatch.
+Scope is `docs/plans/finished-game-vision/**`, owner-amendment wording in
+`docs/plans/release-0.2.0.md`, and append-only `RUN-NOTES.md`. Product files, task
+Done-when, rules, dependencies and model assignments are unchanged.
 
-## Current drawings: revision 3
+## Current drawings: revision 4
 
-- Twenty-four SVGs: quiet map plus setup, ordinary turn, capture, late game and
-  result, each across portrait, landscape, tablet and desktop.
-- Every SVG parses, has title/description metadata and accessible icon names,
-  and contains no scripts, external images or imported assets.
-- All twenty-four map backgrounds cover their exact viewport. All four quiet-map
-  drawings contain zero visible text elements. Action controls are icons.
-- Chromium rendered all twenty-four at native size. The
-  [render receipt](validation/revision-3/render-report.json) records zero text/icon
-  overflows in either direction, twenty-four full-viewport maps, twelve rotated
-  portrait views and no clipped coast outlines in fitted portrait overviews. Representative
-  quiet, turn, capture, late-game, setup and result layouts were visually checked.
-- [Current SVG hashes](validation/revision-3/sketch-sha256.txt) match the checked
-  drawings. Regeneration is byte-identical.
-- Relative Markdown targets resolve, run-note history is preserved as an exact
-  prefix, and whitespace/scope checks pass.
+- Twenty-four gallery SVGs: quiet map plus setup, ordinary turn, capture, late
+  game and result across portrait, landscape, tablet and desktop.
+- Eight additional portrait teaching frames: start, place, enter combat,
+  select/attack, outcome, capture, End turn and reward acknowledgment.
+- All thirty-two parse with title/description metadata and named action icons.
+  No scripts, external images or predecessor assets are present.
+- All thirty-two backgrounds cover the viewport. The four quiet-map drawings
+  contain no visible text. Twenty portrait views are rotated; fitted portrait
+  coast outlines remain entirely within their canvases.
+- Chromium rendered all thirty-two at native size. The
+  [render receipt](validation/revision-4/render-report.json) records zero text/icon
+  overflows. Gallery and teaching layouts were visually inspected, including
+  native-size paired frames. This does not measure touch targets or teachability.
+- [Current hashes](validation/revision-4/sketch-sha256.txt) identify all checked
+  SVGs. Regeneration is byte-identical. Local links, whitespace, notes-prefix and
+  planning-only scope checks pass.
 
 Reproduce the drawings with:
 
 ```sh
 python3 docs/plans/finished-game-vision/draw-sketches.py
+python3 docs/plans/finished-game-vision/draw-beginner-walkthrough.py
 ```
 
-With the existing Playwright dependency and Chromium installed, reproduce the
-static rendering/overflow/text checks with:
+Using the existing Playwright dependency and Chromium:
 
 ```sh
-CHROMIUM_PATH=/usr/bin/chromium node docs/plans/finished-game-vision/validation/revision-3/render-sketches.cjs /tmp/malpaco-sketch-check
+CHROMIUM_PATH=/usr/bin/chromium node docs/plans/finished-game-vision/validation/revision-4/render-sketches.cjs /tmp/malpaco-sketch-check
 ```
 
-This script reads static SVGs; it does not launch or import the game. Screenshots
-are temporary drawing previews, not gameplay evidence.
+Optionally pair the native screenshots for inline review using Pillow (review
+workspace utility, not an application dependency):
 
-The revision-2 script, render receipt and hash list remain unchanged under
-`validation/revision-2/`, identifying the drawings at `b45fb71`. They do not
-identify the current SVGs. Revision 3 changes presentation transforms, not the
-illustrated coasts, partitions, seed or rules; actual swipe/pinch behaviour is
-still a design proposal awaiting product implementation and acceptance.
+```sh
+python3 docs/plans/finished-game-vision/validation/revision-4/compose-walkthrough.py /tmp/malpaco-sketch-check
+```
 
-## Historical first package
+These scripts read static drawings; they never start/import the game. PNGs are
+review previews, not gameplay evidence. Screenshots used for the conversation
+are retained under `/workspace/shared/malpaco-previews/revision-4/` in the cloud
+workspace; the SVGs and reproduction helpers are the durable repository sources.
 
-The first twenty drawings and their documentation are retained in Git at
-`33c0f90c5f3b0db1da0a4f8a5da0f24838ea95ac`. Its original
-[render receipt](validation/render-report.json) and
-[hash list](validation/sketch-sha256.txt) remain unchanged; they identify the
-superseded drawings at that revision, not the current SVGs. The owner rejected
-that composition as too text-heavy. Their V1–V5 approval and qualifications are
-quoted in [DECISIONS.md](DECISIONS.md); no approval of the original sketches is
-inferred.
+## Historical evidence
 
-## Semantic self-audit
+The first twenty drawings are retained at `33c0f90`; their original root
+`validation/render-report.json` and `validation/sketch-sha256.txt` are unchanged.
+Revision-2 receipts remain under `validation/revision-2/` for drawings at
+`b45fb71`; revision-3 receipts remain under `validation/revision-3/` for drawings
+at `3f5e23e`. Those receipts identify their historical SVGs, not the current ones.
+No independent review or earlier result is rewritten.
 
-The journey retains late match, loss/watch/resign, recovery, privacy and results.
-Organic geography is required and flavour naming deferred. Fixed chrome is
-superseded by full-screen geography, accessible icons and requested/contextual
-text, while explicit Attack and complete reachable information remain. Critical
-choices cannot time out; ordinary text clears when its interaction ends.
+## Semantic self-audit and limits
 
-V1–V5 need no repeat vote. Revised sketch review and then existing-backlog
-reconciliation/approval remain under #215. No task or competing roadmap is
-created; no independent model review, game build/tests, live playtest, generation
-experiment, AI benchmark, implementation, CI run or publication is claimed.
-Actual organic generation, touch/icon discovery, accessibility and full-match
-quality still require playable acceptance.
+V1–V5 approval, organic geography, deferred flavour, full-screen map, contextual
+text, stable accessible ownership cues and explicit Attack remain. Brighter
+colours do not change ownership semantics. First-use hints are proposed, skippable
+and recoverable, clearing after their interaction. Required choices/errors stay
+available. The quiet resting board has no tutorial banner.
+
+The beginner sequence is a possible branch, not a valid played trace or scripted
+win. Its guide must adapt to real options, pool counts, legal targets, losses and
+card phases. The example shows one final placement, one successful exchange,
+then later capture. A total transfer of 3 from 8 previews 5/3; the older 5/4
+illustration is corrected. Existing combat source was inspected for this protocol;
+no rule change or runtime test is claimed.
+
+No game build/tests, generation experiment, AI benchmark, independent model
+review, implementation, CI or publication is performed. Actual generation,
+readability, icon discovery, teachability, touch feel and full-match enjoyment
+still need real-build acceptance. Revised visual review precedes final existing
+backlog reconciliation and release-slice approval under #215.
