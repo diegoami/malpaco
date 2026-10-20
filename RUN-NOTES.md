@@ -1365,3 +1365,24 @@ T91 final CI failure/correction PLAN (2026-10-19): singleoriginalrun39322938082/
 T91 ownership correction END (2026-10-19): mainCodexdirect scopedGit helper applies exactroot safe.directory toevery verifier Gitread/status; no global/wildcardtrust. Twoactualownershiptests pass; fivecontrols oldverifier/noTrust/wildcard/readBypass/statusBypass fail/restoredexact,20guards green. Pinnedrootcontainer against ownerownedsparsecheckout fullDW1/DW2/DW3 exit0:838Vitest61files+9harness/type/build/packageHEAD19144e03/384equalinventory; zeroexcludedphysicallypresent. Rawlogs+receipt runs/verify-gMoxOb and ownership-correction REPORT; rootgeneratedreceiptownership returned. Nodebundled-vs-CI22 and inventory-not-browser-execution limits explicit. OriginalCI39322938082 failure preserved/unrerun; initialnestedtestcontextfailure retained/corrected. RawSonnetarchive now included19144e03;70unchangedhistoricalartifactmembers hashindexed atcanonicalpaths. Independentcorrectionreview choice stillrequired; no newCI/merge/deploy.
 
 T91 ownership review END (2026-10-19): ownerstandingroster SolMedium/High/Max implements; SonnetMedium/High orOpusMedium reviews bydifficulty, sessiononly. Focusedfix selectedSonnetMedium; exactclaude-sonnet-5-5/native0/160.1s/sessiondc3a172d-f949-47f3-b8f5-3861e2761bdc, APPROVE/harnesspostedlabelled/nohold. Mainreadcompletefinal;20guards/838Vitest61files+9harness/type/build/packageHEAD5c5bfb68/384inventory/135hashes andfiveownershipmutantsfail/restored. Rawarchive membersverified; originals/worktree retained. Nonblockingduplication/sharedGitpattern and provenancecontrols documented; fullcheckout/sparsediscoverylimits explicit. OriginalfailedCI39322938082 untouched; onecorrectedheadCI afterthiscompleteevidencecheckpoint, nointermediatepushes/retries.
+
+Session handover END (2026-10-20, Claude cloud main session, session_01DFpt4Nf5qV29YXRYTjfWCX). Merged today:
+- #216 (finished-game vision, accepted revision 7)
+- #217 (#215 reconciliation; #218/#219 review tiers and proportionate reviews adopted in process.md §5.1/§5.2, CLAUDE rules 6.2/7, review-brief, run-task, TEMPLATE Tier line)
+- #220 (approved contract amendments; docs/plans/release-0.2.0-acceptance.md A1-A14 replaces unmerged PR #196, now closed)
+- #212 (T91 CI, squash d674a39)
+
+#212 was merged on the owner's explicit request while `verify` was still running on merge head 1fa71fc. That head only added main's docs and an append-only RUN-NOTES conflict resolution; the reviewed head ade7cbf was green. FIRST ACTION NEXT SESSION: confirm the first post-merge CI run on main is green; if it is red, treat it as T91 follow-up work.
+
+Closed by this session's work: #215, #218, #219, #173 (T72 evidence branch task/T72-natural-generated-geography @94dda2b7 must be kept), #106, #29, #205 (T86 retired), #189 (folded into #125), #108, #118, #211.
+
+Next, per docs/plans/finished-game-vision/RECONCILIATION.md S0:
+1. Settle implementer/reviewer defaults through /switch-model. harness.json (implementer sonnet, reviewer mm-m3), CLAUDE rule 6.2 text (Luna) and the 2026-10-19 owner roster comments (Sol implements; Opus/Sonnet review) disagree.
+2. Land #125 (with #189's items), or a verified evidence-preservation procedure, before any OpenCode-backed review on any version. #143 is needed only for OpenCode v2.
+3. Then S1 0.2.0: T80 first (tier 1, or 2 if it touches gesture guards), then T79. Each needs preflight (Done-when fails on main, passes on a mock) and the rule-6 implementer question; the reviewer question only for tier 1/2.
+4. S2 #181 (U1 organic geography, priority:high) can start in parallel. Preconditions: #122, #157 witness, #134 part 1. Pin file ownership against T80/T81/T85/T87 at preflight.
+5. S3 T42 (pure core, tier 2) is dispatchable after S0.
+
+Fold notes were posted on #129, #175, #132, #61, #51, #136, #195 and #213; they close when their receiving tasks merge. #139, #40 and #51-R1 close when T89 retires the legacy routes, which happens only after T85 lands the version-1 save path (A13). #96/T51 closes as superseded when T88 merges.
+
+Live status remains in labels. This is a log entry, not a status document.
