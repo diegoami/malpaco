@@ -70,19 +70,28 @@ Nothing generated goes into Git: write it under `artifacts/` (ignored). Then:
   prints the location. Link the subfolder in the PR or issue.
 - **Setup**, once per machine: install rclone, then
   `rclone config create malpacodrive drive scope=drive root_folder_id=1aUlXfup_GwQOxF3njvXODbOPyrublgeS`
-  (a browser login; the remote sees only this folder). In a cloud session: create it with
-  `config_token=<token>` from a configured machine (`rclone config show malpacodrive`), kept in a
-  secret, never committed; otherwise attach to a release, or leave the file in `artifacts/` and
-  say so.
+  (a browser login; the remote sees only this folder). **Cloud sessions:** the environment's
+  secret `MALPACO_RCLONE_TOKEN` holds the remote's token (the JSON after `token =` in
+  `rclone config show malpacodrive`); the session-start hook installs rclone and creates the
+  remote from it. Never commit the token. Without it, attach to a release, or leave the file in
+  `artifacts/` and say so.
 
 Test fixtures the suite reads (saved matches, frozen boards) are not artifacts: they live in
 `fixtures/` and stay small. Evidence removed on 2026-10-20 is in the history and on the `local`
 branch (`git show local:docs/prototypes/<path>`).
 
-## 7. Escalate to the user when
+## 7. Working autonomously, and what goes to the user
 
-A design question; a Done-when would have to weaken; anything destructive (force-push, rewriting
-`main`, deleting an issue); a new external dependency.
+The main session works through a milestone's queue without asking per task: it marks tasks
+`status:ready` itself, runs them one after another (`/run-task`), and stops at the milestone
+review. **Questions are gathered early:** when a milestone starts, the main session reads every
+task and plan in its queue and opens one issue, `Questions for <milestone>` (label `question`),
+listing every owner decision it can foresee, each with its options and a recommendation. It asks
+again only for what nobody could foresee, and meanwhile works on tasks no question blocks.
+
+Goes to the user: a design question; the look of the game (rule 16); a Done-when would have to
+weaken; anything destructive (force-push, rewriting `main`, deleting an issue); a new external
+dependency.
 
 ## 8. Requesting an archaeology investigation
 

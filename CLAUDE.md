@@ -33,7 +33,9 @@ process, lessons and run notes are on the `local` branch, as history only.
    assertion, skips a test or edits its task file. The main session amends a Done-when on `main`
    with the reason in the commit message.
 10. Merge with green CI (and, when a review ran, its findings answered). Relay review findings in
-    full. Design decisions go to the user; nothing else waits for the user.
+    full. Design decisions go to the user; nothing else waits for the user. **Gather questions
+    early** (the owner, 2026-10-20): before working on a milestone, read its whole queue and ask
+    every owner question at once (`docs/process.md` §7), then work on whatever they do not block.
 11. A test proves behaviour only if it fails without that behaviour. A comment asserting behaviour
     at an edge arrives with the test that visits that edge.
 12. At session start: `gh issue list --label triage:needed --state open`, and any task in flight

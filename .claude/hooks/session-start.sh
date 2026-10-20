@@ -15,6 +15,14 @@ if ! command -v gh >/dev/null 2>&1; then
     || echo "Setup: could not install gh."
 fi
 
+# Google Drive artifacts (docs/process.md §6): the remote comes from the MALPACO_RCLONE_TOKEN secret.
+if [ -n "${MALPACO_RCLONE_TOKEN:-}" ]; then
+  command -v rclone >/dev/null 2>&1 || { apt-get install -y -qq rclone || { apt-get update -qq && apt-get install -y -qq rclone; }; } >/dev/null 2>&1
+  folder=$(node -p "require('./artifacts.json').drive.folderUrl.split('/').pop()" 2>/dev/null)
+  rclone config create malpacodrive drive scope=drive root_folder_id="$folder" \
+    token="$MALPACO_RCLONE_TOKEN" --non-interactive >/dev/null 2>&1 || echo "Setup: could not create the rclone remote."
+fi
+
 have() { command -v "$1" >/dev/null 2>&1 && echo yes || echo no; }
 echo "Environment: node $(node --version 2>/dev/null || echo none), gh $(have gh), opencode $(have opencode), claude $(have claude), rclone $(have rclone) (remote $(rclone listremotes 2>/dev/null | grep -qx malpacodrive: && echo configured || echo missing))."
 echo "Review default (harness.json): $(node -p "require('./harness.json').review.default" 2>/dev/null || echo ?). Reviews are optional (docs/process.md §4)."

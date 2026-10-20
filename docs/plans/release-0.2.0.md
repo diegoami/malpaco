@@ -1,5 +1,10 @@
 # Release 0.2.0: full-viewport UI across devices
 
+> **2026-10-20, the owner:** the main session works through this release's queue autonomously
+> (`docs/process.md` §7). The "separate gates" and "not approval to dispatch" below are lifted:
+> owner questions are gathered up front in one `Questions for 0.2.0` issue, and the owner judges
+> the look and the milestone review, not each task's dispatch.
+
 Owner allocation, 2026-10-19: the selected #191 design and resulting delivery
 backlog target **0.2.0** (the owner's “0.2”). [Milestone](https://github.com/diegoami/malpaco/milestone/1)
 and [delivery tracker #194](https://github.com/diegoami/malpaco/issues/194) own the
