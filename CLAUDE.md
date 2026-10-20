@@ -26,7 +26,7 @@ process, lessons and run notes are on the `local` branch, as history only.
    tier or chooser table applies to this project.
 6. **Artifacts never go into Git.** Screenshots, logs, proof runs and builds go to `artifacts/`
    (ignored), then to a GitHub release if they must last, otherwise to Google Drive
-   (`tools/artifacts.mjs`, `docs/process.md` §6). Test fixtures the suite reads live in `fixtures/`.
+   (`tools/artifacts.py`, `artifacts.json`, `docs/process.md` §6). Test fixtures the suite reads live in `fixtures/`.
 7. Status lives in GitHub labels. No document carries a status snapshot.
 8. A question is not a request to edit files. Answer it; propose any fix and wait.
 9. The Done-when is not negotiable by the implementer: it stops and reports; it never weakens an

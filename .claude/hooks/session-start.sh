@@ -16,6 +16,6 @@ if ! command -v gh >/dev/null 2>&1; then
 fi
 
 have() { command -v "$1" >/dev/null 2>&1 && echo yes || echo no; }
-echo "Environment: node $(node --version 2>/dev/null || echo none), gh $(have gh), opencode $(have opencode), claude $(have claude), rclone $(have rclone)."
+echo "Environment: node $(node --version 2>/dev/null || echo none), gh $(have gh), opencode $(have opencode), claude $(have claude), rclone $(have rclone) (remote $(rclone listremotes 2>/dev/null | grep -qx malpacodrive: && echo configured || echo missing))."
 echo "Review default (harness.json): $(node -p "require('./harness.json').review.default" 2>/dev/null || echo ?). Reviews are optional (docs/process.md §4)."
 exit 0

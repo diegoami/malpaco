@@ -61,15 +61,19 @@ Labels: `task`, `bug`, `fix`, `triage:needed`, `post-playable`, `milestone`, `re
 
 Nothing generated goes into Git: write it under `artifacts/` (ignored). Then:
 - **Must last** (a release build, the screenshots a milestone was judged on): attach it to the
-  GitHub release, `node tools/artifacts.mjs release <tag> <file>...`. CI also keeps its
+  GitHub release, `python3 tools/artifacts.py release <tag> <file>...`. CI also keeps its
   screenshots and playable archive as Actions artifacts for 14 days.
-- **Otherwise** (proof runs, measurements, diagnostics): Google Drive,
-  `node tools/artifacts.mjs drive <path>... [--to T<nn>]`, which copies into a subfolder of the
-  [shared malpaco folder](https://drive.google.com/drive/folders/1svRkGxtpasuTbwFuNU2NAHyU10Ac8KUU?usp=sharing)
-  (`harness.json` `artifacts`). Link the subfolder in the PR or issue.
-  One-time setup on a machine: install rclone, then `rclone config` → new remote named `gdrive`,
-  type `drive`, scope `drive`, signed in as the folder's owner. In a cloud session without rclone
-  or its login, attach to a release instead, or leave the file in `artifacts/` and say so.
+- **Otherwise** (proof runs, measurements, diagnostics): the owner's
+  [Google Drive folder](https://drive.google.com/drive/folders/1aUlXfup_GwQOxF3njvXODbOPyrublgeS)
+  (`artifacts.json`), through `tools/artifacts.py`, the same interface as goal2's:
+  `push [--to T<nn>] <path>...` uploads, `pull [NAME...]` copies into `artifacts/`, `where`
+  prints the location. Link the subfolder in the PR or issue.
+- **Setup**, once per machine: install rclone, then
+  `rclone config create malpacodrive drive scope=drive root_folder_id=1aUlXfup_GwQOxF3njvXODbOPyrublgeS`
+  (a browser login; the remote sees only this folder). In a cloud session: create it with
+  `config_token=<token>` from a configured machine (`rclone config show malpacodrive`), kept in a
+  secret, never committed; otherwise attach to a release, or leave the file in `artifacts/` and
+  say so.
 
 Test fixtures the suite reads (saved matches, frozen boards) are not artifacts: they live in
 `fixtures/` and stay small. Evidence removed on 2026-10-20 is in the history and on the `local`
