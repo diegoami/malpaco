@@ -9,9 +9,8 @@ with a full-screen map, icon actions and temporary contextual information.
 
 Start with the [revised sketches](SKETCHES.md) and
 [illustrated beginner walkthrough](BEGINNER-WALKTHROUGH.md). The journey below incorporates
-that direction. The [first experience review](EXPERIENCE-REVIEW.md) identifies
-usability and enjoyment risks and evaluates the Isle Wars Pro direction.
-The [authority crosswalk](AUTHORITY.md) identifies the existing
+that direction. Revision 6 applies the interaction changes in the drawings and
+expanded walkthrough. The [authority crosswalk](AUTHORITY.md) identifies the existing
 contracts to reconcile. Revised sketch acceptance, backlog approval and product
 implementation remain separate gates under #215; GitHub labels carry task state.
 
@@ -57,20 +56,24 @@ real policies. An unfinished policy must never be advertised as functional.
 Starting, regenerating or loading communicates progress and any recoverable
 error. Invalid setup or load does not discard the usable match. First-turn help
 introduces the immediate decision, with complete help available throughout.
-The proposed first-use walkthrough names an action when first encountered,
-shows its consequence, then clears the hint after that interaction. Icons alone
-do not establish that a beginner understands the next step.
+The first-use proposal teaches source selection and legal targets before Attack,
+shows both an enemy loss and a human loss, then optional Fight on/Stop. It names
+an unfamiliar action when encountered and clears the hint after that interaction.
+Icons alone do not establish that a beginner understands the next step.
 
 ### 2. Read the place and find the first useful move
 
 The map shows geography, land neighbours, sea crossings, ownership and production
 centres. Relevant army counts appear when inspecting or selecting countries; a
-requested information view can expose more detail without making it permanent. Ownership has a symbol as well as colour. Selecting a country
+requested inspection view exposes nearby stacks together for comparison, with
+no placement or combat action. Closing inspection returns to Place 1. Owner-shaped
+badges distinguish all four seats as well as colour. Selecting a country
 reveals its full identity and legal choices. Focus, zoom and a country list make
 dense areas usable. Portrait fits the same board with a 90° turn when that uses
 space better; counts/icons stay upright. Swipe to pan when zoomed and pinch to
-zoom, with Fit returning to the overview. The focused world location and pending
-choice survive device rotation. A tiny overview cannot make every country a
+zoom, with Fit always returning to the whole archipelago in either orientation.
+Focus is a separate requested action; tap-accessible zoom controls are available.
+The focused world location and pending choice survive device rotation. A tiny overview cannot make every country a
 large precise target; focus/list access remains available.
 
 An island is understandable as both a place and a strategic unit. Income and
@@ -83,13 +86,18 @@ Complete totals and histories open on request and close back to the unobstructed
 Placement shows the available reinforcement pool and why it exists. The existing
 one-army placement interaction remains. The player then selects an owned source
 and an adjacent enemy; selection stages the pair. **Attack** explicitly commits
-one existing exchange. Its outcome distinguishes a casualty, a held territory
-and a capture. **Fight on** becomes available only after that pair's first
+one existing exchange. Selecting the source marks legal enemy neighbours and
+exposes their stacks together; selecting the target also shows the approved
+capture odds, explicitly for fighting to capture, not the next exchange. Short
+local dice/count feedback distinguishes a human casualty, an enemy casualty and
+a capture. **Fight on** becomes available only after that pair's first
 explicit Attack; changing the pair clears that confirmation.
 
 After capture, the game presents the required move-in amount, the legal bounds
-and resulting armies. The player confirms the choice. Friendly movement and
-End turn remain reachable. Cards, mandatory rewards/discards/targets and events
+and resulting armies as a pending preview. The amount supports direct entry,
+minus/plus and range adjustment; only confirmation commits it. Folding leaves a
+distinct return icon and preserves the draft. The player confirms the choice.
+Friendly movement and End turn remain reachable. Cards, mandatory rewards/discards/targets and events
 follow the approved phase and information rules; they are not a second action
 system invented by this vision. Options that disable a system remove its prompts
 coherently while keeping help accurate.
@@ -97,7 +105,10 @@ coherently while keeping help accurate.
 The player can inspect, read history, pause, move the camera or rotate the device
 without committing a battle or losing a pending choice. Required choices always
 have a discoverable return icon with an accessible name and explanation on request; End turn cannot bypass them. Pause and speed explain
-what is running. Feedback can be paced or reduced without changing outcomes.
+what is running. Computer turns identify the active seat/phase, show local
+changes and offer Pause/fast-forward. A recoverable changes view connects those
+turns to the next human placement. Feedback can be paced or reduced without
+changing outcomes.
 
 ### 4. Meet opposition worth thinking about
 
@@ -161,6 +172,12 @@ explain the loss and offer the contracted **Watch computers** or **Stop game**.
 Watching must not later charge a second human loss. Resignation and replacing an
 unfinished game use the existing confirmations, takeover/saved-first exceptions
 and exactly-once local records. Watch-only matches do not invent a human result.
+
+The Isle Wars Pro bias is toward direct map decisions, large vivid regions,
+readable fronts and quick local consequences. Original shoreline detail and
+restrained inland contours support that character without obscuring ownership.
+Keep optional Fight on/Stop and computer fast-forward discoverable so repeated
+exchanges and waiting do not become unnecessary interface work.
 
 Replay value comes from another archipelago, a better tactical decision, different
 supported opponents/options or local competition. Campaign progression, online

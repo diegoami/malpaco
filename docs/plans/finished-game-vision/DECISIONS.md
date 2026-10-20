@@ -114,6 +114,23 @@ revision-5 studies illustrate only a few possibilities. Reconcile this broad bar
 through the existing geography work; no specific generator or new task dispatch
 is selected.
 
+## Apply changes; review separately
+
+On 2026-10-20 the owner instructed:
+
+> Do not do review, do the changes, review will be done by someone else
+
+Revision 6 applies the interaction and presentation changes in the static
+concepts: fitted landscape, explicit source/target teaching and legal cues,
+nearby army comparison and capture odds, distinct owner badges, local outcome
+feedback, Fight on/Stop, editable capture preview/fold/resume, opponent/return
+scenes and requested icon help. Resting maps stay text-free; full viewport,
+portrait rotation, Place 1, explicit Attack and existing contracts remain.
+The main-session assessment report is removed from the current package; its
+historical commit is retained. No separate reviewer is dispatched and no review
+approval or actual-play usability/fun result is claimed. Product implementation
+and backlog reconciliation remain subject to the existing #215 gates.
+
 ## What still needs review or reconciliation
 
 The first sketches were rejected for text density; V1–V5 approval does not approve

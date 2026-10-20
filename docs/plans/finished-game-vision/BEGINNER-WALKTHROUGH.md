@@ -1,68 +1,82 @@
-# A beginner's first turn
+# Learn through the next useful action
 
-These are **proposed first-use screens**, not a played match or implemented
-tutorial. They keep the map and icon controls, adding one short explanation at
-the moment it helps. The beginner learns by acting, not by memorising a legend.
-Experienced players can skip tips; Help can replay them. This is a teaching
-proposal for review, not a new implementation dispatch or approved tutorial task.
+Revision 6 applies the requested changes in twenty focused illustration frames.
+These are proposed first-use moments, not twenty screens to read before playing:
+show only the hint for the current action, then clear it. Experienced players can
+skip tips and replay them through Help. The ordinary resting map remains free of
+text. No tutorial code or product implementation is dispatched by this package.
 
-The brighter palette uses consistent blue, orange, green and purple ownership,
-with shape marks as a second cue. Irregular coasts, curved borders and varied
-partitions give the map more character. Colour continues to identify the owner;
-it is not random terrain decoration.
+## Illustrated sequence
 
-## The illustrated sequence
-
-| First action | The response and next decision |
+| Moment | What the player learns |
 | --- | --- |
-| ![1. Start a match](walkthrough/01-start.svg) | **1. Start.** The goal and useful default are explained briefly. The play icon is named **Start game**, so the beginner does not have to guess. Seed, seats and rules are available through options without requiring configuration first. |
-| ![2. Place armies](walkthrough/02-place.svg) | **2. Place.** A short hint identifies blue as the player's colour. Tapping a blue territory adds one army. This zoomed example shows the last army remaining: **7 → 8**. Initial income and earlier placements are not asserted by this sample. The first navigation hint can explain pinch/drag; Fit and the country list remain alternatives. |
-| ![3. Start combat](walkthrough/03-combat.svg) | **3. Start combat.** When placement is complete, the next legal phase action is named **Start combat**. The player explicitly enters combat. Showing only a generic arrow without naming its new purpose would be ambiguous. |
-| ![4. Attack](walkthrough/04-attack.svg) | **4. Select and attack.** Select the blue source, then a neighbouring orange enemy. Their counts explain the chosen pair. The highlighted swords icon is named by the current hint; activating it performs one exchange. Selection, a map gesture or opening help cannot roll dice. |
-| ![5. Read the outcome](walkthrough/05-outcome.svg) | **5. Read what changed.** This example loses one enemy army: **3 → 2**. The player can attack again or stop/end the turn. Dice can also reduce the player's armies. The guide must explain the actual result and continue from it, never force this example's win. |
-| ![6. Capture move-in](walkthrough/06-capture.svg) | **6. Move into captured land.** After further successful exchanges, the captured territory turns blue. The required choice explains the amount and legal bounds; −/+ adjust it and the check confirms. Moving **3 total** from an army of 8 leaves **5 / 3**. At least one stays behind. The displayed counts preview the selected amount, not an already committed move. |
-| ![7. End turn](walkthrough/07-end.svg) | **7. End the turn.** After confirming move-in, both territories are blue. The arrow is named **End turn** on first use. The player may keep playing legal actions instead; End turn cannot bypass a pending required choice. |
-| ![8. Capture reward](walkthrough/08-reward.svg) | **8. Receive the reward.** With cards enabled, a capturing turn earns a card. In this example the hand has room, so the reward asks for acknowledgment. The check continues play; mandatory discard/other cases need their own applicable guidance. Opponents continue after required choices finish. |
+| ![1. Start](walkthrough/01-start.svg) | **1. Start.** The approved default domination goal is briefly named: hold 35 of 46. Start game is named; options and load are requested separately. |
+| ![2. Place one army](walkthrough/02-place.svg) | **2. Place one army.** Blue square identifies the player. This is the last reinforcement: tapping adds one, 7 → 8. Inspection is a separate safe mode. |
+| ![3. Start combat](walkthrough/03-combat.svg) | **3. Start combat.** The named phase action becomes available after placement. It does not roll a battle. |
+| ![4. Choose a source](walkthrough/04-source.svg) | **4. Choose a source.** Eligible own countries are outlined. The player chooses an army before selecting an enemy. |
+| ![5. Compare targets](walkthrough/05-target.svg) | **5. Compare targets.** The source has solid emphasis; legal enemy neighbours are dashed and their stacks are visible together. Other visible countries remain inspectable. |
+| ![6. Read odds and Attack](walkthrough/06-attack.svg) | **6. Read odds and Attack.** The selected 8-versus-3 pair shows 91% capture odds if fought to capture. Attack commits one exchange; Cancel clears the pair. Selection itself never rolls. |
+| ![7. See an enemy loss](walkthrough/07-outcome.svg) | **7. See an enemy loss.** Blue 5 against orange 2 removes an enemy army: 3 → 2. The 8-versus-2 capture chance is now 96%. Short feedback clears; the result remains recoverable in history. |
+| ![8. See a human loss](walkthrough/08-loss.svg) | **8. See a human loss.** Blue 1 against orange 6 removes a blue army: 8 → 7. The 7-versus-2 capture chance is now 94%. This teaches that another Attack can cost armies. |
+| ![9. Optional Fight on](walkthrough/09-fight-on.svg) | **9. Optional Fight on.** After explicit Attack on this unchanged pair, Fight on can continue to the chosen stop-at amount. Stop remains live before the next exchange; speed changes presentation only. |
+| ![10. Preview move-in](walkthrough/10-capture.svg) | **10. Preview move-in.** After further successful exchanges with seven surviving source armies, moving a total of 3 previews 4 / 3. Range 1–6 keeps one behind. Tap the amount to type, use minus/plus or range adjustment; Check commits. |
+| ![11. Fold a required choice](walkthrough/11-fold.svg) | **11. Fold a required choice.** A distinct gold return icon retains the pending 3 and 4 / 3 preview. Folding does not confirm or allow unrelated game actions. |
+| ![12. Return and confirm](walkthrough/12-resume.svg) | **12. Return and confirm.** The return icon restores the same draft and choice. Only Check confirms it. Rotation, pause and reading must preserve it. |
+| ![13. Choose End turn](walkthrough/13-end.svg) | **13. Choose End turn.** The capture allocation is committed. The player may continue legal actions or use the named End turn action. |
+| ![14. Acknowledge a reward](walkthrough/14-reward.svg) | **14. Acknowledge a reward.** With cards enabled and room in hand, a capturing turn shows its private reward and requires acknowledgment. Disabled/full-hand branches use their actual applicable choices. |
+| ![15. Follow an opponent](walkthrough/15-computer.svg) | **15. Follow an opponent.** An illustrative later opponent phase shows Purple reinforcing. Owner/phase identity, local +3, Pause and fast-forward explain what is happening without a fixed status bar. |
+| ![16. Recover what changed](walkthrough/16-return.svg) | **16. Recover what changed.** The next human turn offers Changes and local marks. The player can recover the relevant opponent actions, then return to placement. Hints and marks clear after interaction. |
+| ![17. Compare without spending](walkthrough/17-inspect.svg) | **17. Compare without spending.** Requested inspection shows nearby armies and a consistent owner-shape legend. It spends no reinforcement; Close restores Place 1. Other fronts can be focused/list-selected. |
+| ![18. Find the whole map](walkthrough/18-fit.svg) | **18. Find the whole map.** Fit always shows every island. Focus is separate; requested +/− controls and pinch zoom, while swiping pans only when zoomed. |
+| ![19. Find help and icon names](walkthrough/19-help.svg) | **19. Find help and icon names.** Menu → Help & icon names provides a tap-accessible route. The requested labels explain controls; they do not activate them and disappear when dismissed. |
+| ![20. Start another match deliberately](walkthrough/20-result.svg) | **20. Start another match deliberately.** A later completed-match example names New game. Standings/history/files remain requested details; dismissing preserves the final map and recoverable result. |
 
-On later turns those explanations clear away, leaving the quiet map. Hints name
-an unfamiliar action when it first becomes relevant. They reappear from Help on
-request. Critical choices/errors never disappear on a timer. A touch hold or
-keyboard focus can reveal any icon's name without activating it; screen readers
-have that name directly. A hold/drag release must not accidentally become a tap.
+## Interaction rules
 
-## Four standing controls
+The board has icon controls for Menu, Pause, Fit and the legal current phase
+action. Their names appear on first use or request. Fit always shows the whole
+archipelago; focus is separate. Menu exposes Help & icon names, army inspection,
+current choice, cards, full totals/history, files and settings. Touch never relies
+on hover or a hold alone. Holding/focusing an icon is an additional name route;
+releasing a hold, drag or pinch must not accidentally activate it.
 
-- **Menu:** help/replay tips, cards, full totals/history, files and settings.
-- **Pause:** stop or resume computer playback; speed remains in requested settings.
-- **Fit/focus:** return to the overview or focus the requested selection; pinch to
-  zoom and drag to pan when enlarged, with keyboard/list alternatives.
-- **Current phase action:** enter combat or End turn only when legal. Its name is
-  shown on first use or request; required choices replace that action.
+Source selection exposes neighbouring choices; only explicit Attack rolls an
+exchange. Fight on requires that first Attack on the unchanged pair, and Stop
+remains responsive. Capture previews are visibly pending, allow direct amount
+entry and range adjustment, and remain recoverable after folding. Illegal
+attempts explain the reason locally without changing state. No required choice,
+error or privacy gate disappears on a timer.
 
-The swords action appears for a staged legal enemy pair. Friendly movement,
-Fight on/Stop and optional systems are introduced when they become relevant,
-rather than teaching every capability in the first screen. Help still covers the
-complete rules and consequences. No capability is removed to simplify this tour.
+Short local feedback, optional continued battle and opponent fast-forward keep
+the direct map rhythm; original sound has equivalent visual feedback and reduced
+motion retains the information. This is the requested Isle Wars Pro bias through
+clear decisions and consequences, with original drawings and controls.
 
-## Evidence and limits
+## Numbers and boundaries
 
-The numbers and camera focus are illustrative. The sequence shows possible
-consecutive successful exchanges, not a deterministic tutorial replay or guaranteed
-combat result. Income/pool numbers, victory text, legal targets, card availability
-and result hints must derive from the actual controller/options in a real build.
+The images are a possible interaction example, not a deterministic replay,
+forced win or valid match fixture. After an enemy loss and a human loss, the
+pictured source has 7 armies. Further successful exchanges can capture without
+another source loss. Selecting a total of 3 then previews 4 / 3, with legal range
+1–6. The edited 3 does not replace the controller's default. Provisional minimum
+occupation is part of that total, never an extra army (T27).
 
-The transfer example follows the existing total-move-in protocol in
-[combat.ts at the source baseline](https://github.com/diegoami/malpaco/blob/e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d/src/core/combat.ts)
-and T27: provisional occupation is part of the selected total, not an extra army.
-The ordinary capture sketch now also previews **5 / 3**, replacing its older
-illustrative **5 / 4**. No combat rule changes. Reward guidance follows the
-existing cards/phase contracts; disabled cards or a full hand require the
-corresponding real branch, not this sample notice.
+The illustrative capture odds use the approved single fair die per side, ties
+rerolled and one army left behind: 8 versus 3 = 233/256 (91% rounded), 8 versus 2
+= 247/256 (96%), and 7 versus 2 = 15/16 (94%). These describe fighting to capture,
+not the next exchange or Fight on's user-selected stopping condition. See
+[the pinned combat source](https://github.com/diegoami/malpaco/blob/e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d/src/core/combat.ts)
+and [rule preset](https://github.com/diegoami/malpaco/blob/e8e3f908fbea8ed74e5cb26c03690a71e4c1f25d/src/core/state.ts).
+Actual UI odds must derive from actual stacks/rules. Numbers, goal, phase,
+reinforcement pool, legal targets, reward, owner/changes and result must all adapt
+to the actual controller/options. The overview's schematic borders/routes do not
+prove legality. The final conquest result illustrates a different selected victory option, not
+the default domination goal. Navigation/help frames are additional
+first-use examples, not assertions about the immediately preceding turn.
 
-Before calling the UI beginner-friendly, later playable acceptance should ask a
-new player to start, identify their territory, place, select/attack, interpret a
-loss, confirm capture and finish a turn without outside coaching. Check whether
-they find help, recover from a wrong selection, return from zoom and understand
-what changed when the text clears. Static images cannot establish that result.
+The four geography studies remain illustrative, not a closed generator catalogue.
+These drawings do not establish touch safety, accessibility, enjoyment or
+beginner success. Those belong to separate review and playable D4 acceptance;
+existing full-match/device/rule and artifact gates remain binding.
 
 Regenerate with `python3 docs/plans/finished-game-vision/draw-beginner-walkthrough.py`.

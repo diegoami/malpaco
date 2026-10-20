@@ -4,13 +4,12 @@
 and full-screen/icon/contextual-text amendments. The [decision record](DECISIONS.md)
 contains the exact response. No further V1–V5 vote is needed.
 
-The [first experience review](EXPERIENCE-REVIEW.md) records the main session's
-requested usability, enjoyment and Isle Wars Pro assessment of revision 5. It
-identifies visible gaps and proposed corrections; it is not independent approval
-or a completed playtest. Read its findings alongside these scenes.
+Revision 6 applies the requested changes directly to the concepts and teaching
+sequence. The separate reviewer should assess the resulting drawings; no
+main-session review report or independent approval is part of this package.
 
 The first sketches were too overwhelming and are superseded. Open the
-[revision-5 gallery](SKETCHES.md), especially the quiet-map row: there is no
+[revision-6 gallery](SKETCHES.md), especially the quiet-map row: there is no
 persistent on-screen text, header, dock or side panel. Controls are icons.
 The other scenes show only text needed for that interaction or a player-requested
 piece of information, returning to the quiet map when finished.
@@ -19,15 +18,16 @@ piece of information, returning to the quiet map when finished.
 | --- | --- |
 | Quiet map | Does the map feel like the whole experience, with enough visual character and sufficiently little interface? |
 | S1 Setup | Does a compact temporary start choice give enough guidance, with seed/options/load on request? |
-| S2 Turn | Are selected counts and the explicit Attack icon understandable without a permanent instruction panel? |
-| S3 Capture | Does the temporary amount/confirm choice stay clear without claiming a permanent strip of the screen? |
+| S2 Turn | Can the player choose a source, compare legal enemies, understand the capture odds and explicitly Attack? |
+| S3 Capture | Are preview, amount entry/range, Confirm and fold/resume distinct and understandable? |
+| Inspect / opponent / return | Can the player compare armies without spending them, follow opponents and recover what changed? |
 | S4 Late game | Can requested objective/progress information answer the immediate question and then disappear? |
 | S5 Result | Does the concise result leave full standings/history/files accessible through icons without displaying everything at once? |
 
-Portrait now turns and fits the whole board, with a zoomed view for detailed
-play. Swiping pans when zoomed; Fit returns to the overview. All four form factors
-follow the same full-screen direction. The latest colour/shape treatment and
-[eight-step beginner tour](BEGINNER-WALKTHROUGH.md) address the subsequent
+Both orientations now fit the whole board on first open/Fit; portrait turns
+the same geography. Active phone decisions use a zoomed view for detailed play.
+Swiping pans when zoomed; Fit returns to the overview. All four form factors follow the same full-screen direction. The latest colour/shape treatment and
+[expanded beginner sequence](BEGINNER-WALKTHROUGH.md) address the subsequent
 request for a vivid map and understandable first use. The latest
 [geography studies](GEOGRAPHY-REFERENCES.md) use original island/province forms
 informed by illustrative examples including Sicily, Cuba, Borneo and New Zealand.

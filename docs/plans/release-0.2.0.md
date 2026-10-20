@@ -48,6 +48,14 @@ map replicas nor a specific generator algorithm; preserve existing country/islan
 adjacency, fairness, route and save contracts. Carry this direction into the
 existing-issue reconciliation before implementation, not a parallel roadmap.
 
+The owner subsequently requests applying the changes directly, with review by
+someone else. Revision 6 of the [concepts](finished-game-vision/SKETCHES.md) and
+[teaching sequence](finished-game-vision/BEGINNER-WALKTHROUGH.md) now shows legal
+source/target selection, contextual stacks/odds, fitted landscape, pending capture
+entry/fold/resume, outcome/Fight-on/Stop and opponent/return feedback, plus safe
+inspection and requested icon names. These are static planning changes, not a
+feature dispatch, task-contract amendment or usability approval.
+
 ## Selected scope
 
 Full-viewport map with icon controls and temporary contextual information for
