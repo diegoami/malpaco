@@ -1,0 +1,68 @@
+✖ verifier Git reads an ownership-mismatched checkout without trusting another checkout (47.212828ms)
+✖ actual verifier scopes every Git read and the final status capture under mismatched ownership (66.479305ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 0
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 177.720023
+
+✖ failing tests:
+
+test at tests/tools/ci-git.test.mjs:9:1
+✖ verifier Git reads an ownership-mismatched checkout without trusting another checkout (47.212828ms)
+  AssertionError [ERR_ASSERTION]: fatal: detected dubious ownership in repository at '/tmp/malpaco-ci-owned path-JMWg6T'
+  To add an exception for this directory, call:
+  
+  	git config --global --add safe.directory '/tmp/malpaco-ci-owned path-JMWg6T'
+  
+  
+  128 !== 0
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-git.test.mjs:35:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 128,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-git.test.mjs:42:1
+✖ actual verifier scopes every Git read and the final status capture under mismatched ownership (66.479305ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /package-acceptance failed/. Input:
+  
+  "AssertionError [ERR_ASSERTION]: guard-files failed; retained docs/prototypes/ci/T91/runs/verify-EwpeeS: fatal: detected dubious ownership in repository at '/tmp/malpaco-ci-verifier-owned-rciH3v'\n" +
+    'To add an exception for this directory, call:\n' +
+    '\n' +
+    '\tgit config --global --add safe.directory /tmp/malpaco-ci-verifier-owned-rciH3v\n' +
+    '\n' +
+    '\n' +
+    '128 !== 0\n' +
+    '\n' +
+    '    at run (file:///tmp/malpaco-ci-verifier-owned-rciH3v/tools/ci/verify.mjs:23:10)\n' +
+    '    at file:///tmp/malpaco-ci-verifier-owned-rciH3v/tools/ci/verify.mjs:29:61\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n' +
+    '    at async node:internal/modules/esm/loader:647:26\n' +
+    '    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-git.test.mjs:59:34)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "AssertionError [ERR_ASSERTION]: guard-files failed; retained docs/prototypes/ci/T91/runs/verify-EwpeeS: fatal: detected dubious ownership in repository at '/tmp/malpaco-ci-verifier-owned-rciH3v'\nTo add an exception for this directory, call:\n\n\tgit config --global --add safe.directory /tmp/malpaco-ci-verifier-owned-rciH3v\n\n\n128 !== 0\n\n    at run (file:///tmp/malpaco-ci-verifier-owned-rciH3v/tools/ci/verify.mjs:23:10)\n    at file:///tmp/malpaco-ci-verifier-owned-rciH3v/tools/ci/verify.mjs:29:61\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)",
+    expected: /package-acceptance failed/,
+    operator: 'match',
+    diff: 'simple'
+  }

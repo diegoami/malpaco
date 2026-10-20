@@ -1,48 +1,81 @@
 name: ci
 
-# The walking skeleton: the pure rules core and the SVG board it paints.
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+    inputs:
+      full_release:
+        description: Also run the complete browser suite against the source preview
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
-  ci:
-    # One rendering environment for the browser and its screenshots (issue #2,
-    # item 8): the official Playwright image, pinned to @playwright/test's
-    # version in package-lock.json, the same image goldens are made in locally.
-    # Browsers and their dependencies ship in it, so there is no install step.
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          sparse-checkout: |
+            tools/ci
+            tests/tools
+            .github
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: CI guard tests
+        run: node --test tests/tools/ci-*.test.mjs
+      - name: Classify pinned merge diff
+        id: plan
+        run: node tools/ci/plan.mjs
+
+  verify:
+    needs: plan
+    if: needs.plan.outputs.mode != 'docs'
     runs-on: ubuntu-latest
     container: mcr.microsoft.com/playwright:v1.63.0-noble
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/docs/**/*.png
+            !/docs/**/*.tar.gz
+            !/docs/**/*.tgz
+            !/docs/**/*.zip
+            !/docs/**/*.webm
+            !/docs/**/*.mp4
+            !/docs/**/*.pdf
+            !/docs/**/*.tar.gz.part*
+            !/docs/**/*.tgz.part*
+            !/docs/**/*.zip.part*
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-
       - name: Install
         run: npm ci
-
-      - name: Build (type-check, then bundle)
-        run: npm run build
-
-      - name: Vitest (rules core)
+      - name: Complete unit and harness checks
         run: npm test
-
-      - name: Playwright (headless UI tests, screenshots and goldens)
-        run: npx playwright test --workers=2
-
-      - name: Package and verify playable artifact
-        run: |
-          fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"
-          echo "PLAYABLE_EXTRACTED_DIR=$fresh_dir" >> "$GITHUB_ENV"
-          node docs/prototypes/playable/acceptance.mjs "$fresh_dir"
-
-      - name: Playwright (extracted playable artifact)
+      - name: Audit workflow, browser inventory, sparse inputs and playable package
+        run: node tools/ci/verify.mjs
+      - name: Complete Playwright suite against extracted playable
         run: npx playwright test --config playwright.release.config.ts --workers=2
-
+      - name: Full-release source preview verification
+        if: github.event_name == 'workflow_dispatch' && inputs.full_release
+        run: npx playwright test --workers=2
       - name: Upload screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -50,15 +83,21 @@ jobs:
           name: screenshots
           path: screenshots/
           if-no-files-found: error
-
+          retention-days: 14
       - name: Upload playable archive
         uses: actions/upload-artifact@v4
         with:
           name: malpaco-playable
           path: release/malpaco-playable.tar.gz
           if-no-files-found: error
-
-      - name: Upload Playwright report
+      - name: Upload verification receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-verification
+          path: docs/prototypes/ci/T91/runs/
+          if-no-files-found: warn
+      - name: Upload browser failure reports
         if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -66,4 +105,25 @@ jobs:
           path: |
             playwright-report/
             test-results/
+            playwright-report-release/
+            test-results-release/
           if-no-files-found: ignore
+          retention-days: 14
+
+  ci:
+    needs: [plan, verify]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: tools/ci
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Required CI result
+        env:
+          CLASSIFICATION_RESULT: ${{ needs.plan.result }}
+          CI_MODE: ${{ needs.plan.outputs.mode }}
+          VERIFICATION_RESULT: ${{ needs.verify.result }}
+        run: node tools/ci/gate.mjs

@@ -1,0 +1,40 @@
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.947473ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.213377ms)
+✖ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.853113ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.157361ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.156374ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.797762ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.503342ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.226012ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (0.926965ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.273888
+
+✖ failing tests:
+
+test at tests/tools/ci-policy.test.mjs:19:1
+✖ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.853113ms)
+  AssertionError [ERR_ASSERTION]: {"eventName":"pull_request","files":[{"filename":"README.md","status":"modified"}],"changedFiles":1,"complete":false}
+  
+  'docs' !== 'full'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-policy.test.mjs:20:433)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'docs',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

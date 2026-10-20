@@ -1,0 +1,45 @@
+✔ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (171.6646ms)
+ℹ retained temporary Git fixture /tmp/malpaco-t91-git-T40rPt
+✔ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (171.26031ms)
+✔ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (130.254475ms)
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.997726ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.857145ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.224639ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.139932ms)
+✖ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.743163ms)
+✔ uncertain: deletion and unsupported statuses reject without relying on a previous filename (0.136062ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.998943ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.496327ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.322662ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (0.988962ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 521.915545
+
+✖ failing tests:
+
+test at tests/tools/ci-policy.test.mjs:30:1
+✖ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.743163ms)
+  AssertionError [ERR_ASSERTION]: skipped
+  
+  true !== false
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-policy.test.mjs:33:96)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

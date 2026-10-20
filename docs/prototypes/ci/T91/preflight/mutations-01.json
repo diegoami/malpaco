@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "case": "unknown-prose",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "incomplete-diff",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "truncated-diff",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "rename-deletion",
+      "exit": 0,
+      "killed": false
+    },
+    {
+      "case": "previous-source-path",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "failed-classification",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "skipped-full",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "cancelled-full",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "unconditional-source-browser",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "drop-gate-always",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "cross-pr-cancellation",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "case": "filter-overrides-sparse",
+      "exit": 1,
+      "killed": true
+    }
+  ],
+  "restored": true
+}

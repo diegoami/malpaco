@@ -1,0 +1,40 @@
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.918088ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.253105ms)
+✖ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.898474ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.17614ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.192722ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.791693ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.499102ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.225995ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (0.991628ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59.05923
+
+✖ failing tests:
+
+test at tests/tools/ci-policy.test.mjs:19:1
+✖ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.898474ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'docs' !== 'full'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-policy.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'docs',
+    expected: 'full',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

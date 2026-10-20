@@ -1,0 +1,825 @@
+
+> malpaco-spike-ts@0.1.1 test
+> node --test tools/harness/test/*.test.mjs && vitest run
+
+✔ actual selected model and real final required, not exit0 or quoted content (1.616547ms)
+✔ provider/remapped model cannot reach Claude billing; credentials not in errors (1.949649ms)
+✔ coverage is explicit per changed file; generated evidence grouping cannot hide code (3.235705ms)
+✔ watched subprocess retains success, failure and timeout evidence, kills its own group (662.848877ms)
+✔ real review entry selects Claude without OpenCode, publishes once, refuses failed gates (1684.741845ms)
+✔ Claude dependency materialization makes an independent real copy and preserves relative .bin links (3.664092ms)
+✔ Claude dependency materialization skips absent installs and refuses outside, overlapping, or existing destinations (2.036354ms)
+✔ native Claude command denials cover OpenCode publishing policy without a second Bash parser (0.708577ms)
+✔ Vite ignores only its own retained cache and preserves application and test watching (3642.755209ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3689.216641
+
+ RUN  v5.0.3 /home/diego/projects/malpaco/.cache/worktrees/T91-ci
+
+
+ Test Files  60 passed (60)
+      Tests  818 passed (818)
+   Start at  21:47:07
+   Duration  53.20s (tests 90%, transform 7%, import 3%)
+
+
+> malpaco-spike-ts@0.1.1 build
+> tsc --noEmit -p src/core && tsc --noEmit && vite build
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 66 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                  0.64 kB │ gzip:  0.42 kB
+dist/assets/generatedGeographyPresentation.worker-DbrcvUpT.js    6.13 kB
+dist/assets/index-DEbt5Y0R.css                                  38.96 kB │ gzip:  8.27 kB
+dist/assets/index-D3fDmbKu.js                                  319.94 kB │ gzip: 85.70 kB
+
+✓ built in 238ms
+PASS extracted artifact: 10 files; 9 SHA-256 entries; checked 4 HTTP paths on 127.0.0.1:4175
+source commit: 6796b2a4e3d9ed84841b87037f251061c31dfa0a
+extracted package: /tmp/malpaco-t91-preflight-ni5xPM/malpaco-playable
+launcher stdout: Malpaco is ready at http://127.0.0.1:4175
+archive SHA-256: e37fa006b23930aa95f71747393855fd55af519bbceefbe03163e836dd887d6a
+archive files: 10; extracted to /tmp/malpaco-t91-preflight-ni5xPM
+6796b2a4e3d9ed84841b87037f251061c31dfa0a
+Listing tests:
+  [1280x800] › battle-accessibility.spec.ts:36:1 › capture confirmation, quantities and context fit together with an accurate phase
+  [1280x800] › battle-accessibility.spec.ts:57:1 › keyboard Stop retains focus across an exchange; new game cancels work and remembers preferences
+  [1280x800] › battle-controls.spec.ts:25:1 › one chosen exchange shows actual ties, dice and live stacks without a later exchange
+  [1280x800] › battle-controls.spec.ts:32:1 › manual Stop takes effect before the next exchange while context stays visible
+  [1280x800] › battle-controls.spec.ts:37:1 › fight-on stops at the chosen fixed threshold after a loss
+  [1280x800] › battle-controls.spec.ts:42:54 › capture minimum preserves armies and rejects stale/unrelated controls
+  [1280x800] › battle-controls.spec.ts:42:54 › capture maximum preserves armies and rejects stale/unrelated controls
+  [1280x800] › battle-panel-fit.spec.ts:20:1 › complete human battle controls stay simultaneously visible without outer scrolling
+  [1280x800] › cards-result-layout.spec.ts:4:1 › final T40 loss choices fit both modes; retain all geometry before assertions
+  [1280x800] › cards.spec.ts:49:30 › Anchor: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1280x800] › cards.spec.ts:49:30 › Compass: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1280x800] › cards.spec.ts:49:30 › Lantern: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1280x800] › cards.spec.ts:49:30 › Surge: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1280x800] › cards.spec.ts:54:1 › geographic no-set passes once without RNG; an available set can be skipped without loss
+  [1280x800] › cards.spec.ts:60:1 › reference Raid has a private-safe named preview; friendly/background clicks refuse; confirmation is ordinary
+  [1280x800] › cards.spec.ts:67:1 › Shield feedback reveals only cancellation; spent set and exactly one Shield are conserved without RNG
+  [1280x800] › cards.spec.ts:72:1 › true geographic income and remote Country7 Raid preserve map metadata and exact saved stages
+  [1280x800] › cards.spec.ts:78:1 › all five pre-draw choices and normal reward fit; Continue changes neither history nor RNG
+  [1280x800] › cards.spec.ts:85:1 › Squall loss and decisive reward remain acknowledgeable in both modes without extra engine actions
+  [1280x800] › cards.spec.ts:92:1 › replacement and pause invalidate card drafts/rewards; complete history keeps an older reading offset
+  [1280x800] › cards.spec.ts:101:1 › spectator card files expose no private hand/choices; unsupported shared-human card files preserve live play
+  [1280x800] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 800x540
+  [1280x800] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 1280x800
+  [1280x800] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 1920x1080
+  [1280x800] › coast-postprocess.spec.ts:60:1 › playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map
+  [1280x800] › compact-panels.spec.ts:40:2 › reference: computer phase changes keep actual card bounds stable
+  [1280x800] › compact-panels.spec.ts:48:45 › reference compact: real computer actions retain fixed panel areas and essentials
+  [1280x800] › compact-panels.spec.ts:48:45 › reference detailed: real computer actions retain fixed panel areas and essentials
+  [1280x800] › compact-panels.spec.ts:61:2 › reference: default/reversible keyboard mode preserves pause, speed, log, load and next callback
+  [1280x800] › compact-panels.spec.ts:72:45 › reference compact: mandatory human capture and friendly movement remain visible and operable
+  [1280x800] › compact-panels.spec.ts:72:45 › reference detailed: mandatory human capture and friendly movement remain visible and operable
+  [1280x800] › compact-panels.spec.ts:40:2 › geographic: computer phase changes keep actual card bounds stable
+  [1280x800] › compact-panels.spec.ts:48:45 › geographic compact: real computer actions retain fixed panel areas and essentials
+  [1280x800] › compact-panels.spec.ts:48:45 › geographic detailed: real computer actions retain fixed panel areas and essentials
+  [1280x800] › compact-panels.spec.ts:61:2 › geographic: default/reversible keyboard mode preserves pause, speed, log, load and next callback
+  [1280x800] › compact-panels.spec.ts:72:45 › geographic compact: mandatory human capture and friendly movement remain visible and operable
+  [1280x800] › compact-panels.spec.ts:72:45 › geographic detailed: mandatory human capture and friendly movement remain visible and operable
+  [1280x800] › compact-panels.spec.ts:86:44 › reference compact: human-loss choices fit and remain usable
+  [1280x800] › compact-panels.spec.ts:86:44 › reference detailed: human-loss choices fit and remain usable
+  [1280x800] › compact-panels.spec.ts:94:46 › reference: complete battle history scrolls without deleting entries or moving an older reader
+  [1280x800] › compact-panels.spec.ts:94:46 › geographic: complete battle history scrolls without deleting entries or moving an older reader
+  [1280x800] › complete-game.spec.ts:30:1 › normal three-human clicks eliminate, skip a dead seat, conquer, freeze and restart
+  [1280x800] › computer-cards.spec.ts:39:1 › geographic setup enables cards only for zero/one human with explicit wording and exact identity
+  [1280x800] › computer-cards.spec.ts:51:1 › explicit manual geography and reference compatibility keep their historical identities
+  [1280x800] › computer-cards.spec.ts:56:1 › three consecutive computers perform literal Raid decisions and reach the correct human-loss choices
+  [1280x800] › computer-cards.spec.ts:75:1 › three consecutive computers discard oldest cards and return a living human to actual board placement
+  [1280x800] › computer-cards.spec.ts:85:1 › real computer pending discard chooses oldest index zero before drawing and needs no human reward
+  [1280x800] › computer-cards.spec.ts:90:1 › human acknowledgement blocks computers through pause/speed changes and resumes at exactly two seconds
+  [1280x800] › computer-cards.spec.ts:96:1 › native pending Raid/discard saves reload exactly, pause holds, and spectator cards progress privately
+  [1280x800] › computer-cards.spec.ts:105:1 › load/new game cancel old computer timers and detached human reward callbacks
+  [1280x800] › computer-cards.spec.ts:112:1 › automatic card actions preserve complete chronological log, upward reading, totals and public event history
+  [1280x800] › computer-turn-flow.spec.ts:16:1 › untouched setup starts one human and three Normal computers and consecutive turns return
+  [1280x800] › computer-turn-flow.spec.ts:27:1 › loaded computer capture resolves without a click; replacement and new game cancel old callbacks
+  [1280x800] › computer-turn-flow.spec.ts:36:1 › loss waits for Watch or Stop; finished game schedules no play; manual route stays manual
+  [1280x800] › computer.spec.ts:19:1 › setup offers computer opponents
+  [1280x800] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2
+  [1280x800] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3
+  [1280x800] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4
+  [1280x800] › computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped
+  [1280x800] › direct-attack.spec.ts:20:1 › mouse enemy activation attacks once and repeats without source/target reselection
+  [1280x800] › direct-attack.spec.ts:23:1 › keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only
+  [1280x800] › direct-attack.spec.ts:30:1 › touch uses the same one-exchange repeat gesture
+  [1280x800] › direct-attack.spec.ts:33:69 › direct capture minimum waits for explicit choice through save/reload/upload
+  [1280x800] › direct-attack.spec.ts:33:69 › direct capture intermediate waits for explicit choice through save/reload/upload
+  [1280x800] › direct-attack.spec.ts:33:69 › direct capture maximum waits for explicit choice through save/reload/upload
+  [1280x800] › direct-attack.spec.ts:44:1 › Shift-click retains separate controls and Stop cancels the next continuous exchange
+  [1280x800] › direct-attack.spec.ts:47:1 › friendly, distant and one-army inputs refuse attacks with the engine reason
+  [1280x800] › direct-attack.spec.ts:52:1 › automatic computer attack phase refuses map, touch and keyboard human activations
+  [1280x800] › entry.spec.ts:30:1 › explicit reference entry retains the playable match with one human and three computers
+  [1280x800] › entry.spec.ts:71:1 › recognized entry routes remain explicit and authored data is available only by route
+  [1280x800] › finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game
+  [1280x800] › finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape
+  [1280x800] › friendly-feedback.spec.ts:7:1 › movement route emphasis includes own sea neighbours and excludes enemy routes
+  [1280x800] › friendly-feedback.spec.ts:16:1 › Escape cancels a move draft and restores the previous battle selection
+  [1280x800] › friendly-move.spec.ts:19:52 › friendly minimum transfer ends turn, fits and refuses stale confirmation
+  [1280x800] › friendly-move.spec.ts:19:52 › friendly maximum transfer ends turn, fits and refuses stale confirmation
+  [1280x800] › friendly-move.spec.ts:29:1 › cancel returns to attacks without movement; skip hands off normally
+  [1280x800] › friendly-move.spec.ts:33:1 › a just-captured country can supply the final friendly move
+  [1280x800] › game-event-log.spec.ts:70:1 › popup works by keyboard while paused, appends exactly once and resets for a new match
+  [1280x800] › game-event-log.spec.ts:84:54 › complete move-completed replay includes ordered army accounting beyond seven entries
+  [1280x800] › game-event-log.spec.ts:84:54 › complete domination replay includes ordered army accounting beyond seven entries
+  [1280x800] › game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip
+  [1280x800] › game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip
+  [1280x800] › game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip
+  [1280x800] › game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery
+  [1280x800] › generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport
+  [1280x800] › generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection
+  [1280x800] › generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry
+  [1280x800] › generated-board.spec.ts:126:1 › golden: settled opt-in generated preview
+  [1280x800] › generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport
+  [1280x800] › generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts
+  [1280x800] › generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff
+  [1280x800] › generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers
+  [1280x800] › generated-game.spec.ts:94:1 › golden: generated gameplay opening
+  [1280x800] › generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel
+  [1280x800] › geographic-board.spec.ts:63:1 › measured corpus fixture is frozen and reproducible
+  [1280x800] › geographic-board.spec.ts:71:1 › root and unknown view retain the established setup and playback controls
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 1994 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 513 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 749 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 1 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 0 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 6 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:100:51 › painted borders use the core's exact legal targets and exchange
+  [1280x800] › geographic-board.spec.ts:100:51 › painted seaLanes use the core's exact legal targets and exchange
+  [1280x800] › geographic-board.spec.ts:113:1 › geographic replay and reference identity dispatch preserve state, history and pause
+  [1280x800] › geographic-board.spec.ts:123:1 › invalid seed stays in setup and recovers
+  [1280x800] › geographic-board.spec.ts:128:53 › real measured refusal 398 recovers
+  [1280x800] › geographic-board.spec.ts:132:1 › geographic computer playback pauses and cancels stale work on load
+  [1280x800] › geographic-board.spec.ts:169:1 › geographic continuous battle pauses/resumes and cancels stale work on load/new game
+  [1280x800] › geographic-presentation.spec.ts:45:1 › real worker preparation is responsive and precedes playable construction
+  [1280x800] › geographic-presentation.spec.ts:54:1 › actual geographic load preserves exact replay while painting the frozen presentation
+  [1280x800] › geographic-presentation.spec.ts:70:1 › frozen changed boundaries receive pointer hits and a repeated load reuses the root drawing cache
+  [1280x800] › geographic-presentation.spec.ts:80:1 › invalid newer file and New game reject held real-worker load completions without replacing a live match
+  [1280x800] › geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army
+  [1280x800] › geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match
+  [1280x800] › geographic-review-guards.spec.ts:64:1 › default four-seat geographic shell shares reference responsive layout
+  [1280x800] › help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus
+  [1280x800] › help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match
+  [1280x800] › help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game
+  [1280x800] › hideable-panels.spec.ts:24:3 › reference: independently hidden panels reclaim map area and restore exactly
+  [1280x800] › hideable-panels.spec.ts:43:3 › reference: icon cards surface closes with Escape and returns focus without game actions
+  [1280x800] › hideable-panels.spec.ts:24:3 › geographic: independently hidden panels reclaim map area and restore exactly
+  [1280x800] › hideable-panels.spec.ts:43:3 › geographic: icon cards surface closes with Escape and returns focus without game actions
+  [1280x800] › icon-actions.spec.ts:36:2 › reference: visible sidebar toolbar stays outside the map in both top panel states
+  [1280x800] › icon-actions.spec.ts:56:2 › reference: visible sidebar keeps an older history reader across focused surfaces
+  [1280x800] › icon-actions.spec.ts:81:2 › reference: sidebar-only rail places armies and starts combat directly without scrolling
+  [1280x800] › icon-actions.spec.ts:84:2 › reference: collapsed battle commands, pause and details preserve exact actions and selection
+  [1280x800] › icon-actions.spec.ts:95:2 › reference: collapsed capture retains quantity across surfaces, toggles and pause
+  [1280x800] › icon-actions.spec.ts:100:2 › reference: collapsed friendly non-default draft survives a redraw with input focus
+  [1280x800] › icon-actions.spec.ts:129:2 › reference: collapsed card trade and nonmodal Raid use ordinary core actions
+  [1280x800] › icon-actions.spec.ts:36:2 › geographic: visible sidebar toolbar stays outside the map in both top panel states
+  [1280x800] › icon-actions.spec.ts:56:2 › geographic: visible sidebar keeps an older history reader across focused surfaces
+  [1280x800] › icon-actions.spec.ts:81:2 › geographic: sidebar-only rail places armies and starts combat directly without scrolling
+  [1280x800] › icon-actions.spec.ts:84:2 › geographic: collapsed battle commands, pause and details preserve exact actions and selection
+  [1280x800] › icon-actions.spec.ts:95:2 › geographic: collapsed capture retains quantity across surfaces, toggles and pause
+  [1280x800] › icon-actions.spec.ts:100:2 › geographic: collapsed friendly non-default draft survives a redraw with input focus
+  [1280x800] › icon-actions.spec.ts:129:2 › geographic: collapsed card trade and nonmodal Raid use ordinary core actions
+  [1280x800] › icon-actions.spec.ts:134:1 › collapsed full-hand discard, reward, skip and replacement retain reachable choices and clean surfaces
+  [1280x800] › icon-actions.spec.ts:140:1 › collapsed human-loss and finished choices keep core results reachable
+  [1280x800] › map-readability.spec.ts:11:1 › army-only labels and ownership shapes reduce the default name hierarchy
+  [1280x800] › map-readability.spec.ts:22:1 › region names remain identifiable on mouse, keyboard and touch without changing inputs
+  [1280x800] › match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1280x800] › match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1280x800] › match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1280x800] › match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again
+  [1280x800] › playback-controls.spec.ts:90:1 › labelled army totals follow ordinary actions and include eliminated players
+  [1280x800] › playback-controls.spec.ts:105:1 › very slow spaces automatic actions by two seconds and changes no replay outcome
+  [1280x800] › playback-controls.spec.ts:118:1 › Pause freezes computer play, rejects stale callbacks and replacement cancels the old match
+  [1280x800] › playback-controls.spec.ts:134:1 › global pause freezes continuous human battle and gates manual reinforcement and capture
+  [1280x800] › playback-edge-cases.spec.ts:7:1 › modal Escape preserves continuous combat; local/global very-slow controls stay synchronized
+  [1280x800] › playback-edge-cases.spec.ts:29:1 › default four-seat controls fit and a paused computer is labelled paused
+  [1280x800] › playback-edge-cases.spec.ts:38:1 › closing the event log does not steal focus from the next keyboard action
+  [1280x800] › playback-edge-cases.spec.ts:47:1 › failed load feedback stays readable without covering capture or playback controls
+  [1280x800] › reference-complete-game.spec.ts:26:1 › real human/computer setup, friendly move, pending save/resume, elimination and conquest
+  [1280x800] › reference-game.spec.ts:25:1 › reference setup paints current geography, routes, live counts and reachable controls
+  [1280x800] › reference-game.spec.ts:40:1 › ordinary reference clicks place, attack, hand off and replay legally to a winner
+  [1280x800] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 800x540
+  [1280x800] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 1280x800
+  [1280x800] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 1920x1080
+  [1280x800] › region-border-postprocess.spec.ts:58:1 › playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map
+  [1280x800] › reinforcement.spec.ts:86:1 › placement spends only on owned provinces, then combat hands off a fresh pool
+  [1280x800] › reinforcement.spec.ts:117:1 › both seats place armies and enter combat before returning to Blue in round two
+  [1280x800] › retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings
+  [1280x800] › slice.spec.ts:404:1 › the page loads with the title, the turn and both buttons
+  [1280x800] › slice.spec.ts:415:1 › all 14 provinces render, visible, on top, and told apart by more than colour
+  [1280x800] › slice.spec.ts:466:1 › the board is painted: the pixels inside every province are its owner's palette colour
+  [1280x800] › slice.spec.ts:488:1 › every badge and name is actually painted, not merely present in the DOM
+  [1280x800] › slice.spec.ts:553:1 › the layout fits the viewport: no page scroll, map and panel both fully visible
+  [1280x800] › slice.spec.ts:579:3 › the panel never overflows at 1366x768: New game and the seed in view, nothing to scroll
+  [1280x800] › slice.spec.ts:579:3 › the panel never overflows at 1600x900: New game and the seed in view, nothing to scroll
+  [1280x800] › slice.spec.ts:579:3 › the panel never overflows at 1920x1080: New game and the seed in view, nothing to scroll
+  [1280x800] › slice.spec.ts:597:1 › hovering a province outlines it and names it
+  [1280x800] › slice.spec.ts:606:1 › selecting a province highlights it and its targets, dims the rest and enables Attack only with a target
+  [1280x800] › slice.spec.ts:625:1 › legal-target markers and the arrow stay clear of every label, whichever province is selected
+  [1280x800] › slice.spec.ts:642:1 › an illegal target is refused with the reason, and nothing is selected as a target
+  [1280x800] › slice.spec.ts:651:1 › one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots)
+  [1280x800] › slice.spec.ts:762:1 › End turn passes play to the other player, whose provinces become the playable ones
+  [1280x800] › slice.spec.ts:783:1 › a province can be selected and a target chosen with the keyboard alone
+  [1280x800] › slice.spec.ts:814:1 › golden: the whole board as painted, hatched seat included
+  [1280x800] › slice.spec.ts:820:1 › golden: the panel as laid out
+  [1280x800] › slice.spec.ts:826:1 › golden: the result dialog with its dice and verdicts
+  [1280x800] › versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement
+  [1280x800] › versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm
+  [1280x800] › versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn
+  [1280x800] › versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable
+  [1280x800] › versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls
+  [1280x800] › versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers
+  [1280x800] › versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match
+  [1280x800] › victory-options.spec.ts:70:1 › domination result names winner/reason, final standings, freezes and restarts
+  [1280x800] › victory-options.spec.ts:99:1 › round limit finishes after a complete rotated round and explains the score
+  [1280x800] › victory-options.spec.ts:128:1 › human loss offers Stop or Watch; Watch resumes computers and Stop freezes
+  [1920x1080] › battle-accessibility.spec.ts:36:1 › capture confirmation, quantities and context fit together with an accurate phase
+  [1920x1080] › battle-accessibility.spec.ts:57:1 › keyboard Stop retains focus across an exchange; new game cancels work and remembers preferences
+  [1920x1080] › battle-controls.spec.ts:25:1 › one chosen exchange shows actual ties, dice and live stacks without a later exchange
+  [1920x1080] › battle-controls.spec.ts:32:1 › manual Stop takes effect before the next exchange while context stays visible
+  [1920x1080] › battle-controls.spec.ts:37:1 › fight-on stops at the chosen fixed threshold after a loss
+  [1920x1080] › battle-controls.spec.ts:42:54 › capture minimum preserves armies and rejects stale/unrelated controls
+  [1920x1080] › battle-controls.spec.ts:42:54 › capture maximum preserves armies and rejects stale/unrelated controls
+  [1920x1080] › battle-panel-fit.spec.ts:20:1 › complete human battle controls stay simultaneously visible without outer scrolling
+  [1920x1080] › cards-result-layout.spec.ts:4:1 › final T40 loss choices fit both modes; retain all geometry before assertions
+  [1920x1080] › cards.spec.ts:49:30 › Anchor: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1920x1080] › cards.spec.ts:49:30 › Compass: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1920x1080] › cards.spec.ts:49:30 › Lantern: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1920x1080] › cards.spec.ts:49:30 › Surge: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1920x1080] › cards.spec.ts:54:1 › geographic no-set passes once without RNG; an available set can be skipped without loss
+  [1920x1080] › cards.spec.ts:60:1 › reference Raid has a private-safe named preview; friendly/background clicks refuse; confirmation is ordinary
+  [1920x1080] › cards.spec.ts:67:1 › Shield feedback reveals only cancellation; spent set and exactly one Shield are conserved without RNG
+  [1920x1080] › cards.spec.ts:72:1 › true geographic income and remote Country7 Raid preserve map metadata and exact saved stages
+  [1920x1080] › cards.spec.ts:78:1 › all five pre-draw choices and normal reward fit; Continue changes neither history nor RNG
+  [1920x1080] › cards.spec.ts:85:1 › Squall loss and decisive reward remain acknowledgeable in both modes without extra engine actions
+  [1920x1080] › cards.spec.ts:92:1 › replacement and pause invalidate card drafts/rewards; complete history keeps an older reading offset
+  [1920x1080] › cards.spec.ts:101:1 › spectator card files expose no private hand/choices; unsupported shared-human card files preserve live play
+  [1920x1080] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 800x540
+  [1920x1080] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 1280x800
+  [1920x1080] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 1920x1080
+  [1920x1080] › coast-postprocess.spec.ts:60:1 › playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map
+  [1920x1080] › compact-panels.spec.ts:40:2 › reference: computer phase changes keep actual card bounds stable
+  [1920x1080] › compact-panels.spec.ts:48:45 › reference compact: real computer actions retain fixed panel areas and essentials
+  [1920x1080] › compact-panels.spec.ts:48:45 › reference detailed: real computer actions retain fixed panel areas and essentials
+  [1920x1080] › compact-panels.spec.ts:61:2 › reference: default/reversible keyboard mode preserves pause, speed, log, load and next callback
+  [1920x1080] › compact-panels.spec.ts:72:45 › reference compact: mandatory human capture and friendly movement remain visible and operable
+  [1920x1080] › compact-panels.spec.ts:72:45 › reference detailed: mandatory human capture and friendly movement remain visible and operable
+  [1920x1080] › compact-panels.spec.ts:40:2 › geographic: computer phase changes keep actual card bounds stable
+  [1920x1080] › compact-panels.spec.ts:48:45 › geographic compact: real computer actions retain fixed panel areas and essentials
+  [1920x1080] › compact-panels.spec.ts:48:45 › geographic detailed: real computer actions retain fixed panel areas and essentials
+  [1920x1080] › compact-panels.spec.ts:61:2 › geographic: default/reversible keyboard mode preserves pause, speed, log, load and next callback
+  [1920x1080] › compact-panels.spec.ts:72:45 › geographic compact: mandatory human capture and friendly movement remain visible and operable
+  [1920x1080] › compact-panels.spec.ts:72:45 › geographic detailed: mandatory human capture and friendly movement remain visible and operable
+  [1920x1080] › compact-panels.spec.ts:86:44 › reference compact: human-loss choices fit and remain usable
+  [1920x1080] › compact-panels.spec.ts:86:44 › reference detailed: human-loss choices fit and remain usable
+  [1920x1080] › compact-panels.spec.ts:94:46 › reference: complete battle history scrolls without deleting entries or moving an older reader
+  [1920x1080] › compact-panels.spec.ts:94:46 › geographic: complete battle history scrolls without deleting entries or moving an older reader
+  [1920x1080] › complete-game.spec.ts:30:1 › normal three-human clicks eliminate, skip a dead seat, conquer, freeze and restart
+  [1920x1080] › computer-cards.spec.ts:39:1 › geographic setup enables cards only for zero/one human with explicit wording and exact identity
+  [1920x1080] › computer-cards.spec.ts:51:1 › explicit manual geography and reference compatibility keep their historical identities
+  [1920x1080] › computer-cards.spec.ts:56:1 › three consecutive computers perform literal Raid decisions and reach the correct human-loss choices
+  [1920x1080] › computer-cards.spec.ts:75:1 › three consecutive computers discard oldest cards and return a living human to actual board placement
+  [1920x1080] › computer-cards.spec.ts:85:1 › real computer pending discard chooses oldest index zero before drawing and needs no human reward
+  [1920x1080] › computer-cards.spec.ts:90:1 › human acknowledgement blocks computers through pause/speed changes and resumes at exactly two seconds
+  [1920x1080] › computer-cards.spec.ts:96:1 › native pending Raid/discard saves reload exactly, pause holds, and spectator cards progress privately
+  [1920x1080] › computer-cards.spec.ts:105:1 › load/new game cancel old computer timers and detached human reward callbacks
+  [1920x1080] › computer-cards.spec.ts:112:1 › automatic card actions preserve complete chronological log, upward reading, totals and public event history
+  [1920x1080] › computer-turn-flow.spec.ts:16:1 › untouched setup starts one human and three Normal computers and consecutive turns return
+  [1920x1080] › computer-turn-flow.spec.ts:27:1 › loaded computer capture resolves without a click; replacement and new game cancel old callbacks
+  [1920x1080] › computer-turn-flow.spec.ts:36:1 › loss waits for Watch or Stop; finished game schedules no play; manual route stays manual
+  [1920x1080] › computer.spec.ts:19:1 › setup offers computer opponents
+  [1920x1080] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2
+  [1920x1080] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3
+  [1920x1080] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4
+  [1920x1080] › computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped
+  [1920x1080] › direct-attack.spec.ts:20:1 › mouse enemy activation attacks once and repeats without source/target reselection
+  [1920x1080] › direct-attack.spec.ts:23:1 › keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only
+  [1920x1080] › direct-attack.spec.ts:30:1 › touch uses the same one-exchange repeat gesture
+  [1920x1080] › direct-attack.spec.ts:33:69 › direct capture minimum waits for explicit choice through save/reload/upload
+  [1920x1080] › direct-attack.spec.ts:33:69 › direct capture intermediate waits for explicit choice through save/reload/upload
+  [1920x1080] › direct-attack.spec.ts:33:69 › direct capture maximum waits for explicit choice through save/reload/upload
+  [1920x1080] › direct-attack.spec.ts:44:1 › Shift-click retains separate controls and Stop cancels the next continuous exchange
+  [1920x1080] › direct-attack.spec.ts:47:1 › friendly, distant and one-army inputs refuse attacks with the engine reason
+  [1920x1080] › direct-attack.spec.ts:52:1 › automatic computer attack phase refuses map, touch and keyboard human activations
+  [1920x1080] › entry.spec.ts:30:1 › explicit reference entry retains the playable match with one human and three computers
+  [1920x1080] › entry.spec.ts:71:1 › recognized entry routes remain explicit and authored data is available only by route
+  [1920x1080] › finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game
+  [1920x1080] › finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape
+  [1920x1080] › friendly-feedback.spec.ts:7:1 › movement route emphasis includes own sea neighbours and excludes enemy routes
+  [1920x1080] › friendly-feedback.spec.ts:16:1 › Escape cancels a move draft and restores the previous battle selection
+  [1920x1080] › friendly-move.spec.ts:19:52 › friendly minimum transfer ends turn, fits and refuses stale confirmation
+  [1920x1080] › friendly-move.spec.ts:19:52 › friendly maximum transfer ends turn, fits and refuses stale confirmation
+  [1920x1080] › friendly-move.spec.ts:29:1 › cancel returns to attacks without movement; skip hands off normally
+  [1920x1080] › friendly-move.spec.ts:33:1 › a just-captured country can supply the final friendly move
+  [1920x1080] › game-event-log.spec.ts:70:1 › popup works by keyboard while paused, appends exactly once and resets for a new match
+  [1920x1080] › game-event-log.spec.ts:84:54 › complete move-completed replay includes ordered army accounting beyond seven entries
+  [1920x1080] › game-event-log.spec.ts:84:54 › complete domination replay includes ordered army accounting beyond seven entries
+  [1920x1080] › game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip
+  [1920x1080] › game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip
+  [1920x1080] › game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip
+  [1920x1080] › game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery
+  [1920x1080] › generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport
+  [1920x1080] › generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection
+  [1920x1080] › generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry
+  [1920x1080] › generated-board.spec.ts:126:1 › golden: settled opt-in generated preview
+  [1920x1080] › generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport
+  [1920x1080] › generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts
+  [1920x1080] › generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff
+  [1920x1080] › generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers
+  [1920x1080] › generated-game.spec.ts:94:1 › golden: generated gameplay opening
+  [1920x1080] › generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel
+  [1920x1080] › geographic-board.spec.ts:63:1 › measured corpus fixture is frozen and reproducible
+  [1920x1080] › geographic-board.spec.ts:71:1 › root and unknown view retain the established setup and playback controls
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 1994 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 513 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 749 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 1 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 0 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 6 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:100:51 › painted borders use the core's exact legal targets and exchange
+  [1920x1080] › geographic-board.spec.ts:100:51 › painted seaLanes use the core's exact legal targets and exchange
+  [1920x1080] › geographic-board.spec.ts:113:1 › geographic replay and reference identity dispatch preserve state, history and pause
+  [1920x1080] › geographic-board.spec.ts:123:1 › invalid seed stays in setup and recovers
+  [1920x1080] › geographic-board.spec.ts:128:53 › real measured refusal 398 recovers
+  [1920x1080] › geographic-board.spec.ts:132:1 › geographic computer playback pauses and cancels stale work on load
+  [1920x1080] › geographic-board.spec.ts:169:1 › geographic continuous battle pauses/resumes and cancels stale work on load/new game
+  [1920x1080] › geographic-presentation.spec.ts:45:1 › real worker preparation is responsive and precedes playable construction
+  [1920x1080] › geographic-presentation.spec.ts:54:1 › actual geographic load preserves exact replay while painting the frozen presentation
+  [1920x1080] › geographic-presentation.spec.ts:70:1 › frozen changed boundaries receive pointer hits and a repeated load reuses the root drawing cache
+  [1920x1080] › geographic-presentation.spec.ts:80:1 › invalid newer file and New game reject held real-worker load completions without replacing a live match
+  [1920x1080] › geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army
+  [1920x1080] › geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match
+  [1920x1080] › geographic-review-guards.spec.ts:64:1 › default four-seat geographic shell shares reference responsive layout
+  [1920x1080] › help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus
+  [1920x1080] › help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match
+  [1920x1080] › help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game
+  [1920x1080] › hideable-panels.spec.ts:24:3 › reference: independently hidden panels reclaim map area and restore exactly
+  [1920x1080] › hideable-panels.spec.ts:43:3 › reference: icon cards surface closes with Escape and returns focus without game actions
+  [1920x1080] › hideable-panels.spec.ts:24:3 › geographic: independently hidden panels reclaim map area and restore exactly
+  [1920x1080] › hideable-panels.spec.ts:43:3 › geographic: icon cards surface closes with Escape and returns focus without game actions
+  [1920x1080] › icon-actions.spec.ts:36:2 › reference: visible sidebar toolbar stays outside the map in both top panel states
+  [1920x1080] › icon-actions.spec.ts:56:2 › reference: visible sidebar keeps an older history reader across focused surfaces
+  [1920x1080] › icon-actions.spec.ts:81:2 › reference: sidebar-only rail places armies and starts combat directly without scrolling
+  [1920x1080] › icon-actions.spec.ts:84:2 › reference: collapsed battle commands, pause and details preserve exact actions and selection
+  [1920x1080] › icon-actions.spec.ts:95:2 › reference: collapsed capture retains quantity across surfaces, toggles and pause
+  [1920x1080] › icon-actions.spec.ts:100:2 › reference: collapsed friendly non-default draft survives a redraw with input focus
+  [1920x1080] › icon-actions.spec.ts:129:2 › reference: collapsed card trade and nonmodal Raid use ordinary core actions
+  [1920x1080] › icon-actions.spec.ts:36:2 › geographic: visible sidebar toolbar stays outside the map in both top panel states
+  [1920x1080] › icon-actions.spec.ts:56:2 › geographic: visible sidebar keeps an older history reader across focused surfaces
+  [1920x1080] › icon-actions.spec.ts:81:2 › geographic: sidebar-only rail places armies and starts combat directly without scrolling
+  [1920x1080] › icon-actions.spec.ts:84:2 › geographic: collapsed battle commands, pause and details preserve exact actions and selection
+  [1920x1080] › icon-actions.spec.ts:95:2 › geographic: collapsed capture retains quantity across surfaces, toggles and pause
+  [1920x1080] › icon-actions.spec.ts:100:2 › geographic: collapsed friendly non-default draft survives a redraw with input focus
+  [1920x1080] › icon-actions.spec.ts:129:2 › geographic: collapsed card trade and nonmodal Raid use ordinary core actions
+  [1920x1080] › icon-actions.spec.ts:134:1 › collapsed full-hand discard, reward, skip and replacement retain reachable choices and clean surfaces
+  [1920x1080] › icon-actions.spec.ts:140:1 › collapsed human-loss and finished choices keep core results reachable
+  [1920x1080] › map-readability.spec.ts:11:1 › army-only labels and ownership shapes reduce the default name hierarchy
+  [1920x1080] › map-readability.spec.ts:22:1 › region names remain identifiable on mouse, keyboard and touch without changing inputs
+  [1920x1080] › match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1920x1080] › match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1920x1080] › match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1920x1080] › match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again
+  [1920x1080] › playback-controls.spec.ts:90:1 › labelled army totals follow ordinary actions and include eliminated players
+  [1920x1080] › playback-controls.spec.ts:105:1 › very slow spaces automatic actions by two seconds and changes no replay outcome
+  [1920x1080] › playback-controls.spec.ts:118:1 › Pause freezes computer play, rejects stale callbacks and replacement cancels the old match
+  [1920x1080] › playback-controls.spec.ts:134:1 › global pause freezes continuous human battle and gates manual reinforcement and capture
+  [1920x1080] › playback-edge-cases.spec.ts:7:1 › modal Escape preserves continuous combat; local/global very-slow controls stay synchronized
+  [1920x1080] › playback-edge-cases.spec.ts:29:1 › default four-seat controls fit and a paused computer is labelled paused
+  [1920x1080] › playback-edge-cases.spec.ts:38:1 › closing the event log does not steal focus from the next keyboard action
+  [1920x1080] › playback-edge-cases.spec.ts:47:1 › failed load feedback stays readable without covering capture or playback controls
+  [1920x1080] › reference-complete-game.spec.ts:26:1 › real human/computer setup, friendly move, pending save/resume, elimination and conquest
+  [1920x1080] › reference-game.spec.ts:25:1 › reference setup paints current geography, routes, live counts and reachable controls
+  [1920x1080] › reference-game.spec.ts:40:1 › ordinary reference clicks place, attack, hand off and replay legally to a winner
+  [1920x1080] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 800x540
+  [1920x1080] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 1280x800
+  [1920x1080] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 1920x1080
+  [1920x1080] › region-border-postprocess.spec.ts:58:1 › playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map
+  [1920x1080] › reinforcement.spec.ts:86:1 › placement spends only on owned provinces, then combat hands off a fresh pool
+  [1920x1080] › reinforcement.spec.ts:117:1 › both seats place armies and enter combat before returning to Blue in round two
+  [1920x1080] › retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings
+  [1920x1080] › slice.spec.ts:404:1 › the page loads with the title, the turn and both buttons
+  [1920x1080] › slice.spec.ts:415:1 › all 14 provinces render, visible, on top, and told apart by more than colour
+  [1920x1080] › slice.spec.ts:466:1 › the board is painted: the pixels inside every province are its owner's palette colour
+  [1920x1080] › slice.spec.ts:488:1 › every badge and name is actually painted, not merely present in the DOM
+  [1920x1080] › slice.spec.ts:553:1 › the layout fits the viewport: no page scroll, map and panel both fully visible
+  [1920x1080] › slice.spec.ts:579:3 › the panel never overflows at 1366x768: New game and the seed in view, nothing to scroll
+  [1920x1080] › slice.spec.ts:579:3 › the panel never overflows at 1600x900: New game and the seed in view, nothing to scroll
+  [1920x1080] › slice.spec.ts:579:3 › the panel never overflows at 1920x1080: New game and the seed in view, nothing to scroll
+  [1920x1080] › slice.spec.ts:597:1 › hovering a province outlines it and names it
+  [1920x1080] › slice.spec.ts:606:1 › selecting a province highlights it and its targets, dims the rest and enables Attack only with a target
+  [1920x1080] › slice.spec.ts:625:1 › legal-target markers and the arrow stay clear of every label, whichever province is selected
+  [1920x1080] › slice.spec.ts:642:1 › an illegal target is refused with the reason, and nothing is selected as a target
+  [1920x1080] › slice.spec.ts:651:1 › one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots)
+  [1920x1080] › slice.spec.ts:762:1 › End turn passes play to the other player, whose provinces become the playable ones
+  [1920x1080] › slice.spec.ts:783:1 › a province can be selected and a target chosen with the keyboard alone
+  [1920x1080] › slice.spec.ts:814:1 › golden: the whole board as painted, hatched seat included
+  [1920x1080] › slice.spec.ts:820:1 › golden: the panel as laid out
+  [1920x1080] › slice.spec.ts:826:1 › golden: the result dialog with its dice and verdicts
+  [1920x1080] › versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement
+  [1920x1080] › versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm
+  [1920x1080] › versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn
+  [1920x1080] › versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable
+  [1920x1080] › versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls
+  [1920x1080] › versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers
+  [1920x1080] › versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match
+  [1920x1080] › victory-options.spec.ts:70:1 › domination result names winner/reason, final standings, freezes and restarts
+  [1920x1080] › victory-options.spec.ts:99:1 › round limit finishes after a complete rotated round and explains the score
+  [1920x1080] › victory-options.spec.ts:128:1 › human loss offers Stop or Watch; Watch resumes computers and Stop freezes
+Total: 384 tests in 38 files
+Listing tests:
+  [1280x800] › battle-accessibility.spec.ts:36:1 › capture confirmation, quantities and context fit together with an accurate phase
+  [1280x800] › battle-accessibility.spec.ts:57:1 › keyboard Stop retains focus across an exchange; new game cancels work and remembers preferences
+  [1280x800] › battle-controls.spec.ts:25:1 › one chosen exchange shows actual ties, dice and live stacks without a later exchange
+  [1280x800] › battle-controls.spec.ts:32:1 › manual Stop takes effect before the next exchange while context stays visible
+  [1280x800] › battle-controls.spec.ts:37:1 › fight-on stops at the chosen fixed threshold after a loss
+  [1280x800] › battle-controls.spec.ts:42:54 › capture minimum preserves armies and rejects stale/unrelated controls
+  [1280x800] › battle-controls.spec.ts:42:54 › capture maximum preserves armies and rejects stale/unrelated controls
+  [1280x800] › battle-panel-fit.spec.ts:20:1 › complete human battle controls stay simultaneously visible without outer scrolling
+  [1280x800] › cards-result-layout.spec.ts:4:1 › final T40 loss choices fit both modes; retain all geometry before assertions
+  [1280x800] › cards.spec.ts:49:30 › Anchor: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1280x800] › cards.spec.ts:49:30 › Compass: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1280x800] › cards.spec.ts:49:30 › Lantern: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1280x800] › cards.spec.ts:49:30 › Surge: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1280x800] › cards.spec.ts:54:1 › geographic no-set passes once without RNG; an available set can be skipped without loss
+  [1280x800] › cards.spec.ts:60:1 › reference Raid has a private-safe named preview; friendly/background clicks refuse; confirmation is ordinary
+  [1280x800] › cards.spec.ts:67:1 › Shield feedback reveals only cancellation; spent set and exactly one Shield are conserved without RNG
+  [1280x800] › cards.spec.ts:72:1 › true geographic income and remote Country7 Raid preserve map metadata and exact saved stages
+  [1280x800] › cards.spec.ts:78:1 › all five pre-draw choices and normal reward fit; Continue changes neither history nor RNG
+  [1280x800] › cards.spec.ts:85:1 › Squall loss and decisive reward remain acknowledgeable in both modes without extra engine actions
+  [1280x800] › cards.spec.ts:92:1 › replacement and pause invalidate card drafts/rewards; complete history keeps an older reading offset
+  [1280x800] › cards.spec.ts:101:1 › spectator card files expose no private hand/choices; unsupported shared-human card files preserve live play
+  [1280x800] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 800x540
+  [1280x800] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 1280x800
+  [1280x800] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 1920x1080
+  [1280x800] › coast-postprocess.spec.ts:60:1 › playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map
+  [1280x800] › compact-panels.spec.ts:40:2 › reference: computer phase changes keep actual card bounds stable
+  [1280x800] › compact-panels.spec.ts:48:45 › reference compact: real computer actions retain fixed panel areas and essentials
+  [1280x800] › compact-panels.spec.ts:48:45 › reference detailed: real computer actions retain fixed panel areas and essentials
+  [1280x800] › compact-panels.spec.ts:61:2 › reference: default/reversible keyboard mode preserves pause, speed, log, load and next callback
+  [1280x800] › compact-panels.spec.ts:72:45 › reference compact: mandatory human capture and friendly movement remain visible and operable
+  [1280x800] › compact-panels.spec.ts:72:45 › reference detailed: mandatory human capture and friendly movement remain visible and operable
+  [1280x800] › compact-panels.spec.ts:40:2 › geographic: computer phase changes keep actual card bounds stable
+  [1280x800] › compact-panels.spec.ts:48:45 › geographic compact: real computer actions retain fixed panel areas and essentials
+  [1280x800] › compact-panels.spec.ts:48:45 › geographic detailed: real computer actions retain fixed panel areas and essentials
+  [1280x800] › compact-panels.spec.ts:61:2 › geographic: default/reversible keyboard mode preserves pause, speed, log, load and next callback
+  [1280x800] › compact-panels.spec.ts:72:45 › geographic compact: mandatory human capture and friendly movement remain visible and operable
+  [1280x800] › compact-panels.spec.ts:72:45 › geographic detailed: mandatory human capture and friendly movement remain visible and operable
+  [1280x800] › compact-panels.spec.ts:86:44 › reference compact: human-loss choices fit and remain usable
+  [1280x800] › compact-panels.spec.ts:86:44 › reference detailed: human-loss choices fit and remain usable
+  [1280x800] › compact-panels.spec.ts:94:46 › reference: complete battle history scrolls without deleting entries or moving an older reader
+  [1280x800] › compact-panels.spec.ts:94:46 › geographic: complete battle history scrolls without deleting entries or moving an older reader
+  [1280x800] › complete-game.spec.ts:30:1 › normal three-human clicks eliminate, skip a dead seat, conquer, freeze and restart
+  [1280x800] › computer-cards.spec.ts:39:1 › geographic setup enables cards only for zero/one human with explicit wording and exact identity
+  [1280x800] › computer-cards.spec.ts:51:1 › explicit manual geography and reference compatibility keep their historical identities
+  [1280x800] › computer-cards.spec.ts:56:1 › three consecutive computers perform literal Raid decisions and reach the correct human-loss choices
+  [1280x800] › computer-cards.spec.ts:75:1 › three consecutive computers discard oldest cards and return a living human to actual board placement
+  [1280x800] › computer-cards.spec.ts:85:1 › real computer pending discard chooses oldest index zero before drawing and needs no human reward
+  [1280x800] › computer-cards.spec.ts:90:1 › human acknowledgement blocks computers through pause/speed changes and resumes at exactly two seconds
+  [1280x800] › computer-cards.spec.ts:96:1 › native pending Raid/discard saves reload exactly, pause holds, and spectator cards progress privately
+  [1280x800] › computer-cards.spec.ts:105:1 › load/new game cancel old computer timers and detached human reward callbacks
+  [1280x800] › computer-cards.spec.ts:112:1 › automatic card actions preserve complete chronological log, upward reading, totals and public event history
+  [1280x800] › computer-turn-flow.spec.ts:16:1 › untouched setup starts one human and three Normal computers and consecutive turns return
+  [1280x800] › computer-turn-flow.spec.ts:27:1 › loaded computer capture resolves without a click; replacement and new game cancel old callbacks
+  [1280x800] › computer-turn-flow.spec.ts:36:1 › loss waits for Watch or Stop; finished game schedules no play; manual route stays manual
+  [1280x800] › computer.spec.ts:19:1 › setup offers computer opponents
+  [1280x800] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2
+  [1280x800] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3
+  [1280x800] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4
+  [1280x800] › computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped
+  [1280x800] › direct-attack.spec.ts:20:1 › mouse enemy activation attacks once and repeats without source/target reselection
+  [1280x800] › direct-attack.spec.ts:23:1 › keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only
+  [1280x800] › direct-attack.spec.ts:30:1 › touch uses the same one-exchange repeat gesture
+  [1280x800] › direct-attack.spec.ts:33:69 › direct capture minimum waits for explicit choice through save/reload/upload
+  [1280x800] › direct-attack.spec.ts:33:69 › direct capture intermediate waits for explicit choice through save/reload/upload
+  [1280x800] › direct-attack.spec.ts:33:69 › direct capture maximum waits for explicit choice through save/reload/upload
+  [1280x800] › direct-attack.spec.ts:44:1 › Shift-click retains separate controls and Stop cancels the next continuous exchange
+  [1280x800] › direct-attack.spec.ts:47:1 › friendly, distant and one-army inputs refuse attacks with the engine reason
+  [1280x800] › direct-attack.spec.ts:52:1 › automatic computer attack phase refuses map, touch and keyboard human activations
+  [1280x800] › entry.spec.ts:30:1 › explicit reference entry retains the playable match with one human and three computers
+  [1280x800] › entry.spec.ts:71:1 › recognized entry routes remain explicit and authored data is available only by route
+  [1280x800] › finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game
+  [1280x800] › finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape
+  [1280x800] › friendly-feedback.spec.ts:7:1 › movement route emphasis includes own sea neighbours and excludes enemy routes
+  [1280x800] › friendly-feedback.spec.ts:16:1 › Escape cancels a move draft and restores the previous battle selection
+  [1280x800] › friendly-move.spec.ts:19:52 › friendly minimum transfer ends turn, fits and refuses stale confirmation
+  [1280x800] › friendly-move.spec.ts:19:52 › friendly maximum transfer ends turn, fits and refuses stale confirmation
+  [1280x800] › friendly-move.spec.ts:29:1 › cancel returns to attacks without movement; skip hands off normally
+  [1280x800] › friendly-move.spec.ts:33:1 › a just-captured country can supply the final friendly move
+  [1280x800] › game-event-log.spec.ts:70:1 › popup works by keyboard while paused, appends exactly once and resets for a new match
+  [1280x800] › game-event-log.spec.ts:84:54 › complete move-completed replay includes ordered army accounting beyond seven entries
+  [1280x800] › game-event-log.spec.ts:84:54 › complete domination replay includes ordered army accounting beyond seven entries
+  [1280x800] › game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip
+  [1280x800] › game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip
+  [1280x800] › game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip
+  [1280x800] › game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery
+  [1280x800] › generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport
+  [1280x800] › generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection
+  [1280x800] › generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry
+  [1280x800] › generated-board.spec.ts:126:1 › golden: settled opt-in generated preview
+  [1280x800] › generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport
+  [1280x800] › generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts
+  [1280x800] › generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff
+  [1280x800] › generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers
+  [1280x800] › generated-game.spec.ts:94:1 › golden: generated gameplay opening
+  [1280x800] › generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel
+  [1280x800] › geographic-board.spec.ts:63:1 › measured corpus fixture is frozen and reproducible
+  [1280x800] › geographic-board.spec.ts:71:1 › root and unknown view retain the established setup and playback controls
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 1994 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 513 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 749 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 1 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 0 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:81:35 › seed 6 paints actual geography and contained legible army labels
+  [1280x800] › geographic-board.spec.ts:100:51 › painted borders use the core's exact legal targets and exchange
+  [1280x800] › geographic-board.spec.ts:100:51 › painted seaLanes use the core's exact legal targets and exchange
+  [1280x800] › geographic-board.spec.ts:113:1 › geographic replay and reference identity dispatch preserve state, history and pause
+  [1280x800] › geographic-board.spec.ts:123:1 › invalid seed stays in setup and recovers
+  [1280x800] › geographic-board.spec.ts:128:53 › real measured refusal 398 recovers
+  [1280x800] › geographic-board.spec.ts:132:1 › geographic computer playback pauses and cancels stale work on load
+  [1280x800] › geographic-board.spec.ts:169:1 › geographic continuous battle pauses/resumes and cancels stale work on load/new game
+  [1280x800] › geographic-presentation.spec.ts:45:1 › real worker preparation is responsive and precedes playable construction
+  [1280x800] › geographic-presentation.spec.ts:54:1 › actual geographic load preserves exact replay while painting the frozen presentation
+  [1280x800] › geographic-presentation.spec.ts:70:1 › frozen changed boundaries receive pointer hits and a repeated load reuses the root drawing cache
+  [1280x800] › geographic-presentation.spec.ts:80:1 › invalid newer file and New game reject held real-worker load completions without replacing a live match
+  [1280x800] › geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army
+  [1280x800] › geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match
+  [1280x800] › geographic-review-guards.spec.ts:64:1 › default four-seat geographic shell shares reference responsive layout
+  [1280x800] › help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus
+  [1280x800] › help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match
+  [1280x800] › help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game
+  [1280x800] › hideable-panels.spec.ts:24:3 › reference: independently hidden panels reclaim map area and restore exactly
+  [1280x800] › hideable-panels.spec.ts:43:3 › reference: icon cards surface closes with Escape and returns focus without game actions
+  [1280x800] › hideable-panels.spec.ts:24:3 › geographic: independently hidden panels reclaim map area and restore exactly
+  [1280x800] › hideable-panels.spec.ts:43:3 › geographic: icon cards surface closes with Escape and returns focus without game actions
+  [1280x800] › icon-actions.spec.ts:36:2 › reference: visible sidebar toolbar stays outside the map in both top panel states
+  [1280x800] › icon-actions.spec.ts:56:2 › reference: visible sidebar keeps an older history reader across focused surfaces
+  [1280x800] › icon-actions.spec.ts:81:2 › reference: sidebar-only rail places armies and starts combat directly without scrolling
+  [1280x800] › icon-actions.spec.ts:84:2 › reference: collapsed battle commands, pause and details preserve exact actions and selection
+  [1280x800] › icon-actions.spec.ts:95:2 › reference: collapsed capture retains quantity across surfaces, toggles and pause
+  [1280x800] › icon-actions.spec.ts:100:2 › reference: collapsed friendly non-default draft survives a redraw with input focus
+  [1280x800] › icon-actions.spec.ts:129:2 › reference: collapsed card trade and nonmodal Raid use ordinary core actions
+  [1280x800] › icon-actions.spec.ts:36:2 › geographic: visible sidebar toolbar stays outside the map in both top panel states
+  [1280x800] › icon-actions.spec.ts:56:2 › geographic: visible sidebar keeps an older history reader across focused surfaces
+  [1280x800] › icon-actions.spec.ts:81:2 › geographic: sidebar-only rail places armies and starts combat directly without scrolling
+  [1280x800] › icon-actions.spec.ts:84:2 › geographic: collapsed battle commands, pause and details preserve exact actions and selection
+  [1280x800] › icon-actions.spec.ts:95:2 › geographic: collapsed capture retains quantity across surfaces, toggles and pause
+  [1280x800] › icon-actions.spec.ts:100:2 › geographic: collapsed friendly non-default draft survives a redraw with input focus
+  [1280x800] › icon-actions.spec.ts:129:2 › geographic: collapsed card trade and nonmodal Raid use ordinary core actions
+  [1280x800] › icon-actions.spec.ts:134:1 › collapsed full-hand discard, reward, skip and replacement retain reachable choices and clean surfaces
+  [1280x800] › icon-actions.spec.ts:140:1 › collapsed human-loss and finished choices keep core results reachable
+  [1280x800] › map-readability.spec.ts:11:1 › army-only labels and ownership shapes reduce the default name hierarchy
+  [1280x800] › map-readability.spec.ts:22:1 › region names remain identifiable on mouse, keyboard and touch without changing inputs
+  [1280x800] › match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1280x800] › match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1280x800] › match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1280x800] › match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again
+  [1280x800] › playback-controls.spec.ts:90:1 › labelled army totals follow ordinary actions and include eliminated players
+  [1280x800] › playback-controls.spec.ts:105:1 › very slow spaces automatic actions by two seconds and changes no replay outcome
+  [1280x800] › playback-controls.spec.ts:118:1 › Pause freezes computer play, rejects stale callbacks and replacement cancels the old match
+  [1280x800] › playback-controls.spec.ts:134:1 › global pause freezes continuous human battle and gates manual reinforcement and capture
+  [1280x800] › playback-edge-cases.spec.ts:7:1 › modal Escape preserves continuous combat; local/global very-slow controls stay synchronized
+  [1280x800] › playback-edge-cases.spec.ts:29:1 › default four-seat controls fit and a paused computer is labelled paused
+  [1280x800] › playback-edge-cases.spec.ts:38:1 › closing the event log does not steal focus from the next keyboard action
+  [1280x800] › playback-edge-cases.spec.ts:47:1 › failed load feedback stays readable without covering capture or playback controls
+  [1280x800] › reference-complete-game.spec.ts:26:1 › real human/computer setup, friendly move, pending save/resume, elimination and conquest
+  [1280x800] › reference-game.spec.ts:25:1 › reference setup paints current geography, routes, live counts and reachable controls
+  [1280x800] › reference-game.spec.ts:40:1 › ordinary reference clicks place, attack, hand off and replay legally to a winner
+  [1280x800] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 800x540
+  [1280x800] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 1280x800
+  [1280x800] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 1920x1080
+  [1280x800] › region-border-postprocess.spec.ts:58:1 › playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map
+  [1280x800] › reinforcement.spec.ts:86:1 › placement spends only on owned provinces, then combat hands off a fresh pool
+  [1280x800] › reinforcement.spec.ts:117:1 › both seats place armies and enter combat before returning to Blue in round two
+  [1280x800] › retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings
+  [1280x800] › slice.spec.ts:404:1 › the page loads with the title, the turn and both buttons
+  [1280x800] › slice.spec.ts:415:1 › all 14 provinces render, visible, on top, and told apart by more than colour
+  [1280x800] › slice.spec.ts:466:1 › the board is painted: the pixels inside every province are its owner's palette colour
+  [1280x800] › slice.spec.ts:488:1 › every badge and name is actually painted, not merely present in the DOM
+  [1280x800] › slice.spec.ts:553:1 › the layout fits the viewport: no page scroll, map and panel both fully visible
+  [1280x800] › slice.spec.ts:579:3 › the panel never overflows at 1366x768: New game and the seed in view, nothing to scroll
+  [1280x800] › slice.spec.ts:579:3 › the panel never overflows at 1600x900: New game and the seed in view, nothing to scroll
+  [1280x800] › slice.spec.ts:579:3 › the panel never overflows at 1920x1080: New game and the seed in view, nothing to scroll
+  [1280x800] › slice.spec.ts:597:1 › hovering a province outlines it and names it
+  [1280x800] › slice.spec.ts:606:1 › selecting a province highlights it and its targets, dims the rest and enables Attack only with a target
+  [1280x800] › slice.spec.ts:625:1 › legal-target markers and the arrow stay clear of every label, whichever province is selected
+  [1280x800] › slice.spec.ts:642:1 › an illegal target is refused with the reason, and nothing is selected as a target
+  [1280x800] › slice.spec.ts:651:1 › one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots)
+  [1280x800] › slice.spec.ts:762:1 › End turn passes play to the other player, whose provinces become the playable ones
+  [1280x800] › slice.spec.ts:783:1 › a province can be selected and a target chosen with the keyboard alone
+  [1280x800] › slice.spec.ts:814:1 › golden: the whole board as painted, hatched seat included
+  [1280x800] › slice.spec.ts:820:1 › golden: the panel as laid out
+  [1280x800] › slice.spec.ts:826:1 › golden: the result dialog with its dice and verdicts
+  [1280x800] › versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement
+  [1280x800] › versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm
+  [1280x800] › versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn
+  [1280x800] › versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable
+  [1280x800] › versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls
+  [1280x800] › versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers
+  [1280x800] › versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match
+  [1280x800] › victory-options.spec.ts:70:1 › domination result names winner/reason, final standings, freezes and restarts
+  [1280x800] › victory-options.spec.ts:99:1 › round limit finishes after a complete rotated round and explains the score
+  [1280x800] › victory-options.spec.ts:128:1 › human loss offers Stop or Watch; Watch resumes computers and Stop freezes
+  [1920x1080] › battle-accessibility.spec.ts:36:1 › capture confirmation, quantities and context fit together with an accurate phase
+  [1920x1080] › battle-accessibility.spec.ts:57:1 › keyboard Stop retains focus across an exchange; new game cancels work and remembers preferences
+  [1920x1080] › battle-controls.spec.ts:25:1 › one chosen exchange shows actual ties, dice and live stacks without a later exchange
+  [1920x1080] › battle-controls.spec.ts:32:1 › manual Stop takes effect before the next exchange while context stays visible
+  [1920x1080] › battle-controls.spec.ts:37:1 › fight-on stops at the chosen fixed threshold after a loss
+  [1920x1080] › battle-controls.spec.ts:42:54 › capture minimum preserves armies and rejects stale/unrelated controls
+  [1920x1080] › battle-controls.spec.ts:42:54 › capture maximum preserves armies and rejects stale/unrelated controls
+  [1920x1080] › battle-panel-fit.spec.ts:20:1 › complete human battle controls stay simultaneously visible without outer scrolling
+  [1920x1080] › cards-result-layout.spec.ts:4:1 › final T40 loss choices fit both modes; retain all geometry before assertions
+  [1920x1080] › cards.spec.ts:49:30 › Anchor: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1920x1080] › cards.spec.ts:49:30 › Compass: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1920x1080] › cards.spec.ts:49:30 › Lantern: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1920x1080] › cards.spec.ts:49:30 › Surge: literal effect, ordinary trade, own hand and public piles fit both modes
+  [1920x1080] › cards.spec.ts:54:1 › geographic no-set passes once without RNG; an available set can be skipped without loss
+  [1920x1080] › cards.spec.ts:60:1 › reference Raid has a private-safe named preview; friendly/background clicks refuse; confirmation is ordinary
+  [1920x1080] › cards.spec.ts:67:1 › Shield feedback reveals only cancellation; spent set and exactly one Shield are conserved without RNG
+  [1920x1080] › cards.spec.ts:72:1 › true geographic income and remote Country7 Raid preserve map metadata and exact saved stages
+  [1920x1080] › cards.spec.ts:78:1 › all five pre-draw choices and normal reward fit; Continue changes neither history nor RNG
+  [1920x1080] › cards.spec.ts:85:1 › Squall loss and decisive reward remain acknowledgeable in both modes without extra engine actions
+  [1920x1080] › cards.spec.ts:92:1 › replacement and pause invalidate card drafts/rewards; complete history keeps an older reading offset
+  [1920x1080] › cards.spec.ts:101:1 › spectator card files expose no private hand/choices; unsupported shared-human card files preserve live play
+  [1920x1080] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 800x540
+  [1920x1080] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 1280x800
+  [1920x1080] › coast-postprocess.spec.ts:51:97 › standalone geography is painted and all46countries selectable at 1920x1080
+  [1920x1080] › coast-postprocess.spec.ts:60:1 › playable geography uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map
+  [1920x1080] › compact-panels.spec.ts:40:2 › reference: computer phase changes keep actual card bounds stable
+  [1920x1080] › compact-panels.spec.ts:48:45 › reference compact: real computer actions retain fixed panel areas and essentials
+  [1920x1080] › compact-panels.spec.ts:48:45 › reference detailed: real computer actions retain fixed panel areas and essentials
+  [1920x1080] › compact-panels.spec.ts:61:2 › reference: default/reversible keyboard mode preserves pause, speed, log, load and next callback
+  [1920x1080] › compact-panels.spec.ts:72:45 › reference compact: mandatory human capture and friendly movement remain visible and operable
+  [1920x1080] › compact-panels.spec.ts:72:45 › reference detailed: mandatory human capture and friendly movement remain visible and operable
+  [1920x1080] › compact-panels.spec.ts:40:2 › geographic: computer phase changes keep actual card bounds stable
+  [1920x1080] › compact-panels.spec.ts:48:45 › geographic compact: real computer actions retain fixed panel areas and essentials
+  [1920x1080] › compact-panels.spec.ts:48:45 › geographic detailed: real computer actions retain fixed panel areas and essentials
+  [1920x1080] › compact-panels.spec.ts:61:2 › geographic: default/reversible keyboard mode preserves pause, speed, log, load and next callback
+  [1920x1080] › compact-panels.spec.ts:72:45 › geographic compact: mandatory human capture and friendly movement remain visible and operable
+  [1920x1080] › compact-panels.spec.ts:72:45 › geographic detailed: mandatory human capture and friendly movement remain visible and operable
+  [1920x1080] › compact-panels.spec.ts:86:44 › reference compact: human-loss choices fit and remain usable
+  [1920x1080] › compact-panels.spec.ts:86:44 › reference detailed: human-loss choices fit and remain usable
+  [1920x1080] › compact-panels.spec.ts:94:46 › reference: complete battle history scrolls without deleting entries or moving an older reader
+  [1920x1080] › compact-panels.spec.ts:94:46 › geographic: complete battle history scrolls without deleting entries or moving an older reader
+  [1920x1080] › complete-game.spec.ts:30:1 › normal three-human clicks eliminate, skip a dead seat, conquer, freeze and restart
+  [1920x1080] › computer-cards.spec.ts:39:1 › geographic setup enables cards only for zero/one human with explicit wording and exact identity
+  [1920x1080] › computer-cards.spec.ts:51:1 › explicit manual geography and reference compatibility keep their historical identities
+  [1920x1080] › computer-cards.spec.ts:56:1 › three consecutive computers perform literal Raid decisions and reach the correct human-loss choices
+  [1920x1080] › computer-cards.spec.ts:75:1 › three consecutive computers discard oldest cards and return a living human to actual board placement
+  [1920x1080] › computer-cards.spec.ts:85:1 › real computer pending discard chooses oldest index zero before drawing and needs no human reward
+  [1920x1080] › computer-cards.spec.ts:90:1 › human acknowledgement blocks computers through pause/speed changes and resumes at exactly two seconds
+  [1920x1080] › computer-cards.spec.ts:96:1 › native pending Raid/discard saves reload exactly, pause holds, and spectator cards progress privately
+  [1920x1080] › computer-cards.spec.ts:105:1 › load/new game cancel old computer timers and detached human reward callbacks
+  [1920x1080] › computer-cards.spec.ts:112:1 › automatic card actions preserve complete chronological log, upward reading, totals and public event history
+  [1920x1080] › computer-turn-flow.spec.ts:16:1 › untouched setup starts one human and three Normal computers and consecutive turns return
+  [1920x1080] › computer-turn-flow.spec.ts:27:1 › loaded computer capture resolves without a click; replacement and new game cancel old callbacks
+  [1920x1080] › computer-turn-flow.spec.ts:36:1 › loss waits for Watch or Stop; finished game schedules no play; manual route stays manual
+  [1920x1080] › computer.spec.ts:19:1 › setup offers computer opponents
+  [1920x1080] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 2
+  [1920x1080] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 3
+  [1920x1080] › computer.spec.ts:20:28 › setup clicks, autonomous ordinary actions, gated input and human return 4
+  [1920x1080] › computer.spec.ts:48:1 › load replacement and New game cancel scheduled work; victory stays stopped
+  [1920x1080] › direct-attack.spec.ts:20:1 › mouse enemy activation attacks once and repeats without source/target reselection
+  [1920x1080] › direct-attack.spec.ts:23:1 › keyboard attacks agree with mouse; held-key repeats are ignored and Shift selects only
+  [1920x1080] › direct-attack.spec.ts:30:1 › touch uses the same one-exchange repeat gesture
+  [1920x1080] › direct-attack.spec.ts:33:69 › direct capture minimum waits for explicit choice through save/reload/upload
+  [1920x1080] › direct-attack.spec.ts:33:69 › direct capture intermediate waits for explicit choice through save/reload/upload
+  [1920x1080] › direct-attack.spec.ts:33:69 › direct capture maximum waits for explicit choice through save/reload/upload
+  [1920x1080] › direct-attack.spec.ts:44:1 › Shift-click retains separate controls and Stop cancels the next continuous exchange
+  [1920x1080] › direct-attack.spec.ts:47:1 › friendly, distant and one-army inputs refuse attacks with the engine reason
+  [1920x1080] › direct-attack.spec.ts:52:1 › automatic computer attack phase refuses map, touch and keyboard human activations
+  [1920x1080] › entry.spec.ts:30:1 › explicit reference entry retains the playable match with one human and three computers
+  [1920x1080] › entry.spec.ts:71:1 › recognized entry routes remain explicit and authored data is available only by route
+  [1920x1080] › finished-copy.spec.ts:123:1 › winning attack keeps coherent finished copy through Continue and Escape, then starts a fresh seeded game
+  [1920x1080] › finished-copy.spec.ts:159:1 › loading a finished legal save keeps its winner, restart guidance, and frozen actions after Escape
+  [1920x1080] › friendly-feedback.spec.ts:7:1 › movement route emphasis includes own sea neighbours and excludes enemy routes
+  [1920x1080] › friendly-feedback.spec.ts:16:1 › Escape cancels a move draft and restores the previous battle selection
+  [1920x1080] › friendly-move.spec.ts:19:52 › friendly minimum transfer ends turn, fits and refuses stale confirmation
+  [1920x1080] › friendly-move.spec.ts:19:52 › friendly maximum transfer ends turn, fits and refuses stale confirmation
+  [1920x1080] › friendly-move.spec.ts:29:1 › cancel returns to attacks without movement; skip hands off normally
+  [1920x1080] › friendly-move.spec.ts:33:1 › a just-captured country can supply the final friendly move
+  [1920x1080] › game-event-log.spec.ts:70:1 › popup works by keyboard while paused, appends exactly once and resets for a new match
+  [1920x1080] › game-event-log.spec.ts:84:54 › complete move-completed replay includes ordered army accounting beyond seven entries
+  [1920x1080] › game-event-log.spec.ts:84:54 › complete domination replay includes ordered army accounting beyond seven entries
+  [1920x1080] › game-setup.spec.ts:19:29 › settings start exact 2-human game and preserve play and round-trip
+  [1920x1080] › game-setup.spec.ts:19:29 › settings start exact 3-human game and preserve play and round-trip
+  [1920x1080] › game-setup.spec.ts:19:29 › settings start exact 4-human game and preserve play and round-trip
+  [1920x1080] › game-setup.spec.ts:42:1 › invalid seeds/counts and actual refusal have actionable recovery
+  [1920x1080] › generated-board.spec.ts:23:1 › 46 countries and full names are painted, readable, distinct and in the viewport
+  [1920x1080] › generated-board.spec.ts:59:1 › all island bonuses and exact border/sea connections, click and keyboard selection
+  [1920x1080] › generated-board.spec.ts:109:1 › editable seeds, reload stability, actual generation failure and retry
+  [1920x1080] › generated-board.spec.ts:126:1 › golden: settled opt-in generated preview
+  [1920x1080] › generated-game.spec.ts:24:1 › 46 countries and full names are painted, readable, distinct and in the viewport
+  [1920x1080] › generated-game.spec.ts:62:1 › exact topology, bonuses and initial createGame ownership and counts
+  [1920x1080] › generated-game.spec.ts:72:1 › placement clicks, keyboard selection, real apply attack and seat handoff
+  [1920x1080] › generated-game.spec.ts:89:1 › refusal is visible and accessible seed/retry recovers
+  [1920x1080] › generated-game.spec.ts:94:1 › golden: generated gameplay opening
+  [1920x1080] › generated-game.spec.ts:97:1 › seat cards keep all text inside the gameplay panel
+  [1920x1080] › geographic-board.spec.ts:63:1 › measured corpus fixture is frozen and reproducible
+  [1920x1080] › geographic-board.spec.ts:71:1 › root and unknown view retain the established setup and playback controls
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 1994 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 513 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 749 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 1 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 0 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:81:35 › seed 6 paints actual geography and contained legible army labels
+  [1920x1080] › geographic-board.spec.ts:100:51 › painted borders use the core's exact legal targets and exchange
+  [1920x1080] › geographic-board.spec.ts:100:51 › painted seaLanes use the core's exact legal targets and exchange
+  [1920x1080] › geographic-board.spec.ts:113:1 › geographic replay and reference identity dispatch preserve state, history and pause
+  [1920x1080] › geographic-board.spec.ts:123:1 › invalid seed stays in setup and recovers
+  [1920x1080] › geographic-board.spec.ts:128:53 › real measured refusal 398 recovers
+  [1920x1080] › geographic-board.spec.ts:132:1 › geographic computer playback pauses and cancels stale work on load
+  [1920x1080] › geographic-board.spec.ts:169:1 › geographic continuous battle pauses/resumes and cancels stale work on load/new game
+  [1920x1080] › geographic-presentation.spec.ts:45:1 › real worker preparation is responsive and precedes playable construction
+  [1920x1080] › geographic-presentation.spec.ts:54:1 › actual geographic load preserves exact replay while painting the frozen presentation
+  [1920x1080] › geographic-presentation.spec.ts:70:1 › frozen changed boundaries receive pointer hits and a repeated load reuses the root drawing cache
+  [1920x1080] › geographic-presentation.spec.ts:80:1 › invalid newer file and New game reject held real-worker load completions without replacing a live match
+  [1920x1080] › geographic-review-guards.spec.ts:13:1 › active geographic Enter and Space each place an army
+  [1920x1080] › geographic-review-guards.spec.ts:26:1 › explicit reference rejects geographic v2 with correct guidance and preserves usable live match
+  [1920x1080] › geographic-review-guards.spec.ts:64:1 › default four-seat geographic shell shares reference responsive layout
+  [1920x1080] › help.spec.ts:60:1 › setup help is reachable, readable, scrollable and returns focus
+  [1920x1080] › help.spec.ts:104:1 › gameplay help preserves an active selection and downloaded match
+  [1920x1080] › help.spec.ts:149:1 › computer help pauses, resumes and is discarded by New game
+  [1920x1080] › hideable-panels.spec.ts:24:3 › reference: independently hidden panels reclaim map area and restore exactly
+  [1920x1080] › hideable-panels.spec.ts:43:3 › reference: icon cards surface closes with Escape and returns focus without game actions
+  [1920x1080] › hideable-panels.spec.ts:24:3 › geographic: independently hidden panels reclaim map area and restore exactly
+  [1920x1080] › hideable-panels.spec.ts:43:3 › geographic: icon cards surface closes with Escape and returns focus without game actions
+  [1920x1080] › icon-actions.spec.ts:36:2 › reference: visible sidebar toolbar stays outside the map in both top panel states
+  [1920x1080] › icon-actions.spec.ts:56:2 › reference: visible sidebar keeps an older history reader across focused surfaces
+  [1920x1080] › icon-actions.spec.ts:81:2 › reference: sidebar-only rail places armies and starts combat directly without scrolling
+  [1920x1080] › icon-actions.spec.ts:84:2 › reference: collapsed battle commands, pause and details preserve exact actions and selection
+  [1920x1080] › icon-actions.spec.ts:95:2 › reference: collapsed capture retains quantity across surfaces, toggles and pause
+  [1920x1080] › icon-actions.spec.ts:100:2 › reference: collapsed friendly non-default draft survives a redraw with input focus
+  [1920x1080] › icon-actions.spec.ts:129:2 › reference: collapsed card trade and nonmodal Raid use ordinary core actions
+  [1920x1080] › icon-actions.spec.ts:36:2 › geographic: visible sidebar toolbar stays outside the map in both top panel states
+  [1920x1080] › icon-actions.spec.ts:56:2 › geographic: visible sidebar keeps an older history reader across focused surfaces
+  [1920x1080] › icon-actions.spec.ts:81:2 › geographic: sidebar-only rail places armies and starts combat directly without scrolling
+  [1920x1080] › icon-actions.spec.ts:84:2 › geographic: collapsed battle commands, pause and details preserve exact actions and selection
+  [1920x1080] › icon-actions.spec.ts:95:2 › geographic: collapsed capture retains quantity across surfaces, toggles and pause
+  [1920x1080] › icon-actions.spec.ts:100:2 › geographic: collapsed friendly non-default draft survives a redraw with input focus
+  [1920x1080] › icon-actions.spec.ts:129:2 › geographic: collapsed card trade and nonmodal Raid use ordinary core actions
+  [1920x1080] › icon-actions.spec.ts:134:1 › collapsed full-hand discard, reward, skip and replacement retain reachable choices and clean surfaces
+  [1920x1080] › icon-actions.spec.ts:140:1 › collapsed human-loss and finished choices keep core results reachable
+  [1920x1080] › map-readability.spec.ts:11:1 › army-only labels and ownership shapes reduce the default name hierarchy
+  [1920x1080] › map-readability.spec.ts:22:1 › region names remain identifiable on mouse, keyboard and touch without changing inputs
+  [1920x1080] › match-save.spec.ts:69:29 › 2 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1920x1080] › match-save.spec.ts:69:29 › 3 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1920x1080] › match-save.spec.ts:69:29 › 4 humans download, real upload on setup/gameplay, exact restore and continued attack/handoff
+  [1920x1080] › match-save.spec.ts:115:1 › finished legal history loads with readable winner and can be saved again
+  [1920x1080] › playback-controls.spec.ts:90:1 › labelled army totals follow ordinary actions and include eliminated players
+  [1920x1080] › playback-controls.spec.ts:105:1 › very slow spaces automatic actions by two seconds and changes no replay outcome
+  [1920x1080] › playback-controls.spec.ts:118:1 › Pause freezes computer play, rejects stale callbacks and replacement cancels the old match
+  [1920x1080] › playback-controls.spec.ts:134:1 › global pause freezes continuous human battle and gates manual reinforcement and capture
+  [1920x1080] › playback-edge-cases.spec.ts:7:1 › modal Escape preserves continuous combat; local/global very-slow controls stay synchronized
+  [1920x1080] › playback-edge-cases.spec.ts:29:1 › default four-seat controls fit and a paused computer is labelled paused
+  [1920x1080] › playback-edge-cases.spec.ts:38:1 › closing the event log does not steal focus from the next keyboard action
+  [1920x1080] › playback-edge-cases.spec.ts:47:1 › failed load feedback stays readable without covering capture or playback controls
+  [1920x1080] › reference-complete-game.spec.ts:26:1 › real human/computer setup, friendly move, pending save/resume, elimination and conquest
+  [1920x1080] › reference-game.spec.ts:25:1 › reference setup paints current geography, routes, live counts and reachable controls
+  [1920x1080] › reference-game.spec.ts:40:1 › ordinary reference clicks place, attack, hand off and replay legally to a winner
+  [1920x1080] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 800x540
+  [1920x1080] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 1280x800
+  [1920x1080] › region-border-postprocess.spec.ts:49:97 › standalone shared borders is painted and all46countries selectable at 1920x1080
+  [1920x1080] › region-border-postprocess.spec.ts:58:1 › playable shared borders uses new paint/hit positions and ordinary deterministic attacks while saves keep canonical map
+  [1920x1080] › reinforcement.spec.ts:86:1 › placement spends only on owned provinces, then combat hands off a fresh pool
+  [1920x1080] › reinforcement.spec.ts:117:1 › both seats place armies and enter combat before returning to Blue in round two
+  [1920x1080] › retry-validation.spec.ts:53:1 › refusal retry validates edited seeds and recovers with preserved settings
+  [1920x1080] › slice.spec.ts:404:1 › the page loads with the title, the turn and both buttons
+  [1920x1080] › slice.spec.ts:415:1 › all 14 provinces render, visible, on top, and told apart by more than colour
+  [1920x1080] › slice.spec.ts:466:1 › the board is painted: the pixels inside every province are its owner's palette colour
+  [1920x1080] › slice.spec.ts:488:1 › every badge and name is actually painted, not merely present in the DOM
+  [1920x1080] › slice.spec.ts:553:1 › the layout fits the viewport: no page scroll, map and panel both fully visible
+  [1920x1080] › slice.spec.ts:579:3 › the panel never overflows at 1366x768: New game and the seed in view, nothing to scroll
+  [1920x1080] › slice.spec.ts:579:3 › the panel never overflows at 1600x900: New game and the seed in view, nothing to scroll
+  [1920x1080] › slice.spec.ts:579:3 › the panel never overflows at 1920x1080: New game and the seed in view, nothing to scroll
+  [1920x1080] › slice.spec.ts:597:1 › hovering a province outlines it and names it
+  [1920x1080] › slice.spec.ts:606:1 › selecting a province highlights it and its targets, dims the rest and enables Attack only with a target
+  [1920x1080] › slice.spec.ts:625:1 › legal-target markers and the arrow stay clear of every label, whichever province is selected
+  [1920x1080] › slice.spec.ts:642:1 › an illegal target is refused with the reason, and nothing is selected as a target
+  [1920x1080] › slice.spec.ts:651:1 › one game, in sequence: select, attack by clicks, read the dice, end the turn (these are the screenshots)
+  [1920x1080] › slice.spec.ts:762:1 › End turn passes play to the other player, whose provinces become the playable ones
+  [1920x1080] › slice.spec.ts:783:1 › a province can be selected and a target chosen with the keyboard alone
+  [1920x1080] › slice.spec.ts:814:1 › golden: the whole board as painted, hatched seat included
+  [1920x1080] › slice.spec.ts:820:1 › golden: the panel as laid out
+  [1920x1080] › slice.spec.ts:826:1 › golden: the result dialog with its dice and verdicts
+  [1920x1080] › versioned-match.spec.ts:61:1 › placement download/upload retains full original options and continues placement
+  [1920x1080] › versioned-match.spec.ts:75:1 › pending capture reload keeps the choice and rejects a detached old confirm
+  [1920x1080] › versioned-match.spec.ts:89:1 › friendly move draft is transient; completed move restores exact next turn
+  [1920x1080] › versioned-match.spec.ts:112:1 › victory and human-loss choices survive real files and remain usable
+  [1920x1080] › versioned-match.spec.ts:128:1 › bad loads and generated-map files preserve the live match, draft and controls
+  [1920x1080] › versioned-match.spec.ts:146:1 › new game and a successful later load invalidate slow file readers
+  [1920x1080] › versioned-match.spec.ts:173:1 › successful load cancels queued fight-on work from the prior match
+  [1920x1080] › victory-options.spec.ts:70:1 › domination result names winner/reason, final standings, freezes and restarts
+  [1920x1080] › victory-options.spec.ts:99:1 › round limit finishes after a complete rotated round and explains the score
+  [1920x1080] › victory-options.spec.ts:128:1 › human loss offers Stop or Watch; Watch resumes computers and Stop freezes
+Total: 384 tests in 38 files
+{"mock":true,"gitHead":"6796b2a4e3d9ed84841b87037f251061c31dfa0a","packageSource":"6796b2a4e3d9ed84841b87037f251061c31dfa0a","extracted":"/tmp/malpaco-t91-preflight-ni5xPM","inventoryEqual":true,"inventorySummary":"Total: 384 tests in 38 files","limits":"Local sparse checkout only; no remote transfer timing, no browser execution, no workflow execution. Production verifier must expand actual sparse closure audit."}

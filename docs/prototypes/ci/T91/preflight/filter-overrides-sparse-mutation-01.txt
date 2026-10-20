@@ -1,0 +1,83 @@
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.922975ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.214387ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.241708ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.155995ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.143205ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.847106ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.445235ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.229862ms)
+✖ workflow: bounded temporary artifact retention and sparse real Git checkout (5.434026ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.638504
+
+✖ failing tests:
+
+test at tests/tools/ci-workflow.test.mjs:28:1
+✖ workflow: bounded temporary artifact retention and sparse real Git checkout (5.434026ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /^\s*filter:/m. Input:
+  
+  '    needs: plan\n' +
+    "    if: needs.plan.outputs.mode != 'docs'\n" +
+    '    runs-on: ubuntu-latest\n' +
+    '    container: mcr.microsoft.com/playwright:v1.63.0-noble\n' +
+    '    steps:\n' +
+    '      - uses: actions/checkout@v4\n' +
+    '        with:\n' +
+    '          filter: blob:none\n' +
+    '          sparse-checkout-cone-mode: false\n' +
+    '          sparse-checkout: |\n' +
+    '            /*\n' +
+    '            !/docs/**/*.png\n' +
+    '            !/docs/**/*.tar.gz\n' +
+    '      - uses: actions/setup-node@v4\n' +
+    '        with:\n' +
+    '          node-version: 22\n' +
+    '          cache: npm\n' +
+    '      - run: npm ci\n' +
+    '      - run: npm test\n' +
+    '      - run: node tools/ci/verify.mjs\n' +
+    '      - name: Full packaged browser suite\n' +
+    '        run: npx playwright test --config playwright.release.config.ts --workers=2\n' +
+    '      - name: Additional source server coverage\n' +
+    "        if: github.event_name == 'workflow_dispatch' && inputs.full_release\n" +
+    '        run: npx playwright test --workers=2\n' +
+    '      - uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: screenshots\n' +
+    '          path: screenshots/\n' +
+    '          retention-days: 14\n' +
+    '      - uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: malpaco-playable\n' +
+    '          path: release/malpaco-playable.tar.gz\n' +
+    '      - uses: actions/upload-artifact@v4\n' +
+    '        if: failure()\n' +
+    '        with:\n' +
+    '          name: reports\n' +
+    '          path: |\n' +
+    '            playwright-report/\n' +
+    '            test-results/\n' +
+    '            playwright-report-release/\n' +
+    '            test-results-release/\n' +
+    '          retention-days: 14\n'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:30:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "    needs: plan\n    if: needs.plan.outputs.mode != 'docs'\n    runs-on: ubuntu-latest\n    container: mcr.microsoft.com/playwright:v1.63.0-noble\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          filter: blob:none\n          sparse-checkout-cone-mode: false\n          sparse-checkout: |\n            /*\n            !/docs/**/*.png\n            !/docs/**/*.tar.gz\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 22\n          cache: npm\n      - run: npm ci\n      - run: npm test\n      - run: node tools/ci/verify.mjs\n      - name: Full packaged browser suite\n        run: npx playwright test --config playwright.release.config.ts --workers=2\n      - name: Additional source server coverage\n        if: github.event_name == 'workflow_dispatch' && inputs.full_release\n        run: npx playwright test --workers=2\n      - uses: actions/upload-artifact@v4\n        with:\n          name: screenshots\n          path: screenshots/\n          retention-days: 14\n      - uses: actions/upload-artifact@v4\n        with:\n          name: malpaco-playable\n          path: release/malpaco-playable.tar.gz\n      - uses: actions/upload-artifact@v4\n        if: failure()\n        with:\n          name: reports\n          path: |\n            playwright-report/\n            test-results/\n            playwright-report-release/\n            test-results-release/\n          retention-days: 14\n",
+    expected: /^\s*filter:/m,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }

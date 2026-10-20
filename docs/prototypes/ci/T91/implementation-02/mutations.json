@@ -1,0 +1,108 @@
+{
+  "results": [
+    {
+      "name": "missing-gate",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "missing-plan",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "unknown-prose",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "incomplete-diff",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "truncated-diff",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "deleted-prose",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "previous-source",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "failed-plan",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "skipped-full",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "cancelled-full",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "unbound-event",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "unbound-base",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "unbound-head",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "source-unconditional",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "gate-skipped",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "cross-pr-cancel",
+      "exit": 1,
+      "killed": true
+    },
+    {
+      "name": "filter-override",
+      "exit": 1,
+      "killed": true
+    }
+  ],
+  "restored": [
+    {
+      "path": "tools/ci/policy.mjs",
+      "sha256": "02a6a1579d6fb20e710b076890577e5d429de5d06809eb4ff4022e141b2e4f81"
+    },
+    {
+      "path": "tools/ci/plan.mjs",
+      "sha256": "bc861427ad98371b48c2d6e48fc7a2e8d52c675ad3286966481b47753be2bc39"
+    },
+    {
+      "path": "tools/ci/gate.mjs",
+      "sha256": "961eae88c87005e005da30e3e73d5da9ccaf286bbd18fe1c8ba93fb7967e0670"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "8fc2e91e551609f4e27cef32817ace59db12a9a5ede4729def274fe4a8621bd0"
+    }
+  ],
+  "backup": "/tmp/t91-mutation-backup-kgmwby"
+}

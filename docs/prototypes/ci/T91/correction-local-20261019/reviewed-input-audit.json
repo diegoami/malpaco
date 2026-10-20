@@ -1,0 +1,11 @@
+{
+  ".github/workflows/ci.yml": true,
+  "tools/ci/policy.mjs": true,
+  "tools/ci/gate.mjs": true,
+  "tools/ci/plan.mjs": true,
+  "tools/ci/verify.mjs": true,
+  "tests/tools/ci-workflow.test.mjs": true,
+  "tests/tools/ci-policy.test.mjs": true,
+  "tests/tools/ci-plan.test.mjs": true,
+  "tests/tools/ci-cli.test.mjs": true
+}

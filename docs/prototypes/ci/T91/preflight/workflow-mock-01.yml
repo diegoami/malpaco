@@ -1,0 +1,83 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      full_release:
+        type: boolean
+        default: false
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+          sparse-checkout: |
+            /tools/ci/
+      - id: plan
+        run: node tools/ci/plan.mjs
+  verify:
+    needs: plan
+    if: needs.plan.outputs.mode != 'docs'
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/docs/**/*.png
+            !/docs/**/*.tar.gz
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: node tools/ci/verify.mjs
+      - name: Full packaged browser suite
+        run: npx playwright test --config playwright.release.config.ts --workers=2
+      - name: Additional source server coverage
+        if: github.event_name == 'workflow_dispatch' && inputs.full_release
+        run: npx playwright test --workers=2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: malpaco-playable
+          path: release/malpaco-playable.tar.gz
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: reports
+          path: |
+            playwright-report/
+            test-results/
+            playwright-report-release/
+            test-results-release/
+          retention-days: 14
+  ci:
+    needs: [plan, verify]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: tools/ci
+      - run: node tools/ci/gate.mjs
+        env:
+          CLASSIFICATION_RESULT: ${{ needs.plan.result }}
+          CI_MODE: ${{ needs.plan.outputs.mode }}
+          VERIFICATION_RESULT: ${{ needs.verify.result }}

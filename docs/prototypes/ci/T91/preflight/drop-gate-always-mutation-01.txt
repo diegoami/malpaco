@@ -1,0 +1,49 @@
+✔ allowlist: known prose additions/modifications alone take lightweight validation (0.928396ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.222241ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.252719ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.161133ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.142307ms)
+✖ workflow: stable ci gate always accounts for both classification and verification (1.270307ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.589575ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.179918ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (1.753062ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 54.022665
+
+✖ failing tests:
+
+test at tests/tools/ci-workflow.test.mjs:7:1
+✖ workflow: stable ci gate always accounts for both classification and verification (1.270307ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /if:.*always\(\)/. Input:
+  
+  '    needs: [plan, verify]\n' +
+    '    if: success()\n' +
+    '    runs-on: ubuntu-latest\n' +
+    '    steps:\n' +
+    '      - uses: actions/checkout@v4\n' +
+    '        with:\n' +
+    '          sparse-checkout: tools/ci\n' +
+    '      - run: node tools/ci/gate.mjs\n' +
+    '        env:\n' +
+    '          CLASSIFICATION_RESULT: ${{ needs.plan.result }}\n' +
+    '          CI_MODE: ${{ needs.plan.outputs.mode }}\n' +
+    '          VERIFICATION_RESULT: ${{ needs.verify.result }}\n'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:8:80)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '    needs: [plan, verify]\n    if: success()\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          sparse-checkout: tools/ci\n      - run: node tools/ci/gate.mjs\n        env:\n          CLASSIFICATION_RESULT: ${{ needs.plan.result }}\n          CI_MODE: ${{ needs.plan.outputs.mode }}\n          VERIFICATION_RESULT: ${{ needs.verify.result }}\n',
+    expected: /if:.*always\(\)/,
+    operator: 'match',
+    diff: 'simple'
+  }

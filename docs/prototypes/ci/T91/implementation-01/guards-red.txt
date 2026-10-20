@@ -1,0 +1,367 @@
+✖ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (67.456319ms)
+✖ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (50.235451ms)
+✖ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (51.454494ms)
+node:internal/modules/esm/resolve:272
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/home/diego/projects/malpaco/.cache/worktrees/T91-ci/tools/ci/policy.mjs' imported from /home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-policy.test.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:272:11)
+    at moduleResolve (node:internal/modules/esm/resolve:879:10)
+    at defaultResolve (node:internal/modules/esm/resolve:1006:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:705:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:725:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:763:56)
+    at #resolve (node:internal/modules/esm/loader:687:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:607:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:276:33)
+    at ModuleJob.link (node:internal/modules/esm/module_job:381:17) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tools/ci/policy.mjs'
+}
+
+Node.js v24.21.0
+✖ tests/tools/ci-policy.test.mjs (33.242913ms)
+✖ workflow: stable ci gate always accounts for both classification and verification (1.638037ms)
+✖ workflow: routine retains all package browser tests and manual release adds source tests (0.260942ms)
+✖ workflow: only superseded heads of same PR share cancellable concurrency (4.110478ms)
+✖ workflow: bounded temporary artifact retention and sparse real Git checkout (0.171684ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 0
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 219.628203
+
+✖ failing tests:
+
+test at tests/tools/ci-plan.test.mjs:23:1
+✖ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (67.456319ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/cjs/loader:1568
+    throw err;
+    ^
+  
+  Error: Cannot find module '/home/diego/projects/malpaco/.cache/worktrees/T91-ci/tools/ci/plan.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)
+      at Module._load (node:internal/modules/cjs/loader:1341:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.21.0
+  
+  
+  
+  1 !== 0
+  
+      at plan (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-plan.test.mjs:21:83)
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-plan.test.mjs:24:37)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-plan.test.mjs:27:1
+✖ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (50.235451ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/cjs/loader:1568
+    throw err;
+    ^
+  
+  Error: Cannot find module '/home/diego/projects/malpaco/.cache/worktrees/T91-ci/tools/ci/plan.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)
+      at Module._load (node:internal/modules/cjs/loader:1341:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.21.0
+  
+  
+  
+  1 !== 0
+  
+      at plan (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-plan.test.mjs:21:83)
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-plan.test.mjs:28:33)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-plan.test.mjs:33:1
+✖ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (51.454494ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/cjs/loader:1568
+    throw err;
+    ^
+  
+  Error: Cannot find module '/home/diego/projects/malpaco/.cache/worktrees/T91-ci/tools/ci/plan.mjs'
+      at Module._resolveFilename (node:internal/modules/cjs/loader:1564:15)
+      at wrapResolveFilename (node:internal/modules/cjs/loader:1118:27)
+      at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1142:10)
+      at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1169:12)
+      at Module._load (node:internal/modules/cjs/loader:1341:5)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+      at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+      at node:internal/main/run_main_module:33:47 {
+    code: 'MODULE_NOT_FOUND',
+    requireStack: []
+  }
+  
+  Node.js v24.21.0
+  
+  
+  
+  1 !== 0
+  
+      at plan (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-plan.test.mjs:21:83)
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-plan.test.mjs:34:114)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-policy.test.mjs:1:1
+✖ tests/tools/ci-policy.test.mjs (33.242913ms)
+  'test failed'
+
+test at tests/tools/ci-workflow.test.mjs:7:1
+✖ workflow: stable ci gate always accounts for both classification and verification (1.638037ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /needs:\s*\[plan,\s*verify\]/. Input:
+  
+  '    # One rendering environment for the browser and its screenshots (issue #2,\n' +
+    "    # item 8): the official Playwright image, pinned to @playwright/test's\n" +
+    '    # version in package-lock.json, the same image goldens are made in locally.\n' +
+    '    # Browsers and their dependencies ship in it, so there is no install step.\n' +
+    '    runs-on: ubuntu-latest\n' +
+    '    container: mcr.microsoft.com/playwright:v1.63.0-noble\n' +
+    '    steps:\n' +
+    '      - uses: actions/checkout@v4\n' +
+    '\n' +
+    '      - uses: actions/setup-node@v4\n' +
+    '        with:\n' +
+    '          node-version: 22\n' +
+    '          cache: npm\n' +
+    '\n' +
+    '      - name: Install\n' +
+    '        run: npm ci\n' +
+    '\n' +
+    '      - name: Build (type-check, then bundle)\n' +
+    '        run: npm run build\n' +
+    '\n' +
+    '      - name: Vitest (rules core)\n' +
+    '        run: npm test\n' +
+    '\n' +
+    '      - name: Playwright (headless UI tests, screenshots and goldens)\n' +
+    '        run: npx playwright test --workers=2\n' +
+    '\n' +
+    '      - name: Package and verify playable artifact\n' +
+    '        run: |\n' +
+    '          fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"\n' +
+    '          echo "PLAYABLE_EXTRACTED_DIR=$fresh_dir" >> "$GITHUB_ENV"\n' +
+    '          node docs/prototypes/playable/acceptance.mjs "$fresh_dir"\n' +
+    '\n' +
+    '      - name: Playwright (extracted playable artifact)\n' +
+    '        run: npx playwright test --config playwright.release.config.ts --workers=2\n' +
+    '\n' +
+    '      - name: Upload screenshots\n' +
+    '        if: always()\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: screenshots\n' +
+    '          path: screenshots/\n' +
+    '          if-no-files-found: error\n' +
+    '\n' +
+    '      - name: Upload playable archive\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: malpaco-playable\n' +
+    '          path: release/malpaco-playable.tar.gz\n' +
+    '          if-no-files-found: error\n' +
+    '\n' +
+    '      - name: Upload Playwright report\n' +
+    '        if: failure()\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: playwright-report\n' +
+    '          path: |\n' +
+    '            playwright-report/\n' +
+    '            test-results/\n' +
+    '          if-no-files-found: ignore\n'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:8:31)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `    # One rendering environment for the browser and its screenshots (issue #2,\n    # item 8): the official Playwright image, pinned to @playwright/test's\n    # version in package-lock.json, the same image goldens are made in locally.\n    # Browsers and their dependencies ship in it, so there is no install step.\n    runs-on: ubuntu-latest\n    container: mcr.microsoft.com/playwright:v1.63.0-noble\n    steps:\n      - uses: actions/checkout@v4\n\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 22\n          cache: npm\n\n      - name: Install\n        run: npm ci\n\n      - name: Build (type-check, then bundle)\n        run: npm run build\n\n      - name: Vitest (rules core)\n        run: npm test\n\n      - name: Playwright (headless UI tests, screenshots and goldens)\n        run: npx playwright test --workers=2\n\n      - name: Package and verify playable artifact\n        run: |\n          fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"\n          echo "PLAYABLE_EXTRACTED_DIR=$fresh_dir" >> "$GITHUB_ENV"\n          node docs/prototypes/playable/acceptance.mjs "$fresh_dir"\n\n      - name: Playwright (extracted playable artifact)\n        run: npx playwright test --config playwright.release.config.ts --workers=2\n\n      - name: Upload screenshots\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: screenshots\n          path: screenshots/\n          if-no-files-found: error\n\n      - name: Upload playable archive\n        uses: actions/upload-artifact@v4\n        with:\n          name: malpaco-playable\n          path: release/malpaco-playable.tar.gz\n          if-no-files-found: error\n\n      - name: Upload Playwright report\n        if: failure()\n        uses: actions/upload-artifact@v4\n        with:\n          name: playwright-report\n          path: |\n            playwright-report/\n            test-results/\n          if-no-files-found: ignore\n`,
+    expected: /needs:\s*\[plan,\s*verify\]/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-workflow.test.mjs:12:1
+✖ workflow: routine retains all package browser tests and manual release adds source tests (0.260942ms)
+  AssertionError [ERR_ASSERTION]: workflow job verify
+      at job (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:5:144)
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:13:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-workflow.test.mjs:22:1
+✖ workflow: only superseded heads of same PR share cancellable concurrency (4.110478ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /group:.*github\.workflow.*github\.event\.pull_request\.number.*github\.run_id/. Input:
+  
+  'name: ci\n' +
+    '\n' +
+    '# The walking skeleton: the pure rules core and the SVG board it paints.\n' +
+    'on:\n' +
+    '  push:\n' +
+    '    branches: [main]\n' +
+    '  pull_request:\n' +
+    '\n' +
+    'jobs:\n' +
+    '  ci:\n' +
+    '    # One rendering environment for the browser and its screenshots (issue #2,\n' +
+    "    # item 8): the official Playwright image, pinned to @playwright/test's\n" +
+    '    # version in package-lock.json, the same image goldens are made in locally.\n' +
+    '    # Browsers and their dependencies ship in it, so there is no install step.\n' +
+    '    runs-on: ubuntu-latest\n' +
+    '    container: mcr.microsoft.com/playwright:v1.63.0-noble\n' +
+    '    steps:\n' +
+    '      - uses: actions/checkout@v4\n' +
+    '\n' +
+    '      - uses: actions/setup-node@v4\n' +
+    '        with:\n' +
+    '          node-version: 22\n' +
+    '          cache: npm\n' +
+    '\n' +
+    '      - name: Install\n' +
+    '        run: npm ci\n' +
+    '\n' +
+    '      - name: Build (type-check, then bundle)\n' +
+    '        run: npm run build\n' +
+    '\n' +
+    '      - name: Vitest (rules core)\n' +
+    '        run: npm test\n' +
+    '\n' +
+    '      - name: Playwright (headless UI tests, screenshots and goldens)\n' +
+    '        run: npx playwright test --workers=2\n' +
+    '\n' +
+    '      - name: Package and verify playable artifact\n' +
+    '        run: |\n' +
+    '          fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"\n' +
+    '          echo "PLAYABLE_EXTRACTED_DIR=$fresh_dir" >> "$GITHUB_ENV"\n' +
+    '          node docs/prototypes/playable/acceptance.mjs "$fresh_dir"\n' +
+    '\n' +
+    '      - name: Playwright (extracted playable artifact)\n' +
+    '        run: npx playwright test --config playwright.release.config.ts --workers=2\n' +
+    '\n' +
+    '      - name: Upload screenshots\n' +
+    '        if: always()\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: screenshots\n' +
+    '          path: screenshots/\n' +
+    '          if-no-files-found: error\n' +
+    '\n' +
+    '      - name: Upload playable archive\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: malpaco-playable\n' +
+    '          path: release/malpaco-playable.tar.gz\n' +
+    '          if-no-files-found: error\n' +
+    '\n' +
+    '      - name: Upload Playwright report\n' +
+    '        if: failure()\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: playwright-report\n' +
+    '          path: |\n' +
+    '            playwright-report/\n' +
+    '            test-results/\n' +
+    '          if-no-files-found: ignore\n'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `name: ci\n\n# The walking skeleton: the pure rules core and the SVG board it paints.\non:\n  push:\n    branches: [main]\n  pull_request:\n\njobs:\n  ci:\n    # One rendering environment for the browser and its screenshots (issue #2,\n    # item 8): the official Playwright image, pinned to @playwright/test's\n    # version in package-lock.json, the same image goldens are made in locally.\n    # Browsers and their dependencies ship in it, so there is no install step.\n    runs-on: ubuntu-latest\n    container: mcr.microsoft.com/playwright:v1.63.0-noble\n    steps:\n      - uses: actions/checkout@v4\n\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 22\n          cache: npm\n\n      - name: Install\n        run: npm ci\n\n      - name: Build (type-check, then bundle)\n        run: npm run build\n\n      - name: Vitest (rules core)\n        run: npm test\n\n      - name: Playwright (headless UI tests, screenshots and goldens)\n        run: npx playwright test --workers=2\n\n      - name: Package and verify playable artifact\n        run: |\n          fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"\n          echo "PLAYABLE_EXTRACTED_DIR=$fresh_dir" >> "$GITHUB_ENV"\n          node docs/prototypes/playable/acceptance.mjs "$fresh_dir"\n\n      - name: Playwright (extracted playable artifact)\n        run: npx playwright test --config playwright.release.config.ts --workers=2\n\n      - name: Upload screenshots\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: screenshots\n          path: screenshots/\n          if-no-files-found: error\n\n      - name: Upload playable archive\n        uses: actions/upload-artifact@v4\n        with:\n          name: malpaco-playable\n          path: release/malpaco-playable.tar.gz\n          if-no-files-found: error\n\n      - name: Upload Playwright report\n        if: failure()\n        uses: actions/upload-artifact@v4\n        with:\n          name: playwright-report\n          path: |\n            playwright-report/\n            test-results/\n          if-no-files-found: ignore\n`,
+    expected: /group:.*github\.workflow.*github\.event\.pull_request\.number.*github\.run_id/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/tools/ci-workflow.test.mjs:28:1
+✖ workflow: bounded temporary artifact retention and sparse real Git checkout (0.171684ms)
+  AssertionError [ERR_ASSERTION]: workflow job verify
+      at job (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:5:144)
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:29:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

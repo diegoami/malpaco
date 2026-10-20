@@ -1,0 +1,28 @@
+{
+  "controls": [
+    {
+      "name": "no-scoped-trust",
+      "exit": 1
+    },
+    {
+      "name": "wildcard-trust",
+      "exit": 1
+    },
+    {
+      "name": "verifier-bypasses-helper",
+      "exit": 1
+    },
+    {
+      "name": "status-bypasses-helper",
+      "exit": 1
+    },
+    {
+      "name": "original-verifier",
+      "exit": 1
+    }
+  ],
+  "restored": {
+    "tools/ci/git.mjs": "74d6d66c1792d919c30b98398790a4f6154dd23d8882374e7d685e520abfa02c",
+    "tools/ci/verify.mjs": "1c3e93f423b95140dacedf67294041c21a8f943b4262fd89ca44d795a0b503fb"
+  }
+}

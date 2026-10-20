@@ -1,0 +1,11 @@
+# T91 test correction and restart checkpoint
+
+Owner requests a restart; no new tasks are dispatched. Read the complete first independent [Opus review](https://github.com/diegoami/malpaco/pull/212#issuecomment-6276257159), also retained in review/round1. It requested rework because mandatory-step `if:` skips and browser weakening flags survived the original guard tests. Current production workflow commands were correct. Main added two guards without modifying the original tests, workflow or CI tool implementation.
+
+All18guardtests pass. Nine controls (three step skips and six browser flags) each fail the new assertions; final workflow bytes are restored exactly. Original raw controls live in preflight/review-regressions-01. The repeated local Done-when sequence on committed dba549be passed: DW1exit0/18tests, DW2exit0/838Vitest+9harness/type/build, DW3exit0/package SHA/retained input audit/384equal browser identities. Browser inventory is discovery, not execution. Raw outputs and native exits are beside this report; DW3 detailed evidence is runs/verify-Y5waBQ. One newly committed excluded review archive remains physically present locally; this does not alter retained-input preservation or the future fresh sparse checkout.
+
+reviewed-input-audit.json proves the workflow, all CI implementation files and original CI tests are byte-identical to first-reviewed ad6fe08c. The correction changes only guard coverage/evidence/notes. First native review archive members were hash-verified after packing.
+
+R3provenance negative-controls is nonblocking follow-up; R4container safe.directory is unverified and fails closed; R5default receipt retention is documented and not permanent archiving. Do not silently add unrelated changes.
+
+Next session: check live PR212 and issue211. Ask the owner to authorize one additional independent correction review under CLAUDE.md rule6.2 (recommend Sonnet Medium for the focused test-only correction). No authorization has been received for a second review. Do not rerun the initial review automatically. After approval and all evidence/notes are pushed, start exactly one final normal PR CI head and wait; do not duplicate or push intermediate heads during CI. Merge only after approving review and greenCI. No T79/product feature, deployment or Goal2 change is started here.

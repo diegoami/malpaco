@@ -1,0 +1,812 @@
+[
+  {
+    "path": "docs/prototypes/ci/T91/BOUNDARY.md",
+    "expected": "7ae1a17e2bb67c62cdeb33b247bfcd05d44fbee756bdf7b7cf1ce424ed0a9047",
+    "actual": "7ae1a17e2bb67c62cdeb33b247bfcd05d44fbee756bdf7b7cf1ce424ed0a9047",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/guards-final-01.txt",
+    "expected": "18a458a8030930ab4fba659bf809c25d15f23d85c023b8ac29031a73e541742e",
+    "actual": "18a458a8030930ab4fba659bf809c25d15f23d85c023b8ac29031a73e541742e",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/guards-green-01.txt",
+    "expected": "7f710cff2d9797a4d200424c56fc56fd18c2542d0c2ce0fba2cbe5bb30c1017e",
+    "actual": "7f710cff2d9797a4d200424c56fc56fd18c2542d0c2ce0fba2cbe5bb30c1017e",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/guards-green-02.txt",
+    "expected": "651d95806a0b706574b59acbeecd66f8190ecb46f3c9a77da18fa49af8ee3917",
+    "actual": "651d95806a0b706574b59acbeecd66f8190ecb46f3c9a77da18fa49af8ee3917",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/guards-red.txt",
+    "expected": "e84cf58cfc4fca4286c47b6295765afdc31360c38d0821785de9f548f41eee91",
+    "actual": "e84cf58cfc4fca4286c47b6295765afdc31360c38d0821785de9f548f41eee91",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-cancelled-full.txt",
+    "expected": "dfb0353a2c32f6cd86d520e9d9c863f043e5ce30a6993fcaccfb804372d8b73c",
+    "actual": "dfb0353a2c32f6cd86d520e9d9c863f043e5ce30a6993fcaccfb804372d8b73c",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-check.mjs",
+    "expected": "1bd894f51accfe286198170a531ca58db0e647b2bd1e4744ac0ca2be0bf0947c",
+    "actual": "1bd894f51accfe286198170a531ca58db0e647b2bd1e4744ac0ca2be0bf0947c",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-deleted-prose.txt",
+    "expected": "9aafef348abb3180c6ba41f1f65fcf7acd56f7194ad61501d59a2038ace4a122",
+    "actual": "9aafef348abb3180c6ba41f1f65fcf7acd56f7194ad61501d59a2038ace4a122",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-failed-plan.txt",
+    "expected": "6e06189e61ee705c80887404969d824561a6c78841e31fabb35c4003c3854ad7",
+    "actual": "6e06189e61ee705c80887404969d824561a6c78841e31fabb35c4003c3854ad7",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-gate-skipped.txt",
+    "expected": "8ea16220b804f4554cde6d83353757a68627582be1f6404e9416cc3de1e07f5b",
+    "actual": "8ea16220b804f4554cde6d83353757a68627582be1f6404e9416cc3de1e07f5b",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-incomplete-diff.txt",
+    "expected": "8cbf71ab4f8e336ba828902f6e075058c6a17d0e5507147670cdccd1dd8742b1",
+    "actual": "8cbf71ab4f8e336ba828902f6e075058c6a17d0e5507147670cdccd1dd8742b1",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-missing-gate.txt",
+    "expected": "8f28e008e4259ed3dbd3e43d305af5093a94e448fd52fcb4b0c21f14f40ac83a",
+    "actual": "8f28e008e4259ed3dbd3e43d305af5093a94e448fd52fcb4b0c21f14f40ac83a",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-missing-plan.txt",
+    "expected": "92356b6561d36cae6655a7f0fd47da024aec136d59d4570ea466280f093998e8",
+    "actual": "92356b6561d36cae6655a7f0fd47da024aec136d59d4570ea466280f093998e8",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-previous-source.txt",
+    "expected": "df3add7272da2e3bc98d593d1392736966bf5a782127eaebf550f427eca391b7",
+    "actual": "df3add7272da2e3bc98d593d1392736966bf5a782127eaebf550f427eca391b7",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-skipped-full.txt",
+    "expected": "41976ddb786a131dc43745945c1798bdf2f94b22f4e6614711b85a59b43ecee2",
+    "actual": "41976ddb786a131dc43745945c1798bdf2f94b22f4e6614711b85a59b43ecee2",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-source-unconditional.txt",
+    "expected": "e61cbac656f82b847d3bc3ec1c22b7c791324c5296afdefce8d9e7fcfbd32dc5",
+    "actual": "e61cbac656f82b847d3bc3ec1c22b7c791324c5296afdefce8d9e7fcfbd32dc5",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-truncated-diff.txt",
+    "expected": "7402bcf5ddb576d4c2520a70ce48bcb57adb023665ba40cfba0ca7ff65fedaf5",
+    "actual": "7402bcf5ddb576d4c2520a70ce48bcb57adb023665ba40cfba0ca7ff65fedaf5",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-unbound-base.txt",
+    "expected": "84fe4b539d8c3b811bd7f3f80bda98078bc71628171377d44d797f385f7311c8",
+    "actual": "84fe4b539d8c3b811bd7f3f80bda98078bc71628171377d44d797f385f7311c8",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-unbound-event.txt",
+    "expected": "8dabff14690e30c551f389bb76cf90fa75c8ef4b0d0a82d02bb2d715ce0b1bc0",
+    "actual": "8dabff14690e30c551f389bb76cf90fa75c8ef4b0d0a82d02bb2d715ce0b1bc0",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-unbound-head.txt",
+    "expected": "b80414b34060fa9684e7387860cf0ffbbca83d955c211001fc523ee0353c5079",
+    "actual": "b80414b34060fa9684e7387860cf0ffbbca83d955c211001fc523ee0353c5079",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutation-unknown-prose.txt",
+    "expected": "8b33c9bd617921d4c60491163bf3d8829bf3cb6cc2246e25e7e3f0a27765fc6d",
+    "actual": "8b33c9bd617921d4c60491163bf3d8829bf3cb6cc2246e25e7e3f0a27765fc6d",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutations-console.txt",
+    "expected": "367e11d077216a0374ca82ef4ea8d4d151d1e0ecebad73b037305eafaf681fd2",
+    "actual": "367e11d077216a0374ca82ef4ea8d4d151d1e0ecebad73b037305eafaf681fd2",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/mutations.json",
+    "expected": "a3e42dcfeee6c4dd37b1f14f03d96d404895ed8ac99fd5d4b8a4e2af864e1523",
+    "actual": "a3e42dcfeee6c4dd37b1f14f03d96d404895ed8ac99fd5d4b8a4e2af864e1523",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/unit-build.txt",
+    "expected": "a1e4e3563fb376bc2fd0b94cd2f1bb858dd701e61a0c5c0b1743f2abb9db9b58",
+    "actual": "a1e4e3563fb376bc2fd0b94cd2f1bb858dd701e61a0c5c0b1743f2abb9db9b58",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-01/verify-console.txt",
+    "expected": "5d24f175706c5cffc42fc64cd3bb2c9a26c0884f572b1689ac136bd9c0260253",
+    "actual": "5d24f175706c5cffc42fc64cd3bb2c9a26c0884f572b1689ac136bd9c0260253",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/byte-drift-negative.json",
+    "expected": "77f04df898cb0fd94cf409b72446fb0c133df5eebf4e31df9b99784fe90c8a9a",
+    "actual": "77f04df898cb0fd94cf409b72446fb0c133df5eebf4e31df9b99784fe90c8a9a",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/byte-drift-negative.txt",
+    "expected": "15eaba1b256532335aff0d22404d63ea22195628051c430f28afaff36d5ec9d2",
+    "actual": "15eaba1b256532335aff0d22404d63ea22195628051c430f28afaff36d5ec9d2",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/guards-final.txt",
+    "expected": "3cd578d18cd44bea892e928ef8f2ada7f3d23ee0a956cfa37db2515c4815723d",
+    "actual": "3cd578d18cd44bea892e928ef8f2ada7f3d23ee0a956cfa37db2515c4815723d",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-cancelled-full.txt",
+    "expected": "2615f45db09a2de201da4559fcdef7a1bfa2cccd5810f5d614553349247a4822",
+    "actual": "2615f45db09a2de201da4559fcdef7a1bfa2cccd5810f5d614553349247a4822",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-check.mjs",
+    "expected": "4c227375e8993ffc8aba198b99dca9266f8be0dca71738ad235221ebd1d904cc",
+    "actual": "4c227375e8993ffc8aba198b99dca9266f8be0dca71738ad235221ebd1d904cc",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-cross-pr-cancel.txt",
+    "expected": "14d693aa547082890f25d5f7d49f92bc788b9be0ea841dc8e42fa8ccf47e661d",
+    "actual": "14d693aa547082890f25d5f7d49f92bc788b9be0ea841dc8e42fa8ccf47e661d",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-deleted-prose.txt",
+    "expected": "f62c897ad3333992715fe739f93e68c9282b72e74493e9209c7638dd574d3794",
+    "actual": "f62c897ad3333992715fe739f93e68c9282b72e74493e9209c7638dd574d3794",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-failed-plan.txt",
+    "expected": "c3b02b3c0857c5aa3930723dbb002d21d651046246966e05bb9e17fe51525e2c",
+    "actual": "c3b02b3c0857c5aa3930723dbb002d21d651046246966e05bb9e17fe51525e2c",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-filter-override.txt",
+    "expected": "baa6c7a33c41f6a9739c5adcc13c375eb1a9ee4e7b58cf8a2c98f0113775842e",
+    "actual": "baa6c7a33c41f6a9739c5adcc13c375eb1a9ee4e7b58cf8a2c98f0113775842e",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-gate-skipped.txt",
+    "expected": "d0f97f39953830978a875b0e846d776a8a7bf0162a3e3888402f6d78c203e9b2",
+    "actual": "d0f97f39953830978a875b0e846d776a8a7bf0162a3e3888402f6d78c203e9b2",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-incomplete-diff.txt",
+    "expected": "24af39ac67889e583ae049f1e0673fbf8845506d35f6dcd24bc9cae003bddb3a",
+    "actual": "24af39ac67889e583ae049f1e0673fbf8845506d35f6dcd24bc9cae003bddb3a",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-missing-gate.txt",
+    "expected": "2e218edbadebb7dcc1031ed6aca0655eadd5769d027a47c1f6bdfd7206281dff",
+    "actual": "2e218edbadebb7dcc1031ed6aca0655eadd5769d027a47c1f6bdfd7206281dff",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-missing-plan.txt",
+    "expected": "932c213871260831fbdec32ffe04f5c3dae87ba100e71385c2f844836bd90152",
+    "actual": "932c213871260831fbdec32ffe04f5c3dae87ba100e71385c2f844836bd90152",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-previous-source.txt",
+    "expected": "c4be61b1808553a6b858fe3cd7539e790907366f793eb22b8bcdc3f406617ef1",
+    "actual": "c4be61b1808553a6b858fe3cd7539e790907366f793eb22b8bcdc3f406617ef1",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-skipped-full.txt",
+    "expected": "8ea1c953ead4c64674a1e10f19be1d98c96d2dd74e821506291c63afab3ae928",
+    "actual": "8ea1c953ead4c64674a1e10f19be1d98c96d2dd74e821506291c63afab3ae928",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-source-unconditional.txt",
+    "expected": "276e39ebfe56e2d789118eece404710651a4a90bf7660fda891d29a0e6f4b667",
+    "actual": "276e39ebfe56e2d789118eece404710651a4a90bf7660fda891d29a0e6f4b667",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-truncated-diff.txt",
+    "expected": "6e0cdaecb85538e135d1eab4f054ed32be9b9cd59ac9ca7c1ea9411ea75ed71e",
+    "actual": "6e0cdaecb85538e135d1eab4f054ed32be9b9cd59ac9ca7c1ea9411ea75ed71e",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-unbound-base.txt",
+    "expected": "49218e16703f067f84e19176073371c0a22a1696fdace725595a19ced15fdd73",
+    "actual": "49218e16703f067f84e19176073371c0a22a1696fdace725595a19ced15fdd73",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-unbound-event.txt",
+    "expected": "8d15cb4b7a1e1fea45f251c9c84e5e5af02c4bfd2aaefe95b7ad1c34304f0364",
+    "actual": "8d15cb4b7a1e1fea45f251c9c84e5e5af02c4bfd2aaefe95b7ad1c34304f0364",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-unbound-head.txt",
+    "expected": "06e907b088bac59c62c41ef4d7d20a3c1f16f42852e676d13013d5ae19f1bc80",
+    "actual": "06e907b088bac59c62c41ef4d7d20a3c1f16f42852e676d13013d5ae19f1bc80",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutation-unknown-prose.txt",
+    "expected": "54c8165a47cca24e67cda2e1477589621fd1f59c357aa31c1099863e6bb207cd",
+    "actual": "54c8165a47cca24e67cda2e1477589621fd1f59c357aa31c1099863e6bb207cd",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutations-console.txt",
+    "expected": "51f82a59b239c91bec20df6c73e962eacb5076e50b2d835dbf6a8d04f0bebcab",
+    "actual": "51f82a59b239c91bec20df6c73e962eacb5076e50b2d835dbf6a8d04f0bebcab",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/mutations.json",
+    "expected": "9dec00ffc57b5066e5394796e917bf6df127fce30ddb0e67f56c415d3d43151c",
+    "actual": "9dec00ffc57b5066e5394796e917bf6df127fce30ddb0e67f56c415d3d43151c",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/unit-build.txt",
+    "expected": "49681c89da419376b3f7210c6ff855b8d07581345c6f2e669513b73f1504c352",
+    "actual": "49681c89da419376b3f7210c6ff855b8d07581345c6f2e669513b73f1504c352",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/implementation-02/verify-console.txt",
+    "expected": "793e18774c2b5cdfdbe37448f6f9c8fd6c03cf4e7c20971ad80a9fd88f925476",
+    "actual": "793e18774c2b5cdfdbe37448f6f9c8fd6c03cf4e7c20971ad80a9fd88f925476",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/REPORT.md",
+    "expected": "98b34256cd860b32dc7c2fe6ebedc2f39a6856541e8017e300a11a71b2854c52",
+    "actual": "98b34256cd860b32dc7c2fe6ebedc2f39a6856541e8017e300a11a71b2854c52",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/cancelled-full-mutation-01.txt",
+    "expected": "08b16ec211d31fb5292a893c3f1a919d411b6d642e4ff4c041a8249a27b173d3",
+    "actual": "08b16ec211d31fb5292a893c3f1a919d411b6d642e4ff4c041a8249a27b173d3",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/cross-pr-cancellation-mutation-01.txt",
+    "expected": "4afd2019b8effae1309b70e8329c6095c092286d2f13db33d82c41cf33087e40",
+    "actual": "4afd2019b8effae1309b70e8329c6095c092286d2f13db33d82c41cf33087e40",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/drop-gate-always-mutation-01.txt",
+    "expected": "83eb14558d20b12969aa9b9b7f945787bf3d935606cde125ac9739f3ff88cdc6",
+    "actual": "83eb14558d20b12969aa9b9b7f945787bf3d935606cde125ac9739f3ff88cdc6",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/failed-classification-mutation-01.txt",
+    "expected": "20939480307fe0355c9beccecb89543dadaa381c184035a83d780d8856b1df01",
+    "actual": "20939480307fe0355c9beccecb89543dadaa381c184035a83d780d8856b1df01",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/filter-overrides-sparse-mutation-01.txt",
+    "expected": "643a3637d8130861b699aec8be2955166420d9ee60a9765cae63a87625263304",
+    "actual": "643a3637d8130861b699aec8be2955166420d9ee60a9765cae63a87625263304",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/frozen-specs-01.json",
+    "expected": "d5e3a642ac02f67ba948018cb2265f033b022e50dab788c09ca7d1325e8d26e0",
+    "actual": "d5e3a642ac02f67ba948018cb2265f033b022e50dab788c09ca7d1325e8d26e0",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/full-mock-01.txt",
+    "expected": "979c5aa40bf846dc2a1db05c4145f2aaa91834131318a6555ac3b71a28204792",
+    "actual": "979c5aa40bf846dc2a1db05c4145f2aaa91834131318a6555ac3b71a28204792",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/guards-mock-01.txt",
+    "expected": "7645901362cceecf5a2287f53f88b29660ec4b4a36951eafee4f9349cae7064a",
+    "actual": "7645901362cceecf5a2287f53f88b29660ec4b4a36951eafee4f9349cae7064a",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/guards-mock-02.txt",
+    "expected": "252c010dfbc962ef4b8986f0ea642f2e73204a8e82a0382688a67dbbf8428f60",
+    "actual": "252c010dfbc962ef4b8986f0ea642f2e73204a8e82a0382688a67dbbf8428f60",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/guards-mock-03.txt",
+    "expected": "bf5220ced37a85e53dee4dea49346588a67fc2ed33247a7b8f731b92e1b3bd00",
+    "actual": "bf5220ced37a85e53dee4dea49346588a67fc2ed33247a7b8f731b92e1b3bd00",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/incomplete-diff-mutation-01.txt",
+    "expected": "af07c93711a2aa7bdfed8273daae45eff04b3820393a13ea390e921d09146519",
+    "actual": "af07c93711a2aa7bdfed8273daae45eff04b3820393a13ea390e921d09146519",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/inherited-preservation-01.json",
+    "expected": "d13b0b90133895ebb5c816d13f448554e24f1d9d945cdabf616e7b16b65f919b",
+    "actual": "d13b0b90133895ebb5c816d13f448554e24f1d9d945cdabf616e7b16b65f919b",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/mock-policy.mjs",
+    "expected": "cf54e55cd102786c9e9dc0c17c2d0ec9876802e7bacc170d13ee0bc84a42bcac",
+    "actual": "cf54e55cd102786c9e9dc0c17c2d0ec9876802e7bacc170d13ee0bc84a42bcac",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/mutations-01.json",
+    "expected": "ebccad1e2968e12ebcf85cd62311c5ae8b8e1c67d532aa58c7339218221f2574",
+    "actual": "ebccad1e2968e12ebcf85cd62311c5ae8b8e1c67d532aa58c7339218221f2574",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/plan-mock-source-01.mjs",
+    "expected": "b32e78d0d58a96552ca0db165af0b647c72a1ff4bf5eb73be95fa3a2aa839e8d",
+    "actual": "b32e78d0d58a96552ca0db165af0b647c72a1ff4bf5eb73be95fa3a2aa839e8d",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/plan-mutations-01.json",
+    "expected": "d962800dec89195d2f1e1f658bc7c759d7ba796323fa81ae6e6fb99df5efb729",
+    "actual": "d962800dec89195d2f1e1f658bc7c759d7ba796323fa81ae6e6fb99df5efb729",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/plan-red-01.txt",
+    "expected": "8517a28ea511fb2b86b2b31f829450c489182978945a7be28359013481eaa3c1",
+    "actual": "8517a28ea511fb2b86b2b31f829450c489182978945a7be28359013481eaa3c1",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/policy-mock-01.txt",
+    "expected": "df938bd7a8142dee2d211525c150b7aa25b3059b7e1dd97c4a971f21756ee308",
+    "actual": "df938bd7a8142dee2d211525c150b7aa25b3059b7e1dd97c4a971f21756ee308",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/policy-red-01.txt",
+    "expected": "f87d552762a2190629793c86a3490bd055a904dd2b4e43bac570de2af5bceeb0",
+    "actual": "f87d552762a2190629793c86a3490bd055a904dd2b4e43bac570de2af5bceeb0",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/policy-red-02.txt",
+    "expected": "563a0663cfac56b29efb01347759045416856b6f9960755b6f2b74f08a945079",
+    "actual": "563a0663cfac56b29efb01347759045416856b6f9960755b6f2b74f08a945079",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/previous-source-path-mutation-01.txt",
+    "expected": "cf7f337614102c2232145d4250b43db301c7e625d7e37c0f42bed730f7d1cfbd",
+    "actual": "cf7f337614102c2232145d4250b43db301c7e625d7e37c0f42bed730f7d1cfbd",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/rename-deletion-mutation-01.txt",
+    "expected": "3c9f987cfeb7bc357d1f8ade313dfeddfff008abcc0a6d75574547498887e29b",
+    "actual": "3c9f987cfeb7bc357d1f8ade313dfeddfff008abcc0a6d75574547498887e29b",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/rename-deletion-mutation-02.txt",
+    "expected": "839771f83edbaedfa070a24a7d60b52a73eced61e564830f3e8fabcf841e9c5a",
+    "actual": "839771f83edbaedfa070a24a7d60b52a73eced61e564830f3e8fabcf841e9c5a",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/skipped-full-mutation-01.txt",
+    "expected": "4d044b7460602e696008f72d52316c5b0fd71fcec44826a4c7b83cf7dcb77a16",
+    "actual": "4d044b7460602e696008f72d52316c5b0fd71fcec44826a4c7b83cf7dcb77a16",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/truncated-diff-mutation-01.txt",
+    "expected": "771e0b1c71f1ac2c4b618cde4453f9e958bbdbed5685033ed15cde3159307ef7",
+    "actual": "771e0b1c71f1ac2c4b618cde4453f9e958bbdbed5685033ed15cde3159307ef7",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/unbound-base-sha-mutation-01.txt",
+    "expected": "70b262d7eceb4de0fa331385dcb475adefb8295c0e1b57d2f4b2cc9df39f9254",
+    "actual": "70b262d7eceb4de0fa331385dcb475adefb8295c0e1b57d2f4b2cc9df39f9254",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/unbound-event-sha-mutation-01.txt",
+    "expected": "3e2ce13bb0b0ed9ca739bd6776967145232496e3cea251a8a3940c49f0a9a218",
+    "actual": "3e2ce13bb0b0ed9ca739bd6776967145232496e3cea251a8a3940c49f0a9a218",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/unbound-head-sha-mutation-01.txt",
+    "expected": "ed37f8ad24ec8ce85ce75bc8bbbc6aae01c1bc813902d338933ff9cee678f261",
+    "actual": "ed37f8ad24ec8ce85ce75bc8bbbc6aae01c1bc813902d338933ff9cee678f261",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/unconditional-source-browser-mutation-01.txt",
+    "expected": "2a50e631219decc9c353470e4ec13b8d82e488643a06058dcbbdcc4448136006",
+    "actual": "2a50e631219decc9c353470e4ec13b8d82e488643a06058dcbbdcc4448136006",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/unknown-prose-mutation-01.txt",
+    "expected": "3fe78e6f1dbbb66eaf3832019e2c9042c078288ab67db568c96372a49008bd0e",
+    "actual": "3fe78e6f1dbbb66eaf3832019e2c9042c078288ab67db568c96372a49008bd0e",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/verify-mock-01.json",
+    "expected": "754d02c6698168e3fdf0182be9b5434f3cf5dfd6602b95d1d535aecaddd3ca53",
+    "actual": "754d02c6698168e3fdf0182be9b5434f3cf5dfd6602b95d1d535aecaddd3ca53",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/verify-mock-source-01.mjs",
+    "expected": "ae6f53be137db4d9ddaa57eb741759d569f918510d97adebeee709a550c1a06a",
+    "actual": "ae6f53be137db4d9ddaa57eb741759d569f918510d97adebeee709a550c1a06a",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/verify-red-01.txt",
+    "expected": "592238a9401fdc42efcc48ad1123067ad3843bae1f0e8e07dea412bbd17edacb",
+    "actual": "592238a9401fdc42efcc48ad1123067ad3843bae1f0e8e07dea412bbd17edacb",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/workflow-mock-01.yml",
+    "expected": "83ea36359442d3a98e481095f7a53e2fa0717311e35f0777ec3c1e3079b35163",
+    "actual": "83ea36359442d3a98e481095f7a53e2fa0717311e35f0777ec3c1e3079b35163",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/workflow-original-01.yml",
+    "expected": "44ee82e34cb4ab8e51ef1e3f91eb95d98bbcec5011f3fdc8478589a0799ad29c",
+    "actual": "44ee82e34cb4ab8e51ef1e3f91eb95d98bbcec5011f3fdc8478589a0799ad29c",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/preflight/workflow-red-01.txt",
+    "expected": "19b1364b4cdc04ab1588f2f09381736db99c5cce08d04d148669c8344b10082c",
+    "actual": "19b1364b4cdc04ab1588f2f09381736db99c5cce08d04d148669c8344b10082c",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/guard-files.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/guard-files.stdout.txt",
+    "expected": "965adf8674c495461f061609c1d084802db4eb28d7b236fd66004399d0836826",
+    "actual": "965adf8674c495461f061609c1d084802db4eb28d7b236fd66004399d0836826",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/guards.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/guards.stdout.txt",
+    "expected": "da76ce91ff79621b3d8f938b1d5a5d14bf1cfacf95d8ac809f76dc35818e89a5",
+    "actual": "da76ce91ff79621b3d8f938b1d5a5d14bf1cfacf95d8ac809f76dc35818e89a5",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/head.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/head.stdout.txt",
+    "expected": "99ba43502520a7a4e66bc7dde93aa824d6162f30edf7f629e165d6b02106198d",
+    "actual": "99ba43502520a7a4e66bc7dde93aa824d6162f30edf7f629e165d6b02106198d",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/object-format.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/object-format.stdout.txt",
+    "expected": "335277ee77cfc8d51d6602e4137232cf6041aac2bc663777e384b90d5ae74d51",
+    "actual": "335277ee77cfc8d51d6602e4137232cf6041aac2bc663777e384b90d5ae74d51",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/receipt.json",
+    "expected": "3d2073e455ce775d8f0043ee25202bd3a0a16fcff5f2d07d3b5a4d9560e632d1",
+    "actual": "3d2073e455ce775d8f0043ee25202bd3a0a16fcff5f2d07d3b5a4d9560e632d1",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/tree.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/tree.stdout.txt",
+    "expected": "bc5db973ad7f0299ab7059d25fa8c5aa735bc35d95b37ea130e17262d9f805ac",
+    "actual": "bc5db973ad7f0299ab7059d25fa8c5aa735bc35d95b37ea130e17262d9f805ac",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-0aoxse/working-tree.txt",
+    "expected": "8f524697c63bc20c9663fd2aa25427bcf19c4c0bff5262774e00b016eb115e7a",
+    "actual": "8f524697c63bc20c9663fd2aa25427bcf19c4c0bff5262774e00b016eb115e7a",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/guard-files.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/guard-files.stdout.txt",
+    "expected": "47819e037404ac410707915e1d9ed50e3373118eab41d1bfe9827e2388f1520f",
+    "actual": "47819e037404ac410707915e1d9ed50e3373118eab41d1bfe9827e2388f1520f",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/guards.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/guards.stdout.txt",
+    "expected": "53032d3bb67cff799f7f80dfbd1cb610f2a1e99ce5402d27280864230e46ed86",
+    "actual": "53032d3bb67cff799f7f80dfbd1cb610f2a1e99ce5402d27280864230e46ed86",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/head.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/head.stdout.txt",
+    "expected": "72b75b32413656b92ef6d69d7fb92ba78016aa758125cd7af48957d60ff6390b",
+    "actual": "72b75b32413656b92ef6d69d7fb92ba78016aa758125cd7af48957d60ff6390b",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/object-format.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/object-format.stdout.txt",
+    "expected": "335277ee77cfc8d51d6602e4137232cf6041aac2bc663777e384b90d5ae74d51",
+    "actual": "335277ee77cfc8d51d6602e4137232cf6041aac2bc663777e384b90d5ae74d51",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/omitted-evidence.json",
+    "expected": "3dafe9a947485110ca3d6b09b8bd83513b4d447e8c925de29861ceccea1badd5",
+    "actual": "3dafe9a947485110ca3d6b09b8bd83513b4d447e8c925de29861ceccea1badd5",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/receipt.json",
+    "expected": "e94a60a5eb30003e469de96a8b193a374f90c542072e7ad93ac86a039dd84f32",
+    "actual": "e94a60a5eb30003e469de96a8b193a374f90c542072e7ad93ac86a039dd84f32",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/retained-inputs.json",
+    "expected": "ee0b75add2e8c0db301ebd74a63a418c0c4ef22c1d08f22bf7484b7cb5b26685",
+    "actual": "ee0b75add2e8c0db301ebd74a63a418c0c4ef22c1d08f22bf7484b7cb5b26685",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/tree.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/tree.stdout.txt",
+    "expected": "1d2fcfd1a74ebf65ea6b7b7ed724ad278acfa45f14371971f0c9da2513ef1a25",
+    "actual": "1d2fcfd1a74ebf65ea6b7b7ed724ad278acfa45f14371971f0c9da2513ef1a25",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-IpCkfj/working-tree.txt",
+    "expected": "12c75f919b2981d9ad8ddb744456f4ba73770a3acf485fd29bb5b0564d8a3334",
+    "actual": "12c75f919b2981d9ad8ddb744456f4ba73770a3acf485fd29bb5b0564d8a3334",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/browser-identities.json",
+    "expected": "1fd7a5cedea37816dfa69e7139fb61e466bcc191e05476fdd4b4baa577e051c9",
+    "actual": "1fd7a5cedea37816dfa69e7139fb61e466bcc191e05476fdd4b4baa577e051c9",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/browser-release-inventory.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/browser-release-inventory.stdout.txt",
+    "expected": "b2b933a173ac2dd48a451c36f3d930f1582bd62854c0ac3cef6afdaa2d5cced1",
+    "actual": "b2b933a173ac2dd48a451c36f3d930f1582bd62854c0ac3cef6afdaa2d5cced1",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/browser-source-inventory.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/browser-source-inventory.stdout.txt",
+    "expected": "69341facd378ecf273ca93af93f1a3398cf1a33867b7bcfcfa49419b3de97883",
+    "actual": "69341facd378ecf273ca93af93f1a3398cf1a33867b7bcfcfa49419b3de97883",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/guard-files.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/guard-files.stdout.txt",
+    "expected": "965adf8674c495461f061609c1d084802db4eb28d7b236fd66004399d0836826",
+    "actual": "965adf8674c495461f061609c1d084802db4eb28d7b236fd66004399d0836826",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/guards.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/guards.stdout.txt",
+    "expected": "9aff4e8741ecacbf007f1838571ef6c8fbe13dd922dee5d355d8b8fa24d9392a",
+    "actual": "9aff4e8741ecacbf007f1838571ef6c8fbe13dd922dee5d355d8b8fa24d9392a",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/head.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/head.stdout.txt",
+    "expected": "99ba43502520a7a4e66bc7dde93aa824d6162f30edf7f629e165d6b02106198d",
+    "actual": "99ba43502520a7a4e66bc7dde93aa824d6162f30edf7f629e165d6b02106198d",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/object-format.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/object-format.stdout.txt",
+    "expected": "335277ee77cfc8d51d6602e4137232cf6041aac2bc663777e384b90d5ae74d51",
+    "actual": "335277ee77cfc8d51d6602e4137232cf6041aac2bc663777e384b90d5ae74d51",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/omitted-evidence.json",
+    "expected": "c966ad826082ef46831ad649772a7c8fdf51a09b1817db1d89b8921c77d235f9",
+    "actual": "c966ad826082ef46831ad649772a7c8fdf51a09b1817db1d89b8921c77d235f9",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/package-acceptance.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/package-acceptance.stdout.txt",
+    "expected": "14f1395ffb7717cc025b84931c9add6736ffd3d3b07639e7d38151945a3fe8f3",
+    "actual": "14f1395ffb7717cc025b84931c9add6736ffd3d3b07639e7d38151945a3fe8f3",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/prototype-assets.json",
+    "expected": "bb4c980bba67560e96af587180d8b0fd81e1d3071c3251835fc943b6d26467ab",
+    "actual": "bb4c980bba67560e96af587180d8b0fd81e1d3071c3251835fc943b6d26467ab",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/receipt.json",
+    "expected": "17d21892e52455884cf5054edebfd4d960239158850abda99859889d7dc35c77",
+    "actual": "17d21892e52455884cf5054edebfd4d960239158850abda99859889d7dc35c77",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/retained-inputs.json",
+    "expected": "97b8ea8fed5d1a187228b096d53f026f3a1f50f64a297c641ebbd6250de20b3f",
+    "actual": "97b8ea8fed5d1a187228b096d53f026f3a1f50f64a297c641ebbd6250de20b3f",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/tree.stderr.txt",
+    "expected": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "actual": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/tree.stdout.txt",
+    "expected": "bc5db973ad7f0299ab7059d25fa8c5aa735bc35d95b37ea130e17262d9f805ac",
+    "actual": "bc5db973ad7f0299ab7059d25fa8c5aa735bc35d95b37ea130e17262d9f805ac",
+    "matches": true
+  },
+  {
+    "path": "docs/prototypes/ci/T91/runs/verify-euS0zA/working-tree.txt",
+    "expected": "9c8b5fcb4e28aa197d4b6967c9a8b0467db316be4cb9e5f4694f9ea2ddd9853d",
+    "actual": "9c8b5fcb4e28aa197d4b6967c9a8b0467db316be4cb9e5f4694f9ea2ddd9853d",
+    "matches": true
+  }
+]

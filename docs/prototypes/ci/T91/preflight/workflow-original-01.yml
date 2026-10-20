@@ -1,0 +1,69 @@
+name: ci
+
+# The walking skeleton: the pure rules core and the SVG board it paints.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  ci:
+    # One rendering environment for the browser and its screenshots (issue #2,
+    # item 8): the official Playwright image, pinned to @playwright/test's
+    # version in package-lock.json, the same image goldens are made in locally.
+    # Browsers and their dependencies ship in it, so there is no install step.
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Build (type-check, then bundle)
+        run: npm run build
+
+      - name: Vitest (rules core)
+        run: npm test
+
+      - name: Playwright (headless UI tests, screenshots and goldens)
+        run: npx playwright test --workers=2
+
+      - name: Package and verify playable artifact
+        run: |
+          fresh_dir="$(mktemp -d /tmp/malpaco-playable-ci.XXXXXX)"
+          echo "PLAYABLE_EXTRACTED_DIR=$fresh_dir" >> "$GITHUB_ENV"
+          node docs/prototypes/playable/acceptance.mjs "$fresh_dir"
+
+      - name: Playwright (extracted playable artifact)
+        run: npx playwright test --config playwright.release.config.ts --workers=2
+
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
+          if-no-files-found: error
+
+      - name: Upload playable archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: malpaco-playable
+          path: release/malpaco-playable.tar.gz
+          if-no-files-found: error
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore

@@ -1,0 +1,13 @@
+✔ allowlist: known prose additions/modifications alone take lightweight validation (3.669194ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.258337ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.325941ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.226256ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.487841ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 71.808806

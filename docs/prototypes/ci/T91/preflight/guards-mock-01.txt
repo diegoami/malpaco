@@ -1,0 +1,17 @@
+✔ allowlist: known prose additions/modifications alone take lightweight validation (1.128263ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.316601ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.919457ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.745312ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.800842ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.924854ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.460132ms)
+✔ workflow: only superseded heads of same PR share cancellable concurrency (0.213963ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (0.972083ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.665883

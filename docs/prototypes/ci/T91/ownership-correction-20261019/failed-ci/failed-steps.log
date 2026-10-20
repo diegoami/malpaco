@@ -1,0 +1,43 @@
+verify	Audit workflow, browser inventory, sparse inputs and playable package	﻿2026-10-19T20:55:16.1059726Z ##[group]Run node tools/ci/verify.mjs
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1059936Z ^[[36;1mnode tools/ci/verify.mjs^[[0m
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1060165Z shell: sh -e {0}
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1060282Z ##[endgroup]
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1689973Z AssertionError [ERR_ASSERTION]: guard-files failed; retained docs/prototypes/ci/T91/runs/verify-WLyJxi: fatal: detected dubious ownership in repository at '/__w/malpaco/malpaco'
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1690565Z To add an exception for this directory, call:
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1690688Z 
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1690824Z 	git config --global --add safe.directory /__w/malpaco/malpaco
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1690973Z 
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1690977Z 
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1691029Z 128 !== 0
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1691094Z 
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1691217Z     at run (file:///__w/malpaco/malpaco/tools/ci/verify.mjs:21:10)
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1691468Z     at file:///__w/malpaco/malpaco/tools/ci/verify.mjs:27:61
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1691708Z     at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1692068Z     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1692393Z     at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1710559Z Verification evidence: docs/prototypes/ci/T91/runs/verify-WLyJxi
+verify	Audit workflow, browser inventory, sparse inputs and playable package	2026-10-19T20:55:16.1792892Z ##[error]Process completed with exit code 1.
+verify	Upload screenshots	﻿2026-10-19T20:55:16.1846351Z ##[group]Run actions/upload-artifact@v4
+verify	Upload screenshots	2026-10-19T20:55:16.1846515Z with:
+verify	Upload screenshots	2026-10-19T20:55:16.1846624Z   name: screenshots
+verify	Upload screenshots	2026-10-19T20:55:16.1846737Z   path: screenshots/
+verify	Upload screenshots	2026-10-19T20:55:16.1846863Z   if-no-files-found: error
+verify	Upload screenshots	2026-10-19T20:55:16.1846995Z   retention-days: 14
+verify	Upload screenshots	2026-10-19T20:55:16.1847113Z   compression-level: 6
+verify	Upload screenshots	2026-10-19T20:55:16.1847229Z   overwrite: false
+verify	Upload screenshots	2026-10-19T20:55:16.1847532Z   include-hidden-files: false
+verify	Upload screenshots	2026-10-19T20:55:16.1847729Z ##[endgroup]
+verify	Upload screenshots	2026-10-19T20:55:16.1849884Z ##[command]/usr/bin/docker exec  92a4f4c3b58cb951ada3e1bf039396c6c41d74f3a21919360ef20e28f8c99f1b sh -c "cat /etc/*release | grep ^ID"
+verify	Upload screenshots	2026-10-19T20:55:16.3684294Z (node:1333) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+verify	Upload screenshots	2026-10-19T20:55:16.3685082Z (Use `node --trace-deprecation ...` to show where the warning was created)
+verify	Upload screenshots	2026-10-19T20:55:16.3707113Z ##[error]No files were found with the provided path: screenshots/. No artifacts will be uploaded.
+ci	Required CI result	﻿2026-10-19T20:55:27.3652597Z ##[group]Run node tools/ci/gate.mjs
+ci	Required CI result	2026-10-19T20:55:27.3653029Z ^[[36;1mnode tools/ci/gate.mjs^[[0m
+ci	Required CI result	2026-10-19T20:55:27.3969425Z shell: /usr/bin/bash -e {0}
+ci	Required CI result	2026-10-19T20:55:27.3969854Z env:
+ci	Required CI result	2026-10-19T20:55:27.3970119Z   CLASSIFICATION_RESULT: success
+ci	Required CI result	2026-10-19T20:55:27.3970429Z   CI_MODE: full
+ci	Required CI result	2026-10-19T20:55:27.3970689Z   VERIFICATION_RESULT: failure
+ci	Required CI result	2026-10-19T20:55:27.3970988Z ##[endgroup]
+ci	Required CI result	2026-10-19T20:55:27.4367369Z {"classificationResult":"success","mode":"full","verificationResult":"failure","passed":false}
+ci	Required CI result	2026-10-19T20:55:27.4421224Z ##[error]Process completed with exit code 1.

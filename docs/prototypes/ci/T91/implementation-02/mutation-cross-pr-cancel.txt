@@ -1,0 +1,173 @@
+✔ pinned Git plan: complete prose-only merge diff can be light; executable changes verify (180.63251ms)
+ℹ retained temporary Git fixture /tmp/malpaco-t91-git-2xiNR9
+✔ pinned Git plan: mismatched event, merge or parent SHAs cannot bypass verification (166.434673ms)
+✔ pinned Git plan: push/manual events always select full and do not trust prose PR metadata (133.00847ms)
+✔ allowlist: known prose additions/modifications alone take lightweight validation (1.028268ms)
+✔ protected: source, tests, workflow, dependencies, executable docs and machine inputs always verify (0.892119ms)
+✔ uncertain: missing, malformed, empty or truncated diffs never bypass verification (0.341602ms)
+✔ required gate: docs requires successful classification and intentionally skipped verification (0.397648ms)
+✔ required gate: full requires both successes; failure/cancellation/unexpected skip cannot green ci (0.202844ms)
+✔ uncertain: deletion and unsupported statuses reject without relying on a previous filename (0.131721ms)
+✔ workflow: stable ci gate always accounts for both classification and verification (0.859419ms)
+✔ workflow: routine retains all package browser tests and manual release adds source tests (0.481919ms)
+✖ workflow: only superseded heads of same PR share cancellable concurrency (1.710685ms)
+✔ workflow: bounded temporary artifact retention and sparse real Git checkout (0.310204ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 528.148849
+
+✖ failing tests:
+
+test at tests/tools/ci-workflow.test.mjs:22:1
+✖ workflow: only superseded heads of same PR share cancellable concurrency (1.710685ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /group:.*github\.workflow.*github\.event\.pull_request\.number.*github\.run_id/. Input:
+  
+  'name: ci\n' +
+    '\n' +
+    'on:\n' +
+    '  push:\n' +
+    '    branches: [main]\n' +
+    '  pull_request:\n' +
+    '  workflow_dispatch:\n' +
+    '    inputs:\n' +
+    '      full_release:\n' +
+    '        description: Also run the complete browser suite against the source preview\n' +
+    '        type: boolean\n' +
+    '        default: false\n' +
+    '\n' +
+    'permissions:\n' +
+    '  contents: read\n' +
+    '\n' +
+    'concurrency:\n' +
+    "  group: ${{ github.workflow }}-${{ 'all-prs' }}\n" +
+    "  cancel-in-progress: ${{ github.event_name == 'pull_request' }}\n" +
+    '\n' +
+    'jobs:\n' +
+    '  plan:\n' +
+    '    runs-on: ubuntu-latest\n' +
+    '    outputs:\n' +
+    '      mode: ${{ steps.plan.outputs.mode }}\n' +
+    '    steps:\n' +
+    '      - uses: actions/checkout@v4\n' +
+    '        with:\n' +
+    '          fetch-depth: 2\n' +
+    '          sparse-checkout: |\n' +
+    '            tools/ci\n' +
+    '            tests/tools\n' +
+    '            .github\n' +
+    '      - uses: actions/setup-node@v4\n' +
+    '        with:\n' +
+    '          node-version: 22\n' +
+    '      - name: CI guard tests\n' +
+    '        run: node --test tests/tools/ci-*.test.mjs\n' +
+    '      - name: Classify pinned merge diff\n' +
+    '        id: plan\n' +
+    '        run: node tools/ci/plan.mjs\n' +
+    '\n' +
+    '  verify:\n' +
+    '    needs: plan\n' +
+    "    if: needs.plan.outputs.mode != 'docs'\n" +
+    '    runs-on: ubuntu-latest\n' +
+    '    container: mcr.microsoft.com/playwright:v1.63.0-noble\n' +
+    '    steps:\n' +
+    '      - uses: actions/checkout@v4\n' +
+    '        with:\n' +
+    '          sparse-checkout-cone-mode: false\n' +
+    '          sparse-checkout: |\n' +
+    '            /*\n' +
+    '            !/docs/**/*.png\n' +
+    '            !/docs/**/*.tar.gz\n' +
+    '            !/docs/**/*.tgz\n' +
+    '            !/docs/**/*.zip\n' +
+    '            !/docs/**/*.webm\n' +
+    '            !/docs/**/*.mp4\n' +
+    '            !/docs/**/*.pdf\n' +
+    '            !/docs/**/*.tar.gz.part*\n' +
+    '            !/docs/**/*.tgz.part*\n' +
+    '            !/docs/**/*.zip.part*\n' +
+    '      - uses: actions/setup-node@v4\n' +
+    '        with:\n' +
+    '          node-version: 22\n' +
+    '          cache: npm\n' +
+    '      - name: Install\n' +
+    '        run: npm ci\n' +
+    '      - name: Complete unit and harness checks\n' +
+    '        run: npm test\n' +
+    '      - name: Audit workflow, browser inventory, sparse inputs and playable package\n' +
+    '        run: node tools/ci/verify.mjs\n' +
+    '      - name: Complete Playwright suite against extracted playable\n' +
+    '        run: npx playwright test --config playwright.release.config.ts --workers=2\n' +
+    '      - name: Full-release source preview verification\n' +
+    "        if: github.event_name == 'workflow_dispatch' && inputs.full_release\n" +
+    '        run: npx playwright test --workers=2\n' +
+    '      - name: Upload screenshots\n' +
+    '        if: always()\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: screenshots\n' +
+    '          path: screenshots/\n' +
+    '          if-no-files-found: error\n' +
+    '          retention-days: 14\n' +
+    '      - name: Upload playable archive\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: malpaco-playable\n' +
+    '          path: release/malpaco-playable.tar.gz\n' +
+    '          if-no-files-found: error\n' +
+    '      - name: Upload verification receipt\n' +
+    '        if: always()\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: ci-verification\n' +
+    '          path: docs/prototypes/ci/T91/runs/\n' +
+    '          if-no-files-found: warn\n' +
+    '      - name: Upload browser failure reports\n' +
+    '        if: failure()\n' +
+    '        uses: actions/upload-artifact@v4\n' +
+    '        with:\n' +
+    '          name: playwright-report\n' +
+    '          path: |\n' +
+    '            playwright-report/\n' +
+    '            test-results/\n' +
+    '            playwright-report-release/\n' +
+    '            test-results-release/\n' +
+    '          if-no-files-found: ignore\n' +
+    '          retention-days: 14\n' +
+    '\n' +
+    '  ci:\n' +
+    '    needs: [plan, verify]\n' +
+    '    if: always()\n' +
+    '    runs-on: ubuntu-latest\n' +
+    '    steps:\n' +
+    '      - uses: actions/checkout@v4\n' +
+    '        with:\n' +
+    '          sparse-checkout: tools/ci\n' +
+    '      - uses: actions/setup-node@v4\n' +
+    '        with:\n' +
+    '          node-version: 22\n' +
+    '      - name: Required CI result\n' +
+    '        env:\n' +
+    '          CLASSIFICATION_RESULT: ${{ needs.plan.result }}\n' +
+    '          CI_MODE: ${{ needs.plan.outputs.mode }}\n' +
+    '          VERIFICATION_RESULT: ${{ needs.verify.result }}\n' +
+    '        run: node tools/ci/gate.mjs\n'
+  
+      at TestContext.<anonymous> (file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tests/tools/ci-workflow.test.mjs:23:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "name: ci\n\non:\n  push:\n    branches: [main]\n  pull_request:\n  workflow_dispatch:\n    inputs:\n      full_release:\n        description: Also run the complete browser suite against the source preview\n        type: boolean\n        default: false\n\npermissions:\n  contents: read\n\nconcurrency:\n  group: ${{ github.workflow }}-${{ 'all-prs' }}\n  cancel-in-progress: ${{ github.event_name == 'pull_request' }}\n\njobs:\n  plan:\n    runs-on: ubuntu-latest\n    outputs:\n      mode: ${{ steps.plan.outputs.mode }}\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 2\n          sparse-checkout: |\n            tools/ci\n            tests/tools\n            .github\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 22\n      - name: CI guard tests\n        run: node --test tests/tools/ci-*.test.mjs\n      - name: Classify pinned merge diff\n        id: plan\n        run: node tools/ci/plan.mjs\n\n  verify:\n    needs: plan\n    if: needs.plan.outputs.mode != 'docs'\n    runs-on: ubuntu-latest\n    container: mcr.microsoft.com/playwright:v1.63.0-noble\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          sparse-checkout-cone-mode: false\n          sparse-checkout: |\n            /*\n            !/docs/**/*.png\n            !/docs/**/*.tar.gz\n            !/docs/**/*.tgz\n            !/docs/**/*.zip\n            !/docs/**/*.webm\n            !/docs/**/*.mp4\n            !/docs/**/*.pdf\n            !/docs/**/*.tar.gz.part*\n            !/docs/**/*.tgz.part*\n            !/docs/**/*.zip.part*\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 22\n          cache: npm\n      - name: Install\n        run: npm ci\n      - name: Complete unit and harness checks\n        run: npm test\n      - name: Audit workflow, browser inventory, sparse inputs and playable package\n        run: node tools/ci/verify.mjs\n      - name: Complete Playwright suite against extracted playable\n        run: npx playwright test --config playwright.release.config.ts --workers=2\n      - name: Full-release source preview verification\n        if: github.event_name == 'workflow_dispatch' && inputs.full_release\n        run: npx playwright test --workers=2\n      - name: Upload screenshots\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: screenshots\n          path: screenshots/\n          if-no-files-found: error\n          retention-days: 14\n      - name: Upload playable archive\n        uses: actions/upload-artifact@v4\n        with:\n          name: malpaco-playable\n          path: release/malpaco-playable.tar.gz\n          if-no-files-found: error\n      - name: Upload verification receipt\n        if: always()\n        uses: actions/upload-artifact@v4\n        with:\n          name: ci-verification\n          path: docs/prototypes/ci/T91/runs/\n          if-no-files-found: warn\n      - name: Upload browser failure reports\n        if: failure()\n        uses: actions/upload-artifact@v4\n        with:\n          name: playwright-report\n          path: |\n            playwright-report/\n            test-results/\n            playwright-report-release/\n            test-results-release/\n          if-no-files-found: ignore\n          retention-days: 14\n\n  ci:\n    needs: [plan, verify]\n    if: always()\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          sparse-checkout: tools/ci\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 22\n      - name: Required CI result\n        env:\n          CLASSIFICATION_RESULT: ${{ needs.plan.result }}\n          CI_MODE: ${{ needs.plan.outputs.mode }}\n          VERIFICATION_RESULT: ${{ needs.verify.result }}\n        run: node tools/ci/gate.mjs\n",
+    expected: /group:.*github\.workflow.*github\.event\.pull_request\.number.*github\.run_id/,
+    operator: 'match',
+    diff: 'simple'
+  }

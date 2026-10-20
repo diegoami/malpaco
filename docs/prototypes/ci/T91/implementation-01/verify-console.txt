@@ -1,0 +1,6 @@
+AssertionError [ERR_ASSERTION]: Missing prototype asset: docs/prototypes/new-game/T63/blob
+    at file:///home/diego/projects/malpaco/.cache/worktrees/T91-ci/tools/ci/verify.mjs:85:14
+    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+Verification evidence: docs/prototypes/ci/T91/runs/verify-IpCkfj
