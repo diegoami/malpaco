@@ -1,15 +1,24 @@
 # Real island character, original game geography
 
-Owner direction, 2026-10-20: include usability in the owner's review, and use
-**Sicily, Cuba, Borneo, New Zealand and their provincial/regional structure as
-generation references**, without copying them. This refines the already required
-organic-map bar: distinctive overall shape and coherent regions matter together.
+**Generated islands and their regions must feel like believable real-world
+geography and have broad structural variety, both within a match and across
+generated maps.** This is the owner's clarified requirement of 2026-10-20,
+refining the already required organic-map bar. Distinctive overall shape and
+coherent regions matter together.
 
-The current UI drawings now use original examples of these shape families. The
-beginner teaching sequence remains the same. Usability is part of the owner's
-review of actual builds; these drawings do not certify it.
+Sicily, Cuba, Borneo, New Zealand and their provincial/regional structure are
+illustrative references, not an exhaustive catalogue or four fixed generation
+templates. Study a broader range of real geography as useful; original game
+islands should express varied geographic character without reproducing real maps.
+Variety must extend beyond rotations, recolouring or small outline perturbations
+of a few repeated forms.
 
-![Four original island families](geography-studies/four-island-families.svg)
+The current UI drawings and four studies illustrate some of that character;
+they do not cover the full variety requirement. The beginner teaching sequence
+remains the same. Usability is part of the owner's review of actual builds;
+these drawings do not certify it.
+
+![Four original island reference studies](geography-studies/four-island-families.svg)
 
 ## What the examples teach
 
@@ -20,7 +29,7 @@ review of actual builds; these drawings do not certify it.
 | Borneo | Broad landmass and unequal regional extent; administrative levels include countries, states/provinces and smaller districts | A large hinterland, smaller coastal regions and two interior regions in the ten-region example. It does not reproduce real jurisdictions or claim all actual provinces are landlocked. |
 | New Zealand | Elongated landforms, bays and axial mountain ranges; regional/district definitions differ | A newly drawn long island form with a narrow axis, unequal sides and coastal strips. The seven-region study is one original island, not a reproduction of the country or its two main islands. |
 
-These are reference families rather than country skins. Exact coastlines, real
+These are non-exhaustive reference studies. Exact coastlines, real
 province boundaries, names, counts and political relationships are not game
 requirements. Regions should vary in size and structure while retaining readable
 ownership and legal movement. Administrative borders can reflect history and
@@ -29,13 +38,15 @@ physical watershed.
 
 ## Proposed generation brief for later reconciliation
 
-- Give an island a large-scale structure: broad/wedge-shaped, long/curved,
-  compact with a deep interior, or elongated with strong constrictions. Vary
-  proportions, orientation, bays, headlands and coastal detail within a family.
-- Design subdivisions with that structure. Some families support interior
-  regions and broad hinterlands; others support uneven coastal chains or
-  differently sized regions on either side of an axis. Avoid giving every
-  island the same central junction and repeated perimeter cells.
+- Vary large-scale island form, proportions, asymmetry, constrictions, bays,
+  headlands and coastal rhythm. The four illustrated forms are examples, not a
+  closed taxonomy. Both islands in one match and maps from different seeds must
+  show convincing structural differences.
+- Design subdivisions coherently with each island's character. Vary region size,
+  shape and arrangement, coastal/interior balance and the relationship to the
+  landform. Broad hinterlands, uneven coastal chains and unequal sides of an
+  axis are examples, not required templates. Avoid giving every island the same
+  central junction and repeated perimeter cells.
 - Treat terrain/spines/drainage as possible construction guidance, not automatic
   new combat rules or a requirement to draw mountains/rivers on the game screen.
 - Co-design legal topology, land borders, coasts, route attachment and labels.
@@ -44,10 +55,14 @@ physical watershed.
 - Preserve the existing 46-country/nine-island/count/adjacency/fairness contract
   and versioned save/replay identity. These studies do not prove those combined
   constraints feasible or satisfied; the approved feasibility process remains.
-- Compare retained representative seeds for family character, variation within
-  families, region shape/size, connectivity, route clarity, phone focus/picking,
-  generation cost and refusals. Set or amend measurable targets through the
-  existing owner/task process after feasibility evidence, not by guessing them.
+- Review retained representative seeds for believable geographic character and
+  structural variety within and across maps, including overall forms, coasts and
+  regional organization. Look for conspicuous repeated templates as well as
+  region shape/size, connectivity, route clarity, phone focus/picking, generation
+  cost and refusals. Owner visual/usability review must assess this variety in
+  actual generated maps; the four static studies cannot establish it. Set or
+  amend measurable targets through the existing owner/task process after
+  feasibility evidence, not by guessing them.
 
 This is a visual-generation requirement to reconcile with #173/T64–T65, #181,
 label work and acceptance, using their existing issues. No generator algorithm,

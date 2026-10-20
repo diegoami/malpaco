@@ -92,6 +92,28 @@ province counts, a new generator algorithm or relaxed gameplay constraints are
 not selected by the request. Reconcile the refined bar through existing geography
 work before separately authorized implementation.
 
+## Broad geographic character and variety
+
+On 2026-10-20 the owner clarified the examples' scope:
+
+> Well, not just those, make it a broad requirement, they must feel like real
+> islands and have variety
+
+Generated islands and their regions must feel like believable real-world
+geography and show broad structural variety, within each match and across
+generated maps. Sicily, Cuba, Borneo and New Zealand are illustrative references,
+not an exhaustive list or four fixed generation templates. This clarification
+supersedes any narrower reading of the previous reference direction.
+
+Variety includes overall landform, proportions, asymmetry, coastal structure and
+regional organization; rotation, recolouring and minor outline changes alone do
+not meet that bar. Originality, readable interaction and existing gameplay,
+topology, fairness, route and save constraints remain binding. Owner review of
+actual generated maps must assess believability and variety; the unchanged
+revision-5 studies illustrate only a few possibilities. Reconcile this broad bar
+through the existing geography work; no specific generator or new task dispatch
+is selected.
+
 ## What still needs review or reconciliation
 
 The first sketches were rejected for text density; V1–V5 approval does not approve

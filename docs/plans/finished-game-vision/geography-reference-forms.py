@@ -2,6 +2,7 @@
 
 No traced coordinates, imported maps, real borders, game code or map data.
 Four example families express the owner's named references at a high level.
+This non-exhaustive illustration set is not a required generator taxonomy.
 """
 from functools import lru_cache
 from math import sin, hypot, ceil

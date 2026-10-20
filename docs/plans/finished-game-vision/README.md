@@ -26,9 +26,11 @@ options; learning the interface should not be the challenge.
 
 **Nice, organic maps are required for the finished game.** Geography occupies
 the full viewport on every device. Islands and territorial subdivisions should
-feel like a coherent place. The only standing controls are small action icons;
-text appears over the map when an interaction or requested information needs it,
-then clears. There is no permanent title bar, action dock, sidebar or log.
+feel like believable real-world geography, with broad structural variety within
+each match and across generated maps. Named real islands are illustrative
+references, not a fixed catalogue of forms to repeat. The only standing controls
+are small action icons; text appears over the map when an interaction or requested
+information needs it, then clears. There is no permanent title bar, action dock, sidebar or log.
 
 The revised original illustrations use vivid ownership colours, more irregular
 coasts and varied territorial shapes informed by

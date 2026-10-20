@@ -10,9 +10,13 @@ any image at native size; the quiet-map row shows the default after contextual
 information clears. The remaining rows show information only for the interaction
 or request depicted.
 
-The palette remains vivid. Newly drawn forms now use Sicily, Cuba, Borneo and
-New Zealand as high-level references for both silhouette and regional structure.
-See the [four-family study and generation brief](GEOGRAPHY-REFERENCES.md). Each player keeps a consistent ownership hue plus shape cue.
+The palette remains vivid. These drawings use Sicily, Cuba, Borneo and New
+Zealand as illustrative references for silhouette and regional structure. The
+requirement is broader: believable real-island character and structural variety
+within and across generated maps. These four examples do not define a fixed
+catalogue or demonstrate the full variety required of a generator.
+See the [reference studies and generation brief](GEOGRAPHY-REFERENCES.md).
+Each player keeps a consistent ownership hue plus shape cue.
 See the [eight-step beginner walkthrough](BEGINNER-WALKTHROUGH.md) for short
 first-use hints; the quiet-map row still has no visible text.
 

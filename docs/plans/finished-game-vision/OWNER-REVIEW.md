@@ -25,9 +25,12 @@ follow the same full-screen direction. The latest colour/shape treatment and
 [eight-step beginner tour](BEGINNER-WALKTHROUGH.md) address the subsequent
 request for a vivid map and understandable first use. The latest
 [geography studies](GEOGRAPHY-REFERENCES.md) use original island/province forms
-informed by Sicily, Cuba, Borneo and New Zealand. The owner has confirmed that
-usability is part of their review; its outcome is not presumed. Give corrections
-by scene/device if needed. These are original static visual references: organic
+informed by illustrative examples including Sicily, Cuba, Borneo and New Zealand.
+The broad requirement is believable island and regional character with structural
+variety within and across generated maps. Review actual retained seeds for that
+variety; these four studies are not a complete catalogue or acceptance evidence.
+The owner has confirmed that usability is part of their review; its outcome is
+not presumed. Give corrections by scene/device if needed. These are original static visual references: organic
 map generation, icon discovery, touch feel, accessibility and full-match fun must
 still be judged in real builds under D4. A sketch is not evidence of a valid map.
 

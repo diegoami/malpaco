@@ -9,6 +9,12 @@ Scope is `docs/plans/finished-game-vision/**`, related owner-amendment wording i
 `docs/plans/release-0.2.0.md`, and append-only `RUN-NOTES.md`. No product files,
 task Done-when, rules, dependencies, model assignments or dispatch change.
 
+The subsequent owner clarification makes believable real-island/regional
+character and broad structural variety within and across maps the requirement.
+The four named references are illustrative only. This documentation clarification
+does not change the drawings or their retained revision-5 receipts, and those
+receipts do not establish generator variety.
+
 ## Current drawings: revision 5
 
 - Twenty-four UI compositions, eight teaching frames and five geography study

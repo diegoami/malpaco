@@ -37,10 +37,13 @@ This is a visual/teaching proposal, not tutorial implementation authorization.
 Reconcile relevant T85/T87/help assumptions with the eventual owner-selected
 execution; keep the resting board free of permanent text.
 
-The owner also confirms usability as part of their review and requests original
-island/province forms informed by Sicily, Cuba, Borneo and New Zealand. The
-[geography reference brief](finished-game-vision/GEOGRAPHY-REFERENCES.md) and
-static studies refine the finished-game geography bar. They select neither real
+The owner also confirms usability as part of their review and requires original
+islands and regions that feel like believable real geography, with broad
+structural variety within a match and across generated maps. Sicily, Cuba,
+Borneo and New Zealand are illustrative references, not a fixed catalogue of
+forms. The [geography reference brief](finished-game-vision/GEOGRAPHY-REFERENCES.md)
+and static studies refine the finished-game geography bar; the four studies do
+not establish the full variety required of generated maps. They select neither real
 map replicas nor a specific generator algorithm; preserve existing country/island,
 adjacency, fairness, route and save contracts. Carry this direction into the
 existing-issue reconciliation before implementation, not a parallel roadmap.

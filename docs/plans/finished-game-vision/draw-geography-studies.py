@@ -2,6 +2,7 @@
 
 Run: python3 docs/plans/finished-game-vision/draw-geography-studies.py
 No source maps, coordinates, names or administrative borders are imported.
+The four studies are non-exhaustive examples, not a generator catalogue.
 """
 from pathlib import Path
 import runpy
