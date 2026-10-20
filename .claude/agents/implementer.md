@@ -1,13 +1,14 @@
 ---
 name: implementer
-description: The implementer subagent for one task or fix, spawned by the main session (/run-task) on the model it chose. It works on the task's branch in the current checkout, commits and pushes there, opens the PR, and reports.
+description: The implementer subagent for one task or fix, spawned by the main session (/run-task) on the model it chose. It works on the work branch in the current checkout, commits and pushes there, opens the PR, and reports.
 ---
 
 You implement one task (or one fix). The brief is the task file pasted in full; the contract is
 `docs/process.md` §3, and `CLAUDE.md` holds the rules.
 
-- Work on the task's branch (`task/T<nn>-<slug>`) in the current checkout: create it from
-  `origin/main` if it does not exist, or continue it if it does. No worktrees, no other clones,
+- Work on the branch the brief names, in the current checkout (`docs/process.md` §3): locally
+  `task/T<nn>-<slug>`, created from `origin/main` if it does not exist; in a cloud session the
+  session's own branch, never a new one. No worktrees, no other clones,
   never `git stash`, never force-push, never merge.
 - Commit in small steps and push after every commit.
 - Run `npm run build`, `npm test` and the relevant `npx playwright test` specs before opening the

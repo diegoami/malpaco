@@ -1,7 +1,7 @@
 # T<nn> <Title>
 
 - **Kind**: feature | correction (of T<nn>, bug #<n>) | slice | infrastructure
-- **Issue**: #<n> · **Branch**: `task/T<nn>-<slug>` · **Merge after**: T<nn>, …
+- **Issue**: #<n> · **Branch**: `task/T<nn>-<slug>` (locally; a cloud session uses its own branch) · **Merge after**: T<nn>, …
 - **Review**: none | PR review (say why: rule core, saves, risky) — reviews are optional
   (`docs/process.md` §4); everything is covered by the next milestone review.
 - **Evidence**: the isle-wars-archaeology findings or investigations this task rests on, with links.

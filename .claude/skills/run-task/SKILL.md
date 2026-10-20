@@ -10,7 +10,9 @@ Argument: a task id (`T<nn>`) or a bug issue number. Follow `docs/process.md` §
 1. **Read** the task file (or the bug issue) and its issue. Check `gh pr list` for an open PR on the
    task's branch: if there is one, continue it rather than starting over. Label the issue
    `status:in-progress`.
-2. **Implement.** Either directly (create `task/T<nn>-<slug>` from `origin/main` in this checkout),
+2. **Implement** on the work branch (`docs/process.md` §3): locally `task/T<nn>-<slug>` from
+   `origin/main`; in a cloud session the session's own branch, first brought level with
+   `git pull --ff-only origin main`. Either directly,
    or spawn the subagent: `Agent(subagent_type: "implementer", model: <alias>, prompt: <brief>)`,
    the brief being the task file pasted in full plus, on a rework round, the review's URL. Do not
    do other work in this checkout while the subagent runs. Read its final report before acting.
@@ -20,8 +22,10 @@ Argument: a task id (`T<nn>`) or a bug issue number. Follow `docs/process.md` §
    `node tools/review.mjs --pr <n> --brief docs/tasks/T<nn>.md` (add `--checkout` on a clean tree
    so the reviewer can run tests). Relay its findings in full. Rework once on the same branch;
    what remains becomes follow-up issues with `triage:needed`.
-5. **Merge** when CI is green: `gh pr merge <n> --squash --delete-branch`. Label the issue
-   `status:merged`, then return this checkout to `main` and pull.
+5. **Merge** when CI is green. Locally: `gh pr merge <n> --squash --delete-branch`, then return
+   this checkout to `main` and pull. In a cloud session: `gh pr merge <n> --merge` (never squash,
+   never delete the session branch), then `git pull --ff-only origin main` on the session branch.
+   Label the issue `status:merged`.
 6. **Report** to the user: what landed, what review ran (if any) and its outcome, follow-ups
    filed. Then stop; do not start the next task without being asked.
 

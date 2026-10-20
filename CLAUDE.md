@@ -14,8 +14,9 @@ process, lessons and run notes are on the `local` branch, as history only.
 ## Rules
 1. **Everything needed is in the repository.** No rule depends on files outside it (home-directory
    skills, sibling checkouts, systemd). A fresh clone in a cloud session can run every step.
-2. **One checkout, branches.** Work on a branch (`task/T<nn>-<slug>`) in the checkout you are in;
-   no worktrees, no extra clones. Never `git stash`.
+2. **One checkout, branches.** Work on a branch in the checkout you are in: `task/T<nn>-<slug>`
+   locally, the session's own branch in a cloud session (`docs/process.md` §3); no worktrees, no
+   extra clones. Never `git stash`.
 3. **Who implements.** The main session implements directly, or spawns the `implementer` subagent
    (`.claude/agents/implementer.md`) on a model of its choice; the user may name one.
 4. **Reviews after a PR are optional.** When one is wanted, `node tools/review.mjs --pr <n>` runs

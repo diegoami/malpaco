@@ -8,6 +8,14 @@
 PRs), `opencode` or `claude` (reviews), `rclone` (Drive artifacts). Nothing outside the
 repository is required. The checks: `npm run build`, `npm test`, `npx playwright test`.
 
+**Cloud sessions** (Claude Code on the web) set up by the session-start hook, from the
+environment's secrets:
+- `GH_TOKEN`: a fine-grained GitHub token for `diegoami/malpaco` with read and write access to
+  contents, issues and pull requests. Without it `gh` cannot read labels, open or merge PRs, and
+  autonomous work stops at the first PR.
+- `MALPACO_RCLONE_TOKEN` (and, with the owner's own OAuth client, `RCLONE_DRIVE_CLIENT_ID` and
+  `RCLONE_DRIVE_CLIENT_SECRET`): Drive artifacts, §6.
+
 ## 2. Task files
 
 `docs/tasks/T<nn>.md` from `docs/tasks/TEMPLATE.md`, 150–400 words. **Done when** lines are each
@@ -17,10 +25,19 @@ merge on their own. The main session edits task files directly on `main`, the re
 
 ## 3. The loop
 
-`status:ready → implement → PR → (optional review) → green CI → squash merge → follow-ups`.
+`status:ready → implement → PR → (optional review) → green CI → merge → follow-ups`.
 
-The implementer (the main session, or the `implementer` subagent) works on `task/T<nn>-<slug>`
-in the current checkout, pushes after every commit and opens the PR. The PR body: `Closes #<issue>`;
+**Branches.** Locally, each task has its own branch, `task/T<nn>-<slug>` from `origin/main`,
+squash-merged. In a cloud session, the session's own branch (`claude/…`, which the session
+starts on and may be the only one it can push to) is the work branch for every task in that
+session, one PR per task. Cloud PRs merge with a merge commit (`gh pr merge --merge`), never
+squash: the session branch is then contained in `main`, so `git pull --ff-only origin main`
+brings it level and the next task starts there, with no force-push. A PR still open when a
+session ends is continued by the next session (check it out, then work on the new session's
+branch from it, or finish it in place).
+
+The implementer (the main session, or the `implementer` subagent) works on the work branch in
+the current checkout, pushes after every commit and opens the PR. The PR body: `Closes #<issue>`;
 Scope (files and why); each Done-when command with the tail of its output; docs changed. The
 implementer's contract:
 - Build only what the task asks for. A Done-when you cannot meet: stop and report.

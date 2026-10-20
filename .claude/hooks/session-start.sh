@@ -24,6 +24,8 @@ if [ -n "${MALPACO_RCLONE_TOKEN:-}" ]; then
 fi
 
 have() { command -v "$1" >/dev/null 2>&1 && echo yes || echo no; }
+if gh auth status >/dev/null 2>&1; then gh_login="logged in"; else gh_login="NOT logged in: add a GH_TOKEN secret (docs/process.md §1)"; fi
+echo "Branch: $(git branch --show-current 2>/dev/null) (in a cloud session, the work branch for every task; PRs merge with --merge, docs/process.md §3). gh: $gh_login."
 echo "Environment: node $(node --version 2>/dev/null || echo none), gh $(have gh), opencode $(have opencode), claude $(have claude), rclone $(have rclone) (remote $(rclone listremotes 2>/dev/null | grep -qx malpacodrive: && echo configured || echo missing))."
 echo "Review default (harness.json): $(node -p "require('./harness.json').review.default" 2>/dev/null || echo ?). Reviews are optional (docs/process.md §4)."
 exit 0
