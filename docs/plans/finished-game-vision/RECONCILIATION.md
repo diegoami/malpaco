@@ -4,7 +4,7 @@ Proposal for owner approval under [#215](https://github.com/diegoami/malpaco/iss
 prepared on 2026-10-20 against `main` at `d756f18` (PR #216 merged). It applies the
 approved [vision](README.md), [decisions](DECISIONS.md), [authority crosswalk](AUTHORITY.md)
 and [recheck follow-ups A–E](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md) to every
-open issue (70 on 2026-10-20). Each disposition is a proposal until the owner approves.
+open issue (72 on 2026-10-20, including the review-process issues #218 and #219). Each disposition is a proposal until the owner approves.
 Nothing here changes a label, closes an issue, amends a task file or dispatches work.
 After approval, the main session does that on `main`, with the reason in each commit
 (CLAUDE.md rules 3 and 5).
@@ -55,11 +55,25 @@ Merging the PR approves them as recommended.
 Labels stay authoritative. Each task still needs parent preflight, and the rule-6
 implementer and reviewer questions, before `status:ready`.
 
-**S0 · Before feature dispatch (process).** Merge T91 / PR #212 (approved, CI green),
+**S0 · Before feature dispatch (process).** Adopt #218 (proportionate reviews) and #219
+(review by risk tier) in CLAUDE.md, `docs/process.md`, `docs/review-brief.md`, the
+run-task skill and the agent entrypoint, so every task file states its tier before
+preflight. Merge T91 / PR #212 (approved, CI green),
 which closes #108 and #118. Settle the implementer/reviewer defaults through
 `/switch-model`: `harness.json`, CLAUDE.md rule 6.2 and recent issue comments currently
 disagree. If the next reviews run through OpenCode v2, land #143 and then #125 (taking in
-#189's bullets) first. A short #214 worktree sweep runs when each slice closes.
+#189's bullets) first. The OpenCode prerequisites matter only for tier-1 and tier-2 reviews.
+A short #214 worktree sweep runs when each slice closes.
+
+Proposed tiers under #219 (each task names its own; when unsure, the higher one):
+
+| Tier | Work in these slices |
+| --- | --- |
+| 0 | This proposal, the task-file amendments, docs-only follow-ups and outcome-neutral fixes |
+| 1 | S1 UI tasks T79–T88; S6 presentation; #174 |
+| 2 | T89/T90 artifact and publication; the S2 versioned generator integration (saves, fairness, routes); S3 events and S5 opponents (rule engine, RNG); T45/T46 saves and records; T53 privacy |
+
+Each slice closes with a milestone review by another family plus the owner's playtest.
 
 **S1 · 0.2.0, full-viewport UI on every device.** Sequence:
 **T80 + T79** (camera Fit and rotation first, then the overlay shell, which absorbs T86) →
@@ -210,6 +224,8 @@ Done-when; nothing closes before that.
 | #65 | Bounded extracted-artifact reviews | **retain** · after #143 |
 | #214 | Worktree lifecycle | **retain** · attended sweep at each slice close |
 | #3 | Model trials | **retain** · standing log (rule 21) |
+| #218 | Proportionate reviews | **retain** · S0, before the next dispatch; tier 0 |
+| #219 | Review by risk tier | **retain** · S0, with #218; tier 0 |
 | #165 | T36 follow-up | **retain** · harness; re-check its CSS item after T79 |
 | #149 | T33 follow-up | **retain** · harness |
 | #178 | T40 follow-up | **retain** · harness; remove `triage:needed` |
