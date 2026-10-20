@@ -10,7 +10,7 @@ import {Clock,deepFreeze} from './battle-fixtures';
 // Main-authored boundary. Missing implementation exercises a no-op inherited
 // adapter; red failures must describe behavior rather than module resolution.
 interface Workspace {
- camera:{x:number;y:number;zoom:number};surface:string|null;
+ camera:{x:number;y:number;zoom:number;rotation:0|90};surface:string|null;
  histories:{battle:{scrollTop:number;followLatest:boolean};events:{scrollTop:number;followLatest:boolean}};
  drafts:{capture:string;move:string;threshold:string};focus:string|null;matchGeneration:number;
  attack:{from:string|null;to:string|null;confirmed:boolean};
@@ -23,12 +23,12 @@ interface Boundary {
  reconcileWorkspace:(s:Workspace,c:Context)=>Workspace;
  projectWorkspace:(b:BattleController,c:CardControllerView)=>Projection;
 }
-const defaults=():Workspace=>({camera:{x:0,y:0,zoom:1},surface:null,histories:{battle:{scrollTop:0,followLatest:true},events:{scrollTop:0,followLatest:true}},drafts:{capture:'',move:'',threshold:''},focus:null,matchGeneration:0,attack:{from:null,to:null,confirmed:false}});
+const defaults=():Workspace=>({camera:{x:0,y:0,zoom:1,rotation:0},surface:null,histories:{battle:{scrollTop:0,followLatest:true},events:{scrollTop:0,followLatest:true}},drafts:{capture:'',move:'',threshold:''},focus:null,matchGeneration:0,attack:{from:null,to:null,confirmed:false}});
 const modules=import.meta.glob('../../src/ui/workspaceState.ts',{eager:true});
 const inherited:Boundary={createWorkspaceState:defaults,updateWorkspaceState:s=>s,reconcileWorkspace:s=>s,projectWorkspace:()=>({matchGeneration:-1,revision:-1,from:null,to:null,mode:'',phase:'',paused:false,speed:'',cards:{} as CardControllerView})};
 const api=(modules['../../src/ui/workspaceState.ts']??inherited) as Boundary;
 const context=(from:string|null='province_1',to:string|null='province_2',matchGeneration=0):Context=>({from,to,matchGeneration});
-function customized():Workspace{return {...defaults(),camera:{x:42,y:-18,zoom:2.5},surface:'cards',histories:{battle:{scrollTop:120,followLatest:false},events:{scrollTop:70,followLatest:false}},drafts:{capture:'-',move:'3e',threshold:'999999999999999999999'},focus:'attack-button',attack:{from:'province_1',to:'province_2',confirmed:true}};}
+function customized():Workspace{return {...defaults(),camera:{x:42,y:-18,zoom:2.5,rotation:90},surface:'cards',histories:{battle:{scrollTop:120,followLatest:false},events:{scrollTop:70,followLatest:false}},drafts:{capture:'-',move:'3e',threshold:'999999999999999999999'},focus:'attack-button',attack:{from:'province_1',to:'province_2',confirmed:true}};}
 function raw(name:string){return JSON.parse(readFileSync(`fixtures/new-game/T40/fixtures/${name}.json`,'utf8')) as {actions:core.Action[]};}
 function loaded(name:string){return core.deserializeVersionedMatch(JSON.stringify(raw(name))).state;}
 function prefix(name:string,kind:string,include=false):GameState {
@@ -57,7 +57,7 @@ describe('T78 workspace state boundary',()=>{
   expect(api.reconcileWorkspace(restored,context())).toEqual(before);
  });
  it('detaches patches and returned nested state instead of sharing mutable ownership',()=>{
-  const original=customized(),patch={camera:{x:7,y:8,zoom:3},drafts:{capture:'NaN',move:'',threshold:'-'}};
+  const original=customized(),patch={camera:{x:7,y:8,zoom:3,rotation:0 as const},drafts:{capture:'NaN',move:'',threshold:'-'}};
   const next=api.updateWorkspaceState(original,patch);expect(next.camera).toEqual(patch.camera);expect(next.drafts).toEqual(patch.drafts);
   next.camera.x=900;next.histories.events.scrollTop=999;next.drafts.move='changed';
   expect(patch.camera.x).toBe(7);expect(patch.drafts.move).toBe('');expect(original).toEqual(customized());
@@ -83,9 +83,9 @@ describe('T78 workspace state boundary',()=>{
   const projection=api.projectWorkspace(battle,cardBefore);
   expect(projection).toEqual({matchGeneration:battle.gameGeneration,revision:battle.view.revision,from:battle.view.from,to:battle.view.to,mode:battle.view.mode,phase:state.phase,paused:battle.playbackPaused,speed:battle.view.speed,cards:cardBefore});
   let ui=api.reconcileWorkspace(api.createWorkspaceState(),{matchGeneration:projection.matchGeneration,from:projection.from,to:projection.to});
-  ui=api.updateWorkspaceState(ui,{camera:{x:20,y:30,zoom:2},surface:'events',drafts:{capture:'-',move:'3e',threshold:''}});
+  ui=api.updateWorkspaceState(ui,{camera:{x:20,y:30,zoom:2,rotation:90},surface:'events',drafts:{capture:'-',move:'3e',threshold:''}});
   ui=api.reconcileWorkspace(ui,{matchGeneration:projection.matchGeneration,from:projection.from,to:projection.to});
-  expect(ui.drafts).toEqual({capture:'-',move:'3e',threshold:''});expect(ui.camera).toEqual({x:20,y:30,zoom:2});
+  expect(ui.drafts).toEqual({capture:'-',move:'3e',threshold:''});expect(ui.camera).toEqual({x:20,y:30,zoom:2,rotation:90});
   expect(battle.state).toBe(state);expect(state).toEqual(before);expect(state.history).toEqual(before.history);expect(state.rng).toEqual(before.rng);expect(battle.view).toEqual(battleBefore);expect(cards.view).toEqual(cardBefore);expect(clock.pending.size).toBe(0);
   cards.dispose();battle.dispose();
  });

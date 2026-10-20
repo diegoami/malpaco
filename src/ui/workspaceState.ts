@@ -1,6 +1,7 @@
 import type {GameState} from '../core';
 import type {BattleController, BattleView} from './battleController';
 import type {CardControllerView} from './cardController';
+import type {Rotation} from './mapCamera';
 
 export interface WorkspaceHistoryPosition {
   scrollTop: number;
@@ -9,7 +10,8 @@ export interface WorkspaceHistoryPosition {
 
 /** Presentation data only; controllers retain live game and action authority. */
 export interface WorkspaceState {
-  camera: {x: number; y: number; zoom: number};
+  /** World-space centre, zoom relative to Fit and the board's quarter turn (see mapCamera). */
+  camera: {x: number; y: number; zoom: number; rotation: Rotation};
   surface: string | null;
   histories: {battle: WorkspaceHistoryPosition; events: WorkspaceHistoryPosition};
   drafts: {capture: string; move: string; threshold: string};
@@ -35,7 +37,7 @@ export interface WorkspaceProjection extends WorkspaceContext {
 
 export function createWorkspaceState(): WorkspaceState {
   return {
-    camera: {x: 0, y: 0, zoom: 1},
+    camera: {x: 0, y: 0, zoom: 1, rotation: 0},
     surface: null,
     histories: {
       battle: {scrollTop: 0, followLatest: true},
@@ -52,7 +54,7 @@ export function createWorkspaceState(): WorkspaceState {
 export function updateWorkspaceState(state: WorkspaceState, patch: Partial<WorkspaceState>): WorkspaceState {
   const next = {...state, ...patch};
   return {
-    camera: {x: next.camera.x, y: next.camera.y, zoom: next.camera.zoom},
+    camera: {x: next.camera.x, y: next.camera.y, zoom: next.camera.zoom, rotation: next.camera.rotation},
     surface: next.surface,
     histories: {
       battle: {scrollTop: next.histories.battle.scrollTop, followLatest: next.histories.battle.followLatest},
