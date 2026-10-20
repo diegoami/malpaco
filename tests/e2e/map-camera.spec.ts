@@ -13,7 +13,8 @@ const sizes=[[320,568],[568,320],[768,1024],[1024,768],[1280,800]] as const;
 
 async function begin(p:Page,width=1280,height=800){
  await p.setViewportSize({width,height});
- await p.clock.install({time:new Date('2026-10-19T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-19T12:00:00Z'));
+ // Pause a second after install: pausing at the install time itself races the running clock.
+ await p.clock.install({time:new Date('2026-10-19T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-19T12:00:01Z'));
  await p.goto('/');await p.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'cameraSave',blob);return create(blob);};});
 }
 async function drawer(p:Page,open:boolean){
@@ -21,6 +22,7 @@ async function drawer(p:Page,open:boolean){
  if(open&&!await d.isVisible())await p.locator('#open-game-settings').click();
  if(!open&&await d.isVisible())await p.locator('#close-game-drawer').click();
  await expect(d).toBeVisible({visible:open});
+ await stable(p);
 }
 async function load(p:Page,text:string){
  const input=p.getByLabel('Load game',{exact:true});
@@ -42,8 +44,14 @@ async function save(p:Page){
 async function collapse(p:Page){
  for(const id of ['toggle-topbar','toggle-sidebar'])if(await p.locator('#'+id).getAttribute('aria-expanded')==='true')await p.locator('#'+id).click();
  await expect(p.locator('.panel')).toBeHidden();
+ await stable(p);
 }
 const viewBox=(p:Page)=>map(p).getAttribute('viewBox');
+/** After a layout change, wait until the camera has re-measured: two reads apart give the same viewBox. */
+async function stable(p:Page){
+ let last:string|null='';
+ await expect.poll(async()=>{const now=await viewBox(p),same=now===last;last=now;return same;},{intervals:[100,200,200,400]}).toBe(true);
+}
 async function settle(p:Page){await p.clock.runFor(100);}
 /** Screen centre of a country's cell, or null unless it is drawn well inside the map (40 px margin). */
 async function centre(p:Page,id:string){
