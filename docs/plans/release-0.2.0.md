@@ -1,11 +1,14 @@
-# Release 0.2.0: map-first UI across devices
+# Release 0.2.0: full-viewport UI across devices
 
 Owner allocation, 2026-10-19: the selected #191 design and resulting delivery
 backlog target **0.2.0** (the owner's “0.2”). [Milestone](https://github.com/diegoami/malpaco/milestone/1)
 and [delivery tracker #194](https://github.com/diegoami/malpaco/issues/194) own the
 live queue; this file records scope, dependencies and acceptance, not status.
 Design authority: [DECISIONS](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/DECISIONS.md), [proposal](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/PROPOSAL.md),
-[sketches](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/WIREFRAMES.md) and [acceptance](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ACCEPTANCE.md). Publication,
+[sketches](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/WIREFRAMES.md) and historical acceptance (PR #196, unmerged), now superseded by the
+[finished-game vision](finished-game-vision/DECISIONS.md), the
+[#215 reconciliation](finished-game-vision/RECONCILIATION.md) (owner-approved 2026-10-20, PR #217)
+and the on-main [0.2.0 acceptance](release-0.2.0-acceptance.md) (A1–A14). Publication,
 implementation dispatch and final playable appearance remain separate gates.
 
 ## Owner presentation amendment under #215
@@ -84,7 +87,8 @@ choices, four-player totals, complete logs, Pause/speed and files/help/setup.
 
 ## Delivery contracts
 
-All thirteen tasks are required for the selected release. Priority expresses
+All twelve tasks are required for the selected release (T86 is retired into T79 and T88 by the
+#215 reconciliation; T78 is merged). Priority expresses
 ordering/impact, not permission to omit a selected device or accessibility flow.
 Task issue labels determine readiness. No task is made ready by this document:
 main must run acceptance preflight and record dispatch decisions first.
@@ -92,25 +96,24 @@ main must run acceptance preflight and record dispatch decisions first.
 | Task / issue | Deliverable | Priority | Difficulty | Dependencies |
 | --- | --- | --- | --- | --- |
 | [T78](../tasks/T78.md) / [#197](https://github.com/diegoami/malpaco/issues/197) | Responsive workspace state and continuity | High | Hard | T76 baseline |
-| [T79](../tasks/T79.md) / [#198](https://github.com/diegoami/malpaco/issues/198) | Adaptive game shell and phone action dock | High | Hard | T78 |
-| [T80](../tasks/T80.md) / [#199](https://github.com/diegoami/malpaco/issues/199) | Map camera, zoom and resize continuity | High | Hard | T79 |
+| [T80](../tasks/T80.md) / [#199](https://github.com/diegoami/malpaco/issues/199) | Map camera, zoom, rotation fit and resize continuity | High | Hard | T78 |
+| [T79](../tasks/T79.md) / [#198](https://github.com/diegoami/malpaco/issues/198) | Full-viewport map shell and overlay icon controls | High | Hard | T80 |
 | [T81](../tasks/T81.md) / [#200](https://github.com/diegoami/malpaco/issues/200) | Accessible country picker and safe touch inspection | High | Medium | T79, T80 |
 | [T82](../tasks/T82.md) / [#201](https://github.com/diegoami/malpaco/issues/201) | Explicit Attack and capture or movement commitments | High | Hard | T79, T81 |
 | [T83](../tasks/T83.md) / [#202](https://github.com/diegoami/malpaco/issues/202) | Responsive cards, Raid and mandatory reward choices | High | Hard | T82 |
 | [T84](../tasks/T84.md) / [#203](https://github.com/diegoami/malpaco/issues/203) | Four-player totals, complete histories and playback continuity | High | Medium | T83 |
 | [T85](../tasks/T85.md) / [#204](https://github.com/diegoami/malpaco/issues/204) | Responsive setup, settings, files, help and result views | High | Hard | T84 |
-| [T86](../tasks/T86.md) / [#205](https://github.com/diegoami/malpaco/issues/205) | Tablet and desktop workspace composition | High | Hard | T85 |
-| [T87](../tasks/T87.md) / [#206](https://github.com/diegoami/malpaco/issues/206) | Map annotation hierarchy, contrast and reduced motion | Medium | Medium | T81, T86 |
-| [T88](../tasks/T88.md) / [#207](https://github.com/diegoami/malpaco/issues/207) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | T83, T84, T85, T86, T87 |
+| [T87](../tasks/T87.md) / [#206](https://github.com/diegoami/malpaco/issues/206) | Map annotation hierarchy, counts at Fit, contrast and reduced motion | Medium | Medium | T81, T79 |
+| [T88](../tasks/T88.md) / [#207](https://github.com/diegoami/malpaco/issues/207) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | T83, T84, T85, T87 |
 | [T89](../tasks/T89.md) / [#208](https://github.com/diegoami/malpaco/issues/208) | Full-device 0.2.0 release candidate and artifact acceptance | High | Hard | T88 |
 | [T90](../tasks/T90.md) / [#209](https://github.com/diegoami/malpaco/issues/209) | Publish the exact accepted 0.2.0 artifact | High | Medium | T89 |
 
-Suggested sequence: **T78 → T79 → T80 → T81 → T82 → T83 → T84 → T85 →
-T86 → T87 → T88 → T89 → T90**. T80 follows T79 because its phone acceptance needs the responsive shell. Shared
+Sequence: **T78 (merged) → T80 → T79 → T81 → T82 → T83 → T84 → T85 → T87 → T88 →
+T89 → T90**. T80 comes first because the full-viewport shell is mostly camera fit and rotation. Shared
 UI/CSS integration is serialized unless task dependencies and ownership explicitly permit overlap.
 
 Original plan mapping: P1→T78; P2→T79/T85; P3→T80/T81; P4→T82/T83/T85;
-P5→T84/T85/T88; P7→T86; P8→T87; P6→T89/T90. The release acceptance gate
+P5→T84/T85/T88; P7→T79/T88 (T86 retired); P8→T87; P6→T89/T90. The release acceptance gate
 comes after tablet/desktop and readability work, never before them.
 
 ## Cross-device release bar
@@ -134,12 +137,14 @@ CI repetition or rebuild after artifact approval.
   current-game responsive/keyboard/ownership overlaps are mapped to T79–T89; do
   not launch competing UI implementations. Future event/high-contrast or other
   residual requirements are not silently declared complete by this release.
-- **#195** behavior checks map to T79/T85/T86/T88: heading/toolbar actual hits,
+- **#195** behavior checks map to T79/T85/T88 (overlays never cover required controls or each other):
   horizontal keyboard order, load focus and required-control visibility. Only
   reproduced defects are fixed; historical evidence gaps remain acknowledged.
-- **#181** remains a separate Medium/Hard post-0.1.x generation spike, linked
-  from the master backlog, outside the previously allocated UI delivery graph.
-  Reconcile that placement with the new finished-game organic-map requirement.
+- **#181** owns organic geography (U1) as slice S2, running in parallel with this
+  release (owner decision R3, 2026-10-20): a bounded spike, then a versioned
+  integration task. It is outside this release's delivery graph; where integration
+  changes renderer consumers it serializes with T80/T81/T87/T85 by file ownership.
+  This release reports count attribution (A12) on current geography; S2 re-runs it.
   [Assessment](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ASSESSMENT-181.md). No generation rewrite is bundled or started.
 - **#170** flavour naming is deferred by the #215 owner decision. **#174**
   curved-label placement must be reconciled with requested contextual information;
