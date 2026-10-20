@@ -1494,3 +1494,8 @@ dialog h2 {
 #battle-action-rail button { justify-content:center; align-items:center; }
 #battle-action-rail .rail-command-icon { display:block; }
 .game-action-symbol { flex-shrink:0; }
+
+/* T80: map camera controls float over the board's lower corner. [designed] 44 px targets, 8 px apart. */
+.map-camera-controls { position:absolute; z-index:2; left:max(20px, env(safe-area-inset-left)); bottom:max(20px, env(safe-area-inset-bottom)); display:flex; flex-direction:column; gap:8px; }
+.map-camera-button { display:grid; place-items:center; width:44px; height:44px; min-height:44px; padding:0; border:1px solid #688497; border-radius:8px; background:var(--surface-2); color:var(--text); }
+.map-camera-button svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }

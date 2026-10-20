@@ -4,10 +4,12 @@ import type {Presentation} from './generatedGeographyPresentation';
 import type {MapHandlers,MapViewState} from './mapView';
 import {s} from './dom';
 import {seatLook} from './palette';
+import {MapCamera} from './mapCamera';
 
 /** Render the prepared drawing; all interactive targets come from core state. */
 export class GeographicMapView {
  readonly el:SVGSVGElement;
+ readonly camera:MapCamera;
  constructor(map:GameMap,geography:IslandGeography,handlers:MapHandlers,presentation:Presentation){
   void geography;
   const q=1,b=presentation.bounds;
@@ -32,6 +34,7 @@ export class GeographicMapView {
    if(['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();nodes[(index+(['ArrowRight','ArrowDown'].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}
   };this.el.append(node);});
   this.el.onclick=e=>{if(!(e.target as Element).closest('[data-country]'))handlers.onBackground();};
+  this.camera=new MapCamera(this.el,{x:b.x/q,y:b.y/q,width:b.width/q,height:b.height/q});
  }
  render(view:MapViewState){const{state}=view;
   for(const n of this.el.querySelectorAll<SVGGElement>('[data-country]')){

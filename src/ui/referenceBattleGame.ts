@@ -35,7 +35,7 @@ export class ReferenceBattleGame {
   private readonly panelDetail: HTMLSelectElement;
   private readonly eventLog: GameEventLog;
   private readonly controller: BattleController;
-  private readonly mapView: Pick<ReferenceMapView,"el"|"render">;
+  private readonly mapView: Pick<ReferenceMapView,"el"|"render"> & {readonly camera?: ReferenceMapView["camera"]};
   private readonly panel: Panel;
   private readonly battle: BattleView;
   private readonly friendly: FriendlyMoveView;
@@ -110,9 +110,11 @@ export class ReferenceBattleGame {
     const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, h("div", { class: "game-playback" }, this.eventLog.button, this.playbackPause, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
     const topbar = h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, settings);
     root.replaceChildren(topbar,
-      h("main", { class: "stage" }, h("section", { class: "board" }, this.mapView.el), this.panel.el));
+      h("main", { class: "stage" }, h("section", { class: "board" }, this.mapView.el, ...(this.mapView.camera ? [this.mapView.camera.controls] : [])), this.panel.el));
     this.chrome = new BattleChrome(root, this.preferences, {topbar, panel: this.panel.el, action: this.action, cards: this.cardControls.el,
       history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings, phaseActions: this.phaseActions, battle: this.battle.el, pause: this.playbackPause, log: this.eventLog.button});
+    // A temporary drawer over the board reframes the map beside it, so covered land keeps its badges.
+    this.mapView.camera?.avoid(this.chrome.drawer);
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
     this.mounted = true;
@@ -123,6 +125,7 @@ export class ReferenceBattleGame {
     if (this.disposed) return;
     this.disposed = true;
     this.chrome?.dispose();
+    this.mapView.camera?.dispose();
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
