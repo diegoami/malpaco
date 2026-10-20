@@ -45,6 +45,7 @@ Scope, Done when, Hazards, Implementer, Reviewer, Merge after. Rules:
 ## 3. The loop
 
 `ready → implement → review → approved + green CI → squash merge → follow-up → unblock → report`.
+The review step follows the task's risk tier (§5.1): tier 0 skips it, tier 1 has one round.
 Rework sends the full review back to the same branch, at most two rounds (one for a fix), then
 escalates. The implementer script resumes a pushed branch; it never starts over. Before a merge the
 main session re-runs the check the approval rests on most; a different result is rework. (L46)
@@ -129,6 +130,44 @@ last. Never post it: the script posts it and applies the label.
 A further review, such as `/code-review <pr>` on an architecture task, runs only when the user asks
 for it and names the model (CLAUDE.md rule 6.2: one review unless the user asks for more); then
 always with the PR number, since a bare invocation from an agent reviews the wrong tree. (L8)
+
+### 5.1 Review by risk tier (owner decision, #219, 2026-10-20)
+
+Each task file names its tier; when unsure, use the higher one.
+
+| Tier | Covers | Review |
+| --- | --- | --- |
+| 0 | Docs, planning, task files, fixes that change no outcome | No external review. The main session runs the task's checks and exact-head pre-merge validation, merges, and lists the PR for the next milestone review. |
+| 1 | Features and UI slices | One external review round by another family. What remains after one rework becomes follow-up issues, unless it is a real defect in what the task delivers (§5.2 rules 3–4). |
+| 2 | Engine and rule core, generator and fairness, saves, replay and timing, artifacts and publication, guards and permissions, privacy | Per-PR review until accepted, as before (two rework rounds, then escalate). |
+
+**Milestone review.** When a slice or queue milestone closes, one review by another family
+covers the integrated result, together with the owner's playtest; its findings become issues.
+
+### 5.2 Proportionate reviews (owner decision, #218, 2026-10-20)
+
+From goal2's PR #273, after its PR #271 spent four rounds hardening a docs linter while the
+plan's content was accepted each time.
+1. **Review the task, not its tooling.** Blocking findings concern the task's Done-when and the
+   claim its Scope protects. Crafted-input attacks on helper scripts, validators, receipts or
+   test tooling are out of scope, unless the task delivers that tool as a protection (a guard, a
+   permission, an engine seam).
+2. **Docs and planning PRs: content first.** The reviewer judges the content; their helper
+   checks are consistency checks for honest edits, and an adversarial bypass of one is never
+   blocking.
+3. **Same-class cap.** When the same class of finding returns in a second round, the main
+   session narrows the claim and files a follow-up instead of a third round on that class.
+   Only a real defect in what the task delivers keeps blocking.
+4. **Severity bar.** Blocking means a real user or implementer would hit it through normal use
+   or honest editing. A problem that needs deliberately crafted input is a follow-up, unless
+   defeating crafted input is the task's own protected claim.
+5. **Modest claims.** Implementers do not write guarantees their checks cannot back. A smaller
+   claim beats a bigger checker.
+6. **Reviews are posted on the PR.** A review run outside the review script (a cloud session, a
+   prompt the owner pastes) posts its complete review as one PR comment or PR review, exactly
+   once, changing no labels. Where gh's GraphQL commands are unavailable:
+   `gh api repos/<owner>/<repo>/issues/<pr>/comments -X POST -F body=@<file>`. The main session
+   then applies the label. Every review prompt ends with this posting step.
 
 ### Claude CLI backend (owner request, T69)
 

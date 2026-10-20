@@ -1,17 +1,85 @@
-# Release 0.2.0: map-first UI across devices
+# Release 0.2.0: full-viewport UI across devices
 
 Owner allocation, 2026-10-19: the selected #191 design and resulting delivery
 backlog target **0.2.0** (the owner's “0.2”). [Milestone](https://github.com/diegoami/malpaco/milestone/1)
 and [delivery tracker #194](https://github.com/diegoami/malpaco/issues/194) own the
 live queue; this file records scope, dependencies and acceptance, not status.
 Design authority: [DECISIONS](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/DECISIONS.md), [proposal](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/PROPOSAL.md),
-[sketches](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/WIREFRAMES.md) and [acceptance](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ACCEPTANCE.md). Publication,
+[sketches](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/WIREFRAMES.md) and historical acceptance (PR #196, unmerged), now superseded by the
+[finished-game vision](finished-game-vision/DECISIONS.md), the
+[#215 reconciliation](finished-game-vision/RECONCILIATION.md) (owner-approved 2026-10-20, PR #217)
+and the on-main [0.2.0 acceptance](release-0.2.0-acceptance.md) (A1–A14). Publication,
 implementation dispatch and final playable appearance remain separate gates.
+
+## Owner presentation amendment under #215
+
+The owner approved V1–V5 with [new presentation requirements](finished-game-vision/DECISIONS.md):
+nice organic maps are required for the finished game; flavour naming can wait;
+the map fills the viewport, actions use icons, and text appears only for a
+current interaction or requested information, then clears. Permanent headers,
+phone docks and desktop side panels in the earlier sketches are superseded.
+D2 all devices and D3 explicit Attack remain. The subsequent portrait refinement
+fits the same geography with a quarter turn when useful, keeps text/icons upright,
+and preserves world-space focus/drafts across rotation. Reconcile T80/T88 camera
+and gesture acceptance with swipe-to-pan, pinch zoom and Fit/focus alternatives;
+a gesture must not dispatch a tap action.
+
+The table below records the existing allocation and contract names, not approval
+to dispatch those contracts unchanged. Reconcile and explicitly amend affected
+T79/T84–T88 composition/information assumptions before implementation; preserve
+complete reachable actions, histories/totals, accessibility and required-choice
+continuity. Organic geography's place relative to this UI slice must be decided
+in the post-sketch backlog reconciliation, then approved by the owner. It is no
+longer optional for the finished game. No generator rewrite is selected here.
+
+The subsequent colour/beginner proposal uses vivid stable ownership colours,
+more irregular geographic drawing and short first-use hints that name actions,
+explain consequences and clear afterward. See the
+[illustrated walkthrough](finished-game-vision/BEGINNER-WALKTHROUGH.md).
+This is a visual/teaching proposal, not tutorial implementation authorization.
+Reconcile relevant T85/T87/help assumptions with the eventual owner-selected
+execution; keep the resting board free of permanent prose; retain army counts per the later owner decision.
+
+The owner also confirms usability as part of their review and requires original
+islands and regions that feel like believable real geography, with broad
+structural variety within a match and across generated maps. Sicily, Cuba,
+Borneo and New Zealand are illustrative references, not a fixed catalogue of
+forms. The [geography reference brief](finished-game-vision/GEOGRAPHY-REFERENCES.md)
+and static studies refine the finished-game geography bar; the four studies do
+not establish the full variety required of generated maps. They select neither real
+map replicas nor a specific generator algorithm; preserve existing country/island,
+adjacency, fairness, route and save contracts. Carry this direction into the
+existing-issue reconciliation before implementation, not a parallel roadmap.
+
+The owner subsequently requests applying the changes directly, with review by
+someone else. The [concepts](finished-game-vision/SKETCHES.md) and
+[teaching sequence](finished-game-vision/BEGINNER-WALKTHROUGH.md) now shows legal
+source/target selection, contextual stacks/odds, fitted landscape, pending capture
+entry/fold/resume, outcome/Fight-on/Stop and opponent/return feedback, plus safe
+inspection and requested icon names. These are static planning changes, not a
+feature dispatch, task-contract amendment or usability approval.
+
+The independent revision-6 review requests changes. The owner explicitly chooses
+army counts on every territory, including at rest, with the remaining placement
+pool always visible. Revision 7 applies this, preserves ui-057/061/082(pool)/084,
+and corrects icons, selection, default domination state, open-sea contextual
+placement, friendly movement and elimination. Prose remains temporary; no task
+Done-when or rule is amended by these static planning corrections. Carry the
+explicit count decision into the existing-contract reconciliation.
+
+The [independent revision-7 recheck](finished-game-vision/reviews/claude-cloud-2026-10-20/recheck/REVIEW.md)
+approves the concepts at `82ae510` with nonblocking follow-ups and confirms all
+nine original findings resolved. Carry [A–E](finished-game-vision/reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md)
+into the existing-contract/acceptance reconciliation, especially count attribution
+at phone Fit with realistic stack sizes. ui-077 and ui-054 presentation amendments
+are now explicit in AUTHORITY. The owner accepted the revision-7 static sketches
+and authorized consolidation/merge on 2026-10-20. Backlog and playable approval
+remain separate; this record neither dispatches work nor changes the drawings.
 
 ## Selected scope
 
-Map-first workspace for mobile portrait/landscape, tablet and desktop in the same
-release. Source/target selection stages combat; explicit Attack performs one
+Full-viewport map with icon controls and temporary contextual information for
+mobile portrait/landscape, tablet and desktop in the same release. Source/target selection stages combat; explicit Attack performs one
 existing exchange. Fight on waits for the first confirmed Attack on that pair;
 pair/load changes clear confirmation. Place1, combat arithmetic, old maps/saves,
 RNG and replay rules remain unchanged. Preserve all current cards, required
@@ -19,7 +87,8 @@ choices, four-player totals, complete logs, Pause/speed and files/help/setup.
 
 ## Delivery contracts
 
-All thirteen tasks are required for the selected release. Priority expresses
+All twelve tasks are required for the selected release (T86 is retired into T79 and T88 by the
+#215 reconciliation; T78 is merged). Priority expresses
 ordering/impact, not permission to omit a selected device or accessibility flow.
 Task issue labels determine readiness. No task is made ready by this document:
 main must run acceptance preflight and record dispatch decisions first.
@@ -27,25 +96,24 @@ main must run acceptance preflight and record dispatch decisions first.
 | Task / issue | Deliverable | Priority | Difficulty | Dependencies |
 | --- | --- | --- | --- | --- |
 | [T78](../tasks/T78.md) / [#197](https://github.com/diegoami/malpaco/issues/197) | Responsive workspace state and continuity | High | Hard | T76 baseline |
-| [T79](../tasks/T79.md) / [#198](https://github.com/diegoami/malpaco/issues/198) | Adaptive game shell and phone action dock | High | Hard | T78 |
-| [T80](../tasks/T80.md) / [#199](https://github.com/diegoami/malpaco/issues/199) | Map camera, zoom and resize continuity | High | Hard | T79 |
+| [T80](../tasks/T80.md) / [#199](https://github.com/diegoami/malpaco/issues/199) | Map camera, zoom, rotation fit and resize continuity | High | Hard | T78 |
+| [T79](../tasks/T79.md) / [#198](https://github.com/diegoami/malpaco/issues/198) | Full-viewport map shell and overlay icon controls | High | Hard | T80 |
 | [T81](../tasks/T81.md) / [#200](https://github.com/diegoami/malpaco/issues/200) | Accessible country picker and safe touch inspection | High | Medium | T79, T80 |
 | [T82](../tasks/T82.md) / [#201](https://github.com/diegoami/malpaco/issues/201) | Explicit Attack and capture or movement commitments | High | Hard | T79, T81 |
 | [T83](../tasks/T83.md) / [#202](https://github.com/diegoami/malpaco/issues/202) | Responsive cards, Raid and mandatory reward choices | High | Hard | T82 |
 | [T84](../tasks/T84.md) / [#203](https://github.com/diegoami/malpaco/issues/203) | Four-player totals, complete histories and playback continuity | High | Medium | T83 |
 | [T85](../tasks/T85.md) / [#204](https://github.com/diegoami/malpaco/issues/204) | Responsive setup, settings, files, help and result views | High | Hard | T84 |
-| [T86](../tasks/T86.md) / [#205](https://github.com/diegoami/malpaco/issues/205) | Tablet and desktop workspace composition | High | Hard | T85 |
-| [T87](../tasks/T87.md) / [#206](https://github.com/diegoami/malpaco/issues/206) | Map annotation hierarchy, contrast and reduced motion | Medium | Medium | T81, T86 |
-| [T88](../tasks/T88.md) / [#207](https://github.com/diegoami/malpaco/issues/207) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | T83, T84, T85, T86, T87 |
+| [T87](../tasks/T87.md) / [#206](https://github.com/diegoami/malpaco/issues/206) | Map annotation hierarchy, counts at Fit, contrast and reduced motion | Medium | Medium | T81, T79 |
+| [T88](../tasks/T88.md) / [#207](https://github.com/diegoami/malpaco/issues/207) | Keyboard, touch, safe-area and zoom acceptance | High | Hard | T83, T84, T85, T87 |
 | [T89](../tasks/T89.md) / [#208](https://github.com/diegoami/malpaco/issues/208) | Full-device 0.2.0 release candidate and artifact acceptance | High | Hard | T88 |
 | [T90](../tasks/T90.md) / [#209](https://github.com/diegoami/malpaco/issues/209) | Publish the exact accepted 0.2.0 artifact | High | Medium | T89 |
 
-Suggested sequence: **T78 → T79 → T80 → T81 → T82 → T83 → T84 → T85 →
-T86 → T87 → T88 → T89 → T90**. T80 follows T79 because its phone acceptance needs the responsive shell. Shared
+Sequence: **T78 (merged) → T80 → T79 → T81 → T82 → T83 → T84 → T85 → T87 → T88 →
+T89 → T90**. T80 comes first because the full-viewport shell is mostly camera fit and rotation. Shared
 UI/CSS integration is serialized unless task dependencies and ownership explicitly permit overlap.
 
 Original plan mapping: P1→T78; P2→T79/T85; P3→T80/T81; P4→T82/T83/T85;
-P5→T84/T85/T88; P7→T86; P8→T87; P6→T89/T90. The release acceptance gate
+P5→T84/T85/T88; P7→T79/T88 (T86 retired); P8→T87; P6→T89/T90. The release acceptance gate
 comes after tablet/desktop and readability work, never before them.
 
 ## Cross-device release bar
@@ -69,14 +137,19 @@ CI repetition or rebuild after artifact approval.
   current-game responsive/keyboard/ownership overlaps are mapped to T79–T89; do
   not launch competing UI implementations. Future event/high-contrast or other
   residual requirements are not silently declared complete by this release.
-- **#195** behavior checks map to T79/T85/T86/T88: heading/toolbar actual hits,
+- **#195** behavior checks map to T79/T85/T88 (overlays never cover required controls or each other):
   horizontal keyboard order, load focus and required-control visibility. Only
   reproduced defects are fixed; historical evidence gaps remain acknowledged.
-- **#181** remains a separate Medium/Hard post-0.1.x generation spike, linked
-  from the master backlog, outside this release's required delivery graph.
+- **#181** owns organic geography (U1) as slice S2, running in parallel with this
+  release (owner decision R3, 2026-10-20): a bounded spike, then a versioned
+  integration task. It is outside this release's delivery graph; where integration
+  changes renderer consumers it serializes with T80/T81/T87/T85 by file ownership.
+  This release reports count attribution (A12) on current geography; S2 re-runs it.
   [Assessment](https://github.com/diegoami/malpaco/blob/adf7f5ac0e9c581dddf8afc7a7fc8e8fc7a8262d/docs/plans/responsive-ui/ASSESSMENT-181.md). No generation rewrite is bundled or started.
-- **#170** flavour naming and **#174** curved-label placement stay separate;
-  T87's label hierarchy neither duplicates them nor reverses their ordering.
+- **#170** flavour naming is deferred by the #215 owner decision. **#174**
+  curved-label placement must be reconciled with requested contextual information;
+  T87's annotation assumptions also need explicit reconciliation; no permanent
+  flavour labels are implied.
   New rules, AI roadmap, autosave, sound, themes and harness migration are excluded.
 
 ## Dispatch and publication

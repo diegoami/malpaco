@@ -4,6 +4,9 @@
   (runs the original under a gated carve-out, process.md §10; its lettered preconditions are
   Done-when lines, its table and gate named in Scope)
 - **Issue**: #<n> · **Branch**: `task/T<nn>-<slug>` · **Merge after**: T<nn>, …
+- **Tier**: 0 | 1 | 2 (process.md §5.1, #219): 0 docs, planning, outcome-neutral fixes (no external
+  review); 1 features and UI (one review round); 2 engine, generator, saves, artifacts, guards,
+  permissions, privacy (review until accepted). When unsure, the higher one.
 - **Implementer**: the `implementer` subagent on the model chosen at the question, or the main session directly (CLAUDE.md rule 6); say which, and why, only when it matters (the user's machine needs the main session, L26).
 - **Reviewer**: `reviewer.default` (GPT-5.6 Luna), or a `harness.json` key with the reason: `gpt-6.1-sol` for a guard, a gate or a hard task; never the implementer's family (CLAUDE.md rule 6).
 - **Evidence**: the reports, fixtures or investigations this task rests on, with links.

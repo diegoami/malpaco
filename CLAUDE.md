@@ -59,7 +59,9 @@ indexed in `docs/tasks/README.md`.
       plan, a progress line per commit, an END block), pushes after every commit, and opens the PR.
       When a subagent ends, the main session reads its final report before acting (rule 8), and
       posts its notes on the issue.
-   2. **Before each review, ask the user ONE question:** which OpenCode model reviews? Propose
+   2. **Before each review, ask the user ONE question:** which OpenCode model reviews? A task's
+      risk tier (`docs/process.md` §5.1, #219) decides whether there is one: tier 0 has no external
+      review, tier 1 one round, tier 2 rounds until accepted. Propose
       `harness.json`'s `reviewer.default` first (GPT-5.6 Luna today; GPT-6.1 Sol at `low` for a
       guard, a gate or a hard task), and list the registered models that are neither of the
       session's family nor blocked. Then `tools/harness/review.mjs --pr <n> --brief <file>
@@ -104,8 +106,12 @@ indexed in `docs/tasks/README.md`.
 
    The roster, how a run is made and what each model has shown are in `docs/models.md`, kept
    identical to isle-wars-archaeology's copy; the main session keeps it current.
-7. Merge only with an approving review and green CI. Two rework rounds, then escalate. Who
-   implements the next round is rule 6's question again (L68 supersedes L38's ladder).
+7. Merge only with an approving review and green CI; a tier-0 PR (`docs/process.md` §5.1) merges on
+   the main session's own exact-head checks instead, and is listed for the milestone review. Two
+   rework rounds, then escalate (tier 1: one round, the rest become follow-ups, except a real
+   defect in what the task delivers, which keeps blocking or escalates; never merged by round count). Who implements the
+   next round is rule 6's question again (L68 supersedes L38's ladder). Reviews are proportionate
+   (§5.2, #218): they judge the task, not its tooling.
 8. Relay review findings in full. Read a run's final message before you retry or re-route it (L55).
 9. A test proves behaviour only if it fails without that behaviour; re-take a claim that nothing failed.
 10. A comment asserting behaviour at an edge arrives with the test that visits that edge.
