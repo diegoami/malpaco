@@ -90,8 +90,12 @@ friendly movement shows 8/4 becoming 5/7 after total 3. Actual stacks, pools,
 legality, odds, effects and results must derive from the real controller/options.
 No rule, capture default, conservation, timing or RNG contract is changed.
 
-No game tests/build, live play, generator/AI experiment, additional review
-dispatch, CI, product implementation, deployment, merge or usability/fun approval
-is claimed by this approval-record update. Owner sketch/playable D4 acceptance,
-nonblocking follow-through and existing #215 reconciliation/approval gates remain
-before feature dispatch.
+The owner accepted the revision-7 static direction and authorized consolidation
+and merge on 2026-10-20 ([decision](DECISIONS.md)). Consolidation changes only
+documentation; the approved drawings, generators and raw receipts remain
+unchanged. Before merge, re-run the revision-7 renderer and hash checks, and
+require successful PR CI under the normal repository process. No live play,
+generator/AI experiment, additional review, product implementation, deployment
+or usability/fun result is claimed. Playable D4 acceptance, nonblocking
+follow-through and existing #215 reconciliation/approval gates remain before
+feature dispatch.

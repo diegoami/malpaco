@@ -100,7 +100,8 @@ These 65 gallery drawings are original static concepts. The
 approves these concepts at `82ae510` with nonblocking follow-ups. The
 [remaining issues](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md) include
 misattributed/long-leader Fit badges and missing larger-stack examples; zero
-rectangle overlaps do not prove correct attribution. No playable usability/fun
-result or owner sketch acceptance is claimed.
+rectangle overlaps do not prove correct attribution. The owner accepted this
+static direction and authorized consolidation/merge on 2026-10-20
+([decision](DECISIONS.md)). No playable usability/fun result is claimed.
 
 Regenerate with `python3 docs/plans/finished-game-vision/draw-sketches.py`.

@@ -160,14 +160,29 @@ presentation decision. Original Place 1 and explicit Attack remain binding.
 The revised concepts are for separate correction review and owner acceptance;
 the original review does not approve the new drawings.
 
-## What still needs review or reconciliation
+## Revision-7 sketch acceptance and merge authorization
+
+On 2026-10-20, after viewing the revision-7 desktop overview, portrait overview,
+attack, portrait/landscape capture, friendly movement, elimination and result
+sketches in this cloud-session conversation, the owner responded:
+
+> Great, consolidate and merge
+
+This accepts the current static concept package and authorizes consolidation and
+merge of PR #216. The drawings remain unchanged from independently reviewed
+`82ae510`; the [nonblocking A–E follow-ups](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md)
+remain acceptance/reconciliation inputs. This is sketch acceptance, not evidence
+of playable usability, fun or generated-map quality. No completed backlog,
+feature dispatch or publication is approved by this response.
+
+## What still needs reconciliation
 
 The first sketches were rejected for text density; V1–V5 approval does not approve
-those drawings. [Revision 2](SKETCHES.md) redraws all five scenes and adds a quiet
-map across all four devices. These are original static illustrations, not actual
-map generation or a playable build. Owner review of these revised sketches
-precedes final backlog reconciliation under #215; do not request another generic
-V1–V5 approval.
+those drawings. The owner instead accepts the [revision-7 package](SKETCHES.md)
+under the decision above. These are original static illustrations, not actual
+map generation or a playable build. Existing-authority and backlog reconciliation
+under #215 follows this sketch acceptance; do not request another generic V1–V5
+or sketch approval.
 
 Before dispatch, amend affected existing contracts and acceptance assumptions
 explicitly on main under the normal process, preserving their behavioural

@@ -1,4 +1,4 @@
-# Review the revised map experience
+# Accepted sketch direction and playable review criteria
 
 **V1–V5 are approved** with the owner's organic-map requirement, flavour deferral
 and full-screen/icon/contextual-text amendments. The [decision record](DECISIONS.md)
@@ -9,8 +9,10 @@ sequence. The [independent recheck](reviews/claude-cloud-2026-10-20/recheck/REVI
 approves the concepts at `82ae510` with nonblocking follow-ups and confirms all
 nine original findings resolved. [Acceptance/reconciliation inputs](reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md)
 preserve the remaining badge-attribution, large-stack, contract, Stop-label and
-peripheral-label issues. This approval does not presume the owner's sketch or
-playable usability acceptance.
+peripheral-label issues. After seeing the current sketches, the owner said
+**“Great, consolidate and merge”** on 2026-10-20, accepting this static direction
+and authorizing PR #216's merge; see the [exact decision](DECISIONS.md).
+Playable usability acceptance remains separate.
 
 The first sketches were too overwhelming and are superseded. Open the
 [revision-7 gallery](SKETCHES.md), especially the quiet-map row: army numbers remain on every territory as explicitly chosen by the owner. There
@@ -39,12 +41,12 @@ informed by illustrative examples including Sicily, Cuba, Borneo and New Zealand
 The broad requirement is believable island and regional character with structural
 variety within and across generated maps. Review actual retained seeds for that
 variety; these four studies are not a complete catalogue or acceptance evidence.
-The owner has confirmed that usability is part of their review; its outcome is
-not presumed. Give corrections by scene/device if needed. These are original static visual references: organic
+The owner has confirmed that usability is part of their playable review; its
+outcome is not presumed by sketch acceptance. These are original static visual references: organic
 map generation, icon discovery, touch feel, accessibility and full-match fun must
 still be judged in real builds under D4. A sketch is not evidence of a valid map.
 
-After revised sketch review, reconcile existing tasks, including dock/sidebar
+Following sketch acceptance, reconcile existing tasks, including dock/sidebar
 assumptions, organic geography and deferred #170, and seek approval of the
 resulting release slices/backlog. Existing behavioural contracts remain binding
 until explicitly amended; implementation and publication require their separate

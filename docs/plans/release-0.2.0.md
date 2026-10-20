@@ -69,8 +69,9 @@ approves the concepts at `82ae510` with nonblocking follow-ups and confirms all
 nine original findings resolved. Carry [A–E](finished-game-vision/reviews/claude-cloud-2026-10-20/recheck/FOLLOWUPS.md)
 into the existing-contract/acceptance reconciliation, especially count attribution
 at phone Fit with realistic stack sizes. ui-077 and ui-054 presentation amendments
-are now explicit in AUTHORITY. Owner sketch/backlog/playable approval remains
-separate; this record neither dispatches work nor changes the drawings.
+are now explicit in AUTHORITY. The owner accepted the revision-7 static sketches
+and authorized consolidation/merge on 2026-10-20. Backlog and playable approval
+remain separate; this record neither dispatches work nor changes the drawings.
 
 ## Selected scope
 

@@ -11,7 +11,8 @@ Start with the [revised sketches](SKETCHES.md) and
 [illustrated beginner walkthrough](BEGINNER-WALKTHROUGH.md). The journey below incorporates
 that direction. Revision 7 applies the interaction changes in the drawings and
 expanded walkthrough. The [authority crosswalk](AUTHORITY.md) identifies the existing
-contracts to reconcile. Revised sketch acceptance, backlog approval and product
+contracts to reconcile. The owner accepted the revision-7 sketch direction and
+authorized consolidation and merge on 2026-10-20. Backlog approval and product
 implementation remain separate gates under #215; GitHub labels carry task state.
 
 ## The promise
@@ -260,11 +261,11 @@ It confirms all nine revision-6 findings resolved. Current examples still contai
 known badge-attribution and single-digit fixture limitations; drawing approval
 does not establish generated-map readability or playable acceptance.
 
-## Revised sketches, then backlog reconciliation
+## Accepted sketches, then backlog reconciliation
 
-V1–V5 are approved with the [recorded amendments](DECISIONS.md). Review the
-revised count-bearing map and interaction scenes; the first text-heavy sketches
-are superseded. Only after that review reconcile existing issues as
+V1–V5 and the revision-7 static sketch direction are approved with the
+[recorded amendments and merge authorization](DECISIONS.md). The first text-heavy
+sketches are superseded. Next reconcile existing issues as
 **retain / revise / defer / drop / already satisfied**, with reasons, evidence and
 explicit amendments for conflicting dock/panel/label assumptions. Carry organic
 geography as required and flavour naming as deferred. Reuse existing issues and
