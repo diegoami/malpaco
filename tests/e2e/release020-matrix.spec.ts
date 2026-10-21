@@ -167,9 +167,11 @@ test('A8: a tiny region reached by Countries, Inspect and Focus; the tap acts on
  const tiny=(await page.locator('#geographic-map [data-country]').evaluateAll((ns,mine)=>ns.filter(n=>mine.includes((n as HTMLElement).dataset['country']!)).map(n=>{const r=n.querySelector('.cell')!.getBoundingClientRect();return {id:(n as HTMLElement).dataset['country']!,a:r.width*r.height};}).sort((x,y)=>x.a-y.a)[0]!.id,own));
  await page.locator('#open-countries').click();await page.getByRole('button',{name:'All',exact:true}).click();
  await page.locator(`[data-key="inspect:${tiny}"]`).click();await page.locator(`[data-key="focus:${tiny}"]`).click();
- await expect.poll(()=>page.locator('svg[data-camera-zoom]').getAttribute('data-camera-zoom').then(Number)).toBeGreaterThan(1);await closeSurface(page).catch(()=>{});
- // The focused region is big enough to tap: the tap places one army there, never on a guessed neighbour.
+ await expect.poll(()=>page.locator('svg[data-camera-zoom]').getAttribute('data-camera-zoom').then(Number)).toBeGreaterThan(1);await closeSurface(page);
+ // A tap on the focused region places one army there. If it touches a neighbour too, the game asks
+ // which country by name rather than guessing; the named choice is the region.
  const b=(await country(page,tiny).locator('.badge').boundingBox())!;await page.mouse.click(b.x+b.width/2,b.y+b.height/2);
+ if(await page.locator('#game-focus-drawer').isVisible()){await expect(page.locator('#game-focus-drawer')).toContainText('Which country?');await page.locator(`[data-country-row="${tiny}"]`).click();}
  s=next(s,{kind:'reinforce',province:tiny,amount:1});await exactly(page,s);
  // A drag pans; it does not place. A held key repeats nothing.
  await page.mouse.move(b.x,b.y);await page.mouse.down();await page.mouse.move(b.x+90,b.y+40,{steps:6});await page.mouse.up();
