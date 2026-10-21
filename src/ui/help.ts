@@ -78,7 +78,8 @@ export function mountHelp(
   (viewRoot ?? host).append(dialog);
 }
 
-/** T85 (R6, #61): every icon the game shows, with the one name it is announced by. */
+/** T85 (R6, #61): every icon the game shows, with the one name it is announced by. Card names
+ * stay out of this help: the page may show only your own or publicly spent cards. */
 const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
   ["menu", "Menu", "Totals, history, your cards, settings, files and this help."],
   ["pause", "Pause", "Stops play at once; the same icon resumes it."],
@@ -95,7 +96,7 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["settings", "Settings", "Where Fight on stops, and its speed."],
   ["minus", "Fewer", "Lowers a move-in or move amount."],
   ["plus", "More", "Raises a move-in or move amount."],
-  ["confirm", "Confirm", "Completes a capture move-in, a move or a Raid."],
+  ["confirm", "Confirm", "Completes a capture move-in, a move or a card choice."],
   ["fold", "Fold", "Puts a choice aside to look at the map; it is not completed."],
   ["return", "Return", "The gold icon that brings a folded choice back."],
   ["history", "Changes", "On your turn: the other seats' actions since your last turn."],
@@ -109,7 +110,7 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["Placing", "Tap your countries to place armies from the pool shown at the top, then Start combat."],
   ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target and shows the capture chance. Attack fights one exchange; Fight on continues."],
   ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
-  ["Cards", "A required card choice opens by itself. A Raid folds to a strip: tap a highlighted enemy or use Countries."],
+  ["Cards", "A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries."],
   ["Notices", "The slim notice under the top icons says whose turn it is or what just happened. Tap it for a hint; swipe or × dismisses it."],
   ["Map", "Pinch or scroll to zoom, drag to pan, Fit to see everything. A tap that touches two countries asks which one."],
 ];
