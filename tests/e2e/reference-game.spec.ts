@@ -49,8 +49,8 @@ test("ordinary reference clicks place, attack, hand off and replay legally to a 
   else if(action.kind==="attack"){
    const from=country(page,action.from);if(attacks===0){await from.focus();await page.keyboard.press("Enter");await expect(from).toHaveAttribute("aria-pressed","true");}else if(await from.getAttribute("aria-pressed")!=="true")await from.click();
    expect(await page.locator('[data-target="true"]').evaluateAll(ns=>ns.map(n=>(n as SVGElement).dataset["country"]).sort())).toEqual([...attackTargets(state,action.from)].sort());
-   // Integration guard: legal target markers must correspond to painted outlines (T93: dashed, light, after the sketches).
-   await expect.poll(async()=>await page.locator('[data-target="true"] .cell').evaluateAll(ns=>ns.every(n=>{const s=getComputedStyle(n);return s.stroke==="rgb(240, 241, 222)"&&s.strokeDasharray!=="none"&&parseFloat(s.strokeWidth)>=1.5&&Number(s.opacity)>0;}))).toBe(true);
+   // Integration guard: legal target markers must correspond to painted outlines (T93: dashed, light, after the sketches; T87: on a dark band).
+   await expect.poll(async()=>await page.locator('[data-target="true"]').evaluateAll(ns=>ns.every(n=>{const s=getComputedStyle(n.querySelector('.ring')!),band=getComputedStyle(n.querySelector('.cell')!);return s.stroke==="rgb(240, 241, 222)"&&s.strokeDasharray!=="none"&&parseFloat(s.strokeWidth)>=1.5&&Number(s.opacity)>0&&band.stroke==="rgb(16, 43, 54)";}))).toBe(true);
    await country(page,action.to).click();await page.locator("#attack-button").click();await expect(page.locator("#result-dialog")).toBeVisible();
    for(const id of [action.from,action.to]){await expect(country(page,id)).toHaveAttribute("data-owner",r.state.ownerOf[id]!);await expect(country(page,id)).toHaveAttribute("data-armies",String(r.state.armies[id]));await expect(country(page,id).locator(".army-count")).toHaveText(String(r.state.armies[id]));}
    if(attacks===0)await capture(page,"first-attack",info.project.name);attacks++;await page.getByRole("button",{name:"Continue",exact:true}).click();

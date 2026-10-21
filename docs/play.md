@@ -37,6 +37,10 @@ to the end. **Attack** fights one exchange; after it, **Fight on** continues aut
 and **Stop** pauses it. Clicks, Enter/Space, touch and the Countries list all work the same way.
 After capturing a territory, choose the army amount and **Confirm move-in**; until then
 the two countries' counts are dashed.
+On the map, your selected country has a solid gold outline, the countries it can attack a dashed
+light one, and the chosen target a solid light outline with a crosshair round its count, so none of
+them relies on colour alone. Counts never draw smaller than 14 px; stacks over 999 show as 1.2k or
+23k, and the country's spoken name keeps the exact number.
 You can make one adjacent friendly move per turn. Computer turns run automatically.
 **Save game** downloads a match file; **Load game** restores one, including an
 unresolved capture choice. Older version-1 saves (the earlier generated board) load here too and
