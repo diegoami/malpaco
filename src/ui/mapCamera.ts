@@ -308,14 +308,15 @@ export class MapCamera {
     const upright = (el: Element, x: number, y: number) =>
       rotation ? el.setAttribute('transform', `rotate(${-rotation} ${x} ${y})`) : el.removeAttribute('transform');
     const k = this.labelScale;
-    for (const label of this.content.querySelectorAll('.country-label')) {
+    // The name layer (nameLayer.ts) grows and turns with the labels it copies.
+    for (const label of this.content.querySelectorAll('.country-label, .name-top')) {
       const count = label.querySelector('.count'), x = Number(count?.getAttribute('x') ?? 0), y = Number(count?.getAttribute('y') ?? 0);
       // The badge centre sits five units above the count's baseline; it stays put as the label grows.
       const grow = k > 1 ? ` translate(${x} ${y - 5}) scale(${k}) translate(${-x} ${-(y - 5)})` : '';
       if (rotation || grow) label.setAttribute('transform', `${rotation ? `rotate(${-rotation} ${x} ${y})` : ''}${grow}`.trim()); else label.removeAttribute('transform');
     }
     for (const text of this.content.querySelectorAll('text'))
-      if (!text.closest('.country-label')) upright(text, Number(text.getAttribute('x') ?? 0), Number(text.getAttribute('y') ?? 0));
+      if (!text.closest('.country-label, .name-top')) upright(text, Number(text.getAttribute('x') ?? 0), Number(text.getAttribute('y') ?? 0));
   }
 
   private local(e: PointerEvent | WheelEvent): [number, number] {

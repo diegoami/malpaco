@@ -5,11 +5,13 @@ import type {MapHandlers,MapViewState} from './mapView';
 import {s} from './dom';
 import {badgeScale,countLabel,seatLook,TARGET_MARK} from './palette';
 import {MapCamera} from './mapCamera';
+import {NameLayer} from './nameLayer';
 
 /** Render the prepared drawing; all interactive targets come from core state. */
 export class GeographicMapView {
  readonly el:SVGSVGElement;
  readonly camera:MapCamera;
+ private readonly names:NameLayer;
  constructor(map:GameMap,geography:IslandGeography,handlers:MapHandlers,presentation:Presentation){
   void geography;
   const q=1,b=presentation.bounds;
@@ -36,6 +38,7 @@ export class GeographicMapView {
    if(e.key==='Enter'||e.key===' '){e.preventDefault();handlers.onProvince(node.dataset['country']!,{inspect:e.shiftKey,repeat:e.repeat});}
    if(['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();nodes[(index+(['ArrowRight','ArrowDown'].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}
   };this.el.append(node);});
+  this.names=new NameLayer(nodes);this.el.append(this.names.el);
   this.el.onclick=e=>{if(!(e.target as Element).closest('[data-country]'))handlers.onBackground();};
   this.camera=new MapCamera(this.el,{x:b.x/q,y:b.y/q,width:b.width/q,height:b.height/q});
  }
@@ -53,6 +56,7 @@ export class GeographicMapView {
    badge.setAttribute('transform',`translate(${count.getAttribute('x')},${Number(count.getAttribute('y'))-5}) scale(${badgeScale(count.getComputedTextLength())})`);
    (n.querySelector('.centre') as SVGElement).style.display=state.productionCentres.includes(id)?'':'none';
   }
+  this.names.select(view.selected);
   this.el.dataset['choosing']=String(view.selected!==null);
   for(const route of this.el.querySelectorAll<SVGPolylineElement>('.lane'))route.classList.toggle('active',route.dataset['edge']!.split('|').includes(view.selected??''));
  }
