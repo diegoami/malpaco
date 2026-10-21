@@ -1698,3 +1698,17 @@ dialog h2 {
 .game-help-icons li { display:grid; grid-template-columns:28px minmax(90px,auto) 1fr; align-items:center; gap:8px; font-size:14px; }
 .game-help-icons li svg { width:22px; height:22px; }
 @media (max-width:480px) { .game-help-icons li { grid-template-columns:28px 1fr; } .game-help-icons li span { grid-column:2; color:var(--muted); } }
+/* T88: icon groups never squeeze a control under its 44 px touch target. */
+.game-overlay :is(.map-camera-controls, .game-corner-camera, #battle-action-rail, .game-corner) > button { flex:none; }
+/* T88: below the 240 px reduced-height floor (400% browser zoom on a laptop) the camera icons
+   run along the bottom edge, so they never climb into the menu's corner. */
+@media (max-height:239px) {
+  .game-overlay .map-camera-controls { flex-direction:row; }
+  #battle-action-rail { display:flex; flex-direction:row; max-height:none; }
+  #battle-action-rail > .buttons { display:contents; }
+  /* An open card takes the whole lower band over the bottom icons (Fit, Countries, information),
+     which wait behind it; menu and Pause stay above it, and the card scrolls to its Confirm. */
+  .game-overlay:has(#game-focus-drawer:not([hidden])) .game-side { grid-column:1 / -1; grid-row:2; z-index:1; }
+  .game-overlay:has(#game-focus-drawer:not([hidden])) .game-notice-slot { display:none; }
+  .game-overlay #game-focus-drawer { max-height:100%; }
+}
