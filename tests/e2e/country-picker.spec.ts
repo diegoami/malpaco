@@ -106,3 +106,19 @@ test.describe('touch',()=>{
    await expect(page.locator(`#geographic-map [data-country="${id}"]`)).toHaveAttribute('data-armies',String(Number(before[id])+1));}
  });
 });
+
+test('a list choice that opens the attack card leaves no list behind; the list then opens and closes cleanly (owner report)',async({page})=>{
+ await start(page);
+ for(let i=0;i<40&&await page.locator('#placement-pool').isVisible();i++){await openList(page);await page.locator('[data-country-row]').first().click();await closeSurface(page);}
+ await page.locator('#start-combat-button').click();
+ await openList(page);await page.locator('[data-country-row]').first().click();
+ if(await page.locator('#game-focus-drawer').getAttribute('data-surface')!=='countries')await openList(page);
+ await page.locator('[data-country-row]:not(:disabled)').first().click();
+ // The staged pair opens the attack card: it holds the attack, not the list.
+ await expect(page.locator('#game-focus-drawer')).toHaveAttribute('data-surface','actions');
+ await expect(page.locator('#game-focus-drawer .country-picker')).toHaveCount(0);
+ await page.keyboard.press('Escape');await expect(page.locator('#game-focus-drawer')).toBeHidden();
+ await openList(page);await expect(page.locator('#game-focus-drawer .country-picker')).toHaveCount(1);
+ await page.locator('#close-game-drawer').click();await expect(page.locator('#game-focus-drawer')).toBeHidden();
+ await expect(page.locator('.country-picker')).toHaveCount(0);
+});

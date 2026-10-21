@@ -187,7 +187,8 @@ export class BattleChrome {
   close(restoreFocus = true): void {
     if (!this.surface) return;
     this.rememberHistory();
-    for (const {node, marker} of this.moved) {marker.replaceWith(node);}
+    // Content with no home in the page (the Countries list) leaves the card instead of staying under the next one.
+    for (const {node, marker} of this.moved) {if (marker.parentNode) marker.replaceWith(node); else node.remove();}
     this.moved = []; this.drawer.hidden = true; this.surface = null;
     for (const button of this.overlay.querySelectorAll<HTMLElement>("[aria-haspopup]")) button.setAttribute("aria-expanded", "false");
     this.layout();
