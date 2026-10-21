@@ -58,7 +58,7 @@ describe("island geography v2 (T95)", () => {
       for (const l of g.entranceReservations) {
         expect(islandOf.get(l.from)).not.toBe(islandOf.get(l.to));
         for (const id of [l.from, l.to]) lanes.set(id, (lanes.get(id) ?? 0) + 1);
-        const [s, t] = l.points as [Point, Point], length = Math.hypot(t[0] - s[0], t[1] - s[1]);
+        const [s, t] = l.points as unknown as [Point, Point], length = Math.hypot(t[0] - s[0], t[1] - s[1]);
         expect(length).toBeGreaterThanOrEqual(20 * Q);
         for (let d = 10 * Q; d < length - 10 * Q; d += 4 * Q) {
           const p: Point = [s[0] + ((t[0] - s[0]) * d) / length, s[1] + ((t[1] - s[1]) * d) / length];
