@@ -10,6 +10,8 @@ export interface EventRegion {
 }
 export interface GameEvent {
   readonly index: number;
+  /** The seat that acted; none for the initial deal. */
+  readonly mover?: string;
   readonly heading: string;
   readonly regions: readonly EventRegion[];
   readonly notes: readonly string[];
@@ -93,7 +95,7 @@ export class GameEventHistory {
         notes.push(`Game result: ${winner}${RESULT_NAMES[after.result.reason]}.`);
         after.result.standings.forEach((standing, i) => notes.push(`${i + 1}. ${playerName(after, standing.player)}: ${standing.countries} countries, ${standing.armies} armies.`));
       }
-      const event: GameEvent = { index: this.count + 1,
+      const event: GameEvent = { index: this.count + 1, mover: activePlayer(before)!.id,
         heading: `Action ${this.count + 1} · Round ${before.turnNumber} · ${activePlayer(before)!.name} · ${reason} · ${PHASE_NAMES[before.phase]} → ${PHASE_NAMES[after.phase]}`,
         regions: regionChanges(before, after, result.outcome?.captured ? "Net after combat and capture" : reason, action.kind === "attack" ? [action.from, action.to] : []), notes };
       this.events.push(event); added.push(event); this.previous = after; this.count++;
@@ -107,6 +109,7 @@ export class GameEventLog {
   readonly button = h("button", { id: "game-log-button", type: "button" }, "Game event log");
   readonly dialog = h("dialog", { class: "game-event-log", "aria-labelledby": "game-event-log-title" });
   private readonly list = h("ol", { class: "game-event-list", "aria-label": "All game events" });
+  private readonly since = h("p", { class: "game-event-since", hidden: true });
   private readonly history: GameEventHistory;
   get isOpen(): boolean { return this.dialog.open; }
 
@@ -115,11 +118,44 @@ export class GameEventLog {
     const close = h("button", { type: "button" }, "Close game event log");
     close.onclick = () => this.dialog.close();
     this.button.onclick = () => {
+      this.mark(null);
       this.dialog.showModal();
       this.list.lastElementChild?.scrollIntoView({ block: "end" });
     };
-    this.dialog.append(h("header", { class: "game-event-log-head" }, h("h2", { id: "game-event-log-title" }, "Game event log"), close), this.list);
+    this.dialog.append(h("header", { class: "game-event-log-head" }, h("h2", { id: "game-event-log-title" }, "Game event log"), close), this.since, this.list);
     this.append(this.history.events[0]!);
+  }
+
+  /**
+   * The other seats' actions between `player`'s last earlier turn and its current one:
+   * `from` is that turn's last action (0 before any), `to` the last other seat's action.
+   */
+  changesFor(player: string): {from: number; to: number} | null {
+    const events = this.history.events;
+    let i = events.length - 1;
+    while (i > 0 && events[i]!.mover === player) i--;
+    const to = i;
+    while (i > 0 && events[i]!.mover !== player) i--;
+    return to > i ? {from: i, to} : null;
+  }
+
+  /**
+   * T84 Changes: the complete log, opened at the first action after `from` with the actions
+   * up to `to` marked (another seat's turns since this seat last moved). Nothing is cut.
+   */
+  openChanges(from: number, to: number): void {
+    this.mark({from, to});
+    this.dialog.showModal();
+    this.list.querySelector(`[data-event-index="${from + 1}"]`)?.scrollIntoView({ block: "start" });
+  }
+
+  private mark(range: {from: number; to: number} | null): void {
+    for (const row of this.list.children) {
+      const index = Number((row as HTMLElement).dataset["eventIndex"]);
+      row.classList.toggle("since", !!range && index > range.from && index <= range.to);
+    }
+    this.since.hidden = !range;
+    this.since.textContent = range ? `Changes since your last turn: actions ${range.from + 1}–${range.to}, marked. The whole history stays above and below.` : "";
   }
 
   update(state: GameState): void {

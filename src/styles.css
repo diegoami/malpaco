@@ -545,8 +545,10 @@ button.primary:disabled {
   font-size: 13px;
   color: var(--muted);
 }
-.log li:first-child {
+/* The log is chronological, so the newest entry is the last (#175). */
+.log li:last-child {
   color: var(--text);
+  font-weight: 600;
 }
 .panel-foot {
   display: flex;
@@ -1625,8 +1627,8 @@ dialog h2 {
 /* The notice is a slim one-line pill (owner, 2026-10-21): tap for the hint, swipe or × to dismiss; ordinary ones fade. */
 .battle-reference .game-overlay #active-seat-notice { pointer-events:auto; touch-action:none; cursor:pointer; flex-direction:row; flex-wrap:wrap; align-items:center; gap:0 4px; width:auto; max-width:min(420px, 100%); min-height:44px; padding:0 0 0 18px; border-radius:22px; user-select:none; }
 .battle-reference #active-seat-notice .game-notice-title { flex:1; font:700 15px/1.25 Inter, system-ui, sans-serif; padding:10px 0; }
-.battle-reference #active-seat-notice #dismiss-notice { width:44px; height:44px; min-height:44px; border:0; background:none; box-shadow:none; color:var(--shell-muted); }
-.battle-reference #active-seat-notice #dismiss-notice svg { width:18px; height:18px; }
+.battle-reference #active-seat-notice > button { width:44px; height:44px; min-height:44px; border:0; background:none; box-shadow:none; color:var(--shell-muted); }
+.battle-reference #active-seat-notice > button svg { width:18px; height:18px; }
 .battle-reference #active-seat-notice .game-notice-detail { flex-basis:100%; padding:0 18px 10px 0; }
 .battle-reference #active-seat-notice[data-open="true"] { border-radius:16px; }
 .battle-reference #active-seat-notice[data-fading="true"] { animation:notice-fade 4s linear forwards; }
@@ -1673,3 +1675,7 @@ dialog h2 {
   /* Each discard button names its card, so the hand list would only repeat them. */
   .battle-reference #game-focus-drawer .card-interactions[data-phase="discard"] .own-card { display:none; }
 }
+/* T84: Changes marks the other seats' actions since this seat's last turn, inside the complete log. */
+.game-event.since { border-left:3px solid var(--accent, #f2c14e); padding-left:8px; }
+.game-event-since { margin:0 0 8px; font-size:13px; }
+.battle-reference #active-seat-notice #fast-forward-button { color:var(--accent); }

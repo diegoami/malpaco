@@ -18,6 +18,7 @@ import type {LoadedVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
 import { createPanelDetailControl } from "./panelDetail";
 import {BattleChrome} from "./battleChrome";
+import type {Notice} from "./battleChrome";
 import {CountryPicker} from "./countryPicker";
 
 /** Session-only preferences. Full presentation persistence is T56. */
@@ -68,6 +69,7 @@ export class ReferenceBattleGame {
   private hover: string | null = null;
   /** The Raid choice whose card was last folded for map selection (T83). */
   private raidFolded: string | null = null;
+  private readonly changesButton = h("button", { id: "game-changes-button", type: "button", hidden: true }, "Changes since your turn");
   /** T81: countries by name, Inspect, and the named choice after an ambiguous tap. */
   private readonly picker: CountryPicker;
   private mounted = false;
@@ -144,7 +146,7 @@ export class ReferenceBattleGame {
       ? `${name} · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `${name} · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     const identity = h("p", {class: "game-identity"}, h("strong", {}, "Malpaco"), " · ", subtitle);
-    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, this.eventLog.button, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
+    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, this.eventLog.button, this.changesButton, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, cards: this.cardControls.el, history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings,
@@ -283,25 +285,35 @@ export class ReferenceBattleGame {
     const humans = state.players.filter(p => p.kind !== "computer");
     // One contextual notice (T92, after the sketches): an engine refusal, the latest
     // exchange, a computer's turn, a pause, or a human turn's prompt until they act.
-    let notice: {title: string; detail?: string; persistent?: boolean} | null = null;
+    let notice: Notice | null = null;
     const nameOf = (id: string) => state.players.find(p => p.id === id)?.name ?? id;
     const place = (id: string) => this.map.provinces.find(p => p.id === id)?.name ?? id;
     const outcome = this.controller.view.lastOutcome;
     if (outcome !== this.outcomeSeen) {this.outcomeSeen = outcome; this.outcomeAt = state.history.length;}
     if (this.refusal && this.refusal.key !== `${state.history.length}:${from}:${to}`) this.refusal = null;
-    if (this.refusal) notice = {title: this.refusal.text, persistent: true};
-    else if (outcome && state.history.length === this.outcomeAt && !result) {
+    const exchange = outcome && state.history.length === this.outcomeAt && !result ? (() => {
       const loser = outcome.attackerLosses > 0 ? outcome.from : outcome.to, lost = outcome.attackerLosses || outcome.defenderLosses, after = state.armies[loser] ?? 0;
-      notice = {title: outcome.captured ? `${nameOf(outcome.attacker)} captured ${place(outcome.to)}.` : `${nameOf(state.ownerOf[loser]!)} lost ${lost}. ${after + lost} → ${after}.`,
+      return {title: outcome.captured ? `${nameOf(outcome.attacker)} captured ${place(outcome.to)}.` : `${nameOf(state.ownerOf[loser]!)} lost ${lost}. ${after + lost} → ${after}.`,
         detail: `${nameOf(outcome.attacker)} rolled ${outcome.attackerRolls.join(", ")}; ${nameOf(outcome.defender)} rolled ${outcome.defenderRolls.join(", ")}.`};
-    }
-    else if (!result && computer) notice = {title: `${mover!.name} · ${gamePaused ? "paused" : COMPUTER_VERBS[phase] ?? "playing"}`};
+    })() : null;
+    // T84: the other seats' actions since this human seat's turn last ended, from the replayed history.
+    const changes = mover && mover.kind !== "computer" && !computer && !result ? this.eventLog.changesFor(mover.id) : null;
+    this.changesButton.hidden = !changes;
+    this.changesButton.onclick = changes ? () => {this.chrome?.close(); this.eventLog.openChanges(changes.from, changes.to);} : null;
+    const forward = this.computer?.fastForwarding ?? false;
+    if (this.refusal) notice = {title: this.refusal.text, persistent: true};
+    // A computer turn keeps one notice with Fast-forward until a human seat moves (Pause sits above it).
+    else if (!result && computer) notice = {title: `${mover!.name} · ${gamePaused ? "paused" : forward ? "fast-forward" : COMPUTER_VERBS[phase] ?? "playing"}`,
+      ...(exchange ? {detail: `${exchange.title} ${exchange.detail}`} : {}), persistent: true,
+      ...(this.computer && !gamePaused && !forward ? {action: {id: "fast-forward-button", label: "Fast-forward to your turn", shape: "fast-forward", run: () => {this.computer?.fastForward(); this.render();}}} : {})};
+    else if (exchange) notice = exchange;
     else if (!result && gamePaused) notice = {title: "Game paused", detail: "Resume to continue."};
     else if (!result) {
       const key = `${state.currentPlayer}:${phase}`;
       if (key !== this.noticeKey) {this.noticeKey = key; this.noticeAt = state.history.length;}
       if (state.history.length === this.noticeAt && from === null)
-        notice = {title: `${humans.length > 1 ? `${mover!.name}'s turn` : "Your turn"} · ${HUMAN_VERBS[phase] ?? phase.toLowerCase()}`, ...(HUMAN_HINTS[phase] ? {detail: HUMAN_HINTS[phase]} : {})};
+        notice = {title: `${humans.length > 1 ? `${mover!.name}'s turn` : "Your turn"} · ${HUMAN_VERBS[phase] ?? phase.toLowerCase()}`, ...(HUMAN_HINTS[phase] ? {detail: HUMAN_HINTS[phase]} : {}),
+          ...(changes ? {action: {id: "open-changes", label: `Changes since your last turn: ${changes.to - changes.from} actions`, shape: "history", run: () => this.changesButton.click()}} : {})};
     }
     const viewer = (humans.length === 1 ? humans[0] : mover) ?? state.players[0]!, owned = state.map.provinces.filter(p => state.ownerOf[p.id] === viewer.id).length, total = state.map.provinces.length;
     const info = `${this.options.dominationWin ? `Domination · ${owned} / ${dominationThreshold(total)}` : `Total conquest · ${owned} / ${total}`}${this.options.roundLimit ? ` · Round ${state.turnNumber} / ${this.options.roundLimit}` : ` · Round ${state.turnNumber}`}`;
@@ -320,7 +332,8 @@ export class ReferenceBattleGame {
     // A folded card keeps any pending choice one tap away: a required one, or a staged attack.
     const draft = Number(this.battle.el.querySelector<HTMLInputElement>("#capture-amount")?.value);
     const pending = state.pendingCapture, moveIn = pending && Number.isSafeInteger(draft) ? draft : pending?.defaultAmount;
-    const choice = pending && required === "Confirm capture move-in" ? `Move-in pending · preview ${state.armies[pending.from]! - (moveIn! - pending.min)} / ${moveIn}` : required ?? (staged && !computer ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
+    // A computer seat's own pending choice is never yours to return to (T84).
+    const choice = computer ? null : pending && required === "Confirm capture move-in" ? `Move-in pending · preview ${state.armies[pending.from]! - (moveIn! - pending.min)} / ${moveIn}` : required ?? (staged && !computer ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
     this.chrome?.update(status, choice, gamePaused, prompt, raiding && !raidTarget && !computer);
     this.computer?.update();
   }

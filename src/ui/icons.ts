@@ -28,6 +28,7 @@ const PATHS: Record<string, string> = {
   history: "M3 12A9 9 0 1 0 6 5.3M3 4V9H8M12 7V12L15 14",
   files: "M3 6H9L11 8H21V19H3ZM12 11V16M9.5 13.5L12 16 14.5 13.5",
   skip: "M5 5L15 12 5 19ZM19 5V19",
+  "fast-forward": "M3 5L12 12 3 19ZM12 5L21 12 12 19Z",
   countries: "M10 6H20M10 12H20M10 18H20M4.5 6V6.1M4.5 12V12.1M4.5 18V18.1",
 };
 
