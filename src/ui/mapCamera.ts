@@ -134,7 +134,8 @@ export function obstructionInsets(overlays: readonly Rect[], viewport: {width: n
 const SVG = 'http://www.w3.org/2000/svg';
 const glyphs: Record<string, string> = {
   in: 'M12 5v14M5 12h14', out: 'M5 12h14',
-  fit: 'M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5',
+  // Outward arrows, as the sketches draw Fit.
+  fit: 'M4 4l6 6M4 4v5M4 4h5M20 4l-6 6M20 4v5M20 4h-5M4 20l6-6M4 20v-5M4 20h5M20 20l-6-6M20 20v-5M20 20h-5',
   focus: 'M12 3v4M12 17v4M3 12h4M17 12h4M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6',
 };
 
@@ -244,7 +245,8 @@ export class MapCamera {
   private measure(): void {
     const box = this.svg.getBoundingClientRect();
     if (!box.width || !box.height) return;
-    const overlays = [...this.overlays].filter(e => e.isConnected && e.getClientRects().length).map(e => {
+    // An overlay marked data-camera-ignore rests over the map without reframing it (the result card).
+    const overlays = [...this.overlays].filter(e => e.isConnected && e.getClientRects().length && !e.hasAttribute('data-camera-ignore')).map(e => {
       const r = e.getBoundingClientRect();
       return {x: r.left - box.left, y: r.top - box.top, width: r.width, height: r.height};
     });

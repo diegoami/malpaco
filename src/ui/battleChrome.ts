@@ -4,7 +4,8 @@ import {seatLook} from "./palette";
 
 export type Surface = "actions" | "cards" | "menu" | "info";
 /** What the quiet map shows: an optional one-line notice, the pool during placement, and requested information. */
-export interface ShellStatus {seat: number; notice: string | null; pool: number | null; info: string; explanation: string; result: boolean}
+export interface Notice {title: string; detail?: string}
+export interface ShellStatus {seat: number; notice: Notice | null; pool: number | null; info: string; explanation: string; result: boolean}
 
 const symbol = glyph;
 
@@ -49,6 +50,8 @@ export class BattleChrome {
   private readonly required = icon("open-required-action", "Required choice", "return");
   private readonly menu = icon("open-game-menu", "Menu: totals, history, settings and files", "menu");
   private readonly info = icon("game-info-button", "Objective and phase", "info");
+  private readonly cornerClose = icon("close-result-card", "Return to map", "close");
+  private notified: Notice | null = null;
   private surface: Surface | null = null;
   private opener: HTMLElement | null = null;
   private moved: {node: HTMLElement; marker: Comment}[] = [];
@@ -59,8 +62,7 @@ export class BattleChrome {
   private requiredText: string | null = null;
 
   constructor(private readonly nodes: {action: HTMLElement; cards: HTMLElement; history: HTMLElement; score: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; camera?: HTMLElement}) {
-    const cards = icon("open-game-cards", "Cards", "cards");
-    for (const [button, surface] of [[this.menu, "menu"], [cards, "cards"], [this.info, "info"]] as const) {
+    for (const [button, surface] of [[this.menu, "menu"], [this.info, "info"]] as const) {
       button.setAttribute("aria-controls", this.drawer.id);
       button.setAttribute("aria-haspopup", "dialog");
       button.setAttribute("aria-expanded", "false");
@@ -74,8 +76,10 @@ export class BattleChrome {
     this.closeButton.onclick = () => this.close();
     this.drawer.append(this.title, this.content, this.closeButton);
     this.folded.append(this.foldedText, this.required);
-    this.hud.append(this.menu, cards);
-    this.top.append(nodes.pause);
+    this.hud.append(this.menu);
+    // On the result card the top-right corner returns to the map, as in the sketches.
+    this.cornerClose.onclick = () => this.close();
+    this.top.append(nodes.pause, this.cornerClose);
     this.poolSlot.append(this.pool);
     this.rail.append(this.info, nodes.phaseActions);
     this.rail.addEventListener("keydown", event => {
@@ -133,7 +137,8 @@ export class BattleChrome {
     this.surface = surface; this.opener = opener;
     this.drawer.dataset["surface"] = surface;
     this.title.textContent = TITLES[surface];
-    const nodes = {actions: [this.nodes.action], cards: [this.nodes.cards], menu: [this.nodes.score, this.nodes.history, this.nodes.settings], info: [this.infoLine, this.explanation]}[surface];
+    // The menu holds the hand too (the sketches rest only the menu icon top-left).
+    const nodes = {actions: [this.nodes.action], cards: [this.nodes.cards], menu: [this.nodes.cards, this.nodes.score, this.nodes.history, this.nodes.settings], info: [this.infoLine, this.explanation]}[surface];
     for (const node of nodes) {
       const marker = document.createComment("focused panel home"); node.before(marker);
       this.moved.push({node, marker}); this.content.append(node);
@@ -167,12 +172,24 @@ export class BattleChrome {
 
   /** The result card sits in the middle; a folded required choice leaves a one-line card with a return icon. */
   private layout(): void {
-    const actions = this.surface === "actions";
-    this.drawer.dataset["placement"] = actions && this.result ? "center" : "side";
+    const actions = this.surface === "actions", center = actions && this.result;
+    this.drawer.dataset["placement"] = center ? "center" : "side";
+    // The result card rests over the whole map, which is not reframed beside it.
+    this.drawer.toggleAttribute("data-camera-ignore", center);
+    this.cornerClose.hidden = !center;
+    this.nodes.pause.hidden = center;
     // A choice card folds back to the map; every other card simply closes.
     commandSymbol(this.closeButton, actions && this.requiredText ? "fold" : "close");
     this.closeButton.querySelector(".game-action-symbol:not(.rail-command-icon)")?.remove();
     this.folded.hidden = !this.requiredText || actions;
+    this.renderNotice();
+  }
+
+  /** A folded choice says so; otherwise the host's contextual notice, if any. */
+  private renderNotice(): void {
+    const notice = !this.folded.hidden ? {title: "Choice folded, not completed.", detail: "Tap the gold return icon to resume."} : this.notified;
+    this.notice.hidden = !notice;
+    this.notice.replaceChildren(...(notice ? [h("strong", {class: "game-notice-title"}, notice.title), ...(notice.detail ? [h("span", {class: "game-notice-detail"}, notice.detail)] : [])] : []));
   }
 
   /** `prompt` names a choice that wants its card; a new one opens Current choice without taking focus. */
@@ -186,8 +203,6 @@ export class BattleChrome {
     this.required.setAttribute("aria-label", required ? `Return to ${required.toLowerCase()}` : "Required choice");
     this.nodes.pause.title = paused ? "Resume game" : "Pause game";
     commandSymbol(this.nodes.pause, paused ? "play" : "pause");
-    const cardsButton = this.hud.querySelector<HTMLButtonElement>("#open-game-cards")!;
-    cardsButton.hidden = !!this.nodes.cards.hidden;
     this.commands();
     if (prompt && prompt !== this.lastPrompt && !this.surface) this.open("actions", this.required, false);
     this.lastPrompt = prompt;
@@ -197,9 +212,9 @@ export class BattleChrome {
   private status(status: ShellStatus): void {
     this.result = status.result;
     const look = seatLook(status.seat);
-    this.notice.hidden = status.notice === null;
-    this.notice.replaceChildren(s("svg", {class: "chip", viewBox: "-40 -19 80 38", width: 30, height: 15, "aria-hidden": "true"}, s("path", {d: look.badge, fill: look.color, stroke: look.dark, "stroke-width": 3})),
-      h("span", {class: "game-notice-text"}, status.notice ?? ""));
+    this.notified = status.notice;
+    this.notice.style.setProperty("--seat", look.color);
+    this.renderNotice();
     this.infoLine.textContent = status.info;
     this.explanation.textContent = status.explanation;
     this.pool.hidden = status.pool === null;

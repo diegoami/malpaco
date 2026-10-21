@@ -6,7 +6,8 @@ import type {Page} from '@playwright/test';
 // T92: totals, history and settings share the menu card; phase details are the information card.
 export type Surface = 'actions' | 'cards' | 'menu' | 'info' | 'details' | 'settings' | 'phase';
 type Card = 'actions' | 'cards' | 'menu' | 'info';
-const cardOf: Record<Surface, Card> = {actions: 'actions', cards: 'cards', menu: 'menu', info: 'info', details: 'menu', settings: 'menu', phase: 'info'};
+// The hand rests in the menu card too, so Cards opens the menu.
+const cardOf: Record<Surface, Card> = {actions: 'actions', cards: 'menu', menu: 'menu', info: 'info', details: 'menu', settings: 'menu', phase: 'info'};
 const openers: Record<Card, string> = {actions: '#open-required-action', cards: '#open-game-cards', menu: '#open-game-menu', info: '#game-info-button'};
 
 /** Opens a card unless it is already open. */
@@ -14,17 +15,29 @@ export async function openSurface(page: Page, surface: Surface): Promise<void> {
   if (!await page.locator('#battle-action-rail').count()) return; // the setup page and legacy routes have no cards
   const drawer = page.locator('#game-focus-drawer');
   const card = cardOf[surface];
-  if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === card) return;
+  if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === card) return card === 'actions' ? expandBattleSettings(page) : undefined;
   // Current choice has no resting icon: it opens by itself for a choice, or from the folded choice's return icon.
   // With no pending choice there is no Current choice card: callers then act on the map or read hidden state.
-  if (card === 'actions' && !await page.locator(openers.actions).isVisible()) return;
+  if (card === 'actions' && !await page.locator(openers.actions).isVisible()) return expandBattleSettings(page);
   await page.locator(openers[card]).click();
   await expect(drawer).toHaveAttribute('data-surface', card);
   await expect(drawer).toBeVisible();
+  if (card === 'actions') await expandBattleSettings(page);
+}
+
+/** The attack card keeps Stop at and Speed behind its settings icon; tests that set them open it. */
+async function expandBattleSettings(page: Page): Promise<void> {
+  const button = page.locator('#game-focus-drawer #battle-settings-button');
+  if (await button.isVisible() && await button.getAttribute('aria-expanded') === 'false') await button.click();
 }
 
 export async function closeSurface(page: Page): Promise<void> {
-  if (await page.locator('#game-focus-drawer').isVisible()) await page.locator('#close-game-drawer').click();
+  // Choice, result and information cards carry no close button: Escape returns to the map.
+  if (await page.locator('#game-focus-drawer').isVisible()) {
+    if (await page.locator('#close-game-drawer').isVisible()) await page.locator('#close-game-drawer').click();
+    else if (await page.locator('#close-result-card').isVisible()) await page.locator('#close-result-card').click();
+    else await page.keyboard.press('Escape');
+  }
   await expect(page.locator('#game-focus-drawer')).toBeHidden();
 }
 

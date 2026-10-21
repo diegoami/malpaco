@@ -3,7 +3,7 @@ import type {Page,TestInfo} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {apply,deserializeVersionedMatch,friendlySources,friendlyTargets} from '../../src/core';
 import type {Action,GameState} from '../../src/core';
-import {openSurface,withSurface} from './shell';
+import {closeSurface,openSurface,withSurface} from './shell';
 const fixtureRoot='fixtures/new-game/';
 const input=(name:string)=>readFileSync(fixtureRoot+name,'utf8');
 const discoveries=JSON.parse(input('issue180/preflight/discovery.json'));
@@ -14,7 +14,7 @@ async function begin(p:Page){
 }
 // T92: the shared helpers know which card holds what (totals, history and settings share the menu).
 async function open(p:Page,surface:'actions'|'cards'|'details'|'settings'){await openSurface(p,surface);}
-async function close(p:Page){if(await p.locator('#game-focus-drawer').isVisible())await p.locator('#close-game-drawer').click();}
+async function close(p:Page){await closeSurface(p);}
 async function load(p:Page,text:string){
  if(await p.locator('#battle-action-rail').count()&&!await p.getByLabel('Load game',{exact:true}).isVisible())await open(p,'settings');
  const old=await p.getByLabel('Load game',{exact:true}).elementHandle();await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'icons.json',mimeType:'application/json',buffer:Buffer.from(text)});

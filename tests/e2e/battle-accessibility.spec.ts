@@ -44,9 +44,9 @@ test("capture confirmation, quantities and context fit together with an accurate
   // T71's focused capture presentation hides inactive combat controls in both modes.
   // Required move-in controls and source/target context must still fit together.
   for (const detail of ["compact", "detailed"]) {
-    // T79: the capture choice fits in the Current choice card; New game moved to the settings card.
+    // T92: the capture card is the sketch's preview, amount and slider; the pair stays for assistive technology.
     await setDetail(page,detail); await openSurface(page, "actions");
-    await fits(page, ["#battle-source-name", "#battle-target-name", "#capture-amount", "#capture-minimum-button", "#capture-maximum-button", "#capture-less-button", "#capture-more-button", "#confirm-capture-button"]);
+    await fits(page, ["#capture-preview", "#capture-amount", "#capture-minimum-button", "#capture-maximum-button", "#capture-less-button", "#capture-more-button", "#confirm-capture-button"]);
     for (const id of ["battle-status", "fight-on-button", "single-exchange-button", "stop-battle-button"])
       await expect(page.locator("#" + id)).toBeHidden();
   }

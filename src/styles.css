@@ -1587,3 +1587,30 @@ dialog h2 {
 .game-overlay #active-seat-notice { pointer-events:none; }
 .battle-reference #game-focus-drawer .capture-adjust { gap:6px; flex-wrap:wrap; }
 .battle-reference #game-focus-drawer :is(#capture-amount,#friendly-move-amount) { width:56px; max-width:56px; }
+/* T92: the sketches' palette and card anatomy (revision 7). [designed] Sampled from the accepted drawings. */
+.battle-reference { --shell-bg:#173d47; --shell-line:#335863; --shell-gold:#ffd06b; --shell-ink:#102b36; --shell-muted:#a9c0c8; }
+.battle-reference .game-overlay :is(.game-icon, #battle-action-rail button, .game-corner-end button, .map-camera-button, .hud-chip, .game-notice), .battle-reference #game-focus-drawer { background:var(--shell-bg); border-color:var(--shell-line); }
+.battle-reference #game-focus-drawer .card-icon > svg { background:var(--shell-bg); border-color:var(--shell-line); }
+.battle-reference #game-focus-drawer .card-icon.primary > svg, .battle-reference .game-folded #open-required-action, .battle-reference #battle-action-rail :is(#start-combat-button,#end-turn-button) { background:var(--shell-gold); border-color:var(--shell-gold); color:var(--shell-ink); }
+.battle-reference #placement-pool { color:var(--text); border-color:var(--shell-line); }
+.battle-reference .game-notice { flex-direction:column; align-items:flex-start; justify-content:center; gap:2px; width:min(360px, 100%); max-width:100%; padding:10px 16px; }
+.battle-reference .game-notice-title { font:700 16px/1.3 Inter, system-ui, sans-serif; }
+.battle-reference .game-notice-detail { font:500 14px/1.35 Inter, system-ui, sans-serif; color:var(--shell-muted); }
+.battle-reference .game-folded { flex-direction:column; align-items:center; gap:8px; width:auto; min-width:min(260px, 100%); padding:12px 16px; }
+.battle-reference .game-folded .game-notice-text { font:700 15px/1.3 Inter, system-ui, sans-serif; }
+.battle-reference #game-focus-drawer :is(#capture-amount,#friendly-move-amount) { background:#f0f1de; color:var(--shell-ink); border:1px solid var(--shell-gold); border-bottom-width:3px; }
+.battle-reference #game-focus-drawer .card-range input[type="range"] { accent-color:var(--shell-gold); }
+.battle-reference #game-focus-drawer .card-note { color:var(--shell-muted); }
+.battle-reference #game-focus-drawer .card-head { display:flex; align-items:flex-start; gap:8px; }
+.battle-reference #game-focus-drawer .card-head > .card-line { flex:1; }
+.battle-reference #game-focus-drawer #battle-settings-button > svg { padding:9px; width:20px; height:20px; }
+.battle-reference #game-focus-drawer .battle-settings[hidden] { display:none; }
+/* Choice cards carry their own fold or cancel; the result card closes from the corner; info is one line. */
+.battle-reference #game-focus-drawer:is([data-surface="info"], [data-surface="actions"]:has(.battle-controls:not(.friendly-move-controls):not([hidden]), .friendly-move-controls:not([hidden]), .victory-result:not([hidden]))) #close-game-drawer { display:none; }
+.battle-reference #game-focus-drawer[data-surface="info"] { padding:12px 16px; }
+.battle-reference #game-focus-drawer[data-surface="info"] .game-info-line { margin:0; }
+.battle-reference #game-focus-drawer[data-surface="info"] .phase-explanation { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.battle-reference #game-info-button[aria-expanded="true"] { border-color:var(--shell-gold); color:var(--shell-gold); }
+.battle-reference #game-focus-drawer .battle-controls[data-pending-capture="true"] > .card-head { display:none; }
+.battle-reference .game-overlay .game-folded #open-required-action { background:var(--shell-gold) !important; border-color:var(--shell-gold) !important; color:var(--shell-ink) !important; }
+@media (orientation:portrait) { .battle-reference .game-side > .game-folded { margin:auto auto 0; } }
