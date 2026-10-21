@@ -44,6 +44,8 @@ export class BattleChrome {
   private readonly top = h("div", {class: "game-corner game-corner-end"});
   private readonly poolSlot = h("div", {class: "game-pool-slot"});
   private readonly notice = h("div", {id: "active-seat-notice", class: "game-notice", role: "status", hidden: true});
+  /** The notice's line is reserved whether or not a notice shows, so a notice never covers a country nor reframes the map. */
+  private readonly noticeSlot = h("div", {class: "game-notice-slot"}, this.notice);
   private readonly pool = h("div", {id: "placement-pool", class: "hud-chip", role: "status", hidden: true});
   private readonly folded = h("div", {id: "game-folded-choice", class: "game-notice game-folded", hidden: true});
   private readonly foldedText = h("span", {class: "game-notice-text"});
@@ -102,7 +104,7 @@ export class BattleChrome {
       buttons[index]?.focus({preventScroll:true}); event.preventDefault();
     });
     this.notice.addEventListener("pointerdown", this.onNoticeDown);
-    this.side.append(this.notice, this.folded, this.drawer);
+    this.side.append(this.noticeSlot, this.folded, this.drawer);
     // The information card's lines need a home to return to when the card closes.
     this.overlay.append(h("div", {class: "game-info-store", hidden: true}, this.infoLine, this.explanation));
     this.overlay.append(this.hud, this.poolSlot, this.top, this.side, ...(nodes.camera ? [nodes.camera] : []), this.rail);
@@ -137,10 +139,10 @@ export class BattleChrome {
 
   /**
    * The controls and cards that float over the map; the camera frames the board beside
-   * each one that shows. The one-line notice is transient text: like the sketches, it
-   * floats over the map and lets clicks through, so it never refits or turns the board.
+   * each one that shows. The notice's slot is always there, so a notice coming or going
+   * never refits or turns the board.
    */
-  get obstacles(): Element[] {return [this.hud, this.top, this.pool, this.rail, this.folded, this.drawer];}
+  get obstacles(): Element[] {return [this.hud, this.top, this.pool, this.noticeSlot, this.rail, this.folded, this.drawer];}
 
   /** Opens a card over the map. An automatic opening (a new choice) never takes focus. */
   open(surface: Surface, opener: HTMLElement, takeFocus = true): void {
