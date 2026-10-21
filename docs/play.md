@@ -1,4 +1,4 @@
-# Malpaco 0.1.1 playable build
+# Malpaco 0.2.0 playable build
 
 Create a self-contained release archive from the source checkout with:
 
@@ -17,13 +17,13 @@ Extract the archive, change into `malpaco-playable`, and run:
 node serve.mjs
 ```
 
-Open <http://127.0.0.1:4175> in a desktop browser. The launcher binds to the
+Open <http://127.0.0.1:4175> in a browser. The launcher binds to the
 loopback interface and serves the included files.
 
 New games grow their own geography: 7–10 irregular islands sharing 46 territories, different for every seed. Saved games keep the generator they were made with.
 The seed fixes the geography, deal and dice sequence. The explicit
-`?view=reference-game` route retains the fixed Nine Isles board, and
-`?view=generated-game` retains the legacy generated-game and save path.
+`?view=reference-game` route keeps the fixed Nine Isles board. The older legacy views are
+retired from the playable build; their version-1 saves load in the main screen instead.
 
 The root page opens generated-island setup, defaulting to one human against three
 Normal computers. Choose a seed and 2–4 seats; each seat can be Human or Computer.
@@ -68,5 +68,7 @@ The map fills the screen and only corner icons rest on it: the menu top-left (yo
 shows the winner and reason with **New game**; **Standings** and **Details** (seed, options and the
 record) open on request, and a round-limit result says whether countries, armies or turn order decided it.
 
-The supported desktop layouts are 1280×800 and 1920×1080. Mobile layouts,
-online multiplayer, and cross-device save synchronization are not supported.
+The game fits phones and tablets in either orientation as well as desktops: it is tested from
+320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. Real-device and
+screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md`. Online multiplayer and
+cross-device save synchronization are not supported.

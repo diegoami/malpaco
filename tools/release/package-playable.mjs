@@ -26,7 +26,8 @@ async function walk(dir, prefix = "") {
   return files.sort();
 }
 
-const built = spawnSync("npm", ["run", "build"], { cwd: checkout, encoding: "utf8", stdio: "inherit" });
+// T89 (R4): the published build retires the legacy views (src/main.ts).
+const built = spawnSync("npm", ["run", "build"], { cwd: checkout, encoding: "utf8", stdio: "inherit", env: { ...process.env, VITE_MALPACO_RELEASE: "1" } });
 if (built.error) throw built.error;
 if (built.status !== 0) throw new Error(`npm run build exited ${built.status}`);
 

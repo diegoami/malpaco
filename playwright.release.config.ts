@@ -8,6 +8,10 @@ const evidenceDir = process.env["PLAYABLE_EVIDENCE_DIR"];
 
 export default defineConfig({
   testDir: "./tests/e2e",
+  // T89 (R4): the published build has no legacy views, so their suites run on the source build only.
+  testIgnore: ["slice.spec.ts", "generated-board.spec.ts", "generated-game.spec.ts", "reinforcement.spec.ts", "game-setup.spec.ts",
+    "complete-game.spec.ts", "help.spec.ts", "match-save.spec.ts", "retry-validation.spec.ts", "computer.spec.ts", "finished-copy.spec.ts"].map(f => `**/${f}`),
+  grepInvert: /@legacy/,
   outputDir: evidenceDir ? `${evidenceDir}/test-results` : "test-results-release",
   reporter: [["list"], ["html", { outputFolder: evidenceDir ? `${evidenceDir}/playwright-report` : "playwright-report-release", open: "never" }]],
   fullyParallel: true,

@@ -31,7 +31,13 @@ function startAuthoredGame(): void {
   }).mount(root!);
 }
 
-const view = new URLSearchParams(location.search).get("view");
+/**
+ * T89 (R4): the published build serves only the main game and the Nine Isles board; version-1
+ * saves load in the main file UI (A13). The source build keeps the legacy views for their suites.
+ */
+const RELEASE = import.meta.env["VITE_MALPACO_RELEASE"] === "1";
+const requested = new URLSearchParams(location.search).get("view");
+const view = RELEASE && requested !== "reference-game" ? null : requested;
 if (view === "reference-game") {
   mountReferenceGame(root);
 } else if (view === "authored-game") {

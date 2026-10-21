@@ -4,6 +4,8 @@ import { defineConfig } from "@playwright/test";
 // write them to screenshots/<project>/ (CI uploads that folder).
 export default defineConfig({
   testDir: "tests/e2e",
+  // T89: checks of the published build only (its legacy views are retired) run in the release config.
+  grepInvert: /@release-only/,
   outputDir: "test-results",
   reporter: [["list"], ["html", { open: "never" }]],
   fullyParallel: true,

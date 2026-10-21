@@ -69,7 +69,7 @@ test("explicit reference entry retains the playable match with one human and thr
   expect(seen).toEqual([]);
 });
 
-test("recognized entry routes remain explicit and authored data is available only by route", async ({ page }) => {
+test("recognized entry routes remain explicit and authored data is available only by route", {tag: "@legacy"}, async ({ page }) => {
   const seen = errors(page);
 
   await page.goto("/?view=game-setup&seed=1994&seats=3");
