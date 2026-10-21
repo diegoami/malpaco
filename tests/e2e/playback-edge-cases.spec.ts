@@ -15,7 +15,9 @@ test("modal Escape preserves continuous combat; local/global very-slow controls 
   await withSurface(page,'settings',()=>page.locator("#game-speed").selectOption("very-slow")); await openSurface(page,'actions');await expect(page.locator("#battle-speed")).toHaveValue("very-slow");
   await expect(page.locator("#game-pause-button")).not.toHaveAttribute("aria-pressed");
   await openSurface(page,'actions');await page.locator("#battle-speed").selectOption("normal"); await expect(page.locator("#game-speed")).toHaveValue("normal");
-  await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1"); await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab"); await page.locator("#fight-on-button").click();
+  await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1"); await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab");
+  // T82: one explicit Attack opens the battle that Fight on continues.
+  await page.locator("#single-exchange-button").click(); await page.locator("#fight-on-button").click();
   const battle = page.locator('section.battle-controls[aria-label="Battle controls"]'), count = Number(await battle.getAttribute("data-history-count"));
   await openSurface(page,'menu');await page.locator("#game-log-button").click(); const dialog = page.getByRole("dialog", { name: "Game event log", exact: true }); await expect(dialog).toBeVisible();
   await page.keyboard.press("Escape"); await expect(dialog).not.toBeVisible(); await expect(battle).toHaveAttribute("data-running", "true");

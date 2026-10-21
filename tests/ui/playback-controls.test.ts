@@ -8,7 +8,7 @@ import { pinned } from "../core/versioned-match-fixture";
 
 test("global pause invalidates an already dequeued battle callback and resumes one pending exchange", () => {
   const clock = new Clock(), c = new BattleController(battle(100, 100), clock);
-  c.select("sulo", "frostkabo"); c.setThreshold(1); c.fightOn();
+  c.select("sulo", "frostkabo"); c.setThreshold(1); c.singleExchange(); c.fightOn();
   const stale = [...clock.pending.values()][0]!.callback, frozen = c.state;
   c.setPlaybackPaused(true); expect(clock.pending.size).toBe(0); stale();
   expect(c.state).toBe(frozen); expect(c.fightOn()).toBe(false); expect(c.stop()).toBe(false);

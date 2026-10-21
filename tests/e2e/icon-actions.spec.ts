@@ -1,7 +1,7 @@
 import {expect,test} from '@playwright/test';
 import type {Page,TestInfo} from '@playwright/test';
 import {readFileSync} from 'node:fs';
-import {apply,deserializeVersionedMatch,friendlySources,friendlyTargets} from '../../src/core';
+import {apply,deserializeVersionedMatch,friendlySources,friendlyTargets,serializeVersionedMatch} from '../../src/core';
 import type {Action,GameState} from '../../src/core';
 import {closeSurface,openSurface,withSurface} from './shell';
 const fixtureRoot='fixtures/new-game/';
@@ -74,12 +74,17 @@ for(const host of ['reference','geographic']){
   await hit(page,'game-pause-button');await expect(page.locator('#start-combat-button')).toBeHidden();await exact(page,state);await hit(page,'game-pause-button');await hit(page,'start-combat-button');state=next(state,{kind:'endReinforcement'});await exact(page,state);await shot(page,info,host+'-rail-combat');
  });
  test(`${host}: collapsed battle commands, pause and details preserve exact actions and selection`,async({page},info)=>{
-  await begin(page);const f=row(host,'attack-running'),text=input('issue180/preflight/fixtures/'+f.fixture),before=deserializeVersionedMatch(text);await load(page,text);await collapse(page);
+  // T82: Attack, Fight on and Attack again need three legal exchanges; the recorded fixture has two before its capture,
+  // so the battle starts one recorded exchange earlier (its last action is that same attack).
+  const f=row(host,'attack-running'),recorded=deserializeVersionedMatch(input('issue180/preflight/fixtures/'+f.fixture));expect(recorded.state.history.at(-1)).toEqual(f.action);
+  await begin(page);const text=serializeVersionedMatch(recorded.options,recorded.state.history.slice(0,-1),recorded.identity),before=deserializeVersionedMatch(text);await load(page,text);await collapse(page);
   await country(page,f.action.from).click();await country(page,f.action.to).click({modifiers:['Shift']});await open(page,'actions');
   await openSurface(page,'actions');const source=await page.locator('#battle-source-name').textContent(),target=await page.locator('#battle-target-name').textContent();await openSurface(page,'actions');await page.locator('#battle-stop-threshold').fill('1');await openSurface(page,'actions');await page.locator('#battle-stop-threshold').press('Tab');
   await page.keyboard.press('Escape');await expect(page.locator('#open-required-action')).toBeFocused();await open(page,'actions');await openSurface(page,'actions');await expect(page.locator('#battle-source-name')).toHaveText(source!);await openSurface(page,'actions');await expect(page.locator('#battle-target-name')).toHaveText(target!);await openSurface(page,'actions');await expect(page.locator('#battle-stop-threshold')).toHaveValue('1');
   await hit(page,'game-pause-button');await expect(page.locator('#single-exchange-button')).toBeDisabled();await page.locator('#single-exchange-button').evaluate(e=>(e as HTMLButtonElement).click());await exact(page,before.state);await hit(page,'game-pause-button');
-  await open(page,'actions');await expect(page.locator('#game-focus-drawer #fight-on-button')).toBeVisible();await shot(page,info,host+'-battle-card');await hit(page,'fight-on-button');await page.locator('#stop-battle-button').focus();await page.keyboard.press('Enter');const after=next(before.state,f.action);await exact(page,after);
+  // T82: Fight on appears only after one explicit Attack on this pair.
+  await open(page,'actions');await expect(page.locator('#game-focus-drawer #fight-on-button')).toBeHidden();await hit(page,'single-exchange-button');const attacked=next(before.state,f.action);await exact(page,attacked);
+  await open(page,'actions');await expect(page.locator('#game-focus-drawer #fight-on-button')).toBeVisible();await shot(page,info,host+'-battle-card');await hit(page,'fight-on-button');await page.locator('#stop-battle-button').focus();await page.keyboard.press('Enter');const after=next(attacked,f.action);await exact(page,after);
   await open(page,'actions');await hit(page,'single-exchange-button');await exact(page,next(after,f.action));
   await open(page,'details');const history=page.getByRole('list',{name:'Battle log',exact:true});await expect(history.locator('li')).toHaveCount(next(after,f.action).log.filter(e=>e.event!=='game_started').length);await history.evaluate(e=>{e.scrollTop=42;});const reading=await history.evaluate(e=>e.scrollTop);await close(page);await open(page,'settings');await withSurface(page,'settings',()=>page.locator('#game-speed').selectOption('very-slow'));await close(page);await open(page,'details');expect(await history.evaluate(e=>e.scrollTop)).toBe(reading);await shot(page,info,host+'-details');
   await open(page,'settings');await hit(page,'game-log-button');await expect(page.getByRole('dialog',{name:'Game event log',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.locator('#game-log-button')).toBeFocused();await exact(page,next(after,f.action));

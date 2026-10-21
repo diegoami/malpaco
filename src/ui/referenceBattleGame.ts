@@ -187,8 +187,9 @@ export class ReferenceBattleGame {
     } else if (ownerOf(state, id) === activePlayer(state)?.id) {
       this.controller.select(from === id && to === null ? null : id, null);
     } else if (from !== null) {
+      // T82: a target is staged, never fought; only the card's Attack rolls an exchange.
       if (this.controller.select(from, id)) {
-        if (!inspect) this.controller.singleExchange();
+        if (this.chrome?.openSurface !== "actions") this.chrome?.open("actions", this.chrome.countries, false);
       } else {
         // The engine's reason appears as the one-line notice until the next choice.
         this.refusal = {text: whyNot(state, from, id), key: `${state.history.length}:${from}:${to}`};

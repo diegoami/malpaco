@@ -1324,6 +1324,7 @@ dialog h2 {
 :is(#geographic-map,#reference-map) .country.selected .badge {fill:#ffd06b;stroke:#102b36 !important}
 :is(#geographic-map,#reference-map) .count {font:700 14px Inter,system-ui,sans-serif;fill:#f0f1de;stroke:none;text-anchor:middle}
 :is(#geographic-map,#reference-map) .country.selected .count {fill:#102b36}
+:is(#geographic-map,#reference-map) .country.pending .badge {stroke-dasharray:5 4}
 :is(#geographic-map,#reference-map) :is(.name,.island-name) {display:none}
 :is(#geographic-map,#reference-map) .country:is(:hover,:focus,.selected) .name {font:600 12px Inter,system-ui,sans-serif;display:inline;visibility:visible;fill:#102b36;stroke:#f0f1de;stroke-width:2.5;paint-order:stroke;stroke-linejoin:round}
 :is(#geographic-map,#reference-map) .centre {font:10px system-ui;fill:#f2d69a;stroke:#102b36;stroke-width:.8;paint-order:stroke}

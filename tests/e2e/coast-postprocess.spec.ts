@@ -9,7 +9,7 @@ const original:typeof originalType=JSON.parse(readFileSync(new URL("../../fixtur
 import {fixture,step} from "./battle-fixture";
 import {deserializeVersionedMatch} from "../../src/core/match-save";
 import {logicalState} from "../core/versioned-match-fixture";
-import {withSurface} from './shell';
+import {openSurface,withSurface} from './shell';
 const root=process.env["COAST_EVIDENCE_DIR"]??"screenshots";
 const country=(page:Page,id:string)=>page.locator(`[data-id="${id}"]`);
 function output(label:string){mkdirSync(root,{recursive:true});return mkdtempSync(join(root,label+"-"));}
@@ -65,7 +65,7 @@ test("playable geography uses new paint/hit positions and ordinary deterministic
  for(const p of expected.provinces){await expect(country(page,p.id).locator(".centre")).toHaveAttribute("x",String(p.labelAt[0]!-25));await expect(country(page,p.id).locator(".centre")).toHaveAttribute("y",String(p.labelAt[1]!-10));}
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator("#start-combat-button").click();
  const save=async()=>{const event=page.waitForEvent("download");await withSurface(page,'settings',()=>page.getByRole("button",{name:"Save game",exact:true}).click());const text=readFileSync((await(await event).path())!,"utf8");writeFileSync(join(dir,"save-"+Date.now()+".json"),text);return deserializeVersionedMatch(text).state;};
- let state=await save();await country(page,f.from).click();await country(page,f.to).click();state=step(state,{kind:"attack",from:f.from,to:f.to});expect(logicalState(await save())).toEqual(logicalState(state));
+ let state=await save();await country(page,f.from).click();await country(page,f.to).click();expect(logicalState(await save())).toEqual(logicalState(state));await openSurface(page,'actions');await page.locator("#single-exchange-button").click();state=step(state,{kind:"attack",from:f.from,to:f.to});expect(logicalState(await save())).toEqual(logicalState(state));
  expect(state.map.provinces.map(p=>p.polygon)).toEqual(original.provinces.map(p=>p.polygon));
  expect(state.map.provinces.map(p=>p.labelAt)).toEqual(original.provinces.map(p=>p.labelAt));
  await expect(country(page,f.from)).toHaveAttribute("aria-pressed","true");await shot(page,dir,"direct-attack");expect(errors).toEqual([]);

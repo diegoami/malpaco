@@ -43,7 +43,9 @@ export class GeographicMapView {
   for(const n of this.el.querySelectorAll<SVGGElement>('[data-country]')){
    const id=n.dataset['country']!,seat=state.players.findIndex(p=>p.id===state.ownerOf[id]),look=seatLook(seat);
    n.dataset['owner']=state.ownerOf[id]!;n.dataset['armies']=String(state.armies[id]);n.dataset['selected']=String(view.selected===id);n.dataset['target']=String(view.targets.includes(id));
-   n.classList.toggle('selected',view.selected===id);n.classList.toggle('neighbor',view.targets.includes(id));n.setAttribute('aria-pressed',String(view.selected===id));
+   n.classList.toggle('selected',view.selected===id);
+   // T82: a pending capture's two countries keep dashed badges until Confirm.
+   n.classList.toggle('pending',!!state.pendingCapture&&(state.pendingCapture.from===id||state.pendingCapture.to===id));n.classList.toggle('neighbor',view.targets.includes(id));n.setAttribute('aria-pressed',String(view.selected===id));
    const description=`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies, ${state.players[seat]!.name}`;
    n.setAttribute('aria-label',description);n.querySelector('title')!.textContent=description;
    (n.querySelector('.cell') as SVGElement).style.fill=look.color;

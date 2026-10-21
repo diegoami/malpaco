@@ -1,6 +1,7 @@
 import { armyCount, province, whyNot } from "../core";
 import { h } from "./dom";
 import { iconButton } from "./icons";
+import { captureOdds, oddsLabel } from "./captureOdds";
 import type { BattleController, BattleSpeed, BattleView as Snapshot } from "./battleController";
 
 /**
@@ -39,6 +40,10 @@ export class BattleView {
       h("strong", { id: "battle-target-name", class: to ? "" : "visually-hidden" }, to ? name(to) : "Choose an enemy neighbour"),
       h("span", { id: "battle-target-armies", class: to ? "battle-count" : "visually-hidden", "aria-label": "Target armies" }, to ? String(armyCount(state, to)) : "—"),
       ...(from && to ? [] : [h("span", { class: "card-prompt" }, from ? "Choose an enemy neighbour" : "Choose your country, then an enemy")]));
+    // T82 (R5): staging shows the exact chance of capture if fought to the end.
+    const chance = from && to && !pending ? captureOdds(state, from, to) : null;
+    const odds = h("p", { id: "battle-odds", class: chance === null || view.running ? "visually-hidden" : "card-line battle-odds" },
+      chance === null ? "" : `${oddsLabel(chance)} capture · if fought to end`);
     // While Fight on runs, the card says so (walkthrough 09); the pair stays for assistive technology.
     if (view.running) { context.classList.add("visually-hidden"); }
     const running = h("p", { class: view.running ? "card-line" : "visually-hidden", "aria-hidden": String(!view.running) }, `Fight on · stop at ${view.effectiveThreshold} ${view.effectiveThreshold === 1 ? "army" : "armies"}`);
@@ -60,7 +65,7 @@ export class BattleView {
     const canExchange = !pending && inBattlePhase && from !== null && to !== null && whyNot(state, from, to) === "";
     const controls = h("div", { class: "battle-actions card-icons" },
       iconButton("single-exchange-button", "Attack: one exchange", "Attack", "attack", !canExchange || view.running || view.paused, () => this.controller.singleExchange(revision), true),
-      iconButton("fight-on-button", view.paused ? "Keep watching" : "Fight on", view.paused ? "Watch" : "Fight on", "fight-on", !canExchange || view.running, () => this.controller.fightOn(revision)),
+      iconButton("fight-on-button", view.paused ? "Keep watching" : "Fight on", view.paused ? "Watch" : "Fight on", "fight-on", !canExchange || view.running || (!view.paused && !this.controller.attacked), () => this.controller.fightOn(revision)),
       iconButton("stop-battle-button", "Stop", "Stop", "stop", !view.running && !view.paused, () => this.controller.stop(revision)),
       iconButton("cancel-battle-button", "Cancel selection", "Cancel", "close", view.running || !from, () => this.onCancel()),
     );
@@ -84,7 +89,9 @@ export class BattleView {
         h("span", { class: "battle-die defender-die", role: "img", "aria-label": `Defender rolled ${roll.defenderRolls.join(", ")}` }, roll.defenderRolls.join(" · ")));
     }));
     const head = h("div", { class: "card-head" }, context, running, settingsButton);
-    const children: HTMLElement[] = [h("h2", { class: "battle-title visually-hidden" }, "Battle"), head, controls, ...(message ? [message] : []), settings, result, help];
+    // Fight on appears once the first Attack on this pair has been fought (the sketches show Attack and Cancel).
+    controls.querySelector<HTMLElement>("#fight-on-button")!.hidden = !view.paused && !view.running && !this.controller.attacked;
+    const children: HTMLElement[] = [h("h2", { class: "battle-title visually-hidden" }, "Battle"), head, odds, controls, ...(message ? [message] : []), settings, result, help];
     if (view.rolls.length) children.push(rolls);
     if (pending) children.push(this.capture(state, pending, captureDraft, revision));
     this.el.replaceChildren(...children);

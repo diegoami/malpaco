@@ -109,7 +109,8 @@ for(const kind of ['borders','seaLanes'] as const)test(`painted ${kind} use the 
  if(kind==='seaLanes')await expect(page.locator(`#geographic-map .lane[data-edge="${[source.id,target].sort().join('|')}"]`)).toHaveClass(/active/);
  const outsider=state.map.provinces.find(p=>state.ownerOf[p.id]!==player.id&&!legal.includes(p.id));if(!outsider)throw Error('need enemy non-neighbour');await country(page,outsider.id).click();await check(page,state);await openSurface(page,'actions');await expect(page.locator('#battle-status')).not.toBeEmpty();
  await country(page,target).click({modifiers:['Shift']});await check(page,state);await openSurface(page,'actions');await expect(page.locator('#battle-source-name')).toHaveText(source.name);await openSurface(page,'actions');await expect(page.locator('#battle-target-name')).toHaveText(state.map.provinces.find(p=>p.id===target)!.name);
- await country(page,target).click();state=step(state,{kind:'attack',from:source.id,to:target});await check(page,state);
+ // T82: the plain target click only stages the pair; the card's Attack fights the exchange.
+ await country(page,target).click();await check(page,state);await openSurface(page,'actions');await page.locator('#single-exchange-button').click();state=step(state,{kind:'attack',from:source.id,to:target});await check(page,state);
  // Loaded history must reconstruct every action in order with exact country deltas.
  const replay=await save(page);await setup(page);await upload(page,replay);await expect(page.locator('#geographic-map')).toBeVisible();await openSurface(page,'menu');await page.locator('#game-log-button').click();const rows=page.getByRole('dialog',{name:'Game event log'}).locator('[data-event-index]');await expect(rows).toHaveCount(state.history.length+1);let previous=game.state;for(let i=0;i<state.history.length;i++){const next=step(previous,state.history[i]!);const row=rows.nth(i+1);await expect(row).toHaveAttribute('data-event-index',String(i+1));await expect(row).toContainText(`Action ${i+1}`);for(const v of state.map.provinces){const a=previous.armies[v.id]!,b=next.armies[v.id]!;if(a!==b||previous.ownerOf[v.id]!==next.ownerOf[v.id])await expect(row.locator(`[data-region="${v.id}"]`)).toContainText(`${a} → ${b} (${b-a>=0?'+':''}${b-a})`);}previous=next;}expect(previous).toEqual(state);
 });
@@ -153,7 +154,9 @@ test('geographic computer playback pauses and cancels stale work on load',async(
 // Select an actual ordinary-action fixture from measured seed1994. No state
 // snapshot or test-only browser entry point is introduced. The accepted first
 // exchange must really leave another scheduled legal exchange, rather than
-// assuming a target's initial stack survives combat.
+// assuming a target's initial stack survives combat. T82: the first exchange is
+// the explicit Attack and Fight on's own immediate exchange is the second, so the
+// second must also leave a scheduled legal exchange (the third).
 function queuedBattle(game:ReturnType<typeof expected>){
  const initial=game.state,player=activePlayer(initial)!;
  for(const source of initial.map.provinces.filter(p=>initial.ownerOf[p.id]===player.id)){
@@ -163,25 +166,28 @@ function queuedBattle(game:ReturnType<typeof expected>){
   for(const target of attackTargets(state,source.id)){
    const attack:Action={kind:'attack',from:source.id,to:target},first=apply(state,attack);
    if(!first.ok||first.state.phase!=='attack'||first.state.armies[source.id]!<=1||!attackTargets(first.state,source.id).includes(target))continue;
-   const second=apply(first.state,attack);if(!second.ok)continue;
-   return {from:source.id,to:target,state,actions,first:first.state,second:second.state};
+   const second=apply(first.state,attack);if(!second.ok||second.state.phase!=='attack'||second.state.armies[source.id]!<=1||!attackTargets(second.state,source.id).includes(target))continue;
+   const third=apply(second.state,attack);if(!third.ok)continue;
+   return {from:source.id,to:target,state,actions,first:first.state,second:second.state,third:third.state};
   }
  }
  throw Error('Measured seed1994 has no first exchange that leaves a queued legal exchange; select a different measured corpus fixture before freeze');
 }
 test('geographic continuous battle pauses/resumes and cancels stale work on load/new game',async({page},info)=>{
+ // [designed] Three saved checkpoints after T82's explicit Attack run near the default 30 s.
+ test.setTimeout(60_000);
  await page.clock.install();await page.clock.pauseAt(new Date());await setup(page);
  const game=expected(1994),fixture=queuedBattle(game);
  const payload=JSON.stringify({format:'malpaco-match',version:2,...GEOGRAPHIC_MATCH_IDENTITY,options:game.options,actions:fixture.actions});
  await info.attach('queued-battle-fixture',{body:Buffer.from(JSON.stringify({seed:1994,from:fixture.from,to:fixture.to,actions:fixture.actions},null,2)),contentType:'application/json'});
- const begin=async()=>{
+ const begin=async(attacked=false)=>{
   await upload(page,payload);await check(page,fixture.state);await country(page,fixture.from).click();await country(page,fixture.to).click({modifiers:['Shift']});
-  await openSurface(page,'actions');await page.locator('#battle-stop-threshold').fill('1');await openSurface(page,'actions');await page.locator('#battle-stop-threshold').press('Tab');await page.locator('#fight-on-button').click();
-  await openSurface(page,'actions');await expect(page.getByRole('region',{name:'Battle controls',exact:true})).toHaveAttribute('data-running','true');await check(page,fixture.first);
+  await openSurface(page,'actions');await page.locator('#battle-stop-threshold').fill('1');await openSurface(page,'actions');await page.locator('#battle-stop-threshold').press('Tab');await page.locator('#single-exchange-button').click();if(attacked){await check(page,fixture.first);await openSurface(page,'actions');}await page.locator('#fight-on-button').click();
+  await openSurface(page,'actions');await expect(page.getByRole('region',{name:'Battle controls',exact:true})).toHaveAttribute('data-running','true');await check(page,fixture.second);
  };
- await begin();await page.locator('#game-pause-button').click();const frozen=await save(page);await page.clock.runFor(5000);expect(await save(page)).toBe(frozen);
+ await begin(true);await page.locator('#game-pause-button').click();const frozen=await save(page);await page.clock.runFor(5000);expect(await save(page)).toBe(frozen);
  await country(page,fixture.to).focus();await page.keyboard.press('Enter');expect(await save(page)).toBe(frozen);
- await page.locator('#game-pause-button').click();await page.clock.runFor(400);await check(page,fixture.second);
+ await page.locator('#game-pause-button').click();await page.clock.runFor(400);await check(page,fixture.third);
  // Load replaces a live continuous scheduler. Waiting must not append old work.
  await begin();const replacement=JSON.stringify({format:'malpaco-match',version:2,...GEOGRAPHIC_MATCH_IDENTITY,options:game.options,actions:[]});await upload(page,replacement);await check(page,game.state);await page.clock.runFor(5000);await check(page,game.state);
  // New game also disposes an active scheduler; only setup remains after waiting.

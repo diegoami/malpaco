@@ -180,11 +180,12 @@ test("successful load cancels queued fight-on work from the prior match", async 
   await setup(page); await upload(page, fixture.text); await check(page, fixture);
   const state = decode(fixture.text), mover = state.players[state.currentPlayer]!.id;
   const attacks = state.map.provinces.filter(p => state.ownerOf[p.id] === mover && state.armies[p.id]! > 2).flatMap(p => [...p.borders, ...p.seaLanes].filter(id => state.ownerOf[id] !== mover).map(to => ({ kind: "attack" as const, from: p.id, to })));
-  const queued = attacks.find(action => { const result = apply(state, action); return result.ok && result.state.phase === "attack" && result.state.armies[action.from]! > 1; });
+  // T82: Attack fights the first exchange and Fight on the second, so both must leave a queued exchange.
+  const queued = attacks.find(action => { const result = apply(state, action); if (!(result.ok && result.state.phase === "attack" && result.state.armies[action.from]! > 1)) return false; const second = apply(result.state, action); return second.ok && second.state.phase === "attack" && second.state.armies[action.from]! > 1; });
   if (!queued) throw Error("Pinned move-ready must permit a queued exchange for stale-timer acceptance");
   await country(page, queued.from).click(); await country(page, queued.to).click({modifiers:["Shift"]});
   await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1"); await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab");
-  await page.locator("#fight-on-button").click();
+  await page.locator("#single-exchange-button").click(); await page.locator("#fight-on-button").click();
   await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "true");
   await upload(page, restored.text); await check(page, restored);
   await page.clock.runFor(10000); await check(page, restored);

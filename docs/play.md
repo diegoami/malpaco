@@ -31,11 +31,12 @@ Normal computers. Choose a seed and 2–4 seats; each seat can be Human or Compu
 (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific); **By seed** lets
 the seed choose. Names never change the map or play, and a saved game keeps them.
 Select **Start game**. The map prepares before play begins. During your turn, place reinforcements on your territories,
-then choose **Start combat**. Select one of your territories, then click an adjacent
-enemy for one exchange. Click that enemy again to repeat; Enter/Space and touch work
-the same way. **Fight on** continues automatically; **Stop** pauses it. Shift-click
-(or Shift-Enter/Shift-Space) selects without attacking for **Single exchange** or **Fight on**.
-After capturing a territory, choose the army amount and **Confirm move-in**.
+then choose **Start combat**. Select one of your territories, then an adjacent enemy:
+that only chooses the target, and the card shows the chance of capturing it if you fight
+to the end. **Attack** fights one exchange; after it, **Fight on** continues automatically
+and **Stop** pauses it. Clicks, Enter/Space, touch and the Countries list all work the same way.
+After capturing a territory, choose the army amount and **Confirm move-in**; until then
+the two countries' counts are dashed.
 You can make one adjacent friendly move per turn. Computer turns run automatically.
 **Save game** downloads a match file; **Load game** restores one, including an
 unresolved capture choice. **New game** returns to setup. If a load fails, the current game remains available.

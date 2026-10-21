@@ -37,8 +37,10 @@ async function fits(page: Page, selectors: string[]) {
 test("capture confirmation, quantities and context fit together with an accurate phase", async ({ page }, info) => {
   const errors: string[] = []; page.on("pageerror", e => errors.push(e.message));
   const f = await ready(page, "capture");
+  // T82: one explicit Attack opens the battle that Fight on continues.
+  await page.locator("#single-exchange-button").click();
   await page.locator("#fight-on-button").click();
-  let state = step(f.ready, { kind: "attack", from: f.from, to: f.to });
+  let state = step(step(f.ready, { kind: "attack", from: f.from, to: f.to }), { kind: "attack", from: f.from, to: f.to });
   while (state.phase === "attack") { await page.clock.runFor(200); state = step(state, { kind: "attack", from: f.from, to: f.to }); }
   await expect(page.locator("#turn-phase")).toHaveText("Capture move-in");
   // T71's focused capture presentation hides inactive combat controls in both modes.
@@ -60,11 +62,13 @@ test("keyboard Stop retains focus across an exchange; new game cancels work and 
   const errors: string[] = []; page.on("pageerror", e => errors.push(e.message));
   const f = await ready(page, "manual");
   const oldEnd = await page.locator("#end-turn-button").elementHandle();
+  // T82: one explicit Attack opens the battle that Fight on continues (one more exchange in the count).
+  await page.locator("#single-exchange-button").click();
   await page.locator("#fight-on-button").click();
   await page.locator("#stop-battle-button").focus(); await page.clock.runFor(200);
   await expect(page.locator("#stop-battle-button")).toBeFocused();
   await page.keyboard.press("Enter");
-  const count = f.ready.history.length + 2;
+  const count = f.ready.history.length + 3;
   await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-history-count", String(count));
   await oldEnd!.evaluate(n => n.dispatchEvent(new MouseEvent("click", { bubbles: true })));
   await page.clock.runFor(2000);
