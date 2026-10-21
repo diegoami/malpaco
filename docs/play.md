@@ -20,7 +20,7 @@ node serve.mjs
 Open <http://127.0.0.1:4175> in a desktop browser. The launcher binds to the
 loopback interface and serves the included files.
 
-New games use versioned generated geography: nine islands and 46 territories.
+New games grow their own geography: 7–10 irregular islands sharing 46 territories, different for every seed. Saved games keep the generator they were made with.
 The seed fixes the geography, deal and dice sequence. The explicit
 `?view=reference-game` route retains the fixed Nine Isles board, and
 `?view=generated-game` retains the legacy generated-game and save path.

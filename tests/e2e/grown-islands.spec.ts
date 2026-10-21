@@ -5,8 +5,8 @@ import {readFileSync} from 'node:fs';
 import {GEOGRAPHIC_V2_MATCH_IDENTITY,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,deserializeVersionedMatch} from '../../src/core/match-save';
 import {withSurface} from './shell';
 
-async function start(p:Page,seed:number,humans=2){
- await p.goto(`/?seed=${seed}&control=manual`);await expect(p.getByRole('button',{name:'Start game',exact:true})).toBeVisible();
+async function start(p:Page,seed:number,humans=2,manual=true){
+ await p.goto(`/?seed=${seed}${manual?'&control=manual':''}`);await expect(p.getByRole('button',{name:'Start game',exact:true})).toBeVisible();
  await p.getByLabel('Seats',{exact:true}).selectOption(String(Math.max(2,humans)));for(let n=1;n<=Math.max(2,humans);n++)await p.getByLabel(`Seat ${n} control`,{exact:true}).selectOption(n<=humans?'human':'computer');
  await p.getByRole('button',{name:'Start game',exact:true}).click();await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);await p.mouse.move(0,0);
 }
@@ -24,14 +24,16 @@ for(const seed of [1994,7,42])test(`seed ${seed}: a new game is geographic/2 and
  const rows=await hits(page);expect(rows).toHaveLength(46);expect(rows.filter(r=>!r.ok).map(r=>r.id)).toEqual([]);
 });
 
-test('on a phone the turned map keeps every hit square',async({page})=>{
+// Phone tap areas at Fit belong to T88 (zoom); here the turned map must show every country.
+test('on a phone the map turns and every country is in view',async({page})=>{
  await page.setViewportSize({width:390,height:844});await start(page,7);
  await expect(page.locator('#geographic-map')).toHaveAttribute('data-camera-rotation','90');
- expect((await hits(page)).filter(r=>!r.ok).map(r=>r.id)).toEqual([]);
+ const out=await page.locator('#geographic-map [data-country] .count').evaluateAll(ns=>ns.filter(n=>{const r=n.getBoundingClientRect();return r.left<0||r.top<0||r.right>innerWidth||r.bottom>innerHeight;}).length);
+ expect(out).toBe(0);
 });
 
 test('a single-human game uses the raid-card stage on v2, and Load restores the same islands',async({page})=>{
- await start(page,42,1);
+ await start(page,42,1,false);
  const text=await save(page),loaded=deserializeVersionedMatch(text);expect(loaded.identity).toEqual(GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY);
  const before=await page.locator('#geographic-map [data-country] .cell').evaluateAll(ns=>ns.map(n=>n.getAttribute('d')));
  await start(page,7);
