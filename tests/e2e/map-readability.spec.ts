@@ -132,3 +132,20 @@ test('reduced motion: no transitions on the map',async({page})=>{
  expect(await page.locator(`[data-country="${ids[0]}"] .cell`).evaluate(n=>parseFloat(getComputedStyle(n).transitionDuration))).toBeGreaterThan(0.1);
 });
 });
+
+test("the active country's name is drawn above every country: hover, focus and selection (owner report, 0.2.0 candidate)",async({page},info)=>{
+ test.skip(info.project.name!=='1280x800','one size suffices');
+ await page.goto('/?seed=7&control=manual');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ const top=page.locator('#geographic-map .name-top');
+ const state=()=>top.evaluate(t=>({name:t.querySelector('.name')!.textContent,shown:t.getAttribute('display')!=='none'&&getComputedStyle(t.querySelector('.name')!).display!=='none',last:t.parentElement!.lastElementChild===t}));
+ await page.mouse.move(0,0);expect((await state()).shown).toBe(false);
+ const ids=await page.locator('#geographic-map [data-country]').evaluateAll(ns=>ns.map(n=>(n as HTMLElement).dataset['country']!));
+ const name=(id:string)=>page.locator(`[data-country="${id}"] .name`).textContent();
+ // Hover: the copy is the last thing painted, so no later country covers it.
+ await page.locator(`[data-country="${ids[3]}"] .badge`).hover({force:true});
+ expect(await state()).toEqual({name:await name(ids[3]!),shown:true,last:true});
+ // Keyboard focus, with the pointer away.
+ await page.mouse.move(0,0);await page.locator(`[data-country="${ids[5]}"]`).focus();
+ expect(await state()).toEqual({name:await name(ids[5]!),shown:true,last:true});
+ await page.locator(`[data-country="${ids[5]}"]`).blur();expect((await state()).shown).toBe(false);
+});

@@ -2,12 +2,14 @@
 import drawing from "../../fixtures/new-game/T65/map.svg?raw";
 import {s} from "./dom";
 import {badgeScale,countLabel,seatLook,TARGET_MARK} from "./palette";
+import {NameLayer} from "./nameLayer";
 import {MapCamera} from "./mapCamera";
 import type {GameMap} from "../core";
 import type {MapHandlers,MapViewState} from "./mapView";
 export class ReferenceMapView{
  readonly el:SVGSVGElement;
  readonly camera:MapCamera;
+ private readonly names:NameLayer;
  constructor(_map:GameMap,handlers:MapHandlers){
   this.el=new DOMParser().parseFromString(drawing,"image/svg+xml").documentElement as unknown as SVGSVGElement;
   this.el.id="reference-map";this.el.setAttribute("aria-label","Nine Isles reference map");
@@ -28,6 +30,7 @@ export class ReferenceMapView{
    n.onclick=e=>handlers.onProvince(id,{inspect:e.shiftKey,repeat:false});n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
    n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id,{inspect:e.shiftKey,repeat:e.repeat});}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
   }
+  this.names=new NameLayer(nodes);this.el.append(this.names.el);
   this.el.onclick=e=>{if(!(e.target as Element).closest(".country"))handlers.onBackground();};
   const[x,y,width,height]=this.el.getAttribute("viewBox")!.split(/[\s,]+/).map(Number) as [number,number,number,number];
   this.camera=new MapCamera(this.el,{x,y,width,height});
@@ -47,6 +50,7 @@ export class ReferenceMapView{
    badge.setAttribute("transform",`translate(${count.getAttribute("x")},${Number(count.getAttribute("y"))-5}) scale(${badgeScale(count.getComputedTextLength())})`);
    (n.querySelector(".centre") as SVGElement).style.display=state.productionCentres.includes(id)?"":"none";
   }
+  this.names.select(view.selected);
   this.el.dataset["choosing"]=String(view.selected!==null);
   for(const r of this.el.querySelectorAll<SVGPolylineElement>(".lane"))r.classList.toggle("active",r.dataset["edge"]!.split("|").includes(view.selected??""));
  }

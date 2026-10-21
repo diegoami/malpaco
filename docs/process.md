@@ -31,8 +31,8 @@ environment's secrets:
   | `gh pr merge N --merge` | `gh api -X PUT $R/pulls/N/merge -f merge_method=merge` |
   | `gh pr comment N` | `gh api $R/issues/N/comments -F body=@file` |
 
-  `tools/review.mjs` and the milestone review use `gh pr`/`gh issue`; they run on the owner's
-  machine, not in a cloud session.
+  Reviews and the milestone review use `gh pr`/`gh issue`; they run on the owner's machine, not
+  in a cloud session.
 - `MALPACO_RCLONE_TOKEN` (and, with the owner's own OAuth client, `RCLONE_DRIVE_CLIENT_ID` and
   `RCLONE_DRIVE_CLIENT_SECRET`): Drive artifacts, §6.
 
@@ -71,14 +71,12 @@ implementer's contract:
 
 ## 4. Reviews
 
-**Per PR: optional.** The main session decides whether a PR deserves a review (rule-core changes,
-saves, anything risky) and runs `node tools/review.mjs --pr <n> [--brief docs/tasks/T<nn>.md]`.
-It uses `harness.json`'s `review.default`; `--model <key>` picks another registered model, of
-any family. It reviews in the current checkout: `--checkout` first checks out the PR (clean tree
-only); otherwise the reviewer reads the PR head through git. The instructions are
-`docs/review-pr.md`. Exit 3 means no review came back: read the error and fix the cause. One
-review round, then what remains becomes follow-up issues unless it is a real defect in what the
-task delivers. Blocking means a real player or developer would hit it through normal use.
+**Per PR: optional, run by hand.** The main session says when a PR deserves a review (rule-core
+changes, saves, anything risky, a release candidate) and gives the owner a prompt naming the PR,
+its head and its task file. The owner runs any model's CLI on a checkout of the PR head with
+`docs/review-pr.md` as the brief; the reviewer posts its review as one PR comment. One review
+round, then what remains becomes follow-up issues unless it is a real defect in what the task
+delivers. Blocking means a real player or developer would hit it through normal use.
 
 **Per milestone: the big review.** `docs/milestone-review.md`: a milestone issue, then the owner
 calls a model's CLI directly (`opencode run --agent milestone-reviewer …`, `claude -p

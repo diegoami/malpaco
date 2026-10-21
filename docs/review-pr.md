@@ -1,8 +1,9 @@
 # Reviewing one PR
 
 You review one malpaco pull request. You did not write it; verify against the code, not the PR's
-description. Read `CLAUDE.md` for the project's rules. Do not edit, commit, push, merge, label or
-post: your final message is the review, and `tools/review.mjs` posts it.
+description. Read `CLAUDE.md` for the project's rules. Do not edit, commit, push, merge or label.
+Your final message is the review; post it as one comment on the PR
+(`gh pr comment <n> --body-file <file>`) and post nothing else.
 
 Check, in this order:
 1. **Done-when.** Run every Done-when line of the task (in the brief or the PR) yourself and report
