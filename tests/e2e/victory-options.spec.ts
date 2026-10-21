@@ -25,7 +25,9 @@ async function clickAction(page: Page, action: CompleteAction) {
   else if (action.kind === "attack") {
     const from = country(page, action.from);
     if (await from.getAttribute("aria-pressed") !== "true") await from.click();
+    // T82: the target click stages the pair; the card's Attack fights the one exchange.
     await country(page, action.to).click();
+    await openSurface(page, "actions"); await page.locator("#single-exchange-button").click();
   } else throw Error(`Unhandled fixture click ${action.kind}`);
 }
 async function setup(page: Page, fixture: ReturnType<typeof plan>) {

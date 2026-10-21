@@ -147,7 +147,8 @@ test("global pause freezes continuous human battle and gates manual reinforcemen
   await page.locator(`[data-country="${f.from}"]`).click();
   await page.locator(`[data-country="${f.to}"]`).click({ modifiers: ["Shift"] });
   await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1"); await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab");
-  await page.locator("#fight-on-button").click(); await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "true");
+  // T82: one explicit Attack opens the battle that Fight on continues.
+  await page.locator("#single-exchange-button").click(); await page.locator("#fight-on-button").click(); await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "true");
   await totals(page); await visibleControls(page); await withSurface(page,'settings',()=>speed(page).selectOption("normal")); await pause(page).click();
   const frozen = await save(page);
   for (const id of ["fight-on-button", "single-exchange-button", "end-turn-button", "start-friendly-move-button"]) await page.locator(`#${id}`).dispatchEvent("click");

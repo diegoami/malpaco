@@ -59,7 +59,8 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
     else if (action.kind === "endTurn") await page.locator("#end-turn-button").click();
     else if (action.kind === "attack") {
       if (await country(page, action.from).getAttribute("aria-pressed") !== "true") await country(page, action.from).click();
-      await country(page, action.to).click();
+      // T82: the target click stages the pair; the card's Attack fights the one exchange.
+      await country(page, action.to).click(); await openSurface(page,'actions'); await page.locator("#single-exchange-button").click();
       if (!battle) { await screenshot("battle"); battle = true; }
     } else if (action.kind === "friendlyMove") {
       await page.locator("#start-friendly-move-button").click(); await country(page, action.from).click(); await country(page, action.to).click();
