@@ -178,7 +178,8 @@ export class MapView {
 
   private provinceGroup(p: Province): SVGGElement {
     const [lx, ly] = p.labelAt;
-    const badge = s("path", { class: "badge-shape", d: seatLook(0).badge });
+    // The legacy badge holds an initial and a count side by side: the owner shape is stretched to its 76-unit width.
+    const badge = s("path", { class: "badge-shape", d: seatLook(0).badge, transform: "scale(2 1)" });
     const init = s("text", { class: "badge-initial", x: -19, y: 5 });
     const count = s("text", { class: "badge-count", x: 9, y: 8 });
     const group = s(

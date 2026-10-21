@@ -1,23 +1,23 @@
-// Ownership look. The original two colours and shapes stay intact. Generated
-// games add green and lavender with distinct score badges; their map labels
-// print numeric seats so colour is never the only ownership cue. The authored
-// map retains initials, badge shapes and the second seat's hatch.
+// Ownership look after the revision-7 sketches (T93): vivid owner regions and a
+// dark count badge whose outline is the owner's colour and whose silhouette
+// (square, diamond, hexagon, circle) is a second cue, so colour is never the
+// only ownership signal. Generated games print numeric seats in their labels.
 
 export interface SeatLook {
   readonly color: string;
   readonly dark: string;
-  /** SVG path for the badge outline, centred on 0,0, 76 wide and 34 tall. */
+  /** SVG path for the badge outline, centred on 0,0 and 38 tall (the chip's 80 x 38 box). */
   readonly badge: string;
 }
 
 export const SEATS: readonly SeatLook[] = [
-  { color: "#3d7ab8", dark: "#1f4469", badge: "M-30 -17H30A17 17 0 0 1 30 17H-30A17 17 0 0 1 -30 -17Z" }, // pill
-  { color: "#d98c3f", dark: "#7a4614", badge: "M-38 0L-21 -17H21L38 0L21 17H-21Z" }, // hexagon
-  { color: "#82b887", dark: "#315938", badge: "M-30 -17H30V17H-30Z" }, // rectangle
-  { color: "#bd9cda", dark: "#61427d", badge: "M0 -19L38 0L0 19L-38 0Z" }, // diamond
+  { color: "#239cdb", dark: "#0f4d70", badge: "M-17 -17H17V17H-17Z" }, // square
+  { color: "#f47745", dark: "#7f3317", badge: "M0 -19L19 0L0 19L-19 0Z" }, // diamond
+  { color: "#92c83e", dark: "#43621a", badge: "M-17 -9.5L0 -19L17 -9.5V9.5L0 19L-17 9.5Z" }, // hexagon
+  { color: "#b86cdb", dark: "#5a2a73", badge: "M-19 0A19 19 0 1 0 19 0A19 19 0 1 0 -19 0Z" }, // circle
 ];
 
-export const NEUTRAL: SeatLook = { color: "#8d8578", dark: "#4b463e", badge: "M-30 -17H30V17H-30Z" };
+export const NEUTRAL: SeatLook = { color: "#8d8578", dark: "#4b463e", badge: "M-17 -17H17V17H-17Z" };
 
 export function seatLook(seat: number): SeatLook {
   return SEATS[seat] ?? NEUTRAL;
@@ -25,4 +25,9 @@ export function seatLook(seat: number): SeatLook {
 
 export function initial(playerId: string): string {
   return playerId === "" ? "-" : playerId.slice(0, 1).toUpperCase();
+}
+
+/** [designed] The sketches scale a 38-unit badge to about 28 units; longer counts widen it to keep a 6-unit margin. */
+export function badgeScale(countWidth: number): number {
+  return Math.max(0.75, (countWidth + 6) / 34);
 }

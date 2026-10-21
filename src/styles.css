@@ -146,6 +146,7 @@ body {
   stroke: #fff;
   stroke-opacity: 0.85;
   stroke-width: 2.5;
+  vector-effect: non-scaling-stroke;
 }
 .badge-initial,
 .badge-count,
@@ -1277,14 +1278,6 @@ dialog h2 {
 
 #reference-computer-status { margin:0; font-size:13px; color:var(--muted); }
 
-/* [designed] Army counts lead; names remain available without a hover-only dependency.
-   Ownership silhouettes mirror the score legend, alongside color and full accessible labels. */
-#reference-map .name { font-size:9px; font-weight:400; stroke:none; }
-#reference-map .count { font-weight:750; }
-#reference-map .badge { stroke:#d7e4eb; stroke-width:.8; }
-#reference-map .country:is(:hover,:focus,.selected) .name {
-  font-size:12px; font-weight:600; stroke:#f8f2e2; stroke-width:1.5;
-}
 
 /* [designed] T70 keeps totals and session playback available above the board. */
 [data-testid="player-army-total"] { display:block; font-size:16px; white-space:nowrap; }
@@ -1310,21 +1303,31 @@ dialog h2 {
 #geographic-setup {height:100vh;display:grid;place-items:center;padding:32px;overflow:auto}
 #geographic-game {height:100vh;display:grid;grid-template-rows:auto minmax(0,1fr)}
 #geographic-map {display:block;width:100%;height:100%}
-#geographic-map .water {fill:#193e51}
-#geographic-map .coast {fill:#3c6570;stroke:#8baca7;stroke-width:2}
-#geographic-map .lane {fill:none;stroke:#efd49a;stroke-width:1.7;stroke-dasharray:4 3;stroke-linejoin:round}
-#geographic-map .lane.active {stroke:#fff7bf;stroke-width:3}
-#geographic-map .cell {stroke:#244654;stroke-width:.9;stroke-linejoin:round}
-#geographic-map .country {cursor:pointer;outline:none}
-#geographic-map .country.selected .cell {stroke:#fff7bf;stroke-width:2.6}
-#geographic-map .country.neighbor .cell {stroke:#f5dc82;stroke-width:1.9}
-#geographic-map .country:focus-visible .cell {stroke:white;stroke-width:3}
-#geographic-map .country-label {pointer-events:none}
-#geographic-map .badge {fill:#132b3b;stroke:#d7e4eb;stroke-width:.8}
-#geographic-map .count {font:750 14px system-ui;fill:white;text-anchor:middle}
-#geographic-map .name {font:400 9px system-ui;fill:#102637;text-anchor:middle;visibility:hidden}
-#geographic-map .country:is(:hover,:focus,.selected) .name {font-size:12px;font-weight:600;visibility:visible;stroke:#f8f2e2;stroke-width:1.5;paint-order:stroke}
-#geographic-map .centre {font:10px system-ui;fill:#fff5bd;stroke:#122f40;stroke-width:.4;paint-order:stroke}
+/* T93: the revision-7 sketches' map. Vivid owner regions over a dark sea, a layered
+   shoreline, thin dotted routes, and small dark owner-shaped badges with light counts.
+   Names show only on hover, focus or selection; while a country is chosen, unrelated
+   countries dim. Colours are the sketches'; widths are [designed]. */
+:is(#geographic-map,#reference-map) .water {fill:#102b36}
+:is(#geographic-map,#reference-map) .shelf {fill:#214c56;stroke:#214c56;stroke-width:10;stroke-linejoin:round;pointer-events:none}
+:is(#geographic-map,#reference-map) .coast {fill:#3c7071;stroke:#dce4be;stroke-width:2.8;stroke-linejoin:round}
+:is(#geographic-map,#reference-map) .lane {fill:none;stroke:#89aaa4;stroke-width:1.5;stroke-dasharray:3 6;stroke-linecap:round;stroke-linejoin:round}
+:is(#geographic-map,#reference-map) .lane.active {stroke:#f0f1de;stroke-width:2.4;stroke-dasharray:none}
+:is(#geographic-map,#reference-map) .port {fill:#89aaa4;stroke:none}
+:is(#geographic-map,#reference-map) .cell {stroke:#d0dfbf;stroke-width:.9;stroke-linejoin:round;transition:filter .2s}
+:is(#geographic-map,#reference-map) .country {cursor:pointer;outline:none;user-select:none;-webkit-user-select:none}
+:is(#geographic-map,#reference-map) .country.selected .cell {stroke:#ffd06b;stroke-width:3.2}
+:is(#geographic-map,#reference-map) .country.neighbor .cell {stroke:#f0f1de;stroke-width:2.2;stroke-dasharray:6 4}
+:is(#geographic-map,#reference-map) .country:focus-visible .cell {stroke:white;stroke-width:3;stroke-dasharray:none}
+:is(#geographic-map,#reference-map)[data-choosing="true"] .country:not(.selected,.neighbor) .cell {filter:brightness(.6) saturate(.55)}
+:is(#geographic-map,#reference-map) .country-label {pointer-events:none}
+:is(#geographic-map,#reference-map) .badge {fill:#102b36;stroke-width:2.6;stroke-linejoin:round}
+:is(#geographic-map,#reference-map) .country.selected .badge {fill:#ffd06b;stroke:#102b36 !important}
+:is(#geographic-map,#reference-map) .count {font:700 14px Inter,system-ui,sans-serif;fill:#f0f1de;stroke:none;text-anchor:middle}
+:is(#geographic-map,#reference-map) .country.selected .count {fill:#102b36}
+:is(#geographic-map,#reference-map) :is(.name,.island-name) {display:none}
+:is(#geographic-map,#reference-map) .country:is(:hover,:focus,.selected) .name {font:600 12px Inter,system-ui,sans-serif;display:inline;visibility:visible;fill:#102b36;stroke:#f0f1de;stroke-width:2.5;paint-order:stroke;stroke-linejoin:round}
+:is(#geographic-map,#reference-map) .centre {font:10px system-ui;fill:#f2d69a;stroke:#102b36;stroke-width:.8;paint-order:stroke}
+@media (prefers-reduced-motion:reduce) { :is(#geographic-map,#reference-map) .cell {transition:none} }
 
 /* T71: stable presentation areas shared by supported hosts. */
 .battle-reference[data-panel-detail] .panel {
@@ -1521,7 +1524,7 @@ dialog h2 {
 #game-focus-drawer .panel-foot { margin:0; }
 .map-camera-button svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
 /* T92: concise cards after the sketches — one line, icon controls, a short note. */
-.battle-reference > .board { background:#193e51; }
+.battle-reference > .board { background:#102b36; }
 .battle-reference #game-focus-drawer .action { display:block; }
 .battle-reference #game-focus-drawer .action > :is(.pick,.hint,.legend,#reference-computer-status) { display:none; }
 .battle-reference #game-focus-drawer :is(.battle-controls,.friendly-move-controls) { padding:0; margin:0; border:0; background:none; min-height:0; }
