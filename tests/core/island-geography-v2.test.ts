@@ -73,6 +73,14 @@ describe("island geography v2 (T95)", () => {
     }
   });
 
+  it("islands keep at least 40 px of open sea between them", () => {
+    for (const {seed, g} of geographies) for (let a = 0; a < g.islands.length; a++) for (let b = a + 1; b < g.islands.length; b++) {
+      let gap = Infinity;
+      for (const p of g.islands[a]!.polygon) for (const q of g.islands[b]!.polygon) gap = Math.min(gap, Math.hypot(p[0] - q[0], p[1] - q[1]));
+      expect(gap / Q, `${seed} ${g.islands[a]!.id}/${g.islands[b]!.id}`).toBeGreaterThanOrEqual(40);
+    }
+  });
+
   it("is deterministic per seed and varies across seeds", () => {
     expect(JSON.stringify(generateIslandGeographyV2(7))).toBe(JSON.stringify(generateIslandGeographyV2(7)));
     expect(new Set(geographies.map(({g}) => JSON.stringify(g.islands.map(i => i.provinces.length)))).size).toBeGreaterThan(8);

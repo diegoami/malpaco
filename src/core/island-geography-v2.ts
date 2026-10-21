@@ -34,8 +34,8 @@ const ISLANDS_MIN = 7, ISLANDS_MAX = 10, SIZE_MIN = 3, SIZE_MAX = 10;
 const LABEL_SQUARE = 40;
 /** v1 label spacing: ≥44 px apart in x or ≥47 px in y. */
 const LABEL_GAP_X = 44, LABEL_GAP_Y = 47;
-/** [designed] Sea between islands, in hexes, and the corner-cutting passes. */
-const SEA_HEXES = 2, SMOOTHING = 6;
+/** [designed] Sea between islands, in hexes (≈48 px once smoothed), and the smoothing passes. */
+const SEA_HEXES = 4, SMOOTHING = 6;
 const MAX_ATTEMPTS = 40;
 /** cos/sin × 1024 for 0°, 22.5°, … 157.5° (an ellipse repeats after 180°). */
 const ROTATIONS: readonly Point[] = [[1024, 0], [946, 392], [724, 724], [392, 946], [0, 1024], [-392, 946], [-724, 724], [-946, 392]];
