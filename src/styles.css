@@ -1614,3 +1614,14 @@ dialog h2 {
 .battle-reference #game-focus-drawer .battle-controls[data-pending-capture="true"] > .card-head { display:none; }
 .battle-reference .game-overlay .game-folded #open-required-action { background:var(--shell-gold) !important; border-color:var(--shell-gold) !important; color:var(--shell-ink) !important; }
 @media (orientation:portrait) { .battle-reference .game-side > .game-folded { margin:auto auto 0; } }
+/* The notice is a slim one-line pill (owner, 2026-10-21): tap for the hint, swipe or × to dismiss; ordinary ones fade. */
+.battle-reference .game-overlay #active-seat-notice { pointer-events:auto; touch-action:none; cursor:pointer; flex-direction:row; flex-wrap:wrap; align-items:center; gap:0 4px; width:auto; max-width:min(420px, 100%); min-height:44px; padding:0 0 0 18px; border-radius:22px; user-select:none; }
+.battle-reference #active-seat-notice .game-notice-title { flex:1; font:700 15px/1.25 Inter, system-ui, sans-serif; padding:10px 0; }
+.battle-reference #active-seat-notice #dismiss-notice { width:44px; height:44px; min-height:44px; border:0; background:none; box-shadow:none; color:var(--shell-muted); }
+.battle-reference #active-seat-notice #dismiss-notice svg { width:18px; height:18px; }
+.battle-reference #active-seat-notice .game-notice-detail { flex-basis:100%; padding:0 18px 10px 0; }
+.battle-reference #active-seat-notice[data-open="true"] { border-radius:16px; }
+.battle-reference #active-seat-notice[data-fading="true"] { animation:notice-fade 4s linear forwards; }
+@keyframes notice-fade { 0%, 85% { opacity:1; } 100% { opacity:0; } }
+@media (prefers-reduced-motion: reduce) { .battle-reference #active-seat-notice[data-fading="true"] { animation:none; } }
+@media (orientation:portrait) { .battle-reference .game-side > #active-seat-notice { align-self:center; } }

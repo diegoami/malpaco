@@ -3,7 +3,7 @@
 import {expect, test} from '@playwright/test';
 import type {Page, TestInfo} from '@playwright/test';
 import {readFileSync} from 'node:fs';
-import {apply, deserializeVersionedMatch} from '../../src/core';
+import {apply, attackTargets, deserializeVersionedMatch} from '../../src/core';
 import type {GameState} from '../../src/core';
 import {closeSurface, openSurface, saveVia} from './shell';
 import type {Surface} from './shell';
@@ -81,8 +81,7 @@ async function audit(page: Page, label: string, insets = {top: 0, right: 0, bott
   expect.soft(data.strays, `${label}: overlays intercept no hits outside their own controls (${data.strayCount})`).toEqual([]);
   const within = (r: Box) => r.x >= insets.left - 0.5 && r.y >= insets.top - 0.5 && r.x + r.width <= width - insets.right + 0.5 && r.y + r.height <= height - insets.bottom + 0.5;
   for (const c of data.controls) {
-    // The notice is text that lets clicks through to the map (T92); every control must take its own hits.
-    if (c.id !== 'active-seat-notice') expect.soft(c.hit, `${label}: ${c.id} is uncovered`).toBe(true);
+    expect.soft(c.hit, `${label}: ${c.id} is uncovered`).toBe(true);
     expect.soft(within(c.rect), `${label}: ${c.id} lies inside the safe viewport`).toBe(true);
     if (!['card', 'notice'].includes(c.group)) { expect.soft(c.rect.width, `${label}: ${c.id} target width`).toBeGreaterThanOrEqual(44); expect.soft(c.rect.height, `${label}: ${c.id} target height`).toBeGreaterThanOrEqual(44); }
   }
@@ -229,6 +228,40 @@ for (const host of ['reference', 'geographic']) {
       await expect(page.locator('#open-game-menu')).toBeFocused();
     }
     expect(await saveVia(page, 'shellSave')).toBe(before);
+    expect(errors).toEqual([]);
+  });
+
+  test(`${host}: the notice is a slim pill: tap for the hint, × or swipe dismisses, ordinary ones fade, refusals persist`, async ({page}) => {
+    const {text, state: initial} = placement(host);
+    const errors = await begin(page, host, text);
+    await page.setViewportSize(size('390x844')); await settle(page);
+    const notice = page.locator('#active-seat-notice'), hint = notice.locator('.game-notice-detail');
+    await expect(notice).toBeVisible(); await expect(notice).toContainText('place armies');
+    // One line at rest: the hint is for assistive technology until a tap opens it, which also stops the fade.
+    expect((await notice.boundingBox())!.height).toBeLessThanOrEqual(46);
+    await expect(hint).toHaveCount(0);
+    await notice.locator('.game-notice-title').click(); await expect(hint).toBeVisible(); await expect(notice).toHaveAttribute('data-fading', 'false');
+    await page.clock.runFor(5000); await expect(notice).toBeVisible();
+    // × dismisses it, and it stays dismissed while the same notice stands.
+    await page.locator('#dismiss-notice').click(); await expect(notice).toBeHidden();
+    let state = initial;
+    const owned = state.map.provinces.filter(p => state.ownerOf[p.id] === state.players[state.currentPlayer]!.id).map(p => p.id);
+    while (state.reinforcementPool) { await page.locator(`[data-country="${owned[0]}"]`).click(); const r = apply(state, {kind: 'reinforce', province: owned[0]!, amount: 1}); if (!r.ok) throw Error(r.error); state = r.state; }
+    await page.locator('#start-combat-button').click();
+    const combat = apply(state, {kind: 'endReinforcement'}); if (!combat.ok) throw Error(combat.error); state = combat.state;
+    // A new notice shows again, and an ordinary one fades after 4 s.
+    await expect(notice).toBeVisible(); await expect(notice).toContainText('attack');
+    await page.clock.runFor(3900); await expect(notice).toBeVisible();
+    await page.clock.runFor(200); await expect(notice).toBeHidden();
+    // A refusal persists until dismissed: here by a swipe.
+    const source = owned.find(id => state.armies[id]! > 1)!;
+    const distant = state.map.provinces.find(p => state.ownerOf[p.id] !== state.ownerOf[source] && !attackTargets(state, source).includes(p.id))!.id;
+    await page.locator(`[data-country="${source}"]`).click(); await page.locator(`[data-country="${distant}"]`).click();
+    await expect(notice).toBeVisible(); await page.clock.runFor(6000); await expect(notice).toBeVisible();
+    const box = (await notice.boundingBox())!;
+    await page.mouse.move(box.x + 20, box.y + box.height / 2); await page.mouse.down(); await page.mouse.move(box.x + 120, box.y + box.height / 2, {steps: 6}); await page.mouse.up();
+    await expect(notice).toBeHidden();
+    expect(deserializeVersionedMatch(await saveVia(page, 'shellSave')).state).toEqual(state);
     expect(errors).toEqual([]);
   });
 }

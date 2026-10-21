@@ -257,13 +257,13 @@ export class ReferenceBattleGame {
     const humans = state.players.filter(p => p.kind !== "computer");
     // One contextual notice (T92, after the sketches): an engine refusal, the latest
     // exchange, a computer's turn, a pause, or a human turn's prompt until they act.
-    let notice: {title: string; detail?: string} | null = null;
+    let notice: {title: string; detail?: string; persistent?: boolean} | null = null;
     const nameOf = (id: string) => state.players.find(p => p.id === id)?.name ?? id;
     const place = (id: string) => this.map.provinces.find(p => p.id === id)?.name ?? id;
     const outcome = this.controller.view.lastOutcome;
     if (outcome !== this.outcomeSeen) {this.outcomeSeen = outcome; this.outcomeAt = state.history.length;}
     if (this.refusal && this.refusal.key !== `${state.history.length}:${from}:${to}`) this.refusal = null;
-    if (this.refusal) notice = {title: this.refusal.text};
+    if (this.refusal) notice = {title: this.refusal.text, persistent: true};
     else if (outcome && state.history.length === this.outcomeAt && !result) {
       const loser = outcome.attackerLosses > 0 ? outcome.from : outcome.to, lost = outcome.attackerLosses || outcome.defenderLosses, after = state.armies[loser] ?? 0;
       notice = {title: outcome.captured ? `${nameOf(outcome.attacker)} captured ${place(outcome.to)}.` : `${nameOf(state.ownerOf[loser]!)} lost ${lost}. ${after + lost} → ${after}.`,

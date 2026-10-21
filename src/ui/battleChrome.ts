@@ -4,7 +4,8 @@ import {seatLook} from "./palette";
 
 export type Surface = "actions" | "cards" | "menu" | "info";
 /** What the quiet map shows: an optional one-line notice, the pool during placement, and requested information. */
-export interface Notice {title: string; detail?: string}
+/** A one-line notice; `persistent` ones (refusals, folded choices) never fade, only dismiss. */
+export interface Notice {title: string; detail?: string; persistent?: boolean}
 export interface ShellStatus {seat: number; notice: Notice | null; pool: number | null; info: string; explanation: string; result: boolean}
 
 const symbol = glyph;
@@ -18,6 +19,10 @@ function icon(id: string, label: string, shape: string): HTMLButtonElement {
   return h("button", {id, type: "button", class: "game-icon", "aria-label": label, title: label},
     symbol(shape));
 }
+
+/** [designed] An ordinary notice fades after 4 s; a swipe beyond 40 px dismisses it. */
+const NOTICE_FADE_MS = 4000;
+const NOTICE_SWIPE = 40;
 
 const TITLES: Record<Surface, string> = {actions: "Current choice", cards: "Cards", menu: "Menu", info: "Objective and phase"};
 
@@ -52,6 +57,12 @@ export class BattleChrome {
   private readonly info = icon("game-info-button", "Objective and phase", "info");
   private readonly cornerClose = icon("close-result-card", "Return to map", "close");
   private notified: Notice | null = null;
+  /** The notice on show, the one the player dismissed (or that faded), and its fade timer. */
+  private noticeKey: string | null = null;
+  private dismissedKey: string | null = null;
+  private noticeOpen = false;
+  private fadeTimer: number | null = null;
+  private noticeShown = "";
   private surface: Surface | null = null;
   private opener: HTMLElement | null = null;
   private moved: {node: HTMLElement; marker: Comment}[] = [];
@@ -90,6 +101,7 @@ export class BattleChrome {
       const index = event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1 : (current + step + buttons.length) % buttons.length;
       buttons[index]?.focus({preventScroll:true}); event.preventDefault();
     });
+    this.notice.addEventListener("pointerdown", this.onNoticeDown);
     this.side.append(this.notice, this.folded, this.drawer);
     // The information card's lines need a home to return to when the card closes.
     this.overlay.append(h("div", {class: "game-info-store", hidden: true}, this.infoLine, this.explanation));
@@ -185,12 +197,58 @@ export class BattleChrome {
     this.renderNotice();
   }
 
-  /** A folded choice says so; otherwise the host's contextual notice, if any. */
+  /**
+   * A folded choice says so; otherwise the host's contextual notice, if any. The notice
+   * is a slim one-line pill (owner, 2026-10-21): a tap shows its hint, a swipe or × dismisses
+   * it until the next new notice, and an ordinary one fades after [designed] 4 s. Refusals and
+   * folded choices persist until dismissed or acted on (U5: nothing required times out).
+   */
   private renderNotice(): void {
-    const notice = !this.folded.hidden ? {title: "Choice folded, not completed.", detail: "Tap the gold return icon to resume."} : this.notified;
-    this.notice.hidden = !notice;
-    this.notice.replaceChildren(...(notice ? [h("strong", {class: "game-notice-title"}, notice.title), ...(notice.detail ? [h("span", {class: "game-notice-detail"}, notice.detail)] : [])] : []));
+    const notice: Notice | null = !this.folded.hidden ? {title: "Choice folded, not completed.", detail: "Tap the gold return icon to resume.", persistent: true} : this.notified;
+    const key = notice ? `${notice.title}|${notice.detail ?? ""}` : null;
+    if (key !== this.noticeKey) {
+      this.noticeKey = key; this.noticeOpen = false;
+      if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer);
+      this.fadeTimer = null;
+      if (notice && !notice.persistent && key !== this.dismissedKey) this.fadeTimer = window.setTimeout(() => this.dismissNotice(), NOTICE_FADE_MS);
+    }
+    this.notice.hidden = !notice || key === this.dismissedKey;
+    this.notice.dataset["fading"] = String(this.fadeTimer !== null && !this.noticeOpen);
+    this.notice.dataset["open"] = String(this.noticeOpen);
+    // Rebuilt only when what it shows changes, so the live region is not re-announced.
+    const shown = `${key}|${this.noticeOpen}|${this.notice.hidden}`;
+    if (shown === this.noticeShown) return;
+    this.noticeShown = shown;
+    if (!notice) {this.notice.replaceChildren(); return;}
+    const dismiss = icon("dismiss-notice", "Dismiss notice", "close");
+    dismiss.onclick = event => {event.stopPropagation(); this.dismissNotice();};
+    this.notice.replaceChildren(h("strong", {class: "game-notice-title"}, notice.title), dismiss,
+      ...(notice.detail ? [h("span", {class: this.noticeOpen ? "game-notice-detail" : "visually-hidden"}, notice.detail)] : []));
   }
+
+  private dismissNotice(): void {
+    if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer);
+    this.fadeTimer = null; this.dismissedKey = this.noticeKey; this.renderNotice();
+  }
+
+  /** Tap: show the hint (and stop the fade). Swipe sideways or up: dismiss. */
+  private readonly onNoticeDown = (down: PointerEvent) => {
+    if ((down.target as Element).closest("#dismiss-notice")) return;
+    const start = {x: down.clientX, y: down.clientY};
+    const move = (event: PointerEvent) => {this.notice.style.translate = `${event.clientX - start.x}px ${Math.min(0, event.clientY - start.y)}px`;};
+    const up = (event: PointerEvent) => {
+      window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+      this.notice.style.translate = "";
+      const dx = event.clientX - start.x, dy = event.clientY - start.y;
+      if (event.type !== "pointercancel" && (Math.abs(dx) > NOTICE_SWIPE || dy < -NOTICE_SWIPE)) {this.dismissNotice(); return;}
+      if (Math.hypot(dx, dy) <= 10 && event.type !== "pointercancel") {
+        this.noticeOpen = !this.noticeOpen;
+        if (this.fadeTimer !== null) {window.clearTimeout(this.fadeTimer); this.fadeTimer = null;}
+        this.renderNotice();
+      }
+    };
+    window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+  };
 
   /** `prompt` names a choice that wants its card; a new one opens Current choice without taking focus. */
   update(status: ShellStatus, required: string | null, paused: boolean, prompt: string | null): void {
@@ -223,5 +281,5 @@ export class BattleChrome {
     this.pool.title = this.pool.getAttribute("aria-label")!;
   }
 
-  dispose(): void {this.close(false); this.overlay.remove();}
+  dispose(): void {if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer); this.close(false); this.overlay.remove();}
 }
