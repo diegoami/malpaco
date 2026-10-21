@@ -1,3 +1,4 @@
+import { glyph } from "./icons";
 import { h } from "./dom";
 
 const sections = [
@@ -75,4 +76,61 @@ export function mountHelp(
   if (viewRoot?.id === "game-setup") viewRoot.append(opener);
   else host.append(opener);
   (viewRoot ?? host).append(dialog);
+}
+
+/** T85 (R6, #61): every icon the game shows, with the one name it is announced by. Card names
+ * stay out of this help: the page may show only your own or publicly spent cards. */
+const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
+  ["menu", "Menu", "Totals, history, your cards, settings, files and this help."],
+  ["pause", "Pause", "Stops play at once; the same icon resumes it."],
+  ["fast-forward", "Fast-forward", "During computer turns: play them without waiting until your turn."],
+  ["fit", "Fit", "Shows the whole map again."],
+  ["countries", "Countries", "Every country by island, or only the ones you can use now."],
+  ["info", "Information", "The objective, your progress and the current phase."],
+  ["combat", "Start combat", "Ends placement once every army is placed."],
+  ["move", "Move armies", "One adjacent friendly move per turn."],
+  ["flag", "End turn", "Passes the turn; it also skips the friendly move."],
+  ["attack", "Attack", "Fights one exchange with the staged pair."],
+  ["fight-on", "Fight on", "Keeps attacking until the stop point; appears after a first Attack."],
+  ["stop", "Stop", "Halts Fight on."],
+  ["settings", "Settings", "Where Fight on stops, and its speed."],
+  ["minus", "Fewer", "Lowers a move-in or move amount."],
+  ["plus", "More", "Raises a move-in or move amount."],
+  ["confirm", "Confirm", "Completes a capture move-in, a move or a card choice."],
+  ["fold", "Fold", "Puts a choice aside to look at the map; it is not completed."],
+  ["return", "Return", "The gold icon that brings a folded choice back."],
+  ["history", "Changes", "On your turn: the other seats' actions since your last turn."],
+  ["standings", "Standings", "Countries and armies at the end of the game."],
+  ["files", "Files", "Save the game or load one."],
+  ["new-game", "New game", "Returns to setup; the current game ends."],
+  ["watch", "Watch computers", "After your last country falls: the computers play on."],
+  ["close", "Close", "Closes a card, or dismisses a notice."],
+];
+const HOW_TO: readonly (readonly [string, string])[] = [
+  ["Placing", "Tap your countries to place armies from the pool shown at the top, then Start combat."],
+  ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target and shows the capture chance. Attack fights one exchange; Fight on continues."],
+  ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
+  ["Cards", "A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries."],
+  ["Notices", "The slim notice under the top icons says whose turn it is or what just happened. Tap it for a hint; swipe or × dismisses it."],
+  ["Map", "Pinch or scroll to zoom, drag to pan, Fit to see everything. A tap that touches two countries asks which one."],
+];
+
+/** The in-game help: how 0.2.0 plays, and every icon's name. Visible and accessible names match. */
+export class GameHelp {
+  readonly button = h("button", { id: "game-help-button", type: "button" }, "Help & icon names");
+  readonly dialog = h("dialog", { class: "game-help", "aria-labelledby": "game-help-title" });
+  constructor(onOpen?: () => void) {
+    const close = h("button", { type: "button", id: "close-game-help" }, "Close help");
+    close.onclick = () => this.dialog.close();
+    this.dialog.append(
+      h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
+      ...HOW_TO.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),
+      h("h3", {}, "Icons"),
+      h("ul", { class: "game-help-icons", "aria-label": "Icon names" }, ...ICON_NAMES.map(([shape, name, use]) =>
+        h("li", { "data-icon": shape }, glyph(shape), h("strong", {}, name), h("span", {}, use)))),
+    );
+    this.button.onclick = () => { onOpen?.(); this.dialog.showModal(); close.focus(); };
+    this.dialog.addEventListener("close", () => { if (this.button.isConnected) this.button.focus({ preventScroll: true }); });
+  }
+  dispose(): void { this.dialog.close(); this.dialog.remove(); }
 }

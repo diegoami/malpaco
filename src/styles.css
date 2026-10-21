@@ -1082,7 +1082,7 @@ dialog h2 {
 .match-files { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
 .match-load { display:flex; align-items:center; gap:6px; }
 .match-load label { font-size:12px; white-space:nowrap; }
-.match-load input { font-size:12px; width:180px; max-width:100%; }
+.match-load input { font-size:12px; width:100%; min-width:0; max-width:100%; }
 .match-error { margin:0; max-width:440px; font-size:12px; }
 .match-error:empty { display:none; }
 #game-setup .match-load { margin-top:12px; }
@@ -1588,7 +1588,7 @@ dialog h2 {
 .battle-reference #game-focus-drawer .log-card .log { max-height:180px; min-height:44px; overflow:auto; }
 .battle-reference #game-focus-drawer .game-identity { margin:0; font-size:14px; color:var(--muted); }
 .battle-reference #game-focus-drawer .game-playback { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:8px 12px; }
-.battle-reference #game-focus-drawer .game-playback > #game-log-button { grid-column:1 / -1; min-height:44px; }
+.battle-reference #game-focus-drawer .game-playback > :is(#game-log-button,#game-changes-button,#game-help-button) { grid-column:1 / -1; min-height:44px; }
 .battle-reference #game-focus-drawer .game-playback select { min-height:40px; font-size:15px; }
 .game-side { overflow:hidden; }
 #game-focus-drawer { min-height:0; flex:0 1 auto; grid-template-rows:minmax(0,1fr); }
@@ -1679,3 +1679,15 @@ dialog h2 {
 .game-event.since { border-left:3px solid var(--accent, #f2c14e); padding-left:8px; }
 .game-event-since { margin:0 0 8px; font-size:13px; }
 .battle-reference #active-seat-notice #fast-forward-button { color:var(--accent); }
+/* T85: Help & icon names, a scrolling dialog like the event log. */
+.game-help { width:min(720px,92vw); max-height:86vh; padding:0 0 16px; overflow:auto; border:1px solid var(--line); border-radius:12px; background:#12202e; color:#f1f5f9; }
+.game-help::backdrop { background:#000a; }
+.game-help-head { position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:#1a2d3d; border-bottom:1px solid var(--line); }
+.game-help-head h2 { margin:0; font-size:20px; }
+.game-help > :is(section,h3,ul) { margin-inline:16px; }
+.game-help section h3, .game-help > h3 { margin:14px 0 4px; font-size:15px; }
+.game-help section p { margin:0; font-size:14px; line-height:1.4; }
+.game-help-icons { display:grid; gap:6px; padding:0; list-style:none; }
+.game-help-icons li { display:grid; grid-template-columns:28px minmax(90px,auto) 1fr; align-items:center; gap:8px; font-size:14px; }
+.game-help-icons li svg { width:22px; height:22px; }
+@media (max-width:480px) { .game-help-icons li { grid-template-columns:28px 1fr; } .game-help-icons li span { grid-column:2; color:var(--muted); } }

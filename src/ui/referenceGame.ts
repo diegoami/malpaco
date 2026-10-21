@@ -31,6 +31,7 @@ export function mountReferenceGame(root:HTMLElement){
   dominationWin=options.dominationWin;roundLimit=options.roundLimit;
   root.id="reference-game";root.className="reference-game-root";root.dataset["seats"]=seats;
   current=app;app.mount(root);
+  if(loaded&&app instanceof ReferenceBattleGame)app.focusMenu();
   if(legacy)root.querySelector(".subtitle")!.textContent=`Nine Isles · ${seats} human seats · Seed ${seed}`;
  };
  const setup=()=>{

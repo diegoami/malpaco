@@ -109,8 +109,10 @@ export class Panel {
     const phase = state.phase === "reinforce" ? "Reinforcement" : state.phase === "attack" ? "Attack" : state.phase === "redeploy" ? "Handoff" : "Finished";
     this.el.dataset["phase"] = state.phase;
 
+    // A human loss names no winner while computers remain: no seat badge (#132).
+    const neutral = state.phase === "human-loss";
     this.turn.replaceChildren(
-      badgeIcon(titleSeat),
+      ...(neutral ? [] : [badgeIcon(titleSeat)]),
       h(
         "div",
         {},
@@ -120,7 +122,7 @@ export class Panel {
           ...(finished || result ? [] : [`Round ${state.turnNumber} · `, h("span", { id: "turn-phase" }, phase)])),
       ),
     );
-    this.turn.style.setProperty("--owner", seatLook(titleSeat).color);
+    this.turn.style.setProperty("--owner", neutral ? "" : seatLook(titleSeat).color);
 
     this.score.replaceChildren(
       ...state.players.map((p, i) =>

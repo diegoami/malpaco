@@ -142,6 +142,17 @@ export class BattleController {
     return true;
   }
 
+  /**
+   * The retained presentation preferences for a new or loaded match. Not a human command,
+   * so a match that opens on a computer turn keeps them too (#136 b).
+   */
+  restorePreferences(threshold: number, speed: BattleSpeed): void {
+    if (this.disposed) return;
+    if (Number.isSafeInteger(threshold) && threshold >= 1) this.current = { ...this.current, threshold };
+    if (Object.hasOwn(SPEED_SCALE, speed)) this.current = { ...this.current, speed };
+    this.publish({});
+  }
+
   setSpeed(speed: BattleSpeed, revision?: number): boolean {
     if (!this.accepts(revision, false) || !Object.hasOwn(SPEED_SCALE, speed)) return false;
     this.current = { ...this.current, speed };
