@@ -2,6 +2,8 @@ import {DeterministicRng} from './rng';
 import {generateIslandGeographyWithRng} from './island-geography';
 import type {GeographyResult} from './island-geography';
 import type {GameMap, Province} from './types';
+import {flavourNames,themeFor} from './flavour-names';
+import type {NameChoice} from './flavour-names';
 
 export type GeographicBoardResult =
   | (Extract<GeographyResult,{ok:true}> & {map:GameMap})
@@ -31,4 +33,13 @@ export function generateGeographicBoardWithRng(rng:DeterministicRng,options:{att
 
 export function generateGeographicBoard(seed:number,options:{attempts?:number}={}):GeographicBoardResult {
   return generateGeographicBoardWithRng(new DeterministicRng(seed),options);
+}
+
+/** T94: rename a generated map's islands and countries from a theme; numbered keeps the map as it is. */
+export function nameGeographicMap(map:GameMap,choice:NameChoice,seed:number):GameMap {
+  const theme=themeFor(choice,seed);
+  if(!theme)return map;
+  const area=(id:string)=>map.provinces.filter(p=>p.island===id).reduce((sum,p)=>sum+Math.abs(p.polygon.reduce((a,[x,y],i)=>{const [u,v]=p.polygon[(i+1)%p.polygon.length]!;return a+x*v-u*y;},0)),0);
+  const names=flavourNames(theme,seed,map.islands.map(i=>({id:i.id,provinces:i.provinces,area:area(i.id)})));
+  return {...map,provinces:map.provinces.map(p=>({...p,name:names.provinces[p.id]!})),islands:map.islands.map(i=>({...i,name:names.islands[i.id]!}))};
 }

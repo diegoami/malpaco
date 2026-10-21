@@ -1,3 +1,5 @@
+import { NAME_THEMES } from "./flavour-names";
+import type { NameChoice } from "./flavour-names";
 // GameOptions: the 11 options the player picks on the setup screen, every
 // one open to every player (C-SET-01; the locks C-SET-02 / C-SET-04 are
 // dropped). Animation speed and sound are presentation-only — they never
@@ -75,6 +77,8 @@ export interface GameOptions {
   readonly animationSpeed: AnimationSpeed;
   /** Presentation-only (T52). The rules engine never reads it. */
   readonly sound: boolean;
+  /** T94: the generated map's regional names; absent in saves made before T94, which keep numbered names. */
+  readonly names?: NameChoice;
 }
 
 /** Typed error from option validation. */
@@ -104,6 +108,7 @@ export function defaultOptions(): GameOptions {
     seed: 0,
     animationSpeed: "normal",
     sound: true,
+    names: "seed",
   };
 }
 
@@ -262,5 +267,11 @@ export function validateGameOptions(value: unknown): GameOptions {
     seed: parseSeed(obj.seed),
     animationSpeed: parseAnimationSpeed(obj.animationSpeed),
     sound: parseSound(obj.sound),
+    ...(obj.names === undefined ? {} : {names: parseNames(obj.names)}),
   };
+}
+
+function parseNames(value: unknown): NameChoice {
+  if (value === "seed" || value === "numbered" || (NAME_THEMES as readonly unknown[]).includes(value)) return value as NameChoice;
+  throw new OptionsError(`names must be seed, numbered or one of ${NAME_THEMES.join(", ")} (got ${JSON.stringify(value)})`, "names");
 }

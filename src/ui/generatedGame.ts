@@ -25,7 +25,9 @@ export function parseGameSettings(seed: string | null, seats: string | null) {
 }
 
 function generatedOptions(seed: number, seats: number, computers = false): GameOptions {
-  return { ...defaultOptions(), seed, seats: Array.from({ length: seats }, (_, i) => ({ kind: computers && i > 0 ? "computer" as const : "human" as const })), computerStrengths: computers ? Array.from({length: seats - 1}, () => "Normal" as const) : [] };
+  // Regional names apply to the geographic generator only (T94).
+  const { names: _names, ...defaults } = defaultOptions();
+  return { ...defaults, seed, seats: Array.from({ length: seats }, (_, i) => ({ kind: computers && i > 0 ? "computer" as const : "human" as const })), computerStrengths: computers ? Array.from({length: seats - 1}, () => "Normal" as const) : [] };
 }
 
 export function createGeneratedGame(seed = 1994, seats = 2, computers = false) {

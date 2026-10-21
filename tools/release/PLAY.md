@@ -9,6 +9,9 @@ The seed fixes the geography, deal and dice sequence. The explicit
 
 The root page opens generated-island setup, defaulting to one human against three
 Normal computers. Choose a seed and 2–4 seats; each seat can be Human or Computer.
+**Place names** gives the islands and territories real island and town names from one region
+(Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific); **By seed** lets
+the seed choose. Names never change the map or play, and a saved game keeps them.
 Select **Start game**. The map prepares before play begins. During your turn, place reinforcements on your territories,
 then choose **Start combat**. Select one of your territories, then click an adjacent
 enemy for one exchange. Click that enemy again to repeat; Enter/Space and touch work
