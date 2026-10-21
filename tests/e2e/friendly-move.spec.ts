@@ -24,7 +24,7 @@ for(const amount of ["minimum","maximum"] as const)test(`friendly ${amount} tran
  if(amount==="maximum")await page.locator("#friendly-move-maximum-button").click();
  const n=amount==="minimum"?1:f.ready.armies[f.from]!-1;await openSurface(page,'actions');await expect(page.locator("#friendly-move-amount")).toHaveValue(String(n));
  const fits=await page.locator('#friendly-move-amount,#confirm-friendly-move-button,#cancel-friendly-move-button,#skip-friendly-move-button').evaluateAll(ns=>ns.every(n=>{const b=n.getBoundingClientRect();return b.width>0&&b.height>0&&b.left>=0&&b.top>=0&&b.right<=innerWidth&&b.bottom<=innerHeight;}));expect(fits).toBe(true);
- await openSurface(page,'actions');await expect(page.locator("#confirm-friendly-move-button")).toContainText(/end.*turn/i);await screenshot(page,`choose-${amount}`,info.project.name);
+ await openSurface(page,'actions');await expect(page.locator("#confirm-friendly-move-button")).toHaveAccessibleName(/end.*turn/i);await screenshot(page,`choose-${amount}`,info.project.name);
  await openSurface(page,'actions');const stale=await page.locator("#confirm-friendly-move-button").elementHandle();await openSurface(page,'actions');await page.locator("#confirm-friendly-move-button").click();const done=step(f.ready,{kind:"friendlyMove",from:f.from,to:f.to,amount:n});await handoff(page,done);await stale!.evaluate(n=>n.dispatchEvent(new MouseEvent("click",{bubbles:true})));await handoff(page,done);await screenshot(page,`done-${amount}`,info.project.name);expect(errors).toEqual([]);
 });
 test("cancel returns to attacks without movement; skip hands off normally",async({page},info)=>{

@@ -46,8 +46,9 @@ async function capture(page: Page, label: string, project: string) {
   const selectors = "#reference-save-game,#reference-load-game-file,.match-error:not(:empty),#turn-title,#confirm-capture-button,#confirm-friendly-move-button,#victory-reason";
   // T79: the file controls live in the settings card; with it open, save, load and any error fit together.
   await openSurface(page, "settings");
+  // The menu card scrolls: each control is measured once scrolled into view, as a player would reach it.
   const boxes = await page.locator(selectors).evaluateAll(nodes => nodes.filter(n => n.getClientRects().length).map(n => {
-    const r = n.getBoundingClientRect(); return { id: n.id, font: parseFloat(getComputedStyle(n).fontSize), fits: r.left >= 0 && r.top >= 0 && r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1 };
+    n.scrollIntoView({ block: "nearest" }); const r = n.getBoundingClientRect(); return { id: n.id, font: parseFloat(getComputedStyle(n).fontSize), fits: r.left >= 0 && r.top >= 0 && r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1 };
   }));
   expect(boxes.map(b => b.id)).toEqual(expect.arrayContaining(["reference-save-game", "reference-load-game-file"]));
   expect(boxes.filter(b => !b.fits || b.font < 12)).toEqual([]);

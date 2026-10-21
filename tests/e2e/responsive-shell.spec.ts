@@ -81,7 +81,8 @@ async function audit(page: Page, label: string, insets = {top: 0, right: 0, bott
   expect.soft(data.strays, `${label}: overlays intercept no hits outside their own controls (${data.strayCount})`).toEqual([]);
   const within = (r: Box) => r.x >= insets.left - 0.5 && r.y >= insets.top - 0.5 && r.x + r.width <= width - insets.right + 0.5 && r.y + r.height <= height - insets.bottom + 0.5;
   for (const c of data.controls) {
-    expect.soft(c.hit, `${label}: ${c.id} is uncovered`).toBe(true);
+    // The notice is text that lets clicks through to the map (T92); every control must take its own hits.
+    if (c.id !== 'active-seat-notice') expect.soft(c.hit, `${label}: ${c.id} is uncovered`).toBe(true);
     expect.soft(within(c.rect), `${label}: ${c.id} lies inside the safe viewport`).toBe(true);
     if (!['card', 'notice'].includes(c.group)) { expect.soft(c.rect.width, `${label}: ${c.id} target width`).toBeGreaterThanOrEqual(44); expect.soft(c.rect.height, `${label}: ${c.id} target height`).toBeGreaterThanOrEqual(44); }
   }

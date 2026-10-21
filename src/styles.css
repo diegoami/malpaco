@@ -1560,7 +1560,9 @@ dialog h2 {
 .battle-reference #game-focus-drawer .game-info-line { margin:2px 0 8px; font:600 16px/1.3 Inter, system-ui, sans-serif; }
 .battle-reference #game-focus-drawer .phase-explanation { margin:0; font-size:14px; color:var(--muted); }
 .battle-reference #game-focus-drawer :is(#capture-amount,#friendly-move-amount) { flex:none; width:64px; max-width:64px; }
-.battle-reference #game-focus-drawer[data-surface="actions"] .action:not([data-card-choice="true"]) .card-interactions { display:none; }
+/* Outside a card choice the hand stays in the Cards card; a card result notice still shows. */
+.battle-reference #game-focus-drawer[data-surface="actions"] .action:not([data-card-choice="true"]) .card-interactions:not(:has([role="status"])) { display:none; }
+.battle-reference #game-focus-drawer[data-surface="actions"] .action:not([data-card-choice="true"]) .card-interactions > :not(.card-choice-controls) { display:none; }
 .battle-reference #game-focus-drawer .card-icon { width:auto; flex:none; }
 .battle-reference #game-focus-drawer .score { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:6px; margin:0 0 10px; padding:0; border:0; background:none; }
 .battle-reference #game-focus-drawer .score-row { padding:4px 6px; }
@@ -1581,3 +1583,5 @@ dialog h2 {
 .game-side { overflow:hidden; }
 #game-focus-drawer { min-height:0; flex:0 1 auto; grid-template-rows:minmax(0,1fr); }
 .game-drawer-content { height:100%; }
+.battle-reference #game-focus-drawer[data-surface="menu"] .score-row .score-num, .battle-reference #game-focus-drawer[data-surface="menu"] .score-row .score-num > * { font-size:16px; }
+.game-overlay #active-seat-notice { pointer-events:none; }

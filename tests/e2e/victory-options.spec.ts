@@ -65,7 +65,7 @@ async function freeze(page: Page, state: CompleteState) {
 async function fit(page: Page) {
   // T79: the result and its choices live in the Current choice card.
   await openSurface(page, "actions");
-  const rows = await page.locator('#victory-reason,#victory-standings,#watch-computers-button,#stop-game-button,#new-game-button').evaluateAll(nodes => nodes.filter(n => n.getClientRects().length).map(n => { const b = n.getBoundingClientRect(); return { id: n.id, fits: b.left >= 0 && b.top >= 0 && b.right <= innerWidth && b.bottom <= innerHeight }; }));
+  const rows = await page.locator('#victory-reason,#victory-standings,#watch-computers-button,#stop-game-button,#result-new-game-button,#result-standings-button').evaluateAll(nodes => nodes.filter(n => n.getClientRects().length).map(n => { const b = n.getBoundingClientRect(); return { id: n.id, fits: b.left >= 0 && b.top >= 0 && b.right <= innerWidth && b.bottom <= innerHeight }; }));
   expect(rows.length).toBeGreaterThan(1);
   expect(rows.filter(r => !r.fits)).toEqual([]);
 }

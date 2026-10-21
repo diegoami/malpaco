@@ -16,7 +16,8 @@ export async function openSurface(page: Page, surface: Surface): Promise<void> {
   const card = cardOf[surface];
   if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === card) return;
   // Current choice has no resting icon: it opens by itself for a choice, or from the folded choice's return icon.
-  if (card === 'actions' && !await page.locator(openers.actions).isVisible()) { await expect(drawer).toHaveAttribute('data-surface', 'actions'); await expect(drawer).toBeVisible(); return; }
+  // With no pending choice there is no Current choice card: callers then act on the map or read hidden state.
+  if (card === 'actions' && !await page.locator(openers.actions).isVisible()) return;
   await page.locator(openers[card]).click();
   await expect(drawer).toHaveAttribute('data-surface', card);
   await expect(drawer).toBeVisible();
@@ -34,8 +35,12 @@ export async function withSurface<T>(page: Page, surface: Surface, body: () => P
   if (!await page.locator('#battle-action-rail').count()) return body();
   await openSurface(page, surface);
   try { return await body(); } finally {
-    if (previous && previous !== cardOf[surface]) await openSurface(page, previous);
-    else if (!previous) await closeSurface(page);
+    // Skipped when the body replaced the match or returned to setup.
+    if (await drawer.count()) {
+      if (previous && previous !== cardOf[surface]) await openSurface(page, previous);
+      // A finished choice cannot be reopened: then the borrowed card simply closes.
+      if (!previous || (previous !== cardOf[surface] && await drawer.getAttribute('data-surface') === cardOf[surface])) await closeSurface(page);
+    }
   }
 }
 

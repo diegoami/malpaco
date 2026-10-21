@@ -119,8 +119,12 @@ export class BattleChrome {
   /** The result card's History and Files icons open the menu card. */
   openMenu(): void {if (this.surface !== "menu") this.open("menu", this.menu);}
 
-  /** Everything that floats over the map; the camera frames the board beside each one that shows. */
-  get obstacles(): Element[] {return [this.hud, this.top, this.pool, this.rail, this.notice, this.folded, this.drawer];}
+  /**
+   * The controls and cards that float over the map; the camera frames the board beside
+   * each one that shows. The one-line notice is transient text: like the sketches, it
+   * floats over the map and lets clicks through, so it never refits or turns the board.
+   */
+  get obstacles(): Element[] {return [this.hud, this.top, this.pool, this.rail, this.folded, this.drawer];}
 
   /** Opens a card over the map. An automatic opening (a new choice) never takes focus. */
   open(surface: Surface, opener: HTMLElement, takeFocus = true): void {
