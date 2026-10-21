@@ -6,10 +6,11 @@ import { defaultOptions } from "../../src/core";
 import { deserializeMatch } from "../../src/core/match-save";
 import type { Action, GameState } from "../../src/core";
 import { ACTION_BUDGET, advance, nextAction, opening, policyFor } from "../helpers/complete-game";
+import {openSurface,withSurface} from './shell';
 const country = (p: Page,id: string) => p.locator(`[data-country="${id}"]`);
 async function download(page: Page) {
   const event = page.waitForEvent("download");
-  await page.getByRole("button",{name:"Save game",exact:true}).click();
+  await withSurface(page,'settings',()=>page.getByRole("button",{name:"Save game",exact:true}).click());
   const file = await event; expect(file.suggestedFilename()).toMatch(/^malpaco-\d+\.json$/);
   return readFileSync((await file.path())!,"utf8");
 }
@@ -84,7 +85,7 @@ for(const seats of [2,3,4]) test(`${seats} humans download, real upload on setup
   await check(page,state);
   let action=nextAction(state,policy);await click(page,action);state=advance(state,action);
   const partial=await download(page);await fitAndCapture(page,`partial-${seats}`,info.project.name);
-  await page.getByRole("button",{name:"New game",exact:true}).click();
+  await withSurface(page,'settings',()=>page.getByRole("button",{name:"New game",exact:true}).click());
   await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
   await page.getByLabel("Seed",{exact:true}).fill("42");
   await page.getByLabel("Human seats").selectOption(seats===2?"4":"2");
@@ -102,7 +103,7 @@ for(const seats of [2,3,4]) test(`${seats} humans download, real upload on setup
   await fitAndCapture(page,`restored-combat-${seats}`,info.project.name);
   // Load failures leave the exact current history/options and a playable controller.
   for(const invalid of ["{",JSON.stringify({version:99}),JSON.stringify({version:1,options:{seed:-1},actions:[]}),JSON.stringify({version:1,options:{...defaultOptions(),seed:1994,seats:Array.from({length:seats},()=>({kind:"human"})),computerStrengths:[]},actions:[{kind:"attack",from:"missing",to:"missing"}]}),JSON.stringify({version:1,options:defaultOptions(),actions:[{kind:'teleport'}]})]) {
-    await upload(page,invalid);await expect(page.getByRole("alert")).toContainText("Load failed:");expect(await download(page)).toBe(combat);
+    await upload(page,invalid);await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText("Load failed:");expect(await download(page)).toBe(combat);
     await fitAndCapture(page,`load-error-${seats}`,info.project.name);
   }
   action=nextAction(state,policy);await click(page,action);state=advance(state,action);await check(page,state);

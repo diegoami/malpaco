@@ -3,6 +3,7 @@ import type { Page } from "@playwright/test";
 import { createGame, defaultOptions, apply, attackTargets } from "../../src/core";
 import { mkdtempSync } from "node:fs";
 import { join } from "node:path";
+import {openSurface,withSurface} from './shell';
 
 const test=base.extend<{errors:void}>({errors:[async({page},use)=>{const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));page.on("console",e=>{if(e.type()==="error")errors.push(e.text());});await use();expect(errors).toEqual([]);},{auto:true}]});
 const country=(page:Page,id:string)=>page.locator(`[data-country="${id}"]`);
@@ -36,13 +37,13 @@ for(const seats of [2,3,4]) test(`settings start exact ${seats}-human game and p
  await country(page,source.id).click();const target=attackTargets(state,source.id)[0]!;await country(page,target).click();await expect(page.locator("#attack-button")).toBeEnabled();await fit(page);
  await page.locator("#attack-button").click();const attacked=apply(state,{kind:"attack",from:source.id,to:target});if(!attacked.ok)throw Error(attacked.error);state=attacked.state;
  await page.getByRole("button",{name:"Continue",exact:true}).click();await page.locator("#end-turn-button").click();const next=apply(state,{kind:"endTurn"});if(!next.ok)throw Error(next.error);await expect(page.locator("#turn-title")).toHaveText(`${next.state.players[next.state.currentPlayer]!.name}'s turn`);await fit(page);
- await page.getByRole("button",{name:"New game",exact:true}).click();await expect(page).toHaveURL(/view=game-setup/);await expect(page.getByLabel("Seed",{exact:true})).toHaveValue(String(seed));await expect(page.getByLabel("Human seats")).toHaveValue(String(seats));
+ await withSurface(page,'settings',()=>page.getByRole("button",{name:"New game",exact:true}).click());await expect(page).toHaveURL(/view=game-setup/);await expect(page.getByLabel("Seed",{exact:true})).toHaveValue(String(seed));await expect(page.getByLabel("Human seats")).toHaveValue(String(seats));
 });
 
 test("invalid seeds/counts and actual refusal have actionable recovery",async({page})=>{
- await page.goto("/?view=game-setup");for(const value of ["-1","1.5","4294967296","oops",""]){await page.getByLabel("Seed",{exact:true}).fill(value);await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.getByRole("alert")).toContainText("Seed must be a whole number from 0 to 4294967295");await expect(page.locator("[data-country]")).toHaveCount(0);}
- await page.goto("/?view=generated-game&seed=1994&seats=5");await expect(page.getByRole("alert")).toContainText("Choose 2, 3 or 4 human seats");await expect(page.locator("[data-country]")).toHaveCount(0);
- await page.goto("/?view=generated-game&seed=4294967296&seats=2");await expect(page.getByRole("alert")).toContainText("Seed must");await expect(page.locator("[data-country]")).toHaveCount(0);
- await page.goto("/?view=game-setup&seed=1506&seats=2");await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.getByRole("alert")).toContainText("Generation failed");await expect(page.getByRole("alert")).toContainText("Choose another seed");await fit(page);
+ await page.goto("/?view=game-setup");for(const value of ["-1","1.5","4294967296","oops",""]){await page.getByLabel("Seed",{exact:true}).fill(value);await page.getByRole("button",{name:"Start game",exact:true}).click();await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText("Seed must be a whole number from 0 to 4294967295");await expect(page.locator("[data-country]")).toHaveCount(0);}
+ await page.goto("/?view=generated-game&seed=1994&seats=5");await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText("Choose 2, 3 or 4 human seats");await expect(page.locator("[data-country]")).toHaveCount(0);
+ await page.goto("/?view=generated-game&seed=4294967296&seats=2");await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText("Seed must");await expect(page.locator("[data-country]")).toHaveCount(0);
+ await page.goto("/?view=game-setup&seed=1506&seats=2");await page.getByRole("button",{name:"Start game",exact:true}).click();await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText("Generation failed");await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText("Choose another seed");await fit(page);
  await page.getByLabel("Seed",{exact:true}).fill("42");await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("[data-country]")).toHaveCount(46);
 });

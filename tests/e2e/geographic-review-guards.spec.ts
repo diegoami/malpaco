@@ -5,8 +5,9 @@ import {activePlayer,apply,defaultOptions,victoryRules} from '../../src/core';
 import type {Action,GameState} from '../../src/core';
 import {createGeographicGame} from '../../src/core/geographic-game';
 import {deserializeVersionedMatch,GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY,serializeVersionedMatch} from '../../src/core/match-save';
+import {openSurface,withSurface} from './shell';
 
-async function save(page:Page){const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Save game',exact:true}).click();return readFileSync((await(await pending).path())!,'utf8');}
+async function save(page:Page){const pending=page.waitForEvent('download');await withSurface(page,'settings',()=>page.getByRole('button',{name:'Save game',exact:true}).click());return readFileSync((await(await pending).path())!,'utf8');}
 async function start(page:Page,reference=false,manual=false){await page.goto(`/?seed=1994${reference?'&view=reference-game':''}${manual?'&control=manual':''}`);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator(reference?'#reference-map':'#geographic-map')).toBeVisible();}
 function reinforce(state:GameState,id:string){const result=apply(state,{kind:'reinforce',province:id,amount:1});if(!result.ok)throw Error(result.error);return result.state;}
 
@@ -33,8 +34,8 @@ test('explicit reference rejects geographic v2 with correct guidance and preserv
  await page.locator(`#reference-map [data-country="${id}"]`).click();before=reinforce(before,id);
  const saved=await save(page),map=await page.locator('#reference-map').elementHandle();
  await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'geographic-v2.json',mimeType:'application/json',buffer:Buffer.from(geographic)});
- await expect(page.getByRole('alert')).toContainText('This game uses a generated map');
- await expect(page.getByRole('alert')).toContainText('main game screen');
+ await openSurface(page,'settings');await expect(page.getByRole('alert')).toContainText('This game uses a generated map');
+ await openSurface(page,'settings');await expect(page.getByRole('alert')).toContainText('main game screen');
  expect(await map!.evaluate(n=>n.isConnected)).toBe(true);await expect(page.locator('#geographic-map')).toHaveCount(0);
  expect(await save(page)).toBe(saved);
  await page.locator(`#reference-map [data-country="${id}"]`).click();expect(deserializeVersionedMatch(await save(page)).state).toEqual(reinforce(before,id));

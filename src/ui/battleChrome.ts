@@ -71,7 +71,11 @@ export class BattleChrome {
       button.onclick = () => this.open(surface, button);
     }
     this.required.hidden = true;
-    this.required.onclick = () => this.open("actions", this.required);
+    // The required choice is never toggled away: when its card is open, the icon moves focus into it.
+    this.required.onclick = () => {
+      if (this.surface === "actions") {this.opener = this.required; this.drawer.querySelector<HTMLElement>("#close-game-drawer")!.focus({preventScroll: true});}
+      else this.open("actions", this.required);
+    };
     const close = icon("close-game-drawer", "Return to map", "×");
     close.onclick = () => this.close();
     this.drawer.append(h("header", {class: "game-drawer-head"}, this.title, close), this.content);

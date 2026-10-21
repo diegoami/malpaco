@@ -8,6 +8,7 @@ const openers: Record<Surface, string> = {actions: '#open-game-actions', cards: 
 
 /** Opens a card unless it is already open. */
 export async function openSurface(page: Page, surface: Surface): Promise<void> {
+  if (!await page.locator('#battle-action-rail').count()) return; // the setup page and legacy routes have no cards
   const drawer = page.locator('#game-focus-drawer');
   if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === surface) return;
   await page.locator(openers[surface]).click();
@@ -43,4 +44,19 @@ export async function saveVia(page: Page, key: string): Promise<string> {
 /** Clicks a control that lives in a card (the card opens first when the shell is mounted). */
 export async function clickIn(page: Page, surface: Surface, selector: string): Promise<void> {
   await withSurface(page, surface, () => page.locator(selector).click());
+}
+
+/** Chooses Compact or Detailed in the settings card. */
+export async function setDetail(page: Page, mode: string): Promise<void> {
+  await withSurface(page, 'settings', () => page.getByRole('combobox', {name: 'Panel detail', exact: true}).selectOption(mode).then(() => undefined));
+}
+
+/** A card control is shown in the open card: visible, enabled, and hit at its centre once scrolled into view. */
+export async function reachableInCard(locator: import('@playwright/test').Locator): Promise<void> {
+  await expect(locator).toBeVisible(); await expect(locator).toBeEnabled();
+  await locator.scrollIntoViewIfNeeded();
+  expect(await locator.evaluate(node => {
+    const r = node.getBoundingClientRect(), card = node.closest('#game-focus-drawer'), d = card?.getBoundingClientRect(), hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2);
+    return !!d && r.top >= d.top - 1 && r.bottom <= d.bottom + 1 && r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1 && !!hit && (hit === node || node.contains(hit));
+  }), 'control is reachable inside the open card').toBe(true);
 }

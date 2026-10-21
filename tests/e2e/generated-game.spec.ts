@@ -4,6 +4,7 @@ import { SEATS } from "../../src/ui/palette";
 import { mkdtempSync } from "node:fs";
 import { join } from "node:path";
 import { createGame, defaultOptions, apply, attackTargets, generateBoard } from "../../src/core";
+import {openSurface} from './shell';
 
 const test = base.extend<{ errors: void }>({
   errors: [async ({ page }, use) => {
@@ -87,9 +88,9 @@ test("placement clicks, keyboard selection, real apply attack and seat handoff",
  await expect(page.locator("#turn-title")).toHaveText(`${next.state.players[next.state.currentPlayer]!.name}'s turn`);await expect(page.locator("#reinforcement-pool")).toHaveText(String(next.state.reinforcementPool));
 });
 test("refusal is visible and accessible seed/retry recovers",async({page})=>{
- await page.getByLabel("Seed",{exact:true}).fill("1506");await page.getByRole("button",{name:"Generate",exact:true}).click();await expect(page.getByRole("alert")).toContainText(/generation failed/i);await expect(page.locator("[data-country]")).toHaveCount(0);
- await page.getByRole("button",{name:"Retry",exact:true}).click();await expect(page.getByRole("alert")).toBeVisible();await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1506");
- await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByRole("button",{name:"Generate",exact:true}).click();await expect(page.locator("[data-country]")).toHaveCount(46);await expect(page.getByRole("alert")).toHaveCount(0);
+ await page.getByLabel("Seed",{exact:true}).fill("1506");await page.getByRole("button",{name:"Generate",exact:true}).click();await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText(/generation failed/i);await expect(page.locator("[data-country]")).toHaveCount(0);
+ await page.getByRole("button",{name:"Retry",exact:true}).click();await openSurface(page,'settings');await expect(page.getByRole("alert")).toBeVisible();await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1506");
+ await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByRole("button",{name:"Generate",exact:true}).click();await expect(page.locator("[data-country]")).toHaveCount(46);await openSurface(page,'settings');await expect(page.getByRole("alert")).toHaveCount(0);
 });
 test("golden: generated gameplay opening",async({page})=>{await settle(page);await expect(page.locator("#generated-game")).toHaveScreenshot("generated-game.png");});
 

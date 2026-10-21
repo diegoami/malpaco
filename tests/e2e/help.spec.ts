@@ -3,6 +3,7 @@ import { readFileSync, mkdirSync, mkdtempSync } from "node:fs";
 import { join } from "node:path";
 import type { Locator, Page } from "@playwright/test";
 import { createGame, defaultOptions, attackTargets, apply, malpacoRules, serializeMatch } from "../../src/core";
+import {withSurface} from './shell';
 
 const topics = ["Seed and players", "Map and armies", "Reinforcements", "Attacking", "Turns and victory", "Computer turns", "Save and load"];
 const test = base.extend<{ noBrowserErrors: void }>({
@@ -53,7 +54,7 @@ async function expectDialogFits(page: Page, dialog: Locator) {
 
 async function downloadedMatch(page: Page) {
   const event = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Save game", exact: true }).click();
+  await withSurface(page,'settings',()=>page.getByRole("button", { name: "Save game", exact: true }).click());
   return readFileSync((await (await event).path())!, "utf8");
 }
 
@@ -201,7 +202,7 @@ test("computer help pauses, resumes and is discarded by New game", async ({ page
   await page.clock.runFor(1200);
   expect(await downloadedMatch(page)).toBe(replacement);
   await expect(page.getByRole("dialog", { name: "How to play" })).toHaveCount(0);
-  await page.getByRole("button", { name: "New game", exact: true }).click();
+  await withSurface(page,'settings',()=>page.getByRole("button", { name: "New game", exact: true }).click());
   await expect(page).toHaveURL(/view=game-setup/);
   await page.clock.runFor(1200);
   await expect(page.getByRole("heading", { name: "New generated game" })).toBeVisible();

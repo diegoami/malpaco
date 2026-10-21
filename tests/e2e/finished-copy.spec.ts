@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { armyTotal, defaultOptions, provincesOf, serializeMatch } from "../../src/core";
 import type { Action, GameOptions, GameState } from "../../src/core";
 import { ACTION_BUDGET, advance, nextAction, opening, policyFor } from "../helpers/complete-game";
+import {withSurface} from './shell';
 
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);
 
@@ -144,7 +145,7 @@ test("winning attack keeps coherent finished copy through Continue and Escape, t
   expect(await page.locator("[data-country]").evaluateAll((nodes) => nodes.map((node) => [node.getAttribute("data-owner"), node.getAttribute("data-armies")]))).toEqual(beforeMapClick);
   await capture(page, "winning-attack-escape", info.project.name);
 
-  await page.getByRole("button", { name: "New game", exact: true }).click();
+  await withSurface(page,'settings',()=>page.getByRole("button", { name: "New game", exact: true }).click());
   await expect(page.getByRole("heading", { name: "New generated game" })).toBeVisible();
   await expect(page.getByLabel("Seed", { exact: true })).toHaveValue(String(fixture.options.seed));
   await expect(page.getByLabel("Human seats")).toHaveValue("3");

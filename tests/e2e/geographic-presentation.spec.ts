@@ -7,6 +7,7 @@ import {defaultOptions} from '../../src/core/options';
 import {GEOGRAPHIC_MATCH_IDENTITY,deserializeVersionedMatch,serializeVersionedMatch} from '../../src/core/match-save';
 import frozen from '../../fixtures/new-game/T75/preflight/phase-b-20261018-01/fixtures/seed-1994-after.json' with {type:'json'};
 import changed from '../../fixtures/new-game/T75/preflight/phase-b-20261018-01/fixtures/changed-boundary-hits.json' with {type:'json'};
+import {openSurface,withSurface} from './shell';
 
 type Drawing={bounds:{x:number;y:number;width:number;height:number};islands:{polygon:number[][]}[];provinces:{id:string;polygon:number[][];labelAt:number[]}[];routes:{from:string;to:string;points:number[][]}[]};
 const oracles:Record<string,Drawing>={'1994':frozen as unknown as Drawing};
@@ -15,7 +16,7 @@ const result=createGeographicGame(options);if(!result.ok)throw Error('Frozen 199
 const accepted=result;
 const payload=serializeVersionedMatch(options,[],GEOGRAPHIC_MATCH_IDENTITY);
 const ring=(points:number[][])=>'M'+points.map(p=>p.join(',')).join('L')+'Z';
-async function save(page:Page){const pending=page.waitForEvent('download');await page.getByRole('button',{name:'Save game',exact:true}).click();return readFileSync((await(await pending).path())!,'utf8');}
+async function save(page:Page){const pending=page.waitForEvent('download');await withSurface(page,'settings',()=>page.getByRole('button',{name:'Save game',exact:true}).click());return readFileSync((await(await pending).path())!,'utf8');}
 async function installWorkerGate(page:Page){
  await page.addInitScript(()=>{
   const Native=window.Worker;
@@ -73,7 +74,7 @@ test('frozen changed boundaries receive pointer hits and a repeated load reuses 
  const first=await page.evaluate(()=>({posted:(window as any).__presentationWorker.posted,workers:(window as any).__presentationWorker.workers}));expect(first).toEqual({posted:1,workers:1});
  await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'same.json',mimeType:'application/json',buffer:Buffer.from(payload)});await expect.poll(async()=>deserializeVersionedMatch(await save(page)).options.seed).toBe(1994);
  expect(await page.evaluate(()=>({posted:(window as any).__presentationWorker.posted,workers:(window as any).__presentationWorker.workers}))).toEqual(first);await assertHits(page);
- await page.getByRole('button',{name:'New game',exact:true}).click();await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();expect(await page.evaluate(()=>(window as any).__presentationWorker.posted)).toBe(1);
+ await withSurface(page,'settings',()=>page.getByRole('button',{name:'New game',exact:true}).click());await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();expect(await page.evaluate(()=>(window as any).__presentationWorker.posted)).toBe(1);
  await page.mouse.move(0,0);await page.screenshot({path:(process.env['T75_SCREENSHOTS']??'screenshots')+'/playable-1994-'+info.project.name+'.png'});
 });
 
@@ -85,10 +86,10 @@ test('invalid newer file and New game reject held real-worker load completions w
  await page.evaluate(()=>(window as any).__presentationWorker.hold=true);
  await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'pending.json',mimeType:'application/json',buffer:Buffer.from(otherFile)});
  await expect.poll(()=>page.evaluate(()=>(window as any).__presentationWorker.held)).toBe(1);expect(await save(page)).toBe(original);
- await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('invalid JSON')});await expect(page.getByRole('alert')).toContainText('Load failed');
+ await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'invalid.json',mimeType:'application/json',buffer:Buffer.from('invalid JSON')});await openSurface(page,'settings');await expect(page.getByRole('alert')).toContainText('Load failed');
  await page.evaluate(()=>(window as any).__presentationWorker.release());await assertDrawing(page,oracles['1994']!);expect(await save(page)).toBe(original);
  await page.evaluate(()=>(window as any).__presentationWorker.hold=true);
  await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'pending.json',mimeType:'application/json',buffer:Buffer.from(otherFile)});
- await expect.poll(()=>page.evaluate(()=>(window as any).__presentationWorker.held)).toBe(2);await page.getByRole('button',{name:'New game',exact:true}).click();
+ await expect.poll(()=>page.evaluate(()=>(window as any).__presentationWorker.held)).toBe(2);await withSurface(page,'settings',()=>page.getByRole('button',{name:'New game',exact:true}).click());
  await page.evaluate(()=>(window as any).__presentationWorker.release());await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeVisible();await expect(page.locator('#geographic-map')).toHaveCount(0);
 });

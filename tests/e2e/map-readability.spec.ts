@@ -4,6 +4,7 @@ import {mkdirSync} from "node:fs";
 import {join} from "node:path";
 import {pinned} from "../core/versioned-match-fixture";
 import {seatLook} from "../../src/ui/palette";
+import {openSurface} from './shell';
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 const output=process.env["READABILITY_EVIDENCE_DIR"]??"screenshots";
 async function shot(page:Page,name:string,project:string){mkdirSync(output,{recursive:true});await page.mouse.move(0,0);await page.screenshot({path:join(output,`${name}-${project}.png`)});}
@@ -25,11 +26,11 @@ test("region names remain identifiable on mouse, keyboard and touch without chan
  await first.hover();expect(await first.locator(".name").first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThan(normal);
  await page.mouse.move(0,0);await first.focus();expect(await first.locator(".name").first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThan(normal);
  await page.keyboard.press("ArrowRight");await expect(page.locator("[data-country]").nth(1)).toBeFocused();
- const active=await page.locator(".topbar .score-row.active").getAttribute("data-player");
+ const active=await page.locator(".score-row.active").getAttribute("data-player");
  const source=page.locator(`[data-country][data-owner="${active}"]`).first();
  while(Number(await page.locator("#reinforcement-pool").textContent())>0)await source.click();
  await page.locator("#start-combat-button").click();await source.click();await expect(source).toHaveAttribute("aria-pressed","true");
- const sourceName=(await source.getAttribute("aria-label"))!.split(",")[0]!;await expect(page.locator("#battle-source-name")).toHaveText(sourceName);
+ const sourceName=(await source.getAttribute("aria-label"))!.split(",")[0]!;await openSurface(page,'actions');await expect(page.locator("#battle-source-name")).toHaveText(sourceName);
  expect(await source.locator(".name").first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThan(normal);await shot(page,"selected",info.project.name);
  const save=pinned("round-limit");await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"round-limit.json",mimeType:"application/json",buffer:Buffer.from(save.text)});
  await expect(page.locator("#victory-reason")).toBeVisible();

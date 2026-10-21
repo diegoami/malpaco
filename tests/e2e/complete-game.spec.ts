@@ -3,6 +3,7 @@ import type { Page } from "@playwright/test";
 import { mkdirSync, mkdtempSync } from "node:fs";
 import { join } from "node:path";
 import { ACTION_BUDGET, advance, nextAction, opening, policyFor } from "../helpers/complete-game";
+import {withSurface} from './shell';
 
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);
 async function capture(page: Page, name: string, project: string) {
@@ -87,7 +88,7 @@ test("normal three-human clicks eliminate, skip a dead seat, conquer, freeze and
   await country(page,state.map.provinces[0]!.id).click();
   expect(await page.locator("[data-country]").evaluateAll(ns=>ns.map(n=>[n.getAttribute("data-owner"),n.getAttribute("data-armies")]))).toEqual(boardBefore);
   await finishedFit(page); await capture(page,"winner",info.project.name);
-  await page.getByRole("button",{name:"New game",exact:true}).click();
+  await withSurface(page,'settings',()=>page.getByRole("button",{name:"New game",exact:true}).click());
   await expect(page.getByRole("heading",{name:"New generated game"})).toBeVisible();
   await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1994");
   await expect(page.getByLabel("Human seats")).toHaveValue("3");

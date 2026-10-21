@@ -7,11 +7,12 @@ import type { GameState } from "../../src/core";
 import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDENTITY } from "../../src/core/match-save";
 import { pinned } from "../core/versioned-match-fixture";
 import { fixture } from "./battle-fixture";
+import {openSurface,withSurface} from './shell';
 
 const pause = (p: Page) => p.locator("#game-pause-button");
 const speed = (p: Page) => p.locator("#game-speed");
 async function save(p: Page) {
-  await p.getByRole("button", { name: "Save game", exact: true }).click();
+  await withSurface(p,'settings',()=>p.getByRole("button", { name: "Save game", exact: true }).click());
   return p.evaluate(() => (Reflect.get(window, "playbackSaveBlob") as Blob).text());
 }
 async function load(p: Page, text: string) {
@@ -126,7 +127,7 @@ test("Pause freezes computer play, rejects stale callbacks and replacement cance
   expect(resumed.state.history).toEqual(nextComputer(deserializeVersionedMatch(frozen).state).history); await totals(page);
   await pause(page).click(); await load(page, pinned("placement").text);
   const replacement = await save(page); await stale(page); await page.clock.runFor(10000); expect(await save(page)).toBe(replacement); await totals(page);
-  await load(page, pending); await page.getByRole("button", { name: "New game", exact: true }).click();
+  await load(page, pending); await withSurface(page,'settings',()=>page.getByRole("button", { name: "New game", exact: true }).click());
   await stale(page); await page.clock.runFor(10000);
   await expect(page.getByRole("heading", { name: "New reference game", exact: true })).toBeVisible();
 });
@@ -139,8 +140,8 @@ test("global pause freezes continuous human battle and gates manual reinforcemen
   await page.locator("#start-combat-button").click();
   await page.locator(`[data-country="${f.from}"]`).click();
   await page.locator(`[data-country="${f.to}"]`).click({ modifiers: ["Shift"] });
-  await page.locator("#battle-stop-threshold").fill("1"); await page.locator("#battle-stop-threshold").press("Tab");
-  await page.locator("#fight-on-button").click(); await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "true");
+  await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1"); await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab");
+  await page.locator("#fight-on-button").click(); await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "true");
   await totals(page); await visibleControls(page); await speed(page).selectOption("normal"); await pause(page).click();
   const frozen = await save(page);
   for (const id of ["fight-on-button", "single-exchange-button", "end-turn-button", "start-friendly-move-button"]) await page.locator(`#${id}`).dispatchEvent("click");

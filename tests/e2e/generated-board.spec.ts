@@ -3,6 +3,7 @@ import type { Page } from "@playwright/test";
 import { mkdtempSync } from "node:fs";
 import { join } from "node:path";
 import { generateBoard } from "../../src/core";
+import {openSurface} from './shell';
 
 const test = base.extend<{ errors: void }>({
   errors: [async ({ page }, use) => {
@@ -118,9 +119,9 @@ test("editable seeds, reload stability, actual generation failure and retry",asy
   }
   await expect(page.locator('#prototype-route-mask rect[fill="black"]')).toHaveCount(map.provinces.length + map.islands.length);
   const before=await page.locator("#generated-map").innerHTML(); await page.reload(); await expect(page.locator("#generated-map")).toHaveJSProperty("innerHTML",before);
-  await page.getByLabel("Seed",{exact:true}).fill("1506");await page.getByRole("button",{name:"Generate",exact:true}).click();await expect(page.getByRole("alert")).toContainText(/generation.*failed/i); await expect(page.locator("[data-country]")).toHaveCount(0);
-  await page.getByRole("button",{name:"Retry",exact:true}).click();await expect(page.getByRole("alert")).toBeVisible();await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1506");
-  await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByRole("button",{name:"Generate",exact:true}).click();await expect(page.getByRole("alert")).toHaveCount(0);await expect(page.locator("[data-country]")).toHaveCount(46);
+  await page.getByLabel("Seed",{exact:true}).fill("1506");await page.getByRole("button",{name:"Generate",exact:true}).click();await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText(/generation.*failed/i); await expect(page.locator("[data-country]")).toHaveCount(0);
+  await page.getByRole("button",{name:"Retry",exact:true}).click();await openSurface(page,'settings');await expect(page.getByRole("alert")).toBeVisible();await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1506");
+  await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByRole("button",{name:"Generate",exact:true}).click();await openSurface(page,'settings');await expect(page.getByRole("alert")).toHaveCount(0);await expect(page.locator("[data-country]")).toHaveCount(46);
 });
 
 test("golden: settled opt-in generated preview",async({page})=>{await page.mouse.move(1,1);await settle(page);await expect(page.locator("#generated-prototype")).toHaveScreenshot("generated-preview.png");});

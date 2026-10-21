@@ -3,6 +3,7 @@ import type { Page } from "@playwright/test";
 import { fixture, map, step } from "./battle-fixture";
 import { mkdirSync, mkdtempSync } from "node:fs";
 import { join } from "node:path";
+import {openSurface,setDetail,withSurface} from './shell';
 
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);
 async function ready(page: Page, kind: "manual" | "capture") {
@@ -14,9 +15,9 @@ async function ready(page: Page, kind: "manual" | "capture") {
   for (let n = 0; n < f.placements; n++) await country(page, f.from).click();
   await page.locator("#start-combat-button").click();
   await country(page, f.from).click(); await country(page, f.to).click({modifiers:["Shift"]});
-  await page.locator("#battle-stop-threshold").fill("1");
-  await page.locator("#battle-stop-threshold").press("Tab");
-  await page.locator("#battle-speed").selectOption("fast");
+  await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1");
+  await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab");
+  await openSurface(page,'actions');await page.locator("#battle-speed").selectOption("fast");
   return f;
 }
 async function capture(page: Page, name: string, project: string) {
@@ -43,8 +44,9 @@ test("capture confirmation, quantities and context fit together with an accurate
   // T71's focused capture presentation hides inactive combat controls in both modes.
   // Required move-in controls and source/target context must still fit together.
   for (const detail of ["compact", "detailed"]) {
-    await page.getByLabel("Panel detail", { exact: true }).selectOption(detail);
-    await fits(page, ["#battle-source-name", "#battle-target-name", "#capture-amount", "#capture-minimum-button", "#capture-maximum-button", "#capture-less-button", "#capture-more-button", "#confirm-capture-button", "#new-game-button"]);
+    // T79: the capture choice fits in the Current choice card; New game moved to the settings card.
+    await setDetail(page,detail); await openSurface(page, "actions");
+    await fits(page, ["#battle-source-name", "#battle-target-name", "#capture-amount", "#capture-minimum-button", "#capture-maximum-button", "#capture-less-button", "#capture-more-button", "#confirm-capture-button"]);
     for (const id of ["battle-status", "fight-on-button", "single-exchange-button", "stop-battle-button"])
       await expect(page.locator("#" + id)).toBeHidden();
   }
@@ -63,19 +65,19 @@ test("keyboard Stop retains focus across an exchange; new game cancels work and 
   await expect(page.locator("#stop-battle-button")).toBeFocused();
   await page.keyboard.press("Enter");
   const count = f.ready.history.length + 2;
-  await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-history-count", String(count));
+  await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-history-count", String(count));
   await oldEnd!.evaluate(n => n.dispatchEvent(new MouseEvent("click", { bubbles: true })));
   await page.clock.runFor(2000);
-  await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-history-count", String(count));
+  await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-history-count", String(count));
   await capture(page, "keyboard-stop", info.project.name);
   await page.locator("#fight-on-button").click();
-  await page.locator("#new-game-button").click();
+  await withSurface(page,'settings',()=>page.locator('#new-game-button').click());
   await expect(page.getByRole("heading", { name: "New reference game", exact: true })).toBeVisible();
   await page.clock.runFor(2000);
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   for (const p of map.provinces) await expect(country(page, p.id)).toHaveAttribute("data-armies", String(f.start.armies[p.id]));
-  await expect(page.locator("#battle-stop-threshold")).toHaveValue("1");
-  await expect(page.locator("#battle-speed")).toHaveValue("fast");
+  await openSurface(page,'actions');await expect(page.locator("#battle-stop-threshold")).toHaveValue("1");
+  await openSurface(page,'actions');await expect(page.locator("#battle-speed")).toHaveValue("fast");
   await page.clock.runFor(2000);
   for (const p of map.provinces) await expect(country(page, p.id)).toHaveAttribute("data-armies", String(f.start.armies[p.id]));
   expect(errors).toEqual([]);

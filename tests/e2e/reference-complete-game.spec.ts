@@ -7,6 +7,7 @@ import type { Action, GameOptions, GameState } from "../../src/core";
 import { createReferenceGame } from "../../src/core/reference-game";
 import { referenceMap } from "../../src/core/reference-map";
 import { deserializeVersionedMatch } from "../../src/core/match-save";
+import {openSurface,withSurface} from './shell';
 
 const fixture = JSON.parse(readFileSync(new URL("../../fixtures/new-game/T33/fixtures/conquest.json", import.meta.url), "utf8")) as {
   options: GameOptions; actions: Action[]; expected: { actions: number; computerActions: number; humanActions: number; winner: string };
@@ -16,7 +17,7 @@ function step(state: GameState, action: Action) {
   const result = apply(state, action); if (!result.ok) throw Error(JSON.stringify(action) + ": " + result.error); return result.state;
 }
 async function save(page: Page) {
-  const event = page.waitForEvent("download"); await page.getByRole("button", {name: "Save game", exact: true}).click();
+  const event = page.waitForEvent("download"); await withSurface(page,'settings',()=>page.getByRole("button", {name: "Save game", exact: true}).click());
   return readFileSync((await (await event).path())!, "utf8");
 }
 async function paint(page: Page, state: GameState) {
@@ -62,19 +63,19 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
       if (!battle) { await screenshot("battle"); battle = true; }
     } else if (action.kind === "friendlyMove") {
       await page.locator("#start-friendly-move-button").click(); await country(page, action.from).click(); await country(page, action.to).click();
-      await page.locator("#friendly-move-amount").fill(String(action.amount)); await screenshot("friendly-move");
-      await page.locator("#confirm-friendly-move-button").click(); moved = true;
+      await openSurface(page,'actions');await page.locator("#friendly-move-amount").fill(String(action.amount)); await screenshot("friendly-move");
+      await openSurface(page,'actions');await page.locator("#confirm-friendly-move-button").click(); moved = true;
     } else if (action.kind === "captureMove") {
       const pending = state.pendingCapture!;
-      await expect(page.locator("#capture-amount")).toHaveAttribute("min", String(pending.min)); await expect(page.locator("#capture-amount")).toHaveAttribute("max", String(pending.max));
+      await openSurface(page,'actions');await expect(page.locator("#capture-amount")).toHaveAttribute("min", String(pending.min)); await openSurface(page,'actions');await expect(page.locator("#capture-amount")).toHaveAttribute("max", String(pending.max));
       if (!resumed) {
         const text = await assertSaved("pending-capture"); await screenshot("pending-capture");
         await page.reload(); await expect(page.locator("#reference-setup")).toBeVisible();
         await page.getByLabel("Load game", {exact: true}).setInputFiles({name: "resume.json", mimeType: "application/json", buffer: Buffer.from(text)});
-        await expect(page.locator("#capture-amount")).toHaveAttribute("max", String(pending.max));
+        await openSurface(page,'actions');await expect(page.locator("#capture-amount")).toHaveAttribute("max", String(pending.max));
         await assertSaved("resumed-capture"); await paint(page, state); await screenshot("save-resume"); resumed = true;
       }
-      await page.locator("#capture-amount").fill(String(action.amount)); await page.locator("#confirm-capture-button").click();
+      await openSurface(page,'actions');await page.locator("#capture-amount").fill(String(action.amount)); await page.locator("#confirm-capture-button").click();
     } else throw Error("Unexpected human action " + action.kind);
     state = step(state, action);
     if (action.kind !== "reinforce") await paint(page, state);
@@ -87,7 +88,7 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
   await expect(page.locator('[data-result-player="seat1"] [data-result-countries]')).toHaveText("46");
   await assertSaved("winner"); await screenshot("winner");
   const finished = await save(page); await country(page, state.map.provinces[0]!.id).click(); await page.clock.runFor(4000); expect(await save(page)).toBe(finished);
-  await page.getByRole("button", {name: "New game", exact: true}).click(); await expect(page.locator("#reference-setup")).toBeVisible();
+  await withSurface(page,'settings',()=>page.getByRole("button", {name: "New game", exact: true}).click()); await expect(page.locator("#reference-setup")).toBeVisible();
   expect(errors).toEqual([]);
   writeFileSync(join(evidence, "summary.json"), JSON.stringify({url: page.url(), options: fixture.options, actions: index, computerActions: fixture.expected.computerActions, humanActions: fixture.expected.humanActions, winner: state.winner, observed: {resumed, moved, battle, computer, eliminated}, errors}, null, 2));
 });
