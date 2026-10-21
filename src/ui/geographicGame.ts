@@ -1,4 +1,4 @@
-import {defaultOptions,raidCardsRules} from '../core';
+import {createGame,defaultOptions,raidCardsRules} from '../core';
 import type {GameOptions,GameState} from '../core';
 import {createGeographicGame} from '../core/geographic-game';
 import {NAME_THEMES,THEME_LABELS} from '../core/flavour-names';
@@ -10,6 +10,7 @@ import type {GeographicGameResult} from '../core/geographic-game';
 import {GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,GEOGRAPHIC_V2_MATCH_IDENTITY,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY} from '../core/match-save';
 import type {LoadedVersionedMatch,MatchIdentity} from '../core/match-save';
 import {GeographicMapView} from './geographicMapView';
+import {GeneratedMapView} from './generatedMapView';
 import {ReferenceMapView} from './referenceMapView';
 import {ReferenceBattleGame} from './referenceBattleGame';
 import type {BattlePreferences} from './referenceBattleGame';
@@ -74,21 +75,29 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
   }
  };
  const dispose=()=>{setupFiles?.dispose();setupFiles=null;current?.dispose();current=null;};
- const mount=(options:GameOptions,state:GameState,presentation:MatchPresentation)=>{
+ const mount=(options:GameOptions,state:GameState,presentation:MatchPresentation,loadedMatch=false)=>{
   const app=new ReferenceBattleGame(state.map,options,()=>setup(),state,preferences,onLoad,!manual,presentation);
   dispose();seed=String(options.seed);seats=String(options.seats.length);controllers=Array.from({length:4},(_,i)=>options.seats[i]?.kind??'human');dominationWin=options.dominationWin;roundLimit=options.roundLimit;names=options.names??'seed';
   root.id='geographic-game';root.className='geographic-game-root';root.dataset['seats']=seats;current=app;app.mount(root);
+  // A loaded match replaces the card that held the file input: focus returns to the menu icon (#195).
+  if(loadedMatch)app.focusMenu();
  };
  const onLoad=async(options:GameOptions,state:GameState,loaded?:LoadedVersionedMatch,context?:MatchLoadContext)=>{
   if(closed||context&&!context.isCurrent())return;
-  if(!loaded?.initialState)throw Error('Saved match has no supported replay origin. Use the legacy generated game route for v1 files.');
+  // A13: a version-1 save (the legacy generated board) continues here; its origin is rebuilt
+  // from its options exactly as its replay was, and it saves back as version 1.
+  if(loaded?.formatVersion===1){
+   const origin=createGame(options);if(!origin.ok)throw Error(`Cannot generate this saved game: ${origin.errors.join('; ')}.`);
+   cancel();mount(options,state,{identity:loaded.identity,label:'Generated board (version 1 save)',initialState:origin.state,acceptsVersion1:true,createMap:(map,handlers)=>new GeneratedMapView(map,handlers)},true);return;
+  }
+  if(!loaded?.initialState)throw Error('Saved match has no supported replay origin.');
   const identity=loaded.identity;
   if(identity.boardGenerator.id==='geographic'){
    const geography=loaded.geography;if(!geography)throw Error('Saved geographic match has no reconstructed geography.');
    const prepared=await prepare(geography,context);if(!prepared?.isCurrent())return;const drawing=prepared.drawing;
-   mount(options,state,{identity,label:'Generated islands',initialState:loaded.initialState,createMap:(map,handlers)=>new GeographicMapView(map,geography,handlers,drawing)});
+   mount(options,state,{identity,label:'Generated islands',initialState:loaded.initialState,acceptsVersion1:true,createMap:(map,handlers)=>new GeographicMapView(map,geography,handlers,drawing)},true);
   }else if(identity.boardGenerator.id==='fixed-reference'){
-   cancel();mount(options,state,{identity,label:'Nine Isles',initialState:loaded.initialState,createMap:(map,handlers)=>new ReferenceMapView(map,handlers)});
+   cancel();mount(options,state,{identity,label:'Nine Isles',initialState:loaded.initialState,acceptsVersion1:true,createMap:(map,handlers)=>new ReferenceMapView(map,handlers)},true);
   }else throw Error('Unsupported board identity. Use the legacy generated game route for v1 files.');
  };
  const setup=()=>{
@@ -113,7 +122,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    try {
     const work=prepare(result.geography);status.textContent='Preparing game…';
     const prepared=await work;if(!prepared?.isCurrent())return;const drawing=prepared.drawing;
-    mount(options,result.state,{identity:geographicSetupIdentity(options,manual),label:'Generated islands',initialState:result.state,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers,drawing)});
+    mount(options,result.state,{identity:geographicSetupIdentity(options,manual),label:'Generated islands',initialState:result.state,acceptsVersion1:true,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers,drawing)});
    }catch(error){if(!closed&&epoch===own+1)alert.textContent=error instanceof Error?error.message:String(error);}
    finally{if(epoch===own+1)status.textContent='';}
   };
@@ -125,7 +134,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
     controller.start({...defaultOptions(),seed:Number(seed),seats:kinds.map(kind=>({kind})),computerStrengths:kinds.filter(kind=>kind==='computer').map(()=>'Normal' as const),dominationWin,roundLimit,names});
    }catch(error){alert.textContent=error instanceof Error?error.message:String(error);}
   };
-  setupFiles=new ReferenceMatchFiles(onLoad,undefined,undefined,REFERENCE_MATCH_IDENTITY,true,cancel);form.append(setupFiles.el);root.replaceChildren(form);
+  setupFiles=new ReferenceMatchFiles(onLoad,undefined,undefined,REFERENCE_MATCH_IDENTITY,true,cancel,true);form.append(setupFiles.el);root.replaceChildren(form);
  };
  setup();
  return ()=>{if(closed)return;closed=true;cancel();dispose();service?.dispose();service=null;};

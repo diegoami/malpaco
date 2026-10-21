@@ -8,5 +8,7 @@ export interface MatchPresentation {
  readonly identity:MatchIdentity;
  readonly label:string;
  readonly initialState:GameState;
+ /** The host's file UI continues version-1 saves too (A13): the main game screen only. */
+ readonly acceptsVersion1?:boolean;
  readonly createMap:(map:GameMap,handlers:MapHandlers)=>{readonly el:SVGSVGElement;readonly camera?:MapCamera;render(view:MapViewState):void};
 }

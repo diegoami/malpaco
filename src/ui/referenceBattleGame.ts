@@ -19,6 +19,7 @@ import { ReferenceMatchFiles } from "./referenceMatchFiles";
 import { createPanelDetailControl } from "./panelDetail";
 import {BattleChrome} from "./battleChrome";
 import type {Notice} from "./battleChrome";
+import {GameHelp} from "./help";
 import {CountryPicker} from "./countryPicker";
 
 /** Session-only preferences. Full presentation persistence is T56. */
@@ -51,6 +52,13 @@ export class ReferenceBattleGame {
     ...["very-slow", "slow", "normal", "fast"].map(value => h("option", { value }, value === "very-slow" ? "Very slow (2 s)" : value[0]!.toUpperCase() + value.slice(1))));
   private readonly panelDetail: HTMLSelectElement;
   private readonly eventLog: GameEventLog;
+  /** Help pauses computer play while it is read, and resumes only what it paused. */
+  private helpPaused = false;
+  private readonly help = new GameHelp(() => {
+    this.chrome?.close(false);
+    this.helpPaused = !this.controller.playbackPaused;
+    if (this.helpPaused) this.controller.setPlaybackPaused(true);
+  });
   private readonly controller: BattleController;
   private readonly mapView: Pick<ReferenceMapView,"el"|"render"> & {readonly camera?: ReferenceMapView["camera"]};
   private readonly panel: Panel;
@@ -86,7 +94,8 @@ export class ReferenceBattleGame {
       this.panel.el.closest<HTMLElement>(".battle-reference")?.setAttribute("data-panel-detail", detail);
     });
     this.eventLog = new GameEventLog(options,presentation?.initialState);
-    document.body.append(this.eventLog.dialog);
+    document.body.append(this.eventLog.dialog, this.help.dialog);
+    this.help.dialog.addEventListener("close", () => {if (this.helpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.helpPaused = false;});
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
     }, view => {
@@ -99,8 +108,7 @@ export class ReferenceBattleGame {
     this.cardControls=new CardView(this.cards,this.controller);
     this.computer = automatic ? new ComputerTurnLoop(this.controller, { schedule: (cb, delay) => window.setTimeout(cb, delay), cancel: id => window.clearTimeout(id) }) : null;
     const threshold = preferences.threshold, speed = preferences.speed;
-    this.controller.setThreshold(threshold);
-    this.controller.setSpeed(speed);
+    this.controller.restorePreferences(threshold, speed);
     this.mapView = (presentation?.createMap ?? ((m,handlers)=>new ReferenceMapView(m,handlers)))(map, {
       onProvince: (id, activation) => { if (!activation?.repeat) this.clickProvince(id, activation?.inspect ?? false); },
       onBackground: () => { this.controller.select(null, null); },
@@ -126,13 +134,17 @@ export class ReferenceBattleGame {
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
     this.battle = new BattleView(this.controller, () => { this.controller.select(null, null); this.chrome?.close(); }, () => this.chrome?.close());
     this.friendly = new FriendlyMoveView(this.controller);
-    this.victory = new VictoryView(this.controller, {newGame: () => { if (!this.disposed) this.onNewGame(); }, menu: () => this.chrome?.openMenu()});
+    this.victory = new VictoryView(this.controller, {newGame: () => { if (!this.disposed) this.onNewGame(); }, menu: () => this.chrome?.openMenu(),
+      details: () => [`Seed: ${options.seed}`, `Seats: ${options.seats.map((seat, i) => `${i + 1} ${seat.kind === "computer" ? "Computer" : "Human"}`).join(" · ")}`,
+        `Victory: ${options.dominationWin ? "Domination" : "Total conquest"}${options.roundLimit ? ` · Round limit ${options.roundLimit}` : ""}`, `Map: ${presentation?.label ?? "Nine Isles"}`]});
     this.action = this.panel.el.querySelector<HTMLElement>(".action")!;
     this.action.append(this.battle.el, this.friendly.el, this.victory.el, this.cardControls.el, this.computerStatus);
     this.playbackPause.onclick = () => this.controller.setPlaybackPaused(!this.controller.playbackPaused);
     this.playbackSpeed.onchange = () => this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed);
-    this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation));
+    this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation),undefined,presentation?.acceptsVersion1);
   }
+
+  focusMenu(): void {this.chrome?.focusMenuOpener();}
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
@@ -146,7 +158,7 @@ export class ReferenceBattleGame {
       ? `${name} · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `${name} · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     const identity = h("p", {class: "game-identity"}, h("strong", {}, "Malpaco"), " · ", subtitle);
-    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, this.eventLog.button, this.changesButton, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
+    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, this.eventLog.button, this.changesButton, this.help.button, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, cards: this.cardControls.el, history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings,
@@ -170,7 +182,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
-    this.eventLog.dispose();
+    this.eventLog.dispose(); this.help.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
@@ -317,7 +329,8 @@ export class ReferenceBattleGame {
     }
     const viewer = (humans.length === 1 ? humans[0] : mover) ?? state.players[0]!, owned = state.map.provinces.filter(p => state.ownerOf[p.id] === viewer.id).length, total = state.map.provinces.length;
     const info = `${this.options.dominationWin ? `Domination · ${owned} / ${dominationThreshold(total)}` : `Total conquest · ${owned} / ${total}`}${this.options.roundLimit ? ` · Round ${state.turnNumber} / ${this.options.roundLimit}` : ` · Round ${state.turnNumber}`}`;
-    const status = {seat: Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result ? state.reinforcementPool : null,
+    // A human loss names no winner while computers remain, so its badge is neutral (#132).
+    const status = {seat: state.phase === "human-loss" ? null : Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result ? state.reinforcementPool : null,
       info, explanation: `${phase}. ${explain(phase)}`, result: !!result};
     // A required choice, or a staged attack pair, brings its card up once.
     const staged = mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;

@@ -8,7 +8,7 @@ export type Surface = "actions" | "cards" | "menu" | "info" | "countries";
 export interface Notice {title: string; detail?: string; persistent?: boolean; action?: NoticeAction}
 /** One icon on the notice itself (T84): Fast-forward during computer play, Changes on a human turn. */
 export interface NoticeAction {id: string; label: string; shape: string; run: () => void}
-export interface ShellStatus {seat: number; notice: Notice | null; pool: number | null; info: string; explanation: string; result: boolean}
+export interface ShellStatus {seat: number | null; notice: Notice | null; pool: number | null; info: string; explanation: string; result: boolean}
 
 const symbol = glyph;
 
@@ -143,6 +143,8 @@ export class BattleChrome {
   get openSurface(): Surface | null {return this.surface;}
 
   /** The result card's History and Files icons open the menu card. */
+  /** After a match replaces another, focus returns to a visible control, not the page (#195). */
+  focusMenuOpener(): void {this.menu.focus({preventScroll: true});}
   openMenu(): void {if (this.surface !== "menu") this.open("menu", this.menu);}
 
   /**
@@ -287,9 +289,8 @@ export class BattleChrome {
 
   private status(status: ShellStatus): void {
     this.result = status.result;
-    const look = seatLook(status.seat);
     this.notified = status.notice;
-    this.notice.style.setProperty("--seat", look.color);
+    this.notice.style.setProperty("--seat", status.seat === null ? "" : seatLook(status.seat).color);
     this.renderNotice();
     this.infoLine.textContent = status.info;
     this.explanation.textContent = status.explanation;

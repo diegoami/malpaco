@@ -11,20 +11,21 @@ import type { BattleController } from "./battleController";
 export class VictoryView {
   readonly el = h("section", { class: "victory-result", "aria-label": "Game result", "aria-live": "polite" });
   private standingsOpen = false;
+  private detailsOpen = false;
 
-  constructor(private readonly controller: BattleController, private readonly links: { newGame: () => void; menu: () => void } = { newGame: () => {}, menu: () => {} }) {}
+  constructor(private readonly controller: BattleController, private readonly links: { newGame: () => void; menu: () => void; details?: () => readonly string[] } = { newGame: () => {}, menu: () => {} }) {}
 
   render(state: GameState, revision: number): void {
     this.el.replaceChildren();
     this.el.hidden = !state.result;
-    if (!state.result) { this.standingsOpen = false; return; }
+    if (!state.result) { this.standingsOpen = false; this.detailsOpen = false; return; }
     const { reason, standings } = state.result;
     const winner = state.players.find(player => player.id === state.winner);
     const score = standings.find(row => row.player === state.winner);
     const humans = state.players.filter(player => player.kind !== "computer");
     const description = reason === "no-human-left" ? "All human seats eliminated"
       : reason === "domination" ? `Domination · ${score!.countries} of ${state.map.provinces.length} countries`
-      : reason === "round-limit" ? `Round limit · ${state.turnNumber} rounds · ranked by countries, then armies, then turn order`
+      : reason === "round-limit" ? `Round limit · ${state.turnNumber} rounds · ${decidedBy(standings)}`
       : reason === "last-seat" ? `Last seat standing · ${score!.countries} countries`
       : `Total conquest · all ${state.map.provinces.length} countries`;
     const loss = state.phase === "human-loss";
@@ -40,20 +41,40 @@ export class VictoryView {
       this.standingsOpen = !this.standingsOpen; table.hidden = !this.standingsOpen; standingsButton.setAttribute("aria-expanded", String(this.standingsOpen));
     });
     standingsButton.setAttribute("aria-controls", "victory-standings"); standingsButton.setAttribute("aria-expanded", String(this.standingsOpen));
+    // The seed, options and record open on request too (ui-054).
+    const lines = this.links.details?.() ?? [];
+    const details = h("dl", { id: "victory-details", hidden: !this.detailsOpen }, ...lines.flatMap(line => {const [term, value] = line.split(": "); return [h("dt", {}, term!), h("dd", {}, value ?? "")];}),
+      h("dt", {}, "Record"), h("dd", {}, `${state.history.length} actions · History opens every one`));
+    const detailsButton = iconButton("result-details-button", "Details: seed, options and record", "Details", "info", false, () => {
+      this.detailsOpen = !this.detailsOpen; details.hidden = !this.detailsOpen; detailsButton.setAttribute("aria-expanded", String(this.detailsOpen));
+    });
+    detailsButton.setAttribute("aria-controls", "victory-details"); detailsButton.setAttribute("aria-expanded", String(this.detailsOpen));
     this.el.append(h("h2", { class: "result-title" }, title), h("p", { id: "victory-reason", class: "card-note" }, description));
     if (loss) {
       // Stop game keeps its visible label for the whole unresolved elimination card (follow-up D).
       this.el.append(h("p", { class: "card-note victory-guidance" }, "Your result is recorded once."), h("div", { class: "card-icons victory-choices" },
         iconButton("watch-computers-button", "Watch computers", "Watch computers", "watch", false, () => this.controller.dispatch({ kind: "watchComputers" }, revision), true),
         iconButton("stop-game-button", "Stop game", "Stop game", "stop", false, () => this.controller.dispatch({ kind: "stopGame" }, revision)),
-        standingsButton));
+        standingsButton, detailsButton));
     } else {
       this.el.append(h("div", { class: "card-icons victory-choices" },
         iconButton("result-new-game-button", "New game", "New game", "new-game", false, () => this.links.newGame(), true),
         standingsButton,
         iconButton("result-history-button", "History", "History", "history", false, () => this.links.menu()),
-        iconButton("result-files-button", "Files: save or load", "Files", "files", false, () => this.links.menu())));
+        iconButton("result-files-button", "Files: save or load", "Files", "files", false, () => this.links.menu()), detailsButton));
     }
-    this.el.append(table);
+    this.el.append(table, details);
   }
+}
+
+/**
+ * The criterion that actually decided a round-limit result (#132): the stored ranking is
+ * by countries, then armies, then turn order; name the first that separates first and second.
+ */
+export function decidedBy(standings: readonly { readonly countries: number; readonly armies: number }[]): string {
+  const [first, second] = standings;
+  if (!first || !second) return "ranked by countries";
+  if (first.countries !== second.countries) return "decided by countries";
+  if (first.armies !== second.armies) return "tied on countries, decided by armies";
+  return "tied on countries and armies, decided by turn order";
 }
