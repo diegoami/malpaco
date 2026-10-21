@@ -5,9 +5,10 @@ import { join } from "node:path";
 import { activePlayer, apply } from "../../src/core";
 import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDENTITY } from "../../src/core/match-save";
 import { pinned } from "../core/versioned-match-fixture";
+import {withSurface} from './shell';
 const dialog = (p: Page) => p.getByRole("dialog", { name: "Game event log", exact: true });
 async function save(p: Page) {
-  await p.getByRole("button", { name: "Save game", exact: true }).click();
+  await withSurface(p,'settings',()=>p.getByRole("button", { name: "Save game", exact: true }).click());
   return p.evaluate(() => (Reflect.get(window, "eventLogSave") as Blob).text());
 }
 async function load(p: Page, text: string) {
@@ -78,7 +79,7 @@ test("popup works by keyboard while paused, appends exactly once and resets for 
   await open(page); expect(await verify(page, text)).toEqual(rows); await dialog(page).getByRole("button", { name: "Close game event log", exact: true }).press("Enter");
   await load(page, text); await open(page); expect(await verify(page, text)).toEqual(rows); await page.keyboard.press("Escape");
   await page.locator(`[data-country="${own}"]`).press("Enter"); text = await save(page); await open(page); expect((await verify(page, text)).length).toBe(rows.length + 1); await page.keyboard.press("Escape");
-  await page.getByRole("button", { name: "New game", exact: true }).click(); await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await withSurface(page,'settings',()=>page.getByRole("button", { name: "New game", exact: true }).click()); await page.getByRole("button", { name: "Start game", exact: true }).click();
   text = await save(page); await open(page); expect(await verify(page, text)).toHaveLength(1);
 });
 for (const name of ["move-completed", "domination"]) test(`complete ${name} replay includes ordered army accounting beyond seven entries`, async ({ page }) => {

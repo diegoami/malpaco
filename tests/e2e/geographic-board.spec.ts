@@ -14,6 +14,7 @@ import {pinned} from '../core/versioned-match-fixture';
 import frozenCorpus from '../../fixtures/new-game/T36/corpus-selection.json' with {type:'json'};
 import layoutSupplement from '../../fixtures/new-game/T36/corpus-supplement.json' with {type:'json'};
 import {seatLook} from '../../src/ui/palette';
+import {openSurface,withSurface} from './shell';
 
 type Corpus={measured:boolean;targetMet:boolean;sourceHashes:Record<string,string>;selection:{seed:number;purpose:string;mapHash:string}[];refusalSeeds:{seed:number;refusalClasses:string[]}[]};
 // Optional preflight override ONLY. Bare CI uses the committed measured fixture.
@@ -31,7 +32,7 @@ const country=(p:Page,id:string)=>p.locator(`#geographic-map [data-country="${id
 const numbers=(s:string)=>[...s.matchAll(/-?(?:\d+\.?\d*|\.\d+)/g)].map(m=>Number(m[0]));
 async function setup(p:Page,seed=1994){await p.goto(`/?seed=${seed}&control=manual`);await expect(p.getByRole('button',{name:'Start game',exact:true})).toBeVisible();}
 async function start(p:Page,seed:number){await setup(p,seed);await p.getByLabel('Seats',{exact:true}).selectOption('2');for(let n=1;n<=2;n++)await p.getByLabel(`Seat ${n} control`,{exact:true}).selectOption('human');await p.getByRole('button',{name:'Start game',exact:true}).click();await expect(p.locator('#geographic-map')).toBeVisible();}
-async function save(p:Page){const pending=p.waitForEvent('download');await p.getByRole('button',{name:'Save game',exact:true}).click();return readFileSync((await(await pending).path())!,'utf8');}
+async function save(p:Page){const pending=p.waitForEvent('download');await withSurface(p,'settings',()=>p.getByRole('button',{name:'Save game',exact:true}).click());return readFileSync((await(await pending).path())!,'utf8');}
 async function upload(p:Page,text:string,success=true){const old=await p.getByLabel('Load game',{exact:true}).elementHandle();await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'resume.json',mimeType:'application/json',buffer:Buffer.from(text)});if(success)await expect.poll(()=>old!.evaluate(n=>n.isConnected)).toBe(false);}
 function step(state:GameState,action:Action){const r=apply(state,action);if(!r.ok)throw Error(r.error);return r.state;}
 async function check(p:Page,state:GameState){expect(deserializeVersionedMatch(await save(p)).state).toEqual(state);expect(await p.locator('#geographic-map [data-country]').evaluateAll(ns=>Object.fromEntries(ns.map(n=>[n.getAttribute('data-country'),[n.getAttribute('data-owner'),Number(n.getAttribute('data-armies'))]])))).toEqual(Object.fromEntries(state.map.provinces.map(v=>[v.id,[state.ownerOf[v.id],state.armies[v.id]]])));}
@@ -74,7 +75,7 @@ test('root and unknown view retain the established setup and playback controls',
   await page.goto(url);await expect(page.getByLabel('Seats',{exact:true})).toHaveValue('4');
   for(let n=1;n<=4;n++)await expect(page.getByLabel(`Seat ${n} control`,{exact:true})).toHaveValue(n===1?'human':'computer');
   await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();await expect(page.locator('#reference-map')).toHaveCount(0);
-  await expect(page.locator('#game-pause-button')).toBeVisible();await expect(page.locator('#game-speed')).toBeVisible();await expect(page.locator('#game-log-button')).toBeVisible();await expect(page.locator('[data-testid="player-army-total"]')).toHaveCount(4);
+  await expect(page.locator('#game-pause-button')).toBeVisible();await openSurface(page,'settings');await expect(page.locator('#game-speed')).toBeVisible();await expect(page.locator('#game-log-button')).toBeVisible();await expect(page.locator('[data-testid="player-army-total"]')).toHaveCount(4);
   const actual=deserializeVersionedMatch(await save(page)),opening=expectedNormal(1994);expect(actual.identity).toEqual(GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY);expect(actual.options).toEqual(opening.options);expect(actual.initialState).toEqual(opening.initialState);expect(actual.geography).toEqual(opening.geography);expect(actual.state).toEqual(opening.state);expect(actual.state.rules.cards).toBe('raid-v1');
  }
 });
@@ -104,8 +105,8 @@ for(const kind of ['borders','seaLanes'] as const)test(`painted ${kind} use the 
  await country(page,source.id).click();const legal=attackTargets(state,source.id).sort();expect(await page.locator('#geographic-map [data-target="true"]').evaluateAll(ns=>ns.map(n=>n.getAttribute('data-country')).sort())).toEqual(legal);
  const target=source[kind].find(id=>legal.includes(id));if(!target)throw Error('edge must be legal');
  if(kind==='seaLanes')await expect(page.locator(`#geographic-map .lane[data-edge="${[source.id,target].sort().join('|')}"]`)).toHaveClass(/active/);
- const outsider=state.map.provinces.find(p=>state.ownerOf[p.id]!==player.id&&!legal.includes(p.id));if(!outsider)throw Error('need enemy non-neighbour');await country(page,outsider.id).click();await check(page,state);await expect(page.locator('#battle-status')).not.toBeEmpty();
- await country(page,target).click({modifiers:['Shift']});await check(page,state);await expect(page.locator('#battle-source-name')).toHaveText(source.name);await expect(page.locator('#battle-target-name')).toHaveText(state.map.provinces.find(p=>p.id===target)!.name);
+ const outsider=state.map.provinces.find(p=>state.ownerOf[p.id]!==player.id&&!legal.includes(p.id));if(!outsider)throw Error('need enemy non-neighbour');await country(page,outsider.id).click();await check(page,state);await openSurface(page,'actions');await expect(page.locator('#battle-status')).not.toBeEmpty();
+ await country(page,target).click({modifiers:['Shift']});await check(page,state);await openSurface(page,'actions');await expect(page.locator('#battle-source-name')).toHaveText(source.name);await openSurface(page,'actions');await expect(page.locator('#battle-target-name')).toHaveText(state.map.provinces.find(p=>p.id===target)!.name);
  await country(page,target).click();state=step(state,{kind:'attack',from:source.id,to:target});await check(page,state);
  // Loaded history must reconstruct every action in order with exact country deltas.
  const replay=await save(page);await setup(page);await upload(page,replay);await expect(page.locator('#geographic-map')).toBeVisible();await page.locator('#game-log-button').click();const rows=page.getByRole('dialog',{name:'Game event log'}).locator('[data-event-index]');await expect(rows).toHaveCount(state.history.length+1);let previous=game.state;for(let i=0;i<state.history.length;i++){const next=step(previous,state.history[i]!);const row=rows.nth(i+1);await expect(row).toHaveAttribute('data-event-index',String(i+1));await expect(row).toContainText(`Action ${i+1}`);for(const v of state.map.provinces){const a=previous.armies[v.id]!,b=next.armies[v.id]!;if(a!==b||previous.ownerOf[v.id]!==next.ownerOf[v.id])await expect(row.locator(`[data-region="${v.id}"]`)).toContainText(`${a} → ${b} (${b-a>=0?'+':''}${b-a})`);}previous=next;}expect(previous).toEqual(state);
@@ -117,7 +118,7 @@ test('geographic replay and reference identity dispatch preserve state, history 
  for(const player of state.players){const total=state.map.provinces.filter(p=>state.ownerOf[p.id]===player.id).reduce((n,p)=>n+state.armies[p.id]!,0);await expect(page.locator(`[data-player="${player.id}"] [data-testid="player-army-total"]`)).toHaveText(`Total armies: ${total}`);}
  await page.locator('#game-pause-button').click();const frozen=await save(page);await country(page,own.id).focus();await page.keyboard.press('Enter');expect(await save(page)).toBe(frozen);await page.locator('#game-log-button').click();const rows=page.getByRole('dialog',{name:'Game event log'}).locator('[data-event-index]');await expect(rows).toHaveCount(2);await expect(rows.last()).toContainText(`Unplaced armies: ${game.state.reinforcementPool} → ${state.reinforcementPool}`);await page.keyboard.press('Escape');await page.locator('#game-pause-button').click();
  await country(page,own.id).click();await check(page,step(state,{kind:'reinforce',province:own.id,amount:1}));
- const bad=JSON.parse(text);bad.boardGenerator.version=99;const stable=await save(page),url=page.url();await upload(page,JSON.stringify(bad),false);await expect(page.getByRole('alert')).toContainText(/Load failed/i);expect(await save(page)).toBe(stable);expect(page.url()).toBe(url);expect(await drawing(page)).toEqual(before);
+ const bad=JSON.parse(text);bad.boardGenerator.version=99;const stable=await save(page),url=page.url();await upload(page,JSON.stringify(bad),false);await openSurface(page,'settings');await expect(page.getByRole('alert')).toContainText(/Load failed/i);expect(await save(page)).toBe(stable);expect(page.url()).toBe(url);expect(await drawing(page)).toEqual(before);
  const fixture=pinned('placement');await upload(page,fixture.text);await expect(page.locator('#reference-map')).toBeVisible();await expect(page.locator('#geographic-map')).toHaveCount(0);const refText=await save(page),ref=deserializeVersionedMatch(refText);expect(ref.identity).toEqual(REFERENCE_MATCH_IDENTITY);expect(ref.state.history).toEqual(fixture.actions);await setup(page);await upload(page,refText);await expect(page.locator('#reference-map')).toBeVisible();expect(deserializeVersionedMatch(await save(page)).state).toEqual(ref.state);
 });
 test('invalid seed stays in setup and recovers',async({page})=>{
@@ -173,8 +174,8 @@ test('geographic continuous battle pauses/resumes and cancels stale work on load
  await info.attach('queued-battle-fixture',{body:Buffer.from(JSON.stringify({seed:1994,from:fixture.from,to:fixture.to,actions:fixture.actions},null,2)),contentType:'application/json'});
  const begin=async()=>{
   await upload(page,payload);await check(page,fixture.state);await country(page,fixture.from).click();await country(page,fixture.to).click({modifiers:['Shift']});
-  await page.locator('#battle-stop-threshold').fill('1');await page.locator('#battle-stop-threshold').press('Tab');await page.locator('#fight-on-button').click();
-  await expect(page.getByRole('region',{name:'Battle controls',exact:true})).toHaveAttribute('data-running','true');await check(page,fixture.first);
+  await openSurface(page,'actions');await page.locator('#battle-stop-threshold').fill('1');await openSurface(page,'actions');await page.locator('#battle-stop-threshold').press('Tab');await page.locator('#fight-on-button').click();
+  await openSurface(page,'actions');await expect(page.getByRole('region',{name:'Battle controls',exact:true})).toHaveAttribute('data-running','true');await check(page,fixture.first);
  };
  await begin();await page.locator('#game-pause-button').click();const frozen=await save(page);await page.clock.runFor(5000);expect(await save(page)).toBe(frozen);
  await country(page,fixture.to).focus();await page.keyboard.press('Enter');expect(await save(page)).toBe(frozen);
@@ -182,5 +183,5 @@ test('geographic continuous battle pauses/resumes and cancels stale work on load
  // Load replaces a live continuous scheduler. Waiting must not append old work.
  await begin();const replacement=JSON.stringify({format:'malpaco-match',version:2,...GEOGRAPHIC_MATCH_IDENTITY,options:game.options,actions:[]});await upload(page,replacement);await check(page,game.state);await page.clock.runFor(5000);await check(page,game.state);
  // New game also disposes an active scheduler; only setup remains after waiting.
- await begin();await page.getByRole('button',{name:'New game',exact:true}).click();await page.clock.runFor(5000);await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeVisible();await expect(page.locator('#geographic-map')).toHaveCount(0);
+ await begin();await withSurface(page,'settings',()=>page.getByRole('button',{name:'New game',exact:true}).click());await page.clock.runFor(5000);await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeVisible();await expect(page.locator('#geographic-map')).toHaveCount(0);
 });

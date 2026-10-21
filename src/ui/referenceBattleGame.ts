@@ -17,11 +17,22 @@ import type {LoadedVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
 import { createPanelDetailControl } from "./panelDetail";
 import {BattleChrome} from "./battleChrome";
-import type {ChromePreferences} from "./battleChrome";
 
 /** Session-only preferences. Full presentation persistence is T56. */
 export type PanelDetail = "compact" | "detailed";
-export interface BattlePreferences extends ChromePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
+export interface BattlePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
+
+const EXPLANATIONS: Record<string, string> = {
+  "Reinforcement": "Place your armies one at a time on your own countries. When the pool reaches zero, start combat.",
+  "Attack": "Select one of your countries, then an enemy neighbour to attack it. Move armies or end your turn when you are done.",
+  "Capture move-in": "Choose how many armies move into the captured country, then confirm.",
+  "Friendly move": "Choose one of your countries, then a connected country of yours, and how many armies move. This ends your turn.",
+  "Cards": "Trade a set of cards for its effect, or skip.",
+  "Raid target": "Choose an enemy country for the Raid, then confirm.",
+  "Human seats eliminated": "Every human seat is out. Watch the computers finish, or stop the game.",
+  "Game over": "The game is over. The result and New game are in Current choice.",
+};
+function explain(phase: string): string { return EXPLANATIONS[phase] ?? "Follow the Current choice to continue."; }
 
 /** Reference-route host: the controller owns every selection and ordinary action. */
 export class ReferenceBattleGame {
@@ -107,14 +118,15 @@ export class ReferenceBattleGame {
     const subtitle = computers
       ? `${name} · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `${name} · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
-    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, h("div", { class: "game-playback" }, this.eventLog.button, this.playbackPause, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
-    const topbar = h("header", { class: "topbar" }, h("h1", {}, "Malpaco"), h("span", { class: "subtitle" }, subtitle), score, settings);
-    root.replaceChildren(topbar,
-      h("main", { class: "stage" }, h("section", { class: "board" }, this.mapView.el, ...(this.mapView.camera ? [this.mapView.camera.controls] : [])), this.panel.el));
-    this.chrome = new BattleChrome(root, this.preferences, {topbar, panel: this.panel.el, action: this.action, cards: this.cardControls.el,
-      history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings, phaseActions: this.phaseActions, battle: this.battle.el, pause: this.playbackPause, log: this.eventLog.button});
-    // A temporary drawer over the board reframes the map beside it, so covered land keeps its badges.
-    this.mapView.camera?.avoid(this.chrome.drawer);
+    const identity = h("p", {class: "game-identity"}, h("strong", {}, "Malpaco"), " · ", subtitle);
+    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
+    // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
+    const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
+    this.chrome = new BattleChrome({action: this.action, cards: this.cardControls.el, history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings,
+      turn: this.panel.el.querySelector<HTMLElement>(".turn")!, phaseActions: this.phaseActions, battle: this.battle.el, pause: this.playbackPause, log: this.eventLog.button, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+    root.replaceChildren(h("section", { class: "board" }, this.mapView.el), this.chrome.overlay, store);
+    // Every overlay reframes the map beside it, so covered land keeps its badges.
+    for (const overlay of [this.chrome.hud, this.chrome.rail, this.chrome.drawer]) this.mapView.camera?.avoid(overlay);
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
     this.mounted = true;
@@ -225,8 +237,12 @@ export class ReferenceBattleGame {
       for (const el of [this.action, this.cardControls.el, this.phaseActions].flatMap(node => [...node.querySelectorAll<HTMLButtonElement | HTMLInputElement>("button,input")])) el.disabled = true;
       this.action.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; save, load and new game remain available." : "Computer turn. Save, load or start a new game at any time."));
     }
-    const required = this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? "Choose a Raid target" : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
-    this.chrome?.update(`${activePlayer(state)?.name ?? ""} · ${this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase}${state.phase === "reinforce" ? ` · ${state.reinforcementPool} to place` : ""}`, required, this.controller.playbackPaused);
+    const required = this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? "Choose a Raid target" : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
+    const mover = activePlayer(state), result = state.result, winner = state.players.find(p => p.id === state.winner);
+    const phase = result ? state.phase === "human-loss" ? "Human seats eliminated" : "Game over" : this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase;
+    const status = {seat: Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), name: result ? winner ? `${winner.name} wins` : "No winner yet" : `${mover?.name ?? ""}${computer ? this.controller.playbackPaused ? " · paused" : " is playing" : ""}`,
+      phase, round: result ? null : state.turnNumber, pool: state.phase === "reinforce" && !result ? state.reinforcementPool : null, explanation: explain(phase)};
+    this.chrome?.update(status, required, this.controller.playbackPaused, !computer && !this.controller.playbackPaused);
     this.computer?.update();
   }
 }

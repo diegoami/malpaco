@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { act, fixtureAction, plan, referenceMap, VICTORY_ACTION_BUDGET } from "./victory-fixture";
 import type { CompleteAction, CompleteState } from "../core/victory-options-fixture";
 import { opening, standings } from "../core/victory-options-fixture";
+import {withSurface,openSurface} from './shell';
 
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);
 async function capture(page: Page, label: string, project: string) {
@@ -62,8 +63,10 @@ async function freeze(page: Page, state: CompleteState) {
   await paint(page, state);
 }
 async function fit(page: Page) {
+  // T79: the result and its choices live in the Current choice card.
+  await openSurface(page, "actions");
   const rows = await page.locator('#victory-reason,#victory-standings,#watch-computers-button,#stop-game-button,#new-game-button').evaluateAll(nodes => nodes.filter(n => n.getClientRects().length).map(n => { const b = n.getBoundingClientRect(); return { id: n.id, fits: b.left >= 0 && b.top >= 0 && b.right <= innerWidth && b.bottom <= innerHeight }; }));
-  expect(rows.length).toBeGreaterThan(2);
+  expect(rows.length).toBeGreaterThan(1);
   expect(rows.filter(r => !r.fits)).toEqual([]);
 }
 
@@ -88,7 +91,7 @@ test("domination result names winner/reason, final standings, freezes and restar
   }
   await stale!.evaluate(n => n.dispatchEvent(new MouseEvent("click", { bubbles: true })));
   await freeze(page, state); await fit(page); await capture(page, "domination", info.project.name);
-  await page.locator("#new-game-button").click();
+  await withSurface(page,'settings',()=>page.locator('#new-game-button').click());
   await expect(page.getByRole("heading", { name: "New reference game", exact: true })).toBeVisible();
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   await expect(page.locator("#victory-reason")).toHaveCount(0);
@@ -103,7 +106,7 @@ test("round limit finishes after a complete rotated round and explains the score
   const fixture = { start: state, state, actions: [] as CompleteAction[], conqueror: "", kind: "human-loss" as const };
   await setup(page, fixture);
   // Change settings through the real setup; no loaded or injected position.
-  await page.locator("#new-game-button").click();
+  await withSurface(page,'settings',()=>page.locator('#new-game-button').click());
   const limit = page.getByLabel("Round limit", { exact: true });
   if (await limit.count()) await limit.selectOption("20");
   await page.getByRole("button", { name: "Start game", exact: true }).click();
@@ -151,12 +154,12 @@ test("human loss offers Stop or Watch; Watch resumes computers and Stop freezes"
   expect(handoffs).toBe(3);
   await expect(page.locator("#watch-computers-button")).toHaveCount(0);
   await capture(page, "watch-resumed", info.project.name);
-  await page.locator("#new-game-button").click();
+  await withSurface(page,'settings',()=>page.locator('#new-game-button').click());
   await setup(page, fixture); state = await drive(page, fixture);
   await page.locator("#stop-game-button").click(); state = act(state, { kind: "stopGame" });
   await freeze(page, state); await fit(page); await capture(page, "human-loss-stopped", info.project.name);
   await expect(page.locator("#watch-computers-button")).toHaveCount(0);
-  await page.locator("#new-game-button").click();
+  await withSurface(page,'settings',()=>page.locator('#new-game-button').click());
   await expect(page.getByRole("heading", { name: "New reference game", exact: true })).toBeVisible();
   expect(errors).toEqual([]);
   console.log(JSON.stringify({ kind: fixture.kind, actionsPerRun: fixture.actions.length, resumedHandoffs: handoffs }));

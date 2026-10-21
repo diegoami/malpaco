@@ -41,10 +41,10 @@ async function save(p:Page){
  if(opened)await drawer(p,false);
  return deserializeVersionedMatch(text).state;
 }
+/** The shell has no panels to collapse (T79); close any requested card so the board is at rest. */
 async function collapse(p:Page){
- for(const id of ['toggle-topbar','toggle-sidebar'])if(await p.locator('#'+id).getAttribute('aria-expanded')==='true')await p.locator('#'+id).click();
+ await drawer(p,false);
  await expect(p.locator('.panel')).toBeHidden();
- await stable(p);
 }
 const viewBox=(p:Page)=>map(p).getAttribute('viewBox');
 /** After a layout change, wait until the camera has re-measured: two reads apart give the same viewBox. */

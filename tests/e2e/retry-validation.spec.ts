@@ -3,10 +3,11 @@ import type { Page } from "@playwright/test";
 import { mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { createGame, defaultOptions, deserializeMatch } from "../../src/core";
+import {withSurface} from './shell';
 
 async function save(page: Page) {
   const event = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Save game", exact: true }).click();
+  await withSurface(page,'settings',()=>page.getByRole("button", { name: "Save game", exact: true }).click());
   const path = await (await event).path();
   return deserializeMatch(readFileSync(path!, "utf8"));
 }

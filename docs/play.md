@@ -47,7 +47,7 @@ slows computer turns. **Panel detail** switches Compact/Detailed information.
 The smaller battle log scrolls while retaining its history; **Game event log**
 opens the full action history, including army gains, losses and unplaced armies.
 
-Use **Hide top panel** and **Hide side panel** to reclaim map space, and their **Show** icons to restore them. The rail keeps essential play actions, **Pause** and **Game event log** available. **Cards**, **Game details** and **Game settings** open focused panels; speed, save and load are available in Settings. Press Escape to close a focused panel.
+The map fills the screen. Small chips in the top corner show whose turn it is, the phase (tap it for **Phase details**) and, while placing, the armies left to place. The icon rail holds the legal phase actions (**Start combat**, **End turn**, **Move armies**, battle commands), **Current choice**, **Cards**, **Totals and history**, **Game settings**, **Pause** and **Game event log**. Each opens a card over the map, which moves the map beside it; speed, save and load are in Game settings. A required choice opens Current choice by itself and keeps a highlighted icon until it is made. Press Escape or **Return to map** to close a card.
 
 The supported desktop layouts are 1280×800 and 1920×1080. Mobile layouts,
 online multiplayer, and cross-device save synchronization are not supported.

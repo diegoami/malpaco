@@ -8,6 +8,7 @@ import {createReferenceGame} from "../../src/core/reference-game";
 import {defaultOptions,apply,attackTargets} from "../../src/core";
 import type {GameMap,Province} from "../../src/core";
 import {nextAction,policyFor,ACTION_BUDGET} from "../helpers/complete-game";
+import {withSurface} from './shell';
 const drawing:typeof raw=JSON.parse(readFileSync(new URL("../../fixtures/new-game/T65/board.json",import.meta.url),"utf8"));
 const map:GameMap={id:"reference-coast-first-a",name:"Nine Isles",bounds:raw.bounds,provinces:raw.provinces as unknown as readonly Province[],islands:raw.islands};
 function opening(){const r=createReferenceGame(map,{...defaultOptions(),seed:1994,seats:[{kind:"human"},{kind:"human"}],computerStrengths:[]});if(!r.ok)throw Error(r.errors.join(";"));return r.state;}
@@ -34,7 +35,7 @@ test("reference setup paints current geography, routes, live counts and reachabl
  const first=country(page,map.provinces[0]!.id),second=country(page,map.provinces[1]!.id);await first.focus();
  for(const[key,target]of [["ArrowRight",second],["ArrowLeft",first],["ArrowDown",second],["ArrowUp",first]] as const){await page.keyboard.press(key);await expect(target).toBeFocused();}await first.evaluate(n=>(n as SVGElement).blur());
  await panelTextFits(page);await capture(page,"opening",info.project.name);await expect(page.locator("#reference-game")).toHaveScreenshot("reference-game.png");
- for(const seats of [3,4]){await page.locator("#new-game-button").click();await page.getByLabel("Human seats").selectOption(String(seats));await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("[data-player]")).toHaveCount(seats);for(const id of ["start-combat-button","end-turn-button","attack-button","new-game-button"]){const b=await page.locator(`#${id}`).boundingBox();expect(b).not.toBeNull();expect(b!.x+b!.width).toBeLessThanOrEqual(v.width);expect(b!.y+b!.height).toBeLessThanOrEqual(v.height);}await panelTextFits(page);await capture(page,`${seats}-seats`,info.project.name);}
+ for(const seats of [3,4]){await withSurface(page,'settings',()=>page.locator('#new-game-button').click());await page.getByLabel("Human seats").selectOption(String(seats));await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("[data-player]")).toHaveCount(seats);for(const id of ["start-combat-button","end-turn-button","attack-button","new-game-button"]){const b=await page.locator(`#${id}`).boundingBox();expect(b).not.toBeNull();expect(b!.x+b!.width).toBeLessThanOrEqual(v.width);expect(b!.y+b!.height).toBeLessThanOrEqual(v.height);}await panelTextFits(page);await capture(page,`${seats}-seats`,info.project.name);}
  expect(errors).toEqual([]);
 });
 test("ordinary reference clicks place, attack, hand off and replay legally to a winner",async({page},info)=>{
@@ -59,6 +60,6 @@ test("ordinary reference clicks place, attack, hand off and replay legally to a 
  }
  expect(actions).toBeLessThan(ACTION_BUDGET);expect(placements).toBeGreaterThan(0);expect(attacks).toBeGreaterThan(0);expect(handoffs).toBeGreaterThan(0);expect(state.phase).toBe("finished");expect(state.winner).toBe(policy.conqueror);
  const winner=state.players.find(p=>p.id===state.winner)!;await expect(page.locator("#turn-title")).toHaveText(`${winner.name} conquers the sea`);await expect(page.locator(`#attack-button`)).toBeDisabled();await expect(page.locator("#new-game-button")).toBeEnabled();await panelTextFits(page);await capture(page,"winner",info.project.name);
- await page.locator("#new-game-button").click();await expect(page.getByRole("heading",{name:"New reference game",exact:true})).toBeVisible();await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1994");
+ await withSurface(page,'settings',()=>page.locator('#new-game-button').click());await expect(page.getByRole("heading",{name:"New reference game",exact:true})).toBeVisible();await expect(page.getByLabel("Seed",{exact:true})).toHaveValue("1994");
  console.log(JSON.stringify({project:info.project.name,actions,attacks,handoffs,placements,winner:state.winner}));expect(errors).toEqual([]);
 });

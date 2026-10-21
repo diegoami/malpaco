@@ -1,12 +1,13 @@
 import {test,expect} from '@playwright/test';
 import {readFileSync,writeFileSync} from 'node:fs';
+import {openSurface,setDetail} from './shell';
 const envelope='fixtures/new-game/T40/fixtures/T40-human-loss-450.json';
 test('final T40 loss choices fit both modes; retain all geometry before assertions',async({page},info)=>{
  await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await page.goto('/');const old=await page.getByLabel('Load game',{exact:true}).elementHandle();await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'human-loss-450.json',mimeType:'application/json',buffer:readFileSync(envelope)});await expect.poll(()=>old!.evaluate(el=>el.isConnected)).toBe(false);await expect(page.locator('[data-country]')).toHaveCount(46);
  const measurements=[];
  for(const mode of ['compact','detailed']){
-  await page.getByRole('combobox',{name:'Panel detail',exact:true}).selectOption(mode);
-  const data=await page.locator('.panel > .action').evaluate(action=>{
+  await setDetail(page,mode);await openSurface(page,'actions');
+  const data=await page.locator('#game-focus-drawer .action').evaluate(action=>{
    const rectangle=(el:Element)=>{const r=el.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height,left:r.left,top:r.top,right:r.right,bottom:r.bottom};};
    const shown=(el:Element)=>{const s=getComputedStyle(el);return s.display!=='none'&&s.visibility!=='hidden'&&el.getClientRects().length>0&&!(el as HTMLElement).hidden;};
    const describe=(el:Element)=>({tag:el.tagName,id:el.id,className:el.getAttribute('class'),text:el.textContent?.trim().slice(0,220),rect:rectangle(el),scrollHeight:el.scrollHeight,clientHeight:el.clientHeight,overflowY:getComputedStyle(el).overflowY});

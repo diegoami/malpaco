@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 import { readFileSync } from "node:fs";
 import { deserializeVersionedMatch } from "../../src/core/match-save";
+import {withSurface} from './shell';
 
 const errors = (page: import("@playwright/test").Page) => {
   const seen: string[] = [];
@@ -50,7 +51,7 @@ test("explicit reference entry retains the playable match with one human and thr
   await expect(page.locator("#reference-game")).toHaveAttribute("data-seats", "4");
   await expect(page.locator("#reference-game")).toHaveClass(/battle-reference/);
   const download = page.waitForEvent("download");
-  await page.getByRole("button", { name: "Save game", exact: true }).click();
+  await withSurface(page,'settings',()=>page.getByRole("button", { name: "Save game", exact: true }).click());
   const match = deserializeVersionedMatch(readFileSync((await (await download).path())!, "utf8"));
   expect(match.options.seats.map(seat => seat.kind)).toEqual(["human", "computer", "computer", "computer"]);
   expect(match.options.computerStrengths).toEqual(["Normal", "Normal", "Normal"]);
@@ -60,7 +61,7 @@ test("explicit reference entry retains the playable match with one human and thr
   const evidence = process.env["DEFAULT_ENTRY_EVIDENCE_DIR"];
   if (evidence) await page.screenshot({ path: `${evidence}/default-${info.project.name}.png`, fullPage: true });
 
-  await page.getByRole("button", { name: "New game", exact: true }).click();
+  await withSurface(page,'settings',()=>page.getByRole("button", { name: "New game", exact: true }).click());
   await expect(page.locator("#reference-setup")).toBeVisible();
   await expect(page.getByLabel("Seed", { exact: true })).toHaveValue("1994");
   await expect(page.getByLabel("Seats", { exact: true })).toHaveValue("4");
@@ -90,7 +91,7 @@ test("recognized entry routes remain explicit and authored data is available onl
   await expect(page.locator("#map")).toBeVisible();
   await expect(page.locator(".province")).toHaveCount(14);
   await expectFits(page);
-  await page.getByRole("button", { name: "New game", exact: true }).click();
+  await withSurface(page,'settings',()=>page.getByRole("button", { name: "New game", exact: true }).click());
   await expect(page).toHaveURL(/view=authored-game/);
   expect(seen).toEqual([]);
 });
