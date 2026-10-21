@@ -73,7 +73,7 @@ test('A2: Place 1 by map and list to zero; stage by map, list and keyboard witho
  // Staging by map, list and keyboard leaves the match exactly as it was; the odds show.
  await country(page,from).click();await country(page,to).click();await exactly(page,s);
  await openSurface(page,'actions');await expect(page.locator('#battle-odds')).toContainText('%');await expect(page.locator('#fight-on-button')).toBeHidden();
- await page.locator('#open-countries').click();const target=page.locator(`[data-country-row="${to}"]`);if(await target.isEnabled())await target.click();await closeSurface(page).catch(()=>{});await exactly(page,s);
+ await page.locator('#open-countries').click();const target=page.locator(`[data-country-row="${to}"]`);await expect(target).toBeEnabled();await target.click();await closeSurface(page);await exactly(page,s);
  await country(page,to).focus();await page.keyboard.press('Enter');await exactly(page,s);
  await shot(page,info,'A2-staged');
  // A stale Attack control from before a pause, and a paused Attack, do nothing.
@@ -168,6 +168,8 @@ test('A8: a tiny region reached by Countries, Inspect and Focus; the tap acts on
  await page.locator('#open-countries').click();await page.getByRole('button',{name:'All',exact:true}).click();
  await page.locator(`[data-key="inspect:${tiny}"]`).click();await page.locator(`[data-key="focus:${tiny}"]`).click();
  await expect.poll(()=>page.locator('svg[data-camera-zoom]').getAttribute('data-camera-zoom').then(Number)).toBeGreaterThan(1);await closeSurface(page);
+ // Closing the card reframes the map a moment later: measure only once the view is still.
+ await expect.poll(async()=>{const a=await page.locator('svg[data-camera-zoom]').getAttribute('viewBox');await page.clock.runFor(100);return a===await page.locator('svg[data-camera-zoom]').getAttribute('viewBox');}).toBe(true);
  // A tap on the focused region places one army there. If it touches a neighbour too, the game asks
  // which country by name rather than guessing; the named choice is the region.
  const b=(await country(page,tiny).locator('.badge').boundingBox())!;await page.mouse.click(b.x+b.width/2,b.y+b.height/2);
