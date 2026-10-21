@@ -176,11 +176,12 @@ export class MapCamera {
       return b;
     };
     const centre = () => {const f = freeRect(this.viewport); return [f.x + f.width / 2, f.y + f.height / 2] as const;};
+    // Fit always rests on the map; Focus appears with a selection and the zoom pair once zoomed (T92).
     this.controls.append(
-      button('map-zoom-in', 'Zoom in', 'in', () => this.zoomBy(1.5, ...centre())),
-      button('map-zoom-out', 'Zoom out', 'out', () => this.zoomBy(1 / 1.5, ...centre())),
       button('map-fit', 'Fit whole map', 'fit', () => this.fit()),
       button('map-focus', 'Focus selected country', 'focus', () => this.focusSelected()),
+      button('map-zoom-out', 'Zoom out', 'out', () => this.zoomBy(1 / 1.5, ...centre())),
+      button('map-zoom-in', 'Zoom in', 'in', () => this.zoomBy(1.5, ...centre())),
     );
     svg.addEventListener('pointerdown', this.onPointerDown);
     svg.addEventListener('pointermove', this.onPointerMove);
@@ -217,6 +218,19 @@ export class MapCamera {
     this.set(focusCamera(this.current, box, this.world, this.viewport), {x: box.x + box.width / 2, y: box.y + box.height / 2});
   }
 
+  /** Shows only the camera controls that can act now; a hidden control hands its focus to Fit. */
+  refreshControls(): void {
+    const show = {'map-zoom-in': this.current.zoom > 1, 'map-zoom-out': this.current.zoom > 1,
+      'map-focus': !!this.svg.querySelector('[data-country][data-selected="true"]')} as Record<string, boolean>;
+    for (const [id, visible] of Object.entries(show)) {
+      const b = this.controls.querySelector<HTMLButtonElement>(`#${id}`);
+      if (!b || b.hidden === !visible) continue;
+      const focused = !visible && document.activeElement === b;
+      b.hidden = !visible;
+      if (focused) this.controls.querySelector<HTMLButtonElement>('#map-fit')?.focus({preventScroll: true});
+    }
+  }
+
   /** Restore a camera kept across a re-render; the quarter turn follows the viewport. */
   restore(state: CameraState): void {this.set(resizeCamera(state, this.world, this.viewport));}
 
@@ -247,6 +261,7 @@ export class MapCamera {
     }
     if (this.appliedRotation !== next.rotation) this.applyRotation(next.rotation);
     Object.assign(this.svg.dataset, {cameraZoom: String(next.zoom), cameraRotation: String(next.rotation)});
+    this.refreshControls();
     this.onChange?.(this.state);
   }
 

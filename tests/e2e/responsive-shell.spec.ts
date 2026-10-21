@@ -11,7 +11,7 @@ import type {Surface} from './shell';
 const MATRIX = ['320x568', '390x844', '568x320', '667x375', '844x390', '768x1024', '1024x768', '1280x800', '1920x1080'];
 // Width seams 680/1100 ±1 and height seams 320/500/600 ±1, plus the 240 px reduced-height fallback.
 const SEAMS = ['679x800', '680x800', '681x800', '1099x800', '1100x800', '1101x800', '1024x319', '1024x320', '1024x321', '1024x499', '1024x500', '1024x501', '1024x599', '1024x600', '1024x601', '640x240', '844x240'];
-const SURFACES: Surface[] = ['actions', 'details', 'settings', 'phase'];
+const SURFACES: Surface[] = ['menu', 'info'];
 type Box = {x: number; y: number; width: number; height: number};
 const size = (s: string) => { const [width, height] = s.split('x').map(Number); return {width: width!, height: height!}; };
 
@@ -48,7 +48,10 @@ async function audit(page: Page, label: string, insets = {top: 0, right: 0, bott
     const rect = (e: Element) => { const r = e.getBoundingClientRect(); return {x: r.x, y: r.y, width: r.width, height: r.height}; };
     const shown = (e: Element) => e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
     const groups: Record<string, Element[]> = {
-      status: [...document.querySelectorAll('#game-status > .hud-chip')].filter(shown),
+      menu: [...document.querySelectorAll('#game-status button')].filter(shown),
+      pause: [...document.querySelectorAll('.game-corner-end button')].filter(shown),
+      pool: [...document.querySelectorAll('#placement-pool')].filter(shown),
+      notice: [...document.querySelectorAll('#active-seat-notice, #game-folded-choice')].filter(shown),
       rail: [...document.querySelectorAll('#battle-action-rail button')].filter(shown),
       camera: [...document.querySelectorAll('.map-camera-controls button')].filter(shown),
       card: [...document.querySelectorAll('#game-focus-drawer')].filter(shown),
@@ -60,7 +63,7 @@ async function audit(page: Page, label: string, insets = {top: 0, right: 0, bott
     for (let y = insets.top + 2; y < innerHeight - insets.bottom; y += 12) for (let x = insets.left + 2; x < innerWidth - insets.right; x += 12) {
       const h = document.elementFromPoint(x, y); if (!h) { strays.push(`${x},${y}:none`); continue; }
       if (h.closest('.board')) continue;
-      const leaf = h.closest('#game-focus-drawer, #game-status > .hud-chip, #battle-action-rail button, .map-camera-controls button');
+      const leaf = h.closest('#game-focus-drawer, #game-folded-choice, #active-seat-notice, #placement-pool, #game-status button, .game-corner-end button, #battle-action-rail button, .map-camera-controls button');
       const inside = leaf && (() => { const r = leaf.getBoundingClientRect(); return x >= r.left - 1 && x <= r.right + 1 && y >= r.top - 1 && y <= r.bottom + 1; })();
       if (!inside) strays.push(`${x},${y}:${h.id || h.className || h.tagName}`);
     }
@@ -80,7 +83,7 @@ async function audit(page: Page, label: string, insets = {top: 0, right: 0, bott
   for (const c of data.controls) {
     expect.soft(c.hit, `${label}: ${c.id} is uncovered`).toBe(true);
     expect.soft(within(c.rect), `${label}: ${c.id} lies inside the safe viewport`).toBe(true);
-    if (c.group !== 'card') { expect.soft(c.rect.width, `${label}: ${c.id} target width`).toBeGreaterThanOrEqual(44); expect.soft(c.rect.height, `${label}: ${c.id} target height`).toBeGreaterThanOrEqual(44); }
+    if (!['card', 'notice'].includes(c.group)) { expect.soft(c.rect.width, `${label}: ${c.id} target width`).toBeGreaterThanOrEqual(44); expect.soft(c.rect.height, `${label}: ${c.id} target height`).toBeGreaterThanOrEqual(44); }
   }
   // Overlays never cover each other: controls of different groups are disjoint.
   const overlap = (a: Box, b: Box) => a.x < b.x + b.width - 0.5 && b.x < a.x + a.width - 0.5 && a.y < b.y + b.height - 0.5 && b.y < a.y + a.height - 0.5;
@@ -102,6 +105,24 @@ async function cardReachable(page: Page, label: string) {
     return out;
   });
   expect.soft(misses, `${label}: every card control is reachable`).toEqual([]);
+}
+
+/** T92: once the player has acted, the resting map carries corner icons and the pool number only. */
+async function quiet(page: Page, label: string, pool: number) {
+  const rest = await page.evaluate(() => {
+    const shown = (e: Element) => e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
+    const overlay = document.querySelector('.game-overlay')!;
+    // Only text a player can see: icon labels at zero size and assistive-only text do not count.
+    const walker = document.createTreeWalker(overlay, NodeFilter.SHOW_TEXT), seen: string[] = [];
+    for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+      const parent = node.parentElement!;
+      if (!node.textContent!.trim() || !shown(parent) || parseFloat(getComputedStyle(parent).fontSize) === 0 || parent.closest('.visually-hidden')) continue;
+      seen.push(node.textContent!.trim());
+    }
+    return {text: seen.join(' '), controls: [...overlay.querySelectorAll('button')].filter(shown).length};
+  });
+  expect.soft(rest.text, `${label}: no prose on the resting map`).toBe(String(pool));
+  expect.soft(rest.controls, `${label}: only corner controls rest on the map`).toBeLessThanOrEqual(6);
 }
 
 async function pool(page: Page, label: string, expected: number) {
@@ -151,12 +172,14 @@ for (const host of ['reference', 'geographic']) {
       await page.setViewportSize(size(viewport)); await settle(page);
       await pool(page, viewport, state.reinforcementPool);
       await expect(page.locator('#start-combat-button')).toBeHidden();
-      if (n === 1) await openSurface(page, 'actions');
+      if (n === 1) await openSurface(page, 'menu');
+      if (n === 2) await closeSurface(page);
       const id = owned[n % owned.length]!;
       await page.locator(`[data-country="${id}"]`).click();
       const next = apply(state, {kind: 'reinforce', province: id, amount: 1}); if (!next.ok) throw Error(next.error); state = next.state;
       await pool(page, `${viewport} after one placement`, state.reinforcementPool);
       await audit(page, `${viewport} placing`);
+      if (n !== 1) await quiet(page, `${viewport} placing`, state.reinforcementPool);
     }
     await closeSurface(page);
     while (state.reinforcementPool > 0) {
@@ -171,7 +194,7 @@ for (const host of ['reference', 'geographic']) {
     await page.locator('#start-combat-button').click();
     const combat = apply(state, {kind: 'endReinforcement'}); if (!combat.ok) throw Error(combat.error);
     await expect(page.locator('#placement-pool')).toBeHidden();
-    await expect(page.locator('#phase-details-button')).toHaveAccessibleName(/^Phase details: Attack/);
+    await expect(page.locator('#active-seat-notice')).toContainText('attack');
     expect(deserializeVersionedMatch(await saveVia(page, 'shellSave')).state).toEqual(combat.state);
     expect(errors).toEqual([]);
   });
@@ -185,7 +208,7 @@ for (const host of ['reference', 'geographic']) {
     for (const viewport of ['390x844', '844x390', '667x375']) {
       await page.setViewportSize(size(viewport)); await settle(page);
       await audit(page, `${viewport} safe`, insets);
-      await openSurface(page, 'actions'); await settle(page);
+      await openSurface(page, 'menu'); await settle(page);
       await evidence(page, info, `${host}-${viewport}-safe-insets`, await audit(page, `${viewport} safe card`, insets));
       await closeSurface(page);
     }
@@ -202,7 +225,7 @@ for (const host of ['reference', 'geographic']) {
       await expect(page.locator('#game-pause-button')).toBeInViewport({ratio: 1});
       await evidence(page, info, `${host}-${viewport}-reduced-height`, data);
       await page.locator('#close-game-drawer').click();
-      await expect(page.locator('#open-game-settings')).toBeFocused();
+      await expect(page.locator('#open-game-menu')).toBeFocused();
     }
     expect(await saveVia(page, 'shellSave')).toBe(before);
     expect(errors).toEqual([]);

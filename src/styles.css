@@ -1433,54 +1433,67 @@ dialog h2 {
 .battle-reference[data-panel-detail] .battle-rolls { max-height:36px; }
 .battle-reference[data-panel-detail] .battle-controls button { min-height:32px; padding:4px 8px; }
 
-/* T79: the full-viewport shell. The board fills the viewport minus the safe
-   areas; status chips, the icon rail, the camera controls and one requested card
-   float over it in disjoint grid areas, so no overlay covers another or a
-   required control. Tests override the --safe-* properties to simulate cutouts.
-   [designed] 44 px targets, 8 px apart; 16 px primary text. */
+/* T79/T92: the quiet full-viewport shell, after the accepted revision-7 sketches.
+   The board fills the viewport minus the safe areas. Only corner icons rest on it:
+   menu and Cards top-left, Pause top-right, Fit bottom-left, the information icon
+   and legal phase actions bottom-right; the pool is an icon and a number at top
+   centre. One-line notices and one requested card sit beside the map in their own
+   grid area, so no overlay covers another or a required control. Tests override
+   the --safe-* properties to simulate cutouts. [designed] 48 px icons (the sketch
+   size, above the 44 px minimum), 8 px apart; 16 px text. */
 :root { --safe-top:env(safe-area-inset-top,0px); --safe-right:env(safe-area-inset-right,0px); --safe-bottom:env(safe-area-inset-bottom,0px); --safe-left:env(safe-area-inset-left,0px); }
 :is(#reference-game,#geographic-game).battle-reference { position:fixed; inset:0; height:auto; display:block; overflow:hidden;
-  --avail-h:calc(100dvh - var(--safe-top) - var(--safe-bottom)); --gap:8px; --target:44px; }
+  --avail-h:calc(100dvh - var(--safe-top) - var(--safe-bottom)); --gap:8px; --edge:16px; --target:48px; }
 .battle-reference > .board { position:absolute; top:var(--safe-top); right:var(--safe-right); bottom:var(--safe-bottom); left:var(--safe-left); padding:0; }
 .battle-reference > .board > svg { display:block; width:100%; height:100%; border-radius:0; box-shadow:none; }
 .battle-reference > .game-store { display:none; }
-.game-overlay { position:absolute; z-index:3; top:var(--safe-top); right:var(--safe-right); bottom:var(--safe-bottom); left:var(--safe-left); padding:var(--gap); pointer-events:none; display:grid;
+.visually-hidden { position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+.game-overlay { position:absolute; z-index:3; top:var(--safe-top); right:var(--safe-right); bottom:var(--safe-bottom); left:var(--safe-left); padding:var(--edge); pointer-events:none; display:grid; gap:var(--gap);
   grid-template-columns:auto minmax(0,1fr) auto auto; grid-template-rows:auto minmax(0,1fr);
-  grid-template-areas:"hud hud hud rail" "camera . drawer rail"; }
-.game-overlay > * { pointer-events:auto; min-width:0; min-height:0; }
-.game-hud { grid-area:hud; justify-self:start; display:flex; flex-wrap:wrap; gap:var(--gap); margin-bottom:var(--gap); pointer-events:none; }
-.game-hud > *, .game-overlay .map-camera-controls > * { pointer-events:auto; }
-.hud-chip { display:inline-flex; align-items:center; gap:6px; min-height:var(--target); padding:0 12px; font:600 16px/1.2 Inter, system-ui, sans-serif; color:var(--text); background:color-mix(in srgb, var(--surface) 92%, transparent); border:1px solid #688497; border-radius:22px; box-shadow:0 2px 10px #0006; white-space:nowrap; }
-.hud-chip[hidden] { display:none; }
-button.hud-chip { cursor:pointer; }
-#placement-pool { border-color:var(--accent); color:var(--accent); }
-#placement-pool-count { font-size:18px; font-variant-numeric:tabular-nums; }
-.game-overlay .map-camera-controls { pointer-events:none; position:static; grid-area:camera; align-self:end; justify-self:start; margin-right:var(--gap); display:grid; gap:var(--gap);
-  grid-auto-flow:column; grid-template-rows:repeat(auto-fit, var(--target)); max-height:calc(var(--avail-h) - 2 * var(--gap) - var(--target) - var(--gap)); }
-#battle-action-rail { grid-area:rail; align-self:start; margin-left:var(--gap); display:grid; gap:var(--gap); grid-auto-flow:column; grid-template-rows:repeat(auto-fit, var(--target)); grid-auto-columns:var(--target);
-  max-height:calc(var(--avail-h) - 2 * var(--gap)); pointer-events:none; direction:rtl; }
-#battle-action-rail > *, #battle-action-rail :is(.buttons,.battle-actions) > * { pointer-events:auto; direction:ltr; }
-#battle-action-rail > :is(.buttons,.battle-actions) { display:contents; }
-#battle-action-rail > [hidden], #battle-action-rail > .battle-actions[hidden], #battle-action-rail :is(.buttons,.battle-actions) button:disabled, #game-focus-drawer[hidden] { display:none !important; }
-.game-icon, #battle-action-rail button { display:grid; place-items:center; width:var(--target); height:var(--target); min-height:var(--target); padding:0; margin:0; font-size:0; line-height:1; color:var(--text); border:1px solid #688497; background:var(--surface-2); border-radius:8px; box-shadow:0 2px 10px #0006; grid-column:auto; grid-row:auto; }
-#battle-action-rail #open-required-action { border-color:var(--accent); color:var(--accent); border-width:2px; }
-#battle-action-rail :is(#start-combat-button,#fight-on-button) { border-color:var(--accent); color:var(--accent); }
+  grid-template-areas:"start . . end" "camera . side actions"; }
+.game-overlay > * { min-width:0; min-height:0; pointer-events:none; }
+.game-overlay button, .game-overlay .game-notice, .game-overlay #game-focus-drawer, .game-overlay .hud-chip { pointer-events:auto; }
+.game-corner { display:flex; gap:var(--gap); align-self:start; }
+.game-corner-start { grid-area:start; }
+.game-corner-end { grid-area:end; justify-self:end; }
+.game-corner[hidden], .game-overlay [hidden] { display:none !important; }
+.game-pool-slot { grid-row:1; grid-column:1 / -1; justify-self:center; align-self:start; }
+.hud-chip { display:inline-flex; align-items:center; gap:8px; min-height:var(--target); padding:0 16px; font:600 18px/1 Inter, system-ui, sans-serif; font-variant-numeric:tabular-nums; color:var(--text); background:var(--surface); border:1px solid #3d5a6d; border-radius:12px; box-shadow:0 2px 10px #0006; }
+.game-icon, #battle-action-rail button, .game-corner-end button, .map-camera-button { display:grid; place-items:center; width:var(--target); height:var(--target); min-height:var(--target); padding:0; margin:0; font-size:0; line-height:1; color:var(--text); border:1px solid #3d5a6d; background:var(--surface); border-radius:12px; box-shadow:0 2px 10px #0006; grid-column:auto; grid-row:auto; }
+.game-overlay .map-camera-controls { position:static; grid-area:camera; align-self:end; display:flex; flex-direction:column-reverse; gap:var(--gap); }
+#battle-action-rail { grid-area:actions; align-self:end; justify-self:end; display:grid; gap:var(--gap); grid-auto-flow:column; grid-template-rows:repeat(auto-fit, var(--target)); grid-auto-columns:var(--target);
+  max-height:calc(var(--avail-h) - 2 * var(--edge) - var(--target) - var(--gap)); direction:rtl; }
+#battle-action-rail > *, #battle-action-rail .buttons > * { direction:ltr; }
+#battle-action-rail > .buttons { display:contents; }
+#battle-action-rail .buttons button:disabled { display:none !important; }
+#battle-action-rail #end-turn-button { order:9; }
+#battle-action-rail :is(#start-combat-button, #end-turn-button) { border-color:var(--accent); background:var(--accent); color:var(--accent-ink); }
+#game-info-button { order:-1; }
 .rail-command-icon { display:none; }
-#battle-action-rail .rail-command-icon { display:block; }
+.game-overlay .rail-command-icon { display:block; }
 .game-action-symbol { flex-shrink:0; }
-#game-focus-drawer { grid-area:drawer; align-self:start; margin-left:var(--gap); width:min(420px, 42vw); max-height:100%; display:flex; flex-direction:column; border:1px solid #7892a4; border-radius:10px; background:var(--surface); box-shadow:0 8px 32px #0009; font-size:16px; }
-#close-game-drawer { flex-shrink:0; }
-/* Portrait: the rail runs down the right edge, the camera controls sit under the
-   status chips, and a requested card rises from the bottom as a sheet. */
+.game-side { grid-area:side; display:flex; flex-direction:column; align-items:flex-end; gap:var(--gap); }
+.game-notice { display:flex; align-items:center; gap:10px; min-height:var(--target); max-width:min(380px, 42vw); padding:6px 16px; font:600 16px/1.3 Inter, system-ui, sans-serif; color:var(--text); background:var(--surface); border:1px solid #3d5a6d; border-radius:12px; box-shadow:0 2px 10px #0006; }
+.game-folded { margin-block:auto; padding-right:6px; }
+.game-folded #open-required-action { width:44px; height:44px; min-height:44px; background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+#game-focus-drawer { margin-block:auto; width:min(380px, 42vw); max-height:100%; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:start; gap:4px; padding:12px 12px 14px 16px; border:1px solid #3d5a6d; border-radius:12px; background:var(--surface); box-shadow:0 8px 32px #0009; font-size:16px; }
+#game-focus-drawer[data-placement="center"] { width:min(400px, 100%); }
+.game-overlay:has(#game-focus-drawer[data-placement="center"]:not([hidden])) .game-side { grid-column:2 / 4; align-items:center; }
+.game-drawer-content { min-height:0; max-height:100%; overflow-y:auto; overscroll-behavior:contain; }
+#close-game-drawer { width:44px; height:44px; min-height:44px; box-shadow:none; }
+/* Portrait: corners stay in the corners; a requested card rises above the bottom icons. */
 @media (orientation:portrait) {
-  .game-overlay { grid-template-columns:minmax(0,1fr) auto; grid-template-rows:auto auto minmax(0,1fr) auto;
-    grid-template-areas:"hud rail" "camera rail" ". rail" "drawer rail"; }
-  .game-overlay .map-camera-controls { align-self:start; margin:0 0 var(--gap); grid-auto-flow:row; grid-template-rows:none; grid-auto-columns:auto; grid-template-columns:repeat(auto-fit, var(--target)); max-height:none; max-width:100%; }
-  #game-focus-drawer { align-self:end; margin:var(--gap) 0 0; width:auto; max-height:calc(var(--avail-h) * 0.55); }
+  .game-overlay { grid-template-columns:auto minmax(0,1fr) auto; grid-template-rows:auto minmax(0,1fr) auto;
+    grid-template-areas:"start . end" "side side side" "camera . actions"; }
+  .game-overlay .map-camera-controls { flex-direction:row; }
+  #battle-action-rail { display:flex; flex-direction:row; flex-wrap:wrap; justify-content:flex-end; max-height:none; direction:ltr; }
+  #battle-action-rail > .buttons { display:contents; }
+  .game-side { align-items:flex-end; }
+  .game-notice { max-width:100%; }
+  #game-focus-drawer { width:100%; margin:auto 0 0; max-height:calc(var(--avail-h) * 0.6); }
+  .game-overlay:has(#game-focus-drawer[data-placement="center"]:not([hidden])) .game-side { grid-column:1 / -1; }
+  #game-focus-drawer[data-placement="center"] { margin:auto; }
 }
-.game-drawer-head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 12px; border-bottom:1px solid var(--line); }
-.game-drawer-head h2 { font-size:17px; margin:0; }
-.game-drawer-content { min-height:0; overflow-y:auto; padding:12px; }
 #game-focus-drawer .action { padding:0; background:none; border:0; }
 #game-focus-drawer .action > :is(.legend,.hint) { display:none; }
 #game-focus-drawer .action[data-battle="true"] > .pick { display:none; }
@@ -1501,5 +1514,70 @@ button.hud-chip { cursor:pointer; }
 #game-focus-drawer .match-load { display:flex; flex-direction:column; align-items:stretch; gap:8px; }
 #game-focus-drawer .match-load input { max-width:100%; }
 #game-focus-drawer .panel-foot { margin:0; }
-.map-camera-button { display:grid; place-items:center; width:44px; height:44px; min-height:44px; padding:0; border:1px solid #688497; border-radius:8px; background:var(--surface-2); color:var(--text); }
 .map-camera-button svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+/* T92: concise cards after the sketches — one line, icon controls, a short note. */
+.battle-reference > .board { background:#193e51; }
+.battle-reference #game-focus-drawer .action { display:block; }
+.battle-reference #game-focus-drawer .action > :is(.pick,.hint,.legend,#reference-computer-status) { display:none; }
+.battle-reference #game-focus-drawer :is(.battle-controls,.friendly-move-controls) { padding:0; margin:0; border:0; background:none; min-height:0; }
+.battle-reference #game-focus-drawer .card-line { display:flex; flex-wrap:wrap; align-items:center; gap:6px 8px; margin:2px 0 12px; font:600 16px/1.3 Inter, system-ui, sans-serif; color:var(--text); }
+.battle-reference #game-focus-drawer .card-line .battle-count { display:inline-grid; place-items:center; min-width:30px; height:28px; padding:0 6px; border:1px solid #688497; border-radius:6px; font-variant-numeric:tabular-nums; }
+.battle-reference #game-focus-drawer .battle-arrow { color:var(--accent); }
+.battle-reference #game-focus-drawer .card-prompt { font-weight:600; }
+.battle-reference #game-focus-drawer .card-note { margin:8px 0 0; font-size:14px; line-height:1.35; color:var(--muted); }
+.battle-reference #game-focus-drawer .card-icons { display:flex; flex-wrap:wrap; align-items:flex-start; gap:8px; margin:0; }
+.battle-reference #game-focus-drawer .card-icon { display:inline-flex; flex-direction:column; align-items:center; gap:4px; min-width:48px; min-height:48px; padding:0; margin:0; border:0; background:none; color:var(--text); font:600 13px/1.2 Inter, system-ui, sans-serif; box-shadow:none; }
+.battle-reference #game-focus-drawer .card-icon > svg { box-sizing:content-box; width:24px; height:24px; padding:11px; border:1px solid #3d5a6d; border-radius:12px; background:var(--surface-2); }
+.battle-reference #game-focus-drawer .card-icon.primary > svg { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+.battle-reference #game-focus-drawer .card-icon:disabled { opacity:.4; }
+.battle-reference #game-focus-drawer .card-icon:focus-visible { outline:none; }
+.battle-reference #game-focus-drawer .card-icon:focus-visible > svg { outline:3px solid var(--focus); outline-offset:2px; }
+.battle-reference #game-focus-drawer .battle-actions .card-icon:disabled { display:none; }
+.battle-reference #game-focus-drawer #cancel-battle-button { margin-left:auto; }
+.battle-reference #game-focus-drawer .card-icons input[type="number"] { width:60px; height:48px; padding:0 4px; text-align:center; font:700 18px Inter, system-ui, sans-serif; color:var(--text); background:var(--bg); border:1px solid var(--accent); border-radius:12px; }
+.battle-reference #game-focus-drawer .card-range { display:flex; align-items:center; gap:8px; margin-top:4px; }
+.battle-reference #game-focus-drawer .card-range input[type="range"] { flex:1; min-width:0; accent-color:var(--accent); }
+.battle-reference #game-focus-drawer .card-bound { min-width:44px; min-height:44px; padding:0; border:0; background:none; color:var(--muted); font:600 14px Inter, system-ui, sans-serif; box-shadow:none; }
+.battle-reference #game-focus-drawer .card-fields { display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:8px; font-size:14px; color:var(--muted); }
+.battle-reference #game-focus-drawer .card-fields label { display:inline-flex; align-items:center; gap:6px; }
+.battle-reference #game-focus-drawer .card-fields input { width:56px; min-height:36px; }
+.battle-reference #game-focus-drawer .card-fields select { min-height:36px; }
+.battle-reference #game-focus-drawer .battle-feedback { margin-top:10px; }
+.battle-reference #game-focus-drawer .battle-message { margin:6px 0 0; color:var(--text); }
+.battle-reference #game-focus-drawer .card-text-button { min-height:44px; margin-top:4px; padding:0; border:0; background:none; color:var(--muted); font:500 14px Inter, system-ui, sans-serif; text-decoration:underline; box-shadow:none; }
+.battle-reference #game-focus-drawer .battle-controls[data-pending-capture="true"] > :is(.battle-actions,.battle-feedback,.battle-settings,.battle-rolls) { display:none; }
+.battle-reference #game-focus-drawer .battle-controls[data-pending-capture="true"] > .battle-context { margin-bottom:6px; font-size:14px; font-weight:500; color:var(--muted); }
+.battle-reference #game-focus-drawer .battle-controls[data-pending-capture="true"] > .battle-context .battle-count { height:24px; }
+.battle-reference #game-focus-drawer .capture-choice { margin:0; padding:0; border:0; }
+.battle-reference #game-focus-drawer .capture-adjust #confirm-capture-button, .battle-reference #game-focus-drawer .capture-adjust #confirm-friendly-move-button { margin-left:4px; }
+.battle-reference #game-focus-drawer .victory-result { display:flex; flex-direction:column; align-items:center; text-align:center; }
+.battle-reference #game-focus-drawer .result-title { margin:2px 0 4px; font:700 26px/1.2 Inter, system-ui, sans-serif; }
+.battle-reference #game-focus-drawer .victory-result .card-note { margin:0 0 14px; }
+.battle-reference #game-focus-drawer .victory-choices { justify-content:center; gap:12px; }
+.battle-reference #game-focus-drawer #victory-standings { margin-top:12px; font-size:14px; }
+.battle-reference #game-focus-drawer[data-surface="actions"] .card-public-counts { display:none; }
+.battle-reference #game-focus-drawer .card-choice-controls button { min-height:44px; font-size:14px; }
+.battle-reference #game-focus-drawer .game-info-line { margin:2px 0 8px; font:600 16px/1.3 Inter, system-ui, sans-serif; }
+.battle-reference #game-focus-drawer .phase-explanation { margin:0; font-size:14px; color:var(--muted); }
+.battle-reference #game-focus-drawer :is(#capture-amount,#friendly-move-amount) { flex:none; width:64px; max-width:64px; }
+.battle-reference #game-focus-drawer[data-surface="actions"] .action:not([data-card-choice="true"]) .card-interactions { display:none; }
+.battle-reference #game-focus-drawer .card-icon { width:auto; flex:none; }
+.battle-reference #game-focus-drawer .score { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:6px; margin:0 0 10px; padding:0; border:0; background:none; }
+.battle-reference #game-focus-drawer .score-row { padding:4px 6px; }
+.battle-reference #game-focus-drawer .own-card small { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.battle-reference #game-focus-drawer .own-card-hand { display:flex; flex-wrap:wrap; gap:6px; }
+.battle-reference #game-focus-drawer .own-card { min-width:0; padding:6px 8px; font-size:14px; }
+.game-info-store { display:none; }
+.battle-reference #game-focus-drawer[data-surface="menu"] .score { grid-template-columns:1fr; gap:2px; }
+.battle-reference #game-focus-drawer[data-surface="menu"] .score-row { display:flex; align-items:center; gap:10px; min-width:0; }
+.battle-reference #game-focus-drawer[data-surface="menu"] .score-row .score-num { display:flex; flex-wrap:wrap; gap:0 10px; font-size:14px; }
+.battle-reference #game-focus-drawer[data-surface="menu"] .score-row .score-num > * { font-size:14px; }
+.battle-reference #game-focus-drawer .log-card { height:auto; margin:0 0 12px; padding:8px; display:flex; flex-direction:column; }
+.battle-reference #game-focus-drawer .log-card .log { max-height:180px; min-height:44px; overflow:auto; }
+.battle-reference #game-focus-drawer .game-identity { margin:0; font-size:14px; color:var(--muted); }
+.battle-reference #game-focus-drawer .game-playback { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:8px 12px; }
+.battle-reference #game-focus-drawer .game-playback > #game-log-button { grid-column:1 / -1; min-height:44px; }
+.battle-reference #game-focus-drawer .game-playback select { min-height:40px; font-size:15px; }
+.game-side { overflow:hidden; }
+#game-focus-drawer { min-height:0; flex:0 1 auto; grid-template-rows:minmax(0,1fr); }
+.game-drawer-content { height:100%; }

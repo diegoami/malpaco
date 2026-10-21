@@ -3,16 +3,22 @@
 import {expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 
-export type Surface = 'actions' | 'cards' | 'details' | 'settings' | 'phase';
-const openers: Record<Surface, string> = {actions: '#open-game-actions', cards: '#open-game-cards', details: '#open-game-details', settings: '#open-game-settings', phase: '#phase-details-button'};
+// T92: totals, history and settings share the menu card; phase details are the information card.
+export type Surface = 'actions' | 'cards' | 'menu' | 'info' | 'details' | 'settings' | 'phase';
+type Card = 'actions' | 'cards' | 'menu' | 'info';
+const cardOf: Record<Surface, Card> = {actions: 'actions', cards: 'cards', menu: 'menu', info: 'info', details: 'menu', settings: 'menu', phase: 'info'};
+const openers: Record<Card, string> = {actions: '#open-required-action', cards: '#open-game-cards', menu: '#open-game-menu', info: '#game-info-button'};
 
 /** Opens a card unless it is already open. */
 export async function openSurface(page: Page, surface: Surface): Promise<void> {
   if (!await page.locator('#battle-action-rail').count()) return; // the setup page and legacy routes have no cards
   const drawer = page.locator('#game-focus-drawer');
-  if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === surface) return;
-  await page.locator(openers[surface]).click();
-  await expect(drawer).toHaveAttribute('data-surface', surface);
+  const card = cardOf[surface];
+  if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === card) return;
+  // Current choice has no resting icon: it opens by itself for a choice, or from the folded choice's return icon.
+  if (card === 'actions' && !await page.locator(openers.actions).isVisible()) { await expect(drawer).toHaveAttribute('data-surface', 'actions'); await expect(drawer).toBeVisible(); return; }
+  await page.locator(openers[card]).click();
+  await expect(drawer).toHaveAttribute('data-surface', card);
   await expect(drawer).toBeVisible();
 }
 
@@ -24,11 +30,11 @@ export async function closeSurface(page: Page): Promise<void> {
 /** Runs `body` with a card open, then restores the previous card (or none). */
 export async function withSurface<T>(page: Page, surface: Surface, body: () => Promise<T>): Promise<T> {
   const drawer = page.locator('#game-focus-drawer');
-  const previous = await page.locator('#battle-action-rail').count() && await drawer.isVisible() ? await drawer.getAttribute('data-surface') as Surface : null;
+  const previous = await page.locator('#battle-action-rail').count() && await drawer.isVisible() ? await drawer.getAttribute('data-surface') as Card : null;
   if (!await page.locator('#battle-action-rail').count()) return body();
   await openSurface(page, surface);
   try { return await body(); } finally {
-    if (previous && previous !== surface) await openSurface(page, previous);
+    if (previous && previous !== cardOf[surface]) await openSurface(page, previous);
     else if (!previous) await closeSurface(page);
   }
 }

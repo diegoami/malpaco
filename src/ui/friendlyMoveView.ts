@@ -1,8 +1,9 @@
 import {armyCount, province} from "../core";
 import {h} from "./dom";
+import {iconButton} from "./icons";
 import type {BattleController, BattleView} from "./battleController";
 
-/** Only the confirmed action enters history; every control captures its revision. */
+/** Only the confirmed action enters history; every control captures its revision. One line plus icons (T92). */
 export class FriendlyMoveView {
   readonly el = h("section", {class:"battle-controls friendly-move-controls", role:"region", "aria-label":"Friendly move"});
   private draftKey: string | null = null;
@@ -19,37 +20,44 @@ export class FriendlyMoveView {
     const {state, from, to, revision} = view;
     const selected = from !== null && to !== null;
     const maximum = from ? armyCount(state, from) - 1 : 1;
-    const amount = h("input", {id:"friendly-move-amount", type:"number", min:1, max:maximum, step:1, value:draft ?? String(maximum), disabled:!selected, "aria-describedby":"friendly-move-help"});
-    const button = (id: string, label: string, disabled: boolean, action: () => void, primary = false) => {
-      const b = h("button", {id, type:"button", disabled, class:primary ? "primary" : ""}, label);
-      b.addEventListener("click", action);
+    const amount = h("input", {id:"friendly-move-amount", type:"number", min:1, max:maximum, step:1, value:draft ?? String(maximum), disabled:!selected, "aria-label":"Armies to move", "aria-describedby":"friendly-move-help", inputmode:"numeric"});
+    const range = h("input", {id:"friendly-move-range", type:"range", min:1, max:maximum, step:1, value:amount.value, disabled:!selected, "aria-label":"Armies to move, slider"});
+    const preview = h("p", {id:"friendly-move-preview", class:"card-line", "aria-live":"polite"});
+    const show = () => {
+      if (!from || !to) { preview.textContent = from ? "Choose an own neighbour" : "Choose a country to move from"; return; }
+      const n = Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : NaN;
+      preview.textContent = Number.isNaN(n) ? "Preview · enter an amount" : `Preview · ${armyCount(state, from) - n} stay / ${armyCount(state, to) + n} arrive`;
+      if (!Number.isNaN(n)) range.value = String(Math.max(1, Math.min(maximum, n)));
+    };
+    const choose = (n: number) => { amount.value = String(Math.max(1, Math.min(maximum, n))); show(); };
+    const current = () => Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : maximum;
+    amount.addEventListener("input", show);
+    range.addEventListener("input", () => choose(range.valueAsNumber));
+    show();
+    const bound = (id: string, name: string, value: number) => {
+      const b = h("button", {id, type:"button", class:"card-bound", disabled:!selected, "aria-label":name, title:name}, String(value));
+      b.addEventListener("click", () => choose(value));
       return b;
     };
-    const choose = (n: number) => { amount.value = String(Math.max(1, Math.min(maximum, n))); };
-    const current = () => Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : maximum;
-    const context = (label: string, id: string | null) => h("div", {class:"battle-country"},
-      h("span", {class:"battle-label"}, label),
-      h("strong", {}, id ? province(state.map, id)!.name : label === "From" ? "Choose a marked country" : "Choose an owned neighbour"),
-      h("span", {class:"battle-count"}, id ? String(armyCount(state, id)) : "—"));
+    const name = (id: string | null) => id ? `${province(state.map, id)!.name} ${armyCount(state, id)}` : "";
     this.el.append(
-      h("h2", {class:"battle-title"}, "Friendly move"),
-      h("div", {class:"battle-context"}, context("From", from), context("To", to)),
-      h("p", {id:"friendly-move-help", class:"battle-help"}, from ? `Move 1–${maximum} armies. Leave at least one behind. This ends your turn.` : "Marked countries can supply armies. Choose one, then an owned neighbour."),
-      h("label", {for:"friendly-move-amount", class:"friendly-quantity"}, "Armies to move", amount),
-      h("div", {class:"capture-adjust"},
-        button("friendly-move-minimum-button", "Minimum", !selected, () => choose(1)),
-        button("friendly-move-less-button", "−", !selected, () => choose(current() - 1)),
-        button("friendly-move-more-button", "+", !selected, () => choose(current() + 1)),
-        button("friendly-move-maximum-button", "Maximum", !selected, () => choose(maximum))),
-      button("confirm-friendly-move-button", "Move and end turn", !selected, () => {
-        if (from && to && !this.controller.dispatch({kind:"friendlyMove", from, to, amount:amount.valueAsNumber}, revision)) amount.reportValidity();
-      }, true),
-      h("div", {class:"friendly-draft-actions"},
-        button("cancel-friendly-move-button", "Cancel · back to attacks", false, () => { this.controller.cancelFriendlyMove(revision); }),
-        button("skip-friendly-move-button", "Skip move · end turn", false, () => { this.controller.dispatch({kind:"endTurn"}, revision); })),
+      h("h2", {class:"battle-title visually-hidden"}, "Friendly move"),
+      preview,
+      h("p", {class:"card-note battle-context"}, from ? `${name(from)}${to ? ` → ${name(to)}` : ""}` : "Marked countries can supply armies."),
+      h("div", {class:"card-icons capture-adjust"},
+        iconButton("friendly-move-less-button", "Move one fewer army", null, "minus", !selected, () => choose(current() - 1)),
+        amount,
+        iconButton("friendly-move-more-button", "Move one more army", null, "plus", !selected, () => choose(current() + 1)),
+        iconButton("confirm-friendly-move-button", "Move and end turn", null, "confirm", !selected, () => {
+          if (from && to && !this.controller.dispatch({kind:"friendlyMove", from, to, amount:amount.valueAsNumber}, revision)) amount.reportValidity();
+        }, true),
+        iconButton("cancel-friendly-move-button", "Cancel · back to attacks", null, "close", false, () => { this.controller.cancelFriendlyMove(revision); })),
+      h("p", {id:"friendly-move-help", class:"card-note"}, selected ? `Move & end turn · range 1–${maximum}` : "Then choose an own neighbour",
+        h("span", {class:"visually-hidden"}, from ? `. Move 1–${maximum} armies. Leave at least one behind. This ends your turn.` : ". Marked countries can supply armies. Choose one, then an owned neighbour.")),
+      h("div", {class:"card-range"}, bound("friendly-move-minimum-button", "Minimum", 1), range, bound("friendly-move-maximum-button", "Maximum", maximum)),
+      h("button", {id:"skip-friendly-move-button", type:"button", class:"card-text-button"}, "Skip move · end turn"),
     );
-    this.el.querySelector("#friendly-move-less-button")!.setAttribute("aria-label", "Move one fewer army");
-    this.el.querySelector("#friendly-move-more-button")!.setAttribute("aria-label", "Move one more army");
+    this.el.querySelector<HTMLButtonElement>("#skip-friendly-move-button")!.addEventListener("click", () => { this.controller.dispatch({kind:"endTurn"}, revision); });
     if (focused) this.el.querySelector<HTMLElement>(`#${focused}`)?.focus({preventScroll:true});
   }
 }
