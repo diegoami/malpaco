@@ -60,8 +60,8 @@ async function totals(p: Page, state?: GameState) {
   return s;
 }
 async function visibleControls(p: Page) {
-  // T79: pause and the event log ride the rail; speed waits in the settings card.
-  for (const control of [pause(p), p.locator("#game-log-button")]) {
+  // T92: Pause rests in its corner; speed and the event log wait in the menu card.
+  for (const control of [pause(p)]) {
     await expect(control).toBeVisible();
     expect(await control.evaluate(node => {
       const r = node.getBoundingClientRect();
@@ -70,7 +70,7 @@ async function visibleControls(p: Page) {
   }
   await expect(pause(p)).toBeEnabled();
   await withSurface(p, "settings", async () => {
-    await expect(speed(p)).toBeVisible(); await expect(speed(p)).toBeEnabled();
+    await expect(speed(p)).toBeVisible(); await expect(speed(p)).toBeEnabled(); await expect(p.locator("#game-log-button")).toBeVisible();
     await speed(p).focus(); await expect(speed(p)).toBeFocused();
     await speed(p).press("Home"); await speed(p).press("End");
   });

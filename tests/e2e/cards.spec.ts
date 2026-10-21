@@ -19,7 +19,8 @@ async function exact(page:Page,original:LoadedVersionedMatch,state:GameState){co
 /** The Cards region shows in Current choice during a card choice, otherwise in the Cards card (T79). */
 async function showCards(page:Page){if(!await cards(page).isVisible())await openSurface(page,'cards');}
 async function counts(page:Page,state:GameState){
- await showCards(page);
+ // The public counts live in the Cards card; a choice card keeps to the choice (T92).
+ await openSurface(page,'cards');
  const deck=state.cards!,summary=cards(page).locator('.card-public-counts');
  await expect(summary).toHaveCount(1);await expect(summary).toBeVisible();
  await expect(summary).toContainText(new RegExp(String.raw`Draw:\s*${deck.drawPile.length}\b`));
@@ -31,7 +32,7 @@ async function counts(page:Page,state:GameState){
 async function inspect(page:Page,hand:readonly CardKind[]){await showCards(page);await page.getByRole('button',{name:/^View your hand:/}).click();const dialog=page.getByRole('dialog',{name:'Your cards',exact:true});await expect(dialog).toBeVisible();for(const kind of KINDS)await expect(dialog.getByText(kind,{exact:true})).toHaveCount(hand.filter(k=>k===kind).length);await dialog.getByRole('button',{name:'Close your hand',exact:true}).click();await expect(dialog).not.toBeVisible();}
 async function hand(page:Page,expected:readonly CardKind[]){await showCards(page);const region=cards(page).locator('[aria-label="Your hand"]');await expect(region).toContainText(`Your hand: ${expected.length} of 5`);for(const kind of KINDS)await expect(region.getByText(kind,{exact:true})).toHaveCount(expected.filter(k=>k===kind).length);}
 // T79: pause and the event log stay on the rail; speed and detail live in the settings card.
-async function essentials(page:Page){for(const el of [page.locator('#game-pause-button'),page.getByRole('button',{name:'Game event log',exact:true})]){await expect(el).toBeVisible();expect(await el.evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=-1&&r.top>=-1&&r.right<=innerWidth+1&&r.bottom<=innerHeight+1;})).toBe(true);}expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);}
+async function essentials(page:Page){await withSurface(page,'menu',()=>expect(page.getByRole('button',{name:'Game event log',exact:true})).toBeVisible());for(const el of [page.locator('.game-corner-end button:visible')]){await expect(el).toBeVisible();expect(await el.evaluate(node=>{const r=node.getBoundingClientRect();return r.left>=-1&&r.top>=-1&&r.right<=innerWidth+1&&r.bottom<=innerHeight+1;})).toBe(true);}expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);}
 /** The old sidebar's fixed action height is retired with the sidebar (T79); the card choice lives in Current choice. */
 async function anchors(page:Page){await load(page,readFileSync('fixtures/new-game/T71/fixtures/geographic-reinforcement.json','utf8'));return {compact:0,detailed:0} as Record<Detail,number>;}
 async function fits(page:Page,mode:Detail,_baseline:Record<Detail,number>,required:Locator[]){if(await detail(page).inputValue()!==mode)await setDetail(page,mode);await openSurface(page,'actions');for(const el of required)await reachableInCard(el);await essentials(page);}
@@ -49,7 +50,7 @@ async function noPrivateLeak(page:Page,loaded:LoadedVersionedMatch,state:GameSta
  // Exact own-hand assertions elsewhere catch adding opponent cards even when a
  // kind is legitimately public. Long histories may publicly reveal every kind.
 }
-async function closedLog(page:Page){await page.getByRole('button',{name:'Game event log',exact:true}).click();const log=page.getByRole('list',{name:'All game events',exact:true});await expect(log).toBeVisible();const text=await log.textContent()??'';await page.keyboard.press('Escape');return text;}
+async function closedLog(page:Page){await openSurface(page,'menu');await openSurface(page,'menu');await page.getByRole('button',{name:'Game event log',exact:true}).click();const log=page.getByRole('list',{name:'All game events',exact:true});await expect(log).toBeVisible();const text=await log.textContent()??'';await page.keyboard.press('Escape');return text;}
 
 for(const row of TRADE_CASES)test(`${row.kind}: literal effect, ordinary trade, own hand and public piles fit both modes`,async({page},info)=>{
  await begin(page);const baseline=await anchors(page),before=fixture(row.file);expect(before.state.reinforcementPool).toBe(row.pool);const action:Action={kind:'tradeCards',handIndices:row.indices},expected=next(before.state,action);expect(expected.reinforcementPool).toBe(row.after);
@@ -71,7 +72,7 @@ test('reference Raid has a private-safe named preview; friendly/background click
 
 test('Shield feedback reveals only cancellation; spent set and exactly one Shield are conserved without RNG',async({page})=>{
  await begin(page);const before=fixture('T39-legal-pending-raid.json'),target='province_41',owner=before.state.ownerOf[target]!,original=before.state.cards!.hands[owner]!,expected=next(before.state,{kind:'raidTarget',province:target}),name=before.state.map.provinces.find(p=>p.id===target)!.name;expect(before.state.armies[target]).toBe(1);expect(expected.armies[target]).toBe(1);expect(expected.rng).toEqual(before.state.rng);expect(expected.cards!.hands[owner]!.filter(k=>k==='Shield')).toHaveLength(original.filter(k=>k==='Shield').length-1);expect(expected.cards!.hands[owner]!.filter(k=>k!=='Shield')).toEqual(original.filter(k=>k!=='Shield'));
- await load(page,input('T39-legal-pending-raid.json'));await country(page,target).click();await expect(cards(page)).toContainText('A Shield may block');await exact(page,before,before.state);await page.getByRole('button',{name:'Confirm raid',exact:true}).click();await exact(page,before,expected);await expect(cards(page)).toContainText(/Shield.*blocks|Shield.*cancels/i);await expect(cards(page)).toContainText(name);await counts(page,expected);const log=await closedLog(page);expect(log).toContain('Shield');expect(log).toContain(name);await inspect(page,expected.cards!.hands[human(expected)]!);
+ await load(page,input('T39-legal-pending-raid.json'));await country(page,target).click();await expect(cards(page)).toContainText('A Shield may block');await exact(page,before,before.state);await page.getByRole('button',{name:'Confirm raid',exact:true}).click();await exact(page,before,expected);await showCards(page);await expect(cards(page)).toContainText(/Shield.*blocks|Shield.*cancels/i);await expect(cards(page)).toContainText(name);await counts(page,expected);const log=await closedLog(page);expect(log).toContain('Shield');expect(log).toContain(name);await inspect(page,expected.cards!.hands[human(expected)]!);
 });
 
 test('true geographic income and remote Country7 Raid preserve map metadata and exact saved stages',async({page},info)=>{

@@ -19,7 +19,7 @@ async function begin(p:Page,width=1280,height=800){
 }
 async function drawer(p:Page,open:boolean){
  const d=p.locator('#game-focus-drawer');
- if(open&&!await d.isVisible())await p.locator('#open-game-settings').click();
+ if(open&&!await d.isVisible())await p.locator('#open-game-menu').click();
  if(!open&&await d.isVisible())await p.locator('#close-game-drawer').click();
  await expect(d).toBeVisible({visible:open});
  await stable(p);
@@ -92,7 +92,10 @@ for(const host of ['reference','geographic']){
   await page.mouse.move(at[0],at[1]);await page.mouse.down();await page.mouse.move(at[0]+30,at[1]+20,{steps:5});await page.mouse.move(at[0]+2,at[1]+1,{steps:5});await page.mouse.up();
   expect(await viewBox(page)).toBe(fit);expect(await save(page)).toEqual(before);
   // Zoomed: the same drag pans the board, still without placing.
-  await page.locator('#map-zoom-in').click();await expect(map(page)).toHaveAttribute('data-camera-zoom','1.5');
+  // T92: at Fit only Fit rests on the map; the keyboard zooms, and then Zoom in and out appear.
+  await expect(page.locator('#map-zoom-in')).toBeHidden();await expect(page.locator('#map-fit')).toBeVisible();
+  await page.locator('[data-country]').first().focus();await page.keyboard.press('+');await expect(map(page)).toHaveAttribute('data-camera-zoom','1.5');
+  await expect(page.locator('#map-zoom-in')).toBeVisible();await expect(page.locator('#map-zoom-out')).toBeVisible();
   const zoomed=await tappable(page,own),panned=await viewBox(page);
   await page.mouse.move(zoomed.at[0],zoomed.at[1]);await page.mouse.down();await page.mouse.move(zoomed.at[0]-40,zoomed.at[1]-30,{steps:8});await page.mouse.up();
   expect(await viewBox(page)).not.toBe(panned);expect(await save(page)).toEqual(before);

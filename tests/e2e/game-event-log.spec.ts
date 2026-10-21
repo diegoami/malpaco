@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { activePlayer, apply } from "../../src/core";
 import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDENTITY } from "../../src/core/match-save";
 import { pinned } from "../core/versioned-match-fixture";
-import {withSurface} from './shell';
+import {openSurface,withSurface} from './shell';
 const dialog = (p: Page) => p.getByRole("dialog", { name: "Game event log", exact: true });
 async function save(p: Page) {
   await withSurface(p,'settings',()=>p.getByRole("button", { name: "Save game", exact: true }).click());
@@ -23,7 +23,8 @@ async function begin(p: Page) {
   await p.evaluate(() => { const create = URL.createObjectURL.bind(URL); URL.createObjectURL = blob => { Reflect.set(window, "eventLogSave", blob); return create(blob); }; });
 }
 async function open(p: Page) {
-  const button = p.locator("#game-log-button"); await expect(button).toBeVisible(); await button.focus(); await button.press("Enter"); await expect(dialog(p)).toBeVisible();
+  // T92: the event log opens from the menu card.
+  await openSurface(p, "menu"); const button = p.locator("#game-log-button"); await expect(button).toBeVisible(); await button.focus(); await button.press("Enter"); await expect(dialog(p)).toBeVisible();
 }
 // Independent core replay is the oracle; no UI projection function is imported.
 async function verify(p: Page, text: string) {

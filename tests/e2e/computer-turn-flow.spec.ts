@@ -21,7 +21,7 @@ test("untouched setup starts one human and three Normal computers and consecutiv
  await runToHuman(page);s=deserializeVersionedMatch(await save(page)).state;expect(activePlayer(s)!.kind).toBe("human");const priorHandoffs=s.history.filter(a=>a.kind==="endTurn"||a.kind==="friendlyMove").length;
  const own=s.map.provinces.find(p=>s.ownerOf[p.id]===activePlayer(s)!.id)!.id;
  for(let i=0;i<s.reinforcementPool;i++)await page.locator(`[data-country="${own}"]`).press("Enter");await page.locator("#start-combat-button").click();await page.locator("#end-turn-button").click();
- await expect(page.locator("#active-seat-notice")).toContainText("is playing");await expect(page.locator("#end-turn-button")).toBeDisabled();await capture(page,"computer-turn",info.project.name);
+ await expect(page.locator("#active-seat-notice")).toContainText(/placing armies|attacking|moving|playing cards|raiding/);await expect(page.locator("#end-turn-button")).toBeDisabled();await capture(page,"computer-turn",info.project.name);
  const during=await save(page),computerState=deserializeVersionedMatch(during).state,computerCountry=computerState.map.provinces.find(p=>computerState.ownerOf[p.id]===activePlayer(computerState)!.id)!.id;await page.locator(`[data-country="${computerCountry}"]`).press("Enter");await page.keyboard.press("Escape");expect(await save(page)).toBe(during);
  await runToHuman(page);s=deserializeVersionedMatch(await save(page)).state;expect(activePlayer(s)!.kind).toBe("human");expect(s.currentPlayer).toBe(0);expect(s.history.filter(a=>a.kind==="endTurn"||a.kind==="friendlyMove")).toHaveLength(priorHandoffs+4);await capture(page,"human-return",info.project.name);
 });
@@ -36,7 +36,7 @@ test("loaded computer capture resolves without a click; replacement and new game
 });
 test("loss waits for Watch or Stop; finished game schedules no play; manual route stays manual",async({page},info)=>{
  const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));await begin(page);await load(page,pinned("human-loss").text);const loss=await save(page);await page.clock.runFor(10000);expect(await save(page)).toBe(loss);
- await page.locator("#watch-computers-button").click();await expect(page.locator("#active-seat-notice")).toContainText("is playing");await page.clock.runFor(1050);expect(deserializeVersionedMatch(await save(page)).state.history.length).toBeGreaterThan(deserializeVersionedMatch(loss).state.history.length+1);
+ await page.locator("#watch-computers-button").click();await expect(page.locator("#active-seat-notice")).toContainText(/placing armies|attacking|moving|playing cards|raiding/);await page.clock.runFor(1050);expect(deserializeVersionedMatch(await save(page)).state.history.length).toBeGreaterThan(deserializeVersionedMatch(loss).state.history.length+1);
  await load(page,loss);await page.locator("#stop-game-button").click();const stopped=await save(page);await page.clock.runFor(10000);expect(await save(page)).toBe(stopped);await capture(page,"stopped",info.project.name);
  await page.goto("/?view=reference-game&control=manual");await expect(page.locator("#reference-seats")).toHaveValue("2");await load(page,computerCapture());const manual=await save(page);await page.clock.runFor(10000);expect(await save(page)).toBe(manual);await expect(page.locator("#confirm-capture-button")).toBeEnabled();expect(errors).toEqual([]);
 });

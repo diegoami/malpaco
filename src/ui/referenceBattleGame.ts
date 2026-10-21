@@ -1,6 +1,7 @@
 import {CardController} from "./cardController";
 import {CardView} from "./cardView";
 import { GameEventLog } from "./gameEventLog";
+import { dominationThreshold } from "../core/victory";
 import { activePlayer, attackTargets, friendlySources, friendlyTargets, ownerOf, whyNot } from "../core";
 import type { GameMap, GameOptions, GameState } from "../core";
 import { ComputerTurnLoop } from "./computerTurnLoop";
@@ -30,8 +31,11 @@ const EXPLANATIONS: Record<string, string> = {
   "Cards": "Trade a set of cards for its effect, or skip.",
   "Raid target": "Choose an enemy country for the Raid, then confirm.",
   "Human seats eliminated": "Every human seat is out. Watch the computers finish, or stop the game.",
-  "Game over": "The game is over. The result and New game are in Current choice.",
+  "Game over": "The game is over. The result card offers New game, standings, history and files.",
 };
+const HUMAN_VERBS: Record<string, string> = {"Reinforcement": "place armies", "Attack": "attack or end turn", "Capture move-in": "move armies in", "Friendly move": "move armies", "Cards": "play cards", "Raid target": "choose a Raid target"};
+const HUMAN_HINTS: Record<string, string> = {"Reinforcement": "Tap one of your countries to place an army.", "Attack": "Choose your country, then an enemy neighbour.", "Friendly move": "Choose a country to move from, then an own neighbour.", "Raid target": "Choose an enemy country on the map."};
+const COMPUTER_VERBS: Record<string, string> = {"Reinforcement": "placing armies", "Attack": "attacking", "Capture move-in": "moving in", "Friendly move": "moving armies", "Cards": "playing cards", "Raid target": "raiding"};
 function explain(phase: string): string { return EXPLANATIONS[phase] ?? "Follow the Current choice to continue."; }
 
 /** Reference-route host: the controller owns every selection and ordinary action. */
@@ -54,6 +58,11 @@ export class ReferenceBattleGame {
   private readonly phaseActions: HTMLElement;
   private readonly action: HTMLElement;
   private chrome: BattleChrome | null = null;
+  private noticeKey: string | null = null;
+  private noticeAt = -1;
+  private refusal: {text: string; key: string} | null = null;
+  private outcomeSeen: unknown = null;
+  private outcomeAt = -1;
   private readonly files: ReferenceMatchFiles;
   private hover: string | null = null;
   private mounted = false;
@@ -97,9 +106,9 @@ export class ReferenceBattleGame {
       onNewGame: () => { if (!this.disposed) this.onNewGame(); },
     });
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
-    this.battle = new BattleView(this.controller);
+    this.battle = new BattleView(this.controller, () => { this.controller.select(null, null); this.chrome?.close(); }, () => this.chrome?.close());
     this.friendly = new FriendlyMoveView(this.controller);
-    this.victory = new VictoryView(this.controller);
+    this.victory = new VictoryView(this.controller, {newGame: () => { if (!this.disposed) this.onNewGame(); }, menu: () => this.chrome?.openMenu()});
     this.action = this.panel.el.querySelector<HTMLElement>(".action")!;
     this.action.append(this.battle.el, this.friendly.el, this.victory.el, this.cardControls.el, this.computerStatus);
     this.playbackPause.onclick = () => this.controller.setPlaybackPaused(!this.controller.playbackPaused);
@@ -119,14 +128,14 @@ export class ReferenceBattleGame {
       ? `${name} · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `${name} · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     const identity = h("p", {class: "game-identity"}, h("strong", {}, "Malpaco"), " · ", subtitle);
-    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
+    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, this.eventLog.button, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, cards: this.cardControls.el, history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings,
-      turn: this.panel.el.querySelector<HTMLElement>(".turn")!, phaseActions: this.phaseActions, battle: this.battle.el, pause: this.playbackPause, log: this.eventLog.button, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+      phaseActions: this.phaseActions, pause: this.playbackPause, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
     root.replaceChildren(h("section", { class: "board" }, this.mapView.el), this.chrome.overlay, store);
     // Every overlay reframes the map beside it, so covered land keeps its badges.
-    for (const overlay of [this.chrome.hud, this.chrome.rail, this.chrome.drawer]) this.mapView.camera?.avoid(overlay);
+    for (const overlay of this.chrome.obstacles) this.mapView.camera?.avoid(overlay);
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
     this.mounted = true;
@@ -165,7 +174,9 @@ export class ReferenceBattleGame {
       if (this.controller.select(from, id)) {
         if (!inspect) this.controller.singleExchange();
       } else {
-        this.battle.el.querySelector("#battle-status")!.textContent = whyNot(state, from, id);
+        // The engine's reason appears as the one-line notice until the next choice.
+        this.refusal = {text: whyNot(state, from, id), key: `${state.history.length}:${from}:${to}`};
+        this.render();
       }
     }
   }
@@ -186,6 +197,7 @@ export class ReferenceBattleGame {
     // Countries remain reachable for inspection and refusal feedback; the pure
     // controller refuses selection during automation and a pending move-in.
     this.mapView.el.dataset["inputBlocked"] = String(blocked);
+    this.mapView.camera?.refreshControls();
   }
 
   private computerActive(): boolean {
@@ -221,8 +233,9 @@ export class ReferenceBattleGame {
     const move = h("button", {type:"button", id:"start-friendly-move-button", disabled:running || paused || friendlySources(state).length === 0}, "Move armies");
     move.style.display = state.phase === "attack" ? "" : "none";
     move.addEventListener("click", () => { this.controller.startFriendlyMove(revision); });
-    this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, move);
-    this.phaseActions.style.display = mode === "move" || state.result || ['sets','raid-target','discard','reward'].includes(this.cards.view.phase) ? "none" : "";
+    // While moving, the End turn flag skips the move (the friendly card has no Skip, as in the sketches).
+    this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, ...(mode === "move" ? [] : [move]));
+    this.phaseActions.style.display = state.result || ['sets','raid-target','discard','reward'].includes(this.cards.view.phase) ? "none" : "";
     if(state.phase==='cards')this.panel.el.querySelector('#turn-phase')!.textContent=this.cards.view.phase==='raid-target'?'Raid target':'Cards';
     this.battle.render(this.controller.view);
     if (mode === "move" || state.result || ["sets","raid-target","discard","reward"].includes(this.cards.view.phase)) this.battle.el.hidden = true;
@@ -239,10 +252,43 @@ export class ReferenceBattleGame {
     }
     const required = this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? "Choose a Raid target" : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
     const mover = activePlayer(state), result = state.result, winner = state.players.find(p => p.id === state.winner);
+    const gamePaused = this.controller.playbackPaused;
     const phase = result ? state.phase === "human-loss" ? "Human seats eliminated" : "Game over" : this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase;
-    const status = {seat: Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), name: result ? winner ? `${winner.name} wins` : "No winner yet" : `${mover?.name ?? ""}${computer ? this.controller.playbackPaused ? " · paused" : " is playing" : ""}`,
-      phase, round: result ? null : state.turnNumber, pool: state.phase === "reinforce" && !result ? state.reinforcementPool : null, explanation: explain(phase)};
-    this.chrome?.update(status, required, this.controller.playbackPaused, !computer && !this.controller.playbackPaused);
+    const humans = state.players.filter(p => p.kind !== "computer");
+    // One contextual notice (T92, after the sketches): an engine refusal, the latest
+    // exchange, a computer's turn, a pause, or a human turn's prompt until they act.
+    let notice: {title: string; detail?: string; persistent?: boolean} | null = null;
+    const nameOf = (id: string) => state.players.find(p => p.id === id)?.name ?? id;
+    const place = (id: string) => this.map.provinces.find(p => p.id === id)?.name ?? id;
+    const outcome = this.controller.view.lastOutcome;
+    if (outcome !== this.outcomeSeen) {this.outcomeSeen = outcome; this.outcomeAt = state.history.length;}
+    if (this.refusal && this.refusal.key !== `${state.history.length}:${from}:${to}`) this.refusal = null;
+    if (this.refusal) notice = {title: this.refusal.text, persistent: true};
+    else if (outcome && state.history.length === this.outcomeAt && !result) {
+      const loser = outcome.attackerLosses > 0 ? outcome.from : outcome.to, lost = outcome.attackerLosses || outcome.defenderLosses, after = state.armies[loser] ?? 0;
+      notice = {title: outcome.captured ? `${nameOf(outcome.attacker)} captured ${place(outcome.to)}.` : `${nameOf(state.ownerOf[loser]!)} lost ${lost}. ${after + lost} → ${after}.`,
+        detail: `${nameOf(outcome.attacker)} rolled ${outcome.attackerRolls.join(", ")}; ${nameOf(outcome.defender)} rolled ${outcome.defenderRolls.join(", ")}.`};
+    }
+    else if (!result && computer) notice = {title: `${mover!.name} · ${gamePaused ? "paused" : COMPUTER_VERBS[phase] ?? "playing"}`};
+    else if (!result && gamePaused) notice = {title: "Game paused", detail: "Resume to continue."};
+    else if (!result) {
+      const key = `${state.currentPlayer}:${phase}`;
+      if (key !== this.noticeKey) {this.noticeKey = key; this.noticeAt = state.history.length;}
+      if (state.history.length === this.noticeAt && from === null)
+        notice = {title: `${humans.length > 1 ? `${mover!.name}'s turn` : "Your turn"} · ${HUMAN_VERBS[phase] ?? phase.toLowerCase()}`, ...(HUMAN_HINTS[phase] ? {detail: HUMAN_HINTS[phase]} : {})};
+    }
+    const viewer = (humans.length === 1 ? humans[0] : mover) ?? state.players[0]!, owned = state.map.provinces.filter(p => state.ownerOf[p.id] === viewer.id).length, total = state.map.provinces.length;
+    const info = `${this.options.dominationWin ? `Domination · ${owned} / ${dominationThreshold(total)}` : `Total conquest · ${owned} / ${total}`}${this.options.roundLimit ? ` · Round ${state.turnNumber} / ${this.options.roundLimit}` : ` · Round ${state.turnNumber}`}`;
+    const status = {seat: Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result ? state.reinforcementPool : null,
+      info, explanation: `${phase}. ${explain(phase)}`, result: !!result};
+    // A required choice, or a staged attack pair, brings its card up once.
+    const staged = mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;
+    const prompt = computer || gamePaused ? null : required ? `required:${required}` : staged;
+    // A folded card keeps any pending choice one tap away: a required one, or a staged attack.
+    const draft = Number(this.battle.el.querySelector<HTMLInputElement>("#capture-amount")?.value);
+    const pending = state.pendingCapture, moveIn = pending && Number.isSafeInteger(draft) ? draft : pending?.defaultAmount;
+    const choice = pending && required === "Confirm capture move-in" ? `Move-in pending · preview ${state.armies[pending.from]! - (moveIn! - pending.min)} / ${moveIn}` : required ?? (staged && !computer ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
+    this.chrome?.update(status, choice, gamePaused, prompt);
     this.computer?.update();
   }
 }

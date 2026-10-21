@@ -61,7 +61,11 @@ export class ReferenceMatchFiles {
         if(loaded.state.cards&&loaded.options.seats.filter(seat=>seat.kind==='human').length>1)throw new Error('Card play currently supports at most one human seat. Shared-screen handover is not available yet.');
         await onLoad(loaded.options, loaded.state, loaded, context);
       } catch (error) {
-        if (context.isCurrent() && !(error instanceof Error && error.name === "AbortError")) this.error.textContent = "Load failed: " + this.message(error);
+        if (context.isCurrent() && !(error instanceof Error && error.name === "AbortError")) {
+          this.error.textContent = "Load failed: " + this.message(error);
+          // The error lives in a scrolling card; bring it into view so the failure is read.
+          this.error.scrollIntoView?.({ block: "nearest" });
+        }
       } finally {
         if (own === this.request) {
           input.value = "";

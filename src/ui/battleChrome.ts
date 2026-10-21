@@ -1,27 +1,14 @@
 import {h,s} from "./dom";
+import {glyph} from "./icons";
 import {seatLook} from "./palette";
 
-export type Surface = "actions" | "cards" | "details" | "settings" | "phase";
-/** What the status chips show: the active seat, the phase and, during placement, the pool. */
-export interface ShellStatus {seat: number; name: string; phase: string; round: number | null; pool: number | null; explanation: string}
+export type Surface = "actions" | "cards" | "menu" | "info";
+/** What the quiet map shows: an optional one-line notice, the pool during placement, and requested information. */
+/** A one-line notice; `persistent` ones (refusals, folded choices) never fade, only dismiss. */
+export interface Notice {title: string; detail?: string; persistent?: boolean}
+export interface ShellStatus {seat: number; notice: Notice | null; pool: number | null; info: string; explanation: string; result: boolean}
 
-function symbol(shape: string): SVGSVGElement {
-  const paths: Record<string,string> = {
-    "⚔": "M4 3L20 19M3 4L4 8 16 20M3 16L8 21M20 3L4 19M21 4L20 8 8 20M16 21L21 16",
-    "▱": "M7 5H20V21H7ZM3 17V2H16", "ⓘ": "M12 11V17M12 7V7.1",
-    "⚙": "M9 3H15L16 6 19 7 21 12 19 17 16 18 15 21H9L8 18 5 17 3 12 5 7 8 6ZM12 8A4 4 0 1 0 12 16A4 4 0 1 0 12 8",
-    "!": "M12 6V13M12 17V17.1", "×": "M5 5L19 19M19 5L5 19",
-    "▶": "M6 3L21 12 6 21Z", "↦": "M3 12H17M12 6L18 12 12 18M21 4V20",
-    "⇄": "M3 7H21M16 2L21 7 16 12M21 17H3M8 12L3 17 8 22",
-    "■": "M5 5H19V19H5Z", "⚀": "M4 4H20V20H4ZM12 11.5V12.5",
-    "Ⅱ": "M8 4V20M16 4V20", "≡": "M8 6H21M8 12H21M8 18H21M3 6H3.1M3 12H3.1M3 18H3.1",
-    "Σ": "M18 4H6L13 12 6 20H18", "✚": "M12 4V20M4 12H20",
-    "◷": "M12 7V12L15 15",
-  };
-  const svg = s("svg", {class:"game-action-symbol", viewBox:"0 0 24 24", width:20, height:20, fill:"none", stroke:"currentColor", "stroke-width":1.8, "stroke-linecap":"round", "stroke-linejoin":"round", "aria-hidden":"true"}, s("path", {d:paths[shape] ?? paths["ⓘ"]!}));
-  if (shape === "ⓘ" || shape === "!" || shape === "◷") svg.prepend(s("circle", {cx:12, cy:12, r:10}));
-  return svg;
-}
+const symbol = glyph;
 
 function commandSymbol(button: HTMLButtonElement, shape: string): void {
   button.querySelector(".rail-command-icon")?.remove();
@@ -33,54 +20,81 @@ function icon(id: string, label: string, shape: string): HTMLButtonElement {
     symbol(shape));
 }
 
-const TITLES: Record<Surface, string> = {actions: "Current choice", cards: "Cards", details: "Totals and history", settings: "Game settings", phase: "Phase details"};
+/** [designed] An ordinary notice fades after 4 s; a swipe beyond 40 px dismisses it. */
+const NOTICE_FADE_MS = 4000;
+const NOTICE_SWIPE = 40;
+
+const TITLES: Record<Surface, string> = {actions: "Current choice", cards: "Cards", menu: "Menu", info: "Objective and phase"};
 
 /**
- * The full-viewport shell (T79): the map fills the safe viewport; status chips,
- * the icon rail, the camera controls and one requested card float over it in
- * disjoint grid areas, so no overlay covers another. Panel content waits in a
- * hidden store and travels, with its existing listeners, into the card on request.
+ * The quiet full-viewport shell (T79, made sketch-faithful by T92): the map fills
+ * the safe viewport and only corner icons rest on it — menu and Cards top-left,
+ * Pause top-right, the camera's Fit bottom-left, and the legal phase actions with
+ * the information icon bottom-right. The pool is an icon and a number at top
+ * centre. One-line notices and one requested card appear beside the map and go
+ * away. Every overlay sits in its own grid area, so none covers another. Panel
+ * content waits in a hidden store and travels, with its listeners, into the card.
  */
 export class BattleChrome {
   readonly overlay = h("div", {class: "game-overlay"});
-  readonly hud = h("div", {id: "game-status", class: "game-hud", role: "group", "aria-label": "Game status"});
+  readonly hud = h("div", {id: "game-status", class: "game-corner game-corner-start", role: "group", "aria-label": "Game menu"});
   readonly rail = h("nav", {id: "battle-action-rail", role: "toolbar", "aria-label": "Game actions"});
   readonly drawer = h("section", {id: "game-focus-drawer", role: "dialog", "aria-modal": "false", "aria-labelledby": "game-drawer-title", hidden: true});
-  private readonly seat = h("div", {id: "active-seat-notice", class: "hud-chip", role: "status"});
-  private readonly phase = h("button", {id: "phase-details-button", type: "button", class: "hud-chip", "aria-haspopup": "dialog", "aria-controls": "game-focus-drawer"});
+  readonly side = h("div", {class: "game-side"});
+  private readonly top = h("div", {class: "game-corner game-corner-end"});
+  private readonly poolSlot = h("div", {class: "game-pool-slot"});
+  private readonly notice = h("div", {id: "active-seat-notice", class: "game-notice", role: "status", hidden: true});
+  /** The notice's line is reserved whether or not a notice shows, so a notice never covers a country nor reframes the map. */
+  private readonly noticeSlot = h("div", {class: "game-notice-slot"}, this.notice);
   private readonly pool = h("div", {id: "placement-pool", class: "hud-chip", role: "status", hidden: true});
+  private readonly folded = h("div", {id: "game-folded-choice", class: "game-notice game-folded", hidden: true});
+  private readonly foldedText = h("span", {class: "game-notice-text"});
+  private readonly infoLine = h("p", {id: "game-info-line", class: "game-info-line"});
   private readonly explanation = h("p", {id: "phase-explanation", class: "phase-explanation"});
-  private readonly title = h("h2", {id: "game-drawer-title"});
+  private readonly title = h("h2", {id: "game-drawer-title", class: "visually-hidden"});
   private readonly content = h("div", {class: "game-drawer-content"});
-  private readonly required = icon("open-required-action", "Required choice", "!");
-  private readonly actions = icon("open-game-actions", "Current choice", "⚔");
+  private readonly closeButton = icon("close-game-drawer", "Return to map", "close");
+  private readonly required = icon("open-required-action", "Required choice", "return");
+  private readonly menu = icon("open-game-menu", "Menu: totals, history, settings and files", "menu");
+  private readonly info = icon("game-info-button", "Objective and phase", "info");
+  private readonly cornerClose = icon("close-result-card", "Return to map", "close");
+  private notified: Notice | null = null;
+  /** The notice on show, the one the player dismissed (or that faded), and its fade timer. */
+  private noticeKey: string | null = null;
+  private dismissedKey: string | null = null;
+  private noticeOpen = false;
+  private fadeTimer: number | null = null;
+  private noticeShown = "";
   private surface: Surface | null = null;
   private opener: HTMLElement | null = null;
   private moved: {node: HTMLElement; marker: Comment}[] = [];
-  private battleCommands: {node: HTMLElement; marker: Comment} | null = null;
   private historyPosition: {top: number; following: boolean} | null = null;
-  private lastRequired: string | null = null;
+  private lastPrompt: string | null = null;
   private statusKey = "";
+  private result = false;
+  private requiredText: string | null = null;
 
-  constructor(private readonly nodes: {action: HTMLElement; cards: HTMLElement; history: HTMLElement; score: HTMLElement; settings: HTMLElement; turn: HTMLElement; phaseActions: HTMLElement; battle: HTMLElement; pause: HTMLButtonElement; log: HTMLButtonElement; camera?: HTMLElement}) {
-    const cards = icon("open-game-cards", "Cards", "▱");
-    const details = icon("open-game-details", "Totals and history", "Σ");
-    const settings = icon("open-game-settings", "Game settings and files", "⚙");
-    for (const [button, surface] of [[this.actions, "actions"], [cards, "cards"], [details, "details"], [settings, "settings"], [this.phase, "phase"]] as const) {
+  constructor(private readonly nodes: {action: HTMLElement; cards: HTMLElement; history: HTMLElement; score: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; camera?: HTMLElement}) {
+    for (const [button, surface] of [[this.menu, "menu"], [this.info, "info"]] as const) {
       button.setAttribute("aria-controls", this.drawer.id);
       button.setAttribute("aria-haspopup", "dialog");
+      button.setAttribute("aria-expanded", "false");
       button.onclick = () => this.open(surface, button);
     }
-    this.required.hidden = true;
     // The required choice is never toggled away: when its card is open, the icon moves focus into it.
     this.required.onclick = () => {
-      if (this.surface === "actions") {this.opener = this.required; this.drawer.querySelector<HTMLElement>("#close-game-drawer")!.focus({preventScroll: true});}
+      if (this.surface === "actions") {this.opener = this.required; this.closeButton.focus({preventScroll: true});}
       else this.open("actions", this.required);
     };
-    const close = icon("close-game-drawer", "Return to map", "×");
-    close.onclick = () => this.close();
-    this.drawer.append(h("header", {class: "game-drawer-head"}, this.title, close), this.content);
-    this.rail.append(this.required, this.actions, cards, details, settings, nodes.pause, nodes.log);
+    this.closeButton.onclick = () => this.close();
+    this.drawer.append(this.title, this.content, this.closeButton);
+    this.folded.append(this.foldedText, this.required);
+    this.hud.append(this.menu);
+    // On the result card the top-right corner returns to the map, as in the sketches.
+    this.cornerClose.onclick = () => this.close();
+    this.top.append(nodes.pause, this.cornerClose);
+    this.poolSlot.append(this.pool);
+    this.rail.append(this.info, nodes.phaseActions);
     this.rail.addEventListener("keydown", event => {
       if (!["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
       const buttons = [...this.rail.querySelectorAll<HTMLButtonElement>("button")].filter(button => !button.disabled && button.getClientRects().length > 0);
@@ -89,34 +103,23 @@ export class BattleChrome {
       const index = event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1 : (current + step + buttons.length) % buttons.length;
       buttons[index]?.focus({preventScroll:true}); event.preventDefault();
     });
-    this.hud.append(this.seat, this.phase, this.pool);
-    this.overlay.append(this.hud, ...(nodes.camera ? [nodes.camera] : []), this.drawer, this.rail);
+    this.notice.addEventListener("pointerdown", this.onNoticeDown);
+    this.side.append(this.noticeSlot, this.folded, this.drawer);
+    // The information card's lines need a home to return to when the card closes.
+    this.overlay.append(h("div", {class: "game-info-store", hidden: true}, this.infoLine, this.explanation));
+    this.overlay.append(this.hud, this.poolSlot, this.top, this.side, ...(nodes.camera ? [nodes.camera] : []), this.rail);
     this.commands();
   }
 
-  /** Phase and battle commands ride the rail as icons; disabled ones are not shown. */
+  /** Legal phase commands ride the action corner as icons; disabled ones are not shown. */
   private commands(): void {
-    const focused = this.rail.contains(document.activeElement) ? document.activeElement?.id : undefined;
-    if (this.battleCommands && !this.battleCommands.marker.isConnected) {
-      this.battleCommands.node.remove(); this.battleCommands = null;
-    }
-    if (this.nodes.phaseActions.parentElement !== this.rail) this.rail.insertBefore(this.nodes.phaseActions, this.actions);
-    const battle = this.nodes.battle.querySelector<HTMLElement>(".battle-actions");
-    if (battle) {
-      const marker = document.createComment("battle commands home"); battle.before(marker);
-      this.battleCommands = {node: battle, marker}; this.rail.insertBefore(battle, this.actions);
-    }
-    if (this.battleCommands) this.battleCommands.node.hidden = this.nodes.battle.hidden || this.nodes.battle.dataset["pendingCapture"] === "true";
-    const symbols: Record<string,string> = {"start-combat-button":"▶", "end-turn-button":"↦", "start-friendly-move-button":"⇄", "fight-on-button":"⚔", "stop-battle-button":"■", "single-exchange-button":"⚀"};
-    for (const group of [this.nodes.phaseActions, this.battleCommands?.node]) {
-      for (const button of group?.querySelectorAll<HTMLButtonElement>("button") ?? []) {
-        if (!button.querySelector(".rail-command-icon")) {
-          button.setAttribute("aria-label", button.textContent ?? ""); button.title = button.textContent ?? "";
-          commandSymbol(button, symbols[button.id] ?? "ⓘ");
-        }
+    const symbols: Record<string,string> = {"start-combat-button":"combat", "end-turn-button":"flag", "start-friendly-move-button":"move"};
+    for (const button of this.nodes.phaseActions.querySelectorAll<HTMLButtonElement>("button")) {
+      if (!button.querySelector(".rail-command-icon")) {
+        button.setAttribute("aria-label", button.textContent ?? ""); button.title = button.textContent ?? "";
+        commandSymbol(button, symbols[button.id] ?? "info");
       }
     }
-    if (focused) this.focus(this.rail.querySelector<HTMLElement>(`#${focused}`), this.actions);
   }
 
   private rememberHistory(): void {
@@ -131,23 +134,34 @@ export class BattleChrome {
 
   get openSurface(): Surface | null {return this.surface;}
 
-  /** Opens a card over the map. An automatic opening (a new required choice) never takes focus. */
+  /** The result card's History and Files icons open the menu card. */
+  openMenu(): void {if (this.surface !== "menu") this.open("menu", this.menu);}
+
+  /**
+   * The controls and cards that float over the map; the camera frames the board beside
+   * each one that shows. The notice's slot is always there, so a notice coming or going
+   * never refits or turns the board.
+   */
+  get obstacles(): Element[] {return [this.hud, this.top, this.pool, this.noticeSlot, this.rail, this.folded, this.drawer];}
+
+  /** Opens a card over the map. An automatic opening (a new choice) never takes focus. */
   open(surface: Surface, opener: HTMLElement, takeFocus = true): void {
     if (this.surface === surface) {this.close(); return;}
     this.close(false);
     this.surface = surface; this.opener = opener;
     this.drawer.dataset["surface"] = surface;
     this.title.textContent = TITLES[surface];
-    const nodes = {actions: [this.nodes.action], cards: [this.nodes.cards], details: [this.nodes.score, this.nodes.history], settings: [this.nodes.settings], phase: [this.nodes.turn, this.explanation]}[surface];
+    // The menu holds the hand too (the sketches rest only the menu icon top-left).
+    const nodes = {actions: [this.nodes.action], cards: [this.nodes.cards], menu: [this.nodes.cards, this.nodes.score, this.nodes.history, this.nodes.settings], info: [this.infoLine, this.explanation]}[surface];
     for (const node of nodes) {
       const marker = document.createComment("focused panel home"); node.before(marker);
       this.moved.push({node, marker}); this.content.append(node);
     }
     this.drawer.hidden = false;
-    for (const button of [this.actions, this.phase, ...this.rail.querySelectorAll<HTMLElement>("[aria-haspopup]")])
-      button.setAttribute("aria-expanded", String(button.getAttribute("aria-controls") === this.drawer.id && button === opener));
+    this.layout();
+    for (const button of this.overlay.querySelectorAll<HTMLElement>("[aria-haspopup]")) button.setAttribute("aria-expanded", String(button === opener));
     this.restoreHistory();
-    if (takeFocus) this.drawer.querySelector<HTMLElement>("#close-game-drawer")!.focus({preventScroll: true});
+    if (takeFocus) this.closeButton.focus({preventScroll: true});
   }
 
   close(restoreFocus = true): void {
@@ -155,8 +169,9 @@ export class BattleChrome {
     this.rememberHistory();
     for (const {node, marker} of this.moved) {marker.replaceWith(node);}
     this.moved = []; this.drawer.hidden = true; this.surface = null;
-    for (const button of this.overlay.querySelectorAll<HTMLElement>("[aria-expanded]")) button.setAttribute("aria-expanded", "false");
-    if (restoreFocus) this.focus(this.opener, this.actions);
+    for (const button of this.overlay.querySelectorAll<HTMLElement>("[aria-haspopup]")) button.setAttribute("aria-expanded", "false");
+    this.layout();
+    if (restoreFocus) this.focus(this.opener, this.menu);
     this.opener = null;
   }
 
@@ -169,44 +184,104 @@ export class BattleChrome {
     this.close(); return true;
   }
 
-  /** `prompt` allows a new required choice to open the Current choice card without taking focus. */
-  update(status: ShellStatus, required: string | null, paused: boolean, prompt: boolean): void {
-    // The chips are live regions: rewrite them only when what they say changes, so nothing is re-announced.
+  /** The result card sits in the middle; a folded required choice leaves a one-line card with a return icon. */
+  private layout(): void {
+    const actions = this.surface === "actions", center = actions && this.result;
+    this.drawer.dataset["placement"] = center ? "center" : "side";
+    // The result card rests over the whole map, which is not reframed beside it.
+    this.drawer.toggleAttribute("data-camera-ignore", center);
+    this.cornerClose.hidden = !center;
+    this.nodes.pause.hidden = center;
+    // A choice card folds back to the map; every other card simply closes.
+    commandSymbol(this.closeButton, actions && this.requiredText ? "fold" : "close");
+    this.closeButton.querySelector(".game-action-symbol:not(.rail-command-icon)")?.remove();
+    this.folded.hidden = !this.requiredText || actions;
+    this.renderNotice();
+  }
+
+  /**
+   * A folded choice says so; otherwise the host's contextual notice, if any. The notice
+   * is a slim one-line pill (owner, 2026-10-21): a tap shows its hint, a swipe or × dismisses
+   * it until the next new notice, and an ordinary one fades after [designed] 4 s. Refusals and
+   * folded choices persist until dismissed or acted on (U5: nothing required times out).
+   */
+  private renderNotice(): void {
+    const notice: Notice | null = !this.folded.hidden ? {title: "Choice folded, not completed.", detail: "Tap the gold return icon to resume.", persistent: true} : this.notified;
+    const key = notice ? `${notice.title}|${notice.detail ?? ""}` : null;
+    if (key !== this.noticeKey) {
+      this.noticeKey = key; this.noticeOpen = false;
+      if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer);
+      this.fadeTimer = null;
+      if (notice && !notice.persistent && key !== this.dismissedKey) this.fadeTimer = window.setTimeout(() => this.dismissNotice(), NOTICE_FADE_MS);
+    }
+    this.notice.hidden = !notice || key === this.dismissedKey;
+    this.notice.dataset["fading"] = String(this.fadeTimer !== null && !this.noticeOpen);
+    this.notice.dataset["open"] = String(this.noticeOpen);
+    // Rebuilt only when what it shows changes, so the live region is not re-announced.
+    const shown = `${key}|${this.noticeOpen}|${this.notice.hidden}`;
+    if (shown === this.noticeShown) return;
+    this.noticeShown = shown;
+    if (!notice) {this.notice.replaceChildren(); return;}
+    const dismiss = icon("dismiss-notice", "Dismiss notice", "close");
+    dismiss.onclick = event => {event.stopPropagation(); this.dismissNotice();};
+    this.notice.replaceChildren(h("strong", {class: "game-notice-title"}, notice.title), dismiss,
+      ...(notice.detail ? [h("span", {class: this.noticeOpen ? "game-notice-detail" : "visually-hidden"}, notice.detail)] : []));
+  }
+
+  private dismissNotice(): void {
+    if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer);
+    this.fadeTimer = null; this.dismissedKey = this.noticeKey; this.renderNotice();
+  }
+
+  /** Tap: show the hint (and stop the fade). Swipe sideways or up: dismiss. */
+  private readonly onNoticeDown = (down: PointerEvent) => {
+    if ((down.target as Element).closest("#dismiss-notice")) return;
+    const start = {x: down.clientX, y: down.clientY};
+    const move = (event: PointerEvent) => {this.notice.style.translate = `${event.clientX - start.x}px ${Math.min(0, event.clientY - start.y)}px`;};
+    const up = (event: PointerEvent) => {
+      window.removeEventListener("pointermove", move); window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+      this.notice.style.translate = "";
+      const dx = event.clientX - start.x, dy = event.clientY - start.y;
+      if (event.type !== "pointercancel" && (Math.abs(dx) > NOTICE_SWIPE || dy < -NOTICE_SWIPE)) {this.dismissNotice(); return;}
+      if (Math.hypot(dx, dy) <= 10 && event.type !== "pointercancel") {
+        this.noticeOpen = !this.noticeOpen;
+        if (this.fadeTimer !== null) {window.clearTimeout(this.fadeTimer); this.fadeTimer = null;}
+        this.renderNotice();
+      }
+    };
+    window.addEventListener("pointermove", move); window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+  };
+
+  /** `prompt` names a choice that wants its card; a new one opens Current choice without taking focus. */
+  update(status: ShellStatus, required: string | null, paused: boolean, prompt: string | null): void {
+    // Live regions are rewritten only when what they say changes, so nothing is re-announced.
     const key = JSON.stringify(status);
     if (key !== this.statusKey) {this.statusKey = key; this.status(status);}
-    this.refreshRail(required, paused, prompt);
+    this.requiredText = required;
+    this.foldedText.textContent = required ?? "";
+    this.required.title = required ?? "Required choice";
+    this.required.setAttribute("aria-label", required ? `Return to ${required.toLowerCase()}` : "Required choice");
+    this.nodes.pause.title = paused ? "Resume game" : "Pause game";
+    commandSymbol(this.nodes.pause, paused ? "play" : "pause");
+    this.commands();
+    if (prompt && prompt !== this.lastPrompt && !this.surface) this.open("actions", this.required, false);
+    this.lastPrompt = prompt;
+    this.layout();
   }
 
   private status(status: ShellStatus): void {
+    this.result = status.result;
     const look = seatLook(status.seat);
-    this.seat.replaceChildren(s("svg", {class: "chip", viewBox: "-40 -19 80 38", width: 32, height: 16, "aria-hidden": "true"}, s("path", {d: look.badge, fill: look.color, stroke: look.dark, "stroke-width": 3})),
-      h("span", {class: "hud-text"}, status.name));
-    this.seat.setAttribute("aria-label", `Active seat: ${status.name}`);
-    const phaseName = status.round === null ? status.phase : `${status.phase} · Round ${status.round}`;
-    this.phase.replaceChildren(symbol("◷"), h("span", {class: "hud-text"}, status.phase));
-    this.phase.setAttribute("aria-label", `Phase details: ${phaseName}`);
-    this.phase.title = `Phase details: ${phaseName}`;
+    this.notified = status.notice;
+    this.notice.style.setProperty("--seat", look.color);
+    this.renderNotice();
+    this.infoLine.textContent = status.info;
     this.explanation.textContent = status.explanation;
     this.pool.hidden = status.pool === null;
-    this.pool.replaceChildren(symbol("✚"), h("span", {id: "placement-pool-count", class: "hud-text"}, String(status.pool ?? 0)));
+    this.pool.replaceChildren(symbol("pool"), h("span", {id: "placement-pool-count"}, String(status.pool ?? 0)));
     this.pool.setAttribute("aria-label", `${status.pool ?? 0} ${status.pool === 1 ? "army" : "armies"} to place`);
     this.pool.title = this.pool.getAttribute("aria-label")!;
   }
 
-  private refreshRail(required: string | null, paused: boolean, prompt: boolean): void {
-    this.required.hidden = !required;
-    this.required.title = required ?? "Required choice";
-    this.required.setAttribute("aria-label", required ?? "Required choice");
-    this.nodes.pause.title = paused ? "Resume game" : "Pause game";
-    commandSymbol(this.nodes.pause, paused ? "▶" : "Ⅱ");
-    this.nodes.log.title = "Game event log";
-    commandSymbol(this.nodes.log, "≡");
-    const cardsButton = this.rail.querySelector<HTMLButtonElement>("#open-game-cards")!;
-    cardsButton.hidden = !!this.nodes.cards.hidden;
-    this.commands();
-    if (required && required !== this.lastRequired && prompt && !this.surface) this.open("actions", this.required, false);
-    this.lastRequired = required;
-  }
-
-  dispose(): void {this.close(false); this.battleCommands?.marker.replaceWith(this.battleCommands.node); this.overlay.remove();}
+  dispose(): void {if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer); this.close(false); this.overlay.remove();}
 }

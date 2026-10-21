@@ -16,12 +16,12 @@ test("modal Escape preserves continuous combat; local/global very-slow controls 
   await expect(page.locator("#game-pause-button")).not.toHaveAttribute("aria-pressed");
   await openSurface(page,'actions');await page.locator("#battle-speed").selectOption("normal"); await expect(page.locator("#game-speed")).toHaveValue("normal");
   await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1"); await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab"); await page.locator("#fight-on-button").click();
-  const battle = page.getByRole("region", { name: "Battle controls", exact: true }), count = Number(await battle.getAttribute("data-history-count"));
-  await page.locator("#game-log-button").click(); const dialog = page.getByRole("dialog", { name: "Game event log", exact: true }); await expect(dialog).toBeVisible();
+  const battle = page.locator('section.battle-controls[aria-label="Battle controls"]'), count = Number(await battle.getAttribute("data-history-count"));
+  await openSurface(page,'menu');await page.locator("#game-log-button").click(); const dialog = page.getByRole("dialog", { name: "Game event log", exact: true }); await expect(dialog).toBeVisible();
   await page.keyboard.press("Escape"); await expect(dialog).not.toBeVisible(); await expect(battle).toHaveAttribute("data-running", "true");
   await page.clock.runFor(400); await expect(battle).toHaveAttribute("data-history-count", String(count + 1));
   await page.locator("#game-pause-button").click(); await openSurface(page,'actions');await page.locator("#battle-speed").selectOption("very-slow"); await expect(page.locator("#game-speed")).toHaveValue("very-slow");
-  await page.locator("#game-log-button").click(); await expect(dialog.locator("details")).not.toHaveAttribute("open", "");
+  await openSurface(page,'menu');await page.locator("#game-log-button").click(); await expect(dialog.locator("details")).not.toHaveAttribute("open", "");
   expect(await dialog.evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
   expect(await dialog.evaluate(node => Number(getComputedStyle(node).opacity))).toBe(1);
   const close = dialog.getByRole("button", { name: "Close game event log", exact: true }); await expect(close).toBeInViewport();
@@ -31,7 +31,8 @@ test("modal Escape preserves continuous combat; local/global very-slow controls 
 test("default four-seat controls fit and a paused computer is labelled paused", async ({ page }, info) => {
   await page.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z")); await page.goto("/?view=reference-game");
   await page.getByRole("button", { name: "Start game", exact: true }).click();
-  for (const locator of [page.locator("#game-log-button"), page.locator("#game-pause-button")]) await expect(locator).toBeInViewport();
+  await expect(page.locator("#game-pause-button")).toBeInViewport();
+  await withSurface(page, "menu", () => expect(page.locator("#game-log-button")).toBeInViewport());
   await withSurface(page, "settings", () => expect(page.locator("#game-speed")).toBeInViewport());
   await withSurface(page, "details", async () => { for (const total of await page.locator('[data-testid="player-army-total"]').all()) await expect(total).toBeInViewport(); });
   const f = pinned("watch"); await page.getByLabel("Load game", { exact: true }).setInputFiles({ name: "watch.json", mimeType: "application/json", buffer: Buffer.from(f.text) });
@@ -43,7 +44,7 @@ test("closing the event log does not steal focus from the next keyboard action",
   await page.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
   await page.goto("/?view=reference-game&control=manual"); await page.getByRole("button", { name: "Start game", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Game event log", exact: true }), button = page.locator("#game-log-button"), country = page.locator("[data-country]").first();
-  await button.focus(); await button.press("Enter"); await expect(dialog).toBeVisible(); await page.keyboard.press("Escape"); await expect(dialog).not.toBeVisible();
+  await openSurface(page, "menu"); await button.focus(); await button.press("Enter"); await expect(dialog).toBeVisible(); await page.keyboard.press("Escape"); await expect(dialog).not.toBeVisible();
   await country.focus(); await page.locator("dialog.game-event-log").dispatchEvent("close"); await expect(country).toBeFocused();
   await country.press("Enter"); await expect(dialog).not.toBeVisible(); await withSurface(page,'settings',()=>page.getByRole("button", { name: "Save game", exact: true }).click());
 });
@@ -58,7 +59,7 @@ test("failed load feedback stays readable without covering capture or playback c
     await openSurface(page, "settings"); await upload(invalid); const error = page.getByRole("alert"); await expect(error).toContainText("Load failed:");
     expect(await error.evaluate(node => { const r = node.getBoundingClientRect(); return r.width > 200 && r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; })).toBe(true);
     for (const id of ["game-log-button", "game-pause-button", "game-speed", "reference-save-game", "open-required-action"]) {
-      expect(await page.locator(`#${id}`).evaluate(node => { const r = node.getBoundingClientRect(); return r.width > 0 && r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; }), id).toBe(true);
+      expect(await page.locator(`#${id}`).evaluate(node => { node.scrollIntoView({ block: "nearest" }); const r = node.getBoundingClientRect(); return r.width > 0 && r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; }), id).toBe(true);
     }
     await page.locator("#open-required-action").click(); await expect(page.locator("#confirm-capture-button")).toBeInViewport();
   }
