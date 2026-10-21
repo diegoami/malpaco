@@ -1317,10 +1317,17 @@ dialog h2 {
 :is(#geographic-map,#reference-map) .port {fill:#89aaa4;stroke:none}
 :is(#geographic-map,#reference-map) .cell {stroke:#d0dfbf;stroke-width:.9;stroke-linejoin:round;transition:filter .2s}
 :is(#geographic-map,#reference-map) .country {cursor:pointer;outline:none;user-select:none;-webkit-user-select:none}
-:is(#geographic-map,#reference-map) .country.selected .cell {stroke:#ffd06b;stroke-width:3.2}
-:is(#geographic-map,#reference-map) .country.neighbor .cell {stroke:#f0f1de;stroke-width:2.2;stroke-dasharray:6 4}
+/* T87: source, legal candidate and chosen target differ by line pattern and mark, not hue alone:
+   each is a light line (.ring) on a dark band (the cell's stroke), so it holds 3:1 on every owner colour. */
+:is(#geographic-map,#reference-map) .ring {fill:none;stroke:none;pointer-events:none;stroke-linejoin:round}
+:is(#geographic-map,#reference-map) .country:is(.selected,.neighbor,.target) .cell {stroke:#102b36;stroke-width:5}
+:is(#geographic-map,#reference-map) .country.selected .ring {stroke:#ffd06b;stroke-width:2.4}
+:is(#geographic-map,#reference-map) .country.neighbor .ring {stroke:#f0f1de;stroke-width:1.8;stroke-dasharray:6 4}
+:is(#geographic-map,#reference-map) .country.target .ring {stroke:#f0f1de;stroke-width:2.4;stroke-dasharray:none}
+:is(#geographic-map,#reference-map) .target-mark {display:none;fill:none;stroke:#f0f1de;stroke-width:3;stroke-linecap:round;paint-order:stroke}
+:is(#geographic-map,#reference-map) .country.target .target-mark {display:inline;filter:drop-shadow(0 0 1px #102b36) drop-shadow(0 0 1px #102b36)}
 :is(#geographic-map,#reference-map) .country:focus-visible .cell {stroke:white;stroke-width:3;stroke-dasharray:none}
-:is(#geographic-map,#reference-map)[data-choosing="true"] .country:not(.selected,.neighbor) .cell {filter:brightness(.6) saturate(.55)}
+:is(#geographic-map,#reference-map)[data-choosing="true"] .country:not(.selected,.neighbor,.target) .cell {filter:brightness(.6) saturate(.55)}
 :is(#geographic-map,#reference-map) .country-label {pointer-events:none}
 :is(#geographic-map,#reference-map) .badge {fill:#102b36;stroke-width:2.6;stroke-linejoin:round}
 :is(#geographic-map,#reference-map) .country.selected .badge {fill:#ffd06b;stroke:#102b36 !important}

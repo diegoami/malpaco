@@ -31,3 +31,16 @@ export function initial(playerId: string): string {
 export function badgeScale(countWidth: number): number {
   return Math.max(0.75, (countWidth + 6) / 34);
 }
+
+/**
+ * [designed] T87 (B): counts over 999 print compactly and never overstate ("1.2k" for 1250,
+ * "12k" for 12 999); the country's accessible name keeps the exact value.
+ */
+export function countLabel(armies: number): string {
+  if (armies < 1000) return String(armies);
+  const thousands = armies / 1000;
+  return thousands < 10 ? `${Math.floor(thousands * 10) / 10}k` : `${Math.floor(thousands)}k`;
+}
+
+/** The chosen target's crosshair, around a badge centred on 0,0 (T87: not hue alone). */
+export const TARGET_MARK = "M-30 0H-21M21 0H30M0 -30V-21M0 21V30";

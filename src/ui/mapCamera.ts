@@ -18,6 +18,9 @@ export const FOCUS_FILL = 0.4;
 export const FOCUS_MIN_ZOOM = 2;
 /** Pointer travel in CSS px beyond which a press is a gesture, never a tap. */
 export const TAP_SLOP = 10;
+/** [designed] T87: counts never render under 14 px; at 14 map units they need no help once zoomed. */
+export const MIN_COUNT_PX = 14;
+const COUNT_UNITS = 14;
 export const NO_INSETS: Insets = {top: 0, right: 0, bottom: 0, left: 0};
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
@@ -154,6 +157,7 @@ export class MapCamera {
   private suppressClick = false;
   private lastFocused: SVGGraphicsElement | null = null;
   private appliedRotation: Rotation | null = null;
+  private labelScale = 1;
   /** The centre the player asked for (a focused country), kept across clamps so a resize can return to it. */
   private intent: {x: number; y: number} | null = null;
 
@@ -285,7 +289,13 @@ export class MapCamera {
       const box = cameraViewBox(next, this.world, this.viewport);
       this.svg.setAttribute('viewBox', `${box.x} ${box.y} ${box.width} ${box.height}`);
     }
-    if (this.appliedRotation !== next.rotation) this.applyRotation(next.rotation);
+    // Small screens at Fit: labels grow about their badge centre so counts stay at least 14 px.
+    let scale = this.labelScale;
+    if (this.viewport.width && this.viewport.height) {
+      const box = cameraViewBox(next, this.world, this.viewport), pixels = Math.min(this.viewport.width / box.width, this.viewport.height / box.height);
+      scale = Math.max(1, MIN_COUNT_PX / (COUNT_UNITS * pixels));
+    }
+    if (this.appliedRotation !== next.rotation || Math.abs(scale - this.labelScale) > 1e-3) {this.labelScale = scale; this.applyRotation(next.rotation);}
     Object.assign(this.svg.dataset, {cameraZoom: String(next.zoom), cameraRotation: String(next.rotation)});
     this.refreshControls();
     this.onChange?.(this.state);
@@ -297,9 +307,12 @@ export class MapCamera {
     if (rotation) this.content.setAttribute('transform', `rotate(${rotation})`); else this.content.removeAttribute('transform');
     const upright = (el: Element, x: number, y: number) =>
       rotation ? el.setAttribute('transform', `rotate(${-rotation} ${x} ${y})`) : el.removeAttribute('transform');
+    const k = this.labelScale;
     for (const label of this.content.querySelectorAll('.country-label')) {
-      const count = label.querySelector('.count');
-      upright(label, Number(count?.getAttribute('x') ?? 0), Number(count?.getAttribute('y') ?? 0));
+      const count = label.querySelector('.count'), x = Number(count?.getAttribute('x') ?? 0), y = Number(count?.getAttribute('y') ?? 0);
+      // The badge centre sits five units above the count's baseline; it stays put as the label grows.
+      const grow = k > 1 ? ` translate(${x} ${y - 5}) scale(${k}) translate(${-x} ${-(y - 5)})` : '';
+      if (rotation || grow) label.setAttribute('transform', `${rotation ? `rotate(${-rotation} ${x} ${y})` : ''}${grow}`.trim()); else label.removeAttribute('transform');
     }
     for (const text of this.content.querySelectorAll('text'))
       if (!text.closest('.country-label')) upright(text, Number(text.getAttribute('x') ?? 0), Number(text.getAttribute('y') ?? 0));

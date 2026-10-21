@@ -3,7 +3,10 @@ import type {Page} from "@playwright/test";
 import {mkdirSync} from "node:fs";
 import {join} from "node:path";
 import {pinned} from "../core/versioned-match-fixture";
-import {seatLook} from "../../src/ui/palette";
+import type {TestInfo} from "@playwright/test";
+import {build} from "vite";
+import {countLabel,seatLook} from "../../src/ui/palette";
+
 import {openSurface} from './shell';
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 const output=process.env["READABILITY_EVIDENCE_DIR"]??"screenshots";
@@ -53,4 +56,79 @@ test("region names remain identifiable on mouse, keyboard and touch without chan
  await shot(page,"large-stack",info.project.name);
  const context=await browser.newContext({viewport:page.viewportSize()!,hasTouch:true});const touch=await context.newPage();
  try{await opening(touch);const node=touch.locator("[data-country]").first();const label=await node.getAttribute("aria-label");const box=await node.boundingBox();expect(box).not.toBeNull();await touch.touchscreen.tap(box!.x+box!.width/2,box!.y+box!.height/2);await expect(node).toHaveAttribute("aria-label",/Seat \d, \d+ armies/);expect(label).toBeTruthy();await expect(node.locator(".name").first()).toBeVisible();await shot(touch,"touch",info.project.name);}finally{await context.close();}
+});
+
+// T87 (A, B, E): the real geographic map view at phone, tablet and desktop Fit. Small regions
+// carry nonsequential 2-digit, 3-digit and compact >999 counts with exact accessible values;
+// every count is at least 14 px, sits in a badge centred on its own country, and its paint
+// never takes a tap from that country; source, candidate and chosen target differ without hue.
+const SIZES=[{width:390,height:844},{width:844,height:390},{width:820,height:1180},{width:1280,height:800}] as const;
+const SEED=7;
+let bundle:{js:string;css:string};
+
+
+type View={selected:string|null;target:string|null;targets:string[]};
+async function mount(page:Page,armies:Record<string,number>,view:View){
+ await page.setContent(`<!doctype html><html><head><style>${bundle.css}</style></head><body></body></html>`);
+ await page.addScriptTag({content:bundle.js});
+ const mounted=await page.evaluate(([a,v,seed])=>(window as unknown as {MapHarness:{mount:(s:number,a:Record<string,number>,v:View)=>{ids:string[]}}}).MapHarness.mount(seed,a,v),[armies,view,SEED] as const);
+ // The camera fits once it has measured the board.
+ await expect.poll(()=>page.locator('#geographic-map').getAttribute('viewBox')).not.toBeNull();await page.waitForTimeout(150);
+ return mounted.ids;
+}
+/** The five smallest countries on screen, smallest first. */
+const smallest=(page:Page)=>page.locator('#geographic-map [data-country]').evaluateAll(ns=>ns.map(n=>{const r=n.querySelector('.cell')!.getBoundingClientRect();return {id:(n as HTMLElement).dataset['country']!,area:r.width*r.height};}).sort((a,b)=>a.area-b.area).slice(0,5).map(c=>c.id));
+async function fitShot(page:Page,info:TestInfo,name:string){await page.screenshot({path:info.outputPath(`${name}.png`)});}
+
+test.describe('T87 annotation hierarchy',()=>{
+ test.beforeAll(async()=>{
+  const out=await build({configFile:false,logLevel:'silent',build:{write:false,cssCodeSplit:false,lib:{entry:'tests/e2e/harness/map-harness.ts',formats:['iife'],name:'MapHarness',fileName:()=>'harness.js'}}});
+  const files=(Array.isArray(out)?out[0]!:out as {output:{fileName:string;code?:string;source?:string|Uint8Array}[]}).output;
+  const text=(end:string)=>{const f=files.find(f=>f.fileName.endsWith(end)) as unknown as {code?:string;source?:unknown};return String(f.code??f.source);};
+  bundle={js:text('.js'),css:text('.css')};
+ });
+ test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes are set here, so one project suffices'));
+for(const size of SIZES)test(`counts, badges and selection states read at Fit at ${size.width}×${size.height}`,async({page},info)=>{
+ await page.setViewportSize(size);
+ // First pass finds the smallest regions; the second gives them the hard counts.
+ const ids=await mount(page,{},{selected:null,target:null,targets:[]});
+ const small=await smallest(page),counts=[48,7,1250,315,23999];
+ const armies=Object.fromEntries(small.map((id,i)=>[id,counts[i]!]));
+ const [source,target,candidate]=ids.filter(id=>!small.includes(id)) as [string,string,string];
+ await mount(page,armies,{selected:source,target,targets:[target,candidate]});
+ const read=await page.locator('#geographic-map [data-country]').evaluateAll(ns=>ns.map(n=>{
+  const count=n.querySelector<SVGTextElement>('.count')!,badge=n.querySelector<SVGGraphicsElement>('.badge')!,cell=n.querySelector<SVGGeometryElement>('.cell')!;
+  const b=badge.getBoundingClientRect(),t=count.getBoundingClientRect(),m=count.getScreenCTM()!;
+  const cx=b.x+b.width/2,cy=b.y+b.height/2,centre=new DOMPoint(cx,cy).matrixTransform(cell.getScreenCTM()!.inverse());
+  return {id:(n as HTMLElement).dataset['country']!,label:n.getAttribute('aria-label')!,text:count.textContent!,
+   px:parseFloat(getComputedStyle(count).fontSize)*Math.hypot(m.a,m.b),
+   inBadge:t.left>=b.left-0.5&&t.right<=b.right+0.5&&t.top>=b.top-0.5&&t.bottom<=b.bottom+0.5,
+   onLand:cell.isPointInFill(centre),hit:document.elementFromPoint(cx,cy)?.closest('[data-country]')===n};
+ }));
+ expect(read).toHaveLength(46);
+ for(const c of read){
+  const exact=armies[c.id];
+  if(exact!==undefined){expect(c.text,c.id).toBe(countLabel(exact));expect(c.label,c.id).toContain(`${exact} armies`);}
+  expect(c.px,`${c.id} count px`).toBeGreaterThanOrEqual(14-0.01);
+  expect(c,`${c.id} badge`).toMatchObject({inBadge:true,onLand:true,hit:true});
+ }
+ // The compact counts are short; the exact value stays in the accessible name.
+ expect(read.find(c=>c.id===small[4])!.text).toBe('23k');expect(read.find(c=>c.id===small[2])!.text).toBe('1.2k');
+ // Source, candidate and chosen target: pattern and mark, not hue alone.
+ const style=(id:string)=>page.locator(`[data-country="${id}"]`).evaluate(n=>{const ring=getComputedStyle(n.querySelector('.ring')!),mark=getComputedStyle(n.querySelector('.target-mark')!);return {ring:ring.stroke!=='none',dashed:ring.strokeDasharray!=='none',mark:mark.display!=='none',pressed:n.getAttribute('aria-pressed')};});
+ expect(await style(source)).toEqual({ring:true,dashed:false,mark:false,pressed:'true'});
+ expect(await style(candidate)).toEqual({ring:true,dashed:true,mark:false,pressed:'false'});
+ expect(await style(target)).toEqual({ring:true,dashed:false,mark:true,pressed:'false'});
+ expect(await style(small[0]!)).toEqual({ring:false,dashed:false,mark:false,pressed:'false'});
+ await fitShot(page,info,`fit-${size.width}x${size.height}`);
+});
+
+test('reduced motion: no transitions on the map',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.setViewportSize({width:390,height:844});
+ const ids=await mount(page,{},{selected:null,target:null,targets:[]});
+ // The global reduced-motion rule shortens every transition to a near-zero duration.
+ expect(await page.locator(`[data-country="${ids[0]}"] .cell`).evaluate(n=>parseFloat(getComputedStyle(n).transitionDuration))).toBeLessThan(0.01);
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ expect(await page.locator(`[data-country="${ids[0]}"] .cell`).evaluate(n=>parseFloat(getComputedStyle(n).transitionDuration))).toBeGreaterThan(0.1);
+});
 });

@@ -3,7 +3,7 @@ import type {IslandGeography} from '../core/island-geography';
 import type {Presentation} from './generatedGeographyPresentation';
 import type {MapHandlers,MapViewState} from './mapView';
 import {s} from './dom';
-import {badgeScale,seatLook} from './palette';
+import {badgeScale,countLabel,seatLook,TARGET_MARK} from './palette';
 import {MapCamera} from './mapCamera';
 
 /** Render the prepared drawing; all interactive targets come from core state. */
@@ -25,7 +25,7 @@ export class GeographicMapView {
   const nodes=map.provinces.map(p=>{
    const display=drawing.get(p.id);if(!display)throw Error(`Missing drawing for ${p.id}`);
    const [x,y]=display.labelAt.map(v=>v/q) as [number,number];
-   const node=s('g',{class:'country province','data-id':p.id,'data-country':p.id,'data-province':p.id,tabindex:0,role:'button','aria-label':p.name},s('title',{},p.name),s('path',{class:'cell country-shape',d:ring(display.polygon)}),s('g',{class:'country-label'},s('path',{class:'badge'}),
+   const node=s('g',{class:'country province','data-id':p.id,'data-country':p.id,'data-province':p.id,tabindex:0,role:'button','aria-label':p.name},s('title',{},p.name),s('path',{class:'cell country-shape',d:ring(display.polygon)}),s('path',{class:'ring',d:ring(display.polygon)}),s('g',{class:'country-label'},s('path',{class:'target-mark',d:TARGET_MARK,transform:`translate(${x} ${y})`}),s('path',{class:'badge'}),
     // [designed] Existing reference badge dimensions and five-unit baseline offset.
     s('text',{class:'count army-count',x,y:y+5},'0'),s('text',{class:'name',x,y:y-18},p.name),s('text',{class:'centre',x:x-25,y:y-23},'★')));
    node.onclick=e=>handlers.onProvince(p.id,{inspect:e.shiftKey,repeat:false});
@@ -43,13 +43,13 @@ export class GeographicMapView {
   for(const n of this.el.querySelectorAll<SVGGElement>('[data-country]')){
    const id=n.dataset['country']!,seat=state.players.findIndex(p=>p.id===state.ownerOf[id]),look=seatLook(seat);
    n.dataset['owner']=state.ownerOf[id]!;n.dataset['armies']=String(state.armies[id]);n.dataset['selected']=String(view.selected===id);n.dataset['target']=String(view.targets.includes(id));
-   n.classList.toggle('selected',view.selected===id);
+   n.classList.toggle('selected',view.selected===id);n.classList.toggle('target',view.target===id&&view.selected!==id);
    // T82: a pending capture's two countries keep dashed badges until Confirm.
    n.classList.toggle('pending',!!state.pendingCapture&&(state.pendingCapture.from===id||state.pendingCapture.to===id));n.classList.toggle('neighbor',view.targets.includes(id));n.setAttribute('aria-pressed',String(view.selected===id));
    const description=`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies, ${state.players[seat]!.name}`;
    n.setAttribute('aria-label',description);n.querySelector('title')!.textContent=description;
    (n.querySelector('.cell') as SVGElement).style.fill=look.color;
-   const count=n.querySelector<SVGTextElement>('.count')!,badge=n.querySelector<SVGPathElement>('.badge')!;count.textContent=String(state.armies[id]);badge.setAttribute('d',look.badge);badge.style.stroke=look.color;
+   const count=n.querySelector<SVGTextElement>('.count')!,badge=n.querySelector<SVGPathElement>('.badge')!;count.textContent=countLabel(state.armies[id]!);badge.setAttribute('d',look.badge);badge.style.stroke=look.color;
    badge.setAttribute('transform',`translate(${count.getAttribute('x')},${Number(count.getAttribute('y'))-5}) scale(${badgeScale(count.getComputedTextLength())})`);
    (n.querySelector('.centre') as SVGElement).style.display=state.productionCentres.includes(id)?'':'none';
   }

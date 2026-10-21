@@ -1,7 +1,7 @@
 // Adapt the geographical drawing to stable canonical game-country IDs.
 import drawing from "../../fixtures/new-game/T65/map.svg?raw";
 import {s} from "./dom";
-import {badgeScale,seatLook} from "./palette";
+import {badgeScale,countLabel,seatLook,TARGET_MARK} from "./palette";
 import {MapCamera} from "./mapCamera";
 import type {GameMap} from "../core";
 import type {MapHandlers,MapViewState} from "./mapView";
@@ -21,6 +21,9 @@ export class ReferenceMapView{
    n.querySelector(".cell")!.classList.add("country-shape");n.querySelector(".count")!.classList.add("army-count");
    // [designed] Reuse the score legend's ownership silhouettes within the existing label reservation.
    n.querySelector(".badge")!.replaceWith(s("path",{class:"badge"}));
+   // T87: a second outline over the cell (light line on the cell's dark band) and the target's crosshair.
+   const cell=n.querySelector(".cell")!,outline=cell.cloneNode() as SVGElement;outline.setAttribute("class","ring");outline.removeAttribute("style");outline.removeAttribute("id");cell.after(outline);
+   const c=n.querySelector(".count")!;n.querySelector(".badge")!.before(s("path",{class:"target-mark",d:TARGET_MARK,transform:`translate(${c.getAttribute("x")} ${Number(c.getAttribute("y"))-5})`}));
    if(!n.querySelector(".centre"))n.append(s("text",{class:"centre",x:Number(n.querySelector(".count")!.getAttribute("x"))-25,y:Number(n.querySelector(".count")!.getAttribute("y"))-28},"★"));
    n.onclick=e=>handlers.onProvince(id,{inspect:e.shiftKey,repeat:false});n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
    n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id,{inspect:e.shiftKey,repeat:e.repeat});}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
@@ -33,14 +36,14 @@ export class ReferenceMapView{
   for(const n of this.el.querySelectorAll<SVGGElement>(".country")){
    const id=n.dataset["country"]!,seat=state.players.findIndex(p=>p.id===state.ownerOf[id]);
    n.dataset["owner"]=state.ownerOf[id]!;n.dataset["armies"]=String(state.armies[id]);n.dataset["target"]=String(view.targets.includes(id));n.dataset["selected"]=String(view.selected===id);
-   n.classList.toggle("selected",view.selected===id);
+   n.classList.toggle("selected",view.selected===id);n.classList.toggle("target",view.target===id&&view.selected!==id);
    // T82: a pending capture's two countries keep dashed badges until Confirm.
    n.classList.toggle("pending",!!state.pendingCapture&&(state.pendingCapture.from===id||state.pendingCapture.to===id));n.classList.toggle("neighbor",view.targets.includes(id));n.setAttribute("aria-pressed",String(view.selected===id));
    const description=`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies, ${state.players[seat]!.name}`;
    n.setAttribute("aria-label",description);n.querySelector("title")!.textContent=description;
    const badge=n.querySelector<SVGPathElement>(".badge")!,count=n.querySelector<SVGTextElement>(".count")!;
    badge.setAttribute("d",seatLook(seat).badge);badge.style.stroke=seatLook(seat).color;
-   (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;count.textContent=String(state.armies[id]);
+   (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;count.textContent=countLabel(state.armies[id]!);
    badge.setAttribute("transform",`translate(${count.getAttribute("x")},${Number(count.getAttribute("y"))-5}) scale(${badgeScale(count.getComputedTextLength())})`);
    (n.querySelector(".centre") as SVGElement).style.display=state.productionCentres.includes(id)?"":"none";
   }
