@@ -18,9 +18,9 @@ Argument: a task id (`T<nn>`) or a bug issue number. Follow `docs/process.md` §
    do other work in this checkout while the subagent runs. Read its final report before acting.
 3. **PR.** Check that the PR body has every Done-when line with its output. Re-run the one the
    task rests on most. Label `status:in-review`.
-4. **Review (optional).** Only when the task file asks for one or the change is risky:
-   `node tools/review.mjs --pr <n> --brief docs/tasks/T<nn>.md` (add `--checkout` on a clean tree
-   so the reviewer can run tests). Relay its findings in full. Rework once on the same branch;
+4. **Review (optional, by hand).** Only when the task file asks for one or the change is risky:
+   give the owner a review prompt (the PR, its head, the task file, `docs/review-pr.md`); they run
+   it in a model's CLI, which posts one PR comment. Relay its findings in full. Rework once on the same branch;
    what remains becomes follow-up issues with `triage:needed`.
 5. **Merge** when CI is green. Locally: `gh pr merge <n> --squash --delete-branch`, then return
    this checkout to `main` and pull. In a cloud session: merge with a merge commit (never squash,

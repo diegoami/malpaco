@@ -20,11 +20,11 @@ evidence included, is archived on Drive (`archive/` in the malpaco folder, `docs
    extra clones. Never `git stash`.
 3. **Who implements.** The main session implements directly, or spawns the `implementer` subagent
    (`.claude/agents/implementer.md`) on a model of its choice; the user may name one.
-4. **Reviews after a PR are optional.** When one is wanted, `node tools/review.mjs --pr <n>` runs
-   `harness.json`'s `review.default` (or `--model <key>`) and posts one PR comment. Any model may
-   review; there is no family rule and no fresh checkout. The big review is the milestone review
-   (`docs/milestone-review.md`), which the owner starts by calling a model's CLI directly.
-5. **Choosing models:** `harness.json` holds the defaults; the user decides otherwise. No quota,
+4. **Reviews are run by hand** (the owner, 2026-10-21: we work with releases now). When one is
+   wanted, the owner starts any model's CLI (opencode, for instance) on the PR head with
+   `docs/review-pr.md` as its brief; the reviewer posts its review as one PR comment. Any model
+   may review. The big review is the milestone review (`docs/milestone-review.md`).
+5. **Choosing models:** `harness.json` lists the registered models; the user decides otherwise. No quota,
    tier or chooser table applies to this project.
 6. **Artifacts never go into Git.** Screenshots, logs, proof runs and builds go to `artifacts/`
    (ignored), then to a GitHub release if they must last, otherwise to Google Drive

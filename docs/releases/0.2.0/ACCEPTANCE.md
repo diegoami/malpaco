@@ -70,7 +70,7 @@ The earlier 0.2.0 suites (T79–T88) also ran in both runs. They are listed in
 - **The device pass** in `DEVICE-REPORT.md`: real touch, safe areas, the virtual keyboard, a screen
   reader and real browser zoom.
 - **The independent review** of the T89 PR, by an engine other than this session's
-  (`node tools/review.mjs --pr <n>` from the owner's machine), with its findings answered before
+  (run by hand in a model's CLI with `docs/review-pr.md`, posted as one PR comment), with its findings answered before
   any merge.
 - **D4**, the owner's judgment of the candidate, recorded on the milestone issue (#222 Q4).
 - **The exact-head CI result** of the final T89 commit, linked on the PR when it completes. This

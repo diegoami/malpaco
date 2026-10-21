@@ -1,17 +1,46 @@
 {
-  "review": {
-    "default": "mm-m3",
-    "timeoutMin": 60
-  },
   "models": {
-    "mm-m3": { "cli": "opencode", "id": "minimax/MiniMax-M3", "variant": "thinking" },
-    "luna": { "cli": "opencode", "id": "openai/gpt-5.6-luna", "variant": "high" },
-    "sol": { "cli": "opencode", "id": "openai/gpt-6.1-sol", "variant": "low" },
-    "glm": { "cli": "opencode", "id": "zai-coding-plan/glm-5.3", "variant": "low" },
-    "glm-flash": { "cli": "opencode", "id": "zai-coding-plan/glm-5.3-flash", "variant": "high" },
-    "kimi": { "cli": "opencode", "id": "kimi-code-plan-global/k3", "variant": "low" },
-    "mimo-pro": { "cli": "opencode", "id": "opencode-go/mimo-v2.6-pro" },
-    "sonnet": { "cli": "claude", "id": "sonnet" },
-    "opus": { "cli": "claude", "id": "opus" }
+    "mm-m3": {
+      "cli": "opencode",
+      "id": "minimax/MiniMax-M3",
+      "variant": "thinking"
+    },
+    "luna": {
+      "cli": "opencode",
+      "id": "openai/gpt-5.6-luna",
+      "variant": "high"
+    },
+    "sol": {
+      "cli": "opencode",
+      "id": "openai/gpt-6.1-sol",
+      "variant": "low"
+    },
+    "glm": {
+      "cli": "opencode",
+      "id": "zai-coding-plan/glm-5.3",
+      "variant": "low"
+    },
+    "glm-flash": {
+      "cli": "opencode",
+      "id": "zai-coding-plan/glm-5.3-flash",
+      "variant": "high"
+    },
+    "kimi": {
+      "cli": "opencode",
+      "id": "kimi-code-plan-global/k3",
+      "variant": "low"
+    },
+    "mimo-pro": {
+      "cli": "opencode",
+      "id": "opencode-go/mimo-v2.6-pro"
+    },
+    "sonnet": {
+      "cli": "claude",
+      "id": "sonnet"
+    },
+    "opus": {
+      "cli": "claude",
+      "id": "opus"
+    }
   }
 }
