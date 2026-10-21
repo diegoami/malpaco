@@ -1493,7 +1493,8 @@ dialog h2 {
   #battle-action-rail > .buttons { display:contents; }
   .game-side { align-items:flex-end; }
   .game-notice { max-width:100%; }
-  .game-notice-slot { width:100%; }
+  /* Portrait keeps the turned board's fit: the slot takes no height and the pill floats over the map. */
+  .game-notice-slot { width:100%; min-height:0; height:0; overflow:visible; }
   #game-focus-drawer { width:100%; margin:auto 0 0; max-height:calc(var(--avail-h) * 0.6); }
   .game-overlay:has(#game-focus-drawer[data-placement="center"]:not([hidden])) .game-side { grid-column:1 / -1; }
   #game-focus-drawer[data-placement="center"] { margin:auto; }
