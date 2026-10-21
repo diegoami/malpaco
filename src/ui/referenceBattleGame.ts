@@ -18,6 +18,7 @@ import type {LoadedVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
 import { createPanelDetailControl } from "./panelDetail";
 import {BattleChrome} from "./battleChrome";
+import {CountryPicker} from "./countryPicker";
 
 /** Session-only preferences. Full presentation persistence is T56. */
 export type PanelDetail = "compact" | "detailed";
@@ -65,6 +66,8 @@ export class ReferenceBattleGame {
   private outcomeAt = -1;
   private readonly files: ReferenceMatchFiles;
   private hover: string | null = null;
+  /** T81: countries by name, Inspect, and the named choice after an ambiguous tap. */
+  private readonly picker: CountryPicker;
   private mounted = false;
   private disposed = false;
   private readonly onKeyDown = (event: KeyboardEvent) => {
@@ -99,6 +102,17 @@ export class ReferenceBattleGame {
       onBackground: () => { this.controller.select(null, null); },
       onHover: id => { this.hover = id; if (this.mounted && !this.disposed) this.renderMap(); },
     });
+    // Choosing from the list acts like a Shift-click: it places, selects or stages, never rolls.
+    this.picker = new CountryPicker({
+      choose: id => this.clickProvince(id, true),
+      focus: id => this.mapView.camera?.focusOn(id),
+      painted: title => this.chrome?.retitle(title),
+    });
+    if (this.mapView.camera) this.mapView.camera.onAmbiguousTap = ids => {
+      this.picker.ask(ids);
+      if (this.chrome?.openSurface !== "countries") this.chrome?.open("countries", this.chrome.countries, false);
+      else this.chrome.retitle(this.picker.title);
+    };
     this.panel = new Panel({
       onAttack: () => { this.controller.singleExchange(); },
       onStartCombat: () => { this.controller.dispatch({ kind: "endReinforcement" }); },
@@ -132,7 +146,9 @@ export class ReferenceBattleGame {
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, cards: this.cardControls.el, history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings,
-      phaseActions: this.phaseActions, pause: this.playbackPause, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+      phaseActions: this.phaseActions, pause: this.playbackPause, countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+    // The Countries icon always opens on the list.
+    this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
     root.replaceChildren(h("section", { class: "board" }, this.mapView.el), this.chrome.overlay, store);
     // Every overlay reframes the map beside it, so covered land keeps its badges.
     for (const overlay of this.chrome.obstacles) this.mapView.camera?.avoid(overlay);
@@ -188,6 +204,13 @@ export class ReferenceBattleGame {
     const card=this.cards.view;
     const raidTargets=card.phase==='raid-target'?state.map.provinces.filter(p=>state.ownerOf[p.id]!==activePlayer(state)!.id).map(p=>p.id):null;
     this.mapView.render({ state, selected: from, target: card.selectedTarget??to, targets:raidTargets??targets, hover: this.hover, flash: [] });
+    // What choosing from the Countries card does now; the list's Legal filter shows exactly these.
+    const human = activePlayer(state), own = (id: string) => state.ownerOf[id] === human?.id;
+    const placing = !blocked && state.phase === "reinforce" && human?.kind === "human";
+    const sources = !blocked && state.phase === "attack" && mode !== "move" && !from ? state.map.provinces.map(p => p.id).filter(id => own(id) && attackTargets(state, id).length > 0) : [];
+    const legal = raidTargets ?? (placing ? state.map.provinces.map(p => p.id).filter(own) : sources.length ? sources : targets);
+    const verb = raidTargets ? "Raid target" : placing ? "Place 1 army" : mode === "move" ? (from ? "Move here" : "Move from") : from ? "Target" : "Attack from";
+    this.picker.render({state, legal, verb});
     if (mode === "move") {
       for (const route of this.mapView.el.querySelectorAll<SVGPolylineElement>(".lane")) {
         const ends = route.dataset["edge"]!.split("|");

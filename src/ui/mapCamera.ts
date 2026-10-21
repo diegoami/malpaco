@@ -219,6 +219,28 @@ export class MapCamera {
     this.set(focusCamera(this.current, box, this.world, this.viewport), {x: box.x + box.width / 2, y: box.y + box.height / 2});
   }
 
+  /** Frames one country by id (the country list's and Inspect's Focus), without selecting it. */
+  focusOn(id: string): void {
+    const target = this.svg.querySelector<SVGGraphicsElement>(`[data-country="${CSS.escape(id)}"]`);
+    if (!target) return;
+    const box = this.bounds(target);
+    this.set(focusCamera(this.current, box, this.world, this.viewport), {x: box.x + box.width / 2, y: box.y + box.height / 2});
+  }
+
+  /**
+   * T81: a touch tap whose [designed] 12 px ring reaches more than one country is not
+   * acted on; the host offers a named choice instead. Hits are never enlarged.
+   */
+  onAmbiguousTap: ((ids: string[]) => void) | null = null;
+  private ambiguousAt(x: number, y: number): string[] {
+    const ids = new Set<string>();
+    for (const [dx, dy] of [[0, 0], [12, 0], [-12, 0], [0, 12], [0, -12], [8, 8], [-8, 8], [8, -8], [-8, -8]] as const) {
+      const id = document.elementFromPoint(x + dx, y + dy)?.closest<SVGElement>('[data-country]')?.dataset['country'];
+      if (id && this.svg.contains(document.elementFromPoint(x + dx, y + dy))) ids.add(id);
+    }
+    return [...ids];
+  }
+
   /** Shows only the camera controls that can act now; a hidden control hands its focus to Fit. */
   refreshControls(): void {
     const show = {'map-zoom-in': this.current.zoom > 1, 'map-zoom-out': this.current.zoom > 1,
@@ -323,6 +345,10 @@ export class MapCamera {
   private readonly onPointerUp = (e: PointerEvent) => {
     if (!this.pointers.delete(e.pointerId)) return;
     if (this.gesture?.moved) this.suppressClick = true;
+    else if (e.pointerType === 'touch' && this.onAmbiguousTap) {
+      const ids = this.ambiguousAt(e.clientX, e.clientY);
+      if (ids.length > 1) {this.suppressClick = true; this.onAmbiguousTap(ids);}
+    }
     if (this.pointers.size === 0) this.gesture = null;
     else if (this.gesture) this.gesture.pinch = null;
   };
