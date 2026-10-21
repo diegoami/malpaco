@@ -10,7 +10,7 @@ import {openSurface,setDetail,withSurface} from './shell';
 // The Cards region waits in the hidden store unless a card shows it (T79); a CSS locator still reads it.
 const cards=(p:Page)=>p.locator('section.card-interactions[aria-label="Cards"]');
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
-async function begin(p:Page,url='/'){await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await p.goto(url);}
+async function begin(p:Page,url='/?generator=1'){await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await p.goto(url);}
 // [designed] 120ms real-time margin prevents Chromium's ten-download/second burst gate.
 // Source: LocalFrame::ShouldThrottleDownload; Node time leaves the paused game clock unchanged.
 const nativeSaveCompletedAt=new WeakMap<Page,number>();
@@ -42,7 +42,7 @@ async function humanPlacement(p:Page,loaded:LoadedVersionedMatch,s:GameState){
 test('geographic setup enables cards only for zero/one human with explicit wording and exact identity',async({page},info)=>{
  test.setTimeout(90000);await begin(page);
  for(const humans of [0,1,2,4]){
-  await page.goto('/?seed=1994');await expect(page.locator('.setup-card')).toContainText('Cards are enabled with zero or one human seat. Games with two or more human seats play without cards.');
+  await page.goto('/?generator=1&seed=1994');await expect(page.locator('.setup-card')).toContainText('Cards are enabled with zero or one human seat. Games with two or more human seats play without cards.');
   await page.getByLabel('Seats',{exact:true}).selectOption('4');for(let n=1;n<=4;n++)await page.getByLabel(`Seat ${n} control`,{exact:true}).selectOption(n<=humans?'human':'computer');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
   const actual=await saved(page);expect(actual.options.seed).toBe(1994);expect(actual.options.seats.filter(x=>x.kind==='human')).toHaveLength(humans);
   expect(actual.identity).toEqual({boardGenerator:{id:'geographic',version:1},rules:{id:humans<=1?'cards':'victory',version:humans<=1?3:1},actionSchemaVersion:humans<=1?5:2});
@@ -53,7 +53,7 @@ test('geographic setup enables cards only for zero/one human with explicit wordi
 
 test('explicit manual geography and reference compatibility keep their historical identities',async({page})=>{
  await begin(page);
- for(const [url,board] of [['/?control=manual&seed=1994','geographic'],['/?view=reference-game&control=manual&seed=1994','fixed-reference']] as const){await page.goto(url);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#battle-action-rail')).toBeVisible();const actual=await saved(page);expect(actual.identity).toEqual({boardGenerator:{id:board,version:1},rules:{id:'victory',version:1},actionSchemaVersion:2});expect(actual.state.cards).toBeUndefined();expect(actual.state.history).toEqual([]);await page.clock.runFor(6000);expect((await saved(page)).state).toEqual(actual.state);}
+ for(const [url,board] of [['/?generator=1&control=manual&seed=1994','geographic'],['/?generator=1&view=reference-game&control=manual&seed=1994','fixed-reference']] as const){await page.goto(url);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#battle-action-rail')).toBeVisible();const actual=await saved(page);expect(actual.identity).toEqual({boardGenerator:{id:board,version:1},rules:{id:'victory',version:1},actionSchemaVersion:2});expect(actual.state.cards).toBeUndefined();expect(actual.state.history).toEqual([]);await page.clock.runFor(6000);expect((await saved(page)).state).toEqual(actual.state);}
 });
 
 test('three consecutive computers perform literal Raid decisions and reach the correct human-loss choices',async({page},info)=>{

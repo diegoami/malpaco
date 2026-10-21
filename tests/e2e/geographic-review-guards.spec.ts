@@ -8,7 +8,7 @@ import {deserializeVersionedMatch,GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD
 import {openSurface,withSurface} from './shell';
 
 async function save(page:Page){const pending=page.waitForEvent('download');await withSurface(page,'settings',()=>page.getByRole('button',{name:'Save game',exact:true}).click());return readFileSync((await(await pending).path())!,'utf8');}
-async function start(page:Page,reference=false,manual=false){await page.goto(`/?seed=1994${reference?'&view=reference-game':''}${manual?'&control=manual':''}`);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator(reference?'#reference-map':'#geographic-map')).toBeVisible();}
+async function start(page:Page,reference=false,manual=false){await page.goto(`/?generator=1&seed=1994${reference?'&view=reference-game':''}${manual?'&control=manual':''}`);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator(reference?'#reference-map':'#geographic-map')).toBeVisible();}
 function reinforce(state:GameState,id:string){const result=apply(state,{kind:'reinforce',province:id,amount:1});if(!result.ok)throw Error(result.error);return result.state;}
 
 test('active geographic Enter and Space each place an army',async({page})=>{

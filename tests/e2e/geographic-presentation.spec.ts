@@ -44,7 +44,7 @@ async function assertDrawing(page:Page,expected:Drawing){
  expect(actual.routes).toEqual(expected.routes.map(r=>({edge:[r.from,r.to].sort().join('|'),points:r.points.map(p=>p.join(',')).join(' ')})));
 }
 test('real worker preparation is responsive and precedes playable construction',async({page})=>{
- await installWorkerGate(page);await page.goto('/?seed=1994&control=manual');await page.getByRole('button',{name:'Start game',exact:true}).click();
+ await installWorkerGate(page);await page.goto('/?generator=1&seed=1994&control=manual');await page.getByRole('button',{name:'Start game',exact:true}).click();
  await expect.poll(()=>page.evaluate(()=>(window as any).__presentationWorker.posted)).toBeGreaterThan(0);
  await expect.poll(()=>page.evaluate(()=>(window as any).__presentationWorker.held)).toBeGreaterThan(0);
  await expect(page.locator('#geographic-map')).toHaveCount(0);await expect(page.getByRole('status')).toContainText('Preparing game');
@@ -53,7 +53,7 @@ test('real worker preparation is responsive and precedes playable construction',
  await assertDrawing(page,oracles['1994']!);await assertHits(page);const loaded=deserializeVersionedMatch(await save(page));expect(loaded.options).toEqual(options);expect(loaded.state).toEqual(accepted.state);expect(loaded.initialState).toEqual(accepted.state);
 });
 test('actual geographic load preserves exact replay while painting the frozen presentation',async({page})=>{
- await page.goto('/?control=manual');await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'resume.json',mimeType:'application/json',buffer:Buffer.from(payload)});
+ await page.goto('/?generator=1&control=manual');await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'resume.json',mimeType:'application/json',buffer:Buffer.from(payload)});
  await expect(page.locator('#geographic-map')).toBeVisible();await assertDrawing(page,oracles['1994']!);await assertHits(page);
  const state=deserializeVersionedMatch(await save(page));expect(state.state).toEqual(accepted.state);expect(state.geography).toEqual(accepted.geography);
 });
@@ -69,7 +69,7 @@ async function assertHits(page:Page){
  expect(hits).toEqual(changed.samples.map(p=>p.id));
 }
 test('frozen changed boundaries receive pointer hits and a repeated load reuses the root drawing cache',async({page},info)=>{
- await installWorkerGate(page);await page.goto('/?control=manual&seed=1994');await page.evaluate(()=>(window as any).__presentationWorker.release());
+ await installWorkerGate(page);await page.goto('/?generator=1&control=manual&seed=1994');await page.evaluate(()=>(window as any).__presentationWorker.release());
  await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();await assertDrawing(page,oracles['1994']!);await assertHits(page);
  const first=await page.evaluate(()=>({posted:(window as any).__presentationWorker.posted,workers:(window as any).__presentationWorker.workers}));expect(first).toEqual({posted:1,workers:1});
  await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'same.json',mimeType:'application/json',buffer:Buffer.from(payload)});await expect.poll(async()=>deserializeVersionedMatch(await save(page)).options.seed).toBe(1994);
@@ -81,7 +81,7 @@ test('frozen changed boundaries receive pointer hits and a repeated load reuses 
 test('invalid newer file and New game reject held real-worker load completions without replacing a live match',async({page})=>{
  const otherOptions={...options,seed:6};const other=createGeographicGame(otherOptions);if(!other.ok)throw Error('Frozen 6 refused');
  const otherFile=serializeVersionedMatch(otherOptions,[],GEOGRAPHIC_MATCH_IDENTITY);
- await installWorkerGate(page);await page.goto('/?control=manual&seed=1994');await page.evaluate(()=>(window as any).__presentationWorker.release());
+ await installWorkerGate(page);await page.goto('/?generator=1&control=manual&seed=1994');await page.evaluate(()=>(window as any).__presentationWorker.release());
  await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();const original=await save(page);
  await page.evaluate(()=>(window as any).__presentationWorker.hold=true);
  await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'pending.json',mimeType:'application/json',buffer:Buffer.from(otherFile)});
