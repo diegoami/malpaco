@@ -1,7 +1,7 @@
 // Adapt the geographical drawing to stable canonical game-country IDs.
 import drawing from "../../fixtures/new-game/T65/map.svg?raw";
 import {s} from "./dom";
-import {seatLook} from "./palette";
+import {badgeScale,seatLook} from "./palette";
 import {MapCamera} from "./mapCamera";
 import type {GameMap} from "../core";
 import type {MapHandlers,MapViewState} from "./mapView";
@@ -11,6 +11,9 @@ export class ReferenceMapView{
  constructor(_map:GameMap,handlers:MapHandlers){
   this.el=new DOMParser().parseFromString(drawing,"image/svg+xml").documentElement as unknown as SVGSVGElement;
   this.el.id="reference-map";this.el.setAttribute("aria-label","Nine Isles reference map");
+  // The sketches' dark shelf under each island and its routes.
+  const firstLane=this.el.querySelector(".lane");
+  for(const coast of this.el.querySelectorAll(".coast"))this.el.insertBefore(s("path",{class:"shelf",d:coast.getAttribute("d")!}),firstLane);
   const nodes=[...this.el.querySelectorAll<SVGGElement>(".country")];
   for(const[j,n]of nodes.entries()){
    const id=n.dataset["id"]!;
@@ -33,15 +36,13 @@ export class ReferenceMapView{
    n.classList.toggle("selected",view.selected===id);n.classList.toggle("neighbor",view.targets.includes(id));n.setAttribute("aria-pressed",String(view.selected===id));
    const description=`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies, ${state.players[seat]!.name}`;
    n.setAttribute("aria-label",description);n.querySelector("title")!.textContent=description;
-   const badge=n.querySelector(".badge")!,count=n.querySelector(".count")!;
-   badge.setAttribute("d",seatLook(seat).badge);
-   // Derived from the four palette paths (the pill includes its rounded ends).
-   // [designed] Keep the original 44-unit width; 20-unit height contains bold count glyphs.
-   const [width,height]=([[94,34],[76,34],[60,34],[76,38]] as const)[seat]!;
-   badge.setAttribute("transform",`translate(${count.getAttribute("x")},${Number(count.getAttribute("y"))-5}) scale(${44/width},${20/height})`);
-   (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;n.querySelector(".count")!.textContent=String(state.armies[id]);
+   const badge=n.querySelector<SVGPathElement>(".badge")!,count=n.querySelector<SVGTextElement>(".count")!;
+   badge.setAttribute("d",seatLook(seat).badge);badge.style.stroke=seatLook(seat).color;
+   (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;count.textContent=String(state.armies[id]);
+   badge.setAttribute("transform",`translate(${count.getAttribute("x")},${Number(count.getAttribute("y"))-5}) scale(${badgeScale(count.getComputedTextLength())})`);
    (n.querySelector(".centre") as SVGElement).style.display=state.productionCentres.includes(id)?"":"none";
   }
+  this.el.dataset["choosing"]=String(view.selected!==null);
   for(const r of this.el.querySelectorAll<SVGPolylineElement>(".lane"))r.classList.toggle("active",r.dataset["edge"]!.split("|").includes(view.selected??""));
  }
 }

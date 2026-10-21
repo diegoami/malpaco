@@ -9,7 +9,7 @@ const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 const output=process.env["READABILITY_EVIDENCE_DIR"]??"screenshots";
 async function shot(page:Page,name:string,project:string){mkdirSync(output,{recursive:true});await page.mouse.move(0,0);await page.screenshot({path:join(output,`${name}-${project}.png`)});}
 async function opening(page:Page){await page.goto("/?view=reference-game&control=manual");await page.getByLabel("Seed",{exact:true}).fill("1994");await page.getByLabel("Seats",{exact:true}).selectOption("4");await page.getByRole("button",{name:"Start game",exact:true}).click();await expect(page.locator("[data-country]")).toHaveCount(46);}
-test("army-only labels and ownership shapes reduce the default name hierarchy",async({page},info)=>{
+test("at rest the map shows counts in owner shapes and no names (T93)",async({page},info)=>{
  await opening(page);await shot(page,"opening",info.project.name);
  const rows=await page.locator("[data-country]").evaluateAll(ns=>ns.map(n=>{
   const count=n.querySelector(".army-count")!,name=n.querySelector(".name")!,badge=n.querySelector(".badge")!;
@@ -17,8 +17,21 @@ test("army-only labels and ownership shapes reduce the default name hierarchy",a
  }));
  const owners=[...new Set(rows.map(r=>r.owner))];expect(owners).toHaveLength(4);
  const players=await page.locator("[data-player]").evaluateAll(ns=>ns.map(n=>n.getAttribute("data-player")));
- for(const r of rows){expect(r.text).toBe(r.army);expect(r.label).toContain(`Seat ${players.indexOf(r.owner)+1}, ${r.army} armies`);expect(r.nameSize).toBeLessThanOrEqual(r.countSize*.7);expect(r.nameWeight).toBeLessThan(r.countWeight);expect(r.nameVisible).toBe(true);expect(r.shape).toBe(seatLook(players.indexOf(r.owner)).badge);}
+ for(const r of rows){expect(r.text).toBe(r.army);expect(r.label).toContain(`Seat ${players.indexOf(r.owner)+1}, ${r.army} armies`);expect(r.nameSize).toBeLessThanOrEqual(r.countSize*.7);expect(r.nameWeight).toBeLessThan(r.countWeight);expect(r.nameVisible).toBe(false);expect(r.shape).toBe(seatLook(players.indexOf(r.owner)).badge);}
  expect(new Set(rows.map(r=>r.shape)).size).toBe(4);
+ expect(await page.locator(".island-name").evaluateAll(ns=>ns.filter(n=>getComputedStyle(n).display!=="none").length)).toBe(0);
+});
+test("choosing a country dims unrelated countries, not the source or its targets (T93)",async({page})=>{
+ await opening(page);
+ const dim=()=>page.locator("[data-country]").evaluateAll(ns=>ns.map(n=>({id:n.getAttribute("data-country"),selected:n.classList.contains("selected"),target:n.classList.contains("neighbor"),filter:getComputedStyle(n.querySelector(".cell")!).filter})));
+ for(const r of await dim())expect(r.filter,`${r.id} at rest`).toBe("none");
+ const active=await page.locator(".score-row.active").getAttribute("data-player");
+ const source=page.locator(`[data-country][data-owner="${active}"]`).first();
+ while(Number(await page.locator("#reinforcement-pool").textContent())>0)await source.click();
+ await page.locator("#start-combat-button").click();await source.click();await expect(source).toHaveAttribute("aria-pressed","true");
+ const rows=await dim();
+ for(const r of rows)expect(r.filter!=="none",`${r.id} dimmed`).toBe(!r.selected&&!r.target);
+ expect(rows.some(r=>r.filter!=="none")).toBe(true);
 });
 test("region names remain identifiable on mouse, keyboard and touch without changing inputs",async({page,browser},info)=>{
  await opening(page);
