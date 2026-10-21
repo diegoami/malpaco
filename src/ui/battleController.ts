@@ -179,8 +179,12 @@ export class BattleController {
     return true;
   }
 
+  /** True once an explicit Attack has been fought on the current pair (a new pair clears it). */
+  get attacked(): boolean {return this.current.attackerWins + this.current.defenderWins > 0;}
+
   fightOn(revision?: number): boolean {
-    if (!this.accepts(revision) || this.current.running || !this.canExchange()) return false;
+    // T82: Fight on continues a battle the player opened with an explicit Attack on this pair.
+    if (!this.accepts(revision) || this.current.running || !this.canExchange() || (!this.current.paused && !this.attacked)) return false;
     this.watchExchanges = 0;
     this.current = { ...this.current, effectiveThreshold: this.current.paused ? this.current.effectiveThreshold : this.clamp(), paused: false };
     this.exchange(true);
