@@ -13,8 +13,10 @@ async function save(page: Page) {
 }
 
 function expectedOpening(seats: number, computers: boolean) {
+  // The legacy generated route records no regional names (T94: they belong to geographic maps).
+  const { names: _names, ...defaults } = defaultOptions();
   const options = {
-    ...defaultOptions(),
+    ...defaults,
     seed: 1994,
     seats: Array.from({ length: seats }, (_, i) => ({ kind: computers && i > 0 ? "computer" as const : "human" as const })),
     computerStrengths: computers ? Array.from({ length: seats - 1 }, () => "Normal" as const) : [],

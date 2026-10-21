@@ -1,6 +1,6 @@
 // Proposal: install at tests/core/geographic-board.test.ts; no producer is included.
 import {describe, expect, it} from 'vitest';
-import {generateGeographicBoard, generateGeographicBoardWithRng} from '../../src/core/geographic-board';
+import {generateGeographicBoard, generateGeographicBoardWithRng, nameGeographicMap} from '../../src/core/geographic-board';
 import {createGeographicGame} from '../../src/core/geographic-game';
 import {generateIslandGeography, generateIslandGeographyWithRng} from '../../src/core/island-geography';
 import {DeterministicRng} from '../../src/core/rng';
@@ -78,7 +78,7 @@ describe('complete geographic boards', () => {
     const board = generateGeographicBoardWithRng(rng);
     expect(board.ok).toBe(true);
     if (!board.ok) return;
-    const expected = createGameWithRng(opts, rng, () => ({ok:true, map:board.map}), rules);
+    const expected = createGameWithRng(opts, rng, () => ({ok:true, map:nameGeographicMap(board.map, opts.names ?? 'numbered', opts.seed)}), rules);
     const actual = createGeographicGame(opts, rules);
     expect(actual.ok).toBe(true);
     if (!actual.ok || !expected.ok) { expect(expected.ok).toBe(true); return; }

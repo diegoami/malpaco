@@ -54,7 +54,9 @@ export function mountReferenceGame(root:HTMLElement){
   form.onsubmit=e=>{e.preventDefault();if(!form.reportValidity())return;seed=input.value;seats=count.value;
    try{dominationWin=domination.checked;roundLimit=limit.value==="off"?null:Number(limit.value) as 20|30|40;
     const kinds=Array.from({length:Number(seats)},(_,i)=>legacy?"human" as const:controllers[i]!);
-    const options={...defaultOptions(),seed:Number(seed),seats:kinds.map(kind=>({kind})),computerStrengths:kinds.filter(kind=>kind==="computer").map(()=>"Normal" as const),dominationWin,roundLimit};const result=createReferenceGame(referenceMap,options,legacy?undefined:victoryRules(options));if(!result.ok){alert.textContent=result.errors.join("; ");return;}
+    // Regional names belong to generated maps (T94); the authored Nine Isles keep theirs.
+    const {names:_names,...defaults}=defaultOptions();
+    const options={...defaults,seed:Number(seed),seats:kinds.map(kind=>({kind})),computerStrengths:kinds.filter(kind=>kind==="computer").map(()=>"Normal" as const),dominationWin,roundLimit};const result=createReferenceGame(referenceMap,options,legacy?undefined:victoryRules(options));if(!result.ok){alert.textContent=result.errors.join("; ");return;}
     mountMatch(options,result.state);
    }catch(error){alert.textContent=error instanceof Error?error.message:String(error);}
   };if(!legacy){setupFiles=new ReferenceMatchFiles(mountMatch);form.append(setupFiles.el);}root.replaceChildren(form);

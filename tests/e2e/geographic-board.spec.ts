@@ -23,6 +23,8 @@ const visualSelection=[...corpus.selection,...layoutSupplement.selection];
 const hash=(x:unknown)=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const optionsFor=(seed:number):GameOptions=>({...defaultOptions(),seed,seats:[{kind:'human'},{kind:'human'}],computerStrengths:[]});
 // Historical/manual fixtures retain victory/1, including their exact dice stream.
+// T94 names the map; the frozen corpus pins geometry, so its hashes use the pre-T94 numbered names.
+function numbered(map:GameState['map']){return {...map,provinces:map.provinces.map((p,i)=>({...p,name:`Country ${i+1}`})),islands:map.islands.map((island,i)=>({...island,name:`Island ${i+1}`}))};}
 function expected(seed:number){const options=optionsFor(seed),r=createGeographicGame(options,victoryRules(options));if(!r.ok)throw Error(r.errors.join('; '));return {options,...r};}
 // New normal one-human setup consumes the cards3 opening shuffle. No policy oracle.
 function expectedNormal(seed:number){const options={...defaultOptions(),seed},r=createGeographicGame(options,raidCardsRules(options));if(!r.ok)throw Error(r.errors.join('; '));let state=r.state;
@@ -65,7 +67,7 @@ test('measured corpus fixture is frozen and reproducible',()=>{
  expect(corpus.targetMet).toBe(true);expect(corpus.measured,'freeze requires the real retained sweep, never invented rows').toBe(true);
  expect(corpus.selection).toHaveLength(5);expect(new Set(corpus.selection.map(r=>r.seed)).size).toBe(5);expect(corpus.selection.map(r=>r.seed)).toContain(1994);expect(Object.keys(corpus.sourceHashes).length).toBeGreaterThan(0);
  expect(layoutSupplement.measured).toBe(true);expect(layoutSupplement.selection.map(r=>r.seed)).toEqual([6]);expect(new Set(visualSelection.map(r=>r.seed)).size).toBe(6);
- const shapes:string[]=[];for(const row of visualSelection){const game=expected(row.seed);expect(hash(game.state.map)).toBe(row.mapHash);shapes.push(hash({provinces:game.state.map.provinces.map(p=>({polygon:p.polygon,labelAt:p.labelAt})),coasts:game.geography.islands.map(i=>i.polygon),routes:game.geography.entranceReservations.map(r=>r.points)}));
+ const shapes:string[]=[];for(const row of visualSelection){const game=expected(row.seed);expect(hash(numbered(game.state.map))).toBe(row.mapHash);shapes.push(hash({provinces:game.state.map.provinces.map(p=>({polygon:p.polygon,labelAt:p.labelAt})),coasts:game.geography.islands.map(i=>i.polygon),routes:game.geography.entranceReservations.map(r=>r.points)}));
   const largest=game.state.map.islands.reduce((a,b)=>a.provinces.length>b.provinces.length?a:b),island=game.geography.islands.find(i=>i.id===largest.id)!,center=island.polygon.reduce((sum,p)=>sum+p[1],0)/island.polygon.length/game.geography.unitsPerPixel,diagnostic=layoutSupplement.layoutDiagnostics.find(r=>r.seed===row.seed)!;expect(center).toBeCloseTo(diagnostic.meanVertexCenterYCss,7);
  }expect(new Set(shapes).size).toBeGreaterThan(1);expect(new Set(layoutSupplement.layoutDiagnostics.map(r=>r.family))).toEqual(new Set(['top','middle','bottom']));
 });
@@ -81,7 +83,7 @@ test('root and unknown view retain the established setup and playback controls',
 });
 for(const item of visualSelection)test(`seed ${item.seed} paints actual geography and contained legible army labels`,async({page},info)=>{
  expect(corpus.measured).toBe(true);expect(layoutSupplement.measured).toBe(true);
-  const game=expected(item.seed);expect(hash(game.state.map)).toBe(item.mapHash);await start(page,item.seed);await page.mouse.move(0,0);
+  const game=expected(item.seed);expect(hash(numbered(game.state.map))).toBe(item.mapHash);await start(page,item.seed);await page.mouse.move(0,0);
   const actual=await drawing(page),q=1,presentation=JSON.parse(readFileSync(new URL(`../../fixtures/new-game/T75/preflight/phase-b-20261018-01/fixtures/seed-${item.seed}-after.json`,import.meta.url),'utf8'));expect(actual.countries).toHaveLength(46);
   for(const v of presentation.provinces as {id:string;polygon:number[][];labelAt:[number,number]}[]){const row=actual.countries.find(r=>r.id===v.id)!;expect(numbers(row.d!)).toEqual(v.polygon.flatMap(pt=>pt.map(n=>n/q)));expect(row.x).toBeCloseTo(v.labelAt[0]/q,5);expect(row.y-5).toBeCloseTo(v.labelAt[1]/q,5);}
   const paint=await page.locator('#geographic-map .lane,#geographic-map .coast').evaluateAll(ns=>ns.map(n=>{const style=getComputedStyle(n),r=n.getBoundingClientRect();return {visible:style.display!=='none'&&style.visibility!=='hidden'&&Number(style.opacity)>0,stroke:style.stroke,strokeOpacity:Number(style.strokeOpacity),length:(n as SVGGeometryElement).getTotalLength(),fits:r.left>=0&&r.top>=0&&r.right<=innerWidth&&r.bottom<=innerHeight};}));for(const row of paint){expect(row.visible).toBe(true);expect(row.stroke).not.toBe('none');expect(row.strokeOpacity).toBeGreaterThan(0);expect(row.length).toBeGreaterThan(0);expect(row.fits).toBe(true);}
