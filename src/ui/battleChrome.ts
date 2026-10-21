@@ -103,10 +103,17 @@ export class BattleChrome {
     this.top.append(nodes.pause, this.cornerClose);
     this.poolSlot.append(this.pool);
     this.rail.append(this.info, nodes.phaseActions);
-    this.rail.addEventListener("keydown", event => {
+    // Arrow keys and Home/End move within each icon group (the action rail, the map view
+    // controls and every card's icon row); they only move focus, never act (T88). Number
+    // fields keep their own arrow keys.
+    this.overlay.addEventListener("keydown", event => {
       if (!["ArrowDown", "ArrowUp", "ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
-      const buttons = [...this.rail.querySelectorAll<HTMLButtonElement>("button")].filter(button => !button.disabled && button.getClientRects().length > 0);
+      const target = event.target as HTMLElement;
+      const group = target.closest<HTMLElement>("#battle-action-rail, .map-camera-controls, .card-icons");
+      if (!group || target.matches("input, select, textarea")) return;
+      const buttons = [...group.querySelectorAll<HTMLButtonElement>("button")].filter(button => !button.disabled && button.getClientRects().length > 0);
       const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
+      if (current < 0) return;
       const step = event.key === "ArrowDown" || event.key === "ArrowRight" ? 1 : -1;
       const index = event.key === "Home" ? 0 : event.key === "End" ? buttons.length - 1 : (current + step + buttons.length) % buttons.length;
       buttons[index]?.focus({preventScroll:true}); event.preventDefault();
