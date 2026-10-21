@@ -5,7 +5,9 @@ import {seatLook} from "./palette";
 export type Surface = "actions" | "cards" | "menu" | "info" | "countries";
 /** What the quiet map shows: an optional one-line notice, the pool during placement, and requested information. */
 /** A one-line notice; `persistent` ones (refusals, folded choices) never fade, only dismiss. */
-export interface Notice {title: string; detail?: string; persistent?: boolean}
+export interface Notice {title: string; detail?: string; persistent?: boolean; action?: NoticeAction}
+/** One icon on the notice itself (T84): Fast-forward during computer play, Changes on a human turn. */
+export interface NoticeAction {id: string; label: string; shape: string; run: () => void}
 export interface ShellStatus {seat: number; notice: Notice | null; pool: number | null; info: string; explanation: string; result: boolean}
 
 const symbol = glyph;
@@ -218,7 +220,7 @@ export class BattleChrome {
     const notice: Notice | null = this.folded.hidden ? this.notified
       : this.selecting ? {title: "Tap a highlighted country on the map.", detail: "Or choose one from the Countries list beside Fit.", persistent: true}
       : {title: "Choice folded, not completed.", detail: "Tap the gold return icon to resume.", persistent: true};
-    const key = notice ? `${notice.title}|${notice.detail ?? ""}` : null;
+    const key = notice ? `${notice.title}|${notice.detail ?? ""}|${notice.action?.id ?? ""}` : null;
     if (key !== this.noticeKey) {
       this.noticeKey = key; this.noticeOpen = false;
       if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer);
@@ -235,7 +237,9 @@ export class BattleChrome {
     if (!notice) {this.notice.replaceChildren(); return;}
     const dismiss = icon("dismiss-notice", "Dismiss notice", "close");
     dismiss.onclick = event => {event.stopPropagation(); this.dismissNotice();};
-    this.notice.replaceChildren(h("strong", {class: "game-notice-title"}, notice.title), dismiss,
+    const action = notice.action, extra: HTMLElement[] = [];
+    if (action) {const b = icon(action.id, action.label, action.shape); b.onclick = event => {event.stopPropagation(); action.run();}; extra.push(b);}
+    this.notice.replaceChildren(h("strong", {class: "game-notice-title"}, notice.title), ...extra, dismiss,
       ...(notice.detail ? [h("span", {class: this.noticeOpen ? "game-notice-detail" : "visually-hidden"}, notice.detail)] : []));
   }
 
@@ -246,7 +250,7 @@ export class BattleChrome {
 
   /** Tap: show the hint (and stop the fade). Swipe sideways or up: dismiss. */
   private readonly onNoticeDown = (down: PointerEvent) => {
-    if ((down.target as Element).closest("#dismiss-notice")) return;
+    if ((down.target as Element).closest("#dismiss-notice, .game-notice > button")) return;
     const start = {x: down.clientX, y: down.clientY};
     const move = (event: PointerEvent) => {this.notice.style.translate = `${event.clientX - start.x}px ${Math.min(0, event.clientY - start.y)}px`;};
     const up = (event: PointerEvent) => {

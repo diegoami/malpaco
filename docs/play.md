@@ -50,7 +50,10 @@ With a full hand you discard before drawing, and the new card stays hidden until
 Games with two or more human seats currently play without cards.
 
 Player totals show armies on the board. **Pause** stops play, and **Game speed**
-slows computer turns. **Panel detail** switches Compact/Detailed information.
+slows computer turns. While computers play, their notice stays under **Pause** with a gold
+**Fast-forward** icon, which plays the computer seats without waiting until your turn (the moves are
+the same). On your turn, the notice's history icon, or **Changes since your turn** in the menu, opens
+the full event log at the other seats' actions since your last turn, marked. **Panel detail** switches Compact/Detailed information.
 The smaller battle log scrolls while retaining its history; **Game event log**
 opens the full action history, including army gains, losses and unplaced armies.
 
