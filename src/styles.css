@@ -1585,3 +1585,5 @@ dialog h2 {
 .game-drawer-content { height:100%; }
 .battle-reference #game-focus-drawer[data-surface="menu"] .score-row .score-num, .battle-reference #game-focus-drawer[data-surface="menu"] .score-row .score-num > * { font-size:16px; }
 .game-overlay #active-seat-notice { pointer-events:none; }
+.battle-reference #game-focus-drawer .capture-adjust { gap:6px; flex-wrap:wrap; }
+.battle-reference #game-focus-drawer :is(#capture-amount,#friendly-move-amount) { width:56px; max-width:56px; }
