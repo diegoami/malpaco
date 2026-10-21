@@ -137,7 +137,7 @@ test("bad loads and generated-map files preserve the live match, draft and contr
   const valid = envelope(fixture.options, fixture.actions);
   for (const invalid of ["{", JSON.stringify({ ...valid, version: 99 }), JSON.stringify({ ...valid, boardGenerator: { id: "fixed-reference", version: 99 } }), JSON.stringify({ ...valid, actions: [{ kind: "attack", from: "missing", to: "missing" }] }), pinned("legacy-progress").text]) {
     await upload(page, invalid); await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText(/Load failed:/i);
-    if (invalid === pinned("legacy-progress").text) await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText(/generated.*map|map.*generated/i);
+    if (invalid === pinned("legacy-progress").text) await expect(page.getByRole("alert")).toContainText(/generated.*map|map.*generated/i);
     expect(await download(page)).toBe(before); await paint(page, fixture.expected);
     await openSurface(page,'actions');await expect(page.locator("#confirm-friendly-move-button")).toBeEnabled();
   }

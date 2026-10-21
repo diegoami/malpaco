@@ -17,7 +17,9 @@ test("movement route emphasis includes own sea neighbours and excludes enemy rou
 test("Escape cancels a move draft and restores the previous battle selection",async({page})=>{
  const f=await ready(page),source=map.provinces.find(p=>p.id===f.from)!,enemy=[...source.borders,...source.seaLanes].find(id=>f.ready.ownerOf[id]!==f.ready.ownerOf[f.from])!;expect(enemy).toBeTruthy();
  await country(page,f.from).click();await country(page,enemy).click({modifiers:["Shift"]});await openSurface(page,'actions');const sourceName=await page.locator("#battle-source-name").textContent(),targetName=await page.locator("#battle-target-name").textContent();
- await page.locator("#start-friendly-move-button").click();await country(page,f.from).click();await country(page,f.to).click();await page.keyboard.press("Escape");
+ await page.locator("#start-friendly-move-button").click();await country(page,f.from).click();await country(page,f.to).click();
+ // T79: the first Escape closes the card and keeps the draft; only a later Escape cancels the move.
+ await openSurface(page,'actions');await expect(page.getByRole("region",{name:"Friendly move",exact:true})).toBeVisible();await page.keyboard.press("Escape");await expect(page.locator("#game-focus-drawer")).toBeHidden();await expect(page.locator("#friendly-move-amount")).toHaveCount(1);await page.keyboard.press("Escape");
  await openSurface(page,'actions');await expect(page.getByRole("region",{name:"Friendly move",exact:true})).toBeHidden();await openSurface(page,'actions');await expect(page.getByRole("region",{name:"Battle controls",exact:true})).toHaveAttribute("data-history-count",String(f.ready.history.length));await openSurface(page,'actions');await expect(page.locator("#battle-source-name")).toHaveText(sourceName!);await openSurface(page,'actions');await expect(page.locator("#battle-target-name")).toHaveText(targetName!);
  for(const p of map.provinces)await expect(country(page,p.id)).toHaveAttribute("data-armies",String(f.ready.armies[p.id]));
 });

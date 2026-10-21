@@ -110,7 +110,8 @@ for(const host of ['reference','geographic']){
   await open(page,'settings');await close(page);await open(page,'actions');
   await expect(quantity).toHaveValue(String(amount));await quantity.focus();await expect(quantity).toBeFocused();
   const retired=await quantity.elementHandle();
-  await withSurface(page,'settings',()=>page.locator('#game-speed').selectOption('slow'));
+  // A speed change from the hidden settings select redraws the card without moving focus (T79: opening settings would).
+  await page.locator('#game-speed').evaluate(e=>{(e as HTMLSelectElement).value='slow';e.dispatchEvent(new Event('change'));});
   expect(await retired!.evaluate(e=>e.isConnected),'speed change must actually replace the friendly controls').toBe(false);
   await expect(quantity).toHaveValue(String(amount));await expect(quantity).toBeFocused();
   await shot(page,info,host+'-friendly-redraw');await hit(page,'confirm-friendly-move-button');

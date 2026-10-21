@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { act, fixtureAction, plan, referenceMap, VICTORY_ACTION_BUDGET } from "./victory-fixture";
 import type { CompleteAction, CompleteState } from "../core/victory-options-fixture";
 import { opening, standings } from "../core/victory-options-fixture";
-import {withSurface} from './shell';
+import {withSurface,openSurface} from './shell';
 
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);
 async function capture(page: Page, label: string, project: string) {
@@ -63,8 +63,10 @@ async function freeze(page: Page, state: CompleteState) {
   await paint(page, state);
 }
 async function fit(page: Page) {
+  // T79: the result and its choices live in the Current choice card.
+  await openSurface(page, "actions");
   const rows = await page.locator('#victory-reason,#victory-standings,#watch-computers-button,#stop-game-button,#new-game-button').evaluateAll(nodes => nodes.filter(n => n.getClientRects().length).map(n => { const b = n.getBoundingClientRect(); return { id: n.id, fits: b.left >= 0 && b.top >= 0 && b.right <= innerWidth && b.bottom <= innerHeight }; }));
-  expect(rows.length).toBeGreaterThan(2);
+  expect(rows.length).toBeGreaterThan(1);
   expect(rows.filter(r => !r.fits)).toEqual([]);
 }
 

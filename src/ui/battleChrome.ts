@@ -60,6 +60,7 @@ export class BattleChrome {
   private battleCommands: {node: HTMLElement; marker: Comment} | null = null;
   private historyPosition: {top: number; following: boolean} | null = null;
   private lastRequired: string | null = null;
+  private statusKey = "";
 
   constructor(private readonly nodes: {action: HTMLElement; cards: HTMLElement; history: HTMLElement; score: HTMLElement; settings: HTMLElement; turn: HTMLElement; phaseActions: HTMLElement; battle: HTMLElement; pause: HTMLButtonElement; log: HTMLButtonElement; camera?: HTMLElement}) {
     const cards = icon("open-game-cards", "Cards", "▱");
@@ -170,6 +171,13 @@ export class BattleChrome {
 
   /** `prompt` allows a new required choice to open the Current choice card without taking focus. */
   update(status: ShellStatus, required: string | null, paused: boolean, prompt: boolean): void {
+    // The chips are live regions: rewrite them only when what they say changes, so nothing is re-announced.
+    const key = JSON.stringify(status);
+    if (key !== this.statusKey) {this.statusKey = key; this.status(status);}
+    this.refreshRail(required, paused, prompt);
+  }
+
+  private status(status: ShellStatus): void {
     const look = seatLook(status.seat);
     this.seat.replaceChildren(s("svg", {class: "chip", viewBox: "-40 -19 80 38", width: 32, height: 16, "aria-hidden": "true"}, s("path", {d: look.badge, fill: look.color, stroke: look.dark, "stroke-width": 3})),
       h("span", {class: "hud-text"}, status.name));
@@ -183,6 +191,9 @@ export class BattleChrome {
     this.pool.replaceChildren(symbol("✚"), h("span", {id: "placement-pool-count", class: "hud-text"}, String(status.pool ?? 0)));
     this.pool.setAttribute("aria-label", `${status.pool ?? 0} ${status.pool === 1 ? "army" : "armies"} to place`);
     this.pool.title = this.pool.getAttribute("aria-label")!;
+  }
+
+  private refreshRail(required: string | null, paused: boolean, prompt: boolean): void {
     this.required.hidden = !required;
     this.required.title = required ?? "Required choice";
     this.required.setAttribute("aria-label", required ?? "Required choice");
