@@ -44,8 +44,8 @@ export class BattleChrome {
   private readonly top = h("div", {class: "game-corner game-corner-end"});
   private readonly poolSlot = h("div", {class: "game-pool-slot"});
   private readonly notice = h("div", {id: "active-seat-notice", class: "game-notice", role: "status", hidden: true});
-  /** The notice's line is reserved whether or not a notice shows, so a notice never covers a country nor reframes the map. */
-  private readonly noticeSlot = h("div", {class: "game-notice-slot"}, this.notice);
+  /** The notice's line is reserved whether or not a notice shows, so a notice never covers a country nor reframes the map; it never decides the map's quarter turn. */
+  private readonly noticeSlot = h("div", {class: "game-notice-slot", "data-camera-turn-ignore": ""}, this.notice);
   private readonly pool = h("div", {id: "placement-pool", class: "hud-chip", role: "status", hidden: true});
   private readonly folded = h("div", {id: "game-folded-choice", class: "game-notice game-folded", hidden: true});
   private readonly foldedText = h("span", {class: "game-notice-text"});
@@ -75,6 +75,8 @@ export class BattleChrome {
   private statusKey = "";
   private result = false;
   private requiredText: string | null = null;
+  /** The folded choice waits on a map tap (a Raid target), not on its card. */
+  private selecting = false;
 
   constructor(private readonly nodes: {action: HTMLElement; cards: HTMLElement; history: HTMLElement; score: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement}) {
     for (const [button, surface] of [[this.menu, "menu"], [this.info, "info"], [this.countries, "countries"]] as const) {
@@ -213,7 +215,9 @@ export class BattleChrome {
    * folded choices persist until dismissed or acted on (U5: nothing required times out).
    */
   private renderNotice(): void {
-    const notice: Notice | null = !this.folded.hidden ? {title: "Choice folded, not completed.", detail: "Tap the gold return icon to resume.", persistent: true} : this.notified;
+    const notice: Notice | null = this.folded.hidden ? this.notified
+      : this.selecting ? {title: "Tap a highlighted country on the map.", detail: "Or choose one from the Countries list beside Fit.", persistent: true}
+      : {title: "Choice folded, not completed.", detail: "Tap the gold return icon to resume.", persistent: true};
     const key = notice ? `${notice.title}|${notice.detail ?? ""}` : null;
     if (key !== this.noticeKey) {
       this.noticeKey = key; this.noticeOpen = false;
@@ -260,18 +264,19 @@ export class BattleChrome {
   };
 
   /** `prompt` names a choice that wants its card; a new one opens Current choice without taking focus. */
-  update(status: ShellStatus, required: string | null, paused: boolean, prompt: string | null): void {
+  update(status: ShellStatus, required: string | null, paused: boolean, prompt: string | null, selecting = false): void {
     // Live regions are rewritten only when what they say changes, so nothing is re-announced.
     const key = JSON.stringify(status);
     if (key !== this.statusKey) {this.statusKey = key; this.status(status);}
-    this.requiredText = required;
+    this.requiredText = required; this.selecting = selecting;
     this.foldedText.textContent = required ?? "";
     this.required.title = required ?? "Required choice";
     this.required.setAttribute("aria-label", required ? `Return to ${required.toLowerCase()}` : "Required choice");
     this.nodes.pause.title = paused ? "Resume game" : "Pause game";
     commandSymbol(this.nodes.pause, paused ? "play" : "pause");
     this.commands();
-    if (prompt && prompt !== this.lastPrompt && !this.surface) this.open("actions", this.required, false);
+    // A list choice that completes one (a Raid target, an attack pair) brings its card in place of the list.
+    if (prompt && prompt !== this.lastPrompt && (!this.surface || this.surface === "countries")) this.open("actions", this.required, false);
     this.lastPrompt = prompt;
     this.layout();
   }

@@ -34,7 +34,7 @@ export class CardView {
   }
   if(v.phase==='reward')actions.append(h('strong',{class:'private-card-reward'},v.notice),button('Continue',()=>this.cards.acknowledge(v.revision)));
   else if(v.notice)actions.append(h('p',{role:'status'},v.notice));
-  const choosing=['sets','raid-target','discard','reward'].includes(v.phase);this.el.dataset['choice']=String(choosing);
+  const choosing=['sets','raid-target','discard','reward'].includes(v.phase);this.el.dataset['choice']=String(choosing);this.el.dataset['phase']=v.phase;
   const inspect=button(`View your hand: ${v.hand.length} of 5`,()=>{
    const close=h('button',{type:'button'},'Close your hand');close.onclick=()=>this.handDialog.close();
    this.handDialog.replaceChildren(h('h2',{},'Your cards'),hand.cloneNode(true),close);this.handDialog.showModal();

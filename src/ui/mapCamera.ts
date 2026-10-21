@@ -112,8 +112,8 @@ export function revealCamera(state: CameraState, target: Rect, world: Rect, view
 }
 
 /** Keep world-space centre and zoom across a resize; the quarter turn is chosen afresh. */
-export function resizeCamera(state: CameraState, world: Rect, viewport: Viewport): CameraState {
-  return clampCamera({...state, rotation: chooseRotation(world, viewport)}, world, viewport);
+export function resizeCamera(state: CameraState, world: Rect, viewport: Viewport, turning: Viewport = viewport): CameraState {
+  return clampCamera({...state, rotation: chooseRotation(world, turning)}, world, viewport);
 }
 
 /** Inset that removes an overlay rectangle from the free area with the least loss. */
@@ -144,6 +144,8 @@ export class MapCamera {
   readonly controls: HTMLElement;
   private readonly content: SVGGElement;
   private viewport: Viewport = {width: 0, height: 0, insets: NO_INSETS};
+  /** The viewport that decides the quarter turn: without overlays marked data-camera-turn-ignore. */
+  private turning: Viewport = {width: 0, height: 0, insets: NO_INSETS};
   private current: CameraState;
   private readonly overlays = new Set<Element>();
   private readonly observer: ResizeObserver | null;
@@ -208,7 +210,7 @@ export class MapCamera {
     this.measure();
   }
 
-  fit(): void {this.set(fitCamera(this.world, this.viewport));}
+  fit(): void {this.set(fitCamera(this.world, this.viewport, chooseRotation(this.world, this.turning)));}
   zoomBy(factor: number, px: number, py: number): void {this.set(zoomAt(this.current, factor, px, py, this.world, this.viewport));}
 
   /** Focus the selected country, else the last country that had keyboard focus. */
@@ -255,7 +257,7 @@ export class MapCamera {
   }
 
   /** Restore a camera kept across a re-render; the quarter turn follows the viewport. */
-  restore(state: CameraState): void {this.set(resizeCamera(state, this.world, this.viewport));}
+  restore(state: CameraState): void {this.set(resizeCamera(state, this.world, this.viewport, this.turning));}
 
   dispose(): void {this.observer?.disconnect(); this.overlays.clear();}
 
@@ -268,12 +270,12 @@ export class MapCamera {
     const box = this.svg.getBoundingClientRect();
     if (!box.width || !box.height) return;
     // An overlay marked data-camera-ignore rests over the map without reframing it (the result card).
-    const overlays = [...this.overlays].filter(e => e.isConnected && e.getClientRects().length && !e.hasAttribute('data-camera-ignore')).map(e => {
-      const r = e.getBoundingClientRect();
-      return {x: r.left - box.left, y: r.top - box.top, width: r.width, height: r.height};
-    });
-    this.viewport = {width: box.width, height: box.height, insets: obstructionInsets(overlays, box)};
-    this.set(resizeCamera({...this.current, ...this.intent}, this.world, this.viewport), this.intent);
+    const shown = [...this.overlays].filter(e => e.isConnected && e.getClientRects().length && !e.hasAttribute('data-camera-ignore'));
+    const rect = (e: Element) => {const r = e.getBoundingClientRect(); return {x: r.left - box.left, y: r.top - box.top, width: r.width, height: r.height};};
+    this.viewport = {width: box.width, height: box.height, insets: obstructionInsets(shown.map(rect), box)};
+    // An overlay marked data-camera-turn-ignore is framed around but does not decide the quarter turn (the notice line).
+    this.turning = {width: box.width, height: box.height, insets: obstructionInsets(shown.filter(e => !e.hasAttribute('data-camera-turn-ignore')).map(rect), box)};
+    this.set(resizeCamera({...this.current, ...this.intent}, this.world, this.viewport, this.turning), this.intent);
   }
 
   private set(next: CameraState, intent: {x: number; y: number} | null = null): void {

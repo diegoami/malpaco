@@ -66,6 +66,8 @@ export class ReferenceBattleGame {
   private outcomeAt = -1;
   private readonly files: ReferenceMatchFiles;
   private hover: string | null = null;
+  /** The Raid choice whose card was last folded for map selection (T83). */
+  private raidFolded: string | null = null;
   /** T81: countries by name, Inspect, and the named choice after an ambiguous tap. */
   private readonly picker: CountryPicker;
   private mounted = false;
@@ -274,7 +276,7 @@ export class ReferenceBattleGame {
       for (const el of [this.action, this.cardControls.el, this.phaseActions].flatMap(node => [...node.querySelectorAll<HTMLButtonElement | HTMLInputElement>("button,input")])) el.disabled = true;
       this.action.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; save, load and new game remain available." : "Computer turn. Save, load or start a new game at any time."));
     }
-    const required = this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? "Choose a Raid target" : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
+    const required = this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm the Raid" : "Raid · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
     const mover = activePlayer(state), result = state.result, winner = state.players.find(p => p.id === state.winner);
     const gamePaused = this.controller.playbackPaused;
     const phase = result ? state.phase === "human-loss" ? "Human seats eliminated" : "Game over" : this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase;
@@ -307,12 +309,19 @@ export class ReferenceBattleGame {
       info, explanation: `${phase}. ${explain(phase)}`, result: !!result};
     // A required choice, or a staged attack pair, brings its card up once.
     const staged = mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;
-    const prompt = computer || gamePaused ? null : required ? `required:${required}` : staged;
+    // T83: choosing a Raid target folds the card to its strip so the whole map is free; a
+    // chosen target brings the card back with its preview and Confirm.
+    const raiding = this.cards.view.phase === "raid-target", raidTarget = this.cards.view.selectedTarget;
+    if (raiding && !raidTarget && !computer && !gamePaused) {
+      const key = `raid:${state.history.length}`;
+      if (key !== this.raidFolded) {this.raidFolded = key; if (this.chrome?.openSurface === "actions") this.chrome.close(false);}
+    }
+    const prompt = computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
     // A folded card keeps any pending choice one tap away: a required one, or a staged attack.
     const draft = Number(this.battle.el.querySelector<HTMLInputElement>("#capture-amount")?.value);
     const pending = state.pendingCapture, moveIn = pending && Number.isSafeInteger(draft) ? draft : pending?.defaultAmount;
     const choice = pending && required === "Confirm capture move-in" ? `Move-in pending · preview ${state.armies[pending.from]! - (moveIn! - pending.min)} / ${moveIn}` : required ?? (staged && !computer ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
-    this.chrome?.update(status, choice, gamePaused, prompt);
+    this.chrome?.update(status, choice, gamePaused, prompt, raiding && !raidTarget && !computer);
     this.computer?.update();
   }
 }
