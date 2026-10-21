@@ -1497,8 +1497,7 @@ dialog h2 {
   #battle-action-rail > .buttons { display:contents; }
   .game-side { align-items:flex-end; }
   .game-notice { max-width:100%; }
-  /* Portrait keeps the turned board's fit: the slot takes no height and the pill floats over the map. */
-  .game-notice-slot { width:100%; min-height:0; height:0; overflow:visible; }
+  .game-notice-slot { width:100%; }
   #game-focus-drawer { width:100%; margin:auto 0 0; max-height:calc(var(--avail-h) * 0.6); }
   .game-overlay:has(#game-focus-drawer[data-placement="center"]:not([hidden])) .game-side { grid-column:1 / -1; }
   #game-focus-drawer[data-placement="center"] { margin:auto; }
@@ -1663,3 +1662,14 @@ dialog h2 {
 .country-neighbour:hover, .country-neighbour:focus-visible { border-color:var(--accent, #ffd06b); }
 .country-by-sea { color:var(--shell-muted, #a9c0c8); font-weight:500; }
 #game-focus-drawer[data-surface="countries"] { max-height:calc(var(--avail-h) - 2 * var(--edge)); }
+/* T83: at short heights (a landscape phone) the hand and its choices stay compact, so a full-hand discard fits. */
+@media (max-height:500px) {
+  .battle-reference #game-focus-drawer .own-card-hand { gap:4px; margin-bottom:6px; }
+  .battle-reference #game-focus-drawer .own-card { display:flex; flex-direction:row; align-items:center; gap:4px; padding:2px 6px; font-size:12px; }
+  .battle-reference #game-focus-drawer .card-choice-controls { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px; }
+  .battle-reference #game-focus-drawer .card-choice-controls > :not(button) { grid-column:1 / -1; margin:0; }
+  .battle-reference #game-focus-drawer .card-choice-controls button { min-height:32px; padding:2px 6px; font-size:11px; }
+  .battle-reference #game-focus-drawer .card-choice-controls > strong { font-size:12px; }
+  /* Each discard button names its card, so the hand list would only repeat them. */
+  .battle-reference #game-focus-drawer .card-interactions[data-phase="discard"] .own-card { display:none; }
+}

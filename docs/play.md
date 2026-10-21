@@ -44,6 +44,9 @@ unresolved capture choice. **New game** returns to setup. If a load fails, the c
 Cards are enabled in normal games with zero or one human seat. Hands start empty.
 Capture a territory and finish your turn to earn a card; use **View your hand**
 to see available choices. Resolve any required card choice before continuing.
+A Raid folds its card to a one-line strip so the whole map is free: tap a highlighted enemy
+country, or choose one from **Countries**, and the card returns with the preview and **Confirm raid**.
+With a full hand you discard before drawing, and the new card stays hidden until then.
 Games with two or more human seats currently play without cards.
 
 Player totals show armies on the board. **Pause** stops play, and **Game speed**
