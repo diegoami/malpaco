@@ -116,7 +116,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 
 ## Release 0.2.0: responsive UI redesign
 
-[Release scope and dependency map](../plans/release-0.2.0.md) and [acceptance](../plans/release-0.2.0-acceptance.md). Live status is in GitHub labels. Sequence: T80 → T79 → T92 → T93 → T94 → T81 → T82 → T83 → T84 → T85 → T87 → T88 → T89 → T90.
+[Release scope and dependency map](../plans/release-0.2.0.md) and [acceptance](../plans/release-0.2.0-acceptance.md). Live status is in GitHub labels. Sequence: T80 → T79 → T92 → T93 → T94 → T95 → T81 → T82 → T83 → T84 → T85 → T87 → T88 → T89 → T90.
 
 | Task | Title | Priority | Difficulty | Issue | Merge after |
 | --- | --- | --- | --- | --- | --- |
@@ -136,6 +136,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T92](T92.md) | Sketch-faithful corners and concise cards (correction of T79) | High | Hard | #226 | T79 |
 | [T93](T93.md) | Sketch-faithful map look (correction) | High | Medium | #228 | T92 |
 | [T94](T94.md) | Regional flavour names | High | Hard | #170 | T93 |
+| [T95](T95.md) | Grown islands: the v2 geography generator | High | Hard | #181 | T94 |
 
 ## Development infrastructure
 
