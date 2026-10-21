@@ -2,7 +2,7 @@ import {h,s} from "./dom";
 import {glyph} from "./icons";
 import {seatLook} from "./palette";
 
-export type Surface = "actions" | "cards" | "menu" | "info";
+export type Surface = "actions" | "cards" | "menu" | "info" | "countries";
 /** What the quiet map shows: an optional one-line notice, the pool during placement, and requested information. */
 /** A one-line notice; `persistent` ones (refusals, folded choices) never fade, only dismiss. */
 export interface Notice {title: string; detail?: string; persistent?: boolean}
@@ -24,7 +24,7 @@ function icon(id: string, label: string, shape: string): HTMLButtonElement {
 const NOTICE_FADE_MS = 4000;
 const NOTICE_SWIPE = 40;
 
-const TITLES: Record<Surface, string> = {actions: "Current choice", cards: "Cards", menu: "Menu", info: "Objective and phase"};
+const TITLES: Record<Surface, string> = {actions: "Current choice", cards: "Cards", menu: "Menu", info: "Objective and phase", countries: "Countries"};
 
 /**
  * The quiet full-viewport shell (T79, made sketch-faithful by T92): the map fills
@@ -57,6 +57,8 @@ export class BattleChrome {
   private readonly required = icon("open-required-action", "Required choice", "return");
   private readonly menu = icon("open-game-menu", "Menu: totals, history, settings and files", "menu");
   private readonly info = icon("game-info-button", "Objective and phase", "info");
+  /** T81: every country by name, Inspect and a named choice for ambiguous taps. */
+  readonly countries = icon("open-countries", "Countries: list and inspect", "countries");
   private readonly cornerClose = icon("close-result-card", "Return to map", "close");
   private notified: Notice | null = null;
   /** The notice on show, the one the player dismissed (or that faded), and its fade timer. */
@@ -74,8 +76,8 @@ export class BattleChrome {
   private result = false;
   private requiredText: string | null = null;
 
-  constructor(private readonly nodes: {action: HTMLElement; cards: HTMLElement; history: HTMLElement; score: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; camera?: HTMLElement}) {
-    for (const [button, surface] of [[this.menu, "menu"], [this.info, "info"]] as const) {
+  constructor(private readonly nodes: {action: HTMLElement; cards: HTMLElement; history: HTMLElement; score: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement}) {
+    for (const [button, surface] of [[this.menu, "menu"], [this.info, "info"], [this.countries, "countries"]] as const) {
       button.setAttribute("aria-controls", this.drawer.id);
       button.setAttribute("aria-haspopup", "dialog");
       button.setAttribute("aria-expanded", "false");
@@ -90,6 +92,8 @@ export class BattleChrome {
     this.drawer.append(this.title, this.content, this.closeButton);
     this.folded.append(this.foldedText, this.required);
     this.hud.append(this.menu);
+    // Countries is a way to find a country, so it rests with the camera's Fit and Focus.
+    if (nodes.countries) (nodes.camera ?? this.hud).append(this.countries);
     // On the result card the top-right corner returns to the map, as in the sketches.
     this.cornerClose.onclick = () => this.close();
     this.top.append(nodes.pause, this.cornerClose);
@@ -152,7 +156,7 @@ export class BattleChrome {
     this.drawer.dataset["surface"] = surface;
     this.title.textContent = TITLES[surface];
     // The menu holds the hand too (the sketches rest only the menu icon top-left).
-    const nodes = {actions: [this.nodes.action], cards: [this.nodes.cards], menu: [this.nodes.cards, this.nodes.score, this.nodes.history, this.nodes.settings], info: [this.infoLine, this.explanation]}[surface];
+    const nodes = {actions: [this.nodes.action], cards: [this.nodes.cards], menu: [this.nodes.cards, this.nodes.score, this.nodes.history, this.nodes.settings], info: [this.infoLine, this.explanation], countries: this.nodes.countries ? [this.nodes.countries] : []}[surface];
     for (const node of nodes) {
       const marker = document.createComment("focused panel home"); node.before(marker);
       this.moved.push({node, marker}); this.content.append(node);
@@ -163,6 +167,9 @@ export class BattleChrome {
     this.restoreHistory();
     if (takeFocus) this.closeButton.focus({preventScroll: true});
   }
+
+  /** A card whose content changes kind (the Countries card's list, Inspect or question) renames itself. */
+  retitle(text: string): void {if (this.surface) this.title.textContent = text;}
 
   close(restoreFocus = true): void {
     if (!this.surface) return;

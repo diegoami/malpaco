@@ -1633,3 +1633,32 @@ dialog h2 {
 @keyframes notice-fade { 0%, 85% { opacity:1; } 100% { opacity:0; } }
 @media (prefers-reduced-motion: reduce) { .battle-reference #active-seat-notice[data-fading="true"] { animation:none; } }
 @media (orientation:portrait) { .battle-reference .game-side > #active-seat-notice { align-self:center; } }
+
+/* T81: the Countries card — named rows with owner chip and count, Inspect, and named choices. [designed] 44 px rows. */
+.country-picker { display:grid; gap:10px; font-size:16px; }
+.country-filters { display:flex; gap:8px; }
+.country-filter { min-height:40px; padding:0 14px; border-radius:20px; border:1px solid var(--shell-line, #517580); background:transparent; color:inherit; font:600 15px Inter, system-ui, sans-serif; }
+.country-filter[aria-pressed="true"] { background:var(--accent, #ffd06b); border-color:var(--accent, #ffd06b); color:#102b36; }
+.country-filter:disabled { opacity:.45; }
+.country-group { display:grid; gap:4px; }
+.country-island { margin:4px 0 0; font:700 14px Inter, system-ui, sans-serif; color:var(--shell-muted, #a9c0c8); }
+.country-bonus { font-weight:600; }
+.country-list, .country-neighbours { margin:0; padding:0; list-style:none; display:grid; gap:4px; }
+.country-item { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px; align-items:center; }
+.country-row { display:grid; grid-template-columns:auto minmax(0,1fr) auto auto; align-items:center; gap:10px; min-height:44px; padding:0 12px; border-radius:10px; border:1px solid transparent; background:#102b3699; color:inherit; font:600 16px Inter, system-ui, sans-serif; text-align:left; }
+.country-row:not(:disabled):hover, .country-row:focus-visible { border-color:var(--accent, #ffd06b); }
+.country-row:disabled { opacity:.6; }
+.country-row-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.country-row-count { font-variant-numeric:tabular-nums; font-weight:700; }
+.country-row-centre { color:#f2d69a; }
+.country-chip { display:block; }
+.country-inspect { width:44px; height:44px; min-height:44px; }
+.country-inspected { display:flex; align-items:center; gap:10px; margin:0; font:700 18px Inter, system-ui, sans-serif; }
+.country-facts { display:grid; grid-template-columns:auto minmax(0,1fr); gap:4px 14px; margin:0; }
+.country-facts dt { color:var(--shell-muted, #a9c0c8); }
+.country-facts dd { margin:0; font-weight:600; }
+.country-neighbours-title { margin:4px 0 0; font:700 14px Inter, system-ui, sans-serif; color:var(--shell-muted, #a9c0c8); }
+.country-neighbour { display:flex; align-items:center; gap:8px; min-height:40px; width:100%; padding:0 10px; border-radius:10px; border:1px solid transparent; background:#102b3699; color:inherit; font:600 15px Inter, system-ui, sans-serif; text-align:left; }
+.country-neighbour:hover, .country-neighbour:focus-visible { border-color:var(--accent, #ffd06b); }
+.country-by-sea { color:var(--shell-muted, #a9c0c8); font-weight:500; }
+#game-focus-drawer[data-surface="countries"] { max-height:calc(var(--avail-h) - 2 * var(--edge)); }

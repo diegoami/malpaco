@@ -4,11 +4,11 @@ import {expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 
 // T92: totals, history and settings share the menu card; phase details are the information card.
-export type Surface = 'actions' | 'cards' | 'menu' | 'info' | 'details' | 'settings' | 'phase';
-type Card = 'actions' | 'cards' | 'menu' | 'info';
+export type Surface = 'actions' | 'cards' | 'menu' | 'info' | 'details' | 'settings' | 'phase' | 'countries';
+type Card = 'actions' | 'cards' | 'menu' | 'info' | 'countries';
 // The hand rests in the menu card too, so Cards opens the menu.
-const cardOf: Record<Surface, Card> = {actions: 'actions', cards: 'menu', menu: 'menu', info: 'info', details: 'menu', settings: 'menu', phase: 'info'};
-const openers: Record<Card, string> = {actions: '#open-required-action', cards: '#open-game-cards', menu: '#open-game-menu', info: '#game-info-button'};
+const cardOf: Record<Surface, Card> = {actions: 'actions', cards: 'menu', menu: 'menu', info: 'info', details: 'menu', settings: 'menu', phase: 'info', countries: 'countries'};
+const openers: Record<Card, string> = {actions: '#open-required-action', cards: '#open-game-cards', menu: '#open-game-menu', info: '#game-info-button', countries: '#open-countries'};
 
 /** Opens a card unless it is already open. */
 export async function openSurface(page: Page, surface: Surface): Promise<void> {
