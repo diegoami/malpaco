@@ -7,7 +7,7 @@ import type {IslandGeography} from '../core/island-geography';
 import {createPresentationService} from './generatedGeographyPresentationService';
 import type {MatchLoadContext} from './referenceMatchFiles';
 import type {GeographicGameResult} from '../core/geographic-game';
-import {GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY} from '../core/match-save';
+import {GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,GEOGRAPHIC_V2_MATCH_IDENTITY,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY} from '../core/match-save';
 import type {LoadedVersionedMatch,MatchIdentity} from '../core/match-save';
 import {GeographicMapView} from './geographicMapView';
 import {ReferenceMapView} from './referenceMapView';
@@ -21,9 +21,13 @@ import {h} from './dom';
  * Card hands currently support a spectator or one human. Shared human hands
  * keep the historical stage until the private handover workflow is available.
  */
-export function geographicSetupIdentity(options:GameOptions,manual=false):MatchIdentity {
- const humanCount=options.seats.filter(seat=>seat.kind==='human').length;
- return !manual&&humanCount<=1?GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY;
+export function geographicSetupIdentity(options:GameOptions,manual=false,generator:1|2=setupGenerator()):MatchIdentity {
+ const humanCount=options.seats.filter(seat=>seat.kind==='human').length,raid=!manual&&humanCount<=1;
+ return generator===2?(raid?GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY:GEOGRAPHIC_V2_MATCH_IDENTITY):(raid?GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY);
+}
+/** New games grow their islands (T95, geographic/2); `?generator=1` keeps the frozen witness maps. */
+export function setupGenerator():1|2 {
+ return typeof location!=='undefined'&&new URLSearchParams(location.search).get('generator')==='1'?1:2;
 }
 type Accepted=Extract<GeographicGameResult,{ok:true}>;
 interface SetupDependencies {
@@ -113,7 +117,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    }catch(error){if(!closed&&epoch===own+1)alert.textContent=error instanceof Error?error.message:String(error);}
    finally{if(epoch===own+1)status.textContent='';}
   };
-  const controller=createGeographicSetupController({create:dependencies.create??(options=>createGeographicGame(options,geographicSetupIdentity(options,manual).rules.id==='cards'?raidCardsRules(options):undefined)),report:result=>{alert.textContent=`This seed could not produce a valid board after ${result.attempts} attempts. Choose another seed and start again.`;},mount:dependencies.mountAccepted??((options,result)=>{void mountAccepted(options,result);})});
+  const controller=createGeographicSetupController({create:dependencies.create??(options=>createGeographicGame(options,geographicSetupIdentity(options,manual).rules.id==='cards'?raidCardsRules(options):undefined,{},setupGenerator())),report:result=>{alert.textContent=`This seed could not produce a valid board after ${result.attempts} attempts. Choose another seed and start again.`;},mount:dependencies.mountAccepted??((options,result)=>{void mountAccepted(options,result);})});
   const form=h('form',{class:'card setup-card victory-setup'},h('h1',{},'New geographic game'),h('p',{},manual?'Manual play on generated islands. Computer seats are driven manually.':'Play on generated islands against three Normal computers, or choose each seat’s controller. The seed fixes geography, deal and dice. Cards are enabled with zero or one human seat. Games with two or more human seats play without cards.'),h('label',{for:input.id},'Seed'),input,h('label',{for:count.id},'Seats'),count,fields,victory,h('label',{for:theme.id},'Place names'),theme,h('button',{type:'submit',class:'primary'},'Start game'),status,alert);
   form.onsubmit=e=>{e.preventDefault();cancel();setupFiles?.cancelPending();if(closed||!form.reportValidity())return;
    try{seed=input.value;seats=count.value;dominationWin=domination.checked;roundLimit=limit.value==='off'?null:Number(limit.value) as 20|30|40;names=theme.value as NameChoice;

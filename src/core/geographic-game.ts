@@ -1,4 +1,5 @@
 import {generateGeographicBoardWithRng,nameGeographicMap} from './geographic-board';
+import type {GeographicGenerator} from './geographic-board';
 import {DeterministicRng} from './rng';
 import {createGameWithRng} from './setup';
 import {validateGameOptions} from './options';
@@ -13,9 +14,9 @@ export type GeographicGameResult =
  | ({ok:false;errors:string[]}&Metadata);
 
 /** Existing modern rules/deal, on the same stream after accepted geography. */
-export function createGeographicGame(options:GameOptions,rules:RuleSet=victoryRules(options),generationOptions:{attempts?:number}={}):GeographicGameResult {
+export function createGeographicGame(options:GameOptions,rules:RuleSet=victoryRules(options),generationOptions:{attempts?:number}={},generator:GeographicGenerator=1):GeographicGameResult {
   const validated=validateGameOptions(options),rng=new DeterministicRng(validated.seed);
-  const board=generateGeographicBoardWithRng(rng,generationOptions);
+  const board=generateGeographicBoardWithRng(rng,generationOptions,generator);
   if(!board.ok)return {...board,errors:[
     `Geographic board generation exhausted its ${board.attempts}-attempt budget. Retry with another seed.`,
     ...board.failures.flatMap(f=>f.constraints),

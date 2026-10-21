@@ -113,12 +113,16 @@ export const GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({b
 /** [designed] exact raid-v1 protocol; cards/1 and cards/2 remain frozen. */
 export const REFERENCE_RAID_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'fixed-reference',version:1}),rules:Object.freeze({id:'cards',version:3}),actionSchemaVersion:5});
 export const GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:1}),rules:Object.freeze({id:'cards',version:3}),actionSchemaVersion:5});
+/** [designed] T95: the grown-island generator (geographic/2) with the two stages new games use. */
+export const GEOGRAPHIC_V2_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:2}),rules:Object.freeze({id:'victory',version:1}),actionSchemaVersion:2});
+export const GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:2}),rules:Object.freeze({id:'cards',version:3}),actionSchemaVersion:5});
 function supportedIdentity(value: Record<string, unknown>): MatchIdentity {
   const generator = value.boardGenerator;
   const cardStage=record(value.rules)&&value.rules.id==='cards';
   const raidStage=cardStage&&record(value.rules)&&value.rules.version===3;
   const tradeStage=cardStage&&record(value.rules)&&value.rules.version===2;
-  const expected = record(generator) && generator.id === "geographic"
+  const v2 = record(generator) && generator.id === "geographic" && generator.version === 2;
+  const expected = v2 ? (raidStage ? GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY : GEOGRAPHIC_V2_MATCH_IDENTITY) : record(generator) && generator.id === "geographic"
     ? (raidStage?GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:tradeStage?GEOGRAPHIC_TRADE_CARD_MATCH_IDENTITY:cardStage?GEOGRAPHIC_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY) : (raidStage?REFERENCE_RAID_CARD_MATCH_IDENTITY:tradeStage?REFERENCE_TRADE_CARD_MATCH_IDENTITY:cardStage?REFERENCE_CARD_MATCH_IDENTITY:REFERENCE_MATCH_IDENTITY);
   // Each supported generator keeps its exact rules/action tuple for replay.
   for (const field of ["boardGenerator", "rules"] as const) {
@@ -190,7 +194,7 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
   }
   const actions = value.actions.map((action,index)=>versionedAction(action,index,identity.actionSchemaVersion));
   const rules=identity.rules.id==='cards'?(identity.rules.version===3?raidCardsRules(options):identity.rules.version===2?tradeCardsRules(options):cardsRules(options)):victoryRules(options);
-  const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules):null;
+  const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules,{},identity.boardGenerator.version===2?2:1):null;
   const created=geographic??createReferenceGame(referenceMap,options,rules);
   if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
   let state = created.state;
