@@ -36,7 +36,9 @@ for(const host of ['reference','geographic']){
   await begin(page);
   for(const kind of ['reinforcement','capture']){
   const text=kind==='reinforcement'?input(`T71/fixtures/${host}-reinforcement.json`):input('issue180/preflight/fixtures/'+row(host,'capture').fixture);await load(page,text);await close(page);const before=await save(page);
-   const ids=await page.locator('.game-overlay button:visible').evaluateAll(ns=>ns.filter(n=>!n.closest('#game-focus-drawer')).map(n=>n.id));
+   let ids=await page.locator('.game-overlay button:visible').evaluateAll(ns=>ns.filter(n=>!n.closest('#game-focus-drawer')).map(n=>n.id));
+   // T101: while a computer plays only the speed controls are on screen; a pause brings the corner icons back.
+   if(await page.locator('.game-overlay[data-quiet="true"]').count()){expect.soft([...ids].sort()).toEqual(['fast-forward-button','game-pause-button']);await page.locator('#game-pause-button').click();ids=await page.locator('.game-overlay button:visible').evaluateAll(ns=>ns.filter(n=>!n.closest('#game-focus-drawer')).map(n=>n.id));}
    for(const id of ['open-game-menu','game-pause-button','map-fit','open-countries'])expect.soft(ids,id+' rests on the map').toContain(id);
    // T97: the Information icon is gone; its objective is in Help.
    expect.soft(ids).not.toContain('game-info-button');
@@ -115,7 +117,7 @@ for(const host of ['reference','geographic']){
  });
 }
 test('collapsed full-hand discard, reward, skip and replacement retain reachable choices and clean surfaces',async({page},info)=>{
- await begin(page);const text=input('T40/fixtures/T37-reshuffle-before-match.json'),before=deserializeVersionedMatch(text),hand=before.state.cards!.hands[before.state.players.find(p=>p.kind==='human')!.id]!;await load(page,text);await collapse(page);await openSurface(page,'actions');await expect(page.getByRole('button',{name:/^Discard .*\(card /})).toHaveCount(5);await page.getByRole('button',{name:`Discard ${hand[2]} (card 3)`,exact:true}).click();const after=next(before.state,{kind:'discardCard',handIndex:2});await exact(page,after);await openSurface(page,'actions');await shot(page,info,'discard-reward');await page.getByRole('button',{name:'Continue',exact:true}).click();await page.keyboard.press('Escape');await expect(page.locator('#open-game-menu')).toBeFocused();await exact(page,after);
+ await begin(page);const text=input('T40/fixtures/T37-reshuffle-before-match.json'),before=deserializeVersionedMatch(text),hand=before.state.cards!.hands[before.state.players.find(p=>p.kind==='human')!.id]!;await load(page,text);await collapse(page);await openSurface(page,'actions');await expect(page.getByRole('button',{name:/^Discard .*\(card /})).toHaveCount(5);await page.getByRole('button',{name:`Discard ${hand[2]} (card 3)`,exact:true}).click();const after=next(before.state,{kind:'discardCard',handIndex:2});await exact(page,after);await openSurface(page,'actions');await shot(page,info,'discard-reward');await page.getByRole('button',{name:'Continue',exact:true}).click();await page.keyboard.press('Escape');await expect(page.locator('#game-pause-button'),'T101: the computers play next, so focus rests on Pause, their visible control').toBeFocused();await exact(page,after);
  const replacement=input('T40/fixtures/T38-legal-Surge-before.json'),fresh=deserializeVersionedMatch(replacement);await load(page,replacement);await openSurface(page,'actions');await page.getByRole('button',{name:'Skip cards',exact:true}).click();await exact(page,next(fresh.state,{kind:'skipCards'}));
  await open(page,'settings');await withSurface(page,'settings',()=>page.getByRole('button',{name:'New game',exact:true}).click());await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeVisible();await expect(page.locator('#game-focus-drawer')).toHaveCount(0);
 });

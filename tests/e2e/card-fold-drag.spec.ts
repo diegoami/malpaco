@@ -147,8 +147,10 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   // Stage again, unfold, drag the card away: the next tap still reaches the map.
   await country(page,f.to).click();await expect(drawer(page)).toBeVisible();
   if(await chip(page).isVisible())await chip(page).click();
-  const vp=page.viewportSize()!,g=await box(grip(page));
-  await mouseDrag(page,Math.round(vp.width*0.1-g.x),Math.round(vp.height*0.1-g.y));await expect(drawer(page)).toHaveAttribute('data-moved','true');
+  // Away from the source: to the other half of the screen.
+  const vp=page.viewportSize()!,src=await box(country(page,f.from)),card=await box(drawer(page));
+  const toX=src.x+src.width/2<vp.width/2?vp.width-card.width-8:8,toY=src.y+src.height/2<vp.height/2?vp.height-card.height-8:8;
+  await mouseDrag(page,Math.round(toX-card.x),Math.round(toY-card.y));await expect(drawer(page)).toHaveAttribute('data-moved','true');
   const later=(await taps()).length;
   await country(page,f.from).click();expect((await taps()).slice(later)).toEqual([f.from]);
   await expect(country(page,f.to)).not.toHaveClass(/\btarget\b/);

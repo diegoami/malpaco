@@ -180,7 +180,11 @@ export class BattleChrome {
    * Only the corner icons (and the pool between them) frame the map (T97): cards, the
    * folded strip and notices float over it, so none of them refits or turns the board.
    */
-  get obstacles(): Element[] {return [this.hud, this.top, this.pool, this.rail];}
+  get obstacles(): Element[] {
+    // T101: the speed choice and Fast-forward float over the map like the notice, so their coming
+    // and going (and their width) never reframes it; Pause (or the result card's ×) holds the corner.
+    return [this.hud, this.nodes.pause, this.cornerClose, this.pool, this.rail];
+  }
 
   /**
    * Rests the open card in the first corner where it covers none of `avoid` (the badges of
@@ -338,7 +342,8 @@ export class BattleChrome {
     if (this.chip.textContent !== chipText) {this.chip.textContent = chipText; this.chip.setAttribute("aria-label", `Unfold: ${chipText}`); this.chip.title = `Unfold: ${chipText}`;}
     // T101: while a computer plays only the speed controls stay; pausing brings the rest back.
     this.overlay.dataset["quiet"] = String(this.quiet);
-    if (this.nodes.speed) this.nodes.speed.hidden = center;
+    // The speed choice gives way to the pool while you place armies (it paces only the computers).
+    if (this.nodes.speed) this.nodes.speed.hidden = center || !this.pool.hidden;
     if (this.nodes.forward) this.nodes.forward.hidden = center || this.nodes.forward.hidden;
     // The strip waits while any card is open (T97: cards float, so it would sit under one).
     this.folded.hidden = !this.requiredText || this.surface !== null;

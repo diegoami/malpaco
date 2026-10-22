@@ -55,7 +55,8 @@ async function audit(page: Page, label: string, insets = {top: 0, right: 0, bott
     const shown = (e: Element) => e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
     const groups: Record<string, Element[]> = {
       menu: [...document.querySelectorAll('#game-status button')].filter(shown),
-      pause: [...document.querySelectorAll('.game-corner-end button')].filter(shown),
+      // T101: the speed choice and Fast-forward share Pause's corner.
+      pause: [...document.querySelectorAll('.game-corner-end :is(button, select)')].filter(shown),
       pool: [...document.querySelectorAll('#placement-pool')].filter(shown),
       notice: [...document.querySelectorAll('#active-seat-notice, #game-folded-choice')].filter(shown),
       rail: [...document.querySelectorAll('#battle-action-rail button')].filter(shown),
@@ -69,7 +70,7 @@ async function audit(page: Page, label: string, insets = {top: 0, right: 0, bott
     for (let y = insets.top + 2; y < innerHeight - insets.bottom; y += 12) for (let x = insets.left + 2; x < innerWidth - insets.right; x += 12) {
       const h = document.elementFromPoint(x, y); if (!h) { strays.push(`${x},${y}:none`); continue; }
       if (h.closest('.board')) continue;
-      const leaf = h.closest('#game-focus-drawer, #game-folded-choice, #active-seat-notice, #placement-pool, #game-status button, .game-corner-end button, #battle-action-rail button, .map-camera-controls button');
+      const leaf = h.closest('#game-focus-drawer, #game-folded-choice, #active-seat-notice, #placement-pool, #game-status button, .game-corner-end :is(button, select), #battle-action-rail button, .map-camera-controls button');
       const inside = leaf && (() => { const r = leaf.getBoundingClientRect(); return x >= r.left - 1 && x <= r.right + 1 && y >= r.top - 1 && y <= r.bottom + 1; })();
       if (!inside) strays.push(`${x},${y}:${h.id || h.className || h.tagName}`);
     }

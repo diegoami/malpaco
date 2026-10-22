@@ -136,7 +136,7 @@ for(const refusal of corpus.refusalSeeds.slice(0,1))test(`real measured refusal 
 });
 
 test('geographic computer playback pauses and cancels stale work on load',async({page})=>{
- await page.clock.install();await page.clock.pauseAt(new Date());await page.goto('/?generator=1&setup');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
+ await page.clock.install();await page.clock.pauseAt(new Date());await page.goto('/?generator=1&setup&log');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
  let initial=deserializeVersionedMatch(await save(page));expect(initial.identity).toEqual(GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY);expect(initial.state.rules.cards).toBe('raid-v1');expect(initial.state).toEqual(expectedNormal(1994).state);let state=initial.state;
  for(let n=0;n<50&&(activePlayer(state)!.kind!=='computer'||state.phase!=='attack');n++){
   if(activePlayer(state)!.kind==='human'){

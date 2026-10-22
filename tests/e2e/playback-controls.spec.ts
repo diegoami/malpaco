@@ -7,7 +7,7 @@ import type { GameState } from "../../src/core";
 import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDENTITY } from "../../src/core/match-save";
 import { pinned } from "../core/versioned-match-fixture";
 import { fixture } from "./battle-fixture";
-import {openSurface,withSurface} from './shell';
+import {closeSurface,openSurface,withSurface} from './shell';
 import { COMPUTER_STEP_TIME } from "../../src/ui/computerTurnLoop";
 
 const pause = (p: Page) => p.locator("#game-pause-button");
@@ -65,11 +65,16 @@ async function totals(p: Page, state?: GameState) {
     await expect(total).toHaveText(new RegExp(`Total armies\\s*:?\\s*${expected}$`, "i"));
     await expect(total).toBeHidden();
   }
+  // T101: a menu opened during a computer turn paused it; closing the menu resumes play.
+  await closeSurface(p);
   return s;
 }
 async function visibleControls(p: Page) {
-  // T92: Pause rests in its corner; T101: the speed choice beside it, and the event log (with `?log`) in the menu card.
-  for (const control of [pause(p), speed(p)]) {
+  // T92: Pause rests in its corner; T101: the speed choice beside it (it gives way to the pool while
+  // you place armies), and the event log (with `?log`) in the menu card.
+  const placing = await p.locator("#placement-pool").isVisible();
+  if (placing) await expect(speed(p)).toBeHidden();
+  for (const control of placing ? [pause(p)] : [pause(p), speed(p)]) {
     await expect(control).toBeVisible();
     expect(await control.evaluate(node => {
       const r = node.getBoundingClientRect();
@@ -77,9 +82,11 @@ async function visibleControls(p: Page) {
     })).toBe(true);
   }
   await expect(pause(p)).toBeEnabled();
-  await expect(speed(p)).toBeVisible(); await expect(speed(p)).toBeEnabled();
-  await speed(p).focus(); await expect(speed(p)).toBeFocused();
-  await speed(p).press("Home"); await speed(p).press("End");
+  if (!placing) {
+    await expect(speed(p)).toBeVisible(); await expect(speed(p)).toBeEnabled();
+    await speed(p).focus(); await expect(speed(p)).toBeFocused();
+    await speed(p).press("Home"); await speed(p).press("End");
+  }
   await withSurface(p, "settings", async () => {
     await expect(p.locator("#game-focus-drawer #game-speed")).toHaveCount(0); await expect(p.locator("#game-log-button")).toBeVisible();
   });
