@@ -53,7 +53,7 @@ test('geographic setup enables cards only for zero/one human with explicit wordi
 
 test('explicit manual geography and reference compatibility keep their historical identities',async({page})=>{
  await begin(page);
- for(const [url,board] of [['/?generator=1&control=manual&seed=1994','geographic'],['/?generator=1&view=reference-game&control=manual&seed=1994','fixed-reference']] as const){await page.goto(url);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#battle-action-rail')).toBeVisible();const actual=await saved(page);expect(actual.identity).toEqual({boardGenerator:{id:board,version:1},rules:{id:'victory',version:1},actionSchemaVersion:2});expect(actual.state.cards).toBeUndefined();expect(actual.state.history).toEqual([]);await page.clock.runFor(6000);expect((await saved(page)).state).toEqual(actual.state);}
+ for(const [url,board] of [['/?generator=1&control=manual&seed=1994','geographic'],['/?generator=1&view=reference-game&control=manual&seed=1994','fixed-reference']] as const){await page.goto(url);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#open-game-menu')).toBeVisible();const actual=await saved(page);expect(actual.identity).toEqual({boardGenerator:{id:board,version:1},rules:{id:'victory',version:1},actionSchemaVersion:2});expect(actual.state.cards).toBeUndefined();expect(actual.state.history).toEqual([]);await page.clock.runFor(6000);expect((await saved(page)).state).toEqual(actual.state);}
 });
 
 test('three consecutive computers perform literal Raid decisions and reach the correct human-loss choices',async({page},info)=>{

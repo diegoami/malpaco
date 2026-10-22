@@ -22,10 +22,13 @@ const focused=(p:Page)=>p.evaluate(()=>{const e=document.activeElement as HTMLEl
  return {id:e.id,country:e.dataset['country']??null,visible:r.width>0&&r.height>0,ring:(s.outlineStyle!=='none'&&parseFloat(s.outlineWidth)>0)||s.boxShadow!=='none'||e.matches(':focus-visible')&&getComputedStyle(e.querySelector('.cell')??e).strokeWidth!==''};});
 /** The mover's frontline country, placed up to strength and into combat with one target staged. */
 async function stageAttack(p:Page){
- let s=await saved(p);const me=activePlayer(s)!.id,from=s.map.provinces.find(c=>s.ownerOf[c.id]===me&&c.borders.some(b=>s.ownerOf[b]!==me))!;
+ let s=await saved(p);const me=activePlayer(s)!.id;
+ // T97: notices and cards float over the map, so the pair is one nothing covers.
+ const clear=await p.evaluate(ids=>ids.filter(id=>{const n=document.querySelector(`[data-country="${id}"]`)!,r=n.querySelector('.cell')!.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return !!hit&&n.contains(hit);}),s.map.provinces.map(c=>c.id));
+ const from=s.map.provinces.find(c=>s.ownerOf[c.id]===me&&clear.includes(c.id)&&c.borders.some(b=>s.ownerOf[b]!==me&&clear.includes(b)))!;
  for(let i=0;i<80&&Number(await p.locator('#placement-pool-count').textContent().catch(()=>'0'))>0;i++)await country(p,from.id).click();
  await p.locator('#start-combat-button').click();s=await saved(p);
- const to=from.borders.find(b=>s.ownerOf[b]!==me)!;await country(p,from.id).click();await country(p,to).click();await openSurface(p,'actions');
+ const to=from.borders.find(b=>s.ownerOf[b]!==me&&clear.includes(b))!;await country(p,from.id).click();await country(p,to).click();await openSurface(p,'actions');
  return {from:from.id,to,state:s};
 }
 

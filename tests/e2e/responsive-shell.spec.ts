@@ -37,6 +37,11 @@ async function begin(page: Page, host: string, text: string): Promise<string[]> 
   return errors;
 }
 
+/** The first of these countries whose centre is not under a card, notice or icon. */
+function uncovered(page: Page, ids: readonly string[]): Promise<string | undefined> {
+  return page.evaluate(ids => ids.find(id => { const n = document.querySelector(`[data-country="${id}"]`)!, r = n.querySelector('.cell')!.getBoundingClientRect(), hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return !!hit && n.contains(hit); }), ids);
+}
+
 /** Waits for the camera to settle after a layout change (ResizeObserver runs a frame later). */
 async function settle(page: Page): Promise<void> {
   let last = '';
@@ -175,7 +180,8 @@ for (const host of ['reference', 'geographic']) {
       await expect(page.locator('#start-combat-button')).toBeHidden();
       if (n === 1) await openSurface(page, 'menu');
       if (n === 2) await closeSurface(page);
-      const id = owned[n % owned.length]!;
+      // T97: cards and notices float over the map, so the tap goes to a country nothing covers.
+      const id = (await uncovered(page, [...owned.slice(n % owned.length), ...owned]))!;
       await page.locator(`[data-country="${id}"]`).click();
       const next = apply(state, {kind: 'reinforce', province: id, amount: 1}); if (!next.ok) throw Error(next.error); state = next.state;
       await pool(page, `${viewport} after one placement`, state.reinforcementPool);

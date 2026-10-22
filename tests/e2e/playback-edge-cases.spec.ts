@@ -62,9 +62,12 @@ test("failed load feedback stays readable without covering capture or playback c
     // The error shows in the settings card that holds the files; the capture waits behind the required icon.
     await openSurface(page, "settings"); await upload(invalid); const error = page.getByRole("alert"); await expect(error).toContainText("Load failed:");
     expect(await error.evaluate(node => { const r = node.getBoundingClientRect(); return r.width > 200 && r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; })).toBe(true);
-    for (const id of ["game-log-button", "game-pause-button", "game-speed", "reference-save-game", "open-required-action"]) {
+    for (const id of ["game-log-button", "game-pause-button", "game-speed", "reference-save-game"]) {
       expect(await page.locator(`#${id}`).evaluate(node => { node.scrollIntoView({ block: "nearest" }); const r = node.getBoundingClientRect(); return r.width > 0 && r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; }), id).toBe(true);
     }
+    // T97: the capture's strip waits while the menu card is open, and returns once it closes.
+    await expect(page.locator("#open-required-action")).toBeHidden(); await page.locator("#close-game-drawer").click();
+    expect(await page.locator("#open-required-action").evaluate(node => { const r = node.getBoundingClientRect(); return r.width > 0 && r.left >= 0 && r.top >= 0 && r.right <= innerWidth && r.bottom <= innerHeight; })).toBe(true);
     await page.locator("#open-required-action").click(); await expect(page.locator("#confirm-capture-button")).toBeInViewport();
   }
   const root = process.env["PLAYBACK_EVIDENCE_DIR"] ?? "screenshots"; mkdirSync(root, { recursive: true }); await page.screenshot({ path: join(root, `production-invalid-load-${info.project.name}.png`) });

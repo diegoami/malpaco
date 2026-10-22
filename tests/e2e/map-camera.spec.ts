@@ -138,18 +138,15 @@ for(const host of ['reference','geographic']){
   expect(await save(page)).toEqual(before);
  });
 
- test(`${host}: a drawer over the board reframes the map beside it; the same counts return (E)`,async({page},info)=>{
+ // T97 (owner, #240): cards float over the full-size map; opening or closing one never reframes it.
+ test(`${host}: a card over the board leaves the map's framing as it is; the same counts stay (E)`,async({page},info)=>{
   await begin(page);await load(page,fixture(host,'reinforcement'));await collapse(page);
   const counts=()=>page.locator('[data-country]').evaluateAll(ns=>ns.map(n=>[n.getAttribute('data-country'),n.querySelector('.count')!.textContent]));
-  const before=await counts();
-  await drawer(page,true);
-  await expect.poll(()=>page.evaluate(()=>{
-   const d=document.querySelector('#game-focus-drawer')!.getBoundingClientRect();
-   return [...document.querySelectorAll('[data-country] .count')].filter(t=>{const r=t.getBoundingClientRect(),x=r.x+r.width/2,y=r.y+r.height/2;return x>d.left&&x<d.right&&y>d.top&&y<d.bottom;}).length;
-  }),{message:'no count is drawn under the drawer'}).toBe(0);
+  const before=await counts(),box=await viewBox(page);
+  await drawer(page,true);expect(await viewBox(page)).toBe(box);
   await shot(page,info,`${host}-drawer-open`);
   await drawer(page,false);await settle(page);
-  expect(await counts()).toEqual(before);
+  expect(await counts()).toEqual(before);expect(await viewBox(page)).toBe(box);
   await expect(map(page)).toHaveAttribute('data-camera-zoom','1');
  });
 }

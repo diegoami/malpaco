@@ -159,14 +159,21 @@ test.describe('computer turns',()=>{
    const extra=await page.evaluate(()=>[...document.querySelectorAll<HTMLElement>('button,input,select')].filter(n=>n.getClientRects().length>0&&!n.closest('.visually-hidden, .game-store, #game-status, .game-corner-end, .map-camera-controls, #active-seat-notice')).map(n=>n.id||n.getAttribute('aria-label')||n.textContent));
    expect(extra,'controls on screen during a computer turn').toEqual([]);await expect(page.locator('#game-focus-drawer')).toBeHidden();
   };
-  const computerTurn=async()=>{for(let n=0;n<400;n++){const title=await notice.textContent().catch(()=>null);const m=title?.match(/^(\w+) · /);if(m&&m[1]!=='Your'){seen.add(m[1]!);await quiet();}await page.clock.runFor(400);if(await page.locator('#start-combat-button:visible, #end-turn-button:visible').count())return;}};
+  /** Your turn: the pool, a card choice, or End turn is up. */
+  const mine=page.locator('#placement-pool:visible, #end-turn-button:visible, #game-focus-drawer:visible');
+  const computerTurn=async()=>{for(let n=0;n<400;n++){const title=await notice.textContent().catch(()=>null);const m=title?.match(/^(\w+) · /);if(m&&m[1]!=='Your'){seen.add(m[1]!);await quiet();}else if(await mine.count())return;await page.clock.runFor(400);}};
   const humanTurn=async()=>{
-   await expect(page.locator('#start-combat-button:visible, #end-turn-button:visible').first()).toBeVisible();
+   await expect(mine.first()).toBeVisible();
+   const reward=page.getByRole('button',{name:'Continue',exact:true});if(await reward.isVisible()){await reward.click();return;}
+   const skip=page.getByRole('button',{name:'Skip cards',exact:true});if(await skip.isVisible())await skip.click();
    const pool=page.locator('#placement-pool-count');
-   if(await pool.isVisible()){const own=page.locator('[data-country][aria-label*=", You, "]').first();for(let n=Number(await pool.textContent());n>0;n--)await own.click();await page.locator('#start-combat-button').click();}
+   if(await pool.isVisible()){
+    // A country of yours that nothing floats over (the notice floats over the map too).
+    const own=await page.locator('[data-country][aria-label*=", You, "]').evaluateAll(ns=>ns.find(n=>{const r=n.querySelector('.cell')!.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return !!hit&&n.contains(hit);})?.getAttribute('data-country'));
+    for(let n=Number(await pool.textContent());n>0;n--)await country(page,own!).click();await page.locator('#start-combat-button').click();}
    await page.locator('#end-turn-button').click();
   };
-  if(!await page.locator('#start-combat-button:visible, #end-turn-button:visible').count())await computerTurn();
+  if(!await mine.count())await computerTurn();
   if(size.width===390)await shots('your-turn',page);
   for(let round=0;round<3&&(round===0||seen.size<3);round++){await humanTurn();await page.clock.runFor(400);if(size.width===390&&round===0)await shots('computer-turn',page);await computerTurn();}
   expect([...seen].sort()).toEqual(['Green','Orange','Purple']);

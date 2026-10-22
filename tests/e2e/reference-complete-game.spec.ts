@@ -7,7 +7,7 @@ import type { Action, GameOptions, GameState } from "../../src/core";
 import { createReferenceGame } from "../../src/core/reference-game";
 import { referenceMap } from "../../src/core/reference-map";
 import { deserializeVersionedMatch } from "../../src/core/match-save";
-import {openSurface,withSurface} from './shell';
+import {activate,openSurface,withSurface} from './shell';
 
 const fixture = JSON.parse(readFileSync(new URL("../../fixtures/new-game/T33/fixtures/conquest.json", import.meta.url), "utf8")) as {
   options: GameOptions; actions: Action[]; expected: { actions: number; computerActions: number; humanActions: number; winner: string };
@@ -54,16 +54,16 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
       continue;
     }
     const action = fixture.actions[index++]!;
-    if (action.kind === "reinforce") await country(page, action.province).click();
+    if (action.kind === "reinforce") await activate(country(page, action.province));
     else if (action.kind === "endReinforcement") await page.locator("#start-combat-button").click();
     else if (action.kind === "endTurn") await page.locator("#end-turn-button").click();
     else if (action.kind === "attack") {
-      if (await country(page, action.from).getAttribute("aria-pressed") !== "true") await country(page, action.from).click();
+      if (await country(page, action.from).getAttribute("aria-pressed") !== "true") await activate(country(page, action.from));
       // T82: the target click stages the pair; the card's Attack fights the one exchange.
-      await country(page, action.to).click(); await openSurface(page,'actions'); await page.locator("#single-exchange-button").click();
+      await activate(country(page, action.to)); await openSurface(page,'actions'); await page.locator("#single-exchange-button").click();
       if (!battle) { await screenshot("battle"); battle = true; }
     } else if (action.kind === "friendlyMove") {
-      await page.locator("#start-friendly-move-button").click(); await country(page, action.from).click(); await country(page, action.to).click();
+      await page.locator("#start-friendly-move-button").click(); await activate(country(page, action.from)); await activate(country(page, action.to));
       await openSurface(page,'actions');await page.locator("#friendly-move-amount").fill(String(action.amount)); await screenshot("friendly-move");
       await openSurface(page,'actions');await page.locator("#confirm-friendly-move-button").click(); moved = true;
     } else if (action.kind === "captureMove") {

@@ -83,3 +83,13 @@ export async function reachableInCard(locator: import('@playwright/test').Locato
     return !!d && r.top >= d.top - 1 && r.bottom <= d.bottom + 1 && r.right <= innerWidth + 1 && r.bottom <= innerHeight + 1 && !!hit && (hit === node || node.contains(hit));
   }), 'control is reachable inside the open card').toBe(true);
 }
+
+/**
+ * T97: cards and notices float over the map (owner, #240), so a country may lie under one. A
+ * driver taps a country with the mouse where nothing covers it, and otherwise with the keyboard,
+ * which acts the same (Enter on a focused country).
+ */
+export async function activate(locator: import('@playwright/test').Locator): Promise<void> {
+  const clear = await locator.evaluate(n => { const r = (n.querySelector('.cell') ?? n).getBoundingClientRect(), hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return !!hit && n.contains(hit); });
+  if (clear) await locator.click(); else { await locator.focus(); await locator.press('Enter'); }
+}

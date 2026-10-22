@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { act, fixtureAction, plan, referenceMap, VICTORY_ACTION_BUDGET } from "./victory-fixture";
 import type { CompleteAction, CompleteState } from "../core/victory-options-fixture";
 import { opening, standings } from "../core/victory-options-fixture";
-import {withSurface,openSurface} from './shell';
+import {activate,withSurface,openSurface} from './shell';
 
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);
 async function capture(page: Page, label: string, project: string) {
@@ -18,15 +18,15 @@ async function paint(page: Page, state: CompleteState) {
   expect(actual).toEqual(Object.fromEntries(referenceMap.provinces.map(p => [p.id, [state.ownerOf[p.id], state.armies[p.id]]])));
 }
 async function clickAction(page: Page, action: CompleteAction) {
-  if (action.kind === "reinforce") await country(page, action.province).click();
+  if (action.kind === "reinforce") await activate(country(page, action.province));
   else if (action.kind === "endReinforcement") await page.locator("#start-combat-button").click();
   else if (action.kind === "endTurn") await page.locator("#end-turn-button").click();
   else if (action.kind === "captureMove") await page.locator("#confirm-capture-button").click();
   else if (action.kind === "attack") {
     const from = country(page, action.from);
-    if (await from.getAttribute("aria-pressed") !== "true") await from.click();
+    if (await from.getAttribute("aria-pressed") !== "true") await activate(from);
     // T82: the target click stages the pair; the card's Attack fights the one exchange.
-    await country(page, action.to).click();
+    await activate(country(page, action.to));
     await openSurface(page, "actions"); await page.locator("#single-exchange-button").click();
   } else throw Error(`Unhandled fixture click ${action.kind}`);
 }
@@ -87,7 +87,9 @@ test("domination result names winner/reason, final standings, freezes and restar
   for (const player of state.players) {
     const countries = Object.values(state.ownerOf).filter(id => id === player.id).length;
     const row = page.locator(`[data-result-player="${player.id}"]`);
-    await expect(row).toContainText(player.name);
+    // T97: seats read by colour, the one human seat as You; saves keep Seat N.
+    const humans = state.players.filter(p => p.kind !== "computer");
+    await expect(row).toContainText(humans.length === 1 && humans[0]!.id === player.id ? "You" : ["Blue", "Orange", "Green", "Purple"][state.players.indexOf(player)]!);
     await expect(row.locator("[data-result-countries]")).toHaveText(String(countries));
     await expect(row.locator("[data-result-armies]")).toHaveText(String(standings(state).find(r => r.player === player.id)!.armies));
   }

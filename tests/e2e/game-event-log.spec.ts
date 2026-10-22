@@ -27,6 +27,12 @@ async function open(p: Page) {
   await openSurface(p, "menu"); const button = p.locator("#game-log-button"); await expect(button).toBeVisible(); await button.focus(); await button.press("Enter"); await expect(dialog(p)).toBeVisible();
 }
 // Independent core replay is the oracle; no UI projection function is imported.
+// T97 (owner, 2026-10-22): seats read by colour, the one human seat as You; saves keep Seat N.
+const COLOURS = ["Blue", "Orange", "Green", "Purple"];
+function seat(state: { players: readonly { id: string; kind?: string }[] }, id: string): string {
+  const humans = state.players.filter(player => player.kind !== "computer");
+  return humans.length === 1 && humans[0]!.id === id ? "You" : COLOURS[state.players.findIndex(player => player.id === id)]!;
+}
 async function verify(p: Page, text: string) {
   const loaded = deserializeVersionedMatch(text);
   let before = deserializeVersionedMatch(serializeVersionedMatch(loaded.options, [], REFERENCE_MATCH_IDENTITY)).state;
@@ -37,26 +43,26 @@ async function verify(p: Page, text: string) {
   for (const country of before.map.provinces) {
     const cell = actual[0]!.regions.find(region => region.id === country.id)!; expect(cell).toBeDefined();
     expect(cell.text).toContain(country.name); expect(cell.text).toContain(`0 → ${before.armies[country.id]}`);
-    expect(cell.text).toContain(before.players.find(player => player.id === before.ownerOf[country.id])!.name);
+    expect(cell.text).toContain(seat(before, before.ownerOf[country.id]!));
   }
   for (const [i, action] of loaded.state.history.entries()) {
     const result = apply(before, action); if (!result.ok) throw Error(result.error);
     const after = result.state, row = actual[i + 1]!;
-    expect(row.text).toContain(`Round ${before.turnNumber}`); expect(row.text).toContain(activePlayer(before)!.name);
+    expect(row.text).toContain(`Round ${before.turnNumber}`); expect(row.text).toContain(seat(before, activePlayer(before)!.id)); expect(row.text).not.toMatch(/Seat \d/);
     for (const country of before.map.provinces) {
       const a = before.armies[country.id]!, b = after.armies[country.id]!;
       if (a === b && before.ownerOf[country.id] === after.ownerOf[country.id]) continue;
       const cell = row.regions.find(region => region.id === country.id); expect(cell, `${i + 1}: ${country.name}`).toBeDefined();
       expect(cell!.text).toContain(country.name); expect(cell!.text).toContain(`${a} → ${b}`);
       expect(cell!.text).toContain(`(${b - a >= 0 ? "+" : ""}${b - a})`);
-      expect(cell!.text).toContain(before.players.find(player => player.id === before.ownerOf[country.id])!.name);
+      expect(cell!.text).toContain(seat(before, before.ownerOf[country.id]!));
     }
     if (action.kind === "reinforce") expect(row.text).toMatch(/reinforcement placement/i);
     if (action.kind === "captureMove") expect(row.text).toMatch(/capture.*transfer/i);
     if (action.kind === "friendlyMove") expect(row.text).toMatch(/friendly.*transfer/i);
     if (result.outcome) {
       for (const [player, region, losses] of [[result.outcome.attacker, result.outcome.from, result.outcome.attackerLosses], [result.outcome.defender, result.outcome.to, result.outcome.defenderLosses]] as const) {
-        const who = before.players.find(candidate => candidate.id === player)!.name;
+        const who = seat(before, player);
         const where = before.map.provinces.find(country => country.id === region)!.name;
         expect(row.text).toContain(`${who} ${where}: ${losses} combat casualties`);
       }

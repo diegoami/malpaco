@@ -83,7 +83,9 @@ test('the setup route (root and unknown view with ?setup) retains the establishe
 });
 for(const item of visualSelection)test(`seed ${item.seed} paints actual geography and contained legible army labels`,async({page},info)=>{
  expect(corpus.measured).toBe(true);expect(layoutSupplement.measured).toBe(true);
-  const game=expected(item.seed);expect(hash(numbered(game.state.map))).toBe(item.mapHash);await start(page,item.seed);await page.mouse.move(0,0);
+  const game=expected(item.seed);expect(hash(numbered(game.state.map))).toBe(item.mapHash);await start(page,item.seed);
+  // T97: the notice floats over the map (owner, #240); it is dismissed, as a player would, before the labels are hit-tested.
+  if(await page.locator('#dismiss-notice').isVisible())await page.locator('#dismiss-notice').click();await page.mouse.move(0,0);
   const actual=await drawing(page),q=1,presentation=JSON.parse(readFileSync(new URL(`../../fixtures/new-game/T75/preflight/phase-b-20261018-01/fixtures/seed-${item.seed}-after.json`,import.meta.url),'utf8'));expect(actual.countries).toHaveLength(46);
   for(const v of presentation.provinces as {id:string;polygon:number[][];labelAt:[number,number]}[]){const row=actual.countries.find(r=>r.id===v.id)!;expect(numbers(row.d!)).toEqual(v.polygon.flatMap(pt=>pt.map(n=>n/q)));expect(row.x).toBeCloseTo(v.labelAt[0]/q,5);expect(row.y-5).toBeCloseTo(v.labelAt[1]/q,5);}
   const paint=await page.locator('#geographic-map .lane,#geographic-map .coast').evaluateAll(ns=>ns.map(n=>{const style=getComputedStyle(n),r=n.getBoundingClientRect();return {visible:style.display!=='none'&&style.visibility!=='hidden'&&Number(style.opacity)>0,stroke:style.stroke,strokeOpacity:Number(style.strokeOpacity),length:(n as SVGGeometryElement).getTotalLength(),fits:r.left>=0&&r.top>=0&&r.right<=innerWidth&&r.bottom<=innerHeight};}));for(const row of paint){expect(row.visible).toBe(true);expect(row.stroke).not.toBe('none');expect(row.strokeOpacity).toBeGreaterThan(0);expect(row.length).toBeGreaterThan(0);expect(row.fits).toBe(true);}
@@ -145,7 +147,7 @@ test('geographic computer playback pauses and cancels stale work on load',async(
  }
  expect(activePlayer(state)!.kind).toBe('computer');expect(state.phase).toBe('attack');
  await page.locator('#game-pause-button').click();const frozen=await save(page);await page.clock.runFor(5000);expect(await save(page)).toBe(frozen);
- const id=state.map.provinces[0]!.id;await country(page,id).focus();await page.keyboard.press('Enter');expect(await save(page)).toBe(frozen);await openSurface(page,'menu');await page.locator('#game-log-button').click();await openSurface(page,'menu');await expect(page.getByRole('dialog',{name:'Game event log'})).toBeVisible();await page.keyboard.press('Escape');
+ const id=state.map.provinces[0]!.id;await country(page,id).focus();await page.keyboard.press('Enter');expect(await save(page)).toBe(frozen);await openSurface(page,'menu');await page.locator('#game-log-button').click();await expect(page.getByRole('dialog',{name:'Game event log'})).toBeVisible();await page.keyboard.press('Escape');
  await page.locator('#game-pause-button').click();await page.clock.runFor(350);expect(await save(page)).not.toBe(frozen);
  // Create a known manual replacement, then load while old automatic work is queued.
  const manual=expected(1994);const replacement={format:'malpaco-match',version:2,...GEOGRAPHIC_MATCH_IDENTITY,options:manual.options,actions:[]};await upload(page,JSON.stringify(replacement));await check(page,manual.state);await page.clock.runFor(5000);await check(page,manual.state);

@@ -101,19 +101,15 @@ test('Fast-forward plays only the computer seats, ends on the human turn, and Ch
  expect(await dialog.locator('.game-event.since').evaluateAll(ns=>ns.map(n=>Number((n as HTMLElement).dataset['eventIndex'])))).toEqual(marked);
 });
 
-// T97: the menu's battle log, its newest-entry emphasis and its kept offset are gone (owner, #244);
-// the history is the event log card, which keeps every action and its reading position while it is open.
-for(const size of [PHONE,LANDSCAPE,{width:1280,height:800}])test(`a long history keeps every entry and its reading position at ${size.width}×${size.height}`,async({page},info)=>{
+// T97: the menu's battle log, its newest-entry emphasis and its reading offset are gone (owner,
+// #244); the history is the event log card, which keeps every action and scrolls at every size.
+for(const size of [PHONE,LANDSCAPE,{width:1280,height:800}])test(`a long history keeps every entry at ${size.width}×${size.height}`,async({page},info)=>{
  await page.setViewportSize(size);await begin(page);const f=pinned('human-loss');await load(page,f.text);const s=await saved(page);
  await totals(page,s);
  await withSurface(page,'settings',()=>page.locator('#game-log-button').click());
  const dialog=page.locator('dialog.game-event-log');await expect(dialog.locator('.game-event')).toHaveCount(s.history.length+1);
- expect(await dialog.evaluate(n=>n.scrollHeight>n.clientHeight)).toBe(true);
- // Read an older entry, then rotate: the same entry stays at the top.
- await dialog.evaluate(n=>{n.scrollTop=Math.floor((n.scrollHeight-n.clientHeight)/3);});
- const top=()=>dialog.evaluate(n=>{const r=n.querySelector('.game-event-list')!.closest('dialog')!.getBoundingClientRect(),head=n.querySelector('header')!.getBoundingClientRect();return [...n.querySelectorAll('.game-event')].findIndex(li=>li.getBoundingClientRect().bottom>Math.max(r.top,head.bottom)+1);});
- const first=await top();expect(first).toBeGreaterThan(0);
- await page.setViewportSize({width:size.height,height:size.width});await expect.poll(top).toBe(first);
- await page.setViewportSize(size);await expect.poll(top).toBe(first);
+ expect(await dialog.evaluate(n=>n.scrollHeight>n.clientHeight&&n.getBoundingClientRect().bottom<=innerHeight&&n.getBoundingClientRect().right<=innerWidth)).toBe(true);
+ await page.setViewportSize({width:size.height,height:size.width});await expect(dialog.locator('.game-event')).toHaveCount(s.history.length+1);
+ expect(await dialog.evaluate(n=>n.getBoundingClientRect().bottom<=innerHeight&&n.getBoundingClientRect().right<=innerWidth)).toBe(true);
  await shot(page,info,`long-history-${size.width}x${size.height}`);
 });

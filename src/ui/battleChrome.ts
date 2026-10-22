@@ -151,7 +151,18 @@ export class BattleChrome {
    * covers one, the corner covering least. The centred result card stays where it is.
    */
   place(avoid: readonly DOMRect[]): void {
+    this.avoid = avoid;
+    this.reposition();
+  }
+
+  private avoid: readonly DOMRect[] = [];
+  private reposition(): void {
     if (this.drawer.hidden || this.drawer.dataset["placement"] === "center") return;
+    // The card stays below the top icons and the notice as they stand, so none covers another.
+    const frame = this.overlay.getBoundingClientRect(), shown = [this.hud, this.top, this.pool, this.notice].filter(e => !e.hidden && e.getClientRects().length);
+    const below = Math.max(0, ...shown.map(e => e.getBoundingClientRect().bottom - frame.top));
+    this.drawer.style.setProperty("--card-top", `${Math.ceil(below)}px`);
+    const avoid = this.avoid;
     const overlap = (corner: Corner) => {
       this.drawer.dataset["corner"] = corner;
       const card = this.drawer.getBoundingClientRect();
@@ -226,6 +237,7 @@ export class BattleChrome {
     // The strip waits while any card is open (T97: cards float, so it would sit under one).
     this.folded.hidden = !this.requiredText || this.surface !== null;
     this.renderNotice();
+    this.reposition();
   }
 
   /**

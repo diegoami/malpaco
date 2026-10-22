@@ -174,7 +174,7 @@ export class ReferenceBattleGame {
     // The history is its own card over the map: the menu steps aside for it.
     this.eventLog.button.addEventListener("click", () => this.chrome?.close(false), {capture: true});
     // Its icon went back with the menu, so closing the history returns focus to the menu icon.
-    this.eventLog.dialog.addEventListener("close", () => { if (!this.disposed && !this.eventLog.button.getClientRects().length) this.chrome?.focusMenuOpener(); });
+    this.eventLog.dialog.addEventListener("close", () => { const active = document.activeElement; if (!this.disposed && (!active || active === document.body || !active.getClientRects().length)) this.chrome?.focusMenuOpener(); });
     root.replaceChildren(h("section", { class: "board" }, this.mapView.el), this.chrome.overlay, store);
     // Only the corner icons reframe the map; cards and notices float over it (T97).
     for (const overlay of this.chrome.obstacles) this.mapView.camera?.avoid(overlay);
@@ -365,7 +365,8 @@ export class ReferenceBattleGame {
       if (key !== this.raidFolded) {this.raidFolded = key; if (this.chrome?.openSurface === "actions") this.chrome.close(false);}
     }
     // Computer turns show no choice (owner, 2026-10-22): only the corner icons and the notice stay.
-    if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
+    // Focus left in (or dropped from) the closing card goes back to a visible control.
+    if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
     const prompt = computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
     // A folded card keeps any pending choice one tap away; a computer seat's own pending choice is never yours (T84).
     const choice = computer ? null : required ?? (staged ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
