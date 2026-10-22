@@ -3,11 +3,13 @@
 // every staged choice leaves the saved match exactly as before, and every command adds exactly
 // the engine's own next state. The release config runs this same file against the extracted
 // artifact, where the legacy views are retired.
+// T98 (0.2.1 amendments in the same plan): A1 is the instant start; A2–A5 expect the trimmed
+// cards (Fight and Cancel, no odds, no fold) and a card that never reframes the map; A13 retired.
 import {expect,test} from '@playwright/test';
 import type {Page,TestInfo} from '@playwright/test';
-import {activePlayer,attackTargets,computerAction,createGame,defaultOptions} from '../../src/core';
-import type {Action,GameState} from '../../src/core';
-import {serializeMatch,serializeVersionedMatch,deserializeVersionedMatch,REFERENCE_MATCH_IDENTITY} from '../../src/core/match-save';
+import {activePlayer,attackTargets,computerAction} from '../../src/core';
+import type {Action} from '../../src/core';
+import {serializeVersionedMatch,deserializeVersionedMatch,REFERENCE_MATCH_IDENTITY} from '../../src/core/match-save';
 import {pinned} from '../core/versioned-match-fixture';
 import {fixture as cardFixture,input as cardInput,human,selectedNames,TRADE_CASES} from './cards-fixtures';
 import {fixture as friendlyFixture} from './friendly-fixture';
@@ -19,6 +21,15 @@ const MATRIX=[[320,568],[360,640],[390,844],[430,932],[568,320],[640,360],[667,3
  [679,800],[680,800],[681,800],[1099,800],[1100,800],[1101,800],[900,319],[900,320],[900,321],[900,499],[900,500],[900,501],[900,599],[900,600],[900,601],[640,240],[640,400],[320,200]].map(([width,height])=>({width:width!,height:height!}));
 const shot=(p:Page,info:TestInfo,name:string)=>p.screenshot({path:info.outputPath(`${name}.png`)});
 const settle=(p:Page)=>p.clock.runFor(200);
+const drawer=(p:Page)=>p.locator('#game-focus-drawer');
+const viewBox=(p:Page)=>p.locator('svg[data-camera-zoom]').getAttribute('viewBox');
+/** The camera refits a moment after a corner icon comes or goes: the viewBox once it rests. */
+async function rested(p:Page){let last:string|null='';await expect.poll(async()=>{const now=await viewBox(p);await p.clock.runFor(100);const same=now===last&&now===await viewBox(p);last=now;return same;}).toBe(true);return last;}
+/** The open card's visible controls, by accessible name (assistive-only content excluded). */
+const shown=(p:Page)=>drawer(p).evaluate(card=>[...card.querySelectorAll<HTMLElement>('button,input,select')].filter(n=>n.getClientRects().length>0&&!n.closest('.visually-hidden')&&getComputedStyle(n).visibility!=='hidden').map(n=>n.getAttribute('aria-label')||n.textContent!.trim()));
+/** Controls the 0.2.0 cards had and the 0.2.1 cards dropped: odds, Fight on, Stop, stop point, previews and the fold button. */
+const RETIRED='#battle-odds, #fight-on-button, #stop-battle-button, #battle-stop-threshold, #capture-fold-button, #capture-preview, #capture-range';
+const KEY='malpaco:current-game',record=(p:Page)=>p.evaluate(key=>localStorage.getItem(key),KEY);
 async function geographic(p:Page,size=PORTRAIT){await begin(p,'/?seed=7&control=manual',size);await p.getByRole('button',{name:'Start game',exact:true}).click();await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);}
 async function reference(p:Page,size=PORTRAIT){await begin(p,'/?view=reference-game&control=manual',size);}
 /** The opening of the pinned human-loss replay at its first computer turn after a human one. */
@@ -49,19 +60,21 @@ test('matrix: both hosts fit every acceptance size, seam, zoom and reduced heigh
  expect(await savedText(page)).toBe(r);
 });
 
-test('A1: setup in portrait: seed, seats, files and help reachable; Start makes that game',async({page},info)=>{
- await begin(page,'/?setup',PORTRAIT);
- await page.locator('#geographic-seed').fill('42');await page.locator('#geographic-seats').selectOption('3');
- for(const id of ['#geographic-control-3','#geographic-names','#reference-load-game-file','button[type="submit"]']){await page.locator(id).scrollIntoViewIfNeeded();await expect(page.locator(id)).toBeInViewport();}
- await shot(page,info,'A1-setup');
- await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
- const text=await savedText(page),loaded=deserializeVersionedMatch(text);
- expect(loaded.options.seed).toBe(42);expect(loaded.options.seats).toHaveLength(3);
- await openSurface(page,'settings');await page.locator('#game-help-button').click();await expect(page.getByRole('dialog',{name:'Help & icon names'})).toBeVisible();
- await page.locator('#close-game-help').click();await closeSurface(page);expect(await savedText(page)).toBe(text);
+test('A1: the root page in portrait is a game at once: one human and three computers, no setup, Help reachable, the record kept',async({page},info)=>{
+ // The frozen clock holds the computers still, so the kept record can be compared exactly.
+ await begin(page,'/',PORTRAIT);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await expect(page.locator('#geographic-setup, .setup-card form, #geographic-seed, #geographic-seats')).toHaveCount(0);
+ await expect(page.getByRole('button',{name:'Start game',exact:true})).toHaveCount(0);
+ const text=(await record(page))!,kept=deserializeVersionedMatch(text);
+ expect(kept.options.seats.map(seat=>seat.kind)).toEqual(['human','computer','computer','computer']);
+ expect(kept.options.seed).toBe(Number((await page.locator('.game-identity').textContent())!.match(/Seed (\d+)/)![1]));
+ await shot(page,info,'A1-instant-start');
+ await openSurface(page,'settings');await expect(page.getByRole('button',{name:'Save game',exact:true})).toHaveCount(0);await expect(page.getByLabel('Load game',{exact:true})).toHaveCount(0);
+ await page.locator('#game-help-button').click();await expect(page.getByRole('dialog',{name:'Help & icon names'})).toBeVisible();
+ await page.locator('#close-game-help').click();await closeSurface(page).catch(()=>{});expect(await record(page)).toBe(text);
 });
 
-test('A2: Place 1 by map and list to zero; stage by map, list and keyboard without acting; Fight adds one exchange; stale and paused refused',async({page},info)=>{
+test('A2: Place 1 by map and list to zero; stage by map, list and keyboard without acting; the card is Fight and Cancel and leaves the map framed; Fight adds one exchange; stale and paused refused',async({page},info)=>{
  await geographic(page,LANDSCAPE);let s=await saved(page);const {from,to}=frontline(s);
  for(let i=0;await poolLeft(page)>0;i++){
   await expect(page.locator('#placement-pool')).toBeVisible();
@@ -70,9 +83,11 @@ test('A2: Place 1 by map and list to zero; stage by map, list and keyboard witho
  }
  await exactly(page,s);
  await page.locator('#start-combat-button').click();s=next(s,{kind:'endReinforcement'});await exactly(page,s);
- // Staging by map, list and keyboard leaves the match exactly as it was; T97: the card holds Fight and Cancel only (no odds).
- await country(page,from).click();await country(page,to).click();await exactly(page,s);
- await openSurface(page,'actions');await expect(page.locator('#battle-odds, #fight-on-button, #stop-battle-button')).toHaveCount(0);await expect(page.locator('#single-exchange-button')).toHaveAccessibleName('Fight');
+ // Staging by map, list and keyboard leaves the match exactly as it was; T97: the card holds Fight and Cancel only (no odds),
+ // and it floats over the map: opening it leaves the viewBox as it was.
+ await country(page,from).click();const framed=await rested(page);await country(page,to).click();await exactly(page,s);
+ await openSurface(page,'actions');expect(await shown(page)).toEqual(['Fight','Cancel']);await expect(page.locator(RETIRED)).toHaveCount(0);await expect(page.locator('#single-exchange-button')).toHaveAccessibleName('Fight');
+ expect(await viewBox(page),'opening the card reframes the map').toBe(framed);
  await page.locator('#open-countries').click();const target=page.locator(`[data-country-row="${to}"]`);await expect(target).toBeEnabled();await target.click();await closeSurface(page);await exactly(page,s);
  await country(page,to).focus();await page.keyboard.press('Enter');await exactly(page,s);
  await shot(page,info,'A2-staged');
@@ -98,7 +113,8 @@ test('A2: a legal set trades once and a skip changes nothing but the phase',asyn
 test('A3: a capture draft survives fold, rotation, history and pause; dashed until one Confirm; short landscape keeps badges on their land',async({page},info)=>{
  await reference(page);const f=pinned('pending-capture');await load(page,f.text);let s=await saved(page);const pending=s.pendingCapture!;
  const draft=String(pending.min===pending.defaultAmount?pending.max:pending.min);
- await openSurface(page,'actions');await page.locator('#capture-amount').fill(draft);
+ await openSurface(page,'actions');expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Confirm move-in']);await expect(page.locator(RETIRED)).toHaveCount(0);
+ await page.locator('#capture-amount').fill(draft);
  await page.keyboard.press('Escape');await page.locator('#open-required-action').click();
  await page.setViewportSize(LANDSCAPE);await settle(page);await openSurface(page,'details');await closeSurface(page);
  await page.locator('#game-pause-button').click();await openSurface(page,'actions');await expect(page.locator('#capture-amount')).toHaveValue(draft);
@@ -116,7 +132,8 @@ test('A4: a friendly-move draft survives resize; Cancel changes nothing; Move & 
  await page.getByLabel('Seed',{exact:true}).fill(String(f.seed));await page.getByLabel('Seats',{exact:true}).selectOption('2');await page.getByRole('button',{name:'Start game',exact:true}).click();
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator('#start-combat-button').click();let s=await saved(page);
  await page.locator('#start-friendly-move-button').click();await country(page,f.from).click();await country(page,f.to).click();
- await openSurface(page,'actions');await page.locator('#friendly-move-amount').fill('1');
+ await openSurface(page,'actions');expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Move and end turn','Cancel · back to attacks']);
+ await page.locator('#friendly-move-amount').fill('1');
  await page.setViewportSize(LANDSCAPE);await settle(page);await page.setViewportSize(PORTRAIT);await settle(page);await openSurface(page,'actions');
  await expect(page.locator('#friendly-move-amount')).toHaveValue('1');await page.locator('#cancel-friendly-move-button').click();await exactly(page,s);
  await page.locator('#start-friendly-move-button').click();await country(page,f.from).click();await country(page,f.to).click();
@@ -132,7 +149,8 @@ test('A5: Raid folds; a list pick stages the target with its preview; one Confir
  await expect(page.locator('#game-focus-drawer')).toHaveAttribute('data-surface','actions');await exactly(page,before.state);
  await shot(page,info,'A5-raid');
  await closeSurface(page);expect(await counts()).toEqual(rest);
- await page.locator('#open-required-action').click();await page.getByRole('button',{name:'Confirm raid',exact:true}).click();
+ await page.locator('#open-required-action').click();expect(await shown(page)).toEqual(['Confirm raid']);await expect(page.locator(RETIRED)).toHaveCount(0);
+ await page.getByRole('button',{name:'Confirm raid',exact:true}).click();
  await exactly(page,next(before.state,{kind:'raidTarget',province:target}));
 });
 
@@ -227,16 +245,6 @@ for(const size of [PORTRAIT,LANDSCAPE])test(`A12 (automated part): at phone Fit 
    return px>=13.99&&on?[]:[{id:(n as HTMLElement).dataset['country'],px,on}];}));
   expect(bad,`seed ${seed}`).toEqual([]);await shot(page,info,`A12-seed${seed}-${size.width}x${size.height}`);
  }
-});
-
-test('A13: a version-1 save loads into continued play from the main file UI and saves back unchanged',async({page})=>{
- const options={...defaultOptions(),seed:7,seats:[{kind:'human' as const},{kind:'human' as const}],computerStrengths:[]};
- const origin=createGame(options);if(!origin.ok)throw Error(origin.errors.join(';'));let s=origin.state;
- const own=s.map.provinces.find(c=>s.ownerOf[c.id]===activePlayer(s)!.id)!.id;const actions:Action[]=[];
- for(let i=0;i<2;i++){const a:Action={kind:'reinforce',province:own,amount:1};s=next(s,a);actions.push(a);}
- const v1=serializeMatch(options,actions);await begin(page,'/?setup',PORTRAIT);await load(page,v1,'old.json');
- expect(await savedText(page)).toBe(v1);await country(page,own).click();s=next(s,{kind:'reinforce',province:own,amount:1});
- expect(await savedText(page)).toBe(serializeMatch(options,s.history));
 });
 
 test('A14: the first Fit picks its turn from the bounds and shows every country; rotation keeps focus, selection and drafts; swipe pans only when zoomed',async({page})=>{
