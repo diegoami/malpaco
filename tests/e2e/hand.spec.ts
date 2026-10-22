@@ -30,6 +30,8 @@ function played(stop:(s:GameState)=>boolean,limit=1500){
  }
  throw Error('no such state');
 }
+/** Waits for a window's opening animation to finish, so its box is where it rests. */
+const settled=(l:import('@playwright/test').Locator)=>l.evaluate(d=>Promise.all(d.getAnimations().map(a=>a.finished)));
 async function opened(p:Page,text:string,size:{width:number;height:number}){
  await p.setViewportSize(size);
  await p.addInitScript(([k,v])=>{if(!sessionStorage.getItem('t104'))sessionStorage.setItem('t104','1'),localStorage.setItem(k!,v!);},[ROOT,text]);
@@ -46,13 +48,33 @@ for(const size of SIZES){
   await expect(button).toBeVisible();await expect(button.locator('.hand-count')).toHaveText(String(cards.length));
   await expect(button).toHaveAttribute('aria-label',`Your cards: ${cards.length}`);
   await button.click();await expect(dialog).toBeVisible();
-  await expect(dialog.locator('#hand-list li')).toHaveText([...cards]);
+  // Drawn as cards, in hand order, each with its plain symbol.
+  const tiles=dialog.locator('#hand-list .card-tile');
+  expect(await tiles.evaluateAll(ns=>ns.map(n=>n.getAttribute('data-kind')))).toEqual([...cards]);
+  for(const [i,kind] of cards.entries()){
+   const tile=tiles.nth(i);await expect(tile.locator('.card-tile-name')).toHaveText(kind);
+   if(kind==='Raid'||kind==='Shield')await expect(tile.locator('.card-tile-cross')).toHaveCount(kind==='Shield'?1:0);
+   else await expect(tile.locator('.card-tile-symbol')).toHaveText(({Anchor:'5',Compass:'8',Lantern:'15',Surge:'×2',Wild:'★'} as Record<string,string>)[kind]!);
+  }
   await page.locator('#close-hand').click();await expect(dialog).toBeHidden();
   await button.click();await expect(dialog).toBeVisible();await page.keyboard.press('Escape');await expect(dialog).toBeHidden();
   await button.click();await expect(dialog).toBeVisible();await button.click();await expect(dialog).toBeHidden();
   // Looking changes nothing; no other seat's cards are listed anywhere.
   expect(same(await kept(page))).toEqual(same(state));
   await expect(page.locator('.hand-list li')).toHaveCount(cards.length);
+  // The window drags by its header and keeps its place, after closing and after a reload.
+  await button.click();await settled(dialog);const head=dialog.locator('header'),before=(await dialog.boundingBox())!;
+  const hb=(await head.boundingBox())!;await page.mouse.move(hb.x+20,hb.y+hb.height/2);await page.mouse.down();
+  await page.mouse.move(hb.x+20,hb.y+hb.height/2+90,{steps:6});await page.mouse.up();
+  const moved=(await dialog.boundingBox())!;expect(Math.abs(moved.y-before.y-90)).toBeLessThanOrEqual(1);
+  /** Where it was dragged, once the window's opening animation has finished. */
+  const near=async(l:import('@playwright/test').Locator)=>{await settled(l);expect(Math.abs((await l.boundingBox())!.y-moved.y)).toBeLessThanOrEqual(1);};
+  // A tap on the header is not a drag.
+  await head.click({position:{x:20,y:hb.height/2}});await near(dialog);
+  await button.click();await expect(dialog).toBeHidden();await button.click();await near(dialog);
+  await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await page.locator('#open-hand').click();await near(page.locator('#hand-dialog'));
+  expect(same(await kept(page))).toEqual(same(state));
  });
 
  test(`${size.width}x${size.height}: no cards, no button; and none during a computer turn`,async({page})=>{
@@ -70,8 +92,8 @@ for(const size of SIZES){
   await page.locator('#end-turn-button').click();
   const drawn=apply(state,{kind:'endTurn'});if(!drawn.ok)throw Error(drawn.error);
   const after=hand(drawn.state),list=page.locator('#reward-hand li');
-  await expect(list).toHaveText(after.map((kind,i)=>i===after.length-1?`${kind} · new`:kind));
-  await expect(list.nth(after.length-1)).toHaveAttribute('data-new','true');
+  expect(await list.evaluateAll(ns=>ns.map(n=>n.getAttribute('data-kind')))).toEqual(after);
+  await expect(list.nth(after.length-1)).toHaveAttribute('data-new','true');await expect(page.locator('#reward-hand [data-new="true"]')).toHaveCount(1);
   await expect(page.getByRole('button',{name:'Continue'})).toBeVisible();
  });
 

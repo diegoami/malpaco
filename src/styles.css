@@ -1814,8 +1814,19 @@ dialog h2 {
 .hand-button .hand-count { position:absolute; right:-4px; top:-4px; min-width:20px; height:20px; padding:0 5px; border-radius:10px; background:var(--accent); color:var(--accent-ink); font-size:13px; font-weight:700; line-height:20px; text-align:center; }
 .hand-dialog { position:fixed; z-index:70; inset:auto; top:calc(env(safe-area-inset-top,0px) + 76px); left:50%; translate:-50% 0; margin:0; width:min(360px,92vw); max-height:calc(100vh - 160px); box-shadow:0 8px 24px #000b; }
 .hand-body { padding:12px 16px 4px; }
-.hand-list { margin:0 0 10px; padding-left:24px; display:grid; gap:6px; font-weight:600; }
-.hand-list [data-new="true"] { color:var(--accent); }
 .hand-plays { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
 .hand-plays button { min-height:44px; }
 .private-card-reward + .hand-list { margin-top:4px; }
+/* T104 (owner): cards drawn as cards, one plain symbol each. */
+.hand-grip { cursor:grab; touch-action:none; user-select:none; }
+.card-tiles { list-style:none; margin:0 0 10px; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+.card-tile { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; width:64px; height:88px; border-radius:8px; background:#f4ead2; color:#1d2a35; border:2px solid #c9b88f; box-shadow:0 2px 4px #0006; }
+.card-tile[data-new="true"] { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent); }
+.card-tile-symbol { font-size:30px; font-weight:800; line-height:1; }
+.card-tile[data-kind="Lantern"] .card-tile-symbol { font-size:26px; }
+.card-tile[data-kind="Wild"] .card-tile-symbol { color:#b8860b; }
+.card-tile-bomb { fill:#1d2a35; stroke:#1d2a35; stroke-width:2; stroke-linecap:round; }
+.card-tile-bomb path { fill:none; }
+.card-tile-bomb .card-tile-cross { stroke:#c0392b; stroke-width:3.5; }
+.card-tile-name { font-size:11px; font-weight:700; letter-spacing:.02em; }
+.card-tile-new { position:absolute; top:-8px; right:-6px; padding:0 5px; border-radius:8px; background:var(--accent); color:var(--accent-ink); font-size:10px; font-weight:800; line-height:16px; }

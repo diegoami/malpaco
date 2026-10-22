@@ -99,7 +99,7 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["trophy", "Scoreboard", "In the menu: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
   ["new-game", "New game", "Gives up this game and starts a new one."],
   ["watch", "Watch computers", "After your last country falls: the computers play on."],
-  ["cards", "Your cards", "Shows the cards you hold and how many; after each draw your whole hand is shown."],
+  ["cards", "Your cards", "Shows the cards you hold and how many, each with a plain symbol for what it does; drag the window by its title. After each draw your whole hand is shown."],
   ["fold", "Fold card", "Shrinks a card to a chip that keeps its title; tap the chip to open it again."],
   ["close", "Close", "Closes a card, cancels a choice, or dismisses a notice."],
 ];
