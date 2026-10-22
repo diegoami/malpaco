@@ -146,7 +146,9 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T97](T97.md) | Bare-minimum floating cards and a trimmed menu | High | Hard | #246 | T96 |
 | [T98](T98.md) | 0.2.1 release candidate, acceptance and milestone review | High | Medium | #247 | T97 |
 | [T100](T100.md) | Persistent sessions and a scoreboard | High | Medium | #254 | T98 |
-| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T100 |
+| [T101](T101.md) | Foldable, draggable cards; hidden history; quick, quiet computer turns | High | Hard | #255 | T100 |
+| [T102](T102.md) | Balanced starts | High | Medium | #256 | T101 |
+| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T102 |
 
 ## Development infrastructure
 
