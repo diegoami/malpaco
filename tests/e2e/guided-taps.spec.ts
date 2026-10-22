@@ -112,6 +112,29 @@ for(const size of SIZES){
   await expect.poll(async()=>gap((await page.locator('#game-focus-drawer').boundingBox())!,(await at.boundingBox())!)).toBeLessThan(24);
  });
 
+ test(`${size.width}x${size.height}: #266: the capture bar covers neither country, a drag moves it for good, and other cards are not anchored`,async({page})=>{
+  // The milestone review's case: the first capture the engine reaches (seed 1), its source below its target.
+  const {state,text}=played(s=>human(s)&&!!s.pendingCapture);
+  await opened(page,text,size);
+  const drawer=page.locator('#game-focus-drawer'),count=(id:string)=>page.locator(`[data-country="${id}"] .count`);
+  await expect(page.locator('#confirm-capture-button')).toBeVisible();
+  const clear=async()=>{const d=(await drawer.boundingBox())!;for(const id of [state.pendingCapture!.from,state.pendingCapture!.to]){const c=(await count(id).boundingBox())!;
+   const overlap=Math.max(0,Math.min(d.x+d.width,c.x+c.width)-Math.max(d.x,c.x))*Math.max(0,Math.min(d.y+d.height,c.y+c.height)-Math.max(d.y,c.y));expect(overlap,`${id} under the bar`).toBe(0);}};
+  await expect.poll(async()=>(await drawer.getAttribute('data-anchored'))).toBe('true');await clear();
+  // A drag moves it, and it stays there over the following frames.
+  const grip=(await drawer.locator('.card-grip').boundingBox())!,before=(await drawer.boundingBox())!;
+  const dy=before.y+before.height+100<=size.height?100:-100;
+  await page.mouse.move(grip.x+grip.width/2,grip.y+grip.height/2);await page.mouse.down();
+  await page.mouse.move(grip.x+grip.width/2,grip.y+grip.height/2+dy,{steps:8});await page.mouse.up();
+  await page.waitForTimeout(300);
+  const after=(await drawer.boundingBox())!;expect(Math.abs(after.y-before.y-dy)).toBeLessThanOrEqual(2);
+  await expect(drawer).not.toHaveAttribute('data-anchored','true');
+  await page.waitForTimeout(300);expect(Math.abs((await drawer.boundingBox())!.y-after.y)).toBeLessThanOrEqual(1);
+  // The menu is never pinned to the country.
+  await page.locator('#open-game-menu').click();await expect(drawer).toHaveAttribute('data-surface','menu');
+  await expect(drawer).not.toHaveAttribute('data-anchored','true');
+ });
+
  test(`${size.width}x${size.height}: the last army placed starts combat`,async({page})=>{
   const {state,text}=played(s=>human(s)&&s.phase==='reinforce'&&s.reinforcementPool>0&&s.reinforcementPool<=3);
   await opened(page,text,size);

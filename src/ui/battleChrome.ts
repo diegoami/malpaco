@@ -211,25 +211,42 @@ export class BattleChrome {
   }
 
   private avoid: readonly DOMRect[] = [];
-  /** T103: the amount bar of a capture or a move rests beside its country, following the camera. */
-  private anchor: (() => DOMRect | null) | null = null;
+  /**
+   * T103: the amount bar of a capture or a move rests beside its country and follows the camera,
+   * clear of the countries in play (#266). It applies to the choice card only; a drag sets it free
+   * for the rest of that choice, and the dragged place is kept as for any card.
+   */
+  private anchor: (() => {near: DOMRect; avoid: readonly DOMRect[]} | null) | null = null;
   private anchorFrame: number | null = null;
-  anchorTo(rect: (() => DOMRect | null) | null): void {
+  private anchorReleased = false;
+  anchorTo(rect: (() => {near: DOMRect; avoid: readonly DOMRect[]} | null) | null): void {
     this.anchor = rect;
+    this.anchorReleased = false;
     if (rect && this.anchorFrame === null) {
-      const tick = () => {this.anchorFrame = this.anchor ? requestAnimationFrame(tick) : null; if (this.anchor) this.reposition();};
+      const tick = () => {this.anchorFrame = this.anchor ? requestAnimationFrame(tick) : null; if (this.anchor && !this.anchorReleased && this.surface === "actions") this.reposition();};
       this.anchorFrame = requestAnimationFrame(tick);
     }
     this.reposition();
   }
+  /** The first place beside `near` (below, above, right, left) that covers none of `avoid`, else the one covering least. */
+  private besideAnchor(near: DOMRect, avoid: readonly DOMRect[]): {x: number; y: number} {
+    const frame = this.overlay.getBoundingClientRect(), card = this.drawer.getBoundingClientRect(), gap = 8;
+    const clamp = (x: number, y: number) => ({x: Math.max(0, Math.min(x - frame.left, frame.width - card.width)), y: Math.max(0, Math.min(y - frame.top, frame.height - card.height))});
+    const middle = {x: near.left + near.width / 2 - card.width / 2, y: near.top + near.height / 2 - card.height / 2};
+    const places = [clamp(middle.x, near.bottom + gap), clamp(middle.x, near.top - gap - card.height), clamp(near.right + gap, middle.y), clamp(near.left - gap - card.width, middle.y)];
+    const covered = (at: {x: number; y: number}) => avoid.reduce((sum, r) => {
+      const left = at.x + frame.left, top = at.y + frame.top;
+      return sum + Math.max(0, Math.min(left + card.width, r.right) - Math.max(left, r.left)) * Math.max(0, Math.min(top + card.height, r.bottom) - Math.max(top, r.top));
+    }, 0);
+    let best = places[0]!, least = Infinity;
+    for (const at of places) {const area = covered(at); if (area < least) {best = at; least = area;} if (area === 0) break;}
+    return best;
+  }
   private reposition(): void {
     if (this.drawer.hidden) return;
-    // Beside its country: below the count when there is room, else above it (T103).
-    const near = this.anchor?.();
-    if (near) {
-      const frame = this.overlay.getBoundingClientRect(), card = this.drawer.getBoundingClientRect(), gap = 8;
-      const below = near.bottom + gap + card.height <= frame.bottom;
-      this.moveTo({x: near.left + near.width / 2 - card.width / 2 - frame.left, y: (below ? near.bottom + gap : near.top - gap - card.height) - frame.top});
+    const anchored = this.surface === "actions" && !this.anchorReleased ? this.anchor?.() : null;
+    if (anchored) {
+      this.moveTo(this.besideAnchor(anchored.near, anchored.avoid));
       this.drawer.dataset["anchored"] = "true";
       return;
     }
@@ -280,6 +297,8 @@ export class BattleChrome {
       if (event.pointerId !== down.pointerId) return;
       const dx = event.clientX - start.x, dy = event.clientY - start.y;
       if (!dragging && Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
+      // A drag frees an anchored amount bar for the rest of its choice (#266).
+      if (!dragging && this.drawer.dataset["anchored"]) {this.anchorReleased = true; delete this.drawer.dataset["anchored"];}
       dragging = true; this.drawer.dataset["dragging"] = "true";
       this.position = this.moveTo({x: origin.x + dx, y: origin.y + dy});
       event.preventDefault();

@@ -129,5 +129,7 @@ export class HandDialog {
  private restore():void{
   try{const kept=JSON.parse(localStorage.getItem(HAND_POSITION)??'null');if(kept&&Number.isFinite(kept.x)&&Number.isFinite(kept.y))this.place(kept);}catch{/* the default place */}
  }
+ /** Closes the window, as a computer's turn does (#267): only the speed controls stay then. */
+ hide():void{if(this.dialog.open)this.dialog.close();}
  dispose():void{if(this.dialog.open)this.dialog.close();this.dialog.remove();}
 }
