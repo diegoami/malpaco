@@ -1,7 +1,7 @@
 import type { GameMap } from "../core";
 import { s } from "./dom";
 import type { MapHandlers, MapViewState } from "./mapView";
-import { seatLook } from "./palette";
+import { seatLook, seatName } from "./palette";
 import { renderAtlas } from "./prototype/preview";
 
 /** T13 geometry and connections, with gameplay ownership and input handlers. */
@@ -37,7 +37,7 @@ export class GeneratedMapView {
       group.classList.toggle("is-mine", state.ownerOf[id] === state.players[state.currentPlayer]!.id);
       group.setAttribute("aria-pressed", String(id === view.selected));
       const name = state.map.provinces.find(province => province.id === id)!.name;
-      group.setAttribute("aria-label", `${name}, Seat ${seat + 1}, ${state.armies[id]} armies`);
+      group.setAttribute("aria-label", `${name}, ${seatName(state.players, state.ownerOf[id])}, ${state.armies[id]} armies`);
       (group.querySelector(".country-shape") as SVGElement).style.fill = seatLook(seat).color;
       group.querySelector(".army-count")!.textContent = `${seat + 1} · ${state.armies[id]}`;
     }

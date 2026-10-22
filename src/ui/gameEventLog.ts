@@ -3,6 +3,8 @@ import type { Action, GameOptions, GameResult, GameState } from "../core";
 import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDENTITY } from "../core/match-save";
 import {publicCardNotes} from "./cardController";
 import { h } from "./dom";
+import { glyph } from "./icons";
+import { seatName } from "./palette";
 
 export interface EventRegion {
   readonly id: string;
@@ -32,9 +34,12 @@ const RESULT_NAMES: Record<GameResult["reason"], string> = {
   conquest: "Total conquest", "last-seat": "Last seat standing", domination: "Domination",
   "round-limit": "Round limit reached", "no-human-left": "All human seats eliminated",
 };
+/** Seats by colour, the one human as "You" (T97); saves keep `Seat N`. */
 function playerName(state: GameState, id: string | undefined): string {
-  return state.players.find(player => player.id === id)?.name ?? "Unowned";
+  return seatName(state.players, id);
 }
+const mover = (state: GameState) => playerName(state, activePlayer(state)!.id);
+const wins = (name: string) => name === "You" ? "You win" : `${name} wins`;
 function regionName(state: GameState, id: string): string {
   return state.map.provinces.find(region => region.id === id)!.name;
 }
@@ -58,7 +63,7 @@ export class GameEventHistory {
     this.previous = initialState ?? deserializeVersionedMatch(serializeVersionedMatch(options, [], REFERENCE_MATCH_IDENTITY)).state;
     this.events = [{ index: 0, heading: `Initial deal · Round ${this.previous.turnNumber}`,
       regions: regionChanges(null, this.previous, "Initial deal"),
-      notes: [`${activePlayer(this.previous)!.name} unplaced reinforcement income: ${this.previous.reinforcementPool}. These armies enter the map only when placed.`] }];
+      notes: [`${mover(this.previous)} unplaced reinforcement income: ${this.previous.reinforcementPool}. These armies enter the map only when placed.`] }];
   }
 
   append(state: GameState): readonly GameEvent[] {
@@ -81,22 +86,22 @@ export class GameEventHistory {
       }
       if (action.kind === "friendlyMove") notes.push(`Friendly transfer: ${after.armies[action.to]! - before.armies[action.to]!} armies from ${regionName(before, action.from)} to ${regionName(before, action.to)}. No combat casualties.`);
       if (after.currentPlayer !== before.currentPlayer || after.turnNumber !== before.turnNumber) {
-        notes.push(`Turn passes to ${activePlayer(after)!.name} · Round ${after.turnNumber}.`);
+        notes.push(`Turn passes to ${mover(after)} · Round ${after.turnNumber}.`);
       }
       if ((action.kind === "endTurn" || action.kind === "friendlyMove" || action.kind === "watchComputers") && after.reinforcementPool > 0) {
-        notes.push(`${activePlayer(after)!.name} unplaced reinforcement income: ${after.reinforcementPool}. Not yet added to map armies.`);
+        notes.push(`${mover(after)} unplaced reinforcement income: ${after.reinforcementPool}. Not yet added to map armies.`);
       }
       for (const event of after.log.slice(before.log.length)) {
         if (event.event === "eliminated") notes.push(`${playerName(after, event.player)} eliminated: no countries remain.`);
         if (event.event === "victory") notes.push(`${playerName(after, event.player)} victory.`);
       }
       if (after.result && after.result !== before.result) {
-        const winner = after.winner ? `${playerName(after, after.winner)} wins. ` : "";
+        const winner = after.winner ? `${wins(playerName(after, after.winner))}. ` : "";
         notes.push(`Game result: ${winner}${RESULT_NAMES[after.result.reason]}.`);
         after.result.standings.forEach((standing, i) => notes.push(`${i + 1}. ${playerName(after, standing.player)}: ${standing.countries} countries, ${standing.armies} armies.`));
       }
       const event: GameEvent = { index: this.count + 1, mover: activePlayer(before)!.id,
-        heading: `Action ${this.count + 1} · Round ${before.turnNumber} · ${activePlayer(before)!.name} · ${reason} · ${PHASE_NAMES[before.phase]} → ${PHASE_NAMES[after.phase]}`,
+        heading: `Action ${this.count + 1} · Round ${before.turnNumber} · ${mover(before)} · ${reason} · ${PHASE_NAMES[before.phase]} → ${PHASE_NAMES[after.phase]}`,
         regions: regionChanges(before, after, result.outcome?.captured ? "Net after combat and capture" : reason, action.kind === "attack" ? [action.from, action.to] : []), notes };
       this.events.push(event); added.push(event); this.previous = after; this.count++;
     }
@@ -104,20 +109,31 @@ export class GameEventHistory {
   }
 }
 
-/** Native modal keeps keyboard focus inside the complete, append-only event history. */
+/** [designed] T97: a sideways or downward swipe beyond 60 px closes the history card. */
+const SWIPE_CLOSE = 60;
+
+/**
+ * Native modal keeps keyboard focus inside the complete, append-only event history. T97: the
+ * menu opens it from a smaller icon, and it closes by ×, Escape or a swipe (owner, #244).
+ */
 export class GameEventLog {
-  readonly button = h("button", { id: "game-log-button", type: "button" }, "Game event log");
+  readonly button = h("button", { id: "game-log-button", type: "button", class: "game-history-icon", "aria-label": "Game event log", title: "Game event log" }, glyph("history"));
   readonly dialog = h("dialog", { class: "game-event-log", "aria-labelledby": "game-event-log-title" });
   private readonly list = h("ol", { class: "game-event-list", "aria-label": "All game events" });
   private readonly since = h("p", { class: "game-event-since", hidden: true });
   private readonly history: GameEventHistory;
   get isOpen(): boolean { return this.dialog.open; }
+  /** T97: on a human turn the history opens at the other seats' actions since that seat's last turn. */
+  changes: (() => {from: number; to: number} | null) | null = null;
 
   constructor(options: GameOptions, initialState?: GameState) {
     this.history = new GameEventHistory(options,initialState);
-    const close = h("button", { type: "button" }, "Close game event log");
+    const close = h("button", { type: "button", class: "game-event-log-close", "aria-label": "Close game event log", title: "Close game event log" }, glyph("close"));
     close.onclick = () => this.dialog.close();
+    this.dialog.addEventListener("pointerdown", this.onSwipeStart);
     this.button.onclick = () => {
+      const changes = this.changes?.();
+      if (changes) { this.openChanges(changes.from, changes.to); return; }
       this.mark(null);
       this.dialog.showModal();
       this.list.lastElementChild?.scrollIntoView({ block: "end" });
@@ -172,6 +188,18 @@ export class GameEventLog {
     row.append(...event.notes.map(note => h("p", { class: "game-event-note" }, note)));
     this.list.append(row);
   }
+
+  /** A swipe sideways or down closes the card; a tap or a scroll of the list does not. */
+  private readonly onSwipeStart = (down: PointerEvent) => {
+    if ((down.target as Element).closest("button")) return;
+    const start = {x: down.clientX, y: down.clientY};
+    const up = (event: PointerEvent) => {
+      window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
+      const dx = event.clientX - start.x, dy = event.clientY - start.y;
+      if (event.type === "pointerup" && this.dialog.open && (Math.abs(dx) > SWIPE_CLOSE && Math.abs(dx) > Math.abs(dy) || dy > SWIPE_CLOSE && dy > Math.abs(dx) && this.dialog.scrollTop <= 0)) this.dialog.close();
+    };
+    window.addEventListener("pointerup", up); window.addEventListener("pointercancel", up);
+  };
 
   dispose(): void { this.dialog.close(); this.dialog.remove(); }
 }

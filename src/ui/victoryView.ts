@@ -3,6 +3,7 @@ import { h } from "./dom";
 import { iconButton } from "./icons";
 import type { BattleController } from "./battleController";
 import { finalStandings } from "../core/victory";
+import { seatName } from "./palette";
 
 /**
  * Result data comes from the completed engine turn, including the final move.
@@ -31,12 +32,12 @@ export class VictoryView {
       : `Total conquest · all ${state.map.provinces.length} countries`;
     const loss = state.phase === "human-loss";
     const title = loss ? humans.length === 1 ? "You were eliminated" : "Human seats eliminated"
-      : winner ? humans.length === 1 && winner.id === humans[0]!.id ? "You won" : `${winner.name} wins` : "Game over";
+      : winner ? humans.length === 1 && winner.id === humans[0]!.id ? "You won" : `${seatName(state.players, winner.id)} wins` : "Game over";
     const table = h("table", { id: "victory-standings", hidden: !this.standingsOpen },
       h("caption", {}, "Countries and armies at turn end"),
       h("thead", {}, h("tr", {}, h("th", { scope: "col" }, "Seat"), h("th", { scope: "col" }, "Countries"), h("th", { scope: "col" }, "Armies"))),
       h("tbody", {}, ...standings.map(row => h("tr", { "data-result-player": row.player },
-        h("th", { scope: "row" }, state.players.find(player => player.id === row.player)!.name),
+        h("th", { scope: "row" }, seatName(state.players, row.player)),
         h("td", { "data-result-countries": "" }, String(row.countries)), h("td", { "data-result-armies": "" }, String(row.armies))))));
     const standingsButton = iconButton("result-standings-button", "Standings", "Standings", "standings", false, () => {
       this.standingsOpen = !this.standingsOpen; table.hidden = !this.standingsOpen; standingsButton.setAttribute("aria-expanded", String(this.standingsOpen));
@@ -113,7 +114,7 @@ export class GiveUpDialog {
       h("table", { id: "give-up-standings" }, h("caption", {}, "Countries and armies"),
         h("thead", {}, h("tr", {}, h("th", { scope: "col" }, "Seat"), h("th", { scope: "col" }, "Countries"), h("th", { scope: "col" }, "Armies"))),
         h("tbody", {}, ...finalStandings(state).map(row => h("tr", { "data-result-player": row.player },
-          h("th", { scope: "row" }, state.players.find(player => player.id === row.player)!.name),
+          h("th", { scope: "row" }, seatName(state.players, row.player)),
           h("td", {}, String(row.countries)), h("td", {}, String(row.armies)))))),
       h("div", { class: "help-actions" }, again));
     again.focus();

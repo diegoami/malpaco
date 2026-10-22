@@ -1,20 +1,18 @@
 import { armyCount, province, whyNot } from "../core";
 import { h } from "./dom";
 import { iconButton } from "./icons";
-import { captureOdds, oddsLabel } from "./captureOdds";
-import type { BattleController, BattleSpeed, BattleView as Snapshot } from "./battleController";
+import type { BattleController, BattleView as Snapshot } from "./battleController";
 
 /**
  * Disposable controls capture a revision. Detached controls cannot act on a later state.
- * The card is one line plus icon controls (T92, after the sketches); full explanations
- * stay available to assistive technology.
+ * The card is icon controls only (T92, trimmed by T97); full explanations stay available
+ * to assistive technology.
  */
 export class BattleView {
   readonly el = h("section", { class: "battle-controls", role: "region", "aria-label": "Battle controls" });
   private captureDraftKey: string | null = null;
-  private settingsOpen = false;
 
-  constructor(private readonly controller: BattleController, private readonly onCancel: () => void = () => controller.select(null, null), private readonly onFold: () => void = () => {}) {}
+  constructor(private readonly controller: BattleController, private readonly onCancel: () => void = () => controller.select(null, null)) {}
 
   render(view: Snapshot): void {
     const { state, from, to, revision } = view;
@@ -40,102 +38,52 @@ export class BattleView {
       h("strong", { id: "battle-target-name", class: to ? "" : "visually-hidden" }, to ? name(to) : "Choose an enemy neighbour"),
       h("span", { id: "battle-target-armies", class: to ? "battle-count" : "visually-hidden", "aria-label": "Target armies" }, to ? String(armyCount(state, to)) : "—"),
       ...(from && to ? [] : [h("span", { class: "card-prompt" }, from ? "Choose an enemy neighbour" : "Choose your country, then an enemy")]));
-    // T82 (R5): staging shows the exact chance of capture if fought to the end.
-    const chance = from && to && !pending ? captureOdds(state, from, to) : null;
-    const odds = h("p", { id: "battle-odds", class: chance === null || view.running ? "visually-hidden" : "card-line battle-odds" },
-      chance === null ? "" : `${oddsLabel(chance)} capture · if fought to end`);
-    // While Fight on runs, the card says so (walkthrough 09); the pair stays for assistive technology.
-    if (view.running) { context.classList.add("visually-hidden"); }
-    const running = h("p", { class: view.running ? "card-line" : "visually-hidden", "aria-hidden": String(!view.running) }, `Fight on · stop at ${view.effectiveThreshold} ${view.effectiveThreshold === 1 ? "army" : "armies"}`);
-    const settingsButton = iconButton("battle-settings-button", "Battle settings: stop at and speed", null, "settings", false, () => {
-      this.settingsOpen = !this.settingsOpen; settings.hidden = !this.settingsOpen; settingsButton.setAttribute("aria-expanded", String(this.settingsOpen));
-    });
-    settingsButton.setAttribute("aria-expanded", String(this.settingsOpen)); settingsButton.setAttribute("aria-controls", "battle-settings");
-    const threshold = h("input", { id: "battle-stop-threshold", type: "number", min: 1, step: 1, value: String(view.threshold), "aria-describedby": "battle-threshold-help", disabled: view.running || view.paused || !!pending || !inBattlePhase });
-    threshold.addEventListener("change", () => {
-      if (!this.controller.setThreshold(threshold.valueAsNumber, revision)) threshold.value = String(this.controller.view.threshold);
-    });
-    const speed = h("select", { id: "battle-speed" },
-      h("option", { value: "very-slow" }, "Very slow"), h("option", { value: "slow" }, "Slow"), h("option", { value: "normal" }, "Normal"), h("option", { value: "fast" }, "Fast"));
-    speed.value = view.speed;
-    speed.addEventListener("change", () => this.controller.setSpeed(speed.value as BattleSpeed, revision));
-    const settings = h("div", { id: "battle-settings", class: "battle-settings card-fields", hidden: !this.settingsOpen },
-      h("label", { for: "battle-stop-threshold" }, h("span", { class: "visually-hidden" }, "Stop at armies"), h("span", { "aria-hidden": "true" }, "Stop at"), threshold),
-      h("label", { for: "battle-speed" }, h("span", { class: "visually-hidden" }, "Battle speed"), h("span", { "aria-hidden": "true" }, "Speed"), speed));
+    // T97 (owner, #244): the card holds Fight and Cancel only; the map shows the pair, so the
+    // pair line, counts, dice and messages stay for assistive technology alone.
+    context.classList.add("visually-hidden");
     const canExchange = !pending && inBattlePhase && from !== null && to !== null && whyNot(state, from, to) === "";
+    // One press is one exchange; the pause gate and this render's revision guard it.
     const controls = h("div", { class: "battle-actions card-icons" },
-      iconButton("single-exchange-button", "Attack: one exchange", "Attack", "attack", !canExchange || view.running || view.paused, () => this.controller.singleExchange(revision), true),
-      iconButton("fight-on-button", view.paused ? "Keep watching" : "Fight on", view.paused ? "Watch" : "Fight on", "fight-on", !canExchange || view.running || (!view.paused && !this.controller.attacked), () => this.controller.fightOn(revision)),
-      iconButton("stop-battle-button", "Stop", "Stop", "stop", !view.running && !view.paused, () => this.controller.stop(revision)),
-      iconButton("cancel-battle-button", "Cancel selection", "Cancel", "close", view.running || !from, () => this.onCancel()),
+      iconButton("single-exchange-button", "Fight", "Fight", "attack", !canExchange || view.running || view.paused || this.controller.playbackPaused, () => this.controller.singleExchange(revision), true),
+      iconButton("cancel-battle-button", "Cancel", "Cancel", "close", view.running || !from || !!pending, () => this.onCancel()),
     );
-    const help = h("p", { id: "battle-threshold-help", class: "battle-help visually-hidden" },
-      from ? `This battle stops at ${view.effectiveThreshold} ${view.effectiveThreshold === 1 ? "army" : "armies"}, or on capture.` : "Choose a source and target to begin.");
     const last = view.lastOutcome;
     const resultText = last ? last.captured ? "Target captured" : last.attackerLosses > 0 ? "Defender wins · source loses 1" : "Attacker wins · target loses 1" : "Ready";
-    const status = this.controller.playbackPaused ? "Game paused. Resume to continue this battle." : view.message || (pending ? "Confirm the army transfer below." : canExchange ? "Attack for one exchange, or Fight on. Stop pauses continuous attacks." : "Choose your country, then click an enemy to attack. Shift-click or Shift-Enter selects only.");
-    // Exchange outcomes are announced as the map notice (T92); the tally remains for assistive technology.
+    const status = this.controller.playbackPaused ? "Game paused. Resume to continue this battle." : view.message || (pending ? "Confirm the army transfer below." : canExchange ? "Fight rolls one exchange." : "Choose your country, then click an enemy to attack. Shift-click or Shift-Enter selects only.");
     const result = h("div", { class: "battle-feedback visually-hidden", "aria-live": "polite", "aria-atomic": "true" },
       h("strong", { class: `battle-result${last?.captured ? " captured" : ""}` }, resultText),
       h("span", { class: "battle-tally", "aria-label": "Battle tally" }, ` · Won ${view.attackerWins} · Lost ${view.defenderWins} · Ties `, h("strong", { id: "battle-ties" }, String(view.ties))),
-      // An engine refusal or pause is shown; the standing guidance is for assistive technology only.
       h("p", { id: "battle-status" }, status));
-    const message = view.message || this.controller.playbackPaused ? h("p", { class: "card-note battle-message", "aria-hidden": "true" }, status) : null;
-    const rolls = h("ol", { class: "battle-rolls", "aria-label": "Latest exchange dice" }, ...view.rolls.map(roll => {
+    const rolls = h("ol", { class: "battle-rolls visually-hidden", "aria-label": "Latest exchange dice" }, ...view.rolls.map(roll => {
       const result = roll.results[0]!;
       return h("li", { "data-battle-roll": "", "data-a": roll.attackerRolls[0], "data-d": roll.defenderRolls[0], "data-result": result },
         h("span", { class: "battle-die attacker-die", role: "img", "aria-label": `Attacker rolled ${roll.attackerRolls.join(", ")}` }, roll.attackerRolls.join(" · ")),
         h("span", { class: "battle-dice-verdict" }, result === "tie" ? "Tie · rerolled" : result === "attacker" ? "Attacker wins" : "Defender wins"),
         h("span", { class: "battle-die defender-die", role: "img", "aria-label": `Defender rolled ${roll.defenderRolls.join(", ")}` }, roll.defenderRolls.join(" · ")));
     }));
-    const head = h("div", { class: "card-head" }, context, running, settingsButton);
-    // Fight on appears once the first Attack on this pair has been fought (the sketches show Attack and Cancel).
-    controls.querySelector<HTMLElement>("#fight-on-button")!.hidden = !view.paused && !view.running && !this.controller.attacked;
-    const children: HTMLElement[] = [h("h2", { class: "battle-title visually-hidden" }, "Battle"), head, odds, controls, ...(message ? [message] : []), settings, result, help];
+    const children: HTMLElement[] = [h("h2", { class: "battle-title visually-hidden" }, "Battle"), context, controls, result];
     if (view.rolls.length) children.push(rolls);
-    if (pending) children.push(this.capture(state, pending, captureDraft, revision));
+    if (pending) children.push(this.capture(pending, captureDraft, revision));
     this.el.replaceChildren(...children);
     // Native focus survives an automatic redraw; detached controls retain their
     // old revision. Browser acceptance exercises detached attack/confirm clicks.
     if (focused) this.el.querySelector<HTMLElement>(`#${focused}`)?.focus({ preventScroll: true });
   }
 
-  /** Preview line, −/amount/+/confirm, then the range with its slider; fold is the card's own return control. */
-  private capture(state: Snapshot["state"], pending: NonNullable<Snapshot["state"]["pendingCapture"]>, draft: string | undefined, revision: number): HTMLElement {
-    const source = armyCount(state, pending.from);
+  /** −, the amount, + and Confirm (T97); the map's dashed counts are the preview. */
+  private capture(pending: NonNullable<Snapshot["state"]["pendingCapture"]>, draft: string | undefined, revision: number): HTMLElement {
     const amount = h("input", { id: "capture-amount", type: "number", min: pending.min, max: pending.max, step: 1, value: draft ?? String(pending.defaultAmount), "aria-label": "Armies to move", "aria-describedby": "capture-help", inputmode: "numeric" });
-    const range = h("input", { id: "capture-range", type: "range", min: pending.min, max: pending.max, step: 1, value: amount.value, "aria-label": "Armies to move, slider" });
-    const preview = h("p", { id: "capture-preview", class: "card-line", "aria-live": "polite" });
-    const show = () => {
-      const n = Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : NaN;
-      // The engine already holds the minimum in the captured country; the amount is its total.
-      preview.textContent = Number.isNaN(n) ? "Preview · enter an amount" : `Preview · ${source - (n - pending.min)} stay / ${n} move`;
-      if (!Number.isNaN(n)) range.value = String(Math.max(pending.min, Math.min(pending.max, n)));
-    };
-    const choose = (value: number) => { amount.value = String(Math.max(pending.min, Math.min(pending.max, value))); show(); };
+    const choose = (value: number) => { amount.value = String(Math.max(pending.min, Math.min(pending.max, value))); };
     const current = () => Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : pending.defaultAmount;
-    amount.addEventListener("input", show);
-    range.addEventListener("input", () => choose(range.valueAsNumber));
-    show();
-    const bound = (id: string, name: string, value: number) => {
-      const b = h("button", { id, type: "button", class: "card-bound", "aria-label": name, title: name }, String(value));
-      b.addEventListener("click", () => choose(value));
-      return b;
-    };
     return h("section", { class: "capture-choice", "aria-label": "Capture move-in" },
       h("h3", { class: "visually-hidden" }, "Move armies into the capture"),
-      preview,
       h("div", { class: "card-icons capture-adjust" },
         iconButton("capture-less-button", "Move one fewer army", null, "minus", false, () => choose(current() - 1)),
         amount,
         iconButton("capture-more-button", "Move one more army", null, "plus", false, () => choose(current() + 1)),
         iconButton("confirm-capture-button", "Confirm move-in", null, "confirm", false, () => {
           if (!this.controller.confirmCapture(amount.valueAsNumber, revision)) amount.reportValidity();
-        }, true),
-        // Fold returns to the map; the choice stays pending (walkthrough 11).
-        iconButton("capture-fold-button", "Fold: return to the map", null, "fold", false, () => this.onFold())),
-      h("p", { id: "capture-help", class: "card-note" }, `Tap amount to type · range ${pending.min}–${pending.max}`,
-        h("span", { class: "visually-hidden" }, `. Choose ${pending.min}–${pending.max} total armies. Leave at least one behind.`)),
-      h("div", { class: "card-range" }, bound("capture-minimum-button", "Minimum", pending.min), range, bound("capture-maximum-button", "Maximum", pending.max)));
+        }, true)),
+      h("p", { id: "capture-help", class: "visually-hidden" }, `Choose ${pending.min}–${pending.max} total armies. Leave at least one behind.`));
   }
 }

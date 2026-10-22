@@ -5,7 +5,7 @@
 // artifact, where the legacy views are retired.
 import {expect,test} from '@playwright/test';
 import type {Page,TestInfo} from '@playwright/test';
-import {activePlayer,computerAction,createGame,defaultOptions} from '../../src/core';
+import {activePlayer,attackTargets,computerAction,createGame,defaultOptions} from '../../src/core';
 import type {Action,GameState} from '../../src/core';
 import {serializeMatch,serializeVersionedMatch,deserializeVersionedMatch,REFERENCE_MATCH_IDENTITY} from '../../src/core/match-save';
 import {pinned} from '../core/versioned-match-fixture';
@@ -61,7 +61,7 @@ test('A1: setup in portrait: seed, seats, files and help reachable; Start makes 
  await page.locator('#close-game-help').click();await closeSurface(page);expect(await savedText(page)).toBe(text);
 });
 
-test('A2: Place 1 by map and list to zero; stage by map, list and keyboard without acting; Attack adds one exchange; stale and paused refused',async({page},info)=>{
+test('A2: Place 1 by map and list to zero; stage by map, list and keyboard without acting; Fight adds one exchange; stale and paused refused',async({page},info)=>{
  await geographic(page,LANDSCAPE);let s=await saved(page);const {from,to}=frontline(s);
  for(let i=0;await poolLeft(page)>0;i++){
   await expect(page.locator('#placement-pool')).toBeVisible();
@@ -70,18 +70,20 @@ test('A2: Place 1 by map and list to zero; stage by map, list and keyboard witho
  }
  await exactly(page,s);
  await page.locator('#start-combat-button').click();s=next(s,{kind:'endReinforcement'});await exactly(page,s);
- // Staging by map, list and keyboard leaves the match exactly as it was; the odds show.
+ // Staging by map, list and keyboard leaves the match exactly as it was; T97: the card holds Fight and Cancel only (no odds).
  await country(page,from).click();await country(page,to).click();await exactly(page,s);
- await openSurface(page,'actions');await expect(page.locator('#battle-odds')).toContainText('%');await expect(page.locator('#fight-on-button')).toBeHidden();
+ await openSurface(page,'actions');await expect(page.locator('#battle-odds, #fight-on-button, #stop-battle-button')).toHaveCount(0);await expect(page.locator('#single-exchange-button')).toHaveAccessibleName('Fight');
  await page.locator('#open-countries').click();const target=page.locator(`[data-country-row="${to}"]`);await expect(target).toBeEnabled();await target.click();await closeSurface(page);await exactly(page,s);
  await country(page,to).focus();await page.keyboard.press('Enter');await exactly(page,s);
  await shot(page,info,'A2-staged');
- // A stale Attack control from before a pause, and a paused Attack, do nothing.
+ // A stale Fight control from before a pause, and a paused Fight, do nothing.
  await openSurface(page,'actions');const stale=await page.locator('#single-exchange-button').elementHandle();
  await page.locator('#game-pause-button').click();await stale!.evaluate(n=>n.dispatchEvent(new MouseEvent('click',{bubbles:true})));await exactly(page,s);
  await page.locator('#game-pause-button').click();await openSurface(page,'actions');await page.locator('#single-exchange-button').click();
  s=next(s,{kind:'attack',from,to});await exactly(page,s);
- if(s.phase==='attack'){await openSurface(page,'actions');await expect(page.locator('#fight-on-button')).toBeVisible();}
+ // Nothing continues on its own; a second press is one more exchange.
+ await page.clock.runFor(5000);await exactly(page,s);
+ if(s.phase==='attack'&&attackTargets(s,from).includes(to)){await openSurface(page,'actions');await page.locator('#single-exchange-button').click();s=next(s,{kind:'attack',from,to});await exactly(page,s);}
 });
 
 test('A2: a legal set trades once and a skip changes nothing but the phase',async({page})=>{
@@ -97,7 +99,7 @@ test('A3: a capture draft survives fold, rotation, history and pause; dashed unt
  await reference(page);const f=pinned('pending-capture');await load(page,f.text);let s=await saved(page);const pending=s.pendingCapture!;
  const draft=String(pending.min===pending.defaultAmount?pending.max:pending.min);
  await openSurface(page,'actions');await page.locator('#capture-amount').fill(draft);
- await page.locator('#capture-fold-button').click();await page.locator('#open-required-action').click();
+ await page.keyboard.press('Escape');await page.locator('#open-required-action').click();
  await page.setViewportSize(LANDSCAPE);await settle(page);await openSurface(page,'details');await closeSurface(page);
  await page.locator('#game-pause-button').click();await openSurface(page,'actions');await expect(page.locator('#capture-amount')).toHaveValue(draft);
  await page.locator('#confirm-capture-button').dispatchEvent('click');await exactly(page,s);
@@ -157,7 +159,8 @@ test('A7: computer play: pause exact, Fast-forward to the human turn, complete h
  while(activePlayer(control)?.kind==='computer'&&control.phase!=='human-loss'&&control.phase!=='finished'){control=next(control,computerAction(control)!);steps.push(1);}
  expect(s.history).toEqual(control.history);
  await withSurface(page,'settings',async()=>{await page.locator('#game-log-button').click();await expect(page.locator('dialog.game-event-log .game-event')).toHaveCount(s.history.length+1);await page.keyboard.press('Escape');});
- await withSurface(page,'settings',()=>page.locator('#game-changes-button').click());
+ // T97: the menu's history icon opens at the changes since your last turn, marked.
+ await withSurface(page,'settings',()=>page.locator('#game-log-button').click());
  await expect(page.locator('dialog.game-event-log .game-event.since')).toHaveCount(steps.length);
 });
 

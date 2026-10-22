@@ -2,6 +2,7 @@ import { expect, test } from "vitest";
 import { apply } from "../../src/core";
 import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDENTITY } from "../../src/core/match-save";
 import { GameEventHistory } from "../../src/ui/gameEventLog";
+import { seatName } from "../../src/ui/palette";
 import { pinned } from "../core/versioned-match-fixture";
 
 test("complete replay is cached across presentation renders and new actions append exactly once", () => {
@@ -25,7 +26,8 @@ test("result text identifies the winner, reason and ranked countries/armies with
   const loaded = deserializeVersionedMatch(pinned("domination").text), history = new GameEventHistory(loaded.options);
   history.append(loaded.state);
   const text = history.events.at(-1)!.notes.join(" ");
-  expect(text).toContain(`${loaded.state.players.find(player => player.id === loaded.state.winner)!.name} wins`);
+  // T97: seats read by colour (the one human is You); saves keep Seat N.
+  expect(text).toContain(`${seatName(loaded.state.players, loaded.state.winner!)} wins`); expect(text).not.toMatch(/Seat \d/);
   expect(text).toContain("Domination"); expect(text).toContain("1."); expect(text).toContain("countries"); expect(text).toContain("armies");
   expect(text).not.toContain('"standings"');
 });

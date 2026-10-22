@@ -174,20 +174,22 @@ test("new game and a successful later load invalidate slow file readers", async 
   await check(page, placement); expect(errors).toEqual([]);
 });
 
-test("successful load cancels queued fight-on work from the prior match", async ({ page }) => {
+// T97: there is no queued Fight on work any more (owner, #244); a load must still retire the prior
+// match's staged battle, so its Fight control and any wait act on nothing.
+test("successful load retires the prior match's staged battle and its Fight control", async ({ page }) => {
   const errors = errorsOn(page), fixture = pinned("move-ready"), restored = pinned("placement");
   await page.clock.install(); await page.clock.pauseAt(new Date());
   await setup(page); await upload(page, fixture.text); await check(page, fixture);
   const state = decode(fixture.text), mover = state.players[state.currentPlayer]!.id;
   const attacks = state.map.provinces.filter(p => state.ownerOf[p.id] === mover && state.armies[p.id]! > 2).flatMap(p => [...p.borders, ...p.seaLanes].filter(id => state.ownerOf[id] !== mover).map(to => ({ kind: "attack" as const, from: p.id, to })));
-  // T82: Attack fights the first exchange and Fight on the second, so both must leave a queued exchange.
+  // Two Fight presses, so both exchanges must leave the pair legal.
   const queued = attacks.find(action => { const result = apply(state, action); if (!(result.ok && result.state.phase === "attack" && result.state.armies[action.from]! > 1)) return false; const second = apply(result.state, action); return second.ok && second.state.phase === "attack" && second.state.armies[action.from]! > 1; });
   if (!queued) throw Error("Pinned move-ready must permit a queued exchange for stale-timer acceptance");
   await country(page, queued.from).click(); await country(page, queued.to).click({modifiers:["Shift"]});
-  await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1"); await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab");
-  await page.locator("#single-exchange-button").click(); await page.locator("#fight-on-button").click();
-  await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "true");
+  await openSurface(page,'actions');await page.locator("#single-exchange-button").click(); await openSurface(page,'actions');
+  const stale = await page.locator("#single-exchange-button").elementHandle();
   await upload(page, restored.text); await check(page, restored);
+  await stale!.evaluate(n => n.dispatchEvent(new MouseEvent("click", { bubbles: true }))); await check(page, restored);
   await page.clock.runFor(10000); await check(page, restored);
   const next = restored.next!.action;
   if (next.kind !== "reinforce") throw Error("Expected reinforcement continuation");

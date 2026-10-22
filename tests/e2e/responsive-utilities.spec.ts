@@ -1,7 +1,7 @@
 // T85 (A1, A9, A10, A13): setup, files, help and results as focused views at phone, tablet
 // and desktop sizes. Loads are exact and retire stale controls, focus lands on a visible control,
 // version-1 saves continue in the main file UI, the result details open on request, and the
-// Fight on stop point and speed survive a load that opens on a computer turn.
+// speed survives a load that opens on a computer turn (T97 retired the Fight on stop point).
 import {expect,test} from '@playwright/test';
 import type {Page,TestInfo} from '@playwright/test';
 import {activePlayer,apply,createGame,defaultOptions} from '../../src/core';
@@ -144,25 +144,28 @@ test('Help & icon names opens from the menu with one matching visible and access
  await expect(button).toHaveText('Help & icon names');await expect(button).toHaveAccessibleName('Help & icon names');
  await button.click();
  const dialog=page.getByRole('dialog',{name:'Help & icon names'});await expect(dialog).toBeVisible();
- for(const name of ['Menu','Pause','Fast-forward','Fit','Countries','Attack','Fight on','Return','Changes'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(1);
+ // T97: Fight replaces Attack; Fight on, Stop, Settings and Information are gone; the history icon is the event log.
+ for(const name of ['Fight on','Stop','Settings','Information','Attack'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(0);
+ await expect(dialog.locator('#game-help-objective')).toContainText(/Domination|Total conquest/);
+ for(const name of ['Menu','Pause','Fast-forward','Fit','Countries','Fight','Return','Game event log'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(1);
  expect(await dialog.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);
  await shot(page,info,'help');
  await page.locator('#close-game-help').click();await expect(dialog).toBeHidden();
 });
 
-test('the Fight on stop point and speed survive a load that opens on a computer turn (#136 b)',async({page})=>{
+// T97: the stop point is gone with Fight on (owner, #244); the speed preference still survives.
+test('the speed survives a load that opens on a computer turn (#136 b)',async({page})=>{
  test.setTimeout(60_000);
  await begin(page,'/?view=reference-game');await page.getByRole('button',{name:'Start game',exact:true}).click();
  // The seeded first seat may be a computer: fast-forward to the human turn.
  if(await page.locator('#fast-forward-button').isVisible()){await page.locator('#fast-forward-button').click();await page.clock.runFor(60_000);}
- // Place every army, start combat and stage a legal pair, then set the stop point and speed.
+ // Place every army, start combat and stage a legal pair, then set the speed.
  const s=await saved(page),from=frontline(s);
  await placeAll(page,from);
  await page.locator('#start-combat-button').click();
  await country(page,from).click();await country(page,enemyOf(s,from)).click();await openSurface(page,'actions');
- await page.locator('#battle-stop-threshold').fill('5');await page.locator('#battle-stop-threshold').press('Enter');
- await page.locator('#battle-speed').selectOption('slow');
- await expect(page.locator('#battle-stop-threshold')).toHaveValue('5');
+ await expect(page.locator('#battle-stop-threshold, #battle-speed')).toHaveCount(0);
+ await withSurface(page,'settings',()=>page.locator('#game-speed').selectOption('slow').then(()=>undefined));
  await closeSurface(page);
  // A load that opens on a computer turn: the preferences hold there and on the next human turn.
  await loadInGame(page,computerOpener());
@@ -173,5 +176,5 @@ test('the Fight on stop point and speed survive a load that opens on a computer 
  await placeAll(page,src);
  await page.locator('#start-combat-button').click();
  await country(page,src).click();await country(page,enemyOf(t,src)).click();await openSurface(page,'actions');
- await expect(page.locator('#battle-stop-threshold')).toHaveValue('5');await expect(page.locator('#battle-speed')).toHaveValue('slow');
+ await withSurface(page,'settings',()=>expect(page.locator('#game-speed')).toHaveValue('slow'));
 });

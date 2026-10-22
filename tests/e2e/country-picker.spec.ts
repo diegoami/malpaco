@@ -98,7 +98,7 @@ test.describe('touch',()=>{
   await page.touchscreen.tap(point!.x,point!.y);
   await expect(page.locator('#game-drawer-title')).toHaveText('Which country?');
   const named=page.locator('[data-country-row]');expect(await named.count()).toBeGreaterThan(1);
-  for(const label of await named.evaluateAll(ns=>ns.map(n=>n.getAttribute('aria-label'))))expect(label).toMatch(/^(Place 1 army: )?[^:]+, Seat \d, \d+ arm/);
+  for(const label of await named.evaluateAll(ns=>ns.map(n=>n.getAttribute('aria-label'))))expect(label).toMatch(/^(Place 1 army: )?[^:]+, (Blue|Orange|Green|Purple|You), \d+ arm/);// T97: seats by colour
   expect(await armies(page)).toEqual(before);
   // A named choice the active seat may use places exactly one army.
   const usable=page.locator('[data-country-row]:not(:disabled)');

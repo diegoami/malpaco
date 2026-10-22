@@ -20,7 +20,8 @@ async function start(page:Page,seed:number,from:string,placements:number){
 async function disturb(page:Page,input:string,fold:boolean){
  await page.setViewportSize({width:844,height:390});await page.setViewportSize({width:1280,height:800});
  await page.locator("#open-game-menu").click();await closeSurface(page);
- if(fold){await openSurface(page,'actions');await page.locator("#capture-fold-button").click();await expect(page.locator("#game-focus-drawer")).toBeHidden();await page.locator("#open-required-action").click();}
+ // T97: the card holds only its amount controls; Escape folds it to its strip.
+ if(fold){await openSurface(page,'actions');await expect(page.locator("#capture-fold-button")).toHaveCount(0);await page.keyboard.press("Escape");await expect(page.locator("#game-focus-drawer")).toBeHidden();await page.locator("#open-required-action").click();}
  else await openSurface(page,'actions');
  await expect(page.locator(input)).toBeVisible();
 }

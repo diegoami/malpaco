@@ -11,7 +11,8 @@ import type {Surface} from './shell';
 const MATRIX = ['320x568', '390x844', '568x320', '667x375', '844x390', '768x1024', '1024x768', '1280x800', '1920x1080'];
 // Width seams 680/1100 ±1 and height seams 320/500/600 ±1, plus the 240 px reduced-height fallback.
 const SEAMS = ['679x800', '680x800', '681x800', '1099x800', '1100x800', '1101x800', '1024x319', '1024x320', '1024x321', '1024x499', '1024x500', '1024x501', '1024x599', '1024x600', '1024x601', '640x240', '844x240'];
-const SURFACES: Surface[] = ['menu', 'info'];
+// T97: the Information card is gone (its objective is in Help); the Countries card floats like the menu.
+const SURFACES: Surface[] = ['menu', 'countries'];
 type Box = {x: number; y: number; width: number; height: number};
 const size = (s: string) => { const [width, height] = s.split('x').map(Number); return {width: width!, height: height!}; };
 
@@ -34,6 +35,11 @@ async function begin(page: Page, host: string, text: string): Promise<string[]> 
   await expect.poll(() => old!.evaluate(e => e.isConnected)).toBe(false);
   await expect(page.locator('[data-country]')).toHaveCount(46);
   return errors;
+}
+
+/** The first of these countries whose centre is not under a card, notice or icon. */
+function uncovered(page: Page, ids: readonly string[]): Promise<string | undefined> {
+  return page.evaluate(ids => ids.find(id => { const n = document.querySelector(`[data-country="${id}"]`)!, r = n.querySelector('.cell')!.getBoundingClientRect(), hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return !!hit && n.contains(hit); }), ids);
 }
 
 /** Waits for the camera to settle after a layout change (ResizeObserver runs a frame later). */
@@ -174,7 +180,8 @@ for (const host of ['reference', 'geographic']) {
       await expect(page.locator('#start-combat-button')).toBeHidden();
       if (n === 1) await openSurface(page, 'menu');
       if (n === 2) await closeSurface(page);
-      const id = owned[n % owned.length]!;
+      // T97: cards and notices float over the map, so the tap goes to a country nothing covers.
+      const id = (await uncovered(page, [...owned.slice(n % owned.length), ...owned]))!;
       await page.locator(`[data-country="${id}"]`).click();
       const next = apply(state, {kind: 'reinforce', province: id, amount: 1}); if (!next.ok) throw Error(next.error); state = next.state;
       await pool(page, `${viewport} after one placement`, state.reinforcementPool);

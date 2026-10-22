@@ -8,7 +8,7 @@ import {activePlayer} from '../../src/core';
 import type {GameState} from '../../src/core';
 import {deserializeVersionedMatch} from '../../src/core/match-save';
 import {pinned} from '../core/versioned-match-fixture';
-import {closeSurface,openSurface,withSurface} from './shell';
+import {activate,closeSurface,openSurface,withSurface} from './shell';
 
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 async function start(p:Page,size={width:390,height:844}){
@@ -22,10 +22,13 @@ const focused=(p:Page)=>p.evaluate(()=>{const e=document.activeElement as HTMLEl
  return {id:e.id,country:e.dataset['country']??null,visible:r.width>0&&r.height>0,ring:(s.outlineStyle!=='none'&&parseFloat(s.outlineWidth)>0)||s.boxShadow!=='none'||e.matches(':focus-visible')&&getComputedStyle(e.querySelector('.cell')??e).strokeWidth!==''};});
 /** The mover's frontline country, placed up to strength and into combat with one target staged. */
 async function stageAttack(p:Page){
- let s=await saved(p);const me=activePlayer(s)!.id,from=s.map.provinces.find(c=>s.ownerOf[c.id]===me&&c.borders.some(b=>s.ownerOf[b]!==me))!;
+ let s=await saved(p);const me=activePlayer(s)!.id;
+ // T97: notices and cards float over the map, so the pair is one nothing covers.
+ const clear=await p.evaluate(ids=>ids.filter(id=>{const n=document.querySelector(`[data-country="${id}"]`)!,r=n.querySelector('.cell')!.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return !!hit&&n.contains(hit);}),s.map.provinces.map(c=>c.id));
+ const from=s.map.provinces.find(c=>s.ownerOf[c.id]===me&&clear.includes(c.id)&&c.borders.some(b=>s.ownerOf[b]!==me&&clear.includes(b)))!;
  for(let i=0;i<80&&Number(await p.locator('#placement-pool-count').textContent().catch(()=>'0'))>0;i++)await country(p,from.id).click();
  await p.locator('#start-combat-button').click();s=await saved(p);
- const to=from.borders.find(b=>s.ownerOf[b]!==me)!;await country(p,from.id).click();await country(p,to).click();await openSurface(p,'actions');
+ const to=from.borders.find(b=>s.ownerOf[b]!==me&&clear.includes(b))!;await activate(country(p,from.id));await activate(country(p,to));await openSurface(p,'actions');
  return {from:from.id,to,state:s};
 }
 
@@ -36,7 +39,9 @@ test('Tab reaches every corner control and the countries, each with a visible fo
  const seen:Record<string,boolean>={};let countries=0;
  for(let i=0;i<70;i++){await page.keyboard.press('Tab');const f=await focused(page);if(!f)continue;
   if(f.country)countries++;else if(f.id)seen[f.id]=f.visible&&f.ring;}
- for(const id of ['open-game-menu','game-pause-button','open-countries','map-fit','game-info-button'])expect(seen[id],id).toBe(true);
+ for(const id of ['open-game-menu','game-pause-button','open-countries','map-fit'])expect(seen[id],id).toBe(true);
+ // T97: the Information icon is gone (its objective is in Help).
+ await expect(page.locator('#game-info-button')).toHaveCount(0);
  expect(countries).toBeGreaterThan(10);
  expect((await saved(page)).history).toEqual(before.history);
 });
@@ -73,7 +78,7 @@ test('arrow keys and Home/End move within each overlay icon group and never act'
 
 test('Escape closes the top overlay and returns focus to its visible opener; a required choice stays pending',async({page})=>{
  await start(page);
- for(const [opener,surface] of [['#open-game-menu','menu'],['#open-countries','countries'],['#game-info-button','info']] as const){
+ for(const [opener,surface] of [['#open-game-menu','menu'],['#open-countries','countries']] as const){
   await page.locator(opener).click();await expect(page.locator('#game-focus-drawer')).toHaveAttribute('data-surface',surface);
   await page.keyboard.press('Escape');await expect(page.locator('#game-focus-drawer')).toBeHidden();
   expect(await page.evaluate(()=>`#${document.activeElement?.id}`)).toBe(opener);

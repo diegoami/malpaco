@@ -1,6 +1,7 @@
 import {activePlayer,cardView,classifyCardSet} from '../core';
 import type {CardKind,GameState,Action,TradeableCardKind} from '../core';
 import type {BattleController} from './battleController';
+import {seatName} from './palette';
 export interface OfferedSet {readonly indices:readonly [number,number,number];readonly kind:TradeableCardKind;readonly effect:string}
 export interface CardControllerView {
  readonly revision:number;readonly phase:'hidden'|'hand'|'sets'|'raid-target'|'discard'|'reward';readonly hand:readonly CardKind[];
@@ -10,15 +11,15 @@ export interface CardControllerView {
 /** Public action consequences only. An ordinary draw's kind is deliberately absent. */
 export function publicCardNotes(before:GameState,after:GameState,action:Action):string[] {
  if(!before.cards||!after.cards)return [];
- const p=activePlayer(before)!.id,name=activePlayer(before)!.name,notes:string[]=[];
+ const p=activePlayer(before)!.id,name=seatName(before.players,p),you=name==='You',notes:string[]=[];
  const countryName=(id:string)=>after.map.provinces.find(country=>country.id===id)?.name??id;
- if(action.kind==='tradeCards')notes.push(`${name} trades ${action.handIndices.map(i=>before.cards!.hands[p]![i]).join(', ')}. Pool ${before.reinforcementPool} → ${after.reinforcementPool}.`);
- if(action.kind==='discardCard')notes.push(`${name} discards ${before.cards.hands[p]![action.handIndex]}.`);
+ if(action.kind==='tradeCards')notes.push(`${name} ${you?'trade':'trades'} ${action.handIndices.map(i=>before.cards!.hands[p]![i]).join(', ')}. Pool ${before.reinforcementPool} → ${after.reinforcementPool}.`);
+ if(action.kind==='discardCard')notes.push(`${name} ${you?'discard':'discards'} ${before.cards.hands[p]![action.handIndex]}.`);
  const drew=before.capturedThisTurn && !after.cards.pendingDiscard && ['endTurn','friendlyMove','discardCard'].includes(action.kind);
  if(drew){
   const squall=after.cards.discardPile.at(-1)==='Squall'&&after.cards.hands[p]!.length===0;
-  if(squall){const lost=before.cards.hands[p]!.filter((_,i)=>action.kind!=='discardCard'||i!==action.handIndex);notes.push(`Squall: ${name} loses ${lost.length} cards${lost.length?`: ${lost.join(', ')}`:''}.`);}
-  else notes.push(`${name} draws a card. Hand count: ${after.cards.hands[p]!.length}.`);
+  if(squall){const lost=before.cards.hands[p]!.filter((_,i)=>action.kind!=='discardCard'||i!==action.handIndex);notes.push(`Squall: ${name} ${you?'lose':'loses'} ${lost.length} cards${lost.length?`: ${lost.join(', ')}`:''}.`);}
+  else notes.push(`${name} ${you?'draw':'draws'} a card. Hand count: ${after.cards.hands[p]!.length}.`);
  }
  for(const e of after.log.slice(before.log.length))if(e.event==='raid')notes.push(e.shielded?`Shield blocks the raid on ${countryName(e.province)}. Stack stays ${e.after}.`:`Raid on ${countryName(e.province)}: ${e.before} → ${e.after} (lost ${e.before-e.after}).`);
  return notes;
@@ -28,6 +29,8 @@ export class CardController {
  private generation:number;
  private previous:GameState;private target:string|null=null;private reward:string|null=null;private notice='';private disposed=false;
  constructor(private readonly battle:BattleController,private readonly viewer:string){this.previous=battle.state;this.generation=battle.gameGeneration;}
+ /** A spectator (no human seat) has no hand to show. */
+ get seated():boolean {return this.viewer!=='';}
  get view():CardControllerView {
   const s=this.battle.state,c=s.cards,own=activePlayer(s)?.id===this.viewer,projection=cardView(s,this.viewer);
   const phase=!c?'hidden':this.reward?'reward':!own?'hand':c.pendingDiscard?'discard':c.pendingRaid?'raid-target':s.phase==='cards'?'sets':'hand';

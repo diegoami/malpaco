@@ -5,7 +5,7 @@ import {join} from "node:path";
 import {pinned} from "../core/versioned-match-fixture";
 import type {TestInfo} from "@playwright/test";
 import {build} from "vite";
-import {countLabel,seatLook} from "../../src/ui/palette";
+import {countLabel,seatLook,SEAT_NAMES} from "../../src/ui/palette";
 
 import {openSurface} from './shell';
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
@@ -20,7 +20,7 @@ test("at rest the map shows counts in owner shapes and no names (T93)",async({pa
  }));
  const owners=[...new Set(rows.map(r=>r.owner))];expect(owners).toHaveLength(4);
  const players=await page.locator("[data-player]").evaluateAll(ns=>ns.map(n=>n.getAttribute("data-player")));
- for(const r of rows){expect(r.text).toBe(r.army);expect(r.label).toContain(`Seat ${players.indexOf(r.owner)+1}, ${r.army} armies`);expect(r.nameSize).toBeLessThanOrEqual(r.countSize*.7);expect(r.nameWeight).toBeLessThan(r.countWeight);expect(r.nameVisible).toBe(false);expect(r.shape).toBe(seatLook(players.indexOf(r.owner)).badge);}
+ for(const r of rows){expect(r.text).toBe(r.army);expect(r.label).toMatch(new RegExp(`, (You|${SEAT_NAMES[players.indexOf(r.owner)]}), ${r.army} armies$`));expect(r.label).not.toMatch(/Seat \d/);expect(r.nameSize).toBeLessThanOrEqual(r.countSize*.7);expect(r.nameWeight).toBeLessThan(r.countWeight);expect(r.nameVisible).toBe(false);expect(r.shape).toBe(seatLook(players.indexOf(r.owner)).badge);}
  expect(new Set(rows.map(r=>r.shape)).size).toBe(4);
  expect(await page.locator(".island-name").evaluateAll(ns=>ns.filter(n=>getComputedStyle(n).display!=="none").length)).toBe(0);
 });
@@ -55,7 +55,7 @@ test("region names remain identifiable on mouse, keyboard and touch without chan
  const fit=await country(page,id).evaluate(n=>{const c=(n.querySelector(".count")! as SVGGraphicsElement).getBoundingClientRect(),b=(n.querySelector(".badge")! as SVGGraphicsElement).getBoundingClientRect();return {ok:c.left>=b.left&&c.right<=b.right&&c.top>=b.top&&c.bottom<=b.bottom,count:c.toJSON(),badge:b.toJSON()};});expect(fit.ok,JSON.stringify(fit)).toBe(true);
  await shot(page,"large-stack",info.project.name);
  const context=await browser.newContext({viewport:page.viewportSize()!,hasTouch:true});const touch=await context.newPage();
- try{await opening(touch);const node=touch.locator("[data-country]").first();const label=await node.getAttribute("aria-label");const box=await node.boundingBox();expect(box).not.toBeNull();await touch.touchscreen.tap(box!.x+box!.width/2,box!.y+box!.height/2);await expect(node).toHaveAttribute("aria-label",/Seat \d, \d+ armies/);expect(label).toBeTruthy();await expect(node.locator(".name").first()).toBeVisible();await shot(touch,"touch",info.project.name);}finally{await context.close();}
+ try{await opening(touch);const node=touch.locator("[data-country]").first();const label=await node.getAttribute("aria-label");const box=await node.boundingBox();expect(box).not.toBeNull();await touch.touchscreen.tap(box!.x+box!.width/2,box!.y+box!.height/2);await expect(node).toHaveAttribute("aria-label",/, (You|Blue|Orange|Green|Purple), \d+ armies/);expect(label).toBeTruthy();await expect(node.locator(".name").first()).toBeVisible();await shot(touch,"touch",info.project.name);}finally{await context.close();}
 });
 
 // T87 (A, B, E): the real geographic map view at phone, tablet and desktop Fit. Small regions

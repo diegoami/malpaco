@@ -69,7 +69,8 @@ for(const v of VIEWPORTS)test.describe(v.name,()=>{
   for(const via of ['map','list'] as const){
    await load(page,'T39-legal-pending-raid.json');
    await expect(page.locator('#game-folded-choice')).toContainText('Raid · choose an enemy country');await expect(drawer(page)).toBeHidden();
-   await expect(page.locator('.game-notice-title')).toHaveText('Tap a highlighted country on the map.');
+   // T97: the strip speaks for itself; the notice is the turn's own line.
+   await expect(page.locator('.game-notice-title')).toHaveText('Your turn · choose a Raid target');
    if(via==='map')await country(page,target).click();
    else{await page.locator('#open-countries').click();await expect(drawer(page)).toHaveAttribute('data-surface','countries');const row=page.locator(`[data-country-row="${target}"]`);await expect(row).toHaveAttribute('aria-label',new RegExp(`^Raid target: ${name}`));await reachableInCard(row);await row.click();}
    await expect(drawer(page)).toHaveAttribute('data-surface','actions');await expect(cards(page)).toContainText(name);await exact(page,before.state);
