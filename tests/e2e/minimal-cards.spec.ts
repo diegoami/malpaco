@@ -131,7 +131,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   await expect(page.locator('#game-info-button')).toHaveCount(0);
   const before=await settled(page);
   await page.locator('#open-game-menu').click();await expect(drawer(page)).toHaveAttribute('data-surface','menu');expect(await viewBox(page)).toBe(before);
-  expect(await shown(page)).toEqual(['Game speed','Help & icon names','New game','Game event log','Return to map']);
+  expect(await shown(page)).toEqual(['Game speed','Help & icon names','New game','Game event log','Scoreboard','Return to map']);
   await expect(drawer(page).locator('.score, .log-card, #panel-detail, .card-public-counts')).toHaveCount(0);
   await targets(page);await shots('menu',page);
   const icon=page.locator('#game-log-button'),box=(await icon.boundingBox())!;const help=(await page.locator('#game-help-button').boundingBox())!;

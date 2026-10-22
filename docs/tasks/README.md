@@ -145,7 +145,8 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T96](T96.md) | Instant start: no setup, one human against three computers, New game, resume on refresh | High | Medium | #245 | T90 |
 | [T97](T97.md) | Bare-minimum floating cards and a trimmed menu | High | Hard | #246 | T96 |
 | [T98](T98.md) | 0.2.1 release candidate, acceptance and milestone review | High | Medium | #247 | T97 |
-| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T98 |
+| [T100](T100.md) | Persistent sessions and a scoreboard | High | Medium | #254 | T98 |
+| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T100 |
 
 ## Development infrastructure
 
