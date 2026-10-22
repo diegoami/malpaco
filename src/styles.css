@@ -1800,5 +1800,6 @@ dialog h2 {
 /* The corner keeps Pause's width in the grid, so the notice and cards sit where they did; the
    speed choice and Fast-forward extend to its left, over the map. */
 .battle-reference .game-overlay .game-corner-end { width:var(--target); justify-content:flex-end; }
-@media (max-width:479px) { .battle-reference .game-overlay #game-speed { width:86px; padding:0 4px; font-size:14px; } }
+/* A narrow screen keeps the pool beside the menu icon, clear of the speed choice. */
+@media (max-width:479px) { .battle-reference .game-pool-slot { justify-self:start; margin-left:calc(var(--target) + var(--gap)); } .battle-reference .game-overlay #game-speed { width:86px; padding:0 4px; font-size:14px; } }
 .battle-reference .game-overlay #active-seat-notice:not(:has(button)) { padding-right:18px; }

@@ -193,7 +193,21 @@ export class BattleChrome {
    */
   place(avoid: readonly DOMRect[]): void {
     this.avoid = avoid;
+    this.fitSpeed();
     this.reposition();
+  }
+
+  /**
+   * The speed choice rests beside Pause; on a screen too narrow for it and the pool together (a
+   * phone with wide safe areas) it gives way while you place armies, which it does not pace.
+   */
+  private fitSpeed(): void {
+    const speed = this.nodes.speed;
+    if (!speed) return;
+    speed.hidden = this.drawer.dataset["placement"] === "center" && !this.drawer.hidden;
+    if (speed.hidden || this.pool.hidden) return;
+    const a = speed.getBoundingClientRect(), b = this.pool.getBoundingClientRect();
+    speed.hidden = a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
   }
 
   private avoid: readonly DOMRect[] = [];
@@ -342,8 +356,7 @@ export class BattleChrome {
     if (this.chip.textContent !== chipText) {this.chip.textContent = chipText; this.chip.setAttribute("aria-label", `Unfold: ${chipText}`); this.chip.title = `Unfold: ${chipText}`;}
     // T101: while a computer plays only the speed controls stay; pausing brings the rest back.
     this.overlay.dataset["quiet"] = String(this.quiet);
-    // The speed choice gives way to the pool while you place armies (it paces only the computers).
-    if (this.nodes.speed) this.nodes.speed.hidden = center || !this.pool.hidden;
+    this.fitSpeed();
     if (this.nodes.forward) this.nodes.forward.hidden = center || this.nodes.forward.hidden;
     // The strip waits while any card is open (T97: cards float, so it would sit under one).
     this.folded.hidden = !this.requiredText || this.surface !== null;
