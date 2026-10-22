@@ -14,6 +14,8 @@ const SIZES=[{width:390,height:844},{width:844,height:390},{width:820,height:118
 const drawer=(p:Page)=>p.locator('#game-focus-drawer');
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 const viewBox=(p:Page)=>p.locator('.battle-reference > .board > svg').getAttribute('viewBox');
+/** The camera refits a frame after a corner icon (the pool) comes or goes; wait until it rests. */
+async function settled(p:Page){let last='';await expect.poll(async()=>{const now=await viewBox(p)??'';const same=now===last;last=now;return same;},{intervals:[50,50,100,100]}).toBe(true);return last;}
 const shots=(name:string,p:Page)=>{if(p.viewportSize()!.width!==390)return;mkdirSync('artifacts/T97',{recursive:true});return p.screenshot({path:`artifacts/T97/${name}-390x844.png`});};
 
 /** The controls the open card shows, by accessible name; assistive-only content is not shown. */
@@ -66,7 +68,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
  test('attack and capture: Fight and Cancel only, one exchange per Fight, then −, amount, + and Confirm, never over the pair',async({page})=>{
   test.setTimeout(120_000);const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   const f=battle('capture');await nineIsles(page,f.seed,f.placements,f.from);
-  await country(page,f.from).click();const before=await viewBox(page);await country(page,f.to).click();
+  await country(page,f.from).click();const before=await settled(page);await country(page,f.to).click();
   await expect(drawer(page)).toBeVisible();await expect(drawer(page)).toHaveAttribute('data-surface','actions');
   expect(await shown(page)).toEqual(['Fight','Cancel']);expect(await prose(page),'no pair line, odds or settings').toBe('');await clear(page,[f.from,f.to]);await targets(page);await shots('attack-card',page);await steady(page,before);
   await expect(page.locator('#game-info-button, [data-icon="info"]:visible')).toHaveCount(0);
@@ -88,10 +90,10 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
 
  test('friendly move: Cancel until a pair, then −, amount, +, Confirm and Cancel, never over the pair',async({page})=>{
   const f=friendly();await nineIsles(page,f.seed,f.placements,f.from);
-  const before=await viewBox(page);await page.locator('#start-friendly-move-button').click();
+  const before=await settled(page);await page.locator('#start-friendly-move-button').click();
   await expect(drawer(page)).toBeVisible();expect(await viewBox(page)).toBe(before);expect(await shown(page)).toEqual(['Cancel · back to attacks']);
   // Choosing the source brings the camera's Focus icon (a corner icon); the pair itself reframes nothing.
-  await country(page,f.from).click();const chosen=await viewBox(page);await country(page,f.to).click();expect(await viewBox(page)).toBe(chosen);
+  await country(page,f.from).click();const chosen=await settled(page);await country(page,f.to).click();expect(await viewBox(page)).toBe(chosen);
   expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Move and end turn','Cancel · back to attacks']);
   expect(await prose(page),'no preview or range text').toBe('');
   await clear(page,[f.from,f.to]);await targets(page);
@@ -105,17 +107,17 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   const names=await shown(page);expect(names.at(-1)).toBe('Skip cards');expect(names.length).toBeGreaterThan(1);for(const name of names.slice(0,-1))expect(name).toMatch(/^(Anchor|Compass|Lantern|Surge|Raid): .+ — /);
   // The hand and the public counts are for assistive technology only.
   expect(await drawer(page).locator('.card-public-counts, [aria-label="Your hand"]').evaluateAll(ns=>ns.map(n=>n.classList.contains('visually-hidden')))).toEqual([true,true]);
-  expect(await prose(page),'no long sentences').toBe('');await targets(page);await shots('sets-card',page);await steady(page,await viewBox(page));
+  expect(await prose(page),'no long sentences').toBe('');await targets(page);await shots('sets-card',page);await steady(page,await settled(page));
   // Discard: one button per card, then the reward's Continue.
   const full=cardFixture('T37-reshuffle-before-match.json');await cardsGame(page,'T37-reshuffle-before-match.json');await expect(drawer(page)).toBeVisible();
   const hand=full.state.cards!.hands[human(full.state)]!;expect(await shown(page)).toEqual(hand.map((kind,i)=>`Discard ${kind} (card ${i+1})`));expect(await prose(page)).toBe('');
-  await targets(page);await steady(page,await viewBox(page));
+  await targets(page);await steady(page,await settled(page));
   await page.getByRole('button',{name:`Discard ${hand[0]} (card 1)`,exact:true}).click();
-  await expect(page.getByRole('button',{name:'Continue',exact:true})).toBeVisible();expect(await shown(page)).toEqual(['Continue']);await targets(page);await steady(page,await viewBox(page));
+  await expect(page.getByRole('button',{name:'Continue',exact:true})).toBeVisible();expect(await shown(page)).toEqual(['Continue']);await targets(page);await steady(page,await settled(page));
   // Raid: its strip while a target is chosen, then Confirm alone.
   const raid=cardFixture('T39-legal-pending-raid.json');await cardsGame(page,'T39-legal-pending-raid.json');
   await expect(page.locator('#game-folded-choice')).toBeVisible();await expect(drawer(page)).toBeHidden();
-  const target=raid.state.map.provinces.find(c=>raid.state.ownerOf[c.id]!==human(raid.state))!.id;const before=await viewBox(page);
+  const target=raid.state.map.provinces.find(c=>raid.state.ownerOf[c.id]!==human(raid.state))!.id;const before=await settled(page);
   await country(page,target).click();await expect(drawer(page)).toBeVisible();expect(await viewBox(page)).toBe(before);
   expect(await shown(page)).toEqual(['Confirm raid']);expect(await prose(page)).toBe('');await clear(page,[target]);await targets(page);
   await page.getByRole('button',{name:'Confirm raid',exact:true}).click();
@@ -127,7 +129,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   await page.clock.install();await page.clock.pauseAt(new Date());
   await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   await expect(page.locator('#game-info-button')).toHaveCount(0);
-  const before=await viewBox(page);
+  const before=await settled(page);
   await page.locator('#open-game-menu').click();await expect(drawer(page)).toHaveAttribute('data-surface','menu');expect(await viewBox(page)).toBe(before);
   expect(await shown(page)).toEqual(['Game speed','Help & icon names','New game','Game event log','Return to map']);
   await expect(drawer(page).locator('.score, .log-card, #panel-detail, .card-public-counts')).toHaveCount(0);
