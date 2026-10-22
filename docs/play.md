@@ -27,9 +27,12 @@ Opening the page starts a game at once: you against three Normal computers on a 
 Domination on and no round limit. Islands and territories take real island and town names from one
 region (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific), chosen by
 the seed; names never change the map or play. The game is kept in this browser after every action,
-so a refresh or a later visit continues it. **New game** in the menu asks "Give up this game?", shows
+so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
+still open, at the game speed you chose, and paused if you left it paused. Nothing leaves this
+browser: there is no account, server or sync between devices. **New game** in the menu asks "Give up this game?", shows
 where the seats stood, then starts a new random game; after a result it starts at once.
-Hidden routes for tests and bug reports: `?seed=N` plays seed N (and never replaces the kept game),
+Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
+same address (it never replaces the kept game),
 `?setup` opens the older setup screen with its seats, options and Save and Load files, and
 `?view=reference-game` opens the fixed Nine Isles board.
 
@@ -65,7 +68,7 @@ opens the full event log at the other seats' actions since your last turn, marke
 smaller history icon opens the whole **Game event log**; close it with ×, Escape or a swipe.
 
 The map fills the screen and only corner icons rest on it: the menu top-left (game speed, **Help &
-icon names**, **New game** and the history icon), **Pause** top-right, **Fit** and **Countries**
+icon names**, **New game**, the history icon and the trophy for the **Scoreboard**), **Pause** top-right, **Fit** and **Countries**
 bottom-left, and bottom-right the legal phase action: **Start combat**, **Move armies** or the flag
 for **End turn**, which also skips a move. While you place armies, the pool shows as an icon and a
 number at the top. Only these icons frame the map: cards and notices float over it and never shrink
@@ -83,6 +86,13 @@ country asks which one you meant.
 plays and names every icon. The result card shows the winner and reason with **New game**;
 **Standings** and **Details** (seed, options and the record) open on request, and a round-limit
 result says whether countries, armies or turn order decided it.
+
+The **Scoreboard** (the menu's trophy) keeps, in this browser, how many games you played, won, lost
+and gave up, your win rate, and your last 20 games, newest first: the date, the result, the rounds,
+your countries at the end and the seed. A game counts once, when it ends: a win, your elimination
+(Lost at once, even if you then watch the computers), or giving up with **New game**. The result
+card shows the updated totals, for example "Won 3 · Lost 2 · Gave up 1". **Reset** asks "Clear the
+scoreboard?" first. `?setup`, manual and Nine Isles games never count.
 
 The game fits phones and tablets in either orientation as well as desktops: it is tested from
 320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. Real-device and

@@ -9,6 +9,10 @@ and the owner's D4 judgment. Publication is T99, and it waits for both.
   New game asks first. Save and Load leave the player's UI.
 - **T97 (#251):** minimal cards float over the map and never reframe it. The attack card is
   Fight and Cancel. Seats are named by colour.
+- **T100 (#254), after this record:** the game is kept per browser over a reload or a restart (each
+  `?seed=N` on its own; Pause, speed and an open choice too), and a scoreboard (the menu's trophy)
+  records each player game once. Checked by `persistence.spec.ts` and `scoreboard.spec.ts`; the
+  moved candidate's runs are on the milestone review (#253).
 
 The acceptance authority is `docs/plans/release-0.2.0-acceptance.md` together with its
 [0.2.1 amendments](../../plans/release-0.2.0-acceptance.md#021-amendments-2026-10-22).
