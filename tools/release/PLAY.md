@@ -1,4 +1,4 @@
-# Play Malpaco 0.2.0
+# Play Malpaco 0.2.1
 
 Run `node serve.mjs` from this folder, then open <http://127.0.0.1:4175> in a browser.
 
@@ -68,5 +68,5 @@ result says whether countries, armies or turn order decided it.
 
 The game fits phones and tablets in either orientation as well as desktops: it is tested from
 320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. Real-device and
-screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md`. Online multiplayer and
+screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md` (carried over to 0.2.1). Online multiplayer and
 cross-device save synchronization are not supported.
