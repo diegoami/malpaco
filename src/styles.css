@@ -1777,3 +1777,25 @@ dialog h2 {
 #give-up-dialog > .result-totals { margin-bottom:12px; }
 #give-up-dialog .help-actions { position:static; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; margin-top:16px; padding:0; background:none; }
 #give-up-dialog .help-actions button { min-height:44px; min-width:44px; padding:0 16px; font-size:15px; }
+/* T101 (owner, 2026-10-22): every card folds to a chip and drags by its grip (a short bar along
+   its top) or its edge; a dragged card keeps its place (inline left/top, set by the shell). While
+   a computer plays only the speed controls stay: the speed choice, Fast-forward and Pause share
+   the top-right corner, and the other corner icons wait hidden (still framing the map, so the
+   camera never moves for them) until your turn or a pause. [designed] sizes. */
+.battle-reference #game-focus-drawer { padding-top:18px; touch-action:none; }
+.battle-reference #game-focus-drawer .game-drawer-content { grid-column:1; grid-row:1; touch-action:pan-y; }
+.battle-reference #game-focus-drawer :is(#fold-card, #close-game-drawer) { grid-column:2; grid-row:1; }
+.battle-reference #game-focus-drawer #fold-card { width:44px; height:44px; min-height:44px; box-shadow:none; }
+.card-grip { position:absolute; top:0; left:0; right:56px; height:18px; cursor:grab; touch-action:none; }
+.card-grip::after { content:""; position:absolute; top:6px; left:50%; width:36px; height:4px; margin-left:-18px; border-radius:2px; background:var(--shell-line, #335863); }
+.battle-reference #game-focus-drawer[data-dragging="true"] { cursor:grabbing; user-select:none; }
+.battle-reference #game-focus-drawer[data-folded="true"] { width:auto; max-width:calc(100% - 2 * var(--edge)); padding:18px 8px 8px; }
+.battle-reference #game-focus-drawer .card-chip { grid-column:1 / -1; grid-row:1; min-height:44px; max-width:280px; padding:0 16px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; border:1px solid var(--shell-gold, #ffd06b); border-radius:22px; background:var(--shell-bg, #173d47); color:var(--text); font:600 15px/1.2 Inter, system-ui, sans-serif; }
+.game-speed-control { display:flex; }
+.battle-reference .game-overlay #game-speed { height:var(--target); min-height:var(--target); width:104px; padding:0 8px; color:var(--text); background:var(--shell-bg, #173d47); border:1px solid var(--shell-line, #335863); border-radius:12px; box-shadow:0 2px 10px #0006; font:600 15px Inter, system-ui, sans-serif; pointer-events:auto; }
+.battle-reference .game-overlay #fast-forward-button { color:var(--shell-gold, #ffd06b); }
+.battle-reference .game-overlay #fast-forward-button[aria-pressed="true"] { background:var(--shell-gold, #ffd06b); color:var(--shell-ink, #102b36); }
+.battle-reference .game-overlay[data-quiet="true"] :is(#game-status, .map-camera-controls, #battle-action-rail, #game-folded-choice) { visibility:hidden; }
+/* A narrow screen keeps the pool beside the menu icon, clear of the speed controls. */
+@media (max-width:479px) { .battle-reference .game-pool-slot { justify-self:start; margin-left:calc(var(--target) + var(--gap)); } }
+.battle-reference .game-overlay #active-seat-notice:not(:has(button)) { padding-right:18px; }

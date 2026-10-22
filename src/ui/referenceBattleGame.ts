@@ -17,7 +17,8 @@ import type {MatchPresentation} from "./matchPresentation";
 import type {LoadedVersionedMatch} from "../core/match-save";
 import {serializeVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
-import {BattleChrome} from "./battleChrome";
+import {BattleChrome, forgetCardPosition} from "./battleChrome";
+import {glyph} from "./icons";
 import type {Notice} from "./battleChrome";
 import {GameHelp} from "./help";
 import {CountryPicker} from "./countryPicker";
@@ -31,7 +32,6 @@ export interface BattlePreferences { threshold: number; speed: BattleSpeed; deta
 
 const HUMAN_VERBS: Record<string, string> = {"Reinforcement": "place armies", "Attack": "attack or end turn", "Capture move-in": "move armies in", "Friendly move": "move armies", "Cards": "play cards", "Raid target": "choose a Raid target"};
 const HUMAN_HINTS: Record<string, string> = {"Reinforcement": "Tap one of your countries to place an army.", "Attack": "Choose your country, then an enemy neighbour.", "Friendly move": "Choose a country to move from, then an own neighbour.", "Raid target": "Choose an enemy country on the map."};
-const COMPUTER_VERBS: Record<string, string> = {"Reinforcement": "placing armies", "Attack": "attacking", "Capture move-in": "moving in", "Friendly move": "moving armies", "Cards": "playing cards", "Raid target": "raiding"};
 
 /** Reference-route host: the controller owns every selection and ordinary action. */
 export class ReferenceBattleGame {
@@ -40,8 +40,10 @@ export class ReferenceBattleGame {
   private readonly cardControls:CardView;
   private readonly computerStatus = h("p", { id: "reference-computer-status", role: "status" });
   private readonly playbackPause = h("button", { id: "game-pause-button", type: "button" }, "Pause");
-  private readonly playbackSpeed = h("select", { id: "game-speed", "aria-label": "Game speed" },
-    ...["very-slow", "slow", "normal", "fast"].map(value => h("option", { value }, value === "very-slow" ? "Very slow (2 s)" : value[0]!.toUpperCase() + value.slice(1))));
+  private readonly playbackSpeed = h("select", { id: "game-speed", "aria-label": "Game speed", title: "Game speed" },
+    ...["very-slow", "slow", "normal", "fast"].map(value => h("option", { value }, value === "very-slow" ? "Very slow" : value[0]!.toUpperCase() + value.slice(1))));
+  /** T101: Fast-forward rests beside Pause and the speed choice, the only controls while a computer plays. */
+  private readonly forward = h("button", { id: "fast-forward-button", type: "button", "aria-label": "Fast-forward to your turn", title: "Fast-forward to your turn", "aria-pressed": "false" }, glyph("fast-forward"));
   private readonly eventLog: GameEventLog;
   /** Help pauses computer play while it is read, and resumes only what it paused. */
   private helpPaused = false;
@@ -75,6 +77,9 @@ export class ReferenceBattleGame {
   private giveUpPaused = false;
   private givenUp = false;
   private persisted = -1;
+  private persistedSeat = -1;
+  private readonly onHide = () => {if (!this.disposed && document.visibilityState === "hidden") this.persist(this.controller.state, true);};
+  private readonly onPageHide = () => {if (!this.disposed) this.persist(this.controller.state, true);};
   /** T100: the menu's scoreboard (the player's game only); a game is recorded once, if it was unfinished when it opened. */
   private readonly scoreboard: ScoreboardDialog | null = null;
   private scoreboardPaused = false;
@@ -95,7 +100,7 @@ export class ReferenceBattleGame {
         open: () => {this.chrome?.close(false); this.giveUpPaused = !this.controller.playbackPaused; if (this.giveUpPaused) this.controller.setPlaybackPaused(true);},
         keep: () => {if (this.giveUpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.giveUpPaused = false;},
         giveUp: () => {this.givenUp = true; this.record(this.controller.state, "gave-up"); presentation.player!.persist(null); this.giveUp!.showResult(this.controller.state, presentation.player!.totals?.());},
-        newGame: () => { if (!this.disposed) this.onNewGame(); },
+        newGame: () => { if (!this.disposed) this.freshGame(); },
       });
       document.body.append(this.giveUp.dialog);
       this.scoreboard = new ScoreboardDialog(undefined, () => {this.chrome?.close(false); this.scoreboardPaused = !this.controller.playbackPaused; if (this.scoreboardPaused) this.controller.setPlaybackPaused(true);});
@@ -144,17 +149,21 @@ export class ReferenceBattleGame {
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
     this.battle = new BattleView(this.controller, () => { this.controller.select(null, null); this.chrome?.close(); });
     this.friendly = new FriendlyMoveView(this.controller);
-    this.victory = new VictoryView(this.controller, {newGame: () => this.newGame(), menu: () => this.chrome?.openMenu(), files: this.showsFiles, ...(presentation?.player?.record && presentation.player.totals ? {totals: presentation.player.totals} : {}),
+    this.victory = new VictoryView(this.controller, {newGame: () => this.newGame(), menu: () => this.chrome?.openMenu(), files: this.showsFiles, history: this.showsLog, ...(presentation?.player?.record && presentation.player.totals ? {totals: presentation.player.totals} : {}),
       details: () => [`Seed: ${options.seed}`, `Seats: ${this.controller.state.players.map(player => `${seatName(this.controller.state.players, player.id)} ${player.kind === "computer" ? "Computer" : "Human"}`).join(" · ")}`,
         `Victory: ${options.dominationWin ? "Domination" : "Total conquest"}${options.roundLimit ? ` · Round limit ${options.roundLimit}` : ""}`, `Map: ${presentation?.label ?? "Nine Isles"}`]});
     this.action = this.panel.el.querySelector<HTMLElement>(".action")!;
     this.action.append(this.battle.el, this.friendly.el, this.victory.el, this.cardControls.el, this.computerStatus);
     this.playbackPause.onclick = () => {this.controller.setPlaybackPaused(!this.controller.playbackPaused); presentation?.player?.remember?.({paused: this.controller.playbackPaused});};
     this.playbackSpeed.onchange = () => {if (this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed)) presentation?.player?.remember?.({speed: this.controller.view.speed});};
+    this.forward.onclick = () => {this.computer?.fastForward(); this.render();};
     this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation),undefined,presentation?.acceptsVersion1);
   }
 
   focusMenu(): void {this.chrome?.focusMenuOpener();}
+
+  /** T101: the game history is off the player's screen; `?log` brings its icon back (tests and bug reports). */
+  private readonly showsLog = (() => {try {return new URLSearchParams(location.search).has("log");} catch {return false;}})();
 
   /** The player's game has no file controls; tests and development keep them (`?files`, or the stored flag). */
   private get showsFiles(): boolean {
@@ -166,22 +175,26 @@ export class ReferenceBattleGame {
   private newGame(): void {
     if (this.disposed) return;
     if (this.giveUp && !this.controller.state.result) this.giveUp.ask();
-    else this.onNewGame();
+    else this.freshGame();
   }
+
+  /** A new game puts the cards back in their corners (T101). */
+  private freshGame(): void {forgetCardPosition(); this.onNewGame();}
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
-    // T97 (owner, #244): the menu holds speed, Help & icon names, New game and the game history
-    // behind a smaller icon; totals, card counts, the battle log and panel detail are gone.
+    // T97 (owner, #244): the menu holds Help & icon names, New game and the scoreboard; totals, card
+    // counts, the battle log and panel detail are gone. T101: the speed choice moved to the corner
+    // beside Pause, and the history icon shows only with `?log`.
     const newGame = this.panel.el.querySelector<HTMLButtonElement>("#new-game-button")!;
     // The seed stays as one quiet line, so a game can be named in a report.
     const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, h("p", {class: "game-identity"}, `Seed ${this.options.seed}`),
-      h("div", { class: "game-playback" }, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed),
-      h("div", { class: "game-menu-actions" }, this.help.button, newGame, this.eventLog.button, ...(this.scoreboard ? [this.scoreboard.button] : [])), ...(this.showsFiles ? [this.files.el] : []));
+      h("div", { class: "game-menu-actions" }, this.help.button, newGame, ...(this.showsLog ? [this.eventLog.button] : []), ...(this.scoreboard ? [this.scoreboard.button] : [])), ...(this.showsFiles ? [this.files.el] : []));
+    const speed = h("div", {class: "game-speed-control"}, this.playbackSpeed);
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
-      phaseActions: this.phaseActions, pause: this.playbackPause, countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+      phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
     // The Countries icon always opens on the list.
     this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
     // The history is its own card over the map: the menu steps aside for it.
@@ -194,6 +207,8 @@ export class ReferenceBattleGame {
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
     window.addEventListener("resize", this.onResize);
+    window.addEventListener("pagehide", this.onPageHide);
+    document.addEventListener("visibilitychange", this.onHide);
     this.mounted = true;
     this.render();
   }
@@ -211,6 +226,8 @@ export class ReferenceBattleGame {
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
     window.removeEventListener("resize", this.onResize);
+    window.removeEventListener("pagehide", this.onPageHide);
+    document.removeEventListener("visibilitychange", this.onHide);
   }
 
   private readonly onResize = () => { if (this.mounted && !this.disposed) this.placeCard(); };
@@ -256,7 +273,9 @@ export class ReferenceBattleGame {
     const targets = blocked ? [] : mode === "move" ? from ? friendlyTargets(state, from) : friendlySources(state) : from ? attackTargets(state, from) : [];
     const card=this.cards.view;
     const raidTargets=card.phase==='raid-target'?state.map.provinces.filter(p=>state.ownerOf[p.id]!==activePlayer(state)!.id).map(p=>p.id):null;
-    this.mapView.render({ state, selected: from, target: card.selectedTarget??to, targets:raidTargets??targets, hover: this.hover, flash: [] });
+    // T101: a computer's actions show only counts and colours changing: no pair, outline or name.
+    if (this.computerActive()) this.mapView.render({ state: state.pendingCapture ? (({pendingCapture: _pending, ...rest}) => rest)(state) : state, selected: null, target: null, targets: [], hover: this.hover, flash: [] });
+    else this.mapView.render({ state, selected: from, target: card.selectedTarget??to, targets:raidTargets??targets, hover: this.hover, flash: [] });
     // What choosing from the Countries card does now; the list's Legal filter shows exactly these.
     const human = activePlayer(state), own = (id: string) => state.ownerOf[id] === human?.id;
     const placing = !blocked && state.phase === "reinforce" && human?.kind === "human";
@@ -276,11 +295,17 @@ export class ReferenceBattleGame {
     this.mapView.camera?.refreshControls();
   }
 
-  /** T96: the versioned save text after every action, so a refresh replays it; a finished game clears it. */
-  private persist(state: GameState): void {
+  /**
+   * T96: the versioned save text after every action, so a refresh replays it; a finished game clears it.
+   * T101: writing it replays the whole game, so during a computer's turn it is written when the turn
+   * passes (and when the page is hidden), not after every action; the computers' actions are a pure
+   * function of the game, so a reload in mid-turn replays the same ones.
+   */
+  private persist(state: GameState, now = false): void {
     const player = this.presentation?.player;
     if (!player || this.givenUp || state.history.length === this.persisted) return;
-    this.persisted = state.history.length;
+    if (!now && this.computerActive() && state.currentPlayer === this.persistedSeat) return;
+    this.persisted = state.history.length; this.persistedSeat = state.currentPlayer;
     let text: string | null = null;
     if (!state.result) try {text = serializeVersionedMatch(this.options, state.history, this.presentation!.identity);} catch {text = null;}
     player.persist(text);
@@ -362,14 +387,18 @@ export class ReferenceBattleGame {
     // Fast-forward, a pause, or a human turn's line until they act. Exchange outcomes are not noticed.
     let notice: Notice | null = null;
     if (this.refusal && this.refusal.key !== `${state.history.length}:${from}:${to}`) this.refusal = null;
-    // T84: the other seats' actions since this human seat's turn last ended, from the replayed history.
-    const changes = mover && mover.kind !== "computer" && !computer && !result ? this.eventLog.changesFor(mover.id) : null;
+    // T84: the other seats' actions since this human seat's turn last ended, from the replayed history
+    // (T101: only with `?log`, like the history itself).
+    const changes = this.showsLog && mover && mover.kind !== "computer" && !computer && !result ? this.eventLog.changesFor(mover.id) : null;
     this.eventLog.changes = () => changes;
     const forward = this.computer?.fastForwarding ?? false;
+    // T101: Fast-forward rests beside Pause while a computer plays; pressed while it runs.
+    this.forward.hidden = !computer || !!result || gamePaused;
+    this.forward.setAttribute("aria-pressed", String(forward));
     if (this.refusal) notice = {title: this.refusal.text, persistent: true};
-    // A computer turn keeps one notice with Fast-forward until a human seat moves (Pause sits above it).
-    else if (!result && computer) notice = {title: `${name(mover!.id)} · ${gamePaused ? "paused" : forward ? "fast-forward" : COMPUTER_VERBS[phase] ?? "playing"}`, persistent: true,
-      ...(this.computer && !gamePaused && !forward ? {action: {id: "fast-forward-button", label: "Fast-forward to your turn", shape: "fast-forward", run: () => {this.computer?.fastForward(); this.render();}}} : {})};
+    // T101 (owner, 2026-10-22): one quiet notice per computer turn, "Orange's turn", with no buttons;
+    // the map shows only counts and colours changing.
+    else if (!result && computer) notice = {title: `${name(mover!.id)}'s turn`, persistent: true, quiet: true, ...(gamePaused ? {detail: "Paused. Resume to continue."} : {})};
     else if (!result && gamePaused) notice = {title: "Game paused", detail: "Resume to continue."};
     else if (!result) {
       const key = `${state.currentPlayer}:${phase}`;
@@ -396,10 +425,13 @@ export class ReferenceBattleGame {
     const prompt = computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
     // A folded card keeps any pending choice one tap away; a computer seat's own pending choice is never yours (T84).
     const choice = computer ? null : required ?? (staged ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
-    this.chrome?.update(status, choice, gamePaused, prompt);
-    // Computer turns show no choice (owner, 2026-10-22): only the corner icons and the notice stay.
-    // Focus left in (or dropped from) the closing card goes back to a visible control.
-    if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
+    // Computer turns show no choice (owner, 2026-10-22). T101: while one plays, only the speed
+    // controls stay on screen; the menu, camera and Countries icons return on your turn or a pause.
+    const restore = computer && !result && this.chrome?.openSurface === "actions" && (document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
+    this.chrome?.update(status, choice, gamePaused, prompt, computer && !result && !gamePaused);
+    // A paused computer turn still shows no choice card (its menu card may open).
+    if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
+    if (restore) this.playbackPause.focus({preventScroll: true});
     this.placeCard();
     this.computer?.update();
   }
