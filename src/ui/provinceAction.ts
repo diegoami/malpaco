@@ -5,10 +5,11 @@ import {glyph} from './icons';
 export type ProvinceActionKind='fight'|'move';
 
 /**
- * T103 (owner, 2026-10-22): as in the original's layout, the action sits beside the country you
- * selected: Fight when it can attack (it fights once a target is chosen), else Move when it can
- * move armies. The corner controls stay; this is a second way to reach the same actions. It
- * follows the country's count through pans, zooms and rotations, and hides when that is off screen.
+ * T103 (owner, 2026-10-22): as in the original's layout, the action sits on the country you
+ * selected: Fight when it can attack (press it, then tap an enemy: one round; press again for
+ * another), else Move when it can move armies (press it, then tap where to). The corner controls
+ * stay. It follows the country's count through pans, zooms and rotations, and hides when that is
+ * off screen.
  */
 export class ProvinceAction {
  readonly el=h('button',{id:'province-action-button',type:'button',class:'card-icon primary province-action',hidden:true});
@@ -16,8 +17,9 @@ export class ProvinceAction {
  private frame:number|null=null;
  private press:()=>void=()=>{};
  constructor(){this.el.addEventListener('click',e=>{e.stopPropagation();if(!this.el.disabled)this.press();});}
- show(country:string,kind:ProvinceActionKind,enabled:boolean,press:()=>void):void{
-  const name=kind==='fight'?(enabled?'Fight':'Fight: choose an enemy neighbour first'):'Move armies from here';
+ show(country:string,kind:ProvinceActionKind,enabled:boolean,pressed:boolean,press:()=>void):void{
+  const name=kind==='fight'?(pressed?'Fight: tap an enemy neighbour':'Fight'):(pressed?'Move: tap where to':'Move armies from here');
+  this.el.setAttribute('aria-pressed',String(pressed));
   if(this.el.dataset['kind']!==kind){this.el.replaceChildren(glyph(kind==='fight'?'attack':'move'));this.el.dataset['kind']=kind;}
   this.el.setAttribute('aria-label',name);this.el.title=name;this.el.disabled=!enabled;this.el.dataset['for']=country;
   this.press=press;

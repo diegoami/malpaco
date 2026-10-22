@@ -104,9 +104,8 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
 ];
 const HOW_TO: readonly (readonly [string, string])[] = [
   ["Placing", "Tap your countries to place armies from the pool shown at the top; combat starts when the last one is placed."],
-  ["Beside your country", "The country you select shows Fight if it can attack, or Move if it can only move armies."],
+  ["On your country", "The country you select shows Fight if it can attack, or Move if it can only move armies. Press Fight, then tap an enemy: one round; press again for another."],
   ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. Fight rolls one exchange; press it again to keep fighting, or Cancel."],
-  ["Hints", "If you pause on your turn, a pulsing arrow points at the control you most likely need next."],
   ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
   ["Cards", "A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
   ["Notices", "The slim notice under the top icons says whose turn it is. Tap it for a hint; swipe or × dismisses it."],

@@ -18,8 +18,9 @@ and the owner's D4 judgment. Publication is T99, and it waits for both.
   are quick and quiet, with one notice per turn and only the speed controls on screen. Checked by
   `card-fold-drag.spec.ts` and `computer-turns.spec.ts` (a round of three Normal computers on
   seed 7 within 12 s of real time); the moved candidate's runs are on the milestone review (#253).
-- **T103 (#261), after this record:** Fight or Move beside the selected country; the last placed
-  army starts combat; after a pause with no input, a pulsing arrow points at Fight or Confirm.
+- **T103 (#261), after this record:** Fight or Move on the selected country (Fight armed by a
+  press, then an enemy tap is one round); amount bars beside their country; no empty card; the
+  last placed army starts combat.
   Checked by `guided-taps.spec.ts` (390×844 and 1280×800), which fails on the previous code.
 
 The acceptance authority is `docs/plans/release-0.2.0-acceptance.md` together with its
