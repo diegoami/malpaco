@@ -19,6 +19,8 @@ export async function openSurface(page: Page, surface: Surface): Promise<void> {
   if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === card) return;
   // Current choice has no resting icon: it opens by itself for a choice, or from the folded choice's return icon.
   // With no pending choice there is no Current choice card: callers then act on the map or read hidden state.
+  // T97: the folded strip waits while another card is open, so that card closes first.
+  if (card === 'actions' && await drawer.isVisible()) await closeSurface(page);
   if (card === 'actions' && !await page.locator(openers.actions).isVisible()) return;
   await page.locator(openers[card]).click();
   await expect(drawer).toHaveAttribute('data-surface', card);
@@ -47,6 +49,8 @@ export async function withSurface<T>(page: Page, surface: Surface, body: () => P
       if (previous && previous !== cardOf[surface]) await openSurface(page, previous);
       // A finished choice cannot be reopened: then the borrowed card simply closes.
       if (!previous || (previous !== cardOf[surface] && await drawer.getAttribute('data-surface') === cardOf[surface])) await closeSurface(page);
+      // T97: the folded strip waits while another card is open, so a choice returns once that card has closed.
+      if (previous === 'actions' && !await drawer.isVisible() && await page.locator(openers.actions).isVisible()) await openSurface(page, 'actions');
     }
   }
 }

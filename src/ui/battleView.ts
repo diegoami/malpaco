@@ -45,7 +45,7 @@ export class BattleView {
     // One press is one exchange; the pause gate and this render's revision guard it.
     const controls = h("div", { class: "battle-actions card-icons" },
       iconButton("single-exchange-button", "Fight", "Fight", "attack", !canExchange || view.running || view.paused || this.controller.playbackPaused, () => this.controller.singleExchange(revision), true),
-      iconButton("cancel-battle-button", "Cancel", "Cancel", "close", view.running || !from, () => this.onCancel()),
+      iconButton("cancel-battle-button", "Cancel", "Cancel", "close", view.running || !from || !!pending, () => this.onCancel()),
     );
     const last = view.lastOutcome;
     const resultText = last ? last.captured ? "Target captured" : last.attackerLosses > 0 ? "Defender wins · source loses 1" : "Attacker wins · target loses 1" : "Ready";

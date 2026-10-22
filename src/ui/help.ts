@@ -86,7 +86,7 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["fast-forward", "Fast-forward", "During computer turns: play them without waiting until your turn."],
   ["fit", "Fit", "Shows the whole map again."],
   ["countries", "Countries", "Every country by island, or only the ones you can use now."],
-  ["info", "Inspect", "In the Countries list: a country's owner, armies and neighbours."],
+  ["info", "Inspect", "In the Countries list: a country's owner, armies and neighbours. On the result card, Details: the seed, options and record."],
   ["combat", "Start combat", "Ends placement once every army is placed."],
   ["move", "Move armies", "One adjacent friendly move per turn."],
   ["flag", "End turn", "Passes the turn; it also skips the friendly move."],

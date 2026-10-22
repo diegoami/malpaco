@@ -223,7 +223,8 @@ export class BattleChrome {
     this.nodes.pause.hidden = center;
     // A choice card holds only its own controls (T97); Escape still folds it to the strip.
     this.closeButton.hidden = actions;
-    this.folded.hidden = !this.requiredText || actions;
+    // The strip waits while any card is open (T97: cards float, so it would sit under one).
+    this.folded.hidden = !this.requiredText || this.surface !== null;
     this.renderNotice();
   }
 
