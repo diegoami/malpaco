@@ -1,5 +1,5 @@
 import {CardController} from "./cardController";
-import {CardView} from "./cardView";
+import {CardView, HandDialog} from "./cardView";
 import { GameEventLog } from "./gameEventLog";
 import { dominationThreshold } from "../core/victory";
 import { activePlayer, attackTargets, friendlySources, friendlyTargets, ownerOf, whyNot } from "../core";
@@ -83,6 +83,8 @@ export class ReferenceBattleGame {
   /** T103: Fight or Move on the selected country (the player's game), and the country Fight is armed for. */
   private readonly provinceAction: ProvinceAction | null = null;
   private armed: string | null = null;
+  /** T104: your cards on request (the player's game). */
+  private hand: HandDialog | null = null;
   private anchoredTo: string | null = null;
   private persistedSeat = -1;
   /** T100: the menu's scoreboard (the player's game only); a game is recorded once, if it was unfinished when it opened. */
@@ -125,6 +127,7 @@ export class ReferenceBattleGame {
     const human=state.players.filter(p=>p.kind!=='computer');
     this.cards=new CardController(this.controller,human.length===1?human[0]!.id:'');
     this.cardControls=new CardView(this.cards,this.controller);
+    if(presentation?.player){this.hand=new HandDialog(this.cards,()=>this.chrome?.close(false));document.body.append(this.hand.dialog);}
     this.computer = automatic ? new ComputerTurnLoop(this.controller, { schedule: (cb, delay) => window.setTimeout(cb, delay), cancel: id => window.clearTimeout(id) }) : null;
     const threshold = preferences.threshold, speed = preferences.speed;
     this.controller.restorePreferences(threshold, speed);
@@ -201,6 +204,8 @@ export class ReferenceBattleGame {
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
       phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+    // T104: your cards sit beside the menu icon.
+    if (this.hand) this.chrome.hud.append(this.hand.button);
     // The Countries icon always opens on the list.
     this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
     // The history is its own card over the map: the menu steps aside for it.
@@ -225,7 +230,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
-    this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
+    this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.hand?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
@@ -338,6 +343,7 @@ export class ReferenceBattleGame {
     if (this.controller.view !== seen && this.mounted) return;
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
     this.cardControls.render();
+    this.hand?.update();
     this.eventLog.update(this.controller.state);
     this.record(state);
     this.persist(state);

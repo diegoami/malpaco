@@ -99,6 +99,7 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["trophy", "Scoreboard", "In the menu: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
   ["new-game", "New game", "Gives up this game and starts a new one."],
   ["watch", "Watch computers", "After your last country falls: the computers play on."],
+  ["cards", "Your cards", "Shows the cards you hold and how many; after each draw your whole hand is shown."],
   ["fold", "Fold card", "Shrinks a card to a chip that keeps its title; tap the chip to open it again."],
   ["close", "Close", "Closes a card, cancels a choice, or dismisses a notice."],
 ];
@@ -107,7 +108,7 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["On your country", "The country you select shows Fight if it can attack, or Move if it can only move armies. Press Fight, then tap an enemy: one round; press again for another."],
   ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. Fight rolls one exchange; press it again to keep fighting, or Cancel."],
   ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
-  ["Cards", "A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
+  ["Cards", "Your cards are behind the card icon by the menu, with their number. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
   ["Notices", "The slim notice under the top icons says whose turn it is. Tap it for a hint; swipe or × dismisses it."],
   ["Computer turns", "Each computer's turn shows one notice while its counts and colours change on the map. Choose the speed beside Pause; Slow and Very slow let you watch every move."],
   ["Seats", "You play one seat; the computers are named by their colours: Orange, Green and Purple."],

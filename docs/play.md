@@ -68,6 +68,10 @@ trade, plus **Skip**; one per card when a full hand must discard before drawing 
 stays hidden until then). A Raid folds its card to a one-line strip so the whole map is free: tap
 a highlighted enemy country, or choose one from **Countries**, then **Confirm**.
 Games with two or more human seats currently play without cards.
+Your cards are behind the card icon next to the menu, which shows how many you hold: it opens
+the list, and closes with ×, Escape or another tap. At the start of your turn a set can be played
+from that list (or from the set card that opens by itself). After each draw, the card shows your
+whole hand with the new card marked.
 
 The speed controls share the top-right corner: the **Game speed** choice (Slow and Very slow let
 you watch every move), **Pause**, and, while computers play, a gold **Fast-forward** icon that plays

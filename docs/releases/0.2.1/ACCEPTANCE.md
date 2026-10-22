@@ -22,6 +22,9 @@ and the owner's D4 judgment. Publication is T99, and it waits for both.
   press, then an enemy tap is one round); amount bars beside their country; no empty card; the
   last placed army starts combat.
   Checked by `guided-taps.spec.ts` (390×844 and 1280×800), which fails on the previous code.
+- **T104 (#263), after this record:** a Cards button with your hand count opens your cards; after a
+  draw the reward card lists your whole hand, the new card marked; a set can be played from the list.
+  Checked by `hand.spec.ts` (390×844 and 1280×800), which fails on the previous code.
 
 The acceptance authority is `docs/plans/release-0.2.0-acceptance.md` together with its
 [0.2.1 amendments](../../plans/release-0.2.0-acceptance.md#021-amendments-2026-10-22).
