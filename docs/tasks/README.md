@@ -138,6 +138,15 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T94](T94.md) | Regional flavour names | High | Hard | #170 | T93 |
 | [T95](T95.md) | Grown islands: the v2 geography generator | High | Hard | #181 | T94 |
 
+## 0.2.1 (#240, questions #244)
+
+| Task | Title | Priority | Difficulty | Issue | Merge after |
+| --- | --- | --- | --- | --- | --- |
+| [T96](T96.md) | Instant start: no setup, one human against three computers, New game, resume on refresh | High | Medium | #245 | T90 |
+| [T97](T97.md) | Bare-minimum floating cards and a trimmed menu | High | Hard | #246 | T96 |
+| [T98](T98.md) | 0.2.1 release candidate, acceptance and milestone review | High | Medium | #247 | T97 |
+| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T98 |
+
 ## Development infrastructure
 
 | Task | Title | Priority | Difficulty | Issue | Merge after |
