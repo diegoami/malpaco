@@ -68,6 +68,10 @@ implementer's contract:
   declared under Scope.
 - Update any document your change makes wrong. Never write status into a document.
 - Outputs (screenshots, measurements, logs) go to `artifacts/`, never into Git (§6).
+- **Local tests: only what the change touches** (the owner, 2026-10-22). Run `npm run build`,
+  `npx tsc --noEmit -p .`, `npm test`, and in the pinned image only the new specs, the specs you
+  changed and the specs that exercise the code you changed. The full source and release-artifact
+  suites run in CI; a PR merges only on green CI, and a red CI is fixed on the PR.
 
 ## 4. Reviews
 

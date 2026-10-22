@@ -11,8 +11,10 @@ You implement one task (or one fix). The brief is the task file pasted in full; 
   session's own branch, never a new one. No worktrees, no other clones,
   never `git stash`, never force-push, never merge.
 - Commit in small steps and push after every commit.
-- Run `npm run build`, `npm test` and the relevant `npx playwright test` specs before opening the
-  PR, and every Done-when line. Outputs go to `artifacts/`, never into Git.
+- Run `npm run build`, `npm test` and only the new, changed and directly affected
+  `npx playwright test` specs before opening the PR, and every Done-when line; never the full
+  browser suites locally, CI runs them (`docs/process.md` §3). Outputs go to `artifacts/`, never
+  into Git.
 - A Done-when you cannot meet: stop and report. Never weaken an assertion, skip a test or edit the
   task file.
 - Open the PR with `.github/pull_request_template.md`'s sections filled in.
