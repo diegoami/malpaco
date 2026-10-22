@@ -50,7 +50,7 @@ test('matrix: both hosts fit every acceptance size, seam, zoom and reduced heigh
 });
 
 test('A1: setup in portrait: seed, seats, files and help reachable; Start makes that game',async({page},info)=>{
- await begin(page,'/',PORTRAIT);
+ await begin(page,'/?setup',PORTRAIT);
  await page.locator('#geographic-seed').fill('42');await page.locator('#geographic-seats').selectOption('3');
  for(const id of ['#geographic-control-3','#geographic-names','#reference-load-game-file','button[type="submit"]']){await page.locator(id).scrollIntoViewIfNeeded();await expect(page.locator(id)).toBeInViewport();}
  await shot(page,info,'A1-setup');
@@ -85,7 +85,7 @@ test('A2: Place 1 by map and list to zero; stage by map, list and keyboard witho
 });
 
 test('A2: a legal set trades once and a skip changes nothing but the phase',async({page})=>{
- const row=TRADE_CASES[0],before=cardFixture(row.file);await begin(page,'/',PORTRAIT);await load(page,cardInput(row.file));
+ const row=TRADE_CASES[0],before=cardFixture(row.file);await begin(page,'/?setup',PORTRAIT);await load(page,cardInput(row.file));
  await openSurface(page,'actions');
  await page.getByRole('button',{name:`${row.kind}: ${selectedNames(before.state,row.indices).join(' + ')} — Add ${row.after-row.pool} armies`,exact:true}).first().click();
  await exactly(page,next(before.state,{kind:'tradeCards',handIndices:row.indices}));
@@ -123,7 +123,7 @@ test('A4: a friendly-move draft survives resize; Cancel changes nothing; Move & 
 });
 
 test('A5: Raid folds; a list pick stages the target with its preview; one Confirm raids; covered counts reappear',async({page},info)=>{
- const before=cardFixture('T39-legal-pending-raid.json'),target='province_4';await begin(page,'/',PORTRAIT);await load(page,cardInput('T39-legal-pending-raid.json'));
+ const before=cardFixture('T39-legal-pending-raid.json'),target='province_4';await begin(page,'/?setup',PORTRAIT);await load(page,cardInput('T39-legal-pending-raid.json'));
  await expect(page.locator('#game-folded-choice')).toContainText('Raid');await expect(page.locator('#game-focus-drawer')).toBeHidden();
  const counts=()=>page.locator('[data-country] .count').allTextContents();const rest=await counts();
  await page.locator('#open-countries').click();await page.locator(`[data-country-row="${target}"]`).click();
@@ -136,7 +136,7 @@ test('A5: Raid folds; a list pick stages the target with its preview; one Confir
 
 test('A6: a full hand discards before drawing, discloses nothing first, and the reward is acknowledged once',async({page})=>{
  const before=cardFixture('T37-reshuffle-before-match.json'),viewer=human(before.state),hand=before.state.cards!.hands[viewer]!;
- await begin(page,'/',PORTRAIT);await load(page,cardInput('T37-reshuffle-before-match.json'));
+ await begin(page,'/?setup',PORTRAIT);await load(page,cardInput('T37-reshuffle-before-match.json'));
  await page.keyboard.press('Escape');await page.setViewportSize(LANDSCAPE);await page.clock.runFor(5000);await exactly(page,before.state);
  await expect(page.locator('body')).not.toContainText('You drew');
  await openSurface(page,'actions');await page.getByRole('button',{name:`Discard ${hand[0]} (card 1)`,exact:true}).click();
@@ -231,7 +231,7 @@ test('A13: a version-1 save loads into continued play from the main file UI and 
  const origin=createGame(options);if(!origin.ok)throw Error(origin.errors.join(';'));let s=origin.state;
  const own=s.map.provinces.find(c=>s.ownerOf[c.id]===activePlayer(s)!.id)!.id;const actions:Action[]=[];
  for(let i=0;i<2;i++){const a:Action={kind:'reinforce',province:own,amount:1};s=next(s,a);actions.push(a);}
- const v1=serializeMatch(options,actions);await begin(page,'/',PORTRAIT);await load(page,v1,'old.json');
+ const v1=serializeMatch(options,actions);await begin(page,'/?setup',PORTRAIT);await load(page,v1,'old.json');
  expect(await savedText(page)).toBe(v1);await country(page,own).click();s=next(s,{kind:'reinforce',province:own,amount:1});
  expect(await savedText(page)).toBe(serializeMatch(options,s.history));
 });
@@ -254,7 +254,8 @@ test('A14: the first Fit picks its turn from the bounds and shows every country;
 
 test('release: the legacy views are retired; their URLs open the main game',{tag:'@release-only'},async({page})=>{
  for(const view of ['generated-game','authored-game','game-setup','generated-prototype']){
-  await page.goto(`/?view=${view}&seed=7`);await expect(page.locator('#geographic-seed')).toBeVisible();
+  // T96: the main game starts at once, here on the given seed.
+  await page.goto(`/?view=${view}&seed=7`);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);await expect(page.locator('.game-identity')).toContainText('Seed 7');
   for(const old of ['#generated-game','#generated-prototype','#game-setup'])await expect(page.locator(old)).toHaveCount(0);
  }
 });

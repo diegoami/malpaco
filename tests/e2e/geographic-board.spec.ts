@@ -71,9 +71,9 @@ test('measured corpus fixture is frozen and reproducible',()=>{
   const largest=game.state.map.islands.reduce((a,b)=>a.provinces.length>b.provinces.length?a:b),island=game.geography.islands.find(i=>i.id===largest.id)!,center=island.polygon.reduce((sum,p)=>sum+p[1],0)/island.polygon.length/game.geography.unitsPerPixel,diagnostic=layoutSupplement.layoutDiagnostics.find(r=>r.seed===row.seed)!;expect(center).toBeCloseTo(diagnostic.meanVertexCenterYCss,7);
  }expect(new Set(shapes).size).toBeGreaterThan(1);expect(new Set(layoutSupplement.layoutDiagnostics.map(r=>r.family))).toEqual(new Set(['top','middle','bottom']));
 });
-test('root and unknown view retain the established setup and playback controls',async({page})=>{
+test('the setup route (root and unknown view with ?setup) retains the established setup and playback controls',async({page})=>{
  await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));
- for(const url of ['/?generator=1','/?generator=1&view=unknown&seed=1994']){
+ for(const url of ['/?generator=1&setup','/?generator=1&view=unknown&seed=1994&setup']){
   await page.goto(url);await expect(page.getByLabel('Seats',{exact:true})).toHaveValue('4');
   for(let n=1;n<=4;n++)await expect(page.getByLabel(`Seat ${n} control`,{exact:true})).toHaveValue(n===1?'human':'computer');
   await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();await expect(page.locator('#reference-map')).toHaveCount(0);
@@ -134,7 +134,7 @@ for(const refusal of corpus.refusalSeeds.slice(0,1))test(`real measured refusal 
 });
 
 test('geographic computer playback pauses and cancels stale work on load',async({page})=>{
- await page.clock.install();await page.clock.pauseAt(new Date());await page.goto('/?generator=1');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
+ await page.clock.install();await page.clock.pauseAt(new Date());await page.goto('/?generator=1&setup');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
  let initial=deserializeVersionedMatch(await save(page));expect(initial.identity).toEqual(GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY);expect(initial.state.rules.cards).toBe('raid-v1');expect(initial.state).toEqual(expectedNormal(1994).state);let state=initial.state;
  for(let n=0;n<50&&(activePlayer(state)!.kind!=='computer'||state.phase!=='attack');n++){
   if(activePlayer(state)!.kind==='human'){

@@ -14,7 +14,7 @@ import {closeSurface,openSurface,withSurface} from './shell';
 const SIZES=[{width:390,height:844},{width:844,height:390},{width:820,height:1180},{width:1280,height:800}] as const;
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 
-async function begin(p:Page,path='/'){
+async function begin(p:Page,path='/?setup'){
  await p.clock.install({time:new Date('2026-10-21T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-21T12:00:00Z'));
  await p.goto(path);
  await p.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'savedBlob',blob);return create(blob);};});

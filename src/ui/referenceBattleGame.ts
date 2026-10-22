@@ -12,9 +12,10 @@ import { FriendlyMoveView } from "./friendlyMoveView";
 import { h } from "./dom";
 import { Panel } from "./panel";
 import { ReferenceMapView } from "./referenceMapView";
-import { VictoryView } from "./victoryView";
+import { GiveUpDialog, VictoryView } from "./victoryView";
 import type {MatchPresentation} from "./matchPresentation";
 import type {LoadedVersionedMatch} from "../core/match-save";
+import {serializeVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
 import { createPanelDetailControl } from "./panelDetail";
 import {BattleChrome} from "./battleChrome";
@@ -82,6 +83,11 @@ export class ReferenceBattleGame {
   private readonly picker: CountryPicker;
   private mounted = false;
   private disposed = false;
+  /** T96: the player's game asks before giving up, and keeps its record after every action. */
+  private readonly giveUp: GiveUpDialog | null = null;
+  private giveUpPaused = false;
+  private givenUp = false;
+  private persisted = -1;
   private readonly onKeyDown = (event: KeyboardEvent) => {
     if (event.key !== "Escape" || event.defaultPrevented || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
     if (this.chrome?.escape()) {event.preventDefault(); return;}
@@ -95,6 +101,15 @@ export class ReferenceBattleGame {
     });
     this.eventLog = new GameEventLog(options,presentation?.initialState);
     document.body.append(this.eventLog.dialog, this.help.dialog);
+    if (presentation?.player) {
+      this.giveUp = new GiveUpDialog({
+        open: () => {this.chrome?.close(false); this.giveUpPaused = !this.controller.playbackPaused; if (this.giveUpPaused) this.controller.setPlaybackPaused(true);},
+        keep: () => {if (this.giveUpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.giveUpPaused = false;},
+        giveUp: () => {this.givenUp = true; presentation.player!.persist(null); this.giveUp!.showResult(this.controller.state);},
+        newGame: () => { if (!this.disposed) this.onNewGame(); },
+      });
+      document.body.append(this.giveUp.dialog);
+    }
     this.help.dialog.addEventListener("close", () => {if (this.helpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.helpPaused = false;});
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
@@ -129,12 +144,12 @@ export class ReferenceBattleGame {
       onAttack: () => { this.controller.singleExchange(); },
       onStartCombat: () => { this.controller.dispatch({ kind: "endReinforcement" }); },
       onEndTurn: () => { this.controller.dispatch({ kind: "endTurn" }); },
-      onNewGame: () => { if (!this.disposed) this.onNewGame(); },
+      onNewGame: () => this.newGame(),
     });
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
     this.battle = new BattleView(this.controller, () => { this.controller.select(null, null); this.chrome?.close(); }, () => this.chrome?.close());
     this.friendly = new FriendlyMoveView(this.controller);
-    this.victory = new VictoryView(this.controller, {newGame: () => { if (!this.disposed) this.onNewGame(); }, menu: () => this.chrome?.openMenu(),
+    this.victory = new VictoryView(this.controller, {newGame: () => this.newGame(), menu: () => this.chrome?.openMenu(), files: this.showsFiles,
       details: () => [`Seed: ${options.seed}`, `Seats: ${options.seats.map((seat, i) => `${i + 1} ${seat.kind === "computer" ? "Computer" : "Human"}`).join(" · ")}`,
         `Victory: ${options.dominationWin ? "Domination" : "Total conquest"}${options.roundLimit ? ` · Round limit ${options.roundLimit}` : ""}`, `Map: ${presentation?.label ?? "Nine Isles"}`]});
     this.action = this.panel.el.querySelector<HTMLElement>(".action")!;
@@ -145,6 +160,19 @@ export class ReferenceBattleGame {
   }
 
   focusMenu(): void {this.chrome?.focusMenuOpener();}
+
+  /** The player's game has no file controls; tests and development keep them (`?files`, or the stored flag). */
+  private get showsFiles(): boolean {
+    if (!this.presentation?.player) return true;
+    try {return new URLSearchParams(location.search).has("files") || localStorage.getItem("malpaco:files") === "1";} catch {return false;}
+  }
+
+  /** New game: in the player's game, an unfinished game is given up first (T96). */
+  private newGame(): void {
+    if (this.disposed) return;
+    if (this.giveUp && !this.controller.state.result) this.giveUp.ask();
+    else this.onNewGame();
+  }
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
@@ -158,7 +186,7 @@ export class ReferenceBattleGame {
       ? `${name} · ${humans} human / ${computers} computer seats · ${this.automatic ? "Computer play" : "Manual play"} · Seed ${this.options.seed}`
       : `${name} · ${this.options.seats.length} human seats · Seed ${this.options.seed}`;
     const identity = h("p", {class: "game-identity"}, h("strong", {}, "Malpaco"), " · ", subtitle);
-    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, this.eventLog.button, this.changesButton, this.help.button, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, this.files.el);
+    const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, identity, h("div", { class: "game-playback" }, this.eventLog.button, this.changesButton, this.help.button, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed, h("label", { for: "panel-detail" }, "Panel detail"), this.panelDetail), footer, ...(this.showsFiles ? [this.files.el] : []));
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, cards: this.cardControls.el, history: this.panel.el.querySelector<HTMLElement>(".log-card")!, score, settings,
@@ -182,7 +210,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
-    this.eventLog.dispose(); this.help.dispose();
+    this.eventLog.dispose(); this.help.dispose(); this.giveUp?.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
@@ -240,6 +268,16 @@ export class ReferenceBattleGame {
     this.mapView.camera?.refreshControls();
   }
 
+  /** T96: the versioned save text after every action, so a refresh replays it; a finished game clears it. */
+  private persist(state: GameState): void {
+    const player = this.presentation?.player;
+    if (!player || this.givenUp || state.history.length === this.persisted) return;
+    this.persisted = state.history.length;
+    let text: string | null = null;
+    if (!state.result) try {text = serializeVersionedMatch(this.options, state.history, this.presentation!.identity);} catch {text = null;}
+    player.persist(text);
+  }
+
   private computerActive(): boolean {
     const state = this.controller.state;
     return this.automatic && activePlayer(state)?.kind === "computer" && state.phase !== "human-loss" && state.phase !== "finished";
@@ -250,6 +288,7 @@ export class ReferenceBattleGame {
     this.cards.update();
     this.cardControls.render();
     this.eventLog.update(this.controller.state);
+    this.persist(state);
     this.playbackPause.textContent = this.controller.playbackPaused ? "Resume" : "Pause";
     this.playbackPause.setAttribute("aria-label", this.controller.playbackPaused ? "Resume game" : "Pause game");
     this.playbackSpeed.value = this.controller.view.speed;

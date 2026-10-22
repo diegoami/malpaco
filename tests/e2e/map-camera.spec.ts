@@ -15,7 +15,7 @@ async function begin(p:Page,width=1280,height=800){
  await p.setViewportSize({width,height});
  // Pause a second after install: pausing at the install time itself races the running clock.
  await p.clock.install({time:new Date('2026-10-19T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-19T12:00:01Z'));
- await p.goto('/');await p.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'cameraSave',blob);return create(blob);};});
+ await p.goto('/?setup');await p.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'cameraSave',blob);return create(blob);};});
 }
 async function drawer(p:Page,open:boolean){
  const d=p.locator('#game-focus-drawer');
