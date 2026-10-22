@@ -76,9 +76,10 @@ export class ScoreboardDialog {
     const stat = (id: string, term: string, value: string) => h("div", {}, h("dt", {}, term), h("dd", {id}, value));
     const totals = h("dl", {id: "scoreboard-totals", class: "scoreboard-totals"}, stat("scoreboard-played", "Played", String(played(t))), stat("scoreboard-won", "Won", String(t.won)),
       stat("scoreboard-lost", "Lost", String(t.lost)), stat("scoreboard-gave-up", "Gave up", String(t.gaveUp)), stat("scoreboard-win-rate", "Win rate", rate === null ? "–" : `${rate}%`));
-    const date = (iso: string) => {const d = new Date(iso); return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString(undefined, {year: "numeric", month: "short", day: "numeric"});};
-    const list = board.recent.length ? h("table", {id: "scoreboard-games"}, h("caption", {}, `Last ${RECENT_GAMES} games, newest first`),
-      h("thead", {}, h("tr", {}, ...["Date", "Result", "Rounds", "Your countries", "Seed"].map(c => h("th", {scope: "col"}, c)))),
+    // A short date fits a phone; the full one is its title.
+    const date = (iso: string) => {const d = new Date(iso); return Number.isNaN(d.getTime()) ? iso : h("time", {datetime: iso, title: d.toLocaleString()}, d.toLocaleDateString(undefined, {month: "short", day: "numeric"}));};
+    const list = board.recent.length ? h("table", {id: "scoreboard-games"}, h("caption", {}, `Last ${RECENT_GAMES} games, newest first; Countries are yours at the end`),
+      h("thead", {}, h("tr", {}, ...["Date", "Result", "Rounds", "Countries", "Seed"].map(c => h("th", {scope: "col"}, c)))),
       h("tbody", {}, ...board.recent.map(row => h("tr", {"data-result": row.result}, h("td", {}, date(row.date)), h("th", {scope: "row"}, RESULT_LABEL[row.result]),
         h("td", {}, String(row.rounds)), h("td", {}, String(row.countries)), h("td", {}, String(row.seed))))))
       : h("p", {id: "scoreboard-empty", class: "card-note"}, "No games recorded yet. A game counts once, when it ends.");

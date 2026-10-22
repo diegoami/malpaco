@@ -1760,7 +1760,7 @@ dialog h2 {
 .scoreboard-totals dd { margin:2px 0 0; font:700 18px/1.2 Inter, system-ui, sans-serif; font-variant-numeric:tabular-nums; }
 #scoreboard-games { width:100%; border-collapse:collapse; font-size:13px; font-variant-numeric:tabular-nums; }
 #scoreboard-games caption { text-align:left; color:var(--muted); margin-bottom:6px; }
-#scoreboard-games :is(th,td) { padding:6px 4px; border-bottom:1px solid var(--line); text-align:right; font-weight:400; }
+#scoreboard-games :is(th,td) { padding:6px 4px; white-space:nowrap; border-bottom:1px solid var(--line); text-align:right; font-weight:400; }
 #scoreboard-games :is(th,td):is(:first-child, :nth-child(2)) { text-align:left; }
 #scoreboard-games tr[data-result="won"] th { color:#86efac; font-weight:600; }
 .scoreboard .help-actions, .scoreboard-confirm { margin-top:12px; background:#12202e; }
