@@ -86,6 +86,15 @@ for(const size of SIZES){
   await expect(other.locator('#open-hand')).toBeHidden();
  });
 
+ test(`${size.width}x${size.height}: #267: your cards window closes when a computer's turn begins`,async({page})=>{
+  const {text}=played(s=>human(s)&&s.phase==='attack'&&!s.pendingCapture&&!s.capturedThisTurn&&hand(s).length>0);
+  await opened(page,text,size);
+  await page.locator('#open-hand').click();await expect(page.locator('#hand-dialog')).toBeVisible();
+  await page.locator('#end-turn-button').click();
+  await expect.poll(async()=>human(await kept(page))).toBe(false);
+  await expect(page.locator('#hand-dialog')).toBeHidden();await expect(page.locator('#close-hand')).toBeHidden();
+ });
+
  test(`${size.width}x${size.height}: after a draw, the reward card lists your whole hand with the new card marked`,async({page})=>{
   const {state,text}=played(s=>human(s)&&s.phase==='attack'&&!s.pendingCapture&&s.capturedThisTurn&&hand(s).length<4&&!s.cards?.pendingDiscard);
   await opened(page,text,size);

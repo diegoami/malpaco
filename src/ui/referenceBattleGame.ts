@@ -381,6 +381,8 @@ export class ReferenceBattleGame {
     this.victory.render(state, revision);
     if(this.controller.cardAcknowledgmentPending)this.victory.el.hidden=true;
     const computer = this.computerActive() && !this.controller.cardAcknowledgmentPending;
+    // #267: a computer's turn shows only the speed controls, so your cards window closes.
+    if (computer) this.hand?.hide();
     // T103: on the player's own turn, with no card choice waiting.
     const quiet = !computer && !this.controller.playbackPaused && !state.result && activePlayer(state)?.kind === "human"
       && !this.controller.cardAcknowledgmentPending && !["sets","raid-target","discard","reward"].includes(this.cards.view.phase);
@@ -410,7 +412,10 @@ export class ReferenceBattleGame {
       const anchor = state.pendingCapture ? state.pendingCapture.to : mode === "move" && from && to ? to : null;
       if (anchor !== this.anchoredTo) {
         this.anchoredTo = anchor;
-        this.chrome?.anchorTo(anchor ? () => document.querySelector(`[data-country="${CSS.escape(anchor)}"] .count`)?.getBoundingClientRect() ?? null : null);
+        // Beside the destination's count, clear of both countries' counts (#266).
+        const other = state.pendingCapture ? state.pendingCapture.from : from;
+        const box = (id: string | null) => id ? document.querySelector(`[data-country="${CSS.escape(id)}"] .count`)?.getBoundingClientRect() ?? null : null;
+        this.chrome?.anchorTo(anchor ? () => {const near = box(anchor); return near ? {near, avoid: [near, box(other)].filter((r): r is DOMRect => !!r)} : null;} : null);
       }
     }
     const name = (id: string | undefined) => seatName(state.players, id);
