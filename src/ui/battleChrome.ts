@@ -211,8 +211,29 @@ export class BattleChrome {
   }
 
   private avoid: readonly DOMRect[] = [];
+  /** T103: the amount bar of a capture or a move rests beside its country, following the camera. */
+  private anchor: (() => DOMRect | null) | null = null;
+  private anchorFrame: number | null = null;
+  anchorTo(rect: (() => DOMRect | null) | null): void {
+    this.anchor = rect;
+    if (rect && this.anchorFrame === null) {
+      const tick = () => {this.anchorFrame = this.anchor ? requestAnimationFrame(tick) : null; if (this.anchor) this.reposition();};
+      this.anchorFrame = requestAnimationFrame(tick);
+    }
+    this.reposition();
+  }
   private reposition(): void {
     if (this.drawer.hidden) return;
+    // Beside its country: below the count when there is room, else above it (T103).
+    const near = this.anchor?.();
+    if (near) {
+      const frame = this.overlay.getBoundingClientRect(), card = this.drawer.getBoundingClientRect(), gap = 8;
+      const below = near.bottom + gap + card.height <= frame.bottom;
+      this.moveTo({x: near.left + near.width / 2 - card.width / 2 - frame.left, y: (below ? near.bottom + gap : near.top - gap - card.height) - frame.top});
+      this.drawer.dataset["anchored"] = "true";
+      return;
+    }
+    delete this.drawer.dataset["anchored"];
     // A card the player dragged rests where it was put, inside the safe viewport (T101).
     if (this.position) {this.moveTo(this.position); return;}
     this.drawer.removeAttribute("data-moved");
@@ -461,5 +482,5 @@ export class BattleChrome {
     this.pool.title = this.pool.getAttribute("aria-label")!;
   }
 
-  dispose(): void {if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer); this.close(false); this.overlay.remove();}
+  dispose(): void {this.anchor = null; if (this.anchorFrame !== null) cancelAnimationFrame(this.anchorFrame); if (this.fadeTimer !== null) window.clearTimeout(this.fadeTimer); this.close(false); this.overlay.remove();}
 }

@@ -1803,3 +1803,19 @@ dialog h2 {
 /* A narrow screen keeps the pool beside the menu icon, clear of the speed choice. */
 @media (max-width:479px) { .battle-reference .game-pool-slot { justify-self:start; margin-left:calc(var(--target) + var(--gap)); } .battle-reference .game-overlay #game-speed { width:86px; padding:0 4px; font-size:14px; } }
 .battle-reference .game-overlay #active-seat-notice:not(:has(button)) { padding-right:18px; }
+
+/* T103: Fight or Move beside the selected country. */
+.province-action { position:fixed; z-index:55; width:44px; height:44px; min-width:44px; padding:0; border-radius:12px; box-shadow:0 2px 8px #000a; }
+.province-action[hidden] { display:none; }
+.province-action:disabled { opacity:.55; }
+.province-action[aria-pressed="true"] { outline:3px solid var(--accent); outline-offset:3px; }
+/* T104: your cards, on request and after each draw. */
+.hand-button { position:relative; }
+.hand-button .hand-count { position:absolute; right:-4px; top:-4px; min-width:20px; height:20px; padding:0 5px; border-radius:10px; background:var(--accent); color:var(--accent-ink); font-size:13px; font-weight:700; line-height:20px; text-align:center; }
+.hand-dialog { position:fixed; z-index:70; inset:auto; top:calc(env(safe-area-inset-top,0px) + 76px); left:50%; translate:-50% 0; margin:0; width:min(360px,92vw); max-height:calc(100vh - 160px); box-shadow:0 8px 24px #000b; }
+.hand-body { padding:12px 16px 4px; }
+.hand-list { margin:0 0 10px; padding-left:24px; display:grid; gap:6px; font-weight:600; }
+.hand-list [data-new="true"] { color:var(--accent); }
+.hand-plays { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.hand-plays button { min-height:44px; }
+.private-card-reward + .hand-list { margin-top:4px; }

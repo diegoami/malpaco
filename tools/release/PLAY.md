@@ -25,17 +25,20 @@ You are **You**; the three computers are named by their seat colours: **Orange**
 **Purple** (in games with two or more humans every seat is its colour). Saved games keep `Seat N`.
 
 During your turn, place reinforcements on your territories,
-then choose **Start combat**. Select one of your territories, then an adjacent enemy:
-that only chooses the target. **Fight** rolls one exchange each time you press it; nothing
+and combat starts by itself once the last army is placed. Select one of your territories: on it
+appears **Fight** if it can attack, or **Move** if it can only move armies. Press **Fight**, then
+tap an adjacent enemy: one round is fought; press **Fight** again for another. Selecting another
+territory moves the icon there. Without **Fight**, tapping an enemy only chooses the target. **Fight** rolls one exchange each time you press it; nothing
 continues on its own, and **Cancel** drops the target. Clicks, Enter/Space, touch and the
 Countries list all work the same way. After capturing a territory, choose the army amount with
-−, + and **Confirm**; until then the two countries' counts are dashed.
+−, + and **Confirm** on the bar beside the captured territory; until then the two countries'
+counts are dashed.
 On the map, your selected country has a solid gold outline, the countries it can attack a dashed
 light one, and the chosen target a solid light outline with a crosshair round its count, so none of
 them relies on colour alone. Counts never draw smaller than 14 px; stacks over 999 show as 1.2k or
 23k, and the country's spoken name keeps the exact number.
-You can make one adjacent friendly move per turn: **Move armies**, then a source and an own
-neighbour, then −, the amount, + and **Confirm** (or **Cancel**). Computer turns run automatically
+You can make one adjacent friendly move per turn: **Move armies** (or **Move** beside a selected
+territory), then a source and an own neighbour, then −, the amount, + and **Confirm** (or **Cancel**). Computer turns run automatically
 and quickly: a round of three Normal computers takes about ten seconds. Each computer's turn shows
 one notice, such as "Orange's turn", while its counts and colours change on the map; its moves are
 not staged or outlined.
@@ -47,6 +50,10 @@ trade, plus **Skip**; one per card when a full hand must discard before drawing 
 stays hidden until then). A Raid folds its card to a one-line strip so the whole map is free: tap
 a highlighted enemy country, or choose one from **Countries**, then **Confirm**.
 Games with two or more human seats currently play without cards.
+Your cards are behind the card icon next to the menu, which shows how many you hold: it opens
+the list, and closes with ×, Escape or another tap. At the start of your turn a set can be played
+from that list (or from the set card that opens by itself). After each draw, the card shows your
+whole hand with the new card marked.
 
 The speed controls share the top-right corner: the **Game speed** choice (Slow and Very slow let
 you watch every move), **Pause**, and, while computers play, a gold **Fast-forward** icon that plays

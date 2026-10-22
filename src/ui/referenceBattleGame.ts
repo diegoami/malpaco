@@ -1,5 +1,5 @@
 import {CardController} from "./cardController";
-import {CardView} from "./cardView";
+import {CardView, HandDialog} from "./cardView";
 import { GameEventLog } from "./gameEventLog";
 import { dominationThreshold } from "../core/victory";
 import { activePlayer, attackTargets, friendlySources, friendlyTargets, ownerOf, whyNot } from "../core";
@@ -22,6 +22,7 @@ import {glyph} from "./icons";
 import type {Notice} from "./battleChrome";
 import {GameHelp} from "./help";
 import {CountryPicker} from "./countryPicker";
+import {ProvinceAction} from "./provinceAction";
 import {seatName} from "./palette";
 import {ScoreboardDialog} from "./scoreboard";
 import type {GameOutcome} from "./scoreboard";
@@ -77,6 +78,14 @@ export class ReferenceBattleGame {
   private giveUpPaused = false;
   private givenUp = false;
   private persisted = -1;
+  /** T103: the history length at which placement last ended by itself, so it ends once. */
+  private autoStarted = -1;
+  /** T103: Fight or Move on the selected country (the player's game), and the country Fight is armed for. */
+  private readonly provinceAction: ProvinceAction | null = null;
+  private armed: string | null = null;
+  /** T104: your cards on request (the player's game). */
+  private hand: HandDialog | null = null;
+  private anchoredTo: string | null = null;
   private persistedSeat = -1;
   /** T100: the menu's scoreboard (the player's game only); a game is recorded once, if it was unfinished when it opened. */
   private readonly scoreboard: ScoreboardDialog | null = null;
@@ -93,6 +102,7 @@ export class ReferenceBattleGame {
   constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, private readonly preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState, loaded?:LoadedVersionedMatch) => void, private readonly automatic = false, private readonly presentation?:MatchPresentation) {
     this.eventLog = new GameEventLog(options,presentation?.initialState);
     document.body.append(this.eventLog.dialog, this.help.dialog);
+    if (presentation?.player) {this.provinceAction = new ProvinceAction(); document.body.append(this.provinceAction.el);}
     if (presentation?.player) {
       this.giveUp = new GiveUpDialog({
         open: () => {this.chrome?.close(false); this.giveUpPaused = !this.controller.playbackPaused; if (this.giveUpPaused) this.controller.setPlaybackPaused(true);},
@@ -117,6 +127,7 @@ export class ReferenceBattleGame {
     const human=state.players.filter(p=>p.kind!=='computer');
     this.cards=new CardController(this.controller,human.length===1?human[0]!.id:'');
     this.cardControls=new CardView(this.cards,this.controller);
+    if(presentation?.player){this.hand=new HandDialog(this.cards,()=>this.chrome?.close(false));document.body.append(this.hand.dialog);}
     this.computer = automatic ? new ComputerTurnLoop(this.controller, { schedule: (cb, delay) => window.setTimeout(cb, delay), cancel: id => window.clearTimeout(id) }) : null;
     const threshold = preferences.threshold, speed = preferences.speed;
     this.controller.restorePreferences(threshold, speed);
@@ -193,6 +204,8 @@ export class ReferenceBattleGame {
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
       phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+    // T104: your cards sit beside the menu icon.
+    if (this.hand) this.chrome.hud.append(this.hand.button);
     // The Countries icon always opens on the list.
     this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
     // The history is its own card over the map: the menu steps aside for it.
@@ -217,7 +230,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
-    this.eventLog.dispose(); this.help.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
+    this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.hand?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
@@ -250,9 +263,11 @@ export class ReferenceBattleGame {
     } else if (ownerOf(state, id) === activePlayer(state)?.id) {
       this.controller.select(from === id && to === null ? null : id, null);
     } else if (from !== null) {
-      // T82: a target is staged, never fought; only the card's Attack rolls an exchange.
+      // T82: a target is staged, never fought, unless the player armed Fight on the source (T103).
       if (this.controller.select(from, id)) {
-        if (this.chrome?.openSurface !== "actions") this.chrome?.open("actions", this.chrome.countries, false);
+        // T103: with Fight armed on the source, the tapped enemy is fought at once, one round.
+        if (this.armed === from) this.controller.singleExchange();
+        else if (this.chrome?.openSurface !== "actions") this.chrome?.open("actions", this.chrome.countries, false);
       } else {
         // The engine's reason appears as the one-line notice until the next choice.
         this.refusal = {text: whyNot(state, from, id), key: `${state.history.length}:${from}:${to}`};
@@ -328,6 +343,7 @@ export class ReferenceBattleGame {
     if (this.controller.view !== seen && this.mounted) return;
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
     this.cardControls.render();
+    this.hand?.update();
     this.eventLog.update(this.controller.state);
     this.record(state);
     this.persist(state);
@@ -353,7 +369,8 @@ export class ReferenceBattleGame {
     end.addEventListener("click", () => this.controller.dispatch({ kind: "endTurn" }, revision));
     const move = h("button", {type:"button", id:"start-friendly-move-button", disabled:running || paused || friendlySources(state).length === 0}, "Move armies");
     move.style.display = state.phase === "attack" ? "" : "none";
-    move.addEventListener("click", () => { this.controller.startFriendlyMove(revision); });
+    // T103 (owner): the country already selected stays selected as the move's source, when it can be one.
+    move.addEventListener("click", () => { if (this.controller.startFriendlyMove(revision) && from && friendlySources(state).includes(from)) this.controller.select(from, null); });
     // While moving, the End turn flag skips the move (the friendly card has no Skip, as in the sketches).
     this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, ...(mode === "move" ? [] : [move]));
     this.phaseActions.style.display = state.result || ['sets','raid-target','discard','reward'].includes(this.cards.view.phase) ? "none" : "";
@@ -364,6 +381,38 @@ export class ReferenceBattleGame {
     this.victory.render(state, revision);
     if(this.controller.cardAcknowledgmentPending)this.victory.el.hidden=true;
     const computer = this.computerActive() && !this.controller.cardAcknowledgmentPending;
+    // T103: on the player's own turn, with no card choice waiting.
+    const quiet = !computer && !this.controller.playbackPaused && !state.result && activePlayer(state)?.kind === "human"
+      && !this.controller.cardAcknowledgmentPending && !["sets","raid-target","discard","reward"].includes(this.cards.view.phase);
+    // T103 (owner): when the player places their last army, combat starts as if Start combat were pressed.
+    if (this.presentation?.player && quiet && state.phase === "reinforce" && state.reinforcementPool === 0
+      && state.history.at(-1)?.kind === "reinforce" && this.autoStarted !== state.history.length) {
+      this.autoStarted = state.history.length;
+      queueMicrotask(() => {if (!this.disposed) this.controller.dispatch({ kind: "endReinforcement" }, revision);});
+    }
+    if (this.provinceAction) {
+      // On the selected country: Fight when it can attack (armed by a press; then a tapped enemy is one
+      // round, and a press with a target is another), else Move (a press starts the move from it).
+      const source = quiet && state.phase === "attack" && !state.pendingCapture && !running ? from : null;
+      if (this.armed !== source) this.armed = null;
+      if (source && mode !== "move" && attackTargets(state, source).length) {
+        const ready = !!to && whyNot(state, source, to) === "";
+        this.provinceAction.show(source, "fight", !paused, this.armed === source, () => {
+          if (ready) this.controller.singleExchange(revision);
+          else {this.armed = source; this.render();}
+        });
+      } else if (source && mode !== "move" && friendlySources(state).includes(source)) {
+        this.provinceAction.show(source, "move", !paused, false, () => {if (this.controller.startFriendlyMove(revision)) this.controller.select(source, null);});
+      } else if (source && mode === "move" && !to) {
+        this.provinceAction.show(source, "move", !paused, true, () => {this.controller.cancelFriendlyMove(revision);});
+      } else this.provinceAction.hide();
+      // The amount bar of a capture or a move rests beside that country.
+      const anchor = state.pendingCapture ? state.pendingCapture.to : mode === "move" && from && to ? to : null;
+      if (anchor !== this.anchoredTo) {
+        this.anchoredTo = anchor;
+        this.chrome?.anchorTo(anchor ? () => document.querySelector(`[data-country="${CSS.escape(anchor)}"] .count`)?.getBoundingClientRect() ?? null : null);
+      }
+    }
     const name = (id: string | undefined) => seatName(state.players, id);
     this.panel.el.dataset["computerActive"] = String(computer);
     this.computerStatus.hidden = !computer;
@@ -423,6 +472,8 @@ export class ReferenceBattleGame {
     // controls stay on screen; the menu, camera and Countries icons return on your turn or a pause.
     const restore = computer && !result && this.chrome?.openSurface === "actions" && (document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
     this.chrome?.update(status, choice, gamePaused, prompt, computer && !result && !gamePaused);
+    // T103 (owner): a card with nothing to do (an attack card whose pair can no longer fight: only Cancel) closes.
+    if (this.presentation?.player && this.chrome?.openSurface === "actions" && !required && mode !== "move" && !state.pendingCapture && !result && !raiding && state.phase === "attack" && !(from && to && whyNot(state, from, to) === "")) this.chrome.close(false);
     // A paused computer turn still shows no choice card (its menu card may open).
     if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
     if (restore) this.playbackPause.focus({preventScroll: true});

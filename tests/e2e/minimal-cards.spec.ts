@@ -176,7 +176,8 @@ test.describe('computer turns',()=>{
    if(await pool.isVisible()){
     // A country of yours that nothing floats over (the notice floats over the map too).
     const own=await page.locator('[data-country][aria-label*=", You, "]').evaluateAll(ns=>ns.find(n=>{const r=n.querySelector('.cell')!.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);return !!hit&&n.contains(hit);})?.getAttribute('data-country'));
-    for(let n=Number(await pool.textContent());n>0;n--)await country(page,own!).click();await page.locator('#start-combat-button').click();}
+    // T103: the last army placed starts combat by itself.
+    for(let n=Number(await pool.textContent());n>0;n--)await country(page,own!).click();await expect(page.locator('#start-combat-button')).toHaveCount(0);}
    await page.locator('#end-turn-button').click();
   };
   if(!await mine.count())await computerTurn();
