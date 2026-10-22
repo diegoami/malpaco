@@ -1257,10 +1257,10 @@ dialog h2 {
 .reference-domination input { width:20px; height:20px; margin:0; }
 .victory-result[hidden] { display:none; }
 #victory-reason { margin:0 0 12px; }
-#victory-standings { width:100%; border-collapse:collapse; font-size:13px; font-variant-numeric:tabular-nums; }
-#victory-standings caption { text-align:left; color:var(--muted); margin-bottom:6px; }
-#victory-standings :is(th,td) { padding:7px 4px; border-bottom:1px solid var(--line); text-align:right; }
-#victory-standings th:first-child { text-align:left; }
+:is(#victory-standings, #give-up-standings) { width:100%; border-collapse:collapse; font-size:13px; font-variant-numeric:tabular-nums; }
+:is(#victory-standings, #give-up-standings) caption { text-align:left; color:var(--muted); margin-bottom:6px; }
+:is(#victory-standings, #give-up-standings) :is(th,td) { padding:7px 4px; border-bottom:1px solid var(--line); text-align:right; }
+:is(#victory-standings, #give-up-standings) th:first-child { text-align:left; }
 .victory-guidance { margin:12px 0 0; color:var(--muted); font-size:13px; }
 .victory-choices { display:grid; gap:8px; margin-top:12px; }
 .battle-reference .panel:is([data-phase="finished"],[data-phase="human-loss"]) .action > :is(.pick,.hint,.legend) { display:none; }
@@ -1769,3 +1769,11 @@ dialog h2 {
 #close-scoreboard { min-height:44px; padding:0 14px; }
 @media (max-width:480px) { .scoreboard-totals { grid-template-columns:repeat(3, minmax(0,1fr)); } }
 .result-totals { font-variant-numeric:tabular-nums; }
+/* T96's give-up dialog, styled like the result card (T100, a play-test finding): inner padding,
+   the title and notes spaced, the standings table aligned, and 44 px buttons with a gap. */
+#give-up-dialog { width:min(400px, calc(100vw - 32px)); padding:20px; }
+#give-up-dialog h2 { margin:0 0 8px; font-size:20px; }
+#give-up-dialog > p { margin:0 0 8px; font-size:14px; line-height:1.4; }
+#give-up-dialog > .result-totals { margin-bottom:12px; }
+#give-up-dialog .help-actions { position:static; display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; margin-top:16px; padding:0; background:none; }
+#give-up-dialog .help-actions button { min-height:44px; min-width:44px; padding:0 16px; font-size:15px; }

@@ -153,3 +153,29 @@ test('the result card shows the totals line at phone size',async({page})=>{
  await expect(page.locator('#victory-totals')).toHaveText('Won 1 · Lost 3 · Gave up 2');await shots('result-totals',page);
  const box=(await page.locator('#victory-totals').boundingBox())!;expect(box.x+box.width).toBeLessThanOrEqual(390);
 });
+
+test('the give-up dialog is padded like the result card in both stages, with its totals line beside the standings (play-test finding)',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await page.goto('/');await map(page);
+ const dialog=page.locator('#give-up-dialog');
+ /** Every part sits at least 12 px inside the dialog's edges; buttons are 44 px tall. */
+ const inset=async()=>{
+  // Measured once the dialog's opening animation has settled.
+  await dialog.evaluate(d=>Promise.all(d.getAnimations({subtree:true}).map(a=>a.finished)));
+  const box=(await dialog.boundingBox())!;
+  for(const part of await dialog.locator(':scope > *, .help-actions button').all()){const r=(await part.boundingBox())!;
+   expect(r.x-box.x,'left inset').toBeGreaterThanOrEqual(12);expect(box.x+box.width-(r.x+r.width),'right inset').toBeGreaterThanOrEqual(12);}
+  for(const button of await dialog.locator('button').all())expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+ };
+ await page.locator('#open-game-menu').click();await page.locator('#new-game-button').click();await expect(dialog).toBeVisible();
+ await inset();
+ const [yes,no]=[(await page.locator('#give-up-confirm').boundingBox())!,(await page.locator('#give-up-cancel').boundingBox())!];
+ expect(no.x-(yes.x+yes.width),'a gap between the buttons').toBeGreaterThanOrEqual(8);
+ await page.locator('#give-up-confirm').click();await expect(dialog.getByRole('heading',{name:'You gave up'})).toBeVisible();
+ await inset();
+ // The standings read as a table: Seat left, the numbers right, and the totals line just above it.
+ const align=(sel:string)=>dialog.locator(sel).first().evaluate(n=>getComputedStyle(n).textAlign);
+ expect([await align('thead th:first-child'),await align('tbody th'),await align('tbody td')]).toEqual(['left','left','right']);
+ const totals=(await dialog.locator('#give-up-totals').boundingBox())!,table=(await dialog.locator('#give-up-standings').boundingBox())!;
+ expect(table.y-(totals.y+totals.height)).toBeLessThanOrEqual(24);
+ await page.waitForTimeout(300);await shots('give-up-result',page);
+});

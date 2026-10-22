@@ -25,7 +25,7 @@ import {seatName} from "./palette";
 import {ScoreboardDialog} from "./scoreboard";
 import type {GameOutcome} from "./scoreboard";
 
-/** Session-only preferences. Full presentation persistence is T56. */
+/** Presentation preferences; the player's game keeps its speed and Pause in this browser (T100). */
 export type PanelDetail = "compact" | "detailed";
 export interface BattlePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
 
