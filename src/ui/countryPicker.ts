@@ -1,7 +1,7 @@
 import type {GameState} from "../core";
 import {h, s} from "./dom";
 import {glyph} from "./icons";
-import {seatLook} from "./palette";
+import {seatLook, seatName} from "./palette";
 
 /**
  * T81: the requested Countries card. Every country is reachable by name, by touch and
@@ -59,7 +59,7 @@ export class CountryPicker {
   /** One country as a named button that acts now, plus its Inspect icon. */
   private row(view: PickerView, id: string): HTMLElement {
     const f = this.facts(view.state, id), legal = view.legal.includes(id);
-    const label = `${f.p.name}, Seat ${f.seat + 1}, ${f.armies} ${f.armies === 1 ? "army" : "armies"}${f.centre ? ", production centre" : ""}`;
+    const label = `${f.p.name}, ${seatName(view.state.players, f.owner.id)}, ${f.armies} ${f.armies === 1 ? "army" : "armies"}${f.centre ? ", production centre" : ""}`;
     const choose = h("button", {type: "button", class: "country-row", "data-country-row": id, "data-key": `choose:${id}`, disabled: !legal,
       "aria-label": legal ? `${view.verb}: ${label}` : label, title: legal ? view.verb : "Not available now"},
       chip(f.seat), h("span", {class: "country-row-name"}, f.p.name), ...(f.centre ? [h("span", {class: "country-row-centre", "aria-hidden": "true"}, "★")] : []),
@@ -101,7 +101,7 @@ export class CountryPicker {
     return [
       h("h3", {class: "country-inspected", id: "inspected-country"}, chip(f.seat), f.p.name),
       h("dl", {class: "country-facts"},
-        h("dt", {}, "Owner"), h("dd", {}, f.owner.name === `Seat ${f.seat + 1}` ? f.owner.name : `${f.owner.name} · Seat ${f.seat + 1}`),
+        h("dt", {}, "Owner"), h("dd", {}, seatName(view.state.players, f.owner.id)),
         h("dt", {}, "Armies"), h("dd", {id: "inspected-armies"}, String(f.armies)),
         h("dt", {}, "Island"), h("dd", {}, `${f.island.name} · +${f.island.bonus} when held whole`),
         ...(f.centre ? [h("dt", {}, "Centre"), h("dd", {}, "Production centre")] : [])),

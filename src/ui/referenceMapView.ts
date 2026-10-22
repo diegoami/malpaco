@@ -1,7 +1,7 @@
 // Adapt the geographical drawing to stable canonical game-country IDs.
 import drawing from "../../fixtures/new-game/T65/map.svg?raw";
 import {s} from "./dom";
-import {badgeScale,countLabel,seatLook,TARGET_MARK} from "./palette";
+import {badgeScale,countLabel,seatLook,seatName,TARGET_MARK} from "./palette";
 import {NameLayer} from "./nameLayer";
 import {MapCamera} from "./mapCamera";
 import type {GameMap} from "../core";
@@ -42,7 +42,7 @@ export class ReferenceMapView{
    n.classList.toggle("selected",view.selected===id);n.classList.toggle("target",view.target===id&&view.selected!==id);
    // T82: a pending capture's two countries keep dashed badges until Confirm.
    n.classList.toggle("pending",!!state.pendingCapture&&(state.pendingCapture.from===id||state.pendingCapture.to===id));n.classList.toggle("neighbor",view.targets.includes(id));n.setAttribute("aria-pressed",String(view.selected===id));
-   const description=`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies, ${state.players[seat]!.name}`;
+   const description=`${state.map.provinces.find(p=>p.id===id)!.name}, ${seatName(state.players,state.ownerOf[id])}, ${state.armies[id]} armies`;
    n.setAttribute("aria-label",description);n.querySelector("title")!.textContent=description;
    const badge=n.querySelector<SVGPathElement>(".badge")!,count=n.querySelector<SVGTextElement>(".count")!;
    badge.setAttribute("d",seatLook(seat).badge);badge.style.stroke=seatLook(seat).color;

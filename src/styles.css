@@ -1449,12 +1449,11 @@ dialog h2 {
 .battle-reference[data-panel-detail] .battle-rolls { max-height:36px; }
 .battle-reference[data-panel-detail] .battle-controls button { min-height:32px; padding:4px 8px; }
 
-/* T79/T92: the quiet full-viewport shell, after the accepted revision-7 sketches.
+/* T79/T92/T97: the quiet full-viewport shell, after the accepted revision-7 sketches.
    The board fills the viewport minus the safe areas. Only corner icons rest on it:
-   menu and Cards top-left, Pause top-right, Fit bottom-left, the information icon
-   and legal phase actions bottom-right; the pool is an icon and a number at top
-   centre. One-line notices and one requested card sit beside the map in their own
-   grid area, so no overlay covers another or a required control. Tests override
+   the menu top-left, Pause top-right, Fit and Countries bottom-left, the legal phase
+   actions bottom-right; the pool is an icon and a number at top centre. One-line
+   notices and the one requested card float over the map (T97 below). Tests override
    the --safe-* properties to simulate cutouts. [designed] 48 px icons (the sketch
    size, above the 44 px minimum), 8 px apart; 16 px text. */
 :root { --safe-top:env(safe-area-inset-top,0px); --safe-right:env(safe-area-inset-right,0px); --safe-bottom:env(safe-area-inset-bottom,0px); --safe-left:env(safe-area-inset-left,0px); }
@@ -1484,7 +1483,6 @@ dialog h2 {
 #battle-action-rail .buttons button:disabled { display:none !important; }
 #battle-action-rail #end-turn-button { order:9; }
 #battle-action-rail :is(#start-combat-button, #end-turn-button) { border-color:var(--accent); background:var(--accent); color:var(--accent-ink); }
-#game-info-button { order:-1; }
 .rail-command-icon { display:none; }
 .game-overlay .rail-command-icon { display:block; }
 .game-action-symbol { flex-shrink:0; }
@@ -1630,7 +1628,6 @@ dialog h2 {
 .battle-reference #game-focus-drawer[data-surface="info"] { padding:12px 16px; }
 .battle-reference #game-focus-drawer[data-surface="info"] .game-info-line { margin:0; }
 .battle-reference #game-focus-drawer[data-surface="info"] .phase-explanation { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
-.battle-reference #game-info-button[aria-expanded="true"] { border-color:var(--shell-gold); color:var(--shell-gold); }
 .battle-reference #game-focus-drawer .battle-controls[data-pending-capture="true"] > .card-head { display:none; }
 .battle-reference .game-overlay .game-folded #open-required-action { background:var(--shell-gold) !important; border-color:var(--shell-gold) !important; color:var(--shell-ink) !important; }
 @media (orientation:portrait) { .battle-reference .game-side > .game-folded { margin:auto auto 0; } }
@@ -1680,7 +1677,7 @@ dialog h2 {
   .battle-reference #game-focus-drawer .own-card { display:flex; flex-direction:row; align-items:center; gap:4px; padding:2px 6px; font-size:12px; }
   .battle-reference #game-focus-drawer .card-choice-controls { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:6px; }
   .battle-reference #game-focus-drawer .card-choice-controls > :not(button) { grid-column:1 / -1; margin:0; }
-  .battle-reference #game-focus-drawer .card-choice-controls button { min-height:32px; padding:2px 6px; font-size:11px; }
+  .battle-reference #game-focus-drawer .card-choice-controls button { min-height:44px; padding:2px 6px; font-size:13px; }
   .battle-reference #game-focus-drawer .card-choice-controls > strong { font-size:12px; }
   /* Each discard button names its card, so the hand list would only repeat them. */
   .battle-reference #game-focus-drawer .card-interactions[data-phase="discard"] .own-card { display:none; }
@@ -1715,3 +1712,38 @@ dialog h2 {
   .game-overlay:has(#game-focus-drawer:not([hidden])) .game-notice-slot { display:none; }
   .game-overlay #game-focus-drawer { max-height:100%; }
 }
+/* T97 (owner, #240/#244): cards float over the full-size map. Only the corner icons frame the
+   map; the one requested card rests in a bottom corner beside them (above them in portrait),
+   and moves to the other corner, or a top one, when it would cover the countries in play
+   (data-corner, set by the shell). Its own rectangle takes taps; the map around it keeps them. */
+.battle-reference #game-focus-drawer { position:absolute; z-index:2; margin:0; top:auto; bottom:var(--edge); left:auto; right:calc(var(--edge) + var(--target) + var(--gap));
+  width:min(380px, calc(100% - 2 * (var(--edge) + var(--target) + var(--gap)))); max-height:calc(100% - 2 * var(--edge) - var(--target) - var(--gap)); }
+.battle-reference #game-focus-drawer:is([data-corner="start"], [data-corner="top-start"]) { right:auto; left:calc(var(--edge) + var(--target) + var(--gap)); }
+.battle-reference #game-focus-drawer:is([data-corner="top-end"], [data-corner="top-start"]) { bottom:auto; top:calc(var(--edge) + var(--target) + var(--gap)); }
+.battle-reference #game-focus-drawer[data-placement="center"] { top:50%; left:50%; right:auto; bottom:auto; translate:-50% -50%; width:min(400px, calc(100% - 2 * var(--edge))); }
+.battle-reference .game-overlay .game-side { grid-column:2 / -2; }
+.battle-reference .game-side > .game-folded { margin:auto 0 0 auto; }
+@media (orientation:portrait) {
+  .battle-reference #game-focus-drawer { bottom:calc(var(--edge) + var(--target) + var(--gap)); right:var(--edge); width:min(380px, calc(100% - 2 * var(--edge)));
+    max-height:min(calc(var(--avail-h) * 0.6), calc(100% - 2 * (var(--edge) + var(--target) + var(--gap)))); }
+  .battle-reference #game-focus-drawer:is([data-corner="start"], [data-corner="top-start"]) { left:var(--edge); right:auto; }
+  .battle-reference .game-overlay .game-side { grid-column:1 / -1; }
+  .battle-reference .game-side > .game-folded { margin:auto auto 0; }
+}
+@media (max-height:239px) {
+  .battle-reference #game-focus-drawer, .battle-reference #game-focus-drawer[data-corner] { top:calc(var(--edge) + var(--target) + var(--gap)); bottom:var(--edge); left:var(--edge); right:var(--edge); width:auto; max-height:none; translate:none; }
+}
+/* The menu: speed, then Help, New game and the smaller history icon; nothing under 44 px. */
+.battle-reference #game-focus-drawer .game-menu-actions { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+.battle-reference #game-focus-drawer .game-menu-actions > :is(#game-help-button, #new-game-button) { min-height:44px; padding:0 14px; font-size:15px; }
+.battle-reference #game-focus-drawer .game-playback select { min-height:44px; }
+.game-history-icon { display:inline-grid; place-items:center; width:44px; height:44px; min-height:44px; padding:0; border-radius:10px; }
+.game-history-icon svg { width:20px; height:20px; }
+.game-event-log { touch-action:pan-y; }
+.game-event-log-close { display:grid; place-items:center; width:44px; height:44px; min-height:44px; padding:0; }
+.country-filter, .country-neighbour { min-height:44px; }
+.battle-reference #game-focus-drawer .private-card-reward { margin:0 0 8px; font:600 16px/1.3 Inter, system-ui, sans-serif; }
+.battle-reference #game-focus-drawer .card-choice-controls { display:flex; flex-wrap:wrap; gap:8px; }
+.battle-reference #game-focus-drawer .card-choice-controls button { min-height:44px; min-width:44px; padding:0 14px; font-size:15px; }
+.battle-reference #game-focus-drawer .card-choice-controls > p { flex-basis:100%; }
+.battle-reference #game-focus-drawer .friendly-move-controls :is(button, input)[hidden] { display:none; }

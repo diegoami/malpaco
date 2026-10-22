@@ -3,7 +3,7 @@ import type {IslandGeography} from '../core/island-geography';
 import type {Presentation} from './generatedGeographyPresentation';
 import type {MapHandlers,MapViewState} from './mapView';
 import {s} from './dom';
-import {badgeScale,countLabel,seatLook,TARGET_MARK} from './palette';
+import {badgeScale,countLabel,seatLook,seatName,TARGET_MARK} from './palette';
 import {MapCamera} from './mapCamera';
 import {NameLayer} from './nameLayer';
 
@@ -49,7 +49,7 @@ export class GeographicMapView {
    n.classList.toggle('selected',view.selected===id);n.classList.toggle('target',view.target===id&&view.selected!==id);
    // T82: a pending capture's two countries keep dashed badges until Confirm.
    n.classList.toggle('pending',!!state.pendingCapture&&(state.pendingCapture.from===id||state.pendingCapture.to===id));n.classList.toggle('neighbor',view.targets.includes(id));n.setAttribute('aria-pressed',String(view.selected===id));
-   const description=`${state.map.provinces.find(p=>p.id===id)!.name}, Seat ${seat+1}, ${state.armies[id]} armies, ${state.players[seat]!.name}`;
+   const description=`${state.map.provinces.find(p=>p.id===id)!.name}, ${seatName(state.players,state.ownerOf[id])}, ${state.armies[id]} armies`;
    n.setAttribute('aria-label',description);n.querySelector('title')!.textContent=description;
    (n.querySelector('.cell') as SVGElement).style.fill=look.color;
    const count=n.querySelector<SVGTextElement>('.count')!,badge=n.querySelector<SVGPathElement>('.badge')!;count.textContent=countLabel(state.armies[id]!);badge.setAttribute('d',look.badge);badge.style.stroke=look.color;

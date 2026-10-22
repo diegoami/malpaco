@@ -1,44 +1,35 @@
 import {h} from './dom';
-import {activePlayer} from '../core';
 import type {BattleController} from './battleController';
 import type {CardController} from './cardController';
-const EFFECTS:Record<string,string>={Anchor:'Three add 5 armies',Compass:'Three add 8 armies',Lantern:'Three add 15 armies',Surge:'Three double turn income',Raid:'Three raid an enemy country',Wild:'Replaces up to two missing set cards',Shield:'Automatically blocks one incoming raid'};
-const SYMBOLS:Record<string,string>={Anchor:'⚓',Compass:'⌖',Lantern:'◈',Surge:'↟',Raid:'➶',Wild:'✦',Shield:'⬡'};
-/** No game state/hidden data is handed to the view; only the fixed-viewer projection. */
+/**
+ * No game state/hidden data is handed to the view; only the fixed-viewer projection. T97 (owner,
+ * #244): only the choice's controls show — a button per legal set (its kind; the cards and
+ * effect are its accessible name) and Skip, a button per card to
+ * discard, Continue after a reward, and Confirm for a Raid. Your hand and the public counts stay
+ * for assistive technology alone.
+ */
 export class CardView {
- private readonly handDialog=h('dialog',{'aria-label':'Your cards'});
  readonly el=h('section',{class:'card-interactions','aria-label':'Cards'});
- constructor(private readonly cards:CardController,private readonly battle:BattleController){document.body.append(this.handDialog);}
- dispose():void{this.handDialog.close();this.handDialog.remove();}
+ constructor(private readonly cards:CardController,_battle:BattleController){}
+ dispose():void{}
  render():void {
   const v=this.cards.view;this.el.hidden=v.phase==='hidden';if(this.el.hidden)return;
-  const button=(label:string,fn:()=>void)=>{const b=h('button',{type:'button',disabled:v.blocked},label);b.onclick=()=>{fn();this.render();};return b;};
-  const counts=h('p',{class:'card-public-counts'},`Draw: ${v.drawCount} · Discard: ${v.discardCount} · Top: ${v.discardTop??'empty'}. `+Object.entries(v.handCounts).map(([p,n])=>`${p}: ${n}`).join(' · '));
-  const hand=h('div',{class:'own-card-hand','aria-label':'Your hand'},h('strong',{},`Your hand: ${v.hand.length} of 5`));
-  for(const [i,kind] of v.hand.entries())hand.append(h('div',{class:'own-card','data-hand-index':i},h('span',{'aria-hidden':'true'},SYMBOLS[kind]??'•'),h('strong',{},kind),h('small',{},EFFECTS[kind]??'')));
+  const button=(label:string,fn:()=>void,name?:string)=>{const b=h('button',{type:'button',disabled:v.blocked,...(name?{'aria-label':name}:{})},label);b.onclick=()=>{fn();this.render();};return b;};
+  const counts=h('p',{class:'card-public-counts visually-hidden'},`Draw: ${v.drawCount} · Discard: ${v.discardCount} · Top: ${v.discardTop??'empty'}. `+Object.entries(v.handCounts).map(([p,n])=>`${p}: ${n}`).join(' · '));
+  const hand=h('ul',{class:'own-card-hand visually-hidden','aria-label':'Your hand'},h('li',{},`Your hand: ${v.hand.length} of 5`),...v.hand.map((kind,i)=>h('li',{'data-hand-index':i},h('strong',{},kind))));
   const actions=h('div',{class:'card-choice-controls'});
   if(v.phase==='sets'){
-   actions.append(h('p',{},v.sets.length?'Choose at most one set, or skip.':'No set available. Skip to placement.'));
-   const setList=h('div',{class:'card-set-list'});
-   for(const set of v.sets)setList.append(button(`${set.kind}: ${set.indices.map(i=>v.hand[i]).join(' + ')} — ${set.effect}`,()=>this.cards.chooseSet(set.indices,v.revision)));
-   actions.append(setList);
-   actions.append(button('Skip cards',()=>this.cards.skip(v.revision)));
+   for(const set of v.sets)actions.append(button(set.kind,()=>this.cards.chooseSet(set.indices,v.revision),`${set.kind}: ${set.indices.map(i=>v.hand[i]).join(' + ')} — ${set.effect}`));
+   actions.append(button('Skip',()=>this.cards.skip(v.revision),'Skip cards'));
   }
-  if(v.phase==='discard'){
-   actions.append(h('strong',{},'Your hand is full. Discard one card before drawing. The new card is not shown first.'));
-   for(const [i,kind] of v.hand.entries())actions.append(button(`Discard ${kind} (card ${i+1})`,()=>this.cards.discard(i,v.revision)));
-  }
+  if(v.phase==='discard')for(const [i,kind] of v.hand.entries())actions.append(button(kind,()=>this.cards.discard(i,v.revision),`Discard ${kind} (card ${i+1})`));
   if(v.phase==='raid-target'){
-   actions.append(h('strong',{},'Raid: choose an enemy country on the board.'),h('p',{},v.preview));
-   const confirm=button('Confirm raid',()=>this.cards.confirmRaid(v.revision));confirm.disabled=v.blocked||!v.selectedTarget;actions.append(confirm);
+   const confirm=button('Confirm',()=>this.cards.confirmRaid(v.revision),'Confirm raid');confirm.disabled=v.blocked||!v.selectedTarget;confirm.hidden=!v.selectedTarget;actions.append(confirm);
+   actions.append(h('p',{class:'visually-hidden'},v.preview));
   }
-  if(v.phase==='reward')actions.append(h('strong',{class:'private-card-reward'},v.notice),button('Continue',()=>this.cards.acknowledge(v.revision)));
-  else if(v.notice)actions.append(h('p',{role:'status'},v.notice));
+  if(v.phase==='reward')actions.append(h('p',{class:'private-card-reward'},v.notice),button('Continue',()=>this.cards.acknowledge(v.revision)));
+  else if(v.notice)actions.append(h('p',{role:'status',class:'visually-hidden'},v.notice));
   const choosing=['sets','raid-target','discard','reward'].includes(v.phase);this.el.dataset['choice']=String(choosing);this.el.dataset['phase']=v.phase;
-  const inspect=button(`View your hand: ${v.hand.length} of 5`,()=>{
-   const close=h('button',{type:'button'},'Close your hand');close.onclick=()=>this.handDialog.close();
-   this.handDialog.replaceChildren(h('h2',{},'Your cards'),hand.cloneNode(true),close);this.handDialog.showModal();
-  });
-  this.el.replaceChildren(counts,choosing?hand:inspect,actions);
+  this.el.replaceChildren(counts,hand,actions);
  }
 }

@@ -44,3 +44,21 @@ export function countLabel(armies: number): string {
 
 /** The chosen target's crosshair, around a badge centred on 0,0 (T87: not hue alone). */
 export const TARGET_MARK = "M-30 0H-21M21 0H30M0 -30V-21M0 21V30";
+
+/** T97 (owner, 2026-10-22): seats are named by their colour; the one human seat is "You". */
+export const SEAT_NAMES: readonly string[] = ["Blue", "Orange", "Green", "Purple"];
+
+interface NamedSeat {readonly id: string; readonly kind?: string}
+
+/**
+ * A presentation name only: saves and the engine keep `Seat N`. With exactly one human seat
+ * that seat is "You"; every other seat (and every seat when two or more humans share the
+ * screen) is its colour's name.
+ */
+export function seatName(players: readonly NamedSeat[], id: string | undefined): string {
+  const seat = players.findIndex(player => player.id === id);
+  if (seat < 0) return "Unowned";
+  const humans = players.filter(player => player.kind !== "computer");
+  if (humans.length === 1 && humans[0]!.id === id) return "You";
+  return SEAT_NAMES[seat] ?? `Seat ${seat + 1}`;
+}
