@@ -51,7 +51,9 @@ stays hidden until then). A Raid folds its card to a one-line strip so the whole
 a highlighted enemy country, or choose one from **Countries**, then **Confirm**.
 Games with two or more human seats currently play without cards.
 Your cards are behind the card icon next to the menu, which shows how many you hold: it opens
-the list, and closes with ×, Escape or another tap. At the start of your turn a set can be played
+them, drawn as cards with a plain symbol for what each does (5, 8 or 15 armies for a set, ×2 to
+double your pool, a bomb to raid, a crossed bomb to block a raid, a star for the wild card), and
+closes with ×, Escape or another tap. Drag the window by its title; it stays where you put it. At the start of your turn a set can be played
 from that list (or from the set card that opens by itself). After each draw, the card shows your
 whole hand with the new card marked.
 
