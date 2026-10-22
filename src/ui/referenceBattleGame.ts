@@ -22,6 +22,8 @@ import type {Notice} from "./battleChrome";
 import {GameHelp} from "./help";
 import {CountryPicker} from "./countryPicker";
 import {seatName} from "./palette";
+import {ScoreboardDialog} from "./scoreboard";
+import type {GameOutcome} from "./scoreboard";
 
 /** Session-only preferences. Full presentation persistence is T56. */
 export type PanelDetail = "compact" | "detailed";
@@ -73,6 +75,11 @@ export class ReferenceBattleGame {
   private giveUpPaused = false;
   private givenUp = false;
   private persisted = -1;
+  /** T100: the menu's scoreboard (the player's game only); a game is recorded once, if it was unfinished when it opened. */
+  private readonly scoreboard: ScoreboardDialog | null = null;
+  private scoreboardPaused = false;
+  private recorded = false;
+  private readonly openedUnfinished: boolean;
   private readonly onKeyDown = (event: KeyboardEvent) => {
     if (event.key !== "Escape" || event.defaultPrevented || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
     if (this.chrome?.escape()) {event.preventDefault(); return;}
@@ -87,11 +94,15 @@ export class ReferenceBattleGame {
       this.giveUp = new GiveUpDialog({
         open: () => {this.chrome?.close(false); this.giveUpPaused = !this.controller.playbackPaused; if (this.giveUpPaused) this.controller.setPlaybackPaused(true);},
         keep: () => {if (this.giveUpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.giveUpPaused = false;},
-        giveUp: () => {this.givenUp = true; presentation.player!.persist(null); this.giveUp!.showResult(this.controller.state);},
+        giveUp: () => {this.givenUp = true; this.record(this.controller.state, "gave-up"); presentation.player!.persist(null); this.giveUp!.showResult(this.controller.state, presentation.player!.totals?.());},
         newGame: () => { if (!this.disposed) this.onNewGame(); },
       });
       document.body.append(this.giveUp.dialog);
+      this.scoreboard = new ScoreboardDialog(undefined, () => {this.chrome?.close(false); this.scoreboardPaused = !this.controller.playbackPaused; if (this.scoreboardPaused) this.controller.setPlaybackPaused(true);});
+      this.scoreboard.dialog.addEventListener("close", () => {if (this.scoreboardPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.scoreboardPaused = false;});
+      document.body.append(this.scoreboard.dialog);
     }
+    this.openedUnfinished = !state.result;
     this.help.dialog.addEventListener("close", () => {if (this.helpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.helpPaused = false;});
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
@@ -106,6 +117,8 @@ export class ReferenceBattleGame {
     this.computer = automatic ? new ComputerTurnLoop(this.controller, { schedule: (cb, delay) => window.setTimeout(cb, delay), cancel: id => window.clearTimeout(id) }) : null;
     const threshold = preferences.threshold, speed = preferences.speed;
     this.controller.restorePreferences(threshold, speed);
+    // T100: a game left paused opens paused.
+    if (presentation?.player?.paused) this.controller.setPlaybackPaused(true);
     this.mapView = (presentation?.createMap ?? ((m,handlers)=>new ReferenceMapView(m,handlers)))(map, {
       onProvince: (id, activation) => { if (!activation?.repeat) this.clickProvince(id, activation?.inspect ?? false); },
       onBackground: () => { this.controller.select(null, null); },
@@ -131,13 +144,13 @@ export class ReferenceBattleGame {
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
     this.battle = new BattleView(this.controller, () => { this.controller.select(null, null); this.chrome?.close(); });
     this.friendly = new FriendlyMoveView(this.controller);
-    this.victory = new VictoryView(this.controller, {newGame: () => this.newGame(), menu: () => this.chrome?.openMenu(), files: this.showsFiles,
+    this.victory = new VictoryView(this.controller, {newGame: () => this.newGame(), menu: () => this.chrome?.openMenu(), files: this.showsFiles, ...(presentation?.player?.record && presentation.player.totals ? {totals: presentation.player.totals} : {}),
       details: () => [`Seed: ${options.seed}`, `Seats: ${this.controller.state.players.map(player => `${seatName(this.controller.state.players, player.id)} ${player.kind === "computer" ? "Computer" : "Human"}`).join(" · ")}`,
         `Victory: ${options.dominationWin ? "Domination" : "Total conquest"}${options.roundLimit ? ` · Round limit ${options.roundLimit}` : ""}`, `Map: ${presentation?.label ?? "Nine Isles"}`]});
     this.action = this.panel.el.querySelector<HTMLElement>(".action")!;
     this.action.append(this.battle.el, this.friendly.el, this.victory.el, this.cardControls.el, this.computerStatus);
-    this.playbackPause.onclick = () => this.controller.setPlaybackPaused(!this.controller.playbackPaused);
-    this.playbackSpeed.onchange = () => this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed);
+    this.playbackPause.onclick = () => {this.controller.setPlaybackPaused(!this.controller.playbackPaused); presentation?.player?.remember?.({paused: this.controller.playbackPaused});};
+    this.playbackSpeed.onchange = () => {if (this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed)) presentation?.player?.remember?.({speed: this.controller.view.speed});};
     this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation),undefined,presentation?.acceptsVersion1);
   }
 
@@ -164,7 +177,7 @@ export class ReferenceBattleGame {
     // The seed stays as one quiet line, so a game can be named in a report.
     const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, h("p", {class: "game-identity"}, `Seed ${this.options.seed}`),
       h("div", { class: "game-playback" }, h("label", { for: "game-speed" }, "Game speed"), this.playbackSpeed),
-      h("div", { class: "game-menu-actions" }, this.help.button, newGame, this.eventLog.button), ...(this.showsFiles ? [this.files.el] : []));
+      h("div", { class: "game-menu-actions" }, this.help.button, newGame, this.eventLog.button, ...(this.scoreboard ? [this.scoreboard.button] : [])), ...(this.showsFiles ? [this.files.el] : []));
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
@@ -193,7 +206,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
-    this.eventLog.dispose(); this.help.dispose(); this.giveUp?.dispose();
+    this.eventLog.dispose(); this.help.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
@@ -273,6 +286,16 @@ export class ReferenceBattleGame {
     player.persist(text);
   }
 
+  /** T100: the player's game ends once: a win, an elimination (Lost at once, even if you then watch), or a give-up. */
+  private record(state: GameState, outcome?: GameOutcome): void {
+    const player = this.presentation?.player, human = state.players.filter(p => p.kind !== "computer");
+    if (!player?.record || this.recorded || !this.openedUnfinished || human.length !== 1) return;
+    const result: GameOutcome | null = outcome ?? (state.result ? state.winner === human[0]!.id ? "won" : "lost" : null);
+    if (!result) return;
+    this.recorded = true;
+    player.record({result, rounds: state.turnNumber, countries: state.map.provinces.filter(p => state.ownerOf[p.id] === human[0]!.id).length, seed: this.options.seed});
+  }
+
   private computerActive(): boolean {
     const state = this.controller.state;
     return this.automatic && activePlayer(state)?.kind === "computer" && state.phase !== "human-loss" && state.phase !== "finished";
@@ -287,6 +310,7 @@ export class ReferenceBattleGame {
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
     this.cardControls.render();
     this.eventLog.update(this.controller.state);
+    this.record(state);
     this.persist(state);
     this.playbackPause.textContent = this.controller.playbackPaused ? "Resume" : "Pause";
     this.playbackPause.setAttribute("aria-label", this.controller.playbackPaused ? "Resume game" : "Pause game");

@@ -30,6 +30,7 @@ const PATHS: Record<string, string> = {
   skip: "M5 5L15 12 5 19ZM19 5V19",
   "fast-forward": "M3 5L12 12 3 19ZM12 5L21 12 12 19Z",
   countries: "M10 6H20M10 12H20M10 18H20M4.5 6V6.1M4.5 12V12.1M4.5 18V18.1",
+  trophy: "M7 4H17V9A5 5 0 0 1 7 9ZM7 6H4V8A3 3 0 0 0 7.6 11M17 6H20V8A3 3 0 0 1 16.4 11M12 14V18M8 21H16M9 18H15",
 };
 
 export function glyph(shape: string): SVGSVGElement {

@@ -1751,3 +1751,21 @@ dialog h2 {
 .battle-reference #game-focus-drawer .card-choice-controls button { min-height:44px; min-width:44px; padding:0 14px; font-size:15px; }
 .battle-reference #game-focus-drawer .card-choice-controls > p { flex-basis:100%; }
 .battle-reference #game-focus-drawer .friendly-move-controls :is(button, input)[hidden] { display:none; }
+/* T100: the scoreboard (the menu's trophy icon) and the result cards' totals line. */
+.scoreboard .scoreboard-body { margin-inline:16px; }
+.scoreboard .scoreboard-body > .card-note { margin:12px 0 8px; color:var(--muted); font-size:14px; }
+.scoreboard-totals { display:grid; grid-template-columns:repeat(5, minmax(0,1fr)); gap:6px; margin:0 0 12px; }
+.scoreboard-totals > div { padding:8px 4px; border:1px solid var(--line); border-radius:8px; text-align:center; }
+.scoreboard-totals dt { color:var(--muted); font-size:12px; }
+.scoreboard-totals dd { margin:2px 0 0; font:700 18px/1.2 Inter, system-ui, sans-serif; font-variant-numeric:tabular-nums; }
+#scoreboard-games { width:100%; border-collapse:collapse; font-size:13px; font-variant-numeric:tabular-nums; }
+#scoreboard-games caption { text-align:left; color:var(--muted); margin-bottom:6px; }
+#scoreboard-games :is(th,td) { padding:6px 4px; border-bottom:1px solid var(--line); text-align:right; font-weight:400; }
+#scoreboard-games :is(th,td):is(:first-child, :nth-child(2)) { text-align:left; }
+#scoreboard-games tr[data-result="won"] th { color:#86efac; font-weight:600; }
+.scoreboard .help-actions, .scoreboard-confirm { margin-top:12px; background:#12202e; }
+.scoreboard-confirm > p { margin:0; font-weight:600; }
+.scoreboard :is(.help-actions button) { min-height:44px; padding:0 14px; }
+#close-scoreboard { min-height:44px; padding:0 14px; }
+@media (max-width:480px) { .scoreboard-totals { grid-template-columns:repeat(3, minmax(0,1fr)); } }
+.result-totals { font-variant-numeric:tabular-nums; }

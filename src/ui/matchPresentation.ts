@@ -2,6 +2,8 @@ import type {MapCamera} from './mapCamera';
 import type {GameMap,GameState} from '../core';
 import type {MatchIdentity} from '../core/match-save';
 import type {MapHandlers,MapViewState} from './mapView';
+import type {BattleSpeed} from './battleController';
+import type {GameOutcome} from './scoreboard';
 
 /** The renderer and replay origin travel with the explicit save identity. */
 export interface MatchPresentation {
@@ -14,6 +16,10 @@ export interface MatchPresentation {
   * T96: the player's game (instant start): no file controls, New game confirms giving up, and
   * every new action is kept with `persist` so a refresh resumes; null clears it at the end.
   */
- readonly player?:{readonly persist:(text:string|null)=>void};
+ readonly player?:{readonly persist:(text:string|null)=>void;
+  /** T100: the game opens paused when it was left paused; Pause and speed changes are remembered. */
+  readonly paused?:boolean;readonly remember?:(change:{paused?:boolean;speed?:BattleSpeed})=>void;
+  /** T100: a player game's end, recorded once on the scoreboard; `totals` is its result-card line. */
+  readonly record?:(game:{result:GameOutcome;rounds:number;countries:number;seed:number})=>void;readonly totals?:()=>string};
  readonly createMap:(map:GameMap,handlers:MapHandlers)=>{readonly el:SVGSVGElement;readonly camera?:MapCamera;render(view:MapViewState):void};
 }

@@ -15,7 +15,7 @@ export class VictoryView {
   private standingsOpen = false;
   private detailsOpen = false;
 
-  constructor(private readonly controller: BattleController, private readonly links: { newGame: () => void; menu: () => void; details?: () => readonly string[]; files?: boolean } = { newGame: () => {}, menu: () => {} }) {}
+  constructor(private readonly controller: BattleController, private readonly links: { newGame: () => void; menu: () => void; details?: () => readonly string[]; files?: boolean; totals?: () => string } = { newGame: () => {}, menu: () => {} }) {}
 
   render(state: GameState, revision: number): void {
     this.el.replaceChildren();
@@ -52,6 +52,9 @@ export class VictoryView {
     });
     detailsButton.setAttribute("aria-controls", "victory-details"); detailsButton.setAttribute("aria-expanded", String(this.detailsOpen));
     this.el.append(h("h2", { class: "result-title" }, title), h("p", { id: "victory-reason", class: "card-note" }, description));
+    // T100: the player's game shows the scoreboard's updated totals.
+    const totals = this.links.totals?.();
+    if (totals) this.el.append(h("p", { id: "victory-totals", class: "card-note result-totals" }, totals));
     if (loss) {
       // Stop game keeps its visible label for the whole unresolved elimination card (follow-up D).
       this.el.append(h("p", { class: "card-note victory-guidance" }, "Your result is recorded once."), h("div", { class: "card-icons victory-choices" },
@@ -106,11 +109,12 @@ export class GiveUpDialog {
     no.focus();
   }
   /** The result card: the seats as they stood when the game was given up. */
-  showResult(state: GameState): void {
+  showResult(state: GameState, totals?: string): void {
     const again = h("button", { type: "button", id: "give-up-new-game", class: "primary" }, "New game");
     again.onclick = () => { this.dialog.close(); this.hooks.newGame(); };
     this.dialog.replaceChildren(h("h2", { id: "give-up-title" }, "You gave up"),
       h("p", { id: "give-up-reason", class: "card-note" }, `Game given up in round ${state.turnNumber}`),
+      ...(totals ? [h("p", { id: "give-up-totals", class: "card-note result-totals" }, totals)] : []),
       h("table", { id: "give-up-standings" }, h("caption", {}, "Countries and armies"),
         h("thead", {}, h("tr", {}, h("th", { scope: "col" }, "Seat"), h("th", { scope: "col" }, "Countries"), h("th", { scope: "col" }, "Armies"))),
         h("tbody", {}, ...finalStandings(state).map(row => h("tr", { "data-result-player": row.player },

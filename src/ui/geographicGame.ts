@@ -17,6 +17,8 @@ import type {BattlePreferences} from './referenceBattleGame';
 import {ReferenceMatchFiles} from './referenceMatchFiles';
 import type {MatchPresentation} from './matchPresentation';
 import {h} from './dom';
+import {addGame,browserScores,parseScoreboard,totalsLine} from './scoreboard';
+import type {BattleSpeed} from './battleController';
 
 /** Stage selection is shared by creation and its save/presentation identity.
  * Card hands currently support a spectator or one human. Shared human hands
@@ -41,13 +43,24 @@ export function createGeographicSetupController(dependencies:SetupDependencies){
  return {start(options:GameOptions){const result=dependencies.create(options);if(result.ok)dependencies.mount(options,result);else dependencies.report(result);}};
 }
 
-/** T96: the player's current game, kept in this browser only; private modes simply do not resume. */
+/**
+ * T96/T100: the player's current game, kept in this browser only; private modes simply do not
+ * resume. A slot holds the versioned save text and, beside it, `{id,paused}` (the id records the
+ * game on the scoreboard once). The root page has one slot, and each `?seed=N` its own.
+ */
 const STORED_GAME='malpaco:current-game';
-const stored={
- get:():string|null=>{try{return localStorage.getItem(STORED_GAME);}catch{return null;}},
- set:(text:string|null)=>{try{if(text===null)localStorage.removeItem(STORED_GAME);else localStorage.setItem(STORED_GAME,text);}catch{/* not kept */}},
+interface Slot {readonly game:string;readonly meta:string}
+interface GameMeta {id:string;paused:boolean}
+const local={
+ get:(key:string):string|null=>{try{return localStorage.getItem(key);}catch{return null;}},
+ set:(key:string,text:string|null)=>{try{if(text===null)localStorage.removeItem(key);else localStorage.setItem(key,text);}catch{/* not kept */}},
 };
+const readMeta=(slot:Slot):GameMeta|null=>{try{const v=JSON.parse(local.get(slot.meta)??'null');return v&&typeof v.id==='string'&&v.id?{id:v.id,paused:v.paused===true}:null;}catch{return null;}};
+/** T100: game speed, for every player game in this browser. */
+const PREFERENCES='malpaco:preferences',SPEEDS:readonly BattleSpeed[]=['very-slow','slow','normal','fast'];
+const keptSpeed=():BattleSpeed|null=>{try{const speed=JSON.parse(local.get(PREFERENCES)??'null')?.speed;return SPEEDS.includes(speed)?speed:null;}catch{return null;}};
 const randomSeed=()=>crypto.getRandomValues(new Uint32Array(1))[0]!;
+const newGameId=()=>`${Date.now().toString(36)}-${randomSeed().toString(36)}`;
 
 export function mountGeographicGame(root:HTMLElement,dependencies:{create?:SetupDependencies["create"];mountAccepted?:SetupDependencies["mount"]}={}){
  const params=new URLSearchParams(location.search);
@@ -56,10 +69,14 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
  // T96: the player's page starts a game at once. `?setup` and `control=manual` keep the setup
  // screen and its files for tests and development.
  const instant=!manual&&!params.has('setup');
+ const seedParam=params.get('seed'),fixedSeed=seedParam!==null&&/^\d+$/.test(seedParam)?Number(seedParam)>>>0:null;
+ const slot:Slot|null=!instant?null:seedParam===null?{game:STORED_GAME,meta:`${STORED_GAME}-meta`}:fixedSeed!==null?{game:`malpaco:seed-game:${fixedSeed}`,meta:`malpaco:seed-game-meta:${fixedSeed}`}:null;
+ /** The kept meta of the game being resumed, consumed by the next mount. */
+ let resuming:GameMeta|null=null;
  let seats=manual?'2':'4';
  let controllers:('human'|'computer')[]=manual?['human','human','human','human']:['human','computer','computer','computer'];
  let dominationWin=true,roundLimit:20|30|40|null=null,names:NameChoice='seed';
- const preferences:BattlePreferences={threshold:2,speed:'normal'};
+ const preferences:BattlePreferences={threshold:2,speed:(instant?keptSpeed():null)??'normal'};
  let current:ReferenceBattleGame|null=null,setupFiles:ReferenceMatchFiles|null=null;
  let closed=false,epoch=0,pending:AbortController|null=null;
  let setupStatus:HTMLElement|null=null;
@@ -89,8 +106,20 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
  const dispose=()=>{setupFiles?.dispose();setupFiles=null;current?.dispose();current=null;};
  const mount=(options:GameOptions,state:GameState,given:MatchPresentation,loadedMatch=false)=>{
   // A version-1 game has no version-2 record to keep, and a `?seed` page never replaces the
-  // player's kept game.
-  const presentation:MatchPresentation=instant&&given.identity.boardGenerator.id!=='generated'?{...given,player:{persist:params.has('seed')?()=>{}:stored.set}}:given;
+  // player's kept game: it keeps its own game of that seed (T100).
+  let presentation:MatchPresentation=given;
+  if(instant&&given.identity.boardGenerator.id!=='generated'){
+   const meta=resuming??{id:newGameId(),paused:false},keep=slot&&(seedParam===null||options.seed===fixedSeed)?slot:null;resuming=null;
+   if(keep)local.set(keep.meta,JSON.stringify(meta));
+   // The scoreboard counts geographic player games with one human; Nine Isles never.
+   const counted=given.identity.boardGenerator.id==='geographic'&&options.seats.filter(s=>s.kind==='human').length===1;
+   presentation={...given,player:{persist:keep?text=>local.set(keep.game,text):()=>{},paused:meta.paused,
+    remember:change=>{
+     if(change.speed)local.set(PREFERENCES,JSON.stringify({speed:change.speed}));
+     if(change.paused!==undefined&&keep){meta.paused=change.paused;local.set(keep.meta,JSON.stringify(meta));}
+    },
+    ...(counted?{record:game=>{addGame(browserScores,{...game,id:meta.id,date:new Date().toISOString()});},totals:()=>totalsLine(parseScoreboard(browserScores.get()).totals)}:{})}};
+  }
   const app=new ReferenceBattleGame(state.map,options,()=>{if(instant)void instantStart(true);else setup();},state,preferences,onLoad,!manual,presentation);
   dispose();seed=String(options.seed);seats=String(options.seats.length);controllers=Array.from({length:4},(_,i)=>options.seats[i]?.kind??'human');dominationWin=options.dominationWin;roundLimit=options.roundLimit;names=options.names??'seed';
   root.id='geographic-game';root.className='geographic-game-root';root.dataset['seats']=seats;current=app;app.mount(root);
@@ -119,18 +148,18 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
  /**
   * T96: a refresh resumes the player's game, then a new game starts on a random seed with one
   * human and three Normal computers, Domination on, no round limit, place names by seed.
-  * `?seed=N` fixes the seed (a hidden route for tests and bug reports) and is never resumed.
+  * `?seed=N` fixes the seed (a hidden route for tests and bug reports); T100 keeps it per seed.
   */
  const instantStart=async(fresh=false)=>{
   cancel();dispose();root.id='geographic-setup';root.className='reference-setup geographic-setup';
   const status=h('p',{role:'status',class:'match-error'},'Preparing game…');setupStatus=status;
   root.replaceChildren(h('div',{class:'card setup-card instant-start'},status));
-  if(!fresh&&!params.has('seed')){
-   const text=stored.get();
+  if(!fresh&&slot){
+   const text=local.get(slot.game);
    if(text){
-    try{const loaded=deserializeVersionedMatch(text);if(!loaded.state.result){await onLoad(loaded.options,loaded.state,loaded);if(current)return;}}
+    try{const loaded=deserializeVersionedMatch(text);if(!loaded.state.result){resuming=readMeta(slot)??{id:newGameId(),paused:false};await onLoad(loaded.options,loaded.state,loaded);if(current)return;}}
     catch{/* A record this build cannot replay starts a new game. */}
-    stored.set(null);
+    resuming=null;local.set(slot.game,null);
    }
   }
   const own=epoch;
