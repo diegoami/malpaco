@@ -147,7 +147,9 @@ test('Help & icon names opens from the menu with one matching visible and access
  // T97: Fight replaces Attack; Fight on, Stop, Settings and Information are gone; the history icon is the event log.
  for(const name of ['Fight on','Stop','Settings','Information','Attack'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(0);
  await expect(dialog.locator('#game-help-objective')).toContainText(/Domination|Total conquest/);
- for(const name of ['Menu','Pause','Fast-forward','Fit','Countries','Fight','Return','Game event log'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(1);
+ for(const name of ['Menu','Pause','Fast-forward','Fit','Countries','Fight','Return','Fold card'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(1);
+ // T101: the history is off the player's screen, so Help names no history icon.
+ await expect(dialog.locator('.game-help-icons li strong',{hasText:/^Game event log$/})).toHaveCount(0);
  expect(await dialog.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);
  await shot(page,info,'help');
  await page.locator('#close-game-help').click();await expect(dialog).toBeHidden();

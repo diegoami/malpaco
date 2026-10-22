@@ -3,7 +3,8 @@
 import {expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 
-// T97: the menu holds speed, Help, New game, the history icon (and files on test routes); a card
+// T97: the menu holds Help, New game, the scoreboard (T101: the history icon only with `?log`, the
+// speed beside Pause), and files on test routes; a card
 // choice, with your hand for assistive technology, lives only in Current choice. The Information
 // card is gone (its objective is in Help).
 export type Surface = 'actions' | 'cards' | 'menu' | 'details' | 'settings' | 'countries';
@@ -11,12 +12,22 @@ type Card = 'actions' | 'menu' | 'countries';
 const cardOf: Record<Surface, Card> = {actions: 'actions', cards: 'actions', menu: 'menu', details: 'menu', settings: 'menu', countries: 'countries'};
 const openers: Record<Card, string> = {actions: '#open-required-action', menu: '#open-game-menu', countries: '#open-countries'};
 
+/**
+ * T101: while a computer plays, the menu and Countries icons wait hidden and a pause brings them
+ * back, as a player would do it. A card opened that way resumes play when it closes.
+ */
+const pausedForCard = new WeakSet<Page>();
+
 /** Opens a card unless it is already open. */
 export async function openSurface(page: Page, surface: Surface): Promise<void> {
   if (!await page.locator('#battle-action-rail').count()) return; // the setup page and legacy routes have no cards
   const drawer = page.locator('#game-focus-drawer');
   const card = cardOf[surface];
   if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === card) return;
+  if (card !== 'actions' && await page.locator('.game-overlay[data-quiet="true"]').count() && !await page.locator(openers[card]).isVisible()) {
+    await page.locator('#game-pause-button').click(); pausedForCard.add(page);
+    await expect(page.locator(openers[card])).toBeVisible();
+  }
   // Current choice has no resting icon: it opens by itself for a choice, or from the folded choice's return icon.
   // With no pending choice there is no Current choice card: callers then act on the map or read hidden state.
   // T97: the folded strip waits while another card is open, so that card closes first.
@@ -35,6 +46,7 @@ export async function closeSurface(page: Page): Promise<void> {
     else await page.keyboard.press('Escape');
   }
   await expect(page.locator('#game-focus-drawer')).toBeHidden();
+  if (pausedForCard.delete(page) && await page.locator('#game-pause-button').getAttribute('aria-label') === 'Resume game') await page.locator('#game-pause-button').click();
 }
 
 /** Runs `body` with a card open, then restores the previous card (or none). */

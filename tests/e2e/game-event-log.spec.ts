@@ -19,7 +19,7 @@ async function load(p: Page, text: string) {
 }
 async function begin(p: Page) {
   await p.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await p.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
-  await p.goto("/?view=reference-game&control=manual");
+  await p.goto("/?view=reference-game&control=manual&log");
   await p.evaluate(() => { const create = URL.createObjectURL.bind(URL); URL.createObjectURL = blob => { Reflect.set(window, "eventLogSave", blob); return create(blob); }; });
 }
 async function open(p: Page) {

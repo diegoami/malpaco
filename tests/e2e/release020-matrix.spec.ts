@@ -166,7 +166,8 @@ test('A6: a full hand discards before drawing, discloses nothing first, and the 
 });
 
 test('A7: computer play: pause exact, Fast-forward to the human turn, complete history, Changes',async({page})=>{
- await begin(page,'/?view=reference-game',PORTRAIT);const o=computerOpener();await load(page,o.text);
+ // T101: the history is reached through the hidden `?log` link.
+ await begin(page,'/?view=reference-game&log',PORTRAIT);const o=computerOpener();await load(page,o.text);
  await expect(page.locator('#fast-forward-button')).toBeVisible();
  await page.locator('#game-pause-button').click();const frozen=await savedText(page);await page.clock.runFor(10_000);expect(await savedText(page)).toBe(frozen);
  await withSurface(page,'settings',()=>page.locator('#game-speed').selectOption('slow'));await page.setViewportSize(LANDSCAPE);

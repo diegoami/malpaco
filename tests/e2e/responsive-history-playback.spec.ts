@@ -8,6 +8,7 @@ import type {GameState} from '../../src/core';
 import {deserializeVersionedMatch,serializeVersionedMatch,REFERENCE_MATCH_IDENTITY} from '../../src/core/match-save';
 import {pinned} from '../core/versioned-match-fixture';
 import {closeSurface,openSurface,withSurface} from './shell';
+import {COMPUTER_STEP_TIME} from '../../src/ui/computerTurnLoop';
 
 const PHONE={width:390,height:844},LANDSCAPE={width:844,height:390};
 const pause=(p:Page)=>p.locator('#game-pause-button');
@@ -17,7 +18,7 @@ const viewBox=(p:Page)=>p.locator('svg[data-camera-zoom]').getAttribute('viewBox
 
 async function begin(p:Page){
  await p.clock.install({time:new Date('2026-10-21T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-21T12:00:00Z'));
- await p.goto('/?view=reference-game');
+ await p.goto('/?view=reference-game&log');
  await p.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'savedBlob',blob);return create(blob);};});
 }
 async function load(p:Page,text:string){
@@ -63,23 +64,25 @@ test('computer play keeps the notice with Pause and Fast-forward; the schedule m
  await shot(page,info,'computer-notice-portrait');
  // The control: three computer actions at normal pace, with no resize.
  let control=start.state;for(let i=0;i<3;i++)control=step(control);
- await page.clock.runFor(350);await page.setViewportSize(LANDSCAPE);await page.clock.runFor(350);await page.setViewportSize(PHONE);await page.clock.runFor(350);
+ // T101: Normal waits COMPUTER_STEP_TIME (120 ms) before each computer action.
+ await page.clock.runFor(COMPUTER_STEP_TIME);await page.setViewportSize(LANDSCAPE);await page.clock.runFor(COMPUTER_STEP_TIME);await page.setViewportSize(PHONE);await page.clock.runFor(COMPUTER_STEP_TIME);
  expect((await saved(page)).history).toEqual(control.history);
  // The notice never fades during computer play.
  await expect(notice(page)).toBeVisible();await expect(forward(page)).toBeVisible();
- // Speed is reachable mid-turn and does not reset the camera (T97: the menu's battle log is gone).
+ // Speed is reachable mid-turn and does not reset the camera (T97: the menu's battle log is gone; T101: it sits beside Pause).
  await page.locator('#game-pause-button').click();const box=await viewBox(page);
- await withSurface(page,'settings',()=>page.locator('#game-speed').selectOption('slow'));
+ await page.locator('#game-speed').selectOption('slow');
  await expect.poll(()=>viewBox(page)).toBe(box);
  // Paused exactly: no action, no Fast-forward, Pause still in reach.
- await expect(forward(page)).toHaveCount(0);const frozen=await saved(page);await page.clock.runFor(10_000);expect(await saved(page)).toEqual(frozen);
+ await expect(forward(page)).toBeHidden();const frozen=await saved(page);await page.clock.runFor(10_000);expect(await saved(page)).toEqual(frozen);
  await page.locator('#game-pause-button').click();await page.clock.runFor(525);expect((await saved(page)).history).toEqual(step(frozen).history);
 });
 
 test('Fast-forward plays only the computer seats, ends on the human turn, and Changes recovers their turns',async({page},info)=>{
  await page.setViewportSize(LANDSCAPE);await begin(page);const start=computerTurn();await load(page,start.text);
  let control=start.state;while(activePlayer(control)?.kind==='computer'&&control.phase!=='human-loss'&&control.phase!=='finished')control=step(control);
- await forward(page).click();await expect(notice(page)).toContainText('fast-forward');await expect(forward(page)).toHaveCount(0);
+ // T101: the notice stays the seat's one notice; Fast-forward shows pressed while it runs.
+ await forward(page).click();await expect(notice(page)).toContainText(/'s turn/);await expect(forward(page)).toHaveAttribute('aria-pressed','true');
  const steps=control.history.length-start.state.history.length;
  await page.clock.runFor(40*steps+40);
  const after=await saved(page);expect(after.history).toEqual(control.history);
