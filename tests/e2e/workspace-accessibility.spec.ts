@@ -8,7 +8,7 @@ import {activePlayer} from '../../src/core';
 import type {GameState} from '../../src/core';
 import {deserializeVersionedMatch} from '../../src/core/match-save';
 import {pinned} from '../core/versioned-match-fixture';
-import {closeSurface,openSurface,withSurface} from './shell';
+import {activate,closeSurface,openSurface,withSurface} from './shell';
 
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 async function start(p:Page,size={width:390,height:844}){
@@ -28,7 +28,7 @@ async function stageAttack(p:Page){
  const from=s.map.provinces.find(c=>s.ownerOf[c.id]===me&&clear.includes(c.id)&&c.borders.some(b=>s.ownerOf[b]!==me&&clear.includes(b)))!;
  for(let i=0;i<80&&Number(await p.locator('#placement-pool-count').textContent().catch(()=>'0'))>0;i++)await country(p,from.id).click();
  await p.locator('#start-combat-button').click();s=await saved(p);
- const to=from.borders.find(b=>s.ownerOf[b]!==me&&clear.includes(b))!;await country(p,from.id).click();await country(p,to).click();await openSurface(p,'actions');
+ const to=from.borders.find(b=>s.ownerOf[b]!==me&&clear.includes(b))!;await activate(country(p,from.id));await activate(country(p,to));await openSurface(p,'actions');
  return {from:from.id,to,state:s};
 }
 

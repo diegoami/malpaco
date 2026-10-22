@@ -279,8 +279,12 @@ export class ReferenceBattleGame {
   }
 
   private render(): void {
-    const { state, from, to, running, paused, revision, mode } = this.controller.view;
+    const seen = this.controller.view;
     this.cards.update();
+    // A step the card update took (a Cards phase with no set passes) has already rendered the
+    // newer state; finishing this render would put the older one back (the pool, the notice).
+    if (this.controller.view !== seen && this.mounted) return;
+    const { state, from, to, running, paused, revision, mode } = this.controller.view;
     this.cardControls.render();
     this.eventLog.update(this.controller.state);
     this.persist(state);
@@ -353,8 +357,9 @@ export class ReferenceBattleGame {
     // T97: the objective line moved from the Information icon into Help.
     const viewer = (humans.length === 1 ? humans[0] : mover) ?? state.players[0]!, owned = state.map.provinces.filter(p => state.ownerOf[p.id] === viewer.id).length, total = state.map.provinces.length;
     this.help.setObjective(`${this.options.dominationWin ? `Domination: hold ${dominationThreshold(total)} of ${total} countries · you hold ${owned}` : `Total conquest: hold all ${total} countries · you hold ${owned}`}${this.options.roundLimit ? ` · Round ${state.turnNumber} / ${this.options.roundLimit}` : ` · Round ${state.turnNumber}`}`);
-    // A human loss names no winner while computers remain, so its badge is neutral (#132).
-    const status = {seat: state.phase === "human-loss" ? null : Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result ? state.reinforcementPool : null, result: !!result};
+    // A human loss names no winner while computers remain, so its badge is neutral (#132). The pool
+    // shows while you place armies; a computer's placement shows only its notice (T97).
+    const status = {seat: state.phase === "human-loss" ? null : Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result && !computer ? state.reinforcementPool : null, result: !!result};
     // A required choice, or a staged attack pair, brings its card up once.
     const staged = mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;
     // T83: choosing a Raid target folds the card to its strip so the whole map is free; a
@@ -364,13 +369,13 @@ export class ReferenceBattleGame {
       const key = `raid:${state.history.length}`;
       if (key !== this.raidFolded) {this.raidFolded = key; if (this.chrome?.openSurface === "actions") this.chrome.close(false);}
     }
-    // Computer turns show no choice (owner, 2026-10-22): only the corner icons and the notice stay.
-    // Focus left in (or dropped from) the closing card goes back to a visible control.
-    if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
     const prompt = computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
     // A folded card keeps any pending choice one tap away; a computer seat's own pending choice is never yours (T84).
     const choice = computer ? null : required ?? (staged ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
     this.chrome?.update(status, choice, gamePaused, prompt);
+    // Computer turns show no choice (owner, 2026-10-22): only the corner icons and the notice stay.
+    // Focus left in (or dropped from) the closing card goes back to a visible control.
+    if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
     this.placeCard();
     this.computer?.update();
   }
