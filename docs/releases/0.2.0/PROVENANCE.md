@@ -17,10 +17,10 @@ published bytes are CI's own build of the reviewed tree; nothing is rebuilt for 
 
 | | |
 | --- | --- |
-| Built by | CI run [39692085624](https://github.com/diegoami/malpaco/actions/runs/39692085624) on `f1aa5a1`, conclusion success |
+| Built by | CI run [39692085624](https://github.com/diegoami/malpaco/actions/runs/39692085624) on PR #239 (head `f1aa5a1`), conclusion success. A `pull_request` run builds GitHub's merge of the head into `main`: `6e39383`, tree `aba4d1f`, the same tree as `f1aa5a1` and `cfa39ed` |
 | CI artifact | `malpaco-playable` (id 12389263419), 480,460 bytes, zip digest `sha256:89b578d66791e6df66f1014fc36426358643d83508625f0717964f1a6655daa2` |
 | Contents | `malpaco-playable.tar.gz`, built with `VITE_MALPACO_RELEASE=1` (legacy views retired) |
-| `BUILD.json` | `sourceCommit` must read `f1aa5a104f8dd1ac9d64bf33e8e0faca04b7474a`, `minimumNode` 22 |
+| `BUILD.json` | `sourceCommit` must read `6e39383198a75ed5e79f0de6debc2988c1dcffb0` (PR #239's merge commit, tree `aba4d1f`), `minimumNode` 22 |
 | Archive SHA-256 | Taken at download and recorded in `PUBLICATION.md` and on the release as `malpaco-playable.tar.gz.sha256` |
 
 ## Evidence
@@ -45,7 +45,7 @@ R=diegoami/malpaco SITE=4195ad92-b174-4e41-a6c4-8024619255c3
 gh run download 39692085624 -R $R -n malpaco-playable          # malpaco-playable.tar.gz
 sha256sum malpaco-playable.tar.gz | tee malpaco-playable.tar.gz.sha256
 tar -xzf malpaco-playable.tar.gz
-(cd malpaco-playable && sha256sum -c SHA256SUMS && cat BUILD.json)   # sourceCommit f1aa5a104f8d…
+(cd malpaco-playable && sha256sum -c SHA256SUMS && cat BUILD.json)   # sourceCommit 6e39383198a7…
 
 # 2. Netlify: draft, checked byte for byte, then production. Same site as 0.1.1, exact files, no build.
 check() { (cd malpaco-playable && while read -r sum file; do
