@@ -171,6 +171,8 @@ export class ReferenceBattleGame {
       phaseActions: this.phaseActions, pause: this.playbackPause, countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
     // The Countries icon always opens on the list.
     this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
+    // The history is its own card over the map: the menu steps aside for it.
+    this.eventLog.button.addEventListener("click", () => this.chrome?.close(false), {capture: true});
     root.replaceChildren(h("section", { class: "board" }, this.mapView.el), this.chrome.overlay, store);
     // Only the corner icons reframe the map; cards and notices float over it (T97).
     for (const overlay of this.chrome.obstacles) this.mapView.camera?.avoid(overlay);
@@ -363,7 +365,7 @@ export class ReferenceBattleGame {
     if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
     const prompt = computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
     // A folded card keeps any pending choice one tap away; a computer seat's own pending choice is never yours (T84).
-    const choice = computer ? null : required;
+    const choice = computer ? null : required ?? (staged ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
     this.chrome?.update(status, choice, gamePaused, prompt);
     this.placeCard();
     this.computer?.update();

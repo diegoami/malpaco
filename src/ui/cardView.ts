@@ -19,7 +19,13 @@ export class CardView {
   const hand=h('ul',{class:'own-card-hand visually-hidden','aria-label':'Your hand'},h('li',{},`Your hand: ${v.hand.length} of 5`),...v.hand.map((kind,i)=>h('li',{'data-hand-index':i},h('strong',{},kind))));
   const actions=h('div',{class:'card-choice-controls'});
   if(v.phase==='sets'){
-   for(const set of v.sets)actions.append(button(set.kind,()=>this.cards.chooseSet(set.indices,v.revision),`${set.kind}: ${set.indices.map(i=>v.hand[i]).join(' + ')} — ${set.effect}`));
+   // Two sets of the same cards are one choice to the player: one button each, named by its Wilds.
+   const offered=new Set<string>();
+   for(const set of v.sets){
+    const cards=set.indices.map(i=>v.hand[i]!),key=[...cards].sort().join('+');if(offered.has(key))continue;offered.add(key);
+    const wild=cards.filter(kind=>kind==='Wild').length;
+    actions.append(button(wild?`${set.kind} + ${wild>1?`${wild} `:''}Wild`:set.kind,()=>this.cards.chooseSet(set.indices,v.revision),`${set.kind}: ${cards.join(' + ')} — ${set.effect}`));
+   }
    actions.append(button('Skip',()=>this.cards.skip(v.revision),'Skip cards'));
   }
   if(v.phase==='discard')for(const [i,kind] of v.hand.entries())actions.append(button(kind,()=>this.cards.discard(i,v.revision),`Discard ${kind} (card ${i+1})`));

@@ -187,7 +187,7 @@ export class GameEventLog {
 
   /** A swipe sideways or down closes the card; a tap or a scroll of the list does not. */
   private readonly onSwipeStart = (down: PointerEvent) => {
-    if ((down.target as Element).closest("button, summary")) return;
+    if ((down.target as Element).closest("button")) return;
     const start = {x: down.clientX, y: down.clientY};
     const up = (event: PointerEvent) => {
       window.removeEventListener("pointerup", up); window.removeEventListener("pointercancel", up);
