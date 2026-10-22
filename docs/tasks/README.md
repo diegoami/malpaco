@@ -147,7 +147,8 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T98](T98.md) | 0.2.1 release candidate, acceptance and milestone review | High | Medium | #247 | T97 |
 | [T100](T100.md) | Persistent sessions and a scoreboard | High | Medium | #254 | T98 |
 | [T101](T101.md) | Foldable, draggable cards; hidden history; quick, quiet computer turns | High | Hard | #255 | T100 |
-| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T101 |
+| [T103](T103.md) | Guided taps and a pulsing hint when you hesitate | High | Medium | #261 | #260 fix |
+| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T103 |
 
 ## 0.3
 
