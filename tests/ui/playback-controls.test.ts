@@ -2,7 +2,8 @@ import { expect, test } from "vitest";
 import { activePlayer, apply, computerAction } from "../../src/core";
 import { deserializeVersionedMatch } from "../../src/core/match-save";
 import { BattleController } from "../../src/ui/battleController";
-import { ComputerTurnLoop, FAST_FORWARD_STEP_TIME } from "../../src/ui/computerTurnLoop";
+import { COMPUTER_STEP_TIME, COMPUTER_STEP_TIMES, ComputerTurnLoop, FAST_FORWARD_STEP_TIME } from "../../src/ui/computerTurnLoop";
+import type { BattleSpeed } from "../../src/ui/battleController";
 import { Clock, battle } from "./battle-fixtures";
 import { pinned } from "../core/versioned-match-fixture";
 
@@ -49,7 +50,7 @@ test("Fast-forward shortens only the wait, plays the same actions, ends on a hum
   const clock = new Clock(); let loop: ComputerTurnLoop | undefined;
   const c = new BattleController(initial, clock, () => loop?.update());
   loop = new ComputerTurnLoop(c, clock); loop.update();
-  expect([...clock.pending.values()][0]!.delay).toBe(350);
+  expect([...clock.pending.values()][0]!.delay).toBe(COMPUTER_STEP_TIME);
   loop.fastForward(); expect(loop.fastForwarding).toBe(true);
   expect(clock.pending.size).toBe(1); expect([...clock.pending.values()][0]!.delay).toBe(FAST_FORWARD_STEP_TIME);
   let expected = initial;
@@ -57,10 +58,25 @@ test("Fast-forward shortens only the wait, plays the same actions, ends on a hum
   expect(c.state).toEqual(expected); expect(clock.pending.size).toBe(1);
   // Pause ends it; resuming returns to the chosen speed.
   c.setPlaybackPaused(true); expect(loop.fastForwarding).toBe(false); c.setPlaybackPaused(false);
-  expect([...clock.pending.values()][0]!.delay).toBe(350);
+  expect([...clock.pending.values()][0]!.delay).toBe(COMPUTER_STEP_TIME);
   loop.dispose(); c.dispose();
   // On a human turn there is nothing to fast-forward.
   const human = deserializeVersionedMatch(pinned("placement").text).state, h2 = new Clock();
   const c2 = new BattleController(human, h2); const l2 = new ComputerTurnLoop(c2, h2);
   l2.fastForward(); expect(l2.fastForwarding).toBe(false); expect(h2.pending.size).toBe(0); l2.dispose(); c2.dispose();
+});
+
+test("T101: each speed waits its own step before a computer action and plays the same actions", () => {
+  const initial = deserializeVersionedMatch(pinned("watch").text).state;
+  expect(COMPUTER_STEP_TIMES).toEqual({ "very-slow": 2000, slow: 350, normal: 120, fast: 60 });
+  let expected = initial;
+  for (let i = 0; i < 6; i++) { const r = apply(expected, computerAction(expected)!); if (!r.ok) throw Error(r.error); expected = r.state; }
+  for (const speed of ["very-slow", "slow", "normal", "fast"] as BattleSpeed[]) {
+    const clock = new Clock(); let loop: ComputerTurnLoop | undefined;
+    const c = new BattleController(initial, clock, () => loop?.update());
+    c.restorePreferences(2, speed); loop = new ComputerTurnLoop(c, clock); loop.update();
+    for (let i = 0; i < 6; i++) { expect([...clock.pending.values()][0]!.delay).toBe(COMPUTER_STEP_TIMES[speed]); clock.tick(); }
+    expect(c.state).toEqual(expected);
+    loop.dispose(); c.dispose();
+  }
 });
