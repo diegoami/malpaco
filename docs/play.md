@@ -43,8 +43,9 @@ You are **You**; the three computers are named by their seat colours: **Orange**
 **Purple** (in games with two or more humans every seat is its colour). Saved games keep `Seat N`.
 
 During your turn, place reinforcements on your territories,
-then choose **Start combat**. Select one of your territories, then an adjacent enemy:
-that only chooses the target. **Fight** rolls one exchange each time you press it; nothing
+and combat starts by itself once the last army is placed. Select one of your territories: beside
+it appears **Fight** if it can attack, or **Move** if it can only move armies. Then tap an adjacent
+enemy: that only chooses the target. **Fight** rolls one exchange each time you press it; nothing
 continues on its own, and **Cancel** drops the target. Clicks, Enter/Space, touch and the
 Countries list all work the same way. After capturing a territory, choose the army amount with
 −, + and **Confirm**; until then the two countries' counts are dashed.
@@ -52,8 +53,10 @@ On the map, your selected country has a solid gold outline, the countries it can
 light one, and the chosen target a solid light outline with a crosshair round its count, so none of
 them relies on colour alone. Counts never draw smaller than 14 px; stacks over 999 show as 1.2k or
 23k, and the country's spoken name keeps the exact number.
-You can make one adjacent friendly move per turn: **Move armies**, then a source and an own
-neighbour, then −, the amount, + and **Confirm** (or **Cancel**). Computer turns run automatically
+If you pause on your turn without acting, a pulsing gold arrow points at the control you most likely
+need next: **Fight** or **Confirm**. Any tap or key hides it.
+You can make one adjacent friendly move per turn: **Move armies** (or **Move** beside a selected
+territory), then a source and an own neighbour, then −, the amount, + and **Confirm** (or **Cancel**). Computer turns run automatically
 and quickly: a round of three Normal computers takes about ten seconds. Each computer's turn shows
 one notice, such as "Orange's turn", while its counts and colours change on the map; its moves are
 not staged or outlined.

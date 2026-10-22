@@ -148,7 +148,8 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T100](T100.md) | Persistent sessions and a scoreboard | High | Medium | #254 | T98 |
 | [T101](T101.md) | Foldable, draggable cards; hidden history; quick, quiet computer turns | High | Hard | #255 | T100 |
 | [T103](T103.md) | Guided taps and a pulsing hint when you hesitate | High | Medium | #261 | #260 fix |
-| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T103 |
+| [T104](T104.md) | See your cards: a hand button, and the hand after each draw | High | Medium | #263 | T103 |
+| [T99](T99.md) | Publish 0.2.1 | High | Medium | #248 | T104 |
 
 ## 0.3
 

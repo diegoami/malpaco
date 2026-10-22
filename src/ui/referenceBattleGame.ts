@@ -22,6 +22,8 @@ import {glyph} from "./icons";
 import type {Notice} from "./battleChrome";
 import {GameHelp} from "./help";
 import {CountryPicker} from "./countryPicker";
+import {HesitationHint} from "./hesitationHint";
+import {ProvinceAction} from "./provinceAction";
 import {seatName} from "./palette";
 import {ScoreboardDialog} from "./scoreboard";
 import type {GameOutcome} from "./scoreboard";
@@ -77,6 +79,12 @@ export class ReferenceBattleGame {
   private giveUpPaused = false;
   private givenUp = false;
   private persisted = -1;
+  /** T103: the player's game points at the next control when the player hesitates. */
+  private readonly hint: HesitationHint | null = null;
+  /** T103: the history length at which placement last ended by itself, so it ends once. */
+  private autoStarted = -1;
+  /** T103: Fight or Move beside the selected country (the player's game). */
+  private readonly provinceAction: ProvinceAction | null = null;
   private persistedSeat = -1;
   /** T100: the menu's scoreboard (the player's game only); a game is recorded once, if it was unfinished when it opened. */
   private readonly scoreboard: ScoreboardDialog | null = null;
@@ -93,6 +101,7 @@ export class ReferenceBattleGame {
   constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, private readonly preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState, loaded?:LoadedVersionedMatch) => void, private readonly automatic = false, private readonly presentation?:MatchPresentation) {
     this.eventLog = new GameEventLog(options,presentation?.initialState);
     document.body.append(this.eventLog.dialog, this.help.dialog);
+    if (presentation?.player) {this.hint = new HesitationHint(); this.provinceAction = new ProvinceAction(); document.body.append(this.hint.el, this.provinceAction.el);}
     if (presentation?.player) {
       this.giveUp = new GiveUpDialog({
         open: () => {this.chrome?.close(false); this.giveUpPaused = !this.controller.playbackPaused; if (this.giveUpPaused) this.controller.setPlaybackPaused(true);},
@@ -217,7 +226,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
-    this.eventLog.dispose(); this.help.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
+    this.eventLog.dispose(); this.help.dispose(); this.hint?.dispose(); this.provinceAction?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
@@ -364,6 +373,27 @@ export class ReferenceBattleGame {
     this.victory.render(state, revision);
     if(this.controller.cardAcknowledgmentPending)this.victory.el.hidden=true;
     const computer = this.computerActive() && !this.controller.cardAcknowledgmentPending;
+    // T103: on the player's own turn, with no card choice waiting.
+    const quiet = !computer && !this.controller.playbackPaused && !state.result && activePlayer(state)?.kind === "human"
+      && !this.controller.cardAcknowledgmentPending && !["sets","raid-target","discard","reward"].includes(this.cards.view.phase);
+    // T103 (owner): when the player places their last army, combat starts as if Start combat were pressed.
+    if (this.presentation?.player && quiet && state.phase === "reinforce" && state.reinforcementPool === 0
+      && state.history.at(-1)?.kind === "reinforce" && this.autoStarted !== state.history.length) {
+      this.autoStarted = state.history.length;
+      queueMicrotask(() => {if (!this.disposed) this.controller.dispatch({ kind: "endReinforcement" }, revision);});
+    }
+    if (this.provinceAction) {
+      // Beside the selected country: Fight when it can attack (live once a target is chosen), else Move.
+      const source = quiet && state.phase === "attack" && mode !== "move" && !state.pendingCapture && !running ? from : null;
+      if (source && attackTargets(state, source).length) this.provinceAction.show(source, "fight", !!to && !paused && whyNot(state, source, to) === "", () => this.controller.singleExchange(revision));
+      else if (source && friendlySources(state).includes(source)) this.provinceAction.show(source, "move", !paused, () => {if (this.controller.startFriendlyMove(revision)) this.controller.select(source, null);});
+      else this.provinceAction.hide();
+    }
+    if (this.hint) {
+      // T103: the control the player most likely needs next.
+      this.hint.want(!quiet ? null : state.pendingCapture ? "confirm-capture-button" : mode === "move" ? (from && to ? "confirm-friendly-move-button" : null)
+        : state.phase === "attack" && from && to && !running && !paused ? "single-exchange-button" : null);
+    }
     const name = (id: string | undefined) => seatName(state.players, id);
     this.panel.el.dataset["computerActive"] = String(computer);
     this.computerStatus.hidden = !computer;

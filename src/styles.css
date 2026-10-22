@@ -1803,3 +1803,16 @@ dialog h2 {
 /* A narrow screen keeps the pool beside the menu icon, clear of the speed choice. */
 @media (max-width:479px) { .battle-reference .game-pool-slot { justify-self:start; margin-left:calc(var(--target) + var(--gap)); } .battle-reference .game-overlay #game-speed { width:86px; padding:0 4px; font-size:14px; } }
 .battle-reference .game-overlay #active-seat-notice:not(:has(button)) { padding-right:18px; }
+
+/* T103: the hesitation hint, a pulsing arrow beside the control the player most likely needs. */
+.hesitation-hint { position:fixed; z-index:60; width:36px; height:36px; pointer-events:none; color:var(--accent); filter:drop-shadow(0 2px 4px #0009); animation:hesitation-pulse 1.1s ease-in-out infinite; }
+.hesitation-hint[hidden] { display:none; }
+.hesitation-hint::before { content:""; position:absolute; inset:6px; background:currentColor; clip-path:polygon(0 30%,55% 30%,55% 0,100% 50%,55% 100%,55% 70%,0 70%); }
+.hesitation-hint[data-side="above"]::before { transform:rotate(90deg); }
+.hesitation-hint[data-side="below"]::before { transform:rotate(-90deg); }
+@keyframes hesitation-pulse { 0%,100% { transform:scale(.8); } 50% { transform:scale(1.25); } }
+@media (prefers-reduced-motion: reduce) { .hesitation-hint { animation:none; } }
+/* T103: Fight or Move beside the selected country. */
+.province-action { position:fixed; z-index:55; width:44px; height:44px; min-width:44px; padding:0; border-radius:12px; box-shadow:0 2px 8px #000a; }
+.province-action[hidden] { display:none; }
+.province-action:disabled { opacity:.55; }
