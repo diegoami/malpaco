@@ -10,7 +10,7 @@ How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process
 [docs/tasks/](docs/tasks/README.md).
 Task status lives in GitHub issue labels.
 
-## Play Malpaco 0.1.1
+## Play Malpaco 0.2.0
 
 [Play in your browser](https://malpaco.netlify.app).
 
