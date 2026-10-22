@@ -46,7 +46,7 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
   const assertSaved = async (name: string) => { const text = await save(page); writeFileSync(join(evidence, name + ".json"), text); expect(deserializeVersionedMatch(text).state).toEqual(state); return text; };
   while (index < fixture.actions.length) {
     if (activePlayer(state)!.kind === "computer") {
-      if (!computer) { await expect(page.locator("#active-seat-notice")).toContainText(/placing armies|attacking|moving|playing cards|raiding/); await expect(page.locator("#end-turn-button")).toBeDisabled(); await screenshot("computer-turn"); computer = true; }
+      if (!computer) { await expect(page.locator("#active-seat-notice")).toContainText(/^(Blue|Orange|Green|Purple)'s turn$/); await expect(page.locator("#end-turn-button")).toBeDisabled(); await screenshot("computer-turn"); computer = true; }
       let steps = 0;
       do { state = step(state, fixture.actions[index++]!); steps++; } while (index < fixture.actions.length && activePlayer(state)!.kind === "computer" && state.phase !== "finished");
       await page.clock.runFor(steps * 350);

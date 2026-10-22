@@ -86,7 +86,7 @@ test('A2: Place 1 by map and list to zero; stage by map, list and keyboard witho
  // Staging by map, list and keyboard leaves the match exactly as it was; T97: the card holds Fight and Cancel only (no odds),
  // and it floats over the map: opening it leaves the viewBox as it was.
  await country(page,from).click();const framed=await rested(page);await country(page,to).click();await exactly(page,s);
- await openSurface(page,'actions');expect(await shown(page)).toEqual(['Fight','Cancel']);await expect(page.locator(RETIRED)).toHaveCount(0);await expect(page.locator('#single-exchange-button')).toHaveAccessibleName('Fight');
+ await openSurface(page,'actions');expect(await shown(page)).toEqual(['Fight','Cancel','Fold card']);await expect(page.locator(RETIRED)).toHaveCount(0);await expect(page.locator('#single-exchange-button')).toHaveAccessibleName('Fight');
  expect(await viewBox(page),'opening the card reframes the map').toBe(framed);
  await page.locator('#open-countries').click();const target=page.locator(`[data-country-row="${to}"]`);await expect(target).toBeEnabled();await target.click();await closeSurface(page);await exactly(page,s);
  await country(page,to).focus();await page.keyboard.press('Enter');await exactly(page,s);
@@ -113,7 +113,7 @@ test('A2: a legal set trades once and a skip changes nothing but the phase',asyn
 test('A3: a capture draft survives fold, rotation, history and pause; dashed until one Confirm; short landscape keeps badges on their land',async({page},info)=>{
  await reference(page);const f=pinned('pending-capture');await load(page,f.text);let s=await saved(page);const pending=s.pendingCapture!;
  const draft=String(pending.min===pending.defaultAmount?pending.max:pending.min);
- await openSurface(page,'actions');expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Confirm move-in']);await expect(page.locator(RETIRED)).toHaveCount(0);
+ await openSurface(page,'actions');expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Confirm move-in','Fold card']);await expect(page.locator(RETIRED)).toHaveCount(0);
  await page.locator('#capture-amount').fill(draft);
  await page.keyboard.press('Escape');await page.locator('#open-required-action').click();
  await page.setViewportSize(LANDSCAPE);await settle(page);await openSurface(page,'details');await closeSurface(page);
@@ -132,7 +132,7 @@ test('A4: a friendly-move draft survives resize; Cancel changes nothing; Move & 
  await page.getByLabel('Seed',{exact:true}).fill(String(f.seed));await page.getByLabel('Seats',{exact:true}).selectOption('2');await page.getByRole('button',{name:'Start game',exact:true}).click();
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator('#start-combat-button').click();let s=await saved(page);
  await page.locator('#start-friendly-move-button').click();await country(page,f.from).click();await country(page,f.to).click();
- await openSurface(page,'actions');expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Move and end turn','Cancel · back to attacks']);
+ await openSurface(page,'actions');expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Move and end turn','Cancel · back to attacks','Fold card']);
  await page.locator('#friendly-move-amount').fill('1');
  await page.setViewportSize(LANDSCAPE);await settle(page);await page.setViewportSize(PORTRAIT);await settle(page);await openSurface(page,'actions');
  await expect(page.locator('#friendly-move-amount')).toHaveValue('1');await page.locator('#cancel-friendly-move-button').click();await exactly(page,s);
@@ -149,7 +149,7 @@ test('A5: Raid folds; a list pick stages the target with its preview; one Confir
  await expect(page.locator('#game-focus-drawer')).toHaveAttribute('data-surface','actions');await exactly(page,before.state);
  await shot(page,info,'A5-raid');
  await closeSurface(page);expect(await counts()).toEqual(rest);
- await page.locator('#open-required-action').click();expect(await shown(page)).toEqual(['Confirm raid']);await expect(page.locator(RETIRED)).toHaveCount(0);
+ await page.locator('#open-required-action').click();expect(await shown(page)).toEqual(['Confirm raid','Fold card']);await expect(page.locator(RETIRED)).toHaveCount(0);
  await page.getByRole('button',{name:'Confirm raid',exact:true}).click();
  await exactly(page,next(before.state,{kind:'raidTarget',province:target}));
 });
@@ -166,7 +166,8 @@ test('A6: a full hand discards before drawing, discloses nothing first, and the 
 });
 
 test('A7: computer play: pause exact, Fast-forward to the human turn, complete history, Changes',async({page})=>{
- await begin(page,'/?view=reference-game',PORTRAIT);const o=computerOpener();await load(page,o.text);
+ // T101: the history is reached through the hidden `?log` link.
+ await begin(page,'/?view=reference-game&log',PORTRAIT);const o=computerOpener();await load(page,o.text);
  await expect(page.locator('#fast-forward-button')).toBeVisible();
  await page.locator('#game-pause-button').click();const frozen=await savedText(page);await page.clock.runFor(10_000);expect(await savedText(page)).toBe(frozen);
  await withSurface(page,'settings',()=>page.locator('#game-speed').selectOption('slow'));await page.setViewportSize(LANDSCAPE);

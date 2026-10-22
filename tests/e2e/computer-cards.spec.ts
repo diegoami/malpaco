@@ -10,7 +10,7 @@ import {openSurface,setDetail,withSurface} from './shell';
 // The Cards region waits in the hidden store unless a card shows it (T79); a CSS locator still reads it.
 const cards=(p:Page)=>p.locator('section.card-interactions[aria-label="Cards"]');
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
-async function begin(p:Page,url='/?generator=1&setup'){await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await p.goto(url);}
+async function begin(p:Page,url='/?generator=1&setup&log'){await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await p.goto(url);}
 // [designed] 120ms real-time margin prevents Chromium's ten-download/second burst gate.
 // Source: LocalFrame::ShouldThrottleDownload; Node time leaves the paused game clock unchanged.
 const nativeSaveCompletedAt=new WeakMap<Page,number>();
@@ -18,10 +18,16 @@ async function nativeSave(p:Page){const previous=nativeSaveCompletedAt.get(p);if
 async function saved(p:Page){return c.deserializeVersionedMatch(await nativeSave(p));}
 async function load(p:Page,text:string){const previous=await p.getByLabel('Load game',{exact:true}).elementHandle();await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'computer-cards.json',mimeType:'application/json',buffer:Buffer.from(text)});await expect.poll(()=>previous!.evaluate(n=>n.isConnected)).toBe(false);await expect(p.locator('[data-country]')).toHaveCount(46);}
 async function exact(p:Page,original:LoadedVersionedMatch,state:GameState){const actual=await saved(p);expect(actual.identity).toEqual(original.identity);expect(actual.options).toEqual(original.options);expect(actual.geography).toEqual(original.geography);expect(actual.state).toEqual(state);return actual;}
+/**
+ * T101: while a computer plays the menu waits until a pause, and a pause restarts the wait before the
+ * next action; a check in the middle of a wait reads the same native save without opening the menu.
+ */
+async function exactMidWait(p:Page,original:LoadedVersionedMatch,state:GameState){const event=p.waitForEvent('download');await p.locator('#reference-save-game').dispatchEvent('click');const path=await(await event).path();if(!path)throw Error('Native download missing');nativeSaveCompletedAt.set(p,performance.now());const actual=c.deserializeVersionedMatch(readFileSync(path,'utf8'));expect(actual.identity).toEqual(original.identity);expect(actual.options).toEqual(original.options);expect(actual.geography).toEqual(original.geography);expect(actual.state).toEqual(state);}
 async function slow(p:Page){await withSurface(p,'settings',()=>p.getByLabel('Game speed',{exact:true}).selectOption('very-slow'));}
 async function noReward(p:Page){await expect(p.getByRole('button',{name:'Continue',exact:true})).toHaveCount(0);await expect(cards(p)).not.toContainText(/You drew|Card drawn/i);}
 async function essentials(p:Page){// T92: the top-right corner offers Pause, or Return to map on the result card (as in the sketches).
-await expect(p.locator('.game-corner-end button:visible')).toHaveCount(1);await withSurface(p,'settings',async()=>{await expect(p.getByLabel('Game speed',{exact:true})).toBeVisible();await openSurface(p,'menu');await expect(p.getByRole('button',{name:'Game event log',exact:true})).toBeVisible();});expect(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);}
+// T101: Fast-forward joins Pause there while a computer plays.
+await expect(p.locator('.game-corner-end button:visible:not(#fast-forward-button)')).toHaveCount(1);await withSurface(p,'settings',async()=>{await expect(p.getByLabel('Game speed',{exact:true})).toBeVisible();await openSurface(p,'menu');await expect(p.getByRole('button',{name:'Game event log',exact:true})).toBeVisible();});expect(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);}
 async function totals(p:Page,s:GameState){for(const player of s.players){const n=s.map.provinces.filter(x=>s.ownerOf[x.id]===player.id).reduce((sum,x)=>sum+s.armies[x.id]!,0);await expect(p.locator(`[data-player="${player.id}"] [data-testid="player-army-total"]`)).toHaveText(`Total armies: ${n}`);}}
 async function capture(p:Page,info:TestInfo,label:string){await p.screenshot({path:info.outputPath(`${label}.png`),fullPage:true});}
 /** One timed computer action; allow only the fixed-human's synchronous no-set pass
@@ -42,7 +48,7 @@ async function humanPlacement(p:Page,loaded:LoadedVersionedMatch,s:GameState){
 test('geographic setup enables cards only for zero/one human with explicit wording and exact identity',async({page},info)=>{
  test.setTimeout(90000);await begin(page);
  for(const humans of [0,1,2,4]){
-  await page.goto('/?generator=1&seed=1994&setup');await expect(page.locator('.setup-card')).toContainText('Cards are enabled with zero or one human seat. Games with two or more human seats play without cards.');
+  await page.goto('/?generator=1&seed=1994&setup&log');await expect(page.locator('.setup-card')).toContainText('Cards are enabled with zero or one human seat. Games with two or more human seats play without cards.');
   await page.getByLabel('Seats',{exact:true}).selectOption('4');for(let n=1;n<=4;n++)await page.getByLabel(`Seat ${n} control`,{exact:true}).selectOption(n<=humans?'human':'computer');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
   const actual=await saved(page);expect(actual.options.seed).toBe(1994);expect(actual.options.seats.filter(x=>x.kind==='human')).toHaveLength(humans);
   expect(actual.identity).toEqual({boardGenerator:{id:'geographic',version:1},rules:{id:humans<=1?'cards':'victory',version:humans<=1?3:1},actionSchemaVersion:humans<=1?5:2});
@@ -93,7 +99,7 @@ test('real computer pending discard chooses oldest index zero before drawing and
 test('human acknowledgement blocks computers through pause/speed changes and resumes at exactly two seconds',async({page},info)=>{
  await begin(page);const before=fixture('T37-reshuffle-before-match');await load(page,input('T37-reshuffle-before-match'));const own=c.activePlayer(before.state)!.id,kind=before.state.cards!.hands[own]![2]!;await page.getByRole('button',{name:`Discard ${kind} (card 3)`,exact:true}).click();const drawn=step(before.state,{kind:'discardCard',handIndex:2});await exact(page,before,drawn);expect(c.activePlayer(drawn)!.kind).toBe('computer');const more=page.getByRole('button',{name:'Continue',exact:true});await expect(more).toBeVisible();
  await page.locator('#game-pause-button').click();await slow(page);await expect(more).toBeDisabled();await page.clock.runFor(6000);await exact(page,before,drawn);await page.locator('#game-pause-button').click();await expect(more).toBeEnabled();await page.clock.runFor(6000);await exact(page,before,drawn);await capture(page,info,'human-reward-barrier');
- await more.click();await exact(page,before,drawn);await expect(more).toHaveCount(0);await page.clock.runFor(1999);await exact(page,before,drawn);await page.clock.runFor(1);const after=(await saved(page)).state;expect(after.history).toHaveLength(drawn.history.length+1);const action=after.history.at(-1)!;expect(action.kind).toBe('reinforce');expect(after).toEqual(step(drawn,action));await totals(page,after);
+ await more.click();await exact(page,before,drawn);await expect(more).toHaveCount(0);await page.clock.runFor(1999);await exactMidWait(page,before,drawn);await page.clock.runFor(1);const after=(await saved(page)).state;expect(after.history).toHaveLength(drawn.history.length+1);const action=after.history.at(-1)!;expect(action.kind).toBe('reinforce');expect(after).toEqual(step(drawn,action));await totals(page,after);
 });
 
 test('native pending Raid/discard saves reload exactly, pause holds, and spectator cards progress privately',async({page})=>{

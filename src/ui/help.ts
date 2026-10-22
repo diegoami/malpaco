@@ -81,9 +81,9 @@ export function mountHelp(
 /** T85 (R6, #61): every icon the game shows, with the one name it is announced by. Card names
  * stay out of this help: the page may show only your own or publicly spent cards. */
 const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
-  ["menu", "Menu", "Game speed, the game history, the scoreboard, this help and New game."],
-  ["pause", "Pause", "Stops play at once; the same icon resumes it."],
-  ["fast-forward", "Fast-forward", "During computer turns: play them without waiting until your turn."],
+  ["menu", "Menu", "The scoreboard, this help and New game. While a computer plays it waits, with Fit and Countries, until your turn or a pause."],
+  ["pause", "Pause", "Stops play at once and brings back the menu; the same icon resumes it. Beside it, the game speed."],
+  ["fast-forward", "Fast-forward", "Beside Pause during computer turns: play them without waiting until your turn."],
   ["fit", "Fit", "Shows the whole map again."],
   ["countries", "Countries", "Every country by island, or only the ones you can use now."],
   ["info", "Inspect", "In the Countries list: a country's owner, armies and neighbours. On the result card, Details: the seed, options and record."],
@@ -95,11 +95,11 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["plus", "More", "Raises a move-in or move amount."],
   ["confirm", "Confirm", "Completes a capture move-in or a move."],
   ["return", "Return", "The gold icon that brings a folded choice back."],
-  ["history", "Game event log", "In the menu: every action so far. On your turn's notice: the other seats' actions since your last turn."],
   ["standings", "Standings", "Countries and armies at the end of the game."],
   ["trophy", "Scoreboard", "In the menu: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
   ["new-game", "New game", "Gives up this game and starts a new one."],
   ["watch", "Watch computers", "After your last country falls: the computers play on."],
+  ["fold", "Fold card", "Shrinks a card to a chip that keeps its title; tap the chip to open it again."],
   ["close", "Close", "Closes a card, cancels a choice, or dismisses a notice."],
 ];
 const HOW_TO: readonly (readonly [string, string])[] = [
@@ -108,9 +108,11 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
   ["Cards", "A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
   ["Notices", "The slim notice under the top icons says whose turn it is. Tap it for a hint; swipe or × dismisses it."],
+  ["Computer turns", "Each computer's turn shows one notice while its counts and colours change on the map. Choose the speed beside Pause; Slow and Very slow let you watch every move."],
   ["Seats", "You play one seat; the computers are named by their colours: Orange, Green and Purple."],
   ["Kept games", "Your game is kept in this browser: a reload, or reopening the browser, resumes it, paused if you left it paused. Each game counts once on the scoreboard, when it ends."],
   ["Map", "Pinch or scroll to zoom, drag to pan, Fit to see everything. Cards float over the map and move aside from the countries in play. A tap that touches two countries asks which one."],
+  ["Moving cards", "Drag a card by its grip or its edge to put it elsewhere; later cards open there too. Double-tap the grip, or start a new game, to put cards back in their corners."],
 ];
 
 /** The in-game help: the objective, how the game plays, and every icon's name. Visible and accessible names match. */

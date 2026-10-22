@@ -32,7 +32,7 @@ function expectedNormal(seed:number){const options={...defaultOptions(),seed},r=
  return {...r,options,initialState:r.state,state};} 
 const country=(p:Page,id:string)=>p.locator(`#geographic-map [data-country="${id}"]`);
 const numbers=(s:string)=>[...s.matchAll(/-?(?:\d+\.?\d*|\.\d+)/g)].map(m=>Number(m[0]));
-async function setup(p:Page,seed=1994){await p.goto(`/?generator=1&seed=${seed}&control=manual`);await expect(p.getByRole('button',{name:'Start game',exact:true})).toBeVisible();}
+async function setup(p:Page,seed=1994){await p.goto(`/?generator=1&seed=${seed}&control=manual&log`);await expect(p.getByRole('button',{name:'Start game',exact:true})).toBeVisible();}
 async function start(p:Page,seed:number){await setup(p,seed);await p.getByLabel('Seats',{exact:true}).selectOption('2');for(let n=1;n<=2;n++)await p.getByLabel(`Seat ${n} control`,{exact:true}).selectOption('human');await p.getByRole('button',{name:'Start game',exact:true}).click();await expect(p.locator('#geographic-map')).toBeVisible();}
 async function save(p:Page){const pending=p.waitForEvent('download');await withSurface(p,'settings',()=>p.getByRole('button',{name:'Save game',exact:true}).click());return readFileSync((await(await pending).path())!,'utf8');}
 async function upload(p:Page,text:string,success=true){const old=await p.getByLabel('Load game',{exact:true}).elementHandle();await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'resume.json',mimeType:'application/json',buffer:Buffer.from(text)});if(success)await expect.poll(()=>old!.evaluate(n=>n.isConnected)).toBe(false);}
@@ -73,7 +73,7 @@ test('measured corpus fixture is frozen and reproducible',()=>{
 });
 test('the setup route (root and unknown view with ?setup) retains the established setup and playback controls',async({page})=>{
  await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));
- for(const url of ['/?generator=1&setup','/?generator=1&view=unknown&seed=1994&setup']){
+ for(const url of ['/?generator=1&setup&log','/?generator=1&view=unknown&seed=1994&setup&log']){
   await page.goto(url);await expect(page.getByLabel('Seats',{exact:true})).toHaveValue('4');
   for(let n=1;n<=4;n++)await expect(page.getByLabel(`Seat ${n} control`,{exact:true})).toHaveValue(n===1?'human':'computer');
   await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();await expect(page.locator('#reference-map')).toHaveCount(0);
@@ -136,7 +136,7 @@ for(const refusal of corpus.refusalSeeds.slice(0,1))test(`real measured refusal 
 });
 
 test('geographic computer playback pauses and cancels stale work on load',async({page})=>{
- await page.clock.install();await page.clock.pauseAt(new Date());await page.goto('/?generator=1&setup');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
+ await page.clock.install();await page.clock.pauseAt(new Date());await page.goto('/?generator=1&setup&log');await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#geographic-map')).toBeVisible();
  let initial=deserializeVersionedMatch(await save(page));expect(initial.identity).toEqual(GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY);expect(initial.state.rules.cards).toBe('raid-v1');expect(initial.state).toEqual(expectedNormal(1994).state);let state=initial.state;
  for(let n=0;n<50&&(activePlayer(state)!.kind!=='computer'||state.phase!=='attack');n++){
   if(activePlayer(state)!.kind==='human'){

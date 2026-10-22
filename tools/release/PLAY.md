@@ -8,15 +8,18 @@ The seed fixes the geography, deal and dice sequence.
 Opening the page starts a game at once: you against three Normal computers on a random seed, with
 Domination on and no round limit. Islands and territories take real island and town names from one
 region (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific), chosen by
-the seed; names never change the map or play. The game is kept in this browser after every action,
-so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
+the seed; names never change the map or play. The game is kept in this browser after each of your
+actions and each computer's turn (a refresh in the middle of a computer's turn replays that turn,
+the same moves), so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
 still open, at the game speed you chose, and paused if you left it paused. Nothing leaves this
 browser: there is no account, server or sync between devices. **New game** in the menu asks "Give up this game?", shows
 where the seats stood, then starts a new random game; after a result it starts at once.
 Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
 same address (it never replaces the kept game),
-`?setup` opens the older setup screen with its seats, options and Save and Load files, and
-`?view=reference-game` opens the fixed Nine Isles board.
+`?setup` opens the older setup screen with its seats, options and Save and Load files,
+`?view=reference-game` opens the fixed Nine Isles board, and `&log` (or `?log`) on any of them
+brings back the game history: the menu's history icon, **History** on the result card and, on your
+turn, the notice's icon for the other seats' actions since your last turn.
 
 You are **You**; the three computers are named by their seat colours: **Orange**, **Green** and
 **Purple** (in games with two or more humans every seat is its colour). Saved games keep `Seat N`.
@@ -32,8 +35,10 @@ light one, and the chosen target a solid light outline with a crosshair round it
 them relies on colour alone. Counts never draw smaller than 14 px; stacks over 999 show as 1.2k or
 23k, and the country's spoken name keeps the exact number.
 You can make one adjacent friendly move per turn: **Move armies**, then a source and an own
-neighbour, then −, the amount, + and **Confirm** (or **Cancel**). Computer turns run automatically,
-and while a computer plays no choice or action is on screen.
+neighbour, then −, the amount, + and **Confirm** (or **Cancel**). Computer turns run automatically
+and quickly: a round of three Normal computers takes about ten seconds. Each computer's turn shows
+one notice, such as "Orange's turn", while its counts and colours change on the map; its moves are
+not staged or outlined.
 
 Cards are enabled in normal games with zero or one human seat. Hands start empty.
 Capture a territory and finish your turn to earn a card; the reward says which card you drew,
@@ -43,21 +48,24 @@ stays hidden until then). A Raid folds its card to a one-line strip so the whole
 a highlighted enemy country, or choose one from **Countries**, then **Confirm**.
 Games with two or more human seats currently play without cards.
 
-**Pause** stops play, and **Game speed** in the menu slows computer turns. While computers play,
-their notice stays under **Pause** with a gold **Fast-forward** icon, which plays the computer seats
-without waiting until your turn (the moves are the same). On your turn, the notice's history icon
-opens the full event log at the other seats' actions since your last turn, marked. The menu's
-smaller history icon opens the whole **Game event log**; close it with ×, Escape or a swipe.
+The speed controls share the top-right corner: the **Game speed** choice (Slow and Very slow let
+you watch every move), **Pause**, and, while computers play, a gold **Fast-forward** icon that plays
+the computer seats without waiting until your turn (the moves are the same). While a computer
+plays they are the only controls on screen; the menu, **Fit** and **Countries** come back on your
+turn, or as soon as you pause.
 
-The map fills the screen and only corner icons rest on it: the menu top-left (game speed, **Help &
-icon names**, **New game**, the history icon and the trophy for the **Scoreboard**), **Pause** top-right, **Fit** and **Countries**
+The map fills the screen and only corner icons rest on it: the menu top-left (**Help & icon names**,
+**New game** and the trophy for the **Scoreboard**), the speed controls top-right, **Fit** and **Countries**
 bottom-left, and bottom-right the legal phase action: **Start combat**, **Move armies** or the flag
 for **End turn**, which also skips a move. While you place armies, the pool shows as an icon and a
 number at the top. Only these icons frame the map: cards and notices float over it and never shrink
 it. A slim notice under the top icons says whose turn it is: tap it for a hint, swipe it or tap × to
 dismiss it; it fades after a few seconds, except an illegal-move reason or a computer's turn. A
 choice appears as a small card in a bottom corner, and moves to the other side when it would cover
-the countries in play. Escape folds a choice to a one-line strip with a gold return icon. **Zoom**
+the countries in play. Its fold icon shrinks it to a chip that keeps its title (tap the chip to
+open it again), and you can drag it by the grip along its top or by its edge: later cards open where
+you put it, in this browser, until you double-tap the grip or start a new game. Escape folds a
+choice to a one-line strip with a gold return icon. **Zoom**
 and **Focus** appear once you zoom or select a country. **Countries** lists every country by island,
 or only the ones you can use now: choosing one places an army, selects it or marks it as the
 target, but never attacks; **Inspect** shows a country's owner, armies, island bonus and neighbours,

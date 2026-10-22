@@ -13,6 +13,11 @@ and the owner's D4 judgment. Publication is T99, and it waits for both.
   `?seed=N` on its own; Pause, speed and an open choice too), and a scoreboard (the menu's trophy)
   records each player game once. Checked by `persistence.spec.ts` and `scoreboard.spec.ts`; the
   moved candidate's runs are on the milestone review (#253).
+- **T101 (#255), after this record:** every card folds to a chip and drags (its place kept in this
+  browser); the game history leaves the player's screen (`?log` brings it back); computer turns
+  are quick and quiet, with one notice per turn and only the speed controls on screen. Checked by
+  `card-fold-drag.spec.ts` and `computer-turns.spec.ts` (a round of three Normal computers on
+  seed 7 within 12 s of real time); the moved candidate's runs are on the milestone review (#253).
 
 The acceptance authority is `docs/plans/release-0.2.0-acceptance.md` together with its
 [0.2.1 amendments](../../plans/release-0.2.0-acceptance.md#021-amendments-2026-10-22).

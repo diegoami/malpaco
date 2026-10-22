@@ -7,12 +7,21 @@ import type { GameState } from "../../src/core";
 import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDENTITY } from "../../src/core/match-save";
 import { pinned } from "../core/versioned-match-fixture";
 import { fixture } from "./battle-fixture";
-import {openSurface,withSurface} from './shell';
+import {closeSurface,openSurface,withSurface} from './shell';
+import { COMPUTER_STEP_TIME } from "../../src/ui/computerTurnLoop";
 
 const pause = (p: Page) => p.locator("#game-pause-button");
 const speed = (p: Page) => p.locator("#game-speed");
 async function save(p: Page) {
   await withSurface(p,'settings',()=>p.getByRole("button", { name: "Save game", exact: true }).click());
+  return p.evaluate(() => (Reflect.get(window, "playbackSaveBlob") as Blob).text());
+}
+/**
+ * T101: while a computer plays the menu waits until a pause, and a pause restarts the wait before
+ * the next action; a check in the middle of a wait reads the same save without opening the menu.
+ */
+async function saveMidWait(p: Page) {
+  await p.locator("#reference-save-game").dispatchEvent("click");
   return p.evaluate(() => (Reflect.get(window, "playbackSaveBlob") as Blob).text());
 }
 async function load(p: Page, text: string) {
@@ -24,7 +33,7 @@ async function load(p: Page, text: string) {
 async function begin(p: Page, manual = false) {
   await p.clock.install({ time: new Date("2026-10-17T12:00:00Z") });
   await p.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
-  await p.goto(`/?view=reference-game${manual ? "&control=manual" : ""}`);
+  await p.goto(`/?view=reference-game${manual ? "&control=manual" : ""}&log`);
   // Keep references to callbacks even after clearTimeout: cancellation alone is insufficient.
   await p.evaluate(() => {
     // Read the actual exported Blob, avoiding Chromium's repeated-download throttle.
@@ -56,11 +65,13 @@ async function totals(p: Page, state?: GameState) {
     await expect(total).toHaveText(new RegExp(`Total armies\\s*:?\\s*${expected}$`, "i"));
     await expect(total).toBeHidden();
   }
+  // T101: a menu opened during a computer turn paused it; closing the menu resumes play.
+  await closeSurface(p);
   return s;
 }
 async function visibleControls(p: Page) {
-  // T92: Pause rests in its corner; speed and the event log wait in the menu card.
-  for (const control of [pause(p)]) {
+  // T92: Pause rests in its corner; T101: the speed choice beside it, and the event log (with `?log`) in the menu card.
+  for (const control of [pause(p), speed(p)]) {
     await expect(control).toBeVisible();
     expect(await control.evaluate(node => {
       const r = node.getBoundingClientRect();
@@ -68,10 +79,11 @@ async function visibleControls(p: Page) {
     })).toBe(true);
   }
   await expect(pause(p)).toBeEnabled();
+  await expect(speed(p)).toBeVisible(); await expect(speed(p)).toBeEnabled();
+  await speed(p).focus(); await expect(speed(p)).toBeFocused();
+  await speed(p).press("Home"); await speed(p).press("End");
   await withSurface(p, "settings", async () => {
-    await expect(speed(p)).toBeVisible(); await expect(speed(p)).toBeEnabled(); await expect(p.locator("#game-log-button")).toBeVisible();
-    await speed(p).focus(); await expect(speed(p)).toBeFocused();
-    await speed(p).press("Home"); await speed(p).press("End");
+    await expect(p.locator("#game-focus-drawer #game-speed")).toHaveCount(0); await expect(p.locator("#game-log-button")).toBeVisible();
   });
 }
 async function screenshot(p: Page, name: string, project: string) {
@@ -110,10 +122,10 @@ test("labelled army totals follow ordinary actions and include eliminated player
 
 test("very slow spaces automatic actions by two seconds and changes no replay outcome", async ({ page }, info) => {
   await begin(page); await load(page, pendingComputer()); await visibleControls(page);
-  await withSurface(page,'settings',()=>speed(page).selectOption("very-slow"));
+  await speed(page).selectOption("very-slow"); // T101: the speed choice sits beside Pause, outside the menu.
   let text = await save(page), s = deserializeVersionedMatch(text).state;
   for (let i = 0; i < 4; i++) {
-    await page.clock.runFor(1999); expect(await save(page)).toBe(text);
+    await page.clock.runFor(1999); expect(await saveMidWait(page)).toBe(text);
     await page.clock.runFor(1); const next = nextComputer(s);
     text = await save(page); s = await totals(page);
     expect(text).toBe(serializeVersionedMatch(deserializeVersionedMatch(text).options, next.history, REFERENCE_MATCH_IDENTITY));
@@ -123,11 +135,12 @@ test("very slow spaces automatic actions by two seconds and changes no replay ou
 
 test("Pause freezes computer play, rejects stale callbacks and replacement cancels the old match", async ({ page }, info) => {
   await begin(page); const pending = pendingComputer(); await load(page, pending);
-  await withSurface(page,'settings',()=>speed(page).selectOption("normal")); await expect(pause(page)).toBeVisible();
+  await speed(page).selectOption("normal"); await expect(pause(page)).toBeVisible();
   await pause(page).focus(); await pause(page).press("Enter"); await expect(pause(page)).toHaveText(/Resume/i);
   const frozen = await save(page); await stale(page); await page.clock.runFor(10000); expect(await save(page)).toBe(frozen); await totals(page);
   await screenshot(page, "paused-computer", info.project.name);
-  await pause(page).press("Space"); await page.clock.runFor(350);
+  // T101: Normal waits COMPUTER_STEP_TIME before each computer action.
+  await pause(page).press("Space"); await page.clock.runFor(COMPUTER_STEP_TIME);
   const resumed = deserializeVersionedMatch(await save(page));
   expect(resumed.state.history).toEqual(nextComputer(deserializeVersionedMatch(frozen).state).history); await totals(page);
   await pause(page).click(); await load(page, pinned("placement").text);
@@ -147,7 +160,7 @@ test("global pause gates Fight, manual reinforcement and capture", async ({ page
   await page.locator(`[data-country="${f.from}"]`).click();
   await page.locator(`[data-country="${f.to}"]`).click({ modifiers: ["Shift"] });
   await openSurface(page,'actions');await page.locator("#single-exchange-button").click(); await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "false");
-  await totals(page); await visibleControls(page); await withSurface(page,'settings',()=>speed(page).selectOption("normal")); await openSurface(page,'actions'); await pause(page).click();
+  await totals(page); await visibleControls(page); await speed(page).selectOption("normal"); await openSurface(page,'actions'); await pause(page).click();
   const frozen = await save(page);
   for (const id of ["single-exchange-button", "end-turn-button", "start-friendly-move-button"]) await page.locator(`#${id}`).dispatchEvent("click");
   await page.locator(`[data-country="${f.to}"]`).press("Enter"); await stale(page); await page.clock.runFor(10000);

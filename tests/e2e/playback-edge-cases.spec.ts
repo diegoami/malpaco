@@ -9,7 +9,7 @@ import {openSurface,withSurface} from './shell';
 // and a modal's Escape leaves the staged battle as it was, with nothing fought meanwhile.
 test("modal Escape preserves the staged battle; game speed is the one speed control", async ({ page }, info) => {
   const f = fixture("manual"); await page.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
-  await page.goto("/?view=reference-game&control=manual"); await page.getByLabel("Seed", { exact: true }).fill(String(f.seed));
+  await page.goto("/?view=reference-game&control=manual&log"); await page.getByLabel("Seed", { exact: true }).fill(String(f.seed));
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   for (let i = 0; i < f.placements; i++) await page.locator(`[data-country="${f.from}"]`).click();
   await page.locator("#start-combat-button").click(); await page.locator(`[data-country="${f.from}"]`).click(); await page.locator(`[data-country="${f.to}"]`).click({ modifiers: ["Shift"] });
@@ -32,7 +32,7 @@ test("modal Escape preserves the staged battle; game speed is the one speed cont
 });
 
 test("default four-seat controls fit and a paused computer is labelled paused", async ({ page }, info) => {
-  await page.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z")); await page.goto("/?view=reference-game");
+  await page.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z")); await page.goto("/?view=reference-game&log");
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   await expect(page.locator("#game-pause-button")).toBeInViewport();
   await withSurface(page, "menu", () => expect(page.locator("#game-log-button")).toBeInViewport());
@@ -46,7 +46,7 @@ test("default four-seat controls fit and a paused computer is labelled paused", 
 
 test("closing the event log does not steal focus from the next keyboard action", async ({ page }) => {
   await page.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
-  await page.goto("/?view=reference-game&control=manual"); await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.goto("/?view=reference-game&control=manual&log"); await page.getByRole("button", { name: "Start game", exact: true }).click();
   const dialog = page.getByRole("dialog", { name: "Game event log", exact: true }), button = page.locator("#game-log-button"), country = page.locator("[data-country]").first();
   await openSurface(page, "menu"); await button.focus(); await button.press("Enter"); await expect(dialog).toBeVisible(); await page.keyboard.press("Escape"); await expect(dialog).not.toBeVisible();
   await country.focus(); await page.locator("dialog.game-event-log").dispatchEvent("close"); await expect(country).toBeFocused();
@@ -55,7 +55,7 @@ test("closing the event log does not steal focus from the next keyboard action",
 
 test("failed load feedback stays readable without covering capture or playback controls", async ({ page }, info) => {
   await page.clock.install({ time: new Date("2026-10-17T12:00:00Z") }); await page.clock.pauseAt(new Date("2026-10-17T12:00:00Z"));
-  await page.goto("/?view=reference-game&control=manual");
+  await page.goto("/?view=reference-game&control=manual&log");
   const upload = (text: string) => page.getByLabel("Load game", { exact: true }).setInputFiles({ name: "bad-load.json", mimeType: "application/json", buffer: Buffer.from(text) });
   await upload(pinned("pending-capture").text); await expect(page.locator("#confirm-capture-button")).toBeVisible();
   for (const invalid of ["{", pinned("legacy-progress").text]) {

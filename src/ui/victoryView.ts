@@ -8,14 +8,14 @@ import { seatName } from "./palette";
 /**
  * Result data comes from the completed engine turn, including the final move.
  * The card is concise (T92, after the sketches): a title, one reason line and
- * labelled icons; the standings, history and files open on request (ui-054).
+ * labelled icons; the standings and files open on request (ui-054); the history only with `?log` (T101).
  */
 export class VictoryView {
   readonly el = h("section", { class: "victory-result", "aria-label": "Game result", "aria-live": "polite" });
   private standingsOpen = false;
   private detailsOpen = false;
 
-  constructor(private readonly controller: BattleController, private readonly links: { newGame: () => void; menu: () => void; details?: () => readonly string[]; files?: boolean; totals?: () => string } = { newGame: () => {}, menu: () => {} }) {}
+  constructor(private readonly controller: BattleController, private readonly links: { newGame: () => void; menu: () => void; details?: () => readonly string[]; files?: boolean; history?: boolean; totals?: () => string } = { newGame: () => {}, menu: () => {} }) {}
 
   render(state: GameState, revision: number): void {
     this.el.replaceChildren();
@@ -46,7 +46,7 @@ export class VictoryView {
     // The seed, options and record open on request too (ui-054).
     const lines = this.links.details?.() ?? [];
     const details = h("dl", { id: "victory-details", hidden: !this.detailsOpen }, ...lines.flatMap(line => {const [term, value] = line.split(": "); return [h("dt", {}, term!), h("dd", {}, value ?? "")];}),
-      h("dt", {}, "Record"), h("dd", {}, `${state.history.length} actions · History opens every one`));
+      h("dt", {}, "Record"), h("dd", {}, `${state.history.length} actions`));
     const detailsButton = iconButton("result-details-button", "Details: seed, options and record", "Details", "info", false, () => {
       this.detailsOpen = !this.detailsOpen; details.hidden = !this.detailsOpen; detailsButton.setAttribute("aria-expanded", String(this.detailsOpen));
     });
@@ -65,7 +65,8 @@ export class VictoryView {
       this.el.append(h("div", { class: "card-icons victory-choices" },
         iconButton("result-new-game-button", "New game", "New game", "new-game", false, () => this.links.newGame(), true),
         standingsButton,
-        iconButton("result-history-button", "History", "History", "history", false, () => this.links.menu()),
+        // T101: the history is off the player's screen; `?log` brings it back (tests and bug reports).
+        ...(this.links.history ? [iconButton("result-history-button", "History", "History", "history", false, () => this.links.menu())] : []),
         ...(this.links.files === false ? [] : [iconButton("result-files-button", "Files: save or load", "Files", "files", false, () => this.links.menu())]), detailsButton));
     }
     this.el.append(table, details);
