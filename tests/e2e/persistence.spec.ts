@@ -8,6 +8,7 @@ import {createGeographicGame} from '../../src/core/geographic-game';
 import {decideComputerAction} from '../../src/core/computer';
 import {computerView} from '../../src/core/computer-view';
 import {GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,deserializeVersionedMatch} from '../../src/core/match-save';
+import {openSurface} from './shell';
 
 const ROOT='malpaco:current-game';
 const read=(p:Page,key:string)=>p.evaluate(k=>localStorage.getItem(k),key);
@@ -59,6 +60,24 @@ test('a ?seed=7 game resumes after a reload with the same history and RNG, and t
  expect(same(await loaded(page,key))).toEqual(same(before));
  expect(JSON.parse((await read(page,meta))!).id).toBe(id);
  expect(await read(page,ROOT)).toBe(root);
+ expect(seen).toEqual([]);
+});
+
+test('#260: New game on a ?seed page moves the page to the new seed, keeps that game for a reload, and leaves the root game alone',async({page})=>{
+ test.setTimeout(150_000);const seen=errors(page);
+ await opened(page);await opened(page,'/?seed=7');const root=await read(page,ROOT),seven=await read(page,'malpaco:seed-game:7');
+ await openSurface(page,'settings');await page.locator('#new-game-button').click();
+ await page.locator('#give-up-confirm').click();await page.locator('#give-up-new-game').click();
+ await expect.poll(()=>seedShown(page).catch(()=>7)).not.toBe(7);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ const fresh=await seedShown(page),key=`malpaco:seed-game:${fresh}`;
+ expect(new URL(page.url()).searchParams.get('seed')).toBe(String(fresh));
+ const before=await placeOne(page,key);
+ await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ expect(await seedShown(page)).toBe(fresh);
+ expect(same(await loaded(page,key))).toEqual(same(before));
+ expect(await read(page,ROOT)).toBe(root);
+ // The given-up seed 7 game is not kept for a later visit.
+ expect(await read(page,'malpaco:seed-game:7')).not.toBe(seven);
  expect(seen).toEqual([]);
 });
 

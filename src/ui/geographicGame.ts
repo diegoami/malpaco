@@ -69,8 +69,9 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
  // T96: the player's page starts a game at once. `?setup` and `control=manual` keep the setup
  // screen and its files for tests and development.
  const instant=!manual&&!params.has('setup');
- const seedParam=params.get('seed'),fixedSeed=seedParam!==null&&/^\d+$/.test(seedParam)?Number(seedParam)>>>0:null;
- const slot:Slot|null=!instant?null:seedParam===null?{game:STORED_GAME,meta:`${STORED_GAME}-meta`}:fixedSeed!==null?{game:`malpaco:seed-game:${fixedSeed}`,meta:`malpaco:seed-game-meta:${fixedSeed}`}:null;
+ const seedParam=params.get('seed');let fixedSeed=seedParam!==null&&/^\d+$/.test(seedParam)?Number(seedParam)>>>0:null;
+ const seedSlot=(n:number):Slot=>({game:`malpaco:seed-game:${n}`,meta:`malpaco:seed-game-meta:${n}`});
+ let slot:Slot|null=!instant?null:seedParam===null?{game:STORED_GAME,meta:`${STORED_GAME}-meta`}:fixedSeed!==null?seedSlot(fixedSeed):null;
  /** The kept meta of the game being resumed, consumed by the next mount. */
  let resuming:GameMeta|null=null;
  let seats=manual?'2':'4';
@@ -169,6 +170,9 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    const result=createMatch(options);if(!result.ok)continue;
    try{
     const prepared=await prepare(result.geography);if(!prepared?.isCurrent())return;const drawing=prepared.drawing;
+    // #260: New game on a `?seed` page moves the page to the new seed, so that seed's own record
+    // keeps the game and a reload resumes it; the root game's record stays untouched.
+    if(fresh&&seedParam!==null){fixedSeed=options.seed;slot=seedSlot(options.seed);params.set('seed',String(options.seed));history.replaceState(history.state,'',`${location.pathname}?${params}${location.hash}`);}
     mount(options,result.state,{identity:geographicSetupIdentity(options,manual),label:'Generated islands',initialState:result.state,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers,drawing)});
    }catch(error){if(!closed)status.textContent=error instanceof Error?error.message:String(error);}
    return;
