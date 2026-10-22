@@ -2,8 +2,12 @@
 // keeps it in localStorage after every action, resumes it on a refresh, and gives it up on New game.
 import {expect,test} from '@playwright/test';
 import type {Browser,Page} from '@playwright/test';
-import {activePlayer} from '../../src/core';
-import {deserializeVersionedMatch} from '../../src/core/match-save';
+import {activePlayer,apply,defaultOptions,raidCardsRules,serializeVersionedMatch} from '../../src/core';
+import type {GameOptions,GameState} from '../../src/core';
+import {createGeographicGame} from '../../src/core/geographic-game';
+import {decideComputerAction} from '../../src/core/computer';
+import {computerView} from '../../src/core/computer-view';
+import {GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,deserializeVersionedMatch} from '../../src/core/match-save';
 import {openSurface} from './shell';
 
 const KEY='malpaco:current-game';
@@ -13,17 +17,6 @@ const errors=(p:Page)=>{const seen:string[]=[];p.on('pageerror',e=>seen.push(Str
 async function opened(p:Page,path='/'){await p.goto(path);await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);}
 /** A fresh browser profile: nothing kept, so the root page starts a new game. */
 async function freshSeed(browser:Browser){const context=await browser.newContext();const p=await context.newPage();await opened(p);const seed=await seedShown(p);await context.close();return seed;}
-/** Runs the computers forward until the human seat is placing armies. */
-async function humanPlacing(p:Page){
- await expect.poll(async()=>{
-  const text=await record(p);const state=text?deserializeVersionedMatch(text).state:null;
-  if(state&&activePlayer(state)?.kind==='human'&&['cards','reinforce'].includes(state.phase)&&state.reinforcementPool>0)return true;
-  const forward=p.locator('#fast-forward-button');if(await forward.isVisible())await forward.click().catch(()=>{});
-  return false;
- },{timeout:90_000}).toBe(true);
- return deserializeVersionedMatch((await record(p))!).state;
-}
-
 test.beforeEach(({},info)=>{test.skip(info.project.name!=='1280x800','one size: the flow, not the layout');});
 
 test('the root page is a game at once: 46 countries, one human and three Normal computers, no setup and no files',async({page})=>{
@@ -48,9 +41,27 @@ test('two fresh loads give different seeds, and ?seed=7 gives seed 7 without rep
  expect(await record(page)).toBe(kept);
 });
 
+/**
+ * The player's game on seed 7, played by the engine up to the human seat placing armies, as the
+ * root page keeps it. The resume check then never waits on a random seed's computer turns (a CI
+ * run once timed out there, #268).
+ */
+function keptPlacing(){
+ const options:GameOptions={...defaultOptions(),seed:7,seats:[{kind:'human'},{kind:'computer'},{kind:'computer'},{kind:'computer'}],computerStrengths:['Normal','Normal','Normal'],dominationWin:true,roundLimit:null,names:'seed'};
+ const game=createGeographicGame(options,raidCardsRules(options),{},2);if(!game.ok)throw Error(game.errors.join('; '));
+ let s:GameState=game.state;
+ const placing=(x:GameState)=>activePlayer(x)?.kind==='human'&&['cards','reinforce'].includes(x.phase)&&x.reinforcementPool>1;
+ for(let n=0;n<500&&!placing(s);n++){const r=apply(s,decideComputerAction(computerView(s))!);if(!r.ok)throw Error(r.error);s=r.state;}
+ if(!placing(s))throw Error('no placing state on seed 7');
+ return serializeVersionedMatch(options,s.history,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY);
+}
+
 test('a refresh resumes the identical match: the same record, history, RNG and board',async({page})=>{
- test.setTimeout(120_000);const seen=errors(page);await opened(page);
- const before=await humanPlacing(page),me=activePlayer(before)!.id;
+ const seen=errors(page);
+ await page.addInitScript(([k,v])=>{if(!sessionStorage.getItem('kept'))sessionStorage.setItem('kept','1'),localStorage.setItem(k!,v!);},[KEY,keptPlacing()]);
+ await opened(page);
+ const before=deserializeVersionedMatch((await record(page))!).state,me=activePlayer(before)!.id;
+ expect(before.reinforcementPool).toBeGreaterThan(1);
  const own=before.map.provinces.find(c=>before.ownerOf[c.id]===me)!.id;
  await page.locator(`[data-country="${own}"]`).click();
  // In the cards phase the placement also closes that phase, so it may add two actions.
