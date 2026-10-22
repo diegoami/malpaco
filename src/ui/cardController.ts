@@ -29,6 +29,8 @@ export class CardController {
  private generation:number;
  private previous:GameState;private target:string|null=null;private reward:string|null=null;private notice='';private disposed=false;
  constructor(private readonly battle:BattleController,private readonly viewer:string){this.previous=battle.state;this.generation=battle.gameGeneration;}
+ /** A spectator (no human seat) has no hand to show. */
+ get seated():boolean {return this.viewer!=='';}
  get view():CardControllerView {
   const s=this.battle.state,c=s.cards,own=activePlayer(s)?.id===this.viewer,projection=cardView(s,this.viewer);
   const phase=!c?'hidden':this.reward?'reward':!own?'hand':c.pendingDiscard?'discard':c.pendingRaid?'raid-target':s.phase==='cards'?'sets':'hand';

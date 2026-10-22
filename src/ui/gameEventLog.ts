@@ -123,6 +123,8 @@ export class GameEventLog {
   private readonly since = h("p", { class: "game-event-since", hidden: true });
   private readonly history: GameEventHistory;
   get isOpen(): boolean { return this.dialog.open; }
+  /** T97: on a human turn the history opens at the other seats' actions since that seat's last turn. */
+  changes: (() => {from: number; to: number} | null) | null = null;
 
   constructor(options: GameOptions, initialState?: GameState) {
     this.history = new GameEventHistory(options,initialState);
@@ -130,6 +132,8 @@ export class GameEventLog {
     close.onclick = () => this.dialog.close();
     this.dialog.addEventListener("pointerdown", this.onSwipeStart);
     this.button.onclick = () => {
+      const changes = this.changes?.();
+      if (changes) { this.openChanges(changes.from, changes.to); return; }
       this.mark(null);
       this.dialog.showModal();
       this.list.lastElementChild?.scrollIntoView({ block: "end" });

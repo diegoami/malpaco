@@ -11,7 +11,8 @@ import type {Surface} from './shell';
 const MATRIX = ['320x568', '390x844', '568x320', '667x375', '844x390', '768x1024', '1024x768', '1280x800', '1920x1080'];
 // Width seams 680/1100 ±1 and height seams 320/500/600 ±1, plus the 240 px reduced-height fallback.
 const SEAMS = ['679x800', '680x800', '681x800', '1099x800', '1100x800', '1101x800', '1024x319', '1024x320', '1024x321', '1024x499', '1024x500', '1024x501', '1024x599', '1024x600', '1024x601', '640x240', '844x240'];
-const SURFACES: Surface[] = ['menu', 'info'];
+// T97: the Information card is gone (its objective is in Help); the Countries card floats like the menu.
+const SURFACES: Surface[] = ['menu', 'countries'];
 type Box = {x: number; y: number; width: number; height: number};
 const size = (s: string) => { const [width, height] = s.split('x').map(Number); return {width: width!, height: height!}; };
 

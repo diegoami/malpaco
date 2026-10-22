@@ -3,32 +3,26 @@
 import {expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 
-// T92: totals, history and settings share the menu card; phase details are the information card.
-export type Surface = 'actions' | 'cards' | 'menu' | 'info' | 'details' | 'settings' | 'phase' | 'countries';
-type Card = 'actions' | 'cards' | 'menu' | 'info' | 'countries';
-// The hand rests in the menu card too, so Cards opens the menu.
-const cardOf: Record<Surface, Card> = {actions: 'actions', cards: 'menu', menu: 'menu', info: 'info', details: 'menu', settings: 'menu', phase: 'info', countries: 'countries'};
-const openers: Record<Card, string> = {actions: '#open-required-action', cards: '#open-game-cards', menu: '#open-game-menu', info: '#game-info-button', countries: '#open-countries'};
+// T97: the menu holds speed, Help, New game, the history icon (and files on test routes); a card
+// choice, with your hand for assistive technology, lives only in Current choice. The Information
+// card is gone (its objective is in Help).
+export type Surface = 'actions' | 'cards' | 'menu' | 'details' | 'settings' | 'countries';
+type Card = 'actions' | 'menu' | 'countries';
+const cardOf: Record<Surface, Card> = {actions: 'actions', cards: 'actions', menu: 'menu', details: 'menu', settings: 'menu', countries: 'countries'};
+const openers: Record<Card, string> = {actions: '#open-required-action', menu: '#open-game-menu', countries: '#open-countries'};
 
 /** Opens a card unless it is already open. */
 export async function openSurface(page: Page, surface: Surface): Promise<void> {
   if (!await page.locator('#battle-action-rail').count()) return; // the setup page and legacy routes have no cards
   const drawer = page.locator('#game-focus-drawer');
   const card = cardOf[surface];
-  if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === card) return card === 'actions' ? expandBattleSettings(page) : undefined;
+  if (await drawer.isVisible() && await drawer.getAttribute('data-surface') === card) return;
   // Current choice has no resting icon: it opens by itself for a choice, or from the folded choice's return icon.
   // With no pending choice there is no Current choice card: callers then act on the map or read hidden state.
-  if (card === 'actions' && !await page.locator(openers.actions).isVisible()) return expandBattleSettings(page);
+  if (card === 'actions' && !await page.locator(openers.actions).isVisible()) return;
   await page.locator(openers[card]).click();
   await expect(drawer).toHaveAttribute('data-surface', card);
   await expect(drawer).toBeVisible();
-  if (card === 'actions') await expandBattleSettings(page);
-}
-
-/** The attack card keeps Stop at and Speed behind its settings icon; tests that set them open it. */
-async function expandBattleSettings(page: Page): Promise<void> {
-  const button = page.locator('#game-focus-drawer #battle-settings-button');
-  if (await button.isVisible() && await button.getAttribute('aria-expanded') === 'false') await button.click();
 }
 
 export async function closeSurface(page: Page): Promise<void> {
@@ -70,10 +64,11 @@ export async function clickIn(page: Page, surface: Surface, selector: string): P
   await withSurface(page, surface, () => page.locator(selector).click());
 }
 
-/** Chooses Compact or Detailed in the settings card. */
-export async function setDetail(page: Page, mode: string): Promise<void> {
-  await withSurface(page, 'settings', () => page.getByRole('combobox', {name: 'Panel detail', exact: true}).selectOption(mode).then(() => undefined));
-}
+/**
+ * Compact or Detailed was the panel detail setting; T97 retired it with the totals it sized
+ * (owner, #244), so both modes render the one minimal card and this only records the call.
+ */
+export async function setDetail(_page: Page, _mode: string): Promise<void> {}
 
 /** A card control is shown in the open card: visible, enabled, and hit at its centre once scrolled into view. */
 export async function reachableInCard(locator: import('@playwright/test').Locator): Promise<void> {

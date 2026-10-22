@@ -32,12 +32,14 @@ async function railFits(p:Page){const rail=p.locator('#battle-action-rail');expe
 async function shot(p:Page,info:TestInfo,name:string){await p.screenshot({path:info.outputPath(name+'.png')});}
 function row(host:string,kind:string){return discoveries.find((r:any)=>r.source===(host==='reference'?'T39-legal-pending-raid.json':'geographic-raid-pending-one-human.json')&&r.kind===kind);}
 for(const host of ['reference','geographic']){
- test(`${host}: the quiet map keeps menu, Pause, Fit and information in the corners`,async({page},info)=>{
+ test(`${host}: the quiet map keeps menu, Pause, Fit and Countries in the corners`,async({page},info)=>{
   await begin(page);
   for(const kind of ['reinforcement','capture']){
   const text=kind==='reinforcement'?input(`T71/fixtures/${host}-reinforcement.json`):input('issue180/preflight/fixtures/'+row(host,'capture').fixture);await load(page,text);await close(page);const before=await save(page);
    const ids=await page.locator('.game-overlay button:visible').evaluateAll(ns=>ns.filter(n=>!n.closest('#game-focus-drawer')).map(n=>n.id));
-   for(const id of ['open-game-menu','game-pause-button','map-fit','game-info-button'])expect.soft(ids,id+' rests on the map').toContain(id);
+   for(const id of ['open-game-menu','game-pause-button','map-fit','open-countries'])expect.soft(ids,id+' rests on the map').toContain(id);
+   // T97: the Information icon is gone; its objective is in Help.
+   expect.soft(ids).not.toContain('game-info-button');
    // A folded required choice keeps its return icon; nothing else is added at rest.
    expect.soft(ids.includes('open-required-action')).toBe(kind==='capture');
    await railFits(page);
@@ -46,48 +48,31 @@ for(const host of ['reference','geographic']){
   expect(await save(page)).toBe(before);
   }
  });
- test(`${host}: an older history reader survives every card`,async({page},info)=>{
-  await begin(page);
-  const f=row(host,'attack-running'),text=input('issue180/preflight/fixtures/'+f.fixture),before=deserializeVersionedMatch(text);
-  await load(page,text);await open(page,'details');
-  const history=page.getByRole('list',{name:'Battle log',exact:true});
-  const rows=await history.locator('li').allTextContents();
-  expect(rows.length).toBe(before.state.log.filter(e=>e.event!=='game_started').length);
-  expect(await history.evaluate(e=>e.scrollHeight-e.clientHeight)).toBeGreaterThan(180);
-  for(const requested of [80,120]){
-   await open(page,'details');await history.evaluate((e,top)=>{e.scrollTop=top;},requested);
-   const reading=await history.evaluate(e=>e.scrollTop);
-   expect(Math.abs(reading-requested),'native zoom may quantize scroll offsets by less than half a CSS pixel').toBeLessThan(0.5);
-   await page.keyboard.press('Escape');await expect(page.locator('#open-game-menu')).toBeFocused();
-   await open(page,'settings');await close(page);await open(page,'details');
-   expect(Math.abs(await history.evaluate(e=>e.scrollTop)-reading),'other cards must not reset the history reader').toBeLessThan(0.5);
-  }
-  expect(await history.locator('li').allTextContents()).toEqual(rows);
-  await close(page);await exact(page,before.state);await open(page,'details');expect(Math.abs(await history.evaluate(e=>e.scrollTop)-120)).toBeLessThan(0.5);
-  await shot(page,info,host+'-history-reader');
- });
- test(`${host}: armies placed and combat started from the action corner; its arrows, Home and End`,async({page},info)=>{
+ // T97 retired "an older history reader survives every card": the menu's battle log, whose
+ // scroll position it guarded, was removed (owner, #244); the history is the event log card.
+ test(`${host}: armies placed and combat started from the action corner; arrows, Home and End move within a corner`,async({page},info)=>{
   await begin(page);const envelope=JSON.parse(input(`T71/fixtures/${host}-reinforcement.json`));envelope.options.seats=envelope.options.seats.map(()=>({kind:'human'}));envelope.options.computerStrengths=[];const text=JSON.stringify(envelope),before=deserializeVersionedMatch(text);await load(page,text);await close(page);await railFits(page);
   let state=before.state;const owned=state.map.provinces.find(p=>state.ownerOf[p.id]===state.players[state.currentPlayer]!.id)!.id;while(state.reinforcementPool){await country(page,owned).click();state=next(state,{kind:'reinforce',province:owned,amount:1});}await expect(page.locator('#battle-action-rail #start-combat-button')).toBeVisible();await railFits(page);
-  // Arrow keys, Home and End move within the action corner.
-  await page.locator('#game-info-button').focus();await page.keyboard.press('ArrowDown');await expect(page.locator('#start-combat-button')).toBeFocused();await page.keyboard.press('Home');await expect(page.locator('#game-info-button')).toBeFocused();await page.keyboard.press('End');await expect(page.locator('#start-combat-button')).toBeFocused();
+  // Arrow keys, Home and End move within a corner group (T97: the action corner holds one command here, so the map view corner).
+  await page.locator('#map-fit').focus();await page.keyboard.press('ArrowDown');await expect(page.locator('#open-countries')).toBeFocused();await page.keyboard.press('Home');await expect(page.locator('#map-fit')).toBeFocused();await page.keyboard.press('End');await expect(page.locator('#open-countries')).toBeFocused();
   await hit(page,'game-pause-button');await expect(page.locator('#start-combat-button')).toBeHidden();await exact(page,state);await hit(page,'game-pause-button');await hit(page,'start-combat-button');state=next(state,{kind:'endReinforcement'});await exact(page,state);await shot(page,info,host+'-rail-combat');
  });
  test(`${host}: collapsed battle commands, pause and details preserve exact actions and selection`,async({page},info)=>{
-  // T82: Attack, Fight on and Attack again need three legal exchanges; the recorded fixture has two before its capture,
+  // T82/T97: three Fight presses need three legal exchanges; the recorded fixture has two before its capture,
   // so the battle starts one recorded exchange earlier (its last action is that same attack).
   const f=row(host,'attack-running'),recorded=deserializeVersionedMatch(input('issue180/preflight/fixtures/'+f.fixture));expect(recorded.state.history.at(-1)).toEqual(f.action);
   await begin(page);const text=serializeVersionedMatch(recorded.options,recorded.state.history.slice(0,-1),recorded.identity),before=deserializeVersionedMatch(text);await load(page,text);await collapse(page);
   await country(page,f.action.from).click();await country(page,f.action.to).click({modifiers:['Shift']});await open(page,'actions');
-  await openSurface(page,'actions');const source=await page.locator('#battle-source-name').textContent(),target=await page.locator('#battle-target-name').textContent();await openSurface(page,'actions');await page.locator('#battle-stop-threshold').fill('1');await openSurface(page,'actions');await page.locator('#battle-stop-threshold').press('Tab');
-  await page.keyboard.press('Escape');await expect(page.locator('#open-required-action')).toBeFocused();await open(page,'actions');await openSurface(page,'actions');await expect(page.locator('#battle-source-name')).toHaveText(source!);await openSurface(page,'actions');await expect(page.locator('#battle-target-name')).toHaveText(target!);await openSurface(page,'actions');await expect(page.locator('#battle-stop-threshold')).toHaveValue('1');
+  await openSurface(page,'actions');const source=await page.locator('#battle-source-name').textContent(),target=await page.locator('#battle-target-name').textContent();
+  await page.keyboard.press('Escape');await expect(page.locator('#open-required-action')).toBeFocused();await open(page,'actions');await openSurface(page,'actions');await expect(page.locator('#battle-source-name')).toHaveText(source!);await openSurface(page,'actions');await expect(page.locator('#battle-target-name')).toHaveText(target!);
   await hit(page,'game-pause-button');await expect(page.locator('#single-exchange-button')).toBeDisabled();await page.locator('#single-exchange-button').evaluate(e=>(e as HTMLButtonElement).click());await exact(page,before.state);await hit(page,'game-pause-button');
-  // T82: Fight on appears only after one explicit Attack on this pair.
-  await open(page,'actions');await expect(page.locator('#game-focus-drawer #fight-on-button')).toBeHidden();await hit(page,'single-exchange-button');const attacked=next(before.state,f.action);await exact(page,attacked);
-  await open(page,'actions');await expect(page.locator('#game-focus-drawer #fight-on-button')).toBeVisible();await shot(page,info,host+'-battle-card');await hit(page,'fight-on-button');await page.locator('#stop-battle-button').focus();await page.keyboard.press('Enter');const after=next(attacked,f.action);await exact(page,after);
+  // T97: there is no Fight on; each Fight press is one exchange.
+  await open(page,'actions');await expect(page.locator('#game-focus-drawer #fight-on-button')).toHaveCount(0);await hit(page,'single-exchange-button');const attacked=next(before.state,f.action);await exact(page,attacked);
+  await open(page,'actions');await expect(page.locator('#game-focus-drawer #fight-on-button')).toHaveCount(0);await shot(page,info,host+'-battle-card');await page.locator('#single-exchange-button').focus();await page.keyboard.press('Enter');const after=next(attacked,f.action);await exact(page,after);
   await open(page,'actions');await hit(page,'single-exchange-button');await exact(page,next(after,f.action));
-  await open(page,'details');const history=page.getByRole('list',{name:'Battle log',exact:true});await expect(history.locator('li')).toHaveCount(next(after,f.action).log.filter(e=>e.event!=='game_started').length);await history.evaluate(e=>{e.scrollTop=42;});const reading=await history.evaluate(e=>e.scrollTop);await close(page);await open(page,'settings');await withSurface(page,'settings',()=>page.locator('#game-speed').selectOption('very-slow'));await close(page);await open(page,'details');expect(await history.evaluate(e=>e.scrollTop)).toBe(reading);await shot(page,info,host+'-details');
-  await open(page,'settings');await hit(page,'game-log-button');await expect(page.getByRole('dialog',{name:'Game event log',exact:true})).toBeVisible();await page.keyboard.press('Escape');await expect(page.locator('#game-log-button')).toBeFocused();await exact(page,next(after,f.action));
+  await open(page,'settings');await withSurface(page,'settings',()=>page.locator('#game-speed').selectOption('very-slow'));await close(page);
+  // The history is the event log card, one row per action; closing it returns focus to the menu icon.
+  await open(page,'settings');await hit(page,'game-log-button');const log=page.getByRole('dialog',{name:'Game event log',exact:true});await expect(log).toBeVisible();await expect(log.locator('[data-event-index]')).toHaveCount(next(after,f.action).history.length+1);await shot(page,info,host+'-details');await page.keyboard.press('Escape');await expect(page.locator('#open-game-menu')).toBeFocused();await exact(page,next(after,f.action));
  });
  test(`${host}: collapsed capture retains quantity across surfaces, toggles and pause`,async({page},info)=>{
   await begin(page);const f=row(host,'capture'),text=input('issue180/preflight/fixtures/'+f.fixture),before=deserializeVersionedMatch(text);await load(page,text);await collapse(page);await openSurface(page,'actions');

@@ -1715,17 +1715,19 @@ dialog h2 {
 /* T97 (owner, #240/#244): cards float over the full-size map. Only the corner icons frame the
    map; the one requested card rests in a bottom corner beside them (above them in portrait),
    and moves to the other corner, or a top one, when it would cover the countries in play
-   (data-corner, set by the shell). Its own rectangle takes taps; the map around it keeps them. */
+   (data-corner, set by the shell). Its own rectangle takes taps; the map around it keeps them.
+   It stays below the notice's line, so a card and a notice never cover each other. */
+.battle-reference { --notice-line:calc(var(--edge) + var(--target) + 2 * var(--gap) + 44px); }
 .battle-reference #game-focus-drawer { position:absolute; z-index:2; margin:0; top:auto; bottom:var(--edge); left:auto; right:calc(var(--edge) + var(--target) + var(--gap));
-  width:min(380px, calc(100% - 2 * (var(--edge) + var(--target) + var(--gap)))); max-height:calc(100% - 2 * var(--edge) - var(--target) - var(--gap)); }
+  width:min(380px, calc(100% - 2 * (var(--edge) + var(--target) + var(--gap)))); max-height:calc(100% - var(--notice-line) - var(--edge)); }
 .battle-reference #game-focus-drawer:is([data-corner="start"], [data-corner="top-start"]) { right:auto; left:calc(var(--edge) + var(--target) + var(--gap)); }
-.battle-reference #game-focus-drawer:is([data-corner="top-end"], [data-corner="top-start"]) { bottom:auto; top:calc(var(--edge) + var(--target) + var(--gap)); }
+.battle-reference #game-focus-drawer:is([data-corner="top-end"], [data-corner="top-start"]) { bottom:auto; top:var(--notice-line); }
 .battle-reference #game-focus-drawer[data-placement="center"] { top:50%; left:50%; right:auto; bottom:auto; translate:-50% -50%; width:min(400px, calc(100% - 2 * var(--edge))); }
 .battle-reference .game-overlay .game-side { grid-column:2 / -2; }
 .battle-reference .game-side > .game-folded { margin:auto 0 0 auto; }
 @media (orientation:portrait) {
   .battle-reference #game-focus-drawer { bottom:calc(var(--edge) + var(--target) + var(--gap)); right:var(--edge); width:min(380px, calc(100% - 2 * var(--edge)));
-    max-height:min(calc(var(--avail-h) * 0.6), calc(100% - 2 * (var(--edge) + var(--target) + var(--gap)))); }
+    max-height:min(calc(var(--avail-h) * 0.6), calc(100% - var(--notice-line) - var(--edge) - var(--target) - var(--gap))); }
   .battle-reference #game-focus-drawer:is([data-corner="start"], [data-corner="top-start"]) { left:var(--edge); right:auto; }
   .battle-reference .game-overlay .game-side { grid-column:1 / -1; }
   .battle-reference .game-side > .game-folded { margin:auto auto 0; }

@@ -1,5 +1,5 @@
-// T82 (A2–A4): a target is staged, never fought; Attack fights exactly one legal exchange;
-// stale, paused and repeated input cannot act; Fight on needs a first Attack on the pair.
+// T82 (A2–A4), trimmed by T97: a target is staged, never fought; Fight fights exactly one legal
+// exchange per press; stale, paused and repeated input cannot act; there is no Fight on (owner, #244).
 import {test,expect} from "@playwright/test";
 import type {Page} from "@playwright/test";
 import {readFileSync} from "node:fs";
@@ -7,7 +7,6 @@ import {fixture,step,map} from "./battle-fixture";
 import {attackTargets} from "../../src/core";
 import type {GameState} from "../../src/core";
 import {deserializeVersionedMatch} from "../../src/core/match-save";
-import {captureOdds,oddsLabel} from "../../src/ui/captureOdds";
 import {openSurface,withSurface} from "./shell";
 
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
@@ -21,28 +20,30 @@ async function prepare(page:Page){
  return {...f,state:await saved(page)};
 }
 
-test("a target tap, Enter, Space or list choice stages the pair and shows the exact odds; nothing is fought",async({page})=>{
+test("a target tap, Enter, Space or list choice stages the pair; the card holds Fight and Cancel; nothing is fought",async({page})=>{
  const f=await prepare(page);const state=f.state;
  await country(page,f.from).click();await country(page,f.to).click();await check(page,state);
  await openSurface(page,'actions');
  await expect(page.locator("#battle-target-name")).toHaveText(map.provinces.find(p=>p.id===f.to)!.name);
- await expect(page.locator("#battle-odds")).toHaveText(`${oddsLabel(captureOdds(state,f.from,f.to)!)} capture · if fought to end`);
- await expect(page.locator("#fight-on-button")).toBeHidden();
+ // T97: no odds line, Fight on, Stop or stop-point setting on the card.
+ await expect(page.locator("#battle-odds, #fight-on-button, #stop-battle-button, #battle-stop-threshold, #battle-settings-button")).toHaveCount(0);
+ await expect(page.locator("#single-exchange-button")).toBeVisible();await expect(page.locator("#single-exchange-button")).toHaveAccessibleName("Fight");
  // Keyboard and repeated activations of the staged target still fight nothing.
  await country(page,f.to).focus();for(const key of ["Enter","Space","Enter"])await page.keyboard.press(key);await check(page,state);
  await expect(page.locator("[data-battle-roll]")).toHaveCount(0);
 });
 
-test("Attack fights exactly one legal exchange; then Fight on appears",async({page})=>{
+test("each Fight press fights exactly one legal exchange; nothing continues on its own",async({page})=>{
  const f=await prepare(page);let state=f.state;
  await country(page,f.from).click();await country(page,f.to).click();
  await openSurface(page,'actions');await page.locator("#single-exchange-button").click();
  state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);
- await openSurface(page,'actions');await expect(page.locator("#fight-on-button")).toBeVisible();
+ await page.clock.runFor(10_000);await check(page,state);
+ await openSurface(page,'actions');await expect(page.locator("#fight-on-button")).toHaveCount(0);
  await page.locator("#single-exchange-button").click();state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);
 });
 
-test("a stale Attack control, a repeated click and a paused game cannot act; a new pair hides Fight on",async({page})=>{
+test("a stale Fight control, a repeated click and a paused game cannot act; nor can the old pair's Fight after a new pair",async({page})=>{
  const f=await prepare(page);let state=f.state;
  await country(page,f.from).click();await country(page,f.to).click();await openSurface(page,'actions');
  const stale=await page.locator("#single-exchange-button").elementHandle();
@@ -50,13 +51,14 @@ test("a stale Attack control, a repeated click and a paused game cannot act; a n
  await stale!.evaluate(n=>{n.dispatchEvent(new MouseEvent("click",{bubbles:true}));n.dispatchEvent(new MouseEvent("click",{bubbles:true}));});
  state=step(state,{kind:"attack",from:f.from,to:f.to});await check(page,state);
  await stale!.evaluate(n=>n.dispatchEvent(new MouseEvent("click",{bubbles:true})));await check(page,state);
- // Paused, Attack does nothing.
+ // Paused, Fight does nothing.
  await page.locator("#game-pause-button").click();await openSurface(page,'actions');await page.locator("#single-exchange-button").dispatchEvent("click");await check(page,state);
  await page.locator("#game-pause-button").click();
- // Another target clears the confirmation: Fight on hides and refuses until Attack.
+ // Another target: the old pair's Fight (an older revision) fights nothing.
  const other=attackTargets(state,f.from).find(id=>id!==f.to);
  if(other){
-  await country(page,other).click();await openSurface(page,'actions');await expect(page.locator("#fight-on-button")).toBeHidden();
-  await page.locator("#fight-on-button").dispatchEvent("click");await check(page,state);
+  await openSurface(page,'actions');const old=await page.locator("#single-exchange-button").elementHandle();
+  await country(page,other).click();await openSurface(page,'actions');
+  await old!.evaluate(n=>n.dispatchEvent(new MouseEvent("click",{bubbles:true})));await check(page,state);
  }
 });

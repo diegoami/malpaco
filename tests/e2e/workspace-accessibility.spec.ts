@@ -36,7 +36,9 @@ test('Tab reaches every corner control and the countries, each with a visible fo
  const seen:Record<string,boolean>={};let countries=0;
  for(let i=0;i<70;i++){await page.keyboard.press('Tab');const f=await focused(page);if(!f)continue;
   if(f.country)countries++;else if(f.id)seen[f.id]=f.visible&&f.ring;}
- for(const id of ['open-game-menu','game-pause-button','open-countries','map-fit','game-info-button'])expect(seen[id],id).toBe(true);
+ for(const id of ['open-game-menu','game-pause-button','open-countries','map-fit'])expect(seen[id],id).toBe(true);
+ // T97: the Information icon is gone (its objective is in Help).
+ await expect(page.locator('#game-info-button')).toHaveCount(0);
  expect(countries).toBeGreaterThan(10);
  expect((await saved(page)).history).toEqual(before.history);
 });
@@ -73,7 +75,7 @@ test('arrow keys and Home/End move within each overlay icon group and never act'
 
 test('Escape closes the top overlay and returns focus to its visible opener; a required choice stays pending',async({page})=>{
  await start(page);
- for(const [opener,surface] of [['#open-game-menu','menu'],['#open-countries','countries'],['#game-info-button','info']] as const){
+ for(const [opener,surface] of [['#open-game-menu','menu'],['#open-countries','countries']] as const){
   await page.locator(opener).click();await expect(page.locator('#game-focus-drawer')).toHaveAttribute('data-surface',surface);
   await page.keyboard.press('Escape');await expect(page.locator('#game-focus-drawer')).toBeHidden();
   expect(await page.evaluate(()=>`#${document.activeElement?.id}`)).toBe(opener);

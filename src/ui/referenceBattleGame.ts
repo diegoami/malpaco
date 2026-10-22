@@ -173,6 +173,8 @@ export class ReferenceBattleGame {
     this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
     // The history is its own card over the map: the menu steps aside for it.
     this.eventLog.button.addEventListener("click", () => this.chrome?.close(false), {capture: true});
+    // Its icon went back with the menu, so closing the history returns focus to the menu icon.
+    this.eventLog.dialog.addEventListener("close", () => { if (!this.disposed && !this.eventLog.button.getClientRects().length) this.chrome?.focusMenuOpener(); });
     root.replaceChildren(h("section", { class: "board" }, this.mapView.el), this.chrome.overlay, store);
     // Only the corner icons reframe the map; cards and notices float over it (T97).
     for (const overlay of this.chrome.obstacles) this.mapView.camera?.avoid(overlay);
@@ -334,6 +336,7 @@ export class ReferenceBattleGame {
     if (this.refusal && this.refusal.key !== `${state.history.length}:${from}:${to}`) this.refusal = null;
     // T84: the other seats' actions since this human seat's turn last ended, from the replayed history.
     const changes = mover && mover.kind !== "computer" && !computer && !result ? this.eventLog.changesFor(mover.id) : null;
+    this.eventLog.changes = () => changes;
     const forward = this.computer?.fastForwarding ?? false;
     if (this.refusal) notice = {title: this.refusal.text, persistent: true};
     // A computer turn keeps one notice with Fast-forward until a human seat moves (Pause sits above it).

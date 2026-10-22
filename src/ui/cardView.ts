@@ -16,9 +16,12 @@ export class CardView {
   const v=this.cards.view;this.el.hidden=v.phase==='hidden';if(this.el.hidden)return;
   const button=(label:string,fn:()=>void,name?:string)=>{const b=h('button',{type:'button',disabled:v.blocked,...(name?{'aria-label':name}:{})},label);b.onclick=()=>{fn();this.render();};return b;};
   const counts=h('p',{class:'card-public-counts visually-hidden'},`Draw: ${v.drawCount} · Discard: ${v.discardCount} · Top: ${v.discardTop??'empty'}. `+Object.entries(v.handCounts).map(([p,n])=>`${p}: ${n}`).join(' · '));
-  const hand=h('ul',{class:'own-card-hand visually-hidden','aria-label':'Your hand'},h('li',{},`Your hand: ${v.hand.length} of 5`),...v.hand.map((kind,i)=>h('li',{'data-hand-index':i},h('strong',{},kind))));
+  const hand=!this.cards.seated?null:h('ul',{class:'own-card-hand visually-hidden','aria-label':'Your hand'},h('li',{},`Your hand: ${v.hand.length} of 5`),...v.hand.map((kind,i)=>h('li',{'data-hand-index':i},h('strong',{},kind))));
   const actions=h('div',{class:'card-choice-controls'});
+  // The instructions stay for assistive technology; the screen shows only the buttons.
+  const say=(text:string)=>actions.append(h('p',{class:'visually-hidden'},text));
   if(v.phase==='sets'){
+   say(v.sets.length?'Choose at most one set, or skip.':'No set available. Skip to placement.');
    // Two sets of the same cards are one choice to the player: one button each, named by its Wilds.
    const offered=new Set<string>();
    for(const set of v.sets){
@@ -28,14 +31,16 @@ export class CardView {
    }
    actions.append(button('Skip',()=>this.cards.skip(v.revision),'Skip cards'));
   }
+  if(v.phase==='discard')say('Your hand is full. Discard one card before drawing. The new card is not shown first.');
   if(v.phase==='discard')for(const [i,kind] of v.hand.entries())actions.append(button(kind,()=>this.cards.discard(i,v.revision),`Discard ${kind} (card ${i+1})`));
   if(v.phase==='raid-target'){
-   const confirm=button('Confirm',()=>this.cards.confirmRaid(v.revision),'Confirm raid');confirm.disabled=v.blocked||!v.selectedTarget;confirm.hidden=!v.selectedTarget;actions.append(confirm);
+   say('Raid: choose an enemy country on the board.');
+   const confirm=button('Confirm',()=>this.cards.confirmRaid(v.revision),'Confirm raid');confirm.disabled=v.blocked||!v.selectedTarget;actions.append(confirm);
    actions.append(h('p',{class:'visually-hidden'},v.preview));
   }
   if(v.phase==='reward')actions.append(h('p',{class:'private-card-reward'},v.notice),button('Continue',()=>this.cards.acknowledge(v.revision)));
   else if(v.notice)actions.append(h('p',{role:'status',class:'visually-hidden'},v.notice));
   const choosing=['sets','raid-target','discard','reward'].includes(v.phase);this.el.dataset['choice']=String(choosing);this.el.dataset['phase']=v.phase;
-  this.el.replaceChildren(counts,hand,actions);
+  this.el.replaceChildren(counts,...(hand?[hand]:[]),actions);
  }
 }

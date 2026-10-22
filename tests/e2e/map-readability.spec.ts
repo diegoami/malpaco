@@ -5,7 +5,7 @@ import {join} from "node:path";
 import {pinned} from "../core/versioned-match-fixture";
 import type {TestInfo} from "@playwright/test";
 import {build} from "vite";
-import {countLabel,seatLook} from "../../src/ui/palette";
+import {countLabel,seatLook,SEAT_NAMES} from "../../src/ui/palette";
 
 import {openSurface} from './shell';
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
@@ -20,7 +20,7 @@ test("at rest the map shows counts in owner shapes and no names (T93)",async({pa
  }));
  const owners=[...new Set(rows.map(r=>r.owner))];expect(owners).toHaveLength(4);
  const players=await page.locator("[data-player]").evaluateAll(ns=>ns.map(n=>n.getAttribute("data-player")));
- for(const r of rows){expect(r.text).toBe(r.army);expect(r.label).toContain(`Seat ${players.indexOf(r.owner)+1}, ${r.army} armies`);expect(r.nameSize).toBeLessThanOrEqual(r.countSize*.7);expect(r.nameWeight).toBeLessThan(r.countWeight);expect(r.nameVisible).toBe(false);expect(r.shape).toBe(seatLook(players.indexOf(r.owner)).badge);}
+ for(const r of rows){expect(r.text).toBe(r.army);expect(r.label).toMatch(new RegExp(`, (You|${SEAT_NAMES[players.indexOf(r.owner)]}), ${r.army} armies$`));expect(r.label).not.toMatch(/Seat \d/);expect(r.nameSize).toBeLessThanOrEqual(r.countSize*.7);expect(r.nameWeight).toBeLessThan(r.countWeight);expect(r.nameVisible).toBe(false);expect(r.shape).toBe(seatLook(players.indexOf(r.owner)).badge);}
  expect(new Set(rows.map(r=>r.shape)).size).toBe(4);
  expect(await page.locator(".island-name").evaluateAll(ns=>ns.filter(n=>getComputedStyle(n).display!=="none").length)).toBe(0);
 });

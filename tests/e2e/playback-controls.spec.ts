@@ -44,8 +44,8 @@ async function stale(p: Page) {
 }
 async function totals(p: Page, state?: GameState) {
   const s = state ?? deserializeVersionedMatch(await save(p)).state;
-  await expect(p.locator('[data-testid="player-army-total"]')).toHaveCount(s.players.length);
-  await openSurface(p, "details"); // T79: totals are a requested card
+  // T97: totals are no longer on screen (owner, #244); the map's painted armies still match the engine.
+  await openSurface(p, "details");
 
   for (const player of s.players) {
     const total = p.locator(`[data-player="${player.id}"] [data-testid="player-army-total"]`);
@@ -54,8 +54,7 @@ async function totals(p: Page, state?: GameState) {
     const painted = await p.locator(`[data-country][data-owner="${player.id}"]`).evaluateAll(nodes => nodes.reduce((sum, node) => sum + Number((node as HTMLElement).dataset["armies"]), 0));
     expect(painted).toBe(expected);
     await expect(total).toHaveText(new RegExp(`Total armies\\s*:?\\s*${expected}$`, "i"));
-    await expect(total).toBeVisible();
-    expect(await total.evaluate(node => parseFloat(getComputedStyle(node).fontSize))).toBeGreaterThanOrEqual(16);
+    await expect(total).toBeHidden();
   }
   return s;
 }
@@ -138,7 +137,8 @@ test("Pause freezes computer play, rejects stale callbacks and replacement cance
   await expect(page.getByRole("heading", { name: "New reference game", exact: true })).toBeVisible();
 });
 
-test("global pause freezes continuous human battle and gates manual reinforcement and capture", async ({ page }, info) => {
+// T97: there is no continuous battle (owner, #244); pause gates Fight presses instead.
+test("global pause gates Fight, manual reinforcement and capture", async ({ page }, info) => {
   await begin(page, true); const f = fixture("manual");
   await page.getByLabel("Seed", { exact: true }).fill(String(f.seed));
   await page.getByRole("button", { name: "Start game", exact: true }).click();
@@ -146,15 +146,14 @@ test("global pause freezes continuous human battle and gates manual reinforcemen
   await page.locator("#start-combat-button").click();
   await page.locator(`[data-country="${f.from}"]`).click();
   await page.locator(`[data-country="${f.to}"]`).click({ modifiers: ["Shift"] });
-  await openSurface(page,'actions');await page.locator("#battle-stop-threshold").fill("1"); await openSurface(page,'actions');await page.locator("#battle-stop-threshold").press("Tab");
-  // T82: one explicit Attack opens the battle that Fight on continues.
-  await page.locator("#single-exchange-button").click(); await page.locator("#fight-on-button").click(); await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "true");
-  await totals(page); await visibleControls(page); await withSurface(page,'settings',()=>speed(page).selectOption("normal")); await pause(page).click();
+  await openSurface(page,'actions');await page.locator("#single-exchange-button").click(); await openSurface(page,'actions');await expect(page.getByRole("region", { name: "Battle controls", exact: true })).toHaveAttribute("data-running", "false");
+  await totals(page); await visibleControls(page); await withSurface(page,'settings',()=>speed(page).selectOption("normal")); await openSurface(page,'actions'); await pause(page).click();
   const frozen = await save(page);
-  for (const id of ["fight-on-button", "single-exchange-button", "end-turn-button", "start-friendly-move-button"]) await page.locator(`#${id}`).dispatchEvent("click");
+  for (const id of ["single-exchange-button", "end-turn-button", "start-friendly-move-button"]) await page.locator(`#${id}`).dispatchEvent("click");
   await page.locator(`[data-country="${f.to}"]`).press("Enter"); await stale(page); await page.clock.runFor(10000);
   expect(await save(page)).toBe(frozen); await totals(page); await screenshot(page, "paused-battle", info.project.name);
-  await pause(page).click(); await page.clock.runFor(400);
+  await pause(page).click(); await page.clock.runFor(400); expect(await save(page)).toBe(frozen);
+  await openSurface(page,'actions'); await page.locator("#single-exchange-button").click();
   const next = apply(deserializeVersionedMatch(frozen).state, { kind: "attack", from: f.from, to: f.to });
   if (!next.ok) throw Error(next.error);
   expect(deserializeVersionedMatch(await save(page)).state.history).toEqual(next.state.history); await totals(page);
