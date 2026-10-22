@@ -16,6 +16,9 @@ owner-approved by merging PR #217 on 2026-10-20), amended for the accepted
 Everything here is **[designed] future acceptance**, not an executed result. Owner D4
 judges the actual build. Named checks still need main-session preflight before dispatch.
 
+0.2.1 amends this plan without rewriting it: see [0.2.1 amendments](#021-amendments-2026-10-22)
+at the end. Where they differ, the amendments win for 0.2.1 and later.
+
 ## Viewports and minimums
 
 CSS pixels describe the content viewport. Test the default geographic host and the
@@ -184,3 +187,49 @@ build:
 - whether the original visual character is acceptable on every device.
 
 Low-fidelity sketches cannot approve final typography, colour or gesture feel.
+
+## 0.2.1 amendments (2026-10-22)
+
+T98 (#247), from the owner's decisions on #240 and #244 as built by T96 (#250) and T97 (#251).
+Everything above still stands for 0.2.0. For 0.2.1 these changes apply:
+
+- **R5 retired: no odds when staging, and no Fight on.** The attack card holds Fight and Cancel
+  only. Each Fight press is one exchange. There is no Fight on, Stop, stop point or odds line. In
+  *Attack commitment* and *Keyboard*, "Attack" now reads "Fight". The bullets "Staging shows the
+  exact capture odds" and "Fight on waits for the first explicit Attack" are retired. The rest
+  still holds: staging changes only the pair, and each press checks the gates afresh.
+- **The cards are trimmed.**
+  - Capture: −, the amount, + and Confirm. There is no fold button, preview or range text.
+  - Friendly move: −, the amount, +, Move and end turn, and Cancel.
+  - Raid: Confirm raid alone.
+  - Escape still folds a required choice to its strip, and the strip's icon reopens it.
+- **Cards float over the map; the camera no longer avoids them.** Opening, folding or reopening a
+  card never changes the map's viewBox. Only the corner icons are camera obstacles. This retires
+  "land and badges stay associated beside cards (E)" for the 640×360 and 667×375 rows. "A card
+  covering land keeps that land's badges beneath it" still holds, and so does "hidden by an
+  overlay never means zero armies".
+- **A1 becomes the instant start.** The root page opens a game at once: one human against three
+  Normal computers, a random seed, Domination on, no round limit, names by seed. There is no setup
+  form. A1 now checks, in portrait:
+  - the map is painted at once, with no setup form;
+  - the seats are one human and three computers;
+  - Help & icon names is reachable from the menu;
+  - the kept record (`localStorage`) is unchanged by opening Help;
+  - there is no Save or Load in the menu.
+  The old setup screen and its files stay on the hidden `?setup` route for tests. They are no
+  longer acceptance.
+- **A2, A3, A4, A5** expect Fight and the trimmed cards. Each opened card's visible controls are
+  compared exactly, and the retired controls (odds, Fight on, Stop, stop point, capture fold,
+  preview and range) are absent. A2 also checks that opening the attack card leaves the viewBox
+  unchanged.
+- **A13 retired.** Save and Load leave the player's UI (T96), so there is no main file UI to load a
+  version-1 save into. The matrix case is removed. The version-1 path still exists on the hidden
+  `?setup` route, and `responsive-utilities.spec.ts` still covers it, but it is no longer a release
+  promise.
+- **A10** keeps its test-route form (`?seed=7&control=manual`, files in the menu). In the player's
+  UI, New game first asks "Give up this game?", then shows the given-up result, then starts a new
+  random game. `instant-start.spec.ts` covers that flow.
+- **A12** (the ten-country read on real phones) carries over from 0.2.0 unchanged (#244 Q12).
+- **The viewport table's "setup/files" checks** apply to the hidden `?setup` route only.
+
+The record is `docs/releases/0.2.1/ACCEPTANCE.md`.
