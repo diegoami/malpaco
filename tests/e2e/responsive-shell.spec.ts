@@ -27,7 +27,7 @@ function placement(host: string): {text: string; state: GameState} {
 async function begin(page: Page, host: string, text: string): Promise<string[]> {
   const errors: string[] = []; page.on('pageerror', e => errors.push(String(e)));
   await page.clock.install({time: new Date('2026-10-21T12:00:00Z')}); await page.clock.pauseAt(new Date('2026-10-21T12:00:01Z'));
-  await page.goto(host === 'reference' ? '/?view=reference-game' : '/');
+  await page.goto(host === 'reference' ? '/?view=reference-game' : '/?setup');
   await page.evaluate(() => { const create = URL.createObjectURL.bind(URL); URL.createObjectURL = blob => { Reflect.set(window, 'shellSave', blob); return create(blob); }; });
   const old = await page.getByLabel('Load game', {exact: true}).elementHandle();
   await page.getByLabel('Load game', {exact: true}).setInputFiles({name: 'shell.json', mimeType: 'application/json', buffer: Buffer.from(text)});

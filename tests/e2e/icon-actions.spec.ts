@@ -10,7 +10,7 @@ const discoveries=JSON.parse(input('issue180/preflight/discovery.json'));
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 async function begin(p:Page){
  await p.clock.install({time:new Date('2026-10-19T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-19T12:00:00Z'));
- await p.goto('/');await p.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'iconSave',blob);return create(blob);};});
+ await p.goto('/?setup');await p.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'iconSave',blob);return create(blob);};});
 }
 // T92: the shared helpers know which card holds what (totals, history and settings share the menu).
 async function open(p:Page,surface:'actions'|'cards'|'details'|'settings'){await openSurface(p,surface);}

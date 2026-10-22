@@ -20,7 +20,7 @@ const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 const cards=(p:Page)=>p.getByRole('region',{name:'Cards',exact:true});
 const drawer=(p:Page)=>p.locator('#game-focus-drawer');
 
-async function begin(page:Page){await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await page.goto('/');}
+async function begin(page:Page){await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await page.goto('/?setup');}
 async function load(page:Page,file:string){const previous=await page.getByLabel('Load game',{exact:true}).elementHandle();await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'cards.json',mimeType:'application/json',buffer:Buffer.from(input(file))});await expect.poll(()=>previous!.evaluate(el=>el.isConnected)).toBe(false);await expect(page.locator('[data-country]')).toHaveCount(46);}
 async function saved(page:Page){return withSurface(page,'settings',async()=>{const download=page.waitForEvent('download');await page.getByRole('button',{name:'Save game',exact:true}).click();return deserializeVersionedMatch(readFileSync((await(await download).path())!,'utf8'));});}
 async function exact(page:Page,state:GameState){const actual=(await saved(page)).state;expect(actual.history).toEqual(state.history);expect(actual.rng).toEqual(state.rng);expect(actual.armies).toEqual(state.armies);expect(actual.cards).toEqual(state.cards);}

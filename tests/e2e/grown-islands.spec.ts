@@ -6,7 +6,7 @@ import {GEOGRAPHIC_V2_MATCH_IDENTITY,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,dese
 import {withSurface} from './shell';
 
 async function start(p:Page,seed:number,humans=2,manual=true){
- await p.goto(`/?seed=${seed}${manual?'&control=manual':''}`);await expect(p.getByRole('button',{name:'Start game',exact:true})).toBeVisible();
+ await p.goto(`/?setup&seed=${seed}${manual?'&control=manual':''}`);await expect(p.getByRole('button',{name:'Start game',exact:true})).toBeVisible();
  await p.getByLabel('Seats',{exact:true}).selectOption(String(Math.max(2,humans)));for(let n=1;n<=Math.max(2,humans);n++)await p.getByLabel(`Seat ${n} control`,{exact:true}).selectOption(n<=humans?'human':'computer');
  await p.getByRole('button',{name:'Start game',exact:true}).click();await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);await p.mouse.move(0,0);
 }

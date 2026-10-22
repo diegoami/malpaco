@@ -11,7 +11,7 @@ type Detail=typeof MODES[number];
 const cards=(p:Page)=>p.getByRole('region',{name:'Cards',exact:true});
 const detail=(p:Page)=>p.locator('#panel-detail');
 const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
-async function begin(page:Page){await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await page.goto('/');}
+async function begin(page:Page){await page.clock.install({time:new Date('2026-10-18T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await page.goto('/?setup');}
 async function save(page:Page):Promise<string>{return withSurface(page,'settings',async()=>{const download=page.waitForEvent('download');await withSurface(page,'settings',()=>page.getByRole('button',{name:'Save game',exact:true}).click());const path=await(await download).path();if(!path)throw Error('Native save download unavailable');return readFileSync(path,'utf8');});}
 async function load(page:Page,text:string){const previous=await page.getByLabel('Load game',{exact:true}).elementHandle();await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'cards.json',mimeType:'application/json',buffer:Buffer.from(text)});await expect.poll(()=>previous!.evaluate(el=>el.isConnected)).toBe(false);await expect(page.locator('[data-country]')).toHaveCount(46);}
 async function saved(page:Page){return deserializeVersionedMatch(await save(page));}
