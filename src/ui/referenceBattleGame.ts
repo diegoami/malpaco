@@ -78,8 +78,6 @@ export class ReferenceBattleGame {
   private givenUp = false;
   private persisted = -1;
   private persistedSeat = -1;
-  private readonly onHide = () => {if (!this.disposed && document.visibilityState === "hidden") this.persist(this.controller.state, true);};
-  private readonly onPageHide = () => {if (!this.disposed) this.persist(this.controller.state, true);};
   /** T100: the menu's scoreboard (the player's game only); a game is recorded once, if it was unfinished when it opened. */
   private readonly scoreboard: ScoreboardDialog | null = null;
   private scoreboardPaused = false;
@@ -207,8 +205,6 @@ export class ReferenceBattleGame {
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
     window.addEventListener("resize", this.onResize);
-    window.addEventListener("pagehide", this.onPageHide);
-    document.addEventListener("visibilitychange", this.onHide);
     this.mounted = true;
     this.render();
   }
@@ -226,8 +222,6 @@ export class ReferenceBattleGame {
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
     window.removeEventListener("resize", this.onResize);
-    window.removeEventListener("pagehide", this.onPageHide);
-    document.removeEventListener("visibilitychange", this.onHide);
   }
 
   private readonly onResize = () => { if (this.mounted && !this.disposed) this.placeCard(); };
@@ -297,14 +291,14 @@ export class ReferenceBattleGame {
 
   /**
    * T96: the versioned save text after every action, so a refresh replays it; a finished game clears it.
-   * T101: writing it replays the whole game, so during a computer's turn it is written when the turn
-   * passes (and when the page is hidden), not after every action; the computers' actions are a pure
-   * function of the game, so a reload in mid-turn replays the same ones.
+   * T101: writing it replays the whole game, so during a computer's turn it is written once, when
+   * the turn passes, not after every action; the computers' actions are a pure function of the
+   * game, so a reload in mid-turn replays that turn's actions again, the same ones.
    */
-  private persist(state: GameState, now = false): void {
+  private persist(state: GameState): void {
     const player = this.presentation?.player;
     if (!player || this.givenUp || state.history.length === this.persisted) return;
-    if (!now && this.computerActive() && state.currentPlayer === this.persistedSeat) return;
+    if (this.computerActive() && state.currentPlayer === this.persistedSeat) return;
     this.persisted = state.history.length; this.persistedSeat = state.currentPlayer;
     let text: string | null = null;
     if (!state.result) try {text = serializeVersionedMatch(this.options, state.history, this.presentation!.identity);} catch {text = null;}

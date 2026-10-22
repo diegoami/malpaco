@@ -8,8 +8,9 @@ The seed fixes the geography, deal and dice sequence.
 Opening the page starts a game at once: you against three Normal computers on a random seed, with
 Domination on and no round limit. Islands and territories take real island and town names from one
 region (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific), chosen by
-the seed; names never change the map or play. The game is kept in this browser after every action,
-so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
+the seed; names never change the map or play. The game is kept in this browser after each of your
+actions and each computer's turn (a refresh in the middle of a computer's turn replays that turn,
+the same moves), so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
 still open, at the game speed you chose, and paused if you left it paused. Nothing leaves this
 browser: there is no account, server or sync between devices. **New game** in the menu asks "Give up this game?", shows
 where the seats stood, then starts a new random game; after a result it starts at once.
