@@ -10,11 +10,13 @@ Android only; investigate starting deals and island-bonus snowballing together;
 approve a Tauri 2 prototype and its build dependencies. The release also takes
 confirmed player-facing fixes. The owner subsequently added larger generated maps,
 replenishment choices 1/3/5/7 and 1–3 computer opponents, all in Settings for the
-next game. Initial launch still starts play immediately. New AI levels, hot-seat, sound, decorative
+next game. Fresh launch opens Settings with Start game; an existing save offers Resume first and New game. New AI levels, hot-seat, sound, decorative
 map work and desktop packaging remain later work.
 
-Keep instant start, one human against three computers, minimal floating cards,
-card values 5/8/15, quiet computer turns and local kept games. Share the existing
+Keep one human with three computers by default, minimal required-choice cards,
+card values 5/8/15 and local kept games. T115 supplies the visible colour turn tracker,
+human phase guidance and readable computer action effects; T117 supplies prominent
+text commands, a contrasting region ATTACK button and solid sea connections. Share the existing
 core and UI between web and Android. New balance rules require a new exact match
 identity; all earlier saves replay with their original deal, bonuses and RNG.
 
@@ -119,7 +121,7 @@ before using them; never resurrect obsolete controls through an old Done-when.
 | #129, #213 | Controller/workspace boundary hardening only where current reachable behavior warrants it; do not rebuild removed threshold controls |
 | #92–#95 (T47–T50) | Strategic AI and new difficulty policies remain later; T105 measures the unchanged baseline rather than claiming this chain |
 | #87, #88 (T42/T43) | Owner authorized opt-in event/centre implementation after the returned research; keep historical no-event balance runs frozen |
-| #89 (T44), #98 (T53) | Setup options/seat mixtures and hot-seat remain later; retain current instant-start default |
+| #89 (T44), #98 (T53) | Setup options/seat mixtures and hot-seat remain later; retain the explicit Start/Resume entry |
 | #100 (T55) | Sound/audio controls remain later |
 | #102, #103 (T57/T58) | Full finished-game acceptance remains later; 0.3 gets release-specific acceptance without claiming unfinished feature coverage |
 | #174, #119 | Curved labels and rivers/ridges remain optional later visual work |
@@ -136,8 +138,8 @@ before using them; never resurrect obsolete controls through an old Done-when.
 ## Next-game Settings boundary
 
 Changing Settings persists preferences for a future game, not game state. Reload
-resumes the current match with its original options; only the existing explicit
-New game/give-up flow constructs the next match from preferences. Keep one human
+offers Resume for the current match with its original options; only explicit Start
+after the New game/give-up flow constructs the next match from preferences. Keep one human
 and offer 1, 2 or 3 computer opponents. Map and rate selectors expose implemented
 choices only. Never read mutable preferences from core income, AI or replay. Store
 selected values with every new match and include these preferences in native
@@ -178,8 +180,8 @@ with symmetric starting ranges 1–2 / 1–3 / 1–4; [T113](../tasks/T113.md), 
 records the bounded protocol. This does not yet replace existing saved rules or
 adopt the held balance/map prototypes. Archaeology clarification: isle-wars-archaeology#286.
 
-Production centres are currently marked but their effects and disasters are not
-implemented. The owner reopened investigation in #293, preflighting existing
+At the start of investigation, production centres were marked without effects or
+disasters. The owner reopened investigation in #293, preflighting existing
 T42/#87 and T43/#88 rather than silently enabling events during balance work.
 Original runtime/wording clarification: isle-wars-archaeology#287. Original centre
 production is an event effect, not ordinary turn income; Malpaco adoption remains

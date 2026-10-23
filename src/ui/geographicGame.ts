@@ -62,8 +62,7 @@ const local={
 };
 const readMeta=(slot:Slot):GameMeta|null=>{try{const v=JSON.parse(local.get(slot.meta)??'null');return v&&typeof v.id==='string'&&v.id?{id:v.id,paused:v.paused===true,...(Number.isSafeInteger(v.eventAck)&&v.eventAck>=0?{eventAck:v.eventAck}:{}),...(Number.isSafeInteger(v.eventMarksCleared)&&v.eventMarksCleared>=0?{eventMarksCleared:v.eventMarksCleared}:{})}:null;}catch{return null;}};
 /** T100: game speed, for every player game in this browser. */
-const PREFERENCES='malpaco:preferences',SPEEDS:readonly BattleSpeed[]=['very-slow','slow','normal','fast'];
-const keptSpeed=():BattleSpeed|null=>{try{const speed=JSON.parse(local.get(PREFERENCES)??'null')?.speed;return SPEEDS.includes(speed)?speed:null;}catch{return null;}};
+const PREFERENCES='malpaco:preferences';
 const randomSeed=()=>crypto.getRandomValues(new Uint32Array(1))[0]!;
 const newGameId=()=>`${Date.now().toString(36)}-${randomSeed().toString(36)}`;
 
@@ -83,7 +82,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
  let seats=manual?'2':'4';
  let controllers:('human'|'computer')[]=manual?['human','human','human','human']:['human','computer','computer','computer'];
  let dominationWin=true,roundLimit:20|30|40|null=null,names:NameChoice='seed';
- const preferences:BattlePreferences={threshold:2,speed:(instant?keptSpeed():null)??'normal'};
+ const preferences:BattlePreferences={threshold:2,speed:'normal'};
  let current:ReferenceBattleGame|null=null,setupFiles:ReferenceMatchFiles|null=null;
  let closed=false,epoch=0,pending:AbortController|null=null;
  let setupStatus:HTMLElement|null=null;

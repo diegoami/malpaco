@@ -51,11 +51,13 @@ for(const size of SIZES){
   const from=mine(state).find(id=>attackTargets(state,id).some(t=>ok(state,id,t)))!,to=attackTargets(state,from).find(t=>ok(state,from,t))!;
   const other=mine(state).find(id=>id!==from&&attackTargets(state,id).length>0)!;
   const country=(id:string)=>page.locator(`[data-country="${id}"]`),action=page.locator('#province-action-button');
-  const beside=async(id:string)=>expect(gap((await action.boundingBox())!,(await country(id).locator('.count').boundingBox())!)).toBeLessThan(24);
+  const beside=async(id:string)=>expect.poll(async()=>gap((await action.boundingBox())!,(await country(id).locator('.count').boundingBox())!)).toBeLessThan(24);
   await expect(action).toBeHidden();
   await country(from).click();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await beside(from);await expect(action).toHaveText('ATTACK');await expect(action.locator('svg')).toHaveCount(0);
   const colours=await action.evaluate((n,id)=>{const c=document.querySelector(`[data-country="${id}"]`)!;return [getComputedStyle(n).backgroundColor,getComputedStyle(c.querySelector('.cell')!).fill,getComputedStyle(c.querySelector('.badge')!).fill];},from);expect(colours[0]).not.toBe(colours[1]);expect(colours[0]).not.toBe(colours[2]);
   const ab=(await action.boundingBox())!,cb=(await country(from).locator('.count').boundingBox())!;expect(ab.x>=0&&ab.x+ab.width<=size.width).toBe(true);expect(ab.x>=cb.x+cb.width||ab.x+ab.width<=cb.x||ab.y>=cb.y+cb.height||ab.y+ab.height<=cb.y).toBe(true);await page.screenshot({path:`artifacts/T117/attack-${size.width}.png`});
+  // Choosing an enemy before arming also stays on the map; ATTACK remains the control.
+  await country(to).click();await expect(page.locator('#game-focus-drawer')).toBeHidden();expect(same(await kept(page))).toEqual(same(state));await country(from).click();
   // A press arms Fight; nothing is fought yet.
   await action.click();await expect(action).toHaveAttribute('aria-pressed','true');expect(same(await kept(page))).toEqual(same(state));
   // The tapped enemy is fought at once: one round.
@@ -81,7 +83,7 @@ for(const size of SIZES){
   const source=mine(state).find(id=>!attackTargets(state,id).length&&friendlySources(state).includes(id))!,dest=friendlyTargets(state,source)[0]!;
   const country=(id:string)=>page.locator(`[data-country="${id}"]`),action=page.locator('#province-action-button');
   await country(source).click();await expect(action).toHaveAttribute('data-kind','move');
-  expect(gap((await action.boundingBox())!,(await country(source).locator('.count').boundingBox())!)).toBeLessThan(24);
+  await expect.poll(async()=>gap((await action.boundingBox())!,(await country(source).locator('.count').boundingBox())!)).toBeLessThan(24);
   expect(same(await kept(page))).toEqual(same(state));
   await action.click();await expect(page.locator('#cancel-friendly-move-button')).toBeVisible();
   await country(dest).click();
