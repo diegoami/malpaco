@@ -1,3 +1,4 @@
+import {textCommands} from './textCommands';
 import {CardController} from "./cardController";
 import {CardView, HandDialog} from "./cardView";
 import { GameEventLog } from "./gameEventLog";
@@ -100,6 +101,7 @@ export class ReferenceBattleGame {
   private scoreboardPaused = false;
   private readonly nextSettings: NextGameSettingsDialog | null = null;
   private settingsPaused = false;
+  private stopText:(()=>void)|null=null;
   private recorded = false;
   private readonly openedUnfinished: boolean;
   private readonly feedback:ComputerFeedbackController|null;
@@ -172,7 +174,7 @@ export class ReferenceBattleGame {
       else this.chrome.retitle(this.picker.title);
     };
     this.feedback=automatic&&presentation?.player?new ComputerFeedbackController(this.controller,{schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.mounted&&!this.disposed)this.renderMap();}):null;
-    this.turnTracker=presentation?.player?new TurnTracker():null;
+    this.turnTracker=presentation?.player?new TurnTracker(()=>this.playbackPause.click()):null;
     this.panel = new Panel({
       onAttack: () => { this.controller.singleExchange(); },
       onStartCombat: () => { this.controller.dispatch({ kind: "endReinforcement" }); },
@@ -227,6 +229,7 @@ export class ReferenceBattleGame {
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
+    if(this.presentation?.player)this.stopText=textCommands(document.body);
     // T112: New game, Settings and Help are direct corner buttons. Settings holds the next-game choices, seed and scoreboard; totals, card
     // counts, the battle log and panel detail are gone. T101: the speed choice moved to the corner
     // beside Pause, and the history icon shows only with `?log`.
@@ -238,7 +241,7 @@ export class ReferenceBattleGame {
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
-      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onMenuOpen:()=>{this.nextSettings?.refresh();if(this.worldEvents?.fold())this.worldView?.render(this.controller.state);}}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onMenuOpen:()=>{this.settingsPaused=!this.controller.playbackPaused;if(this.settingsPaused){this.controller.setPlaybackPaused(true);this.presentation?.player?.remember?.({paused:true});}this.nextSettings?.refresh();if(this.worldEvents?.fold())this.worldView?.render(this.controller.state);},onMenuClose:()=>{const resume=this.settingsPaused;this.settingsPaused=false;if(resume&&!this.disposed){this.controller.setPlaybackPaused(false);this.presentation?.player?.remember?.({paused:this.controller.playbackPaused});}}}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
     // T104: your cards sit beside the menu icon.
     if (this.hand) this.chrome.hud.append(this.hand.button);
     if(this.worldView)this.chrome.overlay.append(this.worldView.el);
@@ -268,6 +271,7 @@ export class ReferenceBattleGame {
     this.feedback?.dispose();
     this.worldEvents?.dispose();this.worldView?.dispose();
     this.cardControls.dispose();
+    this.stopText?.();this.stopText=null;
     this.cards.dispose();
     this.computer?.dispose();
     this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.hand?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose(); this.nextSettings?.dispose();
@@ -521,7 +525,7 @@ export class ReferenceBattleGame {
     // Computer turns show no choice (owner, 2026-10-22). T101: while one plays, only the speed
     // controls stay on screen; the menu, camera and Countries icons return on your turn or a pause.
     const restore = computer && !result && this.chrome?.openSurface === "actions" && (document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
-    this.chrome?.update(status, choice, gamePaused, prompt, computer && !result && !gamePaused);
+    this.chrome?.update(status, choice, gamePaused, prompt, !this.presentation?.player && computer && !result && !gamePaused);
     // T103 (owner): a card with nothing to do (an attack card whose pair can no longer fight: only Cancel) closes.
     if (this.presentation?.player && this.chrome?.openSurface === "actions" && !required && mode !== "move" && !state.pendingCapture && !result && !raiding && state.phase === "attack") this.chrome.close(false);
     // A paused computer turn still shows no choice card (its menu card may open).

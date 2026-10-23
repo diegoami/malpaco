@@ -1968,3 +1968,38 @@ dialog h2 {
 }
 
 #province-action-button { width:120px; min-width:120px; }
+/* T119: player commands use raised text; data symbols remain on the board and cards. */
+button.game-text-command {
+ display:inline-flex !important; flex-direction:row !important; align-items:center; justify-content:center; gap:6px;
+ width:auto !important; min-width:max-content !important; min-height:48px !important; max-width:100%; padding:8px 10px !important;
+ font:900 20px/1.2 Impact,"Arial Black",system-ui,sans-serif !important; letter-spacing:1.2px !important; text-transform:uppercase !important; text-align:center;
+ color:#fff !important; background:#a51e2c !important; border:3px solid !important; border-color:#ff969b #530a16 #530a16 #ff969b !important;
+ border-radius:3px !important; box-shadow:2px 3px 0 #071b25,inset 0 1px 0 #fff5 !important; text-shadow:0 1px 1px #0008;
+}
+button.game-text-command svg,button.game-text-command img { display:none !important; }
+.game-text-command .card-icon-caption { font:inherit !important; letter-spacing:inherit; }
+button.game-text-command:focus-visible { outline:3px solid #fff !important; outline-offset:3px; }
+button.game-text-command:disabled { opacity:.45; }
+#province-action-button.game-text-command { min-width:120px !important; font-size:22px !important; }
+.game-primary-buttons > .game-text-command { height:52px; padding:0 8px !important; }
+#start-game.game-text-command { width:100% !important; }
+.game-overlay[data-primary-commands="true"] > .game-corner-end { display:none !important; }
+.game-overlay[data-primary-commands="true"] .map-camera-controls { flex-direction:column-reverse; align-items:flex-start; }
+.game-overlay[data-primary-commands="true"] #battle-action-rail { grid-auto-flow:row; grid-template-columns:max-content; grid-template-rows:none; }
+#resume-turn-button { margin-top:10px; }
+@media (min-width:480px) { .game-primary-buttons > .game-text-command { font-size:22px !important; } }
+@media (max-width:479px) {
+ .game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }
+ .game-overlay[data-primary-commands="true"]:has(#placement-pool:not([hidden])) #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--target) + 2 * var(--gap)); }
+ .game-overlay[data-primary-commands="true"]:has(#turn-tracker) .game-pool-slot { left:auto; right:var(--edge); }
+}
+
+@media (max-height:500px) {
+ .game-overlay[data-primary-commands="true"] .map-camera-controls { flex-direction:row; align-items:flex-end; }
+ .game-overlay[data-primary-commands="true"] .turn-row { min-height:28px; }
+ .game-overlay[data-primary-commands="true"] .turn-guidance { min-height:52px; }
+}
+
+.game-overlay[data-primary-commands="true"] :is(#game-pause-button,#fast-forward-button,.game-speed-control) { display:none !important; }
+.game-overlay[data-primary-commands="true"] > .game-corner-end:has(#close-result-card:not([hidden])) { display:flex !important; position:relative; top:0; }
+button.game-text-command[hidden] { display:none !important; }

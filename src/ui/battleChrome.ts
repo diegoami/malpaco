@@ -19,6 +19,7 @@ const CORNERS: readonly Corner[] = ["end", "start", "top-end", "top-start"];
 const symbol = glyph;
 
 function commandSymbol(button: HTMLButtonElement, shape: string): void {
+  button.dataset["commandSymbol"]=shape;
   button.querySelector(".rail-command-icon")?.remove();
   const svg = symbol(shape); svg.classList.add("rail-command-icon"); button.append(svg);
 }
@@ -109,7 +110,7 @@ export class BattleChrome {
   private requiredText: string | null = null;
   private corner: Corner = "end";
 
-  constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void}) {
+  constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void;onMenuClose?:()=>void}) {
     for (const [button, surface] of [[this.menu, "menu"], [this.countries, "countries"]] as const) {
       button.setAttribute("aria-controls", this.drawer.id);
       button.setAttribute("aria-haspopup", "dialog");
@@ -169,7 +170,7 @@ export class BattleChrome {
   private commands(): void {
     const symbols: Record<string,string> = {"start-combat-button":"combat", "end-turn-button":"flag", "start-friendly-move-button":"move"};
     for (const button of this.nodes.phaseActions.querySelectorAll<HTMLButtonElement>("button")) {
-      if (!button.querySelector(".rail-command-icon")) {
+      if (!button.dataset["commandSymbol"]) {
         button.setAttribute("aria-label", button.textContent ?? ""); button.title = button.textContent ?? "";
         commandSymbol(button, symbols[button.id] ?? "info");
       }
@@ -381,11 +382,12 @@ export class BattleChrome {
     if (!this.surface) return;
     // Content with no home in the page (the Countries list) leaves the card instead of staying under the next one.
     for (const {node, marker} of this.moved) {if (marker.parentNode) marker.replaceWith(node); else node.remove();}
+    const wasMenu=this.surface==='menu';
     this.moved = []; this.drawer.hidden = true; this.surface = null; this.collapsed = false;
     for (const button of this.overlay.querySelectorAll<HTMLElement>("[aria-haspopup]")) button.setAttribute("aria-expanded", "false");
     this.layout();
     if (restoreFocus) this.focus(this.opener, this.menu);
-    this.opener = null;
+    this.opener = null;if(wasMenu)this.nodes.onMenuClose?.();
   }
 
   private focus(control: HTMLElement | null, fallback: HTMLElement): void {
