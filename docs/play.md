@@ -53,9 +53,9 @@ You are **You**; the three computers are named by their seat colours: **Orange**
 
 During your turn, place reinforcements on your territories,
 and combat starts by itself once the last army is placed. Select one of your territories: on it
-appears **Fight** if it can attack, or **Move** if it can only move armies. Press **Fight**, then
-tap an adjacent enemy: one round is fought; press **Fight** again for another. Selecting another
-territory moves the icon there. Without **Fight**, tapping an enemy only chooses the target. **Fight** rolls one exchange each time you press it; nothing
+appears **ATTACK** if it can attack, or **Move** if it can only move armies. Press **ATTACK**, then
+tap an adjacent enemy: one round is fought; press **ATTACK** again for another. Selecting another
+territory moves the button there. Without **ATTACK**, tapping an enemy only chooses the target. **ATTACK** rolls one exchange each time you press it; nothing
 continues on its own, and **Cancel** drops the target. Clicks, Enter/Space, touch and the
 Countries list all work the same way. After capturing a territory, choose the army amount with
 −, + and **Confirm** on the bar beside the captured territory; until then the two countries'
