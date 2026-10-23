@@ -1845,3 +1845,7 @@ dialog h2 {
 
 .game-corner-end[data-stack-speed="true"] { position:relative; padding-bottom:calc(var(--target) + var(--gap)); }
 .game-corner-end[data-stack-speed="true"] > .game-speed-control { position:absolute; right:0; top:calc(var(--target) + var(--gap)); }
+/* Inline settings use the card's padding and a full-width field, so values do not clip. */
+.game-settings > .next-game-settings > p { margin:12px 0; }
+.game-settings > .next-game-settings .next-game-setting { margin:12px 0; flex-direction:column; align-items:stretch; gap:6px; }
+.game-settings > .next-game-settings select { width:100%; }
