@@ -115,3 +115,12 @@ The game fits phones and tablets in either orientation as well as desktops: it i
 320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. Real-device and
 screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md` (carried over to 0.2.1). Online multiplayer and
 cross-device save synchronization are not supported.
+
+## Developer balance experiment
+
+From a source checkout, `node tools/balance/run.mjs --deal-seeds 500 --game-seeds 200
+--out artifacts/T105-comparison` compares the frozen 0.3 experimental deal/bonus
+candidates against the 0.2.1 core policy. Pass the command on one line. Each run needs
+a fresh output directory and writes raw deals/games, a summary and source/bundle
+hashes there. It does not change the playable game's rules or saved games. The
+protocol and interpretation limits are in [the 0.3 plan](plans/release-0.3.md) and #273.
