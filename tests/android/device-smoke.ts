@@ -6,11 +6,12 @@ import {readFileSync,writeFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {join} from 'node:path';
 import {deserializeVersionedMatch} from '../../src/core/match-save';
-import {activePlayer,apply} from '../../src/core';
+import {activePlayer,apply,defaultOptions,raidCardsRules} from '../../src/core';
+import {createGeographicGame} from '../../src/core/geographic-game';
 import {decideComputerAction} from '../../src/core/computer';
 import {computerView} from '../../src/core/computer-view';
 
-const config=JSON.parse(process.argv[2]!) as {apk:string;serial:string;out:string;adb:string};
+const config=JSON.parse(process.argv[2]!) as {apk:string;serial:string;out:string;adb:string;mode?:string};
 const app='io.github.diegoami.malpaco.debug';
 let key='';
 const adb=(args:string[])=>execFileSync(config.adb,['-s',config.serial,...args],{encoding:'utf8',timeout:120000}).trim();
@@ -44,11 +45,56 @@ const errors:string[]=[];const watch=(p:Page)=>{p.on('pageerror',e=>errors.push(
 try {
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  check('bundled first launch offline shows 46 countries');screen('first-launch');
+ if(config.mode==='lifecycle'){
+  expect(await page.evaluate(()=>typeof Reflect.get(window,'MalpacoHost')?.requiresResume)).toBe('function');
+  const origin=await page.evaluate(()=>location.origin);
+  const count=await page.evaluate(()=>{try{return JSON.parse(localStorage.getItem('malpaco:next-game-settings')??'null')?.computerOpponents??3;}catch{return 3;}});
+  let selected=0;
+  for(let seed=7;seed<200;seed++){
+   const slot='malpaco:seed-game:'+seed;if(await page.evaluate(k=>localStorage.getItem(k)!==null,slot))continue;
+   const o={...defaultOptions(),seed,seats:[{kind:'human' as const},...Array.from({length:count},()=>({kind:'computer' as const}))],computerStrengths:Array.from({length:count},()=> 'Normal' as const)};
+   const made=createGeographicGame(o,raidCardsRules(o),{},2);if(made.ok&&activePlayer(made.state)?.kind==='computer'){selected=seed;break;}
+  }
+  if(!selected)throw Error('No fresh computer-first diagnostic seed');
+  metadata.observations.computerDiagnosticSeed=selected;
+  await page.goto(origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+  await page.locator('#game-speed').selectOption('very-slow');
+  if(await page.locator('#game-pause-button').getAttribute('aria-label')==='Resume game')await page.locator('#game-pause-button').click();
+  const slot='malpaco:seed-game:'+selected,meta='malpaco:seed-game-meta:'+selected;
+  const initial=(await page.evaluate(k=>localStorage.getItem(k),slot))!;
+  await wait(2200);await expect(page.locator('.panel')).toHaveAttribute('data-computer-active','true');
+  adb(['shell','input','keyevent','KEYCODE_HOME']);
+  await expect.poll(async()=>JSON.parse((await page.evaluate(k=>localStorage.getItem(k),meta))!).paused,{timeout:15000}).toBe(true);
+  const saved=(await page.evaluate(k=>localStorage.getItem(k),slot))!;
+  expect(deserializeVersionedMatch(saved).state.history.length).toBeGreaterThan(deserializeVersionedMatch(initial).state.history.length);
+  const state=deserializeVersionedMatch(saved).state;
+  const paint=await page.locator('[data-country]').evaluateAll(ns=>Object.fromEntries(ns.map(n=>[n.getAttribute('data-country'),n.getAttribute('data-armies')])));
+  expect(paint).toEqual(Object.fromEntries(state.map.provinces.map(p=>[p.id,String(state.armies[p.id])])));
+  await wait(600);expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
+  adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
+  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
+  await wait(600);expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
+  await device?.close();device=undefined;adb(['shell','am','force-stop',app]);adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
+  connection=await attach();page=connection.page;watch(page);
+  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+  await page.goto(origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
+  expect(await page.evaluate(()=>Reflect.get(window,'MalpacoHost').requiresResume())).toBe(true);
+  expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
+  check('native resume requirement and paused computer replay survive process restart');
+  writeFileSync(join(config.out,'background-computer.json'),saved);screen('computer-paused-after-return');
+  check('real Android Home force-keeps a partial computer turn; return stays paused');
+  await page.locator('#game-speed').selectOption('fast');await page.locator('#game-pause-button').click();
+  expect(await page.evaluate(()=>Reflect.get(window,'MalpacoHost').requiresResume())).toBe(false);
+  check('explicit Resume clears the native resume requirement');
+ }
+
  const origin=await page.evaluate(()=>location.origin);
  const seed=await page.evaluate(()=>{for(let n=1;n<=10000;n++)if(!localStorage.getItem('malpaco:seed-game:'+n))return n;throw Error('No unused diagnostic seed');});
  metadata.seed=seed;key='malpaco:seed-game:'+seed;
  await page.goto(origin+'/?seed='+seed);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+ if(await page.locator('#game-pause-button').getAttribute('aria-label')==='Resume game')await page.locator('#game-pause-button').click();
  await expect.poll(async()=>activePlayer(await kept(page))?.kind,{timeout:60000}).toBe('human');
  let capture=false;
  for(let n=0;n<500;n++){
@@ -94,11 +140,29 @@ try {
  const pending=await snapshot(page);
  writeFileSync(join(config.out,'pending-capture.json'),(await page.evaluate(k=>localStorage.getItem(k),key))!);
  screen('capture-portrait');
+ if(config.mode==='lifecycle'){
+  const url=page.url(),amount=await page.locator('#capture-amount').inputValue();
+  await page.locator('#open-game-menu').click();adb(['shell','input','keyevent','KEYCODE_BACK']);
+  await expect(page.locator('#game-focus-drawer')).toBeHidden();expect(page.url()).toBe(url);
+  await page.locator('#open-required-action').click();adb(['shell','input','keyevent','KEYCODE_BACK']);
+  await expect(page.locator('#open-required-action')).toBeVisible();expect(await snapshot(page)).toBe(pending);expect(page.url()).toBe(url);
+  await page.locator('#open-required-action').click();await expect(page.locator('#capture-amount')).toHaveValue(amount);
+  check('real Back dismisses the menu and folds capture without navigation or confirmation');
+  await page.locator('#open-game-menu').click();await page.locator('#game-help-button').click();
+  adb(['shell','input','keyevent','KEYCODE_HOME']);
+  await expect.poll(async()=>JSON.parse((await page.evaluate(k=>localStorage.getItem(k),'malpaco:seed-game-meta:'+seed))!).paused,{timeout:15000}).toBe(true);
+  adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);adb(['shell','input','keyevent','KEYCODE_BACK']);
+  await expect(page.locator('dialog.game-help[open]')).toHaveCount(0);
+  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');expect(await snapshot(page)).toBe(pending);
+  check('Help dismissal after background cannot release the native pause');
+  await page.locator('#game-pause-button').click();if(!await page.locator('#confirm-capture-button').isVisible())await page.locator('#open-required-action').click();
+ }
+
  adb(['shell','settings','put','system','accelerometer_rotation','0']);adb(['shell','settings','put','system','user_rotation','1']);
  await expect.poll(()=>page.evaluate(()=>innerWidth>innerHeight),{timeout:15000}).toBe(true);
  expect(await snapshot(page)).toBe(pending);await expect(page.locator('#confirm-capture-button')).toBeVisible();
  check('rotation retains the exact pending capture');screen('capture-landscape');
- adb(['shell','am','force-stop',app]);
+ await device?.close();device=undefined;adb(['shell','am','force-stop',app]);
  adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
  connection=await attach();page=connection.page;watch(page);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
@@ -116,9 +180,22 @@ try {
  metadata.observations.back={urlBefore:backUrlBefore,urlAfter:page.isClosed()?null:page.url(),menuStillVisible:page.isClosed()?null:await page.locator('#game-focus-drawer').isVisible()};
  adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
  if(page.isClosed()){connection=await attach();page=connection.page;watch(page);}
- await page.goto(restartedOrigin+'/?seed='+seed);
+ const target=restartedOrigin+'/?seed='+seed;
+ if(page.url()!==target)await page.goto(target);
+ if(!await page.locator('#confirm-capture-button').isVisible()&&await page.locator('#open-required-action').isVisible())await page.locator('#open-required-action').click();
  await expect(page.locator('#confirm-capture-button')).toBeVisible({timeout:60000});
  expect(await snapshot(page)).toBe(pending);check('Back does not confirm the pending capture; navigation behavior recorded');
+
+ if(config.mode==='lifecycle'){
+  // A reload may have reopened the choice. Fold it, then Back at the map.
+  if(await page.locator('#game-focus-drawer').isVisible()){adb(['shell','input','keyevent','KEYCODE_BACK']);await expect(page.locator('#open-required-action')).toBeVisible();}
+  adb(['shell','input','keyevent','KEYCODE_BACK']);
+  await expect.poll(()=>page.evaluate(()=>Reflect.get(window,'MalpacoHost').isActive()),{timeout:15000}).toBe(false);
+  const url=page.url();adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
+  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
+  expect(page.url()).toBe(url);expect(await snapshot(page)).toBe(pending);
+  check('Back at the map backgrounds the app and return requires Resume');screen('back-map-return-paused');
+ }
  expect(errors).toEqual([]);check('no JavaScript or console errors during checked flows');
  writeFileSync(join(config.out,'REPORT.json'),JSON.stringify(metadata,null,2)+'\n');
 } catch(error) {

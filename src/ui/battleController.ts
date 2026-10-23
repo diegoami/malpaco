@@ -69,15 +69,24 @@ export class BattleController {
   }
   get cardAcknowledgmentPending():boolean {return this.cardRewardPending;}
   private globallyPaused = false;
+  private explicitResumeRequired = false;
   get playbackPaused(): boolean { return this.globallyPaused; }
 
   /** Session presentation state: retain the pending battle without choosing an exchange. */
-  setPlaybackPaused(value: boolean): void {
-    if (this.disposed || value === this.globallyPaused) return;
+  setPlaybackPaused(value: boolean, explicit = false): void {
+    if (this.disposed || !value && this.explicitResumeRequired && !explicit) return;
+    if (!value && explicit) this.explicitResumeRequired = false;
+    if (value === this.globallyPaused) return;
     this.globallyPaused = value;
     this.cancel();
     if (!value && this.current.running) this.schedule();
     this.publish({});
+  }
+  /** A native background pause survives temporary dialog-close resume callbacks. */
+  pauseUntilExplicitResume(): void {
+    if (this.disposed) return;
+    this.explicitResumeRequired = true;
+    this.setPlaybackPaused(true);
   }
   private current: BattleView;
   private timer: number | null = null;
@@ -303,6 +312,7 @@ export class BattleController {
     this.watchExchanges = 0;
     this.cardRewardPending = false;
     this.globallyPaused = false;
+    this.explicitResumeRequired = false;
     this.beforeMove = null;
     this.publish({ mode: "battle", state: next, from: next.pendingCapture?.from ?? null, to: next.pendingCapture?.to ?? null, running: false, paused: false, effectiveThreshold: 1,
       lastOutcome: null, rolls: [], ties: 0, attackerWins: 0, defenderWins: 0, message: "",
