@@ -27,7 +27,7 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
  await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
  expect(await read(page,KEY)).toBe(before);await openSurface(page,'menu');
  await page.getByRole('button',{name:'Settings for the next game',exact:true}).click();await expect(opponents).toHaveValue('1');
- await page.screenshot({path:`artifacts/T107-browser/settings-${width}.png`});
+ await page.screenshot({path:`artifacts/T107-browser/settings-${width}.png`,animations:'disabled'});
  await dialog.getByRole('button',{name:'Close',exact:true}).click();
  await openSurface(page,'menu');await page.locator('#new-game-button').click();await page.locator('#give-up-cancel').click();
  expect(await read(page,KEY)).toBe(before);
