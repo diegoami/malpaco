@@ -508,7 +508,7 @@ export class BattleChrome {
     this.commands();
     // A list choice that completes one (a Raid target, an attack pair) brings its card in place of the list.
     if (prompt && prompt !== this.lastPrompt && (!this.surface || this.surface === "countries")) this.open("actions", this.required, false);
-    this.lastPrompt = prompt;
+    if(!paused)this.lastPrompt = prompt;
     this.layout();
   }
 

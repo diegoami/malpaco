@@ -431,8 +431,8 @@ export class ReferenceBattleGame {
     this.victory.render(state, revision);
     if(this.controller.cardAcknowledgmentPending)this.victory.el.hidden=true;
     const computer = (this.computerActive()||feedbackPending) && !this.controller.cardAcknowledgmentPending;
-    // #267: a computer's turn shows only the speed controls, so your cards window closes.
-    if (computer) this.hand?.hide();
+    // #267: your hand waits for your turn; persistent menu commands are separate.
+    if(computer&&this.hand){this.hand.hide();this.hand.button.hidden=true;}
     // T103: on the player's own turn, with no card choice waiting.
     const quiet = !computer && !this.controller.playbackPaused && !state.result && activePlayer(state)?.kind === "human"
       && !this.controller.cardAcknowledgmentPending && !["sets","raid-target","discard","reward"].includes(this.cards.view.phase);

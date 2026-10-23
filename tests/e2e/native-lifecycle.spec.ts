@@ -46,7 +46,7 @@ test('background force-keeps a partial computer turn; foreground and dialog-clos
  for(const country of state.map.provinces)await expect(page.locator(`[data-country="${country.id}"]`)).toHaveAttribute('data-armies',String(state.armies[country.id]));
  await page.clock.runFor(20000);expect(await read(page,key)).toBe(saved);
  await foreground(page);await page.clock.runFor(20000);expect(await read(page,key)).toBe(saved);
- await page.locator('#game-pause-button').click();await page.clock.runFor(20000);
+ await page.locator('#resume-turn-button').click();await page.clock.runFor(20000);
  expect(deserializeVersionedMatch((await read(page,key))!).state.history.length).toBeGreaterThan(state.history.length);
  expect(JSON.parse((await read(page,meta))!).paused).toBe(false);
 });
@@ -64,7 +64,7 @@ for(const [button,name] of [['#game-help-button','Help'],['#open-game-menu','Set
  await expect(page.locator('dialog.game-help[open]')).toHaveCount(0);
  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
  expect(await read(page,KEY)).toBe(saved);expect(JSON.parse((await read(page,META))!).paused).toBe(true);
- await page.locator('#game-pause-button').click();await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Pause game');
+ await page.locator('#resume-turn-button').click();await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Pause game');
  expect(await read(page,KEY)).toBe(saved);
 });
 test('native saved resume requirement pauses a new host before its first computer action',async({page})=>{

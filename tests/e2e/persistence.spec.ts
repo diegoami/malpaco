@@ -21,7 +21,7 @@ const loaded=async(p:Page,key:string)=>deserializeVersionedMatch((await read(p,k
 async function humanPlacing(p:Page,key:string){
  await expect.poll(async()=>{
   const text=await read(p,key);const state=text?deserializeVersionedMatch(text).state:null;
-  if(state&&activePlayer(state)?.kind==='human'&&['cards','reinforce'].includes(state.phase)&&state.reinforcementPool>0)return true;
+  if(state&&activePlayer(state)?.kind==='human'&&['cards','reinforce'].includes(state.phase)&&state.reinforcementPool>0&&await p.locator('#placement-pool').isVisible()&&await p.locator('#turn-guidance-title').textContent()==='Your turn')return true;
   const forward=p.locator('#fast-forward-button');if(await forward.isVisible())await forward.click().catch(()=>{});
   return false;
  },{timeout:90_000}).toBe(true);
@@ -82,22 +82,14 @@ test('#260: New game on a ?seed page moves the page to the new seed, keeps that 
  expect(seen).toEqual([]);
 });
 
-test('a game left paused opens paused after a reload, and a changed speed survives a reload',async({page})=>{
+test('a Settings-paused game opens paused after reload and resumes only from its turn widget',async({page})=>{
  test.setTimeout(120_000);const seen=errors(page);await opened(page);
- const pause=page.locator('#game-pause-button');await expect(pause).toHaveAttribute('aria-label','Pause game');
- await page.locator('#open-game-menu').click();await page.getByLabel('Game speed',{exact:true}).selectOption('fast');await page.keyboard.press('Escape');
- await pause.click();await expect(pause).toHaveAttribute('aria-label','Resume game');
- const kept=await read(page,ROOT);
- await reloadGame(page);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
- await expect(pause).toHaveAttribute('aria-label','Resume game');await expect(page.locator('#turn-guidance-title')).toHaveText('Paused');
- // Paused, nothing plays: the record stands still.
+ await page.locator('#open-game-menu').click();const kept=(await read(page,ROOT))!;
+ await reloadGame(page);await expect(page.locator('#resume-turn-button')).toBeVisible();await expect(page.locator('#turn-guidance-title')).toHaveText('Paused');
  await page.waitForTimeout(3000);expect(await read(page,ROOT)).toBe(kept);
- await page.locator('#open-game-menu').click();await expect(page.getByLabel('Game speed',{exact:true})).toHaveValue('fast');await page.keyboard.press('Escape');
- // Resumed before a reload, the game opens playing; the speed stays.
- await pause.click();await expect(pause).toHaveAttribute('aria-label','Pause game');
- await reloadGame(page);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
- await expect(pause).toHaveAttribute('aria-label','Pause game');
- await page.locator('#open-game-menu').click();await expect(page.getByLabel('Game speed',{exact:true})).toHaveValue('fast');
+ await page.locator('#resume-turn-button').click();await expect(page.locator('#resume-turn-button')).toBeHidden();
+ await reloadGame(page);await expect(page.locator('#resume-turn-button')).toBeHidden();
+ const before=deserializeVersionedMatch(kept),after=deserializeVersionedMatch((await read(page,ROOT))!);expect(after.options).toEqual(before.options);expect(after.state.history.slice(0,before.state.history.length)).toEqual(before.state.history);
  expect(seen).toEqual([]);
 });
 

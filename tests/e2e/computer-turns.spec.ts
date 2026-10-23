@@ -33,41 +33,21 @@ test.beforeEach(({},info)=>{test.skip(info.project.name!=='1280x800','the sizes 
 for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
  test.use({viewport:size});
 
- test('while a computer plays only Pause, Fast-forward and the speed choice are on screen; a pause brings the menu back; one tracker advance per computer turn',async({page})=>{
-  test.setTimeout(150_000);await watchNotices(page);
-  await page.clock.install({time:new Date('2026-10-22T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-22T12:00:00Z'));
-  // Seed 7 opens on Orange's turn: the three computers play before you.
-  await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
-  expect(await computerActive(page)).toBe('true');
-  await expect(page.locator('#game-speed')).toHaveValue('normal');
-  let steps=0;
-  for(;steps<1200&&await computerActive(page)==='true';steps++){
-   expect(await visibleControls(page),'controls during a computer turn').toEqual(SPEED_CONTROLS);
-   // The notice is a status line: no buttons on it.
-   await expect(page.locator('#active-seat-notice button')).toHaveCount(0);
+ test('computer turns keep game commands available without playback controls and advance the colour tracker once per seat',async({page})=>{
+  test.setTimeout(150_000);await watchNotices(page);await page.clock.install();await page.clock.pauseAt(new Date());
+  await visitGame(page,'/?seed=7');expect(await computerActive(page)).toBe('true');
+  for(let steps=0;steps<1200&&await computerActive(page)==='true';steps++){
+   const controls=await visibleControls(page);for(const id of SPEED_CONTROLS)expect(controls).not.toContain(id);
+   for(const id of ['new-game-button','open-game-menu','game-help-button'])expect(controls).toContain(id);
    if(steps===3){
-    await shots('computer-turn',page);
-    await page.locator('#game-speed').screenshot({path:'artifacts/T101/speed-control-390x844.png'}).catch(()=>{});
-    if(size.width===390)await page.locator('.game-corner-end').screenshot({path:'artifacts/T101/corner-speed-control-390x844.png'});
-    // Pausing brings back the menu and the camera icons; Fast-forward waits.
-    await page.locator('#game-pause-button').click();
-    for(const id of ['#open-game-menu','#map-fit','#open-countries'])await expect(page.locator(id)).toBeVisible();
-    await expect(page.locator('#fast-forward-button')).toBeHidden();
-    await page.locator('#open-game-menu').click();await expect(page.locator('#game-focus-drawer')).toHaveAttribute('data-surface','menu');
-    await expect(page.locator('#game-focus-drawer #game-speed')).toHaveCount(0);
+    await page.locator('#open-game-menu').click();await expect(page.locator('#turn-guidance-title')).toHaveText('Paused');
+    const saved=await page.evaluate(k=>localStorage.getItem(k),SEED_KEY);await page.clock.runFor(2000);expect(await page.evaluate(k=>localStorage.getItem(k),SEED_KEY)).toBe(saved);
     await page.keyboard.press('Escape');
-    await page.locator('#game-pause-button').click();
-    for(const id of ['#open-game-menu','#map-fit','#open-countries'])await expect(page.locator(id)).toBeHidden();
    }
    await page.clock.runFor(120);
   }
-  expect(await computerActive(page)).toBe('false');
-  // Your turn: the menu and camera icons return, Fast-forward goes.
-  for(const id of ['#open-game-menu','#map-fit','#open-countries'])await expect(page.locator(id)).toBeVisible();
-  await expect(page.locator('#fast-forward-button')).toBeHidden();
-  const titles=await notices(page);
-  expect(titles.slice(0,3),'one tracker advance per computer turn').toEqual(["Orange's turn","Green's turn","Purple's turn"]);
-  expect(titles.slice(3)).toHaveLength(1);expect(titles[3]).toMatch(/^Your turn/);
+  expect(await computerActive(page)).toBe('false');await expect(page.locator('#turn-guidance-title')).toHaveText('Your turn');
+  const titles=await notices(page);expect(titles.slice(0,3),'one tracker advance per computer turn').toEqual(["Orange's turn","Green's turn","Purple's turn"]);expect(titles.slice(3)).toHaveLength(1);expect(titles[3]).toMatch(/^Your turn/);
  });
 
  test('the computers show no pair, outline or name; only counts and colours change',async({page})=>{

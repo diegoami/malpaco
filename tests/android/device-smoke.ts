@@ -67,8 +67,7 @@ try {
   if(!selected)throw Error('No fresh computer-first diagnostic seed');
   metadata.observations.computerDiagnosticSeed=selected;
   await visit(page,origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
-  await page.locator('#game-speed').selectOption('very-slow');
-  if(await page.locator('#game-pause-button').getAttribute('aria-label')==='Resume game')await page.locator('#game-pause-button').click();
+  if(await page.locator('#resume-turn-button').isVisible())await page.locator('#resume-turn-button').click();
   const slot='malpaco:seed-game:'+selected,meta='malpaco:seed-game-meta:'+selected;
   const initial=(await page.evaluate(k=>localStorage.getItem(k),slot))!;
   await wait(2200);await expect(page.locator('.panel')).toHaveAttribute('data-computer-active','true');
@@ -81,19 +80,19 @@ try {
   expect(paint).toEqual(Object.fromEntries(state.map.provinces.map(p=>[p.id,String(state.armies[p.id])])));
   await wait(600);expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
   adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
-  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
+  await expect(page.locator('#resume-turn-button')).toBeVisible();
   await wait(600);expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
   await device?.close();device=undefined;adb(['shell','am','force-stop',app]);adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
   connection=await attach();page=connection.page;watch(page);await enter(page);
   await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   await visit(page,origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
-  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
+  await expect(page.locator('#resume-turn-button')).toBeVisible();
   expect(await page.evaluate(()=>Reflect.get(window,'MalpacoHost').requiresResume())).toBe(true);
   expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
   check('native resume requirement and paused computer replay survive process restart');
   writeFileSync(join(config.out,'background-computer.json'),saved);screen('computer-paused-after-return');
   check('real Android Home force-keeps a partial computer turn; return stays paused');
-  await page.locator('#game-speed').selectOption('fast');await page.locator('#game-pause-button').click();
+  await page.locator('#resume-turn-button').click();
   expect(await page.evaluate(()=>Reflect.get(window,'MalpacoHost').requiresResume())).toBe(false);
   check('explicit Resume clears the native resume requirement');
  }
@@ -103,7 +102,7 @@ try {
  metadata.seed=seed;key='malpaco:seed-game:'+seed;
  await visit(page,origin+'/?seed='+seed);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
- if(await page.locator('#game-pause-button').getAttribute('aria-label')==='Resume game')await page.locator('#game-pause-button').click();
+ if(await page.locator('#resume-turn-button').isVisible())await page.locator('#resume-turn-button').click();
  await expect.poll(async()=>activePlayer(await kept(page))?.kind,{timeout:60000}).toBe('human');
  let capture=false;
  for(let n=0;n<500;n++){
@@ -166,9 +165,9 @@ try {
   await expect.poll(async()=>JSON.parse((await page.evaluate(k=>localStorage.getItem(k),'malpaco:seed-game-meta:'+seed))!).paused,{timeout:15000}).toBe(true);
   adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);adb(['shell','input','keyevent','KEYCODE_BACK']);
   await expect(page.locator('dialog.game-help[open]')).toHaveCount(0);
-  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');expect(await snapshot(page)).toBe(pending);
+  await expect(page.locator('#resume-turn-button')).toBeVisible();expect(await snapshot(page)).toBe(pending);
   check('Help dismissal after background cannot release the native pause');
-  await page.locator('#game-pause-button').click();if(!await page.locator('#confirm-capture-button').isVisible())await page.locator('#open-required-action').click();
+  await page.locator('#resume-turn-button').click();if(!await page.locator('#confirm-capture-button').isVisible())await page.locator('#open-required-action').click();
  }
 
  adb(['shell','settings','put','system','accelerometer_rotation','0']);adb(['shell','settings','put','system','user_rotation','1']);
@@ -205,7 +204,7 @@ try {
   adb(['shell','input','keyevent','KEYCODE_BACK']);
   await expect.poll(()=>page.evaluate(()=>Reflect.get(window,'MalpacoHost').isActive()),{timeout:15000}).toBe(false);
   const url=page.url();adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
-  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
+  await expect(page.locator('#resume-turn-button')).toBeVisible();
   expect(page.url()).toBe(url);expect(await snapshot(page)).toBe(pending);
   check('Back at the map backgrounds the app and return requires Resume');screen('back-map-return-paused');
  }
