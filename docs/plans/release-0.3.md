@@ -59,11 +59,14 @@ rounds, starting concentration/share/army/exposure metrics and round-5 incomes.
 State exactly when incomes are sampled and how early finishes and elimination
 are counted. These are diagnostic self-play results, not a human-win-rate claim.
 
-T102 contract reconciliation: its positional clause leaves the margin open;
-“within one army” conflicts with the old per-holding army formula when country
-shares differ. Its source-browser command also predates the current local/CI split.
-Choose exact constructive invariants and the selected bonus formula before
-amending this task; preserve its equal-share/spread/replay obligations.
+T102 uses the selected combined candidate and an explicit graph-position predicate:
+BFS-prefix island splits, selected by balanced province counts, with each side's
+summed island-seat caps below the minimum seat share. The cap/share invariants
+then force every seat onto both sides. A diagnostic over seeds 0–499 at each of
+2/3/4 seats found every split feasible. Initial army totals preserve the old total
+budget while equalizing seat totals, resolving the old per-holding rounding gap.
+Its local/CI checks follow the current process. Exact contracts are amended on main
+before implementation; future map sizes/rates do not alter this identity.
 
 ## Open-backlog reconciliation
 
