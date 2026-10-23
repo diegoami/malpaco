@@ -164,7 +164,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T108](T108.md) | Android background pause and safe Back routing | High | Medium | #285 | T106 |
 | [T110](T110.md) | Next-game replenishment divisors | High | Medium | #281 | T107 |
 | [T111](T111.md) | Larger generated-map prototype | High | Hard | #280 | T110 |
-| [T112](T112.md) | Direct New game, Settings and Help buttons | High | Medium | #271 | T110 |
+| [T112](T112.md) | Direct New game, Settings and Help buttons | High | Medium | #290 | T110 |
 
 ## Development infrastructure
 

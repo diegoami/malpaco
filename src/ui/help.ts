@@ -81,6 +81,7 @@ export function mountHelp(
 /** T85 (R6, #61): every icon the game shows, with the one name it is announced by. Card names
  * stay out of this help: the page may show only your own or publicly spent cards. */
 const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
+  ["help", "Help", "Instructions, icon names and explanations of the settings."],
   ["settings", "Settings", "The next game’s opponents and replenishment, its seed and the scoreboard. New game and Help have their own top-left buttons. While a computer plays the corner buttons wait until your turn or a pause."],
   ["pause", "Pause", "Stops play at once and brings back the corner buttons; the same icon resumes it. Beside it, the game speed."],
   ["fast-forward", "Fast-forward", "Beside Pause during computer turns: play them without waiting until your turn."],
@@ -104,6 +105,8 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["close", "Close", "Closes a card, cancels a choice, or dismisses a notice."],
 ];
 const HOW_TO: readonly (readonly [string, string])[] = [
+  ["Map size", "The larger-map prototype offers 46, 72 or 96 regions. Larger maps add more islands and currently use numbered names. The choice applies only to the next game; use zoom for a closer view on a phone."],
+  ["Settings", "Changes apply to the next game; your current game keeps its choices. Choose 1–3 computer opponents and replenishment of 1 army per 1, 3, 5 or 7 regions. Base armies are rounded down, with a minimum of 2. Island bonuses are added separately."],
   ["Placing", "Tap your countries to place armies from the pool shown at the top; combat starts when the last one is placed."],
   ["On your country", "The country you select shows Fight if it can attack, or Move if it can only move armies. Press Fight, then tap an enemy: one round; press again for another."],
   ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. Fight rolls one exchange; press it again to keep fighting, or Cancel."],

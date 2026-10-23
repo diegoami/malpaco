@@ -16,7 +16,7 @@ for(const width of [390,1280])test(`${width}: rate changes only the next game, a
  await page.goto('/');await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});const original=(await read(page,KEY))!;
  await openSurface(page,'menu');
  const dialog=page.getByRole('dialog',{name:'Settings',exact:true}),rate=dialog.getByLabel('Replenishment',{exact:true}),count=dialog.getByLabel('Computer opponents',{exact:true});
- await expect(rate).toHaveValue('3');await expect(count).toHaveValue('2');await expect(dialog).toContainText('Minimum 2');
+ await expect(rate).toHaveValue('3');await expect(count).toHaveValue('2');await expect(dialog).not.toContainText('Minimum 2');
  await expect.poll(()=>rate.evaluate(n=>n.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
  await rate.selectOption('7');expect(await read(page,KEY)).toBe(original);
  await page.keyboard.press('Escape');await page.reload();await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});expect(await read(page,KEY)).toBe(original);
