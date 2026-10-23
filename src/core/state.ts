@@ -3,7 +3,7 @@ import { DeterministicRng } from "./rng";
 import { reinforcementIncome } from "./reinforcement";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
 import type { GameOptions } from "./options";
-import { defaultOptions } from "./options";
+import { defaultOptions, parseReinforcementDivisor } from "./options";
 
 /** The generated-game combat preset, per C-CMB-01..11 and C-OWN-01. */
 export function malpacoRules(): RuleSet {
@@ -263,4 +263,9 @@ export function tradeCardsRules(options:Pick<GameOptions,'dominationWin'|'roundL
 /** Frozen raid-v1 stage: T23 variety-036/037; old deck/trade factories stay exact. */
 export function raidCardsRules(options:Pick<GameOptions,'dominationWin'|'roundLimit'>=defaultOptions()):RuleSet {
  return {...tradeCardsRules(options),id:'malpaco-card-raids',cards:'raid-v1'};
+}
+
+/** [designed] T110 owner-selected configuration. Old raid factories remain frozen. */
+export function configurableRaidCardsRules(options:GameOptions):RuleSet {
+ return {...raidCardsRules(options),id:'configurable-raid-v1',reinforcementDivisor:parseReinforcementDivisor(options.reinforcementDivisor??3)};
 }

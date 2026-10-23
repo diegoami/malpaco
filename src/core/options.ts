@@ -26,6 +26,10 @@ import type { NameChoice } from "./flavour-names";
 import { SeatsError, validateSeats, hasHuman } from "./seats";
 import type { Difficulty, SeatSpec } from "./seats";
 
+/** [designed] Owner-selected T110 base-income divisors; minimum 2 and island bonuses stay separate. */
+export type ReinforcementDivisor = 1 | 3 | 5 | 7;
+export const REINFORCEMENT_DIVISORS:readonly ReinforcementDivisor[]=[1,3,5,7];
+
 /** The per-country starting-armies range (decision 4). */
 export type StartingArmiesRange = "1-2" | "1-3" | "1-4";
 
@@ -79,6 +83,8 @@ export interface GameOptions {
   readonly sound: boolean;
   /** T94: the generated map's regional names; absent in saves made before T94, which keep numbered names. */
   readonly names?: NameChoice;
+  /** T110: present only for the configurable rules identity; older options keep their shape. */
+  readonly reinforcementDivisor?: ReinforcementDivisor;
 }
 
 /** Typed error from option validation. */
@@ -268,10 +274,15 @@ export function validateGameOptions(value: unknown): GameOptions {
     animationSpeed: parseAnimationSpeed(obj.animationSpeed),
     sound: parseSound(obj.sound),
     ...(obj.names === undefined ? {} : {names: parseNames(obj.names)}),
+    ...(obj.reinforcementDivisor === undefined && !Object.hasOwn(obj,"reinforcementDivisor") ? {} : {reinforcementDivisor: parseReinforcementDivisor(obj.reinforcementDivisor)}),
   };
 }
 
 function parseNames(value: unknown): NameChoice {
   if (value === "seed" || value === "numbered" || (NAME_THEMES as readonly unknown[]).includes(value)) return value as NameChoice;
   throw new OptionsError(`names must be seed, numbered or one of ${NAME_THEMES.join(", ")} (got ${JSON.stringify(value)})`, "names");
+}
+export function parseReinforcementDivisor(value:unknown):ReinforcementDivisor {
+ if(value===1||value===3||value===5||value===7)return value;
+ throw new OptionsError('reinforcementDivisor must be 1, 3, 5 or 7.','reinforcementDivisor');
 }

@@ -1,3 +1,4 @@
+import type {ReinforcementDivisor} from './options';
 import type { CardState } from './cards';
 // Plain data types for the rules core. Everything here is JSON-serialisable
 // except the map, which is shared and never mutated once loaded.
@@ -66,6 +67,8 @@ export interface SetupRules {
 }
 
 export interface RuleSet {
+  /** T110: only configurable rules opt in; frozen rules omit this field and use 3. */
+  readonly reinforcementDivisor?: ReinforcementDivisor;
   readonly cards?: "deck-v1" | "trade-v1" | "raid-v1";
   readonly id: string;
   /** Opt-in C-MOV-01..03; omitted by the stable legacy presets. */

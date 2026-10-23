@@ -1,10 +1,10 @@
 import {expect,test} from 'vitest';
-import {defaultNextGameSettings,parseNextGameSettings,readNextGameSettings,saveNextGameSettings,nextGameOptions} from '../../src/ui/nextGameSettings';
+import {defaultNextGameSettings,parseNextGameSettings,readNextGameSettings,saveNextGameSettings,saveReplenishmentSettings,nextGameOptions} from '../../src/ui/nextGameSettings';
 import type {NextGameStore,ComputerOpponents} from '../../src/ui/nextGameSettings';
 import {validateGameOptions} from '../../src/core/options';
 for(const count of [1,2,3] as const)test(`versioned settings select exactly ${count} Normal computers`,()=>{
  const settings=parseNextGameSettings(JSON.stringify({version:1,computerOpponents:count}));
- expect(settings).toEqual({version:1,computerOpponents:count});
+ expect(settings).toEqual({version:2,computerOpponents:count,reinforcementDivisor:3});
  const options=nextGameOptions(123,settings);expect(validateGameOptions(options)).toEqual(options);
  expect(options.seed).toBe(123);expect(options.seats.map(s=>s.kind)).toEqual(['human',...Array(count).fill('computer')]);
  expect(options.computerStrengths).toEqual(Array(count).fill('Normal'));
@@ -21,8 +21,17 @@ test('saving changes only the settings store; invalid values and write failure r
  expect(readNextGameSettings({get:()=>{throw Error('unavailable');},set:()=>{}})).toEqual(defaultNextGameSettings());
 });
 test('constructing new-game options leaves the preference and earlier match options unchanged',()=>{
- const preference={version:1 as const,computerOpponents:2 as ComputerOpponents};Object.freeze(preference);
+ const preference={version:2 as const,computerOpponents:2 as ComputerOpponents,reinforcementDivisor:3 as const};Object.freeze(preference);
  const old=nextGameOptions(7,defaultNextGameSettings()),snapshot=JSON.stringify(old);
  const fresh=nextGameOptions(8,preference);expect(fresh.seats).toHaveLength(3);expect(JSON.stringify(old)).toBe(snapshot);
- expect(preference).toEqual({version:1,computerOpponents:2});
+ expect(preference).toEqual({version:2,computerOpponents:2,reinforcementDivisor:3});
+});
+
+for(const rate of [1,3,5,7] as const)test(`rate ${rate} persists independently from opponent choice`,()=>{
+ let text='{"version":1,"computerOpponents":2}';const store:NextGameStore={get:()=>text,set:v=>{text=v;}};
+ expect(saveReplenishmentSettings(rate,store)).toBe(true);expect(readNextGameSettings(store)).toEqual({version:2,computerOpponents:2,reinforcementDivisor:rate});
+ expect(saveNextGameSettings(1,store)).toBe(true);expect(readNextGameSettings(store)).toEqual({version:2,computerOpponents:1,reinforcementDivisor:rate});
+ expect(nextGameOptions(7,readNextGameSettings(store)).reinforcementDivisor).toBe(rate);
+ const before=text;expect(saveReplenishmentSettings(2,store)).toBe(false);expect(text).toBe(before);
+ expect(saveReplenishmentSettings(3,{get:()=>text,set:()=>{throw Error('quota');}})).toBe(false);expect(text).toBe(before);
 });
