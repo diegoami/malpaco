@@ -57,8 +57,8 @@ test('Back closes a menu and folds capture without navigation or a game action',
  expect(await back(page)).toBe(true);await expect(page.locator('#open-required-action')).toBeVisible();
  expect(await read(page,KEY)).toBe(saved);expect(page.url()).toBe(url);expect(await back(page)).toBe(false);
 });
-for(const [button,name] of [['#game-help-button','Help'],['#next-game-settings-button','Settings']] as const)test(`background while ${name} is open stays paused after return and dialog dismissal`,async({page})=>{
- const saved=await keptCapture(page);await page.locator('#open-game-menu').click();await page.locator(button).click();
+for(const [button,name] of [['#game-help-button','Help'],['#open-game-menu','Settings']] as const)test(`background while ${name} is open stays paused after return and dialog dismissal`,async({page})=>{
+ const saved=await keptCapture(page);await page.locator(button).click();
  await background(page);await foreground(page);expect(await back(page)).toBe(true);
  await expect(page.locator('dialog.game-help[open]')).toHaveCount(0);
  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');

@@ -65,5 +65,12 @@ export class NextGameSettingsDialog {
   this.rate.onchange=()=>{const before=readNextGameSettings(this.store);if(saveReplenishmentSettings(Number(this.rate.value),this.store))this.error.textContent='';else{this.rate.value=String(before.reinforcementDivisor);this.error.textContent='Could not keep these settings on this device. Your current game is unchanged.';}};
   this.dialog.addEventListener('close',()=>onClose?.());
  }
+ /** Player Settings shares the ordinary floating card, without a second dialog. */
+ inlineContent():HTMLElement {
+  const content=h('div',{class:'next-game-settings'});
+  for(const node of [...this.dialog.children])if(node.tagName!=='HEADER')content.append(node);
+  this.refresh();return content;
+ }
+ refresh():void {const settings=readNextGameSettings(this.store);this.opponents.value=String(settings.computerOpponents);this.rate.value=String(settings.reinforcementDivisor);this.error.textContent='';}
  dispose():void {this.dialog.remove();}
 }

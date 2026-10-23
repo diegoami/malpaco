@@ -103,3 +103,7 @@ The game fits phones and tablets in either orientation as well as desktops: it i
 320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. Real-device and
 screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md` (carried over to 0.2.1). Online multiplayer and
 cross-device save synchronization are not supported.
+
+Use the three top-left buttons directly: **New game**, **Settings**, **Help**.
+Settings opens the next-game choices, seed and scoreboard in one card; Help
+opens the instructions. New game asks before giving up an unfinished game.

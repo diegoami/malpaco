@@ -81,8 +81,8 @@ export function mountHelp(
 /** T85 (R6, #61): every icon the game shows, with the one name it is announced by. Card names
  * stay out of this help: the page may show only your own or publicly spent cards. */
 const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
-  ["menu", "Menu", "The scoreboard, this help and New game. While a computer plays it waits, with Fit and Countries, until your turn or a pause."],
-  ["pause", "Pause", "Stops play at once and brings back the menu; the same icon resumes it. Beside it, the game speed."],
+  ["settings", "Settings", "The next game’s opponents and replenishment, its seed and the scoreboard. New game and Help have their own top-left buttons. While a computer plays the corner buttons wait until your turn or a pause."],
+  ["pause", "Pause", "Stops play at once and brings back the corner buttons; the same icon resumes it. Beside it, the game speed."],
   ["fast-forward", "Fast-forward", "Beside Pause during computer turns: play them without waiting until your turn."],
   ["fit", "Fit", "Shows the whole map again."],
   ["countries", "Countries", "Every country by island, or only the ones you can use now."],
@@ -96,7 +96,7 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["confirm", "Confirm", "Completes a capture move-in or a move."],
   ["return", "Return", "The gold icon that brings a folded choice back."],
   ["standings", "Standings", "Countries and armies at the end of the game."],
-  ["trophy", "Scoreboard", "In the menu: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
+  ["trophy", "Scoreboard", "In Settings: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
   ["new-game", "New game", "Gives up this game and starts a new one."],
   ["watch", "Watch computers", "After your last country falls: the computers play on."],
   ["cards", "Your cards", "Shows the cards you hold and how many, each with a plain symbol for what it does; drag the window by its title. After each draw your whole hand is shown."],
@@ -108,7 +108,7 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["On your country", "The country you select shows Fight if it can attack, or Move if it can only move armies. Press Fight, then tap an enemy: one round; press again for another."],
   ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. Fight rolls one exchange; press it again to keep fighting, or Cancel."],
   ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
-  ["Cards", "Your cards are behind the card icon by the menu, with their number. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
+  ["Cards", "Your cards are behind the card icon at top left, with their number. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
   ["Notices", "The slim notice under the top icons says whose turn it is. Tap it for a hint; swipe or × dismisses it."],
   ["Computer turns", "Each computer's turn shows one notice while its counts and colours change on the map. Choose the speed beside Pause; Slow and Very slow let you watch every move."],
   ["Seats", "You play one seat; the computers are named by their colours: Orange, Green and Purple."],
