@@ -54,8 +54,7 @@ export class NextGameSettingsDialog {
  constructor(private readonly store:NextGameStore=browserNextGames,onOpen?:()=>void,onClose?:()=>void){
   this.close.onclick=()=>this.dialog.close();
   this.dialog.append(h('header',{class:'game-help-head'},h('h2',{id:'next-game-settings-title'},'Settings'),this.close),
-   h('p',{},'Applies to the next game.'),
-   h('div',{class:'next-game-setting'},h('label',{for:this.opponents.id},'Computer opponents'),this.opponents),h('div',{class:'next-game-setting'},h('label',{for:this.rate.id},'Replenishment'),this.rate),h('p',{},'Minimum 2 base armies per turn. Island bonuses are added separately.'),this.error);
+   h('div',{class:'next-game-setting'},h('label',{for:this.opponents.id},'Computer opponents'),this.opponents),h('div',{class:'next-game-setting'},h('label',{for:this.rate.id},'Replenishment'),this.rate),this.error);
   this.button.onclick=()=>{onOpen?.();const settings=readNextGameSettings(this.store);this.opponents.value=String(settings.computerOpponents);this.rate.value=String(settings.reinforcementDivisor);this.error.textContent='';this.dialog.showModal();this.opponents.focus();};
   this.opponents.onchange=()=>{
    const before=readNextGameSettings(this.store),count=Number(this.opponents.value);

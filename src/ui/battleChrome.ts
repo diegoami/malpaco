@@ -130,9 +130,10 @@ export class BattleChrome {
     this.folded.append(this.foldedText, this.required);
     if(nodes.primaryActions){
       this.hud.classList.add('game-primary-buttons');
-      this.menu.replaceChildren('Settings');this.menu.setAttribute('aria-label','Settings for the next game');this.menu.title='Settings';
-      const {newGame,help}=nodes.primaryActions;help.textContent='Help';help.setAttribute('aria-label','Help');
-      for(const button of [newGame,this.menu,help])button.classList.add('primary-command');
+      const {newGame,help}=nodes.primaryActions;
+      for(const [button,name,shape] of [[newGame,'New game','new-game'],[this.menu,'Settings','settings'],[help,'Help','help']] as const){
+        button.replaceChildren(symbol(shape));button.setAttribute('aria-label',name);button.title=name;button.classList.add('primary-command');
+      }
       this.hud.append(newGame,this.menu,help);this.overlay.dataset['primaryCommands']='true';
     }else this.hud.append(this.menu);
     // Countries is a way to find a country, so it rests with the camera's Fit and Focus.

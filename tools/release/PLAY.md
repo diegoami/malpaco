@@ -104,6 +104,8 @@ The game fits phones and tablets in either orientation as well as desktops: it i
 screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md` (carried over to 0.2.1). Online multiplayer and
 cross-device save synchronization are not supported.
 
-Use the three top-left buttons directly: **New game**, **Settings**, **Help**.
+Use the three top-left icon buttons (hover for their names): **New game**, **Settings**, **Help**.
 Settings opens the next-game choices, seed and scoreboard in one card; Help
 opens the instructions. New game asks before giving up an unfinished game.
+
+Settings contains the choices; their explanations are in Help.

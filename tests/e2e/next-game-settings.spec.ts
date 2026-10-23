@@ -21,7 +21,7 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
 
 
  const dialog=page.getByRole('dialog',{name:'Settings',exact:true});await expect(dialog).toBeVisible();
- await expect(dialog).toContainText('Applies to the next game');
+ await expect(dialog).not.toContainText('Applies to the next game');
  const opponents=dialog.getByLabel('Computer opponents',{exact:true});await expect(opponents).toHaveValue('3');
  await expect.poll(()=>opponents.evaluate(n=>n.getBoundingClientRect().height),{message:'opponent selector touch target'}).toBeGreaterThanOrEqual(44);
  await opponents.selectOption('1');expect(await read(page,KEY)).toBe(before);
