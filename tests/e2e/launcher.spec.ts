@@ -10,7 +10,7 @@ const KEY='malpaco:current-game';
 async function keep(page:import('@playwright/test').Page,raw:string){await page.addInitScript(([key,text])=>{if(sessionStorage.getItem('launcher-once'))return;sessionStorage.setItem('launcher-once','1');localStorage.setItem(key!,text!);localStorage.setItem(key+'-meta',JSON.stringify({id:'kept-launcher',paused:true}));},[KEY,raw]);}
 test('saved entry offers Resume first, does not run or rewrite it, and preserves its pause/rules',async({page})=>{
  const raw=serializeVersionedMatch({...defaultOptions(),seed:7},[],GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY);await keep(page,raw);await page.goto('/');await expect(page.locator('#resume-game')).toBeVisible();await expect(page.locator('#start-game')).toBeHidden();await expect(page.locator('[data-country]')).toHaveCount(0);expect(await page.evaluate(k=>localStorage.getItem(k),KEY)).toBe(raw);
- await page.locator('#resume-game').click();await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');expect(await page.evaluate(k=>localStorage.getItem(k),KEY)).toBe(raw);
+ await page.locator('#resume-game').click();await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});await expect(page.locator('#resume-turn-button')).toBeVisible();expect(await page.evaluate(k=>localStorage.getItem(k),KEY)).toBe(raw);
 });
 test('saved New game configures before Start; cancelled give-up returns to Resume with exact bytes',async({page})=>{
  const raw=serializeVersionedMatch({...defaultOptions(),seed:7},[],GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY);await keep(page,raw);await page.goto('/');const meta=await page.evaluate(k=>localStorage.getItem(k+'-meta'),KEY);

@@ -37,7 +37,7 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
  expect(await read(page,KEY)).toBe(before);
  for(const count of [1,2,3]){
   if(count!==1){
-   const pause=page.locator('#game-pause-button');if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
+   await openSurface(page,'menu');
    await openSurface(page,'menu');await opponents.selectOption(String(count));await dialog.getByRole('button',{name:'Return to map',exact:true}).click();
   }
   await openSurface(page,'menu');await page.locator('#new-game-button').click();await page.locator('#give-up-confirm').click();await startFromResult(page);
@@ -46,7 +46,7 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
   const loaded=deserializeVersionedMatch((await read(page,KEY))!);
   expect(loaded.options.seats.map(s=>s.kind)).toEqual(['human',...Array(count).fill('computer')]);
   expect(loaded.options.computerStrengths).toEqual(Array(count).fill('Normal'));
-  const pause=page.locator('#game-pause-button');if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
+  await openSurface(page,'menu');
   const kept=(await read(page,KEY))!;await reloadGame(page);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   expect(await read(page,KEY)).toBe(kept);expect(deserializeVersionedMatch(kept).options.seats.length).toBe(count+1);
  }
@@ -55,7 +55,7 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
 
 test('a failed settings write reports the error, restores the saved choice and leaves the current game intact',async({page})=>{
  await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
- await page.locator('#game-pause-button').click();
+ await openSurface(page,'menu');
  const key='malpaco:seed-game:7',before=(await read(page,key))!;
  await page.evaluate(pref=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===pref)throw new DOMException('Full','QuotaExceededError');return original.call(this,k,v);};},PREF);
  await openSurface(page,'menu');

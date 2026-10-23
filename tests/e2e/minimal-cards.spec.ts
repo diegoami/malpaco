@@ -133,7 +133,6 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   // where the menu waits until a pause.
   await visitGame(page,'/?seed=7&log');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   await expect(page.locator('#game-info-button')).toHaveCount(0);
-  await page.locator('#game-pause-button').click();
   const before=await settled(page);
   await page.locator('#open-game-menu').click();await expect(drawer(page)).toHaveAttribute('data-surface','menu');expect(await viewBox(page)).toBe(before);
   // T112 owner request: the three direct commands no longer live in this card.
@@ -144,7 +143,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   await expect(drawer(page).locator('.score, .log-card, #panel-detail, .card-public-counts')).toHaveCount(0);
   await targets(page);await shots('menu',page);
   const icon=page.locator('#game-log-button'),box=(await icon.boundingBox())!;const help=(await page.locator('#game-help-button').boundingBox())!;
-  expect(box.width*box.height,'the history is the smaller icon').toBeLessThan(help.width*help.height);
+  expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);await expect(icon.locator('svg')).toHaveCount(0);
   const log=page.locator('dialog.game-event-log');
   await icon.click();await expect(log).toBeVisible();await targets(page);await shots('history',page);
   await log.getByRole('button',{name:'Close game event log',exact:true}).click();await expect(log).toBeHidden();
@@ -168,7 +167,7 @@ test.describe('computer turns',()=>{
   /** While a computer seat plays, only the speed controls in the top corner are on screen (T101: the notice has no buttons). */
   const quiet=async()=>{
    const extra=await page.evaluate(()=>[...document.querySelectorAll<HTMLElement>('button,input,select')].filter(n=>n.getClientRects().length>0&&!n.closest('.visually-hidden, .game-store, #game-status, .game-corner-end, .map-camera-controls, #active-seat-notice')).map(n=>n.id||n.getAttribute('aria-label')||n.textContent));
-   expect(extra,'controls on screen during a computer turn').toEqual([]);await expect(page.locator('#game-focus-drawer')).toBeHidden();
+   expect(extra,'game actions stay unavailable during a computer turn').toEqual([]);await expect(page.locator('#game-pause-button,#fast-forward-button,#game-speed').filter({visible:true})).toHaveCount(0);await expect(page.locator('#game-focus-drawer')).toBeHidden();
   };
   /** Your turn: the pool, a card choice, or End turn is up. */
   const mine=page.locator('#placement-pool:visible, #end-turn-button:visible, #game-focus-drawer:visible');
