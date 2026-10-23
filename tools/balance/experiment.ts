@@ -137,3 +137,26 @@ export function summarize(rows: Outcome[]) {
     round5MaxIslandBonus: distribution(round5.map(v => Math.max(...v.map(i => i.islandBonus)))),
   };
 }
+
+/** [designed] T113 owner-selected starting ranges, experimental only.
+ * Preserve T105 ownership/half-bonuses, all live streams and card state. Starting
+ * stacks use a separate substream; floor(N*(1+maximum)/2) is shared equally,
+ * with integer remainder in first-seat order, never as a human advantage.
+ */
+export function startingArmyCandidate(initial:GameState,maximum:2|3|4):GameState {
+  if(![2,3,4].includes(maximum))throw Error('Unsupported starting maximum');
+  if((initial.rules.reinforcementDivisor??3)!==3)throw Error('Pilot requires fixed divisor 3');
+  const state=candidate(initial,'both'),rng=DeterministicRng.subStream(initial.rng.seed,113),n=state.players.length;
+  const total=Math.floor(state.map.provinces.length*(1+maximum)/2);
+  for(const c of state.map.provinces)state.armies[c.id]=1;
+  for(let offset=0;offset<n;offset++){
+    const seat=(state.currentPlayer+offset)%n,ids=state.map.provinces.filter(c=>state.ownerOf[c.id]===state.players[seat]!.id).map(c=>c.id);
+    const target=Math.floor(total/n)+Number(offset<total%n);
+    if(target<ids.length||target>ids.length*maximum)throw Error('Starting-army target infeasible');
+    for(let k=ids.length;k<target;k++){
+      const eligible=ids.filter(id=>state.armies[id]!<maximum);
+      state.armies[eligible[rng.nextInt(0,eligible.length-1)]!]!++;
+    }
+  }
+  return state;
+}
