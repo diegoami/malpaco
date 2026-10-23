@@ -181,3 +181,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T118](T118.md): Vite development dependency security patch (#276).
 
 - [T119](T119.md): text-only action buttons and contextual Resume, without playback toolbar.
+
+- [T120](T120.md): X dismisses informational notices and continues; troop choices still require Confirm.
