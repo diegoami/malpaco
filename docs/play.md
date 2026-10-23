@@ -152,3 +152,11 @@ An event card lists exact before/after changes. **Continue** acknowledges it;
 Pending presentation survives reload. Acknowledgement never resumes a game paused
 by backgrounding: use Resume explicitly. Off hides centres and consumes no event
 draws. Instructions belong in Help; Settings contains the choices.
+
+The top-left turn tracker lists player colours, regions and public card counts.
+Its arrow stays with the computer while its action finishes, then points at your
+colour with **Your turn**. Guidance changes through **Place armies**, **Execute
+attacks** and **Move armies**. The move hint is a conservative stack comparison;
+it never prevents a legal riskier attack. New computer placement, combat and troop
+transfers are shown on the regions at a readable pace. Speed and Fast-forward
+change presentation only; Pause finishes the current paint and stops further play.
