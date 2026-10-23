@@ -143,3 +143,18 @@ Tauri documents [Vite integration](https://v2.tauri.app/start/frontend/vite/),
 [Android distribution](https://v2.tauri.app/distribute/google-play/).
 Use minimal native privileges and bundled content. No remote production URL is
 substituted for an offline application.
+
+## Owner-requested setting and event investigations
+
+The Pro options screenshot supplied on 2026-10-23 distinguishes starting-army
+maxima 1/3/5/7/10 from recurring income. The owner selected a fixed-income pilot
+with symmetric starting ranges 1–2 / 1–3 / 1–4; [T113](../tasks/T113.md), #292,
+records the bounded protocol. This does not yet replace existing saved rules or
+adopt the held balance/map prototypes. Archaeology clarification: isle-wars-archaeology#286.
+
+Production centres are currently marked but their effects and disasters are not
+implemented. The owner reopened investigation in #293, preflighting existing
+T42/#87 and T43/#88 rather than silently enabling events during balance work.
+Original runtime/wording clarification: isle-wars-archaeology#287. Original centre
+production is an event effect, not ordinary turn income; Malpaco adoption remains
+a separate balance and release-scope decision.

@@ -165,6 +165,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T110](T110.md) | Next-game replenishment divisors | High | Medium | #281 | T107 |
 | [T111](T111.md) | Larger generated-map prototype | High | Hard | #280 | T110 |
 | [T112](T112.md) | Direct New game, Settings and Help buttons | High | Medium | #290 | T110 |
+| [T113](T113.md) | Starting-army balance pilot | High | Medium | #292 | T105, T111 prototype |
 
 ## Development infrastructure
 
