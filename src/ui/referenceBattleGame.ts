@@ -451,8 +451,6 @@ export class ReferenceBattleGame {
         });
       } else if (source && mode !== "move" && friendlySources(state).includes(source)) {
         this.provinceAction.show(source, "move", !paused, false, () => {if (this.controller.startFriendlyMove(revision)) this.controller.select(source, null);});
-      } else if (source && mode === "move" && !to) {
-        this.provinceAction.show(source, "move", !paused, true, () => {this.controller.cancelFriendlyMove(revision);});
       } else this.provinceAction.hide();
       // The amount bar of a capture or a move rests beside that country.
       const anchor = state.pendingCapture ? state.pendingCapture.to : mode === "move" && from && to ? to : null;
@@ -506,7 +504,7 @@ export class ReferenceBattleGame {
     this.help.setObjective(`${this.options.dominationWin ? `Domination: hold ${dominationThreshold(total)} of ${total} countries · you hold ${owned}` : `Total conquest: hold all ${total} countries · you hold ${owned}`}${this.options.roundLimit ? ` · Round ${state.turnNumber} / ${this.options.roundLimit}` : ` · Round ${state.turnNumber}`}`);
     // A human loss names no winner while computers remain, so its badge is neutral (#132). The pool
     // shows while you place armies; a computer's placement shows only its notice (T97).
-    if(this.turnTracker&&!this.refusal)notice=null;
+    if(this.turnTracker&&!this.refusal)notice=changes&&notice?.action?{title:'Changes since your last turn',action:notice.action,persistent:true}:null;
     const status = {seat: state.phase === "human-loss" ? null : Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result && !computer ? state.reinforcementPool : null, result: !!result};
     // A required choice, or a staged attack pair, brings its card up once.
     const staged = mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;

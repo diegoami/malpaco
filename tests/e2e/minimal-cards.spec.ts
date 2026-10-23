@@ -164,7 +164,7 @@ test.describe('computer turns',()=>{
   test.setTimeout(150_000);await page.setViewportSize(size);
   await page.clock.install({time:new Date('2026-10-22T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-22T12:00:00Z'));
   await visitGame(page,'/?seed=7&files&log');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
-  const notice=page.locator('#active-seat-notice .game-notice-title'),seen=new Set<string>();
+  const mover=page.locator('#turn-tracker .turn-row[data-current="true"] .turn-colour'),seen=new Set<string>();
   /** While a computer seat plays, only the speed controls in the top corner are on screen (T101: the notice has no buttons). */
   const quiet=async()=>{
    const extra=await page.evaluate(()=>[...document.querySelectorAll<HTMLElement>('button,input,select')].filter(n=>n.getClientRects().length>0&&!n.closest('.visually-hidden, .game-store, #game-status, .game-corner-end, .map-camera-controls, #active-seat-notice')).map(n=>n.id||n.getAttribute('aria-label')||n.textContent));
@@ -172,7 +172,7 @@ test.describe('computer turns',()=>{
   };
   /** Your turn: the pool, a card choice, or End turn is up. */
   const mine=page.locator('#placement-pool:visible, #end-turn-button:visible, #game-focus-drawer:visible');
-  const computerTurn=async()=>{for(let n=0;n<400;n++){const title=await notice.textContent().catch(()=>null);const m=title?.match(/^(\w+)'s turn$/);if(m&&m[1]!=='Your'){seen.add(m[1]!);await quiet();}else if(await mine.count())return;await page.clock.runFor(400);}};
+  const computerTurn=async()=>{for(let n=0;n<400;n++){if(await page.locator('.panel').getAttribute('data-computer-active')==='true'){const colour=await mover.textContent();if(colour)seen.add(colour);await quiet();}else if(await mine.count())return;await page.clock.runFor(400);}};
   const humanTurn=async()=>{
    await expect(mine.first()).toBeVisible();
    const reward=page.getByRole('button',{name:'Continue',exact:true});if(await reward.isVisible()){await reward.click();return;}
