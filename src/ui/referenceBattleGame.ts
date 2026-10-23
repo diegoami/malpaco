@@ -211,18 +211,18 @@ export class ReferenceBattleGame {
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
-    // T97/T107: the menu holds Help, next-game Settings, New game and the scoreboard; totals, card
+    // T112: New game, Settings and Help are direct corner buttons. Settings holds the next-game choices, seed and scoreboard; totals, card
     // counts, the battle log and panel detail are gone. T101: the speed choice moved to the corner
     // beside Pause, and the history icon shows only with `?log`.
     const newGame = this.panel.el.querySelector<HTMLButtonElement>("#new-game-button")!;
     // The seed stays as one quiet line, so a game can be named in a report.
     const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, h("p", {class: "game-identity"}, `Seed ${this.options.seed}`),
-      h("div", { class: "game-menu-actions" }, this.help.button, ...(this.nextSettings ? [this.nextSettings.button] : []), newGame, ...(this.showsLog ? [this.eventLog.button] : []), ...(this.scoreboard ? [this.scoreboard.button] : [])), ...(this.showsFiles ? [this.files.el] : []));
+      ...(this.nextSettings?[this.nextSettings.inlineContent()]:[]), h("div", { class: "game-menu-actions" }, ...(this.nextSettings?[]:[this.help.button,newGame]), ...(this.showsLog ? [this.eventLog.button] : []), ...(this.scoreboard ? [this.scoreboard.button] : [])), ...(this.showsFiles ? [this.files.el] : []));
     const speed = h("div", {class: "game-speed-control"}, this.playbackSpeed);
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
-      phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onMenuOpen:()=>this.nextSettings?.refresh()}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
     // T104: your cards sit beside the menu icon.
     if (this.hand) this.chrome.hud.append(this.hand.button);
     // The Countries icon always opens on the list.

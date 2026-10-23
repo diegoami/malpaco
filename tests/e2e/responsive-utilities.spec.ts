@@ -144,10 +144,10 @@ test('Help & icon names opens from the menu with one matching visible and access
  await expect(button).toHaveText('Help & icon names');await expect(button).toHaveAccessibleName('Help & icon names');
  await button.click();
  const dialog=page.getByRole('dialog',{name:'Help & icon names'});await expect(dialog).toBeVisible();
- // T97: Fight replaces Attack; Fight on, Stop, Settings and Information are gone; the history icon is the event log.
- for(const name of ['Fight on','Stop','Settings','Information','Attack'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(0);
+ // T112: Settings returns for next-game preferences; the player no longer has a Menu button. Fight remains the current attack name.
+ for(const name of ['Fight on','Stop','Menu','Information','Attack'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(0);
  await expect(dialog.locator('#game-help-objective')).toContainText(/Domination|Total conquest/);
- for(const name of ['Menu','Pause','Fast-forward','Fit','Countries','Fight','Return','Fold card'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(1);
+ for(const name of ['Settings','Pause','Fast-forward','Fit','Countries','Fight','Return','Fold card'])await expect(dialog.locator('.game-help-icons li strong',{hasText:new RegExp(`^${name}$`)})).toHaveCount(1);
  // T101: the history is off the player's screen, so Help names no history icon.
  await expect(dialog.locator('.game-help-icons li strong',{hasText:/^Game event log$/})).toHaveCount(0);
  expect(await dialog.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);

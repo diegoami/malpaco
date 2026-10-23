@@ -130,3 +130,9 @@ candidates against the 0.2.1 core policy. Pass the command on one line. Each run
 a fresh output directory and writes raw deals/games, a summary and source/bundle
 hashes there. It does not change the playable game's rules or saved games. The
 protocol and interpretation limits are in [the 0.3 plan](plans/release-0.3.md) and #273.
+
+Use the three top-left icon buttons (hover for their names): **New game**, **Settings**, **Help**.
+Settings opens the next-game choices, seed and scoreboard in one card; Help
+opens the instructions. New game asks before giving up an unfinished game.
+
+Settings contains the choices; their explanations are in Help.
