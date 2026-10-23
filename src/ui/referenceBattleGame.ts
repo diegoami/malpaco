@@ -451,8 +451,6 @@ export class ReferenceBattleGame {
         });
       } else if (source && mode !== "move" && friendlySources(state).includes(source)) {
         this.provinceAction.show(source, "move", !paused, false, () => {if (this.controller.startFriendlyMove(revision)) this.controller.select(source, null);});
-      } else if (source && mode === "move" && !to) {
-        this.provinceAction.show(source, "move", !paused, true, () => {this.controller.cancelFriendlyMove(revision);});
       } else this.provinceAction.hide();
       // The amount bar of a capture or a move rests beside that country.
       const anchor = state.pendingCapture ? state.pendingCapture.to : mode === "move" && from && to ? to : null;

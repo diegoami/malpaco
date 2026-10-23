@@ -1928,7 +1928,12 @@ dialog h2 {
 .game-primary-buttons > .primary-command:active,#province-action-button:active { box-shadow:inset 1px 2px 3px #0008; }
 @media (max-width:600px) {
  .game-primary-buttons { gap:4px; }
- .game-overlay[data-primary-commands="true"] .game-corner-end { top:calc(var(--edge) + var(--target) + var(--gap)); }
+ .game-overlay[data-primary-commands="true"] .game-corner-end { position:relative; top:calc(var(--target) + var(--gap)); }
  .game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + 2 * (var(--target) + var(--gap))); }
  .game-overlay[data-primary-commands="true"]:has(#turn-tracker) .game-pool-slot { top:calc(var(--edge) + 2 * (var(--target) + var(--gap))); }
 }
+
+#battle-action-rail { grid-auto-columns:max-content; }
+
+.battle-reference .game-overlay .game-primary-buttons > #open-game-menu { color:#05212c; background:#5ce6e8; border-color:#c4ffff #167075 #167075 #c4ffff; }
+.battle-reference .game-overlay .game-primary-buttons > #game-help-button { color:#1b2227; background:#fff8d9; border-color:#fff #777363 #777363 #fff; }
