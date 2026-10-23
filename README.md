@@ -10,32 +10,32 @@ How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process
 [docs/tasks/](docs/tasks/README.md).
 Task status lives in GitHub issue labels.
 
-## Play Malpaco 0.2.0
+## Play Malpaco 0.2.1
 
-[Play in your browser](https://malpaco.netlify.app).
+[Play in your browser](https://malpaco.netlify.app), or download the
+[0.2.1 playable archive](https://github.com/diegoami/malpaco/releases/tag/v0.2.1).
+The [play instructions](docs/play.md) explain the controls and local launcher;
+[release notes](docs/releases/0.2.1/RELEASE-NOTES.md) describe this release.
 
-Run `npm ci` and `npm run dev`; open the root page to set up generated islands.
-It defaults to one human against three Normal computers. Choose a seed, adjust
-seat controllers if desired, and select **Start game**. `?seed=1994` fixes geography, deal and dice;
-`?view=reference-game&seed=1994` keeps the fixed Nine Isles compatibility game. **New game**
-returns to this setup. The generated map prepares before play begins. Unrecognized `view` values also open this setup.
+The page opens straight into a game: you against three Normal computers on a random
+map. Your game, pause state and speed are kept in this browser and resume on refresh.
+**New game** in the menu asks before giving up the current game. The menu's trophy
+opens your scoreboard. There is no account or sync between devices.
 
-During combat, select a source, then activate an adjacent enemy for one exchange.
-Shift-click selects without attacking for **Single exchange** or **Fight on**. After a capture, choose how many armies to move and confirm.
-**Save game** downloads a match; **Load game** restores one. A failed load leaves the current game available.
+Place your reinforcements; placing the last army starts combat. Select your country,
+press **Fight**, then tap an adjacent enemy for one exchange. Press **Fight** again
+for another. After a capture, choose how many armies to move and confirm. You can
+make one friendly move per turn. Your cards are behind the card icon beside the menu;
+capture a territory and finish the turn to earn a card.
 
-Normal games with at most one human seat include cards. Capture a territory and
-finish the turn to earn a card, then use **View your hand** to see your choices.
-Games with multiple human seats use ordinary rules. **Pause**, **Game speed**,
-**Panel detail** and **Game event log** control pacing and information.
+Choices float over the map, fold to a chip and drag where you want them. **Pause**,
+**Fast-forward** and the speed control set the pace; computer turns run automatically.
+The main game hides history; `?log` brings it back.
 
-The map fills the screen and only corner icons rest on it: the menu top-left (your cards, totals, history, the event log, speed, save and load), **Pause** top-right, **Fit** bottom-left, and bottom-right the information icon (objective and progress) with the legal phase action: **Start combat**, **Move armies** or the flag for **End turn**, which also skips a move. While you place armies, the pool shows as an icon and a number at the top. A slim notice under the top icons says whose turn it is, or what the last exchange did: tap it for a hint, swipe it or tap × to dismiss it; it fades after a few seconds, except an illegal-move reason or a folded choice, which stays until you dismiss it or act. Choices appear as small cards beside the map: selecting a target shows Attack, Fight on and Cancel (the settings icon sets where Fight on stops), and a capture or move shows a preview with −, the amount, + and confirm. Folding a choice leaves a one-line card with a gold return icon. **Zoom** and **Focus** appear once you zoom or select a country. Press Escape to close a card; the result card closes from the top-right corner.
-
-Older generated setup/game and development routes remain available explicitly at
-`?view=game-setup`, `?view=generated-game`, `?view=generated-prototype` and
-`?view=authored-game` (the authored `small_sea` spike). Their older controls and
-rules differ from the default game. The older generated setup retains its own
-seed, seat and opponent query parameters and in-game help.
+For development, run `npm ci` and `npm run dev`. `?seed=1994` fixes geography, deal
+and dice and keeps its own game. `?setup` opens the development setup and file controls;
+`?view=reference-game` opens the fixed Nine Isles board. Legacy generated views are
+available in the source development build and retired in the published archive.
 
 ## Development watching
 
