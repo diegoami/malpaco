@@ -16,7 +16,7 @@ npm run android:build:debug
 ```
 
 The setup downloads checksum-pinned Temurin JDK 21.0.13+9 and Android command-line
-tools 23, then installs SDK 37, build-tools 37.0.0, NDK 29.0.14206865 and Rust's
+tools 23, then installs SDK 36, build-tools 37.0.0, NDK 29.0.14206865 and Rust's
 ARM64/x86-64 Android targets. `--emulator` also installs the Android 16/API 36
 Google APIs x86-64 emulator image. Review Google's SDK terms when installing.
 Downloads, the SDK, Gradle cache and Rust compilation output stay under ignored

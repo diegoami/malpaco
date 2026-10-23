@@ -54,7 +54,7 @@ manager = [str(tools / 'bin/sdkmanager'), '--sdk_root=' + str(sdk)]
 # sdkmanager 23 accepts the current SDK licensing flow during installation.
 # See Google's SDK license terms before running this installer.
 subprocess.run(manager + ['--licenses'], input=b'y\n' * 100, env=env, check=True)
-packages = ['platform-tools', 'platforms;android-37', 'build-tools;37.0.0', 'ndk;29.0.14206865']
+packages = ['platform-tools', 'platforms;android-36', 'build-tools;37.0.0', 'ndk;29.0.14206865']
 if options.emulator:
     packages += ['emulator', 'system-images;android-36;google_apis;x86_64']
 subprocess.run(manager + packages, env=env, check=True)

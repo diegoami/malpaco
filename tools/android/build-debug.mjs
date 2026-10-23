@@ -19,7 +19,7 @@ if(!env.JAVA_HOME){
  const candidates=await readdir(join(local,'jdk'));
  env.JAVA_HOME=join(local,'jdk',candidates[0]);
 }
-for(const path of [join(env.JAVA_HOME,'bin/java'),join(env.NDK_HOME,'source.properties'),join(env.ANDROID_HOME,'platforms/android-37/android.jar')]){
+for(const path of [join(env.JAVA_HOME,'bin/java'),join(env.NDK_HOME,'source.properties'),join(env.ANDROID_HOME,'platforms/android-36/android.jar')]){
  try{await access(path);}catch{throw Error(`Android toolchain missing: ${path}. See docs/android.md.`);}
 }
 env.PATH=join(env.JAVA_HOME,'bin')+':'+env.PATH;
