@@ -161,7 +161,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   const runToHuman=async()=>{for(let n=0;n<600;n++){if(await page.locator('.panel').getAttribute('data-computer-active')==='false')return;await page.clock.runFor(150);}throw Error('the computers did not hand back');};
   for(const log of [false,true]){
    await page.goto(`/?seed=7${log?'&log':''}`);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
-   await runToHuman();await expect(page.locator('#active-seat-notice')).toContainText('Your turn');
+   await runToHuman();await expect(page.locator('#turn-guidance-title')).toHaveText('Your turn');
    // On your turn the notice holds only its dismiss icon; the Changes action is ?log only.
    await expect(page.locator('#open-changes')).toHaveCount(log?1:0);
    await page.locator('#open-game-menu').click();await expect(drawer(page)).toHaveAttribute('data-surface','menu');

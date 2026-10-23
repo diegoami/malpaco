@@ -3,6 +3,7 @@
 import {expect,test} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
+import {openSurface} from './shell';
 import {activePlayer,apply,defaultOptions,raidCardsRules,serializeVersionedMatch} from '../../src/core';
 import type {GameOptions,GameState} from '../../src/core';
 import {createGeographicGame} from '../../src/core/geographic-game';
@@ -35,7 +36,7 @@ const yours=(s:GameState)=>s.map.provinces.filter(c=>s.ownerOf[c.id]==='seat1').
 /** Puts records in this browser before the first load only, so a reload sees what the page kept. */
 const keepOnce=(p:Page,values:Record<string,string>)=>p.addInitScript(v=>{if(sessionStorage.getItem('t100-kept'))return;sessionStorage.setItem('t100-kept','1');for(const [k,x] of Object.entries(v))localStorage.setItem(k,x);},values);
 async function openScoreboard(p:Page){
- await p.locator('#open-game-menu').click();await p.getByRole('button',{name:'Scoreboard',exact:true}).click();
+ await openSurface(p,'menu');await p.getByRole('button',{name:'Scoreboard',exact:true}).click();
  const dialog=p.getByRole('dialog',{name:'Scoreboard'});await expect(dialog).toBeVisible();return dialog;
 }
 async function closeScoreboard(p:Page){await p.locator('#close-scoreboard').click();await expect(p.getByRole('dialog',{name:'Scoreboard'})).toBeHidden();}
@@ -47,7 +48,7 @@ async function board(p:Page){
  await closeScoreboard(p);return {totals,rows};
 }
 async function giveUp(p:Page){
- await p.locator('#open-game-menu').click();await p.locator('#new-game-button').click();await p.locator('#give-up-confirm').click();
+ await openSurface(p,'menu');await p.locator('#new-game-button').click();await p.locator('#give-up-confirm').click();
  const result=p.getByRole('dialog',{name:'You gave up'});await expect(result).toBeVisible();return result;
 }
 /** End turn wins seed 5; the card drawn for the turn's capture is acknowledged first, then the result shows. */
@@ -166,7 +167,7 @@ test('the give-up dialog is padded like the result card in both stages, with its
    expect(r.x-box.x,'left inset').toBeGreaterThanOrEqual(12);expect(box.x+box.width-(r.x+r.width),'right inset').toBeGreaterThanOrEqual(12);}
   for(const button of await dialog.locator('button').all())expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(44);
  };
- await page.locator('#open-game-menu').click();await page.locator('#new-game-button').click();await expect(dialog).toBeVisible();
+ await openSurface(page,'menu');await page.locator('#new-game-button').click();await expect(dialog).toBeVisible();
  await inset();
  const [yes,no]=[(await page.locator('#give-up-confirm').boundingBox())!,(await page.locator('#give-up-cancel').boundingBox())!];
  expect(no.x-(yes.x+yes.width),'a gap between the buttons').toBeGreaterThanOrEqual(8);
