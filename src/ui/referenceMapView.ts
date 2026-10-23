@@ -1,3 +1,4 @@
+import {centresVisible,renderEventMark} from './eventMark';
 // Adapt the geographical drawing to stable canonical game-country IDs.
 import drawing from "../../fixtures/new-game/T65/map.svg?raw";
 import {s} from "./dom";
@@ -46,9 +47,10 @@ export class ReferenceMapView{
    n.setAttribute("aria-label",description);n.querySelector("title")!.textContent=description;
    const badge=n.querySelector<SVGPathElement>(".badge")!,count=n.querySelector<SVGTextElement>(".count")!;
    badge.setAttribute("d",seatLook(seat).badge);badge.style.stroke=seatLook(seat).color;
+   if(state.rules.events)renderEventMark(n,view.eventMarks?.includes(id)??false);
    (n.querySelector(".cell") as SVGElement).style.fill=seatLook(seat).color;count.textContent=countLabel(state.armies[id]!);
    badge.setAttribute("transform",`translate(${count.getAttribute("x")},${Number(count.getAttribute("y"))-5}) scale(${badgeScale(count.getComputedTextLength())})`);
-   (n.querySelector(".centre") as SVGElement).style.display=state.productionCentres.includes(id)?"":"none";
+   (n.querySelector(".centre") as SVGElement).style.display=centresVisible(state)&&state.productionCentres.includes(id)?"":"none";
   }
   this.names.select(view.selected);
   this.el.dataset["choosing"]=String(view.selected!==null);

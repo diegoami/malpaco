@@ -1,37 +1,19 @@
 import {expect,test} from 'vitest';
-import {defaultNextGameSettings,parseNextGameSettings,readNextGameSettings,saveNextGameSettings,saveReplenishmentSettings,nextGameOptions} from '../../src/ui/nextGameSettings';
-import type {NextGameStore,ComputerOpponents} from '../../src/ui/nextGameSettings';
+import {defaultNextGameSettings,parseNextGameSettings,readNextGameSettings,saveNextGameSettings,saveStartingArmySettings,saveEventFrequencySettings,nextGameOptions} from '../../src/ui/nextGameSettings';
+import type {NextGameStore} from '../../src/ui/nextGameSettings';
 import {validateGameOptions} from '../../src/core/options';
-for(const count of [1,2,3] as const)test(`versioned settings select exactly ${count} Normal computers`,()=>{
- const settings=parseNextGameSettings(JSON.stringify({version:1,computerOpponents:count}));
- expect(settings).toEqual({version:2,computerOpponents:count,reinforcementDivisor:3});
- const options=nextGameOptions(123,settings);expect(validateGameOptions(options)).toEqual(options);
- expect(options.seed).toBe(123);expect(options.seats.map(s=>s.kind)).toEqual(['human',...Array(count).fill('computer')]);
- expect(options.computerStrengths).toEqual(Array(count).fill('Normal'));
+for(const version of [1,2,3])for(const count of [1,2,3] as const)test(`v${version} migrates ${count} opponents and drops obsolete rate only from future preferences`,()=>{
+ const old={version,computerOpponents:count,reinforcementDivisor:7,mapSize:46},text=JSON.stringify(old),settings=parseNextGameSettings(text);expect(settings).toEqual({...defaultNextGameSettings(),computerOpponents:count});expect(JSON.stringify(old)).toBe(text);
+ const o=nextGameOptions(7,settings);expect(validateGameOptions(o)).toEqual(o);expect(o.seats).toHaveLength(count+1);expect(o.computerStrengths).toEqual(Array(count).fill('Normal'));expect(o.islandRules).toBe(1);expect(Object.hasOwn(o,'reinforcementDivisor')).toBe(false);
 });
-for(const value of [null,'{','null','[]','{}','{"version":2,"computerOpponents":1}','{"version":1,"computerOpponents":0}','{"version":1,"computerOpponents":4}','{"version":1,"computerOpponents":"1"}'])test(`invalid preferences keep the existing default: ${value}`,()=>{
- expect(parseNextGameSettings(value)).toEqual(defaultNextGameSettings());
+for(const range of ['1-2','1-3','1-4'] as const)for(const frequency of ['Off','Rare','Normal','Often'] as const)test(`${range} / ${frequency} remains independent from opponent edits`,()=>{
+ let text=JSON.stringify({version:2,computerOpponents:2,reinforcementDivisor:1});const store:NextGameStore={get:()=>text,set:v=>{text=v;}};
+ expect(saveStartingArmySettings(range,store)).toBe(true);expect(saveEventFrequencySettings(frequency,store)).toBe(true);expect(saveNextGameSettings(1,store)).toBe(true);expect(readNextGameSettings(store)).toEqual({version:4,computerOpponents:1,startingArmiesRange:range,eventFrequency:frequency});
+ const o=nextGameOptions(8,readNextGameSettings(store));expect(o.startingArmiesRange).toBe(range);expect(o.eventFrequency).toBe(frequency);expect(o.seats).toHaveLength(2);
+ const before=text;for(const v of [null,'1-5',3,''])expect(saveStartingArmySettings(v,store)).toBe(false);for(const v of [null,'Never',0])expect(saveEventFrequencySettings(v,store)).toBe(false);for(const v of [0,4,'2'])expect(saveNextGameSettings(v,store)).toBe(false);expect(text).toBe(before);
+ const full:NextGameStore={get:()=>text,set:()=>{throw Error('quota');}};expect(saveStartingArmySettings('1-4',full)).toBe(false);expect(saveEventFrequencySettings('Off',full)).toBe(false);expect(saveNextGameSettings(3,full)).toBe(false);expect(text).toBe(before);
 });
-test('saving changes only the settings store; invalid values and write failure retain the previous record',()=>{
- let text='{"version":1,"computerOpponents":2}';const store:NextGameStore={get:()=>text,set:value=>{text=value;}};
- expect(saveNextGameSettings(1,store)).toBe(true);expect(readNextGameSettings(store).computerOpponents).toBe(1);
- const before=text;for(const invalid of [0,4,1.5,'2',null]){expect(saveNextGameSettings(invalid,store)).toBe(false);expect(text).toBe(before);}
- const full:NextGameStore={get:()=>text,set:()=>{throw Error('quota');}};
- expect(saveNextGameSettings(3,full)).toBe(false);expect(text).toBe(before);
- expect(readNextGameSettings({get:()=>{throw Error('unavailable');},set:()=>{}})).toEqual(defaultNextGameSettings());
-});
-test('constructing new-game options leaves the preference and earlier match options unchanged',()=>{
- const preference={version:2 as const,computerOpponents:2 as ComputerOpponents,reinforcementDivisor:3 as const};Object.freeze(preference);
- const old=nextGameOptions(7,defaultNextGameSettings()),snapshot=JSON.stringify(old);
- const fresh=nextGameOptions(8,preference);expect(fresh.seats).toHaveLength(3);expect(JSON.stringify(old)).toBe(snapshot);
- expect(preference).toEqual({version:2,computerOpponents:2,reinforcementDivisor:3});
-});
-
-for(const rate of [1,3,5,7] as const)test(`rate ${rate} persists independently from opponent choice`,()=>{
- let text='{"version":1,"computerOpponents":2}';const store:NextGameStore={get:()=>text,set:v=>{text=v;}};
- expect(saveReplenishmentSettings(rate,store)).toBe(true);expect(readNextGameSettings(store)).toEqual({version:2,computerOpponents:2,reinforcementDivisor:rate});
- expect(saveNextGameSettings(1,store)).toBe(true);expect(readNextGameSettings(store)).toEqual({version:2,computerOpponents:1,reinforcementDivisor:rate});
- expect(nextGameOptions(7,readNextGameSettings(store)).reinforcementDivisor).toBe(rate);
- const before=text;expect(saveReplenishmentSettings(2,store)).toBe(false);expect(text).toBe(before);
- expect(saveReplenishmentSettings(3,{get:()=>text,set:()=>{throw Error('quota');}})).toBe(false);expect(text).toBe(before);
+for(const text of [null,'{','[]','{}','{"version":4,"computerOpponents":2}','{"version":5,"computerOpponents":2}','{"version":1,"computerOpponents":4}'])test(`invalid preferences retain defaults: ${text}`,()=>expect(parseNextGameSettings(text)).toEqual(defaultNextGameSettings()));
+test('new options snapshot never changes earlier options or a frozen preference',()=>{
+ const preference=Object.freeze({...defaultNextGameSettings(),startingArmiesRange:'1-4' as const}),old=nextGameOptions(7),before=JSON.stringify(old);expect(nextGameOptions(8,preference).startingArmiesRange).toBe('1-4');expect(JSON.stringify(old)).toBe(before);expect(readNextGameSettings({get:()=>{throw Error('blocked');},set:()=>{}})).toEqual(defaultNextGameSettings());
 });

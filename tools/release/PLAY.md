@@ -12,13 +12,16 @@ the seed; names never change the map or play. The game is kept in this browser a
 actions and each computer's turn (a refresh in the middle of a computer's turn replays that turn,
 the same moves), so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
 still open, at the game speed you chose, and paused if you left it paused. Nothing leaves this
-browser: there is no account, server or sync between devices. **Settings** in the menu
+browser: there is no account, server or sync between devices. **Settings** at top left
 chooses 1, 2 or 3 computer opponents for your next game (3 by default). Changing
 this setting keeps your current game exactly as it is; a refresh still resumes it.
-These settings take effect only when you choose **New game**. Replenishment
-chooses **1 army per 1, 3, 5 or 7 regions**: owned regions divided by that number,
-rounded down, with a minimum of 2 base armies. Island bonuses are added separately.
-The default remains 1 per 3 regions; existing games keep their original rule. **New game** in the menu asks "Give up this game?", shows
+These settings take effect only when you choose **New game**. **Starting armies**
+chooses **1–2, 1–3 or 1–4** per country (default 1–3), with equal aggregate seat budgets
+and only unavoidable integer differences. New games use fixed territory income:
+owned countries divided by 3, rounded down with minimum 2, plus island bonuses.
+**Disasters and production** offers Off/Rare/Normal/Often (default Normal).
+Existing games retain their original rules, including older configured income rates.
+**New game** asks "Give up this game?", shows
 where the seats stood, then starts a new random game; after a result it starts at once.
 Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
 same address (it never replaces the kept game),
@@ -87,12 +90,12 @@ target, but never attacks; **Inspect** shows a country's owner, armies, island b
 with **Focus** to frame it. The list opens only from its icon. A tap that touches more than one
 country asks which one you meant.
 
-**Help & icon names** in the menu gives the objective and your progress, explains how the game
+The top-left **Help** icon gives the objective and your progress, explains how the game
 plays and names every icon. The result card shows the winner and reason with **New game**;
 **Standings** and **Details** (seed, options and the record) open on request, and a round-limit
 result says whether countries, armies or turn order decided it.
 
-The **Scoreboard** (the menu's trophy) keeps, in this browser, how many games you played, won, lost
+The **Scoreboard** (the trophy in Settings) keeps, in this browser, how many games you played, won, lost
 and gave up, your win rate, and your last 20 games, newest first: the date, the result, the rounds,
 your countries at the end and the seed. A game counts once, when it ends: a win, your elimination
 (Lost at once, even if you then watch the computers), or giving up with **New game**. The result
@@ -109,3 +112,16 @@ Settings opens the next-game choices, seed and scoreboard in one card; Help
 opens the instructions. New game asks before giving up an unfinished game.
 
 Settings contains the choices; their explanations are in Help.
+
+Production centres are starred while events are on. **Harvest** adds up to the
+current stack or 10 armies per centre, whichever is smaller. **Shift** redraws all
+three centres. **Storm** reduces a connected group of 3–4 stacks, keeping at least 1
+army each. **Revolt** changes one border country's owner without changing its armies
+or eliminating a seat. Events are protected in the first round, near a win, after
+another event and during the last three rounds of a round-limit game.
+
+An event card lists exact before/after changes. **Continue** acknowledges it;
+**Fold** or Back/Escape lets you inspect marked countries without acknowledging.
+Pending presentation survives reload. Acknowledgement never resumes a game paused
+by backgrounding: use Resume explicitly. Off hides centres and consumes no event
+draws. Instructions belong in Help; Settings contains the choices.
