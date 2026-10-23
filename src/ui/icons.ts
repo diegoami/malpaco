@@ -4,6 +4,7 @@ import {h,s} from "./dom";
 const PATHS: Record<string, string> = {
   menu: "M4 6H20M4 12H20M4 18H20",
   cards: "M7 5H20V21H7ZM3 17V2H16",
+  help: "M9 8A3 3 0 0 1 15 8C15 10 12 10 12 12M12 16V16.1M21 12A9 9 0 1 1 3 12A9 9 0 1 1 21 12Z",
   info: "M12 11V17M12 7V7.1",
   close: "M5 5L19 19M19 5L5 19",
   play: "M6 3L21 12 6 21Z",

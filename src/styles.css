@@ -1836,3 +1836,21 @@ dialog h2 {
 .next-game-settings .next-game-setting { margin: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .next-game-settings :is(button, select) { min-height: 44px; }
 .next-game-settings .next-game-setting select { min-width: 5rem; }
+
+/* T112: three direct icon commands; Cards stays beside them so its panel cannot cover its opener. */
+.game-primary-buttons { display:grid; grid-template-columns:repeat(3,max-content); }
+.game-primary-buttons > .primary-command { display:grid; place-items:center; width:var(--target); min-width:44px; height:var(--target); min-height:44px; padding:0; margin:0; font-size:0; color:var(--text); border:1px solid #3d5a6d; background:var(--surface); border-radius:12px; box-shadow:0 2px 10px #0006; }
+.game-primary-buttons > .hand-button { grid-column:4; grid-row:1; }
+@media (max-width:600px) { .game-overlay[data-primary-commands="true"] .game-pool-slot { padding-top:calc(var(--target) + var(--gap)); } }
+
+.game-corner-end[data-stack-speed="true"] { position:relative; padding-bottom:calc(var(--target) + var(--gap)); }
+.game-corner-end[data-stack-speed="true"] > .game-speed-control { position:absolute; right:0; top:calc(var(--target) + var(--gap)); }
+/* Inline settings use the card's padding and a full-width field, so values do not clip. */
+.game-settings > .next-game-settings > p { margin:12px 0; }
+.game-settings > .next-game-settings .next-game-setting { margin:12px 0; flex-direction:column; align-items:stretch; gap:6px; }
+.game-settings > .next-game-settings select { width:100%; }
+
+/* Owner refinement: larger Settings text, with explanations kept in Help. */
+.game-settings > .next-game-settings :is(label,select) { font:400 18px/1.4 Inter,system-ui,sans-serif; }
+.game-settings > .next-game-settings select { min-height:48px; padding:8px 10px; }
+.battle-reference #game-focus-drawer .game-settings .game-identity { font-size:16px; }

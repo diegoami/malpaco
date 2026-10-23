@@ -18,10 +18,10 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
  await page.goto('/');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  const before=(await read(page,KEY))!;await openSurface(page,'menu');
- await expect(page.getByRole('button',{name:'Settings for the next game',exact:true})).toBeVisible({timeout:5000});
- await page.getByRole('button',{name:'Settings for the next game',exact:true}).click();
+
+
  const dialog=page.getByRole('dialog',{name:'Settings',exact:true});await expect(dialog).toBeVisible();
- await expect(dialog).toContainText('Applies to the next game');
+ await expect(dialog).not.toContainText('Applies to the next game');
  const opponents=dialog.getByLabel('Computer opponents',{exact:true});await expect(opponents).toHaveValue('3');
  await expect.poll(()=>opponents.evaluate(n=>n.getBoundingClientRect().height),{message:'opponent selector touch target'}).toBeGreaterThanOrEqual(44);
  await opponents.selectOption('1');expect(await read(page,KEY)).toBe(before);
@@ -29,15 +29,15 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
  await expect(page.locator('#open-game-menu')).toBeFocused();
  await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  expect(await read(page,KEY)).toBe(before);await openSurface(page,'menu');
- await page.getByRole('button',{name:'Settings for the next game',exact:true}).click();await expect(opponents).toHaveValue('1');
+ await expect(opponents).toHaveValue('1');
  await page.screenshot({path:`artifacts/T107-browser/settings-${width}.png`,animations:'disabled'});
- await dialog.getByRole('button',{name:'Close',exact:true}).click();
+ await dialog.getByRole('button',{name:'Return to map',exact:true}).click();
  await openSurface(page,'menu');await page.locator('#new-game-button').click();await page.locator('#give-up-cancel').click();
  expect(await read(page,KEY)).toBe(before);
  for(const count of [1,2,3]){
   if(count!==1){
    const pause=page.locator('#game-pause-button');if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
-   await openSurface(page,'menu');await page.getByRole('button',{name:'Settings for the next game',exact:true}).click();await opponents.selectOption(String(count));await dialog.getByRole('button',{name:'Close',exact:true}).click();
+   await openSurface(page,'menu');await opponents.selectOption(String(count));await dialog.getByRole('button',{name:'Return to map',exact:true}).click();
   }
   await openSurface(page,'menu');await page.locator('#new-game-button').click();await page.locator('#give-up-confirm').click();await page.locator('#give-up-new-game').click();
   await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
@@ -57,7 +57,7 @@ test('a failed settings write reports the error, restores the saved choice and l
  await page.locator('#game-pause-button').click();
  const key='malpaco:seed-game:7',before=(await read(page,key))!;
  await page.evaluate(pref=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===pref)throw new DOMException('Full','QuotaExceededError');return original.call(this,k,v);};},PREF);
- await openSurface(page,'menu');await page.getByRole('button',{name:'Settings for the next game',exact:true}).click();
+ await openSurface(page,'menu');
  const dialog=page.getByRole('dialog',{name:'Settings',exact:true});
  await dialog.getByLabel('Computer opponents',{exact:true}).selectOption('1');
  await expect(dialog.getByRole('alert')).toContainText('Could not keep these settings');
