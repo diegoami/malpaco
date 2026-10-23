@@ -13,12 +13,14 @@ export interface ReinforcementIncome {
  * Ownership-based income (C-REI-01..03, isle-wars-archaeology spec/reinforcement.md).
  * Divisor 3 and minimum 2 are [designed] Risk-style values: T10 consulted
  * T09's spec/island-bonuses.md corpus citation, with no independent search.
+ * T110 [designed]: configurable rules store the owner-selected divisor on the
+ * immutable rules object; frozen identities omit it and retain 3.
  * Eliminated seats use the same formula: zero provinces gives base 2 and
  * island bonus 0. The turn sequence decides which seats receive income.
  */
 export function reinforcementIncome(state: GameState, seatId: string): ReinforcementIncome {
   const provinceCount = provincesOf(state, seatId).length;
-  const base = Math.max(Math.floor(provinceCount / 3), 2);
+  const base = Math.max(Math.floor(provinceCount / (state.rules.reinforcementDivisor ?? 3)), 2);
   const islandBonus = islandIncome(state, seatId).total;
   return { base, islandBonus, total: base + islandBonus, provinceCount };
 }

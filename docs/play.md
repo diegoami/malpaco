@@ -33,7 +33,10 @@ still open, at the game speed you chose, and paused if you left it paused. Nothi
 browser: there is no account, server or sync between devices. **Settings** in the menu
 chooses 1, 2 or 3 computer opponents for your next game (3 by default). Changing
 this setting keeps your current game exactly as it is; a refresh still resumes it.
-The setting takes effect only when you choose **New game**. **New game** in the menu asks "Give up this game?", shows
+These settings take effect only when you choose **New game**. Replenishment
+chooses **1 army per 1, 3, 5 or 7 regions**: owned regions divided by that number,
+rounded down, with a minimum of 2 base armies. Island bonuses are added separately.
+The default remains 1 per 3 regions; existing games keep their original rule. **New game** in the menu asks "Give up this game?", shows
 where the seats stood, then starts a new random game; after a result it starts at once.
 Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
 same address (it never replaces the kept game),
