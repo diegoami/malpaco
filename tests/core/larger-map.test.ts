@@ -40,3 +40,16 @@ for(const size of [72,96] as const)test(`${size}: domination resolves at three q
  assign(size*3/4-1);expect(resolveTurnVictory(s,false)).toBe(false);expect(s.result).toBeUndefined();
  assign(size*3/4);expect(resolveTurnVictory(s,false)).toBe(true);expect(s.result?.reason).toBe('domination');expect(s.winner).toBe(me);
 });
+
+import {islandRules} from '../../src/core/state';
+import {GEOGRAPHIC_V3_EVENT_MATCH_IDENTITY} from '../../src/core/match-save';
+for(const size of [72,96] as const)test(`${size}: opt-in event/starting rules have exact larger-map replay`,()=>{
+ for(let seed=0;seed<6;seed++){
+  const o={...defaultOptions(),seed,regionCount:size,names:'numbered' as const,islandRules:1 as const,eventFrequency:'Often' as const,startingArmiesRange:'1-2' as const,seats:Array.from({length:4},()=>({kind:'computer' as const})),computerStrengths:Array(4).fill('Normal')};
+  const made=createGeographicGame(o,islandRules(o),{},3);if(!made.ok)continue;let state=made.state;
+  expect(Object.values(state.armies).reduce((a,b)=>a+b)).toBe(size*3/2);
+  for(let n=0;n<2500&&!state.result&&!state.events?.latest;n++){const action=decideComputerAction(computerView(state));if(!action)throw Error('no action');const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;}
+  if(state.events?.latest){const wire=serializeVersionedMatch(o,state.history,GEOGRAPHIC_V3_EVENT_MATCH_IDENTITY);expect(deserializeVersionedMatch(wire).state).toEqual(state);expect(state.productionCentres).toHaveLength(3);expect(Object.values(state.armies).every(n=>n>=1)).toBe(true);return;}
+ }
+ throw Error('No ordinary event example for larger-map replay');
+},30000);

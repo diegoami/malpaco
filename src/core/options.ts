@@ -85,8 +85,10 @@ export interface GameOptions {
   readonly names?: NameChoice;
   /** T110: present only for the configurable rules identity; older options keep their shape. */
   readonly reinforcementDivisor?: ReinforcementDivisor;
-  /** T111 larger-map prototype only; absent means frozen 46-region geography. */
-  readonly regionCount?: 72|96;
+  /** Opt-in T42/T114 island rules; earlier records omit this field. */
+  readonly islandRules?: 1;
+  /** T111 versioned larger-map prototype. */
+  readonly regionCount?:72|96;
 }
 
 /** Typed error from option validation. */
@@ -264,6 +266,7 @@ export function validateGameOptions(value: unknown): GameOptions {
     if (!(f in obj)) throw new OptionsError("missing field", f);
   }
   return {
+    ...(Object.hasOwn(obj,"islandRules")?{islandRules:parseIslandRules(obj.islandRules)}:{}),
     ...(Object.hasOwn(obj,"regionCount")?{regionCount:parseRegionCount(obj.regionCount)}:{}),
     seats,
     board: parseBoard(obj.board),
@@ -290,8 +293,6 @@ export function parseReinforcementDivisor(value:unknown):ReinforcementDivisor {
  throw new OptionsError('reinforcementDivisor must be 1, 3, 5 or 7.','reinforcementDivisor');
 }
 
-/** [designed] Owner-approved larger-map candidates; standard 46 stays absent in old options. */
-export function parseRegionCount(value:unknown):72|96 {
- if(value===72||value===96)return value;
- throw new OptionsError('regionCount must be 72 or 96.','regionCount');
-}
+function parseIslandRules(value:unknown):1 {if(value===1)return 1;throw new OptionsError('Unsupported islandRules.','islandRules');}
+
+export function parseRegionCount(value:unknown):72|96 {if(value===72||value===96)return value;throw new OptionsError('regionCount must be 72 or 96.','regionCount');}

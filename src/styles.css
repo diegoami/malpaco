@@ -1854,3 +1854,15 @@ dialog h2 {
 .game-settings > .next-game-settings :is(label,select) { font:400 18px/1.4 Inter,system-ui,sans-serif; }
 .game-settings > .next-game-settings select { min-height:48px; padding:8px 10px; }
 .battle-reference #game-focus-drawer .game-settings .game-identity { font-size:16px; }
+/* T43: event consequences float over the board; folding keeps acknowledgement pending. */
+#world-event-card { position:absolute; right:var(--edge); bottom:var(--edge); z-index:8; width:min(360px,calc(100% - 2 * var(--edge))); max-height:calc(100% - 110px); overflow:auto; padding:14px; pointer-events:auto; border:1px solid var(--line); border-radius:12px; background:var(--surface); color:var(--text); box-shadow:0 8px 24px #0008; font:16px/1.4 Inter,system-ui,sans-serif; }
+#world-event-card > header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+#world-event-card h2 { margin:0; font-size:20px; }
+#world-event-card button { min-height:44px; }
+#world-event-card .world-event-context { margin:8px 0; color:var(--muted); font-size:14px; }
+.world-event-changes { padding:0; margin:12px 0; list-style:none; display:grid; gap:10px; }
+.world-event-changes li { display:grid; gap:2px; }
+#acknowledge-world-event { width:100%; }
+#world-event-card[data-folded="true"] { width:auto; padding:0; border:0; background:transparent; box-shadow:none; }
+.world-event-mark { fill:var(--accent); stroke:#102532; stroke-width:1.5; }
+.world-event-affected .ring { opacity:1; stroke:var(--accent); stroke-width:2; stroke-dasharray:5 3; }

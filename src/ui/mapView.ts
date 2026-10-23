@@ -10,6 +10,7 @@ export interface MapHandlers {
 }
 
 export interface MapViewState {
+  eventMarks?:readonly string[];
   state: GameState;
   selected: string | null;
   target: string | null;

@@ -47,7 +47,8 @@ function regionChanges(before: GameState | null, after: GameState, reason: strin
   return after.map.provinces.flatMap(region => {
     const a = before?.armies[region.id] ?? 0, b = after.armies[region.id]!;
     const owner = after.ownerOf[region.id], prior = before?.ownerOf[region.id];
-    if (before && a === b && prior === owner && !endpoints.includes(region.id)) return [];
+    const centreChanged=Boolean(after.rules.events)&&before?.productionCentres.includes(region.id)!==after.productionCentres.includes(region.id);
+    if (before && a === b && prior === owner && !centreChanged && !endpoints.includes(region.id)) return [];
     const owners = playerName(after, prior ?? owner) + (prior && prior !== owner ? ` → ${playerName(after, owner)}` : "");
     return [{ id: region.id, description: `${region.name} · ${owners} · ${reason}: ${a} → ${b} (${b - a >= 0 ? "+" : ""}${b - a})` }];
   });
@@ -72,6 +73,8 @@ export class GameEventHistory {
       const action = state.history[this.count]!, result = apply(this.previous, action);
       if (!result.ok) throw Error(`Cannot project game event ${this.count + 1}: ${result.error}`);
       const before = this.previous, after = result.state, reason = ACTION_NAMES[action.kind];
+      const world=after.events?.latest&&after.events.latest.sequence>(before.events?.sequence??0)?after.events.latest:null;
+      const armyBeforeEvent=(id:string)=>world?.changes.find(c=>c.id===id)?.armiesBefore??after.armies[id]!;
       const notes: string[] = publicCardNotes(before,after,action);
       if (action.kind === "reinforce") notes.push(`Unplaced armies: ${before.reinforcementPool} → ${after.reinforcementPool}. ${action.amount} placed on ${regionName(before, action.province)}.`);
       if (result.outcome) {
@@ -84,7 +87,7 @@ export class GameEventHistory {
         const choice = before.pendingCapture!;
         notes.push(`Capture transfer: ${after.armies[choice.to]! - before.armies[choice.to]!} additional armies from ${regionName(before, choice.from)} to ${regionName(before, choice.to)}; ${action.amount ?? choice.defaultAmount} total including the provisional occupation. No combat casualties.`);
       }
-      if (action.kind === "friendlyMove") notes.push(`Friendly transfer: ${after.armies[action.to]! - before.armies[action.to]!} armies from ${regionName(before, action.from)} to ${regionName(before, action.to)}. No combat casualties.`);
+      if (action.kind === "friendlyMove") notes.push(`Friendly transfer: ${armyBeforeEvent(action.to) - before.armies[action.to]!} armies from ${regionName(before, action.from)} to ${regionName(before, action.to)}. No combat casualties.`);
       if (after.currentPlayer !== before.currentPlayer || after.turnNumber !== before.turnNumber) {
         notes.push(`Turn passes to ${mover(after)} · Round ${after.turnNumber}.`);
       }
@@ -92,6 +95,7 @@ export class GameEventHistory {
         notes.push(`${mover(after)} unplaced reinforcement income: ${after.reinforcementPool}. Not yet added to map armies.`);
       }
       for (const event of after.log.slice(before.log.length)) {
+        if(event.event==='world_event'){notes.push(`World event: ${event.detail.kind} · Round ${event.detail.round}.`);for(const c of event.detail.changes)notes.push(`${regionName(after,c.id)}: ${c.armiesBefore} → ${c.armiesAfter} armies; ${playerName(after,c.ownerBefore)} → ${playerName(after,c.ownerAfter)}${c.centreBefore!==c.centreAfter?(c.centreAfter?'; new centre':'; centre moved away'):''}.`);}
         if (event.event === "eliminated") notes.push(`${playerName(after, event.player)} eliminated: no countries remain.`);
         if (event.event === "victory") notes.push(`${playerName(after, event.player)} victory.`);
       }
@@ -102,7 +106,7 @@ export class GameEventHistory {
       }
       const event: GameEvent = { index: this.count + 1, mover: activePlayer(before)!.id,
         heading: `Action ${this.count + 1} · Round ${before.turnNumber} · ${mover(before)} · ${reason} · ${PHASE_NAMES[before.phase]} → ${PHASE_NAMES[after.phase]}`,
-        regions: regionChanges(before, after, result.outcome?.captured ? "Net after combat and capture" : reason, action.kind === "attack" ? [action.from, action.to] : []), notes };
+        regions: regionChanges(before, after, world?`${reason} + ${world.kind}`:result.outcome?.captured ? "Net after combat and capture" : reason, action.kind === "attack" ? [action.from, action.to] : []), notes };
       this.events.push(event); added.push(event); this.previous = after; this.count++;
     }
     return added;

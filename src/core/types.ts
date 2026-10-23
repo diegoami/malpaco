@@ -1,3 +1,4 @@
+import type {EventFrequency} from './options';
 import type {ReinforcementDivisor} from './options';
 import type { CardState } from './cards';
 // Plain data types for the rules core. Everything here is JSON-serialisable
@@ -66,7 +67,13 @@ export interface SetupRules {
   readonly shortStackBonus: number;
 }
 
+export type WorldEventKind='storm'|'revolt'|'shift'|'harvest';
+export interface WorldChange {readonly id:string;readonly armiesBefore:number;readonly armiesAfter:number;readonly ownerBefore:string;readonly ownerAfter:string;readonly centreBefore:boolean;readonly centreAfter:boolean}
+export interface WorldEvent {readonly kind:WorldEventKind;readonly sequence:number;readonly round:number;readonly afterSeat:string;readonly changes:readonly WorldChange[];readonly centresBefore:readonly string[];readonly centresAfter:readonly string[]}
+export interface WorldEvents {sequence:number;cooldown:boolean;lastKind?:WorldEventKind;latest?:WorldEvent}
 export interface RuleSet {
+  readonly startingArmyBudget?:'equal-v1';
+  readonly events?:{readonly frequency:EventFrequency};
   /** T110: only configurable rules opt in; frozen rules omit this field and use 3. */
   readonly reinforcementDivisor?: ReinforcementDivisor;
   readonly cards?: "deck-v1" | "trade-v1" | "raid-v1";
@@ -143,6 +150,7 @@ export interface AttackOutcome {
 }
 
 export type LogEntry =
+  | {readonly event:"world_event";readonly player:string;readonly turn:number;readonly detail:WorldEvent}
   | { readonly event: "raid"; readonly player:string; readonly province:string; readonly defender:string; readonly before:number; readonly after:number; readonly shielded:boolean; readonly turn:number }
   | { readonly event: "game_started"; readonly seed: number; readonly players: number }
   | AttackOutcome
@@ -151,6 +159,7 @@ export type LogEntry =
   | { readonly event: "turn_ended"; readonly player: string; readonly turn: number };
 
 export interface GameState {
+  events?:WorldEvents;
   cards?: CardState;
   readonly map: GameMap;
   readonly rules: RuleSet;

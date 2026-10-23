@@ -138,7 +138,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   // T112 owner request: the three direct commands no longer live in this card.
   await expect(drawer(page).locator('#new-game-button,#game-help-button,#next-game-settings-button')).toHaveCount(0);
   await expect(drawer(page).getByLabel('Computer opponents',{exact:true})).toBeVisible();
-  await expect(drawer(page).getByLabel('Replenishment',{exact:true})).toBeVisible();
+  await expect(drawer(page).getByLabel('Starting armies',{exact:true})).toBeVisible();
   await expect(drawer(page).locator('#game-log-button')).toBeVisible();await expect(drawer(page).getByRole('button',{name:'Scoreboard',exact:true})).toBeVisible();
   await expect(drawer(page).locator('.score, .log-card, #panel-detail, .card-public-counts')).toHaveCount(0);
   await targets(page);await shots('menu',page);

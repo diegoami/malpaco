@@ -1,3 +1,4 @@
+import {centresVisible} from './eventMark';
 import type {GameState} from "../core";
 import {h, s} from "./dom";
 import {glyph} from "./icons";
@@ -53,7 +54,7 @@ export class CountryPicker {
 
   private facts(state: GameState, id: string) {
     const p = state.map.provinces.find(x => x.id === id)!, owner = state.ownerOf[id]!, seat = state.players.findIndex(x => x.id === owner);
-    return {p, seat, owner: state.players[seat]!, armies: state.armies[id]!, island: state.map.islands.find(i => i.id === p.island)!, centre: state.productionCentres.includes(id)};
+    return {p, seat, owner: state.players[seat]!, armies: state.armies[id]!, island: state.map.islands.find(i => i.id === p.island)!, centre: centresVisible(state)&&state.productionCentres.includes(id)};
   }
 
   /** One country as a named button that acts now, plus its Inspect icon. */
