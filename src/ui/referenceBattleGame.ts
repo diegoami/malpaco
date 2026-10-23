@@ -26,6 +26,8 @@ import {ProvinceAction} from "./provinceAction";
 import {seatName} from "./palette";
 import {ScoreboardDialog} from "./scoreboard";
 import type {GameOutcome} from "./scoreboard";
+import {connectNativeGame} from "./nativeGameHost";
+import type {NativeGameBinding} from "./nativeGameHost";
 
 /** Presentation preferences; the player's game keeps its speed and Pause in this browser (T100). */
 export type PanelDetail = "compact" | "detailed";
@@ -92,6 +94,7 @@ export class ReferenceBattleGame {
   private scoreboardPaused = false;
   private recorded = false;
   private readonly openedUnfinished: boolean;
+  private readonly nativeHost: NativeGameBinding | null;
   private readonly onKeyDown = (event: KeyboardEvent) => {
     if (event.key !== "Escape" || event.defaultPrevented || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
     if (this.chrome?.escape()) {event.preventDefault(); return;}
@@ -163,10 +166,19 @@ export class ReferenceBattleGame {
         `Victory: ${options.dominationWin ? "Domination" : "Total conquest"}${options.roundLimit ? ` · Round limit ${options.roundLimit}` : ""}`, `Map: ${presentation?.label ?? "Nine Isles"}`]});
     this.action = this.panel.el.querySelector<HTMLElement>(".action")!;
     this.action.append(this.battle.el, this.friendly.el, this.victory.el, this.cardControls.el, this.computerStatus);
-    this.playbackPause.onclick = () => {this.controller.setPlaybackPaused(!this.controller.playbackPaused); presentation?.player?.remember?.({paused: this.controller.playbackPaused});};
+    this.playbackPause.onclick = () => {
+      if (this.controller.playbackPaused && this.nativeHost && !this.nativeHost.acknowledgeResume()) return;
+      this.controller.setPlaybackPaused(!this.controller.playbackPaused, true);
+      presentation?.player?.remember?.({paused: this.controller.playbackPaused});
+    };
     this.playbackSpeed.onchange = () => {if (this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed)) presentation?.player?.remember?.({speed: this.controller.view.speed});};
     this.forward.onclick = () => {this.computer?.fastForward(); this.render();};
     this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation),undefined,presentation?.acceptsVersion1);
+    this.nativeHost = presentation?.player ? connectNativeGame(() => {
+      this.controller.pauseUntilExplicitResume();
+      presentation.player!.remember?.({paused:true});
+      this.persist(this.controller.state, true);
+    }, () => this.chrome?.escape() ?? false) : null;
   }
 
   focusMenu(): void {this.chrome?.focusMenuOpener();}
@@ -231,6 +243,7 @@ export class ReferenceBattleGame {
     this.cards.dispose();
     this.computer?.dispose();
     this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.hand?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
+    this.nativeHost?.dispose();
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
@@ -310,10 +323,10 @@ export class ReferenceBattleGame {
    * the turn passes, not after every action; the computers' actions are a pure function of the
    * game, so a reload in mid-turn replays that turn's actions again, the same ones.
    */
-  private persist(state: GameState): void {
+  private persist(state: GameState, force = false): void {
     const player = this.presentation?.player;
-    if (!player || this.givenUp || state.history.length === this.persisted) return;
-    if (this.computerActive() && state.currentPlayer === this.persistedSeat) return;
+    if (!player || this.givenUp || !force && state.history.length === this.persisted) return;
+    if (!force && this.computerActive() && state.currentPlayer === this.persistedSeat) return;
     this.persisted = state.history.length; this.persistedSeat = state.currentPlayer;
     let text: string | null = null;
     if (!state.result) try {text = serializeVersionedMatch(this.options, state.history, this.presentation!.identity);} catch {text = null;}
