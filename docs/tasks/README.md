@@ -175,3 +175,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | Task | Title | Priority | Difficulty | Issue | Merge after |
 | --- | --- | --- | --- | --- | --- |
 | [T91](T91.md) | Simplify development CI and document reusable adoption | High | Hard | #211 (consolidates #108/#118) | — |
+
+- [T117](T117.md): prominent text commands and contrasting region ATTACK button.
