@@ -46,9 +46,9 @@ test('storm integer boundaries retain positive stacks; harvest caps gain rather 
  const h=prepared();h.productionCentres.forEach((id,i)=>h.armies[id]=[1,20,2000][i]!);const owners={...h.ownerOf};const event=applyWorldEvent(h,'harvest',new Scripted());expect(event.changes.map(c=>c.armiesAfter)).toEqual([2,30,2010]);expect(h.ownerOf).toEqual(owners);
 });
 test('revolt picks a strong border country and a neighbouring other owner, with armies unchanged and no elimination',()=>{
- const s=prepared();for(const id in s.armies)s.armies[id]=1;const victim=s.players[0]!.id,chosen=s.map.provinces.find(p=>s.ownerOf[p.id]===victim&&[...p.borders,...p.seaLanes].some(id=>s.ownerOf[id]!==victim))!;s.armies[chosen.id]=4;
+ const s=prepared();for(const id in s.armies)s.armies[id]=1;const victim=s.players[0]!.id,chosen=s.map.provinces.find(p=>s.ownerOf[p.id]===victim&&[...p.borders,...p.seaLanes].some(id=>s.ownerOf[id]!==victim))!;s.armies[chosen.id]=4;s.productionCentres=[chosen.id,...s.map.provinces.filter(p=>p.id!==chosen.id).slice(0,2).map(p=>p.id)];const centres=[...s.productionCentres];
  const before={...s.armies},count=Object.values(s.ownerOf).filter(o=>o===victim).length,e=applyWorldEvent(s,'revolt',new Scripted([0,0,0]));
- expect(e.changes).toHaveLength(1);expect(e.changes[0]!.id).toBe(chosen.id);expect(s.ownerOf[chosen.id]).not.toBe(victim);expect([...chosen.borders,...chosen.seaLanes].some(id=>s.ownerOf[id]===s.ownerOf[chosen.id])).toBe(true);expect(s.armies).toEqual(before);expect(Object.values(s.ownerOf).filter(o=>o===victim)).toHaveLength(count-1);expect(count-1).toBeGreaterThanOrEqual(2);
+ expect(e.changes).toHaveLength(1);expect(e.changes[0]!.id).toBe(chosen.id);expect(s.ownerOf[chosen.id]).not.toBe(victim);expect([...chosen.borders,...chosen.seaLanes].some(id=>s.ownerOf[id]===s.ownerOf[chosen.id])).toBe(true);expect(s.armies).toEqual(before);expect(s.productionCentres).toEqual(centres);expect(e.changes[0]!.centreBefore).toBe(true);expect(e.changes[0]!.centreAfter).toBe(true);expect(Object.values(s.ownerOf).filter(o=>o===victim)).toHaveLength(count-1);expect(count-1).toBeGreaterThanOrEqual(2);
 });
 test('an ineligible revolt is a recorded no-effect event; relocation keeps three distinct sites and all armies/owners',()=>{
  const s=prepared();for(const id in s.ownerOf)s.ownerOf[id]='seat1';s.ownerOf[s.map.provinces[0]!.id]='seat2';const before=cloneState(s),rng=new Scripted();expect(applyWorldEvent(s,'revolt',rng).changes).toEqual([]);expect(rng.calls).toEqual([]);expect(s.ownerOf).toEqual(before.ownerOf);
@@ -69,4 +69,8 @@ test('guard boundaries and frequency denominators are exact; same-kind redraw oc
  for(const [frequency,denominator] of [['Rare',21],['Normal',14],['Often',8]] as const){const s=prepared();Object.assign(s,{rules:{...s.rules,events:{frequency}}});const rng=new Scripted([2]);processWorldEvents(s,2,rng);expect(rng.calls).toEqual([[1,denominator]]);}
  const s=prepared();s.events={sequence:1,cooldown:false,lastKind:'storm'};const rng=new Scripted([1,0,0]);processWorldEvents(s,3,rng);expect(rng.calls.slice(0,3)).toEqual([[1,8],[0,13],[0,13]]);expect(s.events?.latest?.kind).toBe('storm');expect(s.events?.cooldown).toBe(true);expect(s.log.at(-1)?.event).toBe('world_event');
  const allowed=prepared();Object.assign(allowed,{rules:{...allowed.rules,victoryOptions:{dominationWin:true,roundLimit:20}}});allowed.map.provinces.forEach((p,i)=>allowed.ownerOf[p.id]=i<30?'seat1':'seat2');const edge=new Scripted([2]);processWorldEvents(allowed,17,edge);expect(edge.calls).toHaveLength(1);
+});
+
+test('the first eligible boundary is labelled with the incoming round, never the protected first round',()=>{
+ const s=prepared();s.turnNumber=1;processWorldEvents(s,2,new Scripted([1,8]));expect(s.events?.latest?.kind).toBe('harvest');expect(s.events?.latest?.round).toBe(2);
 });
