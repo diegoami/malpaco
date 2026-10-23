@@ -5,7 +5,7 @@ import type {Page} from '@playwright/test';
 import {activePlayer,apply} from '../../../src/core';
 import type {Action,GameState} from '../../../src/core';
 import {deserializeVersionedMatch} from '../../../src/core/match-save';
-import {openSurface,withSurface} from '../shell';
+import {openSurface,withSurface,visitGame} from '../shell';
 
 export const country=(p:Page,id:string)=>p.locator(`[data-country="${id}"]`);
 export function next(s:GameState,action:Action):GameState{const r=apply(s,action);if(!r.ok)throw Error(`oracle refused ${JSON.stringify(action)}: ${r.error}`);return r.state;}
@@ -14,7 +14,7 @@ export function next(s:GameState,action:Action):GameState{const r=apply(s,action
 export async function begin(p:Page,path:string,size?:{width:number;height:number}){
  if(size)await p.setViewportSize(size);
  await p.clock.install({time:new Date('2026-10-21T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-21T12:00:00Z'));
- await p.goto(path);
+ await visitGame(p,path);
  await p.evaluate(()=>{const create=URL.createObjectURL.bind(URL);URL.createObjectURL=blob=>{Reflect.set(window,'savedBlob',blob);return create(blob);};});
 }
 /** Loads a match file from the page's file input: on setup it is on the page, in play it is in the menu card. */
