@@ -18,7 +18,7 @@ export interface MatchPresentation {
   */
  readonly player?:{readonly persist:(text:string|null)=>void;
   /** T100: the game opens paused when it was left paused; Pause and speed changes are remembered. */
-  readonly paused?:boolean;readonly remember?:(change:{paused?:boolean;speed?:BattleSpeed})=>void;
+  readonly paused?:boolean;readonly eventAck?:number;readonly eventMarksCleared?:number;readonly remember?:(change:{paused?:boolean;speed?:BattleSpeed;eventAck?:number;eventMarksCleared?:number})=>void;
   /** T100: a player game's end, recorded once on the scoreboard; `totals` is its result-card line. */
   readonly record?:(game:{result:GameOutcome;rounds:number;countries:number;seed:number})=>void;readonly totals?:()=>string};
  readonly createMap:(map:GameMap,handlers:MapHandlers)=>{readonly el:SVGSVGElement;readonly camera?:MapCamera;render(view:MapViewState):void};

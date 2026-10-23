@@ -26,6 +26,8 @@ import {ProvinceAction} from "./provinceAction";
 import {seatName} from "./palette";
 import {ScoreboardDialog} from "./scoreboard";
 import type {GameOutcome} from "./scoreboard";
+import {WorldEventController} from './eventController';
+import {WorldEventView} from './eventView';
 import {connectNativeGame} from "./nativeGameHost";
 import type {NativeGameBinding} from "./nativeGameHost";
 import {NextGameSettingsDialog} from "./nextGameSettings";
@@ -97,10 +99,13 @@ export class ReferenceBattleGame {
   private settingsPaused = false;
   private recorded = false;
   private readonly openedUnfinished: boolean;
+  private readonly worldEvents:WorldEventController|null;
+  private readonly worldView:WorldEventView|null;
   private readonly nativeHost: NativeGameBinding | null;
   private readonly onKeyDown = (event: KeyboardEvent) => {
     if (event.key !== "Escape" || event.defaultPrevented || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
     if (this.chrome?.escape()) {event.preventDefault(); return;}
+    if(this.worldEvents?.fold()){this.render();event.preventDefault();return;}
     if (this.controller.cancelFriendlyMove()) return;
     if (!this.controller.stop()) this.controller.select(null, null);
   };
@@ -138,6 +143,8 @@ export class ReferenceBattleGame {
     this.cards=new CardController(this.controller,human.length===1?human[0]!.id:'');
     this.cardControls=new CardView(this.cards,this.controller);
     if(presentation?.player){this.hand=new HandDialog(this.cards,()=>this.chrome?.close(false));document.body.append(this.hand.dialog);}
+    this.worldEvents=state.rules.events?new WorldEventController(this.controller,human.length===1?human[0]!.id:'',{ack:presentation?.player?.eventAck??0,cleared:presentation?.player?.eventMarksCleared??0},p=>presentation?.player?.remember?.({eventAck:p.ack,eventMarksCleared:p.cleared})):null;
+    this.worldView=this.worldEvents?new WorldEventView(this.worldEvents,()=>this.render()):null;this.worldEvents?.update();
     this.computer = automatic ? new ComputerTurnLoop(this.controller, { schedule: (cb, delay) => window.setTimeout(cb, delay), cancel: id => window.clearTimeout(id) }) : null;
     const threshold = preferences.threshold, speed = preferences.speed;
     this.controller.restorePreferences(threshold, speed);
@@ -185,7 +192,7 @@ export class ReferenceBattleGame {
       this.controller.pauseUntilExplicitResume();
       presentation.player!.remember?.({paused:true});
       this.persist(this.controller.state, true);
-    }, () => this.chrome?.escape() ?? false) : null;
+    }, () => {if(this.chrome?.escape())return true;if(this.worldEvents?.fold()){this.render();return true;}return false;}) : null;
   }
 
   focusMenu(): void {this.chrome?.focusMenuOpener();}
@@ -222,9 +229,10 @@ export class ReferenceBattleGame {
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
-      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onMenuOpen:()=>this.nextSettings?.refresh()}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onMenuOpen:()=>{this.nextSettings?.refresh();if(this.worldEvents?.fold())this.worldView?.render(this.controller.state);}}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
     // T104: your cards sit beside the menu icon.
     if (this.hand) this.chrome.hud.append(this.hand.button);
+    if(this.worldView)this.chrome.overlay.append(this.worldView.el);
     // The Countries icon always opens on the list.
     this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
     // The history is its own card over the map: the menu steps aside for it.
@@ -246,6 +254,7 @@ export class ReferenceBattleGame {
     this.disposed = true;
     this.chrome?.dispose();
     this.mapView.camera?.dispose();
+    this.worldEvents?.dispose();this.worldView?.dispose();
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
@@ -303,8 +312,8 @@ export class ReferenceBattleGame {
     const card=this.cards.view;
     const raidTargets=card.phase==='raid-target'?state.map.provinces.filter(p=>state.ownerOf[p.id]!==activePlayer(state)!.id).map(p=>p.id):null;
     // T101: a computer's actions show only counts and colours changing: no pair, outline or name.
-    if (this.computerActive()) this.mapView.render({ state: state.pendingCapture ? (({pendingCapture: _pending, ...rest}) => rest)(state) : state, selected: null, target: null, targets: [], hover: this.hover, flash: [] });
-    else this.mapView.render({ state, selected: from, target: card.selectedTarget??to, targets:raidTargets??targets, hover: this.hover, flash: [] });
+    if (this.computerActive()) this.mapView.render({ state: state.pendingCapture ? (({pendingCapture: _pending, ...rest}) => rest)(state) : state, selected: null, target: null, targets: [], hover: this.hover, flash: [],...(this.worldEvents?{eventMarks:this.worldEvents.view.marked}:{}) });
+    else this.mapView.render({ state, selected: from, target: card.selectedTarget??to, targets:raidTargets??targets, hover: this.hover, flash: [],...(this.worldEvents?{eventMarks:this.worldEvents.view.marked}:{}) });
     // What choosing from the Countries card does now; the list's Legal filter shows exactly these.
     const human = activePlayer(state), own = (id: string) => state.ownerOf[id] === human?.id;
     const placing = !blocked && state.phase === "reinforce" && human?.kind === "human";
@@ -361,7 +370,9 @@ export class ReferenceBattleGame {
     // A step the card update took (a Cards phase with no set passes) has already rendered the
     // newer state; finishing this render would put the older one back (the pool, the notice).
     if (this.controller.view !== seen && this.mounted) return;
+    const beforeWorld=this.controller.view;this.worldEvents?.update(this.controller.cardRewardAcknowledgmentPending);if(this.controller.view!==beforeWorld&&this.mounted)return;
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
+    const worldPending=this.worldEvents?.view.requiresAck??false;
     this.cardControls.render();
     this.hand?.update();
     this.eventLog.update(this.controller.state);
@@ -446,7 +457,7 @@ export class ReferenceBattleGame {
       for (const el of [this.action, this.cardControls.el, this.phaseActions].flatMap(node => [...node.querySelectorAll<HTMLButtonElement | HTMLInputElement>("button,input")])) el.disabled = true;
       this.action.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; New game remains available." : "Computer turn. Start a new game at any time."));
     }
-    const required = this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm the Raid" : "Raid · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
+    const required = worldPending?null:this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm the Raid" : "Raid · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
     const mover = activePlayer(state), result = state.result, winner = state.players.find(p => p.id === state.winner);
     const gamePaused = this.controller.playbackPaused;
     const phase = result ? state.phase === "human-loss" ? "Human seats eliminated" : "Game over" : this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase;
@@ -490,9 +501,9 @@ export class ReferenceBattleGame {
       const key = `raid:${state.history.length}`;
       if (key !== this.raidFolded) {this.raidFolded = key; if (this.chrome?.openSurface === "actions") this.chrome.close(false);}
     }
-    const prompt = computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
+    const prompt = worldPending || computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
     // A folded card keeps any pending choice one tap away; a computer seat's own pending choice is never yours (T84).
-    const choice = computer ? null : required ?? (staged ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
+    const choice = worldPending || computer ? null : required ?? (staged ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
     // Computer turns show no choice (owner, 2026-10-22). T101: while one plays, only the speed
     // controls stay on screen; the menu, camera and Countries icons return on your turn or a pause.
     const restore = computer && !result && this.chrome?.openSurface === "actions" && (document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
@@ -503,6 +514,8 @@ export class ReferenceBattleGame {
     if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
     if (restore) this.playbackPause.focus({preventScroll: true});
     this.placeCard();
+    if(worldPending){this.phaseActions.style.display='none';if(this.chrome?.openSurface==='actions')this.chrome.close(false);}
+    this.worldView?.render(state);
     this.computer?.update();
   }
 }

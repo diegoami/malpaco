@@ -1,3 +1,4 @@
+import {centresVisible,renderEventMark} from './eventMark';
 import type {GameMap,Point} from '../core';
 import type {IslandGeography} from '../core/island-geography';
 import type {Presentation} from './generatedGeographyPresentation';
@@ -51,10 +52,11 @@ export class GeographicMapView {
    n.classList.toggle('pending',!!state.pendingCapture&&(state.pendingCapture.from===id||state.pendingCapture.to===id));n.classList.toggle('neighbor',view.targets.includes(id));n.setAttribute('aria-pressed',String(view.selected===id));
    const description=`${state.map.provinces.find(p=>p.id===id)!.name}, ${seatName(state.players,state.ownerOf[id])}, ${state.armies[id]} armies`;
    n.setAttribute('aria-label',description);n.querySelector('title')!.textContent=description;
+   if(state.rules.events)renderEventMark(n,view.eventMarks?.includes(id)??false);
    (n.querySelector('.cell') as SVGElement).style.fill=look.color;
    const count=n.querySelector<SVGTextElement>('.count')!,badge=n.querySelector<SVGPathElement>('.badge')!;count.textContent=countLabel(state.armies[id]!);badge.setAttribute('d',look.badge);badge.style.stroke=look.color;
    badge.setAttribute('transform',`translate(${count.getAttribute('x')},${Number(count.getAttribute('y'))-5}) scale(${badgeScale(count.getComputedTextLength())})`);
-   (n.querySelector('.centre') as SVGElement).style.display=state.productionCentres.includes(id)?'':'none';
+   (n.querySelector('.centre') as SVGElement).style.display=centresVisible(state)&&state.productionCentres.includes(id)?'':'none';
   }
   this.names.select(view.selected);
   this.el.dataset['choosing']=String(view.selected!==null);
