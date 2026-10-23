@@ -26,8 +26,8 @@ identity; all earlier saves replay with their original deal, bonuses and RNG.
 | Balance implementation | [T102](../tasks/T102.md), #256 | Amend on main after selection; freeze positional criteria, bonus scope and replay identity before implementation |
 | Android prototype | [T106](../tasks/T106.md), #274 | Tauri 2, bundled offline debug APK, real WebView checks; independent of balance selection |
 | Next-game Settings | [T107](../tasks/T107.md), #278 | First expose 1–3 computers; map/rate selectors join when their core support is implemented; edits never alter the active match |
-| Larger maps | #280, split probe/core/integration contracts | Same grown-island style, more regions/islands, frozen preset sizes and new generator identity |
-| Replenishment | #281, contract after rate semantics | Selected 1/3/5/7 value saved with the match and replay; default 3; apply only to new games |
+| Larger maps | [T111](../tasks/T111.md), #280 | Same grown-island style, more regions/islands, frozen preset sizes and new generator identity |
+| Replenishment | [T110](../tasks/T110.md), #281 | Selected 1/3/5/7 value saved with the match and replay; default 3; apply only to new games |
 | Android lifecycle | [T108](../tasks/T108.md), #285, parent #279 | Native save/pause on background, explicit Resume; Back closes/folds or backgrounds |
 | Android durable data | #286, parent #279 | Atomic app-private snapshots, hydration before instant start, failure recovery and upgrade |
 | Android delivery | #282, split build/signing and publication | Signed APK download; Google Play later; owner-controlled signing, stable identity, upgrade test |
@@ -42,8 +42,8 @@ are available; record the actual matrix before claiming coverage.
 The combined balanced deal + halved island bonuses is selected for a playable
 candidate, preserving older identities. Current-map 46-region/divisor-3 measurements
 remain a baseline; larger-map and rate combinations require their own checks.
-Exact larger-map presets/island scaling and the meaning of rate 1/3/5/7 remain
-owner questions. All game options live in Settings and apply to the next game: no
+The owner selected prototypes at 46/72/96 regions with more islands, and region
+divisors 1/3/5/7 with minimum base 2 and separately added island bonuses. All game options live in Settings and apply to the next game: no
 launch-time questionnaire, automatic restart on edit or mutation of the current
 match. Defaults stay 46 regions, rate 3 and three computers until changed.
 
