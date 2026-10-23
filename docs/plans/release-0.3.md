@@ -28,7 +28,8 @@ identity; all earlier saves replay with their original deal, bonuses and RNG.
 | Next-game Settings | [T107](../tasks/T107.md), #278 | First expose 1–3 computers; map/rate selectors join when their core support is implemented; edits never alter the active match |
 | Larger maps | #280, split probe/core/integration contracts | Same grown-island style, more regions/islands, frozen preset sizes and new generator identity |
 | Replenishment | #281, contract after rate semantics | Selected 1/3/5/7 value saved with the match and replay; default 3; apply only to new games |
-| Android data and lifecycle | #279, split bounded contracts | Native save/pause on background, explicit Resume; Back closes/folds or backgrounds; durable restore and upgrade |
+| Android lifecycle | [T108](../tasks/T108.md), #285, parent #279 | Native save/pause on background, explicit Resume; Back closes/folds or backgrounds |
+| Android durable data | #286, parent #279 | Atomic app-private snapshots, hydration before instant start, failure recovery and upgrade |
 | Android delivery | #282, split build/signing and publication | Signed APK download; Google Play later; owner-controlled signing, stable identity, upgrade test |
 | Player fixes | Reproduce candidates below before scheduling | Existing public player flow; protect current intentional removals |
 | Candidate and publication | Separate bounded contracts after scope selection | Web and Android artifacts, green CI, manual milestone review, owner device judgment and publication go-ahead |
