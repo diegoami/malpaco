@@ -88,7 +88,7 @@ test('a game left paused opens paused after a reload, and a changed speed surviv
  await pause.click();await expect(pause).toHaveAttribute('aria-label','Resume game');
  const kept=await read(page,ROOT);
  await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
- await expect(pause).toHaveAttribute('aria-label','Resume game');await expect(page.locator('#active-seat-notice')).toContainText(/paused/i);
+ await expect(pause).toHaveAttribute('aria-label','Resume game');await expect(page.locator('#turn-guidance-title')).toHaveText('Paused');
  // Paused, nothing plays: the record stands still.
  await page.waitForTimeout(3000);expect(await read(page,ROOT)).toBe(kept);
  await page.locator('#open-game-menu').click();await expect(page.getByLabel('Game speed',{exact:true})).toHaveValue('fast');await page.keyboard.press('Escape');
