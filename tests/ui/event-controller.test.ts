@@ -54,3 +54,10 @@ test('history separates a friendly transfer from a harvest occurring in the same
  }
  throw Error('No legal transfer/harvest fixture');
 });
+
+import {CardController} from '../../src/ui/cardController';
+test('a pending world event visibly disables card plays without blocking a preceding card reward',()=>{
+ const {b}=fixture();b.state.currentPlayer=0;b.state.phase='cards';const hand=b.state.cards!.hands['seat1']!;
+ for(let n=0;n<3;n++){const index=b.state.cards!.drawPile.indexOf('Anchor');hand.push(b.state.cards!.drawPile.splice(index,1)[0]!);}
+ const cards=new CardController(b,'seat1');expect(cards.view.sets.length).toBeGreaterThan(0);const world=new WorldEventController(b,'seat1');world.update();expect(cards.view.blocked).toBe(true);expect(b.worldEventAcknowledgmentPending).toBe(true);expect(world.acknowledge(1)).toBe(true);expect(cards.view.blocked).toBe(false);
+});

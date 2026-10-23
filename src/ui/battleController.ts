@@ -66,6 +66,7 @@ export class BattleController {
   private worldEventPending=false;
   setWorldEventPending(value:boolean):void {if(this.disposed||value===this.worldEventPending)return;this.worldEventPending=value;this.cancel();this.publish({running:false,paused:false});}
   get cardRewardAcknowledgmentPending():boolean {return this.cardRewardPending;}
+  get worldEventAcknowledgmentPending():boolean {return this.worldEventPending;}
   setCardRewardPending(value:boolean):void {
     if(value===this.cardRewardPending||this.disposed)return;
     this.cardRewardPending=value;this.cancel();this.publish({running:false,paused:false});
