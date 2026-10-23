@@ -19,6 +19,7 @@ import type {MatchPresentation} from './matchPresentation';
 import {h} from './dom';
 import {addGame,browserScores,parseScoreboard,totalsLine} from './scoreboard';
 import type {BattleSpeed} from './battleController';
+import {nextGameOptions,readNextGameSettings} from './nextGameSettings';
 
 /** Stage selection is shared by creation and its save/presentation identity.
  * Card hands currently support a spectator or one human. Shared human hands
@@ -163,10 +164,9 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
     resuming=null;local.set(slot.game,null);
    }
   }
-  const own=epoch;
+  const own=epoch,nextSettings=readNextGameSettings();
   for(let attempt=0;attempt<5&&!closed&&epoch===own;attempt++){
-   const options:GameOptions={...defaultOptions(),seed:!fresh&&attempt===0&&/^\d+$/.test(params.get('seed')??'')?Number(params.get('seed'))>>>0:randomSeed(),
-    seats:[{kind:'human'},{kind:'computer'},{kind:'computer'},{kind:'computer'}],computerStrengths:['Normal','Normal','Normal'],dominationWin:true,roundLimit:null,names:'seed'};
+   const options=nextGameOptions(!fresh&&attempt===0&&/^\d+$/.test(params.get('seed')??'')?Number(params.get('seed'))>>>0:randomSeed(),nextSettings);
    const result=createMatch(options);if(!result.ok)continue;
    try{
     const prepared=await prepare(result.geography);if(!prepared?.isCurrent())return;const drawing=prepared.drawing;

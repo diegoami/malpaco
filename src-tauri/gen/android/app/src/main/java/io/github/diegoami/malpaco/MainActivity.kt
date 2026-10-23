@@ -10,14 +10,14 @@ class MainActivity : TauriActivity() {
   @Volatile private var active = true
   private var gameView: WebView? = null
   private var backPending = false
-  private val lifecycle by lazy { getSharedPreferences("malpaco_lifecycle", MODE_PRIVATE) }
+  private val lifecyclePreferences by lazy { getSharedPreferences("malpaco_lifecycle", MODE_PRIVATE) }
 
   /** A tiny app-private lifecycle bridge; game data is handled separately. */
   inner class GameLifecycle {
     @JavascriptInterface fun isActive(): Boolean = active
-    @JavascriptInterface fun requiresResume(): Boolean = lifecycle.getBoolean("resume_required", false)
+    @JavascriptInterface fun requiresResume(): Boolean = lifecyclePreferences.getBoolean("resume_required", false)
     @JavascriptInterface fun acknowledgeResume(): Boolean =
-      active && lifecycle.edit().putBoolean("resume_required", false).commit()
+      active && lifecyclePreferences.edit().putBoolean("resume_required", false).commit()
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +48,7 @@ class MainActivity : TauriActivity() {
   override fun onPause() {
     active = false
     // Keep the resume requirement even if the renderer is later recreated.
-    lifecycle.edit().putBoolean("resume_required", true).commit()
+    lifecyclePreferences.edit().putBoolean("resume_required", true).commit()
     gameView?.evaluateJavascript("window.dispatchEvent(new Event('malpaco:native-background'))", null)
     super.onPause()
   }

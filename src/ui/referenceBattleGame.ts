@@ -28,6 +28,7 @@ import {ScoreboardDialog} from "./scoreboard";
 import type {GameOutcome} from "./scoreboard";
 import {connectNativeGame} from "./nativeGameHost";
 import type {NativeGameBinding} from "./nativeGameHost";
+import {NextGameSettingsDialog} from "./nextGameSettings";
 
 /** Presentation preferences; the player's game keeps its speed and Pause in this browser (T100). */
 export type PanelDetail = "compact" | "detailed";
@@ -92,6 +93,8 @@ export class ReferenceBattleGame {
   /** T100: the menu's scoreboard (the player's game only); a game is recorded once, if it was unfinished when it opened. */
   private readonly scoreboard: ScoreboardDialog | null = null;
   private scoreboardPaused = false;
+  private readonly nextSettings: NextGameSettingsDialog | null = null;
+  private settingsPaused = false;
   private recorded = false;
   private readonly openedUnfinished: boolean;
   private readonly nativeHost: NativeGameBinding | null;
@@ -117,6 +120,10 @@ export class ReferenceBattleGame {
       this.scoreboard = new ScoreboardDialog(undefined, () => {this.chrome?.close(false); this.scoreboardPaused = !this.controller.playbackPaused; if (this.scoreboardPaused) this.controller.setPlaybackPaused(true);});
       this.scoreboard.dialog.addEventListener("close", () => {if (this.scoreboardPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.scoreboardPaused = false;});
       document.body.append(this.scoreboard.dialog);
+      this.nextSettings = new NextGameSettingsDialog(undefined,
+        () => {this.chrome?.close(false); this.settingsPaused = !this.controller.playbackPaused; if (this.settingsPaused) this.controller.setPlaybackPaused(true);},
+        () => {if (this.settingsPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.settingsPaused = false; this.chrome?.focusMenuOpener();});
+      document.body.append(this.nextSettings.dialog);
     }
     this.openedUnfinished = !state.result;
     this.help.dialog.addEventListener("close", () => {if (this.helpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.helpPaused = false;});
@@ -204,13 +211,13 @@ export class ReferenceBattleGame {
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
-    // T97 (owner, #244): the menu holds Help & icon names, New game and the scoreboard; totals, card
+    // T97/T107: the menu holds Help, next-game Settings, New game and the scoreboard; totals, card
     // counts, the battle log and panel detail are gone. T101: the speed choice moved to the corner
     // beside Pause, and the history icon shows only with `?log`.
     const newGame = this.panel.el.querySelector<HTMLButtonElement>("#new-game-button")!;
     // The seed stays as one quiet line, so a game can be named in a report.
     const settings = h("section", {class: "game-settings", "aria-label": "Game settings"}, h("p", {class: "game-identity"}, `Seed ${this.options.seed}`),
-      h("div", { class: "game-menu-actions" }, this.help.button, newGame, ...(this.showsLog ? [this.eventLog.button] : []), ...(this.scoreboard ? [this.scoreboard.button] : [])), ...(this.showsFiles ? [this.files.el] : []));
+      h("div", { class: "game-menu-actions" }, this.help.button, ...(this.nextSettings ? [this.nextSettings.button] : []), newGame, ...(this.showsLog ? [this.eventLog.button] : []), ...(this.scoreboard ? [this.scoreboard.button] : [])), ...(this.showsFiles ? [this.files.el] : []));
     const speed = h("div", {class: "game-speed-control"}, this.playbackSpeed);
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
@@ -242,7 +249,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.cards.dispose();
     this.computer?.dispose();
-    this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.hand?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose();
+    this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.hand?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose(); this.nextSettings?.dispose();
     this.nativeHost?.dispose();
     this.files.dispose();
     this.controller.dispose();

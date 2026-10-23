@@ -1830,3 +1830,9 @@ dialog h2 {
 .card-tile-bomb .card-tile-cross { stroke:#c0392b; stroke-width:3.5; }
 .card-tile-name { font-size:11px; font-weight:700; letter-spacing:.02em; }
 .card-tile-new { position:absolute; top:-8px; right:-6px; padding:0 5px; border-radius:8px; background:var(--accent); color:var(--accent-ink); font-size:10px; font-weight:800; line-height:16px; }
+
+/* T107: one compact, explicitly next-game setting; larger-map/rate fields follow their core slices. */
+.next-game-settings > p { margin: 12px 16px; }
+.next-game-settings .next-game-setting { margin: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.next-game-settings :is(button, select) { min-height: 44px; }
+.next-game-settings .next-game-setting select { min-width: 5rem; }
