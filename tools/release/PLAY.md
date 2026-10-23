@@ -103,3 +103,9 @@ The game fits phones and tablets in either orientation as well as desktops: it i
 320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. Real-device and
 screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md` (carried over to 0.2.1). Online multiplayer and
 cross-device save synchronization are not supported.
+
+The larger-map prototype adds **Map size** in Settings: 46, 72 or 96 regions.
+Larger sizes add more islands and currently use numbered names. The choice
+applies at the next New game; existing games keep their map. Use zoom for
+closer inspection on a phone. The larger presets await appearance/playtesting
+before release adoption.

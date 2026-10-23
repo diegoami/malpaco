@@ -35,7 +35,7 @@ function canonical(board:Drawing){
  }return{rings,pieces};
 }
 export function derivePresentation(input:AcceptedGeometry):Presentation {
- if((input.version!=='island-geography-v1'&&input.version!=='island-geography-v2')||!Number.isFinite(input.unitsPerPixel)||input.unitsPerPixel<=0||!input.provinces.length||!input.islands.length)throw Error('Unsupported or incomplete accepted geography');
+ if((input.version!=='island-geography-v1'&&input.version!=='island-geography-v2'&&input.version!=='island-geography-v3')||!Number.isFinite(input.unitsPerPixel)||input.unitsPerPixel<=0||!input.provinces.length||!input.islands.length)throw Error('Unsupported or incomplete accepted geography');
  const q=input.unitsPerPixel,point=(p:Point):MutablePoint=>[p[0]/q,p[1]/q];
  const board:Drawing={seed:input.seed,bounds:{x:input.bounds.x/q,y:input.bounds.y/q,width:input.bounds.width/q,height:input.bounds.height/q},provinces:input.provinces.map(p=>({...p,borders:[...p.borders],polygon:p.polygon.map(point),labelAt:point(p.labelAt)})),islands:input.islands.map(i=>({...i,provinces:[...i.provinces],polygon:i.polygon.map(point)})),routes:input.entranceReservations.map(r=>({...r,points:r.points.map(point)}))};
  const {strength,steps,spacing}=DRAWING_CONSTANTS,{rings,pieces}=canonical(board),labels=board.provinces.map(p=>[...p.labelAt] as MutablePoint);

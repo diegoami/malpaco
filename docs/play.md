@@ -130,3 +130,9 @@ candidates against the 0.2.1 core policy. Pass the command on one line. Each run
 a fresh output directory and writes raw deals/games, a summary and source/bundle
 hashes there. It does not change the playable game's rules or saved games. The
 protocol and interpretation limits are in [the 0.3 plan](plans/release-0.3.md) and #273.
+
+The larger-map prototype adds **Map size** in Settings: 46, 72 or 96 regions.
+Larger sizes add more islands and currently use numbered names. The choice
+applies at the next New game; existing games keep their map. Use zoom for
+closer inspection on a phone. The larger presets await appearance/playtesting
+before release adoption.

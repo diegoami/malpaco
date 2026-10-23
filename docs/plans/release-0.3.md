@@ -47,6 +47,32 @@ divisors 1/3/5/7 with minimum base 2 and separately added island bonuses. All ga
 launch-time questionnaire, automatic restart on edit or mutation of the current
 match. Defaults stay 46 regions, rate 3 and three computers until changed.
 
+## Larger-map prototype findings
+
+T111 keeps standard 46-region geographic/2 unchanged. The new geographic/3
+candidate provides 72 regions on a 1152×680 construction canvas with 11–15
+islands, or 96 on 1330×780 with 15–20 islands. The original lattice, country
+area, label spacing, sea clearance and bounded acceptance checks stay fixed.
+These are [designed] prototype profiles after inspecting T95's construction;
+the owner judges their appearance and pacing before adoption.
+
+The fixed seed corpus 0–49 at each size accepted all 150 complete games, with
+no exhausted generations or errors. It retained every rejected attempt (15,
+14 and 27 respectively); the largest attempt count was 4 of the unchanged
+40-attempt budget. Median complete creation times on this host were 100/178/276
+ms; maxima were 310/609/1026 ms. This is bounded corpus evidence, not a claim
+that all seeds succeed or that Android has the same runtime. `node
+tools/maps/run.mjs artifacts/FRESH-DIR 50` records the exact bundle, source
+commit/diff, all outcomes and timings.
+
+Settings version 3 migrates prior opponent/rate preferences to standard size.
+A new game snapshots its size, divisor and seats under the exact generator/rules
+identity. The larger-map prototype uses numbered names because existing themes
+lack enough island names; it does not silently repeat names or alter old name
+assignment. The preview retains the 14 px count minimum and phone zoom. Its
+readability and longer-game balance remain owner playtest decisions, independent
+of the held 46-region balance candidate #283.
+
 ## Balance investigation protocol
 
 T105 freezes seeds, options, candidate formulas and budgets on #273 before its

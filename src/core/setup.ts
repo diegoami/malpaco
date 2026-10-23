@@ -31,8 +31,9 @@ export function createGameWithRng(
   rng: DeterministicRng,
   boardBuilder: (rng: DeterministicRng) => BoardGenResult = generateBoardWithRng,
   rules: RuleSet = malpacoRules(),
+  variableBoardSize = false,
 ): CreateGameResult {
-  return createGameValidated(validateGameOptions(options), rules, rng, boardBuilder);
+  return createGameValidated(validateGameOptions(options), rules, rng, boardBuilder, variableBoardSize);
 }
 
 function createGameValidated(
@@ -40,6 +41,7 @@ function createGameValidated(
   rules: RuleSet,
   rng: DeterministicRng,
   boardBuilder: (rng: DeterministicRng) => BoardGenResult,
+  variableBoardSize = false,
 ): CreateGameResult {
   const board = boardBuilder(rng);
   if (!board.ok) return { ok: false, errors: [...board.errors] };
@@ -47,7 +49,7 @@ function createGameValidated(
   const players = makePlayers(validated);
   const firstSeat = rng.nextInt(0, players.length - 1);
   const order = Array.from({ length: players.length }, (_, i) => (firstSeat + i) % players.length);
-  const shares = countryShares(players, order, validated.humanShare);
+  const shares = countryShares(players, order, validated.humanShare, variableBoardSize?board.map.provinces.length:DEAL_COUNTRY_COUNT);
   const ids = rng.shuffled(board.map.provinces.map((province) => province.id));
   const ownerOf: Record<string, string> = {};
   let offset = 0;
@@ -107,10 +109,10 @@ function makePlayers(options: GameOptions): Player[] {
 }
 
 /** Calculate base shares and apply each human adjustment in rotated turn order. */
-export function countryShares(players: readonly Player[], order: readonly number[], humanShare: number): number[] {
-  const base = Math.floor(DEAL_COUNTRY_COUNT / players.length);
+export function countryShares(players: readonly Player[], order: readonly number[], humanShare: number, countryCount=DEAL_COUNTRY_COUNT): number[] {
+  const base = Math.floor(countryCount / players.length);
   const shares = players.map(() => base);
-  for (const seat of order.slice(players.length - (DEAL_COUNTRY_COUNT % players.length))) shares[seat]!++;
+  for (const seat of order.slice(players.length - (countryCount % players.length))) shares[seat]!++;
   const computers = order.filter((seat) => players[seat]!.kind === "computer");
   if (computers.length === 0 || computers.length === players.length || humanShare === 0) return shares;
   for (const human of order.filter((seat) => players[seat]!.kind === "human")) {

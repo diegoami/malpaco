@@ -36,7 +36,7 @@ export function deserializeMatch(text: string): { options: GameOptions; state: G
   const obj = value as Record<string, unknown>;
   if (obj.version !== MATCH_SAVE_VERSION) throw new SaveFormatError(`Unsupported match version; expected ${MATCH_SAVE_VERSION}.`, "version");
   if (Object.keys(obj).length !== 3 || !Array.isArray(obj.actions)) throw new SaveFormatError("Game file needs version, options and an actions array.");
-  if(record(obj.options)&&Object.hasOwn(obj.options,"reinforcementDivisor"))throw new SaveFormatError("Configurable income needs its versioned rules identity.","options");
+  if(record(obj.options)&&(Object.hasOwn(obj.options,"reinforcementDivisor")||Object.hasOwn(obj.options,"regionCount")))throw new SaveFormatError("Configurable income needs its versioned rules identity.","options");
   let options: GameOptions;
   try { options = validateGameOptions(obj.options); } catch (e) { throw new SaveFormatError(`Invalid game options: ${e instanceof Error ? e.message : String(e)}`, "options"); }
   const actions = obj.actions.map(actionFrom);
@@ -119,9 +119,11 @@ export const GEOGRAPHIC_V2_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGene
 export const GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:2}),rules:Object.freeze({id:'cards',version:3}),actionSchemaVersion:5});
 /** [designed] T110 exact tuple; ordinary raid actions keep schema 5. */
 export const GEOGRAPHIC_V2_CONFIGURABLE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:2}),rules:Object.freeze({id:'configurable-cards',version:1}),actionSchemaVersion:5});
+/** [designed] T111 scale prototype; exact larger-map replay is separate from geographic/2. */
+export const GEOGRAPHIC_V3_CONFIGURABLE_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:3}),rules:Object.freeze({id:'configurable-cards',version:1}),actionSchemaVersion:5});
 function supportedIdentity(value: Record<string, unknown>): MatchIdentity {
   if(record(value.rules)&&value.rules.id==='configurable-cards'){
-    const expected=GEOGRAPHIC_V2_CONFIGURABLE_CARD_MATCH_IDENTITY;
+    const expected=record(value.boardGenerator)&&value.boardGenerator.version===3?GEOGRAPHIC_V3_CONFIGURABLE_CARD_MATCH_IDENTITY:GEOGRAPHIC_V2_CONFIGURABLE_CARD_MATCH_IDENTITY;
     for(const field of ['boardGenerator','rules'] as const){
       const part=value[field],required=expected[field];
       if(!record(part)||Object.keys(part).length!==2||part.id!==required.id||part.version!==required.version)throw new SaveFormatError(`Unsupported ${field}; expected ${required.id}/${required.version}.`,field);
@@ -205,9 +207,11 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
     throw new SaveFormatError(`Invalid game options: ${error instanceof Error ? error.message : String(error)}`, "options");
   }
   if(identity.rules.id==='configurable-cards' ? options.reinforcementDivisor===undefined : options.reinforcementDivisor!==undefined)throw new SaveFormatError('Replenishment option does not match the rules identity.','options');
+  const larger=identity.boardGenerator.id==='geographic'&&identity.boardGenerator.version===3;
+  if(larger?(options.regionCount===undefined||options.names!=='numbered'):options.regionCount!==undefined)throw new SaveFormatError('Map size/names do not match the geography identity.','options');
   const actions = value.actions.map((action,index)=>versionedAction(action,index,identity.actionSchemaVersion));
   const rules=identity.rules.id==='configurable-cards'?configurableRaidCardsRules(options):identity.rules.id==='cards'?(identity.rules.version===3?raidCardsRules(options):identity.rules.version===2?tradeCardsRules(options):cardsRules(options)):victoryRules(options);
-  const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules,{},identity.boardGenerator.version===2?2:1):null;
+  const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules,{},identity.boardGenerator.version===3?3:identity.boardGenerator.version===2?2:1):null;
   const created=geographic??createReferenceGame(referenceMap,options,rules);
   if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
   let state = created.state;
