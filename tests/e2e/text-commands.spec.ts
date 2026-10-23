@@ -13,6 +13,9 @@ for(const [width,height] of [[320,640],[390,844],[844,390],[1280,800]])test(`${w
  await page.screenshot({path:`artifacts/T119/settings-${width}.png`});await page.keyboard.press('Escape');
  await page.clock.runFor(1400);expect(await page.evaluate(k=>localStorage.getItem(k),KEY)).not.toBeNull();
  await page.locator('#game-help-button').click();await expect(page.locator('dialog.game-help[open]')).toBeVisible();await expect(page.locator('button svg,button img')).toHaveCount(0);await page.keyboard.press('Escape');
+ await page.locator('#open-countries').click();await expect(page.locator('button svg,button img')).toHaveCount(0);
+ const list=await page.locator('#game-focus-drawer').evaluate(n=>({client:n.clientWidth,scroll:n.scrollWidth}));expect(list.scroll).toBeLessThanOrEqual(list.client+1);
+ await page.screenshot({path:`artifacts/T119/countries-${width}.png`});await page.keyboard.press('Escape');
  await page.screenshot({path:`artifacts/T119/commands-${width}.png`});
 });
 test('native background requires contextual Resume; Settings cannot release it',async({page})=>{
