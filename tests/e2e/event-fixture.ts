@@ -32,3 +32,13 @@ export function queuedEventFixture(){
  }
  throw Error('No legal card reward plus world event');
 }
+
+export function humanCaptureFixture(){
+ for(let seed=0;seed<12;seed++){
+  const options={...defaultOptions(),seed,islandRules:1 as const,eventFrequency:'Off' as const},made=createGeographicGame(options,islandRules(options),{},2);if(!made.ok)continue;let state=made.state;
+  for(let n=0;n<1000&&!state.result;n++){
+   if(state.pendingCapture&&state.players[state.currentPlayer]!.kind==='human')return {state,text:serializeVersionedMatch(options,state.history,GEOGRAPHIC_EVENT_MATCH_IDENTITY)};
+   const action=decideComputerAction(computerView(state));if(!action)break;const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;
+  }
+ }throw Error('No human capture fixture');
+}

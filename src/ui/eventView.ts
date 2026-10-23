@@ -13,7 +13,7 @@ export class WorldEventView {
   this.el.hidden=!event;if(!event||key===this.key)return;this.key=key;
   if(view.folded){const open=h('button',{id:'open-world-event',type:'button'},titles[event.kind]);open.onclick=()=>{this.controller.unfold();this.changed();};this.el.replaceChildren(open);this.el.dataset['folded']='true';if(view.requiresAck&&!document.querySelector('dialog[open]'))open.focus({preventScroll:true});return;}
   this.el.dataset['folded']='false';
-  const fold=h('button',{id:'fold-world-event',class:'card-icon',type:'button','aria-label':'Fold event',title:'Fold event'},glyph('fold'));fold.onclick=()=>{this.controller.fold();this.changed();};
+  const fold=h('button',{id:'fold-world-event',class:'card-icon',type:'button','aria-label':'Close event and continue',title:'Close and continue'},glyph('fold'));fold.onclick=()=>{if(this.controller.dismiss(event.sequence))this.changed();};
   const heading=h('h2',{id:'world-event-title','aria-live':'polite'},titles[event.kind]);
   const rows=h('ul',{class:'world-event-changes'});
   for(const change of event.changes){
@@ -23,7 +23,7 @@ export class WorldEventView {
   }
   const proceed=h('button',{id:'acknowledge-world-event',type:'button',class:'primary'},'Continue');proceed.hidden=!view.requiresAck;proceed.onclick=()=>{if(this.controller.acknowledge(event.sequence)){this.changed();document.querySelector<HTMLButtonElement>('#game-pause-button')?.focus({preventScroll:true});}};
   this.el.replaceChildren(h('header',{},heading,fold),h('p',{class:'world-event-context'},`Round ${event.round} · after ${seatName(state.players,event.afterSeat)}`),rows,...(!event.changes.length?[h('p',{},'No eligible country; no change.')]:[]),proceed);
-  if(view.requiresAck&&!document.querySelector('dialog[open]'))proceed.focus({preventScroll:true});
+  if(view.requiresAck&&!document.querySelector('dialog[open]'))fold.focus({preventScroll:true});
  }
  dispose():void {this.el.remove();}
 }

@@ -110,9 +110,9 @@ export class ReferenceBattleGame {
   private readonly worldView:WorldEventView|null;
   private readonly nativeHost: NativeGameBinding | null;
   private readonly onKeyDown = (event: KeyboardEvent) => {
-    if (event.key !== "Escape" || event.defaultPrevented || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
+    if (event.key !== "Escape" || event.defaultPrevented || event.composedPath().some(n=>n instanceof HTMLDialogElement) || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
     if (this.chrome?.escape()) {event.preventDefault(); return;}
-    if(this.worldEvents?.fold()){this.render();event.preventDefault();return;}
+    if(this.worldEvents?.dismiss()){this.render();event.preventDefault();return;}
     if (this.controller.cancelFriendlyMove()) return;
     if (!this.controller.stop()) this.controller.select(null, null);
   };
@@ -201,7 +201,7 @@ export class ReferenceBattleGame {
       this.controller.pauseUntilExplicitResume();
       presentation.player!.remember?.({paused:true});
       this.persist(this.controller.state, true);
-    }, () => {if(this.chrome?.escape())return true;if(this.worldEvents?.fold()){this.render();return true;}return false;}) : null;
+    }, () => {if(this.chrome?.escape())return true;if(this.worldEvents?.dismiss()){this.render();return true;}return false;}) : null;
   }
 
   focusMenu(): void {this.chrome?.focusMenuOpener();}
@@ -241,7 +241,7 @@ export class ReferenceBattleGame {
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
-      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onMenuOpen:()=>{this.settingsPaused=!this.controller.playbackPaused;if(this.settingsPaused){this.controller.setPlaybackPaused(true);this.presentation?.player?.remember?.({paused:true});}this.nextSettings?.refresh();if(this.worldEvents?.fold())this.worldView?.render(this.controller.state);},onMenuClose:()=>{const resume=this.settingsPaused;this.settingsPaused=false;if(resume&&!this.disposed){this.controller.setPlaybackPaused(false);this.presentation?.player?.remember?.({paused:this.controller.playbackPaused});}}}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onInformationClose:()=>{const view=this.cards.view;return view.phase==='reward'&&this.cards.acknowledge(view.revision);},onMenuOpen:()=>{this.settingsPaused=!this.controller.playbackPaused;if(this.settingsPaused){this.controller.setPlaybackPaused(true);this.presentation?.player?.remember?.({paused:true});}this.nextSettings?.refresh();if(this.worldEvents?.fold())this.worldView?.render(this.controller.state);},onMenuClose:()=>{const resume=this.settingsPaused;this.settingsPaused=false;if(resume&&!this.disposed){this.controller.setPlaybackPaused(false);this.presentation?.player?.remember?.({paused:this.controller.playbackPaused});}}}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
     // T104: your cards sit beside the menu icon.
     if (this.hand) this.chrome.hud.append(this.hand.button);
     if(this.worldView)this.chrome.overlay.append(this.worldView.el);
