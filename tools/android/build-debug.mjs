@@ -14,6 +14,8 @@ if(args.length){
 }
 const env={...process.env};
 env.ANDROID_HOME??=join(local,'sdk');
+// Hosted runners may carry a different deprecated SDK root; Gradle rejects that conflict.
+delete env.ANDROID_SDK_ROOT;
 env.NDK_HOME??=join(env.ANDROID_HOME,'ndk/29.0.14206865');
 if(!env.JAVA_HOME){
  const candidates=await readdir(join(local,'jdk'));
