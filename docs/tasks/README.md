@@ -177,3 +177,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T91](T91.md) | Simplify development CI and document reusable adoption | High | Hard | #211 (consolidates #108/#118) | — |
 
 - [T117](T117.md): prominent text commands and contrasting region ATTACK button.
+
+- [T118](T118.md): Vite development dependency security patch (#276).
