@@ -1,3 +1,4 @@
+import {visitGame} from './shell';
 import {expect,test} from '@playwright/test';
 import {defaultOptions} from '../../src/core/options';
 import {createGeographicGame} from '../../src/core/geographic-game';
@@ -6,7 +7,7 @@ import {computerAction} from '../../src/core/computer';
 import {apply} from '../../src/core/rules';
 import {serializeVersionedMatch,GEOGRAPHIC_EVENT_MATCH_IDENTITY} from '../../src/core/match-save';
 import type {Page} from '@playwright/test';
-async function begin(page:Page){await page.clock.install();await page.clock.pauseAt(new Date());await page.goto('/?seed=7');await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});}
+async function begin(page:Page){await page.clock.install();await page.clock.pauseAt(new Date());await visitGame(page,'/?seed=7');await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});}
 async function untilEffect(page:Page,kind:string){for(let n=0;n<400;n++){if(await page.locator('#geographic-map').getAttribute('data-computer-feedback')===kind)return;await page.clock.runFor(120);}throw Error('No '+kind+' effect');}
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes set here'));
 for(const [width,height] of [[390,844],[844,390],[1280,800]])test(`${width}: public colour tracker, placement tween, fighting feedback and Blue Your turn`,async({page})=>{
@@ -30,7 +31,7 @@ test('placement, attack and move instructions follow the human phase without for
   const id=s.map.provinces.find(p=>s.ownerOf[p.id]===s.players[s.currentPlayer]!.id&&[...p.borders,...p.seaLanes].some(id=>s.ownerOf[id]!==s.ownerOf[p.id]&&s.armies[p.id]!+s.reinforcementPool>s.armies[id]!))?.id;
   if(id){own=id;text=serializeVersionedMatch(o,s.history,GEOGRAPHIC_EVENT_MATCH_IDENTITY);}
  }
- if(!text)throw Error('No ordinary human placement fixture');await page.addInitScript(text=>{localStorage.setItem('malpaco:current-game',text);},text);await page.goto('/');await expect(page.locator('#turn-instruction')).toHaveText('Place armies',{timeout:60000});
+ if(!text)throw Error('No ordinary human placement fixture');await page.addInitScript(text=>{localStorage.setItem('malpaco:current-game',text);},text);await visitGame(page,'/');await expect(page.locator('#turn-instruction')).toHaveText('Place armies',{timeout:60000});
  const pool=Number(await page.locator('#placement-pool-count').textContent());for(let n=0;n<pool;n++)await page.locator(`[data-country="${own}"]`).press('Enter');await expect(page.locator('#turn-instruction')).toHaveText('Execute attacks');await page.locator('#start-friendly-move-button').click();await expect(page.locator('#turn-instruction')).toHaveText('Move armies');
 });
 test('reduced motion shows final values with static feedback and no animated movement layer',async({page})=>{

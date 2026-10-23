@@ -1,3 +1,4 @@
+import {visitGame,reloadGame} from './shell';
 import {expect,test} from '@playwright/test';
 import {eventFixture,queuedEventFixture} from './event-fixture';
 import {defaultOptions} from '../../src/core/options';
@@ -10,7 +11,7 @@ const read=(p:Page,k=KEY)=>p.evaluate(k=>localStorage.getItem(k),k);
 async function open(p:Page,text:string,ack=0){
  await p.clock.install();await p.clock.pauseAt(new Date());
  await p.addInitScript(([key,text,ack])=>{if(sessionStorage.getItem('world-once'))return;sessionStorage.setItem('world-once','1');localStorage.setItem(key!,text!);localStorage.setItem(key+'-meta',JSON.stringify({id:'world-fixture',paused:false,eventAck:Number(ack),eventMarksCleared:Number(ack)}));},[KEY,text,String(ack)]);
- await p.goto('/?log');await expect(p.locator('[data-country]')).toHaveCount(46,{timeout:60000});
+ await visitGame(p,'/?log');await expect(p.locator('[data-country]')).toHaveCount(46,{timeout:60000});
 }
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes set per test'));
 for(const width of [390,1280])for(const kind of ['storm','revolt','shift','harvest'] as const)test(`${kind}/${width}: exact event changes, fold, rotation/reload, acknowledgement and kept game`,async({page})=>{
@@ -22,9 +23,9 @@ for(const width of [390,1280])for(const kind of ['storm','revolt','shift','harve
  await page.screenshot({path:`artifacts/T43/${kind}-${width}.png`,animations:'disabled'});
  await page.locator('#fold-world-event').click();await expect(page.locator('#open-world-event')).toBeVisible();await expect(page.locator('#open-world-event')).toBeFocused();await page.clock.runFor(20000);expect(await read(page)).toBe(before);
  if(width===390){await page.locator('#open-game-menu').click();await page.locator('#game-log-button').click();await expect(page.locator('dialog.game-event-log')).toContainText(`World event: ${kind}`);await page.keyboard.press('Escape');}
- await page.setViewportSize({width:844,height:390});await page.reload();await expect(page.locator('#acknowledge-world-event')).toBeVisible({timeout:60000});expect(await read(page)).toBe(before);
+ await page.setViewportSize({width:844,height:390});await reloadGame(page);await expect(page.locator('#acknowledge-world-event')).toBeVisible({timeout:60000});expect(await read(page)).toBe(before);
  await page.locator('#acknowledge-world-event').click();await expect(card).toBeHidden();expect(await read(page)).toBe(before);expect(JSON.parse((await read(page,META))!).eventAck).toBe(e.sequence);
- await page.reload();await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});await expect(card).toBeHidden();expect(await read(page)).toBe(before);
+ await reloadGame(page);await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});await expect(card).toBeHidden();expect(await read(page)).toBe(before);
 });
 test('Off has no centre or event UI and saves the chosen fixed-income rules',async({page})=>{
  test.setTimeout(90000);const o={...defaultOptions(),seed:7,islandRules:1 as const,eventFrequency:'Off' as const},r=createGeographicGame(o,islandRules(o),{},2);if(!r.ok)throw Error(r.errors.join());

@@ -1,3 +1,4 @@
+import {visitGame} from './shell';
 // T101 (owner, 2026-10-22): computer turns are quick and quiet. While a computer plays, the only
 // controls on screen are Pause, Fast-forward and the speed choice (a corner control); the menu,
 // Fit, Focus and Countries come back on your turn or with a pause. Each computer's turn shows one
@@ -36,7 +37,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   test.setTimeout(150_000);await watchNotices(page);
   await page.clock.install({time:new Date('2026-10-22T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-22T12:00:00Z'));
   // Seed 7 opens on Orange's turn: the three computers play before you.
-  await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   expect(await computerActive(page)).toBe('true');
   await expect(page.locator('#game-speed')).toHaveValue('normal');
   let steps=0;
@@ -72,7 +73,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
  test('the computers show no pair, outline or name; only counts and colours change',async({page})=>{
   test.setTimeout(120_000);
   await page.clock.install({time:new Date('2026-10-22T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-22T12:00:00Z'));
-  await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   const marked=()=>page.locator('#geographic-map').evaluate(map=>map.querySelectorAll('[data-country].selected, [data-country].target, [data-country].pending, [data-country][data-selected="true"], [data-country][data-target="true"], .lane.active').length+map.querySelectorAll('.name-top:not([display="none"])').length);
   let changes=0,last='';
   for(let n=0;n<1200&&await computerActive(page)==='true';n++){
@@ -87,7 +88,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
 
 test('a round of three Normal computers on seed 7 is visibly paced and plays the same actions',async({page})=>{
  test.setTimeout(120_000);await page.setViewportSize({width:1280,height:800});
- await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
  const start=Date.now();expect(await computerActive(page)).toBe('true');
  await expect(page.locator('.panel')).toHaveAttribute('data-computer-active','false',{timeout:60_000});
  const elapsed=Date.now()-start;

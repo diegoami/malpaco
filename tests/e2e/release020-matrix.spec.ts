@@ -1,3 +1,4 @@
+import {visitGame} from './shell';
 // T89: the 0.2.0 acceptance matrix (docs/plans/release-0.2.0-acceptance.md), A1–A14, by real
 // clicks and keys on both supported hosts, with the engine as the independent action oracle:
 // every staged choice leaves the saved match exactly as before, and every command adds exactly
@@ -267,7 +268,7 @@ test('A14: the first Fit picks its turn from the bounds and shows every country;
 test('release: the legacy views are retired; their URLs open the main game',{tag:'@release-only'},async({page})=>{
  for(const view of ['generated-game','authored-game','game-setup','generated-prototype']){
   // T96: the main game starts at once, here on the given seed.
-  await page.goto(`/?view=${view}&seed=7`);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);await expect(page.locator('.game-identity')).toContainText('Seed 7');
+  await visitGame(page,`/?view=${view}&seed=7`);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);await expect(page.locator('.game-identity')).toContainText('Seed 7');
   for(const old of ['#generated-game','#generated-prototype','#game-setup'])await expect(page.locator(old)).toHaveCount(0);
  }
 });
