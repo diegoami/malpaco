@@ -160,6 +160,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T102](T102.md) | Balanced starts | High | Medium | #256 | 0.2.1 |
 | [T105](T105.md) | Compare deal and island-income balance candidates | High | Medium | #273 | T99 |
 | [T106](T106.md) | Tauri 2 Android offline prototype | High | Hard | #274 | T99 |
+| [T107](T107.md) | Next-game Settings and 1–3 computer opponents | High | Medium | #278 | T99 |
 
 ## Development infrastructure
 

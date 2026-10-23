@@ -8,7 +8,9 @@ Parent [#271](https://github.com/diegoami/malpaco/issues/271), owner decisions
 The owner requested 0.3 work on 2026-10-23 after publishing 0.2.1, then specified:
 Android only; investigate starting deals and island-bonus snowballing together;
 approve a Tauri 2 prototype and its build dependencies. The release also takes
-confirmed player-facing fixes. Events, new AI levels, hot-seat, sound, decorative
+confirmed player-facing fixes. The owner subsequently added larger generated maps,
+replenishment choices 1/3/5/7 and 1–3 computer opponents, all in Settings for the
+next game. Initial launch still starts play immediately. Events, new AI levels, hot-seat, sound, decorative
 map work and desktop packaging remain later work.
 
 Keep instant start, one human against three computers, minimal floating cards,
@@ -23,14 +25,26 @@ identity; all earlier saves replay with their original deal, bonuses and RNG.
 | Balance measurement | [T105](../tasks/T105.md), #273 | Fixed four-way comparison, then owner chooses production rules from evidence and play |
 | Balance implementation | [T102](../tasks/T102.md), #256 | Amend on main after selection; freeze positional criteria, bonus scope and replay identity before implementation |
 | Android prototype | [T106](../tasks/T106.md), #274 | Tauri 2, bundled offline debug APK, real WebView checks; independent of balance selection |
-| Android data and lifecycle | Split after prototype and #272 answers | Durable local data across restart/update, Back/background, rotation, safe areas, keyboard and accessibility |
-| Android delivery | Split after distribution/signing decision | Signed APK and/or store bundle; owner-controlled signing, stable app identity, upgrade test |
+| Next-game Settings | [T107](../tasks/T107.md), #278 | First expose 1–3 computers; map/rate selectors join when their core support is implemented; edits never alter the active match |
+| Larger maps | #280, split probe/core/integration contracts | Same grown-island style, more regions/islands, frozen preset sizes and new generator identity |
+| Replenishment | #281, contract after rate semantics | Selected 1/3/5/7 value saved with the match and replay; default 3; apply only to new games |
+| Android data and lifecycle | #279, split bounded contracts | Native save/pause on background, explicit Resume; Back closes/folds or backgrounds; durable restore and upgrade |
+| Android delivery | #282, split build/signing and publication | Signed APK download; Google Play later; owner-controlled signing, stable identity, upgrade test |
 | Player fixes | Reproduce candidates below before scheduling | Existing public player flow; protect current intentional removals |
 | Candidate and publication | Separate bounded contracts after scope selection | Web and Android artifacts, green CI, manual milestone review, owner device judgment and publication go-ahead |
 
-Android distribution, test devices and lifecycle/data defaults are gathered in
-#272. Prototype debug builds can proceed before release signing/store decisions.
-No actual bonus formula or new public game options are selected by this proposal.
+The owner selected signed APK downloads before Google Play, offline app-local data
+independent from browser data, save/pause on background with explicit Resume, and
+Back that dismisses/folds or backgrounds the map. Several physical Android devices
+are available; record the actual matrix before claiming coverage.
+
+The combined balanced deal + halved island bonuses is selected for a playable
+candidate, preserving older identities. Current-map 46-region/divisor-3 measurements
+remain a baseline; larger-map and rate combinations require their own checks.
+Exact larger-map presets/island scaling and the meaning of rate 1/3/5/7 remain
+owner questions. All game options live in Settings and apply to the next game: no
+launch-time questionnaire, automatic restart on edit or mutation of the current
+match. Defaults stay 46 regions, rate 3 and three computers until changed.
 
 ## Balance investigation protocol
 
@@ -45,7 +59,7 @@ rounds, starting concentration/share/army/exposure metrics and round-5 incomes.
 State exactly when incomes are sampled and how early finishes and elimination
 are counted. These are diagnostic self-play results, not a human-win-rate claim.
 
-T102 needs explicit reconciliation: its positional clause leaves the margin open;
+T102 contract reconciliation: its positional clause leaves the margin open;
 “within one army” conflicts with the old per-holding army formula when country
 shares differ. Its source-browser command also predates the current local/CI split.
 Choose exact constructive invariants and the selected bonus formula before
@@ -88,6 +102,16 @@ before using them; never resurrect obsolete controls through an old Done-when.
 | #214 | Historical cleanup/recovery audit stays separate; current repository uses one checkout and no worktrees |
 | #136 | Split historical runner/header findings from any remaining preference issue; current UI removed Fight on, so reproduce before scheduling |
 | #3 | Historical model-trial ledger, not a release feature |
+
+## Next-game Settings boundary
+
+Changing Settings persists preferences for a future game, not game state. Reload
+resumes the current match with its original options; only the existing explicit
+New game/give-up flow constructs the next match from preferences. Keep one human
+and offer 1, 2 or 3 computer opponents. Map and rate selectors expose implemented
+choices only. Never read mutable preferences from core income, AI or replay. Store
+selected values with every new match and include these preferences in native
+durability/upgrade tests.
 
 ## Acceptance
 
