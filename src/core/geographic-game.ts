@@ -3,7 +3,8 @@ import type {GeographicGenerator} from './geographic-board';
 import {DeterministicRng} from './rng';
 import {createGameWithRng} from './setup';
 import {validateGameOptions} from './options';
-import {victoryRules} from './state';
+import {victoryRules,balancedRaidCardsRules} from './state';
+import {balanceInitialState} from './balanced-setup';
 import type {GameOptions} from './options';
 import type {GameState,RuleSet,RngSnapshot} from './types';
 import type {IslandGeography,GeographyFailure} from './island-geography';
@@ -25,4 +26,14 @@ export function createGeographicGame(options:GameOptions,rules:RuleSet=victoryRu
   const metadata={attempts:board.attempts,failures:board.failures,rng:rng.snapshot()};
   if(!created.ok)return {...created,...metadata};
   return {...created,...metadata,geography:board.geography};
+}
+
+/** geographic/2 + balanced-cards/1 is the only replay tuple selecting this
+ * constructor. Existing geographic/1 and geographic/2 entry points stay frozen.
+ */
+export function createBalancedGeographicGame(options:GameOptions,generationOptions:{attempts?:number}={}):GeographicGameResult {
+ const created=createGeographicGame(options,balancedRaidCardsRules(options),generationOptions,2);
+ if(!created.ok)return created;
+ try{return {...created,state:balanceInitialState(created.state,options.startingArmiesRange)};}
+ catch(error){return {ok:false,errors:[error instanceof Error?error.message:String(error)],attempts:created.attempts,failures:created.failures,rng:created.rng};}
 }

@@ -8,7 +8,7 @@ import { apply } from "./rules";
 import type { Action, GameState } from "./types";
 import { referenceMap } from "./reference-map";
 import { createReferenceGame } from "./reference-game";
-import { createGeographicGame } from "./geographic-game";
+import { createGeographicGame, createBalancedGeographicGame } from "./geographic-game";
 import type {IslandGeography} from "./island-geography";
 import { cardsRules, tradeCardsRules, raidCardsRules, victoryRules } from "./state";
 
@@ -116,7 +116,20 @@ export const GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({bo
 /** [designed] T95: the grown-island generator (geographic/2) with the two stages new games use. */
 export const GEOGRAPHIC_V2_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:2}),rules:Object.freeze({id:'victory',version:1}),actionSchemaVersion:2});
 export const GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:2}),rules:Object.freeze({id:'cards',version:3}),actionSchemaVersion:5});
+/** [designed] T102: a new exact tuple, preserving all geographic/2 cards/3
+ * saves. Schema 5 is unchanged because the ordinary actions are unchanged.
+ */
+export const GEOGRAPHIC_V2_BALANCED_CARD_MATCH_IDENTITY:MatchIdentity=Object.freeze({boardGenerator:Object.freeze({id:'geographic',version:2}),rules:Object.freeze({id:'balanced-cards',version:1}),actionSchemaVersion:5});
 function supportedIdentity(value: Record<string, unknown>): MatchIdentity {
+  if(record(value.rules)&&value.rules.id==='balanced-cards'){
+    const expected=GEOGRAPHIC_V2_BALANCED_CARD_MATCH_IDENTITY;
+    for(const field of ['boardGenerator','rules'] as const){
+      const part=value[field],required=expected[field];
+      if(!record(part)||Object.keys(part).length!==2||part.id!==required.id||part.version!==required.version)throw new SaveFormatError(`Unsupported ${field}; expected ${required.id}/${required.version}.`,field);
+    }
+    if(value.actionSchemaVersion!==expected.actionSchemaVersion)throw new SaveFormatError('Unsupported action schema version; expected 5.','actionSchemaVersion');
+    return expected;
+  }
   const generator = value.boardGenerator;
   const cardStage=record(value.rules)&&value.rules.id==='cards';
   const raidStage=cardStage&&record(value.rules)&&value.rules.version===3;
@@ -194,7 +207,7 @@ export function deserializeVersionedMatch(text: string): LoadedVersionedMatch {
   }
   const actions = value.actions.map((action,index)=>versionedAction(action,index,identity.actionSchemaVersion));
   const rules=identity.rules.id==='cards'?(identity.rules.version===3?raidCardsRules(options):identity.rules.version===2?tradeCardsRules(options):cardsRules(options)):victoryRules(options);
-  const geographic=identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules,{},identity.boardGenerator.version===2?2:1):null;
+  const geographic=identity.rules.id==='balanced-cards'?createBalancedGeographicGame(options):identity.boardGenerator.id==='geographic'?createGeographicGame(options,rules,{},identity.boardGenerator.version===2?2:1):null;
   const created=geographic??createReferenceGame(referenceMap,options,rules);
   if (!created.ok) throw new SaveFormatError(`Cannot generate this saved game: ${created.errors.join("; ")}.`, "boardGenerator");
   let state = created.state;

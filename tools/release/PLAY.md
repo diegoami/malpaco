@@ -5,6 +5,13 @@ Run `node serve.mjs` from this folder, then open <http://127.0.0.1:4175> in a br
 New games grow their own geography: 7–10 irregular islands sharing 46 territories, different for every seed. Saved games keep the generator they were made with.
 The seed fixes the geography, deal and dice sequence.
 
+New ordinary games use balanced starts: country shares differ by at most one,
+initial army totals differ by at most one, and every seat is spread across the
+island graph. Island income is half the earlier island bonus, rounded down with
+a minimum of one. Existing kept games retain their original deal and bonuses;
+New game is how to start with the new balance. Card values remain 5, 8 and 15.
+The hidden setup, reference board and generator-1 routes retain their old rules.
+
 Opening the page starts a game at once: you against three Normal computers on a random seed, with
 Domination on and no round limit. Islands and territories take real island and town names from one
 region (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific), chosen by
