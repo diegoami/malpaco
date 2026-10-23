@@ -1,3 +1,4 @@
+import {processWorldEvents} from './events';
 import { raidStackAfter } from './raid';
 import { classifyCardSet, drawReward, HAND_LIMIT } from './cards';
 import { attackTargets, resolve, whyNot } from "./combat";
@@ -190,7 +191,7 @@ function discardCard(state:GameState,index:number):ApplyResult {
 function finalizeTurn(state: GameState): ApplyResult {
   state.log.push({ event: "turn_ended", player: activePlayer(state)!.id, turn: state.turnNumber });
   const handoff = nextLivingTurn(state);
-  if (!resolveTurnVictory(state, handoff.completedRound)) beginNextTurn(state, handoff);
+  if (!resolveTurnVictory(state, handoff.completedRound)) {processWorldEvents(state,state.turnNumber+Number(handoff.completedRound));beginNextTurn(state, handoff);}
   return { ok: true, state, outcome: null };
 }
 

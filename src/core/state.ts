@@ -3,7 +3,7 @@ import { DeterministicRng } from "./rng";
 import { reinforcementIncome } from "./reinforcement";
 import type { GameMap, GameState, Player, RuleSet } from "./types";
 import type { GameOptions } from "./options";
-import { defaultOptions, parseReinforcementDivisor } from "./options";
+import { defaultOptions, validateGameOptions, parseReinforcementDivisor } from "./options";
 
 /** The generated-game combat preset, per C-CMB-01..11 and C-OWN-01. */
 export function malpacoRules(): RuleSet {
@@ -98,6 +98,7 @@ export function livingPlayers(state: GameState): Player[] {
 export function cloneState(state: GameState): GameState {
   return {
     ...(state.cards ? {cards:{drawPile:[...state.cards.drawPile],discardPile:[...state.cards.discardPile],hands:Object.fromEntries(Object.entries(state.cards.hands).map(([p,h])=>[p,[...h]])),...(state.cards.pendingDiscard?{pendingDiscard:{...state.cards.pendingDiscard}}:{}),...(state.cards.pendingRaid?{pendingRaid:{...state.cards.pendingRaid}}:{})}} : {}),
+    ...(state.events?{events:{...state.events,...(state.events.latest?{latest:{...state.events.latest,changes:state.events.latest.changes.map(c=>({...c})),centresBefore:[...state.events.latest.centresBefore],centresAfter:[...state.events.latest.centresAfter]}}:{})}}:{}),
     map: state.map,
     rules: state.rules,
     players: state.players.map((p) => ({ ...p })),
@@ -268,4 +269,10 @@ export function raidCardsRules(options:Pick<GameOptions,'dominationWin'|'roundLi
 /** [designed] T110 owner-selected configuration. Old raid factories remain frozen. */
 export function configurableRaidCardsRules(options:GameOptions):RuleSet {
  return {...raidCardsRules(options),id:'configurable-raid-v1',reinforcementDivisor:parseReinforcementDivisor(options.reinforcementDivisor??3)};
+}
+
+/** [designed] T42/T114 opt-in; V7–V12 events and owner-selected equal army budgets. */
+export function islandRules(options:GameOptions):RuleSet {
+ const o=validateGameOptions(options);if(o.islandRules!==1||o.reinforcementDivisor!==undefined||o.humanShare!==0)throw Error('Island rules require explicit opt-in, fixed income and neutral shares.');
+ return {...raidCardsRules(o),id:'island-rules-v1',startingArmyBudget:'equal-v1',events:Object.freeze({frequency:o.eventFrequency})};
 }
