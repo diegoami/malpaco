@@ -30,7 +30,10 @@ the seed; names never change the map or play. The game is kept in this browser a
 actions and each computer's turn (a refresh in the middle of a computer's turn replays that turn,
 the same moves), so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
 still open, at the game speed you chose, and paused if you left it paused. Nothing leaves this
-browser: there is no account, server or sync between devices. **New game** in the menu asks "Give up this game?", shows
+browser: there is no account, server or sync between devices. **Settings** in the menu
+chooses 1, 2 or 3 computer opponents for your next game (3 by default). Changing
+this setting keeps your current game exactly as it is; a refresh still resumes it.
+The setting takes effect only when you choose **New game**. **New game** in the menu asks "Give up this game?", shows
 where the seats stood, then starts a new random game; after a result it starts at once.
 Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
 same address (it never replaces the kept game),
@@ -81,7 +84,7 @@ the computer seats without waiting until your turn (the moves are the same). Whi
 plays they are the only controls on screen; the menu, **Fit** and **Countries** come back on your
 turn, or as soon as you pause.
 
-The map fills the screen and only corner icons rest on it: the menu top-left (**Help & icon names**,
+The map fills the screen and only corner icons rest on it: the menu top-left (**Help & icon names**, **Settings**,
 **New game** and the trophy for the **Scoreboard**), the speed controls top-right, **Fit** and **Countries**
 bottom-left, and bottom-right the legal phase action: **Start combat**, **Move armies** or the flag
 for **End turn**, which also skips a move. While you place armies, the pool shows as an icon and a

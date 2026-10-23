@@ -8,7 +8,17 @@ import { deserializeVersionedMatch, serializeVersionedMatch, REFERENCE_MATCH_IDE
 import { pinned } from "../core/versioned-match-fixture";
 import {withSurface} from './shell';
 async function save(page:Page){const p=page.waitForEvent("download");await withSurface(page,'settings',()=>page.getByRole("button",{name:"Save game",exact:true}).click());return readFileSync((await (await p).path())!,"utf8");}
-async function load(page:Page,text:string){await page.getByLabel("Load game",{exact:true}).setInputFiles({name:"resume.json",mimeType:"application/json",buffer:Buffer.from(text)});await expect(page.locator("[data-country]")).toHaveCount(46);}
+async function load(page:Page,text:string){
+ // The previous board also has 46 countries. Wait for the old input/host to be
+ // retired before using the replacement host's playback controls or menu.
+ const input=page.getByLabel("Load game",{exact:true}),previous=await input.elementHandle();
+ if(!previous)throw Error("Missing load input");
+ try{
+  await input.setInputFiles({name:"resume.json",mimeType:"application/json",buffer:Buffer.from(text)});
+  await page.waitForFunction(element=>!element.isConnected,previous);
+  await expect(page.locator("[data-country]")).toHaveCount(46);
+ }finally{await previous.dispose();}
+}
 async function begin(page:Page){await page.clock.install();await page.clock.pauseAt(new Date());await page.goto("/?view=reference-game");}
 async function capture(page:Page,name:string,project:string){const dir=process.env["COMPUTER_FLOW_EVIDENCE_DIR"]??"screenshots";mkdirSync(dir,{recursive:true});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);const boxes=await page.locator("#active-seat-notice,#reference-computer-status,#confirm-capture-button,#reference-save-game").evaluateAll(nodes=>nodes.filter(n=>n.getClientRects().length).map(n=>{const r=n.getBoundingClientRect();return {id:n.id,font:parseFloat(getComputedStyle(n).fontSize),fits:r.left>=0&&r.top>=0&&r.right<=innerWidth+1&&r.bottom<=innerHeight+1};}));expect(boxes.filter(b=>!b.fits||b.font<12)).toEqual([]);await page.screenshot({path:join(mkdtempSync(join(dir,"flow-")),`${name}-${project}.png`)});}
 function computerCapture(){const f=pinned("human-loss");let s=deserializeVersionedMatch(serializeVersionedMatch(f.options,[],REFERENCE_MATCH_IDENTITY)).state;for(const a of f.actions){const r=apply(s,a);if(!r.ok)throw Error(r.error);s=r.state;if(s.phase==="capture"&&activePlayer(s)!.kind==="computer")return serializeVersionedMatch(f.options,s.history,REFERENCE_MATCH_IDENTITY);}throw Error("No computer capture");}
