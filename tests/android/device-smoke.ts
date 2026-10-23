@@ -128,7 +128,11 @@ try {
    case 'endReinforcement':await page.locator('#start-combat-button').click();break;
    case 'attack':{
     await page.locator(`[data-country="${action.from}"]`).click();
+    await expect(page.locator(`[data-country="${action.from}"]`)).toHaveAttribute('data-selected','true');
+    await expect(page.locator('#geographic-map .country.target')).toHaveCount(0);
     await page.locator('#province-action-button').click();
+    await expect(page.locator('#province-action-button')).toHaveAttribute('aria-pressed','true');
+    expect((await kept(page)).history).toEqual(state.history);
     await page.locator(`[data-country="${action.to}"]`).click();
     const expected=apply(state,action);if(!expected.ok)throw Error(expected.error);
     await expect.poll(async()=>JSON.stringify((await kept(page)).history)).toBe(JSON.stringify(expected.state.history));
