@@ -58,11 +58,9 @@ test('bonus transform halves each original value with a minimum of one and keeps
   expect(reduced.ownerOf).toEqual(state.ownerOf);expect(reduced.armies).toEqual(state.armies);
   expect(candidate(state,'both').map.islands).toEqual(reduced.map.islands);
 });
-test('constructive deal covers islands within caps and equalizes army totals on varied seeds', () => {
-  let oldViolation=false;
-  for(let seed=0;seed<20;seed++) {
+test.each(Array.from({length:20},(_,seed)=>seed))('constructive deal obeys caps and equal army totals: seed %i', (seed) => {
     const state=initial(seed), old=dealMetrics(state), deal=candidate(state,'deal'), metrics=dealMetrics(deal);
-    oldViolation ||= old.some(p=>p.capViolations.length>0);
+    expect(old.some(p=>p.capViolations.length>0)).toBe(true);
     expect(metrics.map(p=>p.countries)).toEqual(old.map(p=>p.countries));
     expect(spread(metrics.map(p=>p.countries))).toBeLessThanOrEqual(1);
     expect(spread(metrics.map(p=>p.armies))).toBeLessThanOrEqual(1);
@@ -71,8 +69,6 @@ test('constructive deal covers islands within caps and equalizes army totals on 
     expect(Object.values(deal.armies).every(a=>Number.isInteger(a)&&a>=1&&a<=3)).toBe(true);
     expect(Object.values(deal.armies).reduce((a,b)=>a+b,0)).toBe(Object.values(state.armies).reduce((a,b)=>a+b,0));
     expect(deal.map).toEqual(state.map);
-  }
-  expect(oldViolation).toBe(true);
 });
 test('eliminated seats contribute zero income rather than the theoretical base minimum', () => {
   const state=initial(0);state.players[0]!.eliminated=true;
