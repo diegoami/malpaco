@@ -109,3 +109,6 @@ Larger sizes add more islands and currently use numbered names. The choice
 applies at the next New game; existing games keep their map. Use zoom for
 closer inspection on a phone. The larger presets await appearance/playtesting
 before release adoption.
+Use the three top-left buttons directly: **New game**, **Settings**, **Help**.
+Settings opens the next-game choices, seed and scoreboard in one card; Help
+opens the instructions. New game asks before giving up an unfinished game.

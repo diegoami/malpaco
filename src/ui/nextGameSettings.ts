@@ -75,5 +75,12 @@ export class NextGameSettingsDialog {
   this.size.onchange=()=>{const before=readNextGameSettings(this.store);if(saveMapSizeSettings(Number(this.size.value),this.store))this.error.textContent='';else{this.size.value=String(before.mapSize);this.error.textContent='Could not keep these settings on this device. Your current game is unchanged.';}};
   this.dialog.addEventListener('close',()=>onClose?.());
  }
+ /** Player Settings shares the ordinary floating card, without a second dialog. */
+ inlineContent():HTMLElement {
+  const content=h('div',{class:'next-game-settings'});
+  for(const node of [...this.dialog.children])if(node.tagName!=='HEADER')content.append(node);
+  this.refresh();return content;
+ }
+ refresh():void {const settings=readNextGameSettings(this.store);this.opponents.value=String(settings.computerOpponents);this.rate.value=String(settings.reinforcementDivisor);this.size.value=String(settings.mapSize);this.error.textContent='';}
  dispose():void {this.dialog.remove();}
 }

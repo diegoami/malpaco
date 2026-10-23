@@ -109,12 +109,12 @@ export class BattleChrome {
   private requiredText: string | null = null;
   private corner: Corner = "end";
 
-  constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement}) {
+  constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void}) {
     for (const [button, surface] of [[this.menu, "menu"], [this.countries, "countries"]] as const) {
       button.setAttribute("aria-controls", this.drawer.id);
       button.setAttribute("aria-haspopup", "dialog");
       button.setAttribute("aria-expanded", "false");
-      button.onclick = () => this.open(surface, button);
+      button.onclick = () => {if(surface==='menu')this.nodes.onMenuOpen?.();this.open(surface, button);};
     }
     // The required choice is never toggled away: when its card is open, the icon moves focus into it.
     this.required.onclick = () => {
@@ -128,7 +128,13 @@ export class BattleChrome {
     this.drawer.addEventListener("pointerdown", this.onCardDown);
     this.drawer.dataset["corner"] = this.corner;
     this.folded.append(this.foldedText, this.required);
-    this.hud.append(this.menu);
+    if(nodes.primaryActions){
+      this.hud.classList.add('game-primary-buttons');
+      this.menu.replaceChildren('Settings');this.menu.setAttribute('aria-label','Settings for the next game');this.menu.title='Settings';
+      const {newGame,help}=nodes.primaryActions;help.textContent='Help';help.setAttribute('aria-label','Help');
+      for(const button of [newGame,this.menu,help])button.classList.add('primary-command');
+      this.hud.append(newGame,this.menu,help);this.overlay.dataset['primaryCommands']='true';
+    }else this.hud.append(this.menu);
     // Countries is a way to find a country, so it rests with the camera's Fit and Focus.
     if (nodes.countries) (nodes.camera ?? this.hud).append(this.countries);
     // On the result card the top-right corner returns to the map, as in the sketches.
@@ -174,7 +180,7 @@ export class BattleChrome {
   /** The result card's History and Files icons open the menu card. */
   /** After a match replaces another, focus returns to a visible control, not the page (#195). */
   focusMenuOpener(): void {this.menu.focus({preventScroll: true});}
-  openMenu(): void {if (this.surface !== "menu") this.open("menu", this.menu);}
+  openMenu(): void {if (this.surface !== "menu") {this.nodes.onMenuOpen?.();this.open("menu", this.menu);}}
 
   /**
    * Only the corner icons (and the pool between them) frame the map (T97): cards, the
@@ -205,7 +211,10 @@ export class BattleChrome {
     const speed = this.nodes.speed;
     if (!speed) return;
     speed.hidden = this.drawer.dataset["placement"] === "center" && !this.drawer.hidden;
-    if (speed.hidden || this.pool.hidden) return;
+    if(speed.hidden)return;
+    delete this.top.dataset['stackSpeed'];
+    if(this.nodes.primaryActions&&getComputedStyle(this.hud).visibility!=='hidden'){const a=speed.getBoundingClientRect(),b=this.hud.getBoundingClientRect();if(a.left<b.right+8&&b.left<a.right&&a.top<b.bottom&&b.top<a.bottom)this.top.dataset['stackSpeed']='true';}
+    if(this.pool.hidden)return;
     const a = speed.getBoundingClientRect(), b = this.pool.getBoundingClientRect();
     speed.hidden = a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
   }
@@ -335,7 +344,7 @@ export class BattleChrome {
     this.close(false);
     this.surface = surface; this.opener = opener; this.collapsed = false;
     this.drawer.dataset["surface"] = surface;
-    this.title.textContent = TITLES[surface];
+    this.title.textContent = surface==='menu'&&this.nodes.primaryActions?'Settings':TITLES[surface];
     const nodes = {actions: [this.nodes.action], menu: [this.nodes.settings], countries: this.nodes.countries ? [this.nodes.countries] : []}[surface];
     for (const node of nodes) {
       const marker = document.createComment("focused panel home"); node.before(marker);
