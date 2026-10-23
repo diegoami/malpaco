@@ -56,6 +56,7 @@ try {
    const made=createGeographicGame(o,raidCardsRules(o),{},2);if(made.ok&&activePlayer(made.state)?.kind==='computer'){selected=seed;break;}
   }
   if(!selected)throw Error('No fresh computer-first diagnostic seed');
+  metadata.observations.computerDiagnosticSeed=selected;
   await page.goto(origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   await page.locator('#game-speed').selectOption('very-slow');
   if(await page.locator('#game-pause-button').getAttribute('aria-label')==='Resume game')await page.locator('#game-pause-button').click();
@@ -73,6 +74,14 @@ try {
   adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
   await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
   await wait(600);expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
+  await device?.close();device=undefined;adb(['shell','am','force-stop',app]);adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
+  connection=await attach();page=connection.page;watch(page);
+  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+  await page.goto(origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
+  expect(await page.evaluate(()=>Reflect.get(window,'MalpacoHost').requiresResume())).toBe(true);
+  expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
+  check('native resume requirement and paused computer replay survive process restart');
   writeFileSync(join(config.out,'background-computer.json'),saved);screen('computer-paused-after-return');
   check('real Android Home force-keeps a partial computer turn; return stays paused');
   await page.locator('#game-speed').selectOption('fast');await page.locator('#game-pause-button').click();
@@ -153,7 +162,7 @@ try {
  await expect.poll(()=>page.evaluate(()=>innerWidth>innerHeight),{timeout:15000}).toBe(true);
  expect(await snapshot(page)).toBe(pending);await expect(page.locator('#confirm-capture-button')).toBeVisible();
  check('rotation retains the exact pending capture');screen('capture-landscape');
- adb(['shell','am','force-stop',app]);
+ await device?.close();device=undefined;adb(['shell','am','force-stop',app]);
  adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
  connection=await attach();page=connection.page;watch(page);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
@@ -171,7 +180,9 @@ try {
  metadata.observations.back={urlBefore:backUrlBefore,urlAfter:page.isClosed()?null:page.url(),menuStillVisible:page.isClosed()?null:await page.locator('#game-focus-drawer').isVisible()};
  adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
  if(page.isClosed()){connection=await attach();page=connection.page;watch(page);}
- await page.goto(restartedOrigin+'/?seed='+seed);
+ const target=restartedOrigin+'/?seed='+seed;
+ if(page.url()!==target)await page.goto(target);
+ if(!await page.locator('#confirm-capture-button').isVisible()&&await page.locator('#open-required-action').isVisible())await page.locator('#open-required-action').click();
  await expect(page.locator('#confirm-capture-button')).toBeVisible({timeout:60000});
  expect(await snapshot(page)).toBe(pending);check('Back does not confirm the pending capture; navigation behavior recorded');
 

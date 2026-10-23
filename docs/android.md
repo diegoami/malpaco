@@ -95,3 +95,49 @@ durable save/upgrade storage belong to the next native slice. Native status-bar
 contrast and safe-area placement still need device judgment. Debug native symbols
 make the first universal APK about 250 MiB; this is not a production-size estimate.
 Signed APK download is the selected 0.3 distribution; Google Play is deferred.
+
+## Native lifecycle policy (T108)
+
+The activity exposes only lifecycle state and explicit Resume acknowledgment through
+`MalpacoHost`. Backgrounding records a small app-private resume requirement, pauses
+playback and force-keeps the current replay, including a partial computer turn.
+Returning and closing Help/Settings cannot release that pause; the Resume button can.
+The native Back callback is installed with the created WebView, after Tauri's default
+history callback: it dismisses an optional surface or folds a required choice, then
+backgrounds the app at the map. It never confirms a capture or navigates history.
+Retiring a game also retires its native listeners, preserving the replacement game's
+metadata. Core rules, RNG and match identities are unchanged.
+
+```sh
+node tools/android/lifecycle-smoke.mjs --apk <debug-apk> --serial <adb-serial>
+```
+
+This extends the prototype smoke with real Android Home/Back, restart while a
+computer turn is paused, explicit Resume and modal-close protection. The driver
+uses an unused diagnostic seed and disconnects its old WebView session before
+force-stop/reconnect. Device reports include the exact APK hash and API/WebView
+identities; no engine snapshot is injected.
+
+Measured on source `84a406a0c58b`, Android 16/API 36 and WebView 133.0.6943.137:
+all 13 native checks pass, including unchanged game replay after capture/rotation,
+background and restart. The tested emulator APK SHA-256 is
+`ba4fb6b5be568bdf92eba7be54280ade31c29f8b54d4a4cde92cc6745b20463a`.
+Browser integration separately covers Help and Settings, and a cleanup omission
+causes the retired host to write stale game IDs, which the regression rejects.
+
+**Emulator limitation:** the original SwiftShader/Vulkan configuration produced an
+HWUI/WebView rendering ANR on Home; its main/render-thread wait matches an older
+prototype ANR from before lifecycle integration, while the Java bridge thread was
+idle. The unchanged APK passes with Vulkan disabled. Retained logs/ANR traces and
+reports disclose both outcomes. Use Google's documented renderer workaround for
+this host:
+
+```sh
+emulator -avd <name> -gpu swiftshader -feature -Vulkan -no-snapshot
+```
+
+See [Android emulator troubleshooting](https://developer.android.com/studio/run/emulator-troubleshooting).
+This is emulator evidence, not a physical-device or broad WebView compatibility
+claim. Test the real device matrix before signed delivery. Native durable game-data
+snapshots, atomic recovery, storage failure reporting and upgrade guarantees remain
+T109 (#286); T108 uses the existing game store plus its native lifecycle flag.

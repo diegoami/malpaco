@@ -73,3 +73,19 @@ test('native saved resume requirement pauses a new host before its first compute
  const key='malpaco:seed-game:7',saved=(await read(page,key))!;await page.clock.runFor(20000);expect(await read(page,key)).toBe(saved);
  expect(deserializeVersionedMatch(saved).state.history).toEqual([]);
 });
+
+test('replacing the player host retires its native listener and never writes the old game metadata',async({page})=>{
+ await keptCapture(page);const old=JSON.parse((await read(page,META))!).id;
+ await page.locator('#open-game-menu').click();await page.locator('#new-game-button').click();
+ await page.locator('#give-up-confirm').click();await page.locator('#give-up-new-game').click();
+ await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+ const current=JSON.parse((await read(page,META))!).id;expect(current).not.toBe(old);
+ await page.evaluate(meta=>{
+  const original=Storage.prototype.setItem,writes:string[]=[];Reflect.set(window,'nativeMetaWrites',writes);
+  Storage.prototype.setItem=function(key,value){if(key===meta)writes.push(JSON.parse(value).id);return original.call(this,key,value);};
+ },META);
+ await background(page);
+ const writes=await page.evaluate(()=>Reflect.get(window,'nativeMetaWrites') as string[]);
+ expect(writes.length).toBeGreaterThan(0);expect(writes.every(id=>id===current)).toBe(true);
+ expect(JSON.parse((await read(page,META))!).id).toBe(current);
+});
