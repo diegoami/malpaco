@@ -35,7 +35,7 @@ export class ProvinceAction {
   const count=this.country?document.querySelector(`[data-country="${CSS.escape(this.country)}"] .count`):null;
   const box=count?.getBoundingClientRect();
   if(!box||!box.width||box.right<0||box.left>innerWidth||box.bottom<0||box.top>innerHeight){this.el.hidden=true;return;}
-  const width=this.el.offsetWidth||88,height=44,gap=8;
+  const width=this.el.offsetWidth||120,height=44,gap=8;
   const candidates=[{x:box.right+gap,y:box.top+box.height/2-height/2},{x:box.left-gap-width,y:box.top+box.height/2-height/2},{x:box.left+box.width/2-width/2,y:box.bottom+gap},{x:box.left+box.width/2-width/2,y:box.top-gap-height}];
   const obstacles=[...document.querySelectorAll('[data-country] .count,#turn-tracker,.game-corner,.map-camera-controls')].map(n=>n.getBoundingClientRect()).filter(r=>r.width&&r.height);
   const fit=(p:{x:number;y:number})=>({x:Math.min(Math.max(4,p.x),innerWidth-width-4),y:Math.min(Math.max(4,p.y),innerHeight-height-4)});

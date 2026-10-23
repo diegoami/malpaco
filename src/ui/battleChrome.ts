@@ -229,6 +229,7 @@ export class BattleChrome {
   private anchor: (() => {near: DOMRect; avoid: readonly DOMRect[]} | null) | null = null;
   private anchorFrame: number | null = null;
   private anchorReleased = false;
+  private settingsReleased = false;
   anchorTo(rect: (() => {near: DOMRect; avoid: readonly DOMRect[]} | null) | null): void {
     this.anchor = rect;
     this.anchorReleased = false;
@@ -254,6 +255,14 @@ export class BattleChrome {
   }
   private reposition(): void {
     if (this.drawer.hidden) return;
+    if(this.surface==='menu'&&this.nodes.primaryActions&&!this.settingsReleased){
+      const frame=this.overlay.getBoundingClientRect(),button=this.menu.getBoundingClientRect(),edge=16,top=button.bottom-frame.top+8;
+      this.drawer.dataset['settingsAnchored']='true';
+      this.drawer.style.width=`${Math.min(400,frame.width-2*edge)}px`;
+      this.drawer.style.maxHeight=`${Math.max(48,frame.height-top-edge)}px`;
+      this.moveTo({x:Math.max(edge,Math.min(button.left-frame.left,frame.width-this.drawer.getBoundingClientRect().width-edge)),y:top});return;
+    }
+    delete this.drawer.dataset['settingsAnchored'];this.drawer.style.removeProperty('max-height');this.drawer.style.removeProperty('width');
     const anchored = this.surface === "actions" && !this.anchorReleased ? this.anchor?.() : null;
     if (anchored) {
       this.moveTo(this.besideAnchor(anchored.near, anchored.avoid));
@@ -308,6 +317,7 @@ export class BattleChrome {
       const dx = event.clientX - start.x, dy = event.clientY - start.y;
       if (!dragging && Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
       // A drag frees an anchored amount bar for the rest of its choice (#266).
+      if(!dragging&&this.surface==='menu')this.settingsReleased=true;
       if (!dragging && this.drawer.dataset["anchored"]) {this.anchorReleased = true; delete this.drawer.dataset["anchored"];}
       dragging = true; this.drawer.dataset["dragging"] = "true";
       this.position = this.moveTo({x: origin.x + dx, y: origin.y + dy});
@@ -343,7 +353,7 @@ export class BattleChrome {
   open(surface: Surface, opener: HTMLElement, takeFocus = true): void {
     if (this.surface === surface) {this.close(); return;}
     this.close(false);
-    this.surface = surface; this.opener = opener; this.collapsed = false;
+    this.surface = surface; this.opener = opener; this.collapsed = false;this.settingsReleased=false;
     this.drawer.dataset["surface"] = surface;
     this.title.textContent = surface==='menu'&&this.nodes.primaryActions?'Settings':TITLES[surface];
     const nodes = {actions: [this.nodes.action], menu: [this.nodes.settings], countries: this.nodes.countries ? [this.nodes.countries] : []}[surface];

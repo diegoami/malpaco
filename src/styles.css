@@ -1937,3 +1937,34 @@ dialog h2 {
 
 .battle-reference .game-overlay .game-primary-buttons > #open-game-menu { color:#05212c; background:#5ce6e8; border-color:#c4ffff #167075 #167075 #c4ffff; }
 .battle-reference .game-overlay .game-primary-buttons > #game-help-button { color:#1b2227; background:#fff8d9; border-color:#fff #777363 #777363 #fff; }
+
+/* Owner readability refinement: larger lettering with room between capitals. */
+.game-primary-buttons > .primary-command,#battle-action-rail button,#province-action-button,#game-launcher .launcher-help {
+ font-family:Impact,"Arial Black",system-ui,sans-serif; font-size:22px; font-weight:900; letter-spacing:1.4px; line-height:1.15;
+}
+.game-primary-buttons > .primary-command { height:52px; min-height:52px; padding:0 10px; }
+.game-overlay[data-primary-commands="true"] { --primary-height:52px; }
+.game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }
+#turn-tracker { width:248px; padding:10px; }
+.turn-guidance { min-height:56px; margin-bottom:6px; }
+#turn-guidance-title { font-size:22px; font-weight:800; }
+#turn-instruction { font-size:20px; min-height:26px; line-height:1.3; }
+.turn-row { grid-template-columns:18px 18px minmax(0,1fr) 30px 18px 18px 18px; gap:4px; min-height:32px; font-size:18px; font-weight:700; }
+.turn-pointer { font-size:22px; }
+#turn-tracker svg { width:18px; height:18px; }
+.game-settings > .next-game-settings :is(label,select),#game-launcher .game-settings > .next-game-settings :is(label,select) {
+ font-family:Impact,"Arial Black",system-ui,sans-serif; font-size:22px; font-weight:700; letter-spacing:1.2px; line-height:1.4; text-transform:uppercase;
+}
+.game-settings > .next-game-settings select { font-size:24px; min-height:54px; }
+.battle-reference #game-focus-drawer .game-settings .game-identity { font:700 20px/1.3 Impact,"Arial Black",system-ui,sans-serif; letter-spacing:1px; text-transform:uppercase; }
+@media (max-width:479px) {
+ .game-primary-buttons { grid-template-columns:repeat(2,max-content); gap:8px; }
+ .game-primary-buttons > .primary-command { font-size:20px; }
+ .game-primary-buttons > .hand-button { grid-column:2; grid-row:2; justify-self:start; }
+ .game-overlay[data-primary-commands="true"] { --primary-height:112px; }
+ .game-overlay[data-primary-commands="true"] .game-corner-end { position:relative; top:calc(var(--primary-height) + var(--gap)); }
+ .game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--target) + 2 * var(--gap)); }
+ .game-overlay[data-primary-commands="true"]:has(#turn-tracker) .game-pool-slot { top:calc(var(--edge) + var(--primary-height) + var(--gap)); right:auto; left:var(--edge); margin-left:0; }
+}
+
+#province-action-button { width:120px; min-width:120px; }

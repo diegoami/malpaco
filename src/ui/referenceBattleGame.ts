@@ -308,7 +308,7 @@ export class ReferenceBattleGame {
       if (this.controller.select(from, id)) {
         // T103: with Fight armed on the source, the tapped enemy is fought at once, one round.
         if (this.armed === from) this.controller.singleExchange();
-        else if (this.chrome?.openSurface !== "actions") this.chrome?.open("actions", this.chrome.countries, false);
+        else if (!this.provinceAction && this.chrome?.openSurface !== "actions") this.chrome?.open("actions", this.chrome.countries, false);
       } else {
         // The engine's reason appears as the one-line notice until the next choice.
         this.refusal = {text: whyNot(state, from, id), key: `${state.history.length}:${from}:${to}`};
