@@ -206,7 +206,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
     }
     approvedStart=true;
     try{const app=await loadSaved(loaded,true);if(!app){approvedStart=false;showEntry(false,'The saved game could not be opened.');return;}
-     app.requestNewGame(()=>{approvedStart=false;local.set(previousSlot.game,raw);local.set(previousSlot.meta,metaRaw);showEntry(false);});
+     app.requestNewGame(()=>{approvedStart=false;local.set(previousSlot.game,raw);local.set(previousSlot.meta,metaRaw);void loadSaved(loaded).catch(()=>showEntry(false,'The saved game could not be opened.'));});
     }catch{approvedStart=false;showEntry(false,'The saved game could not be opened.');}
    }else{approvedStart=false;resuming=null;await instantStart(fresh);}
   };

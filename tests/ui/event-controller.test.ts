@@ -61,3 +61,12 @@ test('a pending world event visibly disables card plays without blocking a prece
  for(let n=0;n<3;n++){const index=b.state.cards!.drawPile.indexOf('Anchor');hand.push(b.state.cards!.drawPile.splice(index,1)[0]!);}
  const cards=new CardController(b,'seat1');expect(cards.view.sets.length).toBeGreaterThan(0);const world=new WorldEventController(b,'seat1');world.update();expect(cards.view.blocked).toBe(true);expect(b.worldEventAcknowledgmentPending).toBe(true);expect(world.acknowledge(1)).toBe(true);expect(cards.view.blocked).toBe(false);
 });
+
+test('explicit notice dismissal acknowledges once, preserves the native pause and rejects stale closes',()=>{
+ const {b,s}=fixture(),before=JSON.stringify(s),saved:{ack:number;cleared:number}[]=[],c=new WorldEventController(b,'seat1',undefined,p=>saved.push(p));
+ b.pauseUntilExplicitResume();c.update();expect(c.dismiss(99)).toBe(false);expect(c.dismiss(1)).toBe(true);expect(c.view.event).toBeNull();expect(b.cardAcknowledgmentPending).toBe(false);expect(b.playbackPaused).toBe(true);expect(JSON.stringify(b.state)).toBe(before);expect(c.dismiss(1)).toBe(false);expect(saved.at(-1)?.ack).toBe(1);
+ const reloaded=new WorldEventController(b,'seat1',saved.at(-1));reloaded.update();expect(reloaded.view.event).toBeNull();c.dispose();expect(c.dismiss(1)).toBe(false);
+});
+test('closing a passive notice hides it without introducing an AI acknowledgement gate',()=>{
+ const {b}=fixture(true),c=new WorldEventController(b,'');c.update();expect(c.view.event).not.toBeNull();expect(c.dismiss(1)).toBe(true);c.update();expect(c.view.event).toBeNull();expect(b.cardAcknowledgmentPending).toBe(false);
+});

@@ -8,8 +8,16 @@ const labels:Readonly<Record<string,string>>={
  'start-friendly-move-button':'Move','start-combat-button':'Combat','end-turn-button':'End turn',
  'fold-world-event':'Fold','resume-turn-button':'Resume',
 };
+const iconTools=new Set(['map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
+const closeTools=new Set(['fold-card','fold-world-event','close-game-drawer','close-hand','close-game-help','close-next-game-settings','close-scoreboard','close-result-card']);
 export function textCommands(root:HTMLElement):()=>void {
  const decorate=(button:HTMLButtonElement)=>{
+  if(button.id==='game-help-button'){button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-help-command');if(button.textContent!=='?')button.replaceChildren(document.createTextNode('?'));return;}
+  if(closeTools.has(button.id)){
+   button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-close-command');
+   if(button.textContent!=='×'||button.querySelector('svg'))button.replaceChildren(document.createTextNode('×'));return;
+  }
+  if(iconTools.has(button.id)||button.classList.contains('country-inspect')){button.classList.remove('game-text-command');button.classList.add('game-utility-command');return;}
   button.classList.add('game-text-command');
   const svgs=[...button.querySelectorAll('svg,img')],before=button.textContent?.trim()??'',name=button.getAttribute('aria-label')??button.title??before;
   if(button.id==='open-hand'){

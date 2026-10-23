@@ -1,19 +1,21 @@
 import {expect,test} from '@playwright/test';
 import {visitGame} from './shell';
 const KEY='malpaco:seed-game:7';
+const textActions=async(page:import('@playwright/test').Page)=>{await expect(page.locator('button.game-text-command svg,button.game-text-command img')).toHaveCount(0);for(const id of ['map-fit','open-countries'])await expect(page.locator('#'+id+' svg')).toHaveCount(1);};
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes set here'));
 for(const [width,height] of [[320,640],[390,844],[844,390],[1280,800]])test(`${width}: text-only commands remain available during AI without playback controls`,async({page})=>{
  await page.setViewportSize({width:width!,height:height!});await page.clock.install();await page.clock.pauseAt(new Date());await visitGame(page,'/?seed=7');
  for(const id of ['#game-pause-button','#fast-forward-button','#game-speed'])await expect(page.locator(id)).toBeHidden();
  for(const id of ['#new-game-button','#open-game-menu','#game-help-button'])await expect(page.locator(id)).toBeVisible();
- await expect(page.locator('button svg,button img')).toHaveCount(0);await expect(page.locator('.panel')).toHaveAttribute('data-computer-active','true');
+ const colours=await page.locator('#new-game-button,#open-game-menu,#game-help-button').evaluateAll(ns=>ns.map(n=>getComputedStyle(n).backgroundColor));expect(new Set(colours).size).toBe(3);
+ await textActions(page);await expect(page.locator('.panel')).toHaveAttribute('data-computer-active','true');
  await page.locator('#open-game-menu').click();const raw=await page.evaluate(k=>localStorage.getItem(k),KEY);
  await page.clock.runFor(3000);expect(await page.evaluate(k=>localStorage.getItem(k),KEY)).toBe(raw);
- await expect(page.locator('#turn-guidance-title')).toHaveText('Paused');await expect(page.locator('button svg,button img')).toHaveCount(0);
+ await expect(page.locator('#turn-guidance-title')).toHaveText('Paused');await textActions(page);
  await page.screenshot({path:`artifacts/T119/settings-${width}.png`});await page.keyboard.press('Escape');
  await page.clock.runFor(1400);expect(await page.evaluate(k=>localStorage.getItem(k),KEY)).not.toBeNull();
- await page.locator('#game-help-button').click();await expect(page.locator('dialog.game-help[open]')).toBeVisible();await expect(page.locator('button svg,button img')).toHaveCount(0);await page.keyboard.press('Escape');
- await page.locator('#open-countries').click();await expect(page.locator('button svg,button img')).toHaveCount(0);
+ await page.locator('#game-help-button').click();await expect(page.locator('dialog.game-help[open]')).toBeVisible();await textActions(page);await page.keyboard.press('Escape');
+ await page.locator('#open-countries').click();await textActions(page);
  const list=await page.locator('#game-focus-drawer').evaluate(n=>({client:n.clientWidth,scroll:n.scrollWidth}));expect(list.scroll).toBeLessThanOrEqual(list.client+1);
  await page.screenshot({path:`artifacts/T119/countries-${width}.png`});await page.keyboard.press('Escape');
  await page.screenshot({path:`artifacts/T119/commands-${width}.png`});

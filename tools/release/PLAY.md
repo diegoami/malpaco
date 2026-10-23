@@ -66,7 +66,7 @@ closes with ×, Escape or another tap. Drag the window by its title; it stays wh
 from that list (or from the set card that opens by itself). After each draw, the card shows your
 whole hand with the new card marked.
 
-Action buttons use raised uppercase text. New game, Settings and Help stay at top left,
+Important actions use raised uppercase Ubuntu Bold text and role colours; familiar utility controls use compact icons. New game, Settings and the question-mark Help button stay at top left,
 with a readable colour turn tracker below them. Settings opens directly below its button.
 Computer turns show placement, combat and movement at a fixed readable pace. The map
 has no Pause, fast-forward or speed toolbar. Settings and Help pause play while open;
@@ -74,7 +74,9 @@ after an Android interruption, use RESUME in the tracker. Closing a dialog canno
 release that background pause.
 
 FIT and COUNTRIES sit at the map edge. Required capture/move amounts and card choices
-open their own cards; ordinary attacks use ATTACK beside your source country. The
+open their own cards; ordinary attacks use ATTACK beside your source country. X closes
+event/card-draw information and continues without another acknowledgement; troop
+amounts still require the Confirm check mark. The
 map remains pannable and zoomable while you inspect it. Help explains the rules and settings.
 The result card shows the winner and reason with **New game**;
 **Standings** and **Details** (seed, options and the record) open on request, and a round-limit
