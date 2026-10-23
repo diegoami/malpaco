@@ -61,14 +61,17 @@ function createGameValidated(
   const top = validated.startingArmiesRange === "1-2" ? 2 : validated.startingArmiesRange === "1-3" ? 3 : 4;
   const armies: Record<string, number> = {};
   for (const id of ids) armies[id] = 1;
+  const equal=rules.startingArmyBudget==='equal-v1',armyRng=equal?DeterministicRng.subStream(validated.seed,113):rng;
   for (const player of players) {
     const holdings = ids.filter((id) => ownerOf[id] === player.id);
     // C-STA-05: multiply before flooring so odd holdings round as specified.
-    const total = Math.floor((1 + top) * holdings.length / 2);
+    const budget=Math.floor(ids.length*(1+top)/2),position=order.indexOf(players.indexOf(player));
+    const total = equal?Math.floor(budget/players.length)+Number(position<budget%players.length):Math.floor((1 + top) * holdings.length / 2);
+    if(total<holdings.length||total>top*holdings.length)return {ok:false,errors:['Equal starting-army budget is infeasible.']};
     const eligible = holdings.slice();
     for (let n = holdings.length; n < total; n++) {
       const candidates = eligible.filter((id) => armies[id]! < top);
-      const pick = candidates[rng.nextInt(0, candidates.length - 1)]!;
+      const pick = candidates[armyRng.nextInt(0, candidates.length - 1)]!;
       armies[pick] = armies[pick]! + 1;
     }
   }
@@ -80,6 +83,7 @@ function createGameValidated(
   });
 
   const state: GameState = {
+      ...(rules.events?{events:{sequence:0,cooldown:false}}:{}),
       map: board.map, rules, players, ownerOf, armies, currentPlayer: firstSeat,
       phase: (rules.cards === "trade-v1" || rules.cards === "raid-v1") ? "cards" : rules.turnSequence === "reinforcement" ? "reinforce" : "attack",
       reinforcementPool: 0, turnNumber: 1, capturedThisTurn: false, rng: rng.snapshot(), computerRngs,

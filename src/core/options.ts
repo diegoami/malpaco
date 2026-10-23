@@ -85,6 +85,8 @@ export interface GameOptions {
   readonly names?: NameChoice;
   /** T110: present only for the configurable rules identity; older options keep their shape. */
   readonly reinforcementDivisor?: ReinforcementDivisor;
+  /** Opt-in T42/T114 island rules; earlier records omit this field. */
+  readonly islandRules?: 1;
 }
 
 /** Typed error from option validation. */
@@ -262,6 +264,7 @@ export function validateGameOptions(value: unknown): GameOptions {
     if (!(f in obj)) throw new OptionsError("missing field", f);
   }
   return {
+    ...(Object.hasOwn(obj,"islandRules")?{islandRules:parseIslandRules(obj.islandRules)}:{}),
     seats,
     board: parseBoard(obj.board),
     startingArmiesRange: parseStartingArmiesRange(obj.startingArmiesRange),
@@ -286,3 +289,5 @@ export function parseReinforcementDivisor(value:unknown):ReinforcementDivisor {
  if(value===1||value===3||value===5||value===7)return value;
  throw new OptionsError('reinforcementDivisor must be 1, 3, 5 or 7.','reinforcementDivisor');
 }
+
+function parseIslandRules(value:unknown):1 {if(value===1)return 1;throw new OptionsError('Unsupported islandRules.','islandRules');}
