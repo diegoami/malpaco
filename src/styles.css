@@ -2003,3 +2003,13 @@ button.game-text-command:disabled { opacity:.45; }
 .game-overlay[data-primary-commands="true"] :is(#game-pause-button,#fast-forward-button,.game-speed-control) { display:none !important; }
 .game-overlay[data-primary-commands="true"] > .game-corner-end:has(#close-result-card:not([hidden])) { display:flex !important; position:relative; top:0; }
 button.game-text-command[hidden] { display:none !important; }
+
+/* Semantic action colours; compact tools retain familiar icons. */
+#open-game-menu.game-text-command,#start-friendly-move-button.game-text-command,#province-action-button.game-text-command[data-kind="move"] { background:#5ce6e8 !important; color:#05212c !important; border-color:#c4ffff #167075 #167075 #c4ffff !important; text-shadow:none; }
+#game-help-button.game-text-command { background:#fff8d9 !important; color:#1b2227 !important; border-color:#fff #777363 #777363 #fff !important; text-shadow:none; }
+:is(#start-game,#resume-game,#resume-turn-button,#give-up-cancel,#end-turn-button,#open-hand).game-text-command { background:#267147 !important; color:#fff !important; border-color:#85daa6 #123d26 #123d26 #85daa6 !important; }
+button.game-close-command { display:grid; place-items:center; width:48px; min-width:48px; height:48px; min-height:48px; padding:0; border:1px solid var(--shell-line,#517580); border-radius:8px; background:var(--shell-bg,#173d47); color:#fff; font:400 30px/1 system-ui,sans-serif !important; letter-spacing:0; }
+button.game-close-command[hidden] { display:none !important; }
+.game-overlay[data-primary-commands="true"] .map-camera-controls { flex-direction:row; }
+.game-overlay[data-primary-commands="true"] #open-countries { font-size:0; }
+.game-utility-command > svg { display:block; }
