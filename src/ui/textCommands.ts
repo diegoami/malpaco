@@ -1,11 +1,11 @@
 /** Player action presentation. Data symbols on the map/cards are not commands. */
 const labels:Readonly<Record<string,string>>={
- 'open-hand':'Cards','map-fit':'Fit','map-focus':'Focus','open-countries':'Regions',
- 'close-game-drawer':'Close','close-hand':'Close','close-result-card':'Close','close-game-help':'Close',
- 'scoreboard-button':'Scores','game-log-button':'History','open-required-action':'Review',
- 'capture-less-button':'Less','capture-more-button':'More','confirm-capture-button':'Confirm',
- 'friendly-move-less-button':'Less','friendly-move-more-button':'More','confirm-friendly-move-button':'Confirm','cancel-friendly-move-button':'Cancel',
- 'start-friendly-move-button':'Move','start-combat-button':'Attack','end-turn-button':'End turn',
+ 'open-hand':'Cards','map-fit':'Fit','map-focus':'Focus','open-countries':'Countries',
+ 'close-game-drawer':'Close','close-hand':'Close','close-result-card':'Map','close-game-help':'Close',
+ 'scoreboard-button':'Scoreboard','game-log-button':'Event log','open-required-action':'Return','open-changes':'Changes',
+ 'capture-less-button':'Fewer','capture-more-button':'More','confirm-capture-button':'Confirm',
+ 'friendly-move-less-button':'Fewer','friendly-move-more-button':'More','confirm-friendly-move-button':'Move','cancel-friendly-move-button':'Cancel',
+ 'start-friendly-move-button':'Move','start-combat-button':'Combat','end-turn-button':'End turn',
  'fold-world-event':'Fold','resume-turn-button':'Resume',
 };
 export function textCommands(root:HTMLElement):()=>void {
