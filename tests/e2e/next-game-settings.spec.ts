@@ -6,6 +6,8 @@ import {serializeVersionedMatch,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,deseriali
 import {openSurface} from './shell';
 const KEY='malpaco:current-game';
 const PREF='malpaco:next-game-settings';
+// [designed] Map restore is setup: match the 60 s budget used by the balance/native acceptance.
+// Cold presentation startup can exceed Playwright's default 5 s before the assertions begin.
 const read=(page:import('@playwright/test').Page,key:string)=>page.evaluate(k=>localStorage.getItem(k),key);
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes set by test'));
 for(const width of [390,1280])test(`${width}: Settings changes only the next game; refresh, cancelled give-up and 1–3 opponents preserve the current match`,async({page})=>{
@@ -13,7 +15,7 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
  const options={...defaultOptions(),seed:7},old=createGeographicGame(options,raidCardsRules(options),{},2);if(!old.ok)throw Error(old.errors.join());
  const text=serializeVersionedMatch(options,[],GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY);
  await page.addInitScript(([k,t])=>{if(sessionStorage.getItem('settings-once'))return;sessionStorage.setItem('settings-once','1');localStorage.setItem(k!,t!);localStorage.setItem(k+'-meta',JSON.stringify({id:'settings-old-game',paused:true}));},[KEY,text]);
- await page.goto('/');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await page.goto('/');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  const before=(await read(page,KEY))!;await openSurface(page,'menu');
  await expect(page.getByRole('button',{name:'Settings for the next game',exact:true})).toBeVisible({timeout:5000});
@@ -21,10 +23,11 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
  const dialog=page.getByRole('dialog',{name:'Settings',exact:true});await expect(dialog).toBeVisible();
  await expect(dialog).toContainText('Applies to the next game');
  const opponents=dialog.getByLabel('Computer opponents',{exact:true});await expect(opponents).toHaveValue('3');
+ await expect.poll(()=>opponents.evaluate(n=>n.getBoundingClientRect().height),{message:'opponent selector touch target'}).toBeGreaterThanOrEqual(44);
  await opponents.selectOption('1');expect(await read(page,KEY)).toBe(before);
  await page.keyboard.press('Escape');await expect(dialog).toBeHidden();
  await expect(page.locator('#open-game-menu')).toBeFocused();
- await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  expect(await read(page,KEY)).toBe(before);await openSurface(page,'menu');
  await page.getByRole('button',{name:'Settings for the next game',exact:true}).click();await expect(opponents).toHaveValue('1');
  await page.screenshot({path:`artifacts/T107-browser/settings-${width}.png`,animations:'disabled'});
@@ -43,14 +46,14 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
   expect(loaded.options.seats.map(s=>s.kind)).toEqual(['human',...Array(count).fill('computer')]);
   expect(loaded.options.computerStrengths).toEqual(Array(count).fill('Normal'));
   const pause=page.locator('#game-pause-button');if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
-  const kept=(await read(page,KEY))!;await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  const kept=(await read(page,KEY))!;await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   expect(await read(page,KEY)).toBe(kept);expect(deserializeVersionedMatch(kept).options.seats.length).toBe(count+1);
  }
  expect(JSON.parse((await read(page,PREF))!).computerOpponents).toBe(3);expect(errors).toEqual([]);
 });
 
 test('a failed settings write reports the error, restores the saved choice and leaves the current game intact',async({page})=>{
- await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  await page.locator('#game-pause-button').click();
  const key='malpaco:seed-game:7',before=(await read(page,key))!;
  await page.evaluate(pref=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===pref)throw new DOMException('Full','QuotaExceededError');return original.call(this,k,v);};},PREF);
