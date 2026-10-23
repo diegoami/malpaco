@@ -10,7 +10,7 @@ Android only; investigate starting deals and island-bonus snowballing together;
 approve a Tauri 2 prototype and its build dependencies. The release also takes
 confirmed player-facing fixes. The owner subsequently added larger generated maps,
 replenishment choices 1/3/5/7 and 1–3 computer opponents, all in Settings for the
-next game. Initial launch still starts play immediately. Events, new AI levels, hot-seat, sound, decorative
+next game. Initial launch still starts play immediately. New AI levels, hot-seat, sound, decorative
 map work and desktop packaging remain later work.
 
 Keep instant start, one human against three computers, minimal floating cards,
@@ -92,7 +92,7 @@ before using them; never resurrect obsolete controls through an old Done-when.
 | #175 | Check newest-history emphasis with ?log; optional polish, not a reason to restore visible history |
 | #129, #213 | Controller/workspace boundary hardening only where current reachable behavior warrants it; do not rebuild removed threshold controls |
 | #92–#95 (T47–T50) | Strategic AI and new difficulty policies remain later; T105 measures the unchanged baseline rather than claiming this chain |
-| #87, #88 (T42/T43) | Events and centre mechanics/UI remain later, so they do not confound the balance experiment |
+| #87, #88 (T42/T43) | Owner authorized opt-in event/centre implementation after the returned research; keep historical no-event balance runs frozen |
 | #89 (T44), #98 (T53) | Setup options/seat mixtures and hot-seat remain later; retain current instant-start default |
 | #100 (T55) | Sound/audio controls remain later |
 | #102, #103 (T57/T58) | Full finished-game acceptance remains later; 0.3 gets release-specific acceptance without claiming unfinished feature coverage |
@@ -178,3 +178,26 @@ list. Preserve the distinction between event announcements observed in recording
 and uncorroborated exact before/after effects, capture-marker persistence, registered
 alternatives and other versions. These returns inform #292/#293; they do not adopt
 event mechanics or change the held prototypes' acceptance requirements.
+
+### Implementation authorization and wider gap audit
+
+The owner authorized implementing the returned army/event reports. T42 supplies a
+new opt-in island/1 rules identity, fixed income and equal starting budgets; T43/T114
+supply next-game ranges/frequency and persistent event presentation. These choices
+do not adopt held map/balance candidates or turn historical no-event pilot results
+into evidence for the new combined economy.
+
+The [gap audit index #298](https://github.com/diegoami/malpaco/issues/298) and its
+11 owning-issue comments were read in full. Public AI view #92 precedes strategy
+#93, real levels #94 and strength claims #95. Browser recovery #90, configuration-aware
+records #91, private handover #98, audio #100 and native durability #286 retain
+independent preflight boundaries. Existing multi-human loader guards remain. New
+per-game eventAck/eventMarksCleared metadata must be included in native atomic snapshots.
+No stored legacy record configuration is inferred from present preferences.
+
+[Combined validation #299](https://github.com/diegoami/malpaco/issues/299) requires a
+frozen accepted rules/card/generator/event/policy build, bounded seed/seat-swap and
+tactical protocols, all outcome denominators, then stronger-policy/human evidence.
+It does not authorize reverting approved combat/card rules, automatic tuning or a
+Cartesian sweep. The eight original no-event budget exceedances remain owned by #295.
+This audit assigns preparation work; it does not add a release/publication decision.
