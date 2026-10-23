@@ -153,9 +153,13 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 
 ## 0.3
 
+[Release proposal and backlog reconciliation](../plans/release-0.3.md); parent #271, owner questions #272.
+
 | Task | Title | Priority | Difficulty | Issue | Merge after |
 | --- | --- | --- | --- | --- | --- |
 | [T102](T102.md) | Balanced starts | High | Medium | #256 | 0.2.1 |
+| [T105](T105.md) | Compare deal and island-income balance candidates | High | Medium | #273 | T99 |
+| [T106](T106.md) | Tauri 2 Android offline prototype | High | Hard | #274 | T99 |
 
 ## Development infrastructure
 
