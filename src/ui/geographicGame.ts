@@ -1,13 +1,13 @@
 import {createGame,defaultOptions,raidCardsRules} from '../core';
 import type {GameOptions,GameState} from '../core';
-import {createGeographicGame} from '../core/geographic-game';
+import {createGeographicGame,createBalancedGeographicGame} from '../core/geographic-game';
 import {NAME_THEMES,THEME_LABELS} from '../core/flavour-names';
 import type {NameChoice} from '../core/flavour-names';
 import type {IslandGeography} from '../core/island-geography';
 import {createPresentationService} from './generatedGeographyPresentationService';
 import type {MatchLoadContext} from './referenceMatchFiles';
 import type {GeographicGameResult} from '../core/geographic-game';
-import {deserializeVersionedMatch,GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,GEOGRAPHIC_V2_MATCH_IDENTITY,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY} from '../core/match-save';
+import {deserializeVersionedMatch,GEOGRAPHIC_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY,GEOGRAPHIC_V2_MATCH_IDENTITY,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY,GEOGRAPHIC_V2_BALANCED_CARD_MATCH_IDENTITY,REFERENCE_MATCH_IDENTITY} from '../core/match-save';
 import type {LoadedVersionedMatch,MatchIdentity} from '../core/match-save';
 import {GeographicMapView} from './geographicMapView';
 import {GeneratedMapView} from './generatedMapView';
@@ -24,8 +24,9 @@ import type {BattleSpeed} from './battleController';
  * Card hands currently support a spectator or one human. Shared human hands
  * keep the historical stage until the private handover workflow is available.
  */
-export function geographicSetupIdentity(options:GameOptions,manual=false,generator:1|2=setupGenerator()):MatchIdentity {
+export function geographicSetupIdentity(options:GameOptions,manual=false,generator:1|2=setupGenerator(),balanced=false):MatchIdentity {
  const humanCount=options.seats.filter(seat=>seat.kind==='human').length,raid=!manual&&humanCount<=1;
+ if(balanced&&raid&&generator===2)return GEOGRAPHIC_V2_BALANCED_CARD_MATCH_IDENTITY;
  return generator===2?(raid?GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY:GEOGRAPHIC_V2_MATCH_IDENTITY):(raid?GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY);
 }
 /** New games grow their islands (T95, geographic/2); `?generator=1` keeps the frozen witness maps. */
@@ -145,7 +146,8 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    cancel();mount(options,state,{identity,label:'Nine Isles',initialState:loaded.initialState,acceptsVersion1:true,createMap:(map,handlers)=>new ReferenceMapView(map,handlers)},true);
   }else throw Error('Unsupported board identity. Use the legacy generated game route for v1 files.');
  };
- const createMatch=(options:GameOptions)=>(dependencies.create??(o=>createGeographicGame(o,geographicSetupIdentity(o,manual).rules.id==='cards'?raidCardsRules(o):undefined,{},setupGenerator())))(options);
+ const newIdentity=(options:GameOptions)=>geographicSetupIdentity(options,manual,setupGenerator(),instant);
+ const createMatch=(options:GameOptions)=>(dependencies.create??(o=>newIdentity(o).rules.id==='balanced-cards'?createBalancedGeographicGame(o):createGeographicGame(o,newIdentity(o).rules.id==='cards'?raidCardsRules(o):undefined,{},setupGenerator())))(options);
  /**
   * T96: a refresh resumes the player's game, then a new game starts on a random seed with one
   * human and three Normal computers, Domination on, no round limit, place names by seed.
@@ -173,7 +175,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
     // #260: New game on a `?seed` page moves the page to the new seed, so that seed's own record
     // keeps the game and a reload resumes it; the root game's record stays untouched.
     if(fresh&&seedParam!==null){fixedSeed=options.seed;slot=seedSlot(options.seed);params.set('seed',String(options.seed));history.replaceState(history.state,'',`${location.pathname}?${params}${location.hash}`);}
-    mount(options,result.state,{identity:geographicSetupIdentity(options,manual),label:'Generated islands',initialState:result.state,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers,drawing)});
+    mount(options,result.state,{identity:newIdentity(options),label:'Generated islands',initialState:result.state,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers,drawing)});
    }catch(error){if(!closed)status.textContent=error instanceof Error?error.message:String(error);}
    return;
   }
@@ -201,7 +203,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    try {
     const work=prepare(result.geography);status.textContent='Preparing game…';
     const prepared=await work;if(!prepared?.isCurrent())return;const drawing=prepared.drawing;
-    mount(options,result.state,{identity:geographicSetupIdentity(options,manual),label:'Generated islands',initialState:result.state,acceptsVersion1:true,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers,drawing)});
+    mount(options,result.state,{identity:newIdentity(options),label:'Generated islands',initialState:result.state,acceptsVersion1:true,createMap:(map,handlers)=>new GeographicMapView(map,result.geography,handlers,drawing)});
    }catch(error){if(!closed&&epoch===own+1)alert.textContent=error instanceof Error?error.message:String(error);}
    finally{if(epoch===own+1)status.textContent='';}
   };

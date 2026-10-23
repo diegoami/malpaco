@@ -264,3 +264,10 @@ export function tradeCardsRules(options:Pick<GameOptions,'dominationWin'|'roundL
 export function raidCardsRules(options:Pick<GameOptions,'dominationWin'|'roundLimit'>=defaultOptions()):RuleSet {
  return {...tradeCardsRules(options),id:'malpaco-card-raids',cards:'raid-v1'};
 }
+
+/** [designed] T102 identity for the owner-selected balanced deal and reduced
+ * island income. Ordinary card/combat actions retain raid-v1 semantics.
+ */
+export function balancedRaidCardsRules(options:Pick<GameOptions,'dominationWin'|'roundLimit'>=defaultOptions()):RuleSet {
+ return {...raidCardsRules(options),id:'balanced-raid-v1'};
+}
