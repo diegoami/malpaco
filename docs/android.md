@@ -61,3 +61,37 @@ Android toolchain. It is separate from the bundled offline acceptance build.
 Generated native project sources live in `src-tauri/gen/android/`; build products,
 local SDK properties, schemas, caches and signing files are ignored. Never commit
 a keystore or store credentials.
+
+## Prototype evidence and remaining work
+
+The first complete native smoke used source `c66708de5b7d`, ARM64 + x86-64 debug APK
+SHA-256 `79d264f24651b204a575fb593486c8bcfeab69f65fca7d5c56618f7abf800e13`.
+Android 16/API 36, medium-phone emulator, WebView 133.0.6943.137, offline: all
+46 countries loaded; real placement/combat reached a capture; rotation and
+force-stop/relaunch preserved that exact pending game, with no JavaScript/console
+errors in the checked flows. The source's native/web payload is unchanged by the
+subsequent smoke-driver fixes. This is emulator evidence, not physical-device
+acceptance or a minimum-Android-version guarantee.
+
+Run the same flow on an already booted ADB device:
+
+```sh
+node tools/android/smoke.mjs --apk <debug-apk> --serial <adb-serial>
+```
+
+The driver uses Playwright's Android WebView API. It chooses an unused diagnostic
+seed, drives controls without injecting an engine snapshot, compares exchanges
+with the core, saves the pending replay and captures the device screen. It disables
+Wi-Fi/mobile data for the offline check; re-enable these afterwards on a physical
+test device. Evidence goes to a fresh `artifacts/T106-smoke-*/` directory. It also
+records Back/background behavior without claiming that the production policy is
+implemented. Use a dedicated test emulator/device profile for automated smoke.
+
+Observed prototype gaps: Android backgrounding left the pause flag false, and Back
+navigated from a seeded game to the root instead of dismissing the open menu. The
+owner selected save/pause on background, explicit Resume on return, and Back that
+closes/folds the current surface or backgrounds the main map. Those behaviors and
+durable save/upgrade storage belong to the next native slice. Native status-bar
+contrast and safe-area placement still need device judgment. Debug native symbols
+make the first universal APK about 250 MiB; this is not a production-size estimate.
+Signed APK download is the selected 0.3 distribution; Google Play is deferred.

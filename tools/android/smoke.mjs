@@ -12,7 +12,7 @@ for(let i=0;i<args.length;i+=2){
 }
 if(!config.apk)throw Error('--apk is required');
 config.apk=resolve(config.apk);await mkdir(config.out,{recursive:true});
-const built=await build({root,configFile:false,logLevel:'warn',build:{write:false,minify:false,lib:{entry:join(root,'tests/android/device-smoke.ts'),formats:['es']},rollupOptions:{external:[/^node:/,'@playwright/test']}}});
+const built=await build({root,configFile:false,logLevel:'warn',build:{write:false,minify:false,lib:{entry:join(root,'tests/android/device-smoke.ts'),formats:['es']},rollupOptions:{external:[/^node:/,'@playwright/test','playwright']}}});
 const outputs=(Array.isArray(built)?built:[built]).flatMap(r=>r.output),chunk=outputs.find(o=>o.type==='chunk'&&o.isEntry);
 if(!chunk||outputs.length!==1)throw Error('Expected one smoke bundle');
 const entry=join(config.out,'device-smoke.mjs');await writeFile(entry,chunk.code);
