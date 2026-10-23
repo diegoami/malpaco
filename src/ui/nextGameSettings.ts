@@ -43,7 +43,7 @@ export class NextGameSettingsDialog {
  private readonly opponents=h('select',{id:'next-game-opponents'},...[1,2,3].map(n=>h('option',{value:String(n)},String(n))));
  private readonly starting=h('select',{id:'next-game-starting-armies'},...RANGES.map(v=>h('option',{value:v},v.replace('-','–'))));
  private readonly frequency=h('select',{id:'next-game-event-frequency'},...FREQUENCIES.map(v=>h('option',{value:v},v)));
- private readonly size=h('select',{id:'next-game-map-size'},...[46,72,96].map(n=>h('option',{value:String(n)},`${n} regions${n===46?'':' (prototype)'}`)));
+ private readonly size=h('select',{id:'next-game-map-size'},...[46,72,96].map(n=>h('option',{value:String(n)},`${n} regions`)));
  private readonly error=h('p',{role:'alert',class:'match-error'});
  constructor(private readonly store:NextGameStore=browserNextGames,onOpen?:()=>void,onClose?:()=>void){
   this.close.onclick=()=>this.dialog.close();

@@ -23,14 +23,13 @@ for(const width of [390,1280])test(`${width}: Settings preserves the current gam
  await visitGame(page,'/');await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});
  const key=KEY;
  const get=()=>page.evaluate(k=>localStorage.getItem(k),key);
- const pause=page.locator('#game-pause-button');if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
  let previous=46;for(const size of [72,96,46]){
-  const before=await get();expect(before).not.toBeNull();await openSurface(page,'menu');
+  await openSurface(page,'menu');const before=await get();expect(before).not.toBeNull();
   const dialog=page.getByRole('dialog',{name:'Settings',exact:true});await expect(dialog.getByLabel('Map size',{exact:true})).toBeVisible({timeout:5000});await expect(dialog.getByLabel('Map size',{exact:true})).toHaveValue(String(previous));await dialog.getByLabel('Map size',{exact:true}).selectOption(String(size));
   expect(await get()).toBe(before);await expect(dialog.getByLabel('Starting armies',{exact:true})).toHaveValue('1-3');await expect(dialog.getByLabel('Computer opponents',{exact:true})).toHaveValue('1');
   await dialog.getByRole('button',{name:'Return to map',exact:true}).click();await openSurface(page,'menu');await page.locator('#new-game-button').click();await page.locator('#give-up-confirm').click();await startFromResult(page);
   await expect(page.locator('[data-country]')).toHaveCount(size,{timeout:60000});
-  if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
+  await openSurface(page,'menu');
   const currentKey=await page.evaluate(()=>{const seed=new URLSearchParams(location.search).get('seed');return 'malpaco:current-game'+(seed?':seed:'+seed:'');});
   const text=(await page.evaluate(k=>localStorage.getItem(k),currentKey))!,loaded=deserializeVersionedMatch(text);
   expect(loaded.state.map.provinces).toHaveLength(size);expect(loaded.options.seats).toHaveLength(2);expect(loaded.options.reinforcementDivisor).toBeUndefined();expect(loaded.identity.boardGenerator.version).toBe(size===46?2:3);
