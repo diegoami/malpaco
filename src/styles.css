@@ -1837,10 +1837,10 @@ dialog h2 {
 .next-game-settings :is(button, select) { min-height: 44px; }
 .next-game-settings .next-game-setting select { min-width: 5rem; }
 
-/* T112: three named, direct player commands; the hand uses the next row. */
+/* T112: three direct icon commands; Cards stays beside them so its panel cannot cover its opener. */
 .game-primary-buttons { display:grid; grid-template-columns:repeat(3,max-content); }
 .game-primary-buttons > .primary-command { display:grid; place-items:center; width:var(--target); min-width:44px; height:var(--target); min-height:44px; padding:0; margin:0; font-size:0; color:var(--text); border:1px solid #3d5a6d; background:var(--surface); border-radius:12px; box-shadow:0 2px 10px #0006; }
-.game-primary-buttons > :not(.primary-command) { grid-column:1; }
+.game-primary-buttons > .hand-button { grid-column:4; grid-row:1; }
 @media (max-width:600px) { .game-overlay[data-primary-commands="true"] .game-pool-slot { padding-top:calc(var(--target) + var(--gap)); } }
 
 .game-corner-end[data-stack-speed="true"] { position:relative; padding-bottom:calc(var(--target) + var(--gap)); }
