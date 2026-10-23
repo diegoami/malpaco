@@ -23,6 +23,15 @@ class MainActivity : TauriActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
     super.onCreate(savedInstanceState)
+
+  }
+
+  override fun onWebViewCreate(webView: WebView) {
+    super.onWebViewCreate(webView)
+    gameView = webView
+    webView.addJavascriptInterface(GameLifecycle(), "MalpacoHost")
+    // Core plugins install their default Back callback during startup. Register
+    // the game policy with the created WebView so it owns the top of the stack.
     onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
       override fun handleOnBackPressed() {
         if (backPending) return
@@ -37,12 +46,6 @@ class MainActivity : TauriActivity() {
         }
       }
     })
-  }
-
-  override fun onWebViewCreate(webView: WebView) {
-    super.onWebViewCreate(webView)
-    gameView = webView
-    webView.addJavascriptInterface(GameLifecycle(), "MalpacoHost")
   }
 
   override fun onPause() {
