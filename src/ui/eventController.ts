@@ -18,7 +18,7 @@ export class WorldEventController {
   if(event.sequence!==this.seen){this.seen=event.sequence;this.folded=false;}
   if(state.result||state.phase==='finished'||state.phase==='human-loss'){this.pending=null;this.passive=null;this.acked=event.sequence;this.cleared=event.sequence;this.battle.setWorldEventPending(false);return;}
   const human=state.players.find(p=>p.id===this.viewer&&p.kind==='human'&&!p.eliminated);
-  if(!human){this.pending=null;this.passive=event;this.acked=event.sequence;this.battle.setWorldEventPending(false);return;}
+  if(!human){this.pending=null;this.passive=event.sequence>this.cleared?event:null;this.acked=event.sequence;this.battle.setWorldEventPending(false);return;}
   this.passive=null;
   if(event.sequence>this.acked){
    if(deferForReward){this.pending=null;this.battle.setWorldEventPending(false);return;}

@@ -37,4 +37,20 @@ test('replacement and disposal retire stale acknowledgements; malformed future p
  const next=fixture().s;delete next.events;b.replaceGame(next,'new-game');c.update();expect(c.view.event).toBeNull();expect(c.acknowledge(2)).toBe(false);c.dispose();expect(c.acknowledge(1)).toBe(false);expect(b.cardAcknowledgmentPending).toBe(false);
 });
 
-test('terminal results never wait behind a historical event acknowledgement',()=>{const {b}=fixture(),c=new WorldEventController(b,'seat1');c.update();b.state.phase='finished';c.update();expect(c.view.event).toBeNull();expect(c.view.marked).toEqual([]);expect(b.cardAcknowledgmentPending).toBe(false);expect(c.acknowledge(1)).toBe(false);});
+test('terminal results never wait behind a historical event acknowledgement',()=>{const {b}=fixture(),c=new WorldEventController(b,'seat1');c.update();b.state.phase='finished';c.update();expect(c.view.event).toBeNull();expect(c.view.marked).toEqual([]);expect(b.cardAcknowledgmentPending).toBe(false);expect(c.acknowledge(1)).toBe(false);b.state.players[0]!.eliminated=true;b.state.phase='cards';b.state.watchingComputers=true;c.update();expect(c.view.event).toBeNull();});
+
+import {GameEventHistory} from '../../src/ui/gameEventLog';
+import {apply} from '../../src/core/rules';
+test('history separates a friendly transfer from a harvest occurring in the same action',()=>{
+ const o={...defaultOptions(),seed:7,islandRules:1 as const,eventFrequency:'Often' as const},made=createReferenceGame(referenceMap,o,islandRules(o));if(!made.ok)throw Error(made.errors.join());
+ const s=made.state;s.phase='attack';s.reinforcementPool=0;s.currentPlayer=0;s.turnNumber=3;
+ const from=s.map.provinces[0]!.id,to=s.map.provinces[0]!.borders[0]!;s.ownerOf[from]=s.players[0]!.id;s.ownerOf[to]=s.players[0]!.id;s.armies[from]=8;s.armies[to]=3;s.productionCentres=[to,...s.map.provinces.filter(p=>p.id!==to).slice(0,2).map(p=>p.id)];
+ for(let value=0;value<1000;value++){
+  s.rng={seed:7,state:value};const r=apply(s,{kind:'friendlyMove',from,to,amount:1});if(!r.ok)throw Error(r.error);
+  if(r.state.events?.latest?.kind==='harvest'){
+   const rows=new GameEventHistory(o,s).append(r.state),notes=rows.at(-1)!.notes;
+   expect(notes.some(n=>n.startsWith('Friendly transfer: 1 armies'))).toBe(true);expect(notes.some(n=>n.includes('World event: harvest'))).toBe(true);expect(r.state.armies[to]).toBe(8);return;
+  }
+ }
+ throw Error('No legal transfer/harvest fixture');
+});

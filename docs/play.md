@@ -34,10 +34,10 @@ browser: there is no account, server or sync between devices. **Settings** at to
 chooses 1, 2 or 3 computer opponents for your next game (3 by default). Changing
 this setting keeps your current game exactly as it is; a refresh still resumes it.
 These settings take effect only when you choose **New game**. **Starting armies**
-chooses **1–2, 1–3 or 1–4** per country (default1–3), with equal aggregate seat budgets
+chooses **1–2, 1–3 or 1–4** per country (default 1–3), with equal aggregate seat budgets
 and only unavoidable integer differences. New games use fixed territory income:
-owned countries divided by3, rounded down with minimum2, plus island bonuses.
-**Disasters and production** offers Off/Rare/Normal/Often (defaultNormal).
+owned countries divided by 3, rounded down with minimum 2, plus island bonuses.
+**Disasters and production** offers Off/Rare/Normal/Often (default Normal).
 Existing games retain their original rules, including older configured income rates.
 **New game** asks "Give up this game?", shows
 where the seats stood, then starts a new random game; after a result it starts at once.
@@ -141,8 +141,8 @@ opens the instructions. New game asks before giving up an unfinished game.
 Settings contains the choices; their explanations are in Help.
 
 Production centres are starred while events are on. **Harvest** adds up to the
-current stack or10 armies per centre, whichever is smaller. **Shift** redraws all
-three centres. **Storm** reduces a connected group of3–4 stacks, keeping at least1
+current stack or 10 armies per centre, whichever is smaller. **Shift** redraws all
+three centres. **Storm** reduces a connected group of 3–4 stacks, keeping at least 1
 army each. **Revolt** changes one border country's owner without changing its armies
 or eliminating a seat. Events are protected in the first round, near a win, after
 another event and during the last three rounds of a round-limit game.

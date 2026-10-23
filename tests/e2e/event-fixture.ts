@@ -18,3 +18,17 @@ export function eventFixture(kind:WorldEventKind){
  }
  const result=found.get(kind);if(!result)throw Error('No ordinary '+kind+' fixture');return result;
 }
+
+export function queuedEventFixture(){
+ for(let seed=0;seed<30;seed++){
+  const options={...defaultOptions(),seed,islandRules:1 as const,eventFrequency:'Often' as const},made=createGeographicGame(options,islandRules(options),{},2);if(!made.ok)continue;let state=made.state;
+  for(let n=0;n<2500&&!state.result;n++){
+   if(state.players[state.currentPlayer]!.kind==='human'&&state.phase==='attack'&&state.capturedThisTurn){
+    const probe=apply(state,{kind:'endTurn'});
+    if(probe.ok&&(probe.state.events?.sequence??0)>(state.events?.sequence??0))return {before:state,after:probe.state,text:serializeVersionedMatch(options,state.history,GEOGRAPHIC_EVENT_MATCH_IDENTITY)};
+   }
+   const action=decideComputerAction(computerView(state));if(!action)break;const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;
+  }
+ }
+ throw Error('No legal card reward plus world event');
+}

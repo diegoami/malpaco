@@ -1,5 +1,5 @@
 import {expect,test} from '@playwright/test';
-import {eventFixture} from './event-fixture';
+import {eventFixture,queuedEventFixture} from './event-fixture';
 import {defaultOptions} from '../../src/core/options';
 import {createGeographicGame} from '../../src/core/geographic-game';
 import {islandRules} from '../../src/core/state';
@@ -7,9 +7,9 @@ import {serializeVersionedMatch,deserializeVersionedMatch,GEOGRAPHIC_EVENT_MATCH
 import type {Page} from '@playwright/test';
 const KEY='malpaco:current-game',META=KEY+'-meta';
 const read=(p:Page,k=KEY)=>p.evaluate(k=>localStorage.getItem(k),k);
-async function open(p:Page,text:string){
+async function open(p:Page,text:string,ack=0){
  await p.clock.install();await p.clock.pauseAt(new Date());
- await p.addInitScript(([key,text])=>{if(sessionStorage.getItem('world-once'))return;sessionStorage.setItem('world-once','1');localStorage.setItem(key!,text!);localStorage.setItem(key+'-meta',JSON.stringify({id:'world-fixture',paused:false}));},[KEY,text]);
+ await p.addInitScript(([key,text,ack])=>{if(sessionStorage.getItem('world-once'))return;sessionStorage.setItem('world-once','1');localStorage.setItem(key!,text!);localStorage.setItem(key+'-meta',JSON.stringify({id:'world-fixture',paused:false,eventAck:Number(ack),eventMarksCleared:Number(ack)}));},[KEY,text,String(ack)]);
  await p.goto('/?log');await expect(p.locator('[data-country]')).toHaveCount(46,{timeout:60000});
 }
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes set per test'));
@@ -37,4 +37,11 @@ test('native Back folds without acknowledging; background and Continue cannot re
  await page.evaluate(()=>{Reflect.set(window,'active',false);Reflect.set(window,'required',true);window.dispatchEvent(new Event('malpaco:native-background'));Reflect.set(window,'active',true);window.dispatchEvent(new Event('malpaco:native-foreground'));});
  await page.locator('#open-world-event').click();await page.locator('#acknowledge-world-event').click();await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');await page.clock.runFor(20000);expect(await read(page)).toBe(before);
  await page.locator('#game-pause-button').click();await page.clock.runFor(20000);expect(deserializeVersionedMatch((await read(page))!).state.history.length).toBeGreaterThan(f.state.history.length);
+});
+
+test('a human capture reward is acknowledged before its queued world event, without releasing AI early',async({page})=>{
+ test.setTimeout(120000);const f=queuedEventFixture();await open(page,f.text,f.before.events?.sequence??0);
+ await page.locator('#end-turn-button').click();const reward=page.locator('#game-focus-drawer').getByRole('button',{name:'Continue',exact:true});await expect(reward).toBeVisible();await expect(page.locator('#world-event-card')).toBeHidden();
+ const after=(await read(page))!;expect(deserializeVersionedMatch(after).state).toEqual(f.after);await page.clock.runFor(20000);expect(await read(page)).toBe(after);
+ await reward.click();await expect(page.locator('#acknowledge-world-event')).toBeVisible();await page.clock.runFor(20000);expect(await read(page)).toBe(after);await page.locator('#acknowledge-world-event').click();expect(await read(page)).toBe(after);
 });
