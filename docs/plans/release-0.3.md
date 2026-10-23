@@ -158,3 +158,23 @@ T42/#87 and T43/#88 rather than silently enabling events during balance work.
 Original runtime/wording clarification: isle-wars-archaeology#287. Original centre
 production is an event effect, not ordinary turn income; Malpaco adoption remains
 a separate balance and release-scope decision.
+
+### Archaeology clarification returned
+
+The [starting-armies report](https://github.com/diegoami/isle-wars-archaeology/issues/286#issuecomment-6365980951)
+and [production/disaster report](https://github.com/diegoami/isle-wars-archaeology/issues/287#issuecomment-6366008177)
+reuse evidence pinned to archaeology commit `084c1087119fcf45f0d0d2774eea7121487f1cb4`;
+no new gameplay runs were made. For the inspected unregistered Pro build, 1/3/5/7/10
+is a per-country starting-army upper bound, default 3, applied equally across seats.
+It is neither a human-only minimum nor a recurring-income divisor. Equal aggregate
+seat budgets in T113 are Malpaco's designed fairness constraint, not a Pro finding.
+
+Frequency controls the event path (effects and presentation) in the static reading,
+not merely notification visibility. The original draw precedes suppression/override;
+Never is not established as consuming no random draws. Malpaco's proposed Off/no-draw
+contract therefore remains an intentional design choice. Centres provide no ordinary
+income; production is a local stack-doubling event and relocation changes the centre
+list. Preserve the distinction between event announcements observed in recordings
+and uncorroborated exact before/after effects, capture-marker persistence, registered
+alternatives and other versions. These returns inform #292/#293; they do not adopt
+event mechanics or change the held prototypes' acceptance requirements.
