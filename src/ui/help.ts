@@ -82,7 +82,7 @@ export function mountHelp(
  * stay out of this help: the page may show only your own or publicly spent cards. */
 const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
   ["help", "Help", "Instructions, icon names and explanations of the settings."],
-  ["settings", "Settings", "The next game’s opponents and replenishment, its seed and the scoreboard. New game and Help have their own top-left buttons. While a computer plays the corner buttons wait until your turn or a pause."],
+  ["settings", "Settings", "The next game’s opponents and starting armies, its seed and the scoreboard. New game and Help have their own top-left buttons. While a computer plays the corner buttons wait until your turn or a pause."],
   ["pause", "Pause", "Stops play at once and brings back the corner buttons; the same icon resumes it. Beside it, the game speed."],
   ["fast-forward", "Fast-forward", "Beside Pause during computer turns: play them without waiting until your turn."],
   ["fit", "Fit", "Shows the whole map again."],
@@ -98,7 +98,7 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["return", "Return", "The gold icon that brings a folded choice back."],
   ["standings", "Standings", "Countries and armies at the end of the game."],
   ["trophy", "Scoreboard", "In Settings: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
-  ["new-game", "New game", "Gives up this game and starts a new one."],
+  ["new-game", "New game", "Gives up this game after confirmation, then opens Settings. Press Start game to begin."],
   ["watch", "Watch computers", "After your last country falls: the computers play on."],
   ["cards", "Your cards", "Shows the cards you hold and how many, each with a plain symbol for what it does; drag the window by its title. After each draw your whole hand is shown."],
   ["fold", "Fold card", "Shrinks a card to a chip that keeps its title; tap the chip to open it again."],

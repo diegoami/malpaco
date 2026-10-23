@@ -105,7 +105,7 @@ body {
   stroke: #fff;
   stroke-opacity: 0.55;
   stroke-width: 3;
-  stroke-dasharray: 3 11;
+  stroke-dasharray: none;
   stroke-linecap: round;
 }
 .shore path {
@@ -868,7 +868,7 @@ dialog h2 {
 #generated-map [data-connection="sea"] {
   stroke: #83c9e5;
   stroke-width: 2.5px;
-  stroke-dasharray: 6 7;
+  stroke-dasharray: none;
   stroke-opacity: .7;
 }
 #generated-map [data-highlighted="true"] {
@@ -1312,7 +1312,7 @@ dialog h2 {
 :is(#geographic-map,#reference-map) .water {fill:#102b36}
 :is(#geographic-map,#reference-map) .shelf {fill:#214c56;stroke:#214c56;stroke-width:10;stroke-linejoin:round;pointer-events:none}
 :is(#geographic-map,#reference-map) .coast {fill:#3c7071;stroke:#dce4be;stroke-width:2.8;stroke-linejoin:round}
-:is(#geographic-map,#reference-map) .lane {fill:none;stroke:#89aaa4;stroke-width:1.5;stroke-dasharray:3 6;stroke-linecap:round;stroke-linejoin:round}
+:is(#geographic-map,#reference-map) .lane {fill:none;stroke:#89aaa4;stroke-width:1.5;stroke-dasharray:none;stroke-linecap:round;stroke-linejoin:round}
 :is(#geographic-map,#reference-map) .lane.active {stroke:#f0f1de;stroke-width:2.4;stroke-dasharray:none}
 :is(#geographic-map,#reference-map) .port {fill:#89aaa4;stroke:none}
 :is(#geographic-map,#reference-map) .cell {stroke:#d0dfbf;stroke-width:.9;stroke-linejoin:round;transition:filter .2s}
@@ -1902,3 +1902,33 @@ dialog h2 {
 #start-game { width:100%; }
 #game-launcher [hidden] { display:none !important; }
 #game-launcher .match-error:empty { display:none; }
+
+/* T117: original raised text controls, following the owner's legibility reference. */
+.game-primary-buttons > .primary-command,
+#battle-action-rail button,
+#province-action-button,
+#game-launcher .launcher-help {
+ font-family:Impact,"Arial Narrow",system-ui,sans-serif;
+ font-size:18px; font-weight:900; line-height:1; letter-spacing:.2px;
+ text-transform:uppercase; color:#fff; background:#a51e2c;
+ border:3px solid; border-color:#ff969b #530a16 #530a16 #ff969b;
+ border-radius:3px; box-shadow:2px 3px 0 #071b25, inset 0 1px 0 #ffffff55;
+ text-shadow:0 1px 1px #0008; min-height:44px; padding:0 9px;
+}
+.game-primary-buttons > .primary-command { width:auto; height:44px; font-size:16px; }
+.game-primary-buttons > #open-game-menu { color:#05212c; background:#5ce6e8; border-color:#c4ffff #167075 #167075 #c4ffff; text-shadow:none; }
+.game-primary-buttons > #game-help-button { color:#1b2227; background:#fff8d9; border-color:#fff #777363 #777363 #fff; text-shadow:none; }
+#battle-action-rail button { width:auto; min-width:80px; font-size:18px; }
+#battle-action-rail button svg { display:none; }
+#battle-action-rail #start-friendly-move-button { color:#05212c; background:#5ce6e8; border-color:#c4ffff #167075 #167075 #c4ffff; text-shadow:none; }
+#battle-action-rail #end-turn-button { color:#1b2227; background:#fff8d9; border-color:#fff #777363 #777363 #fff; text-shadow:none; }
+#province-action-button { width:88px; height:44px; min-width:88px; padding:0; font-size:20px; }
+#province-action-button[data-kind="move"] { color:#05212c; background:#5ce6e8; border-color:#c4ffff #167075 #167075 #c4ffff; text-shadow:none; }
+#province-action-button[aria-pressed="true"] { outline:3px solid #fff; outline-offset:2px; }
+.game-primary-buttons > .primary-command:active,#province-action-button:active { box-shadow:inset 1px 2px 3px #0008; }
+@media (max-width:600px) {
+ .game-primary-buttons { gap:4px; }
+ .game-overlay[data-primary-commands="true"] .game-corner-end { top:calc(var(--edge) + var(--target) + var(--gap)); }
+ .game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + 2 * (var(--target) + var(--gap))); }
+ .game-overlay[data-primary-commands="true"]:has(#turn-tracker) .game-pool-slot { top:calc(var(--edge) + 2 * (var(--target) + var(--gap))); }
+}

@@ -132,7 +132,7 @@ export class BattleChrome {
       this.hud.classList.add('game-primary-buttons');
       const {newGame,help}=nodes.primaryActions;
       for(const [button,name,shape] of [[newGame,'New game','new-game'],[this.menu,'Settings','settings'],[help,'Help','help']] as const){
-        button.replaceChildren(symbol(shape));button.setAttribute('aria-label',name);button.title=name;button.classList.add('primary-command');
+        button.replaceChildren(document.createTextNode(name));button.setAttribute('aria-label',name);button.title=name;button.classList.add('primary-command');
       }
       this.hud.append(newGame,this.menu,help);this.overlay.dataset['primaryCommands']='true';
     }else this.hud.append(this.menu);

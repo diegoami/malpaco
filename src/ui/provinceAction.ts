@@ -1,5 +1,4 @@
 import {h} from './dom';
-import {glyph} from './icons';
 
 /** What the selected country can do: fight from it, or move armies from it. */
 export type ProvinceActionKind='fight'|'move';
@@ -20,7 +19,7 @@ export class ProvinceAction {
  show(country:string,kind:ProvinceActionKind,enabled:boolean,pressed:boolean,press:()=>void):void{
   const name=kind==='fight'?(pressed?'Fight: tap an enemy neighbour':'Fight'):(pressed?'Move: tap where to':'Move armies from here');
   this.el.setAttribute('aria-pressed',String(pressed));
-  if(this.el.dataset['kind']!==kind){this.el.replaceChildren(glyph(kind==='fight'?'attack':'move'));this.el.dataset['kind']=kind;}
+  if(this.el.dataset['kind']!==kind){this.el.textContent=kind==='fight'?'ATTACK':'MOVE';this.el.dataset['kind']=kind;}
   this.el.setAttribute('aria-label',name);this.el.title=name;this.el.disabled=!enabled;this.el.dataset['for']=country;
   this.press=press;
   if(this.country!==country){this.country=country;this.place();}
@@ -36,9 +35,11 @@ export class ProvinceAction {
   const count=this.country?document.querySelector(`[data-country="${CSS.escape(this.country)}"] .count`):null;
   const box=count?.getBoundingClientRect();
   if(!box||!box.width||box.right<0||box.left>innerWidth||box.bottom<0||box.top>innerHeight){this.el.hidden=true;return;}
-  const size=44,gap=6,right=box.right+gap+size<=innerWidth-4;
-  this.el.style.left=`${Math.round(right?box.right+gap:box.left-gap-size)}px`;
-  this.el.style.top=`${Math.round(Math.min(Math.max(4,box.top+box.height/2-size/2),innerHeight-size-4))}px`;
+  const width=this.el.offsetWidth||88,height=44,gap=8,right=box.right+gap+width<=innerWidth-4,left=box.left-gap-width>=4;
+  const x=right?box.right+gap:left?box.left-gap-width:Math.min(Math.max(4,box.left),innerWidth-width-4);
+  const y=right||left?box.top+box.height/2-height/2:box.bottom+gap;
+  this.el.style.left=`${Math.round(x)}px`;
+  this.el.style.top=`${Math.round(Math.min(Math.max(4,y),innerHeight-height-4))}px`;
   this.el.hidden=false;
  }
  dispose():void{this.hide();this.el.remove();}
