@@ -56,7 +56,7 @@ export function processWorldEvents(state:GameState,nextRound:number,provided?:De
  if(rng.nextInt(1,EVENT_DENOMINATORS[frequency])!==1){state.rng=rng.snapshot();return;}
  let kind=EVENT_WEIGHTS[rng.nextInt(0,13)]!;
  if(kind===info.lastKind)kind=EVENT_WEIGHTS[rng.nextInt(0,13)]!;
- const event=applyWorldEvent(state,kind,rng);
+ const event={...applyWorldEvent(state,kind,rng),round:nextRound};
  state.events={sequence:event.sequence,cooldown:true,lastKind:kind,latest:event};
  state.log.push({event:'world_event',player:event.afterSeat,turn:event.round,detail:event});state.rng=rng.snapshot();
 }
