@@ -519,7 +519,8 @@ export class BattleChrome {
     this.notice.style.setProperty("--seat", status.seat === null ? "" : seatLook(status.seat).color);
     this.renderNotice();
     this.pool.hidden = status.pool === null;
-    this.pool.replaceChildren(symbol("pool"), h("span", {id: "placement-pool-count"}, String(status.pool ?? 0)));
+    if(this.nodes.primaryActions){this.pool.replaceChildren(h('span',{id:'placement-pool-count'},String(status.pool??0)),h('span',{class:'placement-pool-unit'},status.pool===1?' ARMY':' ARMIES'));this.pool.style.setProperty('--pool-colour',seatLook(status.seat??0).color);}
+    else this.pool.replaceChildren(symbol("pool"), h("span", {id: "placement-pool-count"}, String(status.pool ?? 0)));
     this.pool.setAttribute("aria-label", `${status.pool ?? 0} ${status.pool === 1 ? "army" : "armies"} to place`);
     this.pool.title = this.pool.getAttribute("aria-label")!;
   }

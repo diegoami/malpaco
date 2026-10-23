@@ -1,3 +1,4 @@
+import {cardLabel,cardFaceLabel} from './cardLabels';
 import {h,s as svg} from './dom';
 import type {BattleController} from './battleController';
 import type {CardController} from './cardController';
@@ -16,8 +17,8 @@ export class CardView {
  render():void {
   const v=this.cards.view;this.el.hidden=v.phase==='hidden';if(this.el.hidden)return;
   const button=(label:string,fn:()=>void,name?:string)=>{const b=h('button',{type:'button',disabled:v.blocked,...(name?{'aria-label':name}:{})},label);b.onclick=()=>{fn();this.render();};return b;};
-  const counts=h('p',{class:'card-public-counts visually-hidden'},`Draw: ${v.drawCount} · Discard: ${v.discardCount} · Top: ${v.discardTop??'empty'}. `+Object.entries(v.handCounts).map(([p,n])=>`${p}: ${n}`).join(' · '));
-  const hand=!this.cards.seated?null:h('ul',{class:'own-card-hand visually-hidden','aria-label':'Your hand'},h('li',{},`Your hand: ${v.hand.length} of 5`),...v.hand.map((kind,i)=>h('li',{'data-hand-index':i},h('strong',{},kind))));
+  const counts=h('p',{class:'card-public-counts visually-hidden'},`Draw: ${v.drawCount} · Discard: ${v.discardCount} · Top: ${v.discardTop?cardLabel(v.discardTop):'empty'}. `+Object.entries(v.handCounts).map(([p,n])=>`${p}: ${n}`).join(' · '));
+  const hand=!this.cards.seated?null:h('ul',{class:'own-card-hand visually-hidden','aria-label':'Your hand'},h('li',{},`Your hand: ${v.hand.length} of 5`),...v.hand.map((kind,i)=>h('li',{'data-hand-index':i},h('strong',{},cardLabel(kind)))));
   const actions=h('div',{class:'card-choice-controls'});
   // The instructions stay for assistive technology; the screen shows only the buttons.
   const say=(text:string)=>actions.append(h('p',{class:'visually-hidden'},text));
@@ -28,20 +29,20 @@ export class CardView {
    for(const set of v.sets){
     const cards=set.indices.map(i=>v.hand[i]!),key=[...cards].sort().join('+');if(offered.has(key))continue;offered.add(key);
     const wild=cards.filter(kind=>kind==='Wild').length;
-    actions.append(button(wild?`${set.kind} + ${wild>1?`${wild} `:''}Wild`:set.kind,()=>this.cards.chooseSet(set.indices,v.revision),`${set.kind}: ${cards.join(' + ')} — ${set.effect}`));
+    const play=button(wild?`${cardLabel(set.kind)} + ${wild>1?`${wild} `:''}any value`:cardLabel(set.kind),()=>this.cards.chooseSet(set.indices,v.revision),`${cardLabel(set.kind)}: ${cards.map(cardLabel).join(' + ')} — ${set.effect}`);play.dataset.cardSet=set.kind;actions.append(play);
    }
    actions.append(button('Skip',()=>this.cards.skip(v.revision),'Skip cards'));
   }
   if(v.phase==='discard')say('Your hand is full. Discard one card before drawing. The new card is not shown first.');
-  if(v.phase==='discard')for(const [i,kind] of v.hand.entries())actions.append(button(kind,()=>this.cards.discard(i,v.revision),`Discard ${kind} (card ${i+1})`));
+  if(v.phase==='discard')for(const [i,kind] of v.hand.entries())actions.append(button(cardLabel(kind),()=>this.cards.discard(i,v.revision),`Discard ${cardLabel(kind)} (card ${i+1})`));
   if(v.phase==='raid-target'){
-   say('Raid: choose an enemy country on the board.');
-   const confirm=button('Confirm',()=>this.cards.confirmRaid(v.revision),'Confirm raid');confirm.disabled=v.blocked||!v.selectedTarget;actions.append(confirm);
+   say('Army reduction: choose an enemy country on the board.');
+   const confirm=button('Confirm',()=>this.cards.confirmRaid(v.revision),'Confirm army reduction');confirm.disabled=v.blocked||!v.selectedTarget;actions.append(confirm);
    actions.append(h('p',{class:'visually-hidden'},v.preview));
   }
   if(v.phase==='reward'){
    // T104 (owner): after the draw, your whole hand, the card just drawn marked (the last of its kind).
-   const drawn=/^You drew (\w+)\./.exec(v.notice??'')?.[1],at=drawn?v.hand.lastIndexOf(drawn as typeof v.hand[number]):-1;
+   const at=v.drawn?v.hand.lastIndexOf(v.drawn):-1;
    const list=this.cards.seated&&v.hand.length?h('ol',{id:'reward-hand',class:'hand-list card-tiles','aria-label':'Your cards'},...v.hand.map((kind,i)=>cardTile(kind,i,i===at))):null;
    actions.append(h('p',{class:'private-card-reward'},v.notice),...(list?[list]:[]),button('Continue',()=>this.cards.acknowledge(v.revision)));
   }
@@ -64,7 +65,7 @@ function bomb(crossed:boolean):SVGSVGElement{
 }
 export function cardTile(kind:string,index:number,isNew=false):HTMLElement{
  const symbol=kind==='Raid'||kind==='Shield'?bomb(kind==='Shield'):h('span',{class:'card-tile-symbol','aria-hidden':'true'},CARD_SYMBOL[kind]??'?');
- return h('li',{class:'card-tile','data-kind':kind,'data-hand-index':index,...(isNew?{'data-new':'true'}:{})},symbol,h('span',{class:'card-tile-name'},kind),...(isNew?[h('span',{class:'card-tile-new'},'new')]:[]));
+ return h('li',{class:'card-tile','data-kind':kind,'data-hand-index':index,...(isNew?{'data-new':'true'}:{})},symbol,h('span',{class:'card-tile-name'},cardFaceLabel(kind)),...(isNew?[h('span',{class:'card-tile-new'},'new')]:[]));
 }
 
 /**
@@ -113,7 +114,7 @@ export class HandDialog {
   const offered=new Set<string>(),plays=h('div',{class:'hand-plays'});
   if(v.phase==='sets')for(const set of v.sets){
    const cards=set.indices.map(i=>v.hand[i]!),key=[...cards].sort().join('+');if(offered.has(key))continue;offered.add(key);
-   const play=h('button',{type:'button',class:'primary','data-set':set.kind,disabled:v.blocked,'aria-label':`Play ${set.kind}: ${cards.join(' + ')} — ${set.effect}`},`Play ${set.kind}`);
+   const play=h('button',{type:'button',class:'primary','data-set':set.kind,disabled:v.blocked,'aria-label':`Play ${cardLabel(set.kind)}: ${cards.map(cardLabel).join(' + ')} — ${set.effect}`},`Play ${cardLabel(set.kind)}`);
    play.onclick=()=>{if(this.cards.chooseSet(set.indices,v.revision))this.dialog.close();};plays.append(play);
   }
   const note=h('p',{class:'card-note'},v.phase==='sets'?(plays.childElementCount?'Play a set now, or close this and place your armies.':'No set to play now.'):'Three cards that make a set are played at the start of your turn.');

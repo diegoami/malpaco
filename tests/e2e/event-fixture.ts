@@ -42,3 +42,17 @@ export function humanCaptureFixture(){
   }
  }throw Error('No human capture fixture');
 }
+
+export function eightArmyDrawFixture(){
+ for(let seed=0;seed<30;seed++){
+  const options={...defaultOptions(),seed,islandRules:1 as const,eventFrequency:'Off' as const},made=createGeographicGame(options,islandRules(options),{},2);if(!made.ok)continue;let state=made.state;
+  for(let n=0;n<500&&!state.result;n++){
+   const player=state.players[state.currentPlayer]!;
+   if(player.kind==='human'&&state.phase==='attack'&&state.capturedThisTurn&&!state.pendingCapture&&state.cards!.hands[player.id]!.length<5){
+    const next=apply(state,{kind:'endTurn'});if(next.ok&&next.state.cards!.hands[player.id]!.at(-1)==='Compass'&&next.state.cards!.hands[player.id]!.length===state.cards!.hands[player.id]!.length+1)return {before:state,after:next.state,text:serializeVersionedMatch(options,state.history,GEOGRAPHIC_EVENT_MATCH_IDENTITY)};
+    break;
+   }
+   const action=decideComputerAction(computerView(state));if(!action)break;const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;
+  }
+ }throw Error('No ordinary 8-army draw fixture');
+}

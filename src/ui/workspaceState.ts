@@ -105,6 +105,7 @@ export function projectWorkspace(battle: BattleController, cardsView: CardContro
       selectedTarget: cardsView.selectedTarget,
       preview: cardsView.preview,
       notice: cardsView.notice,
+      drawn: cardsView.drawn,
       blocked: cardsView.blocked,
     },
   };

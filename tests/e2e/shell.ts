@@ -127,3 +127,8 @@ export async function startFromResult(page: Page): Promise<void> {
  await page.locator('#give-up-new-game').click();
  await expect(page.locator('#game-launcher')).toBeVisible();await startGameIfNeeded(page);
 }
+
+/** Player notices use X; diagnostic adapters retain their Continue button. */
+export function noticeContinue(page:Page){
+ return page.getByRole('button',{name:'Continue',exact:true}).or(page.locator('.game-overlay[data-primary-commands="true"] #game-focus-drawer:has(.card-interactions[data-phase="reward"]) #fold-card, .game-overlay[data-primary-commands="true"] #world-event-card:not([hidden]) #fold-world-event')).filter({visible:true});
+}

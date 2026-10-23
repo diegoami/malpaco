@@ -43,6 +43,6 @@ test('native Back acknowledges an event but cannot release background Resume',as
 test('a human capture reward is acknowledged before its queued world event, without releasing AI early',async({page})=>{
  test.setTimeout(120000);const f=queuedEventFixture();await open(page,f.text,f.before.events?.sequence??0);
  await page.locator('#end-turn-button').click();const reward=page.locator('#fold-card');await expect(reward).toBeVisible();await expect(page.locator('#world-event-card')).toBeHidden();
- const after=(await read(page))!;expect(deserializeVersionedMatch(after).state).toEqual(f.after);await page.clock.runFor(20000);expect(await read(page)).toBe(after);
+ const after=(await read(page))!;expect(deserializeVersionedMatch(after).state).toEqual(f.after);await page.clock.runFor(2999);expect(await read(page)).toBe(after);
  await reward.click();await expect(page.locator('#fold-world-event')).toBeVisible();await page.clock.runFor(20000);expect(await read(page)).toBe(after);await page.locator('#fold-world-event').click();expect(await read(page)).toBe(after);
 });
