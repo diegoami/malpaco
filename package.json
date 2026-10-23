@@ -13,10 +13,13 @@
     "package:playable": "node tools/release/package-playable.mjs",
     "preview": "vite preview --port 4173 --strictPort",
     "test": "node --test tests/dev-watch/*.test.mjs && vitest run",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "android:build:debug": "node tools/android/build-debug.mjs",
+    "android:dev": "tauri android dev"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",
+    "@tauri-apps/cli": "2.12.4",
     "@types/node": "^26.6.4",
     "typescript": "^7.0.2",
     "vite": "^8.3.2",
