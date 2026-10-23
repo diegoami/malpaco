@@ -167,9 +167,13 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 | [T112](T112.md) | Direct New game, Settings and Help buttons | High | Medium | #290 | T110 |
 | [T113](T113.md) | Starting-army balance pilot | High | Medium | #292 | T105, T111 prototype |
 | [T114](T114.md) | Starting-army and event Settings | High | Medium | #292 | T42, T43 |
+| [T115](T115.md) | Turn tracker and readable action feedback | High | Medium | #300 | T43, T114 |
+| [T116](T116.md) | Settings-first Start game flow | High | Medium | #301 | T114, T115 |
 
 ## Development infrastructure
 
 | Task | Title | Priority | Difficulty | Issue | Merge after |
 | --- | --- | --- | --- | --- | --- |
 | [T91](T91.md) | Simplify development CI and document reusable adoption | High | Hard | #211 (consolidates #108/#118) | — |
+
+- [T117](T117.md): prominent text commands and contrasting region ATTACK button.

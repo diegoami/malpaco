@@ -1,3 +1,4 @@
+import {visitGame,reloadGame} from './shell';
 // T104 (owner, 2026-10-22): "I do not have a way to see my cards". A corner button carries your hand
 // count and opens the list; after a draw the reward card shows your whole hand, the new card marked;
 // a set is played from the list at the start of your turn. Every check is against the engine.
@@ -35,7 +36,7 @@ const settled=(l:import('@playwright/test').Locator)=>l.evaluate(d=>Promise.all(
 async function opened(p:Page,text:string,size:{width:number;height:number}){
  await p.setViewportSize(size);
  await p.addInitScript(([k,v])=>{if(!sessionStorage.getItem('t104'))sessionStorage.setItem('t104','1'),localStorage.setItem(k!,v!);},[ROOT,text]);
- await p.goto('/');await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await visitGame(p,'/');await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);
 }
 
 test.beforeEach(({},info)=>{test.skip(info.project.name!=='1280x800','sizes are set per test');});
@@ -72,7 +73,7 @@ for(const size of SIZES){
   // A tap on the header is not a drag.
   await head.click({position:{x:20,y:hb.height/2}});await near(dialog);
   await button.click();await expect(dialog).toBeHidden();await button.click();await near(dialog);
-  await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await reloadGame(page);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   await page.locator('#open-hand').click();await near(page.locator('#hand-dialog'));
   expect(same(await kept(page))).toEqual(same(state));
  });

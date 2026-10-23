@@ -42,7 +42,7 @@ export class CardController {
    sets.push({indices:[i,j,k],kind,effect});
   }
   const armies=this.target?s.armies[this.target]:undefined;
-  return {revision:this.battle.view.revision,phase,hand:projection.hand,handCounts:projection.handCounts,drawCount:projection.drawCount,discardCount:projection.discardCount,discardTop:c?.discardPile.at(-1)??null,sets,selectedTarget:this.target,preview:armies===undefined?'Choose any enemy country.':`${s.map.provinces.find(country=>country.id===this.target)?.name??this.target}: ${armies} → 1 to ${Math.max(1,Math.floor(armies/2))}. A Shield may block the raid.`,notice:this.reward??this.notice,blocked:this.battle.playbackPaused||this.battle.worldEventAcknowledgmentPending||this.disposed};
+  return {revision:this.battle.view.revision,phase,hand:projection.hand,handCounts:projection.handCounts,drawCount:projection.drawCount,discardCount:projection.discardCount,discardTop:c?.discardPile.at(-1)??null,sets,selectedTarget:this.target,preview:armies===undefined?'Choose any enemy country.':`${s.map.provinces.find(country=>country.id===this.target)?.name??this.target}: ${armies} → 1 to ${Math.max(1,Math.floor(armies/2))}. A Shield may block the raid.`,notice:this.reward??this.notice,blocked:this.battle.playbackPaused||this.battle.worldEventAcknowledgmentPending||this.battle.computerFeedbackPending||this.disposed};
  }
  update():void {
   if(this.generation!==this.battle.gameGeneration){this.generation=this.battle.gameGeneration;this.reset();this.passNoSet();return;}

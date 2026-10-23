@@ -1,3 +1,4 @@
+import {visitGame} from './shell';
 // T101 (owner, 2026-10-22): computer turns are quick and quiet. While a computer plays, the only
 // controls on screen are Pause, Fast-forward and the speed choice (a corner control); the menu,
 // Fit, Focus and Countries come back on your turn or with a pause. Each computer's turn shows one
@@ -21,8 +22,8 @@ const SPEED_CONTROLS=['fast-forward-button','game-pause-button','game-speed'];
 async function watchNotices(p:Page){
  await p.addInitScript(()=>{
   const seen:string[]=[];Reflect.set(window,'noticeTitles',seen);
-  const note=()=>{const n=document.querySelector<HTMLElement>('#active-seat-notice');const t=n&&!n.hidden?n.querySelector('.game-notice-title')?.textContent??'':'';if(t&&seen.at(-1)!==t)seen.push(t);};
-  new MutationObserver(note).observe(document,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden']});
+  const note=()=>{const root=document.querySelector('#turn-tracker'),row=root?.querySelector('[data-current="true"]'),colour=row?.querySelector('.turn-colour')?.textContent,heading=root?.querySelector('#turn-guidance-title')?.textContent;const t=colour?(heading==='Your turn'?`Your turn · ${root?.getAttribute('data-guidance')}`:`${colour}'s turn`):'';if(t&&seen.at(-1)!==t)seen.push(t);};
+  new MutationObserver(note).observe(document,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden','data-active-seat','data-current']});
  });
 }
 const notices=(p:Page)=>p.evaluate(()=>Reflect.get(window,'noticeTitles') as string[]);
@@ -32,15 +33,15 @@ test.beforeEach(({},info)=>{test.skip(info.project.name!=='1280x800','the sizes 
 for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
  test.use({viewport:size});
 
- test('while a computer plays only Pause, Fast-forward and the speed choice are on screen; a pause brings the menu back; one notice per computer turn',async({page})=>{
+ test('while a computer plays only Pause, Fast-forward and the speed choice are on screen; a pause brings the menu back; one tracker advance per computer turn',async({page})=>{
   test.setTimeout(150_000);await watchNotices(page);
   await page.clock.install({time:new Date('2026-10-22T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-22T12:00:00Z'));
   // Seed 7 opens on Orange's turn: the three computers play before you.
-  await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   expect(await computerActive(page)).toBe('true');
   await expect(page.locator('#game-speed')).toHaveValue('normal');
   let steps=0;
-  for(;steps<600&&await computerActive(page)==='true';steps++){
+  for(;steps<1200&&await computerActive(page)==='true';steps++){
    expect(await visibleControls(page),'controls during a computer turn').toEqual(SPEED_CONTROLS);
    // The notice is a status line: no buttons on it.
    await expect(page.locator('#active-seat-notice button')).toHaveCount(0);
@@ -65,17 +66,17 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   for(const id of ['#open-game-menu','#map-fit','#open-countries'])await expect(page.locator(id)).toBeVisible();
   await expect(page.locator('#fast-forward-button')).toBeHidden();
   const titles=await notices(page);
-  expect(titles.slice(0,3),'one notice per computer turn').toEqual(["Orange's turn","Green's turn","Purple's turn"]);
+  expect(titles.slice(0,3),'one tracker advance per computer turn').toEqual(["Orange's turn","Green's turn","Purple's turn"]);
   expect(titles.slice(3)).toHaveLength(1);expect(titles[3]).toMatch(/^Your turn/);
  });
 
  test('the computers show no pair, outline or name; only counts and colours change',async({page})=>{
   test.setTimeout(120_000);
   await page.clock.install({time:new Date('2026-10-22T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-22T12:00:00Z'));
-  await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   const marked=()=>page.locator('#geographic-map').evaluate(map=>map.querySelectorAll('[data-country].selected, [data-country].target, [data-country].pending, [data-country][data-selected="true"], [data-country][data-target="true"], .lane.active').length+map.querySelectorAll('.name-top:not([display="none"])').length);
   let changes=0,last='';
-  for(let n=0;n<600&&await computerActive(page)==='true';n++){
+  for(let n=0;n<1200&&await computerActive(page)==='true';n++){
    expect(await marked(),'a computer action marks the map').toBe(0);
    const paint=await page.locator('#geographic-map [data-country]').evaluateAll(ns=>ns.map(x=>`${x.getAttribute('data-owner')}:${x.getAttribute('data-armies')}`).join());
    if(paint!==last){changes++;last=paint;}
@@ -85,9 +86,9 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
  });
 });
 
-test('a round of three Normal computers on seed 7 takes at most 12 s of real time and plays the same actions',async({page})=>{
+test('a round of three Normal computers on seed 7 is visibly paced and plays the same actions',async({page})=>{
  test.setTimeout(120_000);await page.setViewportSize({width:1280,height:800});
- await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
  const start=Date.now();expect(await computerActive(page)).toBe('true');
  await expect(page.locator('.panel')).toHaveAttribute('data-computer-active','false',{timeout:60_000});
  const elapsed=Date.now()-start;
@@ -100,5 +101,6 @@ test('a round of three Normal computers on seed 7 takes at most 12 s of real tim
  expect(loaded.state.history.slice(0,state.history.length)).toEqual(state.history);
  expect(loaded.state.history.slice(state.history.length).every(a=>a.kind==='skipCards')).toBe(true);expect(loaded.state.history.length-state.history.length).toBeLessThanOrEqual(1);
  expect(state.history.length).toBeGreaterThan(30);
- expect(elapsed,'a computer round at Normal').toBeLessThanOrEqual(12_000);
+ // T115 owner supersedes the old12s cap: normal actions must be readable, with the same engine oracle.
+ expect(elapsed,'readable Normal computer presentation').toBeGreaterThanOrEqual(15_000);expect(elapsed).toBeLessThanOrEqual(90_000);
 });

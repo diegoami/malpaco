@@ -105,3 +105,25 @@ export async function activate(locator: import('@playwright/test').Locator): Pro
   const clear = await locator.evaluate(n => { const r = (n.querySelector('.cell') ?? n).getBoundingClientRect(), hit = document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2); return !!hit && n.contains(hit); });
   if (clear) await locator.click(); else { await locator.focus(); await locator.press('Enter'); }
 }
+
+/** Drive the real entry controls for gameplay tests; launcher tests inspect them directly. */
+export async function startGameIfNeeded(page: Page): Promise<void> {
+ const launcher=page.locator('#game-launcher');
+ if(!await launcher.count())return;
+ if(await launcher.getAttribute('data-mode')==='saved')await launcher.locator('#resume-game').click();
+ else await launcher.locator('#start-game').click();
+ // Move off the disappearing launcher so its click position does not hover a map country.
+ await page.mouse.move(0,0);
+ await expect(page.locator('#geographic-map [data-country]').first()).toBeVisible({timeout:60000});
+}
+export async function visitGame(page: Page, url: string): Promise<void> {
+ await page.goto(url);await startGameIfNeeded(page);
+}
+export async function reloadGame(page: Page): Promise<void> {
+ await page.reload();await startGameIfNeeded(page);
+}
+/** Result → Settings → Start is an explicit new-game action. */
+export async function startFromResult(page: Page): Promise<void> {
+ await page.locator('#give-up-new-game').click();
+ await expect(page.locator('#game-launcher')).toBeVisible();await startGameIfNeeded(page);
+}

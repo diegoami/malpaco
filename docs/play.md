@@ -23,16 +23,16 @@ loopback interface and serves the included files.
 New games grow their own geography: 7–10 irregular islands sharing 46 territories, different for every seed. Saved games keep the generator they were made with.
 The seed fixes the geography, deal and dice sequence.
 
-Opening the page starts a game at once: you against three Normal computers on a random seed, with
+Opening a fresh page shows Settings. Press **Start game** when ready: by default you play against three Normal computers on a random seed, with
 Domination on and no round limit. Islands and territories take real island and town names from one
 region (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific), chosen by
 the seed; names never change the map or play. The game is kept in this browser after each of your
 actions and each computer's turn (a refresh in the middle of a computer's turn replays that turn,
-the same moves), so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
+the same moves), so a refresh or later visit offers **Resume saved game**, with any open choice (a capture, a card choice or a Raid)
 still open, at the game speed you chose, and paused if you left it paused. Nothing leaves this
 browser: there is no account, server or sync between devices. **Settings** at top left
 chooses 1, 2 or 3 computer opponents for your next game (3 by default). Changing
-this setting keeps your current game exactly as it is; a refresh still resumes it.
+this setting keeps your current game exactly as it is; a refresh offers Resume for it.
 These settings take effect only when you choose **New game**. **Starting armies**
 chooses **1–2, 1–3 or 1–4** per country (default 1–3), with equal aggregate seat budgets
 and only unavoidable integer differences. New games use fixed territory income:
@@ -40,7 +40,7 @@ owned countries divided by 3, rounded down with minimum 2, plus island bonuses.
 **Disasters and production** offers Off/Rare/Normal/Often (default Normal).
 Existing games retain their original rules, including older configured income rates.
 **New game** asks "Give up this game?", shows
-where the seats stood, then starts a new random game; after a result it starts at once.
+where the seats stood, then opens Settings with **Start game**.
 Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
 same address (it never replaces the kept game),
 `?setup` opens the older setup screen with its seats, options and Save and Load files,
@@ -53,9 +53,9 @@ You are **You**; the three computers are named by their seat colours: **Orange**
 
 During your turn, place reinforcements on your territories,
 and combat starts by itself once the last army is placed. Select one of your territories: on it
-appears **Fight** if it can attack, or **Move** if it can only move armies. Press **Fight**, then
-tap an adjacent enemy: one round is fought; press **Fight** again for another. Selecting another
-territory moves the icon there. Without **Fight**, tapping an enemy only chooses the target. **Fight** rolls one exchange each time you press it; nothing
+appears **ATTACK** if it can attack, or **Move** if it can only move armies. Press **ATTACK**, then
+tap an adjacent enemy: one round is fought; press **ATTACK** again for another. Selecting another
+territory moves the button there. Without **ATTACK**, tapping an enemy only chooses the target. **ATTACK** rolls one exchange each time you press it; nothing
 continues on its own, and **Cancel** drops the target. Clicks, Enter/Space, touch and the
 Countries list all work the same way. After capturing a territory, choose the army amount with
 −, + and **Confirm** on the bar beside the captured territory; until then the two countries'
@@ -155,3 +155,10 @@ draws. Instructions belong in Help; Settings contains the choices.
 
 The held larger-map preview also offers Map size46/72/96 in Settings. Larger
 presets add islands, use numbered names and apply only at New game.
+The top-left turn tracker lists player colours, regions and public card counts.
+Its arrow stays with the computer while its action finishes, then points at your
+colour with **Your turn**. Guidance changes through **Place armies**, **Execute
+attacks** and **Move armies**. The move hint is a conservative stack comparison;
+it never prevents a legal riskier attack. New computer placement, combat and troop
+transfers are shown on the regions at a readable pace. Speed and Fast-forward
+change presentation only; Pause finishes the current paint and stops further play.
