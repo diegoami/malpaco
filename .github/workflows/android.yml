@@ -1,0 +1,48 @@
+name: android
+
+on:
+  pull_request:
+    paths:
+      - 'src-tauri/**'
+      - 'tools/android/**'
+      - 'src/**'
+      - 'public/**'
+      - 'fixtures/**'
+      - 'package*.json'
+      - 'vite.config.ts'
+      - '.github/workflows/android.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  debug-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      JAVA_HOME: ${{ github.workspace }}/artifacts/android-toolchain/jdk/jdk-21.0.13+9
+      ANDROID_HOME: ${{ github.workspace }}/artifacts/android-toolchain/sdk
+      NDK_HOME: ${{ github.workspace }}/artifacts/android-toolchain/sdk/ndk/29.0.14206865
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install pinned Android toolchain
+        run: python3 tools/android/setup-linux.py
+      - name: Build bundled debug APKs
+        run: npm run android:build:debug
+      - name: Upload debug APKs and asset manifests
+        uses: actions/upload-artifact@v4
+        with:
+          name: malpaco-android-debug
+          path: artifacts/T106-build/
+          if-no-files-found: error
+          retention-days: 14
