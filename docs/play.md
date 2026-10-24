@@ -71,8 +71,8 @@ one notice, such as "Orange's turn", while its counts and colours change on the 
 not staged or outlined.
 
 Cards are enabled in normal games with zero or one human seat. Hands start empty.
-Capture a territory and finish your turn to earn a card; the reward says which card you drew,
-with **Continue**. A card choice opens by itself and holds only its buttons: one per set you can
+Capture a territory and finish your turn to earn a card; the reward says which card you drew.
+Close that informational notice with X to continue. A card choice opens by itself and holds only its buttons: one per set you can
 trade, plus **Skip**; one per card when a full hand must discard before drawing (the new card
 stays hidden until then). A Raid folds its card to a one-line strip so the whole map is free: tap
 a highlighted enemy country, or choose one from **Countries**, then **Confirm**.
@@ -134,8 +134,9 @@ army each. **Revolt** changes one border country's owner without changing its ar
 or eliminating a seat. Events are protected in the first round, near a win, after
 another event and during the last three rounds of a round-limit game.
 
-An event card lists exact before/after changes. **Continue** acknowledges it;
-**Fold** or Back/Escape lets you inspect marked countries without acknowledging.
+An event card lists exact before/after changes. X, Back or Escape acknowledges it
+and continues in one action. Troop choices still require Confirm; closing an amount
+card never commits armies.
 Pending presentation survives reload. Acknowledgement never resumes a game paused
 by backgrounding: use Resume explicitly. Off hides centres and consumes no event
 draws. Instructions belong in Help; Settings contains the choices.
