@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import {spawnSync,execFileSync} from 'node:child_process';
-import {mkdirSync,writeFileSync,readFileSync,readdirSync,existsSync} from 'node:fs';
+import {mkdirSync,writeFileSync,readFileSync,readdirSync,existsSync,copyFileSync} from 'node:fs';
 import {join,resolve,dirname,relative} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {createHash} from 'node:crypto';
@@ -47,7 +47,8 @@ try{
  // The CLI above built the exact source's JNI payload. Avoid calling its ephemeral
  // Rust build server from this separate instrumentation-APK assembly.
  run('build-instrumentation',join(project,'gradlew'),['-p',project,'--no-daemon','--max-workers=2',':app:assembleUniversalDebugAndroidTest','-PabiList=x86_64','-ParchList=x86_64','-PtargetList=x86_64','-x',':app:rustBuildUniversalDebug','-x',':app:rustBuildX86_64Debug']);
- const test=apks(join(project,'app/build/outputs/apk/androidTest')).find(p=>p.includes('/universal/debug/'));if(!test)throw Error('The instrumentation APK for the requested flavor is missing.');
+ const builtTest=apks(join(project,'app/build/outputs/apk/androidTest')).find(p=>p.includes('/universal/debug/'));if(!builtTest)throw Error('The instrumentation APK for the requested flavor is missing.');
+ const test=join(out,'instrumentation.apk');copyFileSync(builtTest,test);
  report.instrumentation={path:relative(root,test),sha256:hash(test)};
  // Never let Gradle connected-test cleanup uninstall the target application.
  // Explicit updates preserve existing debug-app data; test contexts use cache only.
