@@ -6,7 +6,7 @@ export interface GeographyCorridor { from: string; to: string; points: GeoPoint[
 /** Partial construction only: no owners, armies, sea adjacency, bonuses or playable GameMap. */
 export interface IslandGeography {
   /** v1 perturbs the T34 witness; v2 (T95) grows islands and regions (island-geography-v2.ts). */
-  version: "island-geography-v1" | "island-geography-v2";
+  version: "island-geography-v1" | "island-geography-v2" | "island-geography-v3";
   seed: number;
   unitsPerPixel: number;
   bounds: { x: number; y: number; width: number; height: number };

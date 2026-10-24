@@ -87,6 +87,8 @@ export interface GameOptions {
   readonly reinforcementDivisor?: ReinforcementDivisor;
   /** Opt-in T42/T114 island rules; earlier records omit this field. */
   readonly islandRules?: 1;
+  /** T111 versioned larger-map prototype. */
+  readonly regionCount?:72|96;
 }
 
 /** Typed error from option validation. */
@@ -265,6 +267,7 @@ export function validateGameOptions(value: unknown): GameOptions {
   }
   return {
     ...(Object.hasOwn(obj,"islandRules")?{islandRules:parseIslandRules(obj.islandRules)}:{}),
+    ...(Object.hasOwn(obj,"regionCount")?{regionCount:parseRegionCount(obj.regionCount)}:{}),
     seats,
     board: parseBoard(obj.board),
     startingArmiesRange: parseStartingArmiesRange(obj.startingArmiesRange),
@@ -291,3 +294,5 @@ export function parseReinforcementDivisor(value:unknown):ReinforcementDivisor {
 }
 
 function parseIslandRules(value:unknown):1 {if(value===1)return 1;throw new OptionsError('Unsupported islandRules.','islandRules');}
+
+export function parseRegionCount(value:unknown):72|96 {if(value===72||value===96)return value;throw new OptionsError('regionCount must be 72 or 96.','regionCount');}

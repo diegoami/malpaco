@@ -113,6 +113,8 @@ Pending presentation survives reload. Acknowledgement never resumes a game pause
 by backgrounding: use Resume explicitly. Off hides centres and consumes no event
 draws. Instructions belong in Help; Settings contains the choices.
 
+The held larger-map preview also offers Map size46/72/96 in Settings. Larger
+presets add islands, use numbered names and apply only at New game.
 The top-left turn tracker lists player colours, regions and public card counts.
 Its arrow stays with the computer while its action finishes, then points at your
 colour with **Your turn**. Guidance changes through **Place armies**, **Execute
