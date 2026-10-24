@@ -2005,7 +2005,10 @@ button.game-text-command:disabled { opacity:.45; }
 .game-overlay[data-primary-commands="true"] > .game-corner-end { display:none !important; }
 .game-overlay[data-primary-commands="true"] .map-camera-controls { flex-direction:column-reverse; align-items:flex-start; }
 .game-overlay[data-primary-commands="true"] #battle-action-rail { grid-auto-flow:row; grid-template-columns:max-content; grid-template-rows:none; }
-#resume-turn-button { margin-top:10px; }
+#resume-turn-button { position:absolute; top:calc(100% + 8px); left:0; margin-top:0; }
+@media (max-height:500px) and (min-width:600px) {
+ #resume-turn-button { top:0; left:calc(100% + 8px); }
+}
 @media (min-width:480px) { .game-primary-buttons > .game-text-command { font-size:22px !important; } }
 @media (max-width:479px) {
  .game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }

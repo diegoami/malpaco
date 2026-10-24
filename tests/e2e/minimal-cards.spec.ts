@@ -145,7 +145,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   await expect(drawer(page).locator('.score, .log-card, #panel-detail, .card-public-counts')).toHaveCount(0);
   await targets(page);await shots('menu',page);
   const icon=page.locator('#game-log-button'),box=(await icon.boundingBox())!;const help=(await page.locator('#game-help-button').boundingBox())!;
-  expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);await expect(icon.locator('svg')).toHaveCount(0);
+  expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);await expect(icon.locator('svg')).toHaveCount(1);
   const log=page.locator('dialog.game-event-log');
   await icon.click();await expect(log).toBeVisible();await targets(page);await shots('history',page);
   await log.getByRole('button',{name:'Close game event log',exact:true}).click();await expect(log).toBeHidden();
