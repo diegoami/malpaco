@@ -1,5 +1,8 @@
 import {expect,test} from 'vitest';
-import {PhaseAnnouncementTimer} from '../../src/ui/phaseAnnouncement';
+import {phaseMessage,PhaseAnnouncementTimer} from '../../src/ui/phaseAnnouncement';
+import {apply,cloneState,deserializeVersionedMatch,serializeVersionedMatch} from '../../src/core';
+import {pinned} from '../core/versioned-match-fixture';
+import {humanGuidance} from '../../src/ui/turnTracker';
 const first={key:'turn1',title:'Your turn to move',detail:'Place armies',seat:0};
 function fixture(fresh=false){
  let now=0,next=0,paints=0,paused=false,message=first;
@@ -25,4 +28,20 @@ test('countdown pauses without completing or restarting; stale timers cannot pai
  f.update();f.advance(599);expect(f.timer.view.count).toBe(3);f.advance(1);expect(f.timer.view.count).toBe(2);f.advance(2000);
  const old=[...f.jobs.values()][0]!.fn;f.update({...first,key:'purple',title:'Purple is moving'});old();expect(f.timer.view.message!.title).toBe('Purple is moving');
  const later=[...f.jobs.values()][0]!.fn,before=f.paints();f.timer.dispose();later();f.advance(5000);f.update();expect(f.paints()).toBe(before);expect(f.timer.view.visible).toBe(false);
+});
+test('capture prompts and advisory changes keep the attack banner and its original deadline',()=>{
+ const loaded=deserializeVersionedMatch(pinned('pending-capture').text),capture=loaded.state;
+ const before=deserializeVersionedMatch(serializeVersionedMatch(loaded.options,capture.history.slice(0,-1),loaded.identity)).state;
+ const context={mode:'battle' as const,cardPhase:'hand',paused:false,worldPending:false,cardReward:false};
+ const message=phaseMessage(before,context)!;
+ expect(phaseMessage(capture,context)).toEqual(message);
+ const after=apply(capture,{kind:'captureMove',amount:capture.pendingCapture!.min});if(!after.ok)throw Error(after.error);
+ expect(phaseMessage(after.state,context)).toEqual(message);
+ const quiet=cloneState(before);for(const id of Object.keys(quiet.armies))quiet.armies[id]=1;
+ expect(humanGuidance(quiet,context).instruction).not.toBe(humanGuidance(before,context).instruction);
+ expect(phaseMessage(quiet,context)).toEqual(message);
+ const f=fixture();f.update(message);f.advance(1000);f.update(phaseMessage(capture,context)!);f.advance(1000);f.update(phaseMessage(after.state,context)!);
+ f.advance(999);expect(f.timer.view.visible).toBe(true);f.advance(1);expect(f.timer.view.visible).toBe(false);
+ f.update(phaseMessage(quiet,context)!);expect(f.timer.view.visible).toBe(false);
+ expect(phaseMessage(after.state,{...context,mode:'move'})!.key).not.toBe(message.key);
 });

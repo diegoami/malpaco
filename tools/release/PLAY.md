@@ -22,7 +22,8 @@ loopback interface and serves the included files.
 
 Fresh games show a three-second countdown before play. Centered translucent banners
 announce the moving player and your next phase, then disappear. Resuming a kept game
-skips the countdown; the turn panel continues to show guidance.
+skips the countdown; the turn panel continues to show guidance. Capture prompts
+and changing attack suggestions stay in that panel without restarting a banner.
 
 New games grow their own geography. Choose 46, 72 or 96 regions in Settings;46 is the default. Larger presets add islands and use numbered territory names. Saved games keep the generator and size they were made with.
 The seed fixes the geography, deal and dice sequence.

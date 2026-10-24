@@ -1,6 +1,6 @@
 import type {BattleScheduler} from './battleController';
 import type {GameState} from '../core';
-import {humanGuidance,turnRows} from './turnTracker';
+import {turnRows} from './turnTracker';
 import type {GuidanceContext} from './turnTracker';
 
 export interface PhaseMessage {readonly key:string;readonly title:string;readonly detail:string;readonly seat:number}
@@ -11,9 +11,12 @@ export function phaseMessage(state:GameState,context:GuidanceContext):PhaseMessa
  if(!row)return null;
  const prefix=`${state.turnNumber}/${row.id}`;
  if(!row.human)return {key:prefix,title:`${row.colour} is moving`,detail:'Watch their turn',seat:index};
- const guide=humanGuidance(state,{...context,paused:false});
- const detail=guide.instruction||'Choose your next action';
- return {key:`${prefix}/${state.phase}/${context.mode}/${context.cardPhase}/${detail}`,title:context.mode==='move'?'Your turn to move':state.pendingCapture?'Confirm your capture':state.phase==='reinforce'?'Your turn to place armies':state.phase==='attack'?'Your turn to attack':'Your turn to move',detail,seat:index};
+ // Owner review decision: captures and changing suggestions stay in the tracker.
+ // A capture is part of attacking, not a new announcement phase.
+ const phase=state.phase==='capture'?'attack':state.phase;
+ const title=context.mode==='move'?'Your turn to move':phase==='reinforce'?'Your turn to place armies':phase==='attack'?'Your turn to attack':'Your turn to play cards';
+ const detail=context.mode==='move'?'Choose your country and an owned neighbour':phase==='reinforce'?'Place armies in your regions':phase==='attack'?'Choose an enemy neighbour, or end your turn':'Review your cards before continuing';
+ return {key:`${prefix}/${phase}/${context.mode}`,title,detail,seat:index};
 }
 
 /** [designed] Three 1-second start beats, then 3 unpaused seconds per new phase.
