@@ -1,10 +1,6 @@
 # Play Malpaco 0.3.0
 
 Create a self-contained release archive from the source checkout with:
-Fresh games show a three-second countdown before play. Centered translucent banners
-announce the moving player and your next phase, then disappear. Resuming a kept game
-skips the countdown; the turn panel continues to show guidance.
-
 
 ```sh
 npm run package:playable
@@ -23,6 +19,10 @@ node serve.mjs
 
 Open <http://127.0.0.1:4175> in a browser. The launcher binds to the
 loopback interface and serves the included files.
+
+Fresh games show a three-second countdown before play. Centered translucent banners
+announce the moving player and your next phase, then disappear. Resuming a kept game
+skips the countdown; the turn panel continues to show guidance.
 
 New games grow their own geography. Choose 46, 72 or 96 regions in Settings;46 is the default. Larger presets add islands and use numbered territory names. Saved games keep the generator and size they were made with.
 The seed fixes the geography, deal and dice sequence.

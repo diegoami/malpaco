@@ -20,6 +20,10 @@ node serve.mjs
 Open <http://127.0.0.1:4175> in a browser. The launcher binds to the
 loopback interface and serves the included files.
 
+Fresh games show a three-second countdown before play. Centered translucent banners
+announce the moving player and your next phase, then disappear. Resuming a kept game
+skips the countdown; the turn panel continues to show guidance.
+
 New games grow their own geography. Choose 46, 72 or 96 regions in Settings;46 is the default. Larger presets add islands and use numbered territory names. Saved games keep the generator and size they were made with.
 The seed fixes the geography, deal and dice sequence.
 
@@ -137,10 +141,6 @@ attacks** and **Move armies**. The move hint is a conservative stack comparison;
 it never prevents a legal riskier attack. New computer placement, combat and troop
 transfers are shown on the regions at a readable pace. Presentation does not change the rules. Opening Settings or Help finishes the current
 paint and pauses further play. Kept paused games require explicit Resume.
-
-Fresh games show a three-second countdown before play. Centered translucent banners
-announce the moving player and your next phase, then disappear. Resuming a kept game
-skips the countdown; the turn panel continues to show guidance.
 
 ## Developer balance experiment
 
