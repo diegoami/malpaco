@@ -1,4 +1,3 @@
-import {noticeContinue} from './shell';
 import {visitGame,reloadGame} from './shell';
 // T104 (owner, 2026-10-22): "I do not have a way to see my cards". A corner button carries your hand
 // count and opens the list; after a draw the reward card shows your whole hand, the new card marked;
@@ -105,7 +104,10 @@ for(const size of SIZES){
   const after=hand(drawn.state),list=page.locator('#reward-hand li');
   expect(await list.evaluateAll(ns=>ns.map(n=>n.getAttribute('data-kind')))).toEqual(after);
   await expect(list.nth(after.length-1)).toHaveAttribute('data-new','true');await expect(page.locator('#reward-hand [data-new="true"]')).toHaveCount(1);
-  await expect(noticeContinue(page)).toBeVisible();
+  await expect(page.getByRole('button',{name:'Continue'})).toBeHidden();
+  const close=page.locator('#fold-card');await expect(close).toBeVisible();await close.click();
+  await expect(page.locator('#reward-hand')).toHaveCount(0);
+  expect(same(await kept(page))).toEqual(same(drawn.state));
  });
 
  test(`${size.width}x${size.height}: a set is played from your cards at the start of your turn`,async({page})=>{

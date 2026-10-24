@@ -110,6 +110,8 @@ for(const kind of ['borders','seaLanes'] as const)test(`painted ${kind} use the 
  const target=source[kind].find(id=>legal.includes(id));if(!target)throw Error('edge must be legal');
  if(kind==='seaLanes')await expect(page.locator(`#geographic-map .lane[data-edge="${[source.id,target].sort().join('|')}"]`)).toHaveClass(/active/);
  const outsider=state.map.provinces.find(p=>state.ownerOf[p.id]!==player.id&&!legal.includes(p.id));if(!outsider)throw Error('need enemy non-neighbour');await country(page,outsider.id).click();await check(page,state);await openSurface(page,'actions');await expect(page.locator('#battle-status')).not.toBeEmpty();
+ // The persistent refusal floats over the map; dismiss it before choosing the legal target.
+ await page.locator('#dismiss-notice').click();
  await country(page,target).click({modifiers:['Shift']});await check(page,state);await openSurface(page,'actions');await expect(page.locator('#battle-source-name')).toHaveText(source.name);await openSurface(page,'actions');await expect(page.locator('#battle-target-name')).toHaveText(state.map.provinces.find(p=>p.id===target)!.name);
  // T82: the plain target click only stages the pair; the card's Attack fights the exchange.
  await country(page,target).click();await check(page,state);await openSurface(page,'actions');await page.locator('#single-exchange-button').click();state=step(state,{kind:'attack',from:source.id,to:target});await check(page,state);

@@ -41,8 +41,8 @@ import {NextGameSettingsDialog} from "./nextGameSettings";
 export type PanelDetail = "compact" | "detailed";
 export interface BattlePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
 
-const HUMAN_VERBS: Record<string, string> = {"Reinforcement": "place armies", "Attack": "attack or end turn", "Capture move-in": "move armies in", "Friendly move": "move armies", "Cards": "play cards", "Raid target": "choose a Raid target"};
-const HUMAN_HINTS: Record<string, string> = {"Reinforcement": "Tap one of your countries to place an army.", "Attack": "Choose your country, then an enemy neighbour.", "Friendly move": "Choose a country to move from, then an own neighbour.", "Raid target": "Choose an enemy country on the map."};
+const HUMAN_VERBS: Record<string, string> = {"Reinforcement": "place armies", "Attack": "attack or end turn", "Capture move-in": "move armies in", "Friendly move": "move armies", "Cards": "play cards", "Army reduction target": "choose an army reduction target"};
+const HUMAN_HINTS: Record<string, string> = {"Reinforcement": "Tap one of your countries to place an army.", "Attack": "Choose your country, then an enemy neighbour.", "Friendly move": "Choose a country to move from, then an own neighbour.", "Army reduction target": "Choose an enemy country on the map."};
 
 /** Reference-route host: the controller owns every selection and ordinary action. */
 export class ReferenceBattleGame {
@@ -58,11 +58,7 @@ export class ReferenceBattleGame {
   private readonly eventLog: GameEventLog;
   /** Help pauses computer play while it is read, and resumes only what it paused. */
   private helpPaused = false;
-  private readonly help = new GameHelp(() => {
-    this.chrome?.close(false);
-    this.helpPaused = !this.controller.playbackPaused;
-    if (this.helpPaused) this.controller.setPlaybackPaused(true);
-  });
+  private readonly help: GameHelp;
   private readonly controller: BattleController;
   private readonly mapView: Pick<ReferenceMapView,"el"|"render"> & {readonly camera?: ReferenceMapView["camera"]};
   private readonly panel: Panel;
@@ -120,6 +116,11 @@ export class ReferenceBattleGame {
   };
 
   constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, private readonly preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState, loaded?:LoadedVersionedMatch) => void, private readonly automatic = false, private readonly presentation?:MatchPresentation) {
+    this.help = new GameHelp(() => {
+      this.chrome?.close(false);
+      this.helpPaused = !this.controller.playbackPaused;
+      if (this.helpPaused) this.controller.setPlaybackPaused(true);
+    }, Boolean(presentation?.player));
     this.eventLog = new GameEventLog(options,presentation?.initialState);
     document.body.append(this.eventLog.dialog, this.help.dialog);
     if (presentation?.player) {this.provinceAction = new ProvinceAction(); document.body.append(this.provinceAction.el);}
@@ -339,7 +340,7 @@ export class ReferenceBattleGame {
     const placing = !blocked && state.phase === "reinforce" && human?.kind === "human";
     const sources = !blocked && state.phase === "attack" && mode !== "move" && !from ? state.map.provinces.map(p => p.id).filter(id => own(id) && attackTargets(state, id).length > 0) : [];
     const legal = raidTargets ?? (placing ? state.map.provinces.map(p => p.id).filter(own) : sources.length ? sources : targets);
-    const verb = raidTargets ? "Raid target" : placing ? "Place 1 army" : mode === "move" ? (from ? "Move here" : "Move from") : from ? "Target" : "Attack from";
+    const verb = raidTargets ? "Army reduction target" : placing ? "Place 1 army" : mode === "move" ? (from ? "Move here" : "Move from") : from ? "Target" : "Attack from";
     this.picker.render({state, legal, verb});
     if (mode === "move") {
       for (const route of this.mapView.el.querySelectorAll<SVGPolylineElement>(".lane")) {

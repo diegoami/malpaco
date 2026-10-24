@@ -1968,6 +1968,25 @@ dialog h2 {
 }
 
 #province-action-button { width:120px; min-width:120px; }
+
+/* An absolute pool uses the overlay's safe viewport rather than its former grid cell. */
+.game-overlay:has(#turn-tracker) .game-pool-slot { grid-area:auto; }
+@media (max-width:479px) {
+ .game-primary-buttons > #game-help-button { grid-column:2; grid-row:1; }
+ .game-primary-buttons > #open-game-menu { grid-column:1; grid-row:2; }
+}
+
+/* Text commands need their measured space beside a floating choice card. */
+@media (orientation:landscape) and (min-height:240px) {
+ .battle-reference #game-focus-drawer { right:calc(var(--edge) + max(var(--target), var(--command-width, 0px)) + var(--gap)); }
+ .battle-reference #game-focus-drawer:is([data-corner="start"], [data-corner="top-start"]) { right:auto; }
+ .battle-reference #game-focus-drawer[data-placement="center"] { right:auto; }
+}
+@media (orientation:portrait) {
+ .battle-reference #game-focus-drawer { bottom:calc(var(--edge) + max(var(--target), var(--command-height, 0px)) + var(--gap)); }
+ .battle-reference #game-focus-drawer:is([data-corner="top-end"], [data-corner="top-start"], [data-placement="center"]) { bottom:auto; }
+}
+
 /* T119: player commands use raised text; data symbols remain on the board and cards. */
 button.game-text-command {
  display:inline-flex !important; flex-direction:row !important; align-items:center; justify-content:center; gap:6px;
@@ -1986,7 +2005,10 @@ button.game-text-command:disabled { opacity:.45; }
 .game-overlay[data-primary-commands="true"] > .game-corner-end { display:none !important; }
 .game-overlay[data-primary-commands="true"] .map-camera-controls { flex-direction:column-reverse; align-items:flex-start; }
 .game-overlay[data-primary-commands="true"] #battle-action-rail { grid-auto-flow:row; grid-template-columns:max-content; grid-template-rows:none; }
-#resume-turn-button { margin-top:10px; }
+#resume-turn-button { position:absolute; top:calc(100% + 8px); left:0; margin-top:0; }
+@media (max-height:500px) and (min-width:600px) {
+ #resume-turn-button { top:0; left:calc(100% + 8px); }
+}
 @media (min-width:480px) { .game-primary-buttons > .game-text-command { font-size:22px !important; } }
 @media (max-width:479px) {
  .game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }

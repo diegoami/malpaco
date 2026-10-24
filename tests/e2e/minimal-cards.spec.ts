@@ -1,3 +1,4 @@
+import {cardLabel} from '../../src/ui/cardLabels';
 import {noticeContinue} from './shell';
 import {visitGame} from './shell';
 // T97 (owner, #240 and #244): bare-minimum cards that float over the full-size map. Each card holds
@@ -54,6 +55,8 @@ async function nineIsles(p:Page,seed:number,placements:number,from:string){
  await p.clock.install();await p.clock.pauseAt(new Date());await visitGame(p,'/?view=reference-game&control=manual');
  await p.getByLabel('Seed',{exact:true}).fill(String(seed));await p.getByLabel('Seats',{exact:true}).selectOption('2');await p.getByRole('button',{name:'Start game',exact:true}).click();
  for(let n=0;n<placements;n++)await country(p,from).click();await p.locator('#start-combat-button').click();
+ // The paused test clock keeps the ordinary turn notice up; dismiss it before map taps.
+ if(await p.locator('#dismiss-notice').isVisible())await p.locator('#dismiss-notice').click();
 }
 async function cardsGame(p:Page,file:string){
  await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await visitGame(p,'/?setup');
@@ -107,15 +110,15 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   // Sets: a button per legal set, plus Skip.
   await cardsGame(page,'T38-legal-Surge-before.json');await expect(drawer(page)).toBeVisible();
   // T101: every choice card ends with its fold icon.
-  const all=await shown(page);expect(all.at(-1)).toBe('Fold card');const names=all.slice(0,-1);expect(names.at(-1)).toBe('Skip cards');expect(names.length).toBeGreaterThan(1);for(const name of names.slice(0,-1))expect(name).toMatch(/^(Anchor|Compass|Lantern|Surge|Raid): .+ — /);
+  const all=await shown(page);expect(all.at(-1)).toBe('Fold card');const names=all.slice(0,-1);expect(names.at(-1)).toBe('Skip cards');expect(names.length).toBeGreaterThan(1);for(const name of names.slice(0,-1))expect(name).toMatch(/^(5 armies|8 armies|15 armies|Double armies|Army reduction): .+ — /);
   // The hand and the public counts are for assistive technology only.
   expect(await drawer(page).locator('.card-public-counts, [aria-label="Your hand"]').evaluateAll(ns=>ns.map(n=>n.classList.contains('visually-hidden')))).toEqual([true,true]);
   expect(await prose(page),'no long sentences').toBe('');await targets(page);await shots('sets-card',page);await steady(page,await settled(page));
   // Discard: one button per card, then the reward's Continue.
   const full=cardFixture('T37-reshuffle-before-match.json');await cardsGame(page,'T37-reshuffle-before-match.json');await expect(drawer(page)).toBeVisible();
-  const hand=full.state.cards!.hands[human(full.state)]!;expect(await shown(page)).toEqual([...hand.map((kind,i)=>`Discard ${kind} (card ${i+1})`),'Fold card']);expect(await prose(page)).toBe('');
+  const hand=full.state.cards!.hands[human(full.state)]!;expect(await shown(page)).toEqual([...hand.map((kind,i)=>`Discard ${cardLabel(kind)} (card ${i+1})`),'Fold card']);expect(await prose(page)).toBe('');
   await targets(page);await steady(page,await settled(page));
-  await page.getByRole('button',{name:`Discard ${hand[0]} (card 1)`,exact:true}).click();
+  await page.getByRole('button',{name:`Discard ${cardLabel(hand[0]!)} (card 1)`,exact:true}).click();
   await expect(noticeContinue(page)).toBeVisible();expect(await shown(page)).toEqual(['Continue','Fold card']);await targets(page);await steady(page,await settled(page));
   // Raid: its strip while a target is chosen, then Confirm alone.
   const raid=cardFixture('T39-legal-pending-raid.json');await cardsGame(page,'T39-legal-pending-raid.json');
@@ -144,7 +147,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   await expect(drawer(page).locator('.score, .log-card, #panel-detail, .card-public-counts')).toHaveCount(0);
   await targets(page);await shots('menu',page);
   const icon=page.locator('#game-log-button'),box=(await icon.boundingBox())!;const help=(await page.locator('#game-help-button').boundingBox())!;
-  expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);await expect(icon.locator('svg')).toHaveCount(0);
+  expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);await expect(icon.locator('svg')).toHaveCount(1);
   const log=page.locator('dialog.game-event-log');
   await icon.click();await expect(log).toBeVisible();await targets(page);await shots('history',page);
   await log.getByRole('button',{name:'Close game event log',exact:true}).click();await expect(log).toBeHidden();

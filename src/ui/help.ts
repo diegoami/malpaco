@@ -115,7 +115,7 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
   ["Cards", "Your cards are behind the CARDS button at top left, with their number. Army cards are labelled5,8 or15 armies; draw notices disappear after three seconds of unpaused play. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
   ["Notices", "The turn tracker shows the active colour, public counts and your next step. Your turn begins when its arrow reaches your colour."],
-  ["Computer turns", "Each computer's turn shows one notice while its counts and colours change on the map. Choose the speed beside Pause; Slow and Very slow let you watch every move."],
+  ["Computer turns", "Watch the executed placements, attacks and movements at Normal pace. Settings and Help pause play while open. After an interruption, use Resume in the turn tracker."],
   ["Seats", "You play one seat; the computers are named by their colours: Orange, Green and Purple."],
   ["Kept games", "Your game is kept in this browser: a reload, or reopening the browser, resumes it, paused if you left it paused. Each game counts once on the scoreboard, when it ends."],
   ["Map", "Pinch or scroll to zoom, drag to pan, Fit to see everything. Cards float over the map and move aside from the countries in play. A tap that touches two countries asks which one."],
@@ -128,15 +128,29 @@ export class GameHelp {
   readonly dialog = h("dialog", { class: "game-help", "aria-labelledby": "game-help-title" });
   /** T97: the objective and your progress, which the retired Information icon showed. */
   private readonly objective = h("p", { id: "game-help-objective" });
-  constructor(onOpen?: () => void) {
+  constructor(onOpen?: () => void, player = true) {
+    const icons = player ? ICON_NAMES : ICON_NAMES.flatMap(([shape, name, use]) => {
+      if (shape === 'play') return [
+        ['pause', 'Pause', 'Pauses play; press again to resume. The speed choice is beside it.'],
+        ['fast-forward', 'Fast-forward', 'Plays computer turns without waiting until your turn.'],
+      ];
+      if (shape === 'attack') return [['attack', 'Fight', 'Rolls one exchange with the staged pair; press again to continue.']];
+      return [[shape, name, use]];
+    });
+    const howTo = HOW_TO.map<readonly [string, string]>(([title, copy]) => [title,
+      player ? title === 'Event frequency' ? copy.replace('Continue acknowledges it. Fold or Back lets you inspect the marked countries without acknowledging.', 'close with X, Escape or Android Back to acknowledge and continue.') :
+        title === 'Notices' ? `${copy} Close an informational notice with X, Escape or Android Back to continue. Troop choices still require Confirm; closing them never commits armies.` : copy :
+        title === 'Computer turns' ? "Choose the speed beside Pause; Fast-forward plays until your next turn." :
+        title === 'Attacking' || title === 'On your country' ? "Select a source and an adjacent enemy, then use Fight on the choice card for one exchange." : copy,
+    ]);
     const close = h("button", { type: "button", id: "close-game-help" }, "Close help");
     close.onclick = () => this.dialog.close();
     this.dialog.append(
       h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
       h("section", {}, h("h3", {}, "Objective"), this.objective),
-      ...HOW_TO.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),
+      ...howTo.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),
       h("h3", {}, "Icons"),
-      h("ul", { class: "game-help-icons", "aria-label": "Icon names" }, ...ICON_NAMES.map(([shape, name, use]) =>
+      h("ul", { class: "game-help-icons", "aria-label": "Icon names" }, ...icons.map(([shape, name, use]) =>
         h("li", { "data-icon": shape }, glyph(shape), h("strong", {}, name), h("span", {}, use)))),
     );
     this.button.onclick = () => { onOpen?.(); this.dialog.showModal(); close.focus(); };
