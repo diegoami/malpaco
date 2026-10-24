@@ -93,8 +93,9 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["attack", "Attack", "The ATTACK button beside your source country rolls one exchange; press it again to continue."],
   ["minus", "Fewer", "Lowers a move-in or move amount."],
   ["plus", "More", "Raises a move-in or move amount."],
-  ["confirm", "Confirm", "Completes a capture move-in or a move."],
-  ["return", "Return", "Reopens a folded choice."],
+  ["confirm", "Confirm", "The check mark confirms the chosen troop amount. Closing with X leaves that choice pending."],
+  ["close", "Close", "X dismisses event and card-draw information and continues play. It never confirms a troop amount or releases an Android background pause."],
+  ["return", "Return", "Reopens a pending choice."],
   ["standings", "Standings", "Countries and armies at the end of the game."],
   ["trophy", "Scoreboard", "In Settings: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
   ["new-game", "New game", "Gives up this game after confirmation, then opens Settings. Press Start game to begin."],
@@ -135,9 +136,11 @@ export class GameHelp {
       if (shape === 'attack') return [['attack', 'Fight', 'Rolls one exchange with the staged pair; press again to continue.']];
       return [[shape, name, use]];
     });
-    const howTo = player ? HOW_TO : HOW_TO.map(([title, copy]) => [title,
-      title === 'Computer turns' ? "Choose the speed beside Pause; Fast-forward plays until your next turn." :
-      title === 'Attacking' || title === 'On your country' ? "Select a source and an adjacent enemy, then use Fight on the choice card for one exchange." : copy,
+    const howTo = HOW_TO.map<readonly [string, string]>(([title, copy]) => [title,
+      player ? title === 'Event frequency' ? copy.replace('Continue acknowledges it. Fold or Back lets you inspect the marked countries without acknowledging.', 'close with X, Escape or Android Back to acknowledge and continue.') :
+        title === 'Notices' ? `${copy} Close an informational notice with X, Escape or Android Back to continue. Troop choices still require Confirm; closing them never commits armies.` : copy :
+        title === 'Computer turns' ? "Choose the speed beside Pause; Fast-forward plays until your next turn." :
+        title === 'Attacking' || title === 'On your country' ? "Select a source and an adjacent enemy, then use Fight on the choice card for one exchange." : copy,
     ]);
     const close = h("button", { type: "button", id: "close-game-help" }, "Close help");
     close.onclick = () => this.dialog.close();

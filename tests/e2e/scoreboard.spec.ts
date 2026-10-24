@@ -1,4 +1,4 @@
-import {visitGame,reloadGame,startFromResult} from './shell';
+import {visitGame,reloadGame,startFromResult,noticeContinue} from './shell';
 // T100: the scoreboard, kept in this browser. Each player game counts once when it ends: a win,
 // an elimination (Lost at once, even if you then watch) or New game's give-up; `?setup` never counts.
 import {expect,test} from '@playwright/test';
@@ -57,7 +57,7 @@ async function giveUp(p:Page){
 /** End turn wins seed 5; the card drawn for the turn's capture is acknowledged first, then the result shows. */
 async function winningEndTurn(p:Page){
  await p.locator('#end-turn-button').click();
- const reward=p.getByRole('button',{name:'Continue',exact:true}),won=p.getByRole('heading',{name:'You won',exact:true});
+ const reward=noticeContinue(p),won=p.getByRole('heading',{name:'You won',exact:true});
  await expect(reward.or(won).first()).toBeVisible();if(await reward.isVisible())await reward.click();
  await expect(won).toBeVisible();
 }

@@ -40,6 +40,12 @@ export class WorldEventController {
   if(this.battle.state.players[this.battle.state.currentPlayer]?.id===this.viewer)this.cleared=sequence;
   this.save();this.battle.setWorldEventPending(false);return true;
  }
+ dismiss(sequence=this.view.event?.sequence):boolean {
+  if(this.disposed||this.generation!==this.battle.gameGeneration||sequence===undefined||this.battle.state.events?.latest?.sequence!==sequence)return false;
+  if(this.pending?.sequence===sequence)return this.acknowledge(sequence);
+  if(this.passive?.sequence!==sequence)return false;
+  this.acked=sequence;this.cleared=sequence;this.passive=null;this.folded=false;this.save();this.battle.setWorldEventPending(false);return true;
+ }
  fold():boolean {if(this.disposed||!this.view.event||this.folded)return false;this.folded=true;return true;}
  unfold():void {if(!this.disposed)this.folded=false;}
  dispose():void {this.disposed=true;this.pending=null;this.passive=null;}

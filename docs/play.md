@@ -71,8 +71,8 @@ one notice, such as "Orange's turn", while its counts and colours change on the 
 not staged or outlined.
 
 Cards are enabled in normal games with zero or one human seat. Hands start empty.
-Capture a territory and finish your turn to earn a card; the reward says which card you drew,
-with **Continue**. A card choice opens by itself and holds only its buttons: one per set you can
+Capture a territory and finish your turn to earn a card; the reward says which card you drew.
+Close that informational notice with X to continue. A card choice opens by itself and holds only its buttons: one per set you can
 trade, plus **Skip**; one per card when a full hand must discard before drawing (the new card
 stays hidden until then). A Raid folds its card to a one-line strip so the whole map is free: tap
 a highlighted enemy country, or choose one from **Countries**, then **Confirm**.
@@ -84,7 +84,7 @@ closes with ×, Escape or another tap. Drag the window by its title; it stays wh
 from that list (or from the set card that opens by itself). After each draw, the card shows your
 whole hand with the new card marked.
 
-Action buttons use raised uppercase text. New game, Settings and Help stay at top left,
+Important actions use raised uppercase Ubuntu Bold text and role colours; familiar utility controls use compact icons. New game, Settings and the question-mark Help button stay at top left,
 with a readable colour turn tracker below them. Settings opens directly below its button.
 Computer turns show placement, combat and movement at a fixed readable pace. The map
 has no Pause, fast-forward or speed toolbar. Settings and Help pause play while open;
@@ -92,7 +92,9 @@ after an Android interruption, use RESUME in the tracker. Closing a dialog canno
 release that background pause.
 
 FIT and COUNTRIES sit at the map edge. Required capture/move amounts and card choices
-open their own cards; ordinary attacks use ATTACK beside your source country. The
+open their own cards; ordinary attacks use ATTACK beside your source country. X closes
+event/card-draw information and continues without another acknowledgement; troop
+amounts still require the Confirm check mark. The
 map remains pannable and zoomable while you inspect it. Help explains the rules and settings.
 The result card shows the winner and reason with **New game**;
 **Standings** and **Details** (seed, options and the record) open on request, and a round-limit
@@ -132,8 +134,9 @@ army each. **Revolt** changes one border country's owner without changing its ar
 or eliminating a seat. Events are protected in the first round, near a win, after
 another event and during the last three rounds of a round-limit game.
 
-An event card lists exact before/after changes. **Continue** acknowledges it;
-**Fold** or Back/Escape lets you inspect marked countries without acknowledging.
+An event card lists exact before/after changes. X, Back or Escape acknowledges it
+and continues in one action. Troop choices still require Confirm; closing an amount
+card never commits armies.
 Pending presentation survives reload. Acknowledgement never resumes a game paused
 by backgrounding: use Resume explicitly. Off hides centres and consumes no event
 draws. Instructions belong in Help; Settings contains the choices.

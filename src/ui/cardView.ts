@@ -15,7 +15,7 @@ export class CardView {
  dispose():void{}
  render():void {
   const v=this.cards.view;this.el.hidden=v.phase==='hidden';if(this.el.hidden)return;
-  const button=(label:string,fn:()=>void,name?:string)=>{const b=h('button',{type:'button',disabled:v.blocked,...(name?{'aria-label':name}:{})},label);b.onclick=()=>{fn();this.render();};return b;};
+  const button=(label:string,fn:()=>void,name?:string)=>{const b=h('button',{type:'button',disabled:v.blocked,...(name?{'aria-label':name}:{})},label);b.onclick=()=>{if(b.disabled)return;fn();this.render();};return b;};
   const counts=h('p',{class:'card-public-counts visually-hidden'},`Draw: ${v.drawCount} · Discard: ${v.discardCount} · Top: ${v.discardTop??'empty'}. `+Object.entries(v.handCounts).map(([p,n])=>`${p}: ${n}`).join(' · '));
   const hand=!this.cards.seated?null:h('ul',{class:'own-card-hand visually-hidden','aria-label':'Your hand'},h('li',{},`Your hand: ${v.hand.length} of 5`),...v.hand.map((kind,i)=>h('li',{'data-hand-index':i},h('strong',{},kind))));
   const actions=h('div',{class:'card-choice-controls'});
