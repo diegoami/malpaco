@@ -36,7 +36,7 @@ package passed 8 final transfer/draft cases. Earlier combined source 14cd15c pas
 touch/responsive-card cases. Task issue/PR receipts retain all failures and fixes.
 
 The preliminary Netlify draft 6adc9227238029724935f3cd matches all 12 packaged files
-byte-for-byte and passes Chromium smoke at 390×844,844×390,820×1180 and1280×800.
+byte-for-byte and passes Chromium smoke at 390×844, 844×390, 820×1180 and 1280×800.
 That smoke checks explicit entry, loaded map/worker/assets, next-game map settings
 without mutating the current record, retired routes and console/page errors.
 Repeat these deployment checks for the versioned candidate and production bytes.
@@ -52,3 +52,23 @@ Record the accepted source/tag, archive/hash, draft and production deploy ids,
 per-file checks and browser results in PROVENANCE.md/PUBLICATION.md. Keep production
 deploy 6adb010c9a01a624d43b6c43 as the rollback reference. No live site or tag is
 published before the declared milestone gates.
+
+## Recorded final acceptance
+
+Accepted `v0.3.0` source **414bea058f8db0e49f24a29f4c4b518dfc3c50f2** received the full milestone
+[AGREE](https://github.com/diegoami/malpaco/issues/319#issuecomment-6387085631). Exact-main CI passed 1031 units and 536 extracted-playable
+browser cases (244 intentional project skips). Both the final draft and production
+byte-match all 12 CI package files and pass all four deployment-smoke viewports.
+The public archive/checksum were downloaded back and verified byte-identical.
+
+Fresh countdown and turn/phase banners, short-height Confirm/Cancel reachability and
+sea endpoint geometry have positive and negative regression proof. Capture/advisory
+prompts stay in the persistent panel, per the owner's review decision.
+
+The review accepted nonblocking follow-ups #325 (eight stale source-only legacy
+goldens), #327 (leftover-army test coverage) and #329 (unused speed preference).
+The full source golden suite is therefore not claimed green. Published-build checks
+pass; AI improvements and native delivery remain separate.
+
+This acceptance result was recorded after publication. See [PROVENANCE.md](PROVENANCE.md)
+and [PUBLICATION.md](PUBLICATION.md) for immutable archive/deploy hashes and rollback.
