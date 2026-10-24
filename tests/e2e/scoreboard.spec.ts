@@ -1,4 +1,4 @@
-import {visitGame,reloadGame} from './shell';
+import {visitGame,reloadGame,startFromResult} from './shell';
 // T100: the scoreboard, kept in this browser. Each player game counts once when it ends: a win,
 // an elimination (Lost at once, even if you then watch) or New game's give-up; `?setup` never counts.
 import {expect,test} from '@playwright/test';
@@ -106,7 +106,7 @@ test('a 21st game drops the oldest row, and the scoreboard card shows the games 
  let kept=emptyScoreboard();for(let n=1;n<=20;n++)kept=recordGame(kept,rowOf(n,n%3?'lost':'won'));
  await keepOnce(page,{[SCORES]:JSON.stringify(kept)});await visitGame(page,'/');await map(page);const seed=await seedShown(page);
  const before=await board(page);expect(before.rows).toHaveLength(20);expect(before.rows.at(-1)![4]).toBe('501');expect(before.totals).toEqual(['20','6','14','0','30%']);
- await (await giveUp(page)).locator('#give-up-new-game').click();await map(page);
+ await giveUp(page);await startFromResult(page);await map(page);
  const after=await board(page);expect(after.rows).toHaveLength(20);
  expect(after.rows[0]!.slice(1,2).concat(after.rows[0]![4]!)).toEqual(['Gave up',String(seed)]);
  expect(after.rows.at(-1)![4]).toBe('502');expect(after.totals).toEqual(['21','6','14','1','29%']);
