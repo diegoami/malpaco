@@ -1,3 +1,4 @@
+import {phaseMessage,PhaseAnnouncementTimer} from './phaseAnnouncement';
 import {DrawNoticeTimer} from './drawNoticeTimer';
 import {textCommands} from './textCommands';
 import {CardController} from "./cardController";
@@ -103,6 +104,8 @@ export class ReferenceBattleGame {
   private readonly openedUnfinished: boolean;
   private readonly feedback:ComputerFeedbackController|null;
   private readonly turnTracker:TurnTracker|null;
+  private readonly announcementTimer:PhaseAnnouncementTimer|null;
+  private readonly announcement=h('section',{id:'phase-announcement',role:'status','aria-live':'polite','aria-atomic':'true',hidden:true});
   private readonly drawNoticeTimer:DrawNoticeTimer|null;
   private readonly worldEvents:WorldEventController|null;
   private readonly worldView:WorldEventView|null;
@@ -141,6 +144,7 @@ export class ReferenceBattleGame {
       document.body.append(this.nextSettings.dialog);
     }
     this.openedUnfinished = !state.result;
+    this.announcementTimer=presentation?.player?new PhaseAnnouncementTimer({schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id),now:()=>performance.now()},Boolean(presentation.player.freshStart),()=>{if(this.mounted&&!this.disposed)this.render();}):null;
     this.help.dialog.addEventListener("close", () => {if (this.helpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.helpPaused = false;});
     this.controller = new BattleController(state, {
       schedule: (callback, delay) => window.setTimeout(callback, delay), cancel: handle => window.clearTimeout(handle),
@@ -148,7 +152,7 @@ export class ReferenceBattleGame {
       preferences.threshold = view.threshold;
       preferences.speed = view.speed;
       if (this.mounted && !this.disposed) this.render();
-    }, next => !this.automatic || activePlayer(next)?.kind === "human" || next.phase === "human-loss");
+    }, next => !this.announcementTimer?.counting && (!this.automatic || activePlayer(next)?.kind === "human" || next.phase === "human-loss"));
     const human=state.players.filter(p=>p.kind!=='computer');
     this.cards=new CardController(this.controller,human.length===1?human[0]!.id:'');
     this.cardControls=new CardView(this.cards,this.controller);
@@ -249,7 +253,7 @@ export class ReferenceBattleGame {
     // T104: your cards sit beside the menu icon.
     if (this.hand) this.chrome.hud.append(this.hand.button);
     if(this.worldView)this.chrome.overlay.append(this.worldView.el);
-    if(this.turnTracker)this.chrome.overlay.append(this.turnTracker.el);
+    if(this.turnTracker)this.chrome.overlay.append(this.turnTracker.el,this.announcement);
     // The Countries icon always opens on the list.
     this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
     // The history is its own card over the map: the menu steps aside for it.
@@ -277,6 +281,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.stopText?.();this.stopText=null;
     this.drawNoticeTimer?.dispose();
+    this.announcementTimer?.dispose();
     this.cards.dispose();
     this.computer?.dispose();
     this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.hand?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose(); this.nextSettings?.dispose();
@@ -299,7 +304,7 @@ export class ReferenceBattleGame {
   }
 
   private clickProvince(id: string, inspect = false): void {
-    if (this.disposed || this.controller.playbackPaused) return;
+    if (this.disposed || this.controller.playbackPaused || this.announcementTimer?.counting) return;
     const card=this.cards.view;
     if(card.phase==='raid-target'){this.cards.selectRaidTarget(id,card.revision);this.render();return;}
     if(card.phase==='discard'||card.phase==='reward'||card.phase==='sets')return;
@@ -476,7 +481,7 @@ export class ReferenceBattleGame {
     this.panel.el.dataset["computerActive"] = String(computer);
     this.computerStatus.hidden = !computer;
     this.computerStatus.textContent = computer ? this.controller.playbackPaused ? `${name(activePlayer(state)!.id)} · Paused` : `${name(activePlayer(state)!.id)} is playing…` : "";
-    if (computer || this.controller.playbackPaused) {
+    if (computer || this.controller.playbackPaused || this.announcementTimer?.counting) {
       for (const el of [this.action, this.cardControls.el, this.phaseActions].flatMap(node => [...node.querySelectorAll<HTMLButtonElement | HTMLInputElement>("button,input")])) el.disabled = true;
       this.action.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; New game remains available." : "Computer turn. Start a new game at any time."));
     }
@@ -539,9 +544,17 @@ export class ReferenceBattleGame {
     if (restore) this.playbackPause.focus({preventScroll: true});
     this.placeCard();
     if(worldPending||feedbackPending){this.phaseActions.style.display='none';if(this.chrome?.openSurface==='actions')this.chrome.close(false);}
-    const guide=this.turnTracker?.render(state,{mode:this.controller.view.mode,cardPhase:this.cards.view.phase,paused:gamePaused,worldPending,cardReward:this.controller.cardRewardAcknowledgmentPending,...(this.feedback?.frame?{feedbackSeat:this.feedback.frame.seat,feedbackKind:this.feedback.frame.kind}:{})});
+    const guidance={mode:this.controller.view.mode,cardPhase:this.cards.view.phase,paused:gamePaused,worldPending,cardReward:this.controller.cardRewardAcknowledgmentPending,...(this.feedback?.frame?{feedbackSeat:this.feedback.frame.seat,feedbackKind:this.feedback.frame.kind}:{})};
+    const guide=this.turnTracker?.render(state,guidance);
+    if(this.announcementTimer){
+      this.announcementTimer.update(phaseMessage(state,guidance),gamePaused||worldPending||this.controller.cardRewardAcknowledgmentPending);
+      const {visible,count,message}=this.announcementTimer.view;
+      this.announcement.hidden=!visible;
+      this.announcement.dataset['kind']=count!==null?'countdown':'phase';
+      this.announcement.replaceChildren(h('strong',{},count!==null?`Game begins in ${count}`:message?.title??''),h('span',{},count!==null?'Get ready — your game is starting':message?.detail??''));
+    }
     this.phaseActions.querySelector('#start-friendly-move-button')?.classList.toggle('guided-command',guide?.suggested==='move');this.phaseActions.querySelector('#end-turn-button')?.classList.toggle('guided-command',guide?.suggested==='end');
     this.worldView?.render(state);
-    this.computer?.update();
+    if(!this.announcementTimer?.counting)this.computer?.update();
   }
 }

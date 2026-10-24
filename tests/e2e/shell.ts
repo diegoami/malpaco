@@ -115,6 +115,13 @@ export async function startGameIfNeeded(page: Page): Promise<void> {
  // Move off the disappearing launcher so its click position does not hover a map country.
  await page.mouse.move(0,0);
  await expect(page.locator('#geographic-map [data-country]').first()).toBeVisible({timeout:60000});
+ // T126: gameplay drivers pass through the real countdown. runFor advances an
+ // controlled clock; also wait for the painted countdown to finish.
+ const countdown=page.locator('#phase-announcement[data-kind="countdown"]');
+ if(await countdown.isVisible()){
+  await page.clock.runFor(3000);
+  await expect(countdown).toBeHidden({timeout:10000});
+ }
 }
 export async function visitGame(page: Page, url: string): Promise<void> {
  await page.goto(url);await startGameIfNeeded(page);

@@ -10,4 +10,4 @@ For any agent or tool working in this repository (OpenCode, Codex, Claude Code, 
 - **Reviewing a PR**: [`docs/review-pr.md`](docs/review-pr.md). **Reviewing a milestone**:
   [`docs/milestone-review.md`](docs/milestone-review.md).
 
-For the next owner-requested continuation, first read the [end-of-day checkpoint on #271](https://github.com/diegoami/malpaco/issues/271#issuecomment-6375821141), then recheck live GitHub labels and checks. Keep continuation details on the issue; remove or replace this pointer when superseded.
+For the next continuation, first read the [pre-0.3 UI playtest checkpoint on #271](https://github.com/diegoami/malpaco/issues/271#issuecomment-6384526859), then recheck live GitHub labels and exact-head checks. The old release candidate is withdrawn; production stays held pending UI feedback and a replacement candidate. AI improvements are after 0.3. Keep continuation details on the issue; replace this pointer when superseded.
