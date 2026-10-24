@@ -141,3 +141,22 @@ This is emulator evidence, not a physical-device or broad WebView compatibility
 claim. Test the real device matrix before signed delivery. Native durable game-data
 snapshots, atomic recovery, storage failure reporting and upgrade guarantees remain
 T109 (#286); T108 uses the existing game store plus its native lifecycle flag.
+
+## Snapshot primitive validation (T122)
+
+T122/#314 supplies the app-private snapshot primitive under the T109/#286 umbrella.
+Its instrumentation uses an isolated cache context on a dedicated emulator, with no
+WebView/game startup. After booting that emulator, run:
+
+```sh
+node tools/android/test-snapshot.mjs --serial emulator-5556
+```
+
+The runner builds the current source's x86-64 debug application and instrumentation
+APK, uses data-preserving installs, and runs the native file-I/O regressions. It
+does not clear/uninstall the target app or accept a physical-device serial. Reports,
+complete failures, API/WebView identity and source/asset/APK hashes go to a fresh
+`artifacts/T122-native-*/` directory. Atomic replacement, interruption/failure recovery,
+opaque bytes, resource validation and cross-instance serialization are checked here.
+Frontend hydration, serialized game+metadata commits, recovery UI and same-signed
+upgrade acceptance remain separate integration work on #286.
