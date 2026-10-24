@@ -1,6 +1,10 @@
 # Play Malpaco 0.3.0
 
 Create a self-contained release archive from the source checkout with:
+Fresh games show a three-second countdown before play. Centered translucent banners
+announce the moving player and your next phase, then disappear. Resuming a kept game
+skips the countdown; the turn panel continues to show guidance.
+
 
 ```sh
 npm run package:playable

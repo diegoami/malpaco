@@ -138,6 +138,10 @@ it never prevents a legal riskier attack. New computer placement, combat and tro
 transfers are shown on the regions at a readable pace. Presentation does not change the rules. Opening Settings or Help finishes the current
 paint and pauses further play. Kept paused games require explicit Resume.
 
+Fresh games show a three-second countdown before play. Centered translucent banners
+announce the moving player and your next phase, then disappear. Resuming a kept game
+skips the countdown; the turn panel continues to show guidance.
+
 ## Developer balance experiment
 
 From a source checkout, `node tools/balance/run.mjs --deal-seeds 500 --game-seeds 200

@@ -19,6 +19,7 @@ or network connection.
 - Production centres and deterministic Harvest/Shift/Storm/Revolt effects have
   Off/Rare/Normal/Often next-game settings. These are designed Malpaco rules; older
   matches retain their original factories, options and event behavior.
+- Fresh games show a three-second countdown before play. Large translucent center banners announce each moving player and human phase, then disappear after three unpaused seconds. Kept games skip the countdown.
 - A public colour tracker, Your turn arrow and phase guidance accompany readable
   executed computer placements, fights, captures and friendly transfers.
 - Main actions use Ubuntu Bold text and role colours, with question-mark Help and
