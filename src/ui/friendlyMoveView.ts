@@ -4,8 +4,7 @@ import {iconButton} from "./icons";
 import type {BattleController, BattleView} from "./battleController";
 
 /**
- * Only the confirmed action enters history; every control captures its revision. T97: −, the
- * amount, + and Confirm once a pair is chosen, and Cancel; the map shows the pair.
+ * Only the confirmed action enters history; bound shortcuts and +/− edit the draft.
  */
 export class FriendlyMoveView {
   readonly el = h("section", {class:"battle-controls friendly-move-controls", role:"region", "aria-label":"Friendly move"});
@@ -26,14 +25,20 @@ export class FriendlyMoveView {
     const amount = h("input", {id:"friendly-move-amount", type:"number", min:1, max:maximum, step:1, value:draft ?? String(maximum), disabled:!selected, hidden:!selected, "aria-label":"Armies to move", "aria-describedby":"friendly-move-help", inputmode:"numeric"});
     const choose = (n: number) => { amount.value = String(Math.max(1, Math.min(maximum, n))); };
     const current = () => Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : maximum;
+    const limit = (which:'min'|'max',value:number) => {
+      const button=h('button',{id:`friendly-move-${which}-button`,type:'button',class:'amount-limit',disabled:!selected,'aria-label':which==='min'?'Minimum armies':'Maximum armies'},which==='min'?'Min':'Max');
+      button.onclick=()=>{if(!button.disabled)choose(value);};return button;
+    };
     const name = (id: string | null) => id ? `${province(state.map, id)!.name} ${armyCount(state, id)}` : "";
     this.el.append(
       h("h2", {class:"battle-title visually-hidden"}, "Friendly move"),
       h("p", {class:"visually-hidden battle-context"}, from ? `${name(from)}${to ? ` → ${name(to)}` : ""}` : "Marked countries can supply armies."),
       h("div", {class:"card-icons capture-adjust"},
+        limit('min',1),
         iconButton("friendly-move-less-button", "Move one fewer army", null, "minus", !selected, () => choose(current() - 1)),
         amount,
         iconButton("friendly-move-more-button", "Move one more army", null, "plus", !selected, () => choose(current() + 1)),
+        limit('max',maximum),
         iconButton("confirm-friendly-move-button", "Move and end turn", null, "confirm", !selected, () => {
           if (from && to && !this.controller.dispatch({kind:"friendlyMove", from, to, amount:amount.valueAsNumber}, revision)) amount.reportValidity();
         }, true),

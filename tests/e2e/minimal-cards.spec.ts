@@ -85,7 +85,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
    if(state.phase==='attack'){expect(await shown(page)).toEqual(['Fight','Cancel','Fold card']);await clear(page,[f.from,f.to]);}
   }
   expect(state.phase).toBe('capture');expect(await viewBox(page)).toBe(before);
-  expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Confirm move-in','Fold card']);
+  expect(await shown(page)).toEqual(['Minimum armies','Move one fewer army','Armies to move','Move one more army','Maximum armies','Confirm move-in','Fold card']);
   await expect(drawer(page).locator('#capture-preview, #capture-range, #capture-fold-button, #fight-on-button, #stop-battle-button, #battle-odds, #battle-stop-threshold')).toHaveCount(0);
   expect(await prose(page),'no preview or range text').toBe('');await clear(page,[f.from,f.to]);await targets(page);await shots('capture-card',page);await steady(page,before);
   await page.locator('#capture-less-button').click();const amount=Number(await page.locator('#capture-amount').inputValue());expect(amount).toBe(state.pendingCapture!.defaultAmount-1);
@@ -99,7 +99,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   await expect(drawer(page)).toBeVisible();expect(await viewBox(page)).toBe(before);expect(await shown(page)).toEqual(['Cancel · back to attacks','Fold card']);
   // Choosing the source brings the camera's Focus icon (a corner icon); the pair itself reframes nothing.
   await country(page,f.from).click();const chosen=await settled(page);await country(page,f.to).click();expect(await viewBox(page)).toBe(chosen);
-  expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Move and end turn','Cancel · back to attacks','Fold card']);
+  expect(await shown(page)).toEqual(['Minimum armies','Move one fewer army','Armies to move','Move one more army','Maximum armies','Move and end turn','Cancel · back to attacks','Fold card']);
   expect(await prose(page),'no preview or range text').toBe('');
   await clear(page,[f.from,f.to]);await targets(page);
   await page.locator('#confirm-friendly-move-button').click();const after=move(f.ready,{kind:'friendlyMove',from:f.from,to:f.to,amount:f.ready.armies[f.from]!-1});await paint(page,after);
