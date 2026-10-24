@@ -29,7 +29,7 @@ for(const width of [390,1280])for(const kind of ['storm','revolt','shift','harve
 });
 test('Off has no centre or event UI and saves the chosen fixed-income rules',async({page})=>{
  test.setTimeout(90000);const o={...defaultOptions(),seed:7,islandRules:1 as const,eventFrequency:'Off' as const},r=createGeographicGame(o,islandRules(o),{},2);if(!r.ok)throw Error(r.errors.join());
- const text=serializeVersionedMatch(o,[],GEOGRAPHIC_EVENT_MATCH_IDENTITY);await open(page,text);await page.locator('#game-pause-button').click();await expect(page.locator('[data-country] .centre:visible')).toHaveCount(0);await expect(page.locator('[data-world-event="true"]')).toHaveCount(0);await expect(page.locator('#world-event-card')).toBeHidden();expect(deserializeVersionedMatch((await read(page))!).state.rules.events?.frequency).toBe('Off');
+ const text=serializeVersionedMatch(o,[],GEOGRAPHIC_EVENT_MATCH_IDENTITY);await open(page,text);await page.locator('#open-game-menu').click();await expect(page.locator('[data-country] .centre:visible')).toHaveCount(0);await expect(page.locator('[data-world-event="true"]')).toHaveCount(0);await expect(page.locator('#world-event-card')).toBeHidden();expect(deserializeVersionedMatch((await read(page))!).state.rules.events?.frequency).toBe('Off');
 });
 test('native Back folds without acknowledging; background and Continue cannot release explicit Resume',async({page})=>{
  test.setTimeout(120000);await page.addInitScript(()=>{Reflect.set(window,'active',true);Reflect.set(window,'required',false);Reflect.set(window,'MalpacoHost',{isActive:()=>Reflect.get(window,'active'),requiresResume:()=>Reflect.get(window,'required'),acknowledgeResume:()=>{if(!Reflect.get(window,'active'))return false;Reflect.set(window,'required',false);return true;}});});
@@ -37,7 +37,7 @@ test('native Back folds without acknowledging; background and Continue cannot re
  expect(await page.evaluate(()=>!window.dispatchEvent(new Event('malpaco:native-back',{cancelable:true})))).toBe(true);await expect(page.locator('#open-world-event')).toBeVisible();expect(JSON.parse((await read(page,META))!).eventAck??0).toBe(0);
  await page.evaluate(()=>{Reflect.set(window,'active',false);Reflect.set(window,'required',true);window.dispatchEvent(new Event('malpaco:native-background'));Reflect.set(window,'active',true);window.dispatchEvent(new Event('malpaco:native-foreground'));});
  await page.locator('#open-world-event').click();await page.locator('#acknowledge-world-event').click();await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');await page.clock.runFor(20000);expect(await read(page)).toBe(before);
- await page.locator('#game-pause-button').click();await page.clock.runFor(20000);expect(deserializeVersionedMatch((await read(page))!).state.history.length).toBeGreaterThan(f.state.history.length);
+ await page.locator('#resume-turn-button').click();await page.clock.runFor(20000);expect(deserializeVersionedMatch((await read(page))!).state.history.length).toBeGreaterThan(f.state.history.length);
 });
 
 test('a human capture reward is acknowledged before its queued world event, without releasing AI early',async({page})=>{

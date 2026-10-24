@@ -4,7 +4,7 @@ import {visitGame,reloadGame,startFromResult} from './shell';
 import {expect,test} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
-import {openSurface} from './shell';
+import {openSurface,withSurface} from './shell';
 import {activePlayer,apply,defaultOptions,raidCardsRules,serializeVersionedMatch} from '../../src/core';
 import type {GameOptions,GameState} from '../../src/core';
 import {createGeographicGame} from '../../src/core/geographic-game';
@@ -43,10 +43,12 @@ async function openScoreboard(p:Page){
 async function closeScoreboard(p:Page){await p.locator('#close-scoreboard').click();await expect(p.getByRole('dialog',{name:'Scoreboard'})).toBeHidden();}
 /** The scoreboard as the page shows it: the five totals and the rows' cells. */
 async function board(p:Page){
+ return withSurface(p,'menu',async()=>{
  const dialog=await openScoreboard(p);
  const totals=await dialog.locator('#scoreboard-totals dd').allTextContents();
  const rows=await dialog.locator('#scoreboard-games tbody tr').evaluateAll(trs=>trs.map(tr=>[...tr.children].map(c=>c.textContent)));
  await closeScoreboard(p);return {totals,rows};
+ });
 }
 async function giveUp(p:Page){
  await openSurface(p,'menu');await p.locator('#new-game-button').click();await p.locator('#give-up-confirm').click();
