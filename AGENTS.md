@@ -10,4 +10,4 @@ For any agent or tool working in this repository (OpenCode, Codex, Claude Code, 
 - **Reviewing a PR**: [`docs/review-pr.md`](docs/review-pr.md). **Reviewing a milestone**:
   [`docs/milestone-review.md`](docs/milestone-review.md).
 
-For the next continuation, read the [0.3.0 publication checkpoint on #271](https://github.com/diegoami/malpaco/issues/271#issuecomment-6384526859), then recheck live issue labels and PR checks. Preserve v0.3.0's reviewed tag and published archives. AI improvements (#320), native delivery and review follow-ups (#325, #327, #329) remain separate work. Keep continuation details on the issue; replace this pointer when superseded.
+For the next continuation, read the [0.3.1 reserve-routing checkpoint on #320](https://github.com/diegoami/malpaco/issues/320#issuecomment-6388008007), then recheck live issue labels and PR checks. Preserve v0.3.0's reviewed tag, published archives and production. Keep the T127 maintenance and T128 AI-preview evidence on their issues/PRs; native delivery and held balance experiments are separate work. Production releases follow `docs/milestone-review.md`. Replace this pointer when superseded.

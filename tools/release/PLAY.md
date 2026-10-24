@@ -1,4 +1,4 @@
-# Play Malpaco 0.3.0
+# Play Malpaco 0.3.1
 
 Create a self-contained release archive from the source checkout with:
 
@@ -27,6 +27,10 @@ and changing attack suggestions stay in that panel without restarting a banner.
 
 New games grow their own geography. Choose 46, 72 or 96 regions in Settings;46 is the default. Larger presets add islands and use numbered territory names. Saved games keep the generator and size they were made with.
 The seed fixes the geography, deal and dice sequence.
+
+Computer players advance interior reserves through their own regions toward a front,
+one adjacent transfer per turn. They leave at least one army behind and keep exposed
+border stacks in place. Human transfer rules and recorded replays are unchanged.
 
 Opening a fresh page shows Settings. Press **Start game** when ready: by default you play against three Normal computers on a random seed, with
 Domination on and no round limit. Islands and territories take real island and town names from one

@@ -10,12 +10,12 @@ How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process
 [docs/tasks/](docs/tasks/README.md).
 Task status lives in GitHub issue labels.
 
-## Play Malpaco 0.3.0 (web)
+## Play Malpaco (web)
 
 [Play in your browser](https://malpaco.netlify.app), or download the
-[0.3.0 playable archive](https://github.com/diegoami/malpaco/releases/tag/v0.3.0).
+[latest published playable archive](https://github.com/diegoami/malpaco/releases/latest).
 The [play instructions](docs/play.md) explain the controls and local launcher;
-[release notes](docs/releases/0.3.0/RELEASE-NOTES.md) describe the web release.
+[0.3.1 release notes](docs/releases/0.3.1/RELEASE-NOTES.md) describe this source checkout.
 
 A fresh page offers Settings and Start. Saved games offer Resume first. Choose
 1–3 Normal opponents, starting-army range, event frequency and 46/72/96-region maps

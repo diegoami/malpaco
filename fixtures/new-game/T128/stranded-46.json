@@ -1,0 +1,1199 @@
+{
+  "format": "malpaco-match",
+  "version": 2,
+  "boardGenerator": {
+    "id": "geographic",
+    "version": 2
+  },
+  "rules": {
+    "id": "island",
+    "version": 1
+  },
+  "actionSchemaVersion": 5,
+  "options": {
+    "islandRules": 1,
+    "seats": [
+      {
+        "kind": "human"
+      },
+      {
+        "kind": "computer"
+      },
+      {
+        "kind": "computer"
+      },
+      {
+        "kind": "computer"
+      }
+    ],
+    "board": "generated",
+    "startingArmiesRange": "1-3",
+    "humanShare": 0,
+    "computerStrengths": [
+      "Normal",
+      "Normal",
+      "Normal"
+    ],
+    "eventFrequency": "Normal",
+    "dominationWin": true,
+    "roundLimit": null,
+    "seed": 0,
+    "animationSpeed": "normal",
+    "sound": true,
+    "names": "seed"
+  },
+  "actions": [
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_1",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_3"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_3"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_27",
+      "to": "province_26"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_32",
+      "to": "province_30"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_21",
+      "to": "province_20"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_41",
+      "to": "province_38"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_3",
+      "to": "province_0"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_15",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_15",
+      "to": "province_41"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_41",
+      "to": "province_38"
+    },
+    {
+      "kind": "attack",
+      "from": "province_41",
+      "to": "province_38"
+    },
+    {
+      "kind": "attack",
+      "from": "province_28",
+      "to": "province_27"
+    },
+    {
+      "kind": "attack",
+      "from": "province_34",
+      "to": "province_35"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_41",
+      "to": "province_38"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_44",
+      "to": "province_45"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_22",
+      "to": "province_20"
+    },
+    {
+      "kind": "attack",
+      "from": "province_28",
+      "to": "province_27"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_31",
+      "to": "province_17"
+    },
+    {
+      "kind": "attack",
+      "from": "province_35",
+      "to": "province_11"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_12",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_12",
+      "to": "province_7"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_9"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_9",
+      "to": "province_29"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_19",
+      "to": "province_18"
+    },
+    {
+      "kind": "attack",
+      "from": "province_29",
+      "to": "province_27"
+    },
+    {
+      "kind": "attack",
+      "from": "province_42",
+      "to": "province_15"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_17"
+    },
+    {
+      "kind": "attack",
+      "from": "province_16",
+      "to": "province_15"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_19",
+      "to": "province_18"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_29",
+      "to": "province_27"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_40",
+      "to": "province_41"
+    },
+    {
+      "kind": "attack",
+      "from": "province_6",
+      "to": "province_5"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_0",
+      "amount": 2
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_10",
+      "to": "province_12"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_33",
+      "to": "province_1"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_21"
+    },
+    {
+      "kind": "attack",
+      "from": "province_12",
+      "to": "province_11"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_23",
+      "to": "province_20"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_39",
+      "to": "province_41"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_8",
+      "to": "province_13"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_0",
+      "to": "province_5"
+    },
+    {
+      "kind": "attack",
+      "from": "province_0",
+      "to": "province_5"
+    },
+    {
+      "kind": "attack",
+      "from": "province_0",
+      "to": "province_5"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_4",
+      "to": "province_6"
+    },
+    {
+      "kind": "attack",
+      "from": "province_5",
+      "to": "province_6"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_2",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_3",
+      "to": "province_0"
+    },
+    {
+      "kind": "attack",
+      "from": "province_25",
+      "to": "province_28"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_26",
+      "to": "province_27"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_3",
+      "to": "province_0"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_30",
+      "to": "province_31"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_37",
+      "to": "province_34"
+    },
+    {
+      "kind": "attack",
+      "from": "province_2",
+      "to": "province_4"
+    },
+    {
+      "kind": "attack",
+      "from": "province_2",
+      "to": "province_4"
+    },
+    {
+      "kind": "attack",
+      "from": "province_2",
+      "to": "province_4"
+    },
+    {
+      "kind": "attack",
+      "from": "province_2",
+      "to": "province_4"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_4",
+      "to": "province_5"
+    },
+    {
+      "kind": "attack",
+      "from": "province_4",
+      "to": "province_5"
+    },
+    {
+      "kind": "attack",
+      "from": "province_4",
+      "to": "province_5"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_38",
+      "amount": 2
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_38",
+      "to": "province_39"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_39",
+      "to": "province_41"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_41",
+      "to": "province_15"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_45",
+      "to": "province_27"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_42",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_42",
+      "to": "province_15"
+    },
+    {
+      "kind": "attack",
+      "from": "province_42",
+      "to": "province_15"
+    },
+    {
+      "kind": "attack",
+      "from": "province_42",
+      "to": "province_15"
+    },
+    {
+      "kind": "attack",
+      "from": "province_42",
+      "to": "province_15"
+    },
+    {
+      "kind": "attack",
+      "from": "province_6",
+      "to": "province_0"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_1",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_21"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_21"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_21"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_0",
+      "amount": 4
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_0",
+      "to": "province_17"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_17",
+      "to": "province_14"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_18"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_18"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_15",
+      "amount": 4
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_15",
+      "to": "province_16"
+    },
+    {
+      "kind": "attack",
+      "from": "province_15",
+      "to": "province_16"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_16",
+      "to": "province_18"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_18",
+      "to": "province_14"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_19",
+      "amount": 2
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_19",
+      "to": "province_14"
+    },
+    {
+      "kind": "attack",
+      "from": "province_19",
+      "to": "province_14"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_1",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_3"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_3"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_3",
+      "to": "province_0"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_0",
+      "amount": 4
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_0",
+      "to": "province_3"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_3",
+      "to": "province_1"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_1",
+      "to": "province_21"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_21",
+      "to": "province_20"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "tradeCards",
+      "handIndices": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_15",
+      "amount": 8
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_15",
+      "to": "province_42"
+    },
+    {
+      "kind": "attack",
+      "from": "province_15",
+      "to": "province_42"
+    },
+    {
+      "kind": "attack",
+      "from": "province_15",
+      "to": "province_42"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "friendlyMove",
+      "from": "province_42",
+      "to": "province_39"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_14",
+      "amount": 2
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_17"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_17"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_11",
+      "amount": 3
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_11",
+      "to": "province_35"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_35",
+      "to": "province_25"
+    },
+    {
+      "kind": "attack",
+      "from": "province_35",
+      "to": "province_25"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "tradeCards",
+      "handIndices": [
+        0,
+        2,
+        3
+      ]
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_0",
+      "amount": 10
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_0",
+      "to": "province_5"
+    },
+    {
+      "kind": "attack",
+      "from": "province_0",
+      "to": "province_5"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_5",
+      "to": "province_6"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_39",
+      "amount": 8
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_39",
+      "to": "province_7"
+    },
+    {
+      "kind": "attack",
+      "from": "province_39",
+      "to": "province_7"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_11"
+    },
+    {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_11"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_11",
+      "to": "province_12"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_12",
+      "to": "province_10"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_10",
+      "to": "province_13"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_13",
+      "to": "province_8"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "friendlyMove",
+      "from": "province_8",
+      "to": "province_7"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_14",
+      "amount": 2
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_17"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_17"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_20",
+      "amount": 2
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_20",
+      "to": "province_21"
+    },
+    {
+      "kind": "attack",
+      "from": "province_20",
+      "to": "province_21"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_0",
+      "amount": 10
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_0",
+      "to": "province_17"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_17",
+      "to": "province_14"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_18"
+    },
+    {
+      "kind": "attack",
+      "from": "province_14",
+      "to": "province_18"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_18",
+      "to": "province_15"
+    },
+    {
+      "kind": "attack",
+      "from": "province_18",
+      "to": "province_15"
+    },
+    {
+      "kind": "attack",
+      "from": "province_18",
+      "to": "province_15"
+    },
+    {
+      "kind": "attack",
+      "from": "province_18",
+      "to": "province_15"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_15",
+      "to": "province_16"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_16",
+      "to": "province_19"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "endTurn"
+    },
+    {
+      "kind": "skipCards"
+    },
+    {
+      "kind": "reinforce",
+      "province": "province_7",
+      "amount": 9
+    },
+    {
+      "kind": "endReinforcement"
+    },
+    {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_9"
+    },
+    {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_9"
+    },
+    {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_9"
+    },
+    {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_9"
+    },
+    {
+      "kind": "attack",
+      "from": "province_7",
+      "to": "province_9"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_9",
+      "to": "province_29"
+    },
+    {
+      "kind": "attack",
+      "from": "province_9",
+      "to": "province_29"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_29",
+      "to": "province_25"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_25",
+      "to": "province_28"
+    },
+    {
+      "kind": "captureMove"
+    },
+    {
+      "kind": "attack",
+      "from": "province_28",
+      "to": "province_26"
+    },
+    {
+      "kind": "captureMove"
+    }
+  ]
+}

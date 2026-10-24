@@ -1,6 +1,7 @@
 import { activePlayer } from './state';
 import { classifyCardSet } from './cards';
 import { computerView } from './computer-view';
+import { reserveTransfer } from './computer-movement';
 import type { ComputerDecisionView } from './computer-view';
 import type { Action,GameState } from './types';
 
@@ -13,7 +14,8 @@ export function computerAction(state:GameState):Action|null {
 /** Approved scripted baseline computer108/111/112, pinned ae298e37 computer.md.
  * Army/Surge gain first, Raid last, oldest discard; no stream draws or strength
  * timing/foresight. Designed stable ties: fewer Wilds, then indices/target IDs.
- * Existing ordinary priorities and N-exchange budget are preserved.
+ * Card, capture, placement and attack priorities and the N-exchange budget stay.
+ * T128 extends end-of-turn movement across owned routes toward the front.
  */
 export function decideComputerAction(view:ComputerDecisionView):Action|null {
  const p=view.playerId;if(!p||view.phase==='finished'||view.phase==='human-loss')return null;
@@ -44,7 +46,5 @@ export function decideComputerAction(view:ComputerDecisionView):Action|null {
   choices.sort((a,b)=>countries.get(a.to)!.armies-countries.get(b.to)!.armies||countries.get(b.from)!.armies-countries.get(a.from)!.armies||(key(a)<key(b)?-1:key(a)>key(b)?1:0));
   if(choices[0])return {...choices[0]};
  }
- const moves=view.movePairs.filter(a=>!frontier(a.from)&&frontier(a.to));
- moves.sort((a,b)=>countries.get(b.from)!.armies-countries.get(a.from)!.armies||(a.from<b.from?-1:a.from>b.from?1:a.to<b.to?-1:a.to>b.to?1:0));
- return moves[0]?{...moves[0]}:{kind:'endTurn'};
+ return reserveTransfer(view)??{kind:'endTurn'};
 }
