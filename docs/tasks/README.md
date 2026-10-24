@@ -189,3 +189,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T122](T122.md): atomic app-private Android snapshot primitive (#314), first bounded native durability slice of #286.
 
 - [T123](T123.md): Min/Max draft troop shortcuts for capture and friendly movement (#316).
+
+- [T124](T124.md): staged web0.3.0 candidate, milestone review and exact-byte Netlify publication (#318).
