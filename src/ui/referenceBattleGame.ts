@@ -58,11 +58,7 @@ export class ReferenceBattleGame {
   private readonly eventLog: GameEventLog;
   /** Help pauses computer play while it is read, and resumes only what it paused. */
   private helpPaused = false;
-  private readonly help = new GameHelp(() => {
-    this.chrome?.close(false);
-    this.helpPaused = !this.controller.playbackPaused;
-    if (this.helpPaused) this.controller.setPlaybackPaused(true);
-  });
+  private readonly help: GameHelp;
   private readonly controller: BattleController;
   private readonly mapView: Pick<ReferenceMapView,"el"|"render"> & {readonly camera?: ReferenceMapView["camera"]};
   private readonly panel: Panel;
@@ -120,6 +116,11 @@ export class ReferenceBattleGame {
   };
 
   constructor(private readonly map: GameMap, private readonly options: GameOptions, private readonly onNewGame: () => void, state: GameState, private readonly preferences: BattlePreferences, onLoad: (options: GameOptions, state: GameState, loaded?:LoadedVersionedMatch) => void, private readonly automatic = false, private readonly presentation?:MatchPresentation) {
+    this.help = new GameHelp(() => {
+      this.chrome?.close(false);
+      this.helpPaused = !this.controller.playbackPaused;
+      if (this.helpPaused) this.controller.setPlaybackPaused(true);
+    }, Boolean(presentation?.player));
     this.eventLog = new GameEventLog(options,presentation?.initialState);
     document.body.append(this.eventLog.dialog, this.help.dialog);
     if (presentation?.player) {this.provinceAction = new ProvinceAction(); document.body.append(this.provinceAction.el);}
