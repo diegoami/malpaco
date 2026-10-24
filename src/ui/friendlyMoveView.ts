@@ -33,16 +33,17 @@ export class FriendlyMoveView {
     this.el.append(
       h("h2", {class:"battle-title visually-hidden"}, "Friendly move"),
       h("p", {class:"visually-hidden battle-context"}, from ? `${name(from)}${to ? ` → ${name(to)}` : ""}` : "Marked countries can supply armies."),
-      h("div", {class:"card-icons capture-adjust"},
+      h("div", {class:"card-icons capture-adjust",hidden:!selected},
+        h('div', {class:'amount-adjust'},
         limit('min',1),
         iconButton("friendly-move-less-button", "Move one fewer army", null, "minus", !selected, () => choose(current() - 1)),
         amount,
         iconButton("friendly-move-more-button", "Move one more army", null, "plus", !selected, () => choose(current() + 1)),
-        limit('max',maximum),
+        limit('max',maximum)),
         iconButton("confirm-friendly-move-button", "Move and end turn", null, "confirm", !selected, () => {
           if (from && to && !this.controller.dispatch({kind:"friendlyMove", from, to, amount:amount.valueAsNumber}, revision)) amount.reportValidity();
-        }, true),
-        iconButton("cancel-friendly-move-button", "Cancel · back to attacks", null, "close", false, () => { this.controller.cancelFriendlyMove(revision); })),
+        }, true)),
+      h('div', {class:'transfer-cancel'}, iconButton("cancel-friendly-move-button", "Cancel · back to attacks", null, "close", false, () => { this.controller.cancelFriendlyMove(revision); })),
       h("p", {id:"friendly-move-help", class:"visually-hidden"}, from ? `Move 1–${maximum} armies. Leave at least one behind. This ends your turn.` : "Marked countries can supply armies. Choose one, then an owned neighbour."),
     );
     // Before a pair is chosen only Cancel shows; the disabled amount controls wait hidden.

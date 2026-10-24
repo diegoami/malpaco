@@ -2060,3 +2060,33 @@ button.game-help-command { display:grid; place-items:center; width:48px !importa
 .game-overlay[data-primary-commands="true"]:has(#turn-tracker) .game-pool-slot { grid-row:auto; grid-column:auto; }
 
 button.game-text-command[data-card-set]:not([data-card-set="Raid"]),.hand-plays button.game-text-command:not([data-set="Raid"]) { background:#267147 !important; border-color:#85daa6 #123d26 #123d26 #85daa6 !important; }
+
+/* T125: sea links stay legible at fit and zoom; ports name their exact regions. */
+#geographic-map .lane { stroke:#bdd7ce; stroke-width:3; vector-effect:non-scaling-stroke; }
+#geographic-map .lane.active { stroke:#fff8cf; stroke-width:4; }
+#geographic-map .lane-port-stem { stroke:#f4efcf; stroke-width:3; vector-effect:non-scaling-stroke; pointer-events:none; }
+#geographic-map .lane-port { fill:#f4efcf; stroke:#17313d; stroke-width:1.5; vector-effect:non-scaling-stroke; pointer-events:none; }
+#geographic-map .lane-ports.active .lane-port { fill:#fff; stroke:#ffd06b; stroke-width:2; }
+
+@media (min-width:1024px) and (min-height:650px) {
+ #turn-tracker { width:320px; padding:16px; }
+ #turn-guidance-title { font-size:28px; }
+ #turn-instruction { font-size:24px; min-height:32px; }
+ .turn-row { min-height:44px; font-size:22px; grid-template-columns:24px 24px minmax(0,1fr) 34px 24px 24px 24px; gap:6px; }
+ .turn-pointer { font-size:28px; }
+ #turn-tracker svg { width:24px; height:24px; }
+}
+
+/* Adjustment rows are one group; Confirm always occupies the right column. */
+.battle-reference #game-focus-drawer .capture-adjust { display:grid; grid-template-columns:minmax(0,1fr) 48px; align-items:stretch; gap:12px; }
+.battle-reference #game-focus-drawer .amount-adjust { display:grid; grid-template-columns:48px 56px 48px; grid-template-rows:48px 48px; gap:6px; justify-content:start; }
+.battle-reference #game-focus-drawer .amount-adjust > input { grid-column:2; grid-row:1 / 3; height:100%; }
+.battle-reference #game-focus-drawer .amount-adjust > :nth-child(2) { grid-column:1; grid-row:1; }
+.battle-reference #game-focus-drawer .amount-adjust > :nth-child(4) { grid-column:3; grid-row:1; }
+.battle-reference #game-focus-drawer .amount-adjust > :first-child { grid-column:1; grid-row:2; }
+.battle-reference #game-focus-drawer .amount-adjust > :last-child { grid-column:3; grid-row:2; }
+.battle-reference #game-focus-drawer .capture-adjust :is(#confirm-capture-button,#confirm-friendly-move-button) { grid-column:2; grid-row:1; margin:0; width:48px; height:100%; justify-content:center; }
+.battle-reference #game-focus-drawer .transfer-cancel { margin-top:8px; }
+.battle-reference #game-focus-drawer .capture-adjust[hidden] { display:none; }
+.battle-reference #game-focus-drawer:has(.capture-adjust:not([hidden])) { min-width:272px; }
+.battle-reference #game-focus-drawer:has(.capture-adjust:not([hidden])) .game-drawer-content { grid-column:1 / -1; grid-row:2; }

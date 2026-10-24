@@ -61,6 +61,13 @@ for(const size of SIZES)for(const kind of ['capture','move'] as const)test(`${si
   const box=(await page.locator('#'+id).boundingBox())!;expect(box.x).toBeGreaterThanOrEqual(0);expect(box.y).toBeGreaterThanOrEqual(0);expect(box.x+box.width).toBeLessThanOrEqual(size.width);expect(box.y+box.height).toBeLessThanOrEqual(size.height);expect(box.height).toBeGreaterThanOrEqual(44);
  }
  await page.screenshot({path:info.outputPath(`${kind}-${size.width}.png`)});
+ const confirm=(await page.locator(`#confirm-${kind==='capture'?'capture':'friendly-move'}-button`).boundingBox())!;
+ for(const id of [`${prefix}-min-button`,`${prefix}-max-button`,`${prefix}-less-button`,`${prefix}-more-button`,`${prefix}-amount`]){
+  const box=(await page.locator('#'+id).boundingBox())!;
+  expect(confirm.x,`Confirm must stay right of ${id}`).toBeGreaterThanOrEqual(box.x+box.width);
+  expect(confirm.y).toBeLessThanOrEqual(box.y+1);expect(confirm.y+confirm.height).toBeGreaterThanOrEqual(box.y+box.height-1);
+ }
+
  const expected=apply(f.state,kind==='capture'?{kind:'captureMove',amount}:{kind:'friendlyMove',from:f.from,to:f.to,amount});if(!expected.ok)throw Error(expected.error);
  await page.locator(`#confirm-${kind==='capture'?'capture':'friendly-move'}-button`).click();expect(await saved(page)).toEqual(expected.state);
 });
