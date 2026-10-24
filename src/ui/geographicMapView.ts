@@ -39,6 +39,19 @@ export class GeographicMapView {
    if(e.key==='Enter'||e.key===' '){e.preventDefault();handlers.onProvince(node.dataset['country']!,{inspect:e.shiftKey,repeat:e.repeat});}
    if(['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();nodes[(index+(['ArrowRight','ArrowDown'].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}
   };this.el.append(node);});
+  // Endpoint stems extend from the reserved sea port into its actual country.
+  // Paint above the coast/cells so shore outlines cannot hide the connection.
+  for(const route of presentation.routes){
+   const edge=[route.from,route.to].sort().join('|');
+   const names=[route.from,route.to].map(id=>map.provinces.find(p=>p.id===id)!.name);
+   const ports=s('g',{class:'lane-ports','data-edge':edge,'aria-label':`Sea connection: ${names.join(' ↔ ')}`},s('title',{},names.join(' ↔ ')));
+   for(const [id,port] of [[route.from,route.points[0]!],[route.to,route.points.at(-1)!]] as const){
+    const centre=drawing.get(id)!.labelAt,dx=centre[0]-port[0],dy=centre[1]-port[1],distance=Math.hypot(dx,dy),fraction=Math.min(.45,24/Math.max(1,distance));
+    const x=port[0]+dx*fraction,y=port[1]+dy*fraction;
+    ports.append(s('line',{class:'lane-port-stem',x1:port[0],y1:port[1],x2:x,y2:y}),s('circle',{class:'lane-port','data-port-country':id,cx:x,cy:y,r:4}));
+   }
+   this.el.append(ports);
+  }
   this.names=new NameLayer(nodes);this.el.append(this.names.el);
   this.el.onclick=e=>{if(!(e.target as Element).closest('[data-country]'))handlers.onBackground();};
   this.camera=new MapCamera(this.el,{x:b.x/q,y:b.y/q,width:b.width/q,height:b.height/q});
@@ -60,6 +73,6 @@ export class GeographicMapView {
   }
   this.names.select(view.selected);
   this.el.dataset['choosing']=String(view.selected!==null);
-  for(const route of this.el.querySelectorAll<SVGPolylineElement>('.lane'))route.classList.toggle('active',route.dataset['edge']!.split('|').includes(view.selected??''));
+  for(const route of this.el.querySelectorAll<SVGElement>('.lane, .lane-ports'))route.classList.toggle('active',route.dataset['edge']!.split('|').includes(view.selected??''));
  }
 }

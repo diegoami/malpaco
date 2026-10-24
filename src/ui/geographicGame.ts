@@ -119,7 +119,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    if(keep)local.set(keep.meta,JSON.stringify(meta));
    // The scoreboard counts geographic player games with one human; Nine Isles never.
    const counted=given.identity.boardGenerator.id==='geographic'&&options.seats.filter(s=>s.kind==='human').length===1;
-   presentation={...given,player:{persist:keep?text=>local.set(keep.game,text):()=>{},paused:meta.paused,eventAck:meta.eventAck??0,eventMarksCleared:meta.eventMarksCleared??0,
+   presentation={...given,player:{freshStart:!loadedMatch,persist:keep?text=>local.set(keep.game,text):()=>{},paused:meta.paused,eventAck:meta.eventAck??0,eventMarksCleared:meta.eventMarksCleared??0,
     remember:change=>{
      if(change.speed)local.set(PREFERENCES,JSON.stringify({speed:change.speed}));
      if(keep&&(change.eventAck!==undefined||change.eventMarksCleared!==undefined)){if(change.eventAck!==undefined)meta.eventAck=change.eventAck;if(change.eventMarksCleared!==undefined)meta.eventMarksCleared=change.eventMarksCleared;local.set(keep.meta,JSON.stringify(meta));}

@@ -19,13 +19,14 @@ or network connection.
 - Production centres and deterministic Harvest/Shift/Storm/Revolt effects have
   Off/Rare/Normal/Often next-game settings. These are designed Malpaco rules; older
   matches retain their original factories, options and event behavior.
+- Fresh games show a three-second countdown before play. Large translucent center banners announce each moving player and human phase, then disappear after three unpaused seconds. Kept games skip the countdown. Capture prompts and changing attack suggestions stay in the player panel without restarting a large banner.
 - A public colour tracker, Your turn arrow and phase guidance accompany readable
   executed computer placements, fights, captures and friendly transfers.
 - Main actions use Ubuntu Bold text and role colours, with question-mark Help and
-  compact utility icons. Sea connections are solid. Ordinary attacks use ATTACK
+  compact utility icons. Sea connections are thicker, with visible ports inside both connected regions. The desktop player tracker uses larger rows and text. Ordinary attacks use ATTACK
   beside the source country instead of a redundant Fight popup.
 - Capture and friendly-move panels have Min/Max draft shortcuts, +/− and manual
-  entry. Only Confirm transfers armies; closing or folding never commits an amount.
+  entry. Confirm stays to the right of the grouped amount controls. Only Confirm transfers armies; closing or folding never commits an amount.
 - Cards show 5/8/15-army values or effects. Draw notices close after three unpaused
   seconds or X; drawing alone grants no immediate army bonus. World notices wait
   for explicit dismissal, and troop/card choices retain their explicit decisions.

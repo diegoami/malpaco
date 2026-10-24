@@ -82,11 +82,12 @@ export class BattleView {
     return h("section", { class: "capture-choice", "aria-label": "Capture move-in" },
       h("h3", { class: "visually-hidden" }, "Move armies into the capture"),
       h("div", { class: "card-icons capture-adjust" },
+        h('div', {class:'amount-adjust'},
         limit('min',pending.min),
         iconButton("capture-less-button", "Move one fewer army", null, "minus", false, () => choose(current() - 1)),
         amount,
         iconButton("capture-more-button", "Move one more army", null, "plus", false, () => choose(current() + 1)),
-        limit('max',pending.max),
+        limit('max',pending.max)),
         iconButton("confirm-capture-button", "Confirm move-in", null, "confirm", false, () => {
           if (!this.controller.confirmCapture(amount.valueAsNumber, revision)) amount.reportValidity();
         }, true)),
