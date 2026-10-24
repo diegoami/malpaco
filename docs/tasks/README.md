@@ -195,3 +195,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T125](T125.md): thicker sea endpoints, larger desktop tracker and rightmost transfer Confirm (#321).
 
 - [T126](T126.md): fresh start countdown and transient centered turn/phase announcements (#322).
+
+- [T127](T127.md): post-0.3 legacy goldens, pinned starting remainders and speed-preference cleanup (#325/#327/#329).
