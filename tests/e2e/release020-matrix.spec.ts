@@ -115,7 +115,7 @@ test('A2: a legal set trades once and a skip changes nothing but the phase',asyn
 test('A3: a capture draft survives fold, rotation, history and pause; dashed until one Confirm; short landscape keeps badges on their land',async({page},info)=>{
  await reference(page);const f=pinned('pending-capture');await load(page,f.text);let s=await saved(page);const pending=s.pendingCapture!;
  const draft=String(pending.min===pending.defaultAmount?pending.max:pending.min);
- await openSurface(page,'actions');expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Confirm move-in','Fold card']);await expect(page.locator(RETIRED)).toHaveCount(0);
+ await openSurface(page,'actions');expect(await shown(page)).toEqual(['Minimum armies','Move one fewer army','Armies to move','Move one more army','Maximum armies','Confirm move-in','Fold card']);await expect(page.locator(RETIRED)).toHaveCount(0);
  await page.locator('#capture-amount').fill(draft);
  await page.keyboard.press('Escape');await page.locator('#open-required-action').click();
  await page.setViewportSize(LANDSCAPE);await settle(page);await openSurface(page,'details');await closeSurface(page);
@@ -134,7 +134,7 @@ test('A4: a friendly-move draft survives resize; Cancel changes nothing; Move & 
  await page.getByLabel('Seed',{exact:true}).fill(String(f.seed));await page.getByLabel('Seats',{exact:true}).selectOption('2');await page.getByRole('button',{name:'Start game',exact:true}).click();
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator('#start-combat-button').click();let s=await saved(page);
  await page.locator('#start-friendly-move-button').click();await country(page,f.from).click();await country(page,f.to).click();
- await openSurface(page,'actions');expect(await shown(page)).toEqual(['Move one fewer army','Armies to move','Move one more army','Move and end turn','Cancel · back to attacks','Fold card']);
+ await openSurface(page,'actions');expect(await shown(page)).toEqual(['Minimum armies','Move one fewer army','Armies to move','Move one more army','Maximum armies','Move and end turn','Cancel · back to attacks','Fold card']);
  await page.locator('#friendly-move-amount').fill('1');
  await page.setViewportSize(LANDSCAPE);await settle(page);await page.setViewportSize(PORTRAIT);await settle(page);await openSurface(page,'actions');
  await expect(page.locator('#friendly-move-amount')).toHaveValue('1');await page.locator('#cancel-friendly-move-button').click();await exactly(page,s);

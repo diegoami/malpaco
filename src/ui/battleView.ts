@@ -70,17 +70,23 @@ export class BattleView {
     if (focused) this.el.querySelector<HTMLElement>(`#${focused}`)?.focus({ preventScroll: true });
   }
 
-  /** −, the amount, + and Confirm (T97); the map's dashed counts are the preview. */
+  /** Bound shortcuts edit the draft; only Confirm moves armies. */
   private capture(pending: NonNullable<Snapshot["state"]["pendingCapture"]>, draft: string | undefined, revision: number): HTMLElement {
     const amount = h("input", { id: "capture-amount", type: "number", min: pending.min, max: pending.max, step: 1, value: draft ?? String(pending.defaultAmount), "aria-label": "Armies to move", "aria-describedby": "capture-help", inputmode: "numeric" });
     const choose = (value: number) => { amount.value = String(Math.max(pending.min, Math.min(pending.max, value))); };
     const current = () => Number.isSafeInteger(amount.valueAsNumber) ? amount.valueAsNumber : pending.defaultAmount;
+    const limit = (which: 'min' | 'max', value: number) => {
+      const button = h('button', {id:`capture-${which}-button`,type:'button',class:'amount-limit', 'aria-label':which==='min'?'Minimum armies':'Maximum armies'}, which==='min'?'Min':'Max');
+      button.onclick = () => {if(!button.disabled)choose(value);};return button;
+    };
     return h("section", { class: "capture-choice", "aria-label": "Capture move-in" },
       h("h3", { class: "visually-hidden" }, "Move armies into the capture"),
       h("div", { class: "card-icons capture-adjust" },
+        limit('min',pending.min),
         iconButton("capture-less-button", "Move one fewer army", null, "minus", false, () => choose(current() - 1)),
         amount,
         iconButton("capture-more-button", "Move one more army", null, "plus", false, () => choose(current() + 1)),
+        limit('max',pending.max),
         iconButton("confirm-capture-button", "Confirm move-in", null, "confirm", false, () => {
           if (!this.controller.confirmCapture(amount.valueAsNumber, revision)) amount.reportValidity();
         }, true)),

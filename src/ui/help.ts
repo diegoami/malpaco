@@ -111,7 +111,7 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["Placing", "Tap your countries to place armies from the pool shown at the top; combat starts when the last one is placed."],
   ["On your country", "The country you select shows ATTACK if it can attack, or MOVE if it can only move armies. Press ATTACK, then tap an enemy: one round; press again for another."],
   ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. The ATTACK button beside your country rolls one exchange; press it again to keep attacking, or select another country."],
-  ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
+  ["Capturing", "Choose how many armies move in with Min, −, + or Max, then Confirm. Min and Max select the legal bounds without moving troops. Until Confirm the two counts are dashed."],
   ["Cards", "Your cards are behind the CARDS button at top left, with their number. Army cards are labelled5,8 or15 armies; draw notices disappear after three seconds of unpaused play. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
   ["Notices", "The turn tracker shows the active colour, public counts and your next step. Your turn begins when its arrow reaches your colour."],
   ["Computer turns", "Watch the executed placements, attacks and movements at Normal pace. Settings and Help pause play while open. After an interruption, use Resume in the turn tracker."],
