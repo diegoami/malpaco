@@ -136,7 +136,7 @@ export class GameHelp {
       if (shape === 'attack') return [['attack', 'Fight', 'Rolls one exchange with the staged pair; press again to continue.']];
       return [[shape, name, use]];
     });
-    const howTo = HOW_TO.map(([title, copy]) => [title,
+    const howTo = HOW_TO.map<readonly [string, string]>(([title, copy]) => [title,
       player ? title === 'Event frequency' ? copy.replace('Continue acknowledges it. Fold or Back lets you inspect the marked countries without acknowledging.', 'close with X, Escape or Android Back to acknowledge and continue.') :
         title === 'Notices' ? `${copy} Close an informational notice with X, Escape or Android Back to continue. Troop choices still require Confirm; closing them never commits armies.` : copy :
         title === 'Computer turns' ? "Choose the speed beside Pause; Fast-forward plays until your next turn." :
