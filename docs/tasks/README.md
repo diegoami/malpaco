@@ -191,3 +191,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T123](T123.md): Min/Max draft troop shortcuts for capture and friendly movement (#316).
 
 - [T124](T124.md): staged web0.3.0 candidate, milestone review and exact-byte Netlify publication (#318).
+
+- [T125](T125.md): thicker sea endpoints, larger desktop tracker and rightmost transfer Confirm (#321).
+
+- [T126](T126.md): fresh start countdown and transient centered turn/phase announcements (#322).
