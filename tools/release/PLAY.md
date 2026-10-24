@@ -11,7 +11,7 @@ region (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, 
 the seed; names never change the map or play. The game is kept in this browser after each of your
 actions and each computer's turn (a refresh in the middle of a computer's turn replays that turn,
 the same moves), so a refresh or a later visit offers **Resume saved game**, with any open choice (a capture, a card choice or a Raid)
-still open, at the game speed you chose, and paused if you left it paused. Nothing leaves this
+still open, with a paused game waiting for explicit Resume. Nothing leaves this
 browser: there is no account, server or sync between devices. **Settings** at top left
 chooses 1, 2 or 3 computer opponents for your next game (3 by default). Changing
 this setting keeps your current game exactly as it is; a refresh offers Resume for it.
@@ -59,39 +59,26 @@ trade, plus **Skip**; one per card when a full hand must discard before drawing 
 stays hidden until then). A Raid folds its card to a one-line strip so the whole map is free: tap
 a highlighted enemy country, or choose one from **Countries**, then **Confirm**.
 Games with two or more human seats currently play without cards.
-Your cards are behind the card icon next to the menu, which shows how many you hold: it opens
+Your cards are behind the CARDS button next to Settings, which shows how many you hold: it opens
 them, drawn as cards with a plain symbol for what each does (5, 8 or 15 armies for a set, ×2 to
 double your pool, a bomb to raid, a crossed bomb to block a raid, a star for the wild card), and
 closes with ×, Escape or another tap. Drag the window by its title; it stays where you put it. At the start of your turn a set can be played
 from that list (or from the set card that opens by itself). After each draw, the card shows your
 whole hand with the new card marked.
 
-The speed controls share the top-right corner: the **Game speed** choice (Slow and Very slow let
-you watch every move), **Pause**, and, while computers play, a gold **Fast-forward** icon that plays
-the computer seats without waiting until your turn (the moves are the same). While a computer
-plays they are the only controls on screen; the menu, **Fit** and **Countries** come back on your
-turn, or as soon as you pause.
+Important actions use raised uppercase Ubuntu Bold text and role colours; familiar utility controls use compact icons. New game, Settings and the question-mark Help button stay at top left,
+with a readable colour turn tracker below them. Settings opens directly below its button.
+Computer turns show placement, combat and movement at a fixed readable pace. The map
+has no Pause, fast-forward or speed toolbar. Settings and Help pause play while open;
+after an Android interruption, use RESUME in the tracker. Closing a dialog cannot
+release that background pause.
 
-The map fills the screen and only corner icons rest on it: the menu top-left (**Help & icon names**, **Settings**,
-**New game** and the trophy for the **Scoreboard**), the speed controls top-right, **Fit** and **Countries**
-bottom-left, and bottom-right the legal phase action: **Start combat**, **Move armies** or the flag
-for **End turn**, which also skips a move. While you place armies, the pool shows as an icon and a
-number at the top. Only these icons frame the map: cards and notices float over it and never shrink
-it. A slim notice under the top icons says whose turn it is: tap it for a hint, swipe it or tap × to
-dismiss it; it fades after a few seconds, except an illegal-move reason or a computer's turn. A
-choice appears as a small card in a bottom corner, and moves to the other side when it would cover
-the countries in play. Its fold icon shrinks it to a chip that keeps its title (tap the chip to
-open it again), and you can drag it by the grip along its top or by its edge: later cards open where
-you put it, in this browser, until you double-tap the grip or start a new game. Escape folds a
-choice to a one-line strip with a gold return icon. **Zoom**
-and **Focus** appear once you zoom or select a country. **Countries** lists every country by island,
-or only the ones you can use now: choosing one places an army, selects it or marks it as the
-target, but never attacks; **Inspect** shows a country's owner, armies, island bonus and neighbours,
-with **Focus** to frame it. The list opens only from its icon. A tap that touches more than one
-country asks which one you meant.
-
-The top-left **Help** icon gives the objective and your progress, explains how the game
-plays and names every icon. The result card shows the winner and reason with **New game**;
+FIT and COUNTRIES sit at the map edge. Required capture/move amounts and card choices
+open their own cards; ordinary attacks use ATTACK beside your source country. X closes
+event/card-draw information and continues without another acknowledgement; troop
+amounts still require the Confirm check mark. The
+map remains pannable and zoomable while you inspect it. Help explains the rules and settings.
+The result card shows the winner and reason with **New game**;
 **Standings** and **Details** (seed, options and the record) open on request, and a round-limit
 result says whether countries, armies or turn order decided it.
 
@@ -107,7 +94,7 @@ The game fits phones and tablets in either orientation as well as desktops: it i
 screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md` (carried over to 0.2.1). Online multiplayer and
 cross-device save synchronization are not supported.
 
-Use the three top-left icon buttons (hover for their names): **New game**, **Settings**, **Help**.
+Use the three top-left text buttons: **New game**, **Settings**, **Help**.
 Settings opens the next-game choices, seed and scoreboard in one card; Help
 opens the instructions. New game asks before giving up an unfinished game.
 
@@ -131,5 +118,5 @@ Its arrow stays with the computer while its action finishes, then points at your
 colour with **Your turn**. Guidance changes through **Place armies**, **Execute
 attacks** and **Move armies**. The move hint is a conservative stack comparison;
 it never prevents a legal riskier attack. New computer placement, combat and troop
-transfers are shown on the regions at a readable pace. Speed and Fast-forward
-change presentation only; Pause finishes the current paint and stops further play.
+transfers are shown on the regions at a readable pace. Presentation does not change the rules. Opening Settings or Help finishes the current
+paint and pauses further play; Android interruptions require explicit Resume.

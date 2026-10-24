@@ -37,11 +37,13 @@ export class TurnTracker {
  private readonly heading=h('strong',{id:'turn-guidance-title'});
  private readonly rows=h('div',{class:'turn-rows',role:'list'});
  private readonly instruction=h('div',{id:'turn-instruction'});
+ private readonly resume=h('button',{id:'resume-turn-button',type:'button','aria-label':'Resume game',hidden:true},'Resume');
  private signature='';
- constructor(){this.el.append(h('div',{class:'turn-guidance','aria-live':'polite'},this.heading,this.instruction),this.rows);}
+ constructor(private readonly onResume?:()=>void){this.resume.onclick=()=>this.onResume?.();this.el.append(h('div',{class:'turn-guidance','aria-live':'polite'},this.heading,this.instruction),this.rows,this.resume);}
  render(state:GameState,context:GuidanceContext){
   const rows=turnRows(state,context.feedbackSeat),guide=humanGuidance(state,context),signature=JSON.stringify({rows,guide,kind:context.feedbackKind});
   if(signature===this.signature)return guide;this.signature=signature;
+  this.resume.hidden=!context.paused||!this.onResume;
   this.heading.textContent=guide.title;this.instruction.textContent=guide.instruction;
   this.el.dataset['activeSeat']=rows.find(r=>r.current)?.id??'';this.el.dataset['guidance']=guide.instruction;
   this.rows.replaceChildren(...rows.map((r,i)=>{

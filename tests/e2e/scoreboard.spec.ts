@@ -1,10 +1,10 @@
-import {visitGame,reloadGame,startFromResult} from './shell';
+import {visitGame,reloadGame,startFromResult,noticeContinue} from './shell';
 // T100: the scoreboard, kept in this browser. Each player game counts once when it ends: a win,
 // an elimination (Lost at once, even if you then watch) or New game's give-up; `?setup` never counts.
 import {expect,test} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
-import {openSurface} from './shell';
+import {openSurface,withSurface} from './shell';
 import {activePlayer,apply,defaultOptions,raidCardsRules,serializeVersionedMatch} from '../../src/core';
 import type {GameOptions,GameState} from '../../src/core';
 import {createGeographicGame} from '../../src/core/geographic-game';
@@ -43,10 +43,12 @@ async function openScoreboard(p:Page){
 async function closeScoreboard(p:Page){await p.locator('#close-scoreboard').click();await expect(p.getByRole('dialog',{name:'Scoreboard'})).toBeHidden();}
 /** The scoreboard as the page shows it: the five totals and the rows' cells. */
 async function board(p:Page){
+ return withSurface(p,'menu',async()=>{
  const dialog=await openScoreboard(p);
  const totals=await dialog.locator('#scoreboard-totals dd').allTextContents();
  const rows=await dialog.locator('#scoreboard-games tbody tr').evaluateAll(trs=>trs.map(tr=>[...tr.children].map(c=>c.textContent)));
  await closeScoreboard(p);return {totals,rows};
+ });
 }
 async function giveUp(p:Page){
  await openSurface(p,'menu');await p.locator('#new-game-button').click();await p.locator('#give-up-confirm').click();
@@ -55,7 +57,7 @@ async function giveUp(p:Page){
 /** End turn wins seed 5; the card drawn for the turn's capture is acknowledged first, then the result shows. */
 async function winningEndTurn(p:Page){
  await p.locator('#end-turn-button').click();
- const reward=p.getByRole('button',{name:'Continue',exact:true}),won=p.getByRole('heading',{name:'You won',exact:true});
+ const reward=noticeContinue(p),won=p.getByRole('heading',{name:'You won',exact:true});
  await expect(reward.or(won).first()).toBeVisible();if(await reward.isVisible())await reward.click();
  await expect(won).toBeVisible();
 }

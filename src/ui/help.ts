@@ -82,20 +82,20 @@ export function mountHelp(
  * stay out of this help: the page may show only your own or publicly spent cards. */
 const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
   ["help", "Help", "Instructions, icon names and explanations of the settings."],
-  ["settings", "Settings", "The next game’s opponents and starting armies, its seed and the scoreboard. New game and Help have their own top-left buttons. While a computer plays the corner buttons wait until your turn or a pause."],
-  ["pause", "Pause", "Stops play at once and brings back the corner buttons; the same icon resumes it. Beside it, the game speed."],
-  ["fast-forward", "Fast-forward", "Beside Pause during computer turns: play them without waiting until your turn."],
+  ["settings", "Settings", "The next game’s opponents and starting armies, its seed and the scoreboard. New game and Help have their own top-left buttons. These commands stay available during computer play."],
+  ["play", "Resume", "After an interruption, Resume appears in the turn tracker. Settings and Help pause play while open; closing them cannot release an Android background pause."],
   ["fit", "Fit", "Shows the whole map again."],
   ["countries", "Countries", "Every country by island, or only the ones you can use now."],
   ["info", "Inspect", "In the Countries list: a country's owner, armies and neighbours. On the result card, Details: the seed, options and record."],
   ["combat", "Start combat", "Ends placement once every army is placed."],
   ["move", "Move armies", "One adjacent friendly move per turn."],
   ["flag", "End turn", "Passes the turn; it also skips the friendly move."],
-  ["attack", "Fight", "Rolls one exchange with the staged pair; press again to fight on."],
+  ["attack", "Attack", "The ATTACK button beside your source country rolls one exchange; press it again to continue."],
   ["minus", "Fewer", "Lowers a move-in or move amount."],
   ["plus", "More", "Raises a move-in or move amount."],
-  ["confirm", "Confirm", "Completes a capture move-in or a move."],
-  ["return", "Return", "The gold icon that brings a folded choice back."],
+  ["confirm", "Confirm", "The check mark confirms the chosen troop amount. Closing with X leaves that choice pending."],
+  ["close", "Close", "X dismisses event and card-draw information and continues play. It never confirms a troop amount or releases an Android background pause."],
+  ["return", "Return", "Reopens a pending choice."],
   ["standings", "Standings", "Countries and armies at the end of the game."],
   ["trophy", "Scoreboard", "In Settings: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
   ["new-game", "New game", "Gives up this game after confirmation, then opens Settings. Press Start game to begin."],
@@ -112,9 +112,9 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["On your country", "The country you select shows ATTACK if it can attack, or MOVE if it can only move armies. Press ATTACK, then tap an enemy: one round; press again for another."],
   ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. The ATTACK button beside your country rolls one exchange; press it again to keep attacking, or select another country."],
   ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
-  ["Cards", "Your cards are behind the card icon at top left, with their number. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
-  ["Notices", "The slim notice under the top icons says whose turn it is. Tap it for a hint; swipe or × dismisses it."],
-  ["Computer turns", "Each computer's turn shows one notice while its counts and colours change on the map. Choose the speed beside Pause; Slow and Very slow let you watch every move."],
+  ["Cards", "Your cards are behind the CARDS button at top left, with their number. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
+  ["Notices", "The turn tracker shows the active colour, public counts and your next step. Your turn begins when its arrow reaches your colour."],
+  ["Computer turns", "Watch the executed placements, attacks and movements at Normal pace. Settings and Help pause play while open. After an interruption, use Resume in the turn tracker."],
   ["Seats", "You play one seat; the computers are named by their colours: Orange, Green and Purple."],
   ["Kept games", "Your game is kept in this browser: a reload, or reopening the browser, resumes it, paused if you left it paused. Each game counts once on the scoreboard, when it ends."],
   ["Map", "Pinch or scroll to zoom, drag to pan, Fit to see everything. Cards float over the map and move aside from the countries in play. A tap that touches two countries asks which one."],
@@ -127,15 +127,29 @@ export class GameHelp {
   readonly dialog = h("dialog", { class: "game-help", "aria-labelledby": "game-help-title" });
   /** T97: the objective and your progress, which the retired Information icon showed. */
   private readonly objective = h("p", { id: "game-help-objective" });
-  constructor(onOpen?: () => void) {
+  constructor(onOpen?: () => void, player = true) {
+    const icons = player ? ICON_NAMES : ICON_NAMES.flatMap(([shape, name, use]) => {
+      if (shape === 'play') return [
+        ['pause', 'Pause', 'Pauses play; press again to resume. The speed choice is beside it.'],
+        ['fast-forward', 'Fast-forward', 'Plays computer turns without waiting until your turn.'],
+      ];
+      if (shape === 'attack') return [['attack', 'Fight', 'Rolls one exchange with the staged pair; press again to continue.']];
+      return [[shape, name, use]];
+    });
+    const howTo = HOW_TO.map<readonly [string, string]>(([title, copy]) => [title,
+      player ? title === 'Event frequency' ? copy.replace('Continue acknowledges it. Fold or Back lets you inspect the marked countries without acknowledging.', 'close with X, Escape or Android Back to acknowledge and continue.') :
+        title === 'Notices' ? `${copy} Close an informational notice with X, Escape or Android Back to continue. Troop choices still require Confirm; closing them never commits armies.` : copy :
+        title === 'Computer turns' ? "Choose the speed beside Pause; Fast-forward plays until your next turn." :
+        title === 'Attacking' || title === 'On your country' ? "Select a source and an adjacent enemy, then use Fight on the choice card for one exchange." : copy,
+    ]);
     const close = h("button", { type: "button", id: "close-game-help" }, "Close help");
     close.onclick = () => this.dialog.close();
     this.dialog.append(
       h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
       h("section", {}, h("h3", {}, "Objective"), this.objective),
-      ...HOW_TO.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),
+      ...howTo.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),
       h("h3", {}, "Icons"),
-      h("ul", { class: "game-help-icons", "aria-label": "Icon names" }, ...ICON_NAMES.map(([shape, name, use]) =>
+      h("ul", { class: "game-help-icons", "aria-label": "Icon names" }, ...icons.map(([shape, name, use]) =>
         h("li", { "data-icon": shape }, glyph(shape), h("strong", {}, name), h("span", {}, use)))),
     );
     this.button.onclick = () => { onOpen?.(); this.dialog.showModal(); close.focus(); };

@@ -19,6 +19,7 @@ const CORNERS: readonly Corner[] = ["end", "start", "top-end", "top-start"];
 const symbol = glyph;
 
 function commandSymbol(button: HTMLButtonElement, shape: string): void {
+  button.dataset["commandSymbol"]=shape;
   button.querySelector(".rail-command-icon")?.remove();
   const svg = symbol(shape); svg.classList.add("rail-command-icon"); button.append(svg);
 }
@@ -110,7 +111,7 @@ export class BattleChrome {
   private corner: Corner = "end";
   private railSize = {width: 0, height: 0, viewport: ""};
 
-  constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void}) {
+  constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void;onMenuClose?:()=>void;onInformationClose?:()=>boolean}) {
     for (const [button, surface] of [[this.menu, "menu"], [this.countries, "countries"]] as const) {
       button.setAttribute("aria-controls", this.drawer.id);
       button.setAttribute("aria-haspopup", "dialog");
@@ -123,14 +124,14 @@ export class BattleChrome {
       else this.open("actions", this.required);
     };
     this.closeButton.onclick = () => this.close();
-    this.foldButton.onclick = () => this.fold(true);
+    this.foldButton.onclick = () => {if(this.nodes.onInformationClose?.())return;if(this.nodes.primaryActions)this.close();else this.fold(true);};
     this.chip.onclick = () => this.fold(false);
     this.drawer.append(this.grip, this.title, this.content, this.foldButton, this.closeButton, this.chip);
     this.drawer.addEventListener("pointerdown", this.onCardDown);
     this.drawer.dataset["corner"] = this.corner;
     this.folded.append(this.foldedText, this.required);
     if(nodes.primaryActions){
-      this.hud.classList.add('game-primary-buttons');
+      this.hud.classList.add('game-primary-buttons');this.foldButton.setAttribute('aria-label','Close card');this.foldButton.title='Close card';
       const {newGame,help}=nodes.primaryActions;
       for(const [button,name,shape] of [[newGame,'New game','new-game'],[this.menu,'Settings','settings'],[help,'Help','help']] as const){
         button.replaceChildren(document.createTextNode(name));button.setAttribute('aria-label',name);button.title=name;button.classList.add('primary-command');
@@ -170,7 +171,7 @@ export class BattleChrome {
   private commands(): void {
     const symbols: Record<string,string> = {"start-combat-button":"combat", "end-turn-button":"flag", "start-friendly-move-button":"move"};
     for (const button of this.nodes.phaseActions.querySelectorAll<HTMLButtonElement>("button")) {
-      if (!button.querySelector(".rail-command-icon")) {
+      if (!button.dataset["commandSymbol"]) {
         button.setAttribute("aria-label", button.textContent ?? ""); button.title = button.textContent ?? "";
         commandSymbol(button, symbols[button.id] ?? "info");
       }
@@ -401,11 +402,12 @@ export class BattleChrome {
     if (!this.surface) return;
     // Content with no home in the page (the Countries list) leaves the card instead of staying under the next one.
     for (const {node, marker} of this.moved) {if (marker.parentNode) marker.replaceWith(node); else node.remove();}
+    const wasMenu=this.surface==='menu';
     this.moved = []; this.drawer.hidden = true; this.surface = null; this.collapsed = false;
     for (const button of this.overlay.querySelectorAll<HTMLElement>("[aria-haspopup]")) button.setAttribute("aria-expanded", "false");
     this.layout();
     if (restoreFocus) this.focus(this.opener, this.menu);
-    this.opener = null;
+    this.opener = null;if(wasMenu)this.nodes.onMenuClose?.();
   }
 
   private focus(control: HTMLElement | null, fallback: HTMLElement): void {
@@ -414,6 +416,7 @@ export class BattleChrome {
 
   escape(): boolean {
     if (!this.surface) return false;
+    if(this.surface==='actions'&&this.nodes.onInformationClose?.())return true;
     this.close(); return true;
   }
 
@@ -526,7 +529,7 @@ export class BattleChrome {
     this.commands();
     // A list choice that completes one (a Raid target, an attack pair) brings its card in place of the list.
     if (prompt && prompt !== this.lastPrompt && (!this.surface || this.surface === "countries")) this.open("actions", this.required, false);
-    this.lastPrompt = prompt;
+    if(!paused)this.lastPrompt = prompt;
     this.layout();
   }
 

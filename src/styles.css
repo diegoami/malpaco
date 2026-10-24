@@ -1986,3 +1986,65 @@ dialog h2 {
  .battle-reference #game-focus-drawer { bottom:calc(var(--edge) + max(var(--target), var(--command-height, 0px)) + var(--gap)); }
  .battle-reference #game-focus-drawer:is([data-corner="top-end"], [data-corner="top-start"], [data-placement="center"]) { bottom:auto; }
 }
+
+/* T119: player commands use raised text; data symbols remain on the board and cards. */
+button.game-text-command {
+ display:inline-flex !important; flex-direction:row !important; align-items:center; justify-content:center; gap:6px;
+ width:auto !important; min-width:max-content !important; min-height:48px !important; max-width:100%; padding:8px 10px !important;
+ font:900 20px/1.2 Impact,"Arial Black",system-ui,sans-serif !important; letter-spacing:1.2px !important; text-transform:uppercase !important; text-align:center;
+ color:#fff !important; background:#a51e2c !important; border:3px solid !important; border-color:#ff969b #530a16 #530a16 #ff969b !important;
+ border-radius:3px !important; box-shadow:2px 3px 0 #071b25,inset 0 1px 0 #fff5 !important; text-shadow:0 1px 1px #0008;
+}
+button.game-text-command svg,button.game-text-command img { display:none !important; }
+.game-text-command .card-icon-caption { font:inherit !important; letter-spacing:inherit; }
+button.game-text-command:focus-visible { outline:3px solid #fff !important; outline-offset:3px; }
+button.game-text-command:disabled { opacity:.45; }
+#province-action-button.game-text-command { min-width:120px !important; font-size:22px !important; }
+.game-primary-buttons > .game-text-command { height:52px; padding:0 8px !important; }
+#start-game.game-text-command { width:100% !important; }
+.game-overlay[data-primary-commands="true"] > .game-corner-end { display:none !important; }
+.game-overlay[data-primary-commands="true"] .map-camera-controls { flex-direction:column-reverse; align-items:flex-start; }
+.game-overlay[data-primary-commands="true"] #battle-action-rail { grid-auto-flow:row; grid-template-columns:max-content; grid-template-rows:none; }
+#resume-turn-button { position:absolute; top:calc(100% + 8px); left:0; margin-top:0; }
+@media (max-height:500px) and (min-width:600px) {
+ #resume-turn-button { top:0; left:calc(100% + 8px); }
+}
+@media (min-width:480px) { .game-primary-buttons > .game-text-command { font-size:22px !important; } }
+@media (max-width:479px) {
+ .game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }
+ .game-overlay[data-primary-commands="true"]:has(#placement-pool:not([hidden])) #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--target) + 2 * var(--gap)); }
+ .game-overlay[data-primary-commands="true"]:has(#turn-tracker) .game-pool-slot { left:auto; right:var(--edge); }
+}
+
+@media (max-height:500px) {
+ .game-overlay[data-primary-commands="true"] .map-camera-controls { flex-direction:row; align-items:flex-end; }
+ .game-overlay[data-primary-commands="true"] .turn-row { min-height:28px; }
+ .game-overlay[data-primary-commands="true"] .turn-guidance { min-height:52px; }
+}
+
+.game-overlay[data-primary-commands="true"] :is(#game-pause-button,#fast-forward-button,.game-speed-control) { display:none !important; }
+.game-overlay[data-primary-commands="true"] > .game-corner-end:has(#close-result-card:not([hidden])) { display:flex !important; position:relative; top:0; }
+button.game-text-command[hidden] { display:none !important; }
+
+/* Semantic action colours; compact tools retain familiar icons. */
+#open-game-menu.game-text-command,#start-friendly-move-button.game-text-command,#province-action-button.game-text-command[data-kind="move"] { background:#5ce6e8 !important; color:#05212c !important; border-color:#c4ffff #167075 #167075 #c4ffff !important; text-shadow:none; }
+#game-help-button.game-text-command { background:#fff8d9 !important; color:#1b2227 !important; border-color:#fff #777363 #777363 #fff !important; text-shadow:none; }
+:is(#start-game,#resume-game,#resume-turn-button,#give-up-cancel,#end-turn-button,#open-hand).game-text-command { background:#267147 !important; color:#fff !important; border-color:#85daa6 #123d26 #123d26 #85daa6 !important; }
+button.game-close-command { display:grid; place-items:center; width:48px; min-width:48px; height:48px; min-height:48px; padding:0; border:1px solid var(--shell-line,#517580); border-radius:8px; background:var(--shell-bg,#173d47); color:#fff; font:400 30px/1 system-ui,sans-serif !important; letter-spacing:0; }
+button.game-close-command[hidden] { display:none !important; }
+.game-overlay[data-primary-commands="true"] .map-camera-controls { flex-direction:row; }
+.game-overlay[data-primary-commands="true"] #open-countries { font-size:0; }
+.game-utility-command > svg { display:block; }
+
+@font-face { font-family:Ubuntu; src:url('/fonts/Ubuntu[wdth,wght].ttf') format('truetype'); font-weight:100 900; font-display:swap; }
+button.game-text-command { font-family:Ubuntu,Inter,system-ui,sans-serif !important; font-weight:700 !important; letter-spacing:.7px !important; }
+.game-settings > .next-game-settings :is(label,select),#game-launcher .game-settings > .next-game-settings :is(label,select),#game-launcher :is(h1,h2),#turn-tracker :is(.turn-row,#turn-guidance-title,#turn-instruction) { font-family:Ubuntu,Inter,system-ui,sans-serif !important; font-weight:700; letter-spacing:.7px; }
+button.game-help-command { display:grid; place-items:center; width:48px !important; min-width:48px; height:52px; min-height:48px; padding:0; font:700 32px/1 Ubuntu,system-ui,sans-serif !important; letter-spacing:0; background:#fff8d9 !important; color:#17313d !important; border:3px solid; border-color:#fff #777363 #777363 #fff; border-radius:3px; box-shadow:2px 3px 0 #071b25; }
+.battle-reference #game-focus-drawer .game-utility-command.primary > svg { background:#267147; border-color:#85daa6; color:#fff; }
+
+.game-settings .game-identity { font-family:Ubuntu,Inter,system-ui,sans-serif !important; font-weight:700; letter-spacing:.7px; }
+#game-launcher .game-settings > .next-game-settings select { font-size:24px; }
+
+/* Informational notices close and continue with X; input cards keep Confirm. */
+.game-overlay[data-primary-commands="true"] #acknowledge-world-event,
+.game-overlay[data-primary-commands="true"] .card-interactions[data-phase="reward"] .card-choice-controls button { display:none !important; }

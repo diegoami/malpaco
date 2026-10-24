@@ -82,7 +82,7 @@ export class CardController {
  }
  confirmRaid(revision:number):boolean {return this.target!==null&&this.send({kind:'raidTarget',province:this.target},revision);}
  acknowledge(revision:number):boolean {
-  if(this.disposed||!this.reward||this.battle.playbackPaused||revision!==this.battle.view.revision)return false;
+  if(this.disposed||!this.reward||revision!==this.battle.view.revision)return false;
   this.reward=null;this.notice='';this.battle.setCardRewardPending(false);return true;
  }
  reset():void {this.previous=this.battle.state;this.target=null;this.reward=null;this.notice='';this.battle.setCardRewardPending(false);}
