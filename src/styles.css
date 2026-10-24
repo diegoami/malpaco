@@ -1553,6 +1553,8 @@ dialog h2 {
 .battle-reference #game-focus-drawer .battle-actions .card-icon:disabled { display:none; }
 .battle-reference #game-focus-drawer #cancel-battle-button { margin-left:auto; }
 .battle-reference #game-focus-drawer .card-icons input[type="number"] { width:60px; height:48px; padding:0 4px; text-align:center; font:700 18px Inter, system-ui, sans-serif; color:var(--text); background:var(--bg); border:1px solid var(--accent); border-radius:12px; }
+.battle-reference #game-focus-drawer .amount-limit { flex:none; width:48px; min-width:48px; height:48px; min-height:48px; padding:0; border:1px solid var(--shell-line,#3d5a6d); border-radius:8px; background:var(--shell-bg,var(--surface)); color:var(--text); font:700 14px/1 Ubuntu,system-ui,sans-serif; text-transform:uppercase; }
+.battle-reference #game-focus-drawer .amount-limit:disabled { opacity:.4; }
 .battle-reference #game-focus-drawer .card-range { display:flex; align-items:center; gap:8px; margin-top:4px; }
 .battle-reference #game-focus-drawer .card-range input[type="range"] { flex:1; min-width:0; accent-color:var(--accent); }
 .battle-reference #game-focus-drawer .card-bound { min-width:44px; min-height:44px; padding:0; border:0; background:none; color:var(--muted); font:600 14px Inter, system-ui, sans-serif; box-shadow:none; }

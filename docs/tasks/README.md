@@ -185,3 +185,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T120](T120.md): X dismisses informational notices and continues; troop choices still require Confirm.
 
 - [T121](T121.md): numeric/effect card labels, three-second draw notice, and player-colour army counter.
+
+- [T122](T122.md): atomic app-private Android snapshot primitive (#314), first bounded native durability slice of #286.
+
+- [T123](T123.md): Min/Max draft troop shortcuts for capture and friendly movement (#316).

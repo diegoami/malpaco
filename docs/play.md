@@ -57,14 +57,15 @@ tap an adjacent enemy: one round is fought; press **ATTACK** again for another. 
 territory moves the button there. Without **ATTACK**, tapping an enemy only chooses the target. **ATTACK** rolls one exchange each time you press it; nothing
 continues on its own. Select another country to change the pair. Clicks, Enter/Space, touch and the
 Countries list all work the same way. After capturing a territory, choose the army amount with
-−, + and **Confirm** on the bar beside the captured territory; until then the two countries'
+**Min**, −, + or **Max**, then **Confirm** on the bar beside the captured territory; until then the two countries'
 counts are dashed.
 On the map, your selected country has a solid gold outline, the countries it can attack a dashed
 light one, and the chosen target a solid light outline with a crosshair round its count, so none of
 them relies on colour alone. Counts never draw smaller than 14 px; stacks over 999 show as 1.2k or
 23k, and the country's spoken name keeps the exact number.
 You can make one adjacent friendly move per turn: **Move armies** (or **Move** beside a selected
-territory), then a source and an own neighbour, then −, the amount, + and **Confirm** (or **Cancel**).
+territory), then a source and an own neighbour, then choose the amount with **Min**, −, + or **Max** and **Confirm** (or **Cancel**).
+Min selects the legal minimum and Max the legal maximum; neither moves troops until Confirm.
 Confirming the friendly move ends your turn. Computer turns run automatically at a readable pace:
 placements show their count progression, fights mark the two countries, and captures and friendly
 moves show the executed troop transfer. The turn arrow reaches your colour after the final effect.
