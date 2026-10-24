@@ -1,3 +1,4 @@
+import {visitGame,startFromResult} from './shell';
 import {expect,test} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {defaultOptions} from '../../src/core/options';
@@ -29,13 +30,13 @@ function capture(){
 async function keptCapture(page:Page){
  await host(page);const text=capture();
  await page.addInitScript(([k,t])=>{if(!sessionStorage.getItem('native-kept')){sessionStorage.setItem('native-kept','1');localStorage.setItem(k!,t!);}},[KEY,text]);
- await page.goto('/');await expect(page.locator('#confirm-capture-button')).toBeVisible({timeout:60000});
+ await visitGame(page,'/');await expect(page.locator('#confirm-capture-button')).toBeVisible({timeout:60000});
  return (await read(page,KEY))!;
 }
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','one browser project; native device coverage separate'));
 test('background force-keeps a partial computer turn; foreground and dialog-close cannot resume it',async({page})=>{
  await host(page);await page.clock.install();await page.clock.pauseAt(new Date());
- await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+ await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  const key='malpaco:seed-game:7',meta='malpaco:seed-game-meta:7',before=deserializeVersionedMatch((await read(page,key))!);
  await page.clock.runFor(240);await background(page);
  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
@@ -68,7 +69,7 @@ for(const [button,name] of [['#game-help-button','Help'],['#open-game-menu','Set
 });
 test('native saved resume requirement pauses a new host before its first computer action',async({page})=>{
  await host(page,true);await page.clock.install();await page.clock.pauseAt(new Date());
- await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+ await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
  const key='malpaco:seed-game:7',saved=(await read(page,key))!;await page.clock.runFor(20000);expect(await read(page,key)).toBe(saved);
  expect(deserializeVersionedMatch(saved).state.history).toEqual([]);
@@ -77,7 +78,7 @@ test('native saved resume requirement pauses a new host before its first compute
 test('replacing the player host retires its native listener and never writes the old game metadata',async({page})=>{
  await keptCapture(page);const old=JSON.parse((await read(page,META))!).id;
  await page.locator('#open-game-menu').click();await page.locator('#new-game-button').click();
- await page.locator('#give-up-confirm').click();await page.locator('#give-up-new-game').click();
+ await page.locator('#give-up-confirm').click();await startFromResult(page);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  const current=JSON.parse((await read(page,META))!).id;expect(current).not.toBe(old);
  await page.evaluate(meta=>{

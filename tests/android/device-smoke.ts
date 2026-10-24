@@ -33,6 +33,14 @@ async function attach(){
  const webview=await device.webView({pkg:app,socketName:'webview_devtools_remote_'+pid},{timeout:30000});
  return {page:await webview.page()};
 }
+/** Exercise explicit entry on the real bundled WebView, including after process restart. */
+async function enter(p:Page){
+ await expect(p.locator('#game-launcher,#geographic-map').first()).toBeVisible({timeout:60000});
+ const launcher=p.locator('#game-launcher');
+ if(await launcher.count())await launcher.locator(await launcher.getAttribute('data-mode')==='saved'?'#resume-game':'#start-game').click();
+ await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+}
+async function visit(p:Page,url:string){await p.goto(url);await enter(p);}
 const kept=async(page:Page)=>{const text=await page.evaluate(k=>localStorage.getItem(k),key);if(!text)throw Error('No kept seed-1 match');return deserializeVersionedMatch(text).state;};
 const snapshot=async(page:Page)=>JSON.stringify(await kept(page));
 const screen=(name:string)=>writeFileSync(join(config.out,name+'.png'),execFileSync(config.adb,['-s',config.serial,'exec-out','screencap','-p']));
@@ -43,6 +51,7 @@ adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
 let connection=await attach(),page=connection.page;
 const errors:string[]=[];const watch=(p:Page)=>{p.on('pageerror',e=>errors.push(e.message));p.on('console',m=>{if(m.type()==='error')errors.push(m.text());});};watch(page);
 try {
+ await enter(page);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  check('bundled first launch offline shows 46 countries');screen('first-launch');
  if(config.mode==='lifecycle'){
@@ -57,7 +66,7 @@ try {
   }
   if(!selected)throw Error('No fresh computer-first diagnostic seed');
   metadata.observations.computerDiagnosticSeed=selected;
-  await page.goto(origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+  await visit(page,origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   await page.locator('#game-speed').selectOption('very-slow');
   if(await page.locator('#game-pause-button').getAttribute('aria-label')==='Resume game')await page.locator('#game-pause-button').click();
   const slot='malpaco:seed-game:'+selected,meta='malpaco:seed-game-meta:'+selected;
@@ -75,9 +84,9 @@ try {
   await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
   await wait(600);expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
   await device?.close();device=undefined;adb(['shell','am','force-stop',app]);adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
-  connection=await attach();page=connection.page;watch(page);
+  connection=await attach();page=connection.page;watch(page);await enter(page);
   await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
-  await page.goto(origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+  await visit(page,origin+'/?seed='+selected);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   await expect(page.locator('#game-pause-button')).toHaveAttribute('aria-label','Resume game');
   expect(await page.evaluate(()=>Reflect.get(window,'MalpacoHost').requiresResume())).toBe(true);
   expect(await page.evaluate(k=>localStorage.getItem(k),slot)).toBe(saved);
@@ -92,7 +101,7 @@ try {
  const origin=await page.evaluate(()=>location.origin);
  const seed=await page.evaluate(()=>{for(let n=1;n<=10000;n++)if(!localStorage.getItem('malpaco:seed-game:'+n))return n;throw Error('No unused diagnostic seed');});
  metadata.seed=seed;key='malpaco:seed-game:'+seed;
- await page.goto(origin+'/?seed='+seed);
+ await visit(page,origin+'/?seed='+seed);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  if(await page.locator('#game-pause-button').getAttribute('aria-label')==='Resume game')await page.locator('#game-pause-button').click();
  await expect.poll(async()=>activePlayer(await kept(page))?.kind,{timeout:60000}).toBe('human');
@@ -119,7 +128,11 @@ try {
    case 'endReinforcement':await page.locator('#start-combat-button').click();break;
    case 'attack':{
     await page.locator(`[data-country="${action.from}"]`).click();
+    await expect(page.locator(`[data-country="${action.from}"]`)).toHaveAttribute('data-selected','true');
+    await expect(page.locator('#geographic-map .country.target')).toHaveCount(0);
     await page.locator('#province-action-button').click();
+    await expect(page.locator('#province-action-button')).toHaveAttribute('aria-pressed','true');
+    expect((await kept(page)).history).toEqual(state.history);
     await page.locator(`[data-country="${action.to}"]`).click();
     const expected=apply(state,action);if(!expected.ok)throw Error(expected.error);
     await expect.poll(async()=>JSON.stringify((await kept(page)).history)).toBe(JSON.stringify(expected.state.history));
@@ -164,10 +177,10 @@ try {
  check('rotation retains the exact pending capture');screen('capture-landscape');
  await device?.close();device=undefined;adb(['shell','am','force-stop',app]);
  adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
- connection=await attach();page=connection.page;watch(page);
+ connection=await attach();page=connection.page;watch(page);await enter(page);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  // Relaunch opens root; the per-seed test match remains in its independent slot.
- const restartedOrigin=await page.evaluate(()=>location.origin);await page.goto(restartedOrigin+'/?seed='+seed);
+ const restartedOrigin=await page.evaluate(()=>location.origin);await visit(page,restartedOrigin+'/?seed='+seed);
  await expect(page.locator('#confirm-capture-button')).toBeVisible({timeout:60000});
  expect(await snapshot(page)).toBe(pending);check('force-stop/relaunch retains the exact pending seed game');screen('capture-restarted');
  adb(['shell','input','keyevent','KEYCODE_HOME']);await wait(500);
@@ -179,9 +192,9 @@ try {
  const backUrlBefore=page.url();adb(['shell','input','keyevent','KEYCODE_BACK']);await wait(500);
  metadata.observations.back={urlBefore:backUrlBefore,urlAfter:page.isClosed()?null:page.url(),menuStillVisible:page.isClosed()?null:await page.locator('#game-focus-drawer').isVisible()};
  adb(['shell','am','start','-n',app+'/io.github.diegoami.malpaco.MainActivity']);
- if(page.isClosed()){connection=await attach();page=connection.page;watch(page);}
+ if(page.isClosed()){connection=await attach();page=connection.page;watch(page);await enter(page);}
  const target=restartedOrigin+'/?seed='+seed;
- if(page.url()!==target)await page.goto(target);
+ if(page.url()!==target)await visit(page,target);
  if(!await page.locator('#confirm-capture-button').isVisible()&&await page.locator('#open-required-action').isVisible())await page.locator('#open-required-action').click();
  await expect(page.locator('#confirm-capture-button')).toBeVisible({timeout:60000});
  expect(await snapshot(page)).toBe(pending);check('Back does not confirm the pending capture; navigation behavior recorded');

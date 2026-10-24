@@ -1,8 +1,9 @@
+import {visitGame} from './shell';
 import {expect,test} from '@playwright/test';
 const KEY='malpaco:seed-game:7';
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes set here'));
 for(const [width,height] of [[390,844],[844,390],[1280,800],[320,640]])test(`${width}: New game, Settings and Help open directly at top left`,async({page})=>{
- test.setTimeout(90000);await page.setViewportSize({width:width!,height:height!});await page.goto('/?seed=7');await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});
+ test.setTimeout(90000);await page.setViewportSize({width:width!,height:height!});await visitGame(page,'/?seed=7');await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});
  const pause=page.locator('#game-pause-button');if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
  const safe=width===390?18:0;if(safe)await page.addStyleTag({content:':root{--safe-left:18px;--safe-right:18px;--safe-top:12px;--safe-bottom:12px}'});
  const saved=await page.evaluate(k=>localStorage.getItem(k),KEY);

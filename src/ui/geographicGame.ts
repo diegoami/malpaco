@@ -1,3 +1,4 @@
+import {GameLauncher} from './gameLauncher';
 import {islandRules,configurableRaidCardsRules} from '../core/state';
 import {createGame,defaultOptions,raidCardsRules} from '../core';
 import type {GameOptions,GameState} from '../core';
@@ -70,14 +71,15 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
  const params=new URLSearchParams(location.search);
  let seed=params.get('seed')??'1994';
  const manual=params.get('control')==='manual';
- // T96: the player's page starts a game at once. `?setup` and `control=manual` keep the setup
- // screen and its files for tests and development.
+ // T116: the player's entry offers Start/Resume. `?setup` and `control=manual` keep
+ // the developer setup and its files.
  const instant=!manual&&!params.has('setup');
  const seedParam=params.get('seed');let fixedSeed=seedParam!==null&&/^\d+$/.test(seedParam)?Number(seedParam)>>>0:null;
  const seedSlot=(n:number):Slot=>({game:`malpaco:seed-game:${n}`,meta:`malpaco:seed-game-meta:${n}`});
  let slot:Slot|null=!instant?null:seedParam===null?{game:STORED_GAME,meta:`${STORED_GAME}-meta`}:fixedSeed!==null?seedSlot(fixedSeed):null;
  /** The kept meta of the game being resumed, consumed by the next mount. */
  let resuming:GameMeta|null=null;
+ let launcher:GameLauncher|null=null,approvedStart=false;
  let seats=manual?'2':'4';
  let controllers:('human'|'computer')[]=manual?['human','human','human','human']:['human','computer','computer','computer'];
  let dominationWin=true,roundLimit:20|30|40|null=null,names:NameChoice='seed';
@@ -108,7 +110,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    if(epoch===own)pending=null;
   }
  };
- const dispose=()=>{setupFiles?.dispose();setupFiles=null;current?.dispose();current=null;};
+ const dispose=()=>{launcher?.dispose();launcher=null;setupFiles?.dispose();setupFiles=null;current?.dispose();current=null;};
  const mount=(options:GameOptions,state:GameState,given:MatchPresentation,loadedMatch=false)=>{
   // A version-1 game has no version-2 record to keep, and a `?seed` page never replaces the
   // player's kept game: it keeps its own game of that seed (T100).
@@ -126,7 +128,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
     },
     ...(counted?{record:game=>{addGame(browserScores,{...game,id:meta.id,date:new Date().toISOString()});},totals:()=>totalsLine(parseScoreboard(browserScores.get()).totals)}:{})}};
   }
-  const app=new ReferenceBattleGame(state.map,options,()=>{if(instant)void instantStart(true);else setup();},state,preferences,onLoad,!manual,presentation);
+  const app=new ReferenceBattleGame(state.map,options,()=>{if(instant){if(approvedStart){approvedStart=false;void instantStart(true);}else showEntry(true);}else setup();},state,preferences,onLoad,!manual,presentation);
   dispose();seed=String(options.seed);seats=String(options.seats.length);controllers=Array.from({length:4},(_,i)=>options.seats[i]?.kind??'human');dominationWin=options.dominationWin;roundLimit=options.roundLimit;names=options.names??'seed';
   root.id='geographic-game';root.className='geographic-game-root';root.dataset['seats']=seats;current=app;app.mount(root);
   // A loaded match replaces the card that held the file input: focus returns to the menu icon (#195).
@@ -160,14 +162,6 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
   cancel();dispose();root.id='geographic-setup';root.className='reference-setup geographic-setup';
   const status=h('p',{role:'status',class:'match-error'},'Preparing game…');setupStatus=status;
   root.replaceChildren(h('div',{class:'card setup-card instant-start'},status));
-  if(!fresh&&slot){
-   const text=local.get(slot.game);
-   if(text){
-    try{const loaded=deserializeVersionedMatch(text);if(!loaded.state.result){resuming=readMeta(slot)??{id:newGameId(),paused:false};await onLoad(loaded.options,loaded.state,loaded);if(current)return;}}
-    catch{/* A record this build cannot replay starts a new game. */}
-    resuming=null;local.set(slot.game,null);
-   }
-  }
   const own=epoch,nextSettings=readNextGameSettings();
   for(let attempt=0;attempt<5&&!closed&&epoch===own;attempt++){
    let options=nextGameOptions(!fresh&&attempt===0&&/^\d+$/.test(params.get('seed')??'')?Number(params.get('seed'))>>>0:randomSeed(),nextSettings);
@@ -183,6 +177,41 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    return;
   }
   if(!closed&&epoch===own)status.textContent='Could not prepare a game. Reload the page to try again.';
+ };
+ const downloadRecovery=()=>{
+  if(!slot)return;const raw=local.get(slot.game);if(raw===null)return;
+  const blob=new Blob([JSON.stringify({format:'malpaco-recovery',version:1,game:raw,meta:local.get(slot.meta)},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='malpaco-saved-data.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),0);
+ };
+ const decodeSaved=(raw:string)=>{const loaded=deserializeVersionedMatch(raw);if(loaded.state.cards&&loaded.options.seats.filter(s=>s.kind==='human').length>1)throw Error('Private handover is not available.');return loaded;};
+ const loadSaved=async(loaded:LoadedVersionedMatch,paused=false)=>{
+  const meta=slot?readMeta(slot):null;resuming=meta??{id:newGameId(),paused:false};if(paused)resuming={...resuming,paused:true};
+  await onLoad(loaded.options,loaded.state,loaded);return current;
+ };
+ const showEntry=(fresh=false,message='')=>{
+  cancel();dispose();resuming=null;delete document.body.dataset['ready'];root.id='geographic-setup';root.className='reference-setup geographic-setup game-entry';
+  const saved=slot?local.get(slot.game):null;
+  const resume=async()=>{
+   const raw=slot?local.get(slot.game):null;if(raw===null){showEntry(true);return;}
+   const display=launcher;display?.busy(true);
+   try{const loaded=decodeSaved(raw);await loadSaved(loaded);}
+   catch{resuming=null;if(!launcher)showEntry(false,'This saved game cannot be opened by this version.');else launcher.error('This saved game cannot be opened by this version.');}
+  };
+  const start=async()=>{
+   const display=launcher;display?.busy(true);const previousSlot=slot,raw=previousSlot?local.get(previousSlot.game):null,metaRaw=previousSlot?local.get(previousSlot.meta):null;
+   if(raw!==null&&previousSlot){
+    let loaded:LoadedVersionedMatch;
+    try{loaded=decodeSaved(raw);}catch{
+     try{localStorage.setItem(previousSlot.game+'-recovery:'+newGameId(),JSON.stringify({format:'malpaco-recovery',version:1,game:raw,meta:metaRaw}));}
+     catch{display?.error('The saved data could not be preserved. Download it before replacing this game, or free storage and try again.');return;}
+     approvedStart=false;resuming=null;await instantStart(fresh);return;
+    }
+    approvedStart=true;
+    try{const app=await loadSaved(loaded,true);if(!app){approvedStart=false;showEntry(false,'The saved game could not be opened.');return;}
+     app.requestNewGame(()=>{approvedStart=false;local.set(previousSlot.game,raw);local.set(previousSlot.meta,metaRaw);void loadSaved(loaded).catch(()=>showEntry(false,'The saved game could not be opened.'));});
+    }catch{approvedStart=false;showEntry(false,'The saved game could not be opened.');}
+   }else{approvedStart=false;resuming=null;await instantStart(fresh);}
+  };
+  launcher=new GameLauncher(!fresh&&saved!==null,{start,resume,recovery:downloadRecovery});root.replaceChildren(launcher.el);if(message)launcher.error(message);
  };
  const setup=()=>{
   cancel();dispose();root.id='geographic-setup';root.className='reference-setup geographic-setup';
@@ -220,6 +249,6 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
   };
   setupFiles=new ReferenceMatchFiles(onLoad,undefined,undefined,REFERENCE_MATCH_IDENTITY,true,cancel,true);form.append(setupFiles.el);root.replaceChildren(form);
  };
- if(instant)void instantStart();else setup();
+ if(instant)showEntry();else setup();
  return ()=>{if(closed)return;closed=true;cancel();dispose();service?.dispose();service=null;};
 }

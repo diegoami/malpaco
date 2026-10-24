@@ -1,3 +1,4 @@
+import {visitGame,reloadGame,startFromResult} from './shell';
 // T100: the scoreboard, kept in this browser. Each player game counts once when it ends: a win,
 // an elimination (Lost at once, even if you then watch) or New game's give-up; `?setup` never counts.
 import {expect,test} from '@playwright/test';
@@ -63,25 +64,25 @@ const rowOf=(n:number,result:GameOutcome)=>({id:`old-${n}`,date:`2026-09-${Strin
 test.beforeEach(({},info)=>{test.skip(info.project.name!=='1280x800','one size: the flow, not the layout');});
 
 test('a give-up adds exactly one Gave up row and the totals change by one; a reload adds no other',async({page})=>{
- const seen=errors(page);await page.goto('/');await map(page);const seed=await seedShown(page);
+ const seen=errors(page);await visitGame(page,'/');await map(page);const seed=await seedShown(page);
  expect(await board(page)).toEqual({totals:['0','0','0','0','–'],rows:[]});
  const result=await giveUp(page);
  await expect(result.locator('#give-up-totals')).toHaveText('Won 0 · Lost 0 · Gave up 1');
  // A reload on the result card: the game was recorded, never again.
- await page.reload();await map(page);
+ await reloadGame(page);await map(page);
  const after=await board(page);expect(after.totals).toEqual(['1','0','0','1','0%']);
  expect(after.rows).toHaveLength(1);expect(after.rows[0]!.slice(1)).toEqual(['Gave up','1',expect.stringMatching(/^\d+$/),String(seed)]);
- await page.reload();await map(page);expect((await board(page)).rows).toHaveLength(1);
+ await reloadGame(page);await map(page);expect((await board(page)).rows).toHaveLength(1);
  expect(seen).toEqual([]);
 });
 
 test('a win adds exactly one Won row, shown with the totals line',async({page})=>{
  test.setTimeout(90_000);const seen=errors(page);expect(WIN.end.winner).toBe('seat1');expect(WIN.end.history.at(-1)).toEqual({kind:'endTurn'});
- await keepOnce(page,{[ROOT]:WIN.text});await page.goto('/');await map(page);expect(await seedShown(page)).toBe(5);
+ await keepOnce(page,{[ROOT]:WIN.text});await visitGame(page,'/');await map(page);expect(await seedShown(page)).toBe(5);
  await winningEndTurn(page);
  await expect(page.locator('#victory-totals')).toHaveText('Won 1 · Lost 0 · Gave up 0');
  expect(await read(page,ROOT)).toBeNull();
- await page.reload();await map(page);
+ await reloadGame(page);await map(page);
  const after=await board(page);expect(after.totals).toEqual(['1','1','0','0','100%']);
  expect(after.rows.map(r=>r.slice(1))).toEqual([['Won',String(WIN.end.turnNumber),String(yours(WIN.end)),'5']]);
  expect(seen).toEqual([]);
@@ -89,23 +90,23 @@ test('a win adds exactly one Won row, shown with the totals line',async({page})=
 
 test('an elimination adds exactly one Lost row at once, and watching the computers adds no other',async({page})=>{
  test.setTimeout(120_000);const seen=errors(page);expect(LOSS.end.phase).toBe('human-loss');expect(activePlayer(LOSS.last)!.kind).toBe('computer');
- await keepOnce(page,{[ROOT]:LOSS.text,'malpaco:preferences':JSON.stringify({speed:'fast'})});await page.goto('/');await map(page);
+ await keepOnce(page,{[ROOT]:LOSS.text,'malpaco:preferences':JSON.stringify({speed:'fast'})});await visitGame(page,'/');await map(page);
  await expect(page.getByRole('heading',{name:'You were eliminated',exact:true})).toBeVisible({timeout:30_000});
  await expect(page.locator('#victory-totals')).toHaveText('Won 0 · Lost 1 · Gave up 0');
  expect((await board(page)).rows.map(r=>r.slice(1))).toEqual([['Lost',String(LOSS.end.turnNumber),'0','2']]);
  await page.getByRole('button',{name:'Watch computers',exact:true}).click();
  // The watched game plays on, and is kept again; neither its play nor a reload records it twice.
  await expect.poll(()=>read(page,ROOT),{timeout:30_000}).not.toBeNull();
- await page.reload();await map(page);
+ await reloadGame(page);await map(page);
  expect((await board(page)).totals).toEqual(['1','0','1','0','0%']);
  expect(seen).toEqual([]);
 });
 
 test('a 21st game drops the oldest row, and the scoreboard card shows the games newest first',async({page})=>{
  let kept=emptyScoreboard();for(let n=1;n<=20;n++)kept=recordGame(kept,rowOf(n,n%3?'lost':'won'));
- await keepOnce(page,{[SCORES]:JSON.stringify(kept)});await page.goto('/');await map(page);const seed=await seedShown(page);
+ await keepOnce(page,{[SCORES]:JSON.stringify(kept)});await visitGame(page,'/');await map(page);const seed=await seedShown(page);
  const before=await board(page);expect(before.rows).toHaveLength(20);expect(before.rows.at(-1)![4]).toBe('501');expect(before.totals).toEqual(['20','6','14','0','30%']);
- await (await giveUp(page)).locator('#give-up-new-game').click();await map(page);
+ await giveUp(page);await startFromResult(page);await map(page);
  const after=await board(page);expect(after.rows).toHaveLength(20);
  expect(after.rows[0]!.slice(1,2).concat(after.rows[0]![4]!)).toEqual(['Gave up',String(seed)]);
  expect(after.rows.at(-1)![4]).toBe('502');expect(after.totals).toEqual(['21','6','14','1','29%']);
@@ -114,7 +115,7 @@ test('a 21st game drops the oldest row, and the scoreboard card shows the games 
 
 test('Reset asks first; clearing empties the totals and the list',async({page})=>{
  let kept=emptyScoreboard();for(let n=1;n<=3;n++)kept=recordGame(kept,rowOf(n,n===2?'won':'gave-up'));
- await keepOnce(page,{[SCORES]:JSON.stringify(kept)});await page.goto('/');await map(page);
+ await keepOnce(page,{[SCORES]:JSON.stringify(kept)});await visitGame(page,'/');await map(page);
  const dialog=await openScoreboard(page);await expect(dialog.locator('#scoreboard-games tbody tr')).toHaveCount(3);
  await dialog.getByRole('button',{name:'Reset',exact:true}).click();
  await expect(dialog.getByText('Clear the scoreboard?',{exact:true})).toBeVisible();
@@ -125,11 +126,11 @@ test('Reset asks first; clearing empties the totals and the list',async({page})=
  await expect(dialog.locator('#scoreboard-games')).toHaveCount(0);await expect(dialog.locator('#scoreboard-empty')).toBeVisible();
  await expect(dialog.locator('#scoreboard-totals dd')).toHaveText(['0','0','0','0','–']);
  expect(await read(page,SCORES)).toBeNull();
- await closeScoreboard(page);await page.reload();await map(page);expect(await board(page)).toEqual({totals:['0','0','0','0','–'],rows:[]});
+ await closeScoreboard(page);await reloadGame(page);await map(page);expect(await board(page)).toEqual({totals:['0','0','0','0','–'],rows:[]});
 });
 
 test('a corrupt scoreboard starts empty without a page error, and the next game is its first row',async({page})=>{
- const seen=errors(page);await keepOnce(page,{[SCORES]:'{"version":1,"totals":'});await page.goto('/');await map(page);
+ const seen=errors(page);await keepOnce(page,{[SCORES]:'{"version":1,"totals":'});await visitGame(page,'/');await map(page);
  expect(await board(page)).toEqual({totals:['0','0','0','0','–'],rows:[]});
  await expect((await giveUp(page)).locator('#give-up-totals')).toHaveText('Won 0 · Lost 0 · Gave up 1');
  expect(JSON.parse((await read(page,SCORES))!).totals).toEqual({won:0,lost:0,gaveUp:1});
@@ -137,7 +138,7 @@ test('a corrupt scoreboard starts empty without a page error, and the next game 
 });
 
 test('a ?setup game never adds a row: its win shows no totals and keeps no scoreboard',async({page})=>{
- test.setTimeout(90_000);await page.goto('/?setup');
+ test.setTimeout(90_000);await visitGame(page,'/?setup');
  const old=await page.getByLabel('Load game',{exact:true}).elementHandle();
  await page.getByLabel('Load game',{exact:true}).setInputFiles({name:'near-win.json',mimeType:'application/json',buffer:Buffer.from(WIN.text)});
  await expect.poll(()=>old!.evaluate(el=>el.isConnected)).toBe(false);await map(page);
@@ -149,14 +150,14 @@ test('a ?setup game never adds a row: its win shows no totals and keeps no score
 test('the result card shows the totals line at phone size',async({page})=>{
  test.setTimeout(90_000);await page.setViewportSize({width:390,height:844});
  let kept=emptyScoreboard();for(let n=1;n<=5;n++)kept=recordGame(kept,rowOf(n,n%2?'lost':'gave-up'));
- await keepOnce(page,{[ROOT]:WIN.text,[SCORES]:JSON.stringify(kept)});await page.goto('/');await map(page);
+ await keepOnce(page,{[ROOT]:WIN.text,[SCORES]:JSON.stringify(kept)});await visitGame(page,'/');await map(page);
  await winningEndTurn(page);
  await expect(page.locator('#victory-totals')).toHaveText('Won 1 · Lost 3 · Gave up 2');await shots('result-totals',page);
  const box=(await page.locator('#victory-totals').boundingBox())!;expect(box.x+box.width).toBeLessThanOrEqual(390);
 });
 
 test('the give-up dialog is padded like the result card in both stages, with its totals line beside the standings (play-test finding)',async({page})=>{
- await page.setViewportSize({width:390,height:844});await page.goto('/');await map(page);
+ await page.setViewportSize({width:390,height:844});await visitGame(page,'/');await map(page);
  const dialog=page.locator('#give-up-dialog');
  /** Every part sits at least 12 px inside the dialog's edges; buttons are 44 px tall. */
  const inset=async()=>{

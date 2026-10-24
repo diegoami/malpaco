@@ -1,4 +1,5 @@
-// T96: the root page starts a game at once (one human against three computers, a random seed),
+import {visitGame,reloadGame,startFromResult} from './shell';
+// T116 supersedes T96: explicit Start/Resume enters the game (one human, three computers),
 // keeps it in localStorage after every action, resumes it on a refresh, and gives it up on New game.
 import {expect,test} from '@playwright/test';
 import type {Browser,Page} from '@playwright/test';
@@ -14,12 +15,12 @@ const KEY='malpaco:current-game';
 const record=(p:Page)=>p.evaluate(key=>localStorage.getItem(key),KEY);
 const seedShown=async(p:Page)=>Number((await p.locator('.game-identity').textContent())!.match(/Seed (\d+)/)![1]);
 const errors=(p:Page)=>{const seen:string[]=[];p.on('pageerror',e=>seen.push(String(e)));return seen;};
-async function opened(p:Page,path='/'){await p.goto(path);await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);}
+async function opened(p:Page,path='/'){await visitGame(p,path);await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);}
 /** A fresh browser profile: nothing kept, so the root page starts a new game. */
 async function freshSeed(browser:Browser){const context=await browser.newContext();const p=await context.newPage();await opened(p);const seed=await seedShown(p);await context.close();return seed;}
 test.beforeEach(({},info)=>{test.skip(info.project.name!=='1280x800','one size: the flow, not the layout');});
 
-test('the root page is a game at once: 46 countries, one human and three Normal computers, no setup and no files',async({page})=>{
+test('Start opens 46 countries, one human and three Normal computers, with no file controls',async({page})=>{
  const seen=errors(page);await opened(page);
  await expect(page.locator('#geographic-setup, .setup-card form, #geographic-seed')).toHaveCount(0);
  const kept=deserializeVersionedMatch((await record(page))!);
@@ -68,7 +69,7 @@ test('a refresh resumes the identical match: the same record, history, RNG and b
  await expect.poll(async()=>deserializeVersionedMatch((await record(page))!).state.armies[own]).toBe(before.armies[own]!+1);
  const text=(await record(page))!,state=deserializeVersionedMatch(text).state;
  expect(state.history.length).toBeGreaterThan(before.history.length);
- await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await reloadGame(page);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
  expect(await seedShown(page)).toBe(deserializeVersionedMatch(text).options.seed);
  const after=deserializeVersionedMatch((await record(page))!).state;
  expect({history:after.history,rng:after.rng,armies:after.armies,ownerOf:after.ownerOf,phase:after.phase,pool:after.reinforcementPool})
@@ -89,23 +90,28 @@ test('New game asks first, shows the given-up result, then starts a different se
  await expect(result.locator('#give-up-standings tbody tr')).toHaveCount(4);
  expect(await record(page)).toBeNull();
  await page.keyboard.press('Escape');await expect(result).toBeVisible();
- await page.locator('#give-up-new-game').click();
+ await startFromResult(page);
  await expect.poll(()=>seedShown(page).catch(()=>first)).not.toBe(first);
  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
  expect(deserializeVersionedMatch((await record(page))!).options.seed).toBe(await seedShown(page));
 });
 
-test('a corrupt record starts a fresh game without an error',async({page})=>{
- const seen=errors(page);await opened(page);
+test('unreadable records wait for a deliberate replacement and retain a recovery copy',async({page})=>{
+ const seen=errors(page);
  for(const text of ['{not json','{"format":"malpaco-match","version":2,"actions":"nope"}']){
+  if(!page.url().startsWith('http'))await page.goto('/');
   await page.evaluate(([key,value])=>localStorage.setItem(key!,value!),[KEY,text]);
-  await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await page.reload();await expect(page.locator('#resume-game')).toBeVisible();
+  expect(await record(page)).toBe(text);await expect(page.locator('[data-country]')).toHaveCount(0);
+  await page.locator('#configure-new-game').click();await page.locator('#start-game').click();
+  await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   const kept=await record(page);expect(kept).not.toBe(text);expect(()=>deserializeVersionedMatch(kept!)).not.toThrow();
+  expect(await page.evaluate(([key,raw])=>Object.keys(localStorage).some(k=>k.startsWith(key+'-recovery:')&&JSON.parse(localStorage.getItem(k)!).game===raw),[KEY,text])).toBe(true);
  }
  expect(seen).toEqual([]);
 });
 
 test('?view=reference-game still opens Nine Isles',async({page})=>{
- await page.goto('/?view=reference-game');await expect(page.locator('#reference-setup')).toBeVisible();
+ await visitGame(page,'/?view=reference-game');await expect(page.locator('#reference-setup')).toBeVisible();
  await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#reference-map')).toBeVisible();
 });

@@ -1,3 +1,4 @@
+import {visitGame} from './shell';
 // T103 (owner, 2026-10-22): the action sits on the country you select. Fight when it can attack:
 // press it, tap an enemy, and one round is fought; press it again for another round; select
 // another country and the icon moves there. Move when it cannot attack: press it, tap where to,
@@ -34,7 +35,7 @@ const mine=(s:GameState)=>s.map.provinces.map(p=>p.id).filter(id=>s.ownerOf[id]=
 async function opened(p:Page,text:string,size:{width:number;height:number}){
  await p.setViewportSize(size);
  await p.addInitScript(([k,v])=>{if(!sessionStorage.getItem('t103'))sessionStorage.setItem('t103','1'),localStorage.setItem(k!,v!);},[ROOT,text]);
- await p.goto('/');await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);
+ await visitGame(p,'/');await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);
 }
 /** The nearest distance between two boxes (0 when they touch or overlap). */
 const gap=(a:{x:number;y:number;width:number;height:number},b:{x:number;y:number;width:number;height:number})=>Math.hypot(Math.max(b.x-(a.x+a.width),a.x-(b.x+b.width),0),Math.max(b.y-(a.y+a.height),a.y-(b.y+b.height),0));

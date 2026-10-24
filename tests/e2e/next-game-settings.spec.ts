@@ -1,3 +1,4 @@
+import {visitGame,reloadGame,startFromResult} from './shell';
 import {expect,test} from '@playwright/test';
 import {defaultOptions} from '../../src/core/options';
 import {createGeographicGame} from '../../src/core/geographic-game';
@@ -15,7 +16,7 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
  const options={...defaultOptions(),seed:7},old=createGeographicGame(options,raidCardsRules(options),{},2);if(!old.ok)throw Error(old.errors.join());
  const text=serializeVersionedMatch(options,[],GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY);
  await page.addInitScript(([k,t])=>{if(sessionStorage.getItem('settings-once'))return;sessionStorage.setItem('settings-once','1');localStorage.setItem(k!,t!);localStorage.setItem(k+'-meta',JSON.stringify({id:'settings-old-game',paused:true}));},[KEY,text]);
- await page.goto('/');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+ await visitGame(page,'/');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  const before=(await read(page,KEY))!;await openSurface(page,'menu');
 
@@ -27,7 +28,7 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
  await opponents.selectOption('1');expect(await read(page,KEY)).toBe(before);
  await page.keyboard.press('Escape');await expect(dialog).toBeHidden();
  await expect(page.locator('#open-game-menu')).toBeFocused();
- await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+ await reloadGame(page);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  expect(await read(page,KEY)).toBe(before);await openSurface(page,'menu');
  await expect(opponents).toHaveValue('1');
  await page.screenshot({path:`artifacts/T107-browser/settings-${width}.png`,animations:'disabled'});
@@ -39,21 +40,21 @@ for(const width of [390,1280])test(`${width}: Settings changes only the next gam
    const pause=page.locator('#game-pause-button');if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
    await openSurface(page,'menu');await opponents.selectOption(String(count));await dialog.getByRole('button',{name:'Return to map',exact:true}).click();
   }
-  await openSurface(page,'menu');await page.locator('#new-game-button').click();await page.locator('#give-up-confirm').click();await page.locator('#give-up-new-game').click();
+  await openSurface(page,'menu');await page.locator('#new-game-button').click();await page.locator('#give-up-confirm').click();await startFromResult(page);
   await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   await expect.poll(async()=>deserializeVersionedMatch((await read(page,KEY))!).options.seats.length).toBe(count+1);
   const loaded=deserializeVersionedMatch((await read(page,KEY))!);
   expect(loaded.options.seats.map(s=>s.kind)).toEqual(['human',...Array(count).fill('computer')]);
   expect(loaded.options.computerStrengths).toEqual(Array(count).fill('Normal'));
   const pause=page.locator('#game-pause-button');if(await pause.getAttribute('aria-label')==='Pause game')await pause.click();
-  const kept=(await read(page,KEY))!;await page.reload();await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+  const kept=(await read(page,KEY))!;await reloadGame(page);await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
   expect(await read(page,KEY)).toBe(kept);expect(deserializeVersionedMatch(kept).options.seats.length).toBe(count+1);
  }
  expect(JSON.parse((await read(page,PREF))!).computerOpponents).toBe(3);expect(errors).toEqual([]);
 });
 
 test('a failed settings write reports the error, restores the saved choice and leaves the current game intact',async({page})=>{
- await page.goto('/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
+ await visitGame(page,'/?seed=7');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46,{timeout:60000});
  await page.locator('#game-pause-button').click();
  const key='malpaco:seed-game:7',before=(await read(page,key))!;
  await page.evaluate(pref=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===pref)throw new DOMException('Full','QuotaExceededError');return original.call(this,k,v);};},PREF);

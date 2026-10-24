@@ -23,16 +23,16 @@ loopback interface and serves the included files.
 New games grow their own geography: 7–10 irregular islands sharing 46 territories, different for every seed. Saved games keep the generator they were made with.
 The seed fixes the geography, deal and dice sequence.
 
-Opening the page starts a game at once: you against three Normal computers on a random seed, with
+Opening a fresh page shows Settings. Press **Start game** when ready: by default you play against three Normal computers on a random seed, with
 Domination on and no round limit. Islands and territories take real island and town names from one
 region (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific), chosen by
 the seed; names never change the map or play. The game is kept in this browser after each of your
 actions and each computer's turn (a refresh in the middle of a computer's turn replays that turn,
-the same moves), so a refresh or a later visit continues it, with any open choice (a capture, a card choice or a Raid)
+the same moves), so a refresh or later visit offers **Resume saved game**, with any open choice (a capture, a card choice or a Raid)
 still open, at the game speed you chose, and paused if you left it paused. Nothing leaves this
 browser: there is no account, server or sync between devices. **Settings** at top left
 chooses 1, 2 or 3 computer opponents for your next game (3 by default). Changing
-this setting keeps your current game exactly as it is; a refresh still resumes it.
+this setting keeps your current game exactly as it is; a refresh offers Resume for it.
 These settings take effect only when you choose **New game**. **Starting armies**
 chooses **1–2, 1–3 or 1–4** per country (default 1–3), with equal aggregate seat budgets
 and only unavoidable integer differences. New games use fixed territory income:
@@ -40,7 +40,7 @@ owned countries divided by 3, rounded down with minimum 2, plus island bonuses.
 **Disasters and production** offers Off/Rare/Normal/Often (default Normal).
 Existing games retain their original rules, including older configured income rates.
 **New game** asks "Give up this game?", shows
-where the seats stood, then starts a new random game; after a result it starts at once.
+where the seats stood, then opens Settings with **Start game**.
 Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
 same address (it never replaces the kept game),
 `?setup` opens the older setup screen with its seats, options and Save and Load files,

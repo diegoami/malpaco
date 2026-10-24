@@ -122,7 +122,7 @@ export class ReferenceBattleGame {
     if (presentation?.player) {
       this.giveUp = new GiveUpDialog({
         open: () => {this.chrome?.close(false); this.giveUpPaused = !this.controller.playbackPaused; if (this.giveUpPaused) this.controller.setPlaybackPaused(true);},
-        keep: () => {if (this.giveUpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.giveUpPaused = false;},
+        keep: () => {if (this.giveUpPaused && !this.disposed) this.controller.setPlaybackPaused(false); this.giveUpPaused = false;const cancelled=this.newGameCancelled;this.newGameCancelled=null;cancelled?.();},
         giveUp: () => {this.givenUp = true; this.record(this.controller.state, "gave-up"); presentation.player!.persist(null); this.giveUp!.showResult(this.controller.state, presentation.player!.totals?.());},
         newGame: () => { if (!this.disposed) this.freshGame(); },
       });
@@ -214,6 +214,8 @@ export class ReferenceBattleGame {
   }
 
   /** New game: in the player's game, an unfinished game is given up first (T96). */
+  private newGameCancelled:(()=>void)|null=null;
+  requestNewGame(cancelled?:()=>void):void {this.newGameCancelled=cancelled??null;this.newGame();}
   private newGame(): void {
     if (this.disposed) return;
     if (this.giveUp && !this.controller.state.result) this.giveUp.ask();
@@ -221,7 +223,7 @@ export class ReferenceBattleGame {
   }
 
   /** A new game puts the cards back in their corners (T101). */
-  private freshGame(): void {forgetCardPosition(); this.onNewGame();}
+  private freshGame(): void {this.newGameCancelled=null;forgetCardPosition(); this.onNewGame();}
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");

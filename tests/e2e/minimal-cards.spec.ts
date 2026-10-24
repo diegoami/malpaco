@@ -1,3 +1,4 @@
+import {visitGame} from './shell';
 // T97 (owner, #240 and #244): bare-minimum cards that float over the full-size map. Each card holds
 // only its controls, opening one never reframes the map, a card moves aside from the countries in
 // play, the history card closes by ×, Escape or a swipe, computer turns show no controls, and the
@@ -49,12 +50,12 @@ async function paint(p:Page,s:GameState){for(const c of map.provinces)await expe
 async function history(p:Page,count:number){await expect(p.getByRole('region',{name:'Battle controls',exact:true})).toHaveAttribute('data-history-count',String(count));}
 /** Nine Isles, two human seats, manual: every action is a click the engine oracle replays. */
 async function nineIsles(p:Page,seed:number,placements:number,from:string){
- await p.clock.install();await p.clock.pauseAt(new Date());await p.goto('/?view=reference-game&control=manual');
+ await p.clock.install();await p.clock.pauseAt(new Date());await visitGame(p,'/?view=reference-game&control=manual');
  await p.getByLabel('Seed',{exact:true}).fill(String(seed));await p.getByLabel('Seats',{exact:true}).selectOption('2');await p.getByRole('button',{name:'Start game',exact:true}).click();
  for(let n=0;n<placements;n++)await country(p,from).click();await p.locator('#start-combat-button').click();
 }
 async function cardsGame(p:Page,file:string){
- await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await p.goto('/?setup');
+ await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await visitGame(p,'/?setup');
  const previous=await p.getByLabel('Load game',{exact:true}).elementHandle();
  await p.getByLabel('Load game',{exact:true}).setInputFiles({name:'cards.json',mimeType:'application/json',buffer:Buffer.from(input(file))});
  await expect.poll(()=>previous!.evaluate(n=>n.isConnected)).toBe(false);await expect(p.locator('[data-country]')).toHaveCount(46);
@@ -130,7 +131,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   await page.clock.install();await page.clock.pauseAt(new Date());
   // T101: the history is reached through the hidden `?log` link; seed 7 opens on a computer's turn,
   // where the menu waits until a pause.
-  await page.goto('/?seed=7&log');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await visitGame(page,'/?seed=7&log');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   await expect(page.locator('#game-info-button')).toHaveCount(0);
   await page.locator('#game-pause-button').click();
   const before=await settled(page);
@@ -162,7 +163,7 @@ test.describe('computer turns',()=>{
  for(const size of SIZES)test(`${size.width}×${size.height}: no controls while a computer plays, and the seats read You, Orange, Green and Purple`,async({page})=>{
   test.setTimeout(150_000);await page.setViewportSize(size);
   await page.clock.install({time:new Date('2026-10-22T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-22T12:00:00Z'));
-  await page.goto('/?seed=7&files&log');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
+  await visitGame(page,'/?seed=7&files&log');await expect(page.locator('#geographic-map [data-country]')).toHaveCount(46);
   const mover=page.locator('#turn-tracker .turn-row[data-current="true"] .turn-colour'),seen=new Set<string>();
   /** While a computer seat plays, only the speed controls in the top corner are on screen (T101: the notice has no buttons). */
   const quiet=async()=>{

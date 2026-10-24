@@ -1891,3 +1891,14 @@ dialog h2 {
 @media (prefers-reduced-motion:reduce) { .computer-attacker .cell,.computer-defender .cell { animation:none; } }
 
 .game-overlay:has(#turn-tracker) .game-pool-slot { position:absolute; top:calc(var(--edge) + var(--target) + var(--gap)); right:var(--edge); left:auto; padding-top:0; }
+/* T116: no match/AI exists behind the fresh-game Settings card until Start. */
+#geographic-setup.game-entry { position:fixed; inset:0; overflow:auto; display:flex; justify-content:flex-start; align-items:flex-start; padding:calc(20px + var(--safe-top)) calc(20px + var(--safe-right)) calc(20px + var(--safe-bottom)) calc(20px + var(--safe-left)); background:#102a36; }
+#game-launcher { width:min(420px,100%); margin:0; padding:18px; }
+.game-launcher-head { display:flex; justify-content:space-between; align-items:center; gap:16px; }
+.game-launcher-head h1 { margin:0; }
+#game-launcher h2 { margin:16px 0 8px; font-size:20px; }
+.game-launcher-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+.game-launcher-actions button { min-height:48px; font-size:18px; padding:10px 16px; }
+#start-game { width:100%; }
+#game-launcher [hidden] { display:none !important; }
+#game-launcher .match-error:empty { display:none; }
