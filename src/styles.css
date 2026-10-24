@@ -1968,3 +1968,17 @@ dialog h2 {
 }
 
 #province-action-button { width:120px; min-width:120px; }
+
+/* An absolute pool uses the overlay's safe viewport rather than its former grid cell. */
+.game-overlay:has(#turn-tracker) .game-pool-slot { grid-area:auto; }
+
+/* Text commands need their measured space beside a floating choice card. */
+@media (orientation:landscape) and (min-height:240px) {
+ .battle-reference #game-focus-drawer { right:calc(var(--edge) + max(var(--target), var(--command-width, 0px)) + var(--gap)); }
+ .battle-reference #game-focus-drawer:is([data-corner="start"], [data-corner="top-start"]) { right:auto; }
+ .battle-reference #game-focus-drawer[data-placement="center"] { right:auto; }
+}
+@media (orientation:portrait) {
+ .battle-reference #game-focus-drawer { bottom:calc(var(--edge) + max(var(--target), var(--command-height, 0px)) + var(--gap)); }
+ .battle-reference #game-focus-drawer:is([data-corner="top-end"], [data-corner="top-start"], [data-placement="center"]) { bottom:auto; }
+}
