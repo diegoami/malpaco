@@ -38,7 +38,7 @@ import {connectNativeGame} from "./nativeGameHost";
 import type {NativeGameBinding} from "./nativeGameHost";
 import {NextGameSettingsDialog} from "./nextGameSettings";
 
-/** Presentation preferences; the player's game keeps its speed and Pause in this browser (T100). */
+/** Presentation preferences: fixed readable player pace; Pause is kept per game. */
 export type PanelDetail = "compact" | "detailed";
 export interface BattlePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
 

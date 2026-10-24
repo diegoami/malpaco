@@ -61,8 +61,6 @@ const local={
  set:(key:string,text:string|null)=>{try{if(text===null)localStorage.removeItem(key);else localStorage.setItem(key,text);}catch{/* not kept */}},
 };
 const readMeta=(slot:Slot):GameMeta|null=>{try{const v=JSON.parse(local.get(slot.meta)??'null');return v&&typeof v.id==='string'&&v.id?{id:v.id,paused:v.paused===true,...(Number.isSafeInteger(v.eventAck)&&v.eventAck>=0?{eventAck:v.eventAck}:{}),...(Number.isSafeInteger(v.eventMarksCleared)&&v.eventMarksCleared>=0?{eventMarksCleared:v.eventMarksCleared}:{})}:null;}catch{return null;}};
-/** T100: game speed, for every player game in this browser. */
-const PREFERENCES='malpaco:preferences';
 const randomSeed=()=>crypto.getRandomValues(new Uint32Array(1))[0]!;
 const newGameId=()=>`${Date.now().toString(36)}-${randomSeed().toString(36)}`;
 
@@ -121,7 +119,6 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    const counted=given.identity.boardGenerator.id==='geographic'&&options.seats.filter(s=>s.kind==='human').length===1;
    presentation={...given,player:{freshStart:!loadedMatch,persist:keep?text=>local.set(keep.game,text):()=>{},paused:meta.paused,eventAck:meta.eventAck??0,eventMarksCleared:meta.eventMarksCleared??0,
     remember:change=>{
-     if(change.speed)local.set(PREFERENCES,JSON.stringify({speed:change.speed}));
      if(keep&&(change.eventAck!==undefined||change.eventMarksCleared!==undefined)){if(change.eventAck!==undefined)meta.eventAck=change.eventAck;if(change.eventMarksCleared!==undefined)meta.eventMarksCleared=change.eventMarksCleared;local.set(keep.meta,JSON.stringify(meta));}
      if(change.paused!==undefined&&keep){meta.paused=change.paused;local.set(keep.meta,JSON.stringify(meta));}
     },
