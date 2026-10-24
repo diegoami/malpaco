@@ -38,13 +38,16 @@ try{
  const build=run('build-debug',process.execPath,[join(root,'tools/android/build-debug.mjs'),'--target','x86_64']);
  const buildPath=build.output.match(/Android debug artifacts:\s*(.+)/)?.[1]?.trim();if(!buildPath)throw Error('The native build did not report its artifact directory.');
  const manifest=JSON.parse(readFileSync(join(buildPath,'BUILD.json'),'utf8'));if(manifest.sourceCommit!==sourceCommit||manifest.assetsBuild.sourceCommit!==sourceCommit)throw Error('Native source and packaged source disagree.');
- const appEntry=manifest.outputs.find(x=>x.file.startsWith('x86_64-')&&x.file.endsWith('.apk'));if(!appEntry)throw Error('The x86-64 debug APK is missing.');
- const app=join(buildPath,appEntry.file);report.app={path:relative(root,app),sha256:hash(app),assetsBuild:manifest.assetsBuild};
+ const appEntry=manifest.outputs.find(x=>x.file.startsWith('universal-debug-')&&x.file.endsWith('.apk'));if(!appEntry)throw Error('The requested debug APK is missing.');
+ const app=join(buildPath,appEntry.file);
+ const abis=run('app-abis','python3',['-c',"import sys,zipfile; z=zipfile.ZipFile(sys.argv[1]); print(','.join(sorted({p.split('/')[1] for p in z.namelist() if p.startswith('lib/') and p.endswith('.so')})))",app]).result.stdout.trim().split(',');
+ if(abis.length!==1||abis[0]!=='x86_64')throw Error('The selected debug APK does not contain exactly the requested x86-64 ABI.');
+ report.app={path:relative(root,app),sha256:hash(app),abis,assetsBuild:manifest.assetsBuild};
  const project=join(root,'src-tauri/gen/android');
  // The CLI above built the exact source's JNI payload. Avoid calling its ephemeral
  // Rust build server from this separate instrumentation-APK assembly.
- run('build-instrumentation',join(project,'gradlew'),['-p',project,'--no-daemon','--max-workers=2',':app:assembleX86_64DebugAndroidTest','-PabiList=x86_64','-ParchList=x86_64','-PtargetList=x86_64','-x',':app:rustBuildX86_64Debug']);
- const test=apks(join(project,'app/build/outputs/apk/androidTest')).find(p=>p.includes('/x86_64/debug/'));if(!test)throw Error('The x86-64 instrumentation APK is missing.');
+ run('build-instrumentation',join(project,'gradlew'),['-p',project,'--no-daemon','--max-workers=2',':app:assembleUniversalDebugAndroidTest','-PabiList=x86_64','-ParchList=x86_64','-PtargetList=x86_64','-x',':app:rustBuildUniversalDebug','-x',':app:rustBuildX86_64Debug']);
+ const test=apks(join(project,'app/build/outputs/apk/androidTest')).find(p=>p.includes('/universal/debug/'));if(!test)throw Error('The instrumentation APK for the requested flavor is missing.');
  report.instrumentation={path:relative(root,test),sha256:hash(test)};
  // Never let Gradle connected-test cleanup uninstall the target application.
  // Explicit updates preserve existing debug-app data; test contexts use cache only.
