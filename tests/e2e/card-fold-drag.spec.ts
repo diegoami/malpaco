@@ -1,3 +1,4 @@
+import {cardLabel} from '../../src/ui/cardLabels';
 // T101 (owner, 2026-10-22): every floating card folds to a chip and drags (pointer and touch), its
 // place kept for later cards and after a reload; a tap on its buttons never drags, and a map tap
 // outside a folded or dragged card reaches the map. The game history is off the player's screen
@@ -87,14 +88,14 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   await foldCycle(page,page.getByRole('button',{name:'Skip cards',exact:true}),/^Choose or skip cards$/);
   const full=cardFixture('T37-reshuffle-before-match.json'),hand=full.state.cards!.hands[human(full.state)]!;
   await load(page,input('T37-reshuffle-before-match.json'));
-  const discard=page.getByRole('button',{name:`Discard ${hand[0]} (card 1)`,exact:true});
+  const discard=page.getByRole('button',{name:`Discard ${cardLabel(hand[0]!)} (card 1)`,exact:true});
   await foldCycle(page,discard,/^Discard a card to continue$/);
   await discard.click();
-  await foldCycle(page,page.getByRole('button',{name:'Continue',exact:true}),/^Acknowledge card reward$/);
+  await foldCycle(page,page.getByRole('button',{name:'Continue',exact:true}),/^Card draw notice$/);
   const raid=cardFixture('T39-legal-pending-raid.json');await load(page,input('T39-legal-pending-raid.json'));
   const target=raid.state.map.provinces.find(c=>raid.state.ownerOf[c.id]!==human(raid.state))!.id;
   await country(page,target).press('Enter');
-  await foldCycle(page,page.getByRole('button',{name:'Confirm raid',exact:true}),/^Confirm the Raid$/);
+  await foldCycle(page,page.getByRole('button',{name:'Confirm army reduction',exact:true}),/^Confirm army reduction$/);
   await load(page,pinned('domination').text,'/?view=reference-game');
   await foldCycle(page,page.locator('#result-new-game-button'),/^View game result$/);
  });
@@ -113,7 +114,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   expect(JSON.parse((await kept(page))!)).toEqual({x:Math.round(moved.x),y:Math.round(moved.y)});
   await shots('dragged-card',page);
   // A press on Discard that wanders 3 px is a tap: the card stays, the discard happens, and the next card opens in the same place.
-  const button=await box(page.getByRole('button',{name:`Discard ${hand[0]} (card 1)`,exact:true}));
+  const button=await box(page.getByRole('button',{name:`Discard ${cardLabel(hand[0]!)} (card 1)`,exact:true}));
   await page.mouse.move(button.x+button.width/2,button.y+button.height/2);await page.mouse.down();await page.mouse.move(button.x+button.width/2+3,button.y+button.height/2+2);await page.mouse.up();
   await expect(page.getByRole('button',{name:'Continue',exact:true})).toBeVisible();
   const next=await box(drawer(page));expect([Math.round(next.x),Math.round(next.y)]).toEqual([Math.round(moved.x),Math.round(moved.y)]);
@@ -200,7 +201,7 @@ test.describe('touch',()=>{
    expect(Math.abs(moved.x-(corner.x+dx))).toBeLessThanOrEqual(2);expect(Math.abs(moved.y-(corner.y+dy))).toBeLessThanOrEqual(2);
    expect(await inside(page)).toBe(true);expect(await kept(page)).not.toBeNull();
    // A tap on a card button acts and never moves the card.
-   await page.getByRole('button',{name:`Discard ${hand[0]} (card 1)`,exact:true}).tap();
+   await page.getByRole('button',{name:`Discard ${cardLabel(hand[0]!)} (card 1)`,exact:true}).tap();
    await expect(page.getByRole('button',{name:'Continue',exact:true})).toBeVisible();
    const after=await box(drawer(page));expect([Math.round(after.x),Math.round(after.y)]).toEqual([Math.round(moved.x),Math.round(moved.y)]);
   }finally{await context.close();}

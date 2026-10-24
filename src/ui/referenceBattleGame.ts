@@ -1,3 +1,4 @@
+import {DrawNoticeTimer} from './drawNoticeTimer';
 import {textCommands} from './textCommands';
 import {CardController} from "./cardController";
 import {CardView, HandDialog} from "./cardView";
@@ -40,8 +41,8 @@ import {NextGameSettingsDialog} from "./nextGameSettings";
 export type PanelDetail = "compact" | "detailed";
 export interface BattlePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
 
-const HUMAN_VERBS: Record<string, string> = {"Reinforcement": "place armies", "Attack": "attack or end turn", "Capture move-in": "move armies in", "Friendly move": "move armies", "Cards": "play cards", "Raid target": "choose a Raid target"};
-const HUMAN_HINTS: Record<string, string> = {"Reinforcement": "Tap one of your countries to place an army.", "Attack": "Choose your country, then an enemy neighbour.", "Friendly move": "Choose a country to move from, then an own neighbour.", "Raid target": "Choose an enemy country on the map."};
+const HUMAN_VERBS: Record<string, string> = {"Reinforcement": "place armies", "Attack": "attack or end turn", "Capture move-in": "move armies in", "Friendly move": "move armies", "Cards": "play cards", "Army reduction target": "choose an army reduction target"};
+const HUMAN_HINTS: Record<string, string> = {"Reinforcement": "Tap one of your countries to place an army.", "Attack": "Choose your country, then an enemy neighbour.", "Friendly move": "Choose a country to move from, then an own neighbour.", "Army reduction target": "Choose an enemy country on the map."};
 
 /** Reference-route host: the controller owns every selection and ordinary action. */
 export class ReferenceBattleGame {
@@ -102,6 +103,7 @@ export class ReferenceBattleGame {
   private readonly openedUnfinished: boolean;
   private readonly feedback:ComputerFeedbackController|null;
   private readonly turnTracker:TurnTracker|null;
+  private readonly drawNoticeTimer:DrawNoticeTimer|null;
   private readonly worldEvents:WorldEventController|null;
   private readonly worldView:WorldEventView|null;
   private readonly nativeHost: NativeGameBinding | null;
@@ -175,6 +177,7 @@ export class ReferenceBattleGame {
       else this.chrome.retitle(this.picker.title);
     };
     this.feedback=automatic&&presentation?.player?new ComputerFeedbackController(this.controller,{schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.mounted&&!this.disposed)this.renderMap();}):null;
+    this.drawNoticeTimer=presentation?.player?new DrawNoticeTimer({schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{const v=this.cards.view;if(v.phase==='reward')this.cards.acknowledge(v.revision);}):null;
     this.turnTracker=presentation?.player?new TurnTracker(()=>this.playbackPause.click()):null;
     this.panel = new Panel({
       onAttack: () => { this.controller.singleExchange(); },
@@ -273,6 +276,7 @@ export class ReferenceBattleGame {
     this.worldEvents?.dispose();this.worldView?.dispose();
     this.cardControls.dispose();
     this.stopText?.();this.stopText=null;
+    this.drawNoticeTimer?.dispose();
     this.cards.dispose();
     this.computer?.dispose();
     this.eventLog.dispose(); this.help.dispose(); this.provinceAction?.dispose(); this.hand?.dispose(); this.giveUp?.dispose(); this.scoreboard?.dispose(); this.nextSettings?.dispose();
@@ -336,7 +340,7 @@ export class ReferenceBattleGame {
     const placing = !blocked && state.phase === "reinforce" && human?.kind === "human";
     const sources = !blocked && state.phase === "attack" && mode !== "move" && !from ? state.map.provinces.map(p => p.id).filter(id => own(id) && attackTargets(state, id).length > 0) : [];
     const legal = raidTargets ?? (placing ? state.map.provinces.map(p => p.id).filter(own) : sources.length ? sources : targets);
-    const verb = raidTargets ? "Raid target" : placing ? "Place 1 army" : mode === "move" ? (from ? "Move here" : "Move from") : from ? "Target" : "Attack from";
+    const verb = raidTargets ? "Army reduction target" : placing ? "Place 1 army" : mode === "move" ? (from ? "Move here" : "Move from") : from ? "Target" : "Attack from";
     this.picker.render({state, legal, verb});
     if (mode === "move") {
       for (const route of this.mapView.el.querySelectorAll<SVGPolylineElement>(".lane")) {
@@ -390,6 +394,7 @@ export class ReferenceBattleGame {
     // A step the card update took (a Cards phase with no set passes) has already rendered the
     // newer state; finishing this render would put the older one back (the pool, the notice).
     if (this.controller.view !== seen && this.mounted) return;
+    this.drawNoticeTimer?.update(this.cards.view.phase==='reward'?`${this.controller.gameGeneration}/${this.controller.state.history.length}`:null,this.controller.playbackPaused);
     const beforeWorld=this.controller.view;this.worldEvents?.update(this.controller.cardRewardAcknowledgmentPending||Boolean(this.feedback?.pending));if(this.controller.view!==beforeWorld&&this.mounted)return;
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
     const worldPending=this.worldEvents?.view.requiresAck??false,feedbackPending=Boolean(this.feedback?.pending);
@@ -425,7 +430,7 @@ export class ReferenceBattleGame {
     // While moving, the End turn flag skips the move (the friendly card has no Skip, as in the sketches).
     this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, ...(mode === "move" ? [] : [move]));
     this.phaseActions.style.display = state.result || ['sets','raid-target','discard','reward'].includes(this.cards.view.phase) ? "none" : "";
-    if(state.phase==='cards')this.panel.el.querySelector('#turn-phase')!.textContent=this.cards.view.phase==='raid-target'?'Raid target':'Cards';
+    if(state.phase==='cards')this.panel.el.querySelector('#turn-phase')!.textContent=this.cards.view.phase==='raid-target'?'Army reduction target':'Cards';
     this.battle.render(this.controller.view);
     if (mode === "move" || state.result || ["sets","raid-target","discard","reward"].includes(this.cards.view.phase)) this.battle.el.hidden = true;
     this.friendly.render(this.controller.view);
@@ -475,7 +480,7 @@ export class ReferenceBattleGame {
       for (const el of [this.action, this.cardControls.el, this.phaseActions].flatMap(node => [...node.querySelectorAll<HTMLButtonElement | HTMLInputElement>("button,input")])) el.disabled = true;
       this.action.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; New game remains available." : "Computer turn. Start a new game at any time."));
     }
-    const required = worldPending||feedbackPending?null:this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm the Raid" : "Raid · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
+    const required = worldPending||feedbackPending?null:this.controller.cardAcknowledgmentPending ? "Card draw notice" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm army reduction" : "Army reduction · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
     const mover = activePlayer(state), result = state.result, winner = state.players.find(p => p.id === state.winner);
     const gamePaused = this.controller.playbackPaused;
     const phase = result ? state.phase === "human-loss" ? "Human seats eliminated" : "Game over" : this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase;
@@ -510,7 +515,7 @@ export class ReferenceBattleGame {
     // A human loss names no winner while computers remain, so its badge is neutral (#132). The pool
     // shows while you place armies; a computer's placement shows only its notice (T97).
     if(this.turnTracker&&!this.refusal)notice=changes&&notice?.action?{title:'Changes since your last turn',action:notice.action,persistent:true}:null;
-    const status = {seat: state.phase === "human-loss" ? null : Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result && !computer ? state.reinforcementPool : null, result: !!result};
+    const status = {seat: state.phase === "human-loss" ? null : Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result && !computer && mover?.kind==='human' ? state.reinforcementPool : null, result: !!result};
     // A required choice, or a staged attack pair, brings its card up once.
     const staged = !this.presentation?.player && mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;
     // T83: choosing a Raid target folds the card to its strip so the whole map is free; a

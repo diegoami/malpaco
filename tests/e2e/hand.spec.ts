@@ -53,7 +53,7 @@ for(const size of SIZES){
   const tiles=dialog.locator('#hand-list .card-tile');
   expect(await tiles.evaluateAll(ns=>ns.map(n=>n.getAttribute('data-kind')))).toEqual([...cards]);
   for(const [i,kind] of cards.entries()){
-   const tile=tiles.nth(i);await expect(tile.locator('.card-tile-name')).toHaveText(kind);
+   const tile=tiles.nth(i);await expect(tile.locator('.card-tile-name')).toHaveText(({Anchor:'ARMIES',Compass:'ARMIES',Lantern:'ARMIES',Surge:'DOUBLE',Raid:'REDUCE',Shield:'PROTECT',Wild:'ANY',Squall:'CARDS LOST'} as Record<string,string>)[kind]!);
    if(kind==='Raid'||kind==='Shield')await expect(tile.locator('.card-tile-cross')).toHaveCount(kind==='Shield'?1:0);
    else await expect(tile.locator('.card-tile-symbol')).toHaveText(({Anchor:'5',Compass:'8',Lantern:'15',Surge:'×2',Wild:'★'} as Record<string,string>)[kind]!);
   }
@@ -97,7 +97,7 @@ for(const size of SIZES){
  });
 
  test(`${size.width}x${size.height}: after a draw, the reward card lists your whole hand with the new card marked`,async({page})=>{
-  const {state,text}=played(s=>human(s)&&s.phase==='attack'&&!s.pendingCapture&&s.capturedThisTurn&&hand(s).length<4&&!s.cards?.pendingDiscard);
+  await page.clock.install();await page.clock.pauseAt(new Date());const {state,text}=played(s=>human(s)&&s.phase==='attack'&&!s.pendingCapture&&s.capturedThisTurn&&hand(s).length<4&&!s.cards?.pendingDiscard);
   await opened(page,text,size);
   await page.locator('#end-turn-button').click();
   const drawn=apply(state,{kind:'endTurn'});if(!drawn.ok)throw Error(drawn.error);

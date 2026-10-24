@@ -1,3 +1,4 @@
+import {cardLabel} from '../../src/ui/cardLabels';
 import {visitGame} from './shell';
 // T89: the 0.2.0 acceptance matrix (docs/plans/release-0.2.0-acceptance.md), A1–A14, by real
 // clicks and keys on both supported hosts, with the engine as the independent action oracle:
@@ -105,7 +106,7 @@ test('A2: Place 1 by map and list to zero; stage by map, list and keyboard witho
 test('A2: a legal set trades once and a skip changes nothing but the phase',async({page})=>{
  const row=TRADE_CASES[0],before=cardFixture(row.file);await begin(page,'/?setup',PORTRAIT);await load(page,cardInput(row.file));
  await openSurface(page,'actions');
- await page.getByRole('button',{name:`${row.kind}: ${selectedNames(before.state,row.indices).join(' + ')} — Add ${row.after-row.pool} armies`,exact:true}).first().click();
+ await page.getByRole('button',{name:`${cardLabel(row.kind)}: ${selectedNames(before.state,row.indices).map(cardLabel).join(' + ')} — Add ${row.after-row.pool} armies`,exact:true}).first().click();
  await exactly(page,next(before.state,{kind:'tradeCards',handIndices:row.indices}));
  const other=cardFixture(TRADE_CASES[1].file);await load(page,cardInput(TRADE_CASES[1].file));await openSurface(page,'actions');
  await page.getByRole('button',{name:'Skip cards',exact:true}).click();await exactly(page,next(other.state,{kind:'skipCards'}));
@@ -144,14 +145,14 @@ test('A4: a friendly-move draft survives resize; Cancel changes nothing; Move & 
 
 test('A5: Raid folds; a list pick stages the target with its preview; one Confirm raids; covered counts reappear',async({page},info)=>{
  const before=cardFixture('T39-legal-pending-raid.json'),target='province_4';await begin(page,'/?setup',PORTRAIT);await load(page,cardInput('T39-legal-pending-raid.json'));
- await expect(page.locator('#game-folded-choice')).toContainText('Raid');await expect(page.locator('#game-focus-drawer')).toBeHidden();
+ await expect(page.locator('#game-folded-choice')).toContainText('Army reduction');await expect(page.locator('#game-focus-drawer')).toBeHidden();
  const counts=()=>page.locator('[data-country] .count').allTextContents();const rest=await counts();
  await page.locator('#open-countries').click();await page.locator(`[data-country-row="${target}"]`).click();
  await expect(page.locator('#game-focus-drawer')).toHaveAttribute('data-surface','actions');await exactly(page,before.state);
  await shot(page,info,'A5-raid');
  await closeSurface(page);expect(await counts()).toEqual(rest);
- await page.locator('#open-required-action').click();expect(await shown(page)).toEqual(['Confirm raid','Fold card']);await expect(page.locator(RETIRED)).toHaveCount(0);
- await page.getByRole('button',{name:'Confirm raid',exact:true}).click();
+ await page.locator('#open-required-action').click();expect(await shown(page)).toEqual(['Confirm army reduction','Fold card']);await expect(page.locator(RETIRED)).toHaveCount(0);
+ await page.getByRole('button',{name:'Confirm army reduction',exact:true}).click();
  await exactly(page,next(before.state,{kind:'raidTarget',province:target}));
 });
 
@@ -160,7 +161,7 @@ test('A6: a full hand discards before drawing, discloses nothing first, and the 
  await begin(page,'/?setup',PORTRAIT);await load(page,cardInput('T37-reshuffle-before-match.json'));
  await page.keyboard.press('Escape');await page.setViewportSize(LANDSCAPE);await page.clock.runFor(5000);await exactly(page,before.state);
  await expect(page.locator('body')).not.toContainText('You drew');
- await openSurface(page,'actions');await page.getByRole('button',{name:`Discard ${hand[0]} (card 1)`,exact:true}).click();
+ await openSurface(page,'actions');await page.getByRole('button',{name:`Discard ${cardLabel(hand[0]!)} (card 1)`,exact:true}).click();
  const after=next(before.state,{kind:'discardCard',handIndex:0});await exactly(page,after);
  await page.clock.runFor(10_000);await exactly(page,after);
  await openSurface(page,'actions');await page.getByRole('button',{name:'Continue',exact:true}).click();await expect(page.getByRole('button',{name:'Continue',exact:true})).toHaveCount(0);await exactly(page,after);

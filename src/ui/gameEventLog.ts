@@ -19,7 +19,7 @@ export interface GameEvent {
   readonly notes: readonly string[];
 }
 const ACTION_NAMES: Record<Action["kind"], string> = {
-  tradeCards:"Trade cards",skipCards:"Skip cards",raidTarget:"Raid target",
+  tradeCards:"Trade cards",skipCards:"Skip cards",raidTarget:"Army reduction",
   discardCard: "Card discard",
   reinforce: "Reinforcement placement", endReinforcement: "Start combat", attack: "Combat",
   captureMove: "Capture transfer", friendlyMove: "Friendly transfer", endTurn: "End turn",

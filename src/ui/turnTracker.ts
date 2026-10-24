@@ -17,7 +17,7 @@ export function humanGuidance(state:GameState,c:GuidanceContext){
  if(player.kind==='computer')return {title:'Turn order',instruction:'',suggested:null};
  if(state.pendingCapture)return {title:'Your turn',instruction:'Confirm capture',suggested:null};
  if(c.cardPhase==='discard')return {title:'Your turn',instruction:'Discard a card',suggested:null};
- if(c.cardPhase==='raid-target')return {title:'Your turn',instruction:'Choose a Raid target',suggested:null};
+ if(c.cardPhase==='raid-target')return {title:'Your turn',instruction:'Choose an enemy region',suggested:null};
  if(state.phase==='cards')return {title:'Your turn',instruction:'Choose or skip cards',suggested:null};
  if(state.phase==='reinforce')return {title:'Your turn',instruction:'Place armies',suggested:'place'};
  if(c.mode==='move')return {title:'Your turn',instruction:'Move armies',suggested:'move'};

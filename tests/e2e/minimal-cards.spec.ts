@@ -1,3 +1,5 @@
+import {cardLabel} from '../../src/ui/cardLabels';
+import {noticeContinue} from './shell';
 import {visitGame} from './shell';
 // T97 (owner, #240 and #244): bare-minimum cards that float over the full-size map. Each card holds
 // only its controls, opening one never reframes the map, a card moves aside from the countries in
@@ -108,23 +110,23 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   // Sets: a button per legal set, plus Skip.
   await cardsGame(page,'T38-legal-Surge-before.json');await expect(drawer(page)).toBeVisible();
   // T101: every choice card ends with its fold icon.
-  const all=await shown(page);expect(all.at(-1)).toBe('Fold card');const names=all.slice(0,-1);expect(names.at(-1)).toBe('Skip cards');expect(names.length).toBeGreaterThan(1);for(const name of names.slice(0,-1))expect(name).toMatch(/^(Anchor|Compass|Lantern|Surge|Raid): .+ — /);
+  const all=await shown(page);expect(all.at(-1)).toBe('Fold card');const names=all.slice(0,-1);expect(names.at(-1)).toBe('Skip cards');expect(names.length).toBeGreaterThan(1);for(const name of names.slice(0,-1))expect(name).toMatch(/^(5 armies|8 armies|15 armies|Double armies|Army reduction): .+ — /);
   // The hand and the public counts are for assistive technology only.
   expect(await drawer(page).locator('.card-public-counts, [aria-label="Your hand"]').evaluateAll(ns=>ns.map(n=>n.classList.contains('visually-hidden')))).toEqual([true,true]);
   expect(await prose(page),'no long sentences').toBe('');await targets(page);await shots('sets-card',page);await steady(page,await settled(page));
   // Discard: one button per card, then the reward's Continue.
   const full=cardFixture('T37-reshuffle-before-match.json');await cardsGame(page,'T37-reshuffle-before-match.json');await expect(drawer(page)).toBeVisible();
-  const hand=full.state.cards!.hands[human(full.state)]!;expect(await shown(page)).toEqual([...hand.map((kind,i)=>`Discard ${kind} (card ${i+1})`),'Fold card']);expect(await prose(page)).toBe('');
+  const hand=full.state.cards!.hands[human(full.state)]!;expect(await shown(page)).toEqual([...hand.map((kind,i)=>`Discard ${cardLabel(kind)} (card ${i+1})`),'Fold card']);expect(await prose(page)).toBe('');
   await targets(page);await steady(page,await settled(page));
-  await page.getByRole('button',{name:`Discard ${hand[0]} (card 1)`,exact:true}).click();
-  await expect(page.getByRole('button',{name:'Continue',exact:true})).toBeVisible();expect(await shown(page)).toEqual(['Continue','Fold card']);await targets(page);await steady(page,await settled(page));
+  await page.getByRole('button',{name:`Discard ${cardLabel(hand[0]!)} (card 1)`,exact:true}).click();
+  await expect(noticeContinue(page)).toBeVisible();expect(await shown(page)).toEqual(['Continue','Fold card']);await targets(page);await steady(page,await settled(page));
   // Raid: its strip while a target is chosen, then Confirm alone.
   const raid=cardFixture('T39-legal-pending-raid.json');await cardsGame(page,'T39-legal-pending-raid.json');
   await expect(page.locator('#game-folded-choice')).toBeVisible();await expect(drawer(page)).toBeHidden();
   const target=raid.state.map.provinces.find(c=>raid.state.ownerOf[c.id]!==human(raid.state))!.id;const before=await settled(page);
   await country(page,target).click();await expect(drawer(page)).toBeVisible();expect(await viewBox(page)).toBe(before);
-  expect(await shown(page)).toEqual(['Confirm raid','Fold card']);expect(await prose(page)).toBe('');await clear(page,[target]);await targets(page);
-  await page.getByRole('button',{name:'Confirm raid',exact:true}).click();
+  expect(await shown(page)).toEqual(['Confirm army reduction','Fold card']);expect(await prose(page)).toBe('');await clear(page,[target]);await targets(page);
+  await page.getByRole('button',{name:'Confirm army reduction',exact:true}).click();
   const done=next(raid.state,{kind:'raidTarget',province:target});await expect(country(page,target)).toHaveAttribute('data-armies',String(done.armies[target]));
  });
 
@@ -176,7 +178,7 @@ test.describe('computer turns',()=>{
   const computerTurn=async()=>{for(let n=0;n<400;n++){if(await page.locator('.panel').getAttribute('data-computer-active')==='true'){const colour=await mover.textContent();if(colour)seen.add(colour);await quiet();}else if(await mine.count())return;await page.clock.runFor(400);}};
   const humanTurn=async()=>{
    await expect(mine.first()).toBeVisible();
-   const reward=page.getByRole('button',{name:'Continue',exact:true});if(await reward.isVisible()){await reward.click();return;}
+   const reward=noticeContinue(page);if(await reward.isVisible()){await reward.click();return;}
    const skip=page.getByRole('button',{name:'Skip cards',exact:true});if(await skip.isVisible())await skip.click();
    const pool=page.locator('#placement-pool-count');
    if(await pool.isVisible()){

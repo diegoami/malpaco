@@ -1,4 +1,4 @@
-import {visitGame,reloadGame,startFromResult,noticeContinue} from './shell';
+import {noticeContinue,visitGame,reloadGame,startFromResult} from './shell';
 // T100: the scoreboard, kept in this browser. Each player game counts once when it ends: a win,
 // an elimination (Lost at once, even if you then watch) or New game's give-up; `?setup` never counts.
 import {expect,test} from '@playwright/test';
