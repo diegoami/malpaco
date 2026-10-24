@@ -1,4 +1,4 @@
-# Malpaco playable build
+# Malpaco 0.3.0 web playable
 
 Create a self-contained release archive from the source checkout with:
 
@@ -20,7 +20,7 @@ node serve.mjs
 Open <http://127.0.0.1:4175> in a browser. The launcher binds to the
 loopback interface and serves the included files.
 
-New games grow their own geography: 7–10 irregular islands sharing 46 territories, different for every seed. Saved games keep the generator they were made with.
+New games grow their own geography. Choose 46, 72 or 96 regions in Settings;46 is the default. Larger presets add islands and use numbered territory names. Saved games keep the generator and size they were made with.
 The seed fixes the geography, deal and dice sequence.
 
 Opening a fresh page shows Settings. Press **Start game** when ready: by default you play against three Normal computers on a random seed, with
@@ -91,8 +91,7 @@ Important actions use raised uppercase Ubuntu Bold text and role colours; famili
 with a readable colour turn tracker below them. Settings opens directly below its button.
 Computer turns show placement, combat and movement at a fixed readable pace. The map
 has no Pause, fast-forward or speed toolbar. Settings and Help pause play while open;
-after an Android interruption, use RESUME in the tracker. Closing a dialog cannot
-release that background pause.
+paused kept games use RESUME in the tracker. Closing a dialog cannot release an independently required pause.
 
 FIT and COUNTRIES sit at the map edge. Required capture/move amounts and card choices
 open their own cards; ordinary attacks use ATTACK beside your source country. X closes
@@ -111,18 +110,8 @@ card shows the updated totals, for example "Won 3 · Lost 2 · Gave up 1". **Res
 scoreboard?" first. `?setup`, manual and Nine Isles games never count.
 
 The game fits phones and tablets in either orientation as well as desktops: it is tested from
-320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. Real-device and
-screen-reader checks are listed in `docs/releases/0.2.0/DEVICE-REPORT.md` (carried over to 0.2.1). Online multiplayer and
+320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. The historical device report is in `docs/releases/0.2.0/DEVICE-REPORT.md`; it does not establish new physical-device or screen-reader coverage for 0.3.0. Online multiplayer and
 cross-device save synchronization are not supported.
-
-## Developer balance experiment
-
-From a source checkout, `node tools/balance/run.mjs --deal-seeds 500 --game-seeds 200
---out artifacts/T105-comparison` compares the frozen 0.3 experimental deal/bonus
-candidates against the 0.2.1 core policy. Pass the command on one line. Each run needs
-a fresh output directory and writes raw deals/games, a summary and source/bundle
-hashes there. It does not change the playable game's rules or saved games. The
-protocol and interpretation limits are in [the 0.3 plan](plans/release-0.3.md) and #273.
 
 Settings contains the choices; their explanations are in Help.
 
@@ -137,15 +126,23 @@ An event card lists exact before/after changes and waits for an explicit dismiss
 X, Back or Escape acknowledges it and continues in one action. Troop and card choices
 still require their explicit decision; closing an amount card never commits armies.
 Pending presentation survives reload. Acknowledgement never resumes a game paused
-by backgrounding: use Resume explicitly. Off hides centres and consumes no event
+by an independent pause: use Resume explicitly. Off hides centres and consumes no event
 draws. Instructions belong in Help; Settings contains the choices.
 
-The held larger-map preview also offers Map size46/72/96 in Settings. Larger
-presets add islands, use numbered names and apply only at New game.
+Map size 46/72/96 applies only to the next game. Use zoom for a closer view on a phone, especially on the denser 96-region map.
 The top-left turn tracker lists player colours, regions and public card counts.
 Its arrow stays with the computer while its action finishes, then points at your
 colour with **Your turn**. Guidance changes through **Place armies**, **Execute
 attacks** and **Move armies**. The move hint is a conservative stack comparison;
 it never prevents a legal riskier attack. New computer placement, combat and troop
 transfers are shown on the regions at a readable pace. Presentation does not change the rules. Opening Settings or Help finishes the current
-paint and pauses further play; Android interruptions require explicit Resume.
+paint and pauses further play. Kept paused games require explicit Resume.
+
+## Developer balance experiment
+
+From a source checkout, `node tools/balance/run.mjs --deal-seeds 500 --game-seeds 200
+--out artifacts/T105-comparison` compares the frozen 0.3 experimental deal/bonus
+candidates against the 0.2.1 core policy. Pass the command on one line. Each run needs
+a fresh output directory and writes raw deals/games, a summary and source/bundle
+hashes there. It does not change the playable game's rules or saved games. The
+protocol and interpretation limits are in [the 0.3 plan](plans/release-0.3.md) and #273.

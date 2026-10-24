@@ -10,27 +10,28 @@ How work is done here: [CLAUDE.md](CLAUDE.md) and [docs/process.md](docs/process
 [docs/tasks/](docs/tasks/README.md).
 Task status lives in GitHub issue labels.
 
-## Play Malpaco 0.2.1
+## Play Malpaco 0.3.0 (web)
 
 [Play in your browser](https://malpaco.netlify.app), or download the
-[0.2.1 playable archive](https://github.com/diegoami/malpaco/releases/tag/v0.2.1).
+[0.3.0 playable archive](https://github.com/diegoami/malpaco/releases/tag/v0.3.0).
 The [play instructions](docs/play.md) explain the controls and local launcher;
-[release notes](docs/releases/0.2.1/RELEASE-NOTES.md) describe this release.
+[release notes](docs/releases/0.3.0/RELEASE-NOTES.md) describe the web release.
 
-The page opens straight into a game: you against three Normal computers on a random
-map. Your game, pause state and speed are kept in this browser and resume on refresh.
-**New game** in the menu asks before giving up the current game. The menu's trophy
-opens your scoreboard. There is no account or sync between devices.
+A fresh page offers Settings and Start. Saved games offer Resume first. Choose
+1–3 Normal opponents, starting-army range, event frequency and 46/72/96-region maps
+for the next game; changing Settings leaves the current match unchanged. Older
+kept games retain their original options, rules and replay identity.
 
-Place your reinforcements; placing the last army starts combat. Select your country,
-press **Fight**, then tap an adjacent enemy for one exchange. Press **Fight** again
-for another. After a capture, choose how many armies to move and confirm. You can
-make one friendly move per turn. Your cards are behind the card icon beside the menu;
-capture a territory and finish the turn to earn a card.
+Place armies, then use ATTACK beside a selected country. Capture and friendly-move
+panels have Min/Max, +/− and manual entry; only Confirm moves troops. The colour
+tracker shows turn order and phase guidance while executed computer actions play
+at a readable pace. Cards use army amounts/effects; draw notices close after three
+unpaused seconds, while input choices still require an explicit decision.
 
-Choices float over the map, fold to a chip and drag where you want them. **Pause**,
-**Fast-forward** and the speed control set the pace; computer turns run automatically.
-The main game hides history; `?log` brings it back.
+New game asks before giving up; Settings holds the scoreboard, and ? opens Help.
+Games and scores stay in this browser. The archive runs offline with Node 22+.
+This release publishes the web game; Android production persistence and delivery
+remain separate work. There is no account or cross-device synchronization.
 
 For development, run `npm ci` and `npm run dev`. `?seed=1994` fixes geography, deal
 and dice and keeps its own game. `?setup` opens the development setup and file controls;
