@@ -114,7 +114,7 @@ async function cardReachable(page: Page, label: string) {
   expect.soft(misses, `${label}: every card control is reachable`).toEqual([]);
 }
 
-/** T92: once the player has acted, the resting map carries corner icons and the pool number only. */
+/** The resting map carries the pool and corner controls; T117 gives enabled commands text. */
 async function quiet(page: Page, label: string, pool: number) {
   const rest = await page.evaluate(() => {
     const shown = (e: Element) => e.getClientRects().length > 0 && getComputedStyle(e).visibility !== 'hidden';
@@ -128,7 +128,7 @@ async function quiet(page: Page, label: string, pool: number) {
     }
     return {text: seen.join(' '), controls: [...overlay.querySelectorAll('button')].filter(shown).length};
   });
-  expect.soft(rest.text, `${label}: no prose on the resting map`).toBe(String(pool));
+  expect.soft(rest.text, `${label}: only the pool and enabled command text on the resting map`).toBe(pool===0?'0 Start combat':String(pool));
   expect.soft(rest.controls, `${label}: only corner controls rest on the map`).toBeLessThanOrEqual(6);
 }
 

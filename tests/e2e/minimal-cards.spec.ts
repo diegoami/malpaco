@@ -53,6 +53,8 @@ async function nineIsles(p:Page,seed:number,placements:number,from:string){
  await p.clock.install();await p.clock.pauseAt(new Date());await visitGame(p,'/?view=reference-game&control=manual');
  await p.getByLabel('Seed',{exact:true}).fill(String(seed));await p.getByLabel('Seats',{exact:true}).selectOption('2');await p.getByRole('button',{name:'Start game',exact:true}).click();
  for(let n=0;n<placements;n++)await country(p,from).click();await p.locator('#start-combat-button').click();
+ // The paused test clock keeps the ordinary turn notice up; dismiss it before map taps.
+ if(await p.locator('#dismiss-notice').isVisible())await p.locator('#dismiss-notice').click();
 }
 async function cardsGame(p:Page,file:string){
  await p.clock.install({time:new Date('2026-10-18T12:00:00Z')});await p.clock.pauseAt(new Date('2026-10-18T12:00:00Z'));await visitGame(p,'/?setup');

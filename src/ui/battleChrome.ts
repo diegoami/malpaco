@@ -109,6 +109,7 @@ export class BattleChrome {
   private result = false;
   private requiredText: string | null = null;
   private corner: Corner = "end";
+  private railSize = {width: 0, height: 0, viewport: ""};
 
   constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void;onMenuClose?:()=>void}) {
     for (const [button, surface] of [[this.menu, "menu"], [this.countries, "countries"]] as const) {
@@ -201,8 +202,27 @@ export class BattleChrome {
    */
   place(avoid: readonly DOMRect[]): void {
     this.avoid = avoid;
+    this.reserveCommands();
     this.fitSpeed();
     this.reposition();
+  }
+
+  /** Keep the command corner steady when a choice temporarily hides a phase command. */
+  private reserveCommands(): void {
+    const frame = this.overlay.getBoundingClientRect();
+    const viewport = `${frame.width}:${frame.height}`;
+    if (viewport !== this.railSize.viewport) {
+      this.railSize = {width: 0, height: 0, viewport};
+      this.rail.style.removeProperty('min-width');
+      this.rail.style.removeProperty('min-height');
+    }
+    const rect = this.rail.getBoundingClientRect();
+    this.railSize.width = Math.max(this.railSize.width, rect.width);
+    this.railSize.height = Math.max(this.railSize.height, rect.height);
+    this.rail.style.minWidth = `${this.railSize.width}px`;
+    this.rail.style.minHeight = `${this.railSize.height}px`;
+    this.overlay.style.setProperty('--command-width', `${this.railSize.width}px`);
+    this.overlay.style.setProperty('--command-height', `${this.railSize.height}px`);
   }
 
   /**
@@ -257,7 +277,7 @@ export class BattleChrome {
   private reposition(): void {
     if (this.drawer.hidden) return;
     if(this.surface==='menu'&&this.nodes.primaryActions&&!this.settingsReleased){
-      const frame=this.overlay.getBoundingClientRect(),button=this.menu.getBoundingClientRect(),edge=16,top=button.bottom-frame.top+8;
+      const frame=this.overlay.getBoundingClientRect(),button=this.menu.getBoundingClientRect(),edge=16,top=Math.max(button.bottom,this.hud.getBoundingClientRect().bottom)-frame.top+8;
       this.drawer.dataset['settingsAnchored']='true';
       this.drawer.style.width=`${Math.min(400,frame.width-2*edge)}px`;
       this.drawer.style.maxHeight=`${Math.max(48,frame.height-top-edge)}px`;
