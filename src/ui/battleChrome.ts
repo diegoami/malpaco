@@ -108,6 +108,7 @@ export class BattleChrome {
   private result = false;
   private requiredText: string | null = null;
   private corner: Corner = "end";
+  private railSize = {width: 0, height: 0, viewport: ""};
 
   constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void}) {
     for (const [button, surface] of [[this.menu, "menu"], [this.countries, "countries"]] as const) {
@@ -132,7 +133,7 @@ export class BattleChrome {
       this.hud.classList.add('game-primary-buttons');
       const {newGame,help}=nodes.primaryActions;
       for(const [button,name,shape] of [[newGame,'New game','new-game'],[this.menu,'Settings','settings'],[help,'Help','help']] as const){
-        button.replaceChildren(symbol(shape));button.setAttribute('aria-label',name);button.title=name;button.classList.add('primary-command');
+        button.replaceChildren(document.createTextNode(name));button.setAttribute('aria-label',name);button.title=name;button.classList.add('primary-command');
       }
       this.hud.append(newGame,this.menu,help);this.overlay.dataset['primaryCommands']='true';
     }else this.hud.append(this.menu);
@@ -200,8 +201,27 @@ export class BattleChrome {
    */
   place(avoid: readonly DOMRect[]): void {
     this.avoid = avoid;
+    this.reserveCommands();
     this.fitSpeed();
     this.reposition();
+  }
+
+  /** Keep the command corner steady when a choice temporarily hides a phase command. */
+  private reserveCommands(): void {
+    const frame = this.overlay.getBoundingClientRect();
+    const viewport = `${frame.width}:${frame.height}`;
+    if (viewport !== this.railSize.viewport) {
+      this.railSize = {width: 0, height: 0, viewport};
+      this.rail.style.removeProperty('min-width');
+      this.rail.style.removeProperty('min-height');
+    }
+    const rect = this.rail.getBoundingClientRect();
+    this.railSize.width = Math.max(this.railSize.width, rect.width);
+    this.railSize.height = Math.max(this.railSize.height, rect.height);
+    this.rail.style.minWidth = `${this.railSize.width}px`;
+    this.rail.style.minHeight = `${this.railSize.height}px`;
+    this.overlay.style.setProperty('--command-width', `${this.railSize.width}px`);
+    this.overlay.style.setProperty('--command-height', `${this.railSize.height}px`);
   }
 
   /**
@@ -229,6 +249,7 @@ export class BattleChrome {
   private anchor: (() => {near: DOMRect; avoid: readonly DOMRect[]} | null) | null = null;
   private anchorFrame: number | null = null;
   private anchorReleased = false;
+  private settingsReleased = false;
   anchorTo(rect: (() => {near: DOMRect; avoid: readonly DOMRect[]} | null) | null): void {
     this.anchor = rect;
     this.anchorReleased = false;
@@ -254,6 +275,14 @@ export class BattleChrome {
   }
   private reposition(): void {
     if (this.drawer.hidden) return;
+    if(this.surface==='menu'&&this.nodes.primaryActions&&!this.settingsReleased){
+      const frame=this.overlay.getBoundingClientRect(),button=this.menu.getBoundingClientRect(),edge=16,top=Math.max(button.bottom,this.hud.getBoundingClientRect().bottom)-frame.top+8;
+      this.drawer.dataset['settingsAnchored']='true';
+      this.drawer.style.width=`${Math.min(400,frame.width-2*edge)}px`;
+      this.drawer.style.maxHeight=`${Math.max(48,frame.height-top-edge)}px`;
+      this.moveTo({x:Math.max(edge,Math.min(button.left-frame.left,frame.width-this.drawer.getBoundingClientRect().width-edge)),y:top});return;
+    }
+    delete this.drawer.dataset['settingsAnchored'];this.drawer.style.removeProperty('max-height');this.drawer.style.removeProperty('width');
     const anchored = this.surface === "actions" && !this.anchorReleased ? this.anchor?.() : null;
     if (anchored) {
       this.moveTo(this.besideAnchor(anchored.near, anchored.avoid));
@@ -308,6 +337,7 @@ export class BattleChrome {
       const dx = event.clientX - start.x, dy = event.clientY - start.y;
       if (!dragging && Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
       // A drag frees an anchored amount bar for the rest of its choice (#266).
+      if(!dragging&&this.surface==='menu')this.settingsReleased=true;
       if (!dragging && this.drawer.dataset["anchored"]) {this.anchorReleased = true; delete this.drawer.dataset["anchored"];}
       dragging = true; this.drawer.dataset["dragging"] = "true";
       this.position = this.moveTo({x: origin.x + dx, y: origin.y + dy});
@@ -343,7 +373,7 @@ export class BattleChrome {
   open(surface: Surface, opener: HTMLElement, takeFocus = true): void {
     if (this.surface === surface) {this.close(); return;}
     this.close(false);
-    this.surface = surface; this.opener = opener; this.collapsed = false;
+    this.surface = surface; this.opener = opener; this.collapsed = false;this.settingsReleased=false;
     this.drawer.dataset["surface"] = surface;
     this.title.textContent = surface==='menu'&&this.nodes.primaryActions?'Settings':TITLES[surface];
     const nodes = {actions: [this.nodes.action], menu: [this.nodes.settings], countries: this.nodes.countries ? [this.nodes.countries] : []}[surface];

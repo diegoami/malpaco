@@ -82,7 +82,7 @@ export function mountHelp(
  * stay out of this help: the page may show only your own or publicly spent cards. */
 const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
   ["help", "Help", "Instructions, icon names and explanations of the settings."],
-  ["settings", "Settings", "The next game’s opponents and replenishment, its seed and the scoreboard. New game and Help have their own top-left buttons. While a computer plays the corner buttons wait until your turn or a pause."],
+  ["settings", "Settings", "The next game’s opponents and starting armies, its seed and the scoreboard. New game and Help have their own top-left buttons. While a computer plays the corner buttons wait until your turn or a pause."],
   ["pause", "Pause", "Stops play at once and brings back the corner buttons; the same icon resumes it. Beside it, the game speed."],
   ["fast-forward", "Fast-forward", "Beside Pause during computer turns: play them without waiting until your turn."],
   ["fit", "Fit", "Shows the whole map again."],
@@ -98,7 +98,7 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["return", "Return", "The gold icon that brings a folded choice back."],
   ["standings", "Standings", "Countries and armies at the end of the game."],
   ["trophy", "Scoreboard", "In Settings: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
-  ["new-game", "New game", "Gives up this game and starts a new one."],
+  ["new-game", "New game", "Gives up this game after confirmation, then opens Settings. Press Start game to begin."],
   ["watch", "Watch computers", "After your last country falls: the computers play on."],
   ["cards", "Your cards", "Shows the cards you hold and how many, each with a plain symbol for what it does; drag the window by its title. After each draw your whole hand is shown."],
   ["fold", "Fold card", "Shrinks a card to a chip that keeps its title; tap the chip to open it again."],
@@ -109,8 +109,8 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["Production centres and disasters", "With events on, three starred countries are production centres. Harvest doubles their stacks, adding at most 10 per centre. Shift redraws the three centres. Storm affects a connected group of three or four countries, leaving every stack positive. Revolt transfers one border country, with its armies, to a bordering owner; it cannot eliminate a seat. Events do not target a leader or guarantee catch-up help."],
   ["Event frequency", "Off disables events and hides centres; Rare, Normal and Often give one chance in 21, 14 or 8 at an eligible turn change. Round one, imminent wins, the last three rounds of a round-limit game and the transition after an event are protected. An event card shows exact changes; Continue acknowledges it. Fold or Back lets you inspect the marked countries without acknowledging. Acknowledgement never resumes a background-paused game."],
   ["Placing", "Tap your countries to place armies from the pool shown at the top; combat starts when the last one is placed."],
-  ["On your country", "The country you select shows Fight if it can attack, or Move if it can only move armies. Press Fight, then tap an enemy: one round; press again for another."],
-  ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. Fight rolls one exchange; press it again to keep fighting, or Cancel."],
+  ["On your country", "The country you select shows ATTACK if it can attack, or MOVE if it can only move armies. Press ATTACK, then tap an enemy: one round; press again for another."],
+  ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. The ATTACK button beside your country rolls one exchange; press it again to keep attacking, or select another country."],
   ["Capturing", "Choose how many armies move in with −, + and Confirm. Until then the two counts are dashed."],
   ["Cards", "Your cards are behind the card icon at top left, with their number. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
   ["Notices", "The slim notice under the top icons says whose turn it is. Tap it for a hint; swipe or × dismisses it."],

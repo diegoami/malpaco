@@ -53,11 +53,15 @@ for(const size of SIZES){
   const country=(id:string)=>page.locator(`[data-country="${id}"]`),action=page.locator('#province-action-button');
   const beside=async(id:string)=>expect.poll(async()=>gap((await action.boundingBox())!,(await country(id).locator('.count').boundingBox())!)).toBeLessThan(24);
   await expect(action).toBeHidden();
-  await country(from).click();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await beside(from);
+  await country(from).click();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await beside(from);await expect(action).toHaveText('ATTACK');await expect(action.locator('svg')).toHaveCount(0);
+  const colours=await action.evaluate((n,id)=>{const c=document.querySelector(`[data-country="${id}"]`)!;return [getComputedStyle(n).backgroundColor,getComputedStyle(c.querySelector('.cell')!).fill,getComputedStyle(c.querySelector('.badge')!).fill];},from);expect(colours[0]).not.toBe(colours[1]);expect(colours[0]).not.toBe(colours[2]);
+  const ab=(await action.boundingBox())!,cb=(await country(from).locator('.count').boundingBox())!;expect(ab.x>=0&&ab.x+ab.width<=size.width).toBe(true);expect(ab.x>=cb.x+cb.width||ab.x+ab.width<=cb.x||ab.y>=cb.y+cb.height||ab.y+ab.height<=cb.y).toBe(true);await page.screenshot({path:`artifacts/T117/attack-${size.width}.png`});
+  // Choosing an enemy before arming also stays on the map; ATTACK remains the control.
+  await country(to).click();await expect(page.locator('#game-focus-drawer')).toBeHidden();expect(same(await kept(page))).toEqual(same(state));await country(from).click();
   // A press arms Fight; nothing is fought yet.
   await action.click();await expect(action).toHaveAttribute('aria-pressed','true');expect(same(await kept(page))).toEqual(same(state));
   // The tapped enemy is fought at once: one round.
-  await country(to).click();
+  await country(to).click();await expect(page.locator('#game-focus-drawer')).toBeHidden();await expect(page.locator('#open-required-action')).toBeHidden();
   const one=apply(state,{kind:'attack',from,to});if(!one.ok)throw Error(one.error);
   await expect.poll(async()=>(await kept(page)).history.length).toBe(one.state.history.length);expect(same(await kept(page))).toEqual(same(one.state));
   // The icon is still there: another press is another round on the same target.

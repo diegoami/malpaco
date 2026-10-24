@@ -308,7 +308,7 @@ export class ReferenceBattleGame {
       if (this.controller.select(from, id)) {
         // T103: with Fight armed on the source, the tapped enemy is fought at once, one round.
         if (this.armed === from) this.controller.singleExchange();
-        else if (this.chrome?.openSurface !== "actions") this.chrome?.open("actions", this.chrome.countries, false);
+        else if (!this.provinceAction && this.chrome?.openSurface !== "actions") this.chrome?.open("actions", this.chrome.countries, false);
       } else {
         // The engine's reason appears as the one-line notice until the next choice.
         this.refusal = {text: whyNot(state, from, id), key: `${state.history.length}:${from}:${to}`};
@@ -507,7 +507,7 @@ export class ReferenceBattleGame {
     if(this.turnTracker&&!this.refusal)notice=changes&&notice?.action?{title:'Changes since your last turn',action:notice.action,persistent:true}:null;
     const status = {seat: state.phase === "human-loss" ? null : Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result && !computer ? state.reinforcementPool : null, result: !!result};
     // A required choice, or a staged attack pair, brings its card up once.
-    const staged = mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;
+    const staged = !this.presentation?.player && mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;
     // T83: choosing a Raid target folds the card to its strip so the whole map is free; a
     // chosen target brings the card back with Confirm.
     const raiding = this.cards.view.phase === "raid-target", raidTarget = this.cards.view.selectedTarget;
@@ -523,7 +523,7 @@ export class ReferenceBattleGame {
     const restore = computer && !result && this.chrome?.openSurface === "actions" && (document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
     this.chrome?.update(status, choice, gamePaused, prompt, computer && !result && !gamePaused);
     // T103 (owner): a card with nothing to do (an attack card whose pair can no longer fight: only Cancel) closes.
-    if (this.presentation?.player && this.chrome?.openSurface === "actions" && !required && mode !== "move" && !state.pendingCapture && !result && !raiding && state.phase === "attack" && !(from && to && whyNot(state, from, to) === "")) this.chrome.close(false);
+    if (this.presentation?.player && this.chrome?.openSurface === "actions" && !required && mode !== "move" && !state.pendingCapture && !result && !raiding && state.phase === "attack") this.chrome.close(false);
     // A paused computer turn still shows no choice card (its menu card may open).
     if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
     if (restore) this.playbackPause.focus({preventScroll: true});

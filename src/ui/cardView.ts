@@ -127,9 +127,12 @@ export class HandDialog {
   Object.assign(this.dialog.style,{left:`${x}px`,top:`${y}px`,translate:'none'});this.dialog.dataset['moved']='true';this.at={x,y};
  }
  private restore():void{
-  try{const kept=JSON.parse(localStorage.getItem(HAND_POSITION)??'null');if(kept&&Number.isFinite(kept.x)&&Number.isFinite(kept.y))this.place(kept);}catch{/* the default place */}
+  try{const kept=JSON.parse(localStorage.getItem(HAND_POSITION)??'null');if(kept&&Number.isFinite(kept.x)&&Number.isFinite(kept.y)){this.place(kept);return;}}catch{/* the default place */}
+  const opener=this.button.getBoundingClientRect(),box=this.dialog.getBoundingClientRect();
+  this.dialog.style.maxHeight=`${Math.max(60,innerHeight-opener.bottom-24)}px`;
+  this.place({x:(innerWidth-box.width)/2,y:opener.bottom+8});
  }
- /** Closes the window, as a computer's turn does (#267): only the speed controls stay then. */
+ /** Closes the window when a computer's turn begins (#267). */
  hide():void{if(this.dialog.open)this.dialog.close();}
  dispose():void{if(this.dialog.open)this.dialog.close();this.dialog.remove();}
 }
