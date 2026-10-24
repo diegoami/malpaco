@@ -98,6 +98,32 @@ class NativeSnapshotStoreTest {
     assertFalse(File(current.path + ".bak").exists())
   }
 
+  @Test fun interruptedFirstImageIsNotAnEmptyStore() {
+    val partial = "{incomplete first image".toByteArray()
+    val stream = AtomicFile(current).startWrite()
+    stream.write(partial); stream.fd.sync(); stream.close()
+    assertTrue("Do not bootstrap over an interrupted first snapshot", NativeSnapshotStore(context).read() is NativeSnapshotStore.Read.Failed)
+    val staged = File(current.path + ".new")
+    assertArrayEquals(partial, (if (staged.exists()) staged else current).readBytes())
+  }
+
+  @Test fun commitReadbackRejectsSilentFinishFailure() {
+    val good = image("kept")
+    saved(NativeSnapshotStore(context).write(good))
+    val obstructed = NativeSnapshotStore(context) { slot ->
+      if (slot == NativeSnapshotStore.Slot.CURRENT) {
+        assertTrue(current.delete()); assertTrue(current.mkdir())
+        File(current, "obstruction").writeText("retained")
+      }
+    }
+    // AtomicFile logs the failed rename instead of throwing. The store must not
+    // report success just because finishWrite returned; the previous image is usable.
+    failed(NativeSnapshotStore.Error.IO, obstructed.write(image("uncommitted")))
+    val loaded = snapshot(NativeSnapshotStore(context))
+    assertTrue(loaded.recovered); assertEquals(good, loaded.json)
+    assertEquals("retained", File(current, "obstruction").readText())
+  }
+
   @Test fun priorImageRecoversAndMalformedOriginalIsRetainedBeforeRepair() {
     val store = NativeSnapshotStore(context)
     val a = image("A")
