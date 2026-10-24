@@ -2,14 +2,14 @@ import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
 import { readFileSync, writeFileSync, mkdirSync, mkdtempSync } from "node:fs";
 import { join } from "node:path";
-import { activePlayer, apply, victoryRules } from "../../src/core";
+import { activePlayer, apply, victoryRules, computerAction } from "../../src/core";
 import type { Action, GameOptions, GameState } from "../../src/core";
 import { createReferenceGame } from "../../src/core/reference-game";
 import { referenceMap } from "../../src/core/reference-map";
 import { deserializeVersionedMatch } from "../../src/core/match-save";
 import {activate,openSurface,withSurface} from './shell';
 
-const fixture = JSON.parse(readFileSync(new URL("../../fixtures/new-game/T33/fixtures/conquest.json", import.meta.url), "utf8")) as {
+const fixture = JSON.parse(readFileSync(new URL("../../fixtures/new-game/T128/live-conquest-031.json", import.meta.url), "utf8")) as {
   options: GameOptions; actions: Action[]; expected: { actions: number; computerActions: number; humanActions: number; winner: string };
 };
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);
@@ -48,7 +48,7 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
     if (activePlayer(state)!.kind === "computer") {
       if (!computer) { await expect(page.locator("#active-seat-notice")).toContainText(/^(Blue|Orange|Green|Purple)'s turn$/); await expect(page.locator("#end-turn-button")).toBeDisabled(); await screenshot("computer-turn"); computer = true; }
       let steps = 0;
-      do { state = step(state, fixture.actions[index++]!); steps++; } while (index < fixture.actions.length && activePlayer(state)!.kind === "computer" && state.phase !== "finished");
+      do { const next=fixture.actions[index++]!; expect(computerAction(state)).toEqual(next); state = step(state, next); steps++; } while (index < fixture.actions.length && activePlayer(state)!.kind === "computer" && state.phase !== "finished");
       await page.clock.runFor(steps * 350);
       await paint(page, state); await assertSaved(`handoff-${index}`);
       continue;
@@ -63,7 +63,7 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
       await activate(country(page, action.to)); await openSurface(page,'actions'); await page.locator("#single-exchange-button").click();
       if (!battle) { await screenshot("battle"); battle = true; }
     } else if (action.kind === "friendlyMove") {
-      await page.locator("#start-friendly-move-button").click(); await activate(country(page, action.from)); await activate(country(page, action.to));
+      await page.locator("#start-friendly-move-button").click(); if(await country(page, action.from).getAttribute("aria-pressed")!=="true")await activate(country(page, action.from)); await activate(country(page, action.to));
       await openSurface(page,'actions');await page.locator("#friendly-move-amount").fill(String(action.amount)); await screenshot("friendly-move");
       await openSurface(page,'actions');await page.locator("#confirm-friendly-move-button").click(); moved = true;
     } else if (action.kind === "captureMove") {

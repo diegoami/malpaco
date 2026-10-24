@@ -1,4 +1,4 @@
-# Play Malpaco 0.3.1 preview
+# Play Malpaco 0.3.1
 
 Create a self-contained release archive from the source checkout with:
 

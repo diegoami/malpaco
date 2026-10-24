@@ -5,7 +5,7 @@ import {expect,test} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {openSurface,withSurface} from './shell';
-import {activePlayer,apply,defaultOptions,raidCardsRules,serializeVersionedMatch} from '../../src/core';
+import {activePlayer,apply,defaultOptions,raidCardsRules,serializeVersionedMatch,friendlySources,friendlyTargets} from '../../src/core';
 import type {GameOptions,GameState} from '../../src/core';
 import {createGeographicGame} from '../../src/core/geographic-game';
 import {decideComputerAction} from '../../src/core/computer';
@@ -30,8 +30,10 @@ function beforeEnd(seed:number){
  const last=states.at(-2)!;
  return {last,end:s,text:serializeVersionedMatch(options,last.history,GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY)};
 }
-/** Seed 5: the human's End turn wins by domination. Seed 2: a computer's End turn eliminates the human. */
-const WIN=beforeEnd(5),LOSS=beforeEnd(2);
+/** Scoreboard fixtures choose their winning UI command explicitly, independently of AI routing.
+ * The policy may now choose a friendly transfer at the same winning position. */
+const playedWin=beforeEnd(5),winByEnd=apply(playedWin.last,{kind:'endTurn'});if(!winByEnd.ok)throw Error(winByEnd.error);
+const WIN={...playedWin,end:winByEnd.state},LOSS=beforeEnd(2);
 const yours=(s:GameState)=>s.map.provinces.filter(c=>s.ownerOf[c.id]==='seat1').length;
 
 /** Puts records in this browser before the first load only, so a reload sees what the page kept. */
@@ -54,13 +56,13 @@ async function giveUp(p:Page){
  await openSurface(p,'menu');await p.locator('#new-game-button').click();await p.locator('#give-up-confirm').click();
  const result=p.getByRole('dialog',{name:'You gave up'});await expect(result).toBeVisible();return result;
 }
-/** End turn wins seed 5; the card drawn for the turn's capture is acknowledged first, then the result shows. */
-async function winningEndTurn(p:Page){
- await p.locator('#end-turn-button').click();
+/** A winning command may draw a card; acknowledge that notice before checking the result. */
+async function winningNotice(p:Page){
  const reward=noticeContinue(p),won=p.getByRole('heading',{name:'You won',exact:true});
  await expect(reward.or(won).first()).toBeVisible();if(await reward.isVisible())await reward.click();
  await expect(won).toBeVisible();
 }
+async function winningEndTurn(p:Page){await p.locator('#end-turn-button').click();await winningNotice(p);}
 const rowOf=(n:number,result:GameOutcome)=>({id:`old-${n}`,date:`2026-09-${String(n).padStart(2,'0')}T10:00:00.000Z`,result,rounds:n,countries:n,seed:500+n});
 
 test.beforeEach(({},info)=>{test.skip(info.project.name!=='1280x800','one size: the flow, not the layout');});
@@ -88,6 +90,17 @@ test('a win adds exactly one Won row, shown with the totals line',async({page})=
  const after=await board(page);expect(after.totals).toEqual(['1','1','0','0','100%']);
  expect(after.rows.map(r=>r.slice(1))).toEqual([['Won',String(WIN.end.turnNumber),String(yours(WIN.end)),'5']]);
  expect(seen).toEqual([]);
+});
+
+test('a friendly transfer can also win and records exactly one Won row',async({page})=>{
+ test.setTimeout(90000);const seen=errors(page),from=friendlySources(WIN.last)[0]!,to=friendlyTargets(WIN.last,from)[0]!;
+ const expected=apply(WIN.last,{kind:'friendlyMove',from,to,amount:1});if(!expected.ok)throw Error(expected.error);expect(expected.state.winner).toBe('seat1');
+ await keepOnce(page,{[ROOT]:WIN.text});await visitGame(page,'/');await map(page);await page.locator('#start-friendly-move-button').click();
+ for(const id of [from,to]){const region=page.locator(`[data-country="${id}"]`);await region.focus();await region.press('Enter');}
+ await openSurface(page,'actions');await page.locator('#friendly-move-amount').fill('1');await page.locator('#confirm-friendly-move-button').click();await winningNotice(page);
+ await expect(page.locator('#victory-totals')).toHaveText('Won 1 · Lost 0 · Gave up 0');expect(await read(page,ROOT)).toBeNull();
+ await reloadGame(page);await map(page);const result=await board(page);expect(result.totals).toEqual(['1','1','0','0','100%']);
+ expect(result.rows.map(row=>row.slice(1))).toEqual([['Won',String(expected.state.turnNumber),String(yours(expected.state)),'5']]);expect(seen).toEqual([]);
 });
 
 test('an elimination adds exactly one Lost row at once, and watching the computers adds no other',async({page})=>{

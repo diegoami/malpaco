@@ -1,7 +1,8 @@
-# Malpaco 0.3.1 preview
+# Malpaco 0.3.1 — web update
 
-This is a playtest candidate; production and the published v0.3.0 archive stay unchanged.
-The exact preview source and URL are recorded on [AI issue #320](https://github.com/diegoami/malpaco/issues/320).
+A browser/offline web update focused on reserve routing and post-release test maintenance.
+The accepted source, review and publication bytes are pinned in the release milestone;
+playtest evidence is linked from [AI issue #320](https://github.com/diegoami/malpaco/issues/320).
 
 ## Changes
 
@@ -24,5 +25,6 @@ old saves and real rendered transfer feedback. Bounded seeded runs retain unfini
 outcomes; they do not establish a win rate or guarantee that every AI game terminates.
 
 This preview has no Android APK or native-storage claim. Balance #283 and native #315
-remain separate work. It is prepared for owner playtesting and independent PR review;
-no reviewer is started automatically and no production deployment is implied.
+remain separate work. A full milestone review precedes tagging/publication;
+no reviewer is started automatically. Broader AI parameter optimization, AI-vs-AI
+experiments and personalities are scoped separately for [0.4](https://github.com/diegoami/malpaco/issues/334).

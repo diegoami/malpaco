@@ -18,3 +18,18 @@ reduces distance by exactly one and uses an existing legal friendly-move pair. T
 96-region case has two equally short exits; stable destination IDs select province_26.
 These are bug reproductions, not win-rate/termination evidence or a replacement for
 the frozen balance pilots. Metadata/search logs are retained in artifacts/T128.
+
+## Complete-game acceptance witnesses
+
+`live-conquest-031.json` is a new legal seed7 human/computer witness generated with
+the unchanged0.3.1 policy (source0db8f8b). Human placements are split into one-army
+actions for the actual UI; capture/transfer amounts are explicit. All530 actions
+are engine-accepted, the human wins by conquest, and human friendly move, capture,
+real AI turns and elimination remain exercised. The browser compares each AI
+choice to this pinned current-policy witness and still checks all saved states.
+
+The original809-action T33 witness is **not** replaced or edited.
+`historical-conquest-compat.json` pins its accepted0.3.0 canonical wire and complete
+key-sorted state hashes, obtained from the retained0.3.0 codec. The compatibility
+test replays it with current AI exports set to throw, protecting recorded history
+independently of future AI decisions.
