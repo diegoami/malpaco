@@ -197,3 +197,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T126](T126.md): fresh start countdown and transient centered turn/phase announcements (#322).
 
 - [T127](T127.md): post-0.3 legacy goldens, pinned starting remainders and speed-preference cleanup (#325/#327/#329).
+
+- [T128](T128.md): legal AI reserve routing across friendly regions, old-save guards and a 0.3.1 playtest (#320).
