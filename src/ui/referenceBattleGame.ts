@@ -26,6 +26,9 @@ import {ProvinceAction} from "./provinceAction";
 import {seatName} from "./palette";
 import {ScoreboardDialog} from "./scoreboard";
 import type {GameOutcome} from "./scoreboard";
+import {ComputerFeedbackController} from './computerFeedback';
+import {paintComputerFeedback} from './computerFeedbackView';
+import {TurnTracker} from './turnTracker';
 import {WorldEventController} from './eventController';
 import {WorldEventView} from './eventView';
 import {connectNativeGame} from "./nativeGameHost";
@@ -99,6 +102,8 @@ export class ReferenceBattleGame {
   private settingsPaused = false;
   private recorded = false;
   private readonly openedUnfinished: boolean;
+  private readonly feedback:ComputerFeedbackController|null;
+  private readonly turnTracker:TurnTracker|null;
   private readonly worldEvents:WorldEventController|null;
   private readonly worldView:WorldEventView|null;
   private readonly nativeHost: NativeGameBinding | null;
@@ -166,6 +171,8 @@ export class ReferenceBattleGame {
       if (this.chrome?.openSurface !== "countries") this.chrome?.open("countries", this.chrome.countries, false);
       else this.chrome.retitle(this.picker.title);
     };
+    this.feedback=automatic&&presentation?.player?new ComputerFeedbackController(this.controller,{schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.mounted&&!this.disposed)this.renderMap();}):null;
+    this.turnTracker=presentation?.player?new TurnTracker():null;
     this.panel = new Panel({
       onAttack: () => { this.controller.singleExchange(); },
       onStartCombat: () => { this.controller.dispatch({ kind: "endReinforcement" }); },
@@ -233,6 +240,7 @@ export class ReferenceBattleGame {
     // T104: your cards sit beside the menu icon.
     if (this.hand) this.chrome.hud.append(this.hand.button);
     if(this.worldView)this.chrome.overlay.append(this.worldView.el);
+    if(this.turnTracker)this.chrome.overlay.append(this.turnTracker.el);
     // The Countries icon always opens on the list.
     this.chrome.countries.addEventListener("click", () => this.picker.showList(), {capture: true});
     // The history is its own card over the map: the menu steps aside for it.
@@ -241,6 +249,7 @@ export class ReferenceBattleGame {
     this.eventLog.dialog.addEventListener("close", () => { const active = document.activeElement; if (!this.disposed && (!active || active === document.body || !active.getClientRects().length)) this.chrome?.focusMenuOpener(); });
     root.replaceChildren(h("section", { class: "board" }, this.mapView.el), this.chrome.overlay, store);
     // Only the corner icons reframe the map; cards and notices float over it (T97).
+    if(this.turnTracker)this.mapView.camera?.avoid(this.turnTracker.el);
     for (const overlay of this.chrome.obstacles) this.mapView.camera?.avoid(overlay);
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
@@ -254,6 +263,7 @@ export class ReferenceBattleGame {
     this.disposed = true;
     this.chrome?.dispose();
     this.mapView.camera?.dispose();
+    this.feedback?.dispose();
     this.worldEvents?.dispose();this.worldView?.dispose();
     this.cardControls.dispose();
     this.cards.dispose();
@@ -307,7 +317,7 @@ export class ReferenceBattleGame {
 
   private renderMap(): void {
     const { state, from, to, running, paused, mode } = this.controller.view;
-    const blocked = this.controller.playbackPaused || this.computerActive() || running || paused || state.pendingCapture !== undefined || state.cards?.pendingDiscard!==undefined || this.controller.cardAcknowledgmentPending || state.phase === "finished" || state.phase === "human-loss";
+    const blocked = this.controller.computerFeedbackPending || this.controller.playbackPaused || this.computerActive() || running || paused || state.pendingCapture !== undefined || state.cards?.pendingDiscard!==undefined || this.controller.cardAcknowledgmentPending || state.phase === "finished" || state.phase === "human-loss";
     const targets = blocked ? [] : mode === "move" ? from ? friendlyTargets(state, from) : friendlySources(state) : from ? attackTargets(state, from) : [];
     const card=this.cards.view;
     const raidTargets=card.phase==='raid-target'?state.map.provinces.filter(p=>state.ownerOf[p.id]!==activePlayer(state)!.id).map(p=>p.id):null;
@@ -331,6 +341,7 @@ export class ReferenceBattleGame {
     // controller refuses selection during automation and a pending move-in.
     this.mapView.el.dataset["inputBlocked"] = String(blocked);
     this.mapView.camera?.refreshControls();
+    if(this.feedback)paintComputerFeedback(this.mapView.el,this.controller.state,this.feedback.frame);
   }
 
   /**
@@ -366,13 +377,15 @@ export class ReferenceBattleGame {
 
   private render(): void {
     const seen = this.controller.view;
+    this.feedback?.update({speed:seen.speed,forward:this.computer?.fastForwarding??false,paused:this.controller.playbackPaused,ack:this.controller.cardAcknowledgmentPending,reduced:window.matchMedia('(prefers-reduced-motion: reduce)').matches});
+    if(this.controller.view!==seen&&this.mounted)return;
     this.cards.update();
     // A step the card update took (a Cards phase with no set passes) has already rendered the
     // newer state; finishing this render would put the older one back (the pool, the notice).
     if (this.controller.view !== seen && this.mounted) return;
-    const beforeWorld=this.controller.view;this.worldEvents?.update(this.controller.cardRewardAcknowledgmentPending);if(this.controller.view!==beforeWorld&&this.mounted)return;
+    const beforeWorld=this.controller.view;this.worldEvents?.update(this.controller.cardRewardAcknowledgmentPending||Boolean(this.feedback?.pending));if(this.controller.view!==beforeWorld&&this.mounted)return;
     const { state, from, to, running, paused, revision, mode } = this.controller.view;
-    const worldPending=this.worldEvents?.view.requiresAck??false;
+    const worldPending=this.worldEvents?.view.requiresAck??false,feedbackPending=Boolean(this.feedback?.pending);
     this.cardControls.render();
     this.hand?.update();
     this.eventLog.update(this.controller.state);
@@ -411,7 +424,7 @@ export class ReferenceBattleGame {
     this.friendly.render(this.controller.view);
     this.victory.render(state, revision);
     if(this.controller.cardAcknowledgmentPending)this.victory.el.hidden=true;
-    const computer = this.computerActive() && !this.controller.cardAcknowledgmentPending;
+    const computer = (this.computerActive()||feedbackPending) && !this.controller.cardAcknowledgmentPending;
     // #267: a computer's turn shows only the speed controls, so your cards window closes.
     if (computer) this.hand?.hide();
     // T103: on the player's own turn, with no card choice waiting.
@@ -436,8 +449,6 @@ export class ReferenceBattleGame {
         });
       } else if (source && mode !== "move" && friendlySources(state).includes(source)) {
         this.provinceAction.show(source, "move", !paused, false, () => {if (this.controller.startFriendlyMove(revision)) this.controller.select(source, null);});
-      } else if (source && mode === "move" && !to) {
-        this.provinceAction.show(source, "move", !paused, true, () => {this.controller.cancelFriendlyMove(revision);});
       } else this.provinceAction.hide();
       // The amount bar of a capture or a move rests beside that country.
       const anchor = state.pendingCapture ? state.pendingCapture.to : mode === "move" && from && to ? to : null;
@@ -457,7 +468,7 @@ export class ReferenceBattleGame {
       for (const el of [this.action, this.cardControls.el, this.phaseActions].flatMap(node => [...node.querySelectorAll<HTMLButtonElement | HTMLInputElement>("button,input")])) el.disabled = true;
       this.action.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; New game remains available." : "Computer turn. Start a new game at any time."));
     }
-    const required = worldPending?null:this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm the Raid" : "Raid · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
+    const required = worldPending||feedbackPending?null:this.controller.cardAcknowledgmentPending ? "Acknowledge card reward" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm the Raid" : "Raid · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
     const mover = activePlayer(state), result = state.result, winner = state.players.find(p => p.id === state.winner);
     const gamePaused = this.controller.playbackPaused;
     const phase = result ? state.phase === "human-loss" ? "Human seats eliminated" : "Game over" : this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase;
@@ -491,6 +502,7 @@ export class ReferenceBattleGame {
     this.help.setObjective(`${this.options.dominationWin ? `Domination: hold ${dominationThreshold(total)} of ${total} countries · you hold ${owned}` : `Total conquest: hold all ${total} countries · you hold ${owned}`}${this.options.roundLimit ? ` · Round ${state.turnNumber} / ${this.options.roundLimit}` : ` · Round ${state.turnNumber}`}`);
     // A human loss names no winner while computers remain, so its badge is neutral (#132). The pool
     // shows while you place armies; a computer's placement shows only its notice (T97).
+    if(this.turnTracker&&!this.refusal)notice=changes&&notice?.action?{title:'Changes since your last turn',action:notice.action,persistent:true}:null;
     const status = {seat: state.phase === "human-loss" ? null : Math.max(0, state.players.indexOf((result ? winner : undefined) ?? mover!)), notice, pool: state.phase === "reinforce" && !result && !computer ? state.reinforcementPool : null, result: !!result};
     // A required choice, or a staged attack pair, brings its card up once.
     const staged = mode !== "move" && state.phase === "attack" && from !== null && to !== null ? `pair:${from}:${to}` : null;
@@ -501,9 +513,9 @@ export class ReferenceBattleGame {
       const key = `raid:${state.history.length}`;
       if (key !== this.raidFolded) {this.raidFolded = key; if (this.chrome?.openSurface === "actions") this.chrome.close(false);}
     }
-    const prompt = worldPending || computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
+    const prompt = worldPending || feedbackPending || computer || gamePaused ? null : raiding ? (raidTarget ? `raid:${raidTarget}` : null) : required ? `required:${required}` : staged;
     // A folded card keeps any pending choice one tap away; a computer seat's own pending choice is never yours (T84).
-    const choice = worldPending || computer ? null : required ?? (staged ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
+    const choice = worldPending || feedbackPending || computer ? null : required ?? (staged ? `Attack · ${this.map.provinces.find(p => p.id === from)?.name} → ${this.map.provinces.find(p => p.id === to)?.name}` : null);
     // Computer turns show no choice (owner, 2026-10-22). T101: while one plays, only the speed
     // controls stay on screen; the menu, camera and Countries icons return on your turn or a pause.
     const restore = computer && !result && this.chrome?.openSurface === "actions" && (document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
@@ -514,7 +526,9 @@ export class ReferenceBattleGame {
     if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
     if (restore) this.playbackPause.focus({preventScroll: true});
     this.placeCard();
-    if(worldPending){this.phaseActions.style.display='none';if(this.chrome?.openSurface==='actions')this.chrome.close(false);}
+    if(worldPending||feedbackPending){this.phaseActions.style.display='none';if(this.chrome?.openSurface==='actions')this.chrome.close(false);}
+    const guide=this.turnTracker?.render(state,{mode:this.controller.view.mode,cardPhase:this.cards.view.phase,paused:gamePaused,worldPending,cardReward:this.controller.cardRewardAcknowledgmentPending,...(this.feedback?.frame?{feedbackSeat:this.feedback.frame.seat,feedbackKind:this.feedback.frame.kind}:{})});
+    this.phaseActions.querySelector('#start-friendly-move-button')?.classList.toggle('guided-command',guide?.suggested==='move');this.phaseActions.querySelector('#end-turn-button')?.classList.toggle('guided-command',guide?.suggested==='end');
     this.worldView?.render(state);
     this.computer?.update();
   }

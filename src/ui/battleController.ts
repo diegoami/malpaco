@@ -63,6 +63,9 @@ export class BattleController {
   private replacementGeneration=0;
   get gameGeneration():number {return this.replacementGeneration;}
   private cardRewardPending = false;
+  private computerFeedback=false;
+  get computerFeedbackPending():boolean {return this.computerFeedback;}
+  setComputerFeedbackPending(value:boolean):void {if(this.disposed||value===this.computerFeedback)return;this.computerFeedback=value;this.cancel();this.publish({running:false,paused:false});}
   private worldEventPending=false;
   setWorldEventPending(value:boolean):void {if(this.disposed||value===this.worldEventPending)return;this.worldEventPending=value;this.cancel();this.publish({running:false,paused:false});}
   get cardRewardAcknowledgmentPending():boolean {return this.cardRewardPending;}
@@ -111,7 +114,7 @@ export class BattleController {
   get view(): BattleView { return this.current; }
 
   private accepts(revision?: number, humanInput = true): boolean {
-    return !this.disposed && (!humanInput || !this.cardAcknowledgmentPending) && (!humanInput || (!this.playbackPaused && this.allowInput(this.state))) && (revision === undefined || revision === this.current.revision);
+    return !this.disposed && (!humanInput || !this.cardAcknowledgmentPending) && (!humanInput || (!this.playbackPaused && !this.computerFeedback && this.allowInput(this.state))) && (revision === undefined || revision === this.current.revision);
   }
 
   private pending(): boolean { return this.state.phase === "capture" || this.state.pendingCapture !== undefined || this.state.cards?.pendingDiscard!==undefined || this.state.cards?.pendingRaid!==undefined; }
@@ -294,7 +297,7 @@ export class BattleController {
 
   /** Automatic seats still use ordinary engine actions, without human selections. */
   dispatchComputer(action: Action, revision?: number): boolean {
-    if (this.cardAcknowledgmentPending || this.playbackPaused || !this.accepts(revision, false) || activePlayer(this.state)?.kind !== "computer" || this.state.phase === "human-loss" || this.state.phase === "finished") return false;
+    if (this.computerFeedback || this.cardAcknowledgmentPending || this.playbackPaused || !this.accepts(revision, false) || activePlayer(this.state)?.kind !== "computer" || this.state.phase === "human-loss" || this.state.phase === "finished") return false;
     const before = this.state, result = apply(before, action);
     if (!result.ok) return false;
     this.cancel(); this.beforeMove = null;
@@ -316,6 +319,7 @@ export class BattleController {
     this.watchExchanges = 0;
     this.cardRewardPending = false;
     this.worldEventPending = false;
+    this.computerFeedback = false;
     this.globallyPaused = false;
     this.explicitResumeRequired = false;
     this.beforeMove = null;

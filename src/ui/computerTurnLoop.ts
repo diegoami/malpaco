@@ -2,12 +2,9 @@ import { activePlayer, computerAction } from "../core";
 import type { GameState } from "../core";
 import type { BattleController, BattleScheduler, BattleSpeed } from "./battleController";
 
-/**
- * The wait before each computer action, by speed; speed only changes waiting, never policy, game
- * RNG, action count or saved history. [designed] T101 (owner, 2026-10-22: "faster"): Normal is
- * 120 ms, so a round of three Normal computers (about 60 actions on the reference seed) takes
- * about 10 s instead of 50 s; Slow keeps the T18 baseline's 350 ms for those who want to watch,
- * and Fast halves Normal.
+/** T115: these are gaps between actions. The player UI holds a separate readable
+ * executed-action beat; non-player/manual adapters keep their existing scheduler.
+ * Speed and feedback never change the policy or consume a rules draw.
  */
 export const COMPUTER_STEP_TIMES: Readonly<Record<BattleSpeed, number>> = { "very-slow": 2000, slow: 350, normal: 120, fast: 60 };
 export const COMPUTER_STEP_TIME = COMPUTER_STEP_TIMES.normal;
@@ -27,17 +24,17 @@ export class ComputerTurnLoop {
   get fastForwarding(): boolean { return this.forwarding; }
   /** Plays the computer seats without their waits until a human seat moves; Pause ends it. */
   fastForward(): void {
-    if (this.disposed || this.forwarding || !this.computerTurn()) return;
+    if(this.disposed||this.forwarding||this.controller.playbackPaused||this.controller.cardAcknowledgmentPending||this.controller.state.players[this.controller.state.currentPlayer]?.kind!=="computer"||this.controller.state.result)return;
     this.forwarding = true; this.cancel(); this.update();
   }
   private computerTurn(): boolean {
     const state = this.controller.state;
-    return !this.controller.playbackPaused && !this.controller.cardAcknowledgmentPending && state.phase !== "finished" && state.phase !== "human-loss" && activePlayer(state)?.kind === "computer";
+    return !this.controller.computerFeedbackPending && !this.controller.playbackPaused && !this.controller.cardAcknowledgmentPending && state.phase !== "finished" && state.phase !== "human-loss" && activePlayer(state)?.kind === "computer";
   }
   update(): void {
     if (this.disposed) return;
-    if (!this.computerTurn()) this.forwarding = false;
-    if (this.controller.playbackPaused || this.controller.cardAcknowledgmentPending) { this.cancel(); return; }
+    if(!this.computerTurn()&&!this.controller.computerFeedbackPending)this.forwarding=false;
+    if(this.controller.computerFeedbackPending||this.controller.playbackPaused||this.controller.cardAcknowledgmentPending) { this.cancel(); return; }
     const {state,speed} = this.controller.view;
     if (this.timer !== null && state === this.queuedState && speed === this.queuedSpeed) return;
     this.cancel();
