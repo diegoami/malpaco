@@ -217,3 +217,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T136](T136.md): bounded finite-budget attack-campaign terminal outcomes and exact probability/loss oracles (#356).
 
 - [T137](T137.md): bounded attack-objective/stop candidate with joint terminal/counterattack scoring (#358).
+
+- [T138](T138.md): full3×3 map/seat development feasibility and paired defender-tie comparison,with tactical candidate fixed (#360).
