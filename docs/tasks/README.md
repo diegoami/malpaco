@@ -225,3 +225,6 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T140](T140.md): isolated defender-tie comparison playtest with its own immutable research save identity (#363).
 
 - [T141](T141.md): owner-authorized sole improved AI,with recorded-history and action-budget compatibility (#364).
+
+- [T142](T142.md): immutable product defender preset,options transport and old-save compatibility (#365).
+- [T143](T143.md): combat-only settings,defender default,Legacy alternative and results context (#366).
