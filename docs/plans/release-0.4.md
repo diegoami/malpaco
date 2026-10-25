@@ -12,8 +12,9 @@ grounds the tactical work; labels and PR checks hold status.
    for specified one/two-country paths; later response evaluation uses this public model.
    The [helper semantics](computer-evaluation.md) distinguish public facts, conditional
    probability intervals and explicit unknown outcomes from strategy claims.
-3. Shared candidate evaluation for placement/capture, useful partial/lateral movement and
-   future fronts, then attack/stop decisions: #341. Freeze each bounded contract before code.
+3. [T133](../tasks/T133.md), #350: experimental reinforcement/capture allocation;
+   useful partial/lateral movement and future fronts, then attack/stop decisions follow
+   under #341. Freeze each bounded contract before code; arena evaluation precedes adoption.
 4. [T132](../tasks/T132.md), #348: reproducible public-policy arena and frozen v0.3.1 comparator;
    paired initial states, rotated
    seats/first players, separate development/evaluation seeds, exact policy/rules/source IDs,
