@@ -205,3 +205,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T130](T130.md): bounded integer capture-risk intervals for current and future fronts (#345), after T129.
 
 - [T131](T131.md): independent four-game baseline feasibility pilot for defense-favoring combat (#346/#340).
+
+- [T132](T132.md): public-policy arena, frozen v0.3.1 comparator and deterministic research replay (#348).

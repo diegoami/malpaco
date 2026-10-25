@@ -12,7 +12,8 @@ grounds the tactical work; labels and PR checks hold status.
    for specified one/two-country paths; later response evaluation uses this public model.
 3. Shared candidate evaluation for placement/capture, useful partial/lateral movement and
    future fronts, then attack/stop decisions: #341. Freeze each bounded contract before code.
-4. Reproducible multi-opponent arena: frozen v0.3.1 comparator, paired initial states, rotated
+4. [T132](../tasks/T132.md), #348: reproducible public-policy arena and frozen v0.3.1 comparator;
+   paired initial states, rotated
    seats/first players, separate development/evaluation seeds, exact policy/rules/source IDs,
    explicit budgets, deterministic histories and all scheduled outcomes. Tactical wins alone
    do not establish strength. Coordinate #92/#93/#95; their old contracts require new preflight.
