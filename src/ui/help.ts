@@ -115,7 +115,7 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["Capturing", "Choose how many armies move in with Min, −, + or Max, then Confirm. Min and Max select the legal bounds without moving troops. Until Confirm the two counts are dashed."],
   ["Cards", "Your cards are behind the CARDS button at top left, with their number. Army cards are labelled5,8 or15 armies; draw notices disappear after three seconds of unpaused play. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
   ["Notices", "The turn tracker shows the active colour, public counts and your next step. Your turn begins when its arrow reaches your colour."],
-  ["Computer turns", "Watch the executed placements, attacks and movements at Normal pace. Settings and Help pause play while open. After an interruption, use Resume in the turn tracker."],
+  ["Computer turns", "Computers use the improved AI for attacks, defense and army transfers, including in resumed games. Watch their moves at Normal pace. Settings and Help pause play while open. After an interruption, use Resume in the turn tracker."],
   ["Seats", "You play one seat; the computers are named by their colours: Orange, Green and Purple."],
   ["Kept games", "Your game is kept in this browser: a reload, or reopening the browser, resumes it, paused if you left it paused. Each game counts once on the scoreboard, when it ends."],
   ["Map", "Pinch or scroll to zoom, drag to pan, Fit to see everything. Cards float over the map and move aside from the countries in play. A tap that touches two countries asks which one."],

@@ -1,3 +1,7 @@
+> Owner adoption: T141 makes the combined tactical policy the sole production AI.
+> Historical study sources, component profiles and measurements below stay fixed.
+> Further quality work remains on #362; there is no player-facing legacy AI choice.
+
 # Public position and capture-risk helpers
 
 `computerView(state)` supplies copied public facts and the mover's own hand. The

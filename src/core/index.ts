@@ -104,3 +104,4 @@ export {estimateAttackCampaign,CAMPAIGN_SCALE,CAMPAIGN_MAX_CELLS} from './comput
 export type {AttackCampaign,CampaignTerminal} from './computer-campaign';
 export {planOffensive,OFFENSIVE_PARAMETERS} from './computer-offensive';
 export type {OffensiveDecision} from './computer-offensive';
+export {decideTacticalAction} from './computer';

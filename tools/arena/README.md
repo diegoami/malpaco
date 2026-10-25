@@ -1,17 +1,17 @@
 # Public-policy research arena
 
-This is host-only research tooling. It changes no player-facing AI, rules, save
-factory or default. The registry contains the frozen `baseline-031` comparator
+This is host-only research tooling. T141 separately adopts the combined tactical
+policy in the application; this registry keeps its frozen research controls. The registry contains the frozen `baseline-031` comparator
 and two deliberately simple diagnostic controls, `hold-v1` and `largest-gap-v1`.
 They are not personalities or ranked difficulty levels.
 
 The opt-in `allocation-v1` experiment uses T133's reinforcement/capture planner,
 with its named parameters recorded in the policy descriptor. Other phases and
-explicit fallback use the frozen baseline. It does not route into the application;
+explicit fallback use the frozen baseline. Its planner also participates in the adopted combined AI;
 see [candidate semantics](../../docs/plans/allocation-candidate.md).
 
 The opt-in `movement-v1` experiment adds partial/lateral/future-front movement
-to allocation-v1, retaining frozen attacks/cards. It remains arena-only; see
+to allocation-v1, retaining frozen attacks/cards. The component profile remains a research control; see
 [movement semantics](../../docs/plans/movement-candidate.md).
 
 The opt-in `tactical-v1` experiment adds finite-budget campaign objectives and

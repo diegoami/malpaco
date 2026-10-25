@@ -97,11 +97,11 @@ describe('independent computer card policy acceptance',()=>{
   const human={...s,players:s.players.map((x,i)=>i===s.currentPlayer?{...x,kind:'human' as const}:x)};
   expect(p.computerView(human)).toEqual(v);expect(p.decideComputerAction({...v,playerId:null})).toBeNull();
  });
- it('preserves the historical ordinary policy and legal exchange budget',async()=>{
+ it('preserves the historical script component and its legal exchange budget',async()=>{
   const p=await policy(),options={...c.defaultOptions(),seed:1994,dominationWin:false},created=c.createGame(options);if(!created.ok)throw Error(created.errors.join(';'));
   let s=created.state,compared=0;
   for(let n=0;n<240&&s.phase!=='finished'&&s.phase!=='human-loss';n++){
-   const before=structuredClone(s),expected=historicalComputerAction(s),actual=p.computerAction(s);expect(actual).toEqual(expected);expect(s).toEqual(before);if(actual)compared++;
+   const before=structuredClone(s),expected=historicalComputerAction(s),actual=c.activePlayer(s)?.kind==='computer'?p.decideComputerAction(p.computerView(s)):null;expect(actual).toEqual(expected);expect(s).toEqual(before);if(actual)compared++;
    s=step(s,actual??passive(s));
   }
   expect(compared).toBeGreaterThan(20);

@@ -1,3 +1,7 @@
+> Owner adoption: T141 makes the combined tactical policy the sole production AI.
+> Historical study sources, component profiles and measurements below stay fixed.
+> Further quality work remains on #362; there is no player-facing legacy AI choice.
+
 # Experimental allocation/capture candidate
 
 T133/#350 evaluates `planAllocation(view)`. The application continues to use its

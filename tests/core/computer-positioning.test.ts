@@ -35,7 +35,7 @@ test('lateral transfer splits a stack, protects both ends and hands off exactly 
 test('retains reserve behind two future fronts instead of draining it into one',()=>{
  const s=state({r:10,b:1,c:1,eB:8,eC:8},[['r','b'],['r','c'],['b','eB'],['c','eC']],['eB','eC'],[
   {id:'home',bonus:8,provinces:['r']},{id:'west',bonus:0,provinces:['b','eB']},{id:'east',bonus:0,provinces:['c','eC']},
- ]),baseline=core.computerAction(s)!;expect(baseline.kind).toBe('friendlyMove');
+ ]),baseline=core.decideComputerAction(core.computerView(s))!;expect(baseline.kind).toBe('friendlyMove');
  const result=step(s,chosen(s));expect(result.armies.r).toBeGreaterThan(1);
 });
 test('keeps a valuable exposed source instead of stripping it for attack readiness',()=>{
@@ -85,8 +85,8 @@ test('pair, amount and work enumeration are bounded and canonical',()=>{
  expect(p.candidates).toBeLessThanOrEqual(48);expect(p.modelCells).toBeLessThanOrEqual(524288);
  expect(plan({...v,movePairs:[...v.movePairs].reverse()})).toEqual(p);
 });
-test('arena candidate opts in while released policy and allocation-v1 remain unchanged',async()=>{
+test('arena controls stay fixed while the host adopts tactical decisions',async()=>{
  const {decideArenaPolicy,baseline031,POLICY_DESCRIPTORS}=await import('../../tools/arena/policies'),s=lateral(),v=core.computerView(s);
  expect(POLICY_DESCRIPTORS).toHaveProperty('movement-v1');expect(decideArenaPolicy('movement-v1',v)).toEqual(chosen(s));
- expect(decideArenaPolicy('allocation-v1',v)).toEqual(baseline031(v));expect(core.computerAction(s)).toEqual(core.decideComputerAction(v));
+ expect(decideArenaPolicy('allocation-v1',v)).toEqual(baseline031(v));expect(core.computerAction(s)).toEqual(core.decideTacticalAction(v));
 });

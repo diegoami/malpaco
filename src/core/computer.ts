@@ -2,6 +2,10 @@ import { activePlayer } from './state';
 import { classifyCardSet } from './cards';
 import { computerView } from './computer-view';
 import { reserveTransfer } from './computer-movement';
+import {planAllocation} from './computer-allocation';
+import {planOffensive} from './computer-offensive';
+import {planMovement} from './computer-positioning';
+import type {ComputerStrategicView} from './computer-view';
 import type { ComputerDecisionView } from './computer-view';
 import type { Action,GameState } from './types';
 
@@ -9,7 +13,7 @@ import type { Action,GameState } from './types';
 export function computerAction(state:GameState):Action|null {
  const mover=activePlayer(state);
  if(!mover||mover.kind!=='computer'||mover.eliminated||state.phase==='finished'||state.phase==='human-loss')return null;
- return decideComputerAction(computerView(state));
+ return decideTacticalAction(computerView(state));
 }
 /** Approved scripted baseline computer108/111/112, pinned ae298e37 computer.md.
  * Army/Surge gain first, Raid last, oldest discard; no stream draws or strength
@@ -47,4 +51,13 @@ export function decideComputerAction(view:ComputerDecisionView):Action|null {
   if(choices[0])return {...choices[0]};
  }
  return reserveTransfer(view)??{kind:'endTurn'};
+}
+
+/** T141 owner adoption: one improved policy for future moves. Recorded history
+ * replays through apply,never this chooser. The retained script supplies cards
+ * and explicit unsupported/work-budget fallback;it is not a player option. */
+export function decideTacticalAction(view:ComputerStrategicView):Action|null {
+ const action=planAllocation(view).action??decideComputerAction(view);
+ const offensive=planOffensive(view);if(offensive.action)return offensive.action;
+ return action?.kind==='friendlyMove'||action?.kind==='endTurn'?planMovement(view).action??action:action;
 }
