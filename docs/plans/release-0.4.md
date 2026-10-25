@@ -26,7 +26,7 @@ grounds the tactical work; labels and PR checks hold status.
    investigate justified economy/card/movement interactions afterwards. Coordinate #299 and
    preserve #295's original unfinished cases. Initial model results do not establish fun or
    inevitable stalemates.
-6. Owner playtesting and adoption decisions; independent milestone review before release.
+6. [T139](../tasks/T139.md), #361 and [T140](../tasks/T140.md), #363 provide isolated current-rule and defender-tie playtests with preserved old-save history/rules. [Coverage/opening follow-up #362](https://github.com/diegoami/malpaco/issues/362) informs the next bounded development contract before a frozen held-out evaluation. Owner playtesting and adoption decisions, then independent milestone review before release.
 
 ## Boundaries
 
