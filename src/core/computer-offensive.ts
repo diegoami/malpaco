@@ -26,6 +26,7 @@ export function planOffensive(view:ComputerStrategicView):OffensiveDecision {
  let winningChance:OffensiveDecision['winningChance']=null,utility:OffensiveDecision['utility']=null;
  const result=(reason:OffensiveDecision['reason'],action:Action|null=null):OffensiveDecision=>({action,reason,modelCells,positions,pairs,winningChance,utility});
  if(!me||view.phase!=='attack'||view.pendingRaid||view.pendingDiscard||view.pendingCapture||view.attacksThisTurn>=view.attackBudget)return result('phase');
+ if(view.cardStage&&[view.drawCount,view.discardCount].some(n=>!Number.isSafeInteger(n)||n<0))return result('unsupported');
  const player=me,byId=new Map(view.countries.map(c=>[c.id,c]));
  const attacks=view.attackPairs.filter(a=>(byId.get(a.from)?.armies??0)>(byId.get(a.to)?.armies??0))
   .sort((a,b)=>byId.get(a.to)!.armies-byId.get(b.to)!.armies||byId.get(b.from)!.armies-byId.get(a.from)!.armies||cmp(a.from,b.from)||cmp(a.to,b.to));
@@ -94,7 +95,7 @@ export function planOffensive(view:ComputerStrategicView):OffensiveDecision {
     changed=changed.map(c=>({...c,owner:c.id===a.to?player:c.owner,armies:c.id===a.from?c.armies-amount:c.id===a.to?amount:c.armies}));
    }
    const terminalValue=value(changed);if(terminalValue===null)return result(failed!);
-   const bonus=terminal.captured?Number(!!view.cardStage&&!view.strategy.capturedThisTurn)*p.firstCardValue+Number(ownerCount(byId.get(a.to)!.owner)===1)*p.eliminationValue:0;
+   const bonus=terminal.captured?Number(!!view.cardStage&&!view.strategy.capturedThisTurn&&(view.drawCount>0||view.discardCount>0))*p.firstCardValue+Number(ownerCount(byId.get(a.to)!.owner)===1)*p.eliminationValue:0;
    const delta=terminalValue-stopValue+(bonus+terminal.enemyLosses*p.enemyCasualtyValue-terminal.ownLosses*p.ownCasualtyValue)*S;
    const lo=delta*(delta>=0?terminal.lower:terminal.upper),hi=delta*(delta>=0?terminal.upper:terminal.lower);
    if(![delta,lo,hi,lower+lo,upper+hi].every(Number.isSafeInteger))return result('unsupported');lower+=lo;upper+=hi;

@@ -38,7 +38,8 @@ test('values an island-completing objective above the larger army gap',()=>{
 test('protects a valuable source by stopping and accounts for first-card reward',()=>{
  const s=defended(),v={...core.computerView(s),attackBudget:1};expect(core.decideComputerAction(v)).toMatchObject({kind:'attack',to:'weak'});
  expect(plan(v).action).toEqual({kind:'endTurn'});
- const cards={...v,cardStage:'raid-v1' as const};expect(plan(cards).action).toEqual({kind:'attack',from:'f',to:'weak'});
+ const cards={...v,cardStage:'raid-v1' as const,drawCount:1};expect(plan(cards).action).toEqual({kind:'attack',from:'f',to:'weak'});
+ expect(plan({...cards,drawCount:0,discardCount:0}).action).toEqual({kind:'endTurn'});
  expect(plan({...cards,strategy:{...cards.strategy,capturedThisTurn:true}}).action).toEqual({kind:'endTurn'});
 });
 test('stopping can move reserves forward even while a frozen attack remains available',()=>{

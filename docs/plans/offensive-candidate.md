@@ -23,7 +23,7 @@ readiness work; allocation-v1 and movement-v1 defaults remain unchanged.
 
 [Designed] utility is one unit per owned country, two turns of own income, one per
 enemy casualty, minus one per own casualty, two for the first capture's enabled
-card reward, and four for eliminating a seat. Subtract the largest weighted
+card reward when public draw/discard supply is nonempty, and four for eliminating a seat. Subtract the largest weighted
 conditional exposure above50%; never sum alternative opponent tactics. This is a
 proxy for retained position, not a calibrated expectation of surviving territory,
 card value or game victory. It ignores combined attacks, hidden cards, handoff
