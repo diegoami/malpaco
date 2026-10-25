@@ -28,6 +28,22 @@ grounds the tactical work; labels and PR checks hold status.
    inevitable stalemates.
 6. [T139](../tasks/T139.md), #361 and [T140](../tasks/T140.md), #363 provide isolated current-rule and defender-tie playtests with preserved old-save history/rules. [Coverage/opening follow-up #362](https://github.com/diegoami/malpaco/issues/362) informs the next bounded development contract before a frozen held-out evaluation. Owner playtesting and adoption decisions, then independent milestone review before release.
 
+## Adopted product behavior
+
+[T141](../tasks/T141.md), #364 adopts the sole improved computer policy for future
+moves, including resumed games. [T142](../tasks/T142.md), #365 gives defender-winning
+ties a distinct immutable product identity and strict save compatibility.
+[T143](../tasks/T143.md), #366 adds the combat-only setting: **Defender wins ties**
+(default for new games) or **Legacy (reroll ties)**. Both use the improved AI.
+
+The setting applies to new games. Kept matches retain their original combat rules
+and exact recorded actions; Help reports the running game's rule. New results
+carry rules metadata and can be filtered by variant. Existing score totals, rows
+and deduplication IDs survive, with unclassified history shown as Earlier games.
+This owner adoption does not establish universal strength or settle #362's remaining
+coverage/opening concerns. The [adoption checkpoint](https://github.com/diegoami/malpaco/issues/334#issuecomment-6402111596)
+holds exact PR heads, CI and proof receipts; live GitHub checks remain authoritative.
+
 ## Boundaries
 
 The owner chose tactical AI and ruleset research for 0.4, with personalities deferred
