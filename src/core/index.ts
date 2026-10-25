@@ -96,3 +96,5 @@ export {evaluateComputerPosition} from './computer-position';
 export type {ComputerPosition,CountryPosition,SeatPosition,IslandPosition,AdjacentOpponent} from './computer-position';
 export {estimateCapturePath,CAPTURE_RISK_SCALE,CAPTURE_RISK_MAX_CELLS} from './computer-risk';
 export type {CaptureRisk} from './computer-risk';
+export {planAllocation,ALLOCATION_PARAMETERS} from './computer-allocation';
+export type {AllocationDecision} from './computer-allocation';
