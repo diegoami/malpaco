@@ -60,6 +60,9 @@ opponent policy identities, private enemy cards or streams to a policy.
 
 The runner retains the complete schedule before play, source/config/policy/bundle
 hashes, initial states, accepted action histories and final-state/history hashes.
+Policy fingerprints include the full declared source context, so candidate helpers
+outside the registry are covered; the frozen comparator's original module digest
+separately identifies its immutable decision logic.
 Every scheduled refusal, exception, illegal attempt and unfinished outcome remains
 in the outcome file. Illegal attempts are separate from accepted replay histories.
 Accepted prefixes replay exactly even after a cutoff or policy error. Repeats run

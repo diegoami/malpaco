@@ -25,12 +25,16 @@ weights the excess by country importance and sorts the results from worst down.
 That profile is a robust preference over alternatives, not total expected loss;
 it does not add mutually exclusive tactics or model an opponent's whole turn.
 
-Candidate ranking first prefers the highest single-capture probability of winning
+Candidate ranking first prefers the highest conditional single-pair probability of winning
 at turn end, then lexicographically minimizes the ordered threat-excess profile,
 then maximizes the best one-capture offensive readiness (country gain plus weighted
 own income gain/enemy income denial). Baseline choice wins ties. This short horizon
-uses the existing remaining attack budget; with no exchanges left it invents no
-immediate winning/offensive opportunity. It
+uses the existing remaining attack budget and strict-advantage continuation gate
+for its own duel opportunities. A loss-limited integer model preserves the original
+army advantage and encloses success probabilities with outward rounding. It excludes
+pairs the script cannot start and captures needing more exchanges than remain.
+This conditional pair model does not predict which pair the fallback script will
+actually select or its later switches between pairs. It
 can miss multi-capture wins, partial damage, attacks from several stacks and later
 card/event effects. Defensive caution can reduce momentum or prolong games.
 
@@ -45,6 +49,9 @@ The model cache is per decision. Unsupported, unsafe or over-budget assessment
 returns explicit fallback; an unknown threat is never scored as zero. Only public
 country/combat context is passed to the counterfactual risk helper. No stream is
 read or drawn, and no persistent planner state is added to saves.
+
+The result's `winningChance` is the selected full candidate's conditional interval,
+not a whole-turn forecast. It is null when no supported complete assessment exists.
 
 ## Evidence before adoption
 

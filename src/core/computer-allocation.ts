@@ -1,7 +1,8 @@
 import type {Action} from './types';
 import type {ComputerCountry,ComputerStrategicView} from './computer-view';
 import {evaluateComputerPosition} from './computer-position';
-import {estimateCapturePath} from './computer-risk';
+import {estimateCapturePath,CAPTURE_RISK_SCALE} from './computer-risk';
+import {DIE_SIDES} from './combat';
 import type {CaptureRisk} from './computer-risk';
 
 /** [designed] T133/#350, hypotheses from #339, not game rules or tuned weights.
@@ -12,10 +13,11 @@ export const ALLOCATION_PARAMETERS=Object.freeze({riskTolerance:500_000,incomeHo
 export interface AllocationDecision {
  readonly action:Action|null;readonly modelCells:number;readonly candidates:number;
  readonly reason:'candidate'|'baseline'|'phase'|'unsupported'|'budget';
+ readonly winningChance:{readonly lower:number;readonly upper:number;readonly scale:number}|null;
 }
 type Position=Pick<ComputerStrategicView,'countries'|'strategy'>;
 type Bound=Extract<CaptureRisk,{kind:'bounded'}>;
-interface Score {winning:number;offense:number;risks:number[];byId:Map<string,number>}
+interface Score {winning:number;winningUpper:number;offense:number;risks:number[];byId:Map<string,number>}
 interface Plan {key:string;allocations:readonly (readonly[string,number])[];amount:number|null}
 const cmp=(a:string,b:string)=>a<b?-1:a>b?1:0;
 
@@ -26,13 +28,15 @@ const cmp=(a:string,b:string)=>a<b?-1:a>b?1:0;
 export function planAllocation(view:ComputerStrategicView):AllocationDecision {
  const p=ALLOCATION_PARAMETERS,mover=view.playerId,combat=view.strategy.combat;
  let modelCells=0,candidates=0,stopped:AllocationDecision['reason']|null=null;
- const result=(reason:AllocationDecision['reason'],action:Action|null=null):AllocationDecision=>({action,reason,modelCells,candidates});
+ let winningChance:AllocationDecision['winningChance']=null;
+ const result=(reason:AllocationDecision['reason'],action:Action|null=null):AllocationDecision=>({action,reason,modelCells,candidates,winningChance});
  if(!mover||view.pendingRaid||view.pendingDiscard||view.phase!=='reinforce'&&view.phase!=='capture'||view.phase==='reinforce'&&view.reinforcementPool===0)return result('phase');
  if(view.pendingCapture&&view.phase!=='capture')return result('phase');
  const player=mover;
  if(view.countries.length>p.maxCountries||combat.attackRule!=='classic'||combat.attackerDice.max!==1||combat.defenderDice.max!==1||combat.defenderDice.minus!==0
   ||combat.capture!=='choice'&&combat.capture!=='all'||!Number.isSafeInteger(view.strategy.reinforcementDivisor)||view.strategy.reinforcementDivisor<1
   ||!Number.isSafeInteger(combat.minArmiesToAttack)||combat.minArmiesToAttack<2||!Number.isSafeInteger(combat.attackerDice.minus)||combat.attackerDice.minus<0||combat.minArmiesToAttack-combat.attackerDice.minus<1
+  ||!['reroll','attacker','defender'].includes(combat.ties)||!Number.isSafeInteger(view.attackBudget)||view.attackBudget<0||!Number.isSafeInteger(view.attacksThisTurn)||view.attacksThisTurn<0
   ||view.countries.some(c=>!Number.isSafeInteger(c.armies)||c.armies<1)||view.strategy.islands.some(i=>!Number.isSafeInteger(i.bonus)||i.bonus<0))return result('unsupported');
  const countries=[...view.countries].sort((a,b)=>cmp(a.id,b.id)),byId=new Map(countries.map(c=>[c.id,c]));
  const owned=countries.filter(c=>c.owner===player);
@@ -57,6 +61,12 @@ export function planAllocation(view:ComputerStrategicView):AllocationDecision {
   {source:source.id,targets:[first.id]},...neighbors(first).filter(c=>c.owner===player&&c.id!==first.id).map(second=>({source:source.id,targets:[first.id,second.id]})),
  ]));
  const cache=new Map<string,Bound>();
+ const remaining=Math.max(0,view.attackBudget-view.attacksThisTurn);
+ let wins=0,losses=0;
+ for(let a=1;a<=DIE_SIDES;a++)for(let d=1;d<=DIE_SIDES;d++){
+  if(a>d||a===d&&combat.ties==='attacker')wins++;else if(a<d||combat.ties!=='reroll')losses++;
+ }
+ const denominator=wins+losses;
  function risk(position:Position,from:string,targets:readonly string[],extra=0):Bound|null {
   if(stopped)return null;
   const cs=new Map(position.countries.map(c=>[c.id,c])),a=cs.get(from)!.armies+extra,ds=targets.map(id=>cs.get(id)!.armies),sum=ds.reduce((n,d)=>n+d,0);
@@ -67,6 +77,30 @@ export function planAllocation(view:ComputerStrategicView):AllocationDecision {
   if(r.kind==='unknown'){stopped=r.reason==='budget'?'budget':'unsupported';return null;}
   modelCells+=r.cells;cache.set(key,r);return r;
  }
+ /** A specified own pair follows the retained script's strict-advantage stop.
+  * Success needs D wins and at most remaining-D losses; use original armies
+  * for the gate rather than inventing a smaller starting advantage.
+  */
+ function ownRisk(a:number,d:number):Bound|null {
+  const key=JSON.stringify(['own',a,d,remaining]),old=cache.get(key);if(old)return old;
+  const zero:Bound={kind:'bounded',lower:0,upper:0,scale:CAPTURE_RISK_SCALE,cells:0};
+  if(a<=d||a<combat.minArmiesToAttack||remaining<d){cache.set(key,zero);return zero;}
+  const limit=Math.min(a-combat.minArmiesToAttack,remaining-d),work=d*(limit+1);
+  if(!Number.isSafeInteger(work)||work>p.modelCellBudget-modelCells){stopped='budget';return null;}
+  let lower:number[]=Array.from({length:limit+2},(_,lost)=>lost<=limit?CAPTURE_RISK_SCALE:0),upper:number[]=[...lower];
+  for(let defenders=1;defenders<=d;defenders++){
+   const rowLower:number[]=Array(limit+2).fill(0),rowUpper:number[]=Array(limit+2).fill(0);
+   for(let lost=limit;lost>=0;lost--){
+    if(a-lost>defenders&&a-lost>=combat.minArmiesToAttack){
+     rowLower[lost]=Math.floor((wins*lower[lost]!+losses*rowLower[lost+1]!)/denominator);
+     rowUpper[lost]=Math.floor((wins*upper[lost]!+losses*rowUpper[lost+1]!+denominator-1)/denominator);
+    }
+   }
+   lower=rowLower;upper=rowUpper;
+  }
+  const r:Bound={kind:'bounded',lower:lower[0]!,upper:upper[0]!,scale:CAPTURE_RISK_SCALE,cells:work};
+  modelCells+=work;cache.set(key,r);return r;
+ }
  function assess(position:Position):Score {
   candidates++;
   const cs=new Map(position.countries.map(c=>[c.id,c])),byRisk=new Map(owned.map(c=>[c.id,0]));
@@ -76,19 +110,19 @@ export function planAllocation(view:ComputerStrategicView):AllocationDecision {
    if(!Number.isSafeInteger(value)){stopped='unsupported';break;}
    byRisk.set(target,Math.max(byRisk.get(target)!,value));
   }
-  let winning=0,offense=0;
+  let winning=0,winningUpper=0,offense=0;
   if(!stopped&&view.attacksThisTurn<view.attackBudget)for(const country of owned){
    const source=cs.get(country.id)!;if(source.armies<combat.minArmiesToAttack)continue;
    for(const enemy of neighbors(country).filter(c=>c.owner!==player)){
-    const r=risk(position,source.id,[enemy.id]);if(!r)break;
+    const r=ownRisk(source.armies,enemy.armies);if(!r)break;
     const gain=1+p.incomeHorizon*((income(player,enemy.id,player)-ownIncome)+(enemyIncome.get(enemy.owner)!-income(enemy.owner,enemy.id,player)));
     const value=r.lower*gain;if(!Number.isSafeInteger(gain)||!Number.isSafeInteger(value)){stopped='unsupported';break;}
     offense=Math.max(offense,value);
-    if(owned.length+1===countries.length||view.strategy.dominationTarget!==null&&owned.length+1>=view.strategy.dominationTarget)winning=Math.max(winning,r.lower);
+    if(owned.length+1===countries.length||view.strategy.dominationTarget!==null&&owned.length+1>=view.strategy.dominationTarget){winning=Math.max(winning,r.lower);winningUpper=Math.max(winningUpper,r.upper);}
    }
    if(stopped)break;
   }
-  return {winning,offense,risks:[...byRisk.values()].sort((a,b)=>b-a),byId:byRisk};
+  return {winning,winningUpper,offense,risks:[...byRisk.values()].sort((a,b)=>b-a),byId:byRisk};
  }
  function better(a:Score,b:Score){
   if(a.winning!==b.winning)return a.winning>b.winning;
@@ -135,6 +169,7 @@ export function planAllocation(view:ComputerStrategicView):AllocationDecision {
   const score=assess({countries:changed,strategy:view.strategy});if(stopped)return result(stopped);
   if(bestScore===null||better(score,bestScore)){best=candidate;bestScore=score;}
  }
+ if(bestScore)winningChance={lower:bestScore.winning,upper:bestScore.winningUpper,scale:CAPTURE_RISK_SCALE};
  if(!best||best.key===plans[0]!.key)return result('baseline');
  if(best.amount!==null)return result('candidate',{kind:'captureMove',amount:best.amount});
  const first=best.allocations[0]!;return result('candidate',{kind:'reinforce',province:first[0],amount:first[1]});

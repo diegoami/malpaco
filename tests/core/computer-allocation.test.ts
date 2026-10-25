@@ -46,7 +46,10 @@ test('reinforcement protects a valuable island entrance instead of the largest u
  expect(upper(result,'f','a')).toBeLessThan(upper(baseline,'f','a'));
 });
 test('an immediate one-capture win can correctly justify concentrated placement',()=>{
- const s=state({a:2,b:1,e:3},[['a','b'],['a','e'],['b','e']],['e']);s.reinforcementPool=4;
+ // Eight exchanges leave room for the larger army's casualty advantage. A
+ // three-country board would cap the duel at three exchanges and reward
+ // perfect rolls equally for several allocations; that is not this case.
+ const s=state({a:2,b:1,c:1,d:1,f:1,e:3,g:100,h:100},[['a','b'],['b','c'],['c','d'],['d','f'],['a','e'],['b','e'],['e','g'],['g','h']],['e','g','h']);s.reinforcementPool=4;
  const result=place(s),baseline=step(s,core.computerAction(s)!);
  expect(result.armies).toEqual(baseline.armies);expect(result.armies.a).toBe(6);expect(result.armies.b).toBe(1);
 });
@@ -64,9 +67,36 @@ test('maximum capture remains correct for a safe source and an immediate winning
 test('exhausted attack budget cannot justify draining a valuable source for a phantom immediate win',()=>{
  const s=protectedSource();s.ownerOf.z='own';
  const view=core.computerView(s);expect(Object.values(s.ownerOf).filter(x=>x==='own')).toHaveLength(5);expect(view.strategy.dominationTarget).toBe(6);
- const normal=plan(view),ordinary=step(s,normal.action??core.computerAction(s)!);expect(ordinary.armies.target).toBe(9);
- const limited=plan({...view,attacksThisTurn:view.attackBudget});expect(limited.action?.kind).toBe('captureMove');
- const protectedState=step(s,limited.action!);expect(protectedState.armies.source).toBeGreaterThan(1);
+ const normal=plan(view),ordinary=step(s,normal.action??core.computerAction(s)!);expect(ordinary.armies.target).toBeGreaterThan(1);
+ // Four wins within seven exchanges have probability 1/2; surplus beyond
+ // that loss budget can remain at the source without reducing this feature.
+ expect(normal.winningChance!.lower).toBeLessThanOrEqual(500000);expect(normal.winningChance!.upper).toBeGreaterThanOrEqual(500000);
+ for(const remaining of [0,1,2,3]){
+  const limited=plan({...view,attacksThisTurn:view.attackBudget-remaining});expect(limited.action?.kind).toBe('captureMove');
+  const protectedState=step(s,limited.action!);expect(protectedState.armies.source).toBeGreaterThan(ordinary.armies.source!);
+  expect(limited.winningChance).toMatchObject({lower:0,upper:0});
+ }
+});
+test('own winning-opportunity bounds contain exact gated/remaining-budget duel oracles',()=>{
+ type Q=readonly[bigint,bigint];
+ const gcd=(a:bigint,b:bigint):bigint=>b?gcd(b,a%b):a;
+ const fraction=(n:bigint,d:bigint):Q=>{const g=gcd(n,d);return [n/g,d/g];};
+ const add=(a:Q,b:Q)=>fraction(a[0]*b[1]+b[0]*a[1],a[1]*b[1]);
+ const multiply=(a:Q,b:Q)=>fraction(a[0]*b[0],a[1]*b[1]);
+ for(const ties of ['reroll','defender','attacker'] as const)for(let a=2;a<=6;a++)for(let d=1;d<=3;d++)for(let remaining=0;remaining<=5;remaining++){
+  const p:Q=ties==='reroll'?[1n,2n]:ties==='defender'?[5n,12n]:[7n,12n],q:Q=[p[1]-p[0],p[1]],memo=new Map<string,Q>();
+  function oracle(army:number,defenders:number,left:number):Q {
+   if(defenders===0)return [1n,1n];if(left===0||army<=defenders||army<2)return [0n,1n];
+   const key=`${army}/${defenders}/${left}`,cached=memo.get(key);if(cached)return cached;
+   const value=add(multiply(p,oracle(army,defenders-1,left-1)),multiply(q,oracle(army-1,defenders,left-1)));memo.set(key,value);return value;
+  }
+  const initial=state({source:a-1,refuge:1,e:d},[['source','refuge'],['source','e']],['e']);initial.reinforcementPool=1;
+  const s={...initial,rules:{...initial.rules,combat:{...initial.rules.combat,ties}}},view={...core.computerView(s),attackBudget:remaining,attacksThisTurn:0};
+  const choice=plan(view),after=step(s,choice.action??core.decideComputerAction(view)!);expect(after.armies.source).toBe(a);
+  expect(choice.winningChance).not.toBeNull();const chance=choice.winningChance!,exact=oracle(a,d,remaining);
+  expect(BigInt(chance.lower)*exact[1]).toBeLessThanOrEqual(exact[0]*BigInt(chance.scale));
+  expect(BigInt(chance.upper)*exact[1]).toBeGreaterThanOrEqual(exact[0]*BigInt(chance.scale));
+ }
 });
 for(const ties of ['reroll','defender'] as const)test(`legal balanced capture split under ${ties} ties`,()=>{
  const initial=state({source:9,target:1,eA:5,eB:5,remote:100},[['source','target'],['source','eA'],['target','eB'],['eA','remote'],['eB','remote']],['eA','eB','remote']);

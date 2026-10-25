@@ -40,7 +40,7 @@ await writeFile(join(out,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
 const run=spawnSync(process.execPath,[bundle,JSON.stringify({config,out})],{cwd:root,stdio:'inherit'});
 manifest.exitCode=run.status;
 try{const descriptors=JSON.parse(await readFile(join(out,'policies.json'),'utf8'));
- manifest.policyHashes=Object.fromEntries(Object.entries(descriptors).map(([id,descriptor])=>[id,hash(JSON.stringify({id,descriptor,sources:manifest.policySourceHashes}))]));
+ manifest.policyHashes=Object.fromEntries(Object.entries(descriptors).map(([id,descriptor])=>[id,hash(JSON.stringify({id,descriptor,sources:manifest.policySourceHashes,contextSourceHash:manifest.sourceHash}))]));
 }catch{/* Preserve invalid-configuration/partial evidence too. */}
 manifest.outputs=Object.fromEntries(await Promise.all((await readdir(out)).filter(f=>f!=='manifest.json').sort().map(async f=>[f,hash(await readFile(join(out,f)))])));
 await writeFile(join(out,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
