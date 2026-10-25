@@ -209,3 +209,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T132](T132.md): public-policy arena, frozen v0.3.1 comparator and deterministic research replay (#348).
 
 - [T133](T133.md): experimental reinforcement/capture allocation candidate, arena-only comparison (#350), after T130/T132.
+
+- [T134](T134.md): frozen-candidate development probe across map/seat/opponent cohorts (#352), with held-out seeds untouched.
