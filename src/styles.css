@@ -2052,6 +2052,10 @@ button.game-help-command { display:grid; place-items:center; width:48px !importa
 .battle-reference #game-focus-drawer[data-surface="menu"] { grid-template-rows:auto minmax(0,1fr); padding:12px 8px 8px; z-index:9; }
 .battle-reference #game-focus-drawer[data-surface="menu"] .game-drawer-content { grid-column:1 / -1; grid-row:2; height:auto; }
 .game-settings > .next-game-settings select#next-game-combat-rules { font-size:22px; letter-spacing:0; padding-inline:3px; max-width:100%; }
+@media (max-height:500px) and (min-width:600px) {
+ .battle-reference #game-focus-drawer[data-surface="menu"] { grid-template-rows:minmax(0,1fr); }
+ .battle-reference #game-focus-drawer[data-surface="menu"] .game-drawer-content { grid-column:1; grid-row:1; height:100%; }
+}
 
 /* Informational notices close and continue with X; input cards keep Confirm. */
 .game-overlay[data-primary-commands="true"] #acknowledge-world-event,
