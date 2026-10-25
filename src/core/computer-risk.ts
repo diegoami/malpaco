@@ -17,7 +17,7 @@ export type CaptureRisk=
  * `extraArmies` is an explicit hypothetical addition, not predicted reinforcement.
  * Intervals use outward integer rounding; unknown never means zero probability.
  */
-export function estimateCapturePath(view:ComputerStrategicView,from:string,path:readonly string[],extraArmies=0):CaptureRisk {
+export function estimateCapturePath(view:Pick<ComputerStrategicView,'countries'|'strategy'>,from:string,path:readonly string[],extraArmies=0):CaptureRisk {
  const countries=new Map(view.countries.map(c=>[c.id,c])),source=countries.get(from);
  if(!source||countries.size!==view.countries.length||path.length<1||path.length>2||new Set([from,...path]).size!==path.length+1)return {kind:'unknown',reason:'path'};
  const targets=[];
