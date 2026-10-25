@@ -18,14 +18,14 @@ type Move=Extract<Action,{kind:'friendlyMove'}>;
  * Opponent threats include their public income and one/two-hop future fronts.
  * Unsupported/budget exits return null so the frozen caller retains its action.
  */
-export function planMovement(view:ComputerStrategicView):MovementDecision {
+export function planMovement(view:ComputerStrategicView,options:{afterStopping?:boolean}={}):MovementDecision {
  const p=MOVEMENT_PARAMETERS;
  let evaluator:Extract<ReturnType<typeof createArmyEvaluator>,{kind:'ready'}>|undefined,pairs=0;
  const result=(reason:MovementDecision['reason'],action:Action|null=null):MovementDecision=>({action,reason,modelCells:evaluator?.modelCells??0,candidates:evaluator?.candidates??0,pairs});
  if(!view.playerId||view.phase!=='attack'||view.pendingCapture||view.pendingRaid||view.pendingDiscard)return result('phase');
  const cs=new Map(view.countries.map(c=>[c.id,c]));
  // Retain attacks/cards exactly. This slice runs only after the frozen script stops.
- if(view.attacksThisTurn<view.attackBudget&&view.attackPairs.some(a=>(cs.get(a.from)?.armies??0)>(cs.get(a.to)?.armies??0)))return result('phase');
+ if(!options.afterStopping&&view.attacksThisTurn<view.attackBudget&&view.attackPairs.some(a=>(cs.get(a.from)?.armies??0)>(cs.get(a.to)?.armies??0)))return result('phase');
  const setup=createArmyEvaluator(view,p,{nextTurn:true});
  if(setup.kind==='unsupported')return result('unsupported');
  if(setup.kind==='terminal')return result('candidate',{kind:'endTurn'});

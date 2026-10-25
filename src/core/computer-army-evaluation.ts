@@ -10,7 +10,7 @@ export interface ArmyParameters {maxCountries:number;riskTolerance:number;income
 const cmp=(a:string,b:string)=>a<b?-1:a>b?1:0;
 /** Conditional public threats, never summed. nextTurn is a readiness proxy with
  * a fresh existing budget, not an immediate-win prediction. T133/T135 [designed]. */
-export function createArmyEvaluator(view:ComputerStrategicView,p:ArmyParameters,options:{nextTurn?:boolean}={}) {
+export function createArmyEvaluator(view:ComputerStrategicView,p:ArmyParameters,options:{nextTurn?:boolean;defenseOnly?:boolean}={}) {
  const player=view.playerId!,combat=view.strategy.combat;
  let modelCells=0,candidates=0,stopped:'unsupported'|'budget'|null=null;
  if(view.countries.length>p.maxCountries||combat.attackRule!=='classic'||combat.attackerDice.max!==1||combat.defenderDice.max!==1||combat.defenderDice.minus!==0
@@ -91,7 +91,7 @@ export function createArmyEvaluator(view:ComputerStrategicView,p:ArmyParameters,
    byRisk.set(target,Math.max(byRisk.get(target)!,value));
   }
   let winning=0,winningUpper=0,offense=0;
-  if(!stopped&&remaining>0)for(const country of owned){
+  if(!stopped&&!options.defenseOnly&&remaining>0)for(const country of owned){
    const source=cs.get(country.id)!;if(source.armies<combat.minArmiesToAttack)continue;
    for(const enemy of neighbors(country).filter(c=>c.owner!==player)){
     const r=ownRisk(source.armies,enemy.armies);if(!r)break;

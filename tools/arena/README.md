@@ -14,6 +14,9 @@ The opt-in `movement-v1` experiment adds partial/lateral/future-front movement
 to allocation-v1, retaining frozen attacks/cards. It remains arena-only; see
 [movement semantics](../../docs/plans/movement-candidate.md).
 
+The opt-in `tactical-v1` experiment adds finite-budget campaign objectives and
+stopping to allocation/movement; see [attack semantics](../../docs/plans/offensive-candidate.md).
+
 `frozen-031.ts` preserves the released decision/card/reserve logic from
 `6e75ad9cff3529b3bb13d1dff31a336a86c64627`; it imports types, not current policy
 helpers. Source provenance, a frozen public-decision corpus and the module's
