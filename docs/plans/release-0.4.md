@@ -14,7 +14,7 @@ grounds the tactical work; labels and PR checks hold status.
    probability intervals and explicit unknown outcomes from strategy claims.
 3. [T133](../tasks/T133.md), #350: experimental reinforcement/capture allocation;
    [T135](../tasks/T135.md), #354 adds partial/lateral movement and future-front protection;
-   attack/stop decisions then follow under #341. Freeze each bounded contract before code;
+   [T136](../tasks/T136.md), #356 supplies finite-budget campaign outcomes before attack/stop ranking under #341. Freeze each bounded contract before code;
    arena evaluation precedes adoption.
    [Candidate semantics](allocation-candidate.md) define its conditional model and limits.
 4. [T132](../tasks/T132.md), #348: reproducible public-policy arena and frozen v0.3.1 comparator;

@@ -213,3 +213,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T134](T134.md): frozen-candidate development probe across map/seat/opponent cohorts (#352), with held-out seeds untouched.
 
 - [T135](T135.md): experimental partial/lateral movement, future-front protection and unchanged allocation-v1 regression (#354).
+
+- [T136](T136.md): bounded finite-budget attack-campaign terminal outcomes and exact probability/loss oracles (#356).
