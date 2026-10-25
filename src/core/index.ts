@@ -98,5 +98,7 @@ export {estimateCapturePath,CAPTURE_RISK_SCALE,CAPTURE_RISK_MAX_CELLS} from './c
 export type {CaptureRisk} from './computer-risk';
 export {planAllocation,ALLOCATION_PARAMETERS} from './computer-allocation';
 export type {AllocationDecision} from './computer-allocation';
+export {planMovement,MOVEMENT_PARAMETERS} from './computer-positioning';
+export type {MovementDecision} from './computer-positioning';
 export {estimateAttackCampaign,CAMPAIGN_SCALE,CAMPAIGN_MAX_CELLS} from './computer-campaign';
 export type {AttackCampaign,CampaignTerminal} from './computer-campaign';
