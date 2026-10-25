@@ -67,11 +67,12 @@ test('poisoned private contents, stream getters and other controller getters are
  expect(project(state).strategy).toBeDefined();expect(project(state)).toEqual(expected);expect(core.computerAction(state)).toEqual(action);
 });
 
-test('public context distinguishes rule variants without changing the baseline placement',()=>{
+test('public rule context leaves the retained script fixed while informing improved placement',()=>{
  let state=synthetic([]);state.phase='reinforce';
- const action=core.computerAction(state);
+ const action=core.decideComputerAction(project(state));
  state={...state,rules:{...state.rules,reinforcementDivisor:7,combat:{...state.rules.combat,ties:'defender'},victoryOptions:{dominationWin:false,roundLimit:20}}};
  expect(project(state).strategy).toBeDefined();
  expect(project(state).strategy).toMatchObject({reinforcementDivisor:7,combat:{ties:'defender'},dominationTarget:null,roundLimit:20});
- expect(core.computerAction(state)).toEqual(action);
+ expect(core.decideComputerAction(project(state))).toEqual(action);
+ expect(core.computerAction(state)).toEqual(core.decideTacticalAction(project(state)));
 });
