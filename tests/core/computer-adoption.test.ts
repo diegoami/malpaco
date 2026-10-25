@@ -29,3 +29,17 @@ test('all future computer choices remain legal,private-stream independent and wi
  }
  const old=load().state,human={...old,players:old.players.map((p,i)=>i===old.currentPlayer?{...p,kind:'human' as const}:p)};expect(core.computerAction(human)).toBeNull();
 });
+for(const [label,start] of [['raid',415],['return',576]] as const)test(`new ${label} continuation retains its historical prefix and uses real adopted choices`,async()=>{
+ const {readFileSync}=await import('node:fs');const text=readFileSync(`fixtures/new-game/T141/${label}-continuation.json`,'utf8'),f=core.deserializeVersionedMatch(text);let s=f.initialState!;
+ for(let i=0;i<f.state.history.length;i++){
+  const a=f.state.history[i]!;if(i>=start)expect(core.computerAction(s)).toEqual(a);
+  const r=core.apply(s,a);expect(r.ok).toBe(true);if(!r.ok)throw Error(r.error);s=r.state;
+ }
+ expect(s).toEqual(f.state);expect(core.deserializeVersionedMatch(core.serializeVersionedMatch(f.options,s.history,f.identity)).state).toEqual(s);
+});
+test('preserved released Raid-loss checkpoint remains an exact recorded human-loss state',async()=>{
+ const {readFileSync}=await import('node:fs');const text=readFileSync('fixtures/new-game/T141/historical-raid-loss.json','utf8'),f=core.deserializeVersionedMatch(text);
+ expect(f.state.phase).toBe('human-loss');expect(f.state.history).toHaveLength(450);expect(core.computerAction(f.state)).toBeNull();
+ const original=JSON.parse(readFileSync('fixtures/new-game/T41/parent-acceptance/proposed-browser/fixtures/policy-raid-after.json','utf8'));
+ expect(f.state.history.slice(0,431)).toEqual(original.actions);
+});

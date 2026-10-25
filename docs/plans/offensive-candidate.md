@@ -5,8 +5,7 @@
 # Bounded attack and stopping candidate
 
 T137/#358 registers `tactical-v1` in the research arena. It adds repeated-pair
-attack objectives to allocation-v1/movement-v1. No application policy, rule, save,
-RNG or exchange cap changes. Each actual exchange/capture prompts a new decision;
+attack objectives to allocation-v1/movement-v1. T137 changed no application policy,rule,save,RNG or exchange cap;T141 subsequently adopts the combined chooser. Each actual exchange/capture prompts a new decision;
 this is a conditional campaign comparison, not a commitment to finish that plan.
 
 Compare stopping, including a legal adjacent transfer, with six attack pairs.
@@ -53,4 +52,4 @@ The fixed development smoke uses seeds7/8,46 regions,movement-v1/tactical-v1,bot
 ties,all cyclic/first offsets:16 primary plus separate reverse verification.
 Report every result,fallback,choice,replay,source/parameter hash and cost. These
 two deals do not establish strength. Held-out multi-opponent/larger-map/ruleset
-studies,manual policy review and owner playtesting precede adoption.
+studies and manual policy review remain quality/release work after the owner's T141 adoption decision.

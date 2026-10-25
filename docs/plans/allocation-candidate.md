@@ -4,7 +4,7 @@
 
 # Experimental allocation/capture candidate
 
-T133/#350 evaluates `planAllocation(view)`. The application continues to use its
+T133/#350 evaluates `planAllocation(view)`. At T133 the application continued to use its
 existing policy. Only the research arena's `allocation-v1` entry opts into this
 planner; all other phases/fallbacks use its frozen v0.3.1 comparator.
 

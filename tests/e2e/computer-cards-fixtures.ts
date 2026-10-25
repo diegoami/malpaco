@@ -22,3 +22,6 @@ export function settleNoSet(s:GameState):GameState{
  for(let a=0;a<h.length;a++)for(let b=a+1;b<h.length;b++)for(let d=b+1;d<h.length;d++)if(c.apply(s,{kind:'tradeCards',handIndices:[a,b,d]}).ok)return s;
  return step(s,{kind:'skipCards'});
 }
+
+/** T141 adds live continuations; the original recorded fixtures remain untouched. */
+export function adoptedContinuation(label:'raid'|'return'){return c.deserializeVersionedMatch(readFileSync(`fixtures/new-game/T141/${label}-continuation.json`,'utf8'));}
