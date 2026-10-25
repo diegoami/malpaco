@@ -74,3 +74,7 @@ test('old totals remain in an explicit earlier group while new rules get separat
  const next=recordGame(old,row);expect(next.byRules['defender']).toEqual({won:1,lost:0,gaveUp:0});expect(next.totals).toEqual({won:3,lost:1,gaveUp:0});expect(recordGame(next,row)).toBe(next);
  expect(parseScoreboard(JSON.stringify(next))).toEqual(next);
 });
+test('damaged rule subtotals preserve valid totals,old rows and ids in the earlier group',()=>{
+ const board=parseScoreboard(JSON.stringify({version:2,totals:{won:3,lost:1,gaveUp:2},byRules:{defender:{won:99,lost:0,gaveUp:0}},recent:[row(1)],ids:['kept']}));
+ expect(board.totals).toEqual({won:3,lost:1,gaveUp:2});expect(board.byRules).toEqual({earlier:{won:3,lost:1,gaveUp:2}});expect(board.recent).toEqual([row(1)]);expect(board.ids).toEqual(['kept']);
+});
