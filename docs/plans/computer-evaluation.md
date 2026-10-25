@@ -49,3 +49,36 @@ candidate allocations/transfers/plans and the no-action alternative, with bounde
 evaluation effort, tactical counterexamples, frozen-baseline/held-out matches and
 owner playtesting before claiming stronger or more interesting play. See #341 and
 the [0.4 plan](release-0.4.md); #340 evaluates rules variants separately.
+
+## A finite-budget repeated attack pair
+
+T136/#356 adds `estimateAttackCampaign(view, from, to)` as an unused conditional
+research helper. It retains the script's strict `source armies > target armies`
+gate, the combat minimum, and the existing remaining resolved-exchange budget.
+It stops at capture, failed gate/minimum or budget exhaustion. Rerolled ties do
+not consume another resolved exchange; defender/attacker ties change the decisive
+probabilities. Capture is a terminal event: this helper chooses no move-in amount.
+
+For supported comparison-free single-die combat with no failure penalty, return
+canonical terminal outcomes: own casualties, enemy casualties, capture flag and
+an outward integer probability interval. Capture probability and unconditional
+expected casualties for both sides also have intervals. Expected casualties use
+one-millionth-of-an-army units; these are not armies conditional on success.
+A stopped tactic with no initial advantage or remaining budget has one exact,
+unchanged terminal state. Hypothetical income, cards, allocation and counterattack
+responses are outside this model. Hidden fields and streams are never read.
+
+The forward dynamic program counts wins/losses, whose sum is the consumed
+exchange budget. It retains each failure and partial-damage outcome and rounds
+mass outward at every branch/merge. Terminal intervals are joint bounds, not
+independent probabilities; upper masses need not sum to one. Do not renormalize
+away unsuccessful outcomes or treat conditional average armies as future safety.
+
+[Designed] precision is1000000 and the rectangular work bound is16384 cells,
+checked before array allocation. Its dimensions include the capture/minimum
+boundaries and are capped by the remaining exchange budget. Unknown `path`,
+`combat`, `counts` and `budget` results are explicit, never zero likelihood.
+The model does not weaken the engine/policy attack cap. For example, a large
+nominal army gap can still offer almost no chance of finishing a large defender
+within96 exchanges. T134's unfinished game remains an unfinished observation;
+this helper changes no past or future game decisions by itself.
