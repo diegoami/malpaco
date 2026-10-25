@@ -13,7 +13,7 @@ for(const width of [390,1280])test(`${width}: all starting ranges and real event
   expect(await text(page)).toBe(before);await page.keyboard.press('Escape');await page.locator('#new-game-button').click();await page.locator('#give-up-cancel').click();expect(await text(page)).toBe(before);
   await page.locator('#new-game-button').click();await page.locator('#give-up-confirm').click();await startFromResult(page);await expect.poll(async()=>{const raw=await text(page);return raw?deserializeVersionedMatch(raw).options.seed!==prior.options.seed:false;},{timeout:60000}).toBe(true);
   await openSurface(page,'menu');const saved=(await text(page))!,loaded=deserializeVersionedMatch(saved),s=loaded.initialState!,maximum=Number(range.at(-1));
-  expect(loaded.identity.rules).toEqual({id:'island',version:1});expect(loaded.options.startingArmiesRange).toBe(range);expect(loaded.options.eventFrequency).toBe(frequency);expect(loaded.options.seats).toHaveLength(2);expect(s.rules.events?.frequency).toBe(frequency);expect(s.rules.reinforcementDivisor).toBeUndefined();
+  expect(loaded.identity.rules).toEqual({id:'island-defender',version:1});expect(loaded.options.startingArmiesRange).toBe(range);expect(loaded.options.eventFrequency).toBe(frequency);expect(loaded.options.seats).toHaveLength(2);expect(s.rules.events?.frequency).toBe(frequency);expect(s.rules.reinforcementDivisor).toBeUndefined();
   expect(Object.values(s.armies).every(n=>n>=1&&n<=maximum)).toBe(true);expect(Object.values(s.armies).reduce((a,b)=>a+b)).toBe(46*(1+maximum)/2);
   await reloadGame(page);await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});expect(await text(page)).toBe(saved);
  }

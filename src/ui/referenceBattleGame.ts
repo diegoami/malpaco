@@ -383,7 +383,7 @@ export class ReferenceBattleGame {
     const result: GameOutcome | null = outcome ?? (state.result ? state.winner === human[0]!.id ? "won" : "lost" : null);
     if (!result) return;
     this.recorded = true;
-    player.record({result, rounds: state.turnNumber, countries: state.map.provinces.filter(p => state.ownerOf[p.id] === human[0]!.id).length, seed: this.options.seed});
+    player.record({result, rounds: state.turnNumber, countries: state.map.provinces.filter(p => state.ownerOf[p.id] === human[0]!.id).length, seed: this.options.seed,rules:{...this.presentation!.identity.rules}});
   }
 
   private computerActive(): boolean {
@@ -516,6 +516,7 @@ export class ReferenceBattleGame {
     }
     // T97: the objective line moved from the Information icon into Help.
     const viewer = (humans.length === 1 ? humans[0] : mover) ?? state.players[0]!, owned = state.map.provinces.filter(p => state.ownerOf[p.id] === viewer.id).length, total = state.map.provinces.length;
+    this.help.setCombatRules(state.rules.combat.ties);
     this.help.setObjective(`${this.options.dominationWin ? `Domination: hold ${dominationThreshold(total)} of ${total} countries · you hold ${owned}` : `Total conquest: hold all ${total} countries · you hold ${owned}`}${this.options.roundLimit ? ` · Round ${state.turnNumber} / ${this.options.roundLimit}` : ` · Round ${state.turnNumber}`}`);
     // A human loss names no winner while computers remain, so its badge is neutral (#132). The pool
     // shows while you place armies; a computer's placement shows only its notice (T97).

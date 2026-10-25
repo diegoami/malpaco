@@ -1,3 +1,4 @@
+import {defenderIslandRules,defenderMatchIdentity} from '../core/combat-presets';
 import {GameLauncher} from './gameLauncher';
 import {islandRules,configurableRaidCardsRules} from '../core/state';
 import {createGame,defaultOptions,raidCardsRules} from '../core';
@@ -29,6 +30,7 @@ import {nextGameOptions,readNextGameSettings} from './nextGameSettings';
  */
 export function geographicSetupIdentity(options:GameOptions,manual=false,generator:1|2=setupGenerator()):MatchIdentity {
  const humanCount=options.seats.filter(seat=>seat.kind==='human').length,raid=!manual&&humanCount<=1;
+ if(generator===2&&raid&&options.combatPreset==='defender-v1')return defenderMatchIdentity(options.regionCount===undefined?2:3);
  if(generator===2&&raid&&options.islandRules===1)return options.regionCount===undefined?GEOGRAPHIC_EVENT_MATCH_IDENTITY:GEOGRAPHIC_V3_EVENT_MATCH_IDENTITY;
  if(generator===2&&raid&&options.reinforcementDivisor!==undefined)return options.regionCount===undefined?GEOGRAPHIC_V2_CONFIGURABLE_CARD_MATCH_IDENTITY:GEOGRAPHIC_V3_CONFIGURABLE_CARD_MATCH_IDENTITY;
  return generator===2?(raid?GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY:GEOGRAPHIC_V2_MATCH_IDENTITY):(raid?GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY:GEOGRAPHIC_MATCH_IDENTITY);
@@ -148,7 +150,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
    cancel();mount(options,state,{identity,label:'Nine Isles',initialState:loaded.initialState,acceptsVersion1:true,createMap:(map,handlers)=>new ReferenceMapView(map,handlers)},true);
   }else throw Error('Unsupported board identity. Use the legacy generated game route for v1 files.');
  };
- const createMatch=(options:GameOptions)=>(dependencies.create??(o=>createGeographicGame(o,geographicSetupIdentity(o,manual).rules.id==='island'?islandRules(o):geographicSetupIdentity(o,manual).rules.id==='configurable-cards'?configurableRaidCardsRules(o):geographicSetupIdentity(o,manual).rules.id==='cards'?raidCardsRules(o):undefined,{},o.regionCount===undefined?setupGenerator():3)))(options);
+ const createMatch=(options:GameOptions)=>(dependencies.create??(o=>createGeographicGame(o,geographicSetupIdentity(o,manual).rules.id==='island-defender'?defenderIslandRules(o):geographicSetupIdentity(o,manual).rules.id==='island'?islandRules(o):geographicSetupIdentity(o,manual).rules.id==='configurable-cards'?configurableRaidCardsRules(o):geographicSetupIdentity(o,manual).rules.id==='cards'?raidCardsRules(o):undefined,{},o.regionCount===undefined?setupGenerator():3)))(options);
  /**
   * T96: a refresh resumes the player's game, then a new game starts on a random seed with one
   * human and three Normal computers, Domination on, no round limit, place names by seed.
@@ -161,7 +163,7 @@ export function mountGeographicGame(root:HTMLElement,dependencies:{create?:Setup
   const own=epoch,nextSettings=readNextGameSettings();
   for(let attempt=0;attempt<5&&!closed&&epoch===own;attempt++){
    let options=nextGameOptions(!fresh&&attempt===0&&/^\d+$/.test(params.get('seed')??'')?Number(params.get('seed'))>>>0:randomSeed(),nextSettings);
-   if(setupGenerator()===1){const {reinforcementDivisor:_legacy,islandRules:_island,regionCount:_size,...old}=options;options=old;}
+   if(setupGenerator()===1){const {reinforcementDivisor:_legacy,islandRules:_island,combatPreset:_combat,regionCount:_size,...old}=options;options=old;}
    const result=createMatch(options);if(!result.ok)continue;
    try{
     const prepared=await prepare(result.geography);if(!prepared?.isCurrent())return;const drawing=prepared.drawing;
