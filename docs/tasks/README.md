@@ -201,3 +201,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T128](T128.md): legal AI reserve routing across friendly regions, old-save guards and a 0.3.1 playtest (#320).
 
 - [T129](T129.md): public strategic context and objective-free integer position facts (#343), foundation for #341.
+
+- [T130](T130.md): bounded integer capture-risk intervals for current and future fronts (#345), after T129.

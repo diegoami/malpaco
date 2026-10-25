@@ -8,7 +8,8 @@ grounds the tactical work; labels and PR checks hold status.
 ## Sequence
 
 1. Public position facts and information boundary: [T129](../tasks/T129.md), #343.
-2. Bounded integer battle-risk and opponent-response models using that public context.
+2. [T130](../tasks/T130.md), #345: bounded integer single-source capture-risk intervals
+   for specified one/two-country paths; later response evaluation uses this public model.
 3. Shared candidate evaluation for placement/capture, useful partial/lateral movement and
    future fronts, then attack/stop decisions: #341. Freeze each bounded contract before code.
 4. Reproducible multi-opponent arena: frozen v0.3.1 comparator, paired initial states, rotated
@@ -23,10 +24,10 @@ grounds the tactical work; labels and PR checks hold status.
 
 ## Boundaries
 
-Strategic competence comes before personality differentiation. The scope decision on #342
-determines whether personalities belong in this release; no profile roster is assumed.
-Saved-match future-policy behavior is also an explicit owner decision. Recorded actions
-always replay exactly; rules variants require immutable identities and compatibility work.
+The owner chose tactical AI and ruleset research for 0.4, with personalities deferred
+([decision](https://github.com/diegoami/malpaco/issues/342#issuecomment-6394642088)).
+Adopted improved AI makes future choices in existing saves; recorded actions always replay
+exactly. Rules variants require immutable identities and explicit compatibility work.
 
 Keep current rules/defaults until concrete evidence and an owner adoption decision. Research
 of optional variants does not authorize a default change. All seats obey the same visible
