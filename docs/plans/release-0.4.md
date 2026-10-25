@@ -23,10 +23,10 @@ grounds the tactical work; labels and PR checks hold status.
 
 ## Boundaries
 
-Strategic competence comes before personality differentiation. The scope decision on #342
-determines whether personalities belong in this release; no profile roster is assumed.
-Saved-match future-policy behavior is also an explicit owner decision. Recorded actions
-always replay exactly; rules variants require immutable identities and compatibility work.
+The owner chose tactical AI and ruleset research for 0.4, with personalities deferred
+([decision](https://github.com/diegoami/malpaco/issues/342#issuecomment-6394642088)).
+Adopted improved AI makes future choices in existing saves; recorded actions always replay
+exactly. Rules variants require immutable identities and explicit compatibility work.
 
 Keep current rules/defaults until concrete evidence and an owner adoption decision. Research
 of optional variants does not authorize a default change. All seats obey the same visible

@@ -67,7 +67,7 @@ describe('independent computer card policy acceptance',()=>{
   const own=c.activePlayer(s)!.id,enemy=s.players.find(x=>x.id!==own)!.id;
   for(const x of s.map.provinces){s.ownerOf[x.id]=own;s.armies[x.id]=3;}s.ownerOf[s.map.provinces.at(-1)!.id]=enemy;
   const before=structuredClone(s),v=p.computerView(s);
-  expect(Object.keys(v).sort()).toEqual(['playerId','phase','cardStage','pendingCapture','pendingDiscard','pendingRaid','ownHand','handCounts','drawCount','discardCount','discardTop','reinforcementPool','countries','attackPairs','movePairs','attacksThisTurn','attackBudget'].sort());
+  expect(Object.keys(v).sort()).toEqual(['strategy','playerId','phase','cardStage','pendingCapture','pendingDiscard','pendingRaid','ownHand','handCounts','drawCount','discardCount','discardTop','reinforcementPool','countries','attackPairs','movePairs','attacksThisTurn','attackBudget'].sort());
   expect(v).toMatchObject({playerId:own,phase:'attack',cardStage:'raid-v1',pendingCapture:false,pendingDiscard:false,pendingRaid:false,ownHand:['Anchor','Wild'],reinforcementPool:0,attacksThisTurn:0,attackBudget:s.map.provinces.length,drawCount:s.cards!.drawPile.length,discardCount:0,discardTop:null});
   expect(v.handCounts).toEqual(Object.fromEntries(s.players.map(x=>[x.id,s.cards!.hands[x.id]!.length])));
   expect(v.countries).toEqual(s.map.provinces.map(x=>({id:x.id,owner:s.ownerOf[x.id],armies:s.armies[x.id],neighbours:[...x.borders,...x.seaLanes]})));

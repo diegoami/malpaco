@@ -90,5 +90,7 @@ export {raidStackAfter} from './raid';
 export {REFERENCE_RAID_CARD_MATCH_IDENTITY,GEOGRAPHIC_RAID_CARD_MATCH_IDENTITY} from './match-save';
 
 export {computerView} from './computer-view';
-export type {ComputerDecisionView,ComputerCountry} from './computer-view';
+export type {ComputerDecisionView,ComputerCountry,ComputerStrategicView,ComputerStrategyContext} from './computer-view';
 export {decideComputerAction} from './computer';
+export {evaluateComputerPosition} from './computer-position';
+export type {ComputerPosition,CountryPosition,SeatPosition,IslandPosition,AdjacentOpponent} from './computer-position';
