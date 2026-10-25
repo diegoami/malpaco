@@ -94,3 +94,5 @@ export type {ComputerDecisionView,ComputerCountry,ComputerStrategicView,Computer
 export {decideComputerAction} from './computer';
 export {evaluateComputerPosition} from './computer-position';
 export type {ComputerPosition,CountryPosition,SeatPosition,IslandPosition,AdjacentOpponent} from './computer-position';
+export {estimateCapturePath,CAPTURE_RISK_SCALE,CAPTURE_RISK_MAX_CELLS} from './computer-risk';
+export type {CaptureRisk} from './computer-risk';
