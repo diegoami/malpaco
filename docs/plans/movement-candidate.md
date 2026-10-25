@@ -1,8 +1,11 @@
+> Owner adoption: T141 makes the combined tactical policy the sole production AI.
+> Historical study sources, component profiles and measurements below stay fixed.
+> Further quality work remains on #362; there is no player-facing legacy AI choice.
+
 # Bounded movement candidate
 
 T135/#354 adds `movement-v1` to the research arena. It uses allocation-v1 for
-reinforcement/capture and the frozen v0.3.1 attacks/cards. The application still
-uses its released policy. Personalities and adoption remain separate decisions.
+reinforcement/capture and the frozen v0.3.1 attacks/cards. At T135 the application still used its released policy. T141 now adopts the combined policy;personalities remain deferred.
 
 After the retained attack script stops, compare its reserve transfer, End turn,
 and adjacent legal transfers. Every move ends the current turn. A shared public

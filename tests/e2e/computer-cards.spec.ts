@@ -6,7 +6,7 @@ import {performance} from 'node:perf_hooks';
 import {setTimeout as waitForRealTime} from 'node:timers/promises';
 import * as c from '../../src/core';
 import type {Action,GameState,LoadedVersionedMatch} from '../../src/core';
-import {fixture,input,step,prefix,lastHumanHandoff,humanReturnHandoff,discardPrefix,spectator,settleNoSet} from './computer-cards-fixtures';
+import {fixture,input,step,prefix,lastHumanHandoff,humanReturnHandoff,discardPrefix,spectator,settleNoSet,adoptedContinuation} from './computer-cards-fixtures';
 import {openSurface,setDetail,withSurface} from './shell';
 // The Cards region waits in the hidden store unless a card shows it (T79); a CSS locator still reads it.
 const cards=(p:Page)=>p.locator('section.card-interactions[aria-label="Cards"]');
@@ -63,16 +63,18 @@ test('explicit manual geography and reference compatibility keep their historica
  for(const [url,board] of [['/?generator=1&control=manual&seed=1994','geographic'],['/?generator=1&view=reference-game&control=manual&seed=1994','fixed-reference']] as const){await page.goto(url);await page.getByRole('button',{name:'Start game',exact:true}).click();await expect(page.locator('#open-game-menu')).toBeVisible();const actual=await saved(page);expect(actual.identity).toEqual({boardGenerator:{id:board,version:1},rules:{id:'victory',version:1},actionSchemaVersion:2});expect(actual.state.cards).toBeUndefined();expect(actual.state.history).toEqual([]);await page.clock.runFor(6000);expect((await saved(page)).state).toEqual(actual.state);}
 });
 
-test('three consecutive computers perform literal Raid decisions and reach the correct human-loss choices',async({page},info)=>{
- test.setTimeout(90000);await begin(page);const start=lastHumanHandoff();expect(start.loaded.state.history).toHaveLength(415);await load(page,start.text);await exact(page,start.loaded,start.loaded.state);await slow(page);let s=start.loaded.state;const seats=new Set<string>();let trades=0,targets=0,discards=0;
+test('three consecutive improved computers perform literal Raid decisions; recorded human-loss choices stay exact',async({page},info)=>{
+ test.setTimeout(90000);await begin(page);const start=lastHumanHandoff();expect(start.loaded.state.history).toHaveLength(415);await load(page,start.text);await exact(page,start.loaded,start.loaded.state);await slow(page);const live=adoptedContinuation('raid');let s=start.loaded.state;const seats=new Set<string>();let trades=0,targets=0,discards=0;
  for(let n=0;n<4*(2*s.map.provinces.length+6);n++){
   if(s.phase==='human-loss'||s.phase==='finished')break;expect(c.activePlayer(s)!.kind).toBe('computer');seats.add(c.activePlayer(s)!.id);await noReward(page);
-  const before=s,result=await advance(page,start.loaded,s,start.known);s=result.state;
+  const before=s,result=await advance(page,start.loaded,s,live.state.history);s=result.state;
   if(result.action.kind==='tradeCards'){trades++;if(before.history.length===429)expect(result.action).toEqual({kind:'tradeCards',handIndices:[1,2,4]});}
   if(result.action.kind==='raidTarget'){targets++;if(before.history.length===430){expect(result.action).toEqual({kind:'raidTarget',province:'province_30'});expect(before.armies.province_30).toBe(22);expect(s.armies.province_30).toBe(5);}}
   if(result.action.kind==='discardCard'){discards++;expect(result.action.handIndex).toBe(0);}await noReward(page);
  }
- expect([...seats]).toEqual(['seat2','seat3','seat4']);expect(trades).toBe(1);expect(targets).toBe(1);expect(discards).toBe(0);expect(s.phase).toBe('human-loss');expect(s.history).toHaveLength(450);expect(s.players.find(x=>x.kind==='human')!.eliminated).toBe(true);expect(s.history.slice(429,431)).toEqual([{kind:'tradeCards',handIndices:[1,2,4]},{kind:'raidTarget',province:'province_30'}]);
+ expect([...seats]).toEqual(['seat2','seat3','seat4']);expect(trades).toBe(1);expect(targets).toBe(1);expect(discards).toBe(0);expect(s).toEqual(live.state);expect(s.phase).toBe('finished');expect(s.history).toHaveLength(480);expect(s.players.find(x=>x.kind==='human')!.eliminated).toBe(true);expect(s.history.slice(429,431)).toEqual([{kind:'tradeCards',handIndices:[1,2,4]},{kind:'raidTarget',province:'province_30'}]);
+ // The historical loss is a recorded checkpoint,not a prediction of the new AI.
+ const lossText=readFileSync('fixtures/new-game/T141/historical-raid-loss.json','utf8');await load(page,lossText);s=c.deserializeVersionedMatch(lossText).state;expect(s.phase).toBe('human-loss');expect(s.history).toHaveLength(450);
  await totals(page,s);await essentials(page);
  for(const mode of ['compact','detailed']){
   await setDetail(page,mode);await expect(page.getByRole('heading',{name:'You were eliminated',exact:true})).toBeVisible();
@@ -83,13 +85,13 @@ test('three consecutive computers perform literal Raid decisions and reach the c
 });
 
 test('three consecutive computers discard oldest cards and return a living human to actual board placement',async({page},info)=>{
- test.setTimeout(90000);await begin(page);const start=humanReturnHandoff();expect(start.loaded.state.history).toHaveLength(576);await load(page,start.text);await exact(page,start.loaded,start.loaded.state);await slow(page);let s=start.loaded.state,discards=0,returned=false;const seats=new Set<string>();
+ test.setTimeout(90000);await begin(page);const start=humanReturnHandoff();expect(start.loaded.state.history).toHaveLength(576);await load(page,start.text);await exact(page,start.loaded,start.loaded.state);await slow(page);const live=adoptedContinuation('return');let s=start.loaded.state,discards=0,returned=false;const seats=new Set<string>();
  for(let n=0;n<4*(2*s.map.provinces.length+6);n++){
-  if(c.activePlayer(s)!.kind==='human'){returned=true;break;}expect(['finished','human-loss']).not.toContain(s.phase);seats.add(c.activePlayer(s)!.id);await noReward(page);const result=await advance(page,start.loaded,s,start.known);s=result.state;
+  if(c.activePlayer(s)!.kind==='human'){returned=true;break;}expect(['finished','human-loss']).not.toContain(s.phase);seats.add(c.activePlayer(s)!.id);await noReward(page);const result=await advance(page,start.loaded,s,live.state.history);s=result.state;
   if(result.action.kind==='discardCard'){discards++;expect(result.action).toEqual({kind:'discardCard',handIndex:0});}await noReward(page);
  }
- expect(returned).toBe(true);expect(seats.size).toBeGreaterThanOrEqual(2);expect(discards).toBeGreaterThanOrEqual(2);expect(c.activePlayer(s)!.id).toBe('seat1');expect(c.activePlayer(s)!.eliminated).toBe(false);expect(s.history).toHaveLength(615);expect(s.phase).toBe('reinforce');expect(s.history[614]).toEqual({kind:'skipCards'});
- await totals(page,s);await essentials(page);s=await humanPlacement(page,start.loaded,s);expect(s.history).toHaveLength(616);expect(s.history.at(-1)).toEqual({kind:'reinforce',province:'province_4',amount:1});await capture(page,info,'computer-discard-living-human-return');await info.attach('human-return-action-counts',{body:JSON.stringify({computers:[...seats],discards}),contentType:'application/json'});
+ expect(returned).toBe(true);expect(seats.size).toBeGreaterThanOrEqual(2);expect(discards).toBeGreaterThanOrEqual(2);expect(c.activePlayer(s)!.id).toBe('seat1');expect(c.activePlayer(s)!.eliminated).toBe(false);expect(s.history).toHaveLength(661);expect(s.phase).toBe('reinforce');expect(s.history[660]).toEqual({kind:'skipCards'});
+ await totals(page,s);await essentials(page);s=await humanPlacement(page,start.loaded,s);expect(s.history).toHaveLength(662);expect(s.history.at(-1)).toMatchObject({kind:'reinforce',amount:1});await capture(page,info,'computer-discard-living-human-return');await info.attach('human-return-action-counts',{body:JSON.stringify({computers:[...seats],discards}),contentType:'application/json'});
 });
 
 test('real computer pending discard chooses oldest index zero before drawing and needs no human reward',async({page},info)=>{

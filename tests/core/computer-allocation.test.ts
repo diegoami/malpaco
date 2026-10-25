@@ -31,7 +31,7 @@ function capture(s:core.GameState){const p=plan(core.computerView(s));return ste
 function upper(s:core.GameState,from:string,to:string){const r=core.estimateCapturePath(core.computerView(s),from,[to],core.reinforcementIncome(s,'enemy').total);expect(r.kind).toBe('bounded');if(r.kind!=='bounded')throw Error(r.reason);return r.upper;}
 
 test('full placement splits between two threatened fronts and lowers maximum conditional capture risk',()=>{
- const s=balanced(),baseline=step(s,core.computerAction(s)!),result=place(s);
+ const s=balanced(),baseline=step(s,core.decideComputerAction(core.computerView(s))!),result=place(s);
  expect([result.armies.a,result.armies.b]).toEqual([4,4]);
  expect(Math.max(upper(result,'eA','a'),upper(result,'eB','b'))).toBeLessThan(Math.max(upper(baseline,'eA','a'),upper(baseline,'eB','b')));
  expect(Object.values(result.armies).reduce((a,b)=>a+b,0)).toBe(Object.values(s.armies).reduce((a,b)=>a+b,0)+6);
@@ -41,7 +41,7 @@ test('reinforcement protects a valuable island entrance instead of the largest u
  const s=state({a:2,b:1,c:1,x:10,f:6,w:1,z:100},[['a','b'],['b','c'],['c','x'],['a','f'],['x','w'],['w','z'],['f','z']],['f','w','z'],[
   {id:'home',bonus:6,provinces:['a','b','c']},{id:'front',bonus:2,provinces:['x','w']},{id:'hostile',bonus:2,provinces:['f','z']},
  ]);
- const baseline=step(s,core.computerAction(s)!),result=place(s);
+ const baseline=step(s,core.decideComputerAction(core.computerView(s))!),result=place(s);
  expect(result.armies.a).toBeGreaterThan(s.armies.a!);expect(result.armies.x).toBeLessThan(baseline.armies.x!);
  expect(upper(result,'f','a')).toBeLessThan(upper(baseline,'f','a'));
 });
@@ -50,11 +50,11 @@ test('an immediate one-capture win can correctly justify concentrated placement'
  // three-country board would cap the duel at three exchanges and reward
  // perfect rolls equally for several allocations; that is not this case.
  const s=state({a:2,b:1,c:1,d:1,f:1,e:3,g:100,h:100},[['a','b'],['b','c'],['c','d'],['d','f'],['a','e'],['b','e'],['e','g'],['g','h']],['e','g','h']);s.reinforcementPool=4;
- const result=place(s),baseline=step(s,core.computerAction(s)!);
+ const result=place(s),baseline=step(s,core.decideComputerAction(core.computerView(s))!);
  expect(result.armies).toEqual(baseline.armies);expect(result.armies.a).toBe(6);expect(result.armies.b).toBe(1);
 });
 test('capture retains an exposed valuable source while the baseline transfers its maximum',()=>{
- const s=protectedSource(),before=structuredClone(s),baseline=step(s,core.computerAction(s)!),result=capture(s);
+ const s=protectedSource(),before=structuredClone(s),baseline=step(s,core.decideComputerAction(core.computerView(s))!),result=capture(s);
  expect(result.armies.source).toBeGreaterThan(1);expect(result.armies.target).toBeLessThan(baseline.armies.target!);
  expect(upper(result,'danger','source')).toBeLessThan(upper(baseline,'danger','source'));
  expect(Object.values(result.armies).reduce((a,b)=>a+b,0)).toBe(Object.values(s.armies).reduce((a,b)=>a+b,0));expect(s).toEqual(before);
@@ -101,7 +101,7 @@ test('own winning-opportunity bounds contain exact gated/remaining-budget duel o
 for(const ties of ['reroll','defender'] as const)test(`legal balanced capture split under ${ties} ties`,()=>{
  const initial=state({source:9,target:1,eA:5,eB:5,remote:100},[['source','target'],['source','eA'],['target','eB'],['eA','remote'],['eB','remote']],['eA','eB','remote']);
  const s={...initial,rules:{...initial.rules,combat:{...initial.rules.combat,ties}}};s.phase='capture';s.reinforcementPool=0;s.pendingCapture={from:'source',to:'target',min:1,max:9,defaultAmount:9};
- const baseline=step(s,core.computerAction(s)!),result=capture(s);
+ const baseline=step(s,core.decideComputerAction(core.computerView(s))!),result=capture(s);
  expect(result.armies.source).toBeGreaterThan(1);expect(result.armies.target).toBeGreaterThan(1);
  expect(Math.max(upper(result,'eA','source'),upper(result,'eB','target'))).toBeLessThan(Math.max(upper(baseline,'eA','source'),upper(baseline,'eB','target')));
 });
@@ -149,15 +149,15 @@ test('unsupported or oversized assessments return explicit bounded fallback, not
 test('other phases, mandatory card choices and empty pools preserve baseline routing',()=>{
  const s=balanced(),view=core.computerView(s);
  for(const v of [{...view,phase:'attack' as const},{...view,phase:'cards' as const},{...view,reinforcementPool:0},{...view,pendingRaid:true},{...view,pendingDiscard:true},{...view,pendingCapture:true}])expect(plan(v).action).toBeNull();
- expect(core.computerAction(s)).toEqual(core.decideComputerAction(view));
+ expect(core.computerAction(s)).toEqual(core.decideTacticalAction(view));
 });
-test('arena opt-in uses allocation/capture overrides while the default policy stays unchanged',async()=>{
+test('arena allocation stays fixed while the adopted host uses tactical composition',async()=>{
  const arena=await import('../../tools/arena/policies');
  expect(arena.POLICY_DESCRIPTORS['allocation-v1']!.parameters).toHaveProperty('riskTolerance',500000);
  for(const s of [balanced(),protectedSource()]){
   const view=core.computerView(s),expected=plan(view).action;
   expect(expected).not.toBeNull();expect(arena.decideArenaPolicy('allocation-v1',view)).toEqual(expected);
-  expect(core.computerAction(s)).toEqual(core.decideComputerAction(view));
+  expect(core.computerAction(s)).toEqual(core.decideTacticalAction(view));
  }
  const view={...core.computerView(balanced()),phase:'attack' as const};
  expect(arena.decideArenaPolicy('allocation-v1',view)).toEqual(arena.baseline031(view));

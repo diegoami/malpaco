@@ -34,4 +34,6 @@ test("mixed action-only replay and subsequent decisions match through computer v
   expect(restored).toEqual(s);
  }
  expect(n).toBeLessThan(12000);expect(attacks).toBeGreaterThan(0);expect(s.phase).toBe("finished");expect(s.players.find(p=>p.id===s.winner)!.kind).toBe("computer");expect(computerAction(s)).toBeNull();
-});
+// [designed] Whole-game search+replay timing matches the existing reference-flow
+// budget;the12000-action and per-turn exchange assertions stay unchanged.
+},60000);

@@ -6,6 +6,8 @@ import {createReferenceGame} from '../../src/core/reference-game';
 import {referenceMap} from '../../src/core/reference-map';
 import {apply} from '../../src/core/rules';
 import * as policy from '../../src/core/computer';
+import {computerView} from '../../src/core/computer-view';
+import {baseline031} from '../../tools/arena/frozen-031';
 import {deserializeVersionedMatch,serializeVersionedMatch,REFERENCE_MATCH_IDENTITY} from '../../src/core/match-save';
 import type {Action,GameOptions} from '../../src/core';
 type Witness={options:GameOptions;actions:Action[];expected:{actions:number;computerActions:number;humanActions:number;winner:string}};
@@ -25,12 +27,12 @@ test('historical conquest still replays to its accepted 0.3.0 state without invo
   expect(host).not.toHaveBeenCalled();expect(decision).not.toHaveBeenCalled();
  }finally{decision.mockRestore();host.mockRestore();}
 });
-test('the separate live-policy witness keeps real AI decisions and every complete-game acceptance feature',()=>{
+test('the preserved released-policy witness keeps its original decisions and every complete-game feature',()=>{
  const fixture=read('fixtures/new-game/T128/live-conquest-031.json') as Witness;
  const made=createReferenceGame(referenceMap,fixture.options,victoryRules(fixture.options));if(!made.ok)throw Error(made.errors.join());
  let state=made.state,human=0,computer=0;const seen=new Set<string>();
  for(const action of fixture.actions){
-  if(activePlayer(state)!.kind==='computer'){expect(policy.computerAction(state)).toEqual(action);computer++;}
+  if(activePlayer(state)!.kind==='computer'){expect(baseline031(computerView(state))).toEqual(action);const future=policy.computerAction(state);expect(future).not.toBeNull();expect(apply(state,future!).ok).toBe(true);computer++;}
   else {human++;seen.add(action.kind);}
   const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;
  }

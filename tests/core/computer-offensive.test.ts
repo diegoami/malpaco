@@ -32,7 +32,7 @@ test('safe aggression remains legal and is reevaluated after each actual exchang
 test('values an island-completing objective above the larger army gap',()=>{
  const s=state({a:10,b:7,home:1,weak:1,key:2,z:15},[['a','weak'],['b','key'],['a','home'],['b','home'],['weak','z'],['key','z']],['weak','key','z'],[
  {id:'valuable',bonus:6,provinces:['b','key']},{id:'elsewhere',bonus:0,provinces:['a','home','weak','z']},
- ]),v=core.computerView(s);expect(core.computerAction(s)).toMatchObject({kind:'attack',to:'weak'});
+ ]),v=core.computerView(s);expect(core.decideComputerAction(v)).toMatchObject({kind:'attack',to:'weak'});
  const a=plan(v).action;expect(a).toEqual({kind:'attack',from:'b',to:'key'});step(s,a!);
 });
 test('protects a valuable source by stopping and accounts for first-card reward',()=>{
@@ -71,10 +71,10 @@ test('privacy, ordering, immutability and named operation limits',()=>{
  expect(plan({...v,strategy:{...v.strategy,combat:{...v.strategy.combat,attackerDice:{max:2,minus:0}}}})).toMatchObject({action:null,reason:'unsupported'});
  expect(plan({...v,pendingRaid:true})).toMatchObject({action:null,reason:'phase'});
 });
-test('arena opt-in retains allocation/movement/default profiles and exposes full parameters',async()=>{
+test('arena controls stay fixed and the adopted host matches the tactical profile',async()=>{
  const {decideArenaPolicy,baseline031,POLICY_DESCRIPTORS}=await import('../../tools/arena/policies');const s=safe(),v=core.computerView(s);
  expect(POLICY_DESCRIPTORS).toHaveProperty('tactical-v1');expect(decideArenaPolicy('tactical-v1',v)).toEqual(plan(v).action);
- expect(decideArenaPolicy('movement-v1',v)).toEqual(baseline031(v));expect(core.computerAction(s)).toEqual(core.decideComputerAction(v));
+ expect(decideArenaPolicy('movement-v1',v)).toEqual(baseline031(v));expect(core.computerAction(s)).toEqual(core.decideTacticalAction(v));
 });
 test('shortlist and projection admission enforce their bounds on wide and long campaigns',()=>{
  const armies:Record<string,number>={hub:1},edges:[string,string][]=[],enemies:string[]=[];
