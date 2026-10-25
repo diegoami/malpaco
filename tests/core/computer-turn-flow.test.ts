@@ -12,7 +12,10 @@ for(const seed of [1,42,1994])for(const seats of [2,3,4])test(`complete bounded 
  const start=createReferenceGame(referenceMap,options,victoryRules(options));if(!start.ok)throw Error(start.errors.join());
  let s=start.state,restored=s,count=0,actions=0,captures=0,moves=0;let previous=s.currentPlayer;
  while(s.phase!=="finished"&&actions<12000){
-  const before=JSON.stringify(s);freeze(s);const chosen=computerAction(s);expect(computerAction(s)).toEqual(chosen);expect(JSON.stringify(s)).toBe(before);
+  const before=JSON.stringify(s);freeze(s);const chosen=computerAction(s);expect(JSON.stringify(s)).toBe(before);
+  // Independent replay choices are compared on every action below. Repeat the
+  // same-object search at replay checkpoints,avoiding a redundant third search.
+  if(actions%71===0)expect(computerAction(s)).toEqual(chosen);
   expect(computerAction(restored)).toEqual(chosen);
   let a:Action;
   if(s.phase==="human-loss") {expect(chosen).toBeNull();a={kind:"watchComputers"};}

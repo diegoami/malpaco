@@ -9,7 +9,7 @@ import { referenceMap } from "../../src/core/reference-map";
 import { deserializeVersionedMatch } from "../../src/core/match-save";
 import {activate,openSurface,withSurface} from './shell';
 
-const fixture = JSON.parse(readFileSync(new URL("../../fixtures/new-game/T128/live-conquest-031.json", import.meta.url), "utf8")) as {
+const fixture = JSON.parse(readFileSync(new URL("../../fixtures/new-game/T141/live-conquest-improved.json", import.meta.url), "utf8")) as {
   options: GameOptions; actions: Action[]; expected: { actions: number; computerActions: number; humanActions: number; winner: string };
 };
 const country = (page: Page, id: string) => page.locator(`[data-country="${id}"]`);

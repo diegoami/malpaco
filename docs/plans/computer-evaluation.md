@@ -1,3 +1,7 @@
+> Owner adoption: T141 makes the combined tactical policy the sole production AI.
+> Historical study sources, component profiles and measurements below stay fixed.
+> Further quality work remains on #362; there is no player-facing legacy AI choice.
+
 # Public position and capture-risk helpers
 
 `computerView(state)` supplies copied public facts and the mover's own hand. The
@@ -44,7 +48,7 @@ For example, under rerolled ties, three armies capture one one-army country with
 either exchange prevents the second capture. Keeping fallback armies may therefore
 matter even when the fallback country is not a frontier yet.
 
-These helpers do not change AI choices. The next policy work must compare legal
+These helpers supply the T141 combined chooser;they do not select commands by themselves. The next policy work must compare legal
 candidate allocations/transfers/plans and the no-action alternative, with bounded
 evaluation effort, tactical counterexamples, frozen-baseline/held-out matches and
 owner playtesting before claiming stronger or more interesting play. See #341 and
@@ -52,7 +56,7 @@ the [0.4 plan](release-0.4.md); #340 evaluates rules variants separately.
 
 ## A finite-budget repeated attack pair
 
-T136/#356 adds `estimateAttackCampaign(view, from, to)` as an unused conditional
+T136/#356 adds `estimateAttackCampaign(view, from, to)` as a conditional
 research helper. It retains the script's strict `source armies > target armies`
 gate, the combat minimum, and the existing remaining resolved-exchange budget.
 It stops at capture, failed gate/minimum or budget exhaustion. Rerolled ties do
