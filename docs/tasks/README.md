@@ -223,3 +223,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T139](T139.md): isolated,hashed tactical-AI playtest build and existing-save future-decision browser proof (#361).
 
 - [T140](T140.md): isolated defender-tie comparison playtest with its own immutable research save identity (#363).
+
+- [T141](T141.md): owner-authorized sole improved AI,with recorded-history and action-budget compatibility (#364).

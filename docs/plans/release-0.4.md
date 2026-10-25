@@ -35,8 +35,7 @@ The owner chose tactical AI and ruleset research for 0.4, with personalities def
 Adopted improved AI makes future choices in existing saves; recorded actions always replay
 exactly. Rules variants require immutable identities and explicit compatibility work.
 
-Keep current rules/defaults until concrete evidence and an owner adoption decision. Research
-of optional variants does not authorize a default change. All seats obey the same visible
+The owner adopted the improved AI as the sole computer policy and requested only a combat-rules setting (defender-winning ties versus Legacy rerolled ties). [T141](../tasks/T141.md) owns AI adoption;old recorded history and combat rules remain immutable. This owner decision supersedes the earlier research-only default boundary. All seats obey the same visible
 rules. Hidden enemy hands, draw order, RNG snapshots and controller identities never become
 policy inputs. Planning uses deterministic operation limits and integer arithmetic, with no
 new dependencies planned. Mark proposed scoring constants and approximations [designed].
