@@ -273,6 +273,6 @@ export function configurableRaidCardsRules(options:GameOptions):RuleSet {
 
 /** [designed] T42/T114 opt-in; V7–V12 events and owner-selected equal army budgets. */
 export function islandRules(options:GameOptions):RuleSet {
- const o=validateGameOptions(options);if(o.islandRules!==1||o.reinforcementDivisor!==undefined||o.humanShare!==0)throw Error('Island rules require explicit opt-in, fixed income and neutral shares.');
+ const o=validateGameOptions(options);if(o.combatPreset!==undefined)throw Error('Defender combat needs its distinct rules factory.');if(o.islandRules!==1||o.reinforcementDivisor!==undefined||o.humanShare!==0)throw Error('Island rules require explicit opt-in, fixed income and neutral shares.');
  return {...raidCardsRules(o),id:'island-rules-v1',startingArmyBudget:'equal-v1',events:Object.freeze({frequency:o.eventFrequency})};
 }
