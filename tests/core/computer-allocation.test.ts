@@ -61,6 +61,13 @@ test('maximum capture remains correct for a safe source and an immediate winning
  s.phase='capture';s.reinforcementPool=0;s.pendingCapture={from:'source',to:'target',min:1,max:9,defaultAmount:9};
  expect(capture(s).armies).toEqual({source:1,target:9,e:1});
 });
+test('exhausted attack budget cannot justify draining a valuable source for a phantom immediate win',()=>{
+ const s=protectedSource();s.ownerOf.z='own';
+ const view=core.computerView(s);expect(Object.values(s.ownerOf).filter(x=>x==='own')).toHaveLength(5);expect(view.strategy.dominationTarget).toBe(6);
+ const normal=plan(view),ordinary=step(s,normal.action??core.computerAction(s)!);expect(ordinary.armies.target).toBe(9);
+ const limited=plan({...view,attacksThisTurn:view.attackBudget});expect(limited.action?.kind).toBe('captureMove');
+ const protectedState=step(s,limited.action!);expect(protectedState.armies.source).toBeGreaterThan(1);
+});
 for(const ties of ['reroll','defender'] as const)test(`legal balanced capture split under ${ties} ties`,()=>{
  const initial=state({source:9,target:1,eA:5,eB:5,remote:100},[['source','target'],['source','eA'],['target','eB'],['eA','remote'],['eB','remote']],['eA','eB','remote']);
  const s={...initial,rules:{...initial.rules,combat:{...initial.rules.combat,ties}}};s.phase='capture';s.reinforcementPool=0;s.pendingCapture={from:'source',to:'target',min:1,max:9,defaultAmount:9};
@@ -113,4 +120,15 @@ test('other phases, mandatory card choices and empty pools preserve baseline rou
  const s=balanced(),view=core.computerView(s);
  for(const v of [{...view,phase:'attack' as const},{...view,phase:'cards' as const},{...view,reinforcementPool:0},{...view,pendingRaid:true},{...view,pendingDiscard:true},{...view,pendingCapture:true}])expect(plan(v).action).toBeNull();
  expect(core.computerAction(s)).toEqual(core.decideComputerAction(view));
+});
+test('arena opt-in uses allocation/capture overrides while the default policy stays unchanged',async()=>{
+ const arena=await import('../../tools/arena/policies');
+ expect(arena.POLICY_DESCRIPTORS['allocation-v1']!.parameters).toHaveProperty('riskTolerance',500000);
+ for(const s of [balanced(),protectedSource()]){
+  const view=core.computerView(s),expected=plan(view).action;
+  expect(expected).not.toBeNull();expect(arena.decideArenaPolicy('allocation-v1',view)).toEqual(expected);
+  expect(core.computerAction(s)).toEqual(core.decideComputerAction(view));
+ }
+ const view={...core.computerView(balanced()),phase:'attack' as const};
+ expect(arena.decideArenaPolicy('allocation-v1',view)).toEqual(arena.baseline031(view));
 });

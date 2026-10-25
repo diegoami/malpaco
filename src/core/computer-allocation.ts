@@ -77,7 +77,7 @@ export function planAllocation(view:ComputerStrategicView):AllocationDecision {
    byRisk.set(target,Math.max(byRisk.get(target)!,value));
   }
   let winning=0,offense=0;
-  if(!stopped)for(const country of owned){
+  if(!stopped&&view.attacksThisTurn<view.attackBudget)for(const country of owned){
    const source=cs.get(country.id)!;if(source.armies<combat.minArmiesToAttack)continue;
    for(const enemy of neighbors(country).filter(c=>c.owner!==player)){
     const r=risk(position,source.id,[enemy.id]);if(!r)break;
@@ -116,12 +116,12 @@ export function planAllocation(view:ComputerStrategicView):AllocationDecision {
  }else{
   const cap=view.strategy.capture,from=cap?byId.get(cap.from):null,to=cap?byId.get(cap.to):null;
   if(!cap||!view.pendingCapture||!from||!to||from.owner!==player||to.owner!==player||!from.neighbours.includes(to.id)
-   ||![cap.min,cap.max,cap.defaultAmount].every(Number.isSafeInteger)||cap.min<1||cap.max<cap.min||cap.max>from.armies+cap.min-1
+   ||![cap.min,cap.max,cap.defaultAmount].every(Number.isSafeInteger)||cap.min<1||cap.max<cap.min||!Number.isSafeInteger(from.armies-1+cap.min)||cap.max>from.armies-1+cap.min
    ||to.armies!==cap.min||cap.defaultAmount<cap.min||cap.defaultAmount>cap.max)return result('unsupported');
   add([],cap.defaultAmount);
-  const width=cap.max-cap.min+1;
+  const width=cap.max-cap.min+1,span=cap.max-cap.min,quarter=Math.floor(span/4),remainder=span%4;
   const amounts=width<=p.maxCandidates?Array.from({length:width},(_,i)=>cap.min+i):[cap.min,cap.max,
-   ...[1,2,3].flatMap(n=>[cap.min+Math.floor((cap.max-cap.min)*n/4),cap.min+Math.ceil((cap.max-cap.min)*n/4)])];
+   ...[1,2,3].flatMap(n=>[cap.min+quarter*n+Math.floor(remainder*n/4),cap.min+quarter*n+Math.ceil(remainder*n/4)])];
   for(const amount of amounts)add([],amount);
  }
  if(stopped)return result(stopped);

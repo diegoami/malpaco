@@ -5,6 +5,11 @@ factory or default. The registry contains the frozen `baseline-031` comparator
 and two deliberately simple diagnostic controls, `hold-v1` and `largest-gap-v1`.
 They are not personalities or ranked difficulty levels.
 
+The opt-in `allocation-v1` experiment uses T133's reinforcement/capture planner,
+with its named parameters recorded in the policy descriptor. Other phases and
+explicit fallback use the frozen baseline. It does not route into the application;
+see [candidate semantics](../../docs/plans/allocation-candidate.md).
+
 `frozen-031.ts` preserves the released decision/card/reserve logic from
 `6e75ad9cff3529b3bb13d1dff31a336a86c64627`; it imports types, not current policy
 helpers. Source provenance, a frozen public-decision corpus and the module's
