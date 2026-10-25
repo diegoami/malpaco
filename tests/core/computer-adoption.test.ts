@@ -43,3 +43,10 @@ test('preserved released Raid-loss checkpoint remains an exact recorded human-lo
  const original=JSON.parse(readFileSync('fixtures/new-game/T41/parent-acceptance/proposed-browser/fixtures/policy-raid-after.json','utf8'));
  expect(f.state.history.slice(0,431)).toEqual(original.actions);
 });
+test('separate improved complete-game witness retains every real AI move and human acceptance feature',async()=>{
+ const {readFileSync}=await import('node:fs'),fixture=JSON.parse(readFileSync('fixtures/new-game/T141/live-conquest-improved.json','utf8'));
+ const {createReferenceGame}=await import('../../src/core/reference-game'),{referenceMap}=await import('../../src/core/reference-map');
+ const made=createReferenceGame(referenceMap,fixture.options,core.victoryRules(fixture.options));if(!made.ok)throw Error(made.errors.join());let s=made.state;const seen=new Set<string>();
+ for(const a of fixture.actions){if(core.activePlayer(s)!.kind==='computer')expect(core.computerAction(s)).toEqual(a);else seen.add(a.kind);const n=core.apply(s,a);expect(n.ok).toBe(true);if(!n.ok)throw Error(n.error);s=n.state;}
+ expect(s.winner).toBe('seat1');expect(s.result!.reason).toBe('conquest');expect(s.history).toHaveLength(fixture.expected.actions);for(const kind of ['reinforce','attack','captureMove','friendlyMove'])expect(seen.has(kind)).toBe(true);
+},60000);
