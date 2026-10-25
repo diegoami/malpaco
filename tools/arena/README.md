@@ -10,6 +10,10 @@ with its named parameters recorded in the policy descriptor. Other phases and
 explicit fallback use the frozen baseline. It does not route into the application;
 see [candidate semantics](../../docs/plans/allocation-candidate.md).
 
+The opt-in `movement-v1` experiment adds partial/lateral/future-front movement
+to allocation-v1, retaining frozen attacks/cards. It remains arena-only; see
+[movement semantics](../../docs/plans/movement-candidate.md).
+
 `frozen-031.ts` preserves the released decision/card/reserve logic from
 `6e75ad9cff3529b3bb13d1dff31a336a86c64627`; it imports types, not current policy
 helpers. Source provenance, a frozen public-decision corpus and the module's
