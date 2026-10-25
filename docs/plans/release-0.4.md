@@ -22,7 +22,7 @@ grounds the tactical work; labels and PR checks hold status.
    seats/first players, separate development/evaluation seeds, exact policy/rules/source IDs,
    explicit budgets, deterministic histories and all scheduled outcomes. Tactical wins alone
    do not establish strength. Coordinate #92/#93/#95; their old contracts require new preflight.
-5. Compare current combat with symmetric defender-wins-ties: #340. Change one mechanic first;
+5. [T138](../tasks/T138.md), #360 crosses all map/seat settings at one development seed with the frozen tactical candidate before held-out evaluation. Compare current combat with symmetric defender-wins-ties: #340. Change one mechanic first;
    investigate justified economy/card/movement interactions afterwards. Coordinate #299 and
    preserve #295's original unfinished cases. Initial model results do not establish fun or
    inevitable stalemates.
