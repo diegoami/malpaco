@@ -3,6 +3,7 @@ import type {ComputerStrategicView} from '../../src/core/computer-view';
 import {baseline031} from './frozen-031';
 import {planAllocation,ALLOCATION_PARAMETERS} from '../../src/core/computer-allocation';
 import {planMovement,MOVEMENT_PARAMETERS} from '../../src/core/computer-positioning';
+import {planOffensive,OFFENSIVE_PARAMETERS} from '../../src/core/computer-offensive';
 export {baseline031} from './frozen-031';
 
 /** Research registry, not player-facing personalities or ranked strength levels. */
@@ -17,11 +18,17 @@ export const POLICY_DESCRIPTORS:Readonly<Record<string,{
  }},
  'hold-v1':{purpose:'Diagnostic: baseline cards, first-ID placement, no ordinary attack/final transfer'},
  'largest-gap-v1':{purpose:'Diagnostic: baseline except largest positive source-target army-gap attack'},
+ 'tactical-v1':{purpose:'Experimental T137 campaign objective/stopping plus allocation/movement; no adoption claim',parameters:Object.fromEntries([...Object.entries(ALLOCATION_PARAMETERS).map(([k,v])=>[`allocation.${k}`,v]),...Object.entries(MOVEMENT_PARAMETERS).map(([k,v])=>[`movement.${k}`,v]),...Object.entries(OFFENSIVE_PARAMETERS).map(([k,v])=>[`offensive.${k}`,v])])},
  'movement-v1':{purpose:'Experimental T135 movement plus allocation-v1; frozen attacks/cards, no adoption claim',parameters:Object.fromEntries([...Object.entries(ALLOCATION_PARAMETERS).map(([k,v])=>[`allocation.${k}`,v]),...Object.entries(MOVEMENT_PARAMETERS).map(([k,v])=>[`movement.${k}`,v])])},
  'allocation-v1':{purpose:'Experimental T133 allocation/capture; frozen fallback, no adoption/strength claim',parameters:ALLOCATION_PARAMETERS},
 });
 export function decideArenaPolicy(id:string,view:ComputerStrategicView):Action|null {
  if(!Object.hasOwn(POLICY_DESCRIPTORS,id))throw Error(`Unknown policy ${id}`);
+ if(id==='tactical-v1'){
+  const action=planAllocation(view).action??baseline031(view);
+  const offensive=planOffensive(view);if(offensive.action)return offensive.action;
+  return action?.kind==='friendlyMove'||action?.kind==='endTurn'?planMovement(view).action??action:action;
+ }
  if(id==='movement-v1'){
   const action=planAllocation(view).action??baseline031(view);
   return action?.kind==='friendlyMove'||action?.kind==='endTurn'?planMovement(view).action??action:action;

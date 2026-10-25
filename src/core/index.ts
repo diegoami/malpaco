@@ -102,3 +102,5 @@ export {planMovement,MOVEMENT_PARAMETERS} from './computer-positioning';
 export type {MovementDecision} from './computer-positioning';
 export {estimateAttackCampaign,CAMPAIGN_SCALE,CAMPAIGN_MAX_CELLS} from './computer-campaign';
 export type {AttackCampaign,CampaignTerminal} from './computer-campaign';
+export {planOffensive,OFFENSIVE_PARAMETERS} from './computer-offensive';
+export type {OffensiveDecision} from './computer-offensive';
