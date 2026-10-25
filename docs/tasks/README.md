@@ -211,3 +211,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T133](T133.md): experimental reinforcement/capture allocation candidate, arena-only comparison (#350), after T130/T132.
 
 - [T134](T134.md): frozen-candidate development probe across map/seat/opponent cohorts (#352), with held-out seeds untouched.
+
+- [T135](T135.md): experimental partial/lateral movement, future-front protection and unchanged allocation-v1 regression (#354).
