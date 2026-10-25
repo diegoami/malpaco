@@ -89,6 +89,8 @@ export interface GameOptions {
   readonly islandRules?: 1;
   /** T111 versioned larger-map prototype. */
   readonly regionCount?:72|96;
+  /** T142: explicit defender preset;absence preserves historical rerolled ties. */
+  readonly combatPreset?:'defender-v1';
 }
 
 /** Typed error from option validation. */
@@ -265,7 +267,8 @@ export function validateGameOptions(value: unknown): GameOptions {
   ] as const) {
     if (!(f in obj)) throw new OptionsError("missing field", f);
   }
-  return {
+  const options:GameOptions = {
+    ...(Object.hasOwn(obj,'combatPreset')?{combatPreset:parseCombatPreset(obj.combatPreset)}:{}),
     ...(Object.hasOwn(obj,"islandRules")?{islandRules:parseIslandRules(obj.islandRules)}:{}),
     ...(Object.hasOwn(obj,"regionCount")?{regionCount:parseRegionCount(obj.regionCount)}:{}),
     seats,
@@ -282,7 +285,11 @@ export function validateGameOptions(value: unknown): GameOptions {
     ...(obj.names === undefined ? {} : {names: parseNames(obj.names)}),
     ...(obj.reinforcementDivisor === undefined && !Object.hasOwn(obj,"reinforcementDivisor") ? {} : {reinforcementDivisor: parseReinforcementDivisor(obj.reinforcementDivisor)}),
   };
+  if(options.combatPreset!==undefined&&(options.islandRules!==1||options.humanShare!==0||options.reinforcementDivisor!==undefined))throw new OptionsError('Defender combat requires explicit island rules and neutral fixed-income options.','combatPreset');
+  return options;
 }
+
+function parseCombatPreset(value:unknown):'defender-v1' {if(value==='defender-v1')return value;throw new OptionsError('Unsupported combat preset.','combatPreset');}
 
 function parseNames(value: unknown): NameChoice {
   if (value === "seed" || value === "numbered" || (NAME_THEMES as readonly unknown[]).includes(value)) return value as NameChoice;

@@ -19,8 +19,9 @@ export class SaveFormatError extends Error {
  * Serialize a GameOptions object to plain JSON, wrapped with the format
  * version. Pure: deterministic and dependency-free.
  */
+export const DEFENDER_OPTIONS_SAVE_VERSION=2;
 export function serializeOptions(options: GameOptions): string {
-  const payload = { version: SAVE_FORMAT_VERSION, options };
+  const payload = { version: options.combatPreset===undefined?SAVE_FORMAT_VERSION:DEFENDER_OPTIONS_SAVE_VERSION, options };
   return JSON.stringify(payload);
 }
 
@@ -42,7 +43,7 @@ export function deserializeOptions(text: string): GameOptions {
   if (!("version" in obj)) {
     throw new SaveFormatError("missing field", "version");
   }
-  if (obj.version !== SAVE_FORMAT_VERSION) {
+  if (obj.version !== SAVE_FORMAT_VERSION && obj.version !== DEFENDER_OPTIONS_SAVE_VERSION) {
     throw new SaveFormatError(
       `unsupported save format version: got ${JSON.stringify(obj.version)}, expected ${SAVE_FORMAT_VERSION}`,
       "version",
@@ -52,7 +53,9 @@ export function deserializeOptions(text: string): GameOptions {
     throw new SaveFormatError("missing field", "options");
   }
   try {
-    return validateGameOptions(obj.options);
+    const options=validateGameOptions(obj.options);
+    if(obj.version===SAVE_FORMAT_VERSION&&options.combatPreset!==undefined||obj.version===DEFENDER_OPTIONS_SAVE_VERSION&&options.combatPreset!=='defender-v1')throw new SaveFormatError('Combat preset does not match options format version.','version');
+    return options;
   } catch (e) {
     if (e instanceof OptionsError) throw new SaveFormatError(`options: ${e.message}`, e.field);
     throw e;
