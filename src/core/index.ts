@@ -104,3 +104,5 @@ export {estimateAttackCampaign,CAMPAIGN_SCALE,CAMPAIGN_MAX_CELLS} from './comput
 export type {AttackCampaign,CampaignTerminal} from './computer-campaign';
 export {planOffensive,OFFENSIVE_PARAMETERS} from './computer-offensive';
 export type {OffensiveDecision} from './computer-offensive';
+export {defenderIslandRules,defenderMatchIdentity,GEOGRAPHIC_DEFENDER_MATCH_IDENTITY,GEOGRAPHIC_V3_DEFENDER_MATCH_IDENTITY} from './combat-presets';
+export {DEFENDER_OPTIONS_SAVE_VERSION} from './save';
