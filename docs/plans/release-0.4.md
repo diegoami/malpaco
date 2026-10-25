@@ -10,6 +10,8 @@ grounds the tactical work; labels and PR checks hold status.
 1. Public position facts and information boundary: [T129](../tasks/T129.md), #343.
 2. [T130](../tasks/T130.md), #345: bounded integer single-source capture-risk intervals
    for specified one/two-country paths; later response evaluation uses this public model.
+   The [helper semantics](computer-evaluation.md) distinguish public facts, conditional
+   probability intervals and explicit unknown outcomes from strategy claims.
 3. Shared candidate evaluation for placement/capture, useful partial/lateral movement and
    future fronts, then attack/stop decisions: #341. Freeze each bounded contract before code.
 4. [T132](../tasks/T132.md), #348: reproducible public-policy arena and frozen v0.3.1 comparator;
