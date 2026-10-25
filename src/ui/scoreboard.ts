@@ -92,11 +92,11 @@ export class ScoreboardDialog {
       stat("scoreboard-lost", "Lost", String(t.lost)), stat("scoreboard-gave-up", "Gave up", String(t.gaveUp)), stat("scoreboard-win-rate", "Win rate", rate === null ? "–" : `${rate}%`));
     // A short date fits a phone; the full one is its title.
     const date = (iso: string) => {const d = new Date(iso); return Number.isNaN(d.getTime()) ? iso : h("time", {datetime: iso, title: d.toLocaleString()}, d.toLocaleDateString(undefined, {month: "short", day: "numeric"}));};
-    const list = recent.length ? h("table", {id: "scoreboard-games"}, h("caption", {}, `Last ${RECENT_GAMES} games, newest first; Countries are yours at the end`),
+    const list = recent.length ? h("table", {id: "scoreboard-games"}, h("caption", {}, `${this.filter==='all'?'Last':'Matching games from the last'} ${RECENT_GAMES} games, newest first; Countries are yours at the end`),
       h("thead", {}, h("tr", {}, ...["Date", "Result", "Rules", "Rounds", "Countries", "Seed"].map(c => h("th", {scope: "col"}, c)))),
       h("tbody", {}, ...recent.map(row => h("tr", {"data-result": row.result}, h("td", {}, date(row.date)), h("th", {scope: "row"}, RESULT_LABEL[row.result]),h("td",{},rulesLabel(rulesKey(row.rules))),
         h("td", {}, String(row.rounds)), h("td", {}, String(row.countries)), h("td", {}, String(row.seed))))))
-      : h("p", {id: "scoreboard-empty", class: "card-note"}, "No games recorded yet. A game counts once, when it ends.");
+      : h("p", {id: "scoreboard-empty", class: "card-note"}, this.filter==='all'?'No games recorded yet. A game counts once, when it ends.':'No matching games in the last 20.');
     const reset = h("button", {type: "button", id: "scoreboard-reset", disabled: !played(t) && !board.recent.length}, "Reset");
     reset.onclick = () => {this.render(true); this.body.querySelector<HTMLButtonElement>("#scoreboard-reset-cancel")?.focus();};
     let actions: HTMLElement = h("div", {class: "help-actions"}, reset);
