@@ -18,9 +18,9 @@ for(const width of [390,1280])for(const rate of [1,3,5,7] as const)test(`${width
  await reloadGame(page);await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});expect(await read(page)).toBe(original);const kept=deserializeVersionedMatch(original);expect(kept.state.rules.reinforcementDivisor).toBe(rate);expect(kept.state.events).toBeUndefined();
  await page.locator('#new-game-button').click();await page.locator('#give-up-cancel').click();expect(await read(page)).toBe(original);
  await page.locator('#new-game-button').click();await page.locator('#give-up-confirm').click();await startFromResult(page);
- await expect.poll(async()=>{const raw=await read(page);return raw?deserializeVersionedMatch(raw).identity.rules.id:null;},{timeout:60000}).toBe('island');
+ await expect.poll(async()=>{const raw=await read(page);return raw?deserializeVersionedMatch(raw).identity.rules.id:null;},{timeout:60000}).toBe('island-defender');
  await openSurface(page,'menu');
- const text=(await read(page))!,loaded=deserializeVersionedMatch(text),initial=loaded.initialState!;expect(loaded.options.startingArmiesRange).toBe('1-4');expect(loaded.options.eventFrequency).toBe('Off');expect(loaded.options.seats).toHaveLength(3);expect(loaded.options.reinforcementDivisor).toBeUndefined();
+ const text=(await read(page))!,loaded=deserializeVersionedMatch(text),initial=loaded.initialState!;expect(loaded.state.rules.combat.ties).toBe('defender');expect(loaded.options.combatPreset).toBe('defender-v1');expect(loaded.options.startingArmiesRange).toBe('1-4');expect(loaded.options.eventFrequency).toBe('Off');expect(loaded.options.seats).toHaveLength(3);expect(loaded.options.reinforcementDivisor).toBeUndefined();
  expect(Object.values(initial.armies).reduce((a,b)=>a+b)).toBe(115);for(const p of initial.players){const income=reinforcementIncome(initial,p.id);expect(income.base).toBe(Math.max(2,Math.floor(income.provinceCount/3)));}
  await reloadGame(page);await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});expect(await read(page)).toBe(text);
 });

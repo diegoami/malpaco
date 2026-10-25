@@ -47,7 +47,7 @@ export class NextGameSettingsDialog {
  private readonly starting=h('select',{id:'next-game-starting-armies'},...RANGES.map(v=>h('option',{value:v},v.replace('-','–'))));
  private readonly frequency=h('select',{id:'next-game-event-frequency'},...FREQUENCIES.map(v=>h('option',{value:v},v)));
  private readonly size=h('select',{id:'next-game-map-size'},...[46,72,96].map(n=>h('option',{value:String(n)},`${n} regions`)));
- private readonly combat=h('select',{id:'next-game-combat-rules',style:'font-size:18px;max-width:100%','aria-describedby':'next-game-combat-note'},h('option',{value:'defender'},'Defender wins ties'),h('option',{value:'legacy'},'Legacy (reroll ties)'));
+ private readonly combat=h('select',{id:'next-game-combat-rules','aria-describedby':'next-game-combat-note'},h('option',{value:'defender'},'Defender wins ties'),h('option',{value:'legacy'},'Legacy (reroll ties)'));
  private readonly error=h('p',{role:'alert',class:'match-error'});
  constructor(private readonly store:NextGameStore=browserNextGames,onOpen?:()=>void,onClose?:()=>void){
   this.close.onclick=()=>this.dialog.close();
