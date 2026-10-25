@@ -203,3 +203,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T129](T129.md): public strategic context and objective-free integer position facts (#343), foundation for #341.
 
 - [T130](T130.md): bounded integer capture-risk intervals for current and future fronts (#345), after T129.
+
+- [T131](T131.md): independent four-game baseline feasibility pilot for defense-favoring combat (#346/#340).
