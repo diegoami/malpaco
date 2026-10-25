@@ -98,3 +98,8 @@ test('arena applies legal attacks and capture allocation with exact army account
  }
  expect(captures).toBeGreaterThan(0);
 });
+test('exact-score attack ties retain the frozen joined-key order for valid prefix IDs',()=>{
+ const s=state({a:5,'a-':5,home:1,e:1,z:20},[['a','e'],['a-','e'],['a','home'],['a-','home'],['e','z']],['e','z']),v=core.computerView(s);
+ expect(core.decideComputerAction(v)).toEqual({kind:'attack',from:'a-',to:'e'});
+ expect(plan(v).action).toEqual(core.decideComputerAction(v));
+});

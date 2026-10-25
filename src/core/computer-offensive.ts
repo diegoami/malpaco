@@ -29,7 +29,7 @@ export function planOffensive(view:ComputerStrategicView):OffensiveDecision {
  if(view.cardStage&&[view.drawCount,view.discardCount].some(n=>!Number.isSafeInteger(n)||n<0))return result('unsupported');
  const player=me,byId=new Map(view.countries.map(c=>[c.id,c]));
  const attacks=view.attackPairs.filter(a=>(byId.get(a.from)?.armies??0)>(byId.get(a.to)?.armies??0))
-  .sort((a,b)=>byId.get(a.to)!.armies-byId.get(b.to)!.armies||byId.get(b.from)!.armies-byId.get(a.from)!.armies||cmp(a.from,b.from)||cmp(a.to,b.to));
+  .sort((a,b)=>byId.get(a.to)!.armies-byId.get(b.to)!.armies||byId.get(b.from)!.armies-byId.get(a.from)!.armies||cmp(`${a.from}/${a.to}`,`${b.from}/${b.to}`));
  if(!attacks.length)return result('phase');
  const setup=createArmyEvaluator(view,p,{defenseOnly:true});if(setup.kind==='unsupported')return result('unsupported');
  if(setup.kind==='terminal')return result('candidate',{kind:'endTurn'});
