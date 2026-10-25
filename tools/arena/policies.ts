@@ -2,6 +2,7 @@ import type {Action} from '../../src/core/types';
 import type {ComputerStrategicView} from '../../src/core/computer-view';
 import {baseline031} from './frozen-031';
 import {planAllocation,ALLOCATION_PARAMETERS} from '../../src/core/computer-allocation';
+import {planMovement,MOVEMENT_PARAMETERS} from '../../src/core/computer-positioning';
 export {baseline031} from './frozen-031';
 
 /** Research registry, not player-facing personalities or ranked strength levels. */
@@ -16,10 +17,15 @@ export const POLICY_DESCRIPTORS:Readonly<Record<string,{
  }},
  'hold-v1':{purpose:'Diagnostic: baseline cards, first-ID placement, no ordinary attack/final transfer'},
  'largest-gap-v1':{purpose:'Diagnostic: baseline except largest positive source-target army-gap attack'},
+ 'movement-v1':{purpose:'Experimental T135 movement plus allocation-v1; frozen attacks/cards, no adoption claim',parameters:Object.fromEntries([...Object.entries(ALLOCATION_PARAMETERS).map(([k,v])=>[`allocation.${k}`,v]),...Object.entries(MOVEMENT_PARAMETERS).map(([k,v])=>[`movement.${k}`,v])])},
  'allocation-v1':{purpose:'Experimental T133 allocation/capture; frozen fallback, no adoption/strength claim',parameters:ALLOCATION_PARAMETERS},
 });
 export function decideArenaPolicy(id:string,view:ComputerStrategicView):Action|null {
  if(!Object.hasOwn(POLICY_DESCRIPTORS,id))throw Error(`Unknown policy ${id}`);
+ if(id==='movement-v1'){
+  const action=planAllocation(view).action??baseline031(view);
+  return action?.kind==='friendlyMove'||action?.kind==='endTurn'?planMovement(view).action??action:action;
+ }
  if(id==='allocation-v1')return planAllocation(view).action??baseline031(view);
  const action=baseline031(view);
  if(id==='baseline-031'||!action||view.pendingRaid||view.pendingDiscard||view.pendingCapture)return action;

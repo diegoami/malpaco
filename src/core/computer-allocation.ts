@@ -1,9 +1,9 @@
 import type {Action} from './types';
-import type {ComputerCountry,ComputerStrategicView} from './computer-view';
+import type {ComputerStrategicView} from './computer-view';
 import {evaluateComputerPosition} from './computer-position';
-import {estimateCapturePath,CAPTURE_RISK_SCALE} from './computer-risk';
-import {DIE_SIDES} from './combat';
-import type {CaptureRisk} from './computer-risk';
+import {CAPTURE_RISK_SCALE} from './computer-risk';
+import {createArmyEvaluator} from './computer-army-evaluation';
+import type {ArmyScore} from './computer-army-evaluation';
 
 /** [designed] T133/#350, hypotheses from #339, not game rules or tuned weights.
  * Threats are alternative conditional tactics; their probabilities are never summed.
@@ -15,9 +15,7 @@ export interface AllocationDecision {
  readonly reason:'candidate'|'baseline'|'phase'|'unsupported'|'budget';
  readonly winningChance:{readonly lower:number;readonly upper:number;readonly scale:number}|null;
 }
-type Position=Pick<ComputerStrategicView,'countries'|'strategy'>;
-type Bound=Extract<CaptureRisk,{kind:'bounded'}>;
-interface Score {winning:number;winningUpper:number;offense:number;risks:number[];byId:Map<string,number>}
+type Score=ArmyScore;
 interface Plan {key:string;allocations:readonly (readonly[string,number])[];amount:number|null}
 const cmp=(a:string,b:string)=>a<b?-1:a>b?1:0;
 
@@ -26,109 +24,16 @@ const cmp=(a:string,b:string)=>a<b?-1:a>b?1:0;
  * actual opponent prediction. Ordered excesses are not whole-turn expected loss.
  */
 export function planAllocation(view:ComputerStrategicView):AllocationDecision {
- const p=ALLOCATION_PARAMETERS,mover=view.playerId,combat=view.strategy.combat;
- let modelCells=0,candidates=0,stopped:AllocationDecision['reason']|null=null;
+ const p=ALLOCATION_PARAMETERS,mover=view.playerId;
+ let evaluator:Extract<ReturnType<typeof createArmyEvaluator>,{kind:'ready'}>|undefined;
  let winningChance:AllocationDecision['winningChance']=null;
- const result=(reason:AllocationDecision['reason'],action:Action|null=null):AllocationDecision=>({action,reason,modelCells,candidates,winningChance});
+ const result=(reason:AllocationDecision['reason'],action:Action|null=null):AllocationDecision=>({action,reason,modelCells:evaluator?.modelCells??0,candidates:evaluator?.candidates??0,winningChance});
  if(!mover||view.pendingRaid||view.pendingDiscard||view.phase!=='reinforce'&&view.phase!=='capture'||view.phase==='reinforce'&&view.reinforcementPool===0)return result('phase');
  if(view.pendingCapture&&view.phase!=='capture')return result('phase');
- const player=mover;
- if(view.countries.length>p.maxCountries||combat.attackRule!=='classic'||combat.attackerDice.max!==1||combat.defenderDice.max!==1||combat.defenderDice.minus!==0
-  ||combat.capture!=='choice'&&combat.capture!=='all'||!Number.isSafeInteger(view.strategy.reinforcementDivisor)||view.strategy.reinforcementDivisor<1
-  ||!Number.isSafeInteger(combat.minArmiesToAttack)||combat.minArmiesToAttack<2||!Number.isSafeInteger(combat.attackerDice.minus)||combat.attackerDice.minus<0||combat.minArmiesToAttack-combat.attackerDice.minus<1
-  ||!['reroll','attacker','defender'].includes(combat.ties)||!Number.isSafeInteger(view.attackBudget)||view.attackBudget<0||!Number.isSafeInteger(view.attacksThisTurn)||view.attacksThisTurn<0
-  ||view.countries.some(c=>!Number.isSafeInteger(c.armies)||c.armies<1)||view.strategy.islands.some(i=>!Number.isSafeInteger(i.bonus)||i.bonus<0))return result('unsupported');
- const countries=[...view.countries].sort((a,b)=>cmp(a.id,b.id)),byId=new Map(countries.map(c=>[c.id,c]));
- const owned=countries.filter(c=>c.owner===player);
- if(!owned.length||byId.size!==countries.length)return result('unsupported');
- if(owned.length===countries.length||view.strategy.dominationTarget!==null&&owned.length>=view.strategy.dominationTarget)return result('baseline');
- const neighbors=(c:ComputerCountry)=>[...new Set(c.neighbours)].sort(cmp).flatMap(id=>byId.has(id)?[byId.get(id)!]:[]);
- function income(owner:string,changed?:string,newOwner?:string|null):number {
-  const belongs=(id:string)=>(id===changed?newOwner:byId.get(id)?.owner)===owner;
-  const count=countries.filter(c=>belongs(c.id)).length;
-  if(!count||view.strategy.turnSequence!=='reinforcement')return 0;
-  const value=Math.max(2,Math.floor(count/view.strategy.reinforcementDivisor))+
-   view.strategy.islands.filter(i=>i.provinces.length>0&&i.provinces.every(belongs)).reduce((n,i)=>n+i.bonus,0);
-  if(!Number.isSafeInteger(value))stopped='unsupported';return value;
- }
- const ownIncome=income(player),importance=new Map(owned.map(c=>[c.id,1+p.incomeHorizon*(ownIncome-income(player,c.id,null))]));
- if([...importance.values()].some(v=>!Number.isSafeInteger(v)||v<1))return result('unsupported');
- const enemyIncome=new Map([...new Set(countries.filter(c=>c.owner!==player).map(c=>c.owner))].map(id=>[id,income(id)]));
- if(stopped||countries.some(c=>c.owner!==player&&!Number.isSafeInteger(c.armies+enemyIncome.get(c.owner)!)))return result('unsupported');
- const sources=countries.filter(c=>c.owner!==player&&neighbors(c).some(n=>n.owner===player))
-  .sort((a,b)=>(b.armies+enemyIncome.get(b.owner)!)-(a.armies+enemyIncome.get(a.owner)!)||cmp(a.id,b.id)).slice(0,p.maxEnemySources);
- const paths=sources.flatMap(source=>neighbors(source).filter(c=>c.owner===player).flatMap(first=>[
-  {source:source.id,targets:[first.id]},...neighbors(first).filter(c=>c.owner===player&&c.id!==first.id).map(second=>({source:source.id,targets:[first.id,second.id]})),
- ]));
- const cache=new Map<string,Bound>();
- const remaining=Math.max(0,view.attackBudget-view.attacksThisTurn);
- let wins=0,losses=0;
- for(let a=1;a<=DIE_SIDES;a++)for(let d=1;d<=DIE_SIDES;d++){
-  if(a>d||a===d&&combat.ties==='attacker')wins++;else if(a<d||combat.ties!=='reroll')losses++;
- }
- const denominator=wins+losses;
- function risk(position:Position,from:string,targets:readonly string[],extra=0):Bound|null {
-  if(stopped)return null;
-  const cs=new Map(position.countries.map(c=>[c.id,c])),a=cs.get(from)!.armies+extra,ds=targets.map(id=>cs.get(id)!.armies),sum=ds.reduce((n,d)=>n+d,0);
-  const key=JSON.stringify([a,ds]),old=cache.get(key);if(old)return old;
-  const work=Math.max(0,a-combat.minArmiesToAttack+1)*sum;
-  if(!Number.isSafeInteger(work)||work>p.modelCellBudget-modelCells){stopped='budget';return null;}
-  const r=estimateCapturePath(position,from,targets,extra);
-  if(r.kind==='unknown'){stopped=r.reason==='budget'?'budget':'unsupported';return null;}
-  modelCells+=r.cells;cache.set(key,r);return r;
- }
- /** A specified own pair follows the retained script's strict-advantage stop.
-  * Success needs D wins and at most remaining-D losses; use original armies
-  * for the gate rather than inventing a smaller starting advantage.
-  */
- function ownRisk(a:number,d:number):Bound|null {
-  const key=JSON.stringify(['own',a,d,remaining]),old=cache.get(key);if(old)return old;
-  const zero:Bound={kind:'bounded',lower:0,upper:0,scale:CAPTURE_RISK_SCALE,cells:0};
-  if(a<=d||a<combat.minArmiesToAttack||remaining<d){cache.set(key,zero);return zero;}
-  const limit=Math.min(a-combat.minArmiesToAttack,remaining-d),work=d*(limit+1);
-  if(!Number.isSafeInteger(work)||work>p.modelCellBudget-modelCells){stopped='budget';return null;}
-  let lower:number[]=Array.from({length:limit+2},(_,lost)=>lost<=limit?CAPTURE_RISK_SCALE:0),upper:number[]=[...lower];
-  for(let defenders=1;defenders<=d;defenders++){
-   const rowLower:number[]=Array(limit+2).fill(0),rowUpper:number[]=Array(limit+2).fill(0);
-   for(let lost=limit;lost>=0;lost--){
-    if(a-lost>defenders&&a-lost>=combat.minArmiesToAttack){
-     rowLower[lost]=Math.floor((wins*lower[lost]!+losses*rowLower[lost+1]!)/denominator);
-     rowUpper[lost]=Math.floor((wins*upper[lost]!+losses*rowUpper[lost+1]!+denominator-1)/denominator);
-    }
-   }
-   lower=rowLower;upper=rowUpper;
-  }
-  const r:Bound={kind:'bounded',lower:lower[0]!,upper:upper[0]!,scale:CAPTURE_RISK_SCALE,cells:work};
-  modelCells+=work;cache.set(key,r);return r;
- }
- function assess(position:Position):Score {
-  candidates++;
-  const cs=new Map(position.countries.map(c=>[c.id,c])),byRisk=new Map(owned.map(c=>[c.id,0]));
-  for(const path of paths){
-   const source=cs.get(path.source)!,r=risk(position,path.source,path.targets,enemyIncome.get(source.owner)!);if(!r)break;
-   const target=path.targets.at(-1)!,value=Math.max(0,r.upper-p.riskTolerance)*importance.get(target)!;
-   if(!Number.isSafeInteger(value)){stopped='unsupported';break;}
-   byRisk.set(target,Math.max(byRisk.get(target)!,value));
-  }
-  let winning=0,winningUpper=0,offense=0;
-  if(!stopped&&view.attacksThisTurn<view.attackBudget)for(const country of owned){
-   const source=cs.get(country.id)!;if(source.armies<combat.minArmiesToAttack)continue;
-   for(const enemy of neighbors(country).filter(c=>c.owner!==player)){
-    const r=ownRisk(source.armies,enemy.armies);if(!r)break;
-    const gain=1+p.incomeHorizon*((income(player,enemy.id,player)-ownIncome)+(enemyIncome.get(enemy.owner)!-income(enemy.owner,enemy.id,player)));
-    const value=r.lower*gain;if(!Number.isSafeInteger(gain)||!Number.isSafeInteger(value)){stopped='unsupported';break;}
-    offense=Math.max(offense,value);
-    if(owned.length+1===countries.length||view.strategy.dominationTarget!==null&&owned.length+1>=view.strategy.dominationTarget){winning=Math.max(winning,r.lower);winningUpper=Math.max(winningUpper,r.upper);}
-   }
-   if(stopped)break;
-  }
-  return {winning,winningUpper,offense,risks:[...byRisk.values()].sort((a,b)=>b-a),byId:byRisk};
- }
- function better(a:Score,b:Score){
-  if(a.winning!==b.winning)return a.winning>b.winning;
-  for(let i=0;i<a.risks.length;i++)if(a.risks[i]!==b.risks[i])return a.risks[i]!<b.risks[i]!;
-  return a.offense>b.offense;
- }
+ const player=mover,setup=createArmyEvaluator(view,p);
+ if(setup.kind!=='ready')return result(setup.kind==='terminal'?'baseline':'unsupported');
+ evaluator=setup;
+ const {countries,byId,owned,importance,assess,better}=setup;
  const plans:Plan[]=[],keys=new Set<string>();
  function add(allocations:readonly (readonly[string,number])[],amount:number|null=null){
   const normalized=allocations.filter(([,n])=>n>0).map(([id,n])=>[id,n] as const).sort((a,b)=>cmp(a[0],b[0]));
@@ -136,7 +41,7 @@ export function planAllocation(view:ComputerStrategicView):AllocationDecision {
  }
  if(view.phase==='reinforce'){
   const pool=view.reinforcementPool;if(!Number.isSafeInteger(pool)||pool<1)return result('unsupported');
-  const facts=evaluateComputerPosition(view),current=assess({countries,strategy:view.strategy});if(stopped)return result(stopped);
+  const facts=evaluateComputerPosition(view),current=assess({countries,strategy:view.strategy});if(setup.stopped)return result(setup.stopped);
   const fronts=owned.filter(c=>facts.countries.find(f=>f.id===c.id)!.frontier);
   const baseline=[...(fronts.length?fronts:owned)].sort((a,b)=>b.armies-a.armies||cmp(a.id,b.id))[0]!;add([[baseline.id,pool]]);
   const targets=owned.filter(c=>{const d=facts.countries.find(f=>f.id===c.id)!.frontDistance;return d!==null&&d<=1;})
@@ -158,15 +63,15 @@ export function planAllocation(view:ComputerStrategicView):AllocationDecision {
    ...[1,2,3].flatMap(n=>[cap.min+quarter*n+Math.floor(remainder*n/4),cap.min+quarter*n+Math.ceil(remainder*n/4)])];
   for(const amount of amounts)add([],amount);
  }
- if(stopped)return result(stopped);
+ if(setup.stopped)return result(setup.stopped);
  let best:Plan|null=null,bestScore:Score|null=null;
  for(const candidate of plans){
-  if(candidates>=p.maxCandidates)return result('budget');
+  if(setup.candidates>=p.maxCandidates)return result('budget');
   const changes=new Map(candidate.allocations);
   if(candidate.amount!==null){const cap=view.strategy.capture!;changes.set(cap.from,-(candidate.amount-cap.min));changes.set(cap.to,candidate.amount-cap.min);}
   const changed=countries.map(c=>({id:c.id,owner:c.owner,neighbours:c.neighbours,armies:c.armies+(changes.get(c.id)??0)}));
   if(changed.some(c=>!Number.isSafeInteger(c.armies)||c.armies<1))return result('unsupported');
-  const score=assess({countries:changed,strategy:view.strategy});if(stopped)return result(stopped);
+  const score=assess({countries:changed,strategy:view.strategy});if(setup.stopped)return result(setup.stopped);
   if(bestScore===null||better(score,bestScore)){best=candidate;bestScore=score;}
  }
  if(bestScore)winningChance={lower:bestScore.winning,upper:bestScore.winningUpper,scale:CAPTURE_RISK_SCALE};
