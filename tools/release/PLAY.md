@@ -1,4 +1,4 @@
-# Play Malpaco 0.3.1
+# Play Malpaco 0.4.0
 
 Create a self-contained release archive from the source checkout with:
 
@@ -28,9 +28,11 @@ and changing attack suggestions stay in that panel without restarting a banner.
 New games grow their own geography. Choose 46, 72 or 96 regions in Settings;46 is the default. Larger presets add islands and use numbered territory names. Saved games keep the generator and size they were made with.
 The seed fixes the geography, deal and dice sequence.
 
-Computer players advance interior reserves through their own regions toward a front,
-one adjacent transfer per turn. They leave at least one army behind and keep exposed
-border stacks in place. Human transfer rules and recorded replays are unchanged.
+Computer players evaluate reinforcement placement, capture allocation, attacks and
+friendly movement together with public threats and future fronts. They can move part
+of a stack, protect a threatened position and stop an attack when its expected value
+is poor. One improved AI makes future decisions in both new and resumed games.
+Recorded actions still replay exactly; there is no AI-mode selector.
 
 Opening a fresh page shows Settings. Press **Start game** when ready: by default you play against three Normal computers on a random seed, with
 Domination on and no round limit. Islands and territories take real island and town names from one
@@ -46,7 +48,12 @@ chooses **1–2, 1–3 or 1–4** per country (default 1–3), with equal aggreg
 and only unavoidable integer differences. New games use fixed territory income:
 owned countries divided by 3, rounded down with minimum 2, plus island bonuses.
 **Disasters and production** offers Off/Rare/Normal/Often (default Normal).
-Existing games retain their original rules, including older configured income rates.
+**Combat rules** offers **Defender wins ties** (the new-game default) or
+**Legacy (reroll ties)**. The defender wins equal dice under the first choice;
+Legacy rolls tied exchanges again. The rule is symmetric for all seats. Both choices
+use the same improved AI. Settings applies only to new games; Help reports the
+running game's actual rule. Existing games retain their original rules, including
+combat ties and older configured income rates.
 **New game** asks "Give up this game?", shows
 where the seats stood, then opens Settings with **Start game**.
 Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
@@ -116,10 +123,12 @@ and gave up, your win rate, and your last 20 games, newest first: the date, the 
 your countries at the end and the seed. A game counts once, when it ends: a win, your elimination
 (Lost at once, even if you then watch the computers), or giving up with **New game**. The result
 card shows the updated totals, for example "Won 3 · Lost 2 · Gave up 1". **Reset** asks "Clear the
-scoreboard?" first. `?setup`, manual and Nine Isles games never count.
+scoreboard?" first. Filter by All rules, Defender, Legacy or Earlier games.
+Older totals and recent rows are kept; results without known rules remain Earlier
+games. `?setup`, manual and Nine Isles games never count.
 
 The game fits phones and tablets in either orientation as well as desktops: it is tested from
-320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. The historical device report is in `docs/releases/0.2.0/DEVICE-REPORT.md`; it does not establish new physical-device or screen-reader coverage for 0.3.0. Online multiplayer and
+320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. The historical device report is in `docs/releases/0.2.0/DEVICE-REPORT.md`; it does not establish new physical-device or screen-reader coverage for 0.4.0. Online multiplayer and
 cross-device save synchronization are not supported.
 
 Settings contains the choices; their explanations are in Help.
