@@ -2116,6 +2116,23 @@ button.game-text-command[data-card-set]:not([data-card-set="Raid"]),.hand-plays 
  .battle-reference #game-focus-drawer .transfer-cancel { margin-top:4px; }
 }
 
+/* T144: give the completed game's result more presence than an ordinary choice card. */
+.battle-reference #game-focus-drawer:has(.victory-result:not([hidden])) {
+ width:min(560px, calc(100% - 2 * var(--edge))); padding:28px 24px 30px 28px;
+}
+.battle-reference #game-focus-drawer .victory-result .result-title { margin:4px 0 12px; font-size:clamp(30px, 3.2vw, 40px); }
+.battle-reference #game-focus-drawer .victory-result .card-note { margin-bottom:20px; font-size:18px; line-height:1.45; }
+.battle-reference #game-focus-drawer .victory-result .victory-choices { gap:20px; }
+.battle-reference #game-focus-drawer .victory-result .card-icon { font-size:15px; gap:6px; }
+.battle-reference #game-focus-drawer .victory-result .card-icon > svg { width:28px; height:28px; padding:14px; }
+.battle-reference #game-focus-drawer .victory-result #victory-standings { margin-top:20px; font-size:16px; }
+@media (max-width:479px), (max-height:500px) {
+ .battle-reference #game-focus-drawer:has(.victory-result:not([hidden])) { padding:16px; }
+ .battle-reference #game-focus-drawer .victory-result .card-note { font-size:16px; margin-bottom:14px; }
+ .battle-reference #game-focus-drawer .victory-result .victory-choices { gap:12px; }
+ .battle-reference #game-focus-drawer .victory-result .card-icon > svg { padding:11px; }
+}
+
 /* T126: short, prominent guidance over the board, with the map visible through it. */
 #phase-announcement { position:absolute; z-index:12; top:50%; left:50%; translate:-50% -50%; width:min(760px,calc(100% - 32px)); padding:24px 28px; border:1px solid #bdd7ce88; border-radius:16px; background:rgb(8 26 38 / 78%); box-shadow:0 8px 36px #0005; color:#fff8df; text-align:center; pointer-events:none; font-family:Ubuntu,Inter,system-ui,sans-serif; }
 #phase-announcement strong { display:block; font-size:clamp(28px,4.5vw,60px); font-weight:700; line-height:1.15; text-wrap:balance; }
