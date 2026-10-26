@@ -6,7 +6,7 @@ import {computerView} from '../../src/core/computer-view';
 import {GEOGRAPHIC_V2_RAID_CARD_MATCH_IDENTITY} from '../../src/core/match-save';
 import {visitGame} from './shell';
 import {nextGameOptions,defaultNextGameSettings} from '../../src/ui/nextGameSettings';
-import {islandRules} from '../../src/core/state';
+import {defenderIslandRules} from '../../src/core/combat-presets';
 const ROOT='malpaco:current-game';
 function humanPlacement(){
  const options={...defaultOptions(),seed:7,seats:[{kind:'human' as const},{kind:'computer' as const},{kind:'computer' as const},{kind:'computer' as const}],computerStrengths:['Normal' as const,'Normal' as const,'Normal' as const],dominationWin:true,roundLimit:null,names:'seed' as const};
@@ -23,7 +23,7 @@ function humanPlacement(){
 const human=humanPlacement();
 const humanStart=(()=>{
  for(let seed=0;seed<30;seed++){
-  const options=nextGameOptions(seed,defaultNextGameSettings()),made=createGeographicGame(options,islandRules(options),{},2);
+  const options=nextGameOptions(seed,defaultNextGameSettings()),made=createGeographicGame(options,defenderIslandRules(options),{},2);
   if(made.ok&&activePlayer(made.state)?.kind==='human')return seed;
  }
  throw Error('No human-first fresh seed');

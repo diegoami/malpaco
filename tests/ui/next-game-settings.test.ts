@@ -1,5 +1,5 @@
 import {expect,test} from 'vitest';
-import {defaultNextGameSettings,parseNextGameSettings,readNextGameSettings,saveNextGameSettings,saveStartingArmySettings,saveEventFrequencySettings,saveMapSizeSettings,nextGameOptions} from '../../src/ui/nextGameSettings';
+import {defaultNextGameSettings,parseNextGameSettings,readNextGameSettings,saveCombatRulesSettings,saveNextGameSettings,saveStartingArmySettings,saveEventFrequencySettings,saveMapSizeSettings,nextGameOptions} from '../../src/ui/nextGameSettings';
 import type {NextGameStore} from '../../src/ui/nextGameSettings';
 import {validateGameOptions} from '../../src/core/options';
 for(const version of [1,2,3])for(const count of [1,2,3] as const)test(`v${version} migrates ${count} opponents and drops obsolete rate only from future preferences`,()=>{
@@ -8,7 +8,7 @@ for(const version of [1,2,3])for(const count of [1,2,3] as const)test(`v${versio
 });
 for(const range of ['1-2','1-3','1-4'] as const)for(const frequency of ['Off','Rare','Normal','Often'] as const)test(`${range} / ${frequency} remains independent from opponent edits`,()=>{
  let text=JSON.stringify({version:2,computerOpponents:2,reinforcementDivisor:1});const store:NextGameStore={get:()=>text,set:v=>{text=v;}};
- expect(saveStartingArmySettings(range,store)).toBe(true);expect(saveEventFrequencySettings(frequency,store)).toBe(true);expect(saveNextGameSettings(1,store)).toBe(true);expect(readNextGameSettings(store)).toEqual({version:4,mapSize:46,computerOpponents:1,startingArmiesRange:range,eventFrequency:frequency});
+ expect(saveStartingArmySettings(range,store)).toBe(true);expect(saveEventFrequencySettings(frequency,store)).toBe(true);expect(saveNextGameSettings(1,store)).toBe(true);expect(readNextGameSettings(store)).toEqual({version:5,combatRules:'defender',mapSize:46,computerOpponents:1,startingArmiesRange:range,eventFrequency:frequency});
  const o=nextGameOptions(8,readNextGameSettings(store));expect(o.startingArmiesRange).toBe(range);expect(o.eventFrequency).toBe(frequency);expect(o.seats).toHaveLength(2);
  const before=text;for(const v of [null,'1-5',3,''])expect(saveStartingArmySettings(v,store)).toBe(false);for(const v of [null,'Never',0])expect(saveEventFrequencySettings(v,store)).toBe(false);for(const v of [0,4,'2'])expect(saveNextGameSettings(v,store)).toBe(false);expect(text).toBe(before);
  const full:NextGameStore={get:()=>text,set:()=>{throw Error('quota');}};expect(saveStartingArmySettings('1-4',full)).toBe(false);expect(saveEventFrequencySettings('Off',full)).toBe(false);expect(saveNextGameSettings(3,full)).toBe(false);expect(text).toBe(before);
@@ -23,4 +23,16 @@ for(const size of [46,72,96] as const)test(`map size ${size} migrates old choice
  expect(readNextGameSettings(store).mapSize).toBe(size);expect(saveStartingArmySettings('1-4',store)).toBe(true);expect(saveEventFrequencySettings('Off',store)).toBe(true);expect(saveNextGameSettings(1,store)).toBe(true);expect(readNextGameSettings(store).mapSize).toBe(size);
  expect(saveMapSizeSettings(46,store)).toBe(true);expect(readNextGameSettings(store).startingArmiesRange).toBe('1-4');expect(readNextGameSettings(store).eventFrequency).toBe('Off');
  const before=text;expect(saveMapSizeSettings(80,store)).toBe(false);expect(saveMapSizeSettings(72,{get:()=>text,set:()=>{throw Error('quota');}})).toBe(false);expect(text).toBe(before);
+});
+test('combat is the only new preference,defaults to defender,and preserves version4 settings',()=>{
+ const original={version:4,mapSize:72,computerOpponents:2,startingArmiesRange:'1-4',eventFrequency:'Rare'},s=parseNextGameSettings(JSON.stringify(original));
+ expect(s).toMatchObject({version:5,mapSize:72,computerOpponents:2,startingArmiesRange:'1-4',eventFrequency:'Rare',combatRules:'defender'});
+ const o=nextGameOptions(11,s);expect(o.combatPreset).toBe('defender-v1');expect(validateGameOptions(o)).toEqual(o);expect(Object.hasOwn(s,'aiPolicy')).toBe(false);
+});
+
+test('Legacy combat persists independently and quota failures keep the last stored choice',()=>{
+ let text=JSON.stringify(defaultNextGameSettings());const store:NextGameStore={get:()=>text,set:v=>{text=v;}};
+ expect(saveCombatRulesSettings('legacy',store)).toBe(true);expect(nextGameOptions(11,readNextGameSettings(store)).combatPreset).toBeUndefined();
+ expect(saveStartingArmySettings('1-4',store)).toBe(true);expect(readNextGameSettings(store).combatRules).toBe('legacy');
+ const old=text;expect(saveCombatRulesSettings('attacker',store)).toBe(false);expect(saveCombatRulesSettings('defender',{get:()=>text,set:()=>{throw Error('quota');}})).toBe(false);expect(text).toBe(old);
 });

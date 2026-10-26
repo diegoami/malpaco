@@ -127,6 +127,7 @@ export class GameHelp {
   readonly button = h("button", { id: "game-help-button", type: "button" }, "Help & icon names");
   readonly dialog = h("dialog", { class: "game-help", "aria-labelledby": "game-help-title" });
   /** T97: the objective and your progress, which the retired Information icon showed. */
+  private readonly combatRules = h('p',{id:'game-help-combat-rules'});
   private readonly objective = h("p", { id: "game-help-objective" });
   constructor(onOpen?: () => void, player = true) {
     const icons = player ? ICON_NAMES : ICON_NAMES.flatMap(([shape, name, use]) => {
@@ -147,7 +148,7 @@ export class GameHelp {
     close.onclick = () => this.dialog.close();
     this.dialog.append(
       h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
-      h("section", {}, h("h3", {}, "Objective"), this.objective),
+      h("section", {}, h("h3", {}, "Objective"), this.objective),h("section",{},h("h3",{},"Combat rules"),this.combatRules),
       ...howTo.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),
       h("h3", {}, "Icons"),
       h("ul", { class: "game-help-icons", "aria-label": "Icon names" }, ...icons.map(([shape, name, use]) =>
@@ -158,5 +159,6 @@ export class GameHelp {
   }
   /** The current objective line, e.g. "Domination · 7 / 23 · Round 3". */
   setObjective(text: string): void { if (this.objective.textContent !== text) this.objective.textContent = text; }
+  setCombatRules(ties:'reroll'|'defender'|'attacker'):void {this.combatRules.textContent=ties==='defender'?'Defender wins tied rolls.':ties==='reroll'?'Legacy: tied rolls reroll.':'Attacker wins tied rolls.';}
   dispose(): void { this.dialog.close(); this.dialog.remove(); }
 }

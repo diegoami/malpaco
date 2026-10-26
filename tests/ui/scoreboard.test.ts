@@ -1,6 +1,6 @@
 // T100: the scoreboard's records: one row per game id, the 20-row cap, the totals and win rate,
 // and a corrupt record read as an empty scoreboard.
-import {describe,expect,it} from 'vitest';
+import {describe,expect,it,test} from 'vitest';
 import {RECENT_GAMES,addGame,emptyScoreboard,parseScoreboard,played,recordGame,totalsLine,winRate} from '../../src/ui/scoreboard';
 import type {GameOutcome,ScoreRow,ScoreStore} from '../../src/ui/scoreboard';
 
@@ -58,7 +58,7 @@ describe('the kept text',()=>{
  it('round-trips, and a corrupt or foreign record reads as an empty scoreboard',()=>{
   const board=recordGame(recordGame(emptyScoreboard(),row(1)),row(2,'gave-up'));
   expect(parseScoreboard(JSON.stringify(board))).toEqual(board);
-  for(const text of [null,'','{not json','null','[]','{"version":2,"totals":{"won":1,"lost":0,"gaveUp":0},"recent":[],"ids":[]}',
+  for(const text of [null,'','{not json','null','[]','{"version":3,"totals":{"won":1,"lost":0,"gaveUp":0},"recent":[],"ids":[]}',
    '{"version":1,"totals":{"won":-1,"lost":0,"gaveUp":0},"recent":[],"ids":[]}',
    '{"version":1,"totals":{"won":1,"lost":0,"gaveUp":0},"recent":[{"id":"x","result":"draw"}],"ids":[]}',
    '{"version":1,"totals":{"won":1,"lost":0,"gaveUp":0},"recent":[],"ids":[3]}'])
@@ -66,4 +66,15 @@ describe('the kept text',()=>{
   const store=memory('{broken');addGame(store,row(5,'won'));
   expect(parseScoreboard(store.text)).toEqual(recordGame(emptyScoreboard(),row(5,'won')));
  });
+});
+test('old totals remain in an explicit earlier group while new rules get separate deduplicated totals',()=>{
+ const old=parseScoreboard(JSON.stringify({version:1,totals:{won:2,lost:1,gaveUp:0},recent:[],ids:['old']}));
+ expect(old).toMatchObject({version:2,totals:{won:2,lost:1,gaveUp:0},byRules:{earlier:{won:2,lost:1,gaveUp:0}}});
+ const row={id:'new-defender',date:'2026-10-25',result:'won' as const,rounds:4,countries:35,seed:11,rules:{id:'island-defender',version:1}};
+ const next=recordGame(old,row);expect(next.byRules['defender']).toEqual({won:1,lost:0,gaveUp:0});expect(next.totals).toEqual({won:3,lost:1,gaveUp:0});expect(recordGame(next,row)).toBe(next);
+ expect(parseScoreboard(JSON.stringify(next))).toEqual(next);
+});
+test('damaged rule subtotals preserve valid totals,old rows and ids in the earlier group',()=>{
+ const board=parseScoreboard(JSON.stringify({version:2,totals:{won:3,lost:1,gaveUp:2},byRules:{defender:{won:99,lost:0,gaveUp:0}},recent:[row(1)],ids:['kept']}));
+ expect(board.totals).toEqual({won:3,lost:1,gaveUp:2});expect(board.byRules).toEqual({earlier:{won:3,lost:1,gaveUp:2}});expect(board.recent).toEqual([row(1)]);expect(board.ids).toEqual(['kept']);
 });
