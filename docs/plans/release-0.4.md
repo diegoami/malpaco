@@ -41,7 +41,7 @@ and exact recorded actions; Help reports the running game's rule. New results
 carry rules metadata and can be filtered by variant. Existing score totals, rows
 and deduplication IDs survive, with unclassified history shown as Earlier games.
 This owner adoption does not establish universal strength or settle #362's remaining
-coverage/opening concerns. The [day-end checkpoint](https://github.com/diegoami/malpaco/issues/334#issuecomment-6404085220)
+coverage/opening concerns. The [adoption acceptance](https://github.com/diegoami/malpaco/issues/334#issuecomment-6411741351)
 holds exact PR heads, CI and proof receipts; live GitHub checks remain authoritative.
 
 ## Boundaries
