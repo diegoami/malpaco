@@ -228,3 +228,4 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 
 - [T142](T142.md): immutable product defender preset,options transport and old-save compatibility (#365).
 - [T143](T143.md): combat-only settings,defender default,Legacy alternative and results context (#366).
+- [T144](T144.md): larger, more readable victory and elimination screen (#379).
