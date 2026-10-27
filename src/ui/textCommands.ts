@@ -8,7 +8,7 @@ const labels:Readonly<Record<string,string>>={
  'start-friendly-move-button':'Move','start-combat-button':'Combat','end-turn-button':'End turn',
  'fold-world-event':'Fold','resume-turn-button':'Resume',
 };
-const iconTools=new Set(['map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-min-button','capture-max-button','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-min-button','friendly-move-max-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
+const iconTools=new Set(['province-move-button','map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-min-button','capture-max-button','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-min-button','friendly-move-max-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
 const closeTools=new Set(['fold-card','fold-world-event','close-game-drawer','close-hand','close-game-help','close-next-game-settings','close-scoreboard','close-result-card']);
 export function textCommands(root:HTMLElement):()=>void {
  const decorate=(button:HTMLButtonElement)=>{

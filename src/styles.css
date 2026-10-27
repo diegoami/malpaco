@@ -1810,6 +1810,9 @@ dialog h2 {
 .province-action { position:fixed; z-index:55; width:44px; height:44px; min-width:44px; padding:0; border-radius:12px; box-shadow:0 2px 8px #000a; }
 .province-action[hidden] { display:none; }
 .province-action:disabled { opacity:.55; }
+.province-action#province-move-button { display:grid; place-items:center; width:48px; height:48px; min-width:48px; min-height:48px; padding:0; color:#05212c; background:#5ce6e8; border:2px solid #c4ffff; }
+.province-action#province-move-button[hidden] { display:none; }
+.province-action#province-move-button svg { width:26px; height:26px; }
 .province-action[aria-pressed="true"] { outline:3px solid var(--accent); outline-offset:3px; }
 /* T104: your cards, on request and after each draw. */
 .hand-button { position:relative; }

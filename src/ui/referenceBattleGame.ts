@@ -126,7 +126,7 @@ export class ReferenceBattleGame {
     }, Boolean(presentation?.player));
     this.eventLog = new GameEventLog(options,presentation?.initialState);
     document.body.append(this.eventLog.dialog, this.help.dialog);
-    if (presentation?.player) {this.provinceAction = new ProvinceAction(); document.body.append(this.provinceAction.el);}
+    if (presentation?.player) {this.provinceAction = new ProvinceAction(); document.body.append(this.provinceAction.el,this.provinceAction.moveEl);}
     if (presentation?.player) {
       this.giveUp = new GiveUpDialog({
         open: () => {this.chrome?.close(false); this.giveUpPaused = !this.controller.playbackPaused; if (this.giveUpPaused) this.controller.setPlaybackPaused(true);},
@@ -311,6 +311,13 @@ export class ReferenceBattleGame {
     const { state, from, to, mode, running, paused } = this.controller.view;
     if (this.computerActive() || running || paused || state.pendingCapture || state.phase === "finished" || state.phase === "human-loss") return;
     if (mode === "move") {
+      // An owned country outside this transfer's destinations is a new source.
+      // Release the draft so its own Attack command is available again.
+      if (from && id !== from && ownerOf(state, id) === activePlayer(state)?.id
+        && !friendlyTargets(state, from).includes(id) && attackTargets(state, id).length) {
+        if (this.controller.cancelFriendlyMove()) this.controller.select(id, null);
+        return;
+      }
       if (from && friendlyTargets(state, from).includes(id)) this.controller.select(from, id);
       else this.controller.select(id === from ? null : id, null);
     } else if (state.phase === "reinforce") {
@@ -456,14 +463,22 @@ export class ReferenceBattleGame {
     if (this.provinceAction) {
       // On the selected country: Fight when it can attack (armed by a press; then a tapped enemy is one
       // round, and a press with a target is another), else Move (a press starts the move from it).
-      const source = quiet && state.phase === "attack" && !state.pendingCapture && !running ? from : null;
+      const source = quiet && state.phase === "attack" && !state.pendingCapture && !running ? mode === "move" ? to ?? from : from : null;
       if (this.armed !== source) this.armed = null;
-      if (source && mode !== "move" && attackTargets(state, source).length) {
-        const ready = !!to && whyNot(state, source, to) === "";
+      if (source && attackTargets(state, source).length) {
+        const ready = mode !== "move" && !!to && whyNot(state, source, to) === "";
         this.provinceAction.show(source, "fight", !paused, this.armed === source, () => {
-          if (ready) this.controller.singleExchange(revision);
+          // A friendly destination can itself attack. Keep Confirm available for
+          // the transfer, but let Attack explicitly make it the battle source.
+          if (mode === "move") {
+            if (!this.controller.cancelFriendlyMove(revision) || !this.controller.select(source, null)) return;
+            this.armed = source; this.render();
+          } else if (ready) this.controller.singleExchange(revision);
           else {this.armed = source; this.render();}
-        });
+        }, friendlySources(state).includes(source) ? () => {
+          if (mode === "move" && !this.controller.cancelFriendlyMove(revision)) return;
+          if (this.controller.startFriendlyMove(mode === "move" ? this.controller.view.revision : revision)) this.controller.select(source, null);
+        } : null);
       } else if (source && mode !== "move" && friendlySources(state).includes(source)) {
         this.provinceAction.show(source, "move", !paused, false, () => {if (this.controller.startFriendlyMove(revision)) this.controller.select(source, null);});
       } else this.provinceAction.hide();
