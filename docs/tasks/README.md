@@ -234,3 +234,4 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T146](T146.md): readable production-center stars (#386, 0.5.0).
 - [T147](T147.md): compact mobile icon commands (#385, 0.5.0).
 - [T148](T148.md): viewport-contained launcher with start first (#384, 0.5.0).
+- [T149](T149.md): 0.5.0 release preparation and acceptance gates (#391).
