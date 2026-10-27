@@ -48,6 +48,8 @@ for(const size of SIZES){
   const button=page.locator('#open-hand'),dialog=page.locator('#hand-dialog'),cards=hand(state);
   await expect(button).toBeVisible();await expect(button.locator('.hand-count')).toHaveText(String(cards.length));
   await expect(button).toHaveAttribute('aria-label',`Your cards: ${cards.length}`);
+  const handBox=(await button.boundingBox())!,turnBox=(await page.locator('#turn-tracker').boundingBox())!;
+  expect(handBox.y+handBox.height<=turnBox.y||handBox.y>=turnBox.y+turnBox.height||handBox.x+handBox.width<=turnBox.x||handBox.x>=turnBox.x+turnBox.width,'Cards stays clear of the turn panel').toBe(true);
   await button.click();await expect(dialog).toBeVisible();
   // Drawn as cards, in hand order, each with its plain symbol.
   const tiles=dialog.locator('#hand-list .card-tile');

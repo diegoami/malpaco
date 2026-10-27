@@ -2130,7 +2130,7 @@ button.game-mobile-command > svg { position:absolute; top:50%; left:50%; transfo
 button.game-mobile-command > :not(svg):not(.hand-count) { display:none !important; }
 button.game-mobile-command > .hand-count { font-size:13px; }
 @media (max-width:900px) {
- .game-primary-buttons { display:flex; flex-wrap:wrap; gap:8px; max-width:calc(100vw - 2 * var(--edge) - var(--target) - var(--gap)); }
+ .game-primary-buttons { display:flex; flex-wrap:nowrap; width:max-content; gap:8px; max-width:calc(100vw - 2 * var(--edge) - var(--target) - var(--gap)); }
  .game-primary-buttons > .primary-command { height:48px; min-height:48px; }
  .game-overlay[data-primary-commands="true"] { --primary-height:48px; }
  .battle-reference #game-focus-drawer .game-utility-command > .card-icon-caption { display:none; }
