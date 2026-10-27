@@ -8,8 +8,8 @@ export class GameLauncher {
  private stopText:(()=>void)|null=null;
  private readonly settings=new NextGameSettingsDialog();
  private readonly help=new GameHelp();
- private readonly title=h('h2',{},'Settings');
- private readonly fields=h('div',{class:'game-settings'},this.settings.inlineContent());
+ private readonly title=h('h2',{id:'game-launcher-settings-title'},'Settings');
+ private readonly fields=h('div',{class:'game-settings',role:'region','aria-labelledby':'game-launcher-settings-title',tabindex:0},this.settings.inlineContent());
  private readonly status=h('p',{role:'alert',class:'match-error'});
  private readonly start=h('button',{id:'start-game',type:'button',class:'primary'},'Start game');
  private readonly resume=h('button',{id:'resume-game',type:'button',class:'primary'},'Resume saved game');
@@ -20,7 +20,7 @@ export class GameLauncher {
   this.start.onclick=()=>{void actions.start();};this.resume.onclick=()=>{void actions.resume();};this.fresh.onclick=()=>this.configure();this.recovery.onclick=actions.recovery;
   this.resume.hidden=!hasSaved;this.fields.hidden=hasSaved;this.start.hidden=hasSaved;this.fresh.hidden=!hasSaved;this.title.textContent=hasSaved?'Saved game':'Settings';this.el.dataset['mode']=hasSaved?'saved':'configure';
   this.stopText=textCommands(document.body);
-  this.el.append(h('header',{class:'game-launcher-head'},h('h1',{},'Malpaco'),this.help.button),this.title,this.fields,h('div',{class:'game-launcher-actions'},this.resume,this.fresh,this.start),this.status,this.recovery);
+  this.el.append(h('header',{class:'game-launcher-head'},h('h1',{},'Malpaco'),this.help.button),h('div',{class:'game-launcher-actions'},this.resume,this.fresh,this.start),this.title,this.fields,this.status,this.recovery);
  }
  configure():void {this.fields.hidden=false;this.start.hidden=false;this.start.classList.add('primary');this.resume.classList.remove('primary');this.fresh.hidden=true;this.title.textContent='Next game settings';this.el.dataset['mode']='configure';this.settings.refresh();this.start.focus();}
  busy(value:boolean):void {for(const n of this.el.querySelectorAll<HTMLButtonElement|HTMLSelectElement>('button,select'))n.disabled=value;this.el.setAttribute('aria-busy',String(value));}

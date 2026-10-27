@@ -1,7 +1,7 @@
 import {glyph} from './icons';
 /** Player action presentation. Data symbols on the map/cards are not commands. */
 const commandIcons:Readonly<Record<string,string>>={
- 'start-game':'play','resume-game':'play','configure-new-game':'new-game','download-recovery-game':'files',
+ 'start-game':'play','resume-game':'history','configure-new-game':'new-game','download-recovery-game':'files',
  'new-game-button':'new-game','open-game-menu':'settings','open-hand':'cards','start-friendly-move-button':'move',
  'end-turn-button':'flag','start-combat-button':'combat','resume-turn-button':'play','fast-forward-button':'fast-forward',
  'result-new-game-button':'new-game','give-up-new-game':'new-game','give-up-confirm':'stop','give-up-cancel':'play',
