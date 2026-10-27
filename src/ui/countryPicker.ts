@@ -15,6 +15,8 @@ export interface PickerView {
   state: GameState;
   /** Countries the current step can use, in map order; empty when nothing is legal. */
   legal: readonly string[];
+  /** Source selections allowed by direct map taps, for the ambiguous-tap chooser only. */
+  mapChoices?: readonly string[];
   /** What choosing a country does now, e.g. "Place 1 army" or "Choose". */
   verb: string;
 }
@@ -59,10 +61,10 @@ export class CountryPicker {
 
   /** One country as a named button that acts now, plus its Inspect icon. */
   private row(view: PickerView, id: string): HTMLElement {
-    const f = this.facts(view.state, id), legal = view.legal.includes(id);
+    const f = this.facts(view.state, id), ordinary = view.legal.includes(id), legal = ordinary || this.mode.kind === "ask" && !!view.mapChoices?.includes(id);
     const label = `${f.p.name}, ${seatName(view.state.players, f.owner.id)}, ${f.armies} ${f.armies === 1 ? "army" : "armies"}${f.centre ? ", production centre" : ""}`;
     const choose = h("button", {type: "button", class: "country-row", "data-country-row": id, "data-key": `choose:${id}`, disabled: !legal,
-      "aria-label": legal ? `${view.verb}: ${label}` : label, title: legal ? view.verb : "Not available now"},
+      "aria-label": legal ? `${ordinary ? view.verb : 'Select'}: ${label}` : label, title: legal ? ordinary ? view.verb : 'Select country' : "Not available now"},
       chip(f.seat), h("span", {class: "country-row-name"}, f.p.name), ...(f.centre ? [h("span", {class: "country-row-centre", "aria-hidden": "true"}, "★")] : []),
       h("span", {class: "country-row-count"}, String(f.armies)));
     choose.onclick = () => this.handlers.choose(id);
