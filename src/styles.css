@@ -2117,7 +2117,7 @@ button.game-text-command[data-card-set]:not([data-card-set="Raid"]),.hand-plays 
 }
 
 /* T144: give the completed game's result more presence than an ordinary choice card. */
-.battle-reference #game-focus-drawer:has(.victory-result:not([hidden])) {
+.battle-reference #game-focus-drawer:not([data-folded="true"]):has(.victory-result:not([hidden])) {
  width:min(560px, calc(100% - 2 * var(--edge))); padding:28px 24px 30px 28px;
 }
 .battle-reference #game-focus-drawer .victory-result .result-title { margin:4px 0 12px; font-size:clamp(30px, 3.2vw, 40px); }
@@ -2127,7 +2127,7 @@ button.game-text-command[data-card-set]:not([data-card-set="Raid"]),.hand-plays 
 .battle-reference #game-focus-drawer .victory-result .card-icon > svg { width:28px; height:28px; padding:14px; }
 .battle-reference #game-focus-drawer .victory-result #victory-standings { margin-top:20px; font-size:16px; }
 @media (max-width:479px), (max-height:500px) {
- .battle-reference #game-focus-drawer:has(.victory-result:not([hidden])) { padding:16px; }
+ .battle-reference #game-focus-drawer:not([data-folded="true"]):has(.victory-result:not([hidden])) { padding:16px; }
  .battle-reference #game-focus-drawer .victory-result .card-note { font-size:16px; margin-bottom:14px; }
  .battle-reference #game-focus-drawer .victory-result .victory-choices { gap:12px; }
  .battle-reference #game-focus-drawer .victory-result .card-icon > svg { padding:11px; }
