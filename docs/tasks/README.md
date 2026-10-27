@@ -229,3 +229,8 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T142](T142.md): immutable product defender preset,options transport and old-save compatibility (#365).
 - [T143](T143.md): combat-only settings,defender default,Legacy alternative and results context (#366).
 - [T144](T144.md): larger, more readable victory and elimination screen (#379).
+
+- [T145](T145.md): restore attack when switching away from move (#382, 0.5.0).
+- [T146](T146.md): readable production-center stars (#386, 0.5.0).
+- [T147](T147.md): compact mobile icon commands (#385, 0.5.0).
+- [T148](T148.md): viewport-contained launcher with start first (#384, 0.5.0).
