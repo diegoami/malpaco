@@ -2116,6 +2116,20 @@ button.game-text-command[data-card-set]:not([data-card-set="Raid"]),.hand-plays 
  .battle-reference #game-focus-drawer .transfer-cancel { margin-top:4px; }
 }
 
+/* T147: mobile commands keep their names/counters and use the existing action glyphs. */
+button.game-mobile-command { display:inline-grid !important; place-items:center; width:48px !important; min-width:48px !important; height:48px !important; min-height:48px !important; padding:0 !important; flex-shrink:0; font-size:0 !important; }
+button.game-mobile-command[hidden] { display:none !important; }
+button.game-mobile-command:not(.province-action) { position:relative; }
+button.game-mobile-command > svg { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:block; width:24px !important; height:24px !important; padding:0 !important; border:0 !important; background:none !important; }
+button.game-mobile-command > :not(svg):not(.hand-count) { display:none !important; }
+button.game-mobile-command > .hand-count { font-size:13px; }
+@media (max-width:900px) {
+ .game-primary-buttons { display:flex; flex-wrap:wrap; gap:8px; max-width:calc(100vw - 2 * var(--edge) - var(--target) - var(--gap)); }
+ .game-primary-buttons > .primary-command { height:48px; min-height:48px; }
+ .game-overlay[data-primary-commands="true"] { --primary-height:48px; }
+ .battle-reference #game-focus-drawer .game-utility-command > .card-icon-caption { display:none; }
+}
+
 /* T126: short, prominent guidance over the board, with the map visible through it. */
 #phase-announcement { position:absolute; z-index:12; top:50%; left:50%; translate:-50% -50%; width:min(760px,calc(100% - 32px)); padding:24px 28px; border:1px solid #bdd7ce88; border-radius:16px; background:rgb(8 26 38 / 78%); box-shadow:0 8px 36px #0005; color:#fff8df; text-align:center; pointer-events:none; font-family:Ubuntu,Inter,system-ui,sans-serif; }
 #phase-announcement strong { display:block; font-size:clamp(28px,4.5vw,60px); font-weight:700; line-height:1.15; text-wrap:balance; }
