@@ -158,6 +158,8 @@ export class MapCamera {
   private lastFocused: SVGGraphicsElement | null = null;
   private appliedRotation: Rotation | null = null;
   private labelScale = 1;
+  private markerState: object | null = null;
+  private markerLayoutKey = '';
   /** The centre the player asked for (a focused country), kept across clamps so a resize can return to it. */
   private intent: {x: number; y: number} | null = null;
 
@@ -298,7 +300,43 @@ export class MapCamera {
     if (this.appliedRotation !== next.rotation || Math.abs(scale - this.labelScale) > 1e-3) {this.labelScale = scale; this.applyRotation(next.rotation);}
     Object.assign(this.svg.dataset, {cameraZoom: String(next.zoom), cameraRotation: String(next.rotation)});
     this.refreshControls();
+    this.layoutCenterMarkers();
     this.onChange?.(this.state);
+  }
+
+  /** Keep large center markers separate from the reserved army-label boxes. */
+  layoutCenterMarkers(state?: object): void {
+    if (state) {if (this.markerState === state) return; this.markerState = state;}
+    if (!this.viewport.width || !this.viewport.height) return;
+    const stars = [...this.content.querySelectorAll<SVGTextElement>('.centre')].filter(n => n.getClientRects().length);
+    if (!stars.length) return;
+    const obstacles = [...this.content.querySelectorAll('.count'), ...this.overlays].map(n => n.getBoundingClientRect()).filter(r => r.width && r.height);
+    const placed: DOMRect[] = [], viewport = this.svg.getBoundingClientRect();
+    const key = JSON.stringify([viewport.x,viewport.y,viewport.width,viewport.height,
+      stars.map(n=>[n.closest('[data-country]')?.getAttribute('data-country'),n.getAttribute('x'),n.getAttribute('y'),n.closest('[data-country]')?.querySelector('.country-label')?.getAttribute('transform')]),
+      obstacles.map(r=>[r.x,r.y,r.width,r.height])]);
+    if (key === this.markerLayoutKey) return;
+    this.markerLayoutKey = key;
+    const overlap = (a: DOMRect, b: DOMRect) => Math.max(0, Math.min(a.right + 2, b.right) - Math.max(a.left - 2, b.left)) * Math.max(0, Math.min(a.bottom + 2, b.bottom) - Math.max(a.top - 2, b.top));
+    const near = [[0,-24],[0,29],[28,0],[-28,0],[22,-24],[-22,-24],[22,29],[-22,29]] as const;
+    const offsets = [...near,...near.flatMap(([x,y])=>[[x+4,y],[x-4,y],[x,y+4],[x,y-4],[x+4,y+4],[x-4,y+4],[x+4,y-4],[x-4,y-4]]),[0,-40],[0,45],[44,0],[-44,0]];
+    for (const star of stars) {
+      const country = star.closest('[data-country]'), count = country?.querySelector('.count'), label = country?.querySelector('.country-label');
+      if (!count || !label) continue;
+      const x = Number(count.getAttribute('x')), y = Number(count.getAttribute('y'));
+      const sx = Number(star.getAttribute('x')), sy = Number(star.getAttribute('y')), pose = label.getAttribute('transform') ?? '';
+      let best = '', score = Infinity;
+      // [designed] Bounded nearby positions, then small adjustments for dense maps.
+      for (const [dx, dy] of offsets) {
+        const transform = `${pose} translate(${x + dx! - sx} ${y + dy! - sy})`;
+        star.setAttribute('transform', transform);
+        const r = star.getBoundingClientRect(), inside = Math.max(0,Math.min(r.right,viewport.right)-Math.max(r.left,viewport.left))*Math.max(0,Math.min(r.bottom,viewport.bottom)-Math.max(r.top,viewport.top));
+        const cost = [...obstacles,...placed].reduce((sum,b) => sum + overlap(r,b),0) + Math.max(0,r.width*r.height-inside) * (obstacles.length + 1);
+        if (cost < score) {score = cost; best = transform;}
+        if (!cost) break;
+      }
+      star.setAttribute('transform', best);placed.push(star.getBoundingClientRect());
+    }
   }
 
   /** Turn the board, then turn every label back so counts and names read upright. */

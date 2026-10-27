@@ -27,7 +27,7 @@ export class ReferenceMapView{
    // T87: a second outline over the cell (light line on the cell's dark band) and the target's crosshair.
    const cell=n.querySelector(".cell")!,outline=cell.cloneNode() as SVGElement;outline.setAttribute("class","ring");outline.removeAttribute("style");outline.removeAttribute("id");cell.after(outline);
    const c=n.querySelector(".count")!;n.querySelector(".badge")!.before(s("path",{class:"target-mark",d:TARGET_MARK,transform:`translate(${c.getAttribute("x")} ${Number(c.getAttribute("y"))-5})`}));
-   if(!n.querySelector(".centre"))n.querySelector('.country-label')!.append(s("text",{class:"centre",x:Number(n.querySelector(".count")!.getAttribute("x"))-25,y:Number(n.querySelector(".count")!.getAttribute("y"))-28},"★"));
+   if(!n.querySelector(".centre"))n.append(s("text",{class:"centre",x:Number(n.querySelector(".count")!.getAttribute("x"))-25,y:Number(n.querySelector(".count")!.getAttribute("y"))-28},"★"));
    n.onclick=e=>handlers.onProvince(id,{inspect:e.shiftKey,repeat:false});n.onpointerenter=()=>handlers.onHover(id);n.onpointerleave=()=>handlers.onHover(null);
    n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();handlers.onProvince(id,{inspect:e.shiftKey,repeat:e.repeat});}if(["ArrowRight","ArrowDown","ArrowLeft","ArrowUp"].includes(e.key)){e.preventDefault();nodes[(j+(["ArrowRight","ArrowDown"].includes(e.key)?1:nodes.length-1))%nodes.length]!.focus();}};
   }
@@ -55,5 +55,6 @@ export class ReferenceMapView{
   this.names.select(view.selected);
   this.el.dataset["choosing"]=String(view.selected!==null);
   for(const r of this.el.querySelectorAll<SVGPolylineElement>(".lane"))r.classList.toggle("active",r.dataset["edge"]!.split("|").includes(view.selected??""));
+  this.camera.layoutCenterMarkers(state);
  }
 }
