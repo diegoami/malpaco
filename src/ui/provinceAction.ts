@@ -6,8 +6,9 @@ export type ProvinceActionKind='fight'|'move';
 
 /**
  * T103 (owner, 2026-10-22): as in the original's layout, the action sits on the country you
- * selected: Fight when it can attack (press it, then tap an enemy: one round; press again for
- * another), else Move when it can move armies (press it, then tap where to). The corner controls
+ * selected: Attack and Move are separate icons when both are possible. Attack is
+ * armed by a press, then an enemy tap fights one round; Move selects a transfer source.
+ * A move-only country keeps its single Move command. The corner controls
  * stay. It follows the country's count through pans, zooms and rotations, and hides when that is
  * off screen.
  */
@@ -22,7 +23,11 @@ export class ProvinceAction {
  show(country:string,kind:ProvinceActionKind,enabled:boolean,pressed:boolean,press:()=>void,move:(()=>void)|null=null):void{
   const name=kind==='fight'?(pressed?'Attack: tap an enemy neighbour':'Attack'):(pressed?'Move: tap where to':'Move armies from here');
   this.el.setAttribute('aria-pressed',String(pressed));
-  if(this.el.dataset['kind']!==kind){this.el.textContent=kind==='fight'?'ATTACK':'MOVE';this.el.dataset['kind']=kind;}
+  const both=kind==='fight'&&move!==null;
+  if(this.el.dataset['kind']!==kind||this.el.dataset['both']!==String(both)){
+   this.el.replaceChildren(both?glyph('attack'):document.createTextNode(kind==='fight'?'ATTACK':'MOVE'));
+   this.el.dataset['kind']=kind;this.el.dataset['both']=String(both);
+  }
   this.el.setAttribute('aria-label',name);this.el.title=name;this.el.disabled=!enabled;this.el.dataset['for']=country;
   this.press=press;
   this.move=move;this.moveEl.disabled=!enabled;this.moveEl.dataset['for']=country;
@@ -47,7 +52,8 @@ export class ProvinceAction {
   const obstacles=[...document.querySelectorAll('[data-country] .count,#turn-tracker,.game-corner,.map-camera-controls,#game-focus-drawer:not([hidden])')].map(n=>n.getBoundingClientRect()).filter(r=>r.width&&r.height);
   const fit=(p:{x:number;y:number})=>({x:Math.min(Math.max(4,p.x),innerWidth-width-4),y:Math.min(Math.max(4,p.y),innerHeight-height-4)});
   const score=(p:{x:number;y:number})=>obstacles.reduce((n,r)=>n+Math.max(0,Math.min(p.x+width,r.right)-Math.max(p.x,r.left))*Math.max(0,Math.min(p.y+height,r.bottom)-Math.max(p.y,r.top)),0);
-  const point=candidates.map(fit).sort((a,b)=>score(a)-score(b))[0]!;
+  const fitted=candidates.map(fit),clear=fitted.filter(p=>p.x>=box.right||p.x+width<=box.left||p.y>=box.bottom||p.y+height<=box.top);
+  const point=(clear.length?clear:fitted).sort((a,b)=>score(a)-score(b))[0]!;
   const moveFirst=!!this.move&&point.x+width<=box.left;
   this.el.style.left=`${Math.round(point.x+(moveFirst?moveWidth+gap:0))}px`;
   this.el.style.top=`${Math.round(point.y)}px`;

@@ -5,6 +5,7 @@ import {visitGame} from './shell';
 // and the amount bar opens beside that country, as a capture's does. The last army placed starts
 // combat. Every round and move is checked against the engine.
 import {expect,test} from '@playwright/test';
+import {mkdirSync} from 'node:fs';
 import type {Page} from '@playwright/test';
 import {activePlayer,apply,attackTargets,defaultOptions,friendlySources,friendlyTargets,raidCardsRules,serializeVersionedMatch} from '../../src/core';
 import type {GameOptions,GameState} from '../../src/core';
@@ -55,7 +56,9 @@ for(const size of SIZES){
     if(input==='keyboard')await country(id).press('Enter');
     else if(input==='touch'){
      await country(id).locator('.count').tap();
-     const choice=page.locator(`[data-country-row="${id}"]`);if(await choice.isVisible())await choice.tap();
+     const choice=page.locator(`[data-country-row="${id}"]`);if(await choice.isVisible()){
+      await choice.tap();const close=page.locator('#close-game-drawer');if(await close.isVisible())await close.tap();
+     }
     }else await country(id).locator('.count').click();
    };
    await select(from);await expect(action).toHaveAttribute('data-kind','move');await action.click();
@@ -74,6 +77,7 @@ for(const size of SIZES){
   await country(from).press('Enter');await action.click();await country(to).press('Enter');
   await expect(page.locator('#confirm-friendly-move-button')).toBeVisible();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await expect(action).toHaveAttribute('data-for',to);
   const move=page.locator('#province-move-button');await expect(move).toBeVisible();await expect(move).toHaveAccessibleName('Move armies from here');await expect(move).toHaveAttribute('data-for',to);await expect(move.locator('svg')).toHaveCount(1);
+  await expect(page.locator('#phase-announcement')).toBeHidden();mkdirSync('artifacts/T145',{recursive:true});await page.screenshot({path:`artifacts/T145/destination-actions-${size.width}.png`});
   expect(same(await kept(page))).toEqual(same(state));
   await action.click();await expect(page.locator('#confirm-friendly-move-button')).toBeHidden();await expect(action).toHaveAttribute('aria-pressed','true');expect(same(await kept(page))).toEqual(same(state));
   await country(attackTargets(state,to)[0]!).press('Enter');
@@ -86,6 +90,7 @@ for(const size of SIZES){
   await opened(page,text,size);const country=(id:string)=>page.locator(`[data-country="${id}"]`);
   await country(from).press('Enter');await expect(page.locator('#province-action-button')).toHaveAttribute('data-kind','fight');const move=page.locator('#province-move-button');await expect(move).toBeVisible();
   const bounds=await move.boundingBox();expect(bounds!.width).toBeGreaterThanOrEqual(44);expect(bounds!.height).toBeGreaterThanOrEqual(44);
+  await expect(page.locator('#phase-announcement')).toBeHidden();mkdirSync('artifacts/T145',{recursive:true});await page.screenshot({path:`artifacts/T145/source-actions-${size.width}.png`});
   await move.click();await country(to).press('Enter');expect(same(await kept(page))).toEqual(same(state));
   await page.locator('#friendly-move-amount').fill('1');await page.locator('#confirm-friendly-move-button').click();
   const next=apply(state,{kind:'friendlyMove',from,to,amount:1});if(!next.ok)throw Error(next.error);
@@ -102,7 +107,10 @@ for(const size of SIZES){
   const country=(id:string)=>page.locator(`[data-country="${id}"]`),action=page.locator('#province-action-button');
   const beside=async(id:string)=>expect.poll(async()=>gap((await action.boundingBox())!,(await country(id).locator('.count').boundingBox())!)).toBeLessThan(24);
   await expect(action).toBeHidden();
-  await country(from).click();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await beside(from);await expect(action).toHaveText('ATTACK');await expect(action.locator('svg')).toHaveCount(0);
+  await country(from).click();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await beside(from);await expect(action).toHaveAccessibleName('Attack');
+  // Both available actions use separate icons; a sole Attack retains its text command.
+  if(friendlyTargets(state,from).length){await expect(action.locator('svg')).toHaveCount(1);await expect(page.locator('#province-move-button')).toBeVisible();}
+  else {await expect(action).toHaveText('ATTACK');await expect(action.locator('svg')).toHaveCount(0);}
   const colours=await action.evaluate((n,id)=>{const c=document.querySelector(`[data-country="${id}"]`)!;return [getComputedStyle(n).backgroundColor,getComputedStyle(c.querySelector('.cell')!).fill,getComputedStyle(c.querySelector('.badge')!).fill];},from);expect(colours[0]).not.toBe(colours[1]);expect(colours[0]).not.toBe(colours[2]);
   const ab=(await action.boundingBox())!,cb=(await country(from).locator('.count').boundingBox())!;expect(ab.x>=0&&ab.x+ab.width<=size.width).toBe(true);expect(ab.x>=cb.x+cb.width||ab.x+ab.width<=cb.x||ab.y>=cb.y+cb.height||ab.y+ab.height<=cb.y).toBe(true);await page.screenshot({path:`artifacts/T117/attack-${size.width}.png`});
   // Choosing an enemy before arming also stays on the map; ATTACK remains the control.

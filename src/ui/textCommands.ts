@@ -12,6 +12,7 @@ const iconTools=new Set(['province-move-button','map-fit','map-focus','open-coun
 const closeTools=new Set(['fold-card','fold-world-event','close-game-drawer','close-hand','close-game-help','close-next-game-settings','close-scoreboard','close-result-card']);
 export function textCommands(root:HTMLElement):()=>void {
  const decorate=(button:HTMLButtonElement)=>{
+  if(button.id==='province-action-button'&&button.dataset['both']==='true'){button.classList.remove('game-text-command');button.classList.add('game-utility-command');return;}
   if(button.id==='game-help-button'){button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-help-command');if(button.textContent!=='?')button.replaceChildren(document.createTextNode('?'));return;}
   if(closeTools.has(button.id)){
    button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-close-command');

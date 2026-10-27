@@ -353,7 +353,11 @@ export class ReferenceBattleGame {
     const sources = !blocked && state.phase === "attack" && mode !== "move" && !from ? state.map.provinces.map(p => p.id).filter(id => own(id) && attackTargets(state, id).length > 0) : [];
     const legal = raidTargets ?? (placing ? state.map.provinces.map(p => p.id).filter(own) : sources.length ? sources : targets);
     const verb = raidTargets ? "Army reduction target" : placing ? "Place 1 army" : mode === "move" ? (from ? "Move here" : "Move from") : from ? "Target" : "Attack from";
-    this.picker.render({state, legal, verb});
+    // The touch chooser also allows the source changes available on the map,
+    // without changing the Countries list's current-step Legal filter.
+    const movable = new Set(!blocked && state.phase === "attack" ? friendlySources(state) : []);
+    const mapChoices = !blocked && !raidTargets && state.phase === "attack" ? state.map.provinces.map(p=>p.id).filter(id=>own(id)&&(movable.has(id)||attackTargets(state,id).length)) : [];
+    this.picker.render({state, legal, verb, mapChoices});
     if (mode === "move") {
       for (const route of this.mapView.el.querySelectorAll<SVGPolylineElement>(".lane")) {
         const ends = route.dataset["edge"]!.split("|");
@@ -461,8 +465,7 @@ export class ReferenceBattleGame {
       queueMicrotask(() => {if (!this.disposed) this.controller.dispatch({ kind: "endReinforcement" }, revision);});
     }
     if (this.provinceAction) {
-      // On the selected country: Fight when it can attack (armed by a press; then a tapped enemy is one
-      // round, and a press with a target is another), else Move (a press starts the move from it).
+      // Offer both actions when available, including on an unconfirmed transfer destination.
       const source = quiet && state.phase === "attack" && !state.pendingCapture && !running ? mode === "move" ? to ?? from : from : null;
       if (this.armed !== source) this.armed = null;
       if (source && attackTargets(state, source).length) {
