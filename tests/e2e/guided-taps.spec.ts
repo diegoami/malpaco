@@ -108,8 +108,9 @@ for(const size of SIZES){
   const beside=async(id:string)=>expect.poll(async()=>gap((await action.boundingBox())!,(await country(id).locator('.count').boundingBox())!)).toBeLessThan(24);
   await expect(action).toBeHidden();
   await country(from).click();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await beside(from);await expect(action).toHaveAccessibleName('Attack');
-  // Both available actions use separate icons; a sole Attack retains its text command.
+  // Both available actions stay separate; a sole action is also an icon on mobile.
   if(friendlyTargets(state,from).length){await expect(action.locator('svg')).toHaveCount(1);await expect(page.locator('#province-move-button')).toBeVisible();}
+  else if(size.width<=900)await expect(action.locator('svg')).toHaveCount(1);
   else {await expect(action).toHaveText('ATTACK');await expect(action.locator('svg')).toHaveCount(0);}
   const colours=await action.evaluate((n,id)=>{const c=document.querySelector(`[data-country="${id}"]`)!;return [getComputedStyle(n).backgroundColor,getComputedStyle(c.querySelector('.cell')!).fill,getComputedStyle(c.querySelector('.badge')!).fill];},from);expect(colours[0]).not.toBe(colours[1]);expect(colours[0]).not.toBe(colours[2]);
   const ab=(await action.boundingBox())!,cb=(await country(from).locator('.count').boundingBox())!;expect(ab.x>=0&&ab.x+ab.width<=size.width).toBe(true);expect(ab.x>=cb.x+cb.width||ab.x+ab.width<=cb.x||ab.y>=cb.y+cb.height||ab.y+ab.height<=cb.y).toBe(true);await page.screenshot({path:`artifacts/T117/attack-${size.width}.png`});

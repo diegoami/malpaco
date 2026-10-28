@@ -1339,7 +1339,8 @@ dialog h2 {
 /* The active country's name, once more above every country so a later country never covers it. */
 :is(#geographic-map,#reference-map) .name-top {pointer-events:none}
 :is(#geographic-map,#reference-map) .name-top .name {font:600 12px Inter,system-ui,sans-serif;display:inline;visibility:visible;fill:#102b36;stroke:#f0f1de;stroke-width:2.5;paint-order:stroke;stroke-linejoin:round;text-anchor:middle}
-:is(#geographic-map,#reference-map) .centre {font:10px system-ui;fill:#f2d69a;stroke:#102b36;stroke-width:.8;paint-order:stroke}
+/* T146: keep production centers distinct at Fit, with the army-label scaling. */
+:is(#geographic-map,#reference-map) .centre {font:18px system-ui;text-anchor:middle;fill:#ffe082;stroke:#102b36;stroke-width:1.5;paint-order:stroke;pointer-events:none}
 @media (prefers-reduced-motion:reduce) { :is(#geographic-map,#reference-map) .cell {transition:none} }
 
 /* T71: stable presentation areas shared by supported hosts. */
@@ -1900,8 +1901,15 @@ dialog h2 {
 
 .game-overlay:has(#turn-tracker) .game-pool-slot { position:absolute; top:calc(var(--edge) + var(--target) + var(--gap)); right:var(--edge); left:auto; padding-top:0; }
 /* T116: no match/AI exists behind the fresh-game Settings card until Start. */
-#geographic-setup.game-entry { position:fixed; inset:0; overflow:auto; display:flex; justify-content:flex-start; align-items:flex-start; padding:calc(20px + var(--safe-top)) calc(20px + var(--safe-right)) calc(20px + var(--safe-bottom)) calc(20px + var(--safe-left)); background:#102a36; }
-#game-launcher { width:min(420px,100%); margin:0; padding:18px; }
+#geographic-setup.game-entry { position:fixed; inset:0; overflow:hidden; display:flex; justify-content:flex-start; align-items:flex-start; padding:calc(20px + var(--safe-top)) calc(20px + var(--safe-right)) calc(20px + var(--safe-bottom)) calc(20px + var(--safe-left)); background:#102a36; }
+#game-launcher { display:flex; flex-direction:column; width:min(720px,100%); max-height:100%; min-height:0; margin:0; padding:18px; }
+#game-launcher > :not(.game-settings) { flex-shrink:0; }
+#game-launcher > .game-settings { min-height:0; overflow-y:auto; overscroll-behavior:contain; padding-right:4px; }
+#game-launcher .next-game-settings { display:grid; gap:12px; }
+#game-launcher .next-game-setting { display:flex; flex-direction:column; align-items:stretch; gap:4px; margin:0; min-width:0; }
+#game-launcher .next-game-setting select { width:100%; min-width:0; min-height:44px; }
+#game-launcher .next-game-settings > :is(.card-note,.match-error) { grid-column:1 / -1; margin:0; }
+@media (min-width:600px) { #game-launcher .next-game-settings { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 .game-launcher-head { display:flex; justify-content:space-between; align-items:center; gap:16px; }
 .game-launcher-head h1 { margin:0; }
 #game-launcher h2 { margin:16px 0 8px; font-size:20px; }
@@ -2120,6 +2128,37 @@ button.game-text-command[data-card-set]:not([data-card-set="Raid"]),.hand-plays 
  .battle-reference #game-focus-drawer .capture-adjust .card-icon > svg, .battle-reference #game-focus-drawer .transfer-cancel .card-icon > svg { padding:9px; }
  .battle-reference #game-focus-drawer .capture-adjust :is(#confirm-capture-button,#confirm-friendly-move-button) { width:44px; }
  .battle-reference #game-focus-drawer .transfer-cancel { margin-top:4px; }
+}
+
+/* T144: give the completed game's result more presence than an ordinary choice card. */
+.battle-reference #game-focus-drawer:not([data-folded="true"]):has(.victory-result:not([hidden])) {
+ width:min(560px, calc(100% - 2 * var(--edge))); padding:28px 24px 30px 28px;
+}
+.battle-reference #game-focus-drawer .victory-result .result-title { margin:4px 0 12px; font-size:clamp(30px, 3.2vw, 40px); }
+.battle-reference #game-focus-drawer .victory-result .card-note { margin-bottom:20px; font-size:18px; line-height:1.45; }
+.battle-reference #game-focus-drawer .victory-result .victory-choices { gap:20px; }
+.battle-reference #game-focus-drawer .victory-result .card-icon { font-size:15px; gap:6px; }
+.battle-reference #game-focus-drawer .victory-result .card-icon > svg { width:28px; height:28px; padding:14px; }
+.battle-reference #game-focus-drawer .victory-result #victory-standings { margin-top:20px; font-size:16px; }
+@media (max-width:479px), (max-height:500px) {
+ .battle-reference #game-focus-drawer:not([data-folded="true"]):has(.victory-result:not([hidden])) { padding:16px; }
+ .battle-reference #game-focus-drawer .victory-result .card-note { font-size:16px; margin-bottom:14px; }
+ .battle-reference #game-focus-drawer .victory-result .victory-choices { gap:12px; }
+ .battle-reference #game-focus-drawer .victory-result .card-icon > svg { padding:11px; }
+}
+
+/* T147: mobile commands keep their names/counters and use the existing action glyphs. */
+button.game-mobile-command { display:inline-grid !important; place-items:center; width:48px !important; min-width:48px !important; height:48px !important; min-height:48px !important; padding:0 !important; flex-shrink:0; font-size:0 !important; }
+button.game-mobile-command[hidden] { display:none !important; }
+button.game-mobile-command:not(.province-action) { position:relative; }
+button.game-mobile-command > svg { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:block; width:24px !important; height:24px !important; padding:0 !important; border:0 !important; background:none !important; }
+button.game-mobile-command > :not(svg):not(.hand-count) { display:none !important; }
+button.game-mobile-command > .hand-count { font-size:13px; }
+@media (max-width:900px) {
+ .game-primary-buttons { display:flex; flex-wrap:nowrap; width:max-content; gap:8px; max-width:calc(100vw - 2 * var(--edge) - var(--target) - var(--gap)); }
+ .game-primary-buttons > .primary-command { height:48px; min-height:48px; }
+ .game-overlay[data-primary-commands="true"] { --primary-height:48px; }
+ .battle-reference #game-focus-drawer .game-utility-command > .card-icon-caption { display:none; }
 }
 
 /* T126: short, prominent guidance over the board, with the map visible through it. */

@@ -55,5 +55,6 @@ export class ReferenceMapView{
   this.names.select(view.selected);
   this.el.dataset["choosing"]=String(view.selected!==null);
   for(const r of this.el.querySelectorAll<SVGPolylineElement>(".lane"))r.classList.toggle("active",r.dataset["edge"]!.split("|").includes(view.selected??""));
+  this.camera.layoutCenterMarkers(state);
  }
 }
