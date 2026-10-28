@@ -3,7 +3,7 @@ import {visitGame} from './shell';
 const KEY='malpaco:seed-game:7';
 const textActions=async(page:import('@playwright/test').Page)=>{await expect(page.locator('button.game-text-command svg,button.game-text-command img')).toHaveCount(0);for(const id of ['map-fit','open-countries'])await expect(page.locator('#'+id+' svg')).toHaveCount(1);};
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes set here'));
-for(const [width,height] of [[320,640],[390,844],[844,390],[1280,800]])test(`${width}: text-only commands remain available during AI without playback controls`,async({page})=>{
+for(const [width,height] of [[320,640],[390,844],[844,390],[1280,800]])test(`${width}: responsive commands remain available during AI without playback controls`,async({page})=>{
  await page.setViewportSize({width:width!,height:height!});await page.clock.install();await page.clock.pauseAt(new Date());await visitGame(page,'/?seed=7');
  for(const id of ['#game-pause-button','#fast-forward-button','#game-speed'])await expect(page.locator(id)).toBeHidden();
  for(const id of ['#new-game-button','#open-game-menu','#game-help-button'])await expect(page.locator(id)).toBeVisible();
