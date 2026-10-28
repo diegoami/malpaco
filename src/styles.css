@@ -1339,7 +1339,8 @@ dialog h2 {
 /* The active country's name, once more above every country so a later country never covers it. */
 :is(#geographic-map,#reference-map) .name-top {pointer-events:none}
 :is(#geographic-map,#reference-map) .name-top .name {font:600 12px Inter,system-ui,sans-serif;display:inline;visibility:visible;fill:#102b36;stroke:#f0f1de;stroke-width:2.5;paint-order:stroke;stroke-linejoin:round;text-anchor:middle}
-:is(#geographic-map,#reference-map) .centre {font:10px system-ui;fill:#f2d69a;stroke:#102b36;stroke-width:.8;paint-order:stroke}
+/* T146: keep production centers distinct at Fit, with the army-label scaling. */
+:is(#geographic-map,#reference-map) .centre {font:18px system-ui;text-anchor:middle;fill:#ffe082;stroke:#102b36;stroke-width:1.5;paint-order:stroke;pointer-events:none}
 @media (prefers-reduced-motion:reduce) { :is(#geographic-map,#reference-map) .cell {transition:none} }
 
 /* T71: stable presentation areas shared by supported hosts. */

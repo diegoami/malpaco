@@ -30,7 +30,7 @@ export class GeographicMapView {
    const [x,y]=display.labelAt.map(v=>v/q) as [number,number];
    const node=s('g',{class:'country province','data-id':p.id,'data-country':p.id,'data-province':p.id,tabindex:0,role:'button','aria-label':p.name},s('title',{},p.name),s('path',{class:'cell country-shape',d:ring(display.polygon)}),s('path',{class:'ring',d:ring(display.polygon)}),s('g',{class:'country-label'},s('path',{class:'target-mark',d:TARGET_MARK,transform:`translate(${x} ${y})`}),s('path',{class:'badge'}),
     // [designed] Existing reference badge dimensions and five-unit baseline offset.
-    s('text',{class:'count army-count',x,y:y+5},'0'),s('text',{class:'name',x,y:y-18},p.name),s('text',{class:'centre',x:x-25,y:y-23},'★')));
+    s('text',{class:'count army-count',x,y:y+5},'0'),s('text',{class:'name',x,y:y-18},p.name)),s('text',{class:'centre',x:x-25,y:y-23},'★'));
    node.onclick=e=>handlers.onProvince(p.id,{inspect:e.shiftKey,repeat:false});
    node.onpointerenter=()=>handlers.onHover(p.id);node.onpointerleave=()=>handlers.onHover(null);
    return node;
@@ -74,5 +74,6 @@ export class GeographicMapView {
   this.names.select(view.selected);
   this.el.dataset['choosing']=String(view.selected!==null);
   for(const route of this.el.querySelectorAll<SVGElement>('.lane, .lane-ports'))route.classList.toggle('active',route.dataset['edge']!.split('|').includes(view.selected??''));
+  this.camera.layoutCenterMarkers(state);
  }
 }
