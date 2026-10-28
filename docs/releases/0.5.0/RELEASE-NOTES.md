@@ -1,8 +1,8 @@
 # Malpaco 0.5.0 — usability polish
 
-These notes describe the agreed [0.5.0 scope](https://github.com/diegoami/malpaco/issues/381).
-The release candidate is pinned only after every required implementation PR has
-landed and the integrated checks pass. This document does not assert publication.
+Published 2026-10-28 from reviewed source `2f993c7d56e09e197942d091b4f81e44f4d29cd1`.
+See [PUBLICATION.md](PUBLICATION.md) for the live game, downloads and verification,
+and [PROVENANCE.md](PROVENANCE.md) for exact CI bytes and owner authorization.
 
 ## Changes
 
@@ -31,8 +31,9 @@ actions. Existing scores and next-game preferences are preserved.
 
 Sound, native delivery, personalities, balance changes and the other outstanding
 0.4.0 review follow-ups are separate work. Automated browser checks do not claim
-new physical-device or screen-reader coverage. Owner visual acceptance and the
-independent release review remain separate gates before publication.
+new physical-device or screen-reader coverage. Independent review returned AGREE. The owner explicitly authorized publication
+before later visual inspection; owner visual acceptance is deferred. Non-blocking
+short-landscape launcher follow-up #394 remains open.
 
 The reviewed v0.4.0 tag and published archives remain immutable. Publication uses
 the verified CI bytes for the exact accepted 0.5.0 candidate, without rebuilding.
