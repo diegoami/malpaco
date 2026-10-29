@@ -139,7 +139,7 @@ export class GameHelp {
       return [[shape, name, use]];
     });
     const howTo = HOW_TO.map<readonly [string, string]>(([title, copy]) => [title,
-      player ? title === 'Event frequency' ? copy.replace('Continue acknowledges it. Fold or Back lets you inspect the marked countries without acknowledging.', 'close with X, Escape or Android Back to acknowledge and continue.') :
+      player ? title === 'Event frequency' ? copy.replace('Continue acknowledges it. Fold or Back lets you inspect the marked countries without acknowledging.', 'it closes automatically after three seconds of unpaused play, or close with X, Escape or Android Back to acknowledge and continue. Pausing or opening the menu stops the timeout; resuming gives a fresh three seconds.') :
         title === 'Notices' ? `${copy} Close an informational notice with X, Escape or Android Back to continue. Troop choices still require Confirm; closing them never commits armies.` : copy :
         title === 'Computer turns' ? "Choose the speed beside Pause; Fast-forward plays until your next turn." :
         title === 'Attacking' || title === 'On your country' ? "Select a source and an adjacent enemy, then use Fight on the choice card for one exchange." : copy,

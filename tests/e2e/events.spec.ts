@@ -19,7 +19,7 @@ for(const width of [390,1280])for(const kind of ['storm','revolt','shift','harve
  const card=page.locator('#world-event-card');await expect(card).toBeVisible();await expect(card.locator('[data-event-country]')).toHaveCount(e.changes.length);
  for(const c of e.changes){const row=card.locator(`[data-event-country="${c.id}"]`);await expect(row).toContainText(f.state.map.provinces.find(p=>p.id===c.id)!.name);if(kind==='storm'||kind==='harvest')await expect(row).toContainText(`${c.armiesBefore} → ${c.armiesAfter}`);await expect(page.locator(`[data-country="${c.id}"]`)).toHaveAttribute('data-armies',String(c.armiesAfter));}
  await expect(page.locator('[data-world-event="true"]')).toHaveCount(e.changes.length);await expect(page.locator('[data-country] .centre:visible')).toHaveCount(3);
- const before=(await read(page))!;expect(deserializeVersionedMatch(before).state).toEqual(f.state);await page.clock.runFor(20000);expect(await read(page)).toBe(before);
+ const before=(await read(page))!;expect(deserializeVersionedMatch(before).state).toEqual(f.state);await page.clock.runFor(2999);expect(await read(page)).toBe(before);
  await page.screenshot({path:`artifacts/T43/${kind}-${width}.png`,animations:'disabled'});
  await page.locator('#open-game-menu').click();await expect(page.locator('#open-world-event')).toBeVisible();await page.clock.runFor(20000);expect(await read(page)).toBe(before);
  if(width===390){await page.locator('#game-log-button').click();await expect(page.locator('dialog.game-event-log')).toContainText(`World event: ${kind}`);await page.keyboard.press('Escape');}
@@ -44,5 +44,21 @@ test('a human capture reward is acknowledged before its queued world event, with
  test.setTimeout(120000);const f=queuedEventFixture();await open(page,f.text,f.before.events?.sequence??0);
  await page.locator('#end-turn-button').click();const reward=page.locator('#fold-card');await expect(reward).toBeVisible();await expect(page.locator('#world-event-card')).toBeHidden();
  const after=(await read(page))!;expect(deserializeVersionedMatch(after).state).toEqual(f.after);await page.clock.runFor(2999);expect(await read(page)).toBe(after);
- await reward.click();await expect(page.locator('#fold-world-event')).toBeVisible();await page.clock.runFor(20000);expect(await read(page)).toBe(after);await page.locator('#fold-world-event').click();expect(await read(page)).toBe(after);
+ await reward.click();await expect(page.locator('#fold-world-event')).toBeVisible();await page.clock.runFor(2999);expect(await read(page)).toBe(after);await page.locator('#fold-world-event').click();expect(await read(page)).toBe(after);
+});
+
+for(const width of [390,1280])for(const kind of ['storm','revolt','shift','harvest'] as const)test(`${kind}/${width}: automatically closes after three seconds and persists dismissal`,async({page})=>{
+ test.setTimeout(120000);await page.setViewportSize({width,height:width===390?844:800});const f=eventFixture(kind);await open(page,f.text);
+ const card=page.locator('#world-event-card'),before=(await read(page))!;
+ await expect(card).toBeVisible();await page.clock.runFor(2999);await expect(card).toBeVisible();expect(await read(page)).toBe(before);
+ await page.clock.runFor(1);await expect(card).toBeHidden();expect(await read(page)).toBe(before);expect(JSON.parse((await read(page,META))!).eventAck).toBe(f.state.events!.sequence);
+ await reloadGame(page);await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});await expect(card).toBeHidden();expect(await read(page)).toBe(before);
+});
+
+test('world-event timeout stops in native background and gives a fresh three seconds after explicit Resume',async({page})=>{
+ test.setTimeout(120000);await page.addInitScript(()=>{Reflect.set(window,'active',true);Reflect.set(window,'required',false);Reflect.set(window,'MalpacoHost',{isActive:()=>Reflect.get(window,'active'),requiresResume:()=>Reflect.get(window,'required'),acknowledgeResume:()=>{if(!Reflect.get(window,'active'))return false;Reflect.set(window,'required',false);return true;}});});
+ const f=eventFixture('revolt');await open(page,f.text);const card=page.locator('#world-event-card'),before=(await read(page))!;await page.clock.runFor(2000);
+ await page.evaluate(()=>{Reflect.set(window,'active',false);Reflect.set(window,'required',true);window.dispatchEvent(new Event('malpaco:native-background'));});await page.clock.runFor(20000);await expect(card).toBeVisible();expect(await read(page)).toBe(before);
+ await page.evaluate(()=>{Reflect.set(window,'active',true);window.dispatchEvent(new Event('malpaco:native-foreground'));});await page.clock.runFor(20000);await expect(card).toBeVisible();expect(await read(page)).toBe(before);
+ await page.locator('#resume-turn-button').click();await page.clock.runFor(2999);await expect(card).toBeVisible();await page.clock.runFor(1);await expect(card).toBeHidden();expect(await read(page)).toBe(before);
 });
