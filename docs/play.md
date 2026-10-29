@@ -131,8 +131,9 @@ army each. **Revolt** changes one border country's owner without changing its ar
 or eliminating a seat. Events are protected in the first round, near a win, after
 another event and during the last three rounds of a round-limit game.
 
-An event card lists exact before/after changes and waits for an explicit dismissal.
-X, Back or Escape acknowledges it and continues in one action. Troop and card choices
+An event card lists exact before/after changes and closes after three seconds of
+unpaused play. Pausing or opening the menu stops the timeout; resuming gives a fresh
+three seconds. X, Back or Escape dismisses it immediately. Troop and card choices
 still require their explicit decision; closing an amount card never commits armies.
 Pending presentation survives reload. Acknowledgement never resumes a game paused
 by an independent pause: use Resume explicitly. Off hides centres and consumes no event
