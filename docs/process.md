@@ -67,6 +67,9 @@ implementer's contract:
 - A defect outside the task: report it. A one-file mechanical fix that blocks you may ride the PR,
   declared under Scope.
 - Update any document your change makes wrong. Never write status into a document.
+- Gameplay, control, setting, label or persistence changes update `docs/play.md` and
+  in-game Help in the same PR. Refresh affected curated manual screenshots and follow
+  `docs/manual-maintenance.md`; explain when either guide is unaffected.
 - Outputs (screenshots, measurements, logs) go to `artifacts/`, never into Git (§6).
 - **Local tests: only what the change touches** (the owner, 2026-10-22). Run `npm run build`,
   `npx tsc --noEmit -p .`, `npm test`, and in the pinned image only the new specs, the specs you

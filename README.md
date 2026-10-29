@@ -14,8 +14,11 @@ Task status lives in GitHub issue labels.
 
 [Play in your browser](https://malpaco.netlify.app), or download the
 [latest published playable archive](https://github.com/diegoami/malpaco/releases/latest).
-The [play instructions](docs/play.md) explain the controls and local launcher;
-[0.3.1 release notes](docs/releases/0.3.1/RELEASE-NOTES.md) describe this source checkout.
+The [illustrated player manual](docs/play.md) explains every phase, cards, events,
+controls and settings. Open **Full player manual with screenshots** in Help during
+play, or run `npm run manual:refresh` for a portable copy. The
+[maintenance guide](docs/manual-maintenance.md) keeps it and inline Help current;
+[0.5.0 release notes](docs/releases/0.5.0/RELEASE-NOTES.md) describe the published baseline.
 
 A fresh page offers Settings and Start. Saved games offer Resume first. Choose
 1–3 Normal opponents, starting-army range, event frequency and 46/72/96-region maps

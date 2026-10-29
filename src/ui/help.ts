@@ -16,7 +16,7 @@ const sections = [
   ],
   [
     "Attacking",
-    "Select a source and an adjacent enemy. The source needs at least two armies and at least as many armies as the defender. Each Attack resolves one exchange; choose Continue to act again.",
+    "Select a source and an adjacent enemy. The source needs at least two armies. Each Attack resolves one exchange; press it again to act again.",
   ],
   [
     "Turns and victory",
@@ -82,7 +82,7 @@ export function mountHelp(
  * stay out of this help: the page may show only your own or publicly spent cards. */
 const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])[] = [
   ["help", "Help", "Instructions, icon names and explanations of the settings."],
-  ["settings", "Settings", "The next game’s opponents and starting armies, its seed and the scoreboard. New game and Help have their own top-left buttons. These commands stay available during computer play."],
+  ["settings", "Settings", "The next game’s opponents, starting armies, event frequency, map size and combat rules, plus the scoreboard. New game and Help have their own top-left buttons. These commands stay available during computer play."],
   ["play", "Resume", "After an interruption, Resume appears in the turn tracker. Settings and Help pause play while open; closing them cannot release an Android background pause."],
   ["fit", "Fit", "Shows the whole map again."],
   ["countries", "Countries", "Every country by island, or only the ones you can use now."],
@@ -100,11 +100,12 @@ const ICON_NAMES: readonly (readonly [shape: string, name: string, use: string])
   ["trophy", "Scoreboard", "In Settings: games played, won, lost and given up in this browser, the win rate and the last 20 games."],
   ["new-game", "New game", "Gives up this game after confirmation, then opens Settings. Press Start game to begin."],
   ["watch", "Watch computers", "After your last country falls: the computers play on."],
-  ["cards", "Your cards", "Shows the cards you hold and how many, each with a plain symbol for what it does; drag the window by its title. After each draw your whole hand is shown."],
+  ["cards", "Your cards", "Shows your own hand and card count; drag the window by its title. After a draw your whole hand is shown, with the new card marked."],
   ["fold", "Fold card", "Shrinks a card to a chip that keeps its title; tap the chip to open it again."],
   ["close", "Close", "Closes a card, cancels a choice, or dismisses a notice."],
 ];
 const HOW_TO: readonly (readonly [string, string])[] = [
+  ["Start and resume", "Press Start game above the launcher settings to begin; a fresh game counts down for three seconds. Resume saved game keeps its map, rules, armies, cards and pending choices without a new countdown. The normal game has one human seat against computers."],
   ["Map size", "Choose 46, 72 or 96 regions. Larger maps add more islands and use numbered names. The choice applies only to the next game; use zoom for a closer view on a phone."],
   ["Settings", "Changes apply to the next game. Choose 1–3 computer opponents and starting-army ranges 1–2, 1–3 or 1–4 equally for all seats. New games use fixed territory income: one army per three countries, rounded down with a minimum of 2, plus complete-island bonuses. Kept games retain their original rules."],
   ["Production centres and disasters", "With events on, three starred countries are production centres. Harvest doubles their stacks, adding at most 10 per centre. Shift redraws the three centres. Storm affects a connected group of three or four countries, leaving every stack positive. Revolt transfers one border country, with its armies, to a bordering owner; it cannot eliminate a seat. Events do not target a leader or guarantee catch-up help."],
@@ -112,13 +113,19 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["Placing", "Tap your countries to place armies from the pool shown at the top; combat starts when the last one is placed."],
   ["On your country", "Select your country to see Attack and Move when both are possible. You can also choose Attack from an unconfirmed transfer destination; the draft is cancelled without moving armies."],
   ["Attacking", "Tap one of your countries, then an adjacent enemy: that only chooses the target. Use Attack beside your country for one exchange; press it again to keep attacking, or select another country."],
+  ["Attack rules", "Your source needs at least two armies; you may attack a larger enemy stack. Each side rolls one six-sided die and the lower roll loses one army. The current game's tie rule is shown above. Pressing Attack before choosing an enemy arms the source: your next eligible target tap fights one exchange. Attacks never repeat automatically. A source reduced to one army stays yours."],
   ["Capturing", "Choose how many armies move in with Min, −, + or Max, then Confirm. Min and Max select the legal bounds without moving troops. Until Confirm the two counts are dashed."],
-  ["Cards", "Your cards are behind the CARDS button at top left, with their number. Army cards are labelled5,8 or15 armies; draw notices disappear after three seconds of unpaused play. Three that make a set are played at the start of your turn: its choice opens by itself, or play it from your cards. A required card choice opens by itself. A card that targets a country folds to a strip: tap a highlighted enemy or use Countries, then Confirm."],
+  ["Friendly movement", "Choose Move on your country, then an adjacent country you own. Leave at least one army at the source. Min, Max, minus, plus and the amount field only change a draft; Confirm makes the move and ends your turn. Cancel abandons the draft. You get one adjacent friendly transfer per turn; End turn skips it."],
+  ["Cards", "Your cards button at top left shows your hand count. Capture at least one country and finish the turn to earn one card. Drawing does not immediately grant armies. Draw notices disappear after three seconds of unpaused play. At the start of a turn, play at most one set of three of the same kind or Skip; up to two Any value cards can substitute, but three wilds alone are not a set."],
+  ["Card effects", "Sets of 5, 8 or 15 armies add that amount to your placement pool. Double armies doubles the pool. An Army reduction set targets any enemy country, leaving a random 1 to half its armies, rounded down with minimum 1; choose the country and Confirm. Protection automatically blocks one reduction and is spent. Cards lost discards your hand when drawn. With five cards, discard one before seeing an earned draw. Required card choices do not time out."],
   ["Notices", "The turn tracker shows the active colour, public counts and your next step. Your turn begins when its arrow reaches your colour."],
   ["Computer turns", "Computers use the improved AI for attacks, defense and army transfers, including in resumed games. Watch their moves at Normal pace. Settings and Help pause play while open. After an interruption, use Resume in the turn tracker."],
   ["Seats", "You play one seat; the computers are named by their colours: Orange, Green and Purple."],
   ["Kept games", "Your game is kept in this browser: a reload, or reopening the browser, resumes it, paused if you left it paused. Each game counts once on the scoreboard, when it ends."],
   ["Map", "Pinch or scroll to zoom, drag to pan, Fit to see everything. Cards float over the map and move aside from the countries in play. A tap that touches two countries asks which one."],
+  ["Phone and keyboard controls", "At widths up to 900 pixels many commands use icons: play starts/resumes, flag ends the turn, crossed weapons attack, arrows move and a check mark confirms. Tooltips and accessible names keep the action names. Use Tab and Enter/Space for controls; Shift activation selects without fighting an armed attack. Scroll inside launcher settings on short screens."],
+  ["Victory and results", "Normal games use Domination: finish your turn holding 35 of 46, 54 of 72 or 72 of 96 countries, or conquer all countries. Help's Objective shows your current match's target. Standings and Details expand the result; fold it to a chip to see the map. If eliminated, Watch computers or Stop game. The scoreboard in Settings records each outcome once and separates combat-rule groups."],
+  ["Local storage", "Games and scores belong to this browser and address. There is no account or cross-device sync; clearing site data removes them. A locally served game and the hosted game have separate saves. A paused game requires Resume. Next-game preferences never change a kept match."],
   ["Moving cards", "Drag a card by its grip or its edge to put it elsewhere; later cards open there too. Double-tap the grip, or start a new game, to put cards back in their corners."],
 ];
 
@@ -148,6 +155,7 @@ export class GameHelp {
     close.onclick = () => this.dialog.close();
     this.dialog.append(
       h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
+      h("p", {}, h("a", {id:"full-player-manual",href:"/manual/index.html",target:"_blank",rel:"noopener"}, "Full player manual with screenshots")),
       h("section", {}, h("h3", {}, "Objective"), this.objective),h("section",{},h("h3",{},"Combat rules"),this.combatRules),
       ...howTo.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),
       h("h3", {}, "Icons"),

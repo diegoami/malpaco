@@ -1,158 +1,169 @@
-# Malpaco 0.3.1 web playable
+# Malpaco player manual
 
-Create a self-contained release archive from the source checkout with:
+For the **0.5.0 web game with the world-event notice timeout fix**. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
 
-```sh
-npm run package:playable
-```
+## Your first game
 
-The command rebuilds the game and writes `release/malpaco-playable.tar.gz` and
-the ready-to-run `release/malpaco-playable/` directory. The archive contains no
-source checkout or npm dependencies. Recipients need Node.js 22, but do not need
-to install packages or connect to the network.
+Open [Malpaco](https://malpaco.netlify.app). On a fresh visit, choose your settings and press **Start game**. Changing a setting does not start play. A three-second countdown gives you time to get ready. You play one seat against one to three computers; the other seats are named Orange, Green and Purple.
 
-Extract the archive, change into `malpaco-playable`, and run:
+If a game is already kept in this browser, press **Resume saved game**. Resume keeps its map, armies, cards, rules and pending choices; it skips the countdown. **New game** on the launcher opens settings for a new match. During play, New game first asks whether to give up the current match.
 
-```sh
-node serve.mjs
-```
+![The launcher with Start game above the next-game settings](manual-images/launcher.png)
 
-Open <http://127.0.0.1:4175> in a browser. The launcher binds to the
-loopback interface and serves the included files.
+*Start game is above the settings. On a phone, scroll inside the settings region to reach later options.*
 
-Fresh games show a three-second countdown before play. Centered translucent banners
-announce the moving player and your next phase, then disappear. Resuming a kept game
-skips the countdown; the turn panel continues to show guidance. Capture prompts
-and changing attack suggestions stay in that panel without restarting a banner.
+## Settings for your next game
 
-New games grow their own geography. Choose 46, 72 or 96 regions in Settings;46 is the default. Larger presets add islands and use numbered territory names. Saved games keep the generator and size they were made with.
-The seed fixes the geography, deal and dice sequence.
+| Setting | Choices and effect |
+| --- | --- |
+| Computer opponents | 1, 2 or 3; default 3. You control one seat in normal play. |
+| Starting armies | 1–2, 1–3 or 1–4 armies per country; default 1–3. All seats use the same range, with balanced aggregate budgets apart from unavoidable integer differences. |
+| Disasters and production | Off, Rare, Normal or Often; default Normal. Off removes world events and production-centre stars. |
+| Map size | 46, 72 or 96 regions; default 46. Larger maps add islands and use numbered territory names. |
+| Combat rules | Defender wins ties (default), or Legacy (reroll ties). Applies to a new match. |
 
-Computer players advance interior reserves through their own regions toward a front,
-one adjacent transfer per turn. They leave at least one army behind and keep exposed
-border stacks in place. Human transfer rules and recorded replays are unchanged.
+Settings during play pauses the game. Changing these choices **does not change the running match**. Return to the map to continue it, or choose New game to use the new settings. Help reports the running game's combat rule even when a different rule is selected for the next game. The ordinary launcher picks a new seed; seed and choices determine the initial map and deal, and the same actions reproduce its dice sequence.
 
-Opening a fresh page shows Settings. Press **Start game** when ready: by default you play against three Normal computers on a random seed, with
-Domination on and no round limit. Islands and territories take real island and town names from one
-region (Mediterranean, Caribbean, Scandinavian islands, Malaysia and Indonesia, or Pacific), chosen by
-the seed; names never change the map or play. The game is kept in this browser after each of your
-actions and the computers' committed actions, so a refresh or later visit offers **Resume saved game**, with any open choice (a capture, a card choice or an army-reduction target)
-still open, with a paused game waiting for explicit Resume. Nothing leaves this
-browser: there is no account, server or sync between devices. **Settings** at top left
-chooses 1, 2 or 3 computer opponents for your next game (3 by default). Changing
-this setting keeps your current game exactly as it is; a refresh offers Resume for it.
-These settings take effect only when you choose **New game**. **Starting armies**
-chooses **1–2, 1–3 or 1–4** per country (default 1–3), with equal aggregate seat budgets
-and only unavoidable integer differences. New games use fixed territory income:
-owned countries divided by 3, rounded down with minimum 2, plus island bonuses.
-**Disasters and production** offers Off/Rare/Normal/Often (default Normal).
-Existing games retain their original rules, including older configured income rates.
-**New game** asks "Give up this game?", shows
-where the seats stood, then opens Settings with **Start game**.
-Hidden routes for tests and bug reports: `?seed=N` plays seed N, kept and resumed per seed by the
-same address (it never replaces the kept game),
-`?setup` opens the older setup screen with its seats, options and Save and Load files,
-`?view=reference-game` opens the fixed Nine Isles board, and `&log` (or `?log`) on any of them
-brings back the game history: the menu's history icon, **History** on the result card and, on your
-turn, the notice's icon for the other seats' actions since your last turn.
+## Read the map and controls
 
-You are **You**; the three computers are named by their seat colours: **Orange**, **Green** and
-**Purple** (in games with two or more humans every seat is its colour). Saved games keep `Seat N`.
+Each country has an owner colour and an army count. Land borders and drawn sea links tell you which countries are adjacent; visual closeness across water does not create a route. A star marks a production centre while events are enabled. Country names and geography come from the seed; names have no rule effect.
 
-During your turn, place reinforcements on your territories,
-and combat starts by itself once the last army is placed. Select one of your territories: on it
-appears **ATTACK** if it can attack, or **Move** if it can only move armies. Press **ATTACK**, then
-tap an adjacent enemy: one round is fought; press **ATTACK** again for another. Selecting another
-territory moves the button there. Without **ATTACK**, tapping an enemy only chooses the target. **ATTACK** rolls one exchange each time you press it; nothing
-continues on its own. Select another country to change the pair. Clicks, Enter/Space, touch and the
-Countries list all work the same way. After capturing a territory, choose the army amount with
-**Min**, −, + or **Max**, then **Confirm** on the bar beside the captured territory; until then the two countries'
-counts are dashed.
-On the map, your selected country has a solid gold outline, the countries it can attack a dashed
-light one, and the chosen target a solid light outline with a crosshair round its count, so none of
-them relies on colour alone. Counts never draw smaller than 14 px; stacks over 999 show as 1.2k or
-23k, and the country's spoken name keeps the exact number.
-You can make one adjacent friendly move per turn: **Move armies** (or **Move** beside a selected
-territory), then a source and an own neighbour, then choose the amount with **Min**, −, + or **Max** and **Confirm** (or **Cancel**).
-Min selects the legal minimum and Max the legal maximum; neither moves troops until Confirm.
-Confirming the friendly move ends your turn. Computer turns run automatically at a readable pace:
-placements show their count progression, fights mark the two countries, and captures and friendly
-moves show the executed troop transfer. The turn arrow reaches your colour after the final effect.
+The turn tracker lists seats, public counts and the current player's arrow. Wait until the arrow reaches your colour and the guidance says it is your turn. The tracker tells you whether to place armies, attack or move. Computer placements, battles and transfers are shown before play passes on.
 
-Cards are enabled in normal games with zero or one human seat. Hands start empty.
-Capture a territory and finish your turn to earn a card; the notice says, for example,
-**You drew 8 armies**. It closes after three seconds of unpaused play, or immediately with X.
-Drawing does not grant an immediate army bonus: play a set to receive its effect.
-A card choice opens by itself and holds only its buttons: one per set you can
-trade, plus **Skip**; one per card when a full hand must discard before drawing (the new card
-stays hidden until then). An army-reduction choice folds to a one-line strip so the whole map is free: tap
-a highlighted enemy country, or choose one from **Countries**, then **Confirm**.
-Games with two or more human seats currently play without cards.
-Your cards are behind the CARDS button next to Settings, which shows how many you hold: it opens
-them, drawn as cards with a plain symbol for what each does (5, 8 or 15 armies for a set, ×2 to
-double your pool, a bomb to reduce an enemy stack, a crossed bomb for protection, a star for any value), and
-closes with ×, Escape or another tap. Drag the window by its title; it stays where you put it. At the start of your turn a set can be played
-from that list (or from the set card that opens by itself). After each draw, the card shows your
-whole hand with the new card marked.
-The placement badge spells out **N ARMIES** (**1 ARMY**) in the active human player's colour.
+![Desktop map with the turn tracker and country army counts](manual-images/map.png)
 
-Important actions use raised uppercase Ubuntu Bold text and role colours; familiar utility controls use compact icons. New game, Settings and the question-mark Help button stay at top left,
-with a readable colour turn tracker below them. Settings opens directly below its button.
-Computer turns show placement, combat and movement at a fixed readable pace. The map
-has no Pause, fast-forward or speed toolbar. Settings and Help pause play while open;
-paused kept games use RESUME in the tracker. Closing a dialog cannot release an independently required pause.
+*The arrow and guidance identify who can act. The map shows ownership, armies, borders and sea links. Stars appear in the event example below.*
 
-FIT and COUNTRIES sit at the map edge. Required capture/move amounts and card choices
-open their own cards; ordinary attacks use ATTACK beside your source country. X closes
-event/card-draw information and continues without another acknowledgement; troop
-amounts still require the Confirm check mark. The
-map remains pannable and zoomable while you inspect it. Help explains the rules and settings.
-The result card shows the winner and reason with **New game**;
-**Standings** and **Details** (seed, options and the record) open on request, and a round-limit
-result says whether countries, armies or turn order decided it.
+| Control | Use |
+| --- | --- |
+| New game | Ask to give up, show the result, then configure a new match. |
+| Settings | Change next-game choices or open the scoreboard; pauses play. |
+| Help / ? | Read the current objective, combat rule, controls and these instructions; pauses play. |
+| Cards | Open your hand when you hold cards; the badge is your card count. |
+| Fit | Restore a view of the whole map. |
+| Countries | List countries by island; filters show countries usable for the current action. Inspect an entry for owner, armies and neighbours. |
+| Resume | Continue after an explicit pause or interruption. |
 
-The **Scoreboard** (the trophy in Settings) keeps, in this browser, how many games you played, won, lost
-and gave up, your win rate, and your last 20 games, newest first: the date, the result, the rounds,
-your countries at the end and the seed. A game counts once, when it ends: a win, your elimination
-(Lost at once, even if you then watch the computers), or giving up with **New game**. The result
-card shows the updated totals, for example "Won 3 · Lost 2 · Gave up 1". **Reset** asks "Clear the
-scoreboard?" first. `?setup`, manual and Nine Isles games never count.
+Pinch or use the mouse wheel to zoom; drag to pan. Use Fit if you lose your place. If a tap overlaps two countries, choose from the list. Country selection and action controls also work with keyboard focus and Enter/Space; Shift activation selects without immediately fighting an armed attack. Form controls retain their ordinary keyboard behavior.
 
-The game fits phones and tablets in either orientation as well as desktops: it is tested from
-320×568 to 1920×1080, at 200% and 400% browser zoom and with notch insets. The historical device report is in `docs/releases/0.2.0/DEVICE-REPORT.md`; it does not establish new physical-device or screen-reader coverage for 0.3.0. Online multiplayer and
-cross-device save synchronization are not supported.
+On screens up to 900 CSS pixels wide, many action labels become icons: play starts/resumes, the flag ends a turn, crossed weapons attack, arrows move and the check mark confirms. Accessible names and tooltips keep the action names. Country names, counts and form labels stay as text. Rotate or zoom for dense boards. Very short landscape windows can leave little room for launcher settings; scroll that region or turn the phone upright.
 
-Settings contains the choices; their explanations are in Help.
+![Phone map showing compact action controls](manual-images/phone.png)
 
-Production centres are starred while events are on. **Harvest** adds up to the
-current stack or 10 armies per centre, whichever is smaller. **Shift** redraws all
-three centres. **Storm** reduces a connected group of 3–4 stacks, keeping at least 1
-army each. **Revolt** changes one border country's owner without changing its armies
-or eliminating a seat. Events are protected in the first round, near a win, after
-another event and during the last three rounds of a round-limit game.
+*The phone uses the same rules and actions; compact icons leave room for the map.*
 
-An event card lists exact before/after changes and closes after three seconds of
-unpaused play. Pausing or opening the menu stops the timeout; resuming gives a fresh
-three seconds. X, Back or Escape dismisses it immediately. Troop and card choices
-still require their explicit decision; closing an amount card never commits armies.
-Pending presentation survives reload. Acknowledgement never resumes a game paused
-by an independent pause: use Resume explicitly. Off hides centres and consumes no event
-draws. Instructions belong in Help; Settings contains the choices.
+## A turn, from cards to handoff
 
-Map size 46/72/96 applies only to the next game. Use zoom for a closer view on a phone, especially on the denser 96-region map.
-The top-left turn tracker lists player colours, regions and public card counts.
-Its arrow stays with the computer while its action finishes, then points at your
-colour with **Your turn**. Guidance changes through **Place armies**, **Execute
-attacks** and **Move armies**. The move hint is a conservative stack comparison;
-it never prevents a legal riskier attack. New computer placement, combat and troop
-transfers are shown on the regions at a readable pace. Presentation does not change the rules. Opening Settings or Help finishes the current
-paint and pauses further play. Kept paused games require explicit Resume.
+1. **Cards:** if a playable set is offered, choose one or Skip. Resolve any required discard or army-reduction target before placement.
+2. **Place armies:** tap your own countries to add one army per tap from the displayed pool. The last placement starts combat automatically in the normal player game.
+3. **Attack:** choose a source and an adjacent enemy, then use Attack for one exchange at a time. You may change sources or stop attacking.
+4. **Capture:** after taking a country, choose its move-in amount and confirm before doing anything else.
+5. **Move or finish:** optionally make one adjacent friendly transfer; confirming it ends the turn. Otherwise choose End turn.
+6. **Reward and events:** capturing at least one country can earn a card at turn end. A world event may follow. Informational notices close after three seconds of unpaused play, then the next seat proceeds.
 
-## Developer balance experiment
+New games receive **max(2, floor(countries owned ÷ 3))** armies plus bonuses for islands completely owned. Eight countries give two base armies; nine give three. Partial island control gives no island bonus; bonuses for several complete islands add together. Older kept matches retain their original income rules.
 
-From a source checkout, `node tools/balance/run.mjs --deal-seeds 500 --game-seeds 200
---out artifacts/T105-comparison` compares the frozen 0.3 experimental deal/bonus
-candidates against the 0.2.1 core policy. Pass the command on one line. Each run needs
-a fresh output directory and writes raw deals/games, a summary and source/bundle
-hashes there. It does not change the playable game's rules or saved games. The
-protocol and interpretation limits are in [the 0.3 plan](plans/release-0.3.md) and #273.
+Place the pool where you intend to defend or attack. A country must keep at least one army after a transfer. A large enemy stack does not make an attack illegal: two armies at the source are enough to attempt a normal-game attack. Conservative guidance comparisons are advice, not a strength gate.
+
+## Attack one exchange at a time
+
+Select your country, then an adjacent enemy. Selecting that enemy only stages the target. Press **Attack** beside your source to fight one exchange, and press again to continue. Alternatively, press Attack before choosing a target: this arms the source, and the next eligible enemy tap fights one exchange. Human attacks do not continue automatically.
+
+The source needs at least two armies. Each side rolls one six-sided die; the lower roll loses one army. With **Defender wins ties**, equal rolls cost the attacker one army. With **Legacy**, equal rolls reroll until decisive. You may stop, change targets or end the turn. A source reduced to one army stays yours but cannot attack until reinforced.
+
+![An attack source and adjacent enemy target selected on the map](manual-images/attack.png)
+
+*Selecting a target highlights the pair. Attack resolves one exchange; selection alone does not commit a battle unless the source was already armed.*
+
+Your source has a gold outline; eligible targets have light dashed outlines, and the chosen target has a light outline and a crosshair around its count. These markers and routes help distinguish targets without relying only on colour. If both Attack and Move are possible, both controls appear. Choosing Attack from an unconfirmed friendly-transfer destination cancels the draft without moving armies.
+
+## Capture and friendly movement
+
+When the defender loses its last army, you take the country. Choose the **total** armies to move in from the attacker's remaining stack, leaving at least one behind. **Min**, **Max**, minus and plus change the proposed amount; you can also edit the amount field. Only **Confirm** commits it. Dashed counts show the choice is pending. Closing never confirms it; use the return control to reopen the choice.
+
+![Capture move-in amount with minimum, maximum and confirmation controls](manual-images/capture.png)
+
+*Check the source and destination counts, then use the check mark to confirm the amount.*
+
+For a friendly transfer, select **Move** on a country with more than one army and choose an adjacent country you own, or use Move armies. Choose an amount with the same controls. Cancel abandons the draft. Confirm makes the transfer **and ends your turn**. You get one adjacent friendly move per turn, not a multi-country march. End turn finishes without one.
+
+Cards float above the map. Drag a card by its grip or edge to move it; later cards reuse the position. Double-tap the grip or start a new game to reset it. Drag the hand window by its title.
+
+## Cards: earn, hold and play
+
+Hands start empty. Capture at least one country and finish your turn to earn **one card**, not one per capture. Drawing does not immediately add armies. The draw notice shows your hand and marks the new card; it closes after three seconds of unpaused play or immediately with Close/Continue.
+
+At the start of a later turn, play **at most one set of three** or Skip. All three must be the same playable kind, with up to two Any value cards replacing that kind. Three wild cards alone are not a set. A mixed 5/8/15 trio is not a set.
+
+| Face / label | Effect |
+| --- | --- |
+| 5 / 5 armies | A set adds 5 armies to this turn's placement pool. |
+| 8 / 8 armies | A set adds 8 armies. |
+| 15 / 15 armies | A set adds 15 armies. |
+| ×2 / Double armies | A set doubles the placement pool. |
+| Bomb / Army reduction | A set lets you choose any enemy country, then Confirm. Its stack becomes a random number from 1 to half its previous size, rounded down, with minimum 1. Ownership stays the same. |
+| Crossed bomb / Protection | Automatically spent to block one army-reduction effect against its owner's country. Not a playable set. |
+| Star / Any value | Replaces one card in a playable set; at least one genuine card of that kind is required. |
+| Cards lost | Drawing this special card discards your whole hand. |
+
+![Your cards window with the current hand](manual-images/cards.png)
+
+*Only your hand is shown. Other seats' counts are public; their card faces are private.*
+
+A hand holds at most **five cards**. If you earn another while full, discard one existing card before seeing the new draw. The Cards button is available on your turn and hides while computers play. Required set/skip, discard and reduction-target choices do not time out. For Army reduction, the card folds so you can select a highlighted enemy on the map or in Countries, then Confirm. Normal single-player games have cards; historical multi-human test games can have different rules.
+
+## Production centres and world events
+
+With events enabled, three countries have stars. These are sites on the map, not permanent bonuses to one seat. Events can help or hurt different owners; they do not target the leader or guarantee a comeback.
+
+| Event | What changes |
+| --- | --- |
+| Harvest | Each centre gains its current army count or 10, whichever is smaller. A stack of 4 becomes 8; 15 becomes 25. |
+| Production centres moved (Shift) | Three sites are selected again; an old site may be retained. Armies and owners do not change. |
+| Storm | Reduces a connected group of three or four stacks, keeping each at least 1. |
+| Revolt | One eligible border country changes to a neighbouring owner; armies stay the same. It cannot eliminate a seat. |
+
+![World-event notice listing countries and exact changes](manual-images/event.png)
+
+*The notice lists what changed; map markers identify affected countries.*
+
+Rare, Normal and Often give an event chance of 1 in 21, 14 or 8 at an eligible turn change. Round one, imminent wins, the last three rounds of a round-limit game and the transition following an event are protected. An event can have no effect without an eligible target. Off hides centres and disables event draws.
+
+Storm, revolt, harvest and moved-centre notices **close after three seconds of unpaused play**. Close, Escape or Android Back dismisses immediately. Opening Settings or pausing stops the timeout; resuming gives a fresh three seconds. Menu-folded notices do not expire unseen. Dismissal records that you saw the notice; it does not undo or repeat the event or override a separate pause requiring Resume. Required troop and card decisions stay open until you act.
+
+## Winning, losing and the scoreboard
+
+Normal games use **Domination**: finish your turn holding at least three quarters of the countries, rounded up: **35 of 46**, **54 of 72** or **72 of 96**. Taking all countries also wins. Help's Objective shows the target and your progress. Victory is checked when the turn completes, after required captures/transfers are resolved.
+
+You are eliminated with no countries. The loss screen can offer **Watch computers** to let remaining seats finish or **Stop game** to stop watching. Losing is recorded once even if you keep watching. Giving up is recorded separately.
+
+![Expanded end-of-game result with further actions](manual-images/results.png)
+
+*The result identifies the winner or your elimination. Open Standings or Details; fold the card to inspect the map.*
+
+The result card folds to a compact chip and reopens. **Standings** shows countries and armies; **Details** includes the seed and match options. Historical round-limit games rank by countries, then armies, then later position in that round's turn order. The ordinary launcher has no round-limit or total-conquest-only switch.
+
+Open the trophy **Scoreboard** in Settings for games played, wins, losses, give-ups, win rate and the last 20 games, newest first. Each game counts once. Rule filters distinguish combat groups; older entries can be Legacy/unspecified. Reset asks before clearing. Scores belong to this browser, not an online ranking.
+
+## Keep and resume your game
+
+Committed actions are saved in this browser. Reloading or returning offers Resume saved game, including pending capture/card decisions. A paused match waits for Resume. Settings and Help pause play while open and normally return to play when closed; neither clears an independent interruption pause. You can inspect and navigate the map while notices or decisions are pending.
+
+There is no account, online multiplayer or cross-device synchronization. Other browsers/devices have separate storage; private browsing is temporary. Clearing site data removes local data. A local server and the hosted game have separate saves. Normal play uses automatic storage, not retired developer Save/Load screens. If the launcher reports a recovery error, use **Download saved data** before clearing anything.
+
+## If something seems stuck
+
+- **No input during computer play:** wait for your colour's arrow. Open Settings or Help to pause and inspect.
+- **Cannot attack:** check ownership, at least two armies, an explicit adjacent enemy route and no pending troop/card decision.
+- **Amount card returns:** choose a legal amount and Confirm; closing does not commit.
+- **Nothing happens after a notice:** look for Resume or another required choice. Timeouts run only during unpaused play.
+- **Missing control:** scroll the settings/help region, use Fit, move an overlapping card or rotate the phone. Small screens use icons.
+- **Different rule:** read Help for the current match. Old kept games retain rules; preferences apply after starting a new match.
+
+## Offline play and manual maintenance
+
+Download the [latest playable archive](https://github.com/diegoami/malpaco/releases/latest), extract it and run `node serve.mjs` in `malpaco-playable` with Node.js 22 or later. Open `http://127.0.0.1:4175`; no package installation is needed. From source, use `npm ci` and `npm run dev`.
+
+This guide is available through **Full player manual** in Help. Text lives in `docs/play.md`; selected illustrations live in `docs/manual-images/` with the owner's explicit exception to rule 6. Other screenshots, logs and the portable copy stay in ignored `artifacts/`.
+
+Run `npm run manual:refresh` to capture the UI, replace selected images and produce `artifacts/player-manual/index.html` plus a provenance manifest. Open that HTML directly for an offline illustrated copy. Review pictures and captions before committing. Gameplay, labels, controls, settings and persistence changes must update this guide and Help in the same PR and refresh affected pictures. Keep the documented version/feature heading accurate. Historical release records remain immutable. See `docs/manual-maintenance.md` for the inventory and checks.
