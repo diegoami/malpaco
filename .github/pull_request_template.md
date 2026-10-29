@@ -10,3 +10,5 @@ Closes #<issue>
 
 ## Docs changed
 <!-- The documents this change made wrong, and how they were updated. None is an answer. -->
+<!-- Gameplay/UI/settings/persistence changes: update docs/play.md and in-game Help;
+refresh affected manual screenshots per docs/manual-maintenance.md, or explain why unaffected. -->

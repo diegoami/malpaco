@@ -29,6 +29,9 @@ evidence included, is archived on Drive (`archive/` in the malpaco folder, `docs
 6. **Artifacts never go into Git.** Screenshots, logs, proof runs and builds go to `artifacts/`
    (ignored), then to a GitHub release if they must last, otherwise to Google Drive
    (`tools/artifacts.py`, `artifacts.json`, `docs/process.md` §6). Test fixtures the suite reads live in `fixtures/`.
+   Owner-authorized exception (2026-10-29, #398): the small selected screenshot set in
+   `docs/manual-images/` and its provenance are maintained player-documentation assets.
+   Other generated screenshots remain artifacts.
 7. Status lives in GitHub labels. No document carries a status snapshot.
 8. A question is not a request to edit files. Answer it; propose any fix and wait.
 9. The Done-when is not negotiable by the implementer: it stops and reports; it never weakens an
