@@ -235,3 +235,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T147](T147.md): compact mobile icon commands (#385, 0.5.0).
 - [T148](T148.md): viewport-contained launcher with start first (#384, 0.5.0).
 - [T149](T149.md): 0.5.0 release preparation and acceptance gates (#391).
+
+- [T150](T150.md): automatic world-event notice dismissal (#396).
