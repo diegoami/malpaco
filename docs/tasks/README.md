@@ -237,3 +237,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T149](T149.md): 0.5.0 release preparation and acceptance gates (#391).
 
 - [T150](T150.md): automatic world-event notice dismissal (#396).
+
+- [T151](T151.md): illustrated player manual and current inline Help (#398).
