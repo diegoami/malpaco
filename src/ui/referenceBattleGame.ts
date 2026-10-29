@@ -107,6 +107,7 @@ export class ReferenceBattleGame {
   private readonly announcementTimer:PhaseAnnouncementTimer|null;
   private readonly announcement=h('section',{id:'phase-announcement',role:'status','aria-live':'polite','aria-atomic':'true',hidden:true});
   private readonly drawNoticeTimer:DrawNoticeTimer|null;
+  private readonly worldNoticeTimer:DrawNoticeTimer|null;
   private readonly worldEvents:WorldEventController|null;
   private readonly worldView:WorldEventView|null;
   private readonly nativeHost: NativeGameBinding | null;
@@ -182,6 +183,7 @@ export class ReferenceBattleGame {
     };
     this.feedback=automatic&&presentation?.player?new ComputerFeedbackController(this.controller,{schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.mounted&&!this.disposed)this.renderMap();}):null;
     this.drawNoticeTimer=presentation?.player?new DrawNoticeTimer({schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{const v=this.cards.view;if(v.phase==='reward')this.cards.acknowledge(v.revision);}):null;
+    this.worldNoticeTimer=presentation?.player?new DrawNoticeTimer({schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.worldEvents?.dismiss())this.render();}):null;
     this.turnTracker=presentation?.player?new TurnTracker(()=>this.playbackPause.click()):null;
     this.panel = new Panel({
       onAttack: () => { this.controller.singleExchange(); },
@@ -281,6 +283,7 @@ export class ReferenceBattleGame {
     this.cardControls.dispose();
     this.stopText?.();this.stopText=null;
     this.drawNoticeTimer?.dispose();
+    this.worldNoticeTimer?.dispose();
     this.announcementTimer?.dispose();
     this.cards.dispose();
     this.computer?.dispose();
@@ -574,6 +577,8 @@ export class ReferenceBattleGame {
     }
     this.phaseActions.querySelector('#start-friendly-move-button')?.classList.toggle('guided-command',guide?.suggested==='move');this.phaseActions.querySelector('#end-turn-button')?.classList.toggle('guided-command',guide?.suggested==='end');
     this.worldView?.render(state);
+    const worldNotice=this.worldEvents?.view;
+    this.worldNoticeTimer?.update(worldNotice?.event?`${this.controller.gameGeneration}/${worldNotice.event.sequence}`:null,gamePaused||Boolean(worldNotice?.folded));
     if(!this.announcementTimer?.counting)this.computer?.update();
   }
 }
