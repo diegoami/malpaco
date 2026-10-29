@@ -239,3 +239,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T150](T150.md): automatic world-event notice dismissal (#396).
 
 - [T151](T151.md): illustrated player manual and current inline Help (#398).
+
+- [T152](T152.md): persistent Icons/Text button choice and responsive action sizing (#401).
