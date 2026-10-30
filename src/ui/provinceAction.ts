@@ -1,12 +1,11 @@
 import {h} from './dom';
-import {glyph} from './icons';
 
 /** What the selected country can do: fight from it, or move armies from it. */
 export type ProvinceActionKind='fight'|'move';
 
 /**
  * T103 (owner, 2026-10-22): as in the original's layout, the action sits on the country you
- * selected: Attack and Move are separate icons when both are possible. Attack is
+ * selected: Attack and Move are separate commands when both are possible. Attack is
  * armed by a press, then an enemy tap fights one round; Move selects a transfer source.
  * A move-only country keeps its single Move command. The corner controls
  * stay. It follows the country's count through pans, zooms and rotations, and hides when that is
@@ -14,7 +13,7 @@ export type ProvinceActionKind='fight'|'move';
  */
 export class ProvinceAction {
  readonly el=h('button',{id:'province-action-button',type:'button',class:'card-icon primary province-action',hidden:true});
- readonly moveEl=h('button',{id:'province-move-button',type:'button',class:'card-icon province-action',hidden:true,'data-kind':'move','aria-label':'Move armies from here',title:'Move armies from here'},glyph('move'));
+ readonly moveEl=h('button',{id:'province-move-button',type:'button',class:'card-icon province-action',hidden:true,'data-kind':'move','aria-label':'Move armies from here',title:'Move armies from here'},'Move');
  private country:string|null=null;
  private frame:number|null=null;
  private press:()=>void=()=>{};
@@ -25,7 +24,7 @@ export class ProvinceAction {
   this.el.setAttribute('aria-pressed',String(pressed));
   const both=kind==='fight'&&move!==null;
   if(this.el.dataset['kind']!==kind||this.el.dataset['both']!==String(both)){
-   this.el.replaceChildren(both?glyph('attack'):document.createTextNode(kind==='fight'?'ATTACK':'MOVE'));
+   this.el.replaceChildren(document.createTextNode(kind==='fight'?'Attack':'Move'));
    this.el.dataset['kind']=kind;this.el.dataset['both']=String(both);
   }
   this.el.setAttribute('aria-label',name);this.el.title=name;this.el.disabled=!enabled;this.el.dataset['for']=country;
@@ -48,8 +47,14 @@ export class ProvinceAction {
   this.el.hidden=false;this.moveEl.hidden=!this.move;
   const primaryWidth=this.el.offsetWidth||120,moveWidth=this.move?this.moveEl.offsetWidth||48:0,gap=8;
   const width=primaryWidth+(this.move?moveWidth+gap:0),height=Math.max(this.el.offsetHeight||48,this.move?this.moveEl.offsetHeight:0);
+  // Text pairs need more than four centred placements to leave neighbouring counts tappable.
   const candidates=[{x:box.right+gap,y:box.top+box.height/2-height/2},{x:box.left-gap-width,y:box.top+box.height/2-height/2},{x:box.left+box.width/2-width/2,y:box.bottom+gap},{x:box.left+box.width/2-width/2,y:box.top-gap-height}];
+  for(const y of [box.top,box.bottom-height])candidates.push({x:box.right+gap,y},{x:box.left-gap-width,y});
+  for(const x of [box.left+box.width/2-primaryWidth/2,box.left,box.right-primaryWidth])candidates.push({x,y:box.bottom+gap},{x,y:box.top-gap-height});
+  for(const x of [box.right+gap,box.left-gap-width])candidates.push({x,y:box.bottom+gap},{x,y:box.top-gap-height});
   const obstacles=[...document.querySelectorAll('[data-country] .count,#turn-tracker,.game-corner,.map-camera-controls,#game-focus-drawer:not([hidden])')].map(n=>n.getBoundingClientRect()).filter(r=>r.width&&r.height);
+  // Country centres are common tap targets even when their army badge sits off-centre.
+  for(const country of document.querySelectorAll('[data-country]')){const r=country.getBoundingClientRect();if(r.width&&r.height)obstacles.push(new DOMRect(r.x+r.width/2-12,r.y+r.height/2-12,24,24));}
   const fit=(p:{x:number;y:number})=>({x:Math.min(Math.max(4,p.x),innerWidth-width-4),y:Math.min(Math.max(4,p.y),innerHeight-height-4)});
   const score=(p:{x:number;y:number})=>obstacles.reduce((n,r)=>n+Math.max(0,Math.min(p.x+width,r.right)-Math.max(p.x,r.left))*Math.max(0,Math.min(p.y+height,r.bottom)-Math.max(p.y,r.top)),0);
   const fitted=candidates.map(fit),clear=fitted.filter(p=>p.x>=box.right||p.x+width<=box.left||p.y>=box.bottom||p.y+height<=box.top);

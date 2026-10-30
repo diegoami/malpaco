@@ -1,4 +1,5 @@
 import {glyph} from './icons';
+import {readButtonLabels,BUTTON_LABELS_CHANGED,BUTTON_LABELS_KEY} from './buttonLabels';
 /** Player action presentation. Data symbols on the map/cards are not commands. */
 const commandIcons:Readonly<Record<string,string>>={
  'start-game':'play','resume-game':'history','configure-new-game':'new-game','download-recovery-game':'files',
@@ -9,6 +10,7 @@ const commandIcons:Readonly<Record<string,string>>={
  'result-details-button':'info','result-history-button':'history','result-files-button':'files',
  'unfold-card':'return','acknowledge-world-event':'confirm',
  'scoreboard-reset':'reset','scoreboard-reset-confirm':'clear','scoreboard-reset-cancel':'return',
+ 'province-move-button':'move',
 };
 const labels:Readonly<Record<string,string>>={
  'open-hand':'Cards','map-fit':'Fit','map-focus':'Focus','open-countries':'Countries',
@@ -18,16 +20,17 @@ const labels:Readonly<Record<string,string>>={
  'friendly-move-less-button':'Fewer','friendly-move-more-button':'More','confirm-friendly-move-button':'Move','cancel-friendly-move-button':'Cancel',
  'start-friendly-move-button':'Move','start-combat-button':'Combat','end-turn-button':'End turn',
  'fold-world-event':'Fold','resume-turn-button':'Resume',
+ 'province-move-button':'Move',
 };
-const iconTools=new Set(['province-move-button','map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-min-button','capture-max-button','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-min-button','friendly-move-max-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
+const iconTools=new Set(['map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-min-button','capture-max-button','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-min-button','friendly-move-max-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
 const closeTools=new Set(['fold-card','fold-world-event','close-game-drawer','close-hand','close-game-help','close-next-game-settings','close-scoreboard','close-result-card']);
 export function textCommands(root:HTMLElement):()=>void {
- const media=typeof window.matchMedia==='function'?window.matchMedia('(max-width: 900px)'):null;
+ let labelMode=readButtonLabels();root.dataset['buttonLabels']=labelMode;
  const originals=new WeakMap<HTMLButtonElement,{node:SVGElement;version:number}>();
  const mobile=(button:HTMLButtonElement):boolean=>{
   const raw=button.querySelector<SVGElement>(':scope > svg:not(.mobile-command-symbol)');
   if(raw)originals.set(button,{node:raw.cloneNode(true) as SVGElement,version:(originals.get(button)?.version??0)+1});
-  if(!media?.matches){button.classList.remove('game-mobile-command');return false;}
+  if(labelMode!=='icons'){button.classList.remove('game-mobile-command');return false;}
   if(button.matches('.country-row,.country-neighbour,.country-filter'))return false;
   const name=button.getAttribute('aria-label')||button.title||button.textContent?.trim()||'';
   const shape=button.id==='province-action-button'?(button.dataset['kind']==='move'?'move':'attack')
@@ -48,7 +51,6 @@ export function textCommands(root:HTMLElement):()=>void {
   return true;
  };
  const decorate=(button:HTMLButtonElement)=>{
-  if(button.id==='province-action-button'&&button.dataset['both']==='true'){button.classList.remove('game-text-command','game-mobile-command');button.classList.add('game-utility-command');return;}
   if(button.id==='game-help-button'){button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-help-command');if(button.textContent!=='?')button.replaceChildren(document.createTextNode('?'));return;}
   if(closeTools.has(button.id)){
    button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-close-command');
@@ -61,7 +63,7 @@ export function textCommands(root:HTMLElement):()=>void {
   if(button.id==='open-hand'){
    if(svgs.length){svgs.forEach(n=>n.remove());if(!button.textContent?.trim().startsWith('Cards'))button.prepend(document.createTextNode('Cards '));}return;
   }
-  const caption=(button.classList.contains('country-inspect')?'Inspect':labels[button.id])??(before&&!/^[×+−–-]$/.test(before)?before:/close/i.test(name)?'Close':/fold/i.test(name)?'Fold':name);
+  const caption=(button.id==='province-action-button'?(button.dataset['kind']==='move'?'Move':'Attack'):button.classList.contains('country-inspect')?'Inspect':labels[button.id])??(before&&!/^[×+−–-]$/.test(before)?before:/close/i.test(name)?'Close':/fold/i.test(name)?'Fold':name);
   if(!button.hasAttribute('aria-label')&&name)button.setAttribute('aria-label',name);
   svgs.forEach(n=>n.remove());
   if(caption&&button.textContent?.trim()!==caption){
@@ -75,12 +77,13 @@ export function textCommands(root:HTMLElement):()=>void {
   for(const b of el.querySelectorAll('button'))buttons.add(b);
  };
  const initial=new Set<HTMLButtonElement>();scan(root,initial);initial.forEach(decorate);
- const resized=()=>{const buttons=new Set<HTMLButtonElement>();scan(root,buttons);buttons.forEach(decorate);};
- media?.addEventListener('change',resized);
+ const refresh=()=>{labelMode=readButtonLabels();root.dataset['buttonLabels']=labelMode;const buttons=new Set<HTMLButtonElement>();scan(root,buttons);buttons.forEach(decorate);};
+ const storage=(event:StorageEvent)=>{if(event.key===BUTTON_LABELS_KEY||event.key===null)refresh();};
+ window.addEventListener(BUTTON_LABELS_CHANGED,refresh);window.addEventListener('storage',storage);
  const observer=new MutationObserver(records=>{
   const buttons=new Set<HTMLButtonElement>();
   for(const record of records){const el=record.target instanceof Element?record.target:record.target.parentElement;const button=el?.closest('button');if(button)buttons.add(button);for(const node of record.addedNodes)scan(node,buttons);}
   buttons.forEach(decorate);
  });
- observer.observe(root,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','data-kind']});return()=>{observer.disconnect();media?.removeEventListener('change',resized);};
+ observer.observe(root,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['aria-label','data-kind']});return()=>{observer.disconnect();window.removeEventListener(BUTTON_LABELS_CHANGED,refresh);window.removeEventListener('storage',storage);};
 }

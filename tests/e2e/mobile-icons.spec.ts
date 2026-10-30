@@ -1,12 +1,11 @@
 import {expect,test} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','viewports set per case'));
-for(const size of [{width:390,height:844},{width:844,height:390},{width:820,height:1180},{width:1280,height:800}])test(`${size.width}x${size.height}: compact mobile icons resize without losing names, counters or saved play`,async({page})=>{
- await page.setViewportSize(size);await page.clock.install();await page.clock.pauseAt(new Date());const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
+for(const size of [{width:390,height:844},{width:844,height:390},{width:820,height:1180},{width:1280,height:800}])test(`${size.width}x${size.height}: chosen icons resize without losing names, counters or saved play`,async({page})=>{
+ await page.addInitScript(()=>localStorage.setItem('malpaco:button-labels','icons'));await page.setViewportSize(size);await page.clock.install();await page.clock.pauseAt(new Date());const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/?seed=7');
  const mode=async(ids:string[])=>{for(const id of ids){const b=page.locator('#'+id);await expect(b).toBeVisible();
-  if(page.viewportSize()!.width<=900){await expect(b).toHaveClass(/game-mobile-command/);await expect(b.locator('svg')).toHaveCount(1);const r=(await b.boundingBox())!;expect(r.width).toBeGreaterThanOrEqual(44);expect(r.height).toBeGreaterThanOrEqual(44);expect(r.width).toBeLessThanOrEqual(56);expect(r.x).toBeGreaterThanOrEqual(0);expect(r.x+r.width).toBeLessThanOrEqual(page.viewportSize()!.width);}
-  else {await expect(b).not.toHaveClass(/game-mobile-command/);await expect(b.locator('svg')).toHaveCount(0);expect((await b.textContent())!.trim()).not.toBe('');}
+  await expect(b).toHaveClass(/game-mobile-command/);await expect(b.locator('svg')).toHaveCount(1);await expect(b.locator('svg')).toBeVisible();const r=(await b.boundingBox())!;expect(r.width).toBeGreaterThanOrEqual(44);expect(r.height).toBeGreaterThanOrEqual(44);expect(r.width).toBeLessThanOrEqual(56);expect(r.x).toBeGreaterThanOrEqual(0);expect(r.x+r.width).toBeLessThanOrEqual(page.viewportSize()!.width);
  }};
  await mode(['start-game']);await expect(page.locator('#start-game')).toHaveAccessibleName('Start game');await page.locator('#start-game').click();await expect(page.locator('[data-country]')).toHaveCount(46);await page.clock.runFor(3000);
  await mode(['new-game-button','open-game-menu']);await expect(page.locator('#new-game-button')).toHaveAccessibleName('New game');
