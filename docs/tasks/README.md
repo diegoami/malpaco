@@ -241,3 +241,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T151](T151.md): illustrated player manual and current inline Help (#398).
 
 - [T152](T152.md): persistent Icons/Text button choice and responsive action sizing (#401).
+
+- [T153](T153.md): whole-card scrolling and visible focused settings on short-landscape launchers (#394), after T152.
