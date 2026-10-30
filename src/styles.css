@@ -1918,6 +1918,11 @@ dialog h2 {
 #start-game { width:100%; }
 #game-launcher [hidden] { display:none !important; }
 #game-launcher .match-error:empty { display:none; }
+/* T153: at short heights scroll the whole launcher, with Start/Resume first. */
+@media (max-height:400px) {
+ #game-launcher { overflow-y:auto; overscroll-behavior:contain; }
+ #game-launcher > .game-settings { flex-shrink:0; overflow:visible; }
+}
 
 /* T117: original raised text controls, following the owner's legibility reference. */
 .game-primary-buttons > .primary-command,

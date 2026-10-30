@@ -1,6 +1,6 @@
 # Malpaco player manual
 
-For **0.5.1 development**, based on the published 0.5.0 web game, with timed event notices and persistent button-label preferences. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
+For **0.5.1 development**, based on the published 0.5.0 web game, with timed event notices, persistent button-label preferences and short-window launcher scrolling. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
 
 ## Your first game
 
@@ -10,7 +10,7 @@ If a game is already kept in this browser, press **Resume saved game**. Resume k
 
 ![The launcher with Start game above the next-game settings](manual-images/launcher.png)
 
-*Start game is above the settings. On a phone, scroll inside the settings region to reach later options.*
+*Start game is above the settings. Very short windows scroll the whole launcher card; taller windows scroll only the settings region.*
 
 ## Settings for your next game
 
@@ -47,7 +47,7 @@ The turn tracker lists seats, public counts and the current player's arrow. Wait
 
 Pinch or use the mouse wheel to zoom; drag to pan. Use Fit if you lose your place. If a tap overlaps two countries, choose from the list. Country selection and action controls also work with keyboard focus and Enter/Space; Shift activation selects without immediately fighting an armed attack. Form controls retain their ordinary keyboard behavior.
 
-Choose **Text** or **Icons** under Button labels on the start screen or in Settings. The game keeps your choice instead of changing faces during play or when you resize. Text is the default, and labels/padding scale down for smaller screens. In Icons mode, play starts/resumes, the flag ends a turn, crossed weapons attack and arrows move. Map tools, amount controls and Close keep their standard symbols in both modes; the check mark confirms amounts. Accessible names and tooltips keep action names. Country names, counts and form labels stay as text. Rotate or zoom for dense boards. Very short landscape windows can leave little room for launcher settings; scroll that region or turn the phone upright.
+Choose **Text** or **Icons** under Button labels on the start screen or in Settings. The game keeps your choice instead of changing faces during play or when you resize. Text is the default, and labels/padding scale down for smaller screens. In Icons mode, play starts/resumes, the flag ends a turn, crossed weapons attack and arrows move. Map tools, amount controls and Close keep their standard symbols in both modes; the check mark confirms amounts. Accessible names and tooltips keep action names. Country names, counts and form labels stay as text. Rotate or zoom for dense boards. In very short windows, the whole launcher card scrolls. Start/Resume come first; scroll back to the top to reach them. Keyboard focus brings each setting and its label into view together. Taller launchers scroll only their settings region.
 
 ![Phone map showing the selected Text mode with compact Attack and Move labels](manual-images/phone.png)
 
