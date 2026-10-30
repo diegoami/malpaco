@@ -30,6 +30,10 @@ jobs:
         run: npm run build
       - name: Unit tests
         run: npm test
+      - name: Source-build Help regression
+        env:
+          HELP_EVIDENCE_DIR: screenshots/source-help
+        run: npx playwright test tests/e2e/help.spec.ts --workers=2
       - name: Package the playable build
         run: |
           npm run package:playable
@@ -58,6 +62,8 @@ jobs:
         with:
           name: playwright-report
           path: |
+            test-results/
+            playwright-report/
             test-results-release/
             playwright-report-release/
           if-no-files-found: ignore

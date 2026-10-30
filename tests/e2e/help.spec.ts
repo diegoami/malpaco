@@ -76,7 +76,15 @@ test("setup help is reachable, readable, scrollable and returns focus", async ({
   await expect(dialog.locator("p").first()).toBeInViewport();
   for (const topic of topics) await expect(dialog.getByRole("heading", { name: topic, exact: true })).toBeVisible();
   const copy = (await dialog.locator("p").allTextContents()).join(" ").toLowerCase();
-  for (const word of ["seed", "seat", "numeric", "army", "land", "sea", "reinforcement pool", "you own", "start combat", "adjacent", "two armies", "defender", "exchange", "continue", "end your turn", "eliminated", "every province", "computer", "pauses", "save game", "options", "history", "load game", "new game"]) expect(copy).toContain(word);
+  for (const word of ["seed", "seat", "numeric", "army", "land", "sea", "reinforcement pool", "you own", "start combat", "adjacent", "two armies", "exchange", "end your turn", "eliminated", "every province", "computer", "pauses", "save game", "options", "history", "load game", "new game"]) expect(copy).toContain(word);
+  // T151 corrected the classic attack rules; do not require its removed strength gate or Continue wording.
+  const attacking = dialog.locator("section").filter({ has: page.getByRole("heading", { name: "Attacking", exact: true }) }).locator("p");
+  await expect(attacking).toContainText("Select a source and an adjacent enemy");
+  await expect(attacking).toContainText("source needs at least two armies");
+  await expect(attacking).toContainText("Each Attack resolves one exchange");
+  await expect(attacking).not.toContainText("at least as many armies as the defender");
+  await expect(attacking).not.toContainText("choose Continue");
+  await expect(attacking).toContainText("press it again to act again");
   const box = await dialog.evaluate(el => ({ scroll: el.scrollHeight, client: el.clientHeight, width: el.scrollWidth, clientWidth: el.clientWidth }));
   expect(box.width).toBeLessThanOrEqual(box.clientWidth);
   if (box.scroll > box.client) await dialog.evaluate(el => { el.scrollTop = el.scrollHeight; });
