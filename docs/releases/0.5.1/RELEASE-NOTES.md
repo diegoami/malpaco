@@ -1,8 +1,13 @@
 # Malpaco 0.5.1 — clearer commands and current instructions
 
-Web release scope: T150–T154, implementation PRs #397, #399, #402 and #403.
-The published baseline is [0.5.0](../0.5.0/PUBLICATION.md). Review and publication
-follow the [acceptance protocol](ACCEPTANCE.md).
+Published **2026-10-30T19:51:24Z** from reviewed source
+`2fec967d39d8cc0a367df47db5900708ccd12d3d`, after fresh re-review AGREE and
+explicit owner publication approval. The owner deferred visual inspection until
+after publication; visual acceptance is not claimed. See the
+[publication receipt](PUBLICATION.md) and [provenance](PROVENANCE.md).
+
+Web release scope: T150–T155, PRs #397, #399, #402, #403, #405 and #411.
+The previous published baseline is [0.5.0](../0.5.0/PUBLICATION.md).
 
 ## Changes
 
