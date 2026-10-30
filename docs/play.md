@@ -1,6 +1,6 @@
 # Malpaco player manual
 
-For **0.5.1 development**, based on the published 0.5.0 web game, with timed event notices, persistent button-label preferences and short-window launcher scrolling. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
+For **Malpaco 0.5.1**. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
 
 ## Your first game
 
