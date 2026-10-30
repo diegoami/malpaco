@@ -76,7 +76,7 @@ for(const size of SIZES){
   await opened(page,text,size);const country=(id:string)=>page.locator(`[data-country="${id}"]`),action=page.locator('#province-action-button');
   await country(from).press('Enter');await action.click();await country(to).press('Enter');
   await expect(page.locator('#confirm-friendly-move-button')).toBeVisible();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await expect(action).toHaveAttribute('data-for',to);
-  const move=page.locator('#province-move-button');await expect(move).toBeVisible();await expect(move).toHaveAccessibleName('Move armies from here');await expect(move).toHaveAttribute('data-for',to);await expect(move.locator('svg')).toHaveCount(1);
+  const move=page.locator('#province-move-button');await expect(move).toBeVisible();await expect(move).toHaveAccessibleName('Move armies from here');await expect(move).toHaveAttribute('data-for',to);await expect(move).toHaveText(/Move/i);
   await expect(page.locator('#phase-announcement')).toBeHidden();mkdirSync('artifacts/T145',{recursive:true});await page.screenshot({path:`artifacts/T145/destination-actions-${size.width}.png`});
   expect(same(await kept(page))).toEqual(same(state));
   await action.click();await expect(page.locator('#confirm-friendly-move-button')).toBeHidden();await expect(action).toHaveAttribute('aria-pressed','true');expect(same(await kept(page))).toEqual(same(state));
@@ -108,10 +108,9 @@ for(const size of SIZES){
   const beside=async(id:string)=>expect.poll(async()=>gap((await action.boundingBox())!,(await country(id).locator('.count').boundingBox())!)).toBeLessThan(24);
   await expect(action).toBeHidden();
   await country(from).click();await expect(action).toBeVisible();await expect(action).toHaveAttribute('data-kind','fight');await beside(from);await expect(action).toHaveAccessibleName('Attack');
-  // Both available actions stay separate; a sole action is also an icon on mobile.
-  if(friendlyTargets(state,from).length){await expect(action.locator('svg')).toHaveCount(1);await expect(page.locator('#province-move-button')).toBeVisible();}
-  else if(size.width<=900)await expect(action.locator('svg')).toHaveCount(1);
-  else {await expect(action).toHaveText('ATTACK');await expect(action.locator('svg')).toHaveCount(0);}
+  // Default Text mode remains text for both sole and simultaneous actions at every size.
+  await expect(action).toHaveText('Attack');await expect(action.locator('svg')).toHaveCount(0);
+  if(friendlyTargets(state,from).length){await expect(page.locator('#province-move-button')).toBeVisible();await expect(page.locator('#province-move-button')).toHaveText('Move');}
   const colours=await action.evaluate((n,id)=>{const c=document.querySelector(`[data-country="${id}"]`)!;return [getComputedStyle(n).backgroundColor,getComputedStyle(c.querySelector('.cell')!).fill,getComputedStyle(c.querySelector('.badge')!).fill];},from);expect(colours[0]).not.toBe(colours[1]);expect(colours[0]).not.toBe(colours[2]);
   const ab=(await action.boundingBox())!,cb=(await country(from).locator('.count').boundingBox())!;expect(ab.x>=0&&ab.x+ab.width<=size.width).toBe(true);expect(ab.x>=cb.x+cb.width||ab.x+ab.width<=cb.x||ab.y>=cb.y+cb.height||ab.y+ab.height<=cb.y).toBe(true);await page.screenshot({path:`artifacts/T117/attack-${size.width}.png`});
   // Choosing an enemy before arming also stays on the map; ATTACK remains the control.
@@ -123,7 +122,7 @@ for(const size of SIZES){
   const one=apply(state,{kind:'attack',from,to});if(!one.ok)throw Error(one.error);
   await expect.poll(async()=>(await kept(page)).history.length).toBe(one.state.history.length);expect(same(await kept(page))).toEqual(same(one.state));
   // The icon is still there: another press is another round on the same target.
-  expect(one.state.pendingCapture).toBeUndefined();await expect(action).toBeVisible();await beside(from);
+  expect(one.state.pendingCapture).toBeUndefined();await expect(action).toBeVisible();await expect(action).toHaveText('Attack');await beside(from);
   {
    await action.click();
    const two=apply(one.state,{kind:'attack',from,to});if(!two.ok)throw Error(two.error);
