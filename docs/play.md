@@ -1,6 +1,6 @@
 # Malpaco player manual
 
-For the **0.5.0 web game with the world-event notice timeout fix**. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
+For **0.5.1 development**, based on the published 0.5.0 web game, with timed event notices and persistent button-label preferences. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
 
 ## Your first game
 
@@ -16,13 +16,14 @@ If a game is already kept in this browser, press **Resume saved game**. Resume k
 
 | Setting | Choices and effect |
 | --- | --- |
+| Button labels | Text (default) or Icons. This display choice applies immediately to the launcher and running game, and is kept across turns, new games, reloads and screen sizes. |
 | Computer opponents | 1, 2 or 3; default 3. You control one seat in normal play. |
 | Starting armies | 1–2, 1–3 or 1–4 armies per country; default 1–3. All seats use the same range, with balanced aggregate budgets apart from unavoidable integer differences. |
 | Disasters and production | Off, Rare, Normal or Often; default Normal. Off removes world events and production-centre stars. |
 | Map size | 46, 72 or 96 regions; default 46. Larger maps add islands and use numbered territory names. |
 | Combat rules | Defender wins ties (default), or Legacy (reroll ties). Applies to a new match. |
 
-Settings during play pauses the game. Changing these choices **does not change the running match**. Return to the map to continue it, or choose New game to use the new settings. Help reports the running game's combat rule even when a different rule is selected for the next game. The ordinary launcher picks a new seed; seed and choices determine the initial map and deal, and the same actions reproduce its dice sequence.
+Settings during play pauses the game. **Button labels take effect immediately** and do not change match rules or actions. The other choices apply only to the next game. Return to the map to continue the current match, or choose New game to use the new setup. Help reports the running game's combat rule even when a different rule is selected for the next game. The ordinary launcher picks a new seed; seed and choices determine the initial map and deal, and the same actions reproduce its dice sequence.
 
 ## Read the map and controls
 
@@ -46,11 +47,11 @@ The turn tracker lists seats, public counts and the current player's arrow. Wait
 
 Pinch or use the mouse wheel to zoom; drag to pan. Use Fit if you lose your place. If a tap overlaps two countries, choose from the list. Country selection and action controls also work with keyboard focus and Enter/Space; Shift activation selects without immediately fighting an armed attack. Form controls retain their ordinary keyboard behavior.
 
-On screens up to 900 CSS pixels wide, many action labels become icons: play starts/resumes, the flag ends a turn, crossed weapons attack, arrows move and the check mark confirms. Accessible names and tooltips keep the action names. Country names, counts and form labels stay as text. Rotate or zoom for dense boards. Very short landscape windows can leave little room for launcher settings; scroll that region or turn the phone upright.
+Choose **Text** or **Icons** under Button labels on the start screen or in Settings. The game keeps your choice instead of changing faces during play or when you resize. Text is the default, and labels/padding scale down for smaller screens. In Icons mode, play starts/resumes, the flag ends a turn, crossed weapons attack and arrows move. Map tools, amount controls and Close keep their standard symbols in both modes; the check mark confirms amounts. Accessible names and tooltips keep action names. Country names, counts and form labels stay as text. Rotate or zoom for dense boards. Very short landscape windows can leave little room for launcher settings; scroll that region or turn the phone upright.
 
-![Phone map showing compact action controls](manual-images/phone.png)
+![Phone map showing the selected Text mode with compact Attack and Move labels](manual-images/phone.png)
 
-*The phone uses the same rules and actions; compact icons leave room for the map.*
+*The phone uses the same rules and actions. Text labels shrink with the screen; choose Icons if you prefer compact symbols.*
 
 ## A turn, from cards to handoff
 
@@ -157,7 +158,7 @@ There is no account, online multiplayer or cross-device synchronization. Other b
 - **Cannot attack:** check ownership, at least two armies, an explicit adjacent enemy route and no pending troop/card decision.
 - **Amount card returns:** choose a legal amount and Confirm; closing does not commit.
 - **Nothing happens after a notice:** look for Resume or another required choice. Timeouts run only during unpaused play.
-- **Missing control:** scroll the settings/help region, use Fit, move an overlapping card or rotate the phone. Small screens use icons.
+- **Missing control:** scroll the settings/help region, use Fit, move an overlapping card or rotate the phone. Choose Icons or Text in Settings for your preferred command faces.
 - **Different rule:** read Help for the current match. Old kept games retain rules; preferences apply after starting a new match.
 
 ## Offline play and manual maintenance

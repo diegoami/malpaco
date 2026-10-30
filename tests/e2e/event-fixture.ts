@@ -4,7 +4,7 @@ import {islandRules} from '../../src/core/state';
 import {apply} from '../../src/core/rules';
 import {computerView} from '../../src/core/computer-view';
 import {decideComputerAction} from '../../src/core/computer';
-import {GEOGRAPHIC_EVENT_MATCH_IDENTITY,serializeVersionedMatch} from '../../src/core/match-save';
+import {GEOGRAPHIC_EVENT_MATCH_IDENTITY,serializeVersionedMatch,deserializeVersionedMatch} from '../../src/core/match-save';
 import type {GameState,WorldEventKind} from '../../src/core';
 const found=new Map<WorldEventKind,{state:GameState;text:string}>();
 export function eventFixture(kind:WorldEventKind){
@@ -41,6 +41,13 @@ export function humanCaptureFixture(){
    const action=decideComputerAction(computerView(state));if(!action)break;const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;
   }
  }throw Error('No human capture fixture');
+}
+
+export function humanHandFixture(){
+ const f=eightArmyDrawFixture(),loaded=deserializeVersionedMatch(f.text);let state=f.after;
+ for(let n=0;n<5000&&!state.result&&state.players[state.currentPlayer]!.kind==='computer';n++){const action=decideComputerAction(computerView(state));if(!action)throw Error('No action before human hand');const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;}
+ if(state.result||state.players[state.currentPlayer]!.kind!=='human')throw Error('No live human hand');
+ return {state,text:serializeVersionedMatch(loaded.options,state.history,loaded.identity)};
 }
 
 export function eightArmyDrawFixture(){

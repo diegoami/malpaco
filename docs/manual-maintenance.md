@@ -27,10 +27,10 @@ The provenance records the capture command, Playwright version, source commit an
 
 | Image | State / interaction |
 | --- | --- |
-| launcher.png | Fresh launcher, Start above five next-game settings. |
+| launcher.png | Fresh launcher, Start above Button labels and five next-game settings. |
 | map.png | Real human attack turn, before source/target selection. |
 | attack.png | Legal adjacent pair selected without committing an exchange. |
-| phone.png | The same selection at 390×844, accessible Attack icon. |
+| phone.png | The same selection at 390×844, compact Text-mode Attack and Move labels. |
 | capture.png | Pending capture, amount controls and explicit confirmation. |
 | cards.png | Actual retained hand opened with Your cards while paused. |
 | event.png | Storm changes before the three-second deadline. |

@@ -3,7 +3,7 @@ import type {Page} from '@playwright/test';
 import {mkdirSync} from 'node:fs';
 import {join} from 'node:path';
 import {visitGame,activate} from './shell';
-import {humanCaptureFixture,eventFixture,eightArmyDrawFixture} from './event-fixture';
+import {humanCaptureFixture,eventFixture,humanHandFixture} from './event-fixture';
 import {reserveFixture} from '../helpers/reserve-fixtures';
 import {deserializeVersionedMatch,serializeVersionedMatch} from '../../src/core/match-save';
 import {apply} from '../../src/core/rules';
@@ -23,7 +23,7 @@ async function shot(page:Page,name:string){await page.evaluate(()=>document.font
 test('current Help explains complete play and links a readable illustrated manual',async({page})=>{
  await retained(page,reserveFixture(46).text);const before=await page.evaluate(k=>localStorage.getItem(k),key);
  await page.locator('#game-help-button').click();const help=page.locator('dialog.game-help[open]');
- for(const text of ['at most one set of three','three wilds alone','Protection automatically','one adjacent friendly transfer','900 pixels','35 of 46','three seconds of unpaused play'])await expect(help).toContainText(text);
+ for(const text of ['at most one set of three','three wilds alone','Protection automatically','one adjacent friendly transfer','Icons or Text','35 of 46','three seconds of unpaused play'])await expect(help).toContainText(text);
  await expect(page.locator('#game-help-combat-rules')).toHaveText('Legacy: tied rolls reroll.');
  const link=page.locator('#full-player-manual');await expect(link).toHaveAttribute('href','/manual/index.html');
  const manual=await page.context().newPage();await manual.goto('/manual/index.html');await expect(manual.getByRole('heading',{level:1})).toHaveText('Malpaco player manual');await expect(manual.locator('main img')).toHaveCount(8);
@@ -47,9 +47,7 @@ test('capture pending move-in illustration without confirming troops',async({pag
  await retained(page,humanCaptureFixture().text);await page.clock.runFor(3000);await expect(page.locator('#confirm-capture-button')).toBeVisible();await shot(page,'capture');
 });
 test('capture your actual cards',async({page})=>{
- const f=eightArmyDrawFixture(),loaded=deserializeVersionedMatch(f.text);let state=f.after;
- for(let n=0;n<5000&&!state.result&&state.players[state.currentPlayer]!.kind==='computer';n++){const action=decideComputerAction(computerView(state));if(!action)throw Error('No action before manual hand');const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;}
- expect(state.players[state.currentPlayer]!.kind).toBe('human');await retained(page,serializeVersionedMatch(loaded.options,state.history,loaded.identity),true);await page.locator('#open-hand').click();await expect(page.locator('#hand-dialog')).toBeVisible();await shot(page,'cards');
+ await retained(page,humanHandFixture().text,true);await page.locator('#open-hand').click();await expect(page.locator('#hand-dialog')).toBeVisible();await shot(page,'cards');
 });
 test('capture the exact storm notice before its timeout',async({page})=>{
  await retained(page,eventFixture('storm').text);await expect(page.locator('#world-event-card')).toBeVisible();await shot(page,'event');
@@ -58,4 +56,7 @@ test('capture the expanded result and available actions',async({page})=>{
  test.setTimeout(120000);const f=reserveFixture(46);let state=f.state;
  for(let n=0;n<20000&&!state.result;n++){const action=decideComputerAction(computerView(state));if(!action)throw Error('No action for manual result');const next=apply(state,action);if(!next.ok)throw Error(next.error);state=next.state;}
  expect(state.result).toBeDefined();await retained(page,serializeVersionedMatch(f.options,state.history,f.identity));await expect(page.locator('#result-new-game-button')).toBeVisible();await shot(page,'results');
+ for(const width of [320,390]){await page.setViewportSize({width,height:844});await page.clock.runFor(100);const close=(await page.locator('#close-result-card').boundingBox())!;
+  for(const button of await page.locator('#game-status button:visible').all()){const r=(await button.boundingBox())!;expect(r.x+r.width).toBeLessThanOrEqual(width);expect(r.x+r.width<=close.x||r.y>=close.y+close.height||r.y+r.height<=close.y).toBe(true);}
+ }
 });

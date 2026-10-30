@@ -2,7 +2,7 @@ import {expect,test} from '@playwright/test';
 import {visitGame} from './shell';
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','sizes set by test'));
 for(const [width,height] of [[390,844],[844,390],[1280,800],[320,640]])test(`${width}: readable turn rows, spaced capitals and Settings directly under its button`,async({page})=>{
- await page.setViewportSize({width:width!,height:height!});await page.clock.install();await page.clock.pauseAt(new Date());await visitGame(page,'/?seed=7');
+ await page.setViewportSize({width:width!,height:height!});await page.addInitScript(mode=>localStorage.setItem('malpaco:button-labels',mode),width!<=900?'icons':'text');await page.clock.install();await page.clock.pauseAt(new Date());await visitGame(page,'/?seed=7');
  const pause=page.locator('#game-pause-button');if(await pause.isVisible())await pause.click();
  const tracker=page.locator('#turn-tracker'),settings=page.locator('#open-game-menu');
  expect(await tracker.locator('.turn-row').first().evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThanOrEqual(18);

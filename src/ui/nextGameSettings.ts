@@ -1,6 +1,7 @@
 import {defaultOptions} from '../core/options';
 import type {GameOptions,StartingArmiesRange,EventFrequency} from '../core/options';
 import {h} from './dom';
+import {readButtonLabels,saveButtonLabels} from './buttonLabels';
 export const NEXT_GAME_SETTINGS_KEY='malpaco:next-game-settings';
 export type ComputerOpponents=1|2|3;
 const RANGES:readonly StartingArmiesRange[]=['1-2','1-3','1-4'];
@@ -49,10 +50,11 @@ export class NextGameSettingsDialog {
  private readonly size=h('select',{id:'next-game-map-size'},...[46,72,96].map(n=>h('option',{value:String(n)},`${n} regions`)));
  private readonly combat=h('select',{id:'next-game-combat-rules','aria-describedby':'next-game-combat-note'},h('option',{value:'defender'},'Defender wins ties'),h('option',{value:'legacy'},'Legacy (reroll ties)'));
  private readonly error=h('p',{role:'alert',class:'match-error'});
+ private readonly labels=h('select',{id:'button-labels','aria-describedby':'button-labels-note'},h('option',{value:'text'},'Text'),h('option',{value:'icons'},'Icons'));
  constructor(private readonly store:NextGameStore=browserNextGames,onOpen?:()=>void,onClose?:()=>void){
   this.close.onclick=()=>this.dialog.close();
   const field=(name:string,select:HTMLSelectElement)=>h('div',{class:'next-game-setting'},h('label',{for:select.id},name),select);
-  this.dialog.append(h('header',{class:'game-help-head'},h('h2',{id:'next-game-settings-title'},'Settings'),this.close),field('Computer opponents',this.opponents),field('Starting armies',this.starting),field('Disasters and production',this.frequency),field('Map size',this.size),field('Combat rules',this.combat),h('p',{id:'next-game-combat-note',class:'card-note'},'For new games. Kept games retain their combat rules.'),this.error);
+  this.dialog.append(h('header',{class:'game-help-head'},h('h2',{id:'next-game-settings-title'},'Settings'),this.close),field('Button labels',this.labels),h('p',{id:'button-labels-note',class:'card-note'},'Applies now and to future games. Map tools and amount controls keep their standard symbols.'),field('Computer opponents',this.opponents),field('Starting armies',this.starting),field('Disasters and production',this.frequency),field('Map size',this.size),field('Combat rules',this.combat),h('p',{id:'next-game-combat-note',class:'card-note'},'For new games. Kept games retain their combat rules.'),this.error);
   this.button.onclick=()=>{onOpen?.();this.refresh();this.dialog.showModal();this.opponents.focus();};
   const edited=(ok:boolean)=>{if(ok)this.error.textContent='';else{this.refresh();this.error.textContent='Could not keep these settings on this device. Your current game is unchanged.';}};
   this.opponents.onchange=()=>edited(saveNextGameSettings(Number(this.opponents.value),this.store));
@@ -60,9 +62,10 @@ export class NextGameSettingsDialog {
   this.size.onchange=()=>edited(saveMapSizeSettings(Number(this.size.value),this.store));
   this.combat.onchange=()=>edited(saveCombatRulesSettings(this.combat.value,this.store));
   this.frequency.onchange=()=>edited(saveEventFrequencySettings(this.frequency.value,this.store));
+  this.labels.onchange=()=>{if(saveButtonLabels(this.labels.value))this.error.textContent='';else{this.labels.value=readButtonLabels();this.error.textContent='Could not keep the button display setting on this device.';}};
   this.dialog.addEventListener('close',()=>onClose?.());
  }
  inlineContent():HTMLElement {const content=h('div',{class:'next-game-settings'});for(const n of [...this.dialog.children])if(n.tagName!=='HEADER')content.append(n);this.refresh();return content;}
- refresh():void {const s=readNextGameSettings(this.store);this.opponents.value=String(s.computerOpponents);this.starting.value=s.startingArmiesRange;this.frequency.value=s.eventFrequency;this.combat.value=s.combatRules;this.size.value=String(s.mapSize);this.error.textContent='';}
+ refresh():void {const s=readNextGameSettings(this.store);this.labels.value=readButtonLabels();this.opponents.value=String(s.computerOpponents);this.starting.value=s.startingArmiesRange;this.frequency.value=s.eventFrequency;this.combat.value=s.combatRules;this.size.value=String(s.mapSize);this.error.textContent='';}
  dispose():void {this.dialog.remove();}
 }

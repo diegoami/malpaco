@@ -21,6 +21,9 @@ play, or run `npm run manual:refresh` for a portable copy. The
 [0.5.0 release notes](docs/releases/0.5.0/RELEASE-NOTES.md) describe the published baseline.
 
 A fresh page offers Settings and Start. Saved games offer Resume first. Choose
+Text or Icons for command buttons on the launcher or in Settings; the preference
+applies immediately and survives turns, new games, reloads and resizes. Labels
+scale with the screen while controls keep usable touch targets. Choose
 1–3 Normal opponents, starting-army range, event frequency and 46/72/96-region maps
 for the next game; changing Settings leaves the current match unchanged. Older
 kept games retain their original options, rules and replay identity.
