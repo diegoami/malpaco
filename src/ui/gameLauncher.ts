@@ -18,6 +18,10 @@ export class GameLauncher {
  constructor(hasSaved:boolean,actions:{start:()=>Promise<void>|void;resume:()=>Promise<void>|void;recovery:()=>void}){
   this.help.button.textContent='Help';this.help.button.classList.add('launcher-help');this.help.button.setAttribute('aria-label','Help');this.help.button.title='Help';document.body.append(this.help.dialog);
   this.start.onclick=()=>{void actions.start();};this.resume.onclick=()=>{void actions.resume();};this.fresh.onclick=()=>this.configure();this.recovery.onclick=actions.recovery;
+  this.fields.addEventListener('focusin',event=>{
+   if(matchMedia('(max-height:400px)').matches&&event.target instanceof HTMLSelectElement)
+    event.target.closest('.next-game-setting')?.scrollIntoView({block:'nearest',inline:'nearest'});
+  });
   this.resume.hidden=!hasSaved;this.fields.hidden=hasSaved;this.start.hidden=hasSaved;this.fresh.hidden=!hasSaved;this.title.textContent=hasSaved?'Saved game':'Settings';this.el.dataset['mode']=hasSaved?'saved':'configure';
   this.stopText=textCommands(document.body);
   this.el.append(h('header',{class:'game-launcher-head'},h('h1',{},'Malpaco'),this.help.button),h('div',{class:'game-launcher-actions'},this.resume,this.fresh,this.start),this.title,this.fields,this.status,this.recovery);

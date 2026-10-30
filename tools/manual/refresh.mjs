@@ -17,7 +17,7 @@ for(const f of manualFiles()){const name=f.name.replace(/^manual\//,'');mkdirSyn
 const sha=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
 const manifest={schema:1,version:JSON.parse(readFileSync('package.json','utf8')).version,sourceCommit:sha,capturedAt:new Date().toISOString(),dirty:execFileSync('git',['status','--porcelain'],{encoding:'utf8'}).trim().length>0,
  command:'npm run manual:refresh',browser:execFileSync('npx',['playwright','--version'],{encoding:'utf8'}).trim(),viewport:{desktop:[1280,800],phone:[390,844]},
- sources:Object.fromEntries(['docs/play.md','src/ui/help.ts','src/ui/buttonLabels.ts','src/ui/nextGameSettings.ts','src/ui/provinceAction.ts','src/ui/textCommands.ts','src/ui/referenceBattleGame.ts','src/styles.css','tests/e2e/player-manual.spec.ts','tests/e2e/event-fixture.ts','vite.config.ts','tools/manual/render.mjs','tools/manual/refresh.mjs'].map(name=>[name,createHash('sha256').update(readFileSync(name)).digest('hex')])),
+ sources:Object.fromEntries(['docs/play.md','src/ui/help.ts','src/ui/buttonLabels.ts','src/ui/nextGameSettings.ts','src/ui/gameLauncher.ts','src/ui/provinceAction.ts','src/ui/textCommands.ts','src/ui/referenceBattleGame.ts','src/styles.css','tests/e2e/player-manual.spec.ts','tests/e2e/event-fixture.ts','vite.config.ts','tools/manual/render.mjs','tools/manual/refresh.mjs'].map(name=>[name,createHash('sha256').update(readFileSync(name)).digest('hex')])),
  files:Object.fromEntries(manualFiles().map(f=>[f.name.replace(/^manual\//,''),createHash('sha256').update(f.content).digest('hex')]))};
 writeFileSync(`${output}/PROVENANCE.json`,JSON.stringify(manifest,null,2)+'\n');
 writeFileSync('docs/manual-images/PROVENANCE.json',JSON.stringify(manifest,null,2)+'\n');

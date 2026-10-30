@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "version": "0.5.0",
-  "sourceCommit": "9689a690182f439bdd89e6dba75ce1e7461dc6e7",
-  "capturedAt": "2026-10-30T07:38:00.596Z",
+  "sourceCommit": "168653507a5186d0f260f8032263941bb6871287",
+  "capturedAt": "2026-10-30T08:17:48.070Z",
   "dirty": true,
   "command": "npm run manual:refresh",
   "browser": "Version 1.63.0",
@@ -17,29 +17,30 @@
     ]
   },
   "sources": {
-    "docs/play.md": "9a1b30860dda03fcf825604787b9536e0eb9bb611c1c65b0721c96f9e743dcde",
-    "src/ui/help.ts": "76ffdbf70712b77e06b476299fcb68ae047acf3475521ec3fc2677e53a7a246a",
+    "docs/play.md": "88482ed451efb6cff2e6b728c0019bb213412d034ccae8b8d45761ccc86b97a5",
+    "src/ui/help.ts": "9dc06a9e41c6e7f73cb4ee4946ae37d8da6f093ef853367dba12cc38c5618304",
     "src/ui/buttonLabels.ts": "1348854f7c1bd9698ef0ce4e0aec44be6e6370a9b22abe7571e348b9015aedc5",
     "src/ui/nextGameSettings.ts": "eb13cf281952b9f343ddfb3de03da79f8d7f358a692e36c3b25f123f6aab8089",
+    "src/ui/gameLauncher.ts": "a540c4160488736027990ef864107aa784c8d86a2b93eb5d5064ede39e534dd1",
     "src/ui/provinceAction.ts": "8b0cc2f0d3ebeb5bb0ad8b7d18743c389dec84557d90343a088bd4e174f71e0b",
     "src/ui/textCommands.ts": "b5be2a5778b974a246ec7be6df517dbdfdf8e0e6991610b97e7e3e192b76381a",
     "src/ui/referenceBattleGame.ts": "2e9e6c6477facf878fe880372fa594f53efa589dfce2d33ac640c456ab7b5a52",
-    "src/styles.css": "02535383e90e005715a3a392926bb59b03a8277c5d036217815578beede6e506",
-    "tests/e2e/player-manual.spec.ts": "876fef9a0465b1b8801e010dbe742a35ee0056a78b8ae1bf794c8e257fd21044",
+    "src/styles.css": "0d96efc0326c8dbddaf02025fbe121e349a82537130342fce18b2be0c49509ea",
+    "tests/e2e/player-manual.spec.ts": "7d8c9046a5c5733da8bc52ff053b1b474084b6642081163247b94013dd1258f1",
     "tests/e2e/event-fixture.ts": "88129172716dc8cdfcf998500a1eeb855bafdcc84420bc4547a8fade0a5890b1",
     "vite.config.ts": "c5ab3a851708896949c89875acc306a8bbe28c74d636f58b31e792d7b5fbabe3",
     "tools/manual/render.mjs": "4c9aef437e5be7edbdd89984e9354c396a2a23db4840a02a2670e6f8c13fd999",
-    "tools/manual/refresh.mjs": "62a16a8daae2553ad5784f124dbd9c643f1361aa756b793a1a7523b60ad2bf21"
+    "tools/manual/refresh.mjs": "b3475b4bce967ff4ccbc1f6df52179f72aa6b1823916da9a72bffa084e5c3858"
   },
   "files": {
-    "index.html": "0135a9c084fdbd4c5ca9c3a7327d34335bc960dad5533fa2f3bb69678eea4ea8",
+    "index.html": "3c457f4782274b41f150c6a68d322be89283598af65ef5277a5b1a1473e0423f",
     "manual-images/launcher.png": "fb93b6dcd0eafaffb6c7078483cf877d97968d2d0a22dafc946e52d1ddf9f4b7",
     "manual-images/map.png": "2b2be372d8110a9dc9108e7b29be5a346d4686009a49aa71498d34881787c5e9",
-    "manual-images/phone.png": "d65a416743e3833092022270880057be35f5416fa6d07c3dfde452ed874b4242",
-    "manual-images/attack.png": "de51676ff76b5a8d635bc695c269d79babb5748b548a6b8684393435e614c495",
+    "manual-images/phone.png": "2cae94c11cb442fc8e675a4d7230dd7b95775ed1d2d92384f0d30df81bbfba55",
+    "manual-images/attack.png": "5705510c7010341a4fb9f4d8489960e742e6b10ec8cc1f070de6f8831e09ad06",
     "manual-images/capture.png": "c1d7290ed869608076ed5ed251d6dc610e6a0e8b29d0c0f03cc8b42fd9d05dbb",
     "manual-images/cards.png": "16e6c7387aaa2761ed881db4745e13672b2e2b6b5aba9a933051aabed59a2c8b",
-    "manual-images/event.png": "8acccf47e169d5fc500a9acbc65724b61d5f3f9279425f8ad0848e6a5deb727d",
+    "manual-images/event.png": "f42373fc3add51e535a7ea5ffd085a09392b8459b122630b9d1e46b46519babd",
     "manual-images/results.png": "e8fa23c33bc270aba02c85f70c5c784a2a626636df2cf179351233e40471e7ba"
   }
 }

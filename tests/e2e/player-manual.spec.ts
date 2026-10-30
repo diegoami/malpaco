@@ -23,7 +23,7 @@ async function shot(page:Page,name:string){await page.evaluate(()=>document.font
 test('current Help explains complete play and links a readable illustrated manual',async({page})=>{
  await retained(page,reserveFixture(46).text);const before=await page.evaluate(k=>localStorage.getItem(k),key);
  await page.locator('#game-help-button').click();const help=page.locator('dialog.game-help[open]');
- for(const text of ['at most one set of three','three wilds alone','Protection automatically','one adjacent friendly transfer','Icons or Text','35 of 46','three seconds of unpaused play'])await expect(help).toContainText(text);
+ for(const text of ['at most one set of three','three wilds alone','Protection automatically','one adjacent friendly transfer','Icons or Text','whole launcher','35 of 46','three seconds of unpaused play'])await expect(help).toContainText(text);
  await expect(page.locator('#game-help-combat-rules')).toHaveText('Legacy: tied rolls reroll.');
  const link=page.locator('#full-player-manual');await expect(link).toHaveAttribute('href','/manual/index.html');
  const manual=await page.context().newPage();await manual.goto('/manual/index.html');await expect(manual.getByRole('heading',{level:1})).toHaveText('Malpaco player manual');await expect(manual.locator('main img')).toHaveCount(8);
