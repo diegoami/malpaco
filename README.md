@@ -18,9 +18,9 @@ The [illustrated player manual](docs/play.md) explains every phase, cards, event
 controls and settings. Open **Full player manual with screenshots** in Help during
 play, or run `npm run manual:refresh` for a portable copy. The
 [maintenance guide](docs/manual-maintenance.md) keeps it and inline Help current;
-[0.5.0 release notes](docs/releases/0.5.0/RELEASE-NOTES.md) describe the published baseline.
-The [0.5.1 release scope](docs/releases/0.5.1/RELEASE-NOTES.md) and
-[acceptance protocol](docs/releases/0.5.1/ACCEPTANCE.md) cover the next release.
+[0.5.1 release notes](docs/releases/0.5.1/RELEASE-NOTES.md),
+[publication receipt](docs/releases/0.5.1/PUBLICATION.md) and
+[provenance](docs/releases/0.5.1/PROVENANCE.md) describe the published web release.
 
 A fresh page offers Settings and Start. Saved games offer Resume first. Choose
 Text or Icons for command buttons on the launcher or in Settings; the preference
