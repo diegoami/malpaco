@@ -243,3 +243,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T152](T152.md): persistent Icons/Text button choice and responsive action sizing (#401).
 
 - [T153](T153.md): whole-card scrolling and visible focused settings on short-landscape launchers (#394), after T152.
+
+- [T154](T154.md): 0.5.1 release preparation, exact-candidate CI archive verification and owner-launched milestone review (#404), after T150–T153.
