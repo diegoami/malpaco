@@ -16,7 +16,11 @@ This protocol defines gates; it does not assert a verdict or publication.
   (`2f993c7d56e09e197942d091b4f81e44f4d29cd1`) in the milestone issue. From that
   pin main takes only milestone fixes. A PR-head build is not the main candidate.
 - Build, root/core types, full units and exact-main extracted-playable CI must
-  pass. Preserve earlier failures, interruptions and superseded runs accurately;
+  pass. The pinned CI job also runs the source-build `tests/e2e/help.spec.ts` in
+  both viewport projects as the #408 regression guard. Broader source-suite CI
+  coverage remains the separate #409 follow-up; this focused check does not claim
+  coverage of every source-only spec. Preserve earlier failures, interruptions
+  and superseded runs accurately;
   do not weaken assertions, skip relevant cases or increase limits.
 - Download that successful main run's actual playable artifact. Record run and
   artifact IDs, archive sizes/digests and full source SHA. Verify BUILD.json,
