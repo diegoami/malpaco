@@ -146,7 +146,7 @@ export function rankTapRegions(radius:number,hit:(dx:number,dy:number)=>string|n
  for(let dy=-r+1;dy<r;dy+=2)for(let dx=-r+1;dx<r;dx+=2){
   if(dx*dx+dy*dy>r*r)continue;const id=hit(dx,dy);if(id)counts.set(id,(counts.get(id)??0)+1);
  }
- return [...counts.keys()].sort((a,b)=>counts.get(b)!-counts.get(a)!||(a===centre?-1:b===centre?1:a<b?-1:a>b?1:0));
+ return [...counts.keys()].sort((a,b)=>counts.get(b)!-counts.get(a)!||Number(b===centre)-Number(a===centre)||(a<b?-1:a>b?1:0));
 }
 
 const SVG = 'http://www.w3.org/2000/svg';
