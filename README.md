@@ -22,13 +22,19 @@ play, or run `npm run manual:refresh` for a portable copy. The
 [publication receipt](docs/releases/0.5.1/PUBLICATION.md) and
 [provenance](docs/releases/0.5.1/PROVENANCE.md) describe the published web release.
 
-A fresh page offers Settings and Start. Saved games offer Resume first. Choose
-Text or Icons for command buttons on the launcher or in Settings; the preference
-applies immediately and survives turns, new games, reloads and resizes. Labels
-scale with the screen while controls keep usable touch targets. Choose
-1–3 Normal opponents, starting-army range, event frequency and 46/72/96-region maps
-for the next game; changing Settings leaves the current match unchanged. Older
-kept games retain their original options, rules and replay identity.
+The 0.5.2 source is prepared under [milestone #422](https://github.com/diegoami/malpaco/issues/422);
+[release notes](docs/releases/0.5.2/RELEASE-NOTES.md) and
+[acceptance](docs/releases/0.5.2/ACCEPTANCE.md) define its scope. Publication needs
+separate owner authorization; the links above describe the published 0.5.1 game.
+
+The 0.5.2 launcher adapts to portrait/landscape windows and offers Start or Resume.
+Button labels support Text, Icons, or Text 2 turns, then Icons (default), counting
+your personal turns. Choose Slow/Normal/Fast/Very fast computer turns; both display
+preferences apply immediately and persist on this browser. Widget −/+ and Hide/Show
+controls preserve map zoom and keep Resume reachable. Ambiguous taps select the
+region with the most area under the contact and zoom in slightly. Choose 1–3 Normal
+opponents, starting-army range, events and map size for the next game; retained
+games keep their original rules and replay identity.
 
 Place armies, then use ATTACK beside a selected country. Capture and friendly-move
 panels have Min/Max, +/− and manual entry; only Confirm moves troops. The colour
