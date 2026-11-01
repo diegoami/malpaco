@@ -261,3 +261,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T159](T159.md): turn-widget size and hide controls (#417), after T158.
 
 - [T160](T160.md): automatic region choice for ambiguous taps (#419), after T159.
+
+- [T161](T161.md): 0.5.2 metadata, acceptance and exact CI candidate (#429), after T156–T160.
