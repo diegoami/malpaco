@@ -83,7 +83,7 @@ export class BattleChrome {
   private readonly closeButton = icon("close-game-drawer", "Return to map", "close");
   private readonly required = icon("open-required-action", "Required choice", "return");
   private readonly menu = icon("open-game-menu", "Menu: help, scoreboard and New game", "menu");
-  /** T81: every country by name, Inspect and a named choice for ambiguous taps. */
+  /** Country list and Inspect for diagnostic adapters. */
   readonly countries = icon("open-countries", "Countries: list and inspect", "countries");
   private readonly cornerClose = icon("close-result-card", "Return to map", "close");
   /** T101: every card folds to a chip with its title and drags by its grip or its edge. */

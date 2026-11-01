@@ -134,6 +134,21 @@ export function obstructionInsets(overlays: readonly Rect[], viewport: {width: n
   return out;
 }
 
+/** [designed] #419: bounded contact footprint and small ambiguity zoom. */
+export const AMBIGUOUS_TAP_ZOOM=1.25;
+export function tapRadius(width:number,height:number):number {
+ const contact=Math.max(Number.isFinite(width)?width:1,Number.isFinite(height)?height:1);
+ return Math.ceil(clamp(contact/2,12,24));
+}
+/** Uniform 2px cells estimate covered area; ties prefer the centre, then stable id. */
+export function rankTapRegions(radius:number,hit:(dx:number,dy:number)=>string|null):string[] {
+ const r=tapRadius(radius*2,radius*2),counts=new Map<string,number>(),centre=hit(0,0);
+ for(let dy=-r+1;dy<r;dy+=2)for(let dx=-r+1;dx<r;dx+=2){
+  if(dx*dx+dy*dy>r*r)continue;const id=hit(dx,dy);if(id)counts.set(id,(counts.get(id)??0)+1);
+ }
+ return [...counts.keys()].sort((a,b)=>counts.get(b)!-counts.get(a)!||(a===centre?-1:b===centre?1:a<b?-1:a>b?1:0));
+}
+
 const SVG = 'http://www.w3.org/2000/svg';
 const glyphs: Record<string, string> = {
   in: 'M12 5v14M5 12h14', out: 'M5 12h14',
@@ -235,18 +250,17 @@ export class MapCamera {
     this.set(focusCamera(this.current, box, this.world, this.viewport), {x: box.x + box.width / 2, y: box.y + box.height / 2});
   }
 
-  /**
-   * T81: a touch tap whose [designed] 12 px ring reaches more than one country is not
-   * acted on; the host offers a named choice instead. Hits are never enlarged.
-   */
-  onAmbiguousTap: ((ids: string[]) => void) | null = null;
-  private ambiguousAt(x: number, y: number): string[] {
-    const ids = new Set<string>();
-    for (const [dx, dy] of [[0, 0], [12, 0], [-12, 0], [0, 12], [0, -12], [8, 8], [-8, 8], [8, -8], [-8, -8]] as const) {
-      const id = document.elementFromPoint(x + dx, y + dy)?.closest<SVGElement>('[data-country]')?.dataset['country'];
-      if (id && this.svg.contains(document.elementFromPoint(x + dx, y + dy))) ids.add(id);
-    }
-    return [...ids];
+  /** A resolved ambiguous tap follows the ordinary host action path exactly once. */
+  onResolvedTap: ((id:string)=>void)|null=null;
+  private regionsUnderTap(x:number,y:number,radius:number):string[] {
+    const cells=[...this.svg.querySelectorAll<SVGGeometryElement>('[data-country] .cell')].flatMap(cell=>{
+      const bounds=cell.getBoundingClientRect(),matrix=cell.getScreenCTM(),id=cell.closest<SVGElement>('[data-country]')?.dataset['country'];
+      return id&&matrix&&bounds.width&&bounds.height&&bounds.right>=x-radius&&bounds.left<=x+radius&&bounds.bottom>=y-radius&&bounds.top<=y+radius?[{cell,bounds,id,inverse:matrix.inverse()}]:[];
+    }).sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
+    return rankTapRegions(radius,(dx,dy)=>{
+      const px=x+dx,py=y+dy;if(!this.svg.contains(document.elementFromPoint(px,py)))return null;
+      return cells.find(c=>px>=c.bounds.left&&px<=c.bounds.right&&py>=c.bounds.top&&py<=c.bounds.bottom&&c.cell.isPointInFill(new DOMPoint(px,py).matrixTransform(c.inverse)))?.id??null;
+    });
   }
 
   /** Shows only the camera controls that can act now; a hidden control hands its focus to Fit. */
@@ -398,10 +412,14 @@ export class MapCamera {
 
   private readonly onPointerUp = (e: PointerEvent) => {
     if (!this.pointers.delete(e.pointerId)) return;
-    if (this.gesture?.moved) this.suppressClick = true;
-    else if (e.pointerType === 'touch' && this.onAmbiguousTap) {
-      const ids = this.ambiguousAt(e.clientX, e.clientY);
-      if (ids.length > 1) {this.suppressClick = true; this.onAmbiguousTap(ids);}
+    if(e.type==='pointercancel'){this.suppressClick=false;if(this.gesture)this.gesture.moved=true;}
+    else if (this.gesture?.moved) this.suppressClick = true;
+    else if (e.pointerType === 'touch' && this.onResolvedTap) {
+      if(!this.svg.contains(document.elementFromPoint(e.clientX,e.clientY)))this.suppressClick=true;
+      else {
+        const ids=this.regionsUnderTap(e.clientX,e.clientY,tapRadius(e.width,e.height));
+        if(ids.length>1){this.suppressClick=true;this.zoomBy(AMBIGUOUS_TAP_ZOOM,...this.local(e));this.onResolvedTap(ids[0]!);}
+      }
     }
     if (this.pointers.size === 0) this.gesture = null;
     else if (this.gesture) this.gesture.pinch = null;
