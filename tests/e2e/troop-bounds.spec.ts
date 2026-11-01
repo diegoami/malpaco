@@ -43,6 +43,8 @@ for(const size of SIZES)for(const kind of ['capture','move'] as const)test(`${si
  if(kind==='move'){
   await startFriendlyMove(page);
   for(const id of [f.from,f.to]){const country=page.locator(`[data-country="${id}"]`);await country.focus();await country.press('Enter');}
+  // Let the ordinary animation-frame placement move the country actions clear of the new card.
+  await page.clock.runFor(34);
  }
  const prefix=kind==='capture'?'capture':'friendly-move',input=page.locator(`#${prefix}-amount`),min=kind==='capture'?f.state.pendingCapture!.min:1,max=kind==='capture'?f.state.pendingCapture!.max:f.state.armies[f.from]!-1;
  await expect(page.locator(`#${prefix}-min-button`)).toHaveText(/min/i);await expect(page.locator(`#${prefix}-max-button`)).toHaveText(/max/i);
@@ -55,7 +57,7 @@ for(const size of SIZES)for(const kind of ['capture','move'] as const)test(`${si
  await expect(page.locator(`#${prefix}-min-button`)).toBeDisabled();await expect(page.locator(`#${prefix}-max-button`)).toBeDisabled();
  await page.locator(`#${prefix}-min-button`).dispatchEvent('click');await expect(input).toHaveValue(String(max));expect(await saved(page)).toEqual(f.state);
  await page.evaluate(()=>{Reflect.set(window,'boundsActive',true);window.dispatchEvent(new Event('malpaco:native-foreground'));});
- await page.keyboard.press('Escape');await page.locator('#resume-turn-button').click();await page.locator('#open-required-action').click();
+ await page.keyboard.press('Escape');await page.locator('#resume-turn-button').click();await page.clock.runFor(34);await page.locator('#open-required-action').click();await page.clock.runFor(34);
  await expect(input).toHaveValue(String(max));
  const amount=size.width===320?min:max;await page.locator(`#${prefix}-${size.width===320?'min':'max'}-button`).click();
  for(const id of [`${prefix}-min-button`,`${prefix}-max-button`,`${prefix}-amount`,`confirm-${kind==='capture'?'capture':'friendly-move'}-button`]){

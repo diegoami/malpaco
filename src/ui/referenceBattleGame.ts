@@ -96,6 +96,7 @@ export class ReferenceBattleGame {
   /** T104: your cards on request (the player's game). */
   private hand: HandDialog | null = null;
   private anchoredTo: string | null = null;
+  private transferAnchor: {key:string;target:string}|null=null;
   private persistedSeat = -1;
   /** T100: the menu's scoreboard (the player's game only); a game is recorded once, if it was unfinished when it opened. */
   private readonly scoreboard: ScoreboardDialog | null = null;
@@ -116,8 +117,8 @@ export class ReferenceBattleGame {
   private readonly nativeHost: NativeGameBinding | null;
   private readonly onKeyDown = (event: KeyboardEvent) => {
     if (event.key !== "Escape" || event.defaultPrevented || event.composedPath().some(n=>n instanceof HTMLDialogElement) || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
-    if(this.presentation?.player&&this.controller.view.mode==='move'&&this.chrome?.openSurface!=='menu'){
-      this.controller.cancelFriendlyMove();event.preventDefault();return;
+    if(this.presentation?.player&&this.controller.view.mode==='move'&&this.chrome?.openSurface!=='menu'&&this.controller.cancelFriendlyMove()){
+      event.preventDefault();return;
     }
     if (this.chrome?.escape()) {event.preventDefault(); return;}
     if(this.worldEvents?.dismiss()){this.render();event.preventDefault();return;}
@@ -508,17 +509,21 @@ export class ReferenceBattleGame {
         this.provinceAction.show(source, "move", !paused, false, () => {if (this.controller.startFriendlyMove(revision)) this.controller.select(source, null);});
       } else this.provinceAction.hide();
       // The amount bar of a capture or a move rests beside that country.
-      const anchor = state.pendingCapture ? state.pendingCapture.to : mode === "move" && from && to ? to : null;
-      if (anchor !== this.anchoredTo) {
-        this.anchoredTo = anchor;
+      const pairKey=mode==='move'&&from&&to?[from,to].sort().join('|'):null;
+      if(!pairKey)this.transferAnchor=null;
+      else if(this.transferAnchor?.key!==pairKey)this.transferAnchor={key:pairKey,target:to!};
+      const anchor = state.pendingCapture ? state.pendingCapture.to : this.transferAnchor?.target??null;
+      const anchorKey=state.pendingCapture?`capture:${state.pendingCapture.from}:${anchor}`:pairKey;
+      if (anchorKey !== this.anchoredTo) {
+        this.anchoredTo = anchorKey;
         // Beside the destination's count, clear of both countries' counts (#266).
-        const other = state.pendingCapture ? state.pendingCapture.from : from;
+        const other = state.pendingCapture ? state.pendingCapture.from : anchor===from?to:from;
         const box = (id: string | null) => id ? this.mapView.el.querySelector(`[data-country="${CSS.escape(id)}"] ${mode==='move'&&this.presentation?.player?'.badge':'.count'}`)?.getBoundingClientRect() ?? null : null;
         this.chrome?.anchorTo(anchor ? () => {
           const near=box(anchor),second=box(other);if(!near)return null;
-          // Anchor outside the whole transfer pair, so Swap keeps the window steady
-          // and a short layout can use space beside either end without covering a badge.
-          const joint=mode==='move'&&this.presentation?.player&&second
+          // Keep the first destination anchor through Swap. Compact layouts use
+          // the whole pair to leave both badges clear; taller views stay beside that destination.
+          const joint=mode==='move'&&this.presentation?.player&&second&&matchMedia('(max-height:500px)').matches
             ? new DOMRect(Math.min(near.left,second.left),Math.min(near.top,second.top),Math.max(near.right,second.right)-Math.min(near.left,second.left),Math.max(near.bottom,second.bottom)-Math.min(near.top,second.top)) : near;
           return {near:joint,avoid:[near,second].filter((r):r is DOMRect=>!!r)};
         } : null);

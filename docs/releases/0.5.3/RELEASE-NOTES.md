@@ -13,7 +13,7 @@ This release addresses the owner’s post-0.5.2 control feedback. Scope and deci
   shows From/To names and counts, a map arrow and Swap. A legal interior/frontier
   pair initially points toward the enemy border; equal-border pairs keep tap
   order. Swap explicitly overrides that default, including when you re-tap the same destination; an illegal reverse is
-  disabled. Only Confirm transfers armies; Cancel/Escape abandon the draft. The
+  disabled. Only Confirm transfers armies; while playing, Cancel/Escape abandon the draft. During a pause, closing the card exposes Resume and keeps the draft. The
   redundant “Your turn to move” banner is removed.
 - Playable card sets are compact rows of three actual card symbols, including
   wild substitutions. Each row remains one usable button, with full effect names

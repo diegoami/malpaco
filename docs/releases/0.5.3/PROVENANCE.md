@@ -37,14 +37,25 @@ verified stacked heads, following the owner’s existing preference.
 | --- | --- | --- |
 | T162 / #435, related #433 | #438 | `3f23b7207bc4ba85ae028214385a1413ee2db0dc` |
 | T163 / #437 | #442 | `9b4509cabbea2f03724f44646c3fd27f038c07cc` |
-| T164 / #436 | #443 | `296452207a47a987dc88d6820f7c28b45d4490e4` |
-| T165 / #439 | #444 | `512615887ed274083c6fa606594c0873d1d811c5` |
+| T164 / #436 | #443 | `381e5751ba697240b3a1251ffec6a5b7d84b9bc8` |
+| T165 / #439 | #444 | `d4f7393f27c42c08b461b28d9567e8526aa70f61` |
 
 No independent per-PR review was launched for these UI changes. The owner’s
 milestone review covers the whole v0.5.2-to-candidate diff. That diff also contains
 post-tag documentation PRs #431/#434 recording the prior handoff/publication,
 and planning commits `4dc25fa`/`fdf7b99`; they are administrative history, not a new
-0.5.2 runtime release. Release preparation is tracked in #445. Integration added a one-line player-host guard: re-tapping the unchanged destination preserves an explicit Swap. The strengthened real-input regression fails before that guard. This mechanical contract correction rides release preparation; it changes no core rule or saved format.
+0.5.2 runtime release. Release preparation is tracked in #445.
+
+Integration corrections are included in the updated T164 head: repeated destination
+taps preserve Swap; a refused paused cancellation folds the card so Resume stays
+reachable; contextual actions avoid the restore chip. Tall views retain initial
+destination adjacency and Swap keeps that anchor; compact views use the pair’s
+bounds. Original failed CI 41339338114 (667 passed, 8 failed, 383 intentional skips)
+and superseded child cancellations remain in the evidence. Stale empty-window
+assertions and paused-clock placement drivers were corrected while preserving
+all action/geometry assertions, limits and existing skips. The tracker layout
+snapshot freezes live row replacement instead of weakening row-height checks.
+
 
 ## Verification and handoff
 

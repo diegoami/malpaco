@@ -39,8 +39,9 @@ verdict or publication permission.
   interior → enemy border only if legal, in either tap order. Both-interior and
   both-frontier pairs retain tap order. Swap persists across redraws and re-taps of the unchanged destination until the pair changes;
   illegal reversals cannot be chosen. Amount bounds follow the current source;
-  only Confirm commits the exact intended friendlyMove. Cancel/Escape leave the
-  match unchanged. Both badges stay clear and both names remain fully visible
+  only Confirm commits the exact intended friendlyMove. While playing, Cancel/Escape leave the
+  match unchanged. During a pause, folding the card keeps the draft and exposes
+  Resume; the restore chip is clear of contextual actions. Both badges stay clear and both names remain fully visible
   with Confirm reachable at 568×320. The Move banner is absent; countdown and other
   announcements/pause safeguards still work.
 - Every distinct playable card-set alternative is one >=44px button showing the
