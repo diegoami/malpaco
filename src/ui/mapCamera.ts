@@ -173,6 +173,7 @@ export class MapCamera {
   private lastFocused: SVGGraphicsElement | null = null;
   private appliedRotation: Rotation | null = null;
   private labelScale = 1;
+  private persistentZoomControls = false;
   private markerState: object | null = null;
   private markerLayoutKey = '';
   /** The centre the player asked for (a focused country), kept across clamps so a resize can return to it. */
@@ -263,15 +264,25 @@ export class MapCamera {
     });
   }
 
-  /** Shows only the camera controls that can act now; a hidden control hands its focus to Fit. */
+  /** Player maps keep their zoom icons discoverable even at Fit and at the zoom limits. */
+  keepZoomControlsVisible(): void {
+    this.persistentZoomControls = true;
+    this.refreshControls();
+  }
+
+  /** Unavailable controls hand keyboard focus to Fit. Diagnostic maps retain conditional tools. */
   refreshControls(): void {
-    const show = {'map-zoom-in': this.current.zoom > 1, 'map-zoom-out': this.current.zoom > 1,
+    const show = {'map-zoom-in': this.persistentZoomControls || this.current.zoom > 1,
+      'map-zoom-out': this.persistentZoomControls || this.current.zoom > 1,
       'map-focus': !!this.svg.querySelector('[data-country][data-selected="true"]')} as Record<string, boolean>;
     for (const [id, visible] of Object.entries(show)) {
       const b = this.controls.querySelector<HTMLButtonElement>(`#${id}`);
-      if (!b || b.hidden === !visible) continue;
-      const focused = !visible && document.activeElement === b;
+      if (!b) continue;
+      const disabled = this.persistentZoomControls &&
+        ((id === 'map-zoom-out' && this.current.zoom <= 1) || (id === 'map-zoom-in' && this.current.zoom >= MAX_ZOOM));
+      const focused = (!visible || disabled) && document.activeElement === b;
       b.hidden = !visible;
+      b.disabled = disabled;
       if (focused) this.controls.querySelector<HTMLButtonElement>('#map-fit')?.focus({preventScroll: true});
     }
   }

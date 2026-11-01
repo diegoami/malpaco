@@ -62,6 +62,7 @@ for(const value of ['text','icons'] as const)test(`${value}: command faces survi
  await expect(page.locator('.panel')).toHaveAttribute('data-computer-active','false');
  const after=deserializeVersionedMatch((await page.evaluate(k=>localStorage.getItem(k),KEY))!).state;
  expect(after.turnNumber).toBeGreaterThan(before.turnNumber);
+ for(const id of ['map-zoom-in','map-zoom-out'])await expect(page.locator('#'+id).locator('svg')).toBeVisible();
  await expect(page.locator('body')).toHaveAttribute('data-button-labels',value);
  const command=page.locator('#new-game-button');
  if(value==='icons')await expect(command.locator('svg')).toBeVisible();else await expect(command).toHaveText(/New game/i);
