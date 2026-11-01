@@ -2,8 +2,9 @@
 
 Web release scope: [#422](https://github.com/diegoami/malpaco/issues/422),
 T156–T161, owner requests #413–#421. The previous published release is
-[0.5.1](../0.5.1/PUBLICATION.md). Exact candidate, checks and review receipts live
-on #422. These notes do not assert publication or owner visual acceptance.
+[0.5.1](../0.5.1/PUBLICATION.md). Published **2026-11-01T15:12:26Z** from reviewed source/tag
+`198de7ef8a7cc2aaa48ae7107860f3dbb488cad0` after fresh AGREE and explicit owner
+approval. See [publication](PUBLICATION.md) and [provenance](PROVENANCE.md).
 
 ## Changes
 
@@ -47,8 +48,12 @@ fixtures match v0.5.1. Dependencies are unchanged. Existing games and scores kee
 their data. BUILD.json gains an additive product-version field for new archives;
 historical build records and published assets are unchanged.
 
-Independent milestone review and publication remain owner-authorized steps under
-[ACCEPTANCE.md](ACCEPTANCE.md). No native delivery, balance/personality work,
+The owner-launched milestone review returned AGREE, and publication was explicitly
+authorized under [ACCEPTANCE.md](ACCEPTANCE.md). No native delivery, balance/personality work,
 source-suite CI expansion (#409), environment follow-up (#410) or unrelated
 quality work is included. Prefer a compatible forward fix; v0.3.1 is not a routine
 rollback because #372 reproduces scoreboard/preferences loss.
+
+Non-blocking follow-ups: #432 removes dead chooser code; #433 tracks the shown
+widget overlapping Fit at 568×320 (Hide/Show provides camera access). Neither
+changes the reviewed/published bytes.

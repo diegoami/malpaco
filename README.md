@@ -18,14 +18,13 @@ The [illustrated player manual](docs/play.md) explains every phase, cards, event
 controls and settings. Open **Full player manual with screenshots** in Help during
 play, or run `npm run manual:refresh` for a portable copy. The
 [maintenance guide](docs/manual-maintenance.md) keeps it and inline Help current;
-[0.5.1 release notes](docs/releases/0.5.1/RELEASE-NOTES.md),
-[publication receipt](docs/releases/0.5.1/PUBLICATION.md) and
-[provenance](docs/releases/0.5.1/PROVENANCE.md) describe the published web release.
+[0.5.2 release notes](docs/releases/0.5.2/RELEASE-NOTES.md),
+[publication receipt](docs/releases/0.5.2/PUBLICATION.md) and
+[provenance](docs/releases/0.5.2/PROVENANCE.md) describe the published web release.
 
-The 0.5.2 source is prepared under [milestone #422](https://github.com/diegoami/malpaco/issues/422);
-[release notes](docs/releases/0.5.2/RELEASE-NOTES.md) and
-[acceptance](docs/releases/0.5.2/ACCEPTANCE.md) define its scope. Publication needs
-separate owner authorization; the links above describe the published 0.5.1 game.
+Web **0.5.2** is published from reviewed source `198de7e`, after independent
+AGREE and explicit owner approval. [Milestone #422](https://github.com/diegoami/malpaco/issues/422)
+retains the review, byte verification and publication receipts.
 
 The 0.5.2 launcher adapts to portrait/landscape windows and offers Start or Resume.
 Button labels support Text, Icons, or Text 2 turns, then Icons (default), counting

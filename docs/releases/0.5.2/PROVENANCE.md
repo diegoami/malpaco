@@ -1,11 +1,11 @@
 # 0.5.2 candidate provenance
 
-The pinned review source is **`198de7ef8a7cc2aaa48ae7107860f3dbb488cad0`**.
-[Milestone #422](https://github.com/diegoami/malpaco/issues/422) holds the full
-claims, owner decisions, retained evidence and review prompt. This documentation
-checkpoint follows candidate verification; it does **not** move the candidate.
-A later documentation-only main HEAD is not the source named by the sealed archive.
-No accepted verdict or published 0.5.2 release is claimed.
+Reviewed/published source/tag **v0.5.2** is
+**`198de7ef8a7cc2aaa48ae7107860f3dbb488cad0`**. Published **2026-11-01T15:12:26Z** after the
+[owner-launched AGREE review](https://github.com/diegoami/malpaco/issues/422#issuecomment-6559292980)
+and explicit owner publication approval. [PUBLICATION.md](PUBLICATION.md) records
+deployments/smoke and known non-blocking follow-ups. Later documentation-only main
+commits do not move the reviewed tag or replace the sealed CI bytes.
 
 ## Source and boundaries
 
@@ -16,7 +16,9 @@ Previous published tag v0.5.1 is immutable at
 
 Scope: T156–T161; requests #413–#421; implementation PRs #424–#428 and preparation
 #429. [Owner decisions #423](https://github.com/diegoami/malpaco/issues/423)
-confirm two personal turns and the speed/widget choices. Bounded contracts are in
+confirm two personal turns and the speed/widget choices. #430 prepared metadata; #431
+recorded the portable handoff. Remaining stack merges used owner-approved merge
+commits; #424 was squash-merged first. Bounded contracts are in
 [the release plan](../../plans/release-0.5.2.md) and task files.
 
 - Core tree: `b61fb9adfac9e0e7bf5b19f4c2e5025180e54bba` (same as v0.5.1).
@@ -46,7 +48,7 @@ whole v0.5.1-to-candidate diff.
 | Payload | All 20 manifest entries verified; complete coverage of 21 files |
 | Manual | Guide, all eight source-identical PNGs and offline quickstart verified |
 
-[Download the exact CI candidate](https://drive.google.com/file/d/1xE3_8NuJuZH9h7x_2WskxXuU3jJvL_qN/view?usp=drivesdk).
+[Download the published exact CI archive](https://github.com/diegoami/malpaco/releases/download/v0.5.2/malpaco-0.5.2-playable.tar.gz).
 The name differs from the original tar; its bytes do not. Verify its SHA-256 above
 before using it. Do not rebuild and substitute replacement bytes.
 
@@ -60,7 +62,7 @@ to the originating computer and are not a cross-computer handoff dependency.
 The [Drive evidence folder](https://drive.google.com/drive/folders/1u7pq93gbQ1Qb3nON6CkeTC0yhdp3CrPG)
 also retains implementation and CI-correction bundles; their observed sizes,
 digests and metadata readbacks are on #422. The original CI artifact expires
-2026-11-15; use the retained copy after expiry. Access uses the owner's existing
+2026-11-15; published release assets provide permanent copies. Access uses the owner's existing
 Drive permissions; sharing was not changed.
 
 Local receipts under `artifacts/T156`–`artifacts/T161` preserve failing-before
@@ -70,43 +72,37 @@ and manual captures. Live CI is authoritative; earlier interrupted/superseded ru
 must not be reported as passes. Broader source-suite CI #409 and environment #410
 remain separate.
 
-Review/verdict and publication authorization must be read on #422. Automated checks
-and inspected virtual-viewport screenshots do not establish owner visual,
-physical-device or screen-reader acceptance. No reviewer or deployment is started
-by candidate preparation.
+## Review, authorization and permanent publication evidence
 
-## Review on another computer
+Fresh GLM-5.3-Flash (`zai-coding-plan/glm-5.3-flash`) milestone review on the exact
+detached SHA: **AGREE**, no MUST-FIX findings. It independently downloaded and
+verified the live CI archive/manifest/images and checked the entire v0.5.1 diff.
+Reviewer serial units passed 1196/1196; source browser suite passed 633/337 skips;
+source Help passed six cases. Parallel unit timeouts and four local extracted-
+archive failures were disclosed: the same font/geometry failures reproduced on
+published v0.5.1 on that machine, while exact-byte CI passed. These are #410-class
+observations, not hidden candidate regressions. #432 is non-blocking dead-chooser
+cleanup, deliberately left outside this publication.
 
-1. Read this file, `ACCEPTANCE.md`, current `CLAUDE.md`, `docs/milestone-review.md`
-   and #422 including comments. #406 tracks stale rule numbers in review templates;
-   use current CLAUDE numbering. Review has not been launched by the author session.
-2. In a clean checkout, fetch and detach the exact pinned source:
+The owner gave positive local visual feedback, then explicitly answered **“go
+ahead”** after the AGREE verdict. No physical-device/screen-reader testing is
+inferred and the older v0.5.1 deferred-visual decision was not reused as permission.
 
-   ```sh
-   git fetch origin --tags
-   git checkout --detach 198de7ef8a7cc2aaa48ae7107860f3dbb488cad0
-   ```
+Permanent [publication evidence](https://github.com/diegoami/malpaco/releases/download/v0.5.2/malpaco-0.5.2-publication-evidence.tar.gz):
+**19,679,752 bytes**, SHA-256
+`069b6c490b79872bc9581ca5e2562cc6189bb926b69a6141f3e54998a5c42a24`.
+A separate checksum asset is attached. It retains authorization/review, original
+CI ZIP/readbacks, deployment receipts, original/final smoke scripts and results,
+screenshots, and an included-proof manifest. No auth-ticket files are included.
+Final public-download receipts were recorded after evidence assembly on #422.
 
-   If that checkout has uncommitted work, preserve it and use the read-only
-   `git show <sha>:<path>` route in the review instructions. Never stash or reset it.
-   The candidate predates this checkpoint, so consult the latest provenance/#422
-   before detaching. All implementation and documentation are pushed; no private
-   assistant memory or original computer's `artifacts/` directory is required.
-3. Follow the milestone instructions to install dependencies and run checks.
-   Pinned browser environment: `mcr.microsoft.com/playwright:v1.63.0-noble`.
-   If local unit contention reproduces #410's unchanged 5s timeouts, retain the
-   failure and serial retry receipt; do not increase limits. Full serial local
-   verification passed 1196/1196. Broader source-suite CI #409 remains separate.
-4. Download the retained CI candidate, check its digest and BUILD.json source,
-   extract it and run `node serve.mjs` from `malpaco-playable` (Node 22+). This
-   reviews the sealed compiled bytes; a source rebuild is a separate diagnostic.
-5. Use the prompt on #422. The owner chooses and launches a fresh independent
-   reviewer, which posts reproduced findings and one AGREE/BLOCK verdict there.
-   The author session launched no reviewer. Publication, tags, release assets and
-   deployment still require the separate 0.5.2 owner go-ahead after the review gate.
+Draft `6ae74fb74c2daa40e602d258` and production `6ae7548ddc4c0e92de7aa4fe` each
+match all 21 payload files and pass all 31 final browser cases. Production was
+published **2026-11-01T15:02:38.393Z**. All four public release downloads match their uploads,
+byte counts and GitHub SHA-256 digests. See PUBLICATION.md for the initial harness
+observations and non-blocking short-landscape overlap #433.
 
-Production readback after candidate verification still named published v0.5.1
-source `2fec967d39d8cc0a367df47db5900708ccd12d3d`. No 0.5.2 deployment was performed.
-The owner gave positive local visual feedback and requested milestone preparation
-and this handover; that does not assert physical-device/screen-reader testing or
-standing publication permission. Begin no unrelated task during this checkpoint.
+Review scope, current labels and any future fixes remain authoritative on
+[milestone #422](https://github.com/diegoami/malpaco/issues/422). Preserve this tag,
+its assets, previous v0.5.1 production `6ae4f425fc4292b166df8859` and all older
+published records unchanged. No native delivery or unrelated follow-up was begun.
