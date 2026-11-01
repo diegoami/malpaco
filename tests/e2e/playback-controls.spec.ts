@@ -42,7 +42,7 @@ async function begin(p: Page, manual = false) {
     const original = window.setTimeout.bind(window), callbacks: (() => void)[] = [];
     Reflect.set(window, "playbackCallbacks", callbacks);
     window.setTimeout = ((fn: TimerHandler, ms?: number, ...args: unknown[]) => {
-      if (typeof fn === "function" && ms !== undefined && ms >= 100 && ms <= 5000) callbacks.push(fn as () => void);
+      if (typeof fn === "function" && ms !== undefined && ms >= 40 && ms <= 5000) callbacks.push(fn as () => void);
       return original(fn, ms, ...args);
     }) as typeof window.setTimeout;
   });
