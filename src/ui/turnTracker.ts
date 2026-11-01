@@ -38,7 +38,7 @@ export class TurnTracker {
  private readonly rows=h('div',{class:'turn-rows',role:'list'});
  private readonly instruction=h('div',{id:'turn-instruction'});
  private readonly resume=h('button',{id:'resume-turn-button',type:'button','aria-label':'Resume game',hidden:true},'Resume');
- private readonly content=h('div',{id:'turn-widget-content'});
+ private readonly content=h('div',{id:'turn-widget-content',tabindex:0,role:'region','aria-label':'Turn guidance and player totals'});
  private readonly smaller=h('button',{id:'turn-widget-smaller',class:'turn-widget-control',type:'button','aria-label':'Make turn widget smaller',title:'Make turn widget smaller'},glyph('minus'));
  private readonly larger=h('button',{id:'turn-widget-larger',class:'turn-widget-control',type:'button','aria-label':'Make turn widget larger',title:'Make turn widget larger'},glyph('plus'));
  private readonly hide=h('button',{id:'hide-turn-widget',class:'turn-widget-control',type:'button','aria-label':'Hide turn widget',title:'Hide turn widget'},glyph('close'));
