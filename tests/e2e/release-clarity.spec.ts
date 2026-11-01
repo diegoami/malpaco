@@ -13,6 +13,8 @@ async function portsInsideCountries(page:Page){
 }
 
 test('desktop sea endpoints and player panel are unmistakable',async({page},info)=>{
+ // Inspect a stable layout; a live computer turn may replace rows between geometry reads.
+ await page.clock.install();await page.clock.pauseAt(new Date());
  await visitGame(page,'/?seed=7');
  const lanes=page.locator('#geographic-map .lane');
  expect(await lanes.count()).toBeGreaterThan(0);

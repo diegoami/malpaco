@@ -144,7 +144,7 @@ for(const size of SIZES){
   await country(source).click();await expect(action).toHaveAttribute('data-kind','move');
   await expect.poll(async()=>gap((await action.boundingBox())!,(await country(source).locator('.count').boundingBox())!)).toBeLessThan(24);
   expect(same(await kept(page))).toEqual(same(state));
-  await action.click();await expect(page.locator('#cancel-friendly-move-button')).toBeVisible();
+  await action.click();await expect(page.locator('#cancel-friendly-selection-button')).toBeVisible();await expect(page.locator('#game-focus-drawer')).toBeHidden();
   await country(dest).click();
   const confirm=page.locator('#confirm-friendly-move-button');await expect(confirm).toBeVisible();
   // The amount bar rests beside the destination's count.
@@ -163,7 +163,7 @@ for(const size of SIZES){
   const after=await kept(page),source=friendlySources(after)[0]!;
   await page.locator(`[data-country="${source}"]`).click();await expect(drawer).toBeHidden();
   await startFriendlyMove(page);
-  await expect(page.locator('#cancel-friendly-move-button')).toBeVisible();
+  await expect(page.locator('#cancel-friendly-selection-button')).toBeVisible();await expect(drawer).toBeHidden();
   await expect(page.locator(`[data-country="${source}"]`)).toHaveAttribute('data-selected','true');
   expect(same(await kept(page))).toEqual(same(after));
  });

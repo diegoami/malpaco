@@ -52,7 +52,7 @@ export class ProvinceAction {
   for(const y of [box.top,box.bottom-height])candidates.push({x:box.right+gap,y},{x:box.left-gap-width,y});
   for(const x of [box.left+box.width/2-primaryWidth/2,box.left,box.right-primaryWidth])candidates.push({x,y:box.bottom+gap},{x,y:box.top-gap-height});
   for(const x of [box.right+gap,box.left-gap-width])candidates.push({x,y:box.bottom+gap},{x,y:box.top-gap-height});
-  const obstacles=[...document.querySelectorAll('[data-country] .count,#turn-tracker,.game-corner,.map-camera-controls,#game-focus-drawer:not([hidden])')].map(n=>n.getBoundingClientRect()).filter(r=>r.width&&r.height);
+  const obstacles=[...document.querySelectorAll('[data-country] .count,#turn-tracker,.game-corner,.map-camera-controls,#game-focus-drawer:not([hidden]),#game-folded-choice:not([hidden])')].map(n=>n.getBoundingClientRect()).filter(r=>r.width&&r.height);
   // Country centres are common tap targets even when their army badge sits off-centre.
   for(const country of document.querySelectorAll('[data-country]')){const r=country.getBoundingClientRect();if(r.width&&r.height)obstacles.push(new DOMRect(r.x+r.width/2-12,r.y+r.height/2-12,24,24));}
   const fit=(p:{x:number;y:number})=>({x:Math.min(Math.max(4,p.x),innerWidth-width-4),y:Math.min(Math.max(4,p.y),innerHeight-height-4)});

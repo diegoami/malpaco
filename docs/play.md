@@ -56,7 +56,7 @@ Choose **Text**, **Icons**, or **Text 2 turns, then Icons** under Button labels 
 
 *The phone uses the same rules and actions. Text labels shrink with the screen; choose Icons if you prefer compact symbols.*
 
-When you choose Move, select an owned neighbour on the map; no empty window interrupts this step. Cancel move (×) or Escape abandons the selection. The amount window shows **From → To**, with army counts and an arrow on the map. For an interior/frontier pair, the initial legal direction is toward the enemy border. Pairs with the same border status keep tap order. Use Swap to reverse a legal direction; a one-army province cannot supply armies. Check the direction and amount before Confirm. The redundant “Your turn to move” banner is removed.
+When you choose Move, select an owned neighbour on the map; no empty window interrupts this step. While playing, Cancel move (×) or Escape abandons the selection. During a pause, close the card to reach Resume; the draft is kept. The amount window shows **From → To**, with army counts and an arrow on the map. For an interior/frontier pair, the initial legal direction is toward the enemy border. Pairs with the same border status keep tap order. Use Swap to reverse a legal direction; a one-army province cannot supply armies. Check the direction and amount before Confirm. The redundant “Your turn to move” banner is removed.
 
 Playable card-set alternatives show a row of three small card symbols, including any wild cards. Each row is one button; its tooltip gives the set effect. The same choices appear in Your cards. Skip keeps your cards for later.
 
