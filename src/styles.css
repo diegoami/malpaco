@@ -2252,3 +2252,36 @@ body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:
 }
 /* Keep a pending choice's Return control above the remaining End turn command. */
 .game-overlay[data-primary-commands="true"] #game-folded-choice { margin-bottom:calc(var(--command-height,44px) + var(--gap)); }
+
+/* T159: scale widget content independently; view controls always keep 44px targets. */
+#turn-tracker {
+ --tracker-width:248px; --tracker-title:22px; --tracker-instruction:20px; --tracker-row:18px; --tracker-mark:18px;
+ display:flex; flex-direction:column; gap:4px; width:calc(var(--tracker-width) * var(--tracker-scale,1)); max-width:calc(100% - 2 * var(--edge));
+ max-height:calc(100% - 2 * var(--edge) - var(--primary-height,48px) - var(--gap)); padding:10px;
+}
+#turn-widget-content { min-height:0; overflow-y:auto; overscroll-behavior:contain; }
+#turn-tracker .turn-widget-controls { display:flex; gap:4px; flex-shrink:0; }
+#turn-tracker .turn-widget-control { display:grid; place-items:center; flex:none; width:44px; min-width:44px; height:44px; min-height:44px; padding:0; background:var(--surface); color:var(--text); border:1px solid var(--line); border-radius:6px; }
+#turn-tracker .turn-widget-control > svg { width:22px; height:22px; }
+#turn-tracker [hidden] { display:none !important; }
+#turn-tracker[data-folded="true"] { width:max-content; padding:4px; }
+#turn-tracker #resume-turn-button { flex-shrink:0; min-width:44px; min-height:44px; }
+#turn-tracker #turn-guidance-title { font-size:calc(var(--tracker-title) * var(--tracker-scale,1)); }
+#turn-tracker #turn-instruction { font-size:calc(var(--tracker-instruction) * var(--tracker-scale,1)); }
+#turn-tracker .turn-row { font-size:calc(var(--tracker-row) * var(--tracker-scale,1)); grid-template-columns:calc(var(--tracker-mark) * var(--tracker-scale,1)) calc(var(--tracker-mark) * var(--tracker-scale,1)) minmax(0,1fr) calc(30px * var(--tracker-scale,1)) calc(var(--tracker-mark) * var(--tracker-scale,1)) calc(var(--tracker-mark) * var(--tracker-scale,1)) calc(var(--tracker-mark) * var(--tracker-scale,1)); gap:3px; min-height:calc(28px * var(--tracker-scale,1)); }
+#turn-tracker .turn-row svg { width:calc(var(--tracker-mark) * var(--tracker-scale,1)); height:calc(var(--tracker-mark) * var(--tracker-scale,1)); }
+#turn-tracker .turn-pointer { font-size:inherit; }
+@media (min-width:1024px) and (min-height:650px) {
+ #turn-tracker { --tracker-width:320px; --tracker-title:28px; --tracker-instruction:24px; --tracker-row:22px; --tracker-mark:24px; }
+ #turn-tracker .turn-row { min-height:calc(44px * var(--tracker-scale,1)); }
+}
+/* Resume is outside measured content so pausing never reframes the map. */
+#turn-tracker { --resume-width:clamp(80px,calc(var(--command-font) * 6),120px); }
+body[data-button-labels="icons"] #turn-tracker { --resume-width:48px; }
+#turn-tracker #resume-turn-button { position:absolute; top:10px; left:min(max(154px,calc(100% - var(--resume-width) - 10px)),calc(100vw - var(--safe-left) - var(--safe-right) - 2 * var(--edge) - var(--resume-width))); width:var(--resume-width) !important; max-width:none; margin:0; }
+#turn-tracker[data-folded="true"] #resume-turn-button { top:4px; left:calc(100% + 8px); }
+@media (max-width:600px) {
+ body[data-button-labels="text"] .game-overlay[data-primary-commands="true"]:is(:has(#open-hand:not([hidden])),:has(#placement-pool:not([hidden]))) { --primary-height:104px; }
+}
+.game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }
+#turn-tracker[data-folded="true"] { flex-direction:row; align-items:center; }

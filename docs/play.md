@@ -30,7 +30,7 @@ Settings during play pauses the game. **Button labels and computer turn speed ta
 
 Each country has an owner colour and an army count. Land borders and drawn sea links tell you which countries are adjacent; visual closeness across water does not create a route. A star marks a production centre while events are enabled. Country names and geography come from the seed; names have no rule effect.
 
-The turn tracker lists seats, public counts and the current player's arrow. Wait until the arrow reaches your colour and the guidance says it is your turn. The tracker tells you whether to place armies, attack or move. Computer placements, battles and transfers are shown before play passes on.
+The turn tracker lists seats, public counts and the current player's arrow. Wait until the arrow reaches your colour and the guidance says it is your turn. The tracker tells you whether to place armies, attack or move. Its − and + controls make the widget smaller or larger without changing map zoom. Hide it with X and use Show turn widget to bring it back. Resume remains available while the widget is hidden. Size and visibility reset for a new game. Computer placements, battles and transfers are shown before play passes on.
 
 ![Desktop map with the turn tracker and country army counts](manual-images/map.png)
 
@@ -44,6 +44,8 @@ The turn tracker lists seats, public counts and the current player's arrow. Wait
 | Cards | Open your hand when you hold cards; the badge is your card count. |
 | Fit | Restore a view of the whole map. |
 | Resume | Continue after an explicit pause or interruption. |
+
+The new-armies counter sits at the top left immediately right of Cards. In icon mode an army symbol accompanies the count. Select a region to use its Move control; the redundant bottom-right Move button has been removed. The province-list button has also been removed; map regions remain reachable with Tab and Enter.
 
 Pinch or use the mouse wheel to zoom; drag to pan. Use Fit if you lose your place. If a tap overlaps two countries, choose from the list. Country selection and action controls also work with keyboard focus and Enter/Space; Shift activation selects without immediately fighting an armed attack. Form controls retain their ordinary keyboard behavior.
 
@@ -168,5 +170,3 @@ Download the [latest playable archive](https://github.com/diegoami/malpaco/relea
 This guide is available through **Full player manual** in Help. Text lives in `docs/play.md`; selected illustrations live in `docs/manual-images/` with the owner's explicit exception to rule 6. Other screenshots, logs and the portable copy stay in ignored `artifacts/`.
 
 Run `npm run manual:refresh` to capture the UI, replace selected images and produce `artifacts/player-manual/index.html` plus a provenance manifest. Open that HTML directly for an offline illustrated copy. Review pictures and captions before committing. Gameplay, labels, controls, settings and persistence changes must update this guide and Help in the same PR and refresh affected pictures. Keep the documented version/feature heading accurate. Historical release records remain immutable. See `docs/manual-maintenance.md` for the inventory and checks.
-
-The new-armies counter sits at the top left immediately right of Cards. In icon mode an army symbol accompanies the count. Select a region to use its Move control; the redundant bottom-right Move button has been removed. The province-list button has also been removed; map regions remain reachable with Tab and Enter.

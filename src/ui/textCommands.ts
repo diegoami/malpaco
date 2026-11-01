@@ -22,7 +22,7 @@ const labels:Readonly<Record<string,string>>={
  'fold-world-event':'Fold','resume-turn-button':'Resume',
  'province-move-button':'Move',
 };
-const iconTools=new Set(['map-zoom-in','map-zoom-out','map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-min-button','capture-max-button','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-min-button','friendly-move-max-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
+const iconTools=new Set(['turn-widget-smaller','turn-widget-larger','hide-turn-widget','show-turn-widget','map-zoom-in','map-zoom-out','map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-min-button','capture-max-button','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-min-button','friendly-move-max-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
 const closeTools=new Set(['fold-card','fold-world-event','close-game-drawer','close-hand','close-game-help','close-next-game-settings','close-scoreboard','close-result-card']);
 export function textCommands(root:HTMLElement):()=>void {
  const currentMode=()=>effectiveButtonLabels(readButtonLabels(),Number(document.body.dataset['personalTurnsCompleted']??0));

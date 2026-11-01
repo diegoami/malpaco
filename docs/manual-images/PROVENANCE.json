@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "version": "0.5.1",
-  "sourceCommit": "00234ef871c31dccb5aadbaf7b72746c02db9cf1",
-  "capturedAt": "2026-11-01T09:09:01.777Z",
+  "sourceCommit": "2eed93dd4b51f38248b93285f991fbc55c94e571",
+  "capturedAt": "2026-11-01T10:50:15.388Z",
   "dirty": true,
   "command": "npm run manual:refresh",
   "browser": "Version 1.63.0",
@@ -17,30 +17,32 @@
     ]
   },
   "sources": {
-    "docs/play.md": "55b35500cd5137d0da1ce511c56fa422c9459008b08c1d91f223766fc7bfd8c3",
-    "src/ui/help.ts": "0c545909f69efd4bbe60c566a11ca228bd61ec1dc6de739c5af8c84a547dffcd",
+    "docs/play.md": "8997851fc7373dc6e1b4b4a9ddb40e5f5cfe538945f4fdf5e5c8c39353a13b13",
+    "src/ui/help.ts": "fa9232be2f1e38de558f5dcd539cefb673cb2ed7270afd8633625d15c26b1707",
     "src/ui/buttonLabels.ts": "f342f1b84e46d7338e9a317596ded4290ea2698b0c70d4fa034b7d5873ad2380",
+    "src/ui/turnTracker.ts": "7307275181b31ee1e695e7f2a2dc2333a135d529a735288f5c46ea661cc446d8",
+    "src/ui/computerSpeed.ts": "0b7be4ba7bb66bae181ef2e41959e31995b7879e2e353f13ea8225e065367df0",
     "src/ui/nextGameSettings.ts": "e7998fb3203a63573973efff9ae56b747eca48dedd6b87f6c40f3db12a15fbd1",
     "src/ui/gameLauncher.ts": "b2a8e20976846f81791f040b31d59eb8b716ddd290df02b7c67c776ec294fe98",
     "src/ui/provinceAction.ts": "8b0cc2f0d3ebeb5bb0ad8b7d18743c389dec84557d90343a088bd4e174f71e0b",
-    "src/ui/textCommands.ts": "f219d068b74abb94bba7e94b14c4f2e76ae9e25a02b4cb0260b077a27c03ef3b",
+    "src/ui/textCommands.ts": "7b962eec164fecb6817204dc21bba093e7b4d7f11a12c23bd4992f6670435e36",
     "src/ui/referenceBattleGame.ts": "26361dcb6c8d817682c974389bc1364f652bf1db68981cf1d95be2c2bea112e2",
-    "src/styles.css": "7abaec8fe4d4b6d47e77172a96b311ae2620117f3593631e92560a62698766cc",
+    "src/styles.css": "99c268d6a718e93fc3b9447fc01c336cb553407d38c0e21c0872123827c4806f",
     "tests/e2e/player-manual.spec.ts": "23758ea3fd9ffa4d7264d69818a01372121202273dc403565c62d562f491e9c5",
     "tests/e2e/event-fixture.ts": "88129172716dc8cdfcf998500a1eeb855bafdcc84420bc4547a8fade0a5890b1",
     "vite.config.ts": "c5ab3a851708896949c89875acc306a8bbe28c74d636f58b31e792d7b5fbabe3",
     "tools/manual/render.mjs": "4c9aef437e5be7edbdd89984e9354c396a2a23db4840a02a2670e6f8c13fd999",
-    "tools/manual/refresh.mjs": "ef33c2612454971c5d6ce7cc450d169058427fae20575c03eb627bc3c0452cba"
+    "tools/manual/refresh.mjs": "c14f5fb8bb114b7f463bce8b6ffee1f5d06b9dec62e17fc025d50f3ccc738e2b"
   },
   "files": {
-    "index.html": "98d2a550488a5b640c7a146e2be3ecbd0a71dfe438da42eb68e92e57d62597ec",
-    "manual-images/launcher.png": "e4fb3e02b147dbef05edf35d3bfe17b52f521b2afe6107a18092a98164f9031b",
-    "manual-images/map.png": "759bf3de7e7fddafc10697bde3c48451ccd4b1c8b8e0229a2ca1a970e096d218",
-    "manual-images/phone.png": "11375e1181915c703cc18d2fb0710e638b53bfea128d1040c54637693d75bbdd",
-    "manual-images/attack.png": "7b85c22370740ae4c4c2466e392ace64a81f3f1c79027a7d173ff508def05cbc",
-    "manual-images/capture.png": "cf38adf154ea1f96e8ff34b46355e7d961348bab5fd317fe91ab1b56c3c14ceb",
-    "manual-images/cards.png": "9842e6f689dd817dc3d44318c6f170c83b604b2c35e15396e9ec0525fcc82c4b",
-    "manual-images/event.png": "1e000cbb5fbfaa3c2b1a987a4d6ee55c82428c1d46138da850b71e8e0bc2a8a9",
-    "manual-images/results.png": "0df02ae1582af6c9eea4cb270911a154933d1f5a92f8fd6c6b0801f9ed03100f"
+    "index.html": "bcf8ab151cc106265b15a7e126a36b028a76fc503abd97ad6c42461417eb3ce5",
+    "manual-images/launcher.png": "c5bde844928ac1ccd78242d1bf1f9268e15499e44a37586c7af17155e54864db",
+    "manual-images/map.png": "cc67767deb3a14c167198723b285cc76a0c98de4d260af130dc0650afd4ac133",
+    "manual-images/phone.png": "062b5e8775fcfd2e9d6fbebb3a1b0ff9dc4808190eb80bb407ceea7b26ffb206",
+    "manual-images/attack.png": "cf6863c5c7eed4fbb72cfcdbe063ae83e896db61e69b9b276af19cc671d2012d",
+    "manual-images/capture.png": "228864f6d452cce0ddf08aac9d39e5044f568d25ef5e6d47555c3c82909d2a1a",
+    "manual-images/cards.png": "0c63fb54509c67c4adf68bdec6d9f15f61026e90a750d491dcb2446e2ac88839",
+    "manual-images/event.png": "e05d76760a70abe8e1b17d5ced322862eeae2c565cbc2d01fbc2cf5ea2818443",
+    "manual-images/results.png": "5ce5081bfc722f3d51b2cce24d52db2fbafd71de0ea276a636a4247cb861c7b2"
   }
 }
