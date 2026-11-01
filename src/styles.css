@@ -2230,3 +2230,21 @@ body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:
 }
 /* The pool now shares the HUD; it needs no separate row below that HUD. */
 .game-overlay[data-primary-commands="true"]:has(#placement-pool:not([hidden])) #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }
+
+/* T156: fit launcher settings to the available viewport before using scroll fallback. */
+#game-launcher { padding:16px; gap:0; }
+#game-launcher .next-game-settings { gap:8px 16px; }
+#game-launcher .game-settings > .next-game-settings :is(label,select) {
+ font-size:18px; line-height:1.25; letter-spacing:0; text-transform:none;
+}
+#game-launcher .game-settings > .next-game-settings select { min-height:44px; padding:6px; }
+#game-launcher .next-game-settings > .card-note { font-size:14px; line-height:1.35; }
+@media (orientation:landscape) and (min-width:900px) and (min-height:401px) {
+ #game-launcher { display:grid; width:min(1100px,100%); grid-template-columns:minmax(200px,.7fr) minmax(0,1.5fr); column-gap:24px; grid-template-rows:auto auto minmax(0,1fr) auto; }
+ #game-launcher .game-launcher-head { grid-column:1; grid-row:1; }
+ #game-launcher .game-launcher-actions { grid-column:1; grid-row:2; align-self:start; }
+ #game-launcher #game-launcher-settings-title { grid-column:2; grid-row:1; align-self:center; margin:0 0 8px; }
+ #game-launcher > .game-settings { grid-column:2; grid-row:2 / 4; }
+ #game-launcher > .match-error { grid-column:1 / -1; grid-row:4; }
+ #game-launcher > #download-recovery-game { grid-column:1; grid-row:3; align-self:start; }
+}
