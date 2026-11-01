@@ -2,10 +2,10 @@
 
 Verified owner-review source is **`b6f9e5458fc066a4badce518404d4ed10bbfe53c`**
 (version 0.5.3), pinned on [milestone #440](https://github.com/diegoami/malpaco/issues/440).
-Exact-main CI and downloaded archive verification passed. The owner launches the
-independent milestone review; no reviewer, tag, release or deployment has been
-launched by preparation. Owner visual acceptance and physical-device/screen-reader
-testing are not inferred. Later documentation-only commits record these receipts
+Exact-main CI and downloaded archive verification passed. The owner-launched independent milestone review returned **AGREE**, with no
+findings, on this exact source. No tag, release or deployment has been launched
+by preparation. Owner visual acceptance and physical-device/screen-reader testing
+are not inferred. Later documentation-only commits record these receipts
 without moving the runtime candidate or substituting new archive bytes.
 
 ## Boundaries
@@ -113,9 +113,24 @@ Local receipts remain under `artifacts/T162`–`artifacts/T166`.
 [ACCEPTANCE.md](ACCEPTANCE.md) defines the claims. The concrete prompt on #440
 names the full source above, previous v0.5.2 and `docs/milestone-review.md`. Review
 the complete previous-tag diff, including unreviewed PRs and administrative records.
-Record the fresh model/SHA/checks/findings and AGREE/BLOCK on the milestone. No
-independent verdict exists yet and implementation screenshots are not owner visual
-acceptance.
+The [owner-launched review](https://github.com/diegoami/malpaco/issues/440#issuecomment-6565103075)
+returned **AGREE**, no findings opened, from GLM-5.3-Flash (zai-coding-plan) via
+OpenCode. The reviewer checked out the exact candidate detached on a clean tree,
+then returned to main without edits. It independently verified the live successful
+CI, fresh downloaded ZIP/tar, all payload checksums, eight source-identical images,
+manual/source hashes, dependency/core/fixture boundaries and complete diff.
+
+Reviewer build and six source Help cases passed. Local default-parallel units had
+26 timeout failures; an eight-worker rerun passed 1195 with one unchanged 5-second
+combat-presets timeout, and that file passed standalone (4/4). Its six-worker
+extracted run passed 683 / skipped 395 / failed 4: reference-game screenshot
+anti-aliasing differences in both projects and two minimal-card geometry/timing
+cases. The reviewer reports reproducing these pre-existing diagnostic failures on
+v0.5.2; the candidate's exact-byte CI passes all 687 cases. These disclosed local
+results are not substituted for a clean local full-suite pass. No candidate defect
+was reproduced. Review did not verify the Drive proof archives (it verified the
+GitHub artifact directly), physical devices, screen readers or owner visual
+judgment. Implementation screenshots and AGREE are not owner visual acceptance.
 
 Stop before tags, release assets or deployments. Publication requires the owner’s
 review gate, visual acceptance and explicit 0.5.3 approval. A public BUILD.json
