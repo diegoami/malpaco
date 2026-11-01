@@ -7,7 +7,6 @@ import {deserializeVersionedMatch} from '../../src/core';
 import type {Action,CardKind,GameState,LoadedVersionedMatch} from '../../src/core';
 import {fixture,input,human,next,selectedNames,publicKinds,withHumanCount,KINDS,TRADE_CASES} from './cards-fixtures';
 import {openSurface,reachableInCard,setDetail,withSurface} from './shell';
-const SET_NAMES:Readonly<Record<string,string>>={Anchor:'5 armies',Compass:'8 armies',Lantern:'15 armies',Surge:'Double armies',Raid:'Army reduction'};
 const MODES=['compact','detailed'] as const;
 type Detail=typeof MODES[number];
 // T97: the Cards region shows only a choice's buttons; its hand and public counts are for assistive
@@ -59,7 +58,7 @@ async function closedLog(page:Page){await openSurface(page,'menu');await openSur
 
 for(const row of TRADE_CASES)test(`${row.kind}: literal effect, ordinary trade, own hand and public piles fit both modes`,async({page},info)=>{
  await begin(page);const baseline=await anchors(page),before=fixture(row.file);expect(before.state.reinforcementPool).toBe(row.pool);const action:Action={kind:'tradeCards',handIndices:row.indices},expected=next(before.state,action);expect(expected.reinforcementPool).toBe(row.after);
- for(const mode of MODES){await load(page,input(row.file));await hand(page,before.state.cards!.hands[human(before.state)]!);await counts(page,before.state);const offered=setButton(page,before.state,row.kind,row.indices);await expect(offered).toHaveAccessibleName(new RegExp((row.kind==='Surge'?`Double pool: ${row.pool} → ${row.after}`:`Add ${row.after-row.pool} armies`)+'$'));await expect(offered).toHaveText(new RegExp(`^${SET_NAMES[row.kind]}( \\+ (2 )?any value)?$`));await setDetail(page,mode);await offered.scrollIntoViewIfNeeded();await fits(page,mode,baseline,[offered,page.getByRole('button',{name:'Skip cards',exact:true})]);await capture(page,info,row.kind,mode);await offered.click();await exact(page,before,expected);await expect(page.locator('#reinforcement-pool')).toHaveText(String(row.after));await counts(page,expected);await inspect(page,expected.cards!.hands[human(expected)]!);await noPrivateLeak(page,await saved(page),expected);}
+ for(const mode of MODES){await load(page,input(row.file));await hand(page,before.state.cards!.hands[human(before.state)]!);await counts(page,before.state);const offered=setButton(page,before.state,row.kind,row.indices);await expect(offered).toHaveAccessibleName(new RegExp((row.kind==='Surge'?`Double pool: ${row.pool} → ${row.after}`:`Add ${row.after-row.pool} armies`)+'$'));await expect(offered.locator('.card-set-symbol')).toHaveCount(3);expect(await offered.locator('.card-set-symbol').evaluateAll(ns=>ns.map(n=>n.getAttribute('data-kind')))).toEqual(selectedNames(before.state,row.indices));await setDetail(page,mode);await offered.scrollIntoViewIfNeeded();await fits(page,mode,baseline,[offered,page.getByRole('button',{name:'Skip cards',exact:true})]);await capture(page,info,row.kind,mode);await offered.click();await exact(page,before,expected);await expect(page.locator('#reinforcement-pool')).toHaveText(String(row.after));await counts(page,expected);await inspect(page,expected.cards!.hands[human(expected)]!);await noPrivateLeak(page,await saved(page),expected);}
 });
 
 test('geographic no-set passes once without RNG; an available set can be skipped without loss',async({page})=>{

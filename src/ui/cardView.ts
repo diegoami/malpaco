@@ -5,7 +5,7 @@ import type {CardController} from './cardController';
 import {glyph} from './icons';
 /**
  * No game state/hidden data is handed to the view; only the fixed-viewer projection. T97 (owner,
- * #244): only the choice's controls show — a button per legal set (its kind; the cards and
+ * #244): only the choice's controls show — a button per legal set (three card symbols; the cards and
  * effect are its accessible name) and Skip, a button per card to
  * discard, Continue after a reward, and Confirm for a Raid. Your hand and the public counts stay
  * for assistive technology alone.
@@ -28,8 +28,7 @@ export class CardView {
    const offered=new Set<string>();
    for(const set of v.sets){
     const cards=set.indices.map(i=>v.hand[i]!),key=[...cards].sort().join('+');if(offered.has(key))continue;offered.add(key);
-    const wild=cards.filter(kind=>kind==='Wild').length;
-    const play=button(wild?`${cardLabel(set.kind)} + ${wild>1?`${wild} `:''}any value`:cardLabel(set.kind),()=>this.cards.chooseSet(set.indices,v.revision),`${cardLabel(set.kind)}: ${cards.map(cardLabel).join(' + ')} — ${set.effect}`);play.dataset.cardSet=set.kind;actions.append(play);
+    const play=button('',()=>this.cards.chooseSet(set.indices,v.revision),`${cardLabel(set.kind)}: ${cards.map(cardLabel).join(' + ')} — ${set.effect}`);play.dataset.cardSet=set.kind;showSetCards(play,cards);actions.append(play);
    }
    actions.append(button('Skip',()=>this.cards.skip(v.revision),'Skip cards'));
   }
@@ -63,8 +62,18 @@ function bomb(crossed:boolean):SVGSVGElement{
   svg('circle',{cx:14,cy:19,r:9}),svg('path',{d:'M20 12L24 8M24 8C26 6 28 7 29 5M23 4V2M27 9H29M25 5.5L26.5 4'}),
   ...(crossed?[svg('path',{class:'card-tile-cross',d:'M4 4L28 28'})]:[]));
 }
+function cardSymbol(kind:string):HTMLElement|SVGSVGElement{
+ return kind==='Raid'||kind==='Shield'?bomb(kind==='Shield'):h('span',{class:'card-tile-symbol','aria-hidden':'true'},CARD_SYMBOL[kind]??'?');
+}
+/** A set is one action, illustrated by the actual three cards it spends. */
+function showSetCards(button:HTMLButtonElement,cards:readonly string[]):void{
+ button.classList.add('card-set-choice');
+ button.title=button.getAttribute('aria-label')??'';
+ button.replaceChildren(h('span',{class:'card-set-icons','aria-hidden':'true'},...cards.map(kind=>
+  h('span',{class:'card-set-symbol','data-kind':kind},cardSymbol(kind)))));
+}
 export function cardTile(kind:string,index:number,isNew=false):HTMLElement{
- const symbol=kind==='Raid'||kind==='Shield'?bomb(kind==='Shield'):h('span',{class:'card-tile-symbol','aria-hidden':'true'},CARD_SYMBOL[kind]??'?');
+ const symbol=cardSymbol(kind);
  return h('li',{class:'card-tile','data-kind':kind,'data-hand-index':index,...(isNew?{'data-new':'true'}:{})},symbol,h('span',{class:'card-tile-name'},cardFaceLabel(kind)),...(isNew?[h('span',{class:'card-tile-new'},'new')]:[]));
 }
 
@@ -115,7 +124,7 @@ export class HandDialog {
   if(v.phase==='sets')for(const set of v.sets){
    const cards=set.indices.map(i=>v.hand[i]!),key=[...cards].sort().join('+');if(offered.has(key))continue;offered.add(key);
    const play=h('button',{type:'button',class:'primary','data-set':set.kind,disabled:v.blocked,'aria-label':`Play ${cardLabel(set.kind)}: ${cards.map(cardLabel).join(' + ')} — ${set.effect}`},`Play ${cardLabel(set.kind)}`);
-   play.onclick=()=>{if(this.cards.chooseSet(set.indices,v.revision))this.dialog.close();};plays.append(play);
+   showSetCards(play,cards);play.onclick=()=>{if(this.cards.chooseSet(set.indices,v.revision))this.dialog.close();};plays.append(play);
   }
   const note=h('p',{class:'card-note'},v.phase==='sets'?(plays.childElementCount?'Play a set now, or close this and place your armies.':'No set to play now.'):'Three cards that make a set are played at the start of your turn.');
   this.body.replaceChildren(list,note,...(plays.childElementCount?[plays]:[]));
