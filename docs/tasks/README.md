@@ -253,3 +253,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 [Bounded release contracts](../plans/release-0.5.2.md).
 
 - [T156](T156.md): viewport-adaptive launcher (#413).
+
+- [T157](T157.md): compact controls and two-personal-turn icon transition (#414/#415/#418/#420/#421), after T156.
