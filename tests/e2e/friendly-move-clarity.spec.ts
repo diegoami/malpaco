@@ -68,6 +68,7 @@ for(const size of [{width:390,height:844},{width:568,height:320},{width:820,heig
  await country(page,f.from).press('Shift+Enter');await direction(page,f.state,f.from,f.to);
  const swap=page.getByRole('button',{name:'Swap move direction',exact:true});await expect(swap).toBeEnabled();await swap.click();
  await direction(page,f.state,f.to,f.from);
+ await country(page,f.from).press('Shift+Enter');await direction(page,f.state,f.to,f.from);
  expect(await page.locator('#friendly-move-amount').inputValue()).toBe(String(f.state.armies[f.to]!-1));
  await swap.click();await direction(page,f.state,f.from,f.to);
  await page.locator('#friendly-move-amount').fill('1');await page.clock.runFor(34);

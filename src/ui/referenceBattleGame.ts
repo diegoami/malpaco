@@ -332,7 +332,7 @@ export class ReferenceBattleGame {
         return;
       }
       if (from && friendlyTargets(state, from).includes(id)) {
-        const pair=this.presentation?.player?preferredFriendlyPair(state,from,id):[from,id] as const;
+        const pair=this.presentation?.player&&id!==to?preferredFriendlyPair(state,from,id):[from,id] as const;
         this.controller.select(pair[0],pair[1]);
       }
       else this.controller.select(id === from ? null : id, null);
