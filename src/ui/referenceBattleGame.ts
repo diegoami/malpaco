@@ -199,7 +199,7 @@ export class ReferenceBattleGame {
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
     this.battle = new BattleView(this.controller, () => { this.controller.select(null, null); this.chrome?.close(); });
     this.friendly = new FriendlyMoveView(this.controller,Boolean(presentation?.player));
-    this.victory = new VictoryView(this.controller, {newGame: () => this.newGame(), menu: () => this.chrome?.openMenu(), files: this.showsFiles, history: this.showsLog, ...(presentation?.player?.record && presentation.player.totals ? {totals: presentation.player.totals} : {}),
+    this.victory = new VictoryView(this.controller, {prominentNewGame:Boolean(presentation?.player),newGame: () => this.newGame(), menu: () => this.chrome?.openMenu(), files: this.showsFiles, history: this.showsLog, ...(presentation?.player?.record && presentation.player.totals ? {totals: presentation.player.totals} : {}),
       details: () => [`Seed: ${options.seed}`, `Seats: ${this.controller.state.players.map(player => `${seatName(this.controller.state.players, player.id)} ${player.kind === "computer" ? "Computer" : "Human"}`).join(" · ")}`,
         `Victory: ${options.dominationWin ? "Domination" : "Total conquest"}${options.roundLimit ? ` · Round limit ${options.roundLimit}` : ""}`, `Map: ${presentation?.label ?? "Nine Isles"}`]});
     this.action = this.panel.el.querySelector<HTMLElement>(".action")!;

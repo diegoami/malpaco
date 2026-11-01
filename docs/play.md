@@ -147,9 +147,9 @@ You are eliminated with no countries. The loss screen can offer **Watch computer
 
 ![Expanded end-of-game result with further actions](manual-images/results.png)
 
-*The result identifies the winner or your elimination. Open Standings or Details; fold the card to inspect the map.*
+*The result identifies the winner or your elimination. New game is the main action after a completed game; Standings and Details remain secondary.*
 
-The result card folds to a compact chip and reopens. **Standings** shows countries and armies; **Details** includes the seed and match options. Historical round-limit games rank by countries, then armies, then later position in that round's turn order. The ordinary launcher has no round-limit or total-conquest-only switch.
+**New game** is the large primary action above Standings and Details after a completed game. It opens the launcher; choose Start when ready. It keeps its primary size in icon mode too. The result card folds to a compact chip and reopens. **Standings** shows countries and armies; **Details** includes the seed and match options. Historical round-limit games rank by countries, then armies, then later position in that round's turn order. The ordinary launcher has no round-limit or total-conquest-only switch.
 
 Open the trophy **Scoreboard** in Settings for games played, wins, losses, give-ups, win rate and the last 20 games, newest first. Each game counts once. Rule filters distinguish combat groups; older entries can be Legacy/unspecified. Reset asks before clearing. Scores belong to this browser, not an online ranking.
 

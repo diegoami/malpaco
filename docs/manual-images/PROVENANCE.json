@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "version": "0.5.2",
-  "sourceCommit": "9b4509cabbea2f03724f44646c3fd27f038c07cc",
-  "capturedAt": "2026-11-01T18:54:35.869Z",
+  "sourceCommit": "296452207a47a987dc88d6820f7c28b45d4490e4",
+  "capturedAt": "2026-11-01T19:13:16.133Z",
   "dirty": true,
   "command": "npm run manual:refresh",
   "browser": "Version 1.63.0",
@@ -17,9 +17,10 @@
     ]
   },
   "sources": {
-    "docs/play.md": "98144c3c8e99e83ca6b2fb8e9355dca297599281d887b3328e975726d7ec55c4",
-    "src/ui/help.ts": "6481472ebd59ef451691433a5fea839584e3c3fa27b20e44d3180ffd3e649ac1",
+    "docs/play.md": "e7f0a90060f06e48a5036771a1bbede9af43b6b58e89a734d2c915606433a30c",
+    "src/ui/help.ts": "be40b8213d87f25e16f418097d773bcd3fb0579fd18b95f07e12f929ba797eb1",
     "src/ui/cardView.ts": "6b6e1f04c629cd405b1bf54fdadee6008d58e369fe1b057b3139419844f41c3d",
+    "src/ui/victoryView.ts": "7e78278611a7510121c51513892fd15572ebe476ed3b64475eb240c295f70ffd",
     "src/ui/friendlyMoveView.ts": "463f70d2e361f74f6369ffb2f4ac4294ba226a5637cfc0e714df2ae86bdae978",
     "src/ui/friendlyMovePolicy.ts": "8c356689cf72e465ab62745663d2627d93dc6017b119fa716172e4154fde86fd",
     "src/ui/phaseAnnouncement.ts": "377d6bda1fdf655ce421eb9e58bbc32f4cd53c068d15602257d7693a49a3b9db",
@@ -31,23 +32,23 @@
     "src/ui/gameLauncher.ts": "b2a8e20976846f81791f040b31d59eb8b716ddd290df02b7c67c776ec294fe98",
     "src/ui/provinceAction.ts": "8b0cc2f0d3ebeb5bb0ad8b7d18743c389dec84557d90343a088bd4e174f71e0b",
     "src/ui/textCommands.ts": "ff20ccf1df40c7ff60695255ce949ce46be71b1743f104f5764379b27edf5f0a",
-    "src/ui/referenceBattleGame.ts": "d894c73113407ce19c71750c9a149d63d87220079d19ed9dd141cac5cdcf3e1c",
-    "src/styles.css": "ea5387772c823ce9e8f733b0178b5926e2e706fd57da2ac6c091941ed3a1d252",
+    "src/ui/referenceBattleGame.ts": "22f01890f2bcb79ed7672885671322bfa3019811b0db0d70d1fc4fd7ae921320",
+    "src/styles.css": "3e71d3c02bbffd031e67dfcf0692772eebb103394e6a8e6337ea25dae5049efe",
     "tests/e2e/player-manual.spec.ts": "23758ea3fd9ffa4d7264d69818a01372121202273dc403565c62d562f491e9c5",
     "tests/e2e/event-fixture.ts": "88129172716dc8cdfcf998500a1eeb855bafdcc84420bc4547a8fade0a5890b1",
     "vite.config.ts": "c5ab3a851708896949c89875acc306a8bbe28c74d636f58b31e792d7b5fbabe3",
     "tools/manual/render.mjs": "4c9aef437e5be7edbdd89984e9354c396a2a23db4840a02a2670e6f8c13fd999",
-    "tools/manual/refresh.mjs": "154d4a0e9b0f9e5688dd228ba15fb651093508e00de1778a4c16f37deb4d1bb7"
+    "tools/manual/refresh.mjs": "00fe5ce782d286e5f481134660e63b96cd2177f31d344eddc76489472a67e2c8"
   },
   "files": {
-    "index.html": "abe3a14fee795c9531f74d89dae7b9194b9570b7d71e3621a83c7d62a6aa202e",
-    "manual-images/launcher.png": "e4fb3e02b147dbef05edf35d3bfe17b52f521b2afe6107a18092a98164f9031b",
+    "index.html": "684b12b41a4245154b85573efdd37fd6f442c9d01c39c6f8db7e6afc2b8e35cb",
+    "manual-images/launcher.png": "c5bde844928ac1ccd78242d1bf1f9268e15499e44a37586c7af17155e54864db",
     "manual-images/map.png": "5b87eb4186df1fd0ed51ead5fff26d57e34ba09a4ce604f4588cca122b6d5d79",
-    "manual-images/phone.png": "3e99a97306082bcc47008bf9b40cd9382e4170891aa092501ae8fb91db1b0475",
-    "manual-images/attack.png": "66844ef6d4a6bb0c1931fd04fcd736fbd97b51ad1fd3ca51fee68ecdb58c61fe",
+    "manual-images/phone.png": "84793d542bbfdfc39e9a350a35fd68ae60ef217d4569cf3f222dec5ab31ca510",
+    "manual-images/attack.png": "5f4fbd84189871d857141dd8f1dca51af1f82e1e24897c50881c1d8afbd1dd8d",
     "manual-images/capture.png": "71337e2fc72cfa74118e015913b10dd990994bc085cc40b75f0af637cb7bab5e",
     "manual-images/cards.png": "da248547cc257b9e2e4cd5fd5fffd4291bcdaa1f7424abf88f9aefafd22d3518",
-    "manual-images/event.png": "2e0659be22f09e72879d102804bb01a686519323cf72316ed2895fe2d7631c34",
-    "manual-images/results.png": "50da5acd607cfdb95da4117d74b246055bd8aa886b4460f1be6145031cc3839c"
+    "manual-images/event.png": "5bf3c6f8905f121f250c5d6e4aa4b810fc961d40224e9d328a3a451abe7ad0db",
+    "manual-images/results.png": "279cb7279f622670bfe059fd443c797398a39a649c9061fa2414973a44d79ec5"
   }
 }
