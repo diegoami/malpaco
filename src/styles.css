@@ -2228,3 +2228,5 @@ body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:
  body[data-button-labels="text"] #game-status > #game-help-button { grid-column:3; grid-row:1; }
  body[data-button-labels="text"] #game-status > #open-hand { grid-column:1; grid-row:2; }
 }
+/* The pool now shares the HUD; it needs no separate row below that HUD. */
+.game-overlay[data-primary-commands="true"]:has(#placement-pool:not([hidden])) #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }
