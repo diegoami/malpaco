@@ -43,5 +43,5 @@ test('capture prompts and advisory changes keep the attack banner and its origin
  const f=fixture();f.update(message);f.advance(1000);f.update(phaseMessage(capture,context)!);f.advance(1000);f.update(phaseMessage(after.state,context)!);
  f.advance(999);expect(f.timer.view.visible).toBe(true);f.advance(1);expect(f.timer.view.visible).toBe(false);
  f.update(phaseMessage(quiet,context)!);expect(f.timer.view.visible).toBe(false);
- expect(phaseMessage(after.state,{...context,mode:'move'})!.key).not.toBe(message.key);
+ expect(phaseMessage(after.state,{...context,mode:'move'})).toBeNull();
 });

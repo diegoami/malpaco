@@ -49,14 +49,14 @@ for(const size of [{width:390,height:844},{width:844,height:390},{width:1280,hei
  // Loading the same kept game never replays a fresh countdown.
  await page.reload();await page.locator('#resume-game').click();await expect(page.locator('#geographic-map')).toBeVisible();await expect(banner).toHaveAttribute('data-kind','phase');
 });
-test('retained human phase fades without an action, then placement/attack/move messages follow real input',async({page},info)=>{
+test('retained human phase fades without an action, then placement/attack messages follow input without a redundant Move banner',async({page},info)=>{
  await page.clock.install();await page.clock.pauseAt(new Date());await page.addInitScript(([key,raw])=>localStorage.setItem(key!,raw!),[ROOT,human.raw]);await visitGame(page,'/');
  const banner=page.locator('#phase-announcement');await expect(banner).toHaveText(/Your turn to place armies/);await expect(banner).toHaveAttribute('data-kind','phase');
  expect(await page.evaluate(k=>localStorage.getItem(k),ROOT)).toBe(human.raw);
  await page.clock.runFor(2999);await expect(banner).toBeVisible();await page.clock.runFor(1);await expect(banner).toBeHidden();expect(await page.evaluate(k=>localStorage.getItem(k),ROOT)).toBe(human.raw);
  const country=page.locator(`[data-country="${human.country}"]`);for(let n=0;n<human.state.reinforcementPool;n++){await country.focus();await country.press('Enter');}
  await expect(banner).toHaveText(/Your turn to attack/);await page.screenshot({path:info.outputPath('human-attack.png')});
- await startFriendlyMove(page);await expect(banner).toHaveText(/Your turn to move/);await page.screenshot({path:info.outputPath('human-move.png')});
+ await startFriendlyMove(page);await expect(banner).toBeHidden();await page.screenshot({path:info.outputPath('human-move.png')});
  const before=await page.evaluate(k=>localStorage.getItem(k),ROOT);await page.clock.runFor(3000);await expect(banner).toBeHidden();expect(await page.evaluate(k=>localStorage.getItem(k),ROOT)).toBe(before);
 });
 test('fresh human countdown rejects otherwise legal placement until the last beat',async({page})=>{
