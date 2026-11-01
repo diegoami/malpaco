@@ -1,3 +1,4 @@
+import {updateButtonLabelProgress} from './buttonLabels';
 import {textCommands} from './textCommands';
 import {h} from './dom';
 import {GameHelp} from './help';
@@ -23,7 +24,7 @@ export class GameLauncher {
     event.target.closest('.next-game-setting')?.scrollIntoView({block:'nearest',inline:'nearest'});
   });
   this.resume.hidden=!hasSaved;this.fields.hidden=hasSaved;this.start.hidden=hasSaved;this.fresh.hidden=!hasSaved;this.title.textContent=hasSaved?'Saved game':'Settings';this.el.dataset['mode']=hasSaved?'saved':'configure';
-  this.stopText=textCommands(document.body);
+  updateButtonLabelProgress(0);this.stopText=textCommands(document.body);
   this.el.append(h('header',{class:'game-launcher-head'},h('h1',{},'Malpaco'),this.help.button),h('div',{class:'game-launcher-actions'},this.resume,this.fresh,this.start),this.title,this.fields,this.status,this.recovery);
  }
  configure():void {this.fields.hidden=false;this.start.hidden=false;this.start.classList.add('primary');this.resume.classList.remove('primary');this.fresh.hidden=true;this.title.textContent='Next game settings';this.el.dataset['mode']='configure';this.settings.refresh();this.start.focus();}

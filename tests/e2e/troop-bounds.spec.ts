@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {test,expect} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {activePlayer,apply,defaultOptions,raidCardsRules,serializeVersionedMatch} from '../../src/core';
@@ -40,7 +41,7 @@ for(const size of SIZES)for(const kind of ['capture','move'] as const)test(`${si
   Reflect.set(window,'MalpacoHost',{isActive:()=>Reflect.get(window,'boundsActive'),requiresResume:()=>Reflect.get(window,'boundsResume'),acknowledgeResume:()=>{if(!Reflect.get(window,'boundsActive'))return false;Reflect.set(window,'boundsResume',false);return true;}});
  },[ROOT,raw]);await visitGame(page,'/');
  if(kind==='move'){
-  await page.locator('#start-friendly-move-button').click();
+  await startFriendlyMove(page);
   for(const id of [f.from,f.to]){const country=page.locator(`[data-country="${id}"]`);await country.focus();await country.press('Enter');}
  }
  const prefix=kind==='capture'?'capture':'friendly-move',input=page.locator(`#${prefix}-amount`),min=kind==='capture'?f.state.pendingCapture!.min:1,max=kind==='capture'?f.state.pendingCapture!.max:f.state.armies[f.from]!-1;

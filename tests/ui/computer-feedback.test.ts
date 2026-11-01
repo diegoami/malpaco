@@ -22,14 +22,14 @@ function setup(){const o={...defaultOptions(),seed:7,islandRules:1 as const,even
 const opts={speed:'normal' as const,forward:false,paused:false,ack:false,reduced:false};
 test('reinforcement feedback interpolates a public executed action while core state/history/RNG remain final',()=>{
  const {b,fx,clock}=setup(),id=Object.keys(b.state.ownerOf).find(id=>b.state.ownerOf[id]==='seat2')!,before=b.state.armies[id]!;expect(b.dispatchComputer({kind:'reinforce',province:id,amount:3})).toBe(true);const snapshot=JSON.stringify(b.state);fx.update(opts);expect(fx.pending).toBe(true);expect(b.computerFeedbackPending).toBe(true);expect(b.cardAcknowledgmentPending).toBe(false);expect(fx.frame?.changes.find(c=>c.id===id)).toMatchObject({before,after:before+3});
- clock.run(325);expect(fx.frame?.progress).toBe(.5);expect(JSON.stringify(b.state)).toBe(snapshot);clock.run(325);expect(fx.pending).toBe(false);expect(b.computerFeedbackPending).toBe(false);expect(JSON.stringify(b.state)).toBe(snapshot);
+ clock.run(260);expect(fx.frame?.progress).toBe(.5);expect(JSON.stringify(b.state)).toBe(snapshot);clock.run(260);expect(fx.pending).toBe(false);expect(b.computerFeedbackPending).toBe(false);expect(JSON.stringify(b.state)).toBe(snapshot);
 });
 test('pause/dispose/replacement invalidate every old timer and never replay an already executed action',()=>{
  const {b,fx,clock}=setup(),id=Object.keys(b.state.ownerOf).find(id=>b.state.ownerOf[id]==='seat2')!;b.dispatchComputer({kind:'reinforce',province:id,amount:1});fx.update(opts);clock.run(65);const stale=[...clock.all],snapshot=JSON.stringify(b.state);b.pauseUntilExplicitResume();fx.update({...opts,paused:true});for(const cb of stale)cb();clock.run(2000);expect(fx.frame).toBeNull();expect(b.playbackPaused).toBe(true);expect(JSON.stringify(b.state)).toBe(snapshot);
  fx.dispose();for(const cb of clock.all)cb();expect(fx.frame).toBeNull();expect(b.computerFeedbackPending).toBe(false);
 });
 test('feedback speed and reduced motion affect only presentation and finish reliably',()=>{
- expect(feedbackDuration('attack','normal',false)).toBe(900);expect(feedbackDuration('attack','slow',false)).toBeGreaterThan(900);expect(feedbackDuration('attack','fast',false)).toBeLessThan(900);expect(feedbackDuration('attack','normal',true)).toBe(40);
+ expect(feedbackDuration('attack','normal',false)).toBe(720);expect(feedbackDuration('attack','slow',false)).toBeGreaterThan(900);expect(feedbackDuration('attack','fast',false)).toBeLessThan(900);expect(feedbackDuration('attack','normal',true)).toBe(40);
  const {b,fx,clock}=setup(),id=Object.keys(b.state.ownerOf).find(id=>b.state.ownerOf[id]==='seat2')!;b.dispatchComputer({kind:'reinforce',province:id,amount:1});fx.update({...opts,reduced:true});expect(fx.frame?.progress).toBe(1);clock.run(650);expect(fx.pending).toBe(false);
 });
 function smallState():GameState {
@@ -49,4 +49,9 @@ test('guidance follows placement, attacks and movement; advice never changes leg
 });
 test('the public turn model points to the actual human colour and skips eliminated seats without exposing hands',()=>{
  const s=smallState();s.currentPlayer=0;const rows=turnRows(s);expect(rows[0]).toMatchObject({colour:'Blue',current:true,human:true,next:false});expect(rows[1]!.next).toBe(true);expect(rows[2]!.next).toBe(false);expect(JSON.stringify(rows)).not.toMatch(/Anchor|Lantern|drawPile|rng/);expect(humanGuidance(s,context).title).toBe('Your turn');
+});
+
+test('0.5.2 pacing retains Slow/Fast beats and adds a bounded Very fast choice',()=>{
+ expect(feedbackDuration('attack','slow',false)).toBe(1440);expect(feedbackDuration('attack','fast',false)).toBe(315);expect(feedbackDuration('attack','very-fast',false)).toBe(40);
+ expect(feedbackDuration('reinforce','normal',false)).toBe(520);expect(feedbackDuration('friendlyMove','normal',false)).toBe(640);
 });

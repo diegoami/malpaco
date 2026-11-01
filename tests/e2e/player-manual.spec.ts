@@ -15,7 +15,7 @@ const key='malpaco:current-game';
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','manual uses explicit desktop/phone viewports'));
 async function retained(page:Page,text:string,paused=false){
  await page.clock.install({time:new Date('2026-10-29T12:00:00Z')});await page.clock.pauseAt(new Date('2026-10-29T12:00:00Z'));
- await page.addInitScript(({text,key,paused})=>{if(sessionStorage.getItem('manual-fixture'))return;sessionStorage.setItem('manual-fixture','1');localStorage.setItem(key,text);localStorage.setItem(key+'-meta',JSON.stringify({id:'manual-example',paused}));},{text,key,paused});
+ await page.addInitScript(({text,key,paused})=>{if(sessionStorage.getItem('manual-fixture'))return;sessionStorage.setItem('manual-fixture','1');localStorage.setItem('malpaco:button-labels','text');localStorage.setItem(key,text);localStorage.setItem(key+'-meta',JSON.stringify({id:'manual-example',paused}));},{text,key,paused});
  await visitGame(page,'/');await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});
 }
 async function shot(page:Page,name:string){await page.evaluate(()=>document.fonts.ready);await page.clock.runFor(100);await page.mouse.move(0,0);mkdirSync(images,{recursive:true});await page.screenshot({path:join(images,name+'.png'),animations:'disabled'});}
