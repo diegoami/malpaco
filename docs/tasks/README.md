@@ -265,3 +265,12 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T161](T161.md): 0.5.2 metadata, acceptance and exact CI candidate (#429), after T156–T160.
 
 - [T162](T162.md): persistent bottom-left icon zoom controls and widget clearance (#435/#433), after T161.
+
+## 0.5.3 (#440)
+
+[Bounded release contracts](../plans/release-0.5.3.md); owner decisions #441. T162/#435 is included from PR #438.
+
+- [T163](T163.md): compact constituent-card icon alternatives (#437), after T162.
+- [T164](T164.md): clear friendly-move direction/default/Swap and no redundant banner (#436), after T163.
+- [T165](T165.md): prominent new-game action after victory (#439), after T164.
+- [T166](T166.md): 0.5.3 metadata, acceptance and exact CI candidate, after T162–T165.
