@@ -14,6 +14,7 @@ import { BattleController } from "./battleController";
 import type { BattleSpeed } from "./battleController";
 import { BattleView } from "./battleView";
 import { FriendlyMoveView } from "./friendlyMoveView";
+import {preferredFriendlyPair} from "./friendlyMovePolicy";
 import { h } from "./dom";
 import { Panel } from "./panel";
 import { ReferenceMapView } from "./referenceMapView";
@@ -23,7 +24,7 @@ import type {LoadedVersionedMatch} from "../core/match-save";
 import {serializeVersionedMatch} from "../core/match-save";
 import { ReferenceMatchFiles } from "./referenceMatchFiles";
 import {BattleChrome, forgetCardPosition} from "./battleChrome";
-import {glyph} from "./icons";
+import {glyph,iconButton} from "./icons";
 import type {Notice} from "./battleChrome";
 import {GameHelp} from "./help";
 import {CountryPicker} from "./countryPicker";
@@ -115,6 +116,9 @@ export class ReferenceBattleGame {
   private readonly nativeHost: NativeGameBinding | null;
   private readonly onKeyDown = (event: KeyboardEvent) => {
     if (event.key !== "Escape" || event.defaultPrevented || event.composedPath().some(n=>n instanceof HTMLDialogElement) || this.eventLog.isOpen || document.querySelector("dialog[open]")) return;
+    if(this.presentation?.player&&this.controller.view.mode==='move'&&this.chrome?.openSurface!=='menu'){
+      this.controller.cancelFriendlyMove();event.preventDefault();return;
+    }
     if (this.chrome?.escape()) {event.preventDefault(); return;}
     if(this.worldEvents?.dismiss()){this.render();event.preventDefault();return;}
     if (this.controller.cancelFriendlyMove()) return;
@@ -194,7 +198,7 @@ export class ReferenceBattleGame {
     });
     this.phaseActions = this.panel.el.querySelector<HTMLElement>(".buttons")!;
     this.battle = new BattleView(this.controller, () => { this.controller.select(null, null); this.chrome?.close(); });
-    this.friendly = new FriendlyMoveView(this.controller);
+    this.friendly = new FriendlyMoveView(this.controller,Boolean(presentation?.player));
     this.victory = new VictoryView(this.controller, {newGame: () => this.newGame(), menu: () => this.chrome?.openMenu(), files: this.showsFiles, history: this.showsLog, ...(presentation?.player?.record && presentation.player.totals ? {totals: presentation.player.totals} : {}),
       details: () => [`Seed: ${options.seed}`, `Seats: ${this.controller.state.players.map(player => `${seatName(this.controller.state.players, player.id)} ${player.kind === "computer" ? "Computer" : "Human"}`).join(" · ")}`,
         `Victory: ${options.dominationWin ? "Domination" : "Total conquest"}${options.roundLimit ? ` · Round limit ${options.roundLimit}` : ""}`, `Map: ${presentation?.label ?? "Nine Isles"}`]});
@@ -327,7 +331,10 @@ export class ReferenceBattleGame {
         if (this.controller.cancelFriendlyMove()) this.controller.select(id, null);
         return;
       }
-      if (from && friendlyTargets(state, from).includes(id)) this.controller.select(from, id);
+      if (from && friendlyTargets(state, from).includes(id)) {
+        const pair=this.presentation?.player?preferredFriendlyPair(state,from,id):[from,id] as const;
+        this.controller.select(pair[0],pair[1]);
+      }
       else this.controller.select(id === from ? null : id, null);
     } else if (state.phase === "reinforce") {
       this.controller.dispatch({ kind: "reinforce", province: id, amount: 1 });
@@ -377,6 +384,7 @@ export class ReferenceBattleGame {
     // controller refuses selection during automation and a pending move-in.
     this.mapView.el.dataset["inputBlocked"] = String(blocked);
     this.mapView.camera?.refreshControls();
+    this.friendly.paintMap(this.mapView.el,from,to,mode==="move"&&!blocked);
     if(this.feedback)paintComputerFeedback(this.mapView.el,this.controller.state,this.feedback.frame);
   }
 
@@ -454,7 +462,11 @@ export class ReferenceBattleGame {
     // T103 (owner): the country already selected stays selected as the move's source, when it can be one.
     move.addEventListener("click", () => { if (this.controller.startFriendlyMove(revision) && from && friendlySources(state).includes(from)) this.controller.select(from, null); });
     // While moving, the End turn flag skips the move (the friendly card has no Skip, as in the sketches).
-    this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, ...(mode === "move" || this.presentation?.player ? [] : [move]));
+    const cancelMove=this.presentation?.player&&mode==='move'&&!to
+      ? [iconButton('cancel-friendly-selection-button','Cancel move',null,'close',running||paused,()=>{this.controller.cancelFriendlyMove(revision);})] : [];
+    // This icon is already named; the rail's text-button decorator must not replace its name.
+    for(const button of cancelMove)button.dataset['commandSymbol']='close';
+    this.phaseActions.replaceChildren(...cancelMove,...(state.phase === "reinforce" ? [start] : []), end, ...(mode === "move" || this.presentation?.player ? [] : [move]));
     this.phaseActions.style.display = state.result || ['sets','raid-target','discard','reward'].includes(this.cards.view.phase) ? "none" : "";
     if(state.phase==='cards')this.panel.el.querySelector('#turn-phase')!.textContent=this.cards.view.phase==='raid-target'?'Army reduction target':'Cards';
     this.battle.render(this.controller.view);
@@ -501,8 +513,15 @@ export class ReferenceBattleGame {
         this.anchoredTo = anchor;
         // Beside the destination's count, clear of both countries' counts (#266).
         const other = state.pendingCapture ? state.pendingCapture.from : from;
-        const box = (id: string | null) => id ? document.querySelector(`[data-country="${CSS.escape(id)}"] .count`)?.getBoundingClientRect() ?? null : null;
-        this.chrome?.anchorTo(anchor ? () => {const near = box(anchor); return near ? {near, avoid: [near, box(other)].filter((r): r is DOMRect => !!r)} : null;} : null);
+        const box = (id: string | null) => id ? this.mapView.el.querySelector(`[data-country="${CSS.escape(id)}"] ${mode==='move'&&this.presentation?.player?'.badge':'.count'}`)?.getBoundingClientRect() ?? null : null;
+        this.chrome?.anchorTo(anchor ? () => {
+          const near=box(anchor),second=box(other);if(!near)return null;
+          // Anchor outside the whole transfer pair, so Swap keeps the window steady
+          // and a short layout can use space beside either end without covering a badge.
+          const joint=mode==='move'&&this.presentation?.player&&second
+            ? new DOMRect(Math.min(near.left,second.left),Math.min(near.top,second.top),Math.max(near.right,second.right)-Math.min(near.left,second.left),Math.max(near.bottom,second.bottom)-Math.min(near.top,second.top)) : near;
+          return {near:joint,avoid:[near,second].filter((r):r is DOMRect=>!!r)};
+        } : null);
       }
     }
     const name = (id: string | undefined) => seatName(state.players, id);
@@ -513,7 +532,7 @@ export class ReferenceBattleGame {
       for (const el of [this.action, this.cardControls.el, this.phaseActions].flatMap(node => [...node.querySelectorAll<HTMLButtonElement | HTMLInputElement>("button,input")])) el.disabled = true;
       this.action.querySelector(".hint")?.replaceChildren(document.createTextNode(this.controller.playbackPaused ? "Game paused. Resume when ready; New game remains available." : "Computer turn. Start a new game at any time."));
     }
-    const required = worldPending||feedbackPending?null:this.controller.cardAcknowledgmentPending ? "Card draw notice" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm army reduction" : "Army reduction · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
+    const required = worldPending||feedbackPending?null:this.controller.cardAcknowledgmentPending ? "Card draw notice" : this.cards.view.phase === "discard" ? "Discard a card to continue" : this.cards.view.phase === "raid-target" ? (this.cards.view.selectedTarget ? "Confirm army reduction" : "Army reduction · choose an enemy country") : this.cards.view.phase === "sets" ? "Choose or skip cards" : state.pendingCapture ? "Confirm capture move-in" : mode === "move" && (!this.presentation?.player || from && to) ? "Choose a friendly move" : state.phase === "human-loss" ? "Choose Watch computers or Stop game" : state.result ? "View game result" : null;
     const mover = activePlayer(state), result = state.result, winner = state.players.find(p => p.id === state.winner);
     const gamePaused = this.controller.playbackPaused;
     const phase = result ? state.phase === "human-loss" ? "Human seats eliminated" : "Game over" : this.panel.el.querySelector("#turn-phase")?.textContent ?? state.phase;
@@ -568,6 +587,7 @@ export class ReferenceBattleGame {
     this.chrome?.update(status, choice, gamePaused, prompt, !this.presentation?.player && computer && !result && !gamePaused);
     // Close an obsolete choice card when placement or attack has no required choice.
     if (this.presentation?.player && this.chrome?.openSurface === "actions" && !required && mode !== "move" && !state.pendingCapture && !result && !raiding && (state.phase === "attack" || state.phase === "reinforce")) this.chrome.close(false);
+    if(this.presentation?.player&&mode==="move"&&!to&&this.chrome?.openSurface==="actions")this.chrome.close(false);
     // A paused computer turn still shows no choice card (its menu card may open).
     if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
     if (restore) this.playbackPause.focus({preventScroll: true});

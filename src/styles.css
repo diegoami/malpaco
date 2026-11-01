@@ -2300,3 +2300,38 @@ body[data-button-labels="icons"] #turn-tracker { --resume-width:48px; }
 .card-set-symbol .card-tile-symbol { font:800 22px/1 Inter,system-ui,sans-serif; }
 .card-set-symbol[data-kind="Wild"] .card-tile-symbol { color:#986600; }
 .card-set-symbol .card-tile-bomb { width:24px; height:26px; }
+
+/* T164: show the exact pending transfer before confirmation. */
+#friendly-move-direction { display:grid; grid-template-columns:20px minmax(0,1fr) 44px; align-items:center; gap:4px 6px; margin:0 0 8px; font:600 14px/1.3 Inter,system-ui,sans-serif; }
+#friendly-move-direction > div:first-child { grid-column:2; grid-row:1; }
+#friendly-move-direction > div:nth-child(3) { grid-column:2; grid-row:2; }
+#friendly-move-direction strong { overflow-wrap:anywhere; }
+.move-direction-label { display:inline-block; min-width:34px; margin-right:4px; color:var(--muted); font-size:12px; }
+.move-direction-arrow { grid-column:1; grid-row:1 / 3; transform:rotate(90deg); font-size:24px; color:var(--accent); }
+#swap-friendly-move-button { grid-column:3; grid-row:1 / 3; min-width:44px; min-height:44px; }
+#swap-friendly-move-button:disabled { opacity:.4; }
+.friendly-move-preview { pointer-events:none; }
+.friendly-move-preview > path { fill:none; stroke:#fff3a6; stroke-width:3; vector-effect:non-scaling-stroke; }
+.friendly-move-preview marker path { fill:#fff3a6; }
+[data-move-role="from"] .ring { stroke:#fff3a6 !important; }
+[data-move-role="to"] .ring { stroke:#fff !important; }
+.game-overlay[data-primary-commands="true"] #game-focus-drawer #swap-friendly-move-button { width:44px; height:44px; }
+.game-overlay[data-primary-commands="true"] #game-focus-drawer #swap-friendly-move-button > svg { padding:9px; }
+/* A stable close row keeps its button clear of Swap when the body scrolls. */
+.game-overlay[data-primary-commands="true"] #game-focus-drawer:has(#friendly-move-direction) { grid-template-rows:44px minmax(0,1fr); }
+.game-overlay[data-primary-commands="true"] #game-focus-drawer:has(#friendly-move-direction) .game-drawer-content { grid-column:1 / -1; grid-row:2; height:auto; }
+@media (max-height:500px) {
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer:has(#friendly-move-direction) { min-width:272px; width:272px; max-height:calc(100% - 2 * var(--edge)); }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .friendly-move-controls .amount-adjust { grid-template-columns:44px 48px 44px; grid-template-rows:44px 44px; gap:4px; }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .friendly-move-controls .amount-adjust > :is(button,input) { min-width:44px; width:44px; height:44px; min-height:44px; }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .friendly-move-controls .amount-adjust > input { width:48px; height:92px; }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .friendly-move-controls .capture-adjust { gap:6px; grid-template-columns:minmax(0,1fr) 44px; }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .friendly-move-controls #confirm-friendly-move-button { width:44px; }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .friendly-move-controls .card-icon > svg { padding:9px; }
+}
+@media (max-height:500px) {
+ /* Share the footer with Cancel, leaving the direction fully visible above the picker. */
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer:has(#friendly-move-direction) { grid-template-rows:minmax(0,1fr); }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer:has(#friendly-move-direction) .game-drawer-content { grid-row:1; }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer:has(#friendly-move-direction) #fold-card { position:absolute; right:12px; bottom:12px; top:auto; }
+}

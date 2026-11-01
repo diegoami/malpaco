@@ -11,11 +11,13 @@ export function phaseMessage(state:GameState,context:GuidanceContext):PhaseMessa
  if(!row)return null;
  const prefix=`${state.turnNumber}/${row.id}`;
  if(!row.human)return {key:prefix,title:`${row.colour} is moving`,detail:'Watch their turn',seat:index};
+ // Owner #436: the move draft already carries its useful direction and amount.
+ if(context.mode==='move')return null;
  // Owner review decision: captures and changing suggestions stay in the tracker.
  // A capture is part of attacking, not a new announcement phase.
  const phase=state.phase==='capture'?'attack':state.phase;
- const title=context.mode==='move'?'Your turn to move':phase==='reinforce'?'Your turn to place armies':phase==='attack'?'Your turn to attack':'Your turn to play cards';
- const detail=context.mode==='move'?'Choose your country and an owned neighbour':phase==='reinforce'?'Place armies in your regions':phase==='attack'?'Choose an enemy neighbour, or end your turn':'Review your cards before continuing';
+ const title=phase==='reinforce'?'Your turn to place armies':phase==='attack'?'Your turn to attack':'Your turn to play cards';
+ const detail=phase==='reinforce'?'Place armies in your regions':phase==='attack'?'Choose an enemy neighbour, or end your turn':'Review your cards before continuing';
  return {key:`${prefix}/${phase}/${context.mode}`,title,detail,seat:index};
 }
 
