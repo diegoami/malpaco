@@ -2275,7 +2275,11 @@ body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:
  #turn-tracker { --tracker-width:320px; --tracker-title:28px; --tracker-instruction:24px; --tracker-row:22px; --tracker-mark:24px; }
  #turn-tracker .turn-row { min-height:calc(44px * var(--tracker-scale,1)); }
 }
-#turn-tracker #resume-turn-button { position:static; inset:auto; align-self:flex-start; }
+/* Resume is outside measured content so pausing never reframes the map. */
+#turn-tracker { --resume-width:clamp(80px,calc(var(--command-font) * 6),120px); }
+body[data-button-labels="icons"] #turn-tracker { --resume-width:48px; }
+#turn-tracker #resume-turn-button { position:absolute; top:10px; left:min(max(154px,calc(100% - var(--resume-width) - 10px)),calc(100vw - var(--safe-left) - var(--safe-right) - 2 * var(--edge) - var(--resume-width))); width:var(--resume-width) !important; max-width:none; margin:0; }
+#turn-tracker[data-folded="true"] #resume-turn-button { top:4px; left:calc(100% + 8px); }
 @media (max-width:600px) {
  body[data-button-labels="text"] .game-overlay[data-primary-commands="true"]:is(:has(#open-hand:not([hidden])),:has(#placement-pool:not([hidden]))) { --primary-height:104px; }
 }
