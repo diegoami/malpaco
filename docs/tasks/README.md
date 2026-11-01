@@ -247,3 +247,9 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T154](T154.md): 0.5.1 release preparation, exact-candidate CI archive verification and owner-launched milestone review (#404), after T150–T153.
 
 - [T155](T155.md): reconcile setup-Help assertions and add a focused source regression guard for milestone MUST-FIX #408, after T154.
+
+## 0.5.2 (#422)
+
+[Bounded release contracts](../plans/release-0.5.2.md).
+
+- [T156](T156.md): viewport-adaptive launcher (#413).
