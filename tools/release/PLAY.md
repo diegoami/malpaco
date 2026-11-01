@@ -19,8 +19,10 @@ also links to the manual and reports your current match's actual rules.
 
 Choose **Start game** on a fresh visit or **Resume saved game** to continue a kept
 match. On very short windows, scroll the whole launcher card; Start/Resume come
-first. Taller launchers scroll their settings region. **Button labels** chooses
-Text or Icons immediately; the game setup choices apply to the next match.
+first. Wider landscape windows use columns; taller launchers scroll settings only when needed.
+**Button labels** chooses Text, Icons, or Text 2 turns, then Icons (default).
+**Computer turn speed** offers Slow, Normal, Fast or Very fast. These preferences
+apply immediately; game setup choices apply to the next match.
 
 Games, preferences and the scoreboard are kept in this browser at this address.
 Use the same browser and address to continue. Clearing site data removes that

@@ -39,7 +39,7 @@ await cp(join(dirname(fileURLToPath(import.meta.url)), "PLAY.md"), join(packageD
 const commit = spawnSync("git", ["-c", `safe.directory=${checkout}`, "rev-parse", "HEAD"], { cwd: checkout, encoding: "utf8" });
 if (commit.error) throw commit.error;
 if (commit.status !== 0) throw new Error(`git rev-parse exited ${commit.status}: ${commit.stderr.trim()}`);
-await writeFile(join(packageDir, "BUILD.json"), `${JSON.stringify({ schemaVersion: 1, sourceCommit: commit.stdout.trim(), minimumNode: 22 }, null, 2)}\n`);
+await writeFile(join(packageDir, "BUILD.json"), `${JSON.stringify({ schemaVersion: 1, version: JSON.parse(await readFile(join(checkout, "package.json"), "utf8")).version, sourceCommit: commit.stdout.trim(), minimumNode: 22 }, null, 2)}\n`);
 
 const hashes = [];
 for (const rel of await walk(packageDir)) {
