@@ -7,7 +7,7 @@ import {manualFiles} from './render.mjs';
 const selected=['launcher','map','phone','attack','capture','cards','event','results'];
 const output=resolve('artifacts/player-manual'),capture=resolve('artifacts/T151/capture');
 // The first run has no curated images yet: capture tests do not visit the guide.
-const args=['playwright','test','tests/e2e/player-manual.spec.ts','--project=1280x800','--workers=1','--grep','capture'];
+const args=['playwright','test','tests/e2e/player-manual.spec.ts','--project=1280x800','--workers=1','--grep','capture','--output','artifacts/player-manual/test-results','--reporter=list'];
 const result=spawnSync('npx',args,{stdio:'inherit',env:{...process.env,MANUAL_CAPTURE_DIR:capture}});
 if(result.status!==0)process.exit(result.status??1);
 mkdirSync('docs/manual-images',{recursive:true});

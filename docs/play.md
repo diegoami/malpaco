@@ -10,13 +10,13 @@ If a game is already kept in this browser, press **Resume saved game**. Resume k
 
 ![The launcher with Start game above the next-game settings](manual-images/launcher.png)
 
-*Start game is above the settings. Very short windows scroll the whole launcher card; taller windows scroll only the settings region.*
+*Start game comes first. Portrait windows stack the launcher; landscape and desktop windows arrange it in columns where space allows. The settings fit the window where practical. Very short windows scroll the whole launcher card; taller windows scroll only the settings region if needed.*
 
 ## Settings for your next game
 
 | Setting | Choices and effect |
 | --- | --- |
-| Button labels | Text (default) or Icons. This display choice applies immediately to the launcher and running game, and is kept across turns, new games, reloads and screen sizes. |
+| Button labels | Text, Icons, or Text 2 turns, then Icons (default). Automatic mode keeps text for your first two personal turns and then uses icons; resuming restores the correct phase. Your choice applies immediately and is kept across new games, reloads and screen sizes. |
 | Computer opponents | 1, 2 or 3; default 3. You control one seat in normal play. |
 | Starting armies | 1–2, 1–3 or 1–4 armies per country; default 1–3. All seats use the same range, with balanced aggregate budgets apart from unavoidable integer differences. |
 | Disasters and production | Off, Rare, Normal or Often; default Normal. Off removes world events and production-centre stars. |
@@ -42,12 +42,11 @@ The turn tracker lists seats, public counts and the current player's arrow. Wait
 | Help / ? | Read the current objective, combat rule, controls and these instructions; pauses play. |
 | Cards | Open your hand when you hold cards; the badge is your card count. |
 | Fit | Restore a view of the whole map. |
-| Countries | List countries by island; filters show countries usable for the current action. Inspect an entry for owner, armies and neighbours. |
 | Resume | Continue after an explicit pause or interruption. |
 
 Pinch or use the mouse wheel to zoom; drag to pan. Use Fit if you lose your place. If a tap overlaps two countries, choose from the list. Country selection and action controls also work with keyboard focus and Enter/Space; Shift activation selects without immediately fighting an armed attack. Form controls retain their ordinary keyboard behavior.
 
-Choose **Text** or **Icons** under Button labels on the start screen or in Settings. The game keeps your choice instead of changing faces during play or when you resize. Text is the default, and labels/padding scale down for smaller screens. In Icons mode, play starts/resumes, the flag ends a turn, crossed weapons attack and arrows move. Map tools, amount controls and Close keep their standard symbols in both modes; the check mark confirms amounts. Accessible names and tooltips keep action names. Country names, counts and form labels stay as text. Rotate or zoom for dense boards. In very short windows, the whole launcher card scrolls. Start/Resume come first; scroll back to the top to reach them. Keyboard focus brings each setting and its label into view together. Taller launchers scroll only their settings region.
+Choose **Text**, **Icons**, or **Text 2 turns, then Icons** under Button labels on the start screen or in Settings. The default shows text for your first two personal turns, then switches to icons. Text and Icons keep their chosen faces throughout play. Existing explicit choices are preserved. Labels and padding stay compact on smaller screens. In Icons mode, play starts/resumes, the flag ends a turn, crossed weapons attack and arrows move. Map tools, including Zoom In and Zoom Out, amount controls and Close always keep their standard symbols; the check mark confirms amounts. Accessible names and tooltips keep action names. Country names, counts and form labels stay as text. Rotate or zoom for dense boards. In very short windows, the whole launcher card scrolls. Start/Resume come first; scroll back to the top to reach them. Keyboard focus brings each setting and its label into view together. Portrait and landscape layouts adapt to the window; wider landscape screens place Start beside two columns of settings. Taller launchers scroll only their settings region if needed.
 
 ![Phone map showing the selected Text mode with compact Attack and Move labels](manual-images/phone.png)
 
@@ -111,7 +110,7 @@ At the start of a later turn, play **at most one set of three** or Skip. All thr
 
 *Only your hand is shown. Other seats' counts are public; their card faces are private.*
 
-A hand holds at most **five cards**. If you earn another while full, discard one existing card before seeing the new draw. The Cards button is available on your turn and hides while computers play. Required set/skip, discard and reduction-target choices do not time out. For Army reduction, the card folds so you can select a highlighted enemy on the map or in Countries, then Confirm. Normal single-player games have cards; historical multi-human test games can have different rules.
+A hand holds at most **five cards**. If you earn another while full, discard one existing card before seeing the new draw. The Cards button is available on your turn and hides while computers play. Required set/skip, discard and reduction-target choices do not time out. For Army reduction, the card folds so you can select a highlighted enemy on the map, then Confirm. Normal single-player games have cards; historical multi-human test games can have different rules.
 
 ## Production centres and world events
 
@@ -168,3 +167,5 @@ Download the [latest playable archive](https://github.com/diegoami/malpaco/relea
 This guide is available through **Full player manual** in Help. Text lives in `docs/play.md`; selected illustrations live in `docs/manual-images/` with the owner's explicit exception to rule 6. Other screenshots, logs and the portable copy stay in ignored `artifacts/`.
 
 Run `npm run manual:refresh` to capture the UI, replace selected images and produce `artifacts/player-manual/index.html` plus a provenance manifest. Open that HTML directly for an offline illustrated copy. Review pictures and captions before committing. Gameplay, labels, controls, settings and persistence changes must update this guide and Help in the same PR and refresh affected pictures. Keep the documented version/feature heading accurate. Historical release records remain immutable. See `docs/manual-maintenance.md` for the inventory and checks.
+
+The new-armies counter sits at the top left immediately right of Cards. In icon mode an army symbol accompanies the count. Select a region to use its Move control; the redundant bottom-right Move button has been removed. The province-list button has also been removed; map regions remain reachable with Tab and Enter.

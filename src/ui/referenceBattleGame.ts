@@ -1,5 +1,6 @@
 import {phaseMessage,PhaseAnnouncementTimer} from './phaseAnnouncement';
 import {DrawNoticeTimer} from './drawNoticeTimer';
+import {completedPersonalTurns,updateButtonLabelProgress} from './buttonLabels';
 import {textCommands} from './textCommands';
 import {CardController} from "./cardController";
 import {CardView, HandDialog} from "./cardView";
@@ -239,7 +240,7 @@ export class ReferenceBattleGame {
 
   mount(root: HTMLElement): void {
     root.classList.add("battle-reference");
-    if(this.presentation?.player)this.stopText=textCommands(document.body);
+    if(this.presentation?.player){updateButtonLabelProgress(completedPersonalTurns(this.controller.state));this.stopText=textCommands(document.body);}
     // T112: New game, Settings and Help are direct corner buttons. Settings holds the next-game choices, seed and scoreboard; totals, card
     // counts, the battle log and panel detail are gone. T101: the speed choice moved to the corner
     // beside Pause, and the history icon shows only with `?log`.
@@ -251,9 +252,10 @@ export class ReferenceBattleGame {
     // The board fills the safe viewport; panel content waits, hidden, until a card requests it.
     const store = h("div", {class: "game-store", hidden: true}, this.panel.el, settings);
     this.chrome = new BattleChrome({action: this.action, settings,
-      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onInformationClose:()=>{const view=this.cards.view;return view.phase==='reward'&&this.cards.acknowledge(view.revision);},onMenuOpen:()=>{this.settingsPaused=!this.controller.playbackPaused;if(this.settingsPaused){this.controller.setPlaybackPaused(true);this.presentation?.player?.remember?.({paused:true});}this.nextSettings?.refresh();if(this.worldEvents?.fold())this.worldView?.render(this.controller.state);},onMenuClose:()=>{const resume=this.settingsPaused;this.settingsPaused=false;if(resume&&!this.disposed){this.controller.setPlaybackPaused(false);this.presentation?.player?.remember?.({paused:this.controller.playbackPaused});}}}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries: this.picker.el, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
+      ...(this.nextSettings?{primaryActions:{newGame,help:this.help.button},onInformationClose:()=>{const view=this.cards.view;return view.phase==='reward'&&this.cards.acknowledge(view.revision);},onMenuOpen:()=>{this.settingsPaused=!this.controller.playbackPaused;if(this.settingsPaused){this.controller.setPlaybackPaused(true);this.presentation?.player?.remember?.({paused:true});}this.nextSettings?.refresh();if(this.worldEvents?.fold())this.worldView?.render(this.controller.state);},onMenuClose:()=>{const resume=this.settingsPaused;this.settingsPaused=false;if(resume&&!this.disposed){this.controller.setPlaybackPaused(false);this.presentation?.player?.remember?.({paused:this.controller.playbackPaused});}}}:{}), phaseActions: this.phaseActions, pause: this.playbackPause, speed, ...(this.computer ? {forward: this.forward} : {}), countries:this.picker.el,showCountriesButton:!this.presentation?.player, ...(this.mapView.camera ? {camera: this.mapView.camera.controls} : {})});
     // T104: your cards sit beside the menu icon.
     if (this.hand) this.chrome.hud.append(this.hand.button);
+    if(this.presentation?.player)this.chrome.placeArmiesBesideCards();
     if(this.worldView)this.chrome.overlay.append(this.worldView.el);
     if(this.turnTracker)this.chrome.overlay.append(this.turnTracker.el,this.announcement);
     // The Countries icon always opens on the list.
@@ -407,6 +409,7 @@ export class ReferenceBattleGame {
 
   private render(): void {
     const seen = this.controller.view;
+    if(this.presentation?.player)updateButtonLabelProgress(completedPersonalTurns(seen.state));
     this.feedback?.update({speed:seen.speed,forward:this.computer?.fastForwarding??false,paused:this.controller.playbackPaused,ack:this.controller.cardAcknowledgmentPending,reduced:window.matchMedia('(prefers-reduced-motion: reduce)').matches});
     if(this.controller.view!==seen&&this.mounted)return;
     this.cards.update();
@@ -447,7 +450,7 @@ export class ReferenceBattleGame {
     // T103 (owner): the country already selected stays selected as the move's source, when it can be one.
     move.addEventListener("click", () => { if (this.controller.startFriendlyMove(revision) && from && friendlySources(state).includes(from)) this.controller.select(from, null); });
     // While moving, the End turn flag skips the move (the friendly card has no Skip, as in the sketches).
-    this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, ...(mode === "move" ? [] : [move]));
+    this.phaseActions.replaceChildren(...(state.phase === "reinforce" ? [start] : []), end, ...(mode === "move" || this.presentation?.player ? [] : [move]));
     this.phaseActions.style.display = state.result || ['sets','raid-target','discard','reward'].includes(this.cards.view.phase) ? "none" : "";
     if(state.phase==='cards')this.panel.el.querySelector('#turn-phase')!.textContent=this.cards.view.phase==='raid-target'?'Army reduction target':'Cards';
     this.battle.render(this.controller.view);

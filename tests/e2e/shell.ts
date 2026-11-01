@@ -139,3 +139,16 @@ export async function startFromResult(page: Page): Promise<void> {
 export function noticeContinue(page:Page){
  return page.getByRole('button',{name:'Continue',exact:true}).or(page.locator('.game-overlay[data-primary-commands="true"] #game-focus-drawer:has(.card-interactions[data-phase="reward"]) #fold-card, .game-overlay[data-primary-commands="true"] #world-event-card:not([hidden]) #fold-world-event')).filter({visible:true});
 }
+
+/** The product Move action lives on the selected region; diagnostic adapters retain the corner. */
+export async function startFriendlyMove(page:Page,source?:string):Promise<void>{
+ const corner=page.locator('#start-friendly-move-button');if(await corner.count()){await corner.click();return;}
+ const {deserializeVersionedMatch,friendlySources}=await import('../../src/core');
+ const raw=await page.evaluate(()=>{const seed=new URLSearchParams(location.search).get('seed');return localStorage.getItem(seed===null?'malpaco:current-game':`malpaco:seed-game:${seed}`);});
+ if(!raw)throw Error('No saved player game for movement');const state=deserializeVersionedMatch(raw).state;
+ const sources=friendlySources(state),selection=page.locator('[data-country][data-selected="true"]').first(),selected=await selection.count()?await selection.getAttribute('data-country'):null;
+ const id=source??(selected&&sources.includes(selected)?selected:sources[0]);if(!id)throw Error('No legal friendly source');
+ if(selected!==id)await page.locator(`[data-country="${id}"]`).press('Shift+Enter');
+ const move=page.locator('#province-move-button:visible, #province-action-button[data-kind="move"]:visible');await expect(move).toHaveCount(1);await move.click();
+ if(!selected)await page.locator(`[data-country="${id}"]`).press('Shift+Enter');
+}

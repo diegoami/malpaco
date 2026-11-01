@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {cardLabel} from '../../src/ui/cardLabels';
 import {noticeContinue} from './shell';
 import {visitGame} from './shell';
@@ -95,7 +96,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
 
  test('friendly move: Cancel until a pair, then −, amount, +, Confirm and Cancel, never over the pair',async({page})=>{
   const f=friendly();await nineIsles(page,f.seed,f.placements,f.from);
-  const before=await settled(page);await page.locator('#start-friendly-move-button').click();
+  const before=await settled(page);await startFriendlyMove(page);
   await expect(drawer(page)).toBeVisible();expect(await viewBox(page)).toBe(before);expect(await shown(page)).toEqual(['Cancel · back to attacks','Fold card']);
   // Choosing the source brings the camera's Focus icon (a corner icon); the pair itself reframes nothing.
   await country(page,f.from).click();const chosen=await settled(page);await country(page,f.to).click();expect(await viewBox(page)).toBe(chosen);
@@ -130,7 +131,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   const done=next(raid.state,{kind:'raidTarget',province:target});await expect(country(page,target)).toHaveAttribute('data-armies',String(done.armies[target]));
  });
 
- test('the menu, the Countries list and the history: no reframing, 44 px targets, history closes by ×, Escape and a swipe',async({page})=>{
+ test('the menu and history: no reframing, 44 px targets, history closes by ×, Escape and a swipe; province-list button absent',async({page})=>{
   // The clock holds the computers still, so only the cards could move the map.
   await page.clock.install();await page.clock.pauseAt(new Date());
   // T101: the history is reached through the hidden `?log` link; seed 7 opens on a computer's turn,
@@ -157,8 +158,8 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   const r=(await log.boundingBox())!,y=r.y+Math.min(r.height-10,90);
   await page.mouse.move(r.x+r.width/2,y);await page.mouse.down();await page.mouse.move(r.x+r.width/2+40,y);await page.mouse.move(r.x+r.width/2+140,y,{steps:4});await page.mouse.up();
   await expect(log).toBeHidden();
-  // The Countries list opens only from its icon, and it floats too.
-  await expect(drawer(page)).toBeHidden();await page.locator('#open-countries').click();await expect(drawer(page)).toHaveAttribute('data-surface','countries');expect(await viewBox(page)).toBe(before);
+  await expect(drawer(page)).toBeHidden();await expect(page.locator('#open-countries')).toHaveCount(0);expect(await viewBox(page)).toBe(before);
+  await page.locator('[data-country]').first().focus();await expect(page.locator('[data-country]').first()).toBeFocused();
  });
 });
 

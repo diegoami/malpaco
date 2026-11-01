@@ -8,6 +8,7 @@ const KEY='malpaco:current-game';
 async function shot(page:Page,name:string){mkdirSync('artifacts/T152',{recursive:true});await page.mouse.move(0,0);await page.screenshot({path:`artifacts/T152/${name}.png`,animations:'disabled'});}
 test.beforeEach(({},info)=>test.skip(info.project.name!=='1280x800','explicit viewports'));
 async function battle(page:Page){
+ await page.addInitScript(()=>{if(localStorage.getItem('malpaco:button-labels')===null)localStorage.setItem('malpaco:button-labels','text');});
  const f=humanCaptureFixture(),loaded=deserializeVersionedMatch(f.text),text=serializeVersionedMatch(loaded.options,loaded.state.history.slice(0,-1),loaded.identity);
  await page.clock.install();await page.clock.pauseAt(new Date());
  await page.addInitScript(({key,text})=>{if(sessionStorage.getItem('button-label-fixture'))return;sessionStorage.setItem('button-label-fixture','1');localStorage.setItem(key,text);localStorage.setItem(key+'-meta',JSON.stringify({id:'button-label-test',paused:false}));},{key:KEY,text});
@@ -17,7 +18,7 @@ async function mode(page:Page,value:'text'|'icons'){
  await page.locator('#open-game-menu').click();const choice=page.getByLabel('Button labels',{exact:true});await expect(choice).toBeVisible();await choice.selectOption(value);await page.keyboard.press('Escape');
 }
 test('launcher offers a persistent Icons/Text preference without starting a game',async({page})=>{
- await page.clock.install();await page.clock.pauseAt(new Date());await page.setViewportSize({width:390,height:844});await page.goto('/');const choice=page.getByLabel('Button labels',{exact:true});await expect(choice).toHaveValue('text');
+ await page.clock.install();await page.clock.pauseAt(new Date());await page.setViewportSize({width:390,height:844});await page.goto('/');const choice=page.getByLabel('Button labels',{exact:true});await expect(choice).toHaveValue('auto');
  await choice.selectOption('icons');await expect(page.locator('#start-game svg')).toBeVisible();await expect(page.locator('[data-country]')).toHaveCount(0);
  await page.reload();await expect(choice).toHaveValue('icons');await choice.selectOption('text');await expect(page.locator('#start-game')).toHaveText(/Start game/i);
  await choice.selectOption('icons');await page.locator('#start-game').click();await expect(page.locator('[data-country]')).toHaveCount(46,{timeout:60000});await page.clock.runFor(3000);
@@ -29,13 +30,13 @@ test('dual map actions honor Text through updates, resizes and reload; Icons swi
  await expect(attack).toHaveText(/Attack/i);await expect(move).toHaveText(/Move/i);const desktop=await attack.evaluate(n=>parseFloat(getComputedStyle(n).fontSize));
  await page.setViewportSize({width:390,height:844});await page.clock.runFor(100);await expect(attack).toHaveText(/Attack/i);await expect(move).toHaveText(/Move/i);
  const phone=await attack.evaluate(n=>({font:parseFloat(getComputedStyle(n).fontSize),width:n.getBoundingClientRect().width}));expect(phone.font).toBeLessThan(desktop);expect(phone.width).toBeLessThan(120);
- for(const id of ['start-friendly-move-button','end-turn-button']){const r=(await page.locator('#'+id).boundingBox())!;expect(r.x).toBeGreaterThanOrEqual(0);expect(r.x+r.width).toBeLessThanOrEqual(390);}
+ for(const id of ['end-turn-button']){const r=(await page.locator('#'+id).boundingBox())!;expect(r.x).toBeGreaterThanOrEqual(0);expect(r.x+r.width).toBeLessThanOrEqual(390);}
  for(const size of [{width:320,height:640},{width:844,height:390}]){await page.setViewportSize(size);await page.clock.runFor(100);for(const b of [attack,move]){await expect(b).toHaveText(/Attack|Move/i);const r=(await b.boundingBox())!;expect(r.x).toBeGreaterThanOrEqual(0);expect(r.x+r.width).toBeLessThanOrEqual(size.width);expect(r.height).toBeGreaterThanOrEqual(44);}}
  await page.setViewportSize({width:390,height:844});await page.clock.runFor(100);
  await shot(page,'text-map-phone');
  await page.locator(`[data-country="${f.to}"]`).press('Shift+Enter');await expect(attack).toHaveText(/Attack/i);
  await mode(page,'icons');await activate(page.locator(`[data-country="${f.from}"]`));await expect(attack.locator('svg')).toBeVisible();await expect(move.locator('svg')).toBeVisible();
- for(const id of ['start-friendly-move-button','end-turn-button'])await expect(page.locator('#'+id+' svg')).toBeVisible();
+ for(const id of ['end-turn-button'])await expect(page.locator('#'+id+' svg')).toBeVisible();
  await page.clock.runFor(100);await shot(page,'icons-map-phone');
  for(const b of [attack,move]){const r=(await b.boundingBox())!;expect(r.width).toBeGreaterThanOrEqual(44);expect(r.height).toBeGreaterThanOrEqual(44);expect(r.x).toBeGreaterThanOrEqual(0);expect(r.x+r.width).toBeLessThanOrEqual(390);}
  expect(await page.evaluate(k=>localStorage.getItem(k),KEY)).toBe(f.text);await reloadGame(page);await activate(page.locator(`[data-country="${f.from}"]`));await expect(attack.locator('svg')).toBeVisible();
@@ -48,7 +49,7 @@ test('failed display-preference write restores the kept selection and preserves 
 
 test('#400: phone Move and End turn show visible glyphs on a real human attack turn',async({page})=>{
  await page.setViewportSize({width:390,height:844});await page.addInitScript(()=>localStorage.setItem('malpaco:button-labels','icons'));const f=await battle(page);
- for(const id of ['start-friendly-move-button','end-turn-button']){const b=page.locator('#'+id);await expect(b).toBeVisible();await expect(b).toHaveAccessibleName(/Move|End turn/i);await expect(b.locator('svg')).toBeVisible();}
+ for(const id of ['end-turn-button']){const b=page.locator('#'+id);await expect(b).toBeVisible();await expect(b).toHaveAccessibleName(/Move|End turn/i);await expect(b.locator('svg')).toBeVisible();}
  expect(await page.evaluate(k=>localStorage.getItem(k),KEY)).toBe(f.text);
 });
 
