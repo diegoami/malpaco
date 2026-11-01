@@ -56,6 +56,8 @@ Choose **Text**, **Icons**, or **Text 2 turns, then Icons** under Button labels 
 
 *The phone uses the same rules and actions. Text labels shrink with the screen; choose Icons if you prefer compact symbols.*
 
+Playable card-set alternatives show a row of three small card symbols, including any wild cards. Each row is one button; its tooltip gives the set effect. The same choices appear in Your cards. Skip keeps your cards for later.
+
 ## A turn, from cards to handoff
 
 1. **Cards:** if a playable set is offered, choose one or Skip. Resolve any required discard or army-reduction target before placement.

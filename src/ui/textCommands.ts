@@ -52,6 +52,8 @@ export function textCommands(root:HTMLElement):()=>void {
   return true;
  };
  const decorate=(button:HTMLButtonElement)=>{
+  // Constituent card symbols are data, independent of the action-label preference.
+  if(button.classList.contains('card-set-choice')){button.classList.remove('game-text-command','game-mobile-command');return;}
   if(button.id==='game-help-button'){button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-help-command');if(button.textContent!=='?')button.replaceChildren(document.createTextNode('?'));return;}
   if(closeTools.has(button.id)){
    button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-close-command');

@@ -2286,3 +2286,17 @@ body[data-button-labels="icons"] #turn-tracker { --resume-width:48px; }
 }
 .game-overlay[data-primary-commands="true"] #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }
 #turn-tracker[data-folded="true"] { flex-direction:row; align-items:center; }
+
+/* T163: each set remains one touch target; the small cards describe its actual cost. */
+.card-set-choice,
+.battle-reference #game-focus-drawer .card-choice-controls button.card-set-choice {
+ display:inline-flex; align-items:center; justify-content:center; flex:none; min-width:112px; min-height:48px;
+ padding:6px; border:2px solid #85daa6; border-radius:6px; background:#205c3a; color:#fff;
+}
+.card-set-choice:disabled { opacity:.45; }
+.card-set-choice:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+.card-set-icons { display:flex; gap:4px; }
+.card-set-symbol { display:grid; place-items:center; flex:none; width:28px; height:34px; border:1px solid #c9b88f; border-radius:4px; background:#f4ead2; color:#1d2a35; }
+.card-set-symbol .card-tile-symbol { font:800 22px/1 Inter,system-ui,sans-serif; }
+.card-set-symbol[data-kind="Wild"] .card-tile-symbol { color:#986600; }
+.card-set-symbol .card-tile-bomb { width:24px; height:26px; }
