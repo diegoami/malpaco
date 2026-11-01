@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {expect,test} from '@playwright/test';
 import {deserializeVersionedMatch,friendlySources,friendlyTargets} from '../../src/core';
 import {pinned} from '../core/versioned-match-fixture';
@@ -9,7 +10,7 @@ test('short-height friendly picker keeps Confirm and Cancel reachable without co
  const fixture=pinned('move-ready'),state=deserializeVersionedMatch(fixture.text).state;
  const from=friendlySources(state)[0]!,to=friendlyTargets(state,from)[0]!;
  await begin(page,'/?view=reference-game&control=manual');await load(page,fixture.text);
- await page.locator('#start-friendly-move-button').click();
+ await startFriendlyMove(page);
  for(const id of [from,to]){const country=page.locator(`[data-country="${id}"]`);await country.focus();await country.press('Enter');}
  await openSurface(page,'actions');await page.locator('#friendly-move-amount').fill('1');const before=await savedText(page);
  for(const size of [{width:320,height:200},{width:640,height:240},{width:640,height:400}]){

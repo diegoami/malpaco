@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {test,expect} from '@playwright/test';
 import {activePlayer,apply,defaultOptions,raidCardsRules,serializeVersionedMatch} from '../../src/core';
 import {createGeographicGame} from '../../src/core/geographic-game';
@@ -55,7 +56,7 @@ test('retained human phase fades without an action, then placement/attack/move m
  await page.clock.runFor(2999);await expect(banner).toBeVisible();await page.clock.runFor(1);await expect(banner).toBeHidden();expect(await page.evaluate(k=>localStorage.getItem(k),ROOT)).toBe(human.raw);
  const country=page.locator(`[data-country="${human.country}"]`);for(let n=0;n<human.state.reinforcementPool;n++){await country.focus();await country.press('Enter');}
  await expect(banner).toHaveText(/Your turn to attack/);await page.screenshot({path:info.outputPath('human-attack.png')});
- await page.locator('#start-friendly-move-button').click();await expect(banner).toHaveText(/Your turn to move/);await page.screenshot({path:info.outputPath('human-move.png')});
+ await startFriendlyMove(page);await expect(banner).toHaveText(/Your turn to move/);await page.screenshot({path:info.outputPath('human-move.png')});
  const before=await page.evaluate(k=>localStorage.getItem(k),ROOT);await page.clock.runFor(3000);await expect(banner).toBeHidden();expect(await page.evaluate(k=>localStorage.getItem(k),ROOT)).toBe(before);
 });
 test('fresh human countdown rejects otherwise legal placement until the last beat',async({page})=>{

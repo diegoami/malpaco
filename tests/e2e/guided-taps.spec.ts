@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {visitGame} from './shell';
 // T103 (owner, 2026-10-22): the action sits on the country you select. Fight when it can attack:
 // press it, tap an enemy, and one round is fought; press it again for another round; select
@@ -34,6 +35,7 @@ const human=(s:GameState)=>activePlayer(s)?.kind==='human';
 const mine=(s:GameState)=>s.map.provinces.map(p=>p.id).filter(id=>s.ownerOf[id]===activePlayer(s)!.id);
 /** Opens the root page on a kept match. */
 async function opened(p:Page,text:string,size:{width:number;height:number}){
+ await p.addInitScript(()=>localStorage.setItem('malpaco:button-labels','text'));
  await p.setViewportSize(size);
  await p.addInitScript(([k,v])=>{if(!sessionStorage.getItem('t103'))sessionStorage.setItem('t103','1'),localStorage.setItem(k!,v!);},[ROOT,text]);
  await visitGame(p,'/');await expect(p.locator('#geographic-map [data-country]')).toHaveCount(46);
@@ -160,7 +162,7 @@ for(const size of SIZES){
   await expect(drawer).toBeHidden();
   const after=await kept(page),source=friendlySources(after)[0]!;
   await page.locator(`[data-country="${source}"]`).click();await expect(drawer).toBeHidden();
-  await page.locator('#start-friendly-move-button').click();
+  await startFriendlyMove(page);
   await expect(page.locator('#cancel-friendly-move-button')).toBeVisible();
   await expect(page.locator(`[data-country="${source}"]`)).toHaveAttribute('data-selected','true');
   expect(same(await kept(page))).toEqual(same(after));

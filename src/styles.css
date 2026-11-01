@@ -1492,6 +1492,8 @@ dialog h2 {
 /* The notice's resting line: an opened detail spills over the map instead of growing the slot. */
 .game-notice-slot { flex:none; position:relative; display:flex; justify-content:flex-end; align-items:flex-start; width:min(380px, 42vw); min-height:var(--target); }
 .game-notice-slot > .game-notice[data-open="true"] { position:absolute; top:0; right:0; z-index:1; }
+/* Changes is an optional floating footer, clear of the turn tracker and End turn. */
+.game-overlay[data-primary-commands="true"] .game-notice-slot:has(#open-changes) { position:absolute; right:var(--edge); bottom:calc(var(--edge) + max(var(--target),var(--command-height,0px)) + var(--gap)); width:min(360px,calc(100% - 2 * var(--edge))); z-index:4; }
 .game-folded { margin-block:auto; padding-right:6px; }
 .game-folded #open-required-action { width:44px; height:44px; min-height:44px; background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
 #game-focus-drawer { margin-block:auto; width:min(380px, 42vw); max-height:100%; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:start; gap:4px; padding:12px 12px 14px 16px; border:1px solid #3d5a6d; border-radius:12px; background:var(--surface); box-shadow:0 8px 32px #0009; font-size:16px; }
@@ -2203,6 +2205,34 @@ button.game-mobile-command > svg { display:block !important; color:inherit; stro
 }
 @media (max-height:500px) { #phase-announcement { padding:14px 20px; } #phase-announcement strong { font-size:32px; } #phase-announcement span { margin-top:6px; font-size:18px; } }
 
+/* T157: compact text actions; the armies indicator follows Cards in the HUD. */
+body { --map-command-font:clamp(13px, min(1.3vw, 3.2vh), 18px); }
+:is(#province-action-button,#province-move-button).game-text-command { padding:4px 6px !important; letter-spacing:0 !important; }
+.game-primary-buttons > .game-pool-slot { position:static !important; inset:auto !important; padding:0; margin:0; width:max-content; align-self:center; }
+.game-primary-buttons #placement-pool { display:flex; align-items:center; gap:4px; min-height:44px; padding:6px; font-size:16px !important; }
+.game-primary-buttons #placement-pool[hidden] { display:none; }
+.game-primary-buttons #placement-pool > svg { display:none; width:22px; height:22px; }
+body[data-button-labels="icons"] #placement-pool > svg { display:block; }
+body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:none; }
+@media (max-width:600px) {
+ body[data-button-labels="text"] .game-primary-buttons > .game-pool-slot { grid-column:2 / -1 !important; grid-row:2 !important; }
+ body[data-button-labels="text"] .game-overlay[data-primary-commands="true"]:is(:has(#open-hand:not([hidden])),:has(#placement-pool:not([hidden]))) { --primary-height:104px; }
+}
+.game-primary-buttons > .game-pool-slot:has(#placement-pool[hidden]) { display:none; }
+@media (min-width:901px) {
+ .game-primary-buttons > .game-pool-slot { grid-column:5 !important; grid-row:1 !important; }
+}
+.game-primary-buttons #placement-pool .placement-pool-unit { white-space:nowrap; }
+@media (max-width:600px) {
+ body[data-button-labels="text"] #game-status.game-primary-buttons { display:grid; grid-template-columns:max-content max-content 48px; grid-auto-rows:48px; max-width:calc(100vw - var(--safe-left) - var(--safe-right) - 2 * var(--edge)); }
+ body[data-button-labels="text"] #game-status > #new-game-button { grid-column:1; grid-row:1; }
+ body[data-button-labels="text"] #game-status > #open-game-menu { grid-column:2; grid-row:1; }
+ body[data-button-labels="text"] #game-status > #game-help-button { grid-column:3; grid-row:1; }
+ body[data-button-labels="text"] #game-status > #open-hand { grid-column:1; grid-row:2; }
+}
+/* The pool now shares the HUD; it needs no separate row below that HUD. */
+.game-overlay[data-primary-commands="true"]:has(#placement-pool:not([hidden])) #turn-tracker { top:calc(var(--edge) + var(--primary-height) + var(--gap)); }
+
 /* T156: fit launcher settings to the available viewport before using scroll fallback. */
 #game-launcher { padding:16px; gap:0; }
 #game-launcher .next-game-settings { gap:8px 16px; }
@@ -2220,3 +2250,5 @@ button.game-mobile-command > svg { display:block !important; color:inherit; stro
  #game-launcher > .match-error { grid-column:1 / -1; grid-row:4; }
  #game-launcher > #download-recovery-game { grid-column:1; grid-row:3; align-self:start; }
 }
+/* Keep a pending choice's Return control above the remaining End turn command. */
+.game-overlay[data-primary-commands="true"] #game-folded-choice { margin-bottom:calc(var(--command-height,44px) + var(--gap)); }
