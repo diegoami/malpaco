@@ -299,7 +299,7 @@ export class BattleChrome {
     for (const side of ["left", "top", "right", "bottom", "translate"]) this.drawer.style.removeProperty(side);
     if (this.drawer.dataset["placement"] === "center") return;
     // The card stays below the top icons and the notice as they stand, so none covers another.
-    const frame = this.overlay.getBoundingClientRect(), shown = [this.hud, this.top, this.pool, this.notice].filter(e => !e.hidden && e.getClientRects().length);
+    const frame = this.overlay.getBoundingClientRect(), shown = [this.hud, this.top, this.pool, this.notice].filter(e => !e.hidden && e.getClientRects().length && !(e===this.notice&&e.querySelector("#open-changes")));
     const below = Math.max(0, ...shown.map(e => e.getBoundingClientRect().bottom - frame.top));
     this.drawer.style.setProperty("--card-top", `${Math.ceil(below)}px`);
     const avoid = this.avoid;
@@ -464,7 +464,7 @@ export class BattleChrome {
       this.fadeTimer = null;
       if (notice && !notice.persistent && key !== this.dismissedKey) this.fadeTimer = window.setTimeout(() => this.dismissNotice(), NOTICE_FADE_MS);
     }
-    this.notice.hidden = !notice || key === this.dismissedKey;
+    this.notice.hidden = !notice || key === this.dismissedKey || notice.action?.id === "open-changes" && (this.surface !== null || this.requiredText !== null);
     this.notice.dataset["fading"] = String(this.fadeTimer !== null && !this.noticeOpen);
     this.notice.dataset["open"] = String(this.noticeOpen);
     // Rebuilt only when what it shows changes, so the live region is not re-announced.
