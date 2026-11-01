@@ -259,3 +259,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T158](T158.md): persistent computer-turn speed (#416), after T157.
 
 - [T159](T159.md): turn-widget size and hide controls (#417), after T158.
+
+- [T160](T160.md): automatic region choice for ambiguous taps (#419), after T159.

@@ -195,10 +195,9 @@ test('A8: a tiny region reached by Countries, Inspect and Focus; the tap acts on
  await expect.poll(()=>page.locator('svg[data-camera-zoom]').getAttribute('data-camera-zoom').then(Number)).toBeGreaterThan(1);await closeSurface(page);
  // Closing the card reframes the map a moment later: measure only once the view is still.
  await expect.poll(async()=>{const a=await page.locator('svg[data-camera-zoom]').getAttribute('viewBox');await page.clock.runFor(100);return a===await page.locator('svg[data-camera-zoom]').getAttribute('viewBox');}).toBe(true);
- // A tap on the focused region places one army there. If it touches a neighbour too, the game asks
- // which country by name rather than guessing; the named choice is the region.
+ // A mouse click on the focused region places one army there; touch ambiguity is tested separately.
  const b=(await country(page,tiny).locator('.badge').boundingBox())!;await page.mouse.click(b.x+b.width/2,b.y+b.height/2);
- if(await page.locator('#game-focus-drawer').isVisible()){await expect(page.locator('#game-focus-drawer')).toContainText('Which country?');await page.locator(`[data-country-row="${tiny}"]`).click();}
+ await expect(page.locator('#game-focus-drawer')).toBeHidden();
  s=next(s,{kind:'reinforce',province:tiny,amount:1});await exactly(page,s);
  // A drag pans; it does not place. A held key repeats nothing.
  await page.mouse.move(b.x,b.y);await page.mouse.down();await page.mouse.move(b.x+90,b.y+40,{steps:6});await page.mouse.up();

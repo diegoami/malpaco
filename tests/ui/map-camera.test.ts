@@ -1,6 +1,6 @@
 import {describe,expect,it} from 'vitest';
 import {readFileSync} from 'node:fs';
-import {cameraViewBox,chooseRotation,clampCamera,fitCamera,fitScale,focusCamera,FOCUS_MIN_ZOOM,MAX_ZOOM,NO_INSETS,obstructionInsets,panBy,resizeCamera,revealCamera,ROTATION_GAIN,screenToWorld,toView,toWorld,zoomAt} from '../../src/ui/mapCamera';
+import {rankTapRegions,tapRadius,cameraViewBox,chooseRotation,clampCamera,fitCamera,fitScale,focusCamera,FOCUS_MIN_ZOOM,MAX_ZOOM,NO_INSETS,obstructionInsets,panBy,resizeCamera,revealCamera,ROTATION_GAIN,screenToWorld,toView,toWorld,zoomAt} from '../../src/ui/mapCamera';
 import type {CameraState,Insets,Rect,Viewport} from '../../src/ui/mapCamera';
 import {createWorkspaceState,updateWorkspaceState} from '../../src/ui/workspaceState';
 
@@ -132,5 +132,22 @@ describe('overlays reframe the map beside them (E)',()=>{
    const insets=obstructionInsets([{x:w*0.55,y:0,width:w*0.45,height:h}],{width:w,height:h}),viewport=vp(w,h,insets),state=fitCamera(generated,viewport);
    for(const r of countryRects){const [x]=screen(state,generated,viewport,[r.x+r.width/2,r.y+r.height/2]);expect(x).toBeLessThanOrEqual(w-insets.right+1e-6);}
   }
+ });
+});
+
+describe('area-based ambiguous touch resolution',()=>{
+ it('chooses surface coverage over a tiny region at the centre',()=>{
+  expect(rankTapRegions(12,(x,y)=>x*x+y*y<16?'centre':'surrounding')).toEqual(['surrounding','centre']);
+ });
+ it('counts narrow patches without making their labels into surface area',()=>{
+  expect(rankTapRegions(12,(x)=>Math.abs(x)<2?'narrow':'wide')).toEqual(['wide','narrow']);
+ });
+ it('uses centre hit, then stable id for equal sampled areas',()=>{
+  expect(rankTapRegions(12,x=>x<0?'left':'right')).toEqual(['right','left']);
+  expect(rankTapRegions(12,x=>x===0?null:x<0?'z':'a')).toEqual(['a','z']);
+ });
+ it('ignores water and bounds physical contact size',()=>{
+  expect(rankTapRegions(12,()=>null)).toEqual([]);expect(rankTapRegions(12,()=> 'only')).toEqual(['only']);
+  expect(tapRadius(1,1)).toBe(12);expect(tapRadius(40,20)).toBe(20);expect(tapRadius(500,500)).toBe(24);expect(tapRadius(NaN,NaN)).toBe(12);
  });
 });

@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "version": "0.5.1",
-  "sourceCommit": "2eed93dd4b51f38248b93285f991fbc55c94e571",
-  "capturedAt": "2026-11-01T10:50:15.388Z",
+  "sourceCommit": "1565936205e18846f55191a108ddd86b2fc8be0e",
+  "capturedAt": "2026-11-01T10:56:09.819Z",
   "dirty": true,
   "command": "npm run manual:refresh",
   "browser": "Version 1.63.0",
@@ -17,25 +17,26 @@
     ]
   },
   "sources": {
-    "docs/play.md": "8997851fc7373dc6e1b4b4a9ddb40e5f5cfe538945f4fdf5e5c8c39353a13b13",
-    "src/ui/help.ts": "fa9232be2f1e38de558f5dcd539cefb673cb2ed7270afd8633625d15c26b1707",
+    "docs/play.md": "3e0ecb427db4e445f463cc96604022df06c3615828b4386cbd8098b49fb25680",
+    "src/ui/help.ts": "555dfebe9cfb2d7db65be15c68afc5e6a7f7184ab8f7a306162756437f35de9b",
     "src/ui/buttonLabels.ts": "f342f1b84e46d7338e9a317596ded4290ea2698b0c70d4fa034b7d5873ad2380",
     "src/ui/turnTracker.ts": "7307275181b31ee1e695e7f2a2dc2333a135d529a735288f5c46ea661cc446d8",
+    "src/ui/mapCamera.ts": "408d1c15489ec9e66166f9cb6aafdefbc236f9005ea4e811e51b2efb7640f356",
     "src/ui/computerSpeed.ts": "0b7be4ba7bb66bae181ef2e41959e31995b7879e2e353f13ea8225e065367df0",
     "src/ui/nextGameSettings.ts": "e7998fb3203a63573973efff9ae56b747eca48dedd6b87f6c40f3db12a15fbd1",
     "src/ui/gameLauncher.ts": "b2a8e20976846f81791f040b31d59eb8b716ddd290df02b7c67c776ec294fe98",
     "src/ui/provinceAction.ts": "8b0cc2f0d3ebeb5bb0ad8b7d18743c389dec84557d90343a088bd4e174f71e0b",
     "src/ui/textCommands.ts": "7b962eec164fecb6817204dc21bba093e7b4d7f11a12c23bd4992f6670435e36",
-    "src/ui/referenceBattleGame.ts": "26361dcb6c8d817682c974389bc1364f652bf1db68981cf1d95be2c2bea112e2",
+    "src/ui/referenceBattleGame.ts": "36a81e16bf5b16a5dd63cafb5b49534c57f0e0b09c97e43039703283b54a4c4c",
     "src/styles.css": "99c268d6a718e93fc3b9447fc01c336cb553407d38c0e21c0872123827c4806f",
     "tests/e2e/player-manual.spec.ts": "23758ea3fd9ffa4d7264d69818a01372121202273dc403565c62d562f491e9c5",
     "tests/e2e/event-fixture.ts": "88129172716dc8cdfcf998500a1eeb855bafdcc84420bc4547a8fade0a5890b1",
     "vite.config.ts": "c5ab3a851708896949c89875acc306a8bbe28c74d636f58b31e792d7b5fbabe3",
     "tools/manual/render.mjs": "4c9aef437e5be7edbdd89984e9354c396a2a23db4840a02a2670e6f8c13fd999",
-    "tools/manual/refresh.mjs": "c14f5fb8bb114b7f463bce8b6ffee1f5d06b9dec62e17fc025d50f3ccc738e2b"
+    "tools/manual/refresh.mjs": "fc1e66b5dc521fd3ef3f2d0ac685e3729293d9f9b5dd94b701b54f733c27ffbd"
   },
   "files": {
-    "index.html": "bcf8ab151cc106265b15a7e126a36b028a76fc503abd97ad6c42461417eb3ce5",
+    "index.html": "418df05246c071fd01efe0e74d341f915351e253127a3069063b3efdc19659ad",
     "manual-images/launcher.png": "c5bde844928ac1ccd78242d1bf1f9268e15499e44a37586c7af17155e54864db",
     "manual-images/map.png": "cc67767deb3a14c167198723b285cc76a0c98de4d260af130dc0650afd4ac133",
     "manual-images/phone.png": "062b5e8775fcfd2e9d6fbebb3a1b0ff9dc4808190eb80bb407ceea7b26ffb206",

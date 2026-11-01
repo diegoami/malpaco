@@ -78,7 +78,7 @@ export class ReferenceBattleGame {
   private hover: string | null = null;
   /** The Raid choice whose card was last folded for map selection (T83). */
   private raidFolded: string | null = null;
-  /** T81: countries by name, Inspect, and the named choice after an ambiguous tap. */
+  /** Diagnostic country list and Inspect; touch choice is resolved by map geometry. */
   private readonly picker: CountryPicker;
   private mounted = false;
   private disposed = false;
@@ -178,11 +178,7 @@ export class ReferenceBattleGame {
       focus: id => this.mapView.camera?.focusOn(id),
       painted: title => this.chrome?.retitle(title),
     });
-    if (this.mapView.camera) this.mapView.camera.onAmbiguousTap = ids => {
-      this.picker.ask(ids);
-      if (this.chrome?.openSurface !== "countries") this.chrome?.open("countries", this.chrome.countries, false);
-      else this.chrome.retitle(this.picker.title);
-    };
+    if(this.mapView.camera)this.mapView.camera.onResolvedTap=id=>this.clickProvince(id);
     this.feedback=automatic&&presentation?.player?new ComputerFeedbackController(this.controller,{schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.mounted&&!this.disposed)this.renderMap();}):null;
     this.drawNoticeTimer=presentation?.player?new DrawNoticeTimer({schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{const v=this.cards.view;if(v.phase==='reward')this.cards.acknowledge(v.revision);}):null;
     this.worldNoticeTimer=presentation?.player?new DrawNoticeTimer({schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.worldEvents?.dismiss())this.render();}):null;
