@@ -257,3 +257,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T157](T157.md): compact controls and two-personal-turn icon transition (#414/#415/#418/#420/#421), after T156.
 
 - [T158](T158.md): persistent computer-turn speed (#416), after T157.
+
+- [T159](T159.md): turn-widget size and hide controls (#417), after T158.
