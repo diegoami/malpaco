@@ -6,7 +6,7 @@ import type { BattleController, BattleScheduler, BattleSpeed } from "./battleCon
  * executed-action beat; non-player/manual adapters keep their existing scheduler.
  * Speed and feedback never change the policy or consume a rules draw.
  */
-export const COMPUTER_STEP_TIMES: Readonly<Record<BattleSpeed, number>> = { "very-slow": 2000, slow: 350, normal: 120, fast: 60 };
+export const COMPUTER_STEP_TIMES: Readonly<Record<BattleSpeed, number>> = { "very-slow": 2000, slow: 350, normal: 90, fast: 60, "very-fast":40 };
 export const COMPUTER_STEP_TIME = COMPUTER_STEP_TIMES.normal;
 // [designed] Owner-requested T70 presentation pace, exactly two seconds per action.
 export const VERY_SLOW_COMPUTER_STEP_TIME = COMPUTER_STEP_TIMES["very-slow"];

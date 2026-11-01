@@ -4,9 +4,9 @@ export type FeedbackKind='reinforce'|'attack'|'captureMove'|'friendlyMove'|'raid
 export interface FeedbackChange {id:string;before:number;after:number;ownerBefore:string;ownerAfter:string}
 export interface FeedbackFrame {kind:FeedbackKind;seat:string;index:number;from?:string;to?:string;changes:FeedbackChange[];progress:number;reduced:boolean;forward:boolean;shielded:boolean}
 export interface FeedbackBridge {readonly state:GameState;readonly gameGeneration:number;setComputerFeedbackPending(value:boolean):void}
-/** [designed] T115 readable executed-action beats, replacing T101's12s default-round target. */
-export const FEEDBACK_NORMAL_MS:Readonly<Record<FeedbackKind,number>>={reinforce:650,attack:900,captureMove:650,friendlyMove:800,raidTarget:700};
-export function feedbackDuration(kind:FeedbackKind,speed:BattleSpeed,forward:boolean){return forward?40:speed==='fast'?Math.round(FEEDBACK_NORMAL_MS[kind]*.35):speed==='slow'?Math.round(FEEDBACK_NORMAL_MS[kind]*1.6):speed==='very-slow'?FEEDBACK_NORMAL_MS[kind]*3:FEEDBACK_NORMAL_MS[kind];}
+/** [designed] T158/#416: 20% shorter default beats; Slow/Fast retain T115 timings. */
+export const FEEDBACK_NORMAL_MS:Readonly<Record<FeedbackKind,number>>={reinforce:520,attack:720,captureMove:520,friendlyMove:640,raidTarget:560};
+export function feedbackDuration(kind:FeedbackKind,speed:BattleSpeed,forward:boolean){return forward||speed==='very-fast'?40:speed==='fast'?Math.round(FEEDBACK_NORMAL_MS[kind]*.4375):speed==='slow'?FEEDBACK_NORMAL_MS[kind]*2:speed==='very-slow'?FEEDBACK_NORMAL_MS[kind]*3.75:FEEDBACK_NORMAL_MS[kind];}
 export class ComputerFeedbackController {
  private previous:GameState;private match:number;private generation=0;private timer:number|null=null;private disposed=false;private active:FeedbackFrame|null=null;
  constructor(private readonly bridge:FeedbackBridge,private readonly scheduler:BattleScheduler,private readonly paint:()=>void){this.previous=bridge.state;this.match=bridge.gameGeneration;}

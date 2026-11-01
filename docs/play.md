@@ -17,13 +17,14 @@ If a game is already kept in this browser, press **Resume saved game**. Resume k
 | Setting | Choices and effect |
 | --- | --- |
 | Button labels | Text, Icons, or Text 2 turns, then Icons (default). Automatic mode keeps text for your first two personal turns and then uses icons; resuming restores the correct phase. Your choice applies immediately and is kept across new games, reloads and screen sizes. |
+| Computer turn speed | Slow, Normal (default), Fast or Very fast. Changes presentation pacing immediately and is kept on this browser; it does not change computer decisions or difficulty. |
 | Computer opponents | 1, 2 or 3; default 3. You control one seat in normal play. |
 | Starting armies | 1–2, 1–3 or 1–4 armies per country; default 1–3. All seats use the same range, with balanced aggregate budgets apart from unavoidable integer differences. |
 | Disasters and production | Off, Rare, Normal or Often; default Normal. Off removes world events and production-centre stars. |
 | Map size | 46, 72 or 96 regions; default 46. Larger maps add islands and use numbered territory names. |
 | Combat rules | Defender wins ties (default), or Legacy (reroll ties). Applies to a new match. |
 
-Settings during play pauses the game. **Button labels take effect immediately** and do not change match rules or actions. The other choices apply only to the next game. Return to the map to continue the current match, or choose New game to use the new setup. Help reports the running game's combat rule even when a different rule is selected for the next game. The ordinary launcher picks a new seed; seed and choices determine the initial map and deal, and the same actions reproduce its dice sequence.
+Settings during play pauses the game. **Button labels and computer turn speed take effect immediately** and do not change match rules or actions. The other choices apply only to the next game. Return to the map to continue the current match, or choose New game to use the new setup. Help reports the running game's combat rule even when a different rule is selected for the next game. The ordinary launcher picks a new seed; seed and choices determine the initial map and deal, and the same actions reproduce its dice sequence.
 
 ## Read the map and controls
 

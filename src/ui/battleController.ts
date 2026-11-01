@@ -1,7 +1,7 @@
 import { activePlayer, apply, armyCount, cloneState, DeterministicRng, diceCount, friendlySources, friendlyTargets, ownerOf, pairResults, province, resolve, whyNot } from "../core";
 import type { Action, AttackOutcome, GameState } from "../core";
 
-export type BattleSpeed = "very-slow" | "slow" | "normal" | "fast";
+export type BattleSpeed = "very-slow" | "slow" | "normal" | "fast" | "very-fast";
 export interface BattleScheduler {
   schedule(callback: () => void, delayMs: number): number;
   cancel(handle: number): void;
@@ -36,7 +36,7 @@ export const DEFAULT_STOP_THRESHOLD = 2;
 export const EXCHANGE_TIME = 400;
 export const HUMAN_BATTLE_WATCH = 5000;
 // [designed] T70 Very slow gives human exchanges 6 × 400 ms; computers use their explicit 2 s pace.
-export const SPEED_SCALE: Readonly<Record<BattleSpeed, number>> = { "very-slow": 6, slow: 1.5, normal: 1, fast: 0.5 };
+export const SPEED_SCALE: Readonly<Record<BattleSpeed, number>> = { "very-slow": 6, slow: 1.5, normal: 1, fast: 0.5, "very-fast":0.1 };
 
 /** Trace only the exchange the player just chose, with an independent RNG copy.
  * The existing resolver decides every tie; only ordinary apply changes the game.

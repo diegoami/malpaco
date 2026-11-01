@@ -1,3 +1,4 @@
+import {readComputerSpeed,saveComputerSpeed,COMPUTER_SPEED_CHANGED,COMPUTER_SPEED_KEY} from './computerSpeed';
 import {phaseMessage,PhaseAnnouncementTimer} from './phaseAnnouncement';
 import {DrawNoticeTimer} from './drawNoticeTimer';
 import {completedPersonalTurns,updateButtonLabelProgress} from './buttonLabels';
@@ -39,7 +40,7 @@ import {connectNativeGame} from "./nativeGameHost";
 import type {NativeGameBinding} from "./nativeGameHost";
 import {NextGameSettingsDialog} from "./nextGameSettings";
 
-/** Presentation preferences: fixed readable player pace; Pause is kept per game. */
+/** Presentation preferences: browser-wide computer pace; Pause is kept per game. */
 export type PanelDetail = "compact" | "detailed";
 export interface BattlePreferences { threshold: number; speed: BattleSpeed; detail?: PanelDetail }
 
@@ -54,7 +55,7 @@ export class ReferenceBattleGame {
   private readonly computerStatus = h("p", { id: "reference-computer-status", role: "status" });
   private readonly playbackPause = h("button", { id: "game-pause-button", type: "button" }, "Pause");
   private readonly playbackSpeed = h("select", { id: "game-speed", "aria-label": "Game speed", title: "Game speed" },
-    ...["very-slow", "slow", "normal", "fast"].map(value => h("option", { value }, value === "very-slow" ? "Very slow" : value[0]!.toUpperCase() + value.slice(1))));
+    ...["very-slow", "slow", "normal", "fast", "very-fast"].map(value => h("option", { value }, value === "very-slow" ? "Very slow" : value === "very-fast" ? "Very fast" : value[0]!.toUpperCase() + value.slice(1))));
   /** T101: Fast-forward rests beside Pause and the speed choice, the only controls while a computer plays. */
   private readonly forward = h("button", { id: "fast-forward-button", type: "button", "aria-label": "Fast-forward to your turn", title: "Fast-forward to your turn", "aria-pressed": "false" }, glyph("fast-forward"));
   private readonly eventLog: GameEventLog;
@@ -162,7 +163,7 @@ export class ReferenceBattleGame {
     this.worldEvents=state.rules.events?new WorldEventController(this.controller,human.length===1?human[0]!.id:'',{ack:presentation?.player?.eventAck??0,cleared:presentation?.player?.eventMarksCleared??0},p=>presentation?.player?.remember?.({eventAck:p.ack,eventMarksCleared:p.cleared})):null;
     this.worldView=this.worldEvents?new WorldEventView(this.worldEvents,()=>this.render()):null;this.worldEvents?.update();
     this.computer = automatic ? new ComputerTurnLoop(this.controller, { schedule: (cb, delay) => window.setTimeout(cb, delay), cancel: id => window.clearTimeout(id) }) : null;
-    const threshold = preferences.threshold, speed = preferences.speed;
+    const threshold = preferences.threshold, speed = presentation?.player?readComputerSpeed():preferences.speed;
     this.controller.restorePreferences(threshold, speed);
     // T100: a game left paused opens paused.
     if (presentation?.player?.paused) this.controller.setPlaybackPaused(true);
@@ -205,7 +206,7 @@ export class ReferenceBattleGame {
       this.controller.setPlaybackPaused(!this.controller.playbackPaused, true);
       presentation?.player?.remember?.({paused: this.controller.playbackPaused});
     };
-    this.playbackSpeed.onchange = () => {if (this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed)) presentation?.player?.remember?.({speed: this.controller.view.speed});};
+    this.playbackSpeed.onchange = () => {if(presentation?.player){saveComputerSpeed(this.playbackSpeed.value);}else this.controller.setSpeed(this.playbackSpeed.value as BattleSpeed);};
     this.forward.onclick = () => {this.computer?.fastForward(); this.render();};
     this.files = new ReferenceMatchFiles(onLoad, options, () => this.controller.state,presentation?.identity,Boolean(presentation),undefined,presentation?.acceptsVersion1);
     this.nativeHost = presentation?.player ? connectNativeGame(() => {
@@ -270,6 +271,7 @@ export class ReferenceBattleGame {
     for (const overlay of this.chrome.obstacles) this.mapView.camera?.avoid(overlay);
     document.body.dataset["ready"] = "true";
     window.addEventListener("keydown", this.onKeyDown);
+    if(this.presentation?.player){window.addEventListener(COMPUTER_SPEED_CHANGED,this.onComputerSpeed);window.addEventListener("storage",this.onComputerSpeedStorage);}
     window.addEventListener("resize", this.onResize);
     this.mounted = true;
     this.render();
@@ -294,9 +296,12 @@ export class ReferenceBattleGame {
     this.files.dispose();
     this.controller.dispose();
     window.removeEventListener("keydown", this.onKeyDown);
+    window.removeEventListener(COMPUTER_SPEED_CHANGED,this.onComputerSpeed);window.removeEventListener("storage",this.onComputerSpeedStorage);
     window.removeEventListener("resize", this.onResize);
   }
 
+  private readonly onComputerSpeed=()=>{if(!this.disposed)this.controller.setSpeed(readComputerSpeed());};
+  private readonly onComputerSpeedStorage=(event:StorageEvent)=>{if(event.key===COMPUTER_SPEED_KEY||event.key===null)this.onComputerSpeed();};
   private readonly onResize = () => { if (this.mounted && !this.disposed) this.placeCard(); };
 
   /** T97: the open card moves aside from the badges of the countries in play. */
