@@ -2335,3 +2335,19 @@ body[data-button-labels="icons"] #turn-tracker { --resume-width:48px; }
  .game-overlay[data-primary-commands="true"] #game-focus-drawer:has(#friendly-move-direction) .game-drawer-content { grid-row:1; }
  .game-overlay[data-primary-commands="true"] #game-focus-drawer:has(#friendly-move-direction) #fold-card { position:absolute; right:12px; bottom:12px; top:auto; }
 }
+
+/* T165: the next game is the primary result action, in every label mode. */
+.game-overlay[data-primary-commands="true"] .victory-new-game { display:grid; width:100%; margin:0 0 16px; }
+.game-overlay[data-primary-commands="true"] .victory-new-game #result-new-game-button {
+ display:grid !important; place-items:center; width:100% !important; min-width:0 !important; max-width:100%; height:64px !important; min-height:64px !important;
+ background:#267147 !important; color:#fff !important; border:3px solid !important; border-color:#a7efc2 #123d26 #123d26 #a7efc2 !important; border-radius:4px !important; box-shadow:2px 3px 0 #071b25,inset 0 1px 0 #fff5 !important;
+}
+.game-overlay[data-primary-commands="true"] .victory-new-game #result-new-game-button.game-text-command { font-size:24px !important; }
+.game-overlay[data-primary-commands="true"] .victory-new-game #result-new-game-button.game-mobile-command > svg { width:32px !important; height:32px !important; color:inherit !important; stroke:currentColor !important; }
+@media (max-height:500px) {
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .victory-result:has(.victory-new-game) .result-title { margin:0 0 8px; font-size:24px; }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .victory-result:has(.victory-new-game) .card-note { margin:0 0 8px; font-size:14px; line-height:1.35; }
+ .game-overlay[data-primary-commands="true"] #game-focus-drawer .victory-result:has(.victory-new-game) .victory-choices { gap:8px; }
+ .game-overlay[data-primary-commands="true"] .victory-new-game { margin-bottom:12px; }
+ .game-overlay[data-primary-commands="true"] .victory-new-game #result-new-game-button { height:56px !important; min-height:56px !important; }
+}

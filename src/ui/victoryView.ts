@@ -15,7 +15,7 @@ export class VictoryView {
   private standingsOpen = false;
   private detailsOpen = false;
 
-  constructor(private readonly controller: BattleController, private readonly links: { newGame: () => void; menu: () => void; details?: () => readonly string[]; files?: boolean; history?: boolean; totals?: () => string } = { newGame: () => {}, menu: () => {} }) {}
+  constructor(private readonly controller: BattleController, private readonly links: { newGame: () => void; menu: () => void; details?: () => readonly string[]; files?: boolean; history?: boolean; prominentNewGame?: boolean; totals?: () => string } = { newGame: () => {}, menu: () => {} }) {}
 
   render(state: GameState, revision: number): void {
     this.el.replaceChildren();
@@ -62,8 +62,10 @@ export class VictoryView {
         iconButton("stop-game-button", "Stop game", "Stop game", "stop", false, () => this.controller.dispatch({ kind: "stopGame" }, revision)),
         standingsButton, detailsButton));
     } else {
+      const newGame=iconButton("result-new-game-button", "New game", "New game", "new-game", false, () => this.links.newGame(), true);
+      if(this.links.prominentNewGame)this.el.append(h('div',{class:'victory-new-game'},newGame));
       this.el.append(h("div", { class: "card-icons victory-choices" },
-        iconButton("result-new-game-button", "New game", "New game", "new-game", false, () => this.links.newGame(), true),
+        ...(this.links.prominentNewGame?[]:[newGame]),
         standingsButton,
         // T101: the history is off the player's screen; `?log` brings it back (tests and bug reports).
         ...(this.links.history ? [iconButton("result-history-button", "History", "History", "history", false, () => this.links.menu())] : []),
