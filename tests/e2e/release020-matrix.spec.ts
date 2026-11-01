@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {cardLabel} from '../../src/ui/cardLabels';
 import {visitGame} from './shell';
 // T89: the 0.2.0 acceptance matrix (docs/plans/release-0.2.0-acceptance.md), A1–A14, by real
@@ -133,12 +134,12 @@ test('A4: a friendly-move draft survives resize; Cancel changes nothing; Move & 
  const f=friendlyFixture();await reference(page,{width:1280,height:800});
  await page.getByLabel('Seed',{exact:true}).fill(String(f.seed));await page.getByLabel('Seats',{exact:true}).selectOption('2');await page.getByRole('button',{name:'Start game',exact:true}).click();
  for(let n=0;n<f.placements;n++)await country(page,f.from).click();await page.locator('#start-combat-button').click();let s=await saved(page);
- await page.locator('#start-friendly-move-button').click();await country(page,f.from).click();await country(page,f.to).click();
+ await startFriendlyMove(page);await country(page,f.from).click();await country(page,f.to).click();
  await openSurface(page,'actions');expect(await shown(page)).toEqual(['Minimum armies','Move one fewer army','Armies to move','Move one more army','Maximum armies','Move and end turn','Cancel · back to attacks','Fold card']);
  await page.locator('#friendly-move-amount').fill('1');
  await page.setViewportSize(LANDSCAPE);await settle(page);await page.setViewportSize(PORTRAIT);await settle(page);await openSurface(page,'actions');
  await expect(page.locator('#friendly-move-amount')).toHaveValue('1');await page.locator('#cancel-friendly-move-button').click();await exactly(page,s);
- await page.locator('#start-friendly-move-button').click();await country(page,f.from).click();await country(page,f.to).click();
+ await startFriendlyMove(page);await country(page,f.from).click();await country(page,f.to).click();
  await openSurface(page,'actions');await page.locator('#friendly-move-amount').fill('1');await page.locator('#confirm-friendly-move-button').click();
  s=next(s,{kind:'friendlyMove',from:f.from,to:f.to,amount:1} as Action);await exactly(page,s);
 });

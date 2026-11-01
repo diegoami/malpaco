@@ -1,5 +1,5 @@
 import {glyph} from './icons';
-import {readButtonLabels,BUTTON_LABELS_CHANGED,BUTTON_LABELS_KEY} from './buttonLabels';
+import {readButtonLabels,effectiveButtonLabels,BUTTON_LABELS_CHANGED,BUTTON_LABELS_KEY} from './buttonLabels';
 /** Player action presentation. Data symbols on the map/cards are not commands. */
 const commandIcons:Readonly<Record<string,string>>={
  'start-game':'play','resume-game':'history','configure-new-game':'new-game','download-recovery-game':'files',
@@ -22,10 +22,11 @@ const labels:Readonly<Record<string,string>>={
  'fold-world-event':'Fold','resume-turn-button':'Resume',
  'province-move-button':'Move',
 };
-const iconTools=new Set(['map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-min-button','capture-max-button','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-min-button','friendly-move-max-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
+const iconTools=new Set(['turn-widget-smaller','turn-widget-larger','hide-turn-widget','show-turn-widget','map-zoom-in','map-zoom-out','map-fit','map-focus','open-countries','scoreboard-button','game-log-button','open-required-action','capture-min-button','capture-max-button','capture-less-button','capture-more-button','confirm-capture-button','friendly-move-min-button','friendly-move-max-button','friendly-move-less-button','friendly-move-more-button','confirm-friendly-move-button','cancel-friendly-move-button']);
 const closeTools=new Set(['fold-card','fold-world-event','close-game-drawer','close-hand','close-game-help','close-next-game-settings','close-scoreboard','close-result-card']);
 export function textCommands(root:HTMLElement):()=>void {
- let labelMode=readButtonLabels();root.dataset['buttonLabels']=labelMode;
+ const currentMode=()=>effectiveButtonLabels(readButtonLabels(),Number(document.body.dataset['personalTurnsCompleted']??0));
+ let labelMode=currentMode();root.dataset['buttonLabels']=labelMode;
  const originals=new WeakMap<HTMLButtonElement,{node:SVGElement;version:number}>();
  const mobile=(button:HTMLButtonElement):boolean=>{
   const raw=button.querySelector<SVGElement>(':scope > svg:not(.mobile-command-symbol)');
@@ -77,7 +78,7 @@ export function textCommands(root:HTMLElement):()=>void {
   for(const b of el.querySelectorAll('button'))buttons.add(b);
  };
  const initial=new Set<HTMLButtonElement>();scan(root,initial);initial.forEach(decorate);
- const refresh=()=>{labelMode=readButtonLabels();root.dataset['buttonLabels']=labelMode;const buttons=new Set<HTMLButtonElement>();scan(root,buttons);buttons.forEach(decorate);};
+ const refresh=()=>{labelMode=currentMode();root.dataset['buttonLabels']=labelMode;const buttons=new Set<HTMLButtonElement>();scan(root,buttons);buttons.forEach(decorate);};
  const storage=(event:StorageEvent)=>{if(event.key===BUTTON_LABELS_KEY||event.key===null)refresh();};
  window.addEventListener(BUTTON_LABELS_CHANGED,refresh);window.addEventListener('storage',storage);
  const observer=new MutationObserver(records=>{

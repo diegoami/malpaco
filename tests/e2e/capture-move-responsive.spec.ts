@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 // T82 (A3, A4, E): pending capture and friendly-move drafts survive resize, overlays and
 // fold/return; pending badges stay dashed on their own land, even at short landscape heights.
 import {test,expect} from "@playwright/test";
@@ -55,11 +56,11 @@ test("a non-default and an invalid capture draft survive resize, overlays and fo
 
 test("a non-default friendly-move draft survives resize and overlays; Cancel and Move & end turn stay distinct",async({page})=>{
  const f=friendlyFixture();await start(page,f.seed,f.from,f.placements);const state=await saved(page);
- await page.locator("#start-friendly-move-button").click();await country(page,f.from).click();await country(page,f.to).click();
+ await startFriendlyMove(page);await country(page,f.from).click();await country(page,f.to).click();
  await openSurface(page,'actions');const draft="1";await page.locator("#friendly-move-amount").fill(draft);
  await disturb(page,"#friendly-move-amount",false);await expect(page.locator("#friendly-move-amount")).toHaveValue(draft);
  await page.locator("#cancel-friendly-move-button").click();expect((await saved(page)).history).toEqual(state.history);
- await page.locator("#start-friendly-move-button").click();await country(page,f.from).click();await country(page,f.to).click();
+ await startFriendlyMove(page);await country(page,f.from).click();await country(page,f.to).click();
  await openSurface(page,'actions');await page.locator("#friendly-move-amount").fill(draft);await page.locator("#confirm-friendly-move-button").click();
  const after=step(state,{kind:"friendlyMove",from:f.from,to:f.to,amount:1});expect((await saved(page)).armies).toEqual(after.armies);
 });

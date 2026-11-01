@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {noticeContinue,visitGame,reloadGame,startFromResult} from './shell';
 // T100: the scoreboard, kept in this browser. Each player game counts once when it ends: a win,
 // an elimination (Lost at once, even if you then watch) or New game's give-up; `?setup` never counts.
@@ -95,7 +96,7 @@ test('a win adds exactly one Won row, shown with the totals line',async({page})=
 test('a friendly transfer can also win and records exactly one Won row',async({page})=>{
  test.setTimeout(90000);const seen=errors(page),from=friendlySources(WIN.last)[0]!,to=friendlyTargets(WIN.last,from)[0]!;
  const expected=apply(WIN.last,{kind:'friendlyMove',from,to,amount:1});if(!expected.ok)throw Error(expected.error);expect(expected.state.winner).toBe('seat1');
- await keepOnce(page,{[ROOT]:WIN.text});await visitGame(page,'/');await map(page);await page.locator('#start-friendly-move-button').click();
+ await keepOnce(page,{[ROOT]:WIN.text});await visitGame(page,'/');await map(page);await startFriendlyMove(page);
  for(const id of [from,to]){const region=page.locator(`[data-country="${id}"]`);await region.focus();await region.press('Enter');}
  await openSurface(page,'actions');await page.locator('#friendly-move-amount').fill('1');await page.locator('#confirm-friendly-move-button').click();await winningNotice(page);
  await expect(page.locator('#victory-totals')).toHaveText('Won 1 · Lost 0 · Gave up 0');expect(await read(page,ROOT)).toBeNull();

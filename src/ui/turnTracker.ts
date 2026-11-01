@@ -38,8 +38,23 @@ export class TurnTracker {
  private readonly rows=h('div',{class:'turn-rows',role:'list'});
  private readonly instruction=h('div',{id:'turn-instruction'});
  private readonly resume=h('button',{id:'resume-turn-button',type:'button','aria-label':'Resume game',hidden:true},'Resume');
+ private readonly content=h('div',{id:'turn-widget-content',tabindex:0,role:'region','aria-label':'Turn guidance and player totals'});
+ private readonly smaller=h('button',{id:'turn-widget-smaller',class:'turn-widget-control',type:'button','aria-label':'Make turn widget smaller',title:'Make turn widget smaller'},glyph('minus'));
+ private readonly larger=h('button',{id:'turn-widget-larger',class:'turn-widget-control',type:'button','aria-label':'Make turn widget larger',title:'Make turn widget larger'},glyph('plus'));
+ private readonly hide=h('button',{id:'hide-turn-widget',class:'turn-widget-control',type:'button','aria-label':'Hide turn widget',title:'Hide turn widget'},glyph('close'));
+ private readonly restore=h('button',{id:'show-turn-widget',class:'turn-widget-control',type:'button','aria-label':'Show turn widget',title:'Show turn widget',hidden:true},glyph('standings'));
+ private readonly controls=h('div',{class:'turn-widget-controls',role:'group','aria-label':'Turn widget view'},this.smaller,this.larger,this.hide);
+ private size=1;
  private signature='';
- constructor(private readonly onResume?:()=>void){this.resume.onclick=()=>this.onResume?.();this.el.append(h('div',{class:'turn-guidance','aria-live':'polite'},this.heading,this.instruction),this.rows,this.resume);}
+ constructor(private readonly onResume?:()=>void){
+  this.resume.onclick=()=>this.onResume?.();
+  this.smaller.onclick=()=>this.resize(-1);this.larger.onclick=()=>this.resize(1);
+  const fold=(hidden:boolean)=>{this.content.hidden=hidden;this.controls.hidden=hidden;this.restore.hidden=!hidden;this.el.dataset['folded']=String(hidden);(hidden?this.restore:this.hide).focus({preventScroll:true});};
+  this.hide.onclick=()=>fold(true);this.restore.onclick=()=>fold(false);
+  this.content.append(h('div',{class:'turn-guidance','aria-live':'polite'},this.heading,this.instruction),this.rows);
+  this.el.append(this.controls,this.restore,this.content,this.resume);this.resize(0);
+ }
+ private resize(delta:number):void {this.size=Math.max(0,Math.min(2,this.size+delta));this.el.style.setProperty('--tracker-scale',String([.8,1,1.2][this.size]));this.el.dataset['size']=['small','normal','large'][this.size]!;this.smaller.disabled=this.size===0;this.larger.disabled=this.size===2;}
  render(state:GameState,context:GuidanceContext){
   const rows=turnRows(state,context.feedbackSeat),guide=humanGuidance(state,context),signature=JSON.stringify({rows,guide,kind:context.feedbackKind});
   if(signature===this.signature)return guide;this.signature=signature;

@@ -68,10 +68,10 @@ test("Fast-forward shortens only the wait, plays the same actions, ends on a hum
 
 test("T101: each speed waits its own step before a computer action and plays the same actions", () => {
   const initial = deserializeVersionedMatch(pinned("watch").text).state;
-  expect(COMPUTER_STEP_TIMES).toEqual({ "very-slow": 2000, slow: 350, normal: 120, fast: 60 });
+  expect(COMPUTER_STEP_TIMES).toEqual({ "very-slow": 2000, slow: 350, normal: 90, fast: 60, "very-fast":40 });
   let expected = initial;
   for (let i = 0; i < 6; i++) { const r = apply(expected, computerAction(expected)!); if (!r.ok) throw Error(r.error); expected = r.state; }
-  for (const speed of ["very-slow", "slow", "normal", "fast"] as BattleSpeed[]) {
+  for (const speed of ["very-slow", "slow", "normal", "fast", "very-fast"] as BattleSpeed[]) {
     const clock = new Clock(); let loop: ComputerTurnLoop | undefined;
     const c = new BattleController(initial, clock, () => loop?.update());
     c.restorePreferences(2, speed); loop = new ComputerTurnLoop(c, clock); loop.update();
