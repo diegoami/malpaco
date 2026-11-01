@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "version": "0.5.2",
-  "sourceCommit": "4a204640d6d848cf49a2fcc078f5bcfad5f4e862",
-  "capturedAt": "2026-11-01T11:03:12.282Z",
+  "sourceCommit": "4dc25fa5acaa6504f3170e3a93a01d6664d464b4",
+  "capturedAt": "2026-11-01T17:25:22.235Z",
   "dirty": true,
   "command": "npm run manual:refresh",
   "browser": "Version 1.63.0",
@@ -17,18 +17,18 @@
     ]
   },
   "sources": {
-    "docs/play.md": "3e0ecb427db4e445f463cc96604022df06c3615828b4386cbd8098b49fb25680",
-    "src/ui/help.ts": "555dfebe9cfb2d7db65be15c68afc5e6a7f7184ab8f7a306162756437f35de9b",
+    "docs/play.md": "5fb0a4bb58aa1d453f25085ef3fb443c42105656d1e556de3516bb9dd66e2b09",
+    "src/ui/help.ts": "6c353831f1a4761904fff67e51d9b31d469501038fa17a960a0ea46a91bd8d29",
     "src/ui/buttonLabels.ts": "f342f1b84e46d7338e9a317596ded4290ea2698b0c70d4fa034b7d5873ad2380",
     "src/ui/turnTracker.ts": "7307275181b31ee1e695e7f2a2dc2333a135d529a735288f5c46ea661cc446d8",
-    "src/ui/mapCamera.ts": "408d1c15489ec9e66166f9cb6aafdefbc236f9005ea4e811e51b2efb7640f356",
+    "src/ui/mapCamera.ts": "b81a8c62acf5404f5f0cce7556aee2915156b57cdd332b67b852a1195c09784a",
     "src/ui/computerSpeed.ts": "0b7be4ba7bb66bae181ef2e41959e31995b7879e2e353f13ea8225e065367df0",
     "src/ui/nextGameSettings.ts": "e7998fb3203a63573973efff9ae56b747eca48dedd6b87f6c40f3db12a15fbd1",
     "src/ui/gameLauncher.ts": "b2a8e20976846f81791f040b31d59eb8b716ddd290df02b7c67c776ec294fe98",
     "src/ui/provinceAction.ts": "8b0cc2f0d3ebeb5bb0ad8b7d18743c389dec84557d90343a088bd4e174f71e0b",
     "src/ui/textCommands.ts": "7b962eec164fecb6817204dc21bba093e7b4d7f11a12c23bd4992f6670435e36",
-    "src/ui/referenceBattleGame.ts": "36a81e16bf5b16a5dd63cafb5b49534c57f0e0b09c97e43039703283b54a4c4c",
-    "src/styles.css": "99c268d6a718e93fc3b9447fc01c336cb553407d38c0e21c0872123827c4806f",
+    "src/ui/referenceBattleGame.ts": "1ae7a3de264dd33098fab8cf6560a68e45d0d073ae897f730dd749f7bad0d3f1",
+    "src/styles.css": "bdf9bb1f67abb1bf05d589a00424775c12f8e9f28dbb37f1dc0ef440fc137ff6",
     "tests/e2e/player-manual.spec.ts": "23758ea3fd9ffa4d7264d69818a01372121202273dc403565c62d562f491e9c5",
     "tests/e2e/event-fixture.ts": "88129172716dc8cdfcf998500a1eeb855bafdcc84420bc4547a8fade0a5890b1",
     "vite.config.ts": "c5ab3a851708896949c89875acc306a8bbe28c74d636f58b31e792d7b5fbabe3",
@@ -36,14 +36,14 @@
     "tools/manual/refresh.mjs": "fc1e66b5dc521fd3ef3f2d0ac685e3729293d9f9b5dd94b701b54f733c27ffbd"
   },
   "files": {
-    "index.html": "418df05246c071fd01efe0e74d341f915351e253127a3069063b3efdc19659ad",
+    "index.html": "4fbc23c2232313d36c60f4b17de4c775e89df3723c29e4e75e224270302fbe0d",
     "manual-images/launcher.png": "e4fb3e02b147dbef05edf35d3bfe17b52f521b2afe6107a18092a98164f9031b",
-    "manual-images/map.png": "cc67767deb3a14c167198723b285cc76a0c98de4d260af130dc0650afd4ac133",
-    "manual-images/phone.png": "042da17a022172e5ee320d07e5aa55ec86e52b63d4955ed8d20b3b498bb9e10d",
-    "manual-images/attack.png": "7c9cc492bd6fc30489f110db3cfd1674eff7f3a13ce17352595d896f5c952d14",
-    "manual-images/capture.png": "228864f6d452cce0ddf08aac9d39e5044f568d25ef5e6d47555c3c82909d2a1a",
-    "manual-images/cards.png": "b6c35f91bd8cdd5d33ad33d336fe0de6c21d0ac686d25c45ed8789fb2440e183",
-    "manual-images/event.png": "e05d76760a70abe8e1b17d5ced322862eeae2c565cbc2d01fbc2cf5ea2818443",
-    "manual-images/results.png": "5ce5081bfc722f3d51b2cce24d52db2fbafd71de0ea276a636a4247cb861c7b2"
+    "manual-images/map.png": "5b87eb4186df1fd0ed51ead5fff26d57e34ba09a4ce604f4588cca122b6d5d79",
+    "manual-images/phone.png": "85f9b74e3d4796428713415d203e7f070ef1f16bd44b17d071a5602069e7f8ed",
+    "manual-images/attack.png": "5f4fbd84189871d857141dd8f1dca51af1f82e1e24897c50881c1d8afbd1dd8d",
+    "manual-images/capture.png": "71337e2fc72cfa74118e015913b10dd990994bc085cc40b75f0af637cb7bab5e",
+    "manual-images/cards.png": "da248547cc257b9e2e4cd5fd5fffd4291bcdaa1f7424abf88f9aefafd22d3518",
+    "manual-images/event.png": "5bf3c6f8905f121f250c5d6e4aa4b810fc961d40224e9d328a3a451abe7ad0db",
+    "manual-images/results.png": "50da5acd607cfdb95da4117d74b246055bd8aa886b4460f1be6145031cc3839c"
   }
 }

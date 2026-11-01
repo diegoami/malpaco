@@ -2257,7 +2257,8 @@ body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:
 #turn-tracker {
  --tracker-width:248px; --tracker-title:22px; --tracker-instruction:20px; --tracker-row:18px; --tracker-mark:18px;
  display:flex; flex-direction:column; gap:4px; width:calc(var(--tracker-width) * var(--tracker-scale,1)); max-width:calc(100% - 2 * var(--edge));
- max-height:calc(100% - 2 * var(--edge) - var(--primary-height,48px) - var(--gap)); padding:10px;
+ /* Reserve the bottom camera toolbar while widget content scrolls. */
+ max-height:calc(100% - 2 * var(--edge) - var(--primary-height,48px) - var(--target) - 2 * var(--gap)); padding:10px;
 }
 #turn-widget-content { min-height:0; overflow-y:auto; overscroll-behavior:contain; }
 #turn-tracker .turn-widget-controls { display:flex; gap:4px; flex-shrink:0; }

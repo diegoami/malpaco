@@ -263,3 +263,5 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T160](T160.md): automatic region choice for ambiguous taps (#419), after T159.
 
 - [T161](T161.md): 0.5.2 metadata, acceptance and exact CI candidate (#429), after T156–T160.
+
+- [T162](T162.md): persistent bottom-left icon zoom controls and widget clearance (#435/#433), after T161.

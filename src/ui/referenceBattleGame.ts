@@ -178,7 +178,10 @@ export class ReferenceBattleGame {
       focus: id => this.mapView.camera?.focusOn(id),
       painted: title => this.chrome?.retitle(title),
     });
-    if(this.mapView.camera)this.mapView.camera.onResolvedTap=id=>this.clickProvince(id);
+    if(this.mapView.camera){
+      this.mapView.camera.onResolvedTap=id=>this.clickProvince(id);
+      if(presentation?.player)this.mapView.camera.keepZoomControlsVisible();
+    }
     this.feedback=automatic&&presentation?.player?new ComputerFeedbackController(this.controller,{schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.mounted&&!this.disposed)this.renderMap();}):null;
     this.drawNoticeTimer=presentation?.player?new DrawNoticeTimer({schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{const v=this.cards.view;if(v.phase==='reward')this.cards.acknowledge(v.revision);}):null;
     this.worldNoticeTimer=presentation?.player?new DrawNoticeTimer({schedule:(cb,ms)=>window.setTimeout(cb,ms),cancel:id=>window.clearTimeout(id)},()=>{if(this.worldEvents?.dismiss())this.render();}):null;
@@ -563,8 +566,8 @@ export class ReferenceBattleGame {
     // controls stay on screen; the menu, camera and Countries icons return on your turn or a pause.
     const restore = computer && !result && this.chrome?.openSurface === "actions" && (document.activeElement === document.body || this.chrome.drawer.contains(document.activeElement));
     this.chrome?.update(status, choice, gamePaused, prompt, !this.presentation?.player && computer && !result && !gamePaused);
-    // T103 (owner): a card with nothing to do (an attack card whose pair can no longer fight: only Cancel) closes.
-    if (this.presentation?.player && this.chrome?.openSurface === "actions" && !required && mode !== "move" && !state.pendingCapture && !result && !raiding && state.phase === "attack") this.chrome.close(false);
+    // Close an obsolete choice card when placement or attack has no required choice.
+    if (this.presentation?.player && this.chrome?.openSurface === "actions" && !required && mode !== "move" && !state.pendingCapture && !result && !raiding && (state.phase === "attack" || state.phase === "reinforce")) this.chrome.close(false);
     // A paused computer turn still shows no choice card (its menu card may open).
     if (computer && !result && this.chrome?.openSurface === "actions") this.chrome.close(false);
     if (restore) this.playbackPause.focus({preventScroll: true});
