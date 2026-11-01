@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {cardLabel} from '../../src/ui/cardLabels';
 // T101 (owner, 2026-10-22): every floating card folds to a chip and drags (pointer and touch), its
 // place kept for later cards and after a reload; a tap on its buttons never drags, and a map tap
@@ -78,7 +79,7 @@ for(const size of SIZES)test.describe(`${size.width}×${size.height}`,()=>{
   expect(state.phase).toBe('capture');
   await foldCycle(page,page.locator('#confirm-capture-button'),/^Confirm capture move-in$/);
   const m=friendly();await nineIsles(page,m.seed,m.placements,m.from);
-  await page.locator('#start-friendly-move-button').click();await country(page,m.from).press('Enter');await country(page,m.to).press('Enter');
+  await startFriendlyMove(page);await country(page,m.from).press('Enter');await country(page,m.to).press('Enter');
   await foldCycle(page,page.locator('#confirm-friendly-move-button'),/^Choose a friendly move$/);
  });
 

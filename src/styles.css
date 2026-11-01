@@ -2202,3 +2202,29 @@ button.game-mobile-command > svg { display:block !important; color:inherit; stro
  body[data-button-labels="text"] .game-overlay:has(#close-result-card:not([hidden])) { --primary-height:104px; }
 }
 @media (max-height:500px) { #phase-announcement { padding:14px 20px; } #phase-announcement strong { font-size:32px; } #phase-announcement span { margin-top:6px; font-size:18px; } }
+
+/* T157: compact text actions; the armies indicator follows Cards in the HUD. */
+body { --map-command-font:clamp(13px, min(1.3vw, 3.2vh), 18px); }
+:is(#province-action-button,#province-move-button).game-text-command { padding:4px 6px !important; letter-spacing:0 !important; }
+.game-primary-buttons > .game-pool-slot { position:static !important; inset:auto !important; padding:0; margin:0; width:max-content; align-self:center; }
+.game-primary-buttons #placement-pool { display:flex; align-items:center; gap:4px; min-height:44px; padding:6px; font-size:16px !important; }
+.game-primary-buttons #placement-pool[hidden] { display:none; }
+.game-primary-buttons #placement-pool > svg { display:none; width:22px; height:22px; }
+body[data-button-labels="icons"] #placement-pool > svg { display:block; }
+body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:none; }
+@media (max-width:600px) {
+ body[data-button-labels="text"] .game-primary-buttons > .game-pool-slot { grid-column:2 / -1 !important; grid-row:2 !important; }
+ body[data-button-labels="text"] .game-overlay[data-primary-commands="true"]:has(#placement-pool:not([hidden])) { --primary-height:104px; }
+}
+.game-primary-buttons > .game-pool-slot:has(#placement-pool[hidden]) { display:none; }
+@media (min-width:901px) {
+ .game-primary-buttons > .game-pool-slot { grid-column:5 !important; grid-row:1 !important; }
+}
+.game-primary-buttons #placement-pool .placement-pool-unit { white-space:nowrap; }
+@media (max-width:600px) {
+ body[data-button-labels="text"] #game-status.game-primary-buttons { display:grid; grid-template-columns:max-content max-content 48px; grid-auto-rows:48px; max-width:calc(100vw - var(--safe-left) - var(--safe-right) - 2 * var(--edge)); }
+ body[data-button-labels="text"] #game-status > #new-game-button { grid-column:1; grid-row:1; }
+ body[data-button-labels="text"] #game-status > #open-game-menu { grid-column:2; grid-row:1; }
+ body[data-button-labels="text"] #game-status > #game-help-button { grid-column:3; grid-row:1; }
+ body[data-button-labels="text"] #game-status > #open-hand { grid-column:1; grid-row:2; }
+}

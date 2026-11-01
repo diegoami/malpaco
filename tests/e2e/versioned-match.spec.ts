@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
 import { mkdirSync, mkdtempSync, readFileSync } from "node:fs";
@@ -95,7 +96,7 @@ test("friendly move draft is transient; completed move restores exact next turn"
   const action = fixture.next!.action;
   if (action.kind !== "friendlyMove") throw Error("Pinned move must be friendlyMove");
   await setup(page); await upload(page, fixture.text); await check(page, fixture);
-  await page.locator("#start-friendly-move-button").click();
+  await startFriendlyMove(page);
   await country(page, action.from).click(); await country(page, action.to).click();
   await openSurface(page,'actions');await page.locator("#friendly-move-amount").fill("1");
   await openSurface(page,'actions');const stale = await page.locator("#confirm-friendly-move-button").elementHandle();
@@ -105,7 +106,7 @@ test("friendly move draft is transient; completed move restores exact next turn"
   await openSurface(page,'actions');await expect(page.locator("#confirm-friendly-move-button")).not.toBeVisible();
   await stale!.evaluate(n => n.dispatchEvent(new MouseEvent("click", { bubbles: true })));
   await check(page, fixture);
-  await page.locator("#start-friendly-move-button").click();
+  await startFriendlyMove(page);
   await country(page, action.from).click(); await country(page, action.to).click();
   await openSurface(page,'actions');await page.locator("#friendly-move-amount").fill("1"); await openSurface(page,'actions');await page.locator("#confirm-friendly-move-button").click();
   const moved = await check(page, completed);
@@ -134,7 +135,7 @@ test("bad loads and generated-map files preserve the live match, draft and contr
   const action = fixture.next!.action;
   if (action.kind !== "friendlyMove") throw Error("Expected friendly move fixture");
   await setup(page); await upload(page, fixture.text); const before = await check(page, fixture);
-  await page.locator("#start-friendly-move-button").click(); await country(page, action.from).click(); await country(page, action.to).click();
+  await startFriendlyMove(page); await country(page, action.from).click(); await country(page, action.to).click();
   const valid = envelope(fixture.options, fixture.actions);
   for (const invalid of ["{", JSON.stringify({ ...valid, version: 99 }), JSON.stringify({ ...valid, boardGenerator: { id: "fixed-reference", version: 99 } }), JSON.stringify({ ...valid, actions: [{ kind: "attack", from: "missing", to: "missing" }] }), pinned("legacy-progress").text]) {
     await upload(page, invalid); await openSurface(page,'settings');await expect(page.getByRole("alert")).toContainText(/Load failed:/i);

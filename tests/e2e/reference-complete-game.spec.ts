@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
 import { readFileSync, writeFileSync, mkdirSync, mkdtempSync } from "node:fs";
@@ -63,7 +64,7 @@ test("real human/computer setup, friendly move, pending save/resume, elimination
       await activate(country(page, action.to)); await openSurface(page,'actions'); await page.locator("#single-exchange-button").click();
       if (!battle) { await screenshot("battle"); battle = true; }
     } else if (action.kind === "friendlyMove") {
-      await page.locator("#start-friendly-move-button").click(); if(await country(page, action.from).getAttribute("aria-pressed")!=="true")await activate(country(page, action.from)); await activate(country(page, action.to));
+      await startFriendlyMove(page); if(await country(page, action.from).getAttribute("aria-pressed")!=="true")await activate(country(page, action.from)); await activate(country(page, action.to));
       await openSurface(page,'actions');await page.locator("#friendly-move-amount").fill(String(action.amount)); await screenshot("friendly-move");
       await openSurface(page,'actions');await page.locator("#confirm-friendly-move-button").click(); moved = true;
     } else if (action.kind === "captureMove") {
