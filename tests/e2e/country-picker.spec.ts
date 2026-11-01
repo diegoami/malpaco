@@ -1,5 +1,6 @@
+import {overlapPoint} from './tap-overlap';
 // T81: every country is reachable by name (touch and keyboard), Inspect never acts,
-// ambiguous taps ask for a named choice, and the list's Place 1 matches the engine.
+// ambiguous taps resolve by area, and the diagnostic list's Place 1 matches the engine.
 import {expect,test} from '@playwright/test';
 import type {Page} from '@playwright/test';
 import {apply} from '../../src/core';
@@ -81,29 +82,11 @@ test('in combat a list choice stages the attack pair without rolling',async({pag
 
 test.describe('touch',()=>{
  test.use({hasTouch:true});
- test('a tap on a border asks which country, by name, and acts on nothing until chosen',async({page})=>{
-  await start(page);
-  const before=await armies(page);
-  // A screen point on the shared border of two countries.
-  const point=await page.locator('#geographic-map').evaluate(svg=>{
-   for(const cell of svg.querySelectorAll<SVGGeometryElement>('[data-country] .cell')){
-    const id=cell.closest('[data-country]')!.getAttribute('data-country'),m=cell.getScreenCTM()!,n=cell.getTotalLength();
-    for(let t=0;t<n;t+=n/60){const q=cell.getPointAtLength(t).matrixTransform(m),here=new Set<string>();
-     for(const [dx,dy] of [[6,0],[-6,0],[0,6],[0,-6]])here.add(document.elementFromPoint(q.x+dx!,q.y+dy!)?.closest('[data-country]')?.getAttribute('data-country')??'');
-     here.delete('');if(here.size>1&&here.has(id!))return {x:q.x,y:q.y};}
-   }
-   return null;
-  });
-  expect(point).not.toBeNull();
-  await page.touchscreen.tap(point!.x,point!.y);
-  await expect(page.locator('#game-drawer-title')).toHaveText('Which country?');
-  const named=page.locator('[data-country-row]');expect(await named.count()).toBeGreaterThan(1);
-  for(const label of await named.evaluateAll(ns=>ns.map(n=>n.getAttribute('aria-label'))))expect(label).toMatch(/^(Place 1 army: )?[^:]+, (Blue|Orange|Green|Purple|You), \d+ arm/);// T97: seats by colour
-  expect(await armies(page)).toEqual(before);
-  // A named choice the active seat may use places exactly one army.
-  const usable=page.locator('[data-country-row]:not(:disabled)');
-  if(await usable.count()){const id=(await usable.first().getAttribute('data-country-row'))!;await usable.first().tap();
-   await expect(page.locator(`#geographic-map [data-country="${id}"]`)).toHaveAttribute('data-armies',String(Number(before[id])+1));}
+ test('a border tap chooses the greatest area without a popup and places once',async({page})=>{
+  await start(page);const before=await state(page),point=await overlapPoint(page,before.players[before.currentPlayer]!.id);expect(point).not.toBeNull();
+  const expected=apply(before,{kind:'reinforce',province:point!.id,amount:1});if(!expected.ok)throw Error(expected.error);
+  const zoom=Number(await page.locator('#geographic-map').getAttribute('data-camera-zoom'));await page.touchscreen.tap(point!.x,point!.y);
+  await expect(page.locator('#game-focus-drawer')).toBeHidden();await expect(page.locator('#geographic-map')).toHaveAttribute('data-camera-zoom',String(zoom*1.25));const after=await state(page);expect(after.history).toEqual(expected.state.history);expect(after.armies).toEqual(expected.state.armies);expect(after.rng).toEqual(expected.state.rng);
  });
 });
 

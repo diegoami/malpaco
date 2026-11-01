@@ -83,7 +83,7 @@ export class BattleChrome {
   private readonly closeButton = icon("close-game-drawer", "Return to map", "close");
   private readonly required = icon("open-required-action", "Required choice", "return");
   private readonly menu = icon("open-game-menu", "Menu: help, scoreboard and New game", "menu");
-  /** T81: every country by name, Inspect and a named choice for ambiguous taps. */
+  /** Country list and Inspect for diagnostic adapters. */
   readonly countries = icon("open-countries", "Countries: list and inspect", "countries");
   private readonly cornerClose = icon("close-result-card", "Return to map", "close");
   /** T101: every card folds to a chip with its title and drags by its grip or its edge. */
@@ -111,7 +111,7 @@ export class BattleChrome {
   private corner: Corner = "end";
   private railSize = {width: 0, height: 0, viewport: ""};
 
-  constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void;onMenuClose?:()=>void;onInformationClose?:()=>boolean}) {
+  constructor(private readonly nodes: {action: HTMLElement; settings: HTMLElement; phaseActions: HTMLElement; pause: HTMLButtonElement; speed?: HTMLElement; forward?: HTMLButtonElement; camera?: HTMLElement; countries?: HTMLElement; showCountriesButton?:boolean; primaryActions?: {newGame:HTMLButtonElement;help:HTMLButtonElement}; onMenuOpen?:()=>void;onMenuClose?:()=>void;onInformationClose?:()=>boolean}) {
     for (const [button, surface] of [[this.menu, "menu"], [this.countries, "countries"]] as const) {
       button.setAttribute("aria-controls", this.drawer.id);
       button.setAttribute("aria-haspopup", "dialog");
@@ -139,7 +139,7 @@ export class BattleChrome {
       this.hud.append(newGame,this.menu,help);this.overlay.dataset['primaryCommands']='true';
     }else this.hud.append(this.menu);
     // Countries is a way to find a country, so it rests with the camera's Fit and Focus.
-    if (nodes.countries) (nodes.camera ?? this.hud).append(this.countries);
+    if (nodes.countries&&nodes.showCountriesButton!==false) (nodes.camera ?? this.hud).append(this.countries);
     // On the result card the top-right corner returns to the map, as in the sketches.
     this.cornerClose.onclick = () => this.close();
     // T101: the speed controls share the top-right corner: the speed choice, Fast-forward and Pause.
@@ -166,6 +166,8 @@ export class BattleChrome {
     this.overlay.append(this.hud, this.poolSlot, this.top, this.side, ...(nodes.camera ? [nodes.camera] : []), this.rail, this.drawer);
     this.commands();
   }
+
+  placeArmiesBesideCards():void {this.hud.append(this.poolSlot);}
 
   /** Legal phase commands ride the action corner as icons; disabled ones are not shown. */
   private commands(): void {
@@ -539,7 +541,7 @@ export class BattleChrome {
     this.notice.style.setProperty("--seat", status.seat === null ? "" : seatLook(status.seat).color);
     this.renderNotice();
     this.pool.hidden = status.pool === null;
-    if(this.nodes.primaryActions){this.pool.replaceChildren(h('span',{id:'placement-pool-count'},String(status.pool??0)),h('span',{class:'placement-pool-unit'},status.pool===1?' ARMY':' ARMIES'));this.pool.style.setProperty('--pool-colour',seatLook(status.seat??0).color);}
+    if(this.nodes.primaryActions){this.pool.replaceChildren(glyph('pool'),h('span',{id:'placement-pool-count'},String(status.pool??0)),h('span',{class:'placement-pool-unit'},status.pool===1?' new army':' new armies'));this.pool.style.setProperty('--pool-colour',seatLook(status.seat??0).color);}
     else this.pool.replaceChildren(symbol("pool"), h("span", {id: "placement-pool-count"}, String(status.pool ?? 0)));
     this.pool.setAttribute("aria-label", `${status.pool ?? 0} ${status.pool === 1 ? "army" : "armies"} to place`);
     this.pool.title = this.pool.getAttribute("aria-label")!;

@@ -1,3 +1,4 @@
+import {startFriendlyMove} from './shell';
 import {visitGame} from './shell';
 import {expect,test} from '@playwright/test';
 import {defaultOptions} from '../../src/core/options';
@@ -33,7 +34,7 @@ test('placement, attack and move instructions follow the human phase without for
   if(id){own=id;text=serializeVersionedMatch(o,s.history,GEOGRAPHIC_EVENT_MATCH_IDENTITY);}
  }
  if(!text)throw Error('No ordinary human placement fixture');await page.addInitScript(text=>{localStorage.setItem('malpaco:current-game',text);},text);await visitGame(page,'/');await expect(page.locator('#turn-instruction')).toHaveText('Place armies',{timeout:60000});
- const pool=Number(await page.locator('#placement-pool-count').textContent());for(let n=0;n<pool;n++)await page.locator(`[data-country="${own}"]`).press('Enter');await expect(page.locator('#turn-instruction')).toHaveText('Execute attacks');await page.locator('#start-friendly-move-button').click();await expect(page.locator('#turn-instruction')).toHaveText('Move armies');
+ const pool=Number(await page.locator('#placement-pool-count').textContent());for(let n=0;n<pool;n++)await page.locator(`[data-country="${own}"]`).press('Enter');await expect(page.locator('#turn-instruction')).toHaveText('Execute attacks');await startFriendlyMove(page);await expect(page.locator('#turn-instruction')).toHaveText('Move armies');
 });
 test('reduced motion shows final values with static feedback and no animated movement layer',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await begin(page);await untilEffect(page,'reinforce');const gain=page.locator('.computer-reinforce').first();expect(await gain.locator('.count').textContent()).toBe(await gain.getAttribute('data-armies'));await expect(page.locator('.computer-action-layer')).toHaveCount(0);
