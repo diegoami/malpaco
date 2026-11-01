@@ -1,10 +1,12 @@
 # 0.5.3 candidate provenance
 
-The exact integrated-main candidate, CI run/artifact and archive receipts are
-pinned on [milestone #440](https://github.com/diegoami/malpaco/issues/440) after
-main CI and archive verification. Use that full pin, not an arbitrary later main
-or a feature PR artifact. This document defines the source boundaries; final
-receipts will be recorded here without changing the accepted runtime bytes.
+Verified owner-review source is **`b6f9e5458fc066a4badce518404d4ed10bbfe53c`**
+(version 0.5.3), pinned on [milestone #440](https://github.com/diegoami/malpaco/issues/440).
+Exact-main CI and downloaded archive verification passed. The owner launches the
+independent milestone review; no reviewer, tag, release or deployment has been
+launched by preparation. Owner visual acceptance and physical-device/screen-reader
+testing are not inferred. Later documentation-only commits record these receipts
+without moving the runtime candidate or substituting new archive bytes.
 
 ## Boundaries
 
@@ -39,6 +41,7 @@ verified stacked heads, following the owner’s existing preference.
 | T163 / #437 | #442 | `9b4509cabbea2f03724f44646c3fd27f038c07cc` |
 | T164 / #436 | #443 | `381e5751ba697240b3a1251ffec6a5b7d84b9bc8` |
 | T165 / #439 | #444 | `d4f7393f27c42c08b461b28d9567e8526aa70f61` |
+| T166 / #445 | #446 | `4c5605345e08a2808ff34a394be9f24f15345704` |
 
 No independent per-PR review was launched for these UI changes. The owner’s
 milestone review covers the whole v0.5.2-to-candidate diff. That diff also contains
@@ -57,21 +60,65 @@ all action/geometry assertions, limits and existing skips. The tracker layout
 snapshot freezes live row replacement instead of weakening row-height checks.
 
 
-## Verification and handoff
+## Verified exact-main receipts
 
-[ACCEPTANCE.md](ACCEPTANCE.md) defines the exact-main gates and behavioral claims.
-Implementation evidence retains failing-before tests, real layout defects,
-corrected drivers/old face expectations, unchanged-limit retries and final passes.
-Local checks cover affected source specs; full source-suite CI (#409) is not
-claimed. GitHub’s live checks remain authoritative.
+[Main CI 41350534891](https://github.com/diegoami/malpaco/actions/runs/41350534891)
+passed build/root+core types, dev-watch, **1196 units / 96 files**, **6 source Help
+cases** in both viewport projects, and **687 extracted-playable cases / 395
+pre-existing legacy or duplicate-project skips**. All included implementation and
+preparation PRs merged only with green checks. Corrected source local checks passed
+73 targeted browser cases and the full 1196 units; source-suite CI coverage is
+not claimed (#409 remains separate).
 
-Before owner review, record the successful main run, original ZIP/tar byte counts
-and SHA-256 digests, BUILD.json, every manifest checksum and full payload coverage,
-source-identical guide images and quickstart. Retain actual CI bytes and evidence
-in the owner’s artifact folder, then give a concrete prompt naming #440 and the
-full candidate SHA. Do not substitute a local rebuild.
+Main tree `5240ad7f5490e4d2a8007d54bc25e6acd322268e` equals checked preparation
+head `4c5605345e08a2808ff34a394be9f24f15345704`. The local preview now serves the
+actual downloaded main CI extraction; all 21 HTTP-served files match its payload
+bytes. Localhost URLs belong to the originating computer and are not a
+cross-computer handoff dependency.
 
-Stop before independent review, tags, release assets or deployments. Publication
-needs the owner-launched review gate, owner visual acceptance and explicit 0.5.3
-approval; earlier permissions do not carry forward. #432, #406/#409/#410, older
+| Receipt | Value |
+| --- | --- |
+| CI artifact | `malpaco-playable`, id `13102790438`, expires 2026-11-15T21:41:39Z |
+| Original downloaded ZIP | 2,298,263 bytes; SHA-256 `298dcecf3bca9307b233f4f724ad6a8b740f190bd736ba60f5fa63b19b4b57bd` |
+| Exact tar.gz | 2,297,446 bytes; SHA-256 `508726737d7d97998da14b48b0e2facef12dba2319f331dfd9694cd38078511b` |
+| BUILD.json | schemaVersion 1, version 0.5.3, pinned full source above, minimumNode 22 |
+| Payload | All 20 manifest checksums verified; complete coverage of 21 files |
+| Manual | Guide, eight source-identical PNGs and offline quickstart verified |
+
+[Retained exact CI candidate](https://drive.google.com/file/d/1sRO5dqIq978rEbqWW4W8SNzJ603Lk-q4/view)
+uses the tar bytes above, with a descriptive download name. Its bytes were not
+rebuilt. [Exact-main evidence](https://drive.google.com/file/d/1ugww4v0w3uuXP24ys_Thmh9kx2qJl2fA/view)
+retains the original ZIP, all verification/readbacks, CI log/counts and scripts:
+**2,427,883 bytes**, SHA-256
+`f09e75e6bd2bed3611922e2abf41a9813b15a20af7490d6e27311e79e1470bf5`.
+
+The [review folder](https://drive.google.com/drive/folders/1h8gSJWEVMBJ3dcXmU0oezjzB7_1TAgYe)
+also retains:
+
+- [Initial implementation proof](https://drive.google.com/file/d/1lw7cUkzBu3hpm6Av6PfIeiM08CjvAiOV/view),
+  22,208,149 bytes; SHA-256
+  `b492f6e3c177f881175f56de00529a880a1ceb85e4e9c8915f9a809314344a9c`.
+- [Corrected integration and CI-rework proof](https://drive.google.com/file/d/1MZurMN_loLRiV7vHcTvpGFxouY5BZppi/view),
+  4,973,276 bytes; SHA-256
+  `12a3a3bc40e54081ded9568e2f355137f45165394567919e14ab258bed2483c7`.
+
+Upload names/sizes/parents were read back and verified; sharing was not changed.
+Original failed and superseded runs are disclosed, never claimed as acceptance.
+Intermediate main runs were cancelled after their exact PR heads passed and the
+final main run started; only the pinned main run supplies accepted candidate bytes.
+Local receipts remain under `artifacts/T162`–`artifacts/T166`.
+
+## Owner review and publication boundary
+
+[ACCEPTANCE.md](ACCEPTANCE.md) defines the claims. The concrete prompt on #440
+names the full source above, previous v0.5.2 and `docs/milestone-review.md`. Review
+the complete previous-tag diff, including unreviewed PRs and administrative records.
+Record the fresh model/SHA/checks/findings and AGREE/BLOCK on the milestone. No
+independent verdict exists yet and implementation screenshots are not owner visual
+acceptance.
+
+Stop before tags, release assets or deployments. Publication requires the owner’s
+review gate, visual acceptance and explicit 0.5.3 approval. A public BUILD.json
+readback still names v0.5.2/source `198de7ef8a7cc2aaa48ae7107860f3dbb488cad0`;
+old published tags/assets/records remain unchanged. #432, #406/#409/#410, older
 quality items and held native/balance/personality work remain separate.
