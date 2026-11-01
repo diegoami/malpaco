@@ -1492,6 +1492,8 @@ dialog h2 {
 /* The notice's resting line: an opened detail spills over the map instead of growing the slot. */
 .game-notice-slot { flex:none; position:relative; display:flex; justify-content:flex-end; align-items:flex-start; width:min(380px, 42vw); min-height:var(--target); }
 .game-notice-slot > .game-notice[data-open="true"] { position:absolute; top:0; right:0; z-index:1; }
+/* Changes is an optional floating footer, clear of the turn tracker and End turn. */
+.game-overlay[data-primary-commands="true"] .game-notice-slot:has(#open-changes) { position:absolute; right:var(--edge); bottom:calc(var(--edge) + max(var(--target),var(--command-height,0px)) + var(--gap)); width:min(360px,calc(100% - 2 * var(--edge))); z-index:4; }
 .game-folded { margin-block:auto; padding-right:6px; }
 .game-folded #open-required-action { width:44px; height:44px; min-height:44px; background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
 #game-focus-drawer { margin-block:auto; width:min(380px, 42vw); max-height:100%; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:start; gap:4px; padding:12px 12px 14px 16px; border:1px solid #3d5a6d; border-radius:12px; background:var(--surface); box-shadow:0 8px 32px #0009; font-size:16px; }
@@ -2214,7 +2216,7 @@ body[data-button-labels="icons"] #placement-pool > svg { display:block; }
 body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:none; }
 @media (max-width:600px) {
  body[data-button-labels="text"] .game-primary-buttons > .game-pool-slot { grid-column:2 / -1 !important; grid-row:2 !important; }
- body[data-button-labels="text"] .game-overlay[data-primary-commands="true"]:has(#placement-pool:not([hidden])) { --primary-height:104px; }
+ body[data-button-labels="text"] .game-overlay[data-primary-commands="true"]:is(:has(#open-hand:not([hidden])),:has(#placement-pool:not([hidden]))) { --primary-height:104px; }
 }
 .game-primary-buttons > .game-pool-slot:has(#placement-pool[hidden]) { display:none; }
 @media (min-width:901px) {
