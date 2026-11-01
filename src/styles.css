@@ -2248,3 +2248,5 @@ body[data-button-labels="icons"] #placement-pool .placement-pool-unit { display:
  #game-launcher > .match-error { grid-column:1 / -1; grid-row:4; }
  #game-launcher > #download-recovery-game { grid-column:1; grid-row:3; align-self:start; }
 }
+/* Keep a pending choice's Return control above the remaining End turn command. */
+.game-overlay[data-primary-commands="true"] #game-folded-choice { margin-bottom:calc(var(--command-height,44px) + var(--gap)); }
