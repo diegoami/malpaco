@@ -1,5 +1,9 @@
 # Malpaco 0.5.3
 
+Published **2026-11-02T00:30:20Z** from reviewed source/tag
+`b6f9e5458fc066a4badce518404d4ed10bbfe53c` after AGREE and current owner approval.
+See [publication](PUBLICATION.md) and [provenance](PROVENANCE.md).
+
 This release addresses the owner’s post-0.5.2 control feedback. Scope and decisions:
 [milestone #440](https://github.com/diegoami/malpaco/issues/440),
 [contracts](../../plans/release-0.5.3.md), and
@@ -30,9 +34,8 @@ testing or owner visual acceptance.
 
 Core rules, AI decisions, saved-game identity/format and dependencies are
 unchanged from v0.5.2. Existing saves, scores and preferences remain local to the
-same browser/address. This is web candidate preparation; native delivery, held
+same browser/address. Web release only; native delivery, held
 balance/personality work and unrelated quality follow-ups remain separate.
 
-See [ACCEPTANCE.md](ACCEPTANCE.md) and [PROVENANCE.md](PROVENANCE.md). Independent
-review is owner-launched, and publication needs separate authorization. Preserve
+See [ACCEPTANCE.md](ACCEPTANCE.md) and [PROVENANCE.md](PROVENANCE.md). The owner-launched review and separate publication authorization are recorded there. Preserve
 v0.5.2 and all earlier published tags/assets unchanged.
