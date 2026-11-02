@@ -1,12 +1,12 @@
 # 0.5.3 candidate provenance
 
-Verified owner-review source is **`b6f9e5458fc066a4badce518404d4ed10bbfe53c`**
-(version 0.5.3), pinned on [milestone #440](https://github.com/diegoami/malpaco/issues/440).
-Exact-main CI and downloaded archive verification passed. The owner-launched independent milestone review returned **AGREE**, with no
-findings, on this exact source. No tag, release or deployment has been launched
-by preparation. Owner visual acceptance and physical-device/screen-reader testing
-are not inferred. Later documentation-only commits record these receipts
-without moving the runtime candidate or substituting new archive bytes.
+Reviewed/published source/tag **v0.5.3** is
+**`b6f9e5458fc066a4badce518404d4ed10bbfe53c`**. Published
+**2026-11-02T00:30:20Z** after the owner-launched AGREE review (no findings),
+current owner visual acceptance and publication approval. [PUBLICATION.md](PUBLICATION.md)
+records exact deployments, smoke and public-download verification. Later
+documentation-only commits do not move the tag or replace sealed CI bytes.
+No physical-device or screen-reader testing is inferred.
 
 ## Boundaries
 
@@ -132,8 +132,23 @@ was reproduced. Review did not verify the Drive proof archives (it verified the
 GitHub artifact directly), physical devices, screen readers or owner visual
 judgment. Implementation screenshots and AGREE are not owner visual acceptance.
 
-Stop before tags, release assets or deployments. Publication requires the owner’s
-review gate, visual acceptance and explicit 0.5.3 approval. A public BUILD.json
-readback still names v0.5.2/source `198de7ef8a7cc2aaa48ae7107860f3dbb488cad0`;
-old published tags/assets/records remain unchanged. #432, #406/#409/#410, older
-quality items and held native/balance/personality work remain separate.
+The owner accepted the reviewed local game and authorized publication, then
+resumed the announced publication after a read-only preflight interruption. Both
+deployments used the exact accepted CI extraction with --no-build: draft
+`6ae7d1fdc60318fd5471699d` and production `6ae7d5b45d42a9050b8ff7c9` match all 21
+payload files and pass 31 general plus 41 feature smoke cases each. Production is
+ready/active, activated 2026-11-02T00:13:42.071Z. All four release downloads match
+uploads, sizes and GitHub digests.
+
+Permanent [publication evidence](https://github.com/diegoami/malpaco/releases/download/v0.5.3/malpaco-0.5.3-publication-evidence.tar.gz):
+20,352,584 bytes, SHA-256
+`be5e849c856fdcdd33837a119904ff5c17ad2d068e0134ebacac3e65945e597c`;
+checksum asset attached. Included-proof manifest covers the retained approval,
+review, original CI ZIP/verification, deployment and smoke evidence. Public asset
+readbacks were recorded afterward on #440, avoiding a self-referential archive.
+Local receipts: `artifacts/release-0.5.3/`.
+
+Preserve the tag, its exact archive and older published releases/records unchanged.
+Prior 0.5.2 production `6ae7548ddc4c0e92de7aa4fe` is retained. #432, #406/#409/#410,
+older quality/native/held balance/personality work remain separate. Do not reuse
+this approval for another release or automatically start another task.
