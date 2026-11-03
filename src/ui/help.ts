@@ -156,7 +156,7 @@ export class GameHelp {
     close.onclick = () => this.dialog.close();
     this.dialog.append(
       h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
-      h("p", {}, h("a", {id:"full-player-manual",href:"/manual/index.html",target:"_blank",rel:"noopener"}, "Full player manual with screenshots")),
+      h("p", {}, h("a", {id:"full-player-manual",href:`${import.meta.env.BASE_URL}manual/index.html`,target:"_blank",rel:"noopener"}, "Full player manual with screenshots")),
       h("section", {}, h("h3", {}, "Objective"), this.objective),h("section",{},h("h3",{},"Combat rules"),this.combatRules),
       ...howTo.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),
       h("h3", {}, "Icons"),
