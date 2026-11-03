@@ -25,7 +25,7 @@ export function manualHtml(){
  closeList();
  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Malpaco player manual</title><style>
  :root{color-scheme:light}body{margin:0;background:#f4f6f1;color:#18332e;font:18px/1.65 system-ui,sans-serif}main{max-width:960px;margin:auto;padding:24px}h1,h2,h3{line-height:1.2}h2{margin-top:2.4em}a{color:#125e76}img{display:block;max-width:100%;height:auto;border-radius:8px;border:1px solid #9aada6}li{margin:.45em 0}code{font-size:.9em;background:#e5eae4;padding:.1em .25em}table{border-collapse:collapse;width:100%;font-size:.95em}th,td{border:1px solid #9aada6;padding:10px;text-align:left;vertical-align:top}th{background:#e1e9df}.table-scroll{overflow-x:auto}nav{border-bottom:1px solid #9aada6;padding-bottom:1em}nav ul{columns:2;padding-left:1.2em}@media(max-width:600px){main{padding:16px}nav ul{columns:1}}@media print{body{background:white;font-size:11pt}nav{display:none}h2{break-after:avoid}img,tr{break-inside:avoid}a{color:inherit}}
- </style></head><body><main><nav aria-label="Manual contents"><a href="https://malpaco.netlify.app">Play Malpaco</a><ul>${toc.join('')}</ul></nav>${html}</main></body></html>`;
+ </style></head><body><main><nav aria-label="Manual contents"><a href="../">Play Malpaco</a><ul>${toc.join('')}</ul></nav>${html}</main></body></html>`;
 }
 export function manualFiles(){
  const guide=readFileSync(new URL('docs/play.md',root),'utf8');

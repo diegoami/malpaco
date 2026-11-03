@@ -12,7 +12,7 @@ Task status lives in GitHub issue labels.
 
 ## Play Malpaco (web)
 
-[Play in your browser](https://malpaco.netlify.app), or download the
+[Play on GitHub Pages](https://diegoami.github.io/malpaco/) · [Netlify](https://malpaco.netlify.app), or download the
 [latest published playable archive](https://github.com/diegoami/malpaco/releases/latest).
 The [illustrated player manual](docs/play.md) explains every phase, cards, events,
 controls and settings. Open **Full player manual with screenshots** in Help during
@@ -64,3 +64,13 @@ lives under another `.cache` directory. Vitest watch mode retains test reruns.
 Run `npm run package:playable` to rebuild and package the game as
 `release/malpaco-playable.tar.gz`. The [play instructions](docs/play.md) explain
 how to run the extracted build without the source checkout or npm dependencies.
+
+## GitHub Pages
+
+The Pages workflow builds the production game with `VITE_MALPACO_RELEASE=1` and
+`--base=/malpaco/`, then publishes only `dist/`. In Settings → Pages, choose
+**GitHub Actions**. Pushes to `main` deploy automatically; manual runs are supported.
+This is a separate web mirror, with browser-local saves and preferences separate
+from Netlify. Existing release tags, archives and the Netlify publication are
+unchanged. Help opens the illustrated guide inside the hosting path, and the
+guide’s Play link returns to the same game.
