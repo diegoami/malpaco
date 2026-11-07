@@ -1,8 +1,9 @@
 param(
-  [Parameter(Mandatory=$true)][ValidateSet('Install','Reinstall','Uninstall','Launch','Close','CloseDocument','Stop','WaitStopped','ExternalBrowserReady','ExternalBrowser','Inspect')][string]$Phase,
+  [Parameter(Mandatory=$true)][ValidateSet('Install','Reinstall','Uninstall','Launch','RootWindow','Close','CloseDocument','Stop','WaitStopped','ExternalBrowserReady','ExternalBrowser','Inspect')][string]$Phase,
   [Parameter(Mandatory=$true)][string]$Output,
   [string]$Executable,
   [int]$AppProcessId,
+  [long]$GameWindowHandle,
   [string]$Url
 )
 $ErrorActionPreference = 'Stop'
@@ -54,26 +55,50 @@ if ($Phase -in @('Install','Reinstall')) {
   & taskkill.exe /PID $browserProcessId /T /F | Out-Null
   if ($LASTEXITCODE -ne 0) { throw 'Could not close the test browser process' }
   @{phase=$Phase;url=$Url;pid=$browserProcessId;urlReceivedByBrowser=$true} | ConvertTo-Json -Compress
-} elseif ($Phase -in @('Close','CloseDocument')) {
+} elseif ($Phase -in @('RootWindow','Close','CloseDocument')) {
   # Process.CloseMainWindow may choose another top-level window after a manual was
   # opened. Select the exact owned native window, not a debugger page or heuristic.
   Add-Type -TypeDefinition @'
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
+public class MalpacoSmokeWindowInfo { public long Handle; public string Title; }
 public static class MalpacoSmokeWindow {
-  [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern IntPtr FindWindow(string className, string title);
+  public delegate bool EnumProc(IntPtr window, IntPtr extra);
+  [DllImport("user32.dll")] public static extern bool EnumWindows(EnumProc callback, IntPtr extra);
+  [DllImport("user32.dll")] public static extern bool IsWindowVisible(IntPtr window);
+  [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern int GetWindowText(IntPtr window, StringBuilder text, int count);
   [DllImport("user32.dll")] public static extern uint GetWindowThreadProcessId(IntPtr window, out uint process);
   [DllImport("user32.dll")] public static extern bool PostMessage(IntPtr window, uint message, IntPtr wParam, IntPtr lParam);
+  public static List<MalpacoSmokeWindowInfo> Owned(uint process) {
+    var result = new List<MalpacoSmokeWindowInfo>();
+    EnumWindows((window, extra) => {
+      uint owner; GetWindowThreadProcessId(window,out owner);
+      if (owner == process && IsWindowVisible(window)) {
+        var title = new StringBuilder(1024); GetWindowText(window,title,title.Capacity);
+        result.Add(new MalpacoSmokeWindowInfo {Handle=window.ToInt64(),Title=title.ToString()});
+      }
+      return true;
+    },IntPtr.Zero);
+    return result;
+  }
 }
 '@
-  $title = if ($Phase -eq 'CloseDocument') { 'Malpaco documentation' } else { 'Malpaco' }
-  $window = [MalpacoSmokeWindow]::FindWindow($null,$title)
-  if ($window -eq [IntPtr]::Zero) { throw "No native window titled $title" }
+  $windows = @([MalpacoSmokeWindow]::Owned([uint32]$AppProcessId))
+  if ($Phase -eq 'RootWindow') {
+    if ($windows.Count -ne 1) { throw ('Expected one fresh app window: ' + ($windows | ConvertTo-Json -Compress)) }
+    @{phase=$Phase;pid=$AppProcessId;handle=$windows[0].Handle;title=$windows[0].Title} | ConvertTo-Json -Compress
+    exit 0
+  }
+  $selected = if ($Phase -eq 'CloseDocument') { @($windows | Where-Object { $_.Handle -ne $GameWindowHandle }) } else { @($windows | Where-Object { $_.Handle -eq $GameWindowHandle }) }
+  if ($selected.Count -ne 1) { throw ('Ambiguous owned window: ' + ($windows | ConvertTo-Json -Compress)) }
+  $window = [IntPtr]$selected[0].Handle
   [uint32]$ownerProcessId = 0
   [MalpacoSmokeWindow]::GetWindowThreadProcessId($window,[ref]$ownerProcessId) | Out-Null
   if ($ownerProcessId -ne $AppProcessId) { throw 'Refusing to close an unrelated window' }
   if (![MalpacoSmokeWindow]::PostMessage($window,0x0010,[IntPtr]::Zero,[IntPtr]::Zero)) { throw 'Could not request normal window close' }
-  @{phase=$Phase;pid=$AppProcessId;title=$title;normalWindowCloseRequested=$true} | ConvertTo-Json -Compress
+  @{phase=$Phase;pid=$AppProcessId;handle=$selected[0].Handle;title=$selected[0].Title;normalWindowCloseRequested=$true} | ConvertTo-Json -Compress
 } elseif ($Phase -eq 'WaitStopped') {
   $deadline = (Get-Date).AddSeconds(10)
   while ((Get-Process -Id $AppProcessId -ErrorAction SilentlyContinue) -and ((Get-Date) -lt $deadline)) { Start-Sleep -Milliseconds 100 }
