@@ -1,9 +1,24 @@
-# 0.5.4 candidate provenance boundaries
+# 0.5.4 provenance
 
-The exact reachable source pin, successful CI event/checkout and original artifact
-IDs/sizes/digests are recorded on [#457](https://github.com/diegoami/malpaco/issues/457)
-after verification. Do not substitute a newer branch SHA, temporary merge ref or
-local rebuild for those pinned bytes. This document is not a publication receipt.
+Reviewed/published source/tag **v0.5.4** is
+**`0336f41851e60570eb119dcb7ffd55476ef79c38`**. Published
+**2026-11-07T18:03:28Z** after the owner-launched MiniMax-M3 thinking AGREE review
+(no findings) and renewed owner acceptance/publication approval. The earlier
+withdrawn waiver was not reused. [PUBLICATION.md](PUBLICATION.md) records exact
+deployments, smoke, bytes and evidence; [#457](https://github.com/diegoami/malpaco/issues/457)
+retains the full review and public-download receipts. Later documentation-only
+commits do not move the tag or replace the original successful CI tar.
+
+Accepted CI 42385793743 / artifact 13581201379 was a pull-request event associated
+with head `c3ede67243dbcf70732389e31191bb3cd1056a63`, actually checking out/building
+the full reviewed `0336f418…` source. That exact commit was promoted unchanged to
+release/0.5.4 and then main/tag after all included heads were green. Its tree
+`aa89d456472ca722d446d14466101323a50ca845` equals the prep head. Original ZIP:
+2,471,182 bytes / SHA-256 `3c5d0767e85c576a67d95e5f5110770b3757949435970a8e4e5ad52e514ca4a1`.
+Original tar: 2,470,360 bytes / SHA-256
+`dabe68713d5ed49b780d92955e4cb3c3e46aeb15681b0afb6566865e5f0a2401`.
+All 27 files/26 manifest entries, eight source-identical PNGs and local Oxygen
+notices were verified. Do not substitute a local rebuild for those sealed bytes.
 
 - Previous immutable tag v0.5.3:
   `b6f9e5458fc066a4badce518404d4ed10bbfe53c`.
@@ -33,6 +48,7 @@ See [acceptance](ACCEPTANCE.md) for the full byte and owner gates.
 
 Whole-tag review includes prior hosting/link PR #450 and post-v0.5.3 administrative
 records, plus version/manual #455, controls #459, scoreboard #460, guards #461 and
-release preparation #462's PR. No independent per-PR review is claimed. Existing
-v0.5.3 Netlify production `6ae7d5b45d42a9050b8ff7c9`, the 0.5.2/0.5.1 sources and
-all older tags/assets/publication records remain unchanged by preparation.
+release preparation #462's PR. No independent per-PR review is claimed; the owner
+launched the whole milestone review. Prior v0.5.3 Netlify deployment
+`6ae7d5b45d42a9050b8ff7c9`, the 0.5.2/0.5.1 sources and all older
+tags/assets/publication records remain preserved.
