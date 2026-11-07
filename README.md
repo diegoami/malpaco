@@ -28,12 +28,18 @@ retains the review, byte verification and publication receipts.
 
 [Release contracts](docs/plans/release-0.5.4.md) and the
 [acceptance protocol](docs/releases/0.5.4/ACCEPTANCE.md) define its boundaries.
+
 End turn uses the selected green tick; the victory popup always labels its primary
 New game action with text. Phone scoreboards show all six fields as labelled
 entries, and known older configurable-income results group under Legacy without
 changing overall totals. The player version and illustrated manual stay synchronized.
 Previous [0.5.3 publication records](docs/releases/0.5.3/PUBLICATION.md) and all
 older tags/assets remain preserved.
+
+For the owner-requested 0.5.5 work, see the [scope](docs/plans/release-0.5.5.md),
+[Windows installer/portable instructions](docs/windows.md) and
+[candidate acceptance gates](docs/releases/0.5.5/ACCEPTANCE.md).
+Preparation on the release branch does not publish a new version.
 
 The launcher adapts to portrait/landscape windows and offers Start or Resume.
 Button labels support Text, Icons, or Text 2 turns, then Icons (default), counting
