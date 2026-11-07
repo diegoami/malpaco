@@ -4,6 +4,7 @@ param(
   [string]$Executable,
   [int]$AppProcessId,
   [long]$GameWindowHandle,
+  [string]$GameWindowClass,
   [string]$Url
 )
 $ErrorActionPreference = 'Stop'
@@ -63,12 +64,13 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
-public class MalpacoSmokeWindowInfo { public long Handle; public string Title; }
+public class MalpacoSmokeWindowInfo { public long Handle; public string Title; public string ClassName; }
 public static class MalpacoSmokeWindow {
   public delegate bool EnumProc(IntPtr window, IntPtr extra);
   [DllImport("user32.dll")] public static extern bool EnumWindows(EnumProc callback, IntPtr extra);
   [DllImport("user32.dll")] public static extern bool IsWindowVisible(IntPtr window);
   [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern int GetWindowText(IntPtr window, StringBuilder text, int count);
+  [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern int GetClassName(IntPtr window, StringBuilder text, int count);
   [DllImport("user32.dll")] public static extern uint GetWindowThreadProcessId(IntPtr window, out uint process);
   [DllImport("user32.dll")] public static extern bool PostMessage(IntPtr window, uint message, IntPtr wParam, IntPtr lParam);
   public static List<MalpacoSmokeWindowInfo> Owned(uint process) {
@@ -77,7 +79,8 @@ public static class MalpacoSmokeWindow {
       uint owner; GetWindowThreadProcessId(window,out owner);
       if (owner == process && IsWindowVisible(window)) {
         var title = new StringBuilder(1024); GetWindowText(window,title,title.Capacity);
-        result.Add(new MalpacoSmokeWindowInfo {Handle=window.ToInt64(),Title=title.ToString()});
+        var className = new StringBuilder(256); GetClassName(window,className,className.Capacity);
+        result.Add(new MalpacoSmokeWindowInfo {Handle=window.ToInt64(),Title=title.ToString(),ClassName=className.ToString()});
       }
       return true;
     },IntPtr.Zero);
@@ -87,11 +90,14 @@ public static class MalpacoSmokeWindow {
 '@
   $windows = @([MalpacoSmokeWindow]::Owned([uint32]$AppProcessId))
   if ($Phase -eq 'RootWindow') {
-    if ($windows.Count -ne 1) { throw ('Expected one fresh app window: ' + ($windows | ConvertTo-Json -Compress)) }
-    @{phase=$Phase;pid=$AppProcessId;handle=$windows[0].Handle;title=$windows[0].Title} | ConvertTo-Json -Compress
+    # WebView also creates an unnamed helper. The fresh titled application frame
+    # is recorded before opening any documentation, together with its native class.
+    $frames = @($windows | Where-Object { ![string]::IsNullOrWhiteSpace($_.Title) })
+    if ($frames.Count -ne 1) { throw ('Expected one fresh app frame: ' + ($windows | ConvertTo-Json -Compress)) }
+    @{phase=$Phase;pid=$AppProcessId;handle=$frames[0].Handle;title=$frames[0].Title;windowClass=$frames[0].ClassName;ownedWindows=$windows} | ConvertTo-Json -Depth 5 -Compress
     exit 0
   }
-  $selected = if ($Phase -eq 'CloseDocument') { @($windows | Where-Object { $_.Handle -ne $GameWindowHandle }) } else { @($windows | Where-Object { $_.Handle -eq $GameWindowHandle }) }
+  $selected = if ($Phase -eq 'CloseDocument') { @($windows | Where-Object { $_.Handle -ne $GameWindowHandle -and $_.ClassName -eq $GameWindowClass }) } else { @($windows | Where-Object { $_.Handle -eq $GameWindowHandle }) }
   if ($selected.Count -ne 1) { throw ('Ambiguous owned window: ' + ($windows | ConvertTo-Json -Compress)) }
   $window = [IntPtr]$selected[0].Handle
   [uint32]$ownerProcessId = 0

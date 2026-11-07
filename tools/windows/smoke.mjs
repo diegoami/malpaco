@@ -28,7 +28,7 @@ async function launch(path){
  // WebView2 exposes its CDP browser endpoint before creating the first page target.
  const page=context.pages().find(p=>p.url().includes('tauri.localhost'))??context.pages()[0]??await context.waitForEvent('page',{timeout:30000});
  await page.waitForLoadState();activePage=page;
- active.window=powershell('RootWindow',['-AppProcessId',String(active.pid)]).handle;
+ const frame=powershell('RootWindow',['-AppProcessId',String(active.pid)]);active.window=frame.handle;active.windowClass=frame.windowClass;
  return {browser,context,page};
 }
 async function stop(browser){
@@ -72,7 +72,7 @@ try{
  await expect(manual.getByRole('heading',{level:1})).toHaveText('Malpaco player manual');await expect(manual.locator('main img')).toHaveCount(8);
  for(const img of await manual.locator('main img').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(n=>n.complete&&n.naturalWidth>0)).toBe(true);}
  await manual.screenshot({path:join(evidence,'bundled-manual.png')});
- const documentClosed=manual.waitForEvent('close');powershell('CloseDocument',['-AppProcessId',String(active.pid),'-GameWindowHandle',String(active.window)]);await documentClosed;
+ const documentClosed=manual.waitForEvent('close');powershell('CloseDocument',['-AppProcessId',String(active.pid),'-GameWindowHandle',String(active.window),'-GameWindowClass',active.windowClass]);await documentClosed;
  expect(await wire(page)).toBe(kept);await close.click();expect(remote).toEqual([]);await context.setOffline(false);
  // The exact HTTPS destinations must leave the app; main URL and saved game stay intact.
  await page.locator('#game-help-button').click();
