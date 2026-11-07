@@ -25,7 +25,8 @@ async function launch(path){
  process.env.WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS='--remote-debugging-port=9222';
  active=powershell('Launch',['-Executable',path]);
  const browser=await connect();const context=browser.contexts()[0];if(!context)throw Error('No app context');
- const page=context.pages().find(p=>p.url().includes('tauri.localhost'))??context.pages()[0];if(!page)throw Error('No app page');
+ // WebView2 exposes its CDP browser endpoint before creating the first page target.
+ const page=context.pages().find(p=>p.url().includes('tauri.localhost'))??context.pages()[0]??await context.waitForEvent('page',{timeout:30000});
  await page.waitForLoadState();return {browser,context,page};
 }
 async function stop(browser){
@@ -78,7 +79,8 @@ try{
  receipts.push({phase:'portable-after-uninstall',passed:true,sharedUserDataSurvives:true,applicationInstallationRequired:false});
  await writeFile(join(evidence,'REPORT.json'),JSON.stringify({passed:true,sourceCommit:config.sourceCommit,version:config.version,receipts,limits:['Hosted Windows 2022 smoke; physical Windows 10/11 and SmartScreen acceptance remain owner checks.','Same-version reinstall is tested; no prior official Windows version exists to test an upgrade from.','External link dispatch preserves the app; default-browser page rendering is not asserted.']},null,2)+'\n');
 }catch(error){
- await writeFile(join(evidence,'REPORT.json'),JSON.stringify({passed:false,sourceCommit:config.sourceCommit,receipts,error:String(error),stack:error.stack},null,2)+'\n');throw error;
+ let targets;try{targets=await (await fetch('http://127.0.0.1:9222/json/list')).json();}catch(targetError){targets={error:String(targetError)};}
+ await writeFile(join(evidence,'REPORT.json'),JSON.stringify({passed:false,sourceCommit:config.sourceCommit,receipts,targets,error:String(error),stack:error.stack},null,2)+'\n');throw error;
 }finally{
  if(active)powershell('Stop',['-AppProcessId',String(active.pid)]);
 }
