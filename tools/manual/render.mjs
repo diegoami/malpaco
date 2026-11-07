@@ -7,7 +7,7 @@ const inline=s=>escape(s).replace(/!\[([^\]]*)\]\((manual-images\/[^)]+)\)/g,'<i
 /** Deliberately small renderer for our authored guide: headings, paragraphs, lists and tables. */
 export function manualHtml(){
  const {version}=JSON.parse(readFileSync(new URL('package.json',root),'utf8'));
- const lines=readFileSync(new URL('docs/play.md',root),'utf8').trim().split('\n');let html='',list='',table=false;const toc=[];
+ const lines=readFileSync(new URL('docs/play.md',root),'utf8').trim().split(/\r?\n/);let html='',list='',table=false;const toc=[];
  const closeList=()=>{if(list){html+=`</${list}>`;list='';}};
  for(const line of lines){
   if(!line.trim()){closeList();if(table){html+='</tbody></table></div>';table=false;}continue;}
