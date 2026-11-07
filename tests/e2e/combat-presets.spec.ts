@@ -1,6 +1,10 @@
 import {expect,test} from '@playwright/test';
 import {deserializeVersionedMatch} from '../../src/core/match-save';
 import {reserveFixture} from '../helpers/reserve-fixtures';
+import {defaultOptions} from '../../src/core/options';
+import {createGeographicGame} from '../../src/core/geographic-game';
+import {defenderIslandRules,defenderMatchIdentity} from '../../src/core/combat-presets';
+import {serializeVersionedMatch} from '../../src/core/match-save';
 import {visitGame,reloadGame,openSurface,startFromResult} from './shell';
 const ROOT='malpaco:current-game',PREF='malpaco:next-game-settings',SCORES='malpaco:scoreboard';
 const read=(p:import('@playwright/test').Page,k=ROOT)=>p.evaluate(k=>localStorage.getItem(k),k);
@@ -26,4 +30,21 @@ test('failed combat preference write restores its stored choice without changing
  await page.clock.install();await page.clock.pauseAt(new Date());await visitGame(page,'/?seed=11');await openSurface(page,'menu');const key='malpaco:seed-game:11',before=(await read(page,key))!;
  await page.evaluate(pref=>{const original=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(k===pref)throw new DOMException('Full','QuotaExceededError');return original.call(this,k,v);};},PREF);
  const settings=page.getByRole('dialog',{name:'Settings',exact:true}),combat=settings.getByLabel('Combat rules',{exact:true});await combat.selectOption('legacy');await expect(settings.getByRole('alert')).toContainText('Could not keep these settings');await expect(combat).toHaveValue('defender');expect(await read(page,key)).toBe(before);expect(deserializeVersionedMatch(before).state.rules.combat.ties).toBe('defender');
+});
+
+for(const width of [320,390,1280])for(const running of ['legacy','defender'] as const)test(`${width}: actual ${running} Help ignores opposite next-game setting`,async({page})=>{
+ await page.setViewportSize({width,height:width===390?844:800});await page.clock.install();await page.clock.pauseAt(new Date());
+ let wire=reserveFixture(46).text;
+ if(running==='defender'){
+  const options={...defaultOptions(),seed:11,islandRules:1 as const,combatPreset:'defender-v1' as const};
+  const made=createGeographicGame(options,defenderIslandRules(options),{},2);if(!made.ok)throw Error(made.errors.join('; '));wire=serializeVersionedMatch(options,made.state.history,defenderMatchIdentity(2));
+ }
+ await page.addInitScript(text=>{if(sessionStorage.getItem('opposite-help'))return;sessionStorage.setItem('opposite-help','1');localStorage.setItem('malpaco:current-game',text);localStorage.setItem('malpaco:current-game-meta',JSON.stringify({id:'opposite-help',paused:true}));},wire);
+ await visitGame(page,'/');const before=(await read(page))!;expect(deserializeVersionedMatch(before).state.rules.combat.ties).toBe(running==='legacy'?'reroll':'defender');
+ await openSurface(page,'menu');const settings=page.getByRole('dialog',{name:'Settings',exact:true}),select=settings.getByLabel('Combat rules',{exact:true}),opposite=running==='legacy'?'defender':'legacy';
+ await select.selectOption(running);await select.selectOption(opposite);await expect(select).toHaveValue(opposite);const nextPreference=await read(page,PREF);
+ await settings.getByRole('button',{name:'Return to map',exact:true}).click();expect(await read(page)).toBe(before);
+ await page.getByRole('button',{name:'Help',exact:true}).click();await expect(page.locator('#game-help-combat-rules')).toHaveText(running==='legacy'?'Legacy: tied rolls reroll.':'Defender wins tied rolls.');
+ await page.locator('#close-game-help').click();expect(await read(page)).toBe(before);expect(await read(page,PREF)).toBe(nextPreference);
+ await openSurface(page,'menu');await expect(select).toHaveValue(opposite);expect(await read(page)).toBe(before);
 });

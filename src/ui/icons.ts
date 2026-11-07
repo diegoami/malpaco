@@ -1,4 +1,4 @@
-// Original inline-SVG action glyphs (owner, #222 Q7), shared by the shell and its cards.
+// Shared action glyphs; End turn uses the owner-selected Oxygen artwork and bundled notices.
 import {h,s} from "./dom";
 
 const PATHS: Record<string, string> = {
@@ -37,6 +37,8 @@ const PATHS: Record<string, string> = {
 };
 
 export function glyph(shape: string): SVGSVGElement {
+  if(shape==='end-turn')return s('svg',{class:'game-action-symbol',viewBox:'0 0 24 24',width:22,height:22,'aria-hidden':'true','data-artwork':'oxygen-games-endturn'},
+    s('image',{href:`${import.meta.env.BASE_URL}third-party/oxygen/games-endturn.svg`,width:24,height:24}));
   return s("svg", {class: "game-action-symbol", viewBox: "0 0 24 24", width: 22, height: 22, fill: "none", stroke: "currentColor", "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round", "aria-hidden": "true"},
     s("path", {d: PATHS[shape] ?? PATHS["info"]!}));
 }

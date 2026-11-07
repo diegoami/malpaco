@@ -4,7 +4,7 @@ import {readButtonLabels,effectiveButtonLabels,BUTTON_LABELS_CHANGED,BUTTON_LABE
 const commandIcons:Readonly<Record<string,string>>={
  'start-game':'play','resume-game':'history','configure-new-game':'new-game','download-recovery-game':'files',
  'new-game-button':'new-game','open-game-menu':'settings','open-hand':'cards','start-friendly-move-button':'move',
- 'end-turn-button':'flag','start-combat-button':'combat','resume-turn-button':'play','fast-forward-button':'fast-forward',
+ 'end-turn-button':'end-turn','start-combat-button':'combat','resume-turn-button':'play','fast-forward-button':'fast-forward',
  'result-new-game-button':'new-game','give-up-new-game':'new-game','give-up-confirm':'stop','give-up-cancel':'play',
  'watch-computers-button':'watch','stop-game-button':'stop','result-standings-button':'standings',
  'result-details-button':'info','result-history-button':'history','result-files-button':'files',
@@ -52,6 +52,12 @@ export function textCommands(root:HTMLElement):()=>void {
   return true;
  };
  const decorate=(button:HTMLButtonElement)=>{
+  // The completed game's primary action stays explicit even after Auto switches to icons.
+  if(button.id==='result-new-game-button'&&button.closest('.victory-new-game')){
+   button.classList.remove('game-mobile-command');button.classList.add('game-text-command');
+   if(button.textContent?.trim()!=='New game'||button.querySelector('svg'))button.replaceChildren(document.createTextNode('New game'));
+   return;
+  }
   // Constituent card symbols are data, independent of the action-label preference.
   if(button.classList.contains('card-set-choice')){button.classList.remove('game-text-command','game-mobile-command');return;}
   if(button.id==='game-help-button'){button.classList.remove('game-text-command');button.classList.add('game-utility-command','game-help-command');if(button.textContent!=='?')button.replaceChildren(document.createTextNode('?'));return;}

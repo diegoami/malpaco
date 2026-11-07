@@ -10,9 +10,10 @@ export const SCOREBOARD_KEY = "malpaco:scoreboard";
 export const RECENT_GAMES = 20, KEPT_IDS = 200;
 export type GameOutcome = "won" | "lost" | "gave-up";
 export interface ScoreRules {readonly id:string;readonly version:number}
-export const rulesKey=(rules?:ScoreRules):string=>rules?.id==='island-defender'&&rules.version===1?'defender':rules&&((rules.id==='island'||rules.id==='victory'||rules.id==='malpaco')&&rules.version===1||rules.id==='cards'&&[1,2,3].includes(rules.version))?'legacy':'earlier';
+const configurableLegacy=(rules?:ScoreRules):boolean=>rules?.id==='configurable-cards'&&rules.version===1;
+export const rulesKey=(rules?:ScoreRules):string=>rules?.id==='island-defender'&&rules.version===1?'defender':configurableLegacy(rules)||rules&&((rules.id==='island'||rules.id==='victory'||rules.id==='malpaco')&&rules.version===1||rules.id==='cards'&&[1,2,3].includes(rules.version))?'legacy':'earlier';
 export function rulesLabel(key:string):string{return key==='defender'?'Defender wins ties':key==='legacy'?'Legacy (reroll ties)':'Earlier games';}
-export interface ScoreRow {readonly id: string; readonly date: string; readonly result: GameOutcome; readonly rounds: number; readonly countries: number; readonly seed: number;readonly rules?:ScoreRules}
+export interface ScoreRow {readonly id: string; readonly date: string; readonly result: GameOutcome; readonly rounds: number; readonly countries: number; readonly seed: number;readonly rules?:ScoreRules;readonly legacyClassified?:true}
 export interface ScoreTotals {readonly won: number; readonly lost: number; readonly gaveUp: number}
 export interface Scoreboard {readonly version: 2; readonly totals: ScoreTotals;readonly byRules:Readonly<Record<string,ScoreTotals>>; readonly recent: readonly ScoreRow[]; readonly ids: readonly string[]}
 export const RESULT_LABEL: Readonly<Record<GameOutcome, string>> = {won: "Won", lost: "Lost", "gave-up": "Gave up"};
@@ -25,6 +26,22 @@ const isRow = (row: unknown): row is ScoreRow => {
   return !!r && typeof r === "object" && typeof r["id"] === "string" && typeof r["date"] === "string" && Object.hasOwn(RESULT_LABEL, r["result"] as string)
     && count(r["rounds"]) && count(r["countries"]) && count(r["seed"]);
 };
+
+/** Attribute only retained, explicitly known results; older unknown totals stay unknown.
+ * A per-row marker survives compatible older readers, which retain extra row fields.
+ */
+function classifyRetained(board:Scoreboard):Scoreboard {
+ let byRules=board.byRules;
+ const recent=board.recent.map(row=>{
+  if(!configurableLegacy(row.rules)||row.legacyClassified===true)return row;
+  const key=row.result==='gave-up'?'gaveUp':row.result,earlier=byRules['earlier'];
+  if(!earlier||earlier[key]<1)return row;
+  const legacy=byRules['legacy']??{won:0,lost:0,gaveUp:0};
+  byRules={...byRules,earlier:{...earlier,[key]:earlier[key]-1},legacy:{...legacy,[key]:legacy[key]+1}};
+  return {...row,legacyClassified:true as const};
+ });
+ return {...board,byRules,recent};
+}
 
 /** The kept text, or an empty scoreboard for a missing or corrupt one (never an error). */
 export function parseScoreboard(text: string | null): Scoreboard {
@@ -40,7 +57,7 @@ export function parseScoreboard(text: string | null): Scoreboard {
       const entries=Object.entries(groups),valid=entries.every(([key,x])=>['defender','legacy','earlier'].includes(key)&&x&&typeof x==='object'&&count(x.won)&&count(x.lost)&&count(x.gaveUp));
       if(valid&&(['won','lost','gaveUp'] as const).every(k=>entries.reduce((n,[,x])=>n+x[k],0)===totals[k]))byRules=Object.fromEntries(entries.map(([k,x])=>[k,{won:x.won,lost:x.lost,gaveUp:x.gaveUp}]));
     }
-    return {version: 2, totals,byRules, recent: (v["recent"] as ScoreRow[]).map(row=>{const {rules,...rest}=row;return {...rest,...(validRules(rules)?{rules:{id:rules.id,version:rules.version}}:{})};}).slice(0, RECENT_GAMES), ids: (v["ids"] as string[]).slice(-KEPT_IDS)};
+    return classifyRetained({version: 2, totals,byRules, recent: (v["recent"] as ScoreRow[]).map(row=>{const {rules,...rest}=row;return {...rest,...(validRules(rules)?{rules:{id:rules.id,version:rules.version}}:{})};}).slice(0, RECENT_GAMES), ids: (v["ids"] as string[]).slice(-KEPT_IDS)});
   } catch {return emptyScoreboard();}
 }
 
@@ -50,7 +67,8 @@ export function recordGame(board: Scoreboard, row: ScoreRow): Scoreboard {
   const t = board.totals;
   const totals = {won: t.won + Number(row.result === "won"), lost: t.lost + Number(row.result === "lost"), gaveUp: t.gaveUp + Number(row.result === "gave-up")};
   const key=rulesKey(row.rules),prior=board.byRules[key]??{won:0,lost:0,gaveUp:0},byRules={...board.byRules,[key]:{won:prior.won+Number(row.result==='won'),lost:prior.lost+Number(row.result==='lost'),gaveUp:prior.gaveUp+Number(row.result==='gave-up')}};
-  return {version: 2, totals,byRules, recent: [row, ...board.recent].slice(0, RECENT_GAMES), ids: [...board.ids, row.id].slice(-KEPT_IDS)};
+  const classified=configurableLegacy(row.rules)?{...row,legacyClassified:true as const}:row;
+  return {version: 2, totals,byRules, recent: [classified, ...board.recent].slice(0, RECENT_GAMES), ids: [...board.ids, row.id].slice(-KEPT_IDS)};
 }
 
 export const played = (t: ScoreTotals): number => t.won + t.lost + t.gaveUp;
@@ -85,17 +103,18 @@ export class ScoreboardDialog {
     this.dialog.addEventListener("close", () => {if (this.button.isConnected) this.button.focus({preventScroll: true});});
   }
   private render(confirming = false): void {
-    const board = parseScoreboard(this.store.get());if(this.filter!=='all'&&!board.byRules[this.filter])this.filter='all';const t=this.filter==='all'?board.totals:board.byRules[this.filter]!,rate=winRate(t),recent=this.filter==='all'?board.recent:board.recent.filter(r=>rulesKey(r.rules)===this.filter);
-    const select=h('select',{id:'scoreboard-rules','aria-label':'Combat rules for scores',style:'min-height:44px;max-width:100%'},h('option',{value:'all'},'All rules'),...Object.keys(board.byRules).sort().map(key=>h('option',{value:key},rulesLabel(key))));select.value=this.filter;select.onchange=()=>{this.filter=select.value;this.render();(this.body.querySelector('#scoreboard-rules') as HTMLSelectElement|null)?.focus();};
+    const board = parseScoreboard(this.store.get());if(this.filter!=='all'&&!played(board.byRules[this.filter]??{won:0,lost:0,gaveUp:0}))this.filter='all';const t=this.filter==='all'?board.totals:board.byRules[this.filter]!,rate=winRate(t),recent=this.filter==='all'?board.recent:board.recent.filter(r=>rulesKey(r.rules)===this.filter);
+    const select=h('select',{id:'scoreboard-rules','aria-label':'Combat rules for scores'},h('option',{value:'all'},'All rules'),...Object.keys(board.byRules).filter(key=>played(board.byRules[key]!)>0).sort().map(key=>h('option',{value:key},rulesLabel(key))));select.value=this.filter;select.onchange=()=>{this.filter=select.value;this.render();(this.body.querySelector('#scoreboard-rules') as HTMLSelectElement|null)?.focus();};
     const stat = (id: string, term: string, value: string) => h("div", {}, h("dt", {}, term), h("dd", {id}, value));
     const totals = h("dl", {id: "scoreboard-totals", class: "scoreboard-totals"}, stat("scoreboard-played", "Played", String(played(t))), stat("scoreboard-won", "Won", String(t.won)),
       stat("scoreboard-lost", "Lost", String(t.lost)), stat("scoreboard-gave-up", "Gave up", String(t.gaveUp)), stat("scoreboard-win-rate", "Win rate", rate === null ? "–" : `${rate}%`));
     // A short date fits a phone; the full one is its title.
     const date = (iso: string) => {const d = new Date(iso); return Number.isNaN(d.getTime()) ? iso : h("time", {datetime: iso, title: d.toLocaleString()}, d.toLocaleDateString(undefined, {month: "short", day: "numeric"}));};
-    const list = recent.length ? h("table", {id: "scoreboard-games"}, h("caption", {}, `${this.filter==='all'?'Last':'Matching games from the last'} ${RECENT_GAMES} games, newest first; Countries are yours at the end`),
-      h("thead", {}, h("tr", {}, ...["Date", "Result", "Rules", "Rounds", "Countries", "Seed"].map(c => h("th", {scope: "col"}, c)))),
-      h("tbody", {}, ...recent.map(row => h("tr", {"data-result": row.result}, h("td", {}, date(row.date)), h("th", {scope: "row"}, RESULT_LABEL[row.result]),h("td",{},rulesLabel(rulesKey(row.rules))),
-        h("td", {}, String(row.rounds)), h("td", {}, String(row.countries)), h("td", {}, String(row.seed))))))
+    const field=(tag:'td'|'th',name:string,...content:(Node|string)[])=>h(tag,{'data-score-field':name.toLowerCase(),role:tag==='th'?'rowheader':'cell',...(tag==='th'?{scope:'row'}:{})},h('span',{class:'score-field-label','aria-hidden':'true'},name),h('span',{class:'score-field-value'},...content));
+    const list = recent.length ? h("table", {id: "scoreboard-games",role:'table'}, h("caption", {}, `${this.filter==='all'?'Last':'Matching games from the last'} ${RECENT_GAMES} games, newest first; Countries are yours at the end`),
+      h("thead", {role:'rowgroup'}, h("tr", {role:'row'}, ...["Date", "Result", "Rules", "Rounds", "Countries", "Seed"].map(c => h("th", {scope: "col",role:'columnheader'}, c)))),
+      h("tbody", {role:'rowgroup'}, ...recent.map(row => h("tr", {"data-result": row.result,role:'row'}, field('td','Date',date(row.date)),field('th','Result',RESULT_LABEL[row.result]),field('td','Rules',rulesLabel(rulesKey(row.rules))),
+        field('td','Rounds',String(row.rounds)),field('td','Countries',String(row.countries)),field('td','Seed',String(row.seed))))))
       : h("p", {id: "scoreboard-empty", class: "card-note"}, this.filter==='all'?'No games recorded yet. A game counts once, when it ends.':'No matching games in the last 20.');
     const reset = h("button", {type: "button", id: "scoreboard-reset", disabled: !played(t) && !board.recent.length}, "Reset");
     reset.onclick = () => {this.render(true); this.body.querySelector<HTMLButtonElement>("#scoreboard-reset-cancel")?.focus();};

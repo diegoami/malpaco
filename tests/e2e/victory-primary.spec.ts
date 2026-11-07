@@ -46,7 +46,9 @@ for(const size of [{width:390,height:844},{width:568,height:320},{width:820,heig
   const b=(await page.locator('#'+id).boundingBox())!;expect(r.width).toBeGreaterThan(b.width+16);expect(r.y+r.height).toBeLessThanOrEqual(b.y);
  }
  const title=(await page.locator('.victory-result .result-title').boundingBox())!;expect(title.y).toBeGreaterThanOrEqual(0);expect(title.y+title.height).toBeLessThanOrEqual(size.height);
- if(await page.locator('body').getAttribute('data-button-labels')==='text')await expect(primary).toHaveText(/New game/i);else await expect(primary.locator('svg')).toBeVisible();
+ await expect(primary).toHaveText(/New game/i);
+ expect(await primary.evaluate(n=>{const range=document.createRange();range.selectNodeContents(n.querySelector('.card-icon-caption')??n);return range.getBoundingClientRect().width;})).toBeGreaterThan(40);
+ expect(await primary.evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThanOrEqual(18);
  await page.screenshot({path:`artifacts/T165/victory-${size.width}-${mode}.png`});
  const scores=await page.evaluate(k=>localStorage.getItem(k),SCORES);expect(JSON.parse(scores!).totals).toEqual({won:1,lost:0,gaveUp:0});expect(JSON.parse(scores!).recent).toHaveLength(1);
  await page.locator('#result-standings-button').click();await page.locator('#result-details-button').click();await reachable(page,size);

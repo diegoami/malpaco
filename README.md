@@ -18,15 +18,19 @@ The [illustrated player manual](docs/play.md) explains every phase, cards, event
 controls and settings. Open **Full player manual with screenshots** in Help during
 play, or run `npm run manual:refresh` for a portable copy. The
 [maintenance guide](docs/manual-maintenance.md) keeps it and inline Help current;
-[0.5.2 release notes](docs/releases/0.5.2/RELEASE-NOTES.md),
-[publication receipt](docs/releases/0.5.2/PUBLICATION.md) and
-[provenance](docs/releases/0.5.2/PROVENANCE.md) describe the published web release.
+[0.5.3 release notes](docs/releases/0.5.3/RELEASE-NOTES.md),
+[publication receipt](docs/releases/0.5.3/PUBLICATION.md) and
+[provenance](docs/releases/0.5.3/PROVENANCE.md) describe that published web release.
 
-Web **0.5.2** is published from reviewed source `198de7e`, after independent
-AGREE and explicit owner approval. [Milestone #422](https://github.com/diegoami/malpaco/issues/422)
+Web **0.5.3** was published from reviewed source `b6f9e54`, after independent
+AGREE and explicit owner approval. [Milestone #440](https://github.com/diegoami/malpaco/issues/440)
 retains the review, byte verification and publication receipts.
 
-The 0.5.2 launcher adapts to portrait/landscape windows and offers Start or Resume.
+[0.5.4 contracts](docs/plans/release-0.5.4.md) and the
+[acceptance protocol](docs/releases/0.5.4/ACCEPTANCE.md) describe the forward work;
+they do not authorize publication or replace existing release bytes.
+
+The launcher adapts to portrait/landscape windows and offers Start or Resume.
 Button labels support Text, Icons, or Text 2 turns, then Icons (default), counting
 your personal turns. Choose Slow/Normal/Fast/Very fast computer turns; both display
 preferences apply immediately and persist on this browser. Widget −/+ and Hide/Show
