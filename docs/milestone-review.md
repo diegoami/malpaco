@@ -46,9 +46,9 @@ touch it: read the candidate with `git show <sha>:<path>` and say which checks y
 
 **Review** `git diff <previous tag>..<sha>` and follow it into any file it touches or relies on.
 `CLAUDE.md` is the standard. Look hardest at: rule correctness and edge cases in `src/core`, rule
-values without a finding or a `[designed]` mark (rule 17), purity of the core (rule 18), anything
-copied from the original (rule 19), saves and replays that would not load, tests that pass without
-the behaviour they claim, and the UI against the owner's bar (rule 20) where a screenshot shows it.
+values without a finding or a `[designed]` mark (rule 13), purity of the core (rule 14), anything
+copied from the original (rule 15), saves and replays that would not load, tests that pass without
+the behaviour they claim, and the UI against the owner's bar (rule 16) where a screenshot shows it.
 Aim at what CI cannot see. Out-of-scope problems elsewhere count too; mark them so.
 
 **Write to GitHub yourself**, and only this; never edit, commit, push, tag or merge:
