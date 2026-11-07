@@ -47,6 +47,8 @@ The turn tracker lists seats, public counts and the current player's arrow. Wait
 | Resume | Continue after an explicit pause or interruption. |
 | End turn | Finish the turn without a friendly transfer; shown as a green tick in Icons mode. |
 
+Help scrolls within the window. Its **× Close help** button stays at the top while you read, including in fullscreen. Click it or press Escape to close Help and return focus to **?**.
+
 The new-armies counter sits at the top left immediately right of Cards. In icon mode an army symbol accompanies the count. Select a region to use its Move control; the redundant bottom-right Move button has been removed. The province-list button has also been removed; map regions remain reachable with Tab and Enter.
 
 The bottom-left +/− zoom icons stay visible, including at Fit. Zoom Out is disabled at minimum zoom; Zoom In is disabled at maximum zoom. Pinch or use the mouse wheel to zoom; drag to pan. Use Fit if you lose your place. If a tap overlaps several countries, the game chooses the one with the most area under your finger and zooms in a little. No chooser popup interrupts play. Country selection and action controls also work with keyboard focus and Enter/Space; Shift activation selects without immediately fighting an armed attack. Form controls retain their ordinary keyboard behavior.
