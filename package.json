@@ -16,7 +16,9 @@
     "test": "node --test tests/dev-watch/*.test.mjs && vitest run",
     "e2e": "playwright test",
     "android:build:debug": "node tools/android/build-debug.mjs",
-    "android:dev": "tauri android dev"
+    "android:dev": "tauri android dev",
+    "windows:build": "node tools/windows/build.mjs",
+    "windows:smoke": "node tools/windows/smoke.mjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

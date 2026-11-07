@@ -1,0 +1,36 @@
+import {spawnSync,execFileSync} from 'node:child_process';
+import {mkdir,readFile,readdir,writeFile,copyFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {resolve,join,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'../..');
+if(process.platform!=='win32'||process.arch!=='x64')throw Error('Build on Windows x64; see docs/windows.md.');
+const git=(...args)=>execFileSync('git',['-c',`safe.directory=${root}`,...args],{cwd:root,encoding:'utf8'}).trim();
+if(git('status','--porcelain','--untracked-files=no'))throw Error('Refusing a build with uncommitted tracked source.');
+const sourceCommit=git('rev-parse','HEAD');
+const {version}=JSON.parse(await readFile(join(root,'package.json'),'utf8'));
+const target=join(root,'artifacts/windows-cargo-target');
+const result=spawnSync(process.execPath,[join(root,'node_modules/@tauri-apps/cli/tauri.js'),'build','--ci','--target','x86_64-pc-windows-msvc','--bundles','nsis','--','--locked'],{cwd:root,env:{...process.env,CARGO_TARGET_DIR:target},stdio:'inherit'});
+if(result.error)throw result.error;
+if(result.status!==0)process.exit(result.status??1);
+const native=join(target,'x86_64-pc-windows-msvc/release');
+const installers=(await readdir(join(native,'bundle/nsis'))).filter(n=>n.includes(`_${version}_`)&&n.endsWith('-setup.exe'));
+if(installers.length!==1)throw Error(`Expected one versioned installer; found ${installers.join(',')}`);
+const output=join(root,'artifacts/windows',sourceCommit.slice(0,12));await mkdir(output,{recursive:true});
+const portable=`malpaco-${version}-windows-x64-portable.exe`,installer=`malpaco-${version}-windows-x64-setup.exe`;
+await copyFile(join(native,'malpaco.exe'),join(output,portable));await copyFile(join(native,'bundle/nsis',installers[0]),join(output,installer));
+const bundled=JSON.parse(await readFile(join(root,'release/malpaco-playable/BUILD.json'),'utf8'));
+if(bundled.sourceCommit!==sourceCommit||bundled.version!==version)throw Error('Bundled frontend provenance does not match the native build.');
+const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+const payloadManifest=await readFile(join(root,'release/malpaco-playable/SHA256SUMS'));
+await writeFile(join(output,'FRONTEND-SHA256SUMS'),payloadManifest);
+await writeFile(join(output,'README-WINDOWS.txt'),`Malpaco ${version} — Windows x64\n\nInstaller: ${installer}\nPortable executable: ${portable}\n\nBoth contain the game, worker, fonts and illustrated manual and run without a game server. Microsoft Edge WebView2 Runtime is required. The installer downloads it from Microsoft if missing (internet is then needed); portable users must install the Runtime first. Once the Runtime is available, gameplay works offline.\n\nThese initial binaries are unsigned. Windows may show an unknown-publisher/SmartScreen prompt. No certificate or signed-publisher claim is made.\n\nPortable means no Malpaco installation, not portable-folder saves. Both formats use this Windows user's app WebView data and share the same Malpaco identity. Web-browser data has a different origin and is not imported automatically. Do not run both copies concurrently. Removing or clearing app data can erase saves and scores.\n\nProject: https://github.com/diegoami/malpaco\nDownloads: https://github.com/diegoami/malpaco/releases\nSource: ${sourceCommit}\n`);
+const files=[];
+for(const name of [portable,installer,'README-WINDOWS.txt','FRONTEND-SHA256SUMS']){const bytes=await readFile(join(output,name));files.push({name,bytes:bytes.length,sha256:hash(bytes)});}
+const manifest={schemaVersion:1,version,sourceCommit,platform:process.platform,arch:process.arch,node:process.version,rust:execFileSync('rustc',['--version'],{encoding:'utf8'}).trim(),signing:'unsigned',frontendManifestSha256:hash(payloadManifest),files};
+await writeFile(join(output,'BUILD-WINDOWS.json'),JSON.stringify(manifest,null,2)+'\n');
+const manifestBytes=await readFile(join(output,'BUILD-WINDOWS.json'));
+await writeFile(join(output,'SHA256SUMS'),[...files,{name:'BUILD-WINDOWS.json',sha256:hash(manifestBytes)}].map(f=>`${f.sha256}  ${f.name}`).join('\n')+'\n');
+await writeFile(join(root,'artifacts/windows/build-output.json'),JSON.stringify({output,portable,installer,sourceCommit,version},null,2)+'\n');
+console.log(JSON.stringify({output,sourceCommit,version,files},null,2));
