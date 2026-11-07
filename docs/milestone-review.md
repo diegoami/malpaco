@@ -6,6 +6,11 @@ on whatever model they pick, in a fresh session. Adapted from Geoclick2027's rel
 
 ## How a milestone happens
 
+For 0.5.4, use the [release-specific acceptance protocol](releases/0.5.4/ACCEPTANCE.md):
+the candidate stays on `release/0.5.4` until publication approval because pushing `main`
+publishes GitHub Pages automatically. Review its exact, reachable CI-tested commit.
+The source location changes; independence, findings, visual and publication gates do not.
+
 1. The owner calls a milestone, or the main session proposes one when a coherent set of work has
    landed (a playable slice, a queue closed).
 2. The version bump and the release notes land on `main`; that commit is the **candidate**.

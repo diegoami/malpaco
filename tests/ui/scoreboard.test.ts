@@ -99,14 +99,15 @@ describe('known configurable Legacy results',()=>{
   expect(recordGame(migrated,{...row(1),rules:config})).toBe(migrated);
  });
  it('does not transfer an already marked row again when older readers retain its unknown fields',()=>{
-  const recent=[{...row(1),rules:config,legacyClassified:true}];
-  const old={version:2,totals:{won:11,lost:0,gaveUp:0},byRules:{earlier:{won:10,lost:0,gaveUp:0},legacy:{won:1,lost:0,gaveUp:0}},recent,ids:['game-1']};
-  expect(parseScoreboard(JSON.stringify(old)).byRules).toEqual(old.byRules);
+  const prior=parseScoreboard(JSON.stringify({version:1,totals:{won:10,lost:0,gaveUp:0},recent:[],ids:['older']}));
+  const recorded=recordGame(prior,{...row(1),rules:config});
+  expect(recorded.byRules).toEqual({earlier:{won:10,lost:0,gaveUp:0},legacy:{won:1,lost:0,gaveUp:0}});
+  expect(parseScoreboard(JSON.stringify(recorded)).byRules).toEqual(recorded.byRules);
  });
  it('never infers a rule group from a seed or malformed metadata',()=>{
   for(const rules of [null,{id:'configurable-cards',version:'1'},{id:'configurable-cards',version:0}]){
-   const old={version:2,totals:{won:1,lost:0,gaveUp:0},byRules:{earlier:{won:1,lost:0,gaveUp:0}},recent:[{...row(1),seed:11,rules}],ids:['game-1']};
-   const parsed=parseScoreboard(JSON.stringify(old));expect(parsed.byRules).toEqual(old.byRules);expect(parsed.recent[0]!.rules).toBeUndefined();
+   const old={version:2,totals:{won:2,lost:0,gaveUp:0},byRules:{earlier:{won:2,lost:0,gaveUp:0}},recent:[{...row(1),seed:11,rules},{...row(2),rules:config}],ids:['game-1','game-2']};
+   const parsed=parseScoreboard(JSON.stringify(old));expect(parsed.byRules).toEqual({earlier:{won:1,lost:0,gaveUp:0},legacy:{won:1,lost:0,gaveUp:0}});expect(parsed.recent[0]!.rules).toBeUndefined();
   }
  });
  it('leaves unknown metadata and unretained outcomes alone and never subtracts below zero',()=>{

@@ -157,7 +157,7 @@ export class GameHelp {
     close.onclick = () => this.dialog.close();
     this.dialog.append(
       h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
-      h('p',{},`Malpaco ${version}. The running version is shown at the top right of the game.`),
+      h('p',{},`Malpaco ${version}.`),
       h("p", {}, h("a", {id:"full-player-manual",href:`${import.meta.env.BASE_URL}manual/index.html`,target:"_blank",rel:"noopener"}, "Full player manual with screenshots")),
       h('p',{},h('a',{href:`${import.meta.env.BASE_URL}third-party/oxygen/index.html`,target:'_blank',rel:'noopener'},'Oxygen icon credits and licence')),
       h("section", {}, h("h3", {}, "Objective"), this.objective),h("section",{},h("h3",{},"Combat rules"),this.combatRules),

@@ -45,7 +45,7 @@ The turn tracker lists seats, public counts and the current player's arrow. Wait
 | Zoom In / Zoom Out (+ / −) | Change map zoom using the bottom-left icons. |
 | Fit | Restore a view of the whole map. |
 | Resume | Continue after an explicit pause or interruption. |
-| End turn | The green tick ends your turn without a friendly transfer. |
+| End turn | Finish the turn without a friendly transfer; shown as a green tick in Icons mode. |
 
 The new-armies counter sits at the top left immediately right of Cards. In icon mode an army symbol accompanies the count. Select a region to use its Move control; the redundant bottom-right Move button has been removed. The province-list button has also been removed; map regions remain reachable with Tab and Enter.
 
@@ -154,7 +154,7 @@ You are eliminated with no countries. The loss screen can offer **Watch computer
 
 Open the trophy **Scoreboard** in Settings for games played, wins, losses, give-ups, win rate and the last 20 games, newest first. Each game counts once. Rule filters show the groups with recorded results: Defender, Legacy or Earlier games, plus All rules. Older results may be grouped as Earlier games. Reset asks before clearing. Scores belong to this browser, not an online ranking.
 
-On a phone, each result is a labelled entry showing its date, result, rules, rounds, countries and seed. Wider screens keep the table. Known older configurable-income matches use Legacy combat. Retained results with that exact stored identity are classified as Legacy; older totals without attributable retained records stay under Earlier games. This changes grouping only, preserving the total number of outcomes.
+On a phone, each result is a labelled entry showing its date, result, rules, rounds, countries and seed. Wider screens keep the table. Known older matches with configurable replenishment use Legacy combat. Recent results that record those rules appear under Legacy; older totals that cannot be attributed stay under Earlier games. Your overall totals do not change.
 
 ## Keep and resume your game
 

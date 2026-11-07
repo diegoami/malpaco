@@ -14,7 +14,7 @@ for(const width of [320,390,568,820,1280])test(`${width}: all score fields and r
  const r=(await filter.boundingBox())!;expect(r.height).toBeGreaterThanOrEqual(44);expect(await filter.evaluate(n=>parseFloat(getComputedStyle(n).fontSize))).toBeGreaterThanOrEqual(18);
  expect(await board.evaluate(n=>n.scrollWidth<=n.clientWidth)).toBe(true);
  for(const cell of await table.locator('tbody tr > *').all()){
-  await cell.evaluate(n=>n.scrollIntoView({block:'center'}));const b=(await cell.boundingBox())!;expect(b.x).toBeGreaterThanOrEqual(0);expect(b.x+b.width).toBeLessThanOrEqual(width);expect(await cell.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);
+  await cell.evaluate(n=>n.scrollIntoView({block:'center'}));await expect(cell.locator('.score-field-value')).toBeVisible();const b=(await cell.boundingBox())!;expect(b.x).toBeGreaterThanOrEqual(0);expect(b.x+b.width).toBeLessThanOrEqual(width);expect(await cell.evaluate(n=>n.scrollWidth<=n.clientWidth+1)).toBe(true);
  }
  await expect(table).toContainText('4294967295');await expect(table).toContainText('123');await expect(table).toContainText('96');
  await filter.selectOption('legacy');await expect(filter).toBeFocused();await expect(board.locator('#scoreboard-won')).toHaveText('1');await expect(table.locator('tbody tr')).toHaveCount(1);await expect(table).toContainText('Legacy');
