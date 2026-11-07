@@ -1,6 +1,6 @@
 # Malpaco player manual
 
-For **Malpaco 0.5.1**. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
+These instructions cover the current game. Its running version is shown at the **top right**, and the generated manual shows the same package version above its contents. Screenshots show real browser play, including retained games. Their maps, colours and army counts are examples; your game will differ. Read the combat rule and objective in your own game's Help, especially when resuming an older game.
 
 ## Your first game
 
@@ -151,13 +151,13 @@ You are eliminated with no countries. The loss screen can offer **Watch computer
 
 **New game** is the large primary action above Standings and Details after a completed game. It opens the launcher; choose Start when ready. It keeps its primary size in icon mode too. The result card folds to a compact chip and reopens. **Standings** shows countries and armies; **Details** includes the seed and match options. Historical round-limit games rank by countries, then armies, then later position in that round's turn order. The ordinary launcher has no round-limit or total-conquest-only switch.
 
-Open the trophy **Scoreboard** in Settings for games played, wins, losses, give-ups, win rate and the last 20 games, newest first. Each game counts once. Rule filters distinguish combat groups; older entries can be Legacy/unspecified. Reset asks before clearing. Scores belong to this browser, not an online ranking.
+Open the trophy **Scoreboard** in Settings for games played, wins, losses, give-ups, win rate and the last 20 games, newest first. Each game counts once. Rule filters show the groups with recorded results: Defender, Legacy or Earlier games, plus All rules. Older results may be grouped as Earlier games. Reset asks before clearing. Scores belong to this browser, not an online ranking.
 
 ## Keep and resume your game
 
 Committed actions are saved in this browser. Reloading or returning offers Resume saved game, including pending capture/card decisions. A paused match waits for Resume. Settings and Help pause play while open and normally return to play when closed; neither clears an independent interruption pause. You can inspect and navigate the map while notices or decisions are pending.
 
-There is no account, online multiplayer or cross-device synchronization. Other browsers/devices have separate storage; private browsing is temporary. Clearing site data removes local data. A local server and the hosted game have separate saves. Normal play uses automatic storage, not retired developer Save/Load screens. If the launcher reports a recovery error, use **Download saved data** before clearing anything.
+There is no account, online multiplayer or cross-device synchronization. Other browsers/devices have separate storage; private browsing is temporary. Clearing site data removes local data. The Netlify game, the GitHub Pages mirror and a local server each have separate saves and scores, even when they show the same version. Normal play uses automatic storage, not retired developer Save/Load screens. If the launcher reports a recovery error, use **Download saved data** before clearing anything.
 
 ## If something seems stuck
 

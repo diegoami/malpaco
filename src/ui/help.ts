@@ -1,5 +1,6 @@
 import { glyph } from "./icons";
 import { h } from "./dom";
+import {version} from '../../package.json';
 
 const sections = [
   [
@@ -126,7 +127,7 @@ const HOW_TO: readonly (readonly [string, string])[] = [
   ["Button labels", "Choose Icons or Text, or Text 2 turns, then Icons in the launcher or Settings. The default shows text for your first two personal turns and then icons, including after resume. Explicit Text/Icons choices are preserved; your preference applies immediately and is kept across games, reloads and screen sizes. Attack and Move follow that choice even when both actions are available. Text and padding scale down on smaller screens while buttons keep usable touch targets. Map tools, including Zoom In/Out, amount controls and Close always keep standard symbols. New armies sit beside Cards at the top left and use an army symbol in icon mode. Use the selected region’s Move command; the bottom-right Move and province-list buttons are removed."],
   ["Phone and keyboard controls", "In Icons mode, play starts/resumes, flag ends the turn, crossed weapons attack and arrows move. A check mark confirms amounts. Tooltips and accessible names keep the action names. Use Tab and Enter/Space for controls; Shift activation selects without fighting an armed attack. At very short window heights, scroll the whole launcher; Start/Resume come first. Portrait and landscape layouts adapt to the window, with columns on wider screens. Taller launchers scroll only their settings if needed."],
   ["Victory and results", "Normal games use Domination: finish your turn holding 35 of 46, 54 of 72 or 72 of 96 countries, or conquer all countries. Help's Objective shows your current match's target. After a completed game, the large primary New game action opens the launcher; Start begins the next match. It stays prominent in icon mode. Standings and Details expand the result; fold it to a chip to see the map. If eliminated, Watch computers or Stop game. The scoreboard in Settings records each outcome once and separates combat-rule groups."],
-  ["Local storage", "Games and scores belong to this browser and address. There is no account or cross-device sync; clearing site data removes them. A locally served game and the hosted game have separate saves. A paused game requires Resume. Next-game preferences never change a kept match."],
+  ["Local storage", "Games and scores belong to this browser and address. There is no account or cross-device sync; clearing site data removes them. Netlify, GitHub Pages and a locally served game have separate saves and scores, even at the same version. A paused game requires Resume. Next-game preferences never change a kept match."],
   ["Moving cards", "Drag a card by its grip or its edge to put it elsewhere; later cards open there too. Double-tap the grip, or start a new game, to put cards back in their corners."],
 ];
 
@@ -156,6 +157,7 @@ export class GameHelp {
     close.onclick = () => this.dialog.close();
     this.dialog.append(
       h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
+      h('p',{},`Malpaco ${version}. The running version is shown at the top right of the game.`),
       h("p", {}, h("a", {id:"full-player-manual",href:`${import.meta.env.BASE_URL}manual/index.html`,target:"_blank",rel:"noopener"}, "Full player manual with screenshots")),
       h("section", {}, h("h3", {}, "Objective"), this.objective),h("section",{},h("h3",{},"Combat rules"),this.combatRules),
       ...howTo.map(([title, copy]) => h("section", {}, h("h3", {}, title), h("p", {}, copy))),

@@ -6,9 +6,11 @@ import smallSeaJson from "../data/maps/small_sea.json";
 import { parseMap } from "./core";
 import { App } from "./ui/app";
 import { mountGeneratedPreview } from "./ui/prototype/preview";
+import {gameVersion} from './ui/gameVersion';
 
 const root = document.getElementById("app");
 if (!root) throw new Error("#app is missing");
+document.body.append(gameVersion());
 
 /** `?seed=N` fixes the game (tests and bug reports); otherwise a fresh random one. */
 function chooseSeed(): number {

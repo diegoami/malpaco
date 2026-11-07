@@ -1458,6 +1458,8 @@ dialog h2 {
    the --safe-* properties to simulate cutouts. [designed] 48 px icons (the sketch
    size, above the 44 px minimum), 8 px apart; 16 px text. */
 :root { --safe-top:env(safe-area-inset-top,0px); --safe-right:env(safe-area-inset-right,0px); --safe-bottom:env(safe-area-inset-bottom,0px); --safe-left:env(safe-area-inset-left,0px); }
+/* Build identity fits above the 16px control inset and never catches map input. */
+#game-version { position:fixed; top:calc(var(--safe-top) + 1px); right:calc(var(--safe-right) + 4px); z-index:20; pointer-events:none; padding:0 4px; border-radius:3px; background:#102a36; color:#e8f1ef; font:12px/14px system-ui,sans-serif; font-variant-numeric:tabular-nums; }
 :is(#reference-game,#geographic-game).battle-reference { position:fixed; inset:0; height:auto; display:block; overflow:hidden;
   --avail-h:calc(100dvh - var(--safe-top) - var(--safe-bottom)); --gap:8px; --edge:16px; --target:48px; }
 .battle-reference > .board { position:absolute; top:var(--safe-top); right:var(--safe-right); bottom:var(--safe-bottom); left:var(--safe-left); padding:0; }

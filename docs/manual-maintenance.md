@@ -11,6 +11,7 @@ this is a narrow exception to rule 6, not a change to general artifact retention
 - `docs/manual-images/`: eight curated PNGs and their capture provenance.
 - `tests/e2e/player-manual.spec.ts`: real UI states and Help/manual navigation checks.
 - `tools/manual/render.mjs`: renders the same Markdown into `/manual/index.html` in development and builds. No separate hand-edited HTML copy.
+- The game, Help and generated manual read their version from `package.json`; the source guide avoids a separate release number that can go stale.
 - `artifacts/player-manual/`: portable HTML, images and provenance; generated, never committed.
 
 ## Required alongside a gameplay or UI change

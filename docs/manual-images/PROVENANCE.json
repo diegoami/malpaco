@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "version": "0.5.3",
-  "sourceCommit": "f56149100003827ad51f2b3296b5c3152f293897",
-  "capturedAt": "2026-11-01T20:26:58.917Z",
+  "sourceCommit": "eb18d743719028a77edc43e89c8a4b98492c7657",
+  "capturedAt": "2026-11-07T13:37:25.832Z",
   "dirty": true,
   "command": "npm run manual:refresh",
   "browser": "Version 1.63.0",
@@ -17,8 +17,11 @@
     ]
   },
   "sources": {
-    "docs/play.md": "3985c77b8792d9b53b0be411e3d2a4270711b0a2fadc9c47e5fa3d883b4d8c60",
-    "src/ui/help.ts": "2698dc8f95cec96351eeefa04225115ccf8e4f848a35b60ab09073ee118d2937",
+    "package.json": "07a9c475361c08f6ebbb4f5d4800966cb71ca9e1e295b7b1e0cf8dadbbd3619f",
+    "src/main.ts": "311f62445456136f478846b96d9ab6ac6a116cece15b915ff8c9f547e5d67e4b",
+    "src/ui/gameVersion.ts": "66f01821936ff000237b56b8d8396bd63b437a1f19c5200e508da94a8de3fca5",
+    "docs/play.md": "db942f176ab849c599aa4353ea697951b1c9332c7d6bcddfbfb2099545ec428f",
+    "src/ui/help.ts": "4e5cd3e22ea6eaa4ad3a06d6cc084604c4a6fe23cf975bffafb6bc70efd239f6",
     "src/ui/cardView.ts": "6b6e1f04c629cd405b1bf54fdadee6008d58e369fe1b057b3139419844f41c3d",
     "src/ui/victoryView.ts": "7e78278611a7510121c51513892fd15572ebe476ed3b64475eb240c295f70ffd",
     "src/ui/friendlyMoveView.ts": "463f70d2e361f74f6369ffb2f4ac4294ba226a5637cfc0e714df2ae86bdae978",
@@ -33,22 +36,22 @@
     "src/ui/provinceAction.ts": "d1bc675259be79b3e15f573046e6c4f6e267791a17e14f73c102694c0dc77184",
     "src/ui/textCommands.ts": "ff20ccf1df40c7ff60695255ce949ce46be71b1743f104f5764379b27edf5f0a",
     "src/ui/referenceBattleGame.ts": "b950733eb82e10fa1f19f67185c72c2f0efa3d7be5d74b7bd9306eafe811a783",
-    "src/styles.css": "3e71d3c02bbffd031e67dfcf0692772eebb103394e6a8e6337ea25dae5049efe",
+    "src/styles.css": "977e3fe84de6027503e20fab39870769e99a72ecd57db86ccdab319deb090914",
     "tests/e2e/player-manual.spec.ts": "23758ea3fd9ffa4d7264d69818a01372121202273dc403565c62d562f491e9c5",
     "tests/e2e/event-fixture.ts": "88129172716dc8cdfcf998500a1eeb855bafdcc84420bc4547a8fade0a5890b1",
     "vite.config.ts": "c5ab3a851708896949c89875acc306a8bbe28c74d636f58b31e792d7b5fbabe3",
-    "tools/manual/render.mjs": "4c9aef437e5be7edbdd89984e9354c396a2a23db4840a02a2670e6f8c13fd999",
-    "tools/manual/refresh.mjs": "00fe5ce782d286e5f481134660e63b96cd2177f31d344eddc76489472a67e2c8"
+    "tools/manual/render.mjs": "8854cacfc48cf758ae30c2fd203fabab7eaf44a9f0b3bffa880c1edf239cbf09",
+    "tools/manual/refresh.mjs": "84006c1ebf70e5b1802cf537aed9592ffa9db65cbb1fa9f757ee77654e3cad43"
   },
   "files": {
-    "index.html": "b732ab7d931e2761ef6640574e6ff85875e3eee70c14fd21c32f3dabf2dacdff",
-    "manual-images/launcher.png": "c5bde844928ac1ccd78242d1bf1f9268e15499e44a37586c7af17155e54864db",
-    "manual-images/map.png": "5b87eb4186df1fd0ed51ead5fff26d57e34ba09a4ce604f4588cca122b6d5d79",
-    "manual-images/phone.png": "84793d542bbfdfc39e9a350a35fd68ae60ef217d4569cf3f222dec5ab31ca510",
-    "manual-images/attack.png": "66844ef6d4a6bb0c1931fd04fcd736fbd97b51ad1fd3ca51fee68ecdb58c61fe",
-    "manual-images/capture.png": "71337e2fc72cfa74118e015913b10dd990994bc085cc40b75f0af637cb7bab5e",
-    "manual-images/cards.png": "da248547cc257b9e2e4cd5fd5fffd4291bcdaa1f7424abf88f9aefafd22d3518",
-    "manual-images/event.png": "2e0659be22f09e72879d102804bb01a686519323cf72316ed2895fe2d7631c34",
-    "manual-images/results.png": "279cb7279f622670bfe059fd443c797398a39a649c9061fa2414973a44d79ec5"
+    "index.html": "24f4b1bdc41dcdef6fa3ee8f995eaabf2d7223dfdd7467c3a29c620dd886d03f",
+    "manual-images/launcher.png": "7089b588aff20fa67cf98cf07da0f85682476a1cbabf87802a27254c8cf56104",
+    "manual-images/map.png": "b4fb9ae6bfe17eef61e6faa5234d08a2d422e814357b19a7a865e76ef61c061e",
+    "manual-images/phone.png": "65c5036149ad34433becfdc7c1a8712657ccc617f585c675aa29410a592d2c4c",
+    "manual-images/attack.png": "0f399c3abeab5e518fa1b7d9b639b1fd19a7e72e2c9efe6c27baa148ce68541a",
+    "manual-images/capture.png": "442ff8584a829f27be37ea6f73fafd6708210b3ed3cb8b904b8c5a75ca6734e5",
+    "manual-images/cards.png": "72f1c9fb2875a7457226542a9ea15ebeb22c2a47165869579ec2d91c3d2c3b67",
+    "manual-images/event.png": "4fe5d2db441ccae31613472327a72c281f01f3a85c3c18b9fc026e872b8f238d",
+    "manual-images/results.png": "e42af5f1ab9411c6db5dc5f25f9a314c3347d00d7df413ab4291057b0c1f346f"
   }
 }
