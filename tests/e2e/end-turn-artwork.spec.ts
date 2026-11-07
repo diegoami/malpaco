@@ -48,7 +48,7 @@ for(const mode of ['text','icons','auto'])test(`${mode}: selected local End turn
 for(const fixture of ['capture','cards'])test(`End turn cannot bypass required ${fixture}`,async({page})=>{
  const wire=input(TRADE_CASES[0].file).trim(),f=fixture==='capture'?humanCaptureFixture():{text:wire,state:deserializeVersionedMatch(wire).state};await page.clock.install();await page.clock.pauseAt(new Date());
  await page.addInitScript(({text,eventAck})=>{localStorage.setItem('malpaco:current-game',text);localStorage.setItem('malpaco:current-game-meta',JSON.stringify({id:'pending-end-turn',paused:false,eventAck,eventMarksCleared:eventAck}));localStorage.setItem('malpaco:button-labels','icons');},{text:f.text,eventAck:f.state.events?.sequence??0});
- await visitGame(page,'/');await expect(page.locator('[data-country]')).toHaveCount(46);await page.clock.runFor(3000);
+ await page.goto('/');await page.locator('#resume-game').click();await expect(page.locator('[data-country]')).toHaveCount(46);await page.clock.runFor(3000);
  if(fixture==='capture')await expect(page.locator('#confirm-capture-button')).toBeVisible();else await expect(page.getByRole('button',{name:'Skip cards',exact:true})).toBeVisible();
  const before=await page.evaluate(k=>localStorage.getItem(k),KEY),button=page.locator('#end-turn-button');
  expect(await button.isVisible()&&await button.isEnabled()).toBe(false);
