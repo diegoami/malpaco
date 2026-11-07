@@ -93,7 +93,7 @@ When the defender loses its last army, you take the country. Choose the **total*
 
 *Check the source and destination counts, then use the check mark to confirm the amount.*
 
-For a friendly transfer, select **Move** on a country with more than one army and choose an adjacent country you own, or use Move armies. Choose an amount with the same controls. Cancel abandons the draft. Confirm makes the transfer **and ends your turn**. You get one adjacent friendly move per turn, not a multi-country march. End turn finishes without one.
+For a friendly transfer, select **Move** on a country with more than one army and choose an adjacent country you own. Choose an amount with the same controls. Cancel abandons the draft. Confirm makes the transfer **and ends your turn**. You get one adjacent friendly move per turn, not a multi-country march. End turn finishes without one.
 
 Cards float above the map. Drag a card by its grip or edge to move it; later cards reuse the position. Double-tap the grip or start a new game to reset it. Drag the hand window by its title.
 
