@@ -10,7 +10,6 @@ import {gameVersion} from './ui/gameVersion';
 
 const root = document.getElementById("app");
 if (!root) throw new Error("#app is missing");
-document.body.append(gameVersion());
 
 /** `?seed=N` fixes the game (tests and bug reports); otherwise a fresh random one. */
 function chooseSeed(): number {
@@ -51,5 +50,7 @@ if (view === "reference-game") {
 } else if (view === "game-setup") {
   mountGameSetup(root);
 } else {
+  // Build identity belongs to the player entry; diagnostic routes retain their own surfaces.
+  document.body.append(gameVersion());
   mountGeographicGame(root);
 }

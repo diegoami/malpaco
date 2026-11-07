@@ -44,3 +44,8 @@ test('illustrated manual identifies the running package and has current control 
  await expect(page.locator('main')).toContainText('GitHub Pages');
  await expect(page.locator('main img')).toHaveCount(8);
 });
+
+test('diagnostic reference setup retains its original surface',async({page})=>{
+ await page.goto('/?view=reference-game');await expect(page.getByRole('heading',{name:'New reference game',exact:true})).toBeVisible();
+ await expect(page.locator('#game-version')).toHaveCount(0);
+});
