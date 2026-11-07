@@ -18,17 +18,22 @@ The [illustrated player manual](docs/play.md) explains every phase, cards, event
 controls and settings. Open **Full player manual with screenshots** in Help during
 play, or run `npm run manual:refresh` for a portable copy. The
 [maintenance guide](docs/manual-maintenance.md) keeps it and inline Help current;
-[0.5.3 release notes](docs/releases/0.5.3/RELEASE-NOTES.md),
-[publication receipt](docs/releases/0.5.3/PUBLICATION.md) and
-[provenance](docs/releases/0.5.3/PROVENANCE.md) describe that published web release.
+[0.5.4 release notes](docs/releases/0.5.4/RELEASE-NOTES.md),
+[publication receipt](docs/releases/0.5.4/PUBLICATION.md) and
+[provenance](docs/releases/0.5.4/PROVENANCE.md) describe that published web release.
 
-Web **0.5.3** was published from reviewed source `b6f9e54`, after independent
-AGREE and explicit owner approval. [Milestone #440](https://github.com/diegoami/malpaco/issues/440)
+Web **0.5.4** was published from reviewed source `0336f41`, after independent
+MiniMax-M3 thinking AGREE and renewed owner approval. [Milestone #457](https://github.com/diegoami/malpaco/issues/457)
 retains the review, byte verification and publication receipts.
 
-[0.5.4 contracts](docs/plans/release-0.5.4.md) and the
-[acceptance protocol](docs/releases/0.5.4/ACCEPTANCE.md) describe the forward work;
-they do not authorize publication or replace existing release bytes.
+[Release contracts](docs/plans/release-0.5.4.md) and the
+[acceptance protocol](docs/releases/0.5.4/ACCEPTANCE.md) define its boundaries.
+End turn uses the selected green tick; the victory popup always labels its primary
+New game action with text. Phone scoreboards show all six fields as labelled
+entries, and known older configurable-income results group under Legacy without
+changing overall totals. The player version and illustrated manual stay synchronized.
+Previous [0.5.3 publication records](docs/releases/0.5.3/PUBLICATION.md) and all
+older tags/assets remain preserved.
 
 The launcher adapts to portrait/landscape windows and offers Start or Resume.
 Button labels support Text, Icons, or Text 2 turns, then Icons (default), counting
