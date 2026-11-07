@@ -274,3 +274,7 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T164](T164.md): clear friendly-move direction/default/Swap and no redundant banner (#436), after T163.
 - [T165](T165.md): prominent new-game action after victory (#439), after T164.
 - [T166](T166.md): 0.5.3 metadata, acceptance and exact CI candidate (#445), after T162–T165.
+
+## Forward UI maintenance
+
+- [T167](T167.md): package-derived top-right version and current illustrated manual (#454); selected End turn icon #452 remains separate.
