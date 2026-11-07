@@ -1,5 +1,5 @@
 param(
-  [Parameter(Mandatory=$true)][ValidateSet('Install','Reinstall','Uninstall','Launch','Close','Stop','WaitStopped','ExternalBrowserReady','ExternalBrowser','Inspect')][string]$Phase,
+  [Parameter(Mandatory=$true)][ValidateSet('Install','Reinstall','Uninstall','Launch','Close','CloseDocument','Stop','WaitStopped','ExternalBrowserReady','ExternalBrowser','Inspect')][string]$Phase,
   [Parameter(Mandatory=$true)][string]$Output,
   [string]$Executable,
   [int]$AppProcessId,
@@ -54,10 +54,26 @@ if ($Phase -in @('Install','Reinstall')) {
   & taskkill.exe /PID $browserProcessId /T /F | Out-Null
   if ($LASTEXITCODE -ne 0) { throw 'Could not close the test browser process' }
   @{phase=$Phase;url=$Url;pid=$browserProcessId;urlReceivedByBrowser=$true} | ConvertTo-Json -Compress
-} elseif ($Phase -eq 'Close') {
-  $process = Get-Process -Id $AppProcessId
-  if (!$process.CloseMainWindow()) { throw 'Could not request normal window close' }
-  @{phase=$Phase;pid=$AppProcessId;normalWindowCloseRequested=$true} | ConvertTo-Json -Compress
+} elseif ($Phase -in @('Close','CloseDocument')) {
+  # Process.CloseMainWindow may choose another top-level window after a manual was
+  # opened. Select the exact owned native window, not a debugger page or heuristic.
+  Add-Type -TypeDefinition @'
+using System;
+using System.Runtime.InteropServices;
+public static class MalpacoSmokeWindow {
+  [DllImport("user32.dll", CharSet=CharSet.Unicode)] public static extern IntPtr FindWindow(string className, string title);
+  [DllImport("user32.dll")] public static extern uint GetWindowThreadProcessId(IntPtr window, out uint process);
+  [DllImport("user32.dll")] public static extern bool PostMessage(IntPtr window, uint message, IntPtr wParam, IntPtr lParam);
+}
+'@
+  $title = if ($Phase -eq 'CloseDocument') { 'Malpaco documentation' } else { 'Malpaco' }
+  $window = [MalpacoSmokeWindow]::FindWindow($null,$title)
+  if ($window -eq [IntPtr]::Zero) { throw "No native window titled $title" }
+  [uint32]$ownerProcessId = 0
+  [MalpacoSmokeWindow]::GetWindowThreadProcessId($window,[ref]$ownerProcessId) | Out-Null
+  if ($ownerProcessId -ne $AppProcessId) { throw 'Refusing to close an unrelated window' }
+  if (![MalpacoSmokeWindow]::PostMessage($window,0x0010,[IntPtr]::Zero,[IntPtr]::Zero)) { throw 'Could not request normal window close' }
+  @{phase=$Phase;pid=$AppProcessId;title=$title;normalWindowCloseRequested=$true} | ConvertTo-Json -Compress
 } elseif ($Phase -eq 'WaitStopped') {
   $deadline = (Get-Date).AddSeconds(10)
   while ((Get-Process -Id $AppProcessId -ErrorAction SilentlyContinue) -and ((Get-Date) -lt $deadline)) { Start-Sleep -Milliseconds 100 }
