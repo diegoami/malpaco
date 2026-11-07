@@ -69,7 +69,8 @@ try{
  await expect(manual).toHaveURL(/\/manual\/index\.html$/);
  await expect(manual.getByRole('heading',{level:1})).toHaveText('Malpaco player manual');await expect(manual.locator('main img')).toHaveCount(8);
  for(const img of await manual.locator('main img').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(n=>n.complete&&n.naturalWidth>0)).toBe(true);}
- await manual.screenshot({path:join(evidence,'bundled-manual.png')});await manual.close();
+ await manual.screenshot({path:join(evidence,'bundled-manual.png')});
+ const documentClosed=manual.waitForEvent('close');powershell('CloseDocument',['-AppProcessId',String(active.pid)]);await documentClosed;
  expect(await wire(page)).toBe(kept);await close.click();expect(remote).toEqual([]);await context.setOffline(false);
  // The exact HTTPS destinations must leave the app; main URL and saved game stay intact.
  await page.locator('#game-help-button').click();
