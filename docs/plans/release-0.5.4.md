@@ -1,0 +1,14 @@
+# 0.5.4 scope and contracts
+
+Owner accepted the recommended scope under #457; recorded choices #458. Implement directly in one checkout. Integrate on `release/0.5.4`, because `main` pushes automatically publish Pages. Green task PRs may integrate there; main publication, owner-launched milestone review, tag and deployment remain separate gates. Incorporate version/manual PR #455 without altering published v0.5.3 bytes.
+
+1. T168 / #452 and #456: use the exact selected Oxygen End turn artwork, locally bundled with source/authors/licence and accessible names. The prominent completed-game New game row always has visible text, including Icons and automatic icon mode. Other commands retain their preferences; no action/rule changes.
+2. T169 / #377 and #376: readable >=44px scoreboard filter, responsive labelled result entries on small screens and the retained table on wide screens. All six fields remain available without sideways dialog scrolling. Exact configurable-cards/1 results count as Legacy. Preserve totals/ids and migrate only attributable retained rows with idempotent per-row classification; unknown historical totals stay Earlier games. No inference from seed/current settings, replay identity or game rules change.
+3. T170 / #374 and #406: test actual-game Help with opposite next-game settings in both directions, preserving exact save bytes; prove the checks reject selector-based text. Correct current review citations to rules 13–16 without changing criteria or historical release documents.
+4. T171: version 0.5.4 metadata, maintained guide/Help/curated pictures, release notes/acceptance/provenance, pinned integration candidate CI/archive and owner review prompt. Stop before launching review or publishing.
+
+Each contract is frozen before implementation. Build/root types/full units and affected pinned browser cases pass; every feature head has green CI before integration. Record original failures/retries. Preserve source Help and extracted-playable CI; broad source-suite policy #409 is separate. Cover phone, short landscape, tablet/desktop, label modes, keyboard, pending-choice refusal, result fold/restore, scoreboard exactly-once and both combat presets.
+
+The integration-branch CI archive is a candidate, not published main bytes. Record its exact full SHA, ZIP/tar sizes/digests, BUILD.json and complete manifest verification without rebuilding it. Owner launches milestone review against v0.5.3 and judges visuals. Publication then needs explicit authorization; later main integration must be rechecked for tree/byte parity and host-path requirements. No physical-device or screen-reader acceptance is inferred.
+
+Preserve v0.5.3 (`b6f9e5458fc066a4badce518404d4ed10bbfe53c`) and all older tags/assets/records. No AI, balance, native delivery, new runtime dependencies or storage-reliability work rides this release. Status stays in GitHub labels.
