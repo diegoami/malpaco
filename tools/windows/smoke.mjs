@@ -31,10 +31,7 @@ async function launch(path){
 }
 async function stop(browser){
  // Close the actual application window, as a user would. Release CDP separately.
- const session=await browser.newBrowserCDPSession();const targets=await session.send('Target.getTargets');
- const target=targets.targetInfos.find(t=>t.type==='page'&&t.url.includes('tauri.localhost')&&!t.url.includes('/manual/'));
- if(!target)throw Error('No game target to close');
- await session.send('Target.closeTarget',{targetId:target.targetId});
+ powershell('Close',['-AppProcessId',String(active.pid)]);
  await browser.close().catch(()=>{});
  powershell('WaitStopped',['-AppProcessId',String(active.pid)]);active=undefined;
 }
@@ -66,6 +63,7 @@ try{
  expect(geometry.x).toBeGreaterThanOrEqual(0);expect(geometry.y).toBeGreaterThanOrEqual(0);expect(geometry.right).toBeLessThanOrEqual(geometry.viewport[0]);expect(geometry.bottom).toBeLessThanOrEqual(geometry.viewport[1]);expect(geometry.hit).toBe(true);expect(geometry.w).toBeGreaterThanOrEqual(44);expect(geometry.h).toBeGreaterThanOrEqual(44);
  await page.screenshot({path:join(evidence,'installed-help.png')});
  const opened=context.waitForEvent('page');await page.locator('#full-player-manual').click();const manual=await opened;
+ await expect(manual).toHaveURL(/\/manual\/index\.html$/);
  await expect(manual.getByRole('heading',{level:1})).toHaveText('Malpaco player manual');await expect(manual.locator('main img')).toHaveCount(8);
  for(const img of await manual.locator('main img').all()){await img.scrollIntoViewIfNeeded();await expect.poll(()=>img.evaluate(n=>n.complete&&n.naturalWidth>0)).toBe(true);}
  await manual.screenshot({path:join(evidence,'bundled-manual.png')});await manual.close();

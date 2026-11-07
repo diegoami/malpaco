@@ -55,7 +55,7 @@ pub fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
             let window = WebviewWindowBuilder::new(
                 &handle,
                 label,
-                WebviewUrl::External("about:blank".parse().unwrap()),
+                WebviewUrl::App(url.path().trim_start_matches('/').into()),
             )
             .window_features(features)
             .title("Malpaco documentation")
@@ -79,13 +79,13 @@ pub fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
                 NewWindowResponse::Deny
             })
             .build();
-            match window {
-                Ok(window) => NewWindowResponse::Create { window },
-                Err(error) => {
-                    eprintln!("Could not open the documentation: {error}");
-                    NewWindowResponse::Deny
-                }
+            if let Err(error) = window {
+                eprintln!("Could not open the documentation: {error}");
             }
+            // Open our own bundled-document window. Returning it as WebView2's
+            // replacement popup discards the custom-protocol document in this path.
+            // The original window.open request needs no opener/WindowProxy.
+            NewWindowResponse::Deny
         })
         .build()?;
     Ok(())
