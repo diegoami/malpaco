@@ -63,7 +63,8 @@ try{
  // The exact HTTPS destinations must leave the app; main URL and saved game stay intact.
  await page.locator('#game-help-button').click();
  for(const [id,url] of [['github-repository','https://github.com/diegoami/malpaco'],['github-releases','https://github.com/diegoami/malpaco/releases']]){
-  const before=page.url();await expect(page.locator('#'+id)).toHaveAttribute('href',url);await page.locator('#'+id).click();
+  const before=page.url();await expect(page.locator('#'+id)).toHaveAttribute('href',url);powershell('ExternalBrowserReady');await page.locator('#'+id).click();
+  powershell('ExternalBrowser',['-Url',url]);
   await expect(page.locator('dialog[aria-labelledby="game-help-title"]')).toBeVisible();expect(page.url()).toBe(before);expect(await wire(page)).toBe(kept);
  }
  receipts.push({phase:'offline-game-and-help',geometry,noRemoteGameRequests:true,manualImages:8,savedGameSha256:createHash('sha256').update(kept).digest('hex'),webview:await app.browser.version()});

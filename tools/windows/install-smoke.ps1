@@ -1,8 +1,9 @@
 param(
-  [Parameter(Mandatory=$true)][ValidateSet('Install','Reinstall','Uninstall','Launch','Stop','WaitStopped','Inspect')][string]$Phase,
+  [Parameter(Mandatory=$true)][ValidateSet('Install','Reinstall','Uninstall','Launch','Stop','WaitStopped','ExternalBrowserReady','ExternalBrowser','Inspect')][string]$Phase,
   [Parameter(Mandatory=$true)][string]$Output,
   [string]$Executable,
-  [int]$AppProcessId
+  [int]$AppProcessId,
+  [string]$Url
 )
 $ErrorActionPreference = 'Stop'
 $build = Get-Content -Raw (Join-Path $Output 'BUILD-WINDOWS.json') | ConvertFrom-Json
@@ -36,6 +37,23 @@ if ($Phase -in @('Install','Reinstall')) {
   $process = Start-Process -FilePath $Executable -PassThru
   if (!$process) { throw 'Launch returned no process' }
   @{phase=$Phase;pid=$process.Id;path=$Executable} | ConvertTo-Json -Compress
+} elseif ($Phase -eq 'ExternalBrowserReady') {
+  # This is a dedicated hosted VM; never terminate a browser that predates this test.
+  if (Get-Process -Name msedge -ErrorAction SilentlyContinue) { throw 'An Edge browser already runs; external-link process proof is not isolated' }
+  @{phase=$Phase;isolated=$true} | ConvertTo-Json -Compress
+} elseif ($Phase -eq 'ExternalBrowser') {
+  $deadline = (Get-Date).AddSeconds(15)
+  $found = $null
+  while (!$found -and ((Get-Date) -lt $deadline)) {
+    $found = Get-CimInstance Win32_Process -Filter "Name='msedge.exe'" | Where-Object { $_.CommandLine -and $_.CommandLine.Contains($Url) } | Select-Object -First 1
+    if (!$found) { Start-Sleep -Milliseconds 100 }
+  }
+  if (!$found) { throw "No default Edge browser process received the requested URL: $Url" }
+  $browserProcessId = $found.ProcessId
+  # Only close the browser just created by this test, including its renderer children.
+  & taskkill.exe /PID $browserProcessId /T /F | Out-Null
+  if ($LASTEXITCODE -ne 0) { throw 'Could not close the test browser process' }
+  @{phase=$Phase;url=$Url;pid=$browserProcessId;urlReceivedByBrowser=$true} | ConvertTo-Json -Compress
 } elseif ($Phase -eq 'WaitStopped') {
   $deadline = (Get-Date).AddSeconds(10)
   while ((Get-Process -Id $AppProcessId -ErrorAction SilentlyContinue) -and ((Get-Date) -lt $deadline)) { Start-Sleep -Milliseconds 100 }
