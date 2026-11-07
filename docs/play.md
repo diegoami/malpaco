@@ -173,6 +173,10 @@ There is no account, online multiplayer or cross-device synchronization. Other b
 - **Missing control:** scroll the settings/help region, use Fit, move an overlapping card or rotate the phone. Choose Icons or Text in Settings for your preferred command faces.
 - **Different rule:** read Help for the current match. Old kept games retain rules; preferences apply after starting a new match.
 
+## Project and downloads
+
+Open the [GitHub repository](https://github.com/diegoami/malpaco) for the source and issue tracker, or [Releases and downloads](https://github.com/diegoami/malpaco/releases) for published versions and their files. Both links are also available near the top of **? Help** and open separately from your game.
+
 ## Offline play and manual maintenance
 
 Download the [latest playable archive](https://github.com/diegoami/malpaco/releases/latest), extract it and run `node serve.mjs` in `malpaco-playable` with Node.js 22 or later. Open `http://127.0.0.1:4175`; no package installation is needed. From source, use `npm ci` and `npm run dev`.
