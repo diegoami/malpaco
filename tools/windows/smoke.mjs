@@ -9,7 +9,9 @@ const root=resolve('.'),config=JSON.parse(await readFile('artifacts/windows/buil
 const output=config.output,evidence=join(output,'smoke');await mkdir(evidence,{recursive:true});
 const receipts=[];let active;
 function powershell(phase,args=[]){
- const text=execFileSync('powershell.exe',['-NoProfile','-ExecutionPolicy','Bypass','-File',join(root,'tools/windows/install-smoke.ps1'),'-Phase',phase,'-Output',output,...args],{encoding:'utf8',env:process.env});
+ // Match the hosted runner's PowerShell 7 module environment; Windows PowerShell 5
+ // cannot load the inherited Microsoft.PowerShell.Security module (#466 first run).
+ const text=execFileSync('pwsh.exe',['-NoProfile','-ExecutionPolicy','Bypass','-File',join(root,'tools/windows/install-smoke.ps1'),'-Phase',phase,'-Output',output,...args],{encoding:'utf8',env:process.env});
  const receipt=JSON.parse(text.trim());receipts.push(receipt);return receipt;
 }
 async function connect(){
