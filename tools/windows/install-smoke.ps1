@@ -66,5 +66,5 @@ if ($Phase -in @('Install','Reinstall')) {
 } else {
   $signature = Get-AuthenticodeSignature -FilePath $Executable
   $info = (Get-Item $Executable).VersionInfo
-  @{phase=$Phase;windows=[Environment]::OSVersion.VersionString;signature=$signature.Status.ToString();fileVersion=$info.FileVersion;productVersion=$info.ProductVersion} | ConvertTo-Json -Compress
+  @{phase=$Phase;windows=[Environment]::OSVersion.VersionString;powershell=$PSVersionTable.PSVersion.ToString();signature=$signature.Status.ToString();fileVersion=$info.FileVersion;productVersion=$info.ProductVersion} | ConvertTo-Json -Compress
 }

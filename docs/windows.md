@@ -12,7 +12,7 @@ Browser and app saves have different origins and are not automatically transferr
 
 ## Build and validation
 
-On Windows x64 with Node 22, Rust 1.90.0 and the Microsoft C++ build tools/SDK:
+On Windows x64 with Node 22, Rust 1.90.0 and the Microsoft C++ build tools/SDK (the acceptance harness also uses PowerShell 7):
 
 ```sh
 npm ci
