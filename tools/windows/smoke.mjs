@@ -54,6 +54,7 @@ try{
  await page.locator('#start-game').click();await expect(page.locator('#geographic-game')).toBeVisible();
  // A fresh game may begin with a computer. Drive the real UI scheduler until the
  // first human placement, rather than treating a hidden zero pool as an app failure.
+ await page.clock.runFor(3500);
  for(let beats=0;beats<60&&!await page.locator('#placement-pool').isVisible();beats++)await page.clock.runFor(1000);
  await expect(page.locator('#phase-announcement')).toHaveAttribute('data-kind','phase');
  const started=await wire(page);expect(started).toBeTruthy();
