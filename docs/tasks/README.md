@@ -278,3 +278,12 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 ## Forward UI maintenance
 
 - [T167](T167.md): package-derived top-right version and current illustrated manual (#454); selected End turn icon #452 remains separate.
+
+## 0.5.4 (#457)
+
+[Scope and bounded contracts](../plans/release-0.5.4.md); recorded choices #458.
+
+- [T168](T168.md): selected End turn artwork and always-text primary result New game (#452/#456).
+- [T169](T169.md): phone scoreboard and known Legacy result classification (#377/#376).
+- [T170](T170.md): opposite-next-setting Help checks and corrected review rule citations (#374/#406).
+- [T171](T171.md): 0.5.4 metadata, exact candidate and owner review gate.
