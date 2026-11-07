@@ -154,6 +154,8 @@ You are eliminated with no countries. The loss screen can offer **Watch computer
 
 Open the trophy **Scoreboard** in Settings for games played, wins, losses, give-ups, win rate and the last 20 games, newest first. Each game counts once. Rule filters show the groups with recorded results: Defender, Legacy or Earlier games, plus All rules. Older results may be grouped as Earlier games. Reset asks before clearing. Scores belong to this browser, not an online ranking.
 
+On a phone, each result is a labelled entry showing its date, result, rules, rounds, countries and seed. Wider screens keep the table. Known older configurable-income matches use Legacy combat. Retained results with that exact stored identity are classified as Legacy; older totals without attributable retained records stay under Earlier games. This changes grouping only, preserving the total number of outcomes.
+
 ## Keep and resume your game
 
 Committed actions are saved in this browser. Reloading or returning offers Resume saved game, including pending capture/card decisions. A paused match waits for Resume. Settings and Help pause play while open and normally return to play when closed; neither clears an independent interruption pause. You can inspect and navigate the map while notices or decisions are pending.

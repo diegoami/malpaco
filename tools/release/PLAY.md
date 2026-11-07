@@ -28,5 +28,10 @@ Games, preferences and the scoreboard are kept in this browser at this address.
 Use the same browser and address to continue. Clearing site data removes that
 local data; there is no account or cross-device synchronization.
 
+In Settings, Scoreboard shows filters for groups with recorded results, plus
+All rules. Phones show labelled result entries; wider screens keep a table.
+Known configurable-income matches use Legacy combat. Older totals without
+attributable retained results remain under Earlier games; overall totals are preserved.
+
 To create this archive from a source checkout, run `npm run package:playable`.
 It writes `release/malpaco-playable.tar.gz` and `release/malpaco-playable/`.
