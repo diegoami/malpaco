@@ -32,8 +32,10 @@ async function launch(path){
 async function stop(browser){
  // Close the actual application window, as a user would. Release CDP separately.
  powershell('Close',['-AppProcessId',String(active.pid)]);
- await browser.close().catch(()=>{});
+ // Prove normal exit before disconnecting the debugger; debugger shutdown must
+ // never make an otherwise broken app-close check pass.
  powershell('WaitStopped',['-AppProcessId',String(active.pid)]);active=undefined;
+ await browser.close().catch(()=>{});
 }
 const wire=page=>page.evaluate(()=>localStorage.getItem('malpaco:current-game'));
 try{
@@ -58,6 +60,7 @@ try{
  await expect(page.locator('#placement-pool')).toBeVisible();
  await page.getByRole('button',{name:/, You, \d+ armies$/}).first().click();
  await expect.poll(()=>wire(page)).not.toBe(started);const kept=await wire(page);expect(kept).toBeTruthy();
+ await writeFile(join(evidence,'kept-game.json'),kept);
  await page.locator('#game-help-button').click();const close=page.locator('#close-game-help');await expect(close).toBeVisible();
  const geometry=await close.evaluate(b=>{const r=b.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,w:r.width,h:r.height,viewport:[innerWidth,innerHeight],hit:b.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2))};});
  expect(geometry.x).toBeGreaterThanOrEqual(0);expect(geometry.y).toBeGreaterThanOrEqual(0);expect(geometry.right).toBeLessThanOrEqual(geometry.viewport[0]);expect(geometry.bottom).toBeLessThanOrEqual(geometry.viewport[1]);expect(geometry.hit).toBe(true);expect(geometry.w).toBeGreaterThanOrEqual(44);expect(geometry.h).toBeGreaterThanOrEqual(44);
