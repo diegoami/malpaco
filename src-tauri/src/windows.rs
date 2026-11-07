@@ -82,8 +82,8 @@ pub fn setup(app: &mut tauri::App) -> Result<(), Box<dyn std::error::Error>> {
             if let Err(error) = window {
                 eprintln!("Could not open the documentation: {error}");
             }
-            // Open our own bundled-document window. Returning it as WebView2's
-            // replacement popup discards the custom-protocol document in this path.
+            // Open our own bundled-document window. The replacement-popup path
+            // stayed blank in Windows acceptance; this uses normal app navigation.
             // The original window.open request needs no opener/WindowProxy.
             NewWindowResponse::Deny
         })
