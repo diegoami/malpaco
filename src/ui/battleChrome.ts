@@ -171,7 +171,7 @@ export class BattleChrome {
 
   /** Legal phase commands ride the action corner as icons; disabled ones are not shown. */
   private commands(): void {
-    const symbols: Record<string,string> = {"start-combat-button":"combat", "end-turn-button":"flag", "start-friendly-move-button":"move"};
+    const symbols: Record<string,string> = {"start-combat-button":"combat", "end-turn-button":"end-turn", "start-friendly-move-button":"move"};
     for (const button of this.nodes.phaseActions.querySelectorAll<HTMLButtonElement>("button")) {
       if (!button.dataset["commandSymbol"]) {
         button.setAttribute("aria-label", button.textContent ?? ""); button.title = button.textContent ?? "";

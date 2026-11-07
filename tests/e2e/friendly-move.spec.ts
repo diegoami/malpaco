@@ -30,7 +30,7 @@ for(const amount of ["minimum","maximum"] as const)test(`friendly ${amount} tran
 });
 test("cancel returns to attacks without movement; skip hands off normally",async({page},info)=>{
  const errors:string[]=[];page.on("pageerror",e=>errors.push(e.message));const f=await prepare(page);await begin(page,f.ready);await select(page,f.ready,f.from,f.to);await openSurface(page,'actions');const stale=await page.locator("#confirm-friendly-move-button").elementHandle();await openSurface(page,'actions');await page.locator("#cancel-friendly-move-button").click();await expect(page.locator("#start-friendly-move-button")).toBeVisible();await stale!.evaluate(n=>n.dispatchEvent(new MouseEvent("click",{bubbles:true})));await paint(page,f.ready);await openSurface(page,'actions');await expect(page.getByRole("region",{name:"Battle controls",exact:true})).toHaveAttribute("data-history-count",String(f.ready.history.length));
- await begin(page,f.ready);// T92: the End turn flag skips the move; the friendly card has no Skip, as in the sketches.
+ await begin(page,f.ready);// End turn skips the move; the friendly card has no Skip.
  await page.locator("#end-turn-button").click();await handoff(page,step(f.ready,{kind:"endTurn"}));await screenshot(page,"skipped",info.project.name);expect(errors).toEqual([]);
 });
 test("a just-captured country can supply the final friendly move",async({page},info)=>{
