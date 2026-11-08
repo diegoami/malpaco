@@ -10,6 +10,15 @@ const git=(...args)=>execFileSync('git',['-c',`safe.directory=${root}`,...args],
 if(git('status','--porcelain','--untracked-files=no'))throw Error('Refusing a build with uncommitted tracked source.');
 const sourceCommit=git('rev-parse','HEAD');
 const {version}=JSON.parse(await readFile(join(root,'package.json'),'utf8'));
+const oxygen=join(root,'public/third-party/oxygen');
+const preferredSource=JSON.parse(await readFile(join(oxygen,'SOURCE.json'),'utf8'));
+async function verifyPreferredSource(directory){
+ for(const [name,expected] of Object.entries(preferredSource.sha256)){
+  const actual=createHash('sha256').update(await readFile(join(directory,name))).digest('hex');
+  if(actual!==expected)throw Error(`Preferred Oxygen source/notices bytes changed: ${name}. Check .gitattributes and checkout line endings.`);
+ }
+}
+await verifyPreferredSource(oxygen);
 const target=join(root,'artifacts/windows-cargo-target');
 const result=spawnSync(process.execPath,[join(root,'node_modules/@tauri-apps/cli/tauri.js'),'build','--ci','--target','x86_64-pc-windows-msvc','--bundles','nsis','--','--locked'],{cwd:root,env:{...process.env,CARGO_TARGET_DIR:target},stdio:'inherit'});
 if(result.error)throw result.error;
@@ -22,6 +31,7 @@ const portable=`malpaco-${version}-windows-x64-portable.exe`,installer=`malpaco-
 await copyFile(join(native,'malpaco.exe'),join(output,portable));await copyFile(join(native,'bundle/nsis',installers[0]),join(output,installer));
 const bundled=JSON.parse(await readFile(join(root,'release/malpaco-playable/BUILD.json'),'utf8'));
 if(bundled.sourceCommit!==sourceCommit||bundled.version!==version)throw Error('Bundled frontend provenance does not match the native build.');
+await verifyPreferredSource(join(root,'release/malpaco-playable/third-party/oxygen'));
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 const payloadManifest=await readFile(join(root,'release/malpaco-playable/SHA256SUMS'));
 await writeFile(join(output,'FRONTEND-SHA256SUMS'),payloadManifest);
