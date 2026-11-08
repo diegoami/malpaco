@@ -295,3 +295,4 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T172](T172.md): fully visible and clickable player Help close control (#468).
 - [T173](T173.md): repository and Releases links in Help/manual (#467).
 - [T174](T174.md): Windows installer and portable executable (#466).
+- [T175](T175.md): versioned web/Windows candidate, original artifacts and owner review gate (#472).

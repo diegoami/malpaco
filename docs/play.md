@@ -179,6 +179,10 @@ Open the [GitHub repository](https://github.com/diegoami/malpaco) for the source
 
 ## Offline play and manual maintenance
 
+For Windows x64, choose the **setup.exe installer** or the **portable.exe** from Releases. The installer adds a Start menu shortcut and an uninstall entry; the portable executable starts without installing Malpaco. Both need Microsoft Edge WebView2 Runtime. The installer downloads it if missing, so that first installation needs internet; portable users must install the Runtime separately. The game, fonts, worker and illustrated manual are bundled and then work offline. Initial Windows files are unsigned, so Windows may show an unknown-publisher prompt.
+
+The portable executable uses the same Windows user's app data as the installed copy, rather than saving beside the executable. Avoid running both copies at once. Browser and Windows app saves are separate and are not automatically transferred. Clearing app data can erase saves and scores.
+
 Download the [latest playable archive](https://github.com/diegoami/malpaco/releases/latest), extract it and run `node serve.mjs` in `malpaco-playable` with Node.js 22 or later. Open `http://127.0.0.1:4175`; no package installation is needed. From source, use `npm ci` and `npm run dev`.
 
 This guide is available through **Full player manual** in Help. Text lives in `docs/play.md`; selected illustrations live in `docs/manual-images/` with the owner's explicit exception to rule 6. Other screenshots, logs and the portable copy stay in ignored `artifacts/`.
