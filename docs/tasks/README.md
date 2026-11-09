@@ -287,3 +287,12 @@ requires parent preflight before `status:ready`; dependencies alone are insuffic
 - [T169](T169.md): phone scoreboard and known Legacy result classification (#377/#376).
 - [T170](T170.md): opposite-next-setting Help checks and corrected review rule citations (#374/#406).
 - [T171](T171.md): 0.5.4 metadata, exact candidate and owner review gate.
+
+## 0.5.5 (#465)
+
+[Scope and bounded contracts](../plans/release-0.5.5.md).
+
+- [T172](T172.md): fully visible and clickable player Help close control (#468).
+- [T173](T173.md): repository and Releases links in Help/manual (#467).
+- [T174](T174.md): Windows installer and portable executable (#466).
+- [T175](T175.md): versioned web/Windows candidate, original artifacts and owner review gate (#472).

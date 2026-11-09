@@ -27,7 +27,11 @@ async function walk(dir, prefix = "") {
 }
 
 // T89 (R4): the published build retires the legacy views (src/main.ts).
-const built = spawnSync("npm", ["run", "build"], { cwd: checkout, encoding: "utf8", stdio: "inherit", env: { ...process.env, VITE_MALPACO_RELEASE: "1" } });
+// npm's Windows launcher is a .cmd file, which spawnSync cannot execute directly.
+// npm scripts provide their exact CLI path; invoking it through Node also avoids a shell.
+const npmCli = process.env.npm_execpath;
+if (process.platform === "win32" && !npmCli) throw new Error("On Windows, run npm run package:playable");
+const built = spawnSync(npmCli ? process.execPath : "npm", npmCli ? [npmCli, "run", "build"] : ["run", "build"], { cwd: checkout, encoding: "utf8", stdio: "inherit", env: { ...process.env, VITE_MALPACO_RELEASE: "1" } });
 if (built.error) throw built.error;
 if (built.status !== 0) throw new Error(`npm run build exited ${built.status}`);
 

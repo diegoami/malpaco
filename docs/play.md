@@ -47,6 +47,8 @@ The turn tracker lists seats, public counts and the current player's arrow. Wait
 | Resume | Continue after an explicit pause or interruption. |
 | End turn | Finish the turn without a friendly transfer; shown as a green tick in Icons mode. |
 
+Help scrolls within the window. Its **× Close help** button stays at the top while you read, including in fullscreen. Click it or press Escape to close Help and return focus to **?**.
+
 The new-armies counter sits at the top left immediately right of Cards. In icon mode an army symbol accompanies the count. Select a region to use its Move control; the redundant bottom-right Move button has been removed. The province-list button has also been removed; map regions remain reachable with Tab and Enter.
 
 The bottom-left +/− zoom icons stay visible, including at Fit. Zoom Out is disabled at minimum zoom; Zoom In is disabled at maximum zoom. Pinch or use the mouse wheel to zoom; drag to pan. Use Fit if you lose your place. If a tap overlaps several countries, the game chooses the one with the most area under your finger and zooms in a little. No chooser popup interrupts play. Country selection and action controls also work with keyboard focus and Enter/Space; Shift activation selects without immediately fighting an armed attack. Form controls retain their ordinary keyboard behavior.
@@ -171,7 +173,15 @@ There is no account, online multiplayer or cross-device synchronization. Other b
 - **Missing control:** scroll the settings/help region, use Fit, move an overlapping card or rotate the phone. Choose Icons or Text in Settings for your preferred command faces.
 - **Different rule:** read Help for the current match. Old kept games retain rules; preferences apply after starting a new match.
 
+## Project and downloads
+
+Open the [GitHub repository](https://github.com/diegoami/malpaco) for the source and issue tracker, or [Releases and downloads](https://github.com/diegoami/malpaco/releases) for published versions and their files. Both links are also available near the top of **? Help** and open separately from your game.
+
 ## Offline play and manual maintenance
+
+For Windows x64, choose the **setup.exe installer** or the **portable.exe** from Releases. The installer adds a Start menu shortcut and an uninstall entry; the portable executable starts without installing Malpaco. Both need Microsoft Edge WebView2 Runtime. The installer downloads it if missing, so that first installation needs internet; portable users must install the Runtime separately. The game, fonts, worker and illustrated manual are bundled and then work offline. Initial Windows files are unsigned, so Windows may show an unknown-publisher prompt.
+
+The portable executable uses the same Windows user's app data as the installed copy, rather than saving beside the executable. Avoid running both copies at once. Browser and Windows app saves are separate and are not automatically transferred. Clearing app data can erase saves and scores.
 
 Download the [latest playable archive](https://github.com/diegoami/malpaco/releases/latest), extract it and run `node serve.mjs` in `malpaco-playable` with Node.js 22 or later. Open `http://127.0.0.1:4175`; no package installation is needed. From source, use `npm ci` and `npm run dev`.
 

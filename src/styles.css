@@ -1695,6 +1695,8 @@ dialog h2 {
 .battle-reference #active-seat-notice #fast-forward-button { color:var(--accent); }
 /* T85: Help & icon names, a scrolling dialog like the event log. */
 .game-help { width:min(720px,92vw); max-height:86vh; padding:0 0 16px; overflow:auto; border:1px solid var(--line); border-radius:12px; background:#12202e; color:#f1f5f9; }
+/* Help's viewport height must not be scaled by the desktop result-dialog zoom. */
+.game-help[aria-labelledby="game-help-title"] { zoom:1; }
 .game-help::backdrop { background:#000a; }
 .game-help-head { position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; background:#1a2d3d; border-bottom:1px solid var(--line); }
 .game-help-head h2 { margin:0; font-size:20px; }

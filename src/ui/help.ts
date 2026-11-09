@@ -158,6 +158,9 @@ export class GameHelp {
     this.dialog.append(
       h("header", { class: "game-help-head" }, h("h2", { id: "game-help-title" }, "Help & icon names"), close),
       h('p',{},`Malpaco ${version}.`),
+      h('p',{},
+        h('a',{id:'github-repository',href:'https://github.com/diegoami/malpaco',target:'_blank',rel:'noopener noreferrer'},'GitHub repository'),
+        ' · ',h('a',{id:'github-releases',href:'https://github.com/diegoami/malpaco/releases',target:'_blank',rel:'noopener noreferrer'},'Releases and downloads')),
       h("p", {}, h("a", {id:"full-player-manual",href:`${import.meta.env.BASE_URL}manual/index.html`,target:"_blank",rel:"noopener"}, "Full player manual with screenshots")),
       h('p',{},h('a',{href:`${import.meta.env.BASE_URL}third-party/oxygen/index.html`,target:'_blank',rel:'noopener'},'Oxygen icon credits and licence')),
       h("section", {}, h("h3", {}, "Objective"), this.objective),h("section",{},h("h3",{},"Combat rules"),this.combatRules),

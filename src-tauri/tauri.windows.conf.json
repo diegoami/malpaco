@@ -1,0 +1,19 @@
+{
+  "version": "../package.json",
+  "app": {
+    "windows": [{
+      "label": "main", "title": "Malpaco", "create": false,
+      "width": 1280, "height": 800, "minWidth": 320, "minHeight": 320,
+      "resizable": true, "fullscreen": false
+    }]
+  },
+  "bundle": {
+    "targets": ["nsis"],
+    "icon": ["icons/icon.ico"],
+    "shortDescription": "An original island-conquest game",
+    "windows": {
+      "webviewInstallMode": {"type": "downloadBootstrapper", "silent": true},
+      "nsis": {"installMode": "currentUser", "startMenuFolder": "Malpaco"}
+    }
+  }
+}

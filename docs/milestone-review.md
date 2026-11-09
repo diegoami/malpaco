@@ -6,8 +6,9 @@ on whatever model they pick, in a fresh session. Adapted from Geoclick2027's rel
 
 ## How a milestone happens
 
-For 0.5.4, use the [release-specific acceptance protocol](releases/0.5.4/ACCEPTANCE.md):
-the candidate stays on `release/0.5.4` until publication approval because pushing `main`
+For 0.5.4 and 0.5.5, use their release-specific acceptance protocols
+([0.5.4](releases/0.5.4/ACCEPTANCE.md), [0.5.5](releases/0.5.5/ACCEPTANCE.md)):
+the candidate stays on its `release/<version>` branch until publication approval because pushing `main`
 publishes GitHub Pages automatically. Review its exact, reachable CI-tested commit.
 The source location changes; independence, findings, visual and publication gates do not.
 
