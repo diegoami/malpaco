@@ -18,28 +18,22 @@ The [illustrated player manual](docs/play.md) explains every phase, cards, event
 controls and settings. Open **Full player manual with screenshots** in Help during
 play, or run `npm run manual:refresh` for a portable copy. The
 [maintenance guide](docs/manual-maintenance.md) keeps it and inline Help current;
-[0.5.4 release notes](docs/releases/0.5.4/RELEASE-NOTES.md),
-[publication receipt](docs/releases/0.5.4/PUBLICATION.md) and
-[provenance](docs/releases/0.5.4/PROVENANCE.md) describe that published web release.
+[0.5.5 release notes](docs/releases/0.5.5/RELEASE-NOTES.md),
+[publication receipt](docs/releases/0.5.5/PUBLICATION.md) and
+[provenance](docs/releases/0.5.5/PROVENANCE.md) describe that published release.
 
-Web **0.5.4** was published from reviewed source `0336f41`, after independent
-MiniMax-M3 thinking AGREE and renewed owner approval. [Milestone #457](https://github.com/diegoami/malpaco/issues/457)
-retains the review, byte verification and publication receipts.
+**0.5.5** was published from reviewed source `009e827`, after independent
+MiniMax-M3 thinking AGREE and explicit owner approval. It adds Windows x64
+installer and portable downloads, repository/Releases links in Help and the
+manual, and a fully reachable Help close control in fullscreen.
+[Milestone #465](https://github.com/diegoami/malpaco/issues/465) retains the
+review, byte verification and publication receipts; [Windows instructions](docs/windows.md)
+explain WebView2, unsigned delivery and per-user saves.
 
-[Release contracts](docs/plans/release-0.5.4.md) and the
-[acceptance protocol](docs/releases/0.5.4/ACCEPTANCE.md) define its boundaries.
-
-End turn uses the selected green tick; the victory popup always labels its primary
-New game action with text. Phone scoreboards show all six fields as labelled
-entries, and known older configurable-income results group under Legacy without
-changing overall totals. The player version and illustrated manual stay synchronized.
-Previous [0.5.3 publication records](docs/releases/0.5.3/PUBLICATION.md) and all
+[Release contracts](docs/plans/release-0.5.5.md) and the
+[acceptance protocol](docs/releases/0.5.5/ACCEPTANCE.md) define its boundaries.
+Previous [0.5.4 publication records](docs/releases/0.5.4/PUBLICATION.md) and all
 older tags/assets remain preserved.
-
-For the owner-requested 0.5.5 work, see the [scope](docs/plans/release-0.5.5.md),
-[Windows installer/portable instructions](docs/windows.md) and
-[candidate acceptance gates](docs/releases/0.5.5/ACCEPTANCE.md).
-Preparation on the release branch does not publish a new version.
 
 The launcher adapts to portrait/landscape windows and offers Start or Resume.
 Button labels support Text, Icons, or Text 2 turns, then Icons (default), counting
